@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- "0.12"
+sudo: false
+before_script:
+- npm set progress=false
+- npm install -g bower gulp
+notifications:
+  webhooks:
+    urls:
+    - https://webhooks.gitter.im/e/c8c40bc13ee38867f698
+    on_success: change
+    on_failure: always
+    on_start: never
