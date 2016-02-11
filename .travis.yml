@@ -2,9 +2,12 @@ language: node_js
 node_js:
 - "0.12"
 sudo: false
-before_script:
-- npm set progress=false
-- npm install -g bower gulp
+cache:
+  directories:
+  - bower_components
+  - node_modules
+before_install:
+- gem install sass
 notifications:
   webhooks:
     urls:
