@@ -1,0 +1,18 @@
+### Bower ###
+bower_components
+.bower-cache
+.bower-registry
+.bower-tmp
+
+### Node Modules ###
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+node_modules
+
+### NPM Logs ###
+npm-debug.log
+
+### Plato Reports ###
+reports
+
+### Temp build directory ###
+.tmp
