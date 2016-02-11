@@ -7,7 +7,7 @@ module.exports = (function() {
   var src = './';
   var client = src + 'client/';
   var server = src + 'server/';
-  var build = '../../public/self_service/';
+  var build = '../manageiq/public/self_service/';
   var temp = './.tmp/';
   var reports = './reports/';
   var bower = './bower_components/';
@@ -252,7 +252,7 @@ module.exports = (function() {
       style: 'compact',
       noCache: false,
       compass: false,
-      bundleExec: true,
+      bundleExec: false,
       sourcemap: false,
       precision: 8
     },

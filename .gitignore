@@ -16,3 +16,6 @@ reports
 
 ### Temp build directory ###
 .tmp
+
+### Sass cache ###
+.sass-cache

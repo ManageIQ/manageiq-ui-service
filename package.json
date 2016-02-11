@@ -1,5 +1,5 @@
 {
-  "name": "manageiq_self_service",
+  "name": "manageiq-ui-self_service",
   "version": "0.0.1",
   "description": "ManageIQ Self Service dependencies",
   "authors": [
@@ -9,7 +9,7 @@
   "license": "Apache 2.0",
   "scripts": {
     "init": "npm install",
-    "install": "bower install; bundle install",
+    "install": "bower install",
     "postinstall": "gulp build",
     "start": "node src/server/app.js",
     "test": "gulp test"
