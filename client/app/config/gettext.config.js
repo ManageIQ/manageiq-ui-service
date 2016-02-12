@@ -13,7 +13,7 @@
       gettextCatalog.setCurrentLanguage(lang);
 
       if (lang) {
-        gettextCatalog.loadRemote("gettext/json/" + lang + "/manageiq-ssui.json");
+        gettextCatalog.loadRemote("gettext/json/" + lang + "/manageiq-ui-self_service.json");
       }
     };
 
