@@ -387,7 +387,7 @@ module.exports = (function() {
 
   config.gettextExtract = {
     inputs: ['client/**/*.js', 'client/**/*.html'],
-    potFile: 'manageiq-ssui.pot',
+    potFile: 'manageiq-ui-self_service.pot',
     extractorOptions: {
       markerNames: ['__', 'N_'],
     },
