@@ -76,6 +76,7 @@ module.exports = (function() {
   function getKarmaOptions() {
     var options = {
       files: [].concat(
+        './node_modules/phantomjs-polyfill/bind-polyfill.js',
         wiredep({devDependencies: true}).js,
         specHelperFiles,
         getClientJsFiles(true),
