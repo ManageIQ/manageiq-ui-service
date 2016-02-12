@@ -58,7 +58,7 @@
     function fetchServices() {
       var options = {
         expand: false,
-        filter: ['service_id>0'],
+        filter: ['service_id=nil'],
         auto_refresh: true,
       };
 
@@ -82,7 +82,7 @@
     }
 
     function updateServicesCount(item, data) {
-      Navigation.items.primary[item].count = data.count - data.subcount;
+      Navigation.items.primary[item].count = data.subcount;
     }
 
     function updateServiceTemplatesCount(item, data) {

@@ -105,7 +105,7 @@
     if (!Session.current.navFeatures.services.show) {
       return undefined;
     }
-    var options = {expand: false, filter: ['service_id>0'] };
+    var options = {expand: false, filter: ['service_id=nil'] };
 
     return CollectionsApi.query('services', options);
   }
@@ -123,7 +123,7 @@
       vm.servicesCount.soon = 0;
 
       if (definedServiceIdsServices.subcount > 0) {
-        vm.servicesCount.total = definedServiceIdsServices.count - definedServiceIdsServices.subcount;
+        vm.servicesCount.total = definedServiceIdsServices.subcount;
         vm.servicesCount.current = definedServiceIdsServices.subcount === 0 ? nonRetiredServices.count :
         retiredServices.subcount + nonRetiredServices.subcount;
 
