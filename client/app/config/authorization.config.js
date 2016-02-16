@@ -77,11 +77,13 @@
           miqGroup: $sessionStorage.miqGroup,
         });
 
-        return Session.loadUser();
+        Session.loadUser()
+          .then(function() {
+            $state.go('dashboard');
+          });
       }
 
       event.preventDefault();
-      $state.transitionTo('login');
     }
 
     function changeError(event, toState, toParams, fromState, fromParams, error) {
