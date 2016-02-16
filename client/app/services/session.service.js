@@ -98,7 +98,8 @@
         service_edit: {show: angular.isDefined(productFeatures.service_edit)},
         service_delete: {show: angular.isDefined(productFeatures.service_delete)},
         service_reconfigure: {show: angular.isDefined(productFeatures.service_reconfigure)},
-        service_retire_now: {show: angular.isDefined(productFeatures.service_retire_now)}
+        service_retire_now: {show: angular.isDefined(productFeatures.service_retire_now)},
+        service_retire: {show: angular.isDefined(productFeatures.service_retire)}
       };
       model.actionFeatures = features;
 
