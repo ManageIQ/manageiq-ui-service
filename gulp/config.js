@@ -252,7 +252,7 @@ module.exports = (function() {
       style: 'compact',
       noCache: false,
       compass: false,
-      bundleExec: false,
+      bundleExec: true,
       sourcemap: false,
       precision: 8
     },

@@ -7,7 +7,7 @@ cache:
   - bower_components
   - node_modules
 before_install:
-- gem install sass
+- bundle install
 notifications:
   webhooks:
     urls:

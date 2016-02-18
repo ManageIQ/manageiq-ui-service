@@ -19,3 +19,6 @@ reports
 
 ### Sass cache ###
 .sass-cache
+
+### Bundler ###
+/.bundle/
