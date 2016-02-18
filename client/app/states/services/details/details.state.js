@@ -48,7 +48,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, Notifications) {
+  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications) {
     var vm = this;
 
     vm.title = __('Service Details');
@@ -59,6 +59,7 @@
     vm.editServiceModal = editServieModal;
     vm.retireServiceNow = retireServiceNow;
     vm.retireServiceLater = retireServiceLater;
+    vm.ownershipServiceModal = ownershipServiceModal;
 
     vm.listConfig = {
       selectItems: false,
@@ -86,6 +87,10 @@
 
     function editServieModal() {
       EditServiceModal.showModal(vm.service);
+    }
+
+    function ownershipServiceModal() {
+      OwnershipServiceModal.showModal(vm.service);
     }
 
     function retireServiceNow() {

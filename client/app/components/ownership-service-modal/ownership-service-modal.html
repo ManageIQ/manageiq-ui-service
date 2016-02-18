@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 class="modal-title" id="myModalLabel" translate>Set Service Ownership</h4>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal">
+    <div pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Select an Owner'|translate}}">
+      <select ng-model="vm.modalData.resource.owner.userid" class="form-control">
+        <option ng-repeat="user in vm.users.resources"
+                ng-selected="user.userid == vm.modalData.resource.owner.userid ? 'selected' : ''"
+                value="{{user.userid}}">
+          {{user.name}}
+        </option>
+      </select>
+    </div>
+
+    <div pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Select a Group'|translate}}">
+      <select ng-model="vm.modalData.resource.group.description"
+              class="form-control">
+        <option ng-repeat="group in vm.groups.resources | orderBy:'description'"
+                ng-selected="group.description == vm.modalData.resource.group ? 'selected' : ''"
+                value="{{group.description}}">
+          {{group.description}}
+        </option>
+      </select>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" ng-click="$dismiss()" translate>Cancel</button>
+  <button type="button"
+          class="btn btn-primary"
+          ng-click="vm.saveOwnership()"
+          ng-disabled="vm.service.evm_owner.userid == vm.modalData.resource.owner.userid &&
+            vm.service.miq_group.description == vm.modalData.resource.group.description" translate>Save
+  </button>
+</div>
