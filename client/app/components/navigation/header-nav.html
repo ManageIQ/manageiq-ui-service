@@ -21,6 +21,12 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right navbar-iconic">
+      <li>
+        <a title="{{'Shopping cart' | translate}}" class="nav-item-iconic" ng-click="vm.shoppingCartDialog.open()">
+          <i class="fa fa-shopping-cart"></i>
+          <span class="badge" ng-show="vm.shoppingCartCount" ng-bind="vm.shoppingCartCount"></span>
+        </a>
+      </li>
       <li dropdown>
         <a dropdown-toggle class="nav-item-iconic" title="{{ ::vm.user().userid }}">
           <i class="fa pficon-user"></i>

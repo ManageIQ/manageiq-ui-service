@@ -24,7 +24,7 @@
     }
 
     /** @ngInject */
-    function HeaderNavController(Text, Navigation, Messages, Session, API_BASE) {
+    function HeaderNavController(Text, Navigation, Messages, Session, API_BASE, ShoppingCart, $rootScope, $scope, $modal) {
       var vm = this;
 
       vm.text = Text.app;
@@ -35,10 +35,22 @@
       vm.clearMessages = clearMessages;
       vm.API_BASE = API_BASE;
       vm.group_switch = Session.switchGroup;
+      vm.shoppingCartCount = 0;
+      vm.shoppingCartDialog = { open: function() { console.log('TODO') } };
 
       function activate() {
         vm.messages = Messages.items;
+        refresh();
       }
+
+      function refresh() {
+        vm.shoppingCartCount = ShoppingCart.count();
+      }
+
+      var destroy = $rootScope.$on('shoppingCartUpdated', refresh);
+      $scope.$on('destroy', function() {
+        destroy();
+      });
 
       function toggleNavigation() {
         if (!Navigation.state.isMobileNav) {
