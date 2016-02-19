@@ -79,7 +79,12 @@
 
         Session.loadUser()
           .then(function() {
-            $state.go('dashboard');
+            if (Session.activeNavigationFeatures()) {
+              $state.go('dashboard');
+            } else {
+              Session.privileges_error = true;
+              $state.go('login');
+            }
           });
       }
 

@@ -19,6 +19,7 @@
       currentUser: currentUser,
       loadUser: loadUser,
       switchGroup: switchGroup,
+      activeNavigationFeatures: activeNavigationFeatures
     };
 
     destroy();
@@ -138,6 +139,14 @@
       } else {
         return false;
       }
+    }
+
+    function activeNavigationFeatures() {
+      var activeNavFeatures = lodash.find(model.navFeatures, function(o) {
+        return o.show === true;
+      });
+
+      return angular.isDefined(activeNavFeatures);
     }
   }
 })();
