@@ -15,7 +15,6 @@ The Self Service UI for the [ManageIQ](http://github.com/ManageIQ/manageiq) proj
 
 - Install nodejs 0.12
 - Install bower and gulp globally: `npm install -g bower gulp`
-- Install the [Sass](http://sass-lang.com/) ruby gem: `gem install sass`
 - Have the [ManageIQ](http://github.com/ManageIQ/manageiq) repo cloned into a
   directory named `manageiq`, and ready to be started.
 
@@ -24,6 +23,7 @@ The Self Service UI for the [ManageIQ](http://github.com/ManageIQ/manageiq) proj
 - Clone this repo as a sibling to the `manageiq` directory:
   `git clone git@github.com:ManageIQ/manageiq-ui-self_service.git`
 - `cd manageiq-ui-self_service`
+- `bundle install`
 - `npm install`
 
 ## Development
