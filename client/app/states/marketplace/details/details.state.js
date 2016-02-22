@@ -113,7 +113,11 @@
 
       function submitSuccess(result) {
         Notifications.success(result.message);
-        $state.go('requests.list');
+        if ($state.navFeatures.requests.show) {
+          $state.go('requests.list');
+        } else {
+          $state.go('dashboard');
+        }
       }
 
       function submitFailure(result) {
