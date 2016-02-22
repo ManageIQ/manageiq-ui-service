@@ -14,11 +14,11 @@ var url = require('url');
 
 var environment = process.env.NODE_ENV;
 
-app.use('/api', proxy('127.0.0.1:3000', {
+app.use('/api', proxy('http://[::1]:3000', {
   forwardPath: function(req, res) {
     var path = '/api' + url.parse(req.url).path;
 
-    console.log('PROXY: http://127.0.0.1:3000' + path);
+    console.log('PROXY: http://[::1]:3000' + path);
     return path;
   }
 }));
