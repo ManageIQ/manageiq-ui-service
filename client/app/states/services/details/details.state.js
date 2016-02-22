@@ -48,15 +48,15 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications, Session) {
+  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications) {
     var vm = this;
 
-    vm.showRemoveService = Session.current.actionFeatures.service_delete.show;
-    vm.showRetireService = Session.current.actionFeatures.service_retire_now.show;
-    vm.showScheduleRetirementService = Session.current.actionFeatures.service_retire.show;
-    vm.showEditService = Session.current.actionFeatures.service_edit.show;
-    vm.showEditService = Session.current.actionFeatures.service_edit.show;
-    vm.showSetOwnership = Session.current.actionFeatures.service_ownership.show;
+    vm.showRemoveService = $state.actionFeatures.service_delete.show;
+    vm.showRetireService = $state.actionFeatures.service_retire_now.show;
+    vm.showScheduleRetirementService = $state.actionFeatures.service_retire.show;
+    vm.showEditService = $state.actionFeatures.service_edit.show;
+    vm.showEditService = $state.actionFeatures.service_edit.show;
+    vm.showSetOwnership = $state.actionFeatures.service_ownership.show;
 
     vm.title = __('Service Details');
     vm.service = service;

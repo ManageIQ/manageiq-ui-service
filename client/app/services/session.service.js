@@ -77,8 +77,8 @@
     }
 
     function setRBAC(productFeatures) {
-      setRBACForActions(productFeatures);
-      setRBACForNavigation(productFeatures);
+      $state.actionFeatures = setRBACForActions(productFeatures);
+      $state.navFeatures = setRBACForNavigation(productFeatures);
     }
 
     function setRBACForNavigation(productFeatures) {

@@ -25,14 +25,14 @@
   }
 
   /** @ngInject */
-  function enterApplication(Polling, lodash, Session, NavCounts, Navigation) {
+  function enterApplication(Polling, lodash, $state, NavCounts, Navigation) {
     // Application layout displays the navigation which might have items that require polling to update the counts
     angular.forEach(NavCounts.counts, updateCount);
     angular.forEach(Navigation.items.primary, function(value, key) {
-      lodash.merge(value, Session.current.navFeatures[key]);
+      lodash.merge(value, $state.navFeatures[key]);
     });
     angular.forEach(Navigation.items.secondary, function(value, key) {
-      lodash.merge(value, Session.current.actionFeatures[key]);
+      lodash.merge(value, $state.actionFeatures[key]);
     });
 
     function updateCount(count, key) {

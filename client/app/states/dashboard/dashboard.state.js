@@ -35,8 +35,8 @@
   }
 
   /** @ngInject */
-  function resolvePendingRequests(CollectionsApi, Session) {
-    if (!Session.current.navFeatures.requests.show) {
+  function resolvePendingRequests(CollectionsApi, $state) {
+    if (!$state.navFeatures.requests.show) {
       return undefined;
     }
 
@@ -46,8 +46,8 @@
   }
 
   /** @ngInject */
-  function resolveApprovedRequests(CollectionsApi, Session) {
-    if (!Session.current.navFeatures.requests.show) {
+  function resolveApprovedRequests(CollectionsApi, $state) {
+    if (!$state.navFeatures.requests.show) {
       return undefined;
     }
     var options = {expand: false, filter: ['approval_state=approved'] };
@@ -56,8 +56,8 @@
   }
 
   /** @ngInject */
-  function resolveDeniedRequests(CollectionsApi, Session) {
-    if (!Session.current.navFeatures.requests.show) {
+  function resolveDeniedRequests(CollectionsApi, $state) {
+    if (!$state.navFeatures.requests.show) {
       return undefined;
     }
     var options = {expand: false, filter: ['approval_state=denied'] };
@@ -66,8 +66,8 @@
   }
 
   /** @ngInject */
-  function resolveExpiringServices(CollectionsApi, $filter, Session) {
-    if (!Session.current.navFeatures.services.show) {
+  function resolveExpiringServices(CollectionsApi, $filter, $state) {
+    if (!$state.navFeatures.services.show) {
       return undefined;
     }
     var currentDate = new Date();
@@ -81,8 +81,8 @@
   }
 
   /** @ngInject */
-  function resolveRetiredServices(CollectionsApi, Session) {
-    if (!Session.current.navFeatures.services.show) {
+  function resolveRetiredServices(CollectionsApi, $state) {
+    if (!$state.navFeatures.services.show) {
       return undefined;
     }
     var options = {expand: false, filter: ['retired=true'] };
@@ -91,8 +91,8 @@
   }
 
   /** @ngInject */
-  function resolveNonRetiredServices(CollectionsApi, Session) {
-    if (!Session.current.navFeatures.services.show) {
+  function resolveNonRetiredServices(CollectionsApi, $state) {
+    if (!$state.navFeatures.services.show) {
       return undefined;
     }
     var options = {expand: false, filter: ['retired=false'] };
@@ -101,8 +101,8 @@
   }
 
   /** @ngInject */
-  function resolveServicesWithDefinedServiceIds(CollectionsApi, Session) {
-    if (!Session.current.navFeatures.services.show) {
+  function resolveServicesWithDefinedServiceIds(CollectionsApi, $state) {
+    if (!$state.navFeatures.services.show) {
       return undefined;
     }
     var options = {expand: false, filter: ['service_id=nil'] };
