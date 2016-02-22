@@ -36,6 +36,7 @@
     "angular-svg-base-fix": "2.0.0",
     "angular-ui-bootstrap": "2.4.0",
     "angular-ui-router": "0.3.2",
+    "angular-ui-sortable": "0.15.0",
     "babel-core": "6.21.0",
     "babel-loader": "6.2.10",
     "babel-preset-env": "1.1.5",
