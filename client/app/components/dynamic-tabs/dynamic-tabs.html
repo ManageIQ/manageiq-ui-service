@@ -1,0 +1,14 @@
+<ul ui-sortable='dynamicTabs.sortableOptions'
+    ng-model='dynamicTabs.tabList'
+    class='nav nav-tabs'
+    data-tabs='tabs'>
+  <li ng-class='{active: tab.active}' ng-repeat='tab in dynamicTabs.tabList'>
+    <a ng-click='dynamicTabs.selectTab(tab.position)' data-toggle='tab'>
+      {{ tab.label }}
+      <i class='glyphicon glyphicon-remove' ng-click='dynamicTabs.deleteTab(tab.position)'></i>
+    </a>
+  </li>
+  <li class='nosort'>
+    <a ng-click='dynamicTabs.addTab()'><i class='pficon-add-circle-o'></i></a>
+  </li>
+</ul>
