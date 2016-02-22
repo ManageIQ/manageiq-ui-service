@@ -34,17 +34,20 @@
               <span translate>
                 Change Group:
               </span>
-              <ul class="dropdown-menu scrollable-menu">
-                <li ng-repeat="group in vm.user().groups">
-                  <a href="#" title="{{'Select to change to another Group' | translate}}" ng-click="vm.group_switch(group)">
-                    {{group}}
-                    <span translate ng-if="group === vm.user().group">
-                      (Current Group)
-                    </span>
-                  </a>
-                </li>
-              </ul>
             </a>
+            <ul class="dropdown-menu scrollable-menu">
+              <li ng-repeat="group in vm.user().groups" ng-class="{ disabled: group === vm.user().group }">
+                <a href="#" ng-if="group === vm.user().group" title="{{'Currently Selected Group' | translate}}">
+                  {{group}}
+                  <span translate>
+                    (Current Group)
+                  </span>
+                </a>
+                <a href="#" ng-if="group !== vm.user().group" title="{{'Change to this Group' | translate}}" ng-click="vm.group_switch(group)">
+                  {{group}}
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="disabled" ng-if="! (vm.user().groups.length > 1)">
             <a href="#" title="{{'Current Group' | translate}}">
