@@ -83,9 +83,9 @@
 
     function setRBACForNavigation(productFeatures) {
       var features = {
-        dashboard: {show: entitledForDashboard(productFeatures)},
-        services: {show: entitledForServices(productFeatures)},
-        requests: {show: entitledForRequests(productFeatures)},
+        dashboard:   {show: entitledForDashboard(productFeatures)},
+        services:    {show: entitledForServices(productFeatures)},
+        requests:    {show: entitledForRequests(productFeatures)},
         marketplace: {show: entitledForServiceCatalogs(productFeatures)}
       };
       model.navFeatures = features;
@@ -95,12 +95,12 @@
 
     function setRBACForActions(productFeatures) {
       var features = {
-        service_view: {show: angular.isDefined(productFeatures.service_view)},
-        service_edit: {show: angular.isDefined(productFeatures.service_edit)},
-        service_delete: {show: angular.isDefined(productFeatures.service_delete)},
+        service_view:        {show: angular.isDefined(productFeatures.service_view)},
+        service_edit:        {show: angular.isDefined(productFeatures.service_edit)},
+        service_delete:      {show: angular.isDefined(productFeatures.service_delete)},
         service_reconfigure: {show: angular.isDefined(productFeatures.service_reconfigure)},
-        service_retire_now: {show: angular.isDefined(productFeatures.service_retire_now)},
-        service_retire: {show: angular.isDefined(productFeatures.service_retire)}
+        service_retire_now:  {show: angular.isDefined(productFeatures.service_retire_now)},
+        service_retire:      {show: angular.isDefined(productFeatures.service_retire)}
       };
       model.actionFeatures = features;
 
@@ -116,29 +116,17 @@
     }
 
     function entitledForServiceCatalogs(productFeatures) {
-      if (angular.isDefined(productFeatures.svc_catalog_provision)) {
-        return true;
-      } else {
-        return false;
-      }
+      return angular.isDefined(productFeatures.svc_catalog_provision);
     }
 
     function entitledForRequests(productFeatures) {
-      if (angular.isDefined(productFeatures.miq_request_view)) {
-        return true;
-      } else {
-        return false;
-      }
+      return angular.isDefined(productFeatures.miq_request_view);
     }
 
     function entitledForDashboard(productFeatures) {
-      if (entitledForServices(productFeatures) ||
-        entitledForRequests(productFeatures) ||
-        entitledForServiceCatalogs(productFeatures)) {
-        return true;
-      } else {
-        return false;
-      }
+      return entitledForServices(productFeatures) ||
+             entitledForRequests(productFeatures) ||
+             entitledForServiceCatalogs(productFeatures);
     }
 
     function activeNavigationFeatures() {
