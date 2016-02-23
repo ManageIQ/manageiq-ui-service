@@ -2,7 +2,7 @@
 'use strict';
 
 var express = require('express');
-var proxy = require('express-http-proxy');
+var httpProxy = require('http-proxy');
 var app = express();
 var router = express.Router();
 var bodyParser = require('body-parser');
@@ -14,14 +14,17 @@ var url = require('url');
 
 var environment = process.env.NODE_ENV;
 
-app.use('/api', proxy('127.0.0.1:3000', {
-  forwardPath: function(req, res) {
-    var path = '/api' + url.parse(req.url).path;
+var PROXY_TARGET = 'http://[::1]:3000/api';
+var proxy = httpProxy.createProxyServer({
+  target: PROXY_TARGET,
+});
 
-    console.log('PROXY: http://127.0.0.1:3000' + path);
-    return path;
-  }
-}));
+app.use('/api', function(req, res) {
+  var path = url.parse(req.url).path;
+
+  console.log('PROXY: ' + PROXY_TARGET + path);
+  proxy.web(req, res);
+});
 
 router.use(favicon(__dirname + '/favicon.ico'));
 router.use(bodyParser.urlencoded({ extended: true }));
