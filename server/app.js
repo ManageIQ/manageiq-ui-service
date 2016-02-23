@@ -53,6 +53,12 @@ switch (environment) {
     router.use(express.static('./client/'));
     router.use(express.static('./tmp'));
     router.use(express.static('./client/assets'));
+    var pictureProxy = httpProxy.createProxyServer({
+      target: 'http://[::1]:3000/pictures',
+    });
+    app.use('/pictures', function(req, res) {
+      pictureProxy.web(req, res);
+    });
     app.use(express.static('./'));
     // Any invalid calls for templateUrls are under app/* and should return 404
     router.use('/app/*', function(req, res) {
