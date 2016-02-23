@@ -15,6 +15,20 @@ var url = require('url');
 var environment = process.env.NODE_ENV;
 
 var PROXY_TARGET = 'http://[::1]:3000/api';
+var proxy_error_handler = function(req, res) {
+  return function(err, data) {
+    if (!err)
+      return;
+
+    res.writeHead(500, {
+      'Content-Type': 'text/plain'
+    });
+
+    res.end('Something went wrong: ' + err);
+    console.error(err);
+  }
+}
+
 var proxy = httpProxy.createProxyServer({
   target: PROXY_TARGET,
 });
@@ -23,7 +37,7 @@ app.use('/api', function(req, res) {
   var path = url.parse(req.url).path;
 
   console.log('PROXY: ' + PROXY_TARGET + path);
-  proxy.web(req, res);
+  proxy.web(req, res, proxy_error_handler(req, res));
 });
 
 router.use(favicon(__dirname + '/favicon.ico'));
@@ -57,7 +71,7 @@ switch (environment) {
       target: 'http://[::1]:3000/pictures',
     });
     app.use('/pictures', function(req, res) {
-      pictureProxy.web(req, res);
+      pictureProxy.web(req, res, proxy_error_handler(req, res));
     });
     app.use(express.static('./'));
     // Any invalid calls for templateUrls are under app/* and should return 404
