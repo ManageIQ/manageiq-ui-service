@@ -12,7 +12,7 @@
       <section>
         <div class="col-md-12 ss-details-header">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6">
               <div class="ss-details-header__title-img">
                 <span class="ss-details-header__title-img__center"></span>
                 <img class="ss-details-header__title-img__logo" ng-src="{{ ::vm.dialog.picture.image_href }}"
@@ -21,10 +21,18 @@
                   ng-if=" ::!vm.dialog.picture.image_href "/>
               </div>
               <div class="ss-details-header__title">
-                <h2>{{ ::vm.dialog.description }}</h2>
-                <h4>{{ ::vm.dialog.options.long_description || vm.dialog.description }}</h4>
+                <h2>{{ ::vm.dialog.label }}</h2>
+                <h4>{{ ::vm.dialog.description || vm.dialog.label }}</h4>
               </div>
             </div>
+
+            <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6 ss-details-header__actions">
+              <div class="ss-details-header__actions__inner">
+                <button class="btn btn-danger" type="button" ng-click="vm.dialog.removeDialog()" translate>Remove Dialog</button>
+                <button class="btn btn-primary" type="button" ng-click="vm.dialog.performAction()" translate>Edit Dialog</button>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>

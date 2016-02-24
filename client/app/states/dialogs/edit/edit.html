@@ -1,0 +1,39 @@
+<ol class="breadcrumb">
+  <li>
+    <a ui-sref="^">
+      <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to Dialog Detail'|translate}}
+    </a>
+  </li>
+  <li class="active">
+    <strong translate>Dialog:</strong> {{ ::vm.dialog.label }}
+  </li>
+</ol>
+
+<div class="col-md-12 list-view-container">
+  <h2 translate>Basic info</h2>
+  <form class="form-horizontal">
+    <div pf-form-group
+         pf-label="{{'Name'|translate}}"
+         required>
+      <input id="name"
+             name="name"
+             ng-model="vm.dialog.content[0].label"
+             type="text"
+             required/>
+    </div>
+    <div pf-form-group
+         pf-label="{{'Description'|translate}}"
+         pf-input-class="col-sm-9">
+        <textarea id="description"
+                  name="description"
+                  ng-model="vm.dialog.content[0].description">
+          {{ vm.dialog.content[0].description }}
+        </textarea>
+    </div>
+  </form>
+  <h2 translate>Dialog Content</h2>
+    <!-- TODO -->
+  <div class='draggable'>
+    <!-- TODO -->
+  </div>
+</div>
