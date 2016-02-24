@@ -32,9 +32,29 @@
   }
 
   /** @ngInject */
-  function StateController(dialog) {
+  function StateController($state, dialog, CollectionsApi, Notifications) {
     var vm = this;
 
     vm.dialog = dialog;
+    vm.dialog.performAction = performAction;
+    vm.dialog.removeDialog = removeDialog;
+
+    function performAction(item) {
+      $state.go('dialogs.edit', {dialogId: dialog.id});
+    }
+
+    function removeDialog() {
+      var removeAction = {action: 'delete'};
+      CollectionsApi.post('service_dialogs', vm.dialog.id, {}, removeAction).then(removeSuccess, removeFailure);
+
+      function removeSuccess() {
+        Notifications.success(vm.dialog.name + __(' was removed.'));
+        $state.go('dialogs.list');
+      }
+
+      function removeFailure(data) {
+        Notifications.error(__('There was an error removing this dialog.'));
+      }
+    }
   }
 })();
