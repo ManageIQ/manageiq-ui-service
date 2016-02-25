@@ -40,7 +40,8 @@
       'aggregate_all_vm_memory_on_disk',
       'actions',
       'custom_actions',
-      'provision_dialog'
+      'provision_dialog',
+      'service_template'
     ];
     var options = {attributes: requestAttributes};
 

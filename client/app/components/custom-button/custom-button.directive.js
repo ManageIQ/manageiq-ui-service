@@ -11,7 +11,9 @@
       replace: true,
       scope: {
         customActions: '=',
-        actions: '=?'
+        actions: '=?',
+        serviceId: '=',
+        serviceTemplateCatalogId: '='
       },
       link: link,
       templateUrl: 'app/components/custom-button/custom-button.html',
@@ -59,7 +61,7 @@
     }
 
     /** @ngInject */
-    function CustomButtonController(Notifications, CollectionsApi) {
+    function CustomButtonController($state, Notifications, CollectionsApi) {
       var vm = this;
 
       vm.activate = activate;
@@ -76,17 +78,27 @@
         buttonAction.id = temp.split('/')[1];
       }
 
-      function customButtonAction(button) {
+      function customButtonAction(button, serviceId, serviceTemplateCatalogId) {
         var assignedButton = {};
         angular.forEach(vm.actions, actionButtonMapping);
 
-        if (assignedButton.method === 'post') {
-          var data = {action: button.name};
-          CollectionsApi.post(assignedButton.collection, assignedButton.id, {}, data).then(postSuccess, postFailure);
-        } else if (assignedButton.method === 'delete') {
-          CollectionsApi.delete(assignedButton.collection, assignedButton.id, {}).then(deleteSuccess, deleteFailure);
+        if (button.resource_action.dialog_id !== undefined && button.resource_action.dialog_id !== null) {
+          $state.go('services.custom_button_details', {
+            button: button,
+            buttonId: button.id,
+            dialog: button.resource_action.dialog,
+            serviceId: serviceId,
+            serviceTemplateCatalogId: serviceTemplateCatalogId
+          });
         } else {
-          Notifications.error(__('Button action not supported.'));
+          if (assignedButton.method === 'post') {
+            var data = {action: button.name};
+            CollectionsApi.post(assignedButton.collection, assignedButton.id, {}, data).then(postSuccess, postFailure);
+          } else if (assignedButton.method === 'delete') {
+            CollectionsApi.delete(assignedButton.collection, assignedButton.id, {}).then(deleteSuccess, deleteFailure);
+          } else {
+            Notifications.error(__('Button action not supported.'));
+          }
         }
 
         // Private functions
