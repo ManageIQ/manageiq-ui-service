@@ -28,13 +28,15 @@ describe('services.custom_button_details', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications');
+      bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'CollectionsApi', 'Notifications');
 
       controller = $controller($state.get('services.custom_button_details').controller, {
-        dialog: dialog,
-        button: button,
-        serviceId: 123,
-        serviceTemplateCatalogId: 321
+        $stateParams: {
+          dialog: dialog,
+          button: button,
+          serviceId: 123,
+          serviceTemplateCatalogId: 321
+        }
       });
       $rootScope.$apply();
     });
