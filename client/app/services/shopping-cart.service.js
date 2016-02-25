@@ -6,12 +6,13 @@
 
   /** @ngInject */
   function ShoppingCartFactory($rootScope) {
-    var model = null;
+    var state = null;
 
     var service = {
       add: add,
       reset: reset,
       count: count,
+      state: function() { return state; },
     };
 
     reset();
@@ -19,19 +20,19 @@
     return service;
 
     function add(item) {
-      model.items.push(item);
+      state.items.push(item);
       notify();
     }
 
     function reset() {
-      model = {
+      state = {
         items: [],
       };
       notify();
     }
 
     function count() {
-      return model.items.length;
+      return state.items.length;
     }
 
     function notify() {

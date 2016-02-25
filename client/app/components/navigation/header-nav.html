@@ -22,9 +22,9 @@
     </ul>
     <ul class="nav navbar-nav navbar-right navbar-iconic">
       <li>
-        <a title="{{'Shopping cart' | translate}}" class="nav-item-iconic" ng-click="vm.shoppingCartDialog.open()">
+        <a title="{{'Shopping cart' | translate}}" class="nav-item-iconic" ng-click="vm.shoppingCart.open()">
           <i class="fa fa-shopping-cart"></i>
-          <span class="badge" ng-show="vm.shoppingCartCount" ng-bind="vm.shoppingCartCount"></span>
+          <span class="badge" ng-show="vm.shoppingCart.count" ng-bind="vm.shoppingCart.count"></span>
         </a>
       </li>
       <li dropdown>

@@ -35,8 +35,16 @@
       vm.clearMessages = clearMessages;
       vm.API_BASE = API_BASE;
       vm.group_switch = Session.switchGroup;
-      vm.shoppingCartCount = 0;
-      vm.shoppingCartDialog = { open: function() { console.log('TODO') } };
+
+      vm.shoppingCart = {
+        count: 0,
+        open: function() {
+          return $modal.open({
+            template: '<shopping-cart></shopping-cart>',
+            size: 'lg',
+          }).result;
+        },
+      };
 
       function activate() {
         vm.messages = Messages.items;
@@ -44,7 +52,7 @@
       }
 
       function refresh() {
-        vm.shoppingCartCount = ShoppingCart.count();
+        vm.shoppingCart.count = ShoppingCart.count();
       }
 
       var destroy = $rootScope.$on('shoppingCartUpdated', refresh);

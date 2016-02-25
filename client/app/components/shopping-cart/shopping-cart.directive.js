@@ -7,8 +7,7 @@
   /** @ngInject */
   function ShoppingCartDirective() {
     var directive = {
-      restrict: 'AE',
-      replace: true,
+      restrict: 'E',
       scope: {},
       link: link,
       templateUrl: 'app/components/shopping-cart/shopping-cart.html',
@@ -24,13 +23,21 @@
     }
 
     /** @ngInject */
-    function ShoppingCartController() {
+    function ShoppingCartController(ShoppingCart) {
       var vm = this;
 
       vm.activate = activate;
+      vm.submit = submit;
+      vm.clear = ShoppingCart.clear;
+      vm.state = null;
 
       function activate() {
-        vm.state = null;
+        vm.state = ShoppingCart.state();
+      }
+
+      function submit() {
+        // TODO
+        console.log('submit', vm.state);
       }
     }
   }

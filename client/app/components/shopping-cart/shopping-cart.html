@@ -1,1 +1,39 @@
-Foo!
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 class="modal-title" translate>Shopping Cart</h4>
+</div>
+
+<div class="modal-body">
+  Items:
+
+  <div ng-repeat="item in items">
+    {{item | json}}
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-default"
+          ng-click="$dismiss()"
+          translate>
+    Close
+  </button>
+
+  <button type="button"
+          class="btn btn-danger"
+          ng-click="vm.clear()"
+          ng-disabled="! vm.model.items.length"
+          translate>
+    Clear
+  </button>
+
+  <button type="button"
+          class="btn btn-primary"
+          ng-click="vm.submit()"
+          ng-disabled="vm.model.items.length"
+          translate>
+    Order
+  </button>
+</div>
