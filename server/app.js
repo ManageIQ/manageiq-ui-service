@@ -13,8 +13,9 @@ var four0four = require('./utils/404')();
 var url = require('url');
 
 var environment = process.env.NODE_ENV;
+var PROXY_HOST = process.env.PROXY_HOST || '[::1]:3000';
 
-var PROXY_TARGET = 'http://[::1]:3000/api';
+var PROXY_TARGET = 'http://' + PROXY_HOST + '/api';
 var proxy_error_handler = function(req, res) {
   return function(err, data) {
     if (!err)
@@ -68,7 +69,7 @@ switch (environment) {
     router.use(express.static('./tmp'));
     router.use(express.static('./client/assets'));
     var pictureProxy = httpProxy.createProxyServer({
-      target: 'http://[::1]:3000/pictures',
+      target: 'http://' + PROXY_HOST + '/pictures',
     });
     app.use('/pictures', function(req, res) {
       pictureProxy.web(req, res, proxy_error_handler(req, res));
