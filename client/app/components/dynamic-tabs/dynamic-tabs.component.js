@@ -21,20 +21,9 @@
           DialogEdit.setData(this.tabList);
         }
 
-        /**
-         * Update tabs position values
-         *
-         * Parameter: tabs -- array of tabs to sort
-         */
-        function updatePosition(tabs) {
-          for (var i = 0; i < tabs.length; i++) {
-            tabs[i].position = i;
-          }
-        }
-
         this.sortableOptions = {
           stop: function(e, ui) {
-            updatePosition(ui.item.scope().$parent.dynamicTabs.tabList);
+            DialogEdit.updatePositions(ui.item.scope().$parent.dynamicTabs.tabList);
             // update active tab position if active tab was sorted
             if (ui.item.scope().tab.active) {
               // active tab was sorted
@@ -91,13 +80,14 @@
             var firstInactiveTab = lodash.find(this.tabList, {active: false});
             if (firstInactiveTab !== undefined) {
               firstInactiveTab.active = true;
+              DialogEdit.activeTab = firstInactiveTab.position;
             }
           }
           // remove tab with matching id
           lodash.remove(this.tabList, function(tab) {
             return tab.position === id;
           });
-          updatePosition(this.tabList);
+          DialogEdit.updatePositions(this.tabList);
         };
 
         /**
@@ -108,6 +98,7 @@
           deselectedTab.active = false;
           var selectedTab = this.tabList[id];
           selectedTab.active = true;
+          DialogEdit.activeTab = id;
         };
       },
       controllerAs: 'dynamicTabs',
