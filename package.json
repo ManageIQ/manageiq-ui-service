@@ -9,7 +9,7 @@
   "license": "Apache 2.0",
   "scripts": {
     "init": "npm install",
-    "install": "bower install",
+    "install": "bower install -F",
     "postinstall": "gulp build",
     "start": "node src/server/app.js",
     "test": "gulp test"
