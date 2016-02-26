@@ -8,6 +8,8 @@ cache:
   - node_modules
 before_install:
 - bundle install
+- rm -fr bower_components
+- bower install -F
 notifications:
   webhooks:
     urls:
