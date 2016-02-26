@@ -35,7 +35,6 @@
   function StateController(request) {
     var vm = this;
 
-    vm.title = __('Service Template Details');
     vm.request = request;
   }
 })();
