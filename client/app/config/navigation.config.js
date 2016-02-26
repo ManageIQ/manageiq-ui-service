@@ -27,6 +27,12 @@
             icon: 'fa fa-file-text-o',
             tooltip: N_('The total number of requests that you have submitted'),
           },
+          dialogs: {
+            title: N_('My Dialogs'),
+            state: 'dialogs',
+            icon: 'fa fa-list-alt',
+            tooltip: N_('List of available Service dialogs'),
+          },
           marketplace: {
             title: N_('Service Catalog'),
             state: 'marketplace',
@@ -50,8 +56,18 @@
   function init(lodash, CollectionsApi, Navigation, NavCounts) {
     NavCounts.add('services', fetchServices, 60 * 1000);
     NavCounts.add('requests', fetchRequests, 60 * 1000);
+    NavCounts.add('dialogs', fetchDialogs, 60 * 1000);
     NavCounts.add('marketplace', fetchServiceTemplates, 60 * 1000);
     NavCounts.add('blueprints', fetchBlueprints, 60 * 1000);
+
+    function fetchDialogs() {
+      var options = {
+        auto_refresh: true,
+      };
+
+      CollectionsApi.query('service_dialogs', options)
+        .then(lodash.partial(updateDialogsCount, 'dialogs'));
+    }
 
     function fetchRequests() {
       var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest'];
@@ -88,6 +104,10 @@
 
     function fetchBlueprints() {
       updateBlueprintsCount('blueprints', null);
+    }
+
+    function updateDialogsCount(item, data) {
+      Navigation.items.primary[item].count = data.count;
     }
 
     function updateCount(item, data) {
