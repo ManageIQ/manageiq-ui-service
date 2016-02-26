@@ -2,7 +2,7 @@
 'use strict';
 
 var express = require('express');
-var proxy = require('express-http-proxy');
+var httpProxy = require('http-proxy');
 var app = express();
 var router = express.Router();
 var bodyParser = require('body-parser');
@@ -13,15 +13,33 @@ var four0four = require('./utils/404')();
 var url = require('url');
 
 var environment = process.env.NODE_ENV;
+var PROXY_HOST = process.env.PROXY_HOST || '[::1]:3000';
 
-app.use('/api', proxy('127.0.0.1:3000', {
-  forwardPath: function(req, res) {
-    var path = '/api' + url.parse(req.url).path;
+var PROXY_TARGET = 'http://' + PROXY_HOST + '/api';
+var proxy_error_handler = function(req, res) {
+  return function(err, data) {
+    if (!err)
+      return;
 
-    console.log('PROXY: http://127.0.0.1:3000' + path);
-    return path;
+    res.writeHead(500, {
+      'Content-Type': 'text/plain'
+    });
+
+    res.end('Something went wrong: ' + err);
+    console.error(err);
   }
-}));
+}
+
+var proxy = httpProxy.createProxyServer({
+  target: PROXY_TARGET,
+});
+
+app.use('/api', function(req, res) {
+  var path = url.parse(req.url).path;
+
+  console.log('PROXY: ' + PROXY_TARGET + path);
+  proxy.web(req, res, proxy_error_handler(req, res));
+});
 
 router.use(favicon(__dirname + '/favicon.ico'));
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -50,6 +68,12 @@ switch (environment) {
     router.use(express.static('./client/'));
     router.use(express.static('./tmp'));
     router.use(express.static('./client/assets'));
+    var pictureProxy = httpProxy.createProxyServer({
+      target: 'http://' + PROXY_HOST + '/pictures',
+    });
+    app.use('/pictures', function(req, res) {
+      pictureProxy.web(req, res, proxy_error_handler(req, res));
+    });
     app.use(express.static('./'));
     // Any invalid calls for templateUrls are under app/* and should return 404
     router.use('/app/*', function(req, res) {

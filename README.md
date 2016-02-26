@@ -35,8 +35,10 @@ The Self Service UI for the [ManageIQ](http://github.com/ManageIQ/manageiq) proj
 - In the `manageiq-ui-self_service` directory, start the development version of
   the self service UI with `gulp serve-dev`, which will start the UI listening
   on http://localhost:3001, and talking to the REST API at
-  http://localhost:3000.  This command will also open a browser page to
-  http://localhost:3001/self_service/login .
+  http://[::1]:3000.  This command will also open a browser page to
+  http://localhost:3001/self_service/login.  
+  The REST API host can be overriden via a PROXY\_HOST environment variable, for
+  example: `PROXY_HOST=127.0.0.1:3000 gulp serve-dev`.
 
 ## Deployment
 
