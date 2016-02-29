@@ -77,11 +77,18 @@
           miqGroup: $sessionStorage.miqGroup,
         });
 
-        return Session.loadUser();
+        Session.loadUser()
+          .then(function() {
+            if (Session.activeNavigationFeatures()) {
+              $state.go('dashboard');
+            } else {
+              Session.privileges_error = true;
+              $state.go('login');
+            }
+          });
       }
 
       event.preventDefault();
-      $state.transitionTo('login');
     }
 
     function changeError(event, toState, toParams, fromState, fromParams, error) {

@@ -35,28 +35,41 @@
   }
 
   /** @ngInject */
-  function resolvePendingRequests(CollectionsApi) {
+  function resolvePendingRequests(CollectionsApi, $state) {
+    if (!$state.navFeatures.requests.show) {
+      return undefined;
+    }
+
     var options = {expand: false, filter: ['approval_state=pending'] };
 
     return CollectionsApi.query('service_requests', options);
   }
 
   /** @ngInject */
-  function resolveApprovedRequests(CollectionsApi) {
+  function resolveApprovedRequests(CollectionsApi, $state) {
+    if (!$state.navFeatures.requests.show) {
+      return undefined;
+    }
     var options = {expand: false, filter: ['approval_state=approved'] };
 
     return CollectionsApi.query('service_requests', options);
   }
 
   /** @ngInject */
-  function resolveDeniedRequests(CollectionsApi) {
+  function resolveDeniedRequests(CollectionsApi, $state) {
+    if (!$state.navFeatures.requests.show) {
+      return undefined;
+    }
     var options = {expand: false, filter: ['approval_state=denied'] };
 
     return CollectionsApi.query('service_requests', options);
   }
 
   /** @ngInject */
-  function resolveExpiringServices(CollectionsApi, $filter) {
+  function resolveExpiringServices(CollectionsApi, $filter, $state) {
+    if (!$state.navFeatures.services.show) {
+      return undefined;
+    }
     var currentDate = new Date();
     var date1 = 'retires_on>=' + $filter('date')(currentDate, 'yyyy-MM-dd');
 
@@ -68,22 +81,31 @@
   }
 
   /** @ngInject */
-  function resolveRetiredServices(CollectionsApi) {
+  function resolveRetiredServices(CollectionsApi, $state) {
+    if (!$state.navFeatures.services.show) {
+      return undefined;
+    }
     var options = {expand: false, filter: ['retired=true'] };
 
     return CollectionsApi.query('services', options);
   }
 
   /** @ngInject */
-  function resolveNonRetiredServices(CollectionsApi) {
+  function resolveNonRetiredServices(CollectionsApi, $state) {
+    if (!$state.navFeatures.services.show) {
+      return undefined;
+    }
     var options = {expand: false, filter: ['retired=false'] };
 
     return CollectionsApi.query('services', options);
   }
 
   /** @ngInject */
-  function resolveServicesWithDefinedServiceIds(CollectionsApi) {
-    var options = {expand: false, filter: ['service_id>0'] };
+  function resolveServicesWithDefinedServiceIds(CollectionsApi, $state) {
+    if (!$state.navFeatures.services.show) {
+      return undefined;
+    }
+    var options = {expand: false, filter: ['service_id=nil'] };
 
     return CollectionsApi.query('services', options);
   }
@@ -92,21 +114,37 @@
   function StateController($state, RequestsState, ServicesState, definedServiceIdsServices, retiredServices,
     nonRetiredServices, expiringServices, pendingRequests, approvedRequests, deniedRequests) {
     var vm = this;
-    vm.servicesCount = {};
-    vm.servicesCount.total = definedServiceIdsServices.count - definedServiceIdsServices.subcount;
+    if (angular.isDefined(definedServiceIdsServices)) {
+      vm.servicesCount = {};
+      vm.servicesFeature = false;
+      vm.servicesCount.total = 0;
+      vm.servicesCount.current = 0;
+      vm.servicesCount.retired = 0;
+      vm.servicesCount.soon = 0;
 
-    vm.servicesCount.current = definedServiceIdsServices.subcount === 0 ? nonRetiredServices.count :
-      retiredServices.subcount + nonRetiredServices.subcount;
+      if (definedServiceIdsServices.subcount > 0) {
+        vm.servicesCount.total = definedServiceIdsServices.subcount;
+        vm.servicesCount.current = definedServiceIdsServices.subcount === 0 ? nonRetiredServices.count :
+        retiredServices.subcount + nonRetiredServices.subcount;
 
-    vm.servicesCount.retired = vm.servicesCount.total - vm.servicesCount.current;
+        vm.servicesCount.retired = vm.servicesCount.total - vm.servicesCount.current;
 
-    vm.servicesCount.soon = expiringServices.subcount;
+        vm.servicesCount.soon = expiringServices.subcount;
+      }
 
-    vm.requestsCount = {};
-    vm.requestsCount.total = pendingRequests.count;
-    vm.requestsCount.pending = pendingRequests.subcount;
-    vm.requestsCount.approved = approvedRequests.subcount;
-    vm.requestsCount.denied = deniedRequests.subcount;
+      vm.servicesFeature = true;
+    }
+
+    vm.requestsFeature = false;
+    if (angular.isDefined(pendingRequests)) {
+      vm.requestsCount = {};
+      vm.requestsCount.total = pendingRequests.count;
+      vm.requestsCount.pending = pendingRequests.subcount;
+      vm.requestsCount.approved = approvedRequests.subcount;
+      vm.requestsCount.denied = deniedRequests.subcount;
+
+      vm.requestsFeature = true;
+    }
 
     vm.title = __('Dashboard');
 

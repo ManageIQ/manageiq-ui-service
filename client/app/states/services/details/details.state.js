@@ -51,6 +51,13 @@
   function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications) {
     var vm = this;
 
+    vm.showRemoveService = $state.actionFeatures.service_delete.show;
+    vm.showRetireService = $state.actionFeatures.service_retire_now.show;
+    vm.showScheduleRetirementService = $state.actionFeatures.service_retire.show;
+    vm.showEditService = $state.actionFeatures.service_edit.show;
+    vm.showEditService = $state.actionFeatures.service_edit.show;
+    vm.showSetOwnership = $state.actionFeatures.service_ownership.show;
+
     vm.title = __('Service Details');
     vm.service = service;
 
