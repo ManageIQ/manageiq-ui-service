@@ -67,6 +67,18 @@
     vm.retireServiceNow = retireServiceNow;
     vm.retireServiceLater = retireServiceLater;
     vm.ownershipServiceModal = ownershipServiceModal;
+    vm.reconfigureService = reconfigureService;
+
+    var actions = vm.service.actions;
+    for (var i = 0; i < actions.length; i++) {
+      if (actions[i].name === "reconfigure") {
+        vm.service.reconfigure = true;
+      }
+    }
+
+    function reconfigureService(service) {
+      $state.go('services.reconfigure', {serviceId: service});
+    }
 
     vm.listConfig = {
       selectItems: false,
