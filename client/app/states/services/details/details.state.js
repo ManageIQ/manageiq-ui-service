@@ -55,7 +55,7 @@
     vm.showRetireService = $state.actionFeatures.service_retire_now.show;
     vm.showScheduleRetirementService = $state.actionFeatures.service_retire.show;
     vm.showEditService = $state.actionFeatures.service_edit.show;
-    vm.showEditService = $state.actionFeatures.service_edit.show;
+    vm.showReconfigureService = $state.actionFeatures.service_reconfigure.show;
     vm.showSetOwnership = $state.actionFeatures.service_ownership.show;
 
     vm.title = __('Service Details');
@@ -70,9 +70,11 @@
     vm.reconfigureService = reconfigureService;
 
     var actions = vm.service.actions;
-    for (var i = 0; i < actions.length; i++) {
-      if (actions[i].name === "reconfigure") {
-        vm.service.reconfigure = true;
+    if (actions !== undefined) {
+      for (var i = 0; i < actions.length; i++) {
+        if (actions[i].name === "reconfigure") {
+          vm.service.reconfigure = true;
+        }
       }
     }
 

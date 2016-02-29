@@ -40,9 +40,10 @@
       return undefined;
     }
 
-    var options = {expand: false, filter: ['approval_state=pending'] };
+    var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest', 'approval_state=pending_approval'];
+    var options = {expand: false, filter: filterValues };
 
-    return CollectionsApi.query('service_requests', options);
+    return CollectionsApi.query('requests', options);
   }
 
   /** @ngInject */
@@ -50,9 +51,11 @@
     if (!$state.navFeatures.requests.show) {
       return undefined;
     }
-    var options = {expand: false, filter: ['approval_state=approved'] };
 
-    return CollectionsApi.query('service_requests', options);
+    var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest', 'approval_state=approved'];
+    var options = {expand: false, filter: filterValues };
+
+    return CollectionsApi.query('requests', options);
   }
 
   /** @ngInject */
@@ -60,9 +63,11 @@
     if (!$state.navFeatures.requests.show) {
       return undefined;
     }
-    var options = {expand: false, filter: ['approval_state=denied'] };
 
-    return CollectionsApi.query('service_requests', options);
+    var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest', 'approval_state=denied'];
+    var options = {expand: false, filter: filterValues };
+
+    return CollectionsApi.query('requests', options);
   }
 
   /** @ngInject */
@@ -138,7 +143,7 @@
     vm.requestsFeature = false;
     if (angular.isDefined(pendingRequests)) {
       vm.requestsCount = {};
-      vm.requestsCount.total = pendingRequests.count;
+      vm.requestsCount.total = pendingRequests.subcount + approvedRequests.subcount + deniedRequests.subcount;
       vm.requestsCount.pending = pendingRequests.subcount;
       vm.requestsCount.approved = approvedRequests.subcount;
       vm.requestsCount.denied = deniedRequests.subcount;

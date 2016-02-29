@@ -24,7 +24,7 @@ describe('Dashboard', function() {
   describe('controller', function() {
     var controller;
     var requests = {
-      name: 'service_requests',
+      name: 'requests',
       count: 1,
       subcount: 1,
       resources: []

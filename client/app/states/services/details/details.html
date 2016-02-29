@@ -56,9 +56,9 @@
                   <li role="menuitem"><a href="#" ng-click="vm.retireServiceLater()" ng-show="vm.showScheduleRetirementService" translate>Schedule Retirement</a></li>
                 </ul>
               </div>
-              <button class="btn btn-primary" type="button" ng-click="vm.editServiceModal()" translate>Edit Service</button>
-              <button class="btn btn-primary" type="button" ng-click="vm.ownershipServiceModal()" translate>Set Ownership</button>
-              <button class="btn btn-primary" type="button" ng-if="vm.service.reconfigure" ng-click="vm.reconfigureService(vm.service.id)" translate>Reconfigure</button>
+              <button class="btn btn-primary" type="button" ng-click="vm.editServiceModal()" ng-show="vm.showEditService" translate>Edit Service</button>
+              <button class="btn btn-primary" type="button" ng-click="vm.ownershipServiceModal()" ng-show="vm.showSetOwnership" translate>Set Ownership</button>
+              <button class="btn btn-primary" type="button" ng-if="vm.service.reconfigure" ng-click="vm.reconfigureService(vm.service.id)" ng-show="vm.showReconfigureService" translate>Reconfigure</button>
             </div>
             </div>
           </div>
