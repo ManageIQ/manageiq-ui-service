@@ -48,7 +48,6 @@
   function StateController($state, serviceTemplates, serviceCatalogs, MarketplaceState) {
     var vm = this;
 
-    vm.title = __('Service Catalog');
     vm.serviceTemplates = serviceTemplates.resources;
     vm.serviceTemplatesList = angular.copy(vm.serviceTemplates);
     vm.serviceCatalogs = serviceCatalogs.resources;

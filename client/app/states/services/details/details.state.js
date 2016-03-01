@@ -94,7 +94,6 @@
       vm.showReconfigureService = $state.actionFeatures.service_reconfigure.show;
       vm.showSetOwnership = $state.actionFeatures.service_ownership.show;
 
-      vm.title = __('Service Details');
       vm.service = service;
 
       vm.activate = activate;

@@ -48,9 +48,5 @@ describe('Dashboard', function() {
     it('should be created successfully', function() {
       expect(controller).to.be.defined;
     });
-
-    it('should have title of Request List', function() {
-      expect(controller.title).to.equal('Request List');
-    });
   });
 });

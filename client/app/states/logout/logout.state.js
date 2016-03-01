@@ -24,8 +24,6 @@
   function StateController($state, Session) {
     var vm = this;
 
-    vm.title = __('Logout');
-
     activate();
 
     function activate() {

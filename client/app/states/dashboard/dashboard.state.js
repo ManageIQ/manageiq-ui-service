@@ -175,8 +175,6 @@
       vm.requestsFeature = true;
     }
 
-    vm.title = __('Dashboard');
-
     vm.navigateToRequestsList = function(filterValue) {
       RequestsState.setFilters([{'id': 'approval_state', 'title': __('Request Status'), 'value': filterValue}]);
       RequestsState.filterApplied = true;

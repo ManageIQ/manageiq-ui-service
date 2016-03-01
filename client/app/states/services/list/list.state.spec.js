@@ -40,11 +40,5 @@ describe('Dashboard', function() {
     it('should be created successfully', function() {
       expect(controller).to.be.defined;
     });
-
-    describe('after activate', function() {
-      it('should have title of Service List', function() {
-        expect(controller.title).to.equal('Service List');
-      });
-    });
   });
 });

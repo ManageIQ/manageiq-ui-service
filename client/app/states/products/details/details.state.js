@@ -25,8 +25,6 @@
   function StateController(logger) {
     var vm = this;
 
-    vm.title = __('Service Details');
-
     vm.activate = activate;
 
     activate();

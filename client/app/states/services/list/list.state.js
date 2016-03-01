@@ -38,7 +38,6 @@
     /* jshint validthis: true */
     var vm = this;
 
-    vm.title = __('Service List');
     vm.services = [];
 
     if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
