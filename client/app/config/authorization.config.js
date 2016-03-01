@@ -89,6 +89,7 @@
       }
 
       event.preventDefault();
+      $state.transitionTo('login');
     }
 
     function changeError(event, toState, toParams, fromState, fromParams, error) {
