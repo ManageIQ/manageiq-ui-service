@@ -86,6 +86,8 @@
               $state.go('login');
             }
           });
+
+        return;
       }
 
       event.preventDefault();
