@@ -28,7 +28,7 @@
   function resolveRequest($stateParams, CollectionsApi) {
     var options = {attributes: ['provision_dialog', 'picture', 'picture.image_href']};
 
-    return CollectionsApi.get('service_requests', $stateParams.requestId, options);
+    return CollectionsApi.get('requests', $stateParams.requestId, options);
   }
 
   /** @ngInject */

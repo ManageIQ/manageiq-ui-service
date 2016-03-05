@@ -27,9 +27,10 @@
   /** @ngInject */
   function resolveRequests(CollectionsApi) {
     var attributes = ['picture', 'picture.image_href', 'approval_state', 'created_on', 'description'];
-    var options = {expand: 'resources', attributes: attributes};
+    var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest'];
+    var options = {expand: 'resources', attributes: attributes, filter: filterValues};
 
-    return CollectionsApi.query('service_requests', options);
+    return CollectionsApi.query('requests', options);
   }
 
   /** @ngInject */

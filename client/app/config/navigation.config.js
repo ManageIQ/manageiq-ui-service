@@ -47,11 +47,13 @@
     NavCounts.add('marketplace', fetchServiceTemplates, 60 * 1000);
 
     function fetchRequests() {
+      var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest'];
       var options = {
         auto_refresh: true,
+        filter: filterValues
       };
 
-      CollectionsApi.query('service_requests', options)
+      CollectionsApi.query('requests', options)
         .then(lodash.partial(updateCount, 'requests'));
     }
 
@@ -78,7 +80,7 @@
     }
 
     function updateCount(item, data) {
-      Navigation.items.primary[item].count = data.count;
+      Navigation.items.primary[item].count = data.subcount;
     }
 
     function updateServicesCount(item, data) {
