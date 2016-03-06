@@ -1,0 +1,73 @@
+<div ng-switch on="dialogField.fieldData.type" class="form-group">
+  <label class="control-label col-sm-2">{{ dialogField.fieldData.label }}</label>
+  <div class="col-sm-5">
+
+    <!-- text box -->
+    <input ng-switch-when="DialogFieldTextBox"
+           ng-model="dialogField.fieldData.default_value"
+           class="form-control"
+           type="{{ dialogField.fieldData.options.protected ? 'password' : 'text' }}"
+           placeholder="{{'Default value'|translate}}">
+
+    <!-- text area -->
+    <textarea ng-switch-when="DialogFieldTextAreaBox"
+              ng-model="dialogField.fieldData.default_value"
+              class="form-control"
+              rows="4">
+      {{ dialogField.fieldData.default_value }}
+    </textarea>
+
+    <!-- check box -->
+    <input ng-switch-when="DialogFieldCheckBox"
+           ng-model="dialogField.fieldData.default_value"
+           ng-true-value="'t'"
+           ng-checked="dialogField.fieldData.default_value == 't'"
+           class="form-control"
+           type="checkbox">
+
+    <!-- date control -->
+    <input ng-switch-when="DialogFieldDateControl"
+           pf-datepicker options="dialogField.fieldData.options"
+           ng-disabled="true"
+           date="dialogField.fieldData.default_value">
+
+    <!-- date time control -->
+    <div ng-switch-when="DialogFieldDateTimeControl">
+      <div class="col-sm-6 dateTimePadding">
+        <input ng-model="dialogField.fieldData.default_value"
+               pf-datepicker options="dialogField.fieldData.dateOptions"
+               date="dialogField.fieldData.default_value">
+      </div>
+      <div class="col-sm-6">
+        <timepicker ng-model="dialogField.fieldData.default_value"></timepicker>
+      </div>
+    </div>
+
+    <!-- drop down list -->
+    <select ng-switch-when="DialogFieldDropDownList"
+            ng-model="dialogField.fieldData.default_value"
+            class="form-control">
+      <option ng-repeat="option in dialogField.fieldData.values"
+              value="{{ option[0] }}">
+        {{ option[1] }}
+      </option>
+    </select>
+
+    <!-- radio button -->
+    <span ng-switch-when="DialogFieldRadioButton"
+          class="btn-group">
+      <label ng-repeat="option in dialogField.fieldData.values"
+             class="btn btn-primary">
+        <input type="radio"
+               ng-model="dialogField.fieldData.default_value"
+               name="dialogField.fieldData.name"
+               value="option[0]">
+        {{ option[1] }}
+      </label>
+    </span>
+
+  </div>
+  <div class="col-sm-5">
+    <button type="button" class="close"><span aria-hidden="true"><i class="fa fa-caret-down"></i></span></button>
+  </div>
+</div>
