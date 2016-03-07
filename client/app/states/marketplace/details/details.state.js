@@ -55,30 +55,7 @@
     var autoRefreshableDialogFields = [];
     var allDialogFields = [];
 
-    angular.forEach(vm.dialogs, function(dialog) {
-      angular.forEach(dialog.dialog_tabs, function(dialogTab) {
-        angular.forEach(dialogTab.dialog_groups, function(dialogGroup) {
-          angular.forEach(dialogGroup.dialog_fields, function(dialogField) {
-            allDialogFields.push(dialogField);
-            if (dialogField.default_value === '' && dialogField.values !== '') {
-              dialogField.default_value = dialogField.values;
-            }
-
-            if (typeof (dialogField.values) === 'object' && dialogField.default_value === undefined) {
-              dialogField.default_value = String(dialogField.values[0][0]);
-            }
-
-            dialogField.triggerAutoRefresh = function() {
-              DialogFieldRefresh.triggerAutoRefresh(dialogField);
-            };
-
-            if (dialogField.auto_refresh === true) {
-              autoRefreshableDialogFields.push(dialogField.name);
-            }
-          });
-        });
-      });
-    });
+    DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
 
     var dialogUrl = 'service_catalogs/' + serviceTemplate.service_template_catalog_id + '/service_templates';
 

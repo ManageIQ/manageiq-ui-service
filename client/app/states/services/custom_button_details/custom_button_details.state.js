@@ -17,45 +17,43 @@
         controller: StateController,
         controllerAs: 'vm',
         title: N_('Service Custom Button Details'),
-        params: {dialog: null, button: null, serviceTemplateCatalogId: null},
+        params: {dialogId: null, button: null, serviceTemplateCatalogId: null},
+        resolve: {
+          dialog: resolveDialog,
+          service: resolveService
+        }
       }
     };
   }
 
   /** @ngInject */
-  function StateController($state, $stateParams, CollectionsApi, Notifications, DialogFieldRefresh) {
+  function resolveService($stateParams, CollectionsApi) {
+    var options = {attributes: ['picture', 'picture.image_href']};
+
+    return CollectionsApi.get('services/', $stateParams.serviceId, options);
+  }
+
+  /** @ngInject */
+  function resolveDialog($stateParams, CollectionsApi) {
+    var options = {expand: 'resources', attributes: 'content'};
+
+    return CollectionsApi.query('service_dialogs/' + $stateParams.dialogId, options);
+  }
+
+  /** @ngInject */
+  function StateController($state, $stateParams, dialog, service, CollectionsApi, Notifications, DialogFieldRefresh) {
     var vm = this;
     vm.title = __('Custom button action');
-    vm.dialogs = [$stateParams.dialog];
+    vm.dialogs = dialog.content;
+    vm.service = service;
+    vm.serviceId = $stateParams.serviceId;
+    vm.button = $stateParams.button;
     vm.submitCustomButton = submitCustomButton;
 
     var autoRefreshableDialogFields = [];
     var allDialogFields = [];
 
-    angular.forEach(vm.dialogs, function(dialog) {
-      angular.forEach(dialog.dialog_tabs, function(dialogTab) {
-        angular.forEach(dialogTab.dialog_groups, function(dialogGroup) {
-          angular.forEach(dialogGroup.dialog_fields, function(dialogField) {
-            allDialogFields.push(dialogField);
-            if (dialogField.default_value === '' && dialogField.values !== '') {
-              dialogField.default_value = dialogField.values;
-            }
-
-            if (typeof (dialogField.values) === 'object' && dialogField.default_value === undefined) {
-              dialogField.default_value = String(dialogField.values[0][0]);
-            }
-
-            dialogField.triggerAutoRefresh = function() {
-              DialogFieldRefresh.triggerAutoRefresh(dialogField);
-            };
-
-            if (dialogField.auto_refresh === true) {
-              autoRefreshableDialogFields.push(dialogField.name);
-            }
-          });
-        });
-      });
-    });
+    DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
 
     var dialogUrl = 'service_catalogs/' + $stateParams.serviceTemplateCatalogId + '/service_templates';
 

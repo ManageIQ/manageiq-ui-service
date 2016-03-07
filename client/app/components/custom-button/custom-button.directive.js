@@ -26,7 +26,7 @@
 
     function link(scope, element, attrs, vm, transclude) {
       vm.activate();
-      
+
       var win = angular.element($window);
       win.bind('resize', function() { 
         scope.$apply();
@@ -86,7 +86,7 @@
           $state.go('services.custom_button_details', {
             button: button,
             buttonId: button.id,
-            dialog: button.resource_action.dialog,
+            dialogId: button.resource_action.dialog_id,
             serviceId: serviceId,
             serviceTemplateCatalogId: serviceTemplateCatalogId
           });
