@@ -56,7 +56,7 @@
   }
 
   /** @ngInject */
-  function init($rootScope, $state, Session, jQuery, $sessionStorage) {
+  function init($rootScope, $state, Session, jQuery, $sessionStorage, logger) {
     $rootScope.$on('$stateChangeStart', changeStart);
     $rootScope.$on('$stateChangeError', changeError);
     $rootScope.$on('$stateChangeSuccess', changeSuccess);
@@ -70,30 +70,40 @@
         return;
       }
 
+      // user is required and session not active - not going anywhere right away
+      event.preventDefault();
+
       $sessionStorage.$sync();  // needed when called right on reload
-      if ($sessionStorage.token) {
-        Session.create({
-          auth_token: $sessionStorage.token,
-          miqGroup: $sessionStorage.miqGroup,
-        });
-
-        Session.loadUser()
-          .then(function() {
-            if (Session.activeNavigationFeatures()) {
-              $state.go('dashboard');
-            } else {
-              Session.privileges_error = true;
-              $state.go('login');
-            }
-          });
-
-        event.preventDefault();
+      if (!$sessionStorage.token) {
+        // no saved token, go directly to login
+        $state.transitionTo('login');
 
         return;
       }
 
-      event.preventDefault();
-      $state.transitionTo('login');
+      // trying saved token..
+      Session.create({
+        auth_token: $sessionStorage.token,
+        miqGroup: $sessionStorage.miqGroup,
+      });
+
+      Session.loadUser()
+        .then(rbacDashboardOrLogin)
+        .catch(badUser);
+    }
+
+    function rbacDashboardOrLogin() {
+      if (Session.activeNavigationFeatures()) {
+        $state.go('dashboard');
+      } else {
+        Session.privileges_error = true;
+        $state.go('login');
+      }
+    }
+
+    function badUser(error) {
+      logger.error(__('Error retrieving user info'), [error]);
+      $state.go('login');
     }
 
     function changeError(event, toState, toParams, fromState, fromParams, error) {
