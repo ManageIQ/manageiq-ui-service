@@ -1,0 +1,31 @@
+<!-- text check box -->
+<div pf-form-group pf-label="{{'Default value'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.default_value"
+         ng-true-value="'t'"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate }}"
+         ng-checked="vm.modalData.default_value == 't'">
+</div>
+<div pf-form-group pf-label="{{'Required'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.required"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}">
+</div>
+<div pf-form-group pf-label="{{'Read only'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.read_only"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}">
+</div>
+<div pf-form-group pf-label="{{'Auto refresh on change'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.trigger_auto_refresh"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}">
+</div>

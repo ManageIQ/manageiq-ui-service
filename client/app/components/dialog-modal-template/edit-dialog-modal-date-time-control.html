@@ -1,0 +1,22 @@
+<!-- date time control -->
+<div pf-form-group pf-label="{{'Read only'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.read_only"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}">
+</div>
+<div pf-form-group pf-label="{{'Auto refresh on change'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.trigger_auto_refresh"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}">
+</div>
+<div pf-form-group pf-label="{{'Show Past Dates'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.options.show_past_dates"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}">
+</div>

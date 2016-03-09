@@ -5,7 +5,7 @@
     </a>
   </li>
   <li class="active">
-    <strong translate>Dialog:</strong> {{ ::vm.dialog.label }}
+    <strong translate>Dialog:</strong> {{ vm.dialog.label }}
   </li>
 </ol>
 
@@ -38,3 +38,9 @@
     <dialog-components-static></dialog-components-static>
   </div>
 </div>
+<button type="button" class="btn btn-default" ng-click="$dismiss()" translate>Cancel</button>
+<button type="button"
+        class="btn btn-primary"
+        ng-click="vm.saveServiceDetails()"
+        ng-disabled="vm.modalUnchanged()" translate>Save
+</button>

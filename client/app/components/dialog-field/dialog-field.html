@@ -68,6 +68,14 @@
 
   </div>
   <div class="col-sm-5">
-    <button type="button" class="close"><span aria-hidden="true"><i class="fa fa-caret-down"></i></span></button>
+    <button type="button" class="close"
+            ng-click="dialogField.editDialogModal(
+              dialogField.boxPosition,
+              dialogField.fieldData.position
+            )">
+      <span aria-hidden="true">
+        <i class="fa fa-caret-down"></i>
+      </span>
+    </button>
   </div>
 </div>

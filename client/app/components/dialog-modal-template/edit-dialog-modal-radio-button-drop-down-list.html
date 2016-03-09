@@ -1,0 +1,61 @@
+<!-- radio button -->
+<div pf-form-group pf-label="{{'Required'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.required"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}">
+</div>
+<div pf-form-group pf-label="{{'Read only'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.read_only"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}">
+</div>
+<div pf-form-group pf-label="{{'Auto refresh on change'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.trigger_auto_refresh"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}">
+</div>
+<div pf-form-group pf-label="{{'Default value'|translate}}">
+  <select class="form-control" ng-model="vm.modalData.options.default_value">
+    <option value="none" translate>None</option>
+    <option ng-repeat="entry in vm.modalData.values"
+            ng-selected="entry[0] == vm.modalData.options.default_value ? 'selected' : ''"
+            value="{{entry[0]}}">
+      {{entry[0]}}
+    </option>
+  </select>
+</div>
+<div pf-form-group pf-label="{{'Value type'|translate}}">
+  <select class="form-control" ng-model="vm.modalData.data_type">
+    <option value="integer" translate>Integer</option>
+    <option value="string" translate>String</option>
+  </select>
+</div>
+<div pf-form-group pf-label="{{'Sort by'|translate}}">
+  <select class="form-control" ng-model="vm.modalData.options.sort_by">
+    <option value="none" translate>None</option>
+    <option value="description" translate>Description</option>
+    <option value="value" translate>Value</option>
+  </select>
+</div>
+<div pf-form-group pf-label="{{'Sort order'|translate}}">
+  <select class="form-control" ng-model="vm.modalData.options.sort_order">
+    <option value="ascending" translate>Ascending</option>
+    <option value="descending" translate>Descending</option>
+  </select>
+</div>
+<div pf-form-group class="form-inline" pf-label="{{'Entries'|translate}}" required>
+  <div ng-repeat="entry in vm.modalData.values">
+    <input pf-form id="label" name="label"
+           ng-model="entry[0]" type="text" placeholder="Key" required/>
+    <input id="label" name="label"
+           ng-model="entry[1]" type="text" placeholder="Value" required/>
+    <a ng-click='vm.removeEntry(entry)'><i class='pficon-close'></i></a>
+  </div>
+  <a ng-click='vm.addEntry()'><i class='pficon-add-circle-o'></i></a>
+</div>

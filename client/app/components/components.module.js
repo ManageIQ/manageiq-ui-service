@@ -65,6 +65,7 @@ export default angular
     'ui.sortable',
     'ngDragDrop',
     'patternfly',
+    'frapontillo.bootstrap-switch',
     'svgBaseFix',
     'dndLists',
     'flowChart',
