@@ -22,6 +22,7 @@
     "angular-animate": "~1.5.0",
     "angular-base64": "~2.0.5",
     "angular-bootstrap": "~0.13.0",
+    "angular-bootstrap-switch": "~0.5.0",
     "angular-dragdrop" : "~1.0.13",
     "angular-gettext": "~2.2.0",
     "angular-messages": "~1.5.0",

@@ -1,0 +1,38 @@
+<!-- text box -->
+<div pf-form-group pf-label="{{'Default value'|translate}}">
+  <input id="default_value" name="default_value"
+         ng-model="vm.modalData.default_value"
+         type="{{vm.modalData.options.protected ? 'password' : 'text'}}"/>
+</div>
+<div pf-form-group pf-label="{{'Protected'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.options.protected"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate }}"/>
+</div>
+<div pf-form-group pf-label="{{'Required'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.required"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}"/>
+</div>
+<div pf-form-group pf-label="{{'Read only'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.read_only"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}"/>
+</div>
+<div pf-form-group pf-label="{{'Auto refresh on change'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.trigger_auto_refresh"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}"/>
+</div>
+<div pf-form-group pf-label="{{'Validation'|translate}}">
+  <input id="validator_rule" name="validator_rule"
+          ng-model="vm.modalData.validator_rule"/>
+</div>
