@@ -4,6 +4,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
+#: app/components/navigation/header-nav.html:42
+msgid "(Current Group)"
+msgstr ""
+
 #: app/components/retire-service-modal/retire-service-modal.html:12
 msgid "1 Week"
 msgstr ""
@@ -44,7 +48,7 @@ msgstr ""
 msgid "Active"
 msgstr ""
 
-#: app/states/requests/list/list.state.js:80
+#: app/states/requests/list/list.state.js:81
 msgid "Approved"
 msgstr ""
 
@@ -68,6 +72,10 @@ msgstr ""
 msgid "Back to My Services"
 msgstr ""
 
+#: app/states/services/reconfigure/reconfigure.html:3
+msgid "Back to Service"
+msgstr ""
+
 #: app/states/marketplace/details/details.html:3
 msgid "Back to Service Catalog"
 msgstr ""
@@ -76,19 +84,29 @@ msgstr ""
 msgid "Button action not supported."
 msgstr ""
 
-#: app/states/services/details/details.html:108
+#: app/states/services/details/details.html:110
 msgid "CPU"
 msgstr ""
 
 #: app/components/confirmation/confirmation.directive.js:97
 #: app/components/edit-service-modal/edit-service-modal.html:21
+#: app/components/ownership-service-modal/ownership-service-modal.html:32
 #: app/components/retire-service-modal/retire-service-modal.html:24
+#: app/states/services/reconfigure/reconfigure.html:24
 msgid "Cancel"
 msgstr ""
 
 #: app/states/marketplace/list/list.state.js:105
 #: app/states/marketplace/list/list.state.js:86
 msgid "Catalog Name"
+msgstr ""
+
+#: app/components/navigation/header-nav.html:34
+msgid "Change Group:"
+msgstr ""
+
+#: app/components/navigation/header-nav.html:46
+msgid "Change to this Group"
 msgstr ""
 
 #: app/states/services/details/details.html:36
@@ -104,7 +122,7 @@ msgstr ""
 msgid "Created"
 msgstr ""
 
-#: app/states/services/details/details.html:98
+#: app/states/services/details/details.html:100
 #: app/states/services/list/list.html:40
 msgid "Created On"
 msgstr ""
@@ -117,17 +135,25 @@ msgstr ""
 msgid "Current"
 msgstr ""
 
+#: app/components/navigation/header-nav.html:53
+msgid "Current Group"
+msgstr ""
+
 #: app/states/dashboard/dashboard.html:45
 msgid "Current Services"
 msgstr ""
 
+#: app/components/navigation/header-nav.html:40
+msgid "Currently Selected Group"
+msgstr ""
+
 #: app/config/navigation.config.js:14
-#: app/states/dashboard/dashboard.state.js:111
+#: app/states/dashboard/dashboard.state.js:154
 #: app/states/dashboard/dashboard.state.js:20
 msgid "Dashboard"
 msgstr ""
 
-#: app/states/requests/list/list.state.js:80
+#: app/states/requests/list/list.state.js:81
 msgid "Denied"
 msgstr ""
 
@@ -137,20 +163,20 @@ msgstr ""
 
 #: app/components/edit-service-modal/edit-service-modal.html:13
 #: app/states/marketplace/list/list.state.js:80
-#: app/states/requests/list/list.state.js:59
-#: app/states/requests/list/list.state.js:91
+#: app/states/requests/list/list.state.js:60
+#: app/states/requests/list/list.state.js:92
 msgid "Description"
 msgstr ""
 
-#: app/states/services/details/details.html:120
+#: app/states/services/details/details.html:122
 msgid "Disk Count"
 msgstr ""
 
-#: app/states/services/details/details.html:126
+#: app/states/services/details/details.html:128
 msgid "Disk Space Allocated"
 msgstr ""
 
-#: app/states/services/details/details.html:132
+#: app/states/services/details/details.html:134
 msgid "Disk Space Used"
 msgstr ""
 
@@ -172,11 +198,11 @@ msgid "Filter by Created On"
 msgstr ""
 
 #: app/states/marketplace/list/list.state.js:81
-#: app/states/requests/list/list.state.js:60
+#: app/states/requests/list/list.state.js:61
 msgid "Filter by Description"
 msgstr ""
 
-#: app/states/requests/list/list.state.js:66
+#: app/states/requests/list/list.state.js:67
 msgid "Filter by ID"
 msgstr ""
 
@@ -189,7 +215,7 @@ msgstr ""
 msgid "Filter by Owner"
 msgstr ""
 
-#: app/states/requests/list/list.state.js:72
+#: app/states/requests/list/list.state.js:73
 msgid "Filter by Request Date"
 msgstr ""
 
@@ -197,7 +223,7 @@ msgstr ""
 msgid "Filter by Retirement Date"
 msgstr ""
 
-#: app/states/requests/list/list.state.js:78
+#: app/states/requests/list/list.state.js:79
 msgid "Filter by Status"
 msgstr ""
 
@@ -210,7 +236,7 @@ msgstr ""
 msgid "For Sizing"
 msgstr ""
 
-#: app/states/services/details/details.html:92
+#: app/states/services/details/details.html:94
 msgid "Group"
 msgstr ""
 
@@ -236,7 +262,7 @@ msgstr ""
 msgid "Inactive"
 msgstr ""
 
-#: app/resources/authentication-api.factory.js:29
+#: app/resources/authentication-api.factory.js:30
 msgid "Incorrect username or password."
 msgstr ""
 
@@ -244,7 +270,7 @@ msgstr ""
 msgid "Last Message"
 msgstr ""
 
-#: app/states/services/details/details.html:178
+#: app/states/services/details/details.html:180
 msgid "Last Scan"
 msgstr ""
 
@@ -266,7 +292,7 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: app/components/navigation/header-nav.html:31
+#: app/components/navigation/header-nav.html:61
 #: app/states/logout/logout.state.js:18
 #: app/states/logout/logout.state.js:27
 msgid "Logout"
@@ -277,11 +303,11 @@ msgstr ""
 msgid "ManageIQ Self Service"
 msgstr ""
 
-#: app/states/services/details/details.html:114
+#: app/states/services/details/details.html:116
 msgid "Memory"
 msgstr ""
 
-#: app/states/services/details/details.html:139
+#: app/states/services/details/details.html:141
 msgid "Memory on Disk"
 msgstr ""
 
@@ -327,7 +353,7 @@ msgstr ""
 msgid "Number of VMs"
 msgstr ""
 
-#: app/states/services/details/details.html:86
+#: app/states/services/details/details.html:88
 #: app/states/services/list/list.html:35
 #: app/states/services/list/list.state.js:119
 #: app/states/services/list/list.state.js:85
@@ -338,7 +364,7 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: app/states/requests/list/list.state.js:80
+#: app/states/requests/list/list.state.js:81
 msgid "Pending"
 msgstr ""
 
@@ -350,9 +376,9 @@ msgstr ""
 msgid "Permanently delete the service"
 msgstr ""
 
-#: app/states/services/details/details.html:183
-#: app/states/services/details/details.html:184
 #: app/states/services/details/details.html:185
+#: app/states/services/details/details.html:186
+#: app/states/services/details/details.html:187
 msgid "Power State"
 msgstr ""
 
@@ -384,6 +410,18 @@ msgstr ""
 msgid "Provisioning Answers"
 msgstr ""
 
+#: app/states/services/details/details.html:61
+msgid "Reconfigure"
+msgstr ""
+
+#: app/states/services/reconfigure/reconfigure.html:5
+msgid "Reconfigure Service:"
+msgstr ""
+
+#: app/states/services/reconfigure/reconfigure.state.js:117
+msgid "Reconfigure this service has been cancelled"
+msgstr ""
+
 #: app/components/dialog-content/dialog-content.html:114
 msgid "Refresh"
 msgstr ""
@@ -399,19 +437,19 @@ msgstr ""
 
 #: app/services/requests-state.service.js:13
 #: app/states/requests/details/details.html:55
-#: app/states/requests/list/list.state.js:101
-#: app/states/requests/list/list.state.js:71
+#: app/states/requests/list/list.state.js:102
+#: app/states/requests/list/list.state.js:72
 msgid "Request Date"
 msgstr ""
 
 #: app/states/requests/details/details.html:37
-#: app/states/requests/list/list.state.js:65
-#: app/states/requests/list/list.state.js:96
+#: app/states/requests/list/list.state.js:66
+#: app/states/requests/list/list.state.js:97
 msgid "Request ID"
 msgstr ""
 
 #: app/states/requests/list/list.state.js:19
-#: app/states/requests/list/list.state.js:39
+#: app/states/requests/list/list.state.js:40
 msgid "Request List"
 msgstr ""
 
@@ -419,9 +457,9 @@ msgstr ""
 msgid "Request State"
 msgstr ""
 
-#: app/states/dashboard/dashboard.state.js:114
-#: app/states/requests/list/list.state.js:106
-#: app/states/requests/list/list.state.js:77
+#: app/states/dashboard/dashboard.state.js:157
+#: app/states/requests/list/list.state.js:107
+#: app/states/requests/list/list.state.js:78
 msgid "Request Status"
 msgstr ""
 
@@ -466,8 +504,8 @@ msgid "Retired Services"
 msgstr ""
 
 #: app/components/retire-service-modal/retire-service-modal.html:18
-#: app/states/dashboard/dashboard.state.js:119
-#: app/states/services/details/details.html:78
+#: app/states/dashboard/dashboard.state.js:162
+#: app/states/services/details/details.html:80
 #: app/states/services/list/list.html:22
 #: app/states/services/list/list.state.js:109
 #: app/states/services/list/list.state.js:72
@@ -483,6 +521,7 @@ msgid "Retiring Soon"
 msgstr ""
 
 #: app/components/edit-service-modal/edit-service-modal.html:22
+#: app/components/ownership-service-modal/ownership-service-modal.html:33
 #: app/components/retire-service-modal/retire-service-modal.html:25
 msgid "Save"
 msgstr ""
@@ -499,6 +538,14 @@ msgstr ""
 msgid "Scheduling retirement for"
 msgstr ""
 
+#: app/components/ownership-service-modal/ownership-service-modal.html:19
+msgid "Select a Group"
+msgstr ""
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:9
+msgid "Select an Owner"
+msgstr ""
+
 #: app/skin/skin.module.js:11
 #: index.html:4
 msgid "Self Service"
@@ -512,11 +559,13 @@ msgstr ""
 
 #: app/states/products/details/details.state.js:28
 #: app/states/services/details/details.state.js:19
-#: app/states/services/details/details.state.js:54
+#: app/states/services/details/details.state.js:61
+#: app/states/services/reconfigure/reconfigure.state.js:19
+#: app/states/services/reconfigure/reconfigure.state.js:41
 msgid "Service Details"
 msgstr ""
 
-#: app/states/services/details/details.html:71
+#: app/states/services/details/details.html:73
 msgid "Service Id"
 msgstr ""
 
@@ -527,7 +576,6 @@ msgstr ""
 
 #: app/states/marketplace/details/details.state.js:19
 #: app/states/marketplace/details/details.state.js:46
-#: app/states/requests/details/details.state.js:38
 msgid "Service Template Details"
 msgstr ""
 
@@ -536,11 +584,19 @@ msgstr ""
 msgid "Service:"
 msgstr ""
 
+#: app/states/services/details/details.html:60
+msgid "Set Ownership"
+msgstr ""
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:5
+msgid "Set Service Ownership"
+msgstr ""
+
 #: app/states/products/details/details.html:55
 msgid "Setup"
 msgstr ""
 
-#: app/states/services/details/details.html:173
+#: app/states/services/details/details.html:175
 msgid "Size"
 msgstr ""
 
@@ -549,6 +605,7 @@ msgid "Soon"
 msgstr ""
 
 #: app/states/marketplace/details/details.html:31
+#: app/states/services/reconfigure/reconfigure.html:23
 msgid "Submit Request"
 msgstr ""
 
@@ -558,7 +615,7 @@ msgstr ""
 msgid "The current approval status of the request"
 msgstr ""
 
-#: app/states/services/details/details.html:178
+#: app/states/services/details/details.html:180
 msgid "The last heartbeat received from the instances"
 msgstr ""
 
@@ -606,20 +663,25 @@ msgstr ""
 msgid "There was an error editing this service."
 msgstr ""
 
-#: app/states/services/details/details.state.js:83
+#: app/states/services/details/details.state.js:105
 msgid "There was an error removing this service."
 msgstr ""
 
 #: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
-#: app/states/services/details/details.state.js:101
+#: app/states/services/details/details.state.js:127
 msgid "There was an error retiring this service."
 msgstr ""
 
-#: app/states/marketplace/details/details.state.js:120
+#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:93
+msgid "There was an error saving ownership of this service."
+msgstr ""
+
+#: app/states/marketplace/details/details.state.js:124
+#: app/states/services/reconfigure/reconfigure.state.js:112
 msgid "There was an error submitting this request:"
 msgstr ""
 
-#: app/states/services/details/details.html:156
+#: app/states/services/details/details.html:158
 msgid "This service has no associated VMs"
 msgstr ""
 
@@ -635,6 +697,11 @@ msgstr ""
 msgid "Total Services"
 msgstr ""
 
+#: app/states/login/login.state.js:41
+#: app/states/login/login.state.js:61
+msgid "User does not have privileges to login."
+msgstr ""
+
 #: app/states/login/login.html:12
 msgid "Username"
 msgstr ""
@@ -643,11 +710,11 @@ msgstr ""
 msgid "VMs"
 msgstr ""
 
-#: app/states/services/details/details.html:168
+#: app/states/services/details/details.html:170
 msgid "Vendor"
 msgstr ""
 
-#: app/states/services/details/details.html:155
+#: app/states/services/details/details.html:157
 msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
 msgstr ""
 
@@ -672,10 +739,10 @@ msgstr ""
 msgid "was edited."
 msgstr ""
 
-#: app/states/services/details/details.state.js:78
+#: app/states/services/details/details.state.js:100
 msgid "was removed."
 msgstr ""
 
-#: app/states/services/details/details.state.js:96
+#: app/states/services/details/details.state.js:122
 msgid "was retired."
 msgstr ""
