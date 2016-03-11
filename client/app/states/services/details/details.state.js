@@ -27,7 +27,7 @@
   /** @ngInject */
   function resolveService($stateParams, CollectionsApi) {
     var requestAttributes = [
-      'picture', 
+      'picture',
       'picture.image_href',
       'evm_owner.name',
       'miq_group.description',
@@ -63,7 +63,7 @@
 
     vm.activate = activate;
     vm.removeService = removeService;
-    vm.editServiceModal = editServieModal;
+    vm.editServiceModal = editServiceModal;
     vm.retireServiceNow = retireServiceNow;
     vm.retireServiceLater = retireServiceLater;
     vm.ownershipServiceModal = ownershipServiceModal;
@@ -106,7 +106,7 @@
       }
     }
 
-    function editServieModal() {
+    function editServiceModal() {
       EditServiceModal.showModal(vm.service);
     }
 
