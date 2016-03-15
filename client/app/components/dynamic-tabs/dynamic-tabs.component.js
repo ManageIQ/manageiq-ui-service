@@ -3,22 +3,20 @@
 
   angular.module('app.components')
     .component('dynamicTabs', {
-      bindings: {
-        tabList: '='
-      },
       controller: function(DialogEdit, lodash) {
         /**
          * After loading component, activate first tab if there is any
-         * and store current data in service
          *
          * Parameter: DialogEdit -- service containing data
          */
         this.$onInit = function() {
+          // load data from service
+          this.tabList = DialogEdit.getData().content[0].dialog_tabs;
+          // set active tab
           if (this.tabList.length !== 0) {
             DialogEdit.activeTab = 0;
             this.tabList[0].active = true;
           }
-          DialogEdit.setData(this.tabList);
         }
 
         this.sortableOptions = {
@@ -63,7 +61,6 @@
           });
           // set activity for a new tab
           DialogEdit.activeTab = nextIndex;
-          DialogEdit.setData(this.tabList);
         };
 
         /**
