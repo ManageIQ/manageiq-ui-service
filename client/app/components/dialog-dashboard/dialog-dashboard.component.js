@@ -10,7 +10,7 @@
         this.$onInit = function() {
           this.service = DialogEdit;
           // load data from service
-          this.dialogTabs = DialogEdit.getData();
+          this.dialogTabs = DialogEdit.getData().content[0].dialog_tabs;
         };
 
         /**

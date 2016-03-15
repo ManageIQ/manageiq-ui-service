@@ -8,7 +8,7 @@
   function appRun(routerHelper) {
     routerHelper.configureStates(getStates());
   }
-  
+
   function getStates() {
     return {
       'dialogs.edit': {
@@ -45,8 +45,10 @@
   }
 
   /** @ngInject */
-  function StateController($state, dialog) {
+  function StateController($state, dialog, DialogEdit) {
     var vm = this;
+
+    DialogEdit.setData(dialog);
 
     vm.dialog = dialog;
   }
