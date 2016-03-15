@@ -45,12 +45,52 @@
   }
 
   /** @ngInject */
-  function StateController($state, dialog, DialogEdit) {
+  function StateController($state, dialog, DialogEdit, CollectionsApi, Notifications) {
     var vm = this;
 
     DialogEdit.setData(dialog);
 
     vm.dialog = dialog;
-  }
+    vm.saveDialogDetails = saveDialogDetails;
+    vm.dismissChanges = dismissChanges;
+    vm.dialogUnchanged = dialogUnchanged;
 
+    function dismissChanges() {
+      $state.go('dialogs.details', {dialogId: dialog.id});
+    }
+
+    function saveDialogDetails() {
+      // load dialog data
+      var dialogData = {
+        description: DialogEdit.getData().content[0].description,
+        label: DialogEdit.getData().content[0].label,
+        dialog_tabs: [],
+      };
+      DialogEdit.getData().content[0].dialog_tabs.forEach(function(tab) {
+        delete tab.active
+        dialogData.dialog_tabs.push(tab);
+      });
+
+      // save the dialog
+      CollectionsApi.post(
+        'service_dialogs',
+        DialogEdit.getData().id,
+        {},
+        angular.toJson({action: 'create', resource: dialogData})
+      ).then(saveSuccess, saveFailure);
+    }
+
+    function dialogUnchanged() {
+      // TODO:
+    }
+
+    function saveSuccess() {
+      Notifications.success(vm.dialog.content[0].label + __(' was saved'));
+      $state.go('dialogs.list');
+    }
+
+    function saveFailure() {
+      Notifications.error(__('There was an error editing this dialog.'));
+    }
+  }
 })();

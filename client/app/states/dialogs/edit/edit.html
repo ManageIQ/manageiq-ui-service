@@ -38,9 +38,11 @@
     <dialog-components-static></dialog-components-static>
   </div>
 </div>
-<button type="button" class="btn btn-default" ng-click="$dismiss()" translate>Cancel</button>
-<button type="button"
-        class="btn btn-primary"
-        ng-click="vm.saveDialogDetails()"
-        ng-disabled="vm.dialogUnchanged()" translate>Save
-</button>
+<div class="pull-right">
+  <button type="button" class="btn btn-default" ng-click="vm.dismissChanges()" translate>Cancel</button>
+  <button type="button"
+          class="btn btn-primary"
+          ng-click="vm.saveDialogDetails()"
+          ng-disabled="vm.dialogUnchanged()" translate>Save
+  </button>
+</div>
