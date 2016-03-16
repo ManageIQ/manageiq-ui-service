@@ -55,11 +55,11 @@
 
     DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
 
-    var dialogUrl = 'service_catalogs/' + $stateParams.serviceTemplateCatalogId + '/service_templates';
+    var dialogUrl = 'service_dialogs/';
 
     angular.forEach(allDialogFields, function(dialogField) {
       dialogField.refreshSingleDialogField = function() {
-        DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialogField, dialogUrl, $stateParams.button.applies_to_id);
+        DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialogField, dialogUrl, dialog.id);
       };
     });
 
@@ -67,7 +67,7 @@
       allDialogFields,
       autoRefreshableDialogFields,
       dialogUrl,
-      $stateParams.button.applies_to_id
+      dialog.id
     );
 
     function submitCustomButton() {
