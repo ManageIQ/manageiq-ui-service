@@ -33,8 +33,10 @@
      * Parameter: elements -- array of elements to sort
      */
     service.updatePositions = function(elements) {
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].position = i;
+      if (elements.length !== 0) {
+        for (var i = 0; i < elements.length; i++) {
+          elements[i].position = i;
+        }
       }
     };
 
