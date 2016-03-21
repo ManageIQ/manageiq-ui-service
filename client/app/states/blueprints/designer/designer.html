@@ -1,0 +1,67 @@
+<span class="blueprint-designer-header" ng-controller="designerCtrl">
+  <ol class="breadcrumb">
+    <li>
+      <a ui-sref="^"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to Blueprints'|translate}}</a>
+    </li>
+    <li class="active"> <strong translate>Blueprint Editor: </strong>
+      <input type="text" class="blueprint-name-input" ng-model="blueprintName" ng-change="blueprintNameChange()" placeholder="{{'Untitled Blueprint'|translate}}">
+      <button class="btn btn-default" type="button" tooltip="{{'Permanently delete the blueprint'|translate}}" tooltip-placement="bottom"
+              confirmation
+              confirmation-if="true"
+              confirmation-title="{{'Delete Blueprint'|translate}}"
+              confirmation-message="{{'Confirm, would you like to delete this blueprint?'|translate}}"
+              confirmation-ok-text="{{'Yes, Delete Blueprint'|translate}}"
+              confirmation-on-ok="deleteBlueprint()"
+              confirmation-ok-style="primary"
+              confirmation-show-cancel="true" translate>Delete
+      </button>
+    </li>
+  </ol>
+
+  <pf-notification-list></pf-notification-list>
+
+  <div class="blueprint-designer-container">
+
+    <div class="toolbar">
+      <button id="toggleToolbox" class="btn btn-primary" type="button" ng-click="showToolbox()" translate>Add Service Item</button>
+    </div>
+
+    <div class="toolbox-canvas-container"
+         ng-controller="canvasCtrl"
+         mouse-capture>
+
+      <flow-chart class="canvas" chart="chartViewModel"
+                  data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropCallback'}"></flow-chart>
+
+      <div class="toolbox-container" id="toolbox" ng-if="toolboxVisible">
+
+        <tabset>
+          <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active">
+            <tabset id="subtabs">
+              <tab ng-repeat="subtab in tab.subtabs" heading="{{subtab.title}}" active="subtab.active">
+                <ul class="catalog-items-list">
+                  <li class="catalog-item" ng-repeat="item in subtab.items"
+                    data-drag="true" jqyoui-draggable="{onStart:'startCallback(item)'}" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+                    ng-click="addNodeByClick(item)">
+                    <img src="{{item.image}}" width="38px"> {{ item.title }}
+                  </li>
+                </ul>
+              </tab>
+            </tabset>
+          </tab>
+        </tabset>
+
+        <div class="toolbox-footer">
+          <div class="new-catalog-item"
+               data-drag="true" jqyoui-draggable="{onStart:'startCallback(newItem)'}" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+               ng-click="addNodeByClick(newItem)">
+            <span class="pficon pficon-add-circle-o" style="color: #00a8e1"></span> {{'Add New Catalog Item...'|translate}}
+          </div>
+        </div>
+        <div class="close-toolbox">
+          <a ng-if="toolboxVisible" ng-click="hideToolbox()"><span class="fa fa-angle-double-up fa-2x"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>

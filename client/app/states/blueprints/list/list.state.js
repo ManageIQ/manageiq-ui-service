@@ -50,8 +50,17 @@
     vm.listConfig = {
       selectItems: false,
       showSelectBox: false,
-      selectionMatchProp: 'service_status'
+      selectionMatchProp: 'service_status',
+      onClick: handleClick
     };
+
+    vm.actionButtons = [
+      {
+        name: __('Edit'),
+        title: __('Edit Blueprint'),
+        actionFn: editBlueprint
+      }
+    ];
 
     vm.toolbarConfig = {
       filterConfig: {
@@ -78,11 +87,37 @@
         onSortChange: sortChange,
         isAscending: BlueprintsState.getSort().isAscending,
         currentField: BlueprintsState.getSort().currentField
+      },
+      actionsConfig: {
+        primaryActions: [
+          {
+            name: __('Create'),
+            title: __('Create a new Service Catalog'),
+            actionFn: createBlueprint
+          }
+        ]
       }
     };
 
+    function createBlueprint(action) {
+      $state.go('blueprints.designer', {blueprintId: -1});
+    };
+
+    function editBlueprint(action, item) {
+      $state.go('blueprints.designer', {blueprintId: item.id});
+    };
+
+    function deleteBlueprint(blueprintId){
+      BlueprintsState.deleteBlueprint(blueprintId);
+      console.log("Blueprint deleted ("+blueprint.id+")");
+    }
+
     /* Apply the filtering to the data list */
     filterChange(BlueprintsState.getFilters());
+
+    function handleClick(item, e) {
+      $state.go('blueprints.designer', {blueprintId: item.id});
+    }
 
     function sortChange(sortId, isAscending) {
       vm.blueprintsList.sort(compareFn);

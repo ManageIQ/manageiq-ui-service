@@ -1,0 +1,128 @@
+.main-content
+  height: 100%
+
+.blueprint-designer-header
+  button
+    margin-right: 10px
+
+  input
+    background-color: inherit
+    border-style: none
+    font-size: 14px
+    text-decoration: underline
+    width: 240px
+
+.blueprint-designer-container
+  background-color: #fff
+  width: 100%
+  height: 100%
+
+  .toolbar
+    border-bottom: 1px solid #d0d0d0
+    border-top: 1px solid #d0d0d0
+    padding: 15px 0px
+
+    button
+      margin-left: 15px
+
+  .toolbox-canvas-container
+    position: relative
+    height: 100%
+    width: 100%
+
+    .canvas
+      width: 98%
+      height: 100%
+      margin-left: 15px
+      background-image: url('/client/assets/images/canvas-dot-grid.png')
+      background-repeat: repeat
+
+    .toolbox-container
+      background-color: rgba(255,255,255,.94)
+      border: 1.5px solid #d0d0d0
+      box-shadow: 0 2px 6px rgba(0,0,0,.3)
+      padding-top: 26px
+      padding-left: 26px
+      padding-right: 26px
+      padding-bottom: 10px
+      position: absolute
+      top: -1px
+
+      .catalog-items-list
+        list-style: none
+        float: left
+        padding-left: 0px
+        max-height: 300px
+        overflow-y: auto
+
+      .catalog-item
+        border: 1px solid transparent
+        background-color: rgba(255,255,255,.94)
+        border-color: #b1b1b1
+        border-width: 1px
+        box-shadow: 0 2px 6px rgba(0,0,0,.2)
+        margin-top: 16px
+        margin-right: 16px
+        padding: 6px 28px
+        cursor: pointer
+        border-radius: 1px
+        float: left
+        min-width: 306px
+        min-height: 52px
+        height: 36px
+        vertical-align: middle
+        position: relative
+
+        &::before
+          border-color: #0d6f9a
+          background-image: linear-gradient(to bottom, #0088ce 60%, #fff 0%)
+          background-position: left
+          background-repeat: repeat-y
+          background-size: 2px 5px
+          border: 4px solid #0088ce
+          position: absolute
+          content: ''
+          top: 3px
+          left: 4px
+          bottom: 4px
+          width: 10px
+
+        img
+          margin-right: 8px
+
+    .toolbox-footer
+      margin-top: 10px
+      margin-bottom: 10px
+      margin-left: 15px
+      margin-right: 184px
+      display: initial
+
+      .new-catalog-item
+        border: 2px dashed #bbb
+        color: #00a8e1
+        padding: 13px 18px
+        cursor: pointer
+        width: 306px
+        min-width: 306px
+        min-height: 52px
+        height: 36px
+        vertical-align: middle
+
+        span
+          font-size: 20px
+          vertical-align: middle
+          padding-right: 14px
+
+    .close-toolbox
+      text-align: center
+
+    a
+      color: #0a0a0a
+
+#subtabs
+  .nav-tabs-pf
+    padding-left: 18px
+
+    li
+      font-size: 12px
+
