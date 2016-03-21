@@ -32,6 +32,12 @@
             state: 'marketplace',
             icon: 'fa fa-copy',
             tooltip: N_('The total number of available catalog items'),
+          },
+          blueprints: {
+            title: N_('Blueprints'),
+            state: 'blueprints',
+            icon: 'fa fa-sitemap',
+            tooltip: N_('The total number of available blueprints'),
           }
         },
         secondary: {
