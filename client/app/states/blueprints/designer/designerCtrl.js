@@ -1,5 +1,5 @@
-angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', 'BlueprintsState', '$state',
-    function($scope, $timeout, BlueprintsState, $state) {
+angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', 'BlueprintsState', 'BlueprintDetailsModal', '$state',
+    function($scope, $timeout, BlueprintsState, BlueprintDetailsModal, $state) {
       $scope.chartDataModel = {};
       var blueprint = {};
 
@@ -43,7 +43,15 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
         $state.go('blueprints.list');
       };
 
+      $scope.editDetails = function() {
+        $scope.detailsLoading = true;
+        BlueprintDetailsModal.showModal(blueprint.id);
+      }
+
       /*  Caatalog Editor Toolbox Methods */
+
+      $scope.toolboxVisible = false;
+      $scope.detailsLoading = false;
 
       $scope.toolboxVisible = false;
 

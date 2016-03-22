@@ -1,0 +1,24 @@
+#advOpsHref
+  text-decoration: none
+  font-size: 18px
+
+  &:after
+    font-family: 'FontAwesome'
+    content: "\f107"
+    margin-left: 10px
+    color: grey
+
+  &.collapsed:after
+    content: "\f105"
+
+  &.disabled
+    color: grey
+    pointer-events: none
+    font-size: 18px
+
+.clear-entry-point
+  float: right
+  position: absolute
+  top: 8px
+  right: 30px
+  color: black
