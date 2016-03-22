@@ -9,12 +9,13 @@
     var service = {
       listenForAutoRefreshMessages: listenForAutoRefreshMessages,
       refreshSingleDialogField: refreshSingleDialogField,
+      setupDialogData: setupDialogData,
       triggerAutoRefresh: triggerAutoRefresh
     };
 
     return service;
 
-    function listenForAutoRefreshMessages(allDialogFields, autoRefreshableDialogFields, url, serviceTemplateId) {
+    function listenForAutoRefreshMessages(allDialogFields, autoRefreshableDialogFields, url, resourceId) {
       window.addEventListener('message', function(event) {
         var dialogFieldsToRefresh = autoRefreshableDialogFields.filter(function(fieldName) {
           if (event.data.fieldName !== fieldName) {
@@ -22,11 +23,11 @@
           }
         });
 
-        refreshMultipleDialogFields(allDialogFields, dialogFieldsToRefresh, url, serviceTemplateId);
+        refreshMultipleDialogFields(allDialogFields, dialogFieldsToRefresh, url, resourceId);
       });
     }
 
-    function refreshSingleDialogField(allDialogFields, dialogField, url, serviceTemplateId) {
+    function refreshSingleDialogField(allDialogFields, dialogField, url, resourceId) {
       function refreshSuccess(result) {
         var resultObj = result.result[dialogField.name];
 
@@ -38,7 +39,34 @@
         Notifications.error('There was an error refreshing this dialog: ' + result);
       }
 
-      fetchDialogFieldInfo(allDialogFields, [dialogField.name], url, serviceTemplateId, refreshSuccess, refreshFailure);
+      fetchDialogFieldInfo(allDialogFields, [dialogField.name], url, resourceId, refreshSuccess, refreshFailure);
+    }
+
+    function setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields) {
+      angular.forEach(dialogs, function(dialog) {
+        angular.forEach(dialog.dialog_tabs, function(dialogTab) {
+          angular.forEach(dialogTab.dialog_groups, function(dialogGroup) {
+            angular.forEach(dialogGroup.dialog_fields, function(dialogField) {
+              allDialogFields.push(dialogField);
+              if (dialogField.default_value === '' && dialogField.values !== '') {
+                dialogField.default_value = dialogField.values;
+              }
+
+              if (typeof (dialogField.values) === 'object' && dialogField.default_value === undefined) {
+                dialogField.default_value = String(dialogField.values[0][0]);
+              }
+
+              dialogField.triggerAutoRefresh = function() {
+                triggerAutoRefresh(dialogField);
+              };
+
+              if (dialogField.auto_refresh === true) {
+                autoRefreshableDialogFields.push(dialogField.name);
+              }
+            });
+          });
+        });
+      });
     }
 
     function triggerAutoRefresh(dialogField) {
@@ -49,7 +77,7 @@
 
     // Private
 
-    function refreshMultipleDialogFields(allDialogFields, fieldNamesToRefresh, url, serviceTemplateId) {
+    function refreshMultipleDialogFields(allDialogFields, fieldNamesToRefresh, url, resourceId) {
       function refreshSuccess(result) {
         angular.forEach(allDialogFields, function(dialogField) {
           if (fieldNamesToRefresh.indexOf(dialogField.name) > -1) {
@@ -63,7 +91,7 @@
         Notifications.error('There was an error automatically refreshing dialogs' + result);
       }
 
-      fetchDialogFieldInfo(allDialogFields, fieldNamesToRefresh, url, serviceTemplateId, refreshSuccess, refreshFailure);
+      fetchDialogFieldInfo(allDialogFields, fieldNamesToRefresh, url, resourceId, refreshSuccess, refreshFailure);
     }
 
     function updateAttributesForDialogField(dialogField, newDialogField) {
@@ -92,10 +120,10 @@
       }
     }
 
-    function fetchDialogFieldInfo(allDialogFields, dialogFieldsToFetch, url, serviceTemplateId, successCallback, failureCallback) {
+    function fetchDialogFieldInfo(allDialogFields, dialogFieldsToFetch, url, resourceId, successCallback, failureCallback) {
       CollectionsApi.post(
         url,
-        serviceTemplateId,
+        resourceId,
         {},
         JSON.stringify({
           action: 'refresh_dialog_fields',
