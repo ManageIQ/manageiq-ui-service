@@ -86,7 +86,8 @@
         dashboard:   {show: entitledForDashboard(productFeatures)},
         services:    {show: entitledForServices(productFeatures)},
         requests:    {show: entitledForRequests(productFeatures)},
-        marketplace: {show: entitledForServiceCatalogs(productFeatures)}
+        marketplace: {show: entitledForServiceCatalogs(productFeatures)},
+        blueprints:  {show: false}
       };
       model.navFeatures = features;
 
