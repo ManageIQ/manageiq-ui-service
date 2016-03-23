@@ -56,6 +56,10 @@
       return blueprint.blueprints;
     };
 
+    blueprint.getNextUniqueId = function () {
+      return blueprint.blueprints.length;
+    }
+    
     blueprint.saveBlueprint = function(tmpBlueprint) {
       var index = findBlueprintIndexById(tmpBlueprint.id);
       if (index === -1) {
@@ -86,7 +90,7 @@
         }
       }
 
-      return null;
+      return {};
     };
 
     function findBlueprintIndexById(id) {

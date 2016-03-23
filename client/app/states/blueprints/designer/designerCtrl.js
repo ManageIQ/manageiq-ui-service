@@ -43,15 +43,11 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
         $state.go('blueprints.list');
       };
 
-      $scope.editDetails = function() {
-        $scope.detailsLoading = true;
-        BlueprintDetailsModal.showModal(blueprint.id);
+      $scope.editDetails = function(){
+        BlueprintDetailsModal.showModal('edit', blueprint.id);
       }
 
       /*  Caatalog Editor Toolbox Methods */
-
-      $scope.toolboxVisible = false;
-      $scope.detailsLoading = false;
 
       $scope.toolboxVisible = false;
 
@@ -63,7 +59,7 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
         $timeout(function() {
           $( "#subtabs>ul" ).addClass('nav-tabs-pf');
         });
-      };
+      }
 
       $scope.hideToolbox = function() {
         $scope.toolboxVisible = false;

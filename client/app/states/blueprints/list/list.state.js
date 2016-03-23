@@ -32,7 +32,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, blueprints, BlueprintsState, $filter, $rootScope) {
+  function StateController($state, blueprints, BlueprintsState, BlueprintDetailsModal, $filter, $rootScope) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -100,8 +100,8 @@
     };
 
     function createBlueprint(action) {
-      $state.go('blueprints.designer', {blueprintId: -1});
-    }
+      BlueprintDetailsModal.showModal('create', '-1');
+    };
 
     function editBlueprint(action, item) {
       $state.go('blueprints.designer', {blueprintId: item.id});

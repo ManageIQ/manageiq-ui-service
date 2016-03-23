@@ -5,7 +5,6 @@
     </li>
     <li class="active"> <strong translate>Blueprint Editor: </strong>
       <input type="text" class="blueprint-name-input" ng-model="blueprintName" ng-change="blueprintNameChange()" placeholder="{{'Untitled Blueprint'|translate}}">
-      <span class="spinner spinner-xs spinner-inline" ng-if="detailsLoading"></span>
       <button class="btn btn-primary" type="button" ng-click="editDetails()" translate>Details</button>
       <button class="btn btn-default" type="button" tooltip="{{'Permanently delete the blueprint'|translate}}" tooltip-placement="bottom"
               confirmation

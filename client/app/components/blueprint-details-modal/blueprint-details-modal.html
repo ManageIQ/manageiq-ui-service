@@ -2,7 +2,7 @@
   <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
     <span class="pficon pficon-close"></span>
   </button>
-  <h4 class="modal-title" id="myModalLabel" translate>Edit Blueprint Details</h4>
+  <h4 class="modal-title" id="myModalLabel">{{vm.modalTitle}}</h4>
 </div>
 <div class="modal-body">
   <h3 translate>Basic Info.</h3>
@@ -54,7 +54,7 @@
   <button type="button" class="btn btn-default" ng-click="vm.cancelBlueprintDetails()" translate>Cancel</button>
   <button type="button"
           class="btn btn-primary"
-          ng-click="vm.saveBlueprintDetails()"
-          translate>Save
+          ng-click="vm.saveBlueprintDetails()">
+          {{vm.modalBtnPrimaryLabel}}
   </button>
 </div>

@@ -13,12 +13,13 @@
 
     return modalBlueprint;
 
-    function showModal(blueprintId) {
+    function showModal(action, blueprintId) {
       var modalOptions = {
         templateUrl: 'app/components/blueprint-details-modal/blueprint-details-modal.html',
         controller: BlueprintDetailsModalController,
         controllerAs: 'vm',
         resolve: {
+          action: resolveAction,
           blueprintId: resolveBlueprintId,
           serviceCatalogs: resolveServiceCatalogs,
           serviceDialogs: resolveServiceDialogs
@@ -31,6 +32,10 @@
 
       function resolveBlueprintId() {
         return blueprintId;
+      }
+
+      function resolveAction() {
+        return action;
       }
 
       function resolveServiceCatalogs(CollectionsApi) {
@@ -55,14 +60,20 @@
   }
 
   /** @ngInject */
-  function BlueprintDetailsModalController(blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, $state, $modalInstance, CollectionsApi, Notifications) {
+  function BlueprintDetailsModalController(action, blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, $state, $modalInstance, CollectionsApi, Notifications) {
     var vm = this;
+
+    if(action == 'create') {
+      vm.modalTitle = __('Create Blueprint');
+      vm.modalBtnPrimaryLabel  = __('Create');
+    } else {
+      vm.modalTitle = __('Edit Blueprint Details');
+      vm.modalBtnPrimaryLabel  = __('Save');
+    }
 
     vm.blueprint = BlueprintsState.getBlueprintById(blueprintId);
     vm.serviceCatalogs = serviceCatalogs.resources;
     vm.serviceCatalogs.splice(0, 0, {id: "-1", name: __('Do Not Display')});
-
-    //console.log("Dialogs = " + JSON.stringify(serviceDialogs.resources,null,2));
 
     vm.dialogOptions = [];
     angular.forEach(serviceDialogs.resources, addServiceDialogOption);
@@ -74,9 +85,9 @@
     vm.catalogChanged = catalogChanged;
 
     vm.modalData = {
-      'action': 'edit',
+      'action': action,
       'resource': {
-        'name': vm.blueprint.name || '',
+        'name': vm.blueprint.name || __('Untitled Catalog ') + BlueprintsState.getNextUniqueId(),
         'visibility': vm.blueprint.visibility,
         'catalog': vm.blueprint.catalog,
         'dialog': vm.blueprint.dialog,
@@ -155,6 +166,7 @@
     function saveBlueprintDetails() {
       //CollectionsApi.post('Blueprints', vm.Blueprint.id, {}, vm.modalData).then(saveSuccess, saveFailure);
 
+      vm.blueprint.id = blueprintId;
       vm.blueprint.name = vm.modalData.resource.name;
       vm.blueprint.visibility = vm.modalData.resource.visibility.id;
       vm.blueprint.catalog = vm.modalData.resource.catalog.id;
@@ -168,12 +180,16 @@
 
       function saveSuccess() {
         $modalInstance.close();
-        Notifications.success(vm.blueprint.name + __(' was edited.'));
-        $state.go($state.current, {}, {reload: true});
+        Notifications.success(vm.blueprint.name + __(' was ' + action + 'ed.'));
+        if(action == 'create') {
+          $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
+        } else if(action == 'edit') {
+          $state.go($state.current, {}, {reload: true});
+        }
       }
 
       function saveFailure() {
-        Notifications.error(__('There was an error editing this Blueprint.'));
+        Notifications.error(__('There was an error saving this Blueprint.'));
       }
     }
   }
