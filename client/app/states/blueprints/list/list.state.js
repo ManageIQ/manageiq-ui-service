@@ -32,7 +32,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, blueprints, BlueprintsState, BlueprintDetailsModal, $filter, $rootScope) {
+  function StateController($state, blueprints, BlueprintsState, BlueprintDetailsModal, BlueprintDeleteModal, $filter, $rootScope) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -49,9 +49,10 @@
 
     vm.listConfig = {
       selectItems: false,
-      showSelectBox: false,
+      showSelectBox: true,
       selectionMatchProp: 'service_status',
-      onClick: handleClick
+      onClick: handleClick,
+      onCheckBoxChange: handleCheckBoxChange
     };
 
     vm.actionButtons = [
@@ -59,6 +60,11 @@
         name: __('Edit'),
         title: __('Edit Blueprint'),
         actionFn: editBlueprint
+      },
+      {
+        name: __('Delete'),
+        title: __('Delete Blueprint'),
+        actionFn: deleteBlueprint
       }
     ];
 
@@ -92,8 +98,14 @@
         primaryActions: [
           {
             name: __('Create'),
-            title: __('Create a new Service Catalog'),
+            title: __('Create a new Blueprint'),
             actionFn: createBlueprint
+          },
+          {
+            name: __('Delete'),
+            title: __('Delete Blueprint'),
+            actionFn: deleteBlueprints,
+            isDisabled: (BlueprintsState.getSelectedBlueprints().length == 0)
           }
         ]
       }
@@ -107,9 +119,23 @@
       $state.go('blueprints.designer', {blueprintId: item.id});
     }
 
-    function deleteBlueprint(blueprintId) {
-      BlueprintsState.deleteBlueprint(blueprintId);
-      console.log("Blueprint deleted (" + blueprintId + ")");
+    function deleteBlueprint(action, item){
+      // clear any prev. selections, make single selection
+      item = angular.copy(item);
+      item.selected = true;
+      BlueprintsState.unselectBlueprints();
+      BlueprintsState.handleSelectionChange(item);
+      BlueprintDeleteModal.showModal(BlueprintsState.getSelectedBlueprints());
+      BlueprintsState.unselectBlueprints();
+    }
+
+    function deleteBlueprints(action){
+      //console.log("Selected Blueprints: "+JSON.stringify(BlueprintsState.getSelectedBlueprints(),null,2));
+      BlueprintDeleteModal.showModal(BlueprintsState.getSelectedBlueprints());
+    }
+
+    function canDeleteBlueprints(){
+      return BlueprintsState.getSelectedBlueprints().length > 0;
     }
 
     /* Apply the filtering to the data list */
@@ -117,6 +143,11 @@
 
     function handleClick(item, e) {
       $state.go('blueprints.designer', {blueprintId: item.id});
+    }
+
+    function handleCheckBoxChange(item, e) {
+      BlueprintsState.handleSelectionChange(item);
+      vm.toolbarConfig.actionsConfig.primaryActions[1].isDisabled = !canDeleteBlueprints();
     }
 
     function sortChange(sortId, isAscending) {

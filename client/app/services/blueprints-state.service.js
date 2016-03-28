@@ -52,6 +52,29 @@
       }
     ];
 
+    blueprint.selectedBlueprints = [];
+
+    blueprint.handleSelectionChange = function (tmpBlueprint) {
+      if(tmpBlueprint.selected){
+        blueprint.selectedBlueprints.push(tmpBlueprint);
+      } else {
+        var index = findWithAttr(blueprint.selectedBlueprints, 'id', tmpBlueprint.id);
+        if (index != -1) {
+          blueprint.selectedBlueprints.splice(index, 1);
+        } else {
+          console.log("Cound't find blueprint to unselect.");
+        }
+      }
+    };
+
+    blueprint.getSelectedBlueprints = function () {
+      return blueprint.selectedBlueprints;
+    };
+
+    blueprint.unselectBlueprints = function () {
+      blueprint.selectedBlueprints = [];
+    };
+
     blueprint.getBlueprints = function() {
       return blueprint.blueprints;
     };
@@ -63,7 +86,9 @@
     blueprint.saveBlueprint = function(tmpBlueprint) {
       var index = findBlueprintIndexById(tmpBlueprint.id);
       if (index === -1) {
-        tmpBlueprint.id = blueprint.blueprints.length;
+        //console.log("Saving new blueprint " + tmpBlueprint.id);
+        tmpBlueprint.id = blueprint.getNextUniqueId();
+        //console.log("Saving new blueprint " + tmpBlueprint.id);
         blueprint.blueprints.push(tmpBlueprint);
       } else {
         blueprint.blueprints[index] = tmpBlueprint;
@@ -96,6 +121,16 @@
     function findBlueprintIndexById(id) {
       for (var i = 0; i <  blueprint.blueprints.length; i++) {
         if (blueprint.blueprints[i].id === id) {
+          return i;
+        }
+      }
+
+      return -1;
+    }
+
+    function findWithAttr(array, attr, value) {
+      for(var i = 0; i < array.length; i += 1) {
+        if(array[i][attr] === value) {
           return i;
         }
       }
