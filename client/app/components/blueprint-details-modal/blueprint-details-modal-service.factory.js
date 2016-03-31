@@ -22,7 +22,8 @@
           action: resolveAction,
           blueprintId: resolveBlueprintId,
           serviceCatalogs: resolveServiceCatalogs,
-          serviceDialogs: resolveServiceDialogs
+          serviceDialogs: resolveServiceDialogs,
+          tenants: resolveTenants
         }
       };
 
@@ -56,11 +57,22 @@
 
         return CollectionsApi.query('service_dialogs', options);
       }
+
+      function resolveTenants(CollectionsApi) {
+        var options = {
+          expand: 'resources',
+          attributes: ['id', 'name'],
+          sort_by: 'name',
+          sort_options: 'ignore_case'
+         };
+
+        return CollectionsApi.query('tenants', options);
+      }
     }
   }
 
   /** @ngInject */
-  function BlueprintDetailsModalController(action, blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, $state, $modalInstance, CollectionsApi, Notifications) {
+  function BlueprintDetailsModalController(action, blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, tenants, $state, $modalInstance, CollectionsApi, Notifications) {
     var vm = this;
 
     if(action == 'create') {
@@ -72,16 +84,29 @@
     }
 
     vm.blueprint = BlueprintsState.getBlueprintById(blueprintId);
-    vm.serviceCatalogs = serviceCatalogs.resources;
-    vm.serviceCatalogs.splice(0, 0, {id: "-1", name: __('Do Not Display')});
 
-    vm.dialogOptions = [];
-    angular.forEach(serviceDialogs.resources, addServiceDialogOption);
-    vm.dialogOptions.splice(0, 0, {id: "-1", name: __('Select Dialog')});
+    vm.serviceCatalogs = serviceCatalogs.resources;
+    vm.serviceCatalogs.splice(0, 0, {id: -1, name: __('Unassigned')});
+
+    vm.serviceDialogs = serviceDialogs.resources;
+    vm.serviceDialogs.splice(0, 0, {id: -1, description: __('Select Dialog')});
+
+    vm.visibilityOptions = [{
+      id: 800,
+      name: 'Private'
+    }, {
+      id: 900,
+      name: 'Public'
+    }];
+    vm.visibilityOptions = vm.visibilityOptions.concat(tenants.resources);
+
+    //console.log("visibilityOptions = " + JSON.stringify(vm.visibilityOptions,null,2));
+    //console.log("serviceCatalogs = " + JSON.stringify(vm.serviceCatalogs,null,2));
+    //console.log("serviceDialogs = " + JSON.stringify(vm.serviceDialogs,null,2));
 
     vm.saveBlueprintDetails = saveBlueprintDetails;
     vm.cancelBlueprintDetails = cancelBlueprintDetails;
-    vm.isDoNotDisplayInCatalog = isDoNotDisplayInCatalog;
+    vm.isUnassigned = isUnassigned;
     vm.catalogChanged = catalogChanged;
 
     vm.modalData = {
@@ -97,33 +122,23 @@
       }
     };
 
-    vm.visibilityOptions = [{
-      id: 100,
-      label: 'Private'
-    }, {
-      id: 101,
-      label: 'Public'
-    }, {
-      id: 102,
-      label: 'Tenant'
-    }];
-
     if(vm.modalData.resource.visibility == null){
       vm.modalData.resource.visibility = vm.visibilityOptions[0];
     } else {
-      vm.modalData.resource.visibility = vm.visibilityOptions[ findWithAttr(vm.visibilityOptions, 'id', vm.modalData.resource.visibility) ];
+      vm.modalData.resource.visibility = vm.visibilityOptions[ findWithAttr(vm.visibilityOptions, 'id', vm.modalData.resource.visibility.id) ];
     }
 
     if(vm.modalData.resource.catalog == null){
       vm.modalData.resource.catalog = vm.serviceCatalogs[0];
     } else {
-      vm.modalData.resource.catalog = vm.serviceCatalogs[ findWithAttr(vm.serviceCatalogs, 'id', vm.modalData.resource.catalog) ];
+      //console.log("vm.modalData.resource.catalog = " + JSON.stringify(vm.modalData.resource.catalog,null,2));
+      vm.modalData.resource.catalog = vm.serviceCatalogs[ findWithAttr(vm.serviceCatalogs, 'id', vm.modalData.resource.catalog.id) ];
     }
 
     if(vm.modalData.resource.dialog == null){
-      vm.modalData.resource.dialog = vm.dialogOptions[0];
+      vm.modalData.resource.dialog = vm.serviceDialogs[0];
     } else {
-      vm.modalData.resource.dialog = vm.dialogOptions[ findWithAttr(vm.dialogOptions, 'id', vm.modalData.resource.dialog) ];
+      vm.modalData.resource.dialog = vm.serviceDialogs[ findWithAttr(vm.serviceDialogs, 'id', vm.modalData.resource.dialog.id) ];
     }
 
     activate();
@@ -139,23 +154,18 @@
       }
     }
 
-    function isDoNotDisplayInCatalog() {
+    function isUnassigned() {
       return vm.modalData.resource.catalog == vm.serviceCatalogs[0];
     }
 
     function catalogChanged() {
-      if(isDoNotDisplayInCatalog()){
+      if(isUnassigned()){
         vm.modalData.resource.provEP = '';
         vm.modalData.resource.reConfigEP = '';
         vm.modalData.resource.retireEP = '';
         jQuery('#advOps').removeClass('in');
         jQuery('#advOpsHref').toggleClass('collapsed');
       }
-    }
-
-    function addServiceDialogOption(dialog) {
-      var tmpObj = {id: dialog.id, label: dialog.description};
-      vm.dialogOptions.push(tmpObj);
     }
 
     function cancelBlueprintDetails() {
@@ -168,9 +178,11 @@
 
       vm.blueprint.id = blueprintId;
       vm.blueprint.name = vm.modalData.resource.name;
-      vm.blueprint.visibility = vm.modalData.resource.visibility.id;
-      vm.blueprint.catalog = vm.modalData.resource.catalog.id;
-      vm.blueprint.dialog = vm.modalData.resource.dialog.id;
+
+      vm.blueprint.visibility = vm.modalData.resource.visibility;
+      vm.blueprint.catalog = vm.modalData.resource.catalog;
+      vm.blueprint.dialog = vm.modalData.resource.dialog;
+
       vm.blueprint.provEP = vm.modalData.resource.provEP;
       vm.blueprint.reConfigEP = vm.modalData.resource.reConfigEP;
       vm.blueprint.retireEP = vm.modalData.resource.retireEP;

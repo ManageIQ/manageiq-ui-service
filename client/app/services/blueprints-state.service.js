@@ -37,18 +37,74 @@
       {
         "id": 0,
         "name": "Create RDS Instance",
+        "last_modified": "2014-09-08T16:17:40Z",
+        "num_nodes": 0,
+        "visibility": {
+          "id": 800,
+          "name": "Private"
+        },
+        "catalog": {
+          "id": -1,
+          "name": "Unassigned"
+        },
+        "dialog": {
+          "id": -1,
+          "name": "Select Dialog"
+        }
       },
       {
         "id": 1,
         "name": "Create S3 Bucket",
+        "last_modified": "2015-04-16T18:24:21Z",
+        "num_nodes": 0,
+        "visibility": {
+          "id": 1000000000004,
+          "name": "Project 1"
+        },
+        "catalog": {
+          "id": 1000000000007,
+          "name": "Amazon Operations"
+        },
+        "dialog": {
+          "id": 1000000000014,
+          "name": "AWScreate_vpc"
+        }
       },
       {
         "id": 2,
         "name": "Dev DB Server",
+        "last_modified": "2015-01-16T18:24:21Z",
+        "num_nodes": 0,
+        "visibility": {
+          "id": 900,
+          "name": "Public"
+        },
+        "catalog": {
+          "id": -1,
+          "name": "Unassigned"
+        },
+        "dialog": {
+          "id": -1,
+          "name": "Select Dialog"
+        }
       },
       {
         "id": 3,
         "name": "Amazon DEV Instance",
+        "last_modified": "2016-02-23T11:08:22Z",
+        "num_nodes": 0,
+        "visibility": {
+          "id": 1000000000001,
+          "name": "My Company"
+        },
+        "catalog": {
+          "id": 1000000000003,
+          "name": "DevOps Team Alpha"
+        },
+        "dialog": {
+          "id": 1000000000001,
+          "name": "RenameVM"
+        }
       }
     ];
 
@@ -82,8 +138,15 @@
     blueprint.getNextUniqueId = function () {
       return blueprint.blueprints.length;
     }
-    
+
     blueprint.saveBlueprint = function(tmpBlueprint) {
+      tmpBlueprint.last_modified = new Date();
+      if(tmpBlueprint.chartDataModel && tmpBlueprint.chartDataModel.nodes) {
+        tmpBlueprint.num_nodes = tmpBlueprint.chartDataModel.nodes.length;
+      } else {
+        tmpBlueprint.num_nodes = 0;
+      }
+
       var index = findBlueprintIndexById(tmpBlueprint.id);
       if (index === -1) {
         //console.log("Saving new blueprint " + tmpBlueprint.id);

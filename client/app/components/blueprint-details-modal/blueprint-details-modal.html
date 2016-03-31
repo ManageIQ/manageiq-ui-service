@@ -13,7 +13,7 @@
     </div>
     <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Visibility'|translate}}" required>
       <select pf-select
-              ng-options="item as item.label for item in vm.visibilityOptions"
+              ng-options="item as item.name for item in vm.visibilityOptions"
               ng-model="vm.modalData.resource.visibility" required>
       </select>
     </div>
@@ -26,13 +26,13 @@
     </div>
     <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Dialog'|translate}}" required>
       <select pf-select
-              ng-options="item as item.label for item in vm.dialogOptions"
+              ng-options="item as item.description for item in vm.serviceDialogs"
               ng-model="vm.modalData.resource.dialog"
-              ng-disabled="vm.isDoNotDisplayInCatalog()" required>
+              ng-disabled="vm.isUnassigned()" required>
       </select>
     </div>
   </form>
-  <a href="#advOps" id="advOpsHref" data-toggle="collapse" class="collapsed" ng-class="{'disabled':vm.isDoNotDisplayInCatalog()}" translate>Advanced Options</a>
+  <a href="#advOps" id="advOpsHref" data-toggle="collapse" class="collapsed" ng-class="{'disabled':vm.isUnassigned()}" translate>Advanced Options</a>
   <div id="advOps" class="collapse">
     <form class="form-horizontal">
       <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Provisioning Entry Point'|translate}}">

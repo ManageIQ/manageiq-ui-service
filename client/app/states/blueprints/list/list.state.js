@@ -76,6 +76,18 @@
             title: __('Name'),
             placeholder: __('Filter by Name'),
             filterType: 'text'
+          },
+          {
+            id: 'visibility',
+            title: __('Visibility'),
+            placeholder: __('Filter by Visibility'),
+            filterType: 'text'
+          },
+          {
+            id: 'catalog',
+            title: __('Catalog'),
+            placeholder: __('Filter by Catalog'),
+            filterType: 'text'
           }
         ],
         resultsCount: vm.blueprintsList.length,
@@ -87,6 +99,26 @@
           {
             id: 'name',
             title: __('Name'),
+            sortType: 'alpha'
+          },
+          {
+            id: 'last_modified',
+            title: __('Last Modified'),
+            sortType: 'numeric'
+          },
+          {
+            id: 'num_nodes',
+            title: __('Items'),
+            sortType: 'numeric'
+          },
+          {
+            id: 'visibility',
+            title: __('Visibility'),
+            sortType: 'alpha'
+          },
+          {
+            id: 'catalog',
+            title: __('Catalog'),
             sortType: 'alpha'
           }
         ],
@@ -161,6 +193,14 @@
       var compValue = 0;
       if (vm.toolbarConfig.sortConfig.currentField.id === 'name') {
         compValue = item1.name.localeCompare(item2.name);
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'last_modified') {
+        compValue = new Date(item1.last_modified) - new Date(item2.last_modified);
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'num_nodes') {
+        compValue = item1.num_nodes - item2.num_nodes;
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'visibility') {
+        compValue = item1.visibility.name.localeCompare(item2.visibility.name);
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'catalog') {
+        compValue = item1.catalog.name.localeCompare(item2.catalog.name);
       }
 
       if (!vm.toolbarConfig.sortConfig.isAscending) {
@@ -221,6 +261,10 @@
     function matchesFilter(item, filter) {
       if ('name' === filter.id) {
         return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else  if ('visibility' === filter.id) {
+        return item.visibility.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else  if ('catalog' === filter.id) {
+        return item.catalog.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       }
 
       return false;

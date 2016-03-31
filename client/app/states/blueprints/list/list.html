@@ -6,11 +6,37 @@
 <pf-notification-list></pf-notification-list>
 <div class="col-md-12 list-view-container">
   <pf-notification-list></pf-notification-list>
-  <div pf-data-list id="blueprintList" config="vm.listConfig" items="vm.blueprintsList" actions="vm.actionButtons">
+  <div pf-data-list id="blueprintList" class="blueprints-list" config="vm.listConfig" items="vm.blueprintsList" actions="vm.actionButtons">
     <div class="row">
-      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+      <div class="col-md-2">
         <span class="no-wrap">
           {{ item.name }}
+        </span>
+      </div>
+      <div class="col-md-2">
+        <span class="no-wrap">
+          <strong translate>Last Modified</strong>&nbsp;{{ item.last_modified | date:'yyyy-MM-dd hh:mm a' }}
+        </span>
+      </div>
+
+      <div class="col-md-2">
+        <span class="no-wrap">
+          {{ item.num_nodes }}&nbsp;<span translate>Items</span>
+        </span>
+      </div>
+
+
+      <div class="col-md-2">
+        <span class="no-wrap">
+          <i ng-class="{'fa fa-globe': item.visibility.id == '900',
+                        'fa fa-lock': item.visibility.id == '800',
+                        'fa fa-home': (item.visibility.id != '800' && item.visibility.id != '900')}"></i>
+          {{ item.visibility.name }}
+        </span>
+      </div>
+      <div class="col-md-2">
+        <span class="no-wrap">
+          {{ item.catalog.name }}
         </span>
       </div>
     </div>
