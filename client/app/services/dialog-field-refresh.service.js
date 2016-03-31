@@ -1,3 +1,4 @@
+/* jshint -W117 */
 (function() {
   'use strict';
 
@@ -16,15 +17,20 @@
     return service;
 
     function listenForAutoRefreshMessages(allDialogFields, autoRefreshableDialogFields, url, resourceId) {
-      window.addEventListener('message', function(event) {
+      var listenerFunction = function(event) {
         var dialogFieldsToRefresh = autoRefreshableDialogFields.filter(function(fieldName) {
-          if (event.data.fieldName !== fieldName) {
+          if (event.originalEvent.data.fieldName !== fieldName) {
             return fieldName;
           }
         });
 
-        refreshMultipleDialogFields(allDialogFields, dialogFieldsToRefresh, url, resourceId);
-      });
+        if (dialogFieldsToRefresh !== []) {
+          refreshMultipleDialogFields(allDialogFields, dialogFieldsToRefresh, url, resourceId);
+        }
+      };
+
+      $(window).off('message'); // Unbind all previous message listeners
+      $(window).on('message', listenerFunction);
     }
 
     function refreshSingleDialogField(allDialogFields, dialogField, url, resourceId) {

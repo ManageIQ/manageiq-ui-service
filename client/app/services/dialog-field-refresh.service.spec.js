@@ -9,16 +9,15 @@ describe('app.services.DialogFieldRefresh', function() {
     var eventListenerSpy;
 
     beforeEach(function() {
-      eventListenerSpy = sinon.spy(window, 'addEventListener');
-    });
-
-    afterEach(function() {
-      window.addEventListener.restore();
+      $ = sinon.stub();
+      eventListenerSpy = sinon.stub({on: function() {}, off: function() {}});
+      $.withArgs(window).returns(eventListenerSpy);
     });
 
     it('sets up a listener on the window', function() {
       DialogFieldRefresh.listenForAutoRefreshMessages([], [], 'the_url', '123');
-      expect(eventListenerSpy).to.have.been.calledWith('message');
+      expect(eventListenerSpy.off).to.have.been.calledWith('message');
+      expect(eventListenerSpy.on).to.have.been.calledWith('message');
     });
   });
 
