@@ -40,7 +40,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, CollectionsApi, dialogs, serviceTemplate, Notifications, DialogFieldRefresh) {
+  function StateController($state, CollectionsApi, dialogs, serviceTemplate, Notifications, DialogFieldRefresh, ShoppingCart) {
     var vm = this;
 
     vm.title = __('Service Template Details');
@@ -51,6 +51,7 @@
     }
 
     vm.submitDialog = submitDialog;
+    vm.addToCart = addToCart;
 
     var autoRefreshableDialogFields = [];
     var allDialogFields = [];
@@ -100,6 +101,27 @@
       function submitFailure(result) {
         Notifications.error(__('There was an error submitting this request: ') + result);
       }
+    }
+
+    function addToCart() {
+      var dialogFieldData = {
+        href: '/api/service_templates/' + serviceTemplate.id
+      };
+
+      angular.forEach(allDialogFields, function(dialogField) {
+        dialogFieldData[dialogField.name] = dialogField.default_value;
+      });
+
+      ShoppingCart.add({
+        dialogUrl: dialogUrl,
+        serviceTemplateId: serviceTemplate.id,
+        data: {
+          action: 'order',
+          resource: dialogFieldData,
+        },
+      });
+
+      Notifications.success(__("Item added to shopping cart"));
     }
   }
 })();

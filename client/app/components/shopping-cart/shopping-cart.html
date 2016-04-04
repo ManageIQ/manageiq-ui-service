@@ -8,11 +8,11 @@
 <div class="modal-body">
   <span translate>Items:</span>
 
-  <div ng-if="vm.model.items.length" ng-repeat="item in vm.model.items">
+  <div ng-if="vm.state.items.length" ng-repeat="item in vm.state.items">
     {{item | json}}
   </div>
 
-  <div ng-if="! vm.model.items.length">
+  <div ng-if="! vm.state.items.length">
     <div class="alert alert-info">
       <span class="pficon pficon-info"></span>
       <strong translate>
@@ -34,7 +34,7 @@
   <button type="button"
           class="btn btn-danger"
           ng-click="vm.clear()"
-          ng-disabled="! vm.model.items.length"
+          ng-disabled="! vm.state.items.length"
           translate>
     Clear
   </button>
@@ -42,7 +42,7 @@
   <button type="button"
           class="btn btn-primary"
           ng-click="vm.submit()"
-          ng-disabled="! vm.model.items.length"
+          ng-disabled="! vm.state.items.length"
           translate>
     Order
   </button>

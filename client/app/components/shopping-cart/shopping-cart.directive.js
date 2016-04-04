@@ -25,13 +25,13 @@
     }
 
     /** @ngInject */
-    function ShoppingCartController(ShoppingCart) {
+    function ShoppingCartController(ShoppingCart, $scope, $rootScope) {
       var vm = this;
 
       vm.activate = activate;
       vm.submit = submit;
       vm.close = close;
-      vm.clear = ShoppingCart.clear;
+      vm.clear = ShoppingCart.reset;
       vm.state = null;
 
       function activate() {
@@ -47,6 +47,11 @@
       function close() {
         vm.modalInstance.dismiss();
       }
+
+      var destroy = $rootScope.$on('shoppingCartUpdated', activate);
+      $scope.$on('destroy', function() {
+        destroy();
+      });
     }
   }
 })();
