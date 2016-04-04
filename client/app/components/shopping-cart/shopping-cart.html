@@ -1,22 +1,32 @@
 <div class="modal-header">
-  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+  <button type="button" class="close" ng-click="vm.close()" aria-hidden="true">
     <span class="pficon pficon-close"></span>
   </button>
   <h4 class="modal-title" translate>Shopping Cart</h4>
 </div>
 
 <div class="modal-body">
-  Items:
+  <span translate>Items:</span>
 
-  <div ng-repeat="item in items">
+  <div ng-if="vm.model.items.length" ng-repeat="item in vm.model.items">
     {{item | json}}
+  </div>
+
+  <div ng-if="! vm.model.items.length">
+    <div class="alert alert-info">
+      <span class="pficon pficon-info"></span>
+      <strong translate>
+        Shopping cart is empty.
+      </strong>
+    </div>
   </div>
 </div>
 
 <div class="modal-footer">
   <button type="button"
           class="btn btn-default"
-          ng-click="$dismiss()"
+          ng-click="vm.close()"
+          ng-disabled="! vm.modalInstance"
           translate>
     Close
   </button>
@@ -32,7 +42,7 @@
   <button type="button"
           class="btn btn-primary"
           ng-click="vm.submit()"
-          ng-disabled="vm.model.items.length"
+          ng-disabled="! vm.model.items.length"
           translate>
     Order
   </button>

@@ -40,8 +40,11 @@
         count: 0,
         open: function() {
           return $modal.open({
-            template: '<shopping-cart></shopping-cart>',
+            template: '<shopping-cart modal-instance="modalInstance"></shopping-cart>',
             size: 'lg',
+            controller: function($scope, $modalInstance) {
+              $scope.modalInstance = $modalInstance;
+            },
           }).result;
         },
       };

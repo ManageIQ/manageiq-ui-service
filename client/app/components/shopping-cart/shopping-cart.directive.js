@@ -8,7 +8,9 @@
   function ShoppingCartDirective() {
     var directive = {
       restrict: 'E',
-      scope: {},
+      scope: {
+        'modalInstance': '<?',
+      },
       link: link,
       templateUrl: 'app/components/shopping-cart/shopping-cart.html',
       controller: ShoppingCartController,
@@ -28,6 +30,7 @@
 
       vm.activate = activate;
       vm.submit = submit;
+      vm.close = close;
       vm.clear = ShoppingCart.clear;
       vm.state = null;
 
@@ -36,8 +39,13 @@
       }
 
       function submit() {
-        // TODO
         console.log('submit', vm.state);
+
+        vm.modalInstance.dismiss();
+      }
+
+      function close() {
+        vm.modalInstance.dismiss();
       }
     }
   }
