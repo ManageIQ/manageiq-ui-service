@@ -8,8 +8,21 @@
 <div class="modal-body">
   <span translate>Items:</span>
 
-  <div ng-if="vm.state.items.length" ng-repeat="item in vm.state.items">
-    {{item | json}}
+  <div class="rows" ng-if="vm.state.items.length">
+    <div ng-repeat="item in vm.state.items" class="row">
+      <div class="col-xs-10">
+        {{:: item.name}}
+      </div>
+      <div class="col-xs-2">
+        <button type="button"
+                class="btn btn-danger"
+                ng-click="vm.remove(item)"
+                ng-disabled="! vm.modalInstance"
+                alt="{{ 'Remove' | translate }}">
+          <i class="fa fa-trash-o"></i>
+        </button>
+      </div>
+    </div>
   </div>
 
   <div ng-if="! vm.state.items.length">

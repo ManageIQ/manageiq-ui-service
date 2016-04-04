@@ -113,11 +113,14 @@
       });
 
       ShoppingCart.add({
+        name: vm.serviceTemplate.name,
+
         dialogUrl: dialogUrl,
         serviceTemplateId: serviceTemplate.id,
+
         data: {
           action: 'order',
-          resource: dialogFieldData,
+          resource: _.cloneDeep(dialogFieldData),
         },
       });
 

@@ -31,7 +31,10 @@
       vm.activate = activate;
       vm.submit = submit;
       vm.close = close;
+
       vm.clear = ShoppingCart.reset;
+      vm.remove = ShoppingCart.removeItem;
+
       vm.state = null;
 
       function activate() {

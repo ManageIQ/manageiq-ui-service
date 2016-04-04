@@ -12,6 +12,7 @@
       add: add,
       reset: reset,
       count: count,
+      removeItem: removeItem,
       state: function() { return state; },
     };
 
@@ -28,6 +29,14 @@
       state = {
         items: [],
       };
+      notify();
+    }
+
+    function removeItem(item) {
+      state.items = _.filter(state.items, function(i) {
+        return i !== item;
+      });
+
       notify();
     }
 
