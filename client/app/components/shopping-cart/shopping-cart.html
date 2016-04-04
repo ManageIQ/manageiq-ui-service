@@ -15,11 +15,11 @@
       </div>
       <div class="col-xs-2">
         <button type="button"
-                class="btn btn-danger"
+                class="btn btn-default"
                 ng-click="vm.remove(item)"
                 ng-disabled="! vm.modalInstance"
                 alt="{{ 'Remove' | translate }}">
-          <i class="fa fa-trash-o"></i>
+          <i class="pficon pficon-delete"></i>
         </button>
       </div>
     </div>
@@ -45,7 +45,7 @@
   </button>
 
   <button type="button"
-          class="btn btn-danger"
+          class="btn btn-default"
           ng-click="vm.clear()"
           ng-disabled="! vm.state.items.length"
           translate>
