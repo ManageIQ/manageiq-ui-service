@@ -7,7 +7,7 @@ cache:
   - node_modules
 before_install:
 - bundle install
-- bower install -F
+- npm install -g gulp bower
 notifications:
   webhooks:
     urls:
