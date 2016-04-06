@@ -5,7 +5,7 @@
     .directive('shoppingCart', ShoppingCartDirective);
 
   /** @ngInject */
-  function ShoppingCartDirective() {
+  function ShoppingCartDirective(Notifications) {
     var directive = {
       restrict: 'E',
       scope: {
@@ -28,7 +28,7 @@
     function ShoppingCartController(ShoppingCart, $scope, $rootScope) {
       var vm = this;
 
-      vm.activate = activate;
+      vm.activate = refresh;
       vm.submit = submit;
       vm.close = close;
 
@@ -37,21 +37,26 @@
 
       vm.state = null;
 
-      function activate() {
+      function refresh() {
         vm.state = ShoppingCart.state();
       }
 
       function submit() {
-        console.log('submit', vm.state);
-
-        vm.modalInstance.dismiss();
+        ShoppingCart.submit()
+        .then(function() {
+          Notifications.success(__('Shopping cart successfully ordered'));
+          vm.modalInstance.dismiss();
+        })
+        .then(null, function(err) {
+          Notifications.error(__('There was an error submitting this request: ') + err);
+        });
       }
 
       function close() {
         vm.modalInstance.dismiss();
       }
 
-      var destroy = $rootScope.$on('shoppingCartUpdated', activate);
+      var destroy = $rootScope.$on('shoppingCartUpdated', refresh);
       $scope.$on('destroy', function() {
         destroy();
       });

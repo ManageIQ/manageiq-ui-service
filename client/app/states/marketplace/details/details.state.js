@@ -73,7 +73,7 @@
       vm.serviceTemplate.id
     );
 
-    function submitDialog() {
+    function doSubmit(success, failure, process) {
       var dialogFieldData = {
         href: '/api/service_templates/' + serviceTemplate.id
       };
@@ -82,15 +82,19 @@
         dialogFieldData[dialogField.name] = dialogField.default_value;
       });
 
-      CollectionsApi.post(
-        dialogUrl,
-        serviceTemplate.id,
-        {},
-        JSON.stringify({action: 'order', resource: dialogFieldData})
-      ).then(submitSuccess, submitFailure);
+      return CollectionsApi.post(dialogUrl, serviceTemplate.id, {}, {
+        action: 'order',
+        resource: dialogFieldData,
+        process: process,
+      }).then(success, failure);
+    }
+
+    function submitDialog() {
+      doSubmit(submitSuccess, submitFailure, true);
 
       function submitSuccess(result) {
         Notifications.success(result.message);
+
         if ($state.navFeatures.requests.show) {
           $state.go('requests.list');
         } else {
@@ -104,27 +108,16 @@
     }
 
     function addToCart() {
-      var dialogFieldData = {
-        href: '/api/service_templates/' + serviceTemplate.id
-      };
+      doSubmit(submitSuccess, submitFailure, false);
 
-      angular.forEach(allDialogFields, function(dialogField) {
-        dialogFieldData[dialogField.name] = dialogField.default_value;
-      });
+      function submitSuccess(result) {
+        Notifications.success(__("Item added to shopping cart"));
+        ShoppingCart.add(result);
+      }
 
-      ShoppingCart.add({
-        name: vm.serviceTemplate.name,
-
-        dialogUrl: dialogUrl,
-        serviceTemplateId: serviceTemplate.id,
-
-        data: {
-          action: 'order',
-          resource: _.cloneDeep(dialogFieldData),
-        },
-      });
-
-      Notifications.success(__("Item added to shopping cart"));
+      function submitFailure(result) {
+        Notifications.error(__('There was an error submitting this request: ') + result);
+      }
     }
   }
 })();

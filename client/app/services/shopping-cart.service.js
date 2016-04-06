@@ -5,18 +5,30 @@
   .factory('ShoppingCart', ShoppingCartFactory);
 
   /** @ngInject */
-  function ShoppingCartFactory($rootScope) {
+  function ShoppingCartFactory($rootScope, CollectionsApi, $q, $http) {
     var state = null;
 
     var service = {
       add: add,
       reset: reset,
+      reload: reload,
       count: count,
       removeItem: removeItem,
+      submit: submit,
       state: function() { return state; },
     };
 
-    reset();
+    var persistence = {
+      removeItem: function(item) {
+        return $http.delete(item.href);
+      },
+      orderItem: function(item) {
+        return $http.put(item.href, { process: true });
+      },
+    };
+
+    doReset();
+    reload();
 
     return service;
 
@@ -25,19 +37,54 @@
       notify();
     }
 
-    function reset() {
+    function reload() {
+      CollectionsApi.query('service_requests', {
+        expand: 'resources',
+        filter: [ 'process=false' ],
+      })
+      .then(function(response) {
+        console.log('reload', response);
+
+        state = {
+          items: _.cloneDeep(response.resources) || [],
+        };
+
+        notify();
+      });
+    }
+
+    function doReset() {
       state = {
         items: [],
       };
+    }
+
+    function reset() {
+      if (state && state.items) {
+        state.items.forEach(persistence.removeItem);
+      }
+
+      doReset();
       notify();
     }
 
     function removeItem(item) {
-      state.items = _.filter(state.items, function(i) {
-        return i !== item;
-      });
+      persistence.removeItem(item)
+      .then(function() {
+        state.items = _.filter(state.items, function(i) {
+          return i !== item;
+        });
 
-      notify();
+        notify();
+      });
+    }
+
+    function submit() {
+      return $q.all(state.items.map(persistence.orderItem))
+      .then(function() {
+        doReset();
+        notify();
+      });
     }
 
     function count() {
