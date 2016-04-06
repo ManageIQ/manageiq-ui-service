@@ -32,6 +32,7 @@
       $http.defaults.headers.common['X-Miq-Group'] = data.miqGroup || undefined;
       $sessionStorage.token = model.token;
       $sessionStorage.miqGroup = data.miqGroup || null;
+      fetchProductSetting("blueprints_flag", "blueprints");
     }
 
     function destroy() {
@@ -41,6 +42,12 @@
       delete $http.defaults.headers.common['X-Miq-Group'];
       delete $sessionStorage.miqGroup;
       delete $sessionStorage.token;
+    }
+
+    function fetchProductSetting(keyName, key) {
+      $http.get('/api/settings').then(function(response) {
+        $state[keyName] = response.data.product[key];
+      });
     }
 
     function loadUser() {
@@ -87,7 +94,7 @@
         services:    {show: entitledForServices(productFeatures)},
         requests:    {show: entitledForRequests(productFeatures)},
         marketplace: {show: entitledForServiceCatalogs(productFeatures)},
-        blueprints:  {show: false}
+        blueprints:  {show: entitledForCatalogItems(productFeatures) && $state.blueprints_flag}
       };
       model.navFeatures = features;
 
@@ -115,6 +122,26 @@
       });
 
       return angular.isDefined(serviceFeature);
+    }
+
+    function isAnyActionAllowed(actions, productFeatures) {
+      for (var i = 0; i <= actions.length; i++) {
+        if (angular.isDefined(productFeatures[actions[i]])) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    function entitledForCatalogItems(productFeatures) {
+      var actions = ["atomic_catalogitem_edit",
+                     "atomic_catalogitem_new",
+                     "catalog_items_view",
+                     "catalogitem_edit",
+                     "catalogitem_new"];
+
+      return isAnyActionAllowed(actions, productFeatures);
     }
 
     function entitledForServiceCatalogs(productFeatures) {
