@@ -6,7 +6,11 @@
     "Michael Stack",
     "Allen Wight"
   ],
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ManageIQ/manageiq-ui-self_service.git"
+  },
   "scripts": {
     "init": "npm install",
     "install": "bower install -F",
