@@ -112,7 +112,7 @@ angular.module('app.states').controller('canvasCtrl', ['$scope',
             newNode.id = nextNodeID++;
             //newNode.width = 150;
             newNode.name = newNode.title;
-            newNode.backgroundColor = newNode.nodeBackgroundColor;
+            newNode.backgroundColor = '#fff';
             newNode.x = event.clientX - 350;
             newNode.y = event.clientY - 200;
             $scope.addNewNode(newNode);
@@ -123,7 +123,7 @@ angular.module('app.states').controller('canvasCtrl', ['$scope',
             newNode.id = nextNodeID++;
             //newNode.width = 150;
             newNode.name = newNode.title;
-            newNode.backgroundColor = newNode.nodeBackgroundColor;
+            newNode.backgroundColor = '#fff';
             newNode.x = 250 + (nextNodeID * 4 + 160);
             newNode.y = 200 + (nextNodeID * 4 + 160);
             $scope.addNewNode(newNode);
