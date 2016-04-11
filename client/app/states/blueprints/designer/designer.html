@@ -30,8 +30,9 @@
          ng-controller="canvasCtrl"
          mouse-capture>
 
-      <flow-chart class="canvas" chart="chartViewModel"
-                  data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropCallback'}"></flow-chart>
+      <div data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropCallback'}" style="height: 100%; width:100%">
+        <flow-chart class="canvas" chart="chartViewModel"></flow-chart>
+      </div>
 
       <div class="toolbox-container" id="toolbox" ng-if="toolboxVisible">
 
@@ -59,7 +60,7 @@
           </div>
         </div>
         <div class="close-toolbox">
-          <a ng-if="toolboxVisible" ng-click="hideToolbox()"><span class="fa fa-angle-double-up fa-2x"></span></a>
+          <a ng-if="toolboxVisible" ng-click="hideToolbox()" style="cursor: pointer"><span class="fa fa-angle-double-up fa-2x"></span></a>
         </div>
       </div>
     </div>
