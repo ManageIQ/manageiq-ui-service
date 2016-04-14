@@ -4,8 +4,6 @@
   </div>
 </div>
 
-<pf-notification-list></pf-notification-list>
-
 <div class="col-md-12 list-view-container">
   <pf-notification-list></pf-notification-list>
   <div pf-list-view id="blueprintList" class="blueprints-list" config="vm.listConfig" items="vm.blueprintsList" actions="vm.actionButtons">
@@ -37,7 +35,15 @@
       </div>
       <div class="col-md-2">
         <span class="no-wrap">
-          {{ item.catalog.name }}
+          {{ ((item.catalog != null) ? item.catalog.name : "Unassigned")|translate }}
+        </span>
+      </div>
+      <div class="col-md-2">
+        <span class="no-wrap" ng-if="item.published != null">
+          <strong>Published</strong>
+        </span>
+        <span class="no-wrap" ng-if="item.published == null">
+          <strong>[ Publish <span class="fa fa-arrow-right">]</span></strong>
         </span>
       </div>
     </div>

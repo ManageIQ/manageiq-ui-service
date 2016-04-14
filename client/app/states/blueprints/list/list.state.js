@@ -51,6 +51,7 @@
       selectItems: false,
       showSelectBox: true,
       selectionMatchProp: 'service_status',
+      updateActionForItemFn: updateActionForItemFn,
       onClick: handleClick,
       onCheckBoxChange: handleCheckBoxChange
     };
@@ -60,6 +61,11 @@
         name: __('Edit'),
         title: __('Edit Blueprint'),
         actionFn: editBlueprint
+      },
+      {
+        name: __('Publish'),
+        title: __('Publish Blueprint'),
+        actionFn: publishBlueprint
       },
       {
         name: __('Delete'),
@@ -151,6 +157,10 @@
       $state.go('blueprints.designer', {blueprintId: item.id});
     }
 
+    function publishBlueprint(action, item) {
+      BlueprintDetailsModal.showModal('publish', item.id);
+    };
+
     function deleteBlueprint(action, item) {
       // clear any prev. selections, make single selection
       item = angular.copy(item);
@@ -168,6 +178,11 @@
     function canDeleteBlueprints() {
       return BlueprintsState.getSelectedBlueprints().length > 0;
     }
+
+    function updateActionForItemFn(action, item) {
+      //console.log("updateActionForItemFn:  action.name=" + action.name + ", item.published=" + item.published);
+      return (action.name == 'Publish') && (item.published !== null);
+    };
 
     /* Apply the filtering to the data list */
     filterChange(BlueprintsState.getFilters());

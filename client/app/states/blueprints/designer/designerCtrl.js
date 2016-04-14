@@ -1,5 +1,6 @@
 angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', 'BlueprintsState', 'BlueprintDetailsModal', '$state',
-    function($scope, $timeout, BlueprintsState, BlueprintDetailsModal, $state) {
+  'Notifications',
+    function($scope, $timeout, BlueprintsState, BlueprintDetailsModal, $state, Notifications) {
       $scope.chartDataModel = {};
       var blueprint = {};
 
@@ -38,8 +39,9 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
         }
       }
 
-      $scope.deleteBlueprint = function() {
+      $scope.deleteBlueprint = function(){
         BlueprintsState.deleteBlueprint(blueprint.id);
+        Notifications.success(blueprint.name + __(' was deleted.'));
         $state.go('blueprints.list');
       };
 

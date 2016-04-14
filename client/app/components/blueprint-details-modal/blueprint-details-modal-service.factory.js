@@ -79,21 +79,22 @@
                                            $modalInstance, CollectionsApi, Notifications, sprintf) { // jshint ignore:line
     var vm = this;
 
+    vm.blueprint = BlueprintsState.getBlueprintById(blueprintId);
+
     if (action === 'create') {
       vm.modalTitle = __('Create Blueprint');
       vm.modalBtnPrimaryLabel  = __('Create');
+    } else if(action == 'publish') {
+      vm.modalTitle = __('Publish ') + vm.blueprint.name;
+      vm.modalBtnPrimaryLabel  = __('Publish');
     } else {
       vm.modalTitle = __('Edit Blueprint Details');
       vm.modalBtnPrimaryLabel  = __('Save');
     }
 
-    vm.blueprint = BlueprintsState.getBlueprintById(blueprintId);
-
     vm.serviceCatalogs = serviceCatalogs.resources;
-    vm.serviceCatalogs.splice(0, 0, {id: -1, name: __('Unassigned')});
 
     vm.serviceDialogs = serviceDialogs.resources;
-    vm.serviceDialogs.splice(0, 0, {id: -1, description: __('Select Dialog')});
 
     vm.visibilityOptions = [{
       id: 800,
@@ -106,8 +107,10 @@
 
     vm.saveBlueprintDetails = saveBlueprintDetails;
     vm.cancelBlueprintDetails = cancelBlueprintDetails;
-    vm.isUnassigned = isUnassigned;
+    vm.isCatalogUnassigned = isCatalogUnassigned;
     vm.catalogChanged = catalogChanged;
+    vm.isCatalogRequired = isCatalogRequired;
+    vm.isDialogRequired = isDialogRequired;
 
     vm.modalData = {
       'action': action,
@@ -155,12 +158,20 @@
       }
     }
 
-    function isUnassigned() {
-      return vm.modalData.resource.catalog === vm.serviceCatalogs[0];
+    function isCatalogUnassigned() {
+      return vm.modalData.resource.catalog === null;
+    }
+
+    function isCatalogRequired() {
+      return  (action === 'publish') && isCatalogUnassigned();
+    }
+
+    function isDialogRequired() {
+      return  (action === 'publish') && (vm.modalData.resource.dialog === null);
     }
 
     function catalogChanged() {
-      if (isUnassigned()) {
+      if(isCatalogUnassigned()){
         vm.modalData.resource.provEP = '';
         vm.modalData.resource.reConfigEP = '';
         vm.modalData.resource.retireEP = '';
@@ -175,6 +186,12 @@
     }
 
     function saveBlueprintDetails() {
+      //CollectionsApi.post('Blueprints', vm.Blueprint.id, {}, vm.modalData).then(saveSuccess, saveFailure);
+
+      if(action == 'publish') {
+        vm.blueprint.published = new Date();
+      }
+
       vm.blueprint.id = blueprintId;
       vm.blueprint.name = vm.modalData.resource.name;
 
@@ -194,7 +211,7 @@
         if (action === 'create') {
           Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
           $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
-        } else if (action === 'edit') {
+        } else if (action === 'edit' || action === 'publish') {
           Notifications.success(sprintf(__('%s was updated.'), vm.blueprint.name));
           $state.go($state.current, {}, {reload: true});
         }

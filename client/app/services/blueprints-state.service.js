@@ -41,14 +41,6 @@
         "visibility": {
           "id": 800,
           "name": "Private"
-        },
-        "catalog": {
-          "id": -1,
-          "name": "Unassigned"
-        },
-        "dialog": {
-          "id": -1,
-          "name": "Select Dialog"
         }
       },
       {
@@ -78,13 +70,9 @@
           "id": 900,
           "name": "Public"
         },
-        "catalog": {
-          "id": -1,
-          "name": "Unassigned"
-        },
         "dialog": {
-          "id": -1,
-          "name": "Select Dialog"
+          "id": 1000000000004,
+          "name": "Project 1"
         }
       },
       {
