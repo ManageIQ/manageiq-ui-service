@@ -101,15 +101,15 @@
 
     function createBlueprint(action) {
       $state.go('blueprints.designer', {blueprintId: -1});
-    };
+    }
 
     function editBlueprint(action, item) {
       $state.go('blueprints.designer', {blueprintId: item.id});
-    };
+    }
 
-    function deleteBlueprint(blueprintId){
+    function deleteBlueprint(blueprintId) {
       BlueprintsState.deleteBlueprint(blueprintId);
-      console.log("Blueprint deleted ("+blueprint.id+")");
+      console.log("Blueprint deleted (" + blueprintId + ")");
     }
 
     /* Apply the filtering to the data list */

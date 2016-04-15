@@ -27,13 +27,12 @@
         }
       });
 
-      $scope.keyDown = function (evt) {
+      $scope.keyDown = function(evt) {
         $scope.$broadcast('bodyKeyDown', {origEvent: evt});
       };
 
-      $scope.keyUp = function (evt) {
+      $scope.keyUp = function(evt) {
         $scope.$broadcast('bodyKeyUp', {origEvent: evt});
       };
-
     }]);
 })();

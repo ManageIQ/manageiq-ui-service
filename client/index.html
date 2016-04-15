@@ -37,7 +37,9 @@
   <!-- endinject -->
   <!-- endbuild -->
 </head>
-<body ng-controller="AppController">
+<body ng-controller="AppController"
+      ng-keydown="keyDown($event)"
+      ng-keyup="keyUp($event)">
   <div class="ng-cloak splash">
     <div class="splash__overlay">
       <div class="splash__message"></div>

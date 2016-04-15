@@ -81,7 +81,7 @@
 
     blueprint.getBlueprintById = function(id) {
       for (var i = 0; i < blueprint.blueprints.length; i++) {
-        if (blueprint.blueprints[i].id === id) {
+        if (blueprint.blueprints[i].id.toString() === id) {
           return blueprint.blueprints[i];
         }
       }
