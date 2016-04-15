@@ -26,9 +26,9 @@
 
   /** @ngInject */
   function resolveBlueprints(CollectionsApi) {
-    //var options = {expand: 'resources', attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms']};
+    // var options = {expand: 'resources', attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms']};
 
-    //return CollectionsApi.query('blueprints', options);
+    // return CollectionsApi.query('blueprints', options);
   }
 
   /** @ngInject */
@@ -156,6 +156,7 @@
       if ('name' === filter.id) {
         return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       }
+
       return false;
     }
   }

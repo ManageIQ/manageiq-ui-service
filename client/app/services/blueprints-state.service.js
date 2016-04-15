@@ -52,52 +52,53 @@
       }
     ];
 
-    blueprint.getBlueprints = function () {
+    blueprint.getBlueprints = function() {
       return blueprint.blueprints;
     };
 
-    blueprint.saveBlueprint = function (tmpBlueprint) {
+    blueprint.saveBlueprint = function(tmpBlueprint) {
       var index = findBlueprintIndexById(tmpBlueprint.id);
-      if (index == -1) {
-        //console.log("Saving new blueprint " + tmpBlueprint.id);
+      if (index === -1) {
         tmpBlueprint.id = blueprint.blueprints.length;
         blueprint.blueprints.push(tmpBlueprint);
       } else {
-        //console.log("Updating blueprint " + tmpBlueprint.id);
         blueprint.blueprints[index] = tmpBlueprint;
       }
+
       return tmpBlueprint.id;
     };
 
-    blueprint.deleteBlueprint = function (id) {
+    blueprint.deleteBlueprint = function(id) {
       var index = findBlueprintIndexById(id);
-      if (index == -1) {
-        //console.log("Delete Error: couldn't find a blueprint for " + id);
-      } else {
+      if (index !== -1) {
         blueprint.blueprints.splice(index, 1);
-        //console.log("Deleted blueprint " + id);
       }
     };
 
-    blueprint.getBlueprints = function () {
+    blueprint.getBlueprints = function() {
       return blueprint.blueprints;
     };
 
-    blueprint.getBlueprintById = function (id) {
-      for (var i = 0, iLen = blueprint.blueprints.length; i < iLen; i++) {
-        if (blueprint.blueprints[i].id == id) return blueprint.blueprints[i];
+    blueprint.getBlueprintById = function(id) {
+      for (var i = 0; i < blueprint.blueprints.length; i++) {
+        if (blueprint.blueprints[i].id === id) {
+          return blueprint.blueprints[i];
+        }
       }
+
       return null;
     };
 
     function findBlueprintIndexById(id) {
-
-      for (var i = 0, iLen = blueprint.blueprints.length; i < iLen; i++) {
-        if (blueprint.blueprints[i].id == id) return i;
+      for (var i = 0; i <  blueprint.blueprints.length; i++) {
+        if (blueprint.blueprints[i].id === id) {
+          return i;
+        }
       }
+
       return -1;
     }
-    
+
     return blueprint;
   }
 })();
