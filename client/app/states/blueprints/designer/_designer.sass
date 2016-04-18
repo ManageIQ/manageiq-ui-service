@@ -62,9 +62,9 @@
 
       .catalog-items-list
         list-style: none
-        float: left
         padding-left: 0px
         max-height: 300px
+        padding-bottom: 4px
         overflow-y: auto
 
       .catalog-item
@@ -79,7 +79,7 @@
         cursor: pointer
         border-radius: 1px
         float: left
-        min-width: 306px
+        min-width: 325px
         min-height: 52px
         height: 36px
         vertical-align: middle
@@ -115,10 +115,23 @@
         padding: 13px 18px
         cursor: pointer
         width: 306px
-        min-width: 306px
+        min-width: 325px
         min-height: 52px
         height: 36px
         vertical-align: middle
+
+      .search-text
+        border: 1px solid #bbb
+        float: right
+        margin-top: -38px
+        text-decoration: none
+
+      .clear-search-text
+        position: absolute
+        bottom: 74px
+        right: 35px
+        color: #bbb
+        cursor: pointer
 
         span
           font-size: 20px
@@ -130,6 +143,19 @@
 
     a
       color: #0a0a0a
+
+    ::-webkit-input-placeholder
+      font-style: italic
+      padding-left: 10px
+    :-moz-placeholder
+      font-style: italic
+      padding-left: 10px
+    ::-moz-placeholder
+      font-style: italic
+      padding-left: 10px
+    :-ms-input-placeholder
+      font-style: italic
+      padding-left: 10px
 
 #subtabs
   .nav-tabs-pf
