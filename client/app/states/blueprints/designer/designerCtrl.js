@@ -34,7 +34,7 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
       function saveBlueprint() {
         blueprint.id = BlueprintsState.saveBlueprint(blueprint);
         if (!$scope.blueprintName) {
-          $scope.blueprintName = "Untitled Catalog " + blueprint.id;
+          $scope.blueprintName = "Untitled Blueprint " + blueprint.id;
           blueprint.name = $scope.blueprintName;
         }
       }
