@@ -71,7 +71,7 @@
       persistence.cartId()
       .then(function(id) {
         serviceOrderId = id;
-        persistence.items(id);
+        return persistence.getItems(id);
       })
       .then(function(items) {
         state = {
