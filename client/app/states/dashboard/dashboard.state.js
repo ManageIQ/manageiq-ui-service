@@ -80,7 +80,7 @@
 
     var days30 = currentDate.setDate(currentDate.getDate() + 30);
     var date2 = 'retires_on<=' + $filter('date')(days30, 'yyyy-MM-dd');
-    var options = {expand: false, filter: [date1, date2]};
+    var options = {expand: false, filter: ['service_id=nil', date1, date2]};
 
     return CollectionsApi.query('services', options);
   }
@@ -90,7 +90,7 @@
     if (!$state.navFeatures.services.show) {
       return undefined;
     }
-    var options = {expand: false, filter: ['retired=true'] };
+    var options = {expand: false, filter: ['service_id=nil', 'retired=true'] };
 
     return CollectionsApi.query('services', options);
   }
@@ -129,12 +129,12 @@
 
       if (definedServiceIdsServices.subcount > 0) {
         vm.servicesCount.total = definedServiceIdsServices.subcount;
-        vm.servicesCount.current = definedServiceIdsServices.subcount === 0 ? nonRetiredServices.count :
-        retiredServices.subcount + nonRetiredServices.subcount;
 
-        vm.servicesCount.retired = vm.servicesCount.total - vm.servicesCount.current;
+        vm.servicesCount.retired = retiredServices.subcount;
 
         vm.servicesCount.soon = expiringServices.subcount;
+        
+        vm.servicesCount.current = vm.servicesCount.total - vm.servicesCount.retired - vm.servicesCount.soon;
       }
 
       vm.servicesFeature = true;
