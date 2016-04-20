@@ -82,7 +82,15 @@ describe('Marketplace.details', function() {
             'service_catalogs/321/service_templates',
             123,
             {},
-            '{"action":"order","resource":{"href":"/api/service_templates/123","dialogField1":"1","dialogField2":"2"}}'
+            {
+              action: "order",
+              process: true,
+              resource: {
+                href: "/api/service_templates/123",
+                dialogField1: "1",
+                dialogField2: "2",
+              },
+            }
           );
         });
 
