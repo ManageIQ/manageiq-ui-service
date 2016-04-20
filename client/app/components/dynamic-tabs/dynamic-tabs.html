@@ -3,9 +3,9 @@
     class='nav nav-tabs'
     data-tabs='tabs'>
   <li ng-class='{active: tab.active}' ng-repeat='tab in dynamicTabs.tabList'>
-    <a ng-click='dynamicTabs.selectTab(tab.position)' data-toggle='tab'>
+    <a class="selectTab" ng-click='dynamicTabs.selectTab(tab.position)' data-toggle='tab'>
       {{ tab.label }}
-      <i class='glyphicon glyphicon-remove' ng-click='dynamicTabs.deleteTab(tab.position)'></i>
+      <i class='deleteTab glyphicon glyphicon-remove' ng-click='dynamicTabs.deleteTab(tab.position)'></i>
     </a>
   </li>
   <li class='nosort'>

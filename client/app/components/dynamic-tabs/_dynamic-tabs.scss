@@ -1,0 +1,9 @@
+.deleteTab {
+  opacity: .3;
+  visibility: visible;
+}
+
+.selectTab:hover .deleteTab {
+  opacity: 1;
+  visibility: visible;
+}
