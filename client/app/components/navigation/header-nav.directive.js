@@ -52,6 +52,7 @@
       function activate() {
         vm.messages = Messages.items;
         refresh();
+        ShoppingCart.reload();
       }
 
       function refresh() {

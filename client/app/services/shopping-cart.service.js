@@ -15,7 +15,9 @@
       count: count,
       removeItem: removeItem,
       submit: submit,
-      state: function() { return state; },
+      state: function() {
+        return state;
+      },
     };
 
     var persistence = {
@@ -55,7 +57,6 @@
     };
 
     doReset();
-    reload();
 
     return service;
 
