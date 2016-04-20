@@ -5,7 +5,7 @@
   .factory('ShoppingCart', ShoppingCartFactory);
 
   /** @ngInject */
-  function ShoppingCartFactory($rootScope, CollectionsApi, $q, $http) {
+  function ShoppingCartFactory($rootScope, CollectionsApi, $q, $http, lodash) {
     var state = null;
 
     var service = {
@@ -46,7 +46,7 @@
         console.log('reload', response);
 
         state = {
-          items: _.cloneDeep(response.resources) || [],
+          items: lodash.cloneDeep(response.resources) || [],
         };
 
         notify();
@@ -71,7 +71,7 @@
     function removeItem(item) {
       persistence.removeItem(item)
       .then(function() {
-        state.items = _.filter(state.items, function(i) {
+        state.items = lodash.filter(state.items, function(i) {
           return i !== item;
         });
 
