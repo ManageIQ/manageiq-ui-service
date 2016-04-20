@@ -19,6 +19,33 @@
     };
 
     var persistence = {
+      // FIXME this one is broken, waiting for the API
+      cartId: function() {
+        return CollectionsApi.query('service_orders', {
+          expand: 'resources',
+          filter: [ 'state=cart' ],
+        })
+        .then(function(response) {
+          if (response.resources && response.resources.length) {
+            return response.resources[0].id;
+          } else {
+            return CollectionsApi.post('service_orders', null, {}, { state: "cart" })
+            .then(function(response) {
+              return response.results[0].id;
+            });
+          }
+        });
+      },
+
+      getItems: function(serviceOrderId) {
+        var path = 'service_orders/' + serviceOrderId + '/service_requests';
+
+        return CollectionsApi.query(path, { expand: 'resources' })
+        .then(function(response) {
+          return response.resources || [];
+        });
+      },
+
       removeItem: function(item) {
         return $http.delete(item.href);
       },
@@ -38,15 +65,17 @@
     }
 
     function reload() {
-      CollectionsApi.query('service_requests', {
-        expand: 'resources',
-        filter: [ 'process=false' ],
-      })
-      .then(function(response) {
-        console.log('reload', response);
+      var serviceOrderId = null;
 
+      persistence.cartId()
+      .then(function(id) {
+        serviceOrderId = id;
+        persistence.items(id);
+      })
+      .then(function(items) {
         state = {
-          items: lodash.cloneDeep(response.resources) || [],
+          serviceOrderId: serviceOrderId,
+          items: lodash.cloneDeep(items),
         };
 
         notify();
@@ -55,6 +84,7 @@
 
     function doReset() {
       state = {
+        serviceOrderId: null,
         items: [],
       };
     }
