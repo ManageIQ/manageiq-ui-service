@@ -5,7 +5,7 @@
   .factory('ShoppingCart', ShoppingCartFactory);
 
   /** @ngInject */
-  function ShoppingCartFactory($rootScope, CollectionsApi, $q, $http, lodash) {
+  function ShoppingCartFactory($rootScope, CollectionsApi, $q, $http, lodash, RBAC) {
     var state = null;
 
     var service = {
@@ -18,6 +18,7 @@
       state: function() {
         return state;
       },
+      allowed: allowed,
     };
 
     var persistence = {
@@ -125,6 +126,10 @@
 
     function notify() {
       $rootScope.$broadcast('shoppingCartUpdated');
+    }
+
+    function allowed() {
+      return RBAC.has('svc_catalog_provision');
     }
   }
 })();
