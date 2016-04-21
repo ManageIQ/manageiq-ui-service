@@ -52,6 +52,7 @@
 
     vm.submitDialog = submitDialog;
     vm.addToCart = addToCart;
+    vm.cartAllowed = ShoppingCart.allowed;
 
     var autoRefreshableDialogFields = [];
     var allDialogFields = [];
@@ -108,6 +109,10 @@
     }
 
     function addToCart() {
+      if (!ShoppingCart.allowed()) {
+        return;
+      }
+
       doSubmit(submitSuccess, submitFailure, false);
 
       function submitSuccess(result) {

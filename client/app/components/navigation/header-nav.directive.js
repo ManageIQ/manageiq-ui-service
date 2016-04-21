@@ -47,12 +47,16 @@
             },
           }).result;
         },
+        allowed: ShoppingCart.allowed,
       };
 
       function activate() {
         vm.messages = Messages.items;
         refresh();
-        ShoppingCart.reload();
+
+        if (ShoppingCart.allowed()) {
+          ShoppingCart.reload();
+        }
       }
 
       function refresh() {

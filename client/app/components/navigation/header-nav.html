@@ -21,7 +21,7 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right navbar-iconic">
-      <li>
+      <li ng-if="vm.shoppingCart.allowed()">
         <a title="{{'Shopping cart' | translate}}" class="nav-item-iconic" ng-click="vm.shoppingCart.open()">
           <i class="fa fa-shopping-cart"></i>
           <span class="badge" ng-show="vm.shoppingCart.count" ng-bind="vm.shoppingCart.count"></span>
