@@ -24,7 +24,6 @@
         resolve: {
           definedServiceIdsServices: resolveServicesWithDefinedServiceIds,
           retiredServices: resolveRetiredServices,
-          nonRetiredServices: resolveNonRetiredServices,
           expiringServices: resolveExpiringServices,
           pendingRequests: resolvePendingRequests,
           approvedRequests: resolveApprovedRequests,
@@ -40,7 +39,19 @@
       return undefined;
     }
 
-    var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest', 'approval_state=pending_approval'];
+    return [pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi),
+            pendingRequestsForServiceReconfigureRequest(CollectionsApi)];
+  }
+
+  function pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
+    var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=pending_approval'];
+    var options = {expand: false, filter: filterValues };
+
+    return CollectionsApi.query('requests', options);
+  }
+
+  function pendingRequestsForServiceReconfigureRequest(CollectionsApi) {
+    var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=pending_approval'];
     var options = {expand: false, filter: filterValues };
 
     return CollectionsApi.query('requests', options);
@@ -52,7 +63,19 @@
       return undefined;
     }
 
-    var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest', 'approval_state=approved'];
+    return [approvedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
+            approvedRequestsForServiceReconfigureRequest(CollectionsApi)];
+  }
+
+  function approvedRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
+    var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=approved'];
+    var options = {expand: false, filter: filterValues };
+
+    return CollectionsApi.query('requests', options);
+  }
+
+  function approvedRequestsForServiceReconfigureRequest(CollectionsApi) {
+    var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=approved'];
     var options = {expand: false, filter: filterValues };
 
     return CollectionsApi.query('requests', options);
@@ -64,7 +87,19 @@
       return undefined;
     }
 
-    var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest', 'approval_state=denied'];
+    return [deniedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
+            deniedRequestsForServiceReconfigureRequest(CollectionsApi)];
+  }
+
+  function deniedRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
+    var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=denied'];
+    var options = {expand: false, filter: filterValues };
+
+    return CollectionsApi.query('requests', options);
+  }
+
+  function deniedRequestsForServiceReconfigureRequest(CollectionsApi) {
+    var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=denied'];
     var options = {expand: false, filter: filterValues };
 
     return CollectionsApi.query('requests', options);
@@ -96,16 +131,6 @@
   }
 
   /** @ngInject */
-  function resolveNonRetiredServices(CollectionsApi, $state) {
-    if (!$state.navFeatures.services.show) {
-      return undefined;
-    }
-    var options = {expand: false, filter: ['retired=false'] };
-
-    return CollectionsApi.query('services', options);
-  }
-
-  /** @ngInject */
   function resolveServicesWithDefinedServiceIds(CollectionsApi, $state) {
     if (!$state.navFeatures.services.show) {
       return undefined;
@@ -115,9 +140,23 @@
     return CollectionsApi.query('services', options);
   }
 
+  function chainRequestPromises(promiseArray, vm, type) {
+    var count = 0;
+    if (promiseArray.length > 0) {
+      promiseArray[0].then(function success(data) {
+        count = data.subcount;
+        promiseArray[1].then(function success(data) {
+          count += data.subcount;
+          vm.requestsCount[type] = count;
+          vm.requestsCount.total += count;
+        });
+      });
+    }
+  }
+
   /** @ngInject */
   function StateController($state, RequestsState, ServicesState, definedServiceIdsServices, retiredServices,
-    nonRetiredServices, expiringServices, pendingRequests, approvedRequests, deniedRequests) {
+    expiringServices, pendingRequests, approvedRequests, deniedRequests, lodash) {
     var vm = this;
     if (angular.isDefined(definedServiceIdsServices)) {
       vm.servicesCount = {};
@@ -141,12 +180,19 @@
     }
 
     vm.requestsFeature = false;
-    if (angular.isDefined(pendingRequests)) {
+
+    if (angular.isDefined(pendingRequests) &&
+        angular.isDefined(approvedRequests) &&
+        angular.isDefined(deniedRequests)) {
       vm.requestsCount = {};
-      vm.requestsCount.total = pendingRequests.subcount + approvedRequests.subcount + deniedRequests.subcount;
-      vm.requestsCount.pending = pendingRequests.subcount;
-      vm.requestsCount.approved = approvedRequests.subcount;
-      vm.requestsCount.denied = deniedRequests.subcount;
+      vm.requestsCount.total = 0;
+
+      var allRequests = [pendingRequests, approvedRequests, deniedRequests];
+      var allRequestTypes = ['pending', 'approved', 'denied'];
+
+      lodash.times(3, function(n) {
+        chainRequestPromises(allRequests[n], vm, allRequestTypes[n]);
+      });
 
       vm.requestsFeature = true;
     }
