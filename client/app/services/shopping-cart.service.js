@@ -23,6 +23,7 @@
 
     var persistence = {
       // FIXME this one is broken, waiting for the API
+      // ensure a cart exists, and return its id
       cartId: function() {
         return CollectionsApi.query('service_orders', {
           expand: 'resources',
@@ -40,6 +41,7 @@
         });
       },
 
+      // an array of items already in the basket
       getItems: function(serviceOrderId) {
         var path = 'service_orders/' + serviceOrderId + '/service_requests';
 
@@ -49,11 +51,33 @@
         });
       },
 
+      // order the cart
+      orderCart: function(serviceOrderId) {
+        return CollectionsApi.post('service_orders', serviceOrderId, null, {
+          action: 'order',
+        });
+      },
+
+      // clear the cart
+      clearCart: function(serviceOrderId) {
+        return CollectionsApi.post('service_orders', serviceOrderId, null, {
+          action: 'clear',
+        });
+      },
+
+      // remove a thingy from the cart
+//      removeItem: function(serviceOrderId, thingyId) {
+        // TODO
+//      },
+
+      // add a thingy to the cart
+      addItem: function(serviceOrderId, thingy) {
+        // TODO
+      },
+
+      // TODO remove
       removeItem: function(item) {
         return $http.delete(item.href);
-      },
-      orderItem: function(item) {
-        return $http.put(item.href, { process: true });
       },
     };
 
@@ -93,15 +117,12 @@
     }
 
     function reset() {
-      if (state && state.items) {
-        state.items.forEach(persistence.removeItem);
-      }
-
-      doReset();
-      notify();
+      return persistence.clearCart(state.serviceOrderId)
+      .then(reload);
     }
 
     function removeItem(item) {
+      // FIXME
       persistence.removeItem(item)
       .then(function() {
         state.items = lodash.filter(state.items, function(i) {
@@ -113,11 +134,8 @@
     }
 
     function submit() {
-      return $q.all(state.items.map(persistence.orderItem))
-      .then(function() {
-        doReset();
-        notify();
-      });
+      return persistence.orderCart(state.serviceOrderId)
+      .then(reload);
     }
 
     function count() {
