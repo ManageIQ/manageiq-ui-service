@@ -71,6 +71,7 @@
       persistence.cartId()
       .then(function(id) {
         serviceOrderId = id;
+
         return persistence.getItems(id);
       })
       .then(function(items) {
