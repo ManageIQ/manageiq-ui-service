@@ -88,17 +88,19 @@
       });
 
       Session.loadUser()
-        .then(rbacDashboardOrLogin)
+        .then(rbacReloadOrLogin(toState, toParams))
         .catch(badUser);
     }
 
-    function rbacDashboardOrLogin() {
-      if (Session.activeNavigationFeatures()) {
-        $state.go('dashboard');
-      } else {
-        Session.privileges_error = true;
-        $state.go('login');
-      }
+    function rbacReloadOrLogin(toState, toParams) {
+      return function() {
+        if (Session.activeNavigationFeatures()) {
+          $state.go(toState, toParams);
+        } else {
+          Session.privileges_error = true;
+          $state.go('login');
+        }
+      };
     }
 
     function badUser(error) {
