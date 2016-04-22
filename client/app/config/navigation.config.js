@@ -51,6 +51,7 @@
     NavCounts.add('services', fetchServices, 60 * 1000);
     NavCounts.add('requests', fetchRequests, 60 * 1000);
     NavCounts.add('marketplace', fetchServiceTemplates, 60 * 1000);
+    NavCounts.add('blueprints', fetchBlueprints, 60 * 1000);
 
     function fetchRequests() {
       var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest'];
@@ -85,6 +86,10 @@
         .then(lodash.partial(updateServiceTemplatesCount, 'marketplace'));
     }
 
+    function fetchBlueprints() {
+      updateBlueprintsCount('blueprints', null);
+    }
+
     function updateCount(item, data) {
       Navigation.items.primary[item].count = data.subcount;
     }
@@ -95,6 +100,10 @@
 
     function updateServiceTemplatesCount(item, data) {
       Navigation.items.primary[item].count = data.subcount;
+    }
+
+    function updateBlueprintsCount(item, data) {
+      Navigation.items.primary[item].count = -1;
     }
   }
 })();
