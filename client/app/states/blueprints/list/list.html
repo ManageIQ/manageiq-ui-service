@@ -1,2 +1,18 @@
-<h2>Blueprints Main Page</h2>
+<div class="row">
+  <div class="col-md-12">
+	  <div pf-data-toolbar id="blueprintToolbar" config="vm.toolbarConfig"></div>
+  </div>
+</div>
+<div class="col-md-12 list-view-container">
+  <pf-notification-list></pf-notification-list>
+  <div pf-data-list id="blueprintList" config="vm.listConfig" items="vm.blueprintsList" actions="vm.actionButtons">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+        <span class="no-wrap">
+          {{ item.name }}
+        </span>
+      </div>
+  </div>
+</div>
+
 
