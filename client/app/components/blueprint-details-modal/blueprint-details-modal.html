@@ -48,16 +48,19 @@
   <a href="#advOps" id="advOpsHref" data-toggle="collapse" class="collapsed" ng-class="{'disabled':vm.isCatalogUnassigned()}" translate>Advanced Options</a>
   <div id="advOps" class="collapse">
     <form class="form-horizontal">
-      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Provisioning Entry Point'|translate}}">
-        <input id="provEP" name="provEP" type="text" ng-model="vm.modalData.resource.provEP"/>
+      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-8" pf-label="{{'Provisioning Entry Point'|translate}}">
+        <input id="provEP" class="entry-point-input" name="provEP" type="text" ng-model="vm.modalData.resource.provEP"/>
+        <button type="button" class="btn btn-default entry-point-btn" ng-click="vm.selectEntryPoint('provisioning')" translate>Browse</button>
         <a ng-click="vm.modalData.resource.provEP = ''"><span class="pficon pficon-close clear-entry-point"></span></a>
       </div>
-      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Reconfigure Entry Point'|translate}}">
-        <input id="reConfigEP" name="reConfigEP" type="text" ng-model="vm.modalData.resource.reConfigEP"/>
+      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-8" pf-label="{{'Reconfigure Entry Point'|translate}}">
+        <input id="reConfigEP" class="entry-point-input" name="reConfigEP" type="text" ng-model="vm.modalData.resource.reConfigEP"/>
+        <button type="button" class="btn btn-default entry-point-btn" ng-click="vm.selectEntryPoint('reconfigure')" translate>Browse</button>
         <a ng-click="vm.modalData.resource.reConfigEP = ''"><span class="pficon pficon-close clear-entry-point"></span></a>
       </div>
-      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Retirement Entry Point'|translate}}">
-        <input id="retireEP" name="retireEP" type="text" ng-model="vm.modalData.resource.retireEP"/>
+      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-8" pf-label="{{'Retirement Entry Point'|translate}}">
+        <input id="retireEP" class="entry-point-input" name="retireEP" type="text" ng-model="vm.modalData.resource.retireEP"/>
+        <button type="button" class="btn btn-default entry-point-btn" ng-click="vm.selectEntryPoint('retirement')" translate>Browse</button>
         <a ng-click="vm.modalData.resource.retireEP = ''"><span class="pficon pficon-close clear-entry-point"></span></a>
       </div>
     </form>

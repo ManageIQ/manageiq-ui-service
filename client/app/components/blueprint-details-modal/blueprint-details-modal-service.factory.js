@@ -76,7 +76,7 @@
 
   /** @ngInject */
   function BlueprintDetailsModalController(action, blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, tenants, $state, // jshint ignore:line
-                                           $modalInstance, CollectionsApi, Notifications, sprintf) { // jshint ignore:line
+                                           BrowseEntryPointModal, $modalInstance, CollectionsApi, Notifications, sprintf) {                         // jshint ignore:line
     var vm = this;
 
     vm.blueprint = BlueprintsState.getBlueprintById(blueprintId);
@@ -111,6 +111,7 @@
     vm.catalogChanged = catalogChanged;
     vm.isCatalogRequired = isCatalogRequired;
     vm.isDialogRequired = isDialogRequired;
+    vm.selectEntryPoint = selectEntryPoint;
 
     vm.modalData = {
       'action': action,
@@ -178,6 +179,21 @@
         jQuery('#advOps').removeClass('in');
         jQuery('#advOpsHref').toggleClass('collapsed');
       }
+    }
+
+    function selectEntryPoint(entryPointType){
+
+      var modalInstance = BrowseEntryPointModal.showModal(entryPointType);
+
+      modalInstance.then(function (opts) {
+        if(entryPointType === 'provisioning') {
+          vm.modalData.resource.provEP = opts.entryPointData;
+        } else if(entryPointType === 'reconfigure') {
+          vm.modalData.resource.reConfigEP = opts.entryPointData;
+        } else if(entryPointType === 'retirement') {
+          vm.modalData.resource.retireEP =  opts.entryPointData;
+        }
+      });
     }
 
     function cancelBlueprintDetails() {
