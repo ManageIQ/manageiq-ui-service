@@ -174,7 +174,18 @@
       }
 
       function consoleOpen(results) {
+        // FIXME: may want to support results.remote_url as well (but haven't seen one in the wild yet)
+
         console.log('consoleOpen', results);
+        /* novnc:
+
+           /bower_components/no-vnc/vnc_auto.html
+             ?host=localhost
+             &port=3000
+             &true_color=1
+             &path=ws/console/ea713e07ffe1ea9a029bf97202cb9798
+             (&encrypt=1 if SSL)
+         */
       }
     }
 
