@@ -52,7 +52,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications, jQuery) {
+  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications, jQuery, $http, $timeout, logger) {
     var vm = this;
 
     vm.showRemoveService = $state.actionFeatures.service_delete.show;
@@ -129,7 +129,53 @@
     }
 
     function openConsole(vm) {
-      console.log('openConsole', vm);
+      CollectionsApi.post('vms', vm.id, {}, {
+        action: 'request_console',
+        resource: { protocol: "html5" },
+      })
+      .then(consoleResponse)
+      .catch(consoleError);
+
+      function consoleResponse(response) {
+        if (!response.success) {
+          // for some reason failure is 200 + success=false here, so throwing the message to use the same error handler
+          throw response.message;
+        }
+
+        logger.info(__("Waiting for the console to become ready:"), response.message);
+
+        consoleWatch(response.task_href + '?attributes=task_results');
+      }
+
+      function consoleError(error) {
+        logger.error(__("There was an error opening the console:"), error);
+      }
+
+      // try to get the task results every second, until Finished (or error)
+      function consoleWatch(url) {
+        $timeout(function() {
+          $http.get(url)
+          .then(function(response) {
+            var task = response.data;
+
+            if ((task.state == 'Finished') && (task.status == 'Ok')) {
+              // success
+              consoleOpen(task.task_results);
+            } else if ((task.state == 'Queued') && (task.status == 'Ok')) {
+              // waiting
+              consoleWatch(url);
+            } else {
+              // failure
+              throw task.message;
+            }
+          })
+          .catch(consoleError);
+        }, 1000);
+      }
+
+      function consoleOpen(results) {
+        console.log('consoleOpen', results);
+      }
     }
 
     function editServiceModal() {
