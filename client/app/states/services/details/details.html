@@ -196,7 +196,7 @@
             </div>
             <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
               <span class="no-wrap">
-                <button class="btn btn-default" ng-if="item.power_state == 'on'" tooltip="{{'Open a HTML5 console for this VM'|translate}}" tooltip-placement="right">
+                <button class="btn btn-default" ng-if="item['supports_console?'] && item.power_state == 'on'" tooltip="{{'Open a HTML5 console for this VM'|translate}}" tooltip-placement="right">
                   <i class="fa fa-html5 fa-lg"></i>
                 </button>
               </span>
