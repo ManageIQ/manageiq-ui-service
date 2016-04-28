@@ -31,7 +31,6 @@
       'picture.image_href',
       'evm_owner.name',
       'miq_group.description',
-      'vms',
       'aggregate_all_vm_cpus',
       'aggregate_all_vm_memory',
       'aggregate_all_vm_disk_count',
@@ -43,7 +42,11 @@
       'provision_dialog',
       'service_template'
     ];
-    var options = {attributes: requestAttributes};
+    var options = {
+      attributes: requestAttributes,
+      decorators: [ 'vms.supports_console?' ],
+      expand: 'vms',
+    };
 
     return CollectionsApi.get('services', $stateParams.serviceId, options);
   }
