@@ -175,17 +175,34 @@
 
       function consoleOpen(results) {
         // FIXME: may want to support results.remote_url as well (but haven't seen one in the wild yet)
+        switch (results.proto) {
+          case 'spice':
+            openSpice(results);
+            break;
+          case 'vnc':
+            openVnc(results);
+            break;
+          default:
+            logger.error(__("Unsupported console protocol returned:"), results.proto);
+        }
+      }
 
-        console.log('consoleOpen', results);
-        /* novnc:
+      function openSpice(results) {
+        // TODO
+        console.log('TODO spice', results);
+      }
 
-           /bower_components/no-vnc/vnc_auto.html
-             ?host=localhost
-             &port=3000
-             &true_color=1
-             &path=ws/console/ea713e07ffe1ea9a029bf97202cb9798
-             (&encrypt=1 if SSL)
-         */
+      function openVnc(results) {
+        var url = '/bower_components/no-vnc/vnc_auto.html' +
+          '?host=localhost' + // TODO not always
+          '&port=3000' +  // TODO huh.. either 3000 or need to change server/app.js to proxy ws as well
+          '&true_color=1' +
+          '&path=' + results.url +
+          '&password=' + results.secret;
+
+        // TODO if SSL: url += '&encrypt=1'
+
+        window.open(url);
       }
     }
 
