@@ -188,8 +188,13 @@
       }
 
       function openSpice(results) {
-        // TODO
-        console.log('TODO spice', results);
+        var url = '/bower_components/spice-html5-bower/spiceHTML5/spice_auto.html' +
+          '?host=localhost' + // TODO not always
+          '&port=3000' +  // TODO huh.. either 3000 or need to change server/app.js to proxy ws as well
+          '&path=' + results.url +
+          '&password=' + results.secret;  // or token?
+
+        window.open(url);
       }
 
       function openVnc(results) {
