@@ -52,7 +52,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications, jQuery, $http, $timeout, logger) {
+  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications, jQuery, $http, $timeout, logger, $location) {
     var vm = this;
 
     vm.showRemoveService = $state.actionFeatures.service_delete.show;
@@ -191,23 +191,27 @@
 
       function openSpice(results) {
         var url = '/bower_components/spice-html5-bower/spiceHTML5/spice_auto.html' +
-          '?host=localhost' + // TODO not always
-          '&port=3000' +  // TODO huh.. either 3000 or need to change server/app.js to proxy ws as well
+          '?host=' + $location.host() +
+          '&port=' + $location.port() +
           '&path=' + results.url +
           '&password=' + results.secret;
+
+        // encrypt is divined automagically in spice_auto
 
         window.open(url);
       }
 
       function openVnc(results) {
         var url = '/bower_components/no-vnc/vnc_auto.html' +
-          '?host=localhost' + // TODO not always
-          '&port=3000' +  // TODO huh.. either 3000 or need to change server/app.js to proxy ws as well
-          '&true_color=1' +
+          '?host=' + $location.host() +
+          '&port=' + $location.port() +
           '&path=' + results.url +
-          '&password=' + results.secret;
+          '&password=' + results.secret +
+          '&true_color=1';
 
-        // TODO if SSL: url += '&encrypt=1'
+        if ($location.protocol() === 'https') {
+          url += '&encrypt=1'
+        }
 
         window.open(url);
       }
