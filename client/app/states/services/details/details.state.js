@@ -158,10 +158,10 @@
           .then(function(response) {
             var task = response.data;
 
-            if ((task.state == 'Finished') && (task.status == 'Ok')) {
+            if ((task.state === 'Finished') && (task.status === 'Ok')) {
               // success
               consoleOpen(task.task_results);
-            } else if ((task.state == 'Queued') && (task.status == 'Ok')) {
+            } else if ((task.state === 'Queued') && (task.status === 'Ok')) {
               // waiting
               consoleWatch(url);
             } else {
@@ -174,13 +174,15 @@
       }
 
       function consoleOpen(results) {
-        // FIXME: may want to support results.remote_url as well (but haven't seen one in the wild yet)
         switch (results.proto) {
           case 'spice':
             openSpice(results);
             break;
           case 'vnc':
             openVnc(results);
+            break;
+          case 'remote':
+            openRemote(results);
             break;
           default:
             logger.error(__("Unsupported console protocol returned:"), results.proto);
@@ -192,7 +194,7 @@
           '?host=localhost' + // TODO not always
           '&port=3000' +  // TODO huh.. either 3000 or need to change server/app.js to proxy ws as well
           '&path=' + results.url +
-          '&password=' + results.secret;  // or token?
+          '&password=' + results.secret;
 
         window.open(url);
       }
@@ -208,6 +210,11 @@
         // TODO if SSL: url += '&encrypt=1'
 
         window.open(url);
+      }
+
+      function openRemote(results) {
+        // openstack
+        window.open(results.remote_url);
       }
     }
 
