@@ -12,7 +12,7 @@
              ng-model="vm.modalData.resource.name" type="text" required/>
     </div>
     <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Visibility'|translate}}" required>
-      <select pf-select
+      <select class="base-info-select"
               ng-options="item as item.name for item in vm.visibilityOptions"
               ng-model="vm.modalData.resource.visibility" required>
       </select>
@@ -21,7 +21,7 @@
     <div class="form-group" ng-class="{ 'has-error' : vm.isCatalogRequired() }">
       <label for="catalog" class="control-label col-sm-4" translate>Catalog</label>
       <div class="col-sm-6">
-        <select name="catalog"  id="catalog" pf-select
+        <select name="catalog" id="catalog" class="base-info-select"
                 ng-options="item as item.name for item in vm.serviceCatalogs"
                 ng-model="vm.modalData.resource.catalog"
                 ng-change="vm.catalogChanged()"
@@ -29,12 +29,13 @@
                 <option value="" translate>Unassigned</option>
         </select><br>
         <span ng-show="detailsForm.catalog.$error.required" class="control-label" translate>Select a Catalog</span>
+        <button type="button" class="btn btn-default base-info-btn" ng-click="vm.createCatalog()" translate>Create Catalog</button>
       </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error' : vm.isDialogRequired() }">
       <label for="dialog" class="control-label col-sm-4" translate>Dialog</label>
       <div class="col-sm-6">
-        <select name="dialog"  id="dialog" pf-select
+        <select name="dialog"  id="dialog" class="base-info-select"
                 ng-options="item as item.description for item in vm.serviceDialogs"
                 ng-model="vm.modalData.resource.dialog"
                 ng-disabled="vm.isCatalogUnassigned()"
@@ -75,3 +76,8 @@
           {{vm.modalBtnPrimaryLabel}}
   </button>
 </div>
+<script>
+  $(function() {
+    $('.modal-header').parent().css("width","700px");
+  });
+</script>

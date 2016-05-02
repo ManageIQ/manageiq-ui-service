@@ -66,9 +66,17 @@
       saveSuccess();
 
       function saveSuccess() {
-        var selectedNodes = $('#entryPointsTree').treeview('getSelected');
+        var curNode, pathToNode, selectedNodes = $('#entryPointsTree').treeview('getSelected');
         if(selectedNodes && selectedNodes.length === 1) {
-          $modalInstance.close({entryPointType: vm.entryPointType, entryPointData: selectedNodes[0].text});
+          // construct full path to parent
+          curNode = selectedNodes[0];
+          pathToNode = "\\" + curNode.text;
+          curNode = $('#entryPointsTree').treeview('getParent', curNode);
+          while (curNode.text.indexOf) {
+            pathToNode = "\\" + curNode.text + pathToNode;
+            curNode = $('#entryPointsTree').treeview('getParent', curNode);
+          }
+          $modalInstance.close({entryPointType: vm.entryPointType, entryPointData: pathToNode});
         } else {
           console.log("No " + vm.entryPointTypeTitle + " Entry Point selected.");
         }

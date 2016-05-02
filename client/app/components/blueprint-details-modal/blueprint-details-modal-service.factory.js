@@ -75,8 +75,8 @@
   }
 
   /** @ngInject */
-  function BlueprintDetailsModalController(action, blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, tenants, $state, // jshint ignore:line
-                                           BrowseEntryPointModal, $modalInstance, CollectionsApi, Notifications, sprintf) {                         // jshint ignore:line
+  function BlueprintDetailsModalController(action, blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, tenants, $state,               // jshint ignore:line
+                                           BrowseEntryPointModal, CreateCatalogModal, $modalInstance, CollectionsApi, Notifications, sprintf, $scope, $timeout) { // jshint ignore:line
     var vm = this;
 
     vm.blueprint = BlueprintsState.getBlueprintById(blueprintId);
@@ -92,7 +92,7 @@
       vm.modalBtnPrimaryLabel  = __('Save');
     }
 
-    vm.serviceCatalogs = serviceCatalogs.resources;
+    vm.serviceCatalogs = serviceCatalogs.resources.concat(BlueprintsState.getNewCatalogs());
 
     vm.serviceDialogs = serviceDialogs.resources;
 
@@ -112,6 +112,7 @@
     vm.isCatalogRequired = isCatalogRequired;
     vm.isDialogRequired = isDialogRequired;
     vm.selectEntryPoint = selectEntryPoint;
+    vm.createCatalog = createCatalog;
 
     vm.modalData = {
       'action': action,
@@ -181,6 +182,17 @@
       }
     }
 
+    function createCatalog(){
+
+      var modalInstance = CreateCatalogModal.showModal();
+
+      modalInstance.then(function (opts) {
+        vm.newCatalog = {"id": BlueprintsState.getNewCatalogs().length, "name": opts.catalogName, "new": 'true'};
+        vm.serviceCatalogs.push(vm.newCatalog);
+        vm.modalData.resource.catalog = vm.newCatalog;
+      });
+    }
+
     function selectEntryPoint(entryPointType){
 
       var modalInstance = BrowseEntryPointModal.showModal(entryPointType);
@@ -194,6 +206,7 @@
           vm.modalData.resource.retireEP =  opts.entryPointData;
         }
       });
+
     }
 
     function cancelBlueprintDetails() {
@@ -203,6 +216,15 @@
 
     function saveBlueprintDetails() {
       //CollectionsApi.post('Blueprints', vm.Blueprint.id, {}, vm.modalData).then(saveSuccess, saveFailure);
+
+      // Save any new catalogs
+      for(var i = 0; i < vm.serviceCatalogs.length; i += 1) {
+        if(vm.serviceCatalogs[i].new) {
+          vm.serviceCatalogs[i].new = null;
+          console.log("saving new cat: " + JSON.stringify(vm.serviceCatalogs[i],null,2));
+          BlueprintsState.addNewCatalog(vm.serviceCatalogs[i]);
+        }
+      }
 
       if(action == 'publish') {
         vm.blueprint.published = new Date();

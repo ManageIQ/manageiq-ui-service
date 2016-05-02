@@ -95,6 +95,8 @@
       }
     ];
 
+    blueprint.newCatalogs = [];
+
     blueprint.selectedBlueprints = [];
 
     blueprint.handleSelectionChange = function(tmpBlueprint) {
@@ -122,7 +124,15 @@
       return blueprint.blueprints;
     };
 
-    blueprint.getNextUniqueId = function() {
+    blueprint.getNewCatalogs = function() {
+      return blueprint.newCatalogs;
+    };
+
+    blueprint.addNewCatalog = function(newCat) {
+      blueprint.newCatalogs.push(newCat);
+    };
+
+    blueprint.getNextUniqueId = function () {
       return blueprint.blueprints.length;
     };
 
@@ -152,9 +162,7 @@
       }
     };
 
-    blueprint.getBlueprints = function() {
-      return blueprint.blueprints;
-    };
+
 
     blueprint.getBlueprintById = function(id) {
       for (var i = 0; i < blueprint.blueprints.length; i++) {
