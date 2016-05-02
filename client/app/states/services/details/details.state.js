@@ -52,7 +52,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications, jQuery, $http, $timeout, logger, $location) {
+  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications, jQuery, Consoles) {
     var vm = this;
 
     vm.showRemoveService = $state.actionFeatures.service_delete.show;
@@ -72,7 +72,6 @@
     vm.retireServiceLater = retireServiceLater;
     vm.ownershipServiceModal = ownershipServiceModal;
     vm.reconfigureService = reconfigureService;
-    vm.openConsole = openConsole;
 
     var actions = vm.service.actions;
     if (actions !== undefined) {
@@ -123,102 +122,9 @@
      */
     function maybeOpenConsole(item, event) {
       var $target = jQuery(event.target);
+
       if ($target.is('.open-console-button') || $target.is('.open-console-button *')) {
-        openConsole(item);
-      }
-    }
-
-    function openConsole(vm) {
-      CollectionsApi.post('vms', vm.id, {}, {
-        action: 'request_console',
-        resource: { protocol: "html5" },
-      })
-      .then(consoleResponse)
-      .catch(consoleError);
-
-      function consoleResponse(response) {
-        if (!response.success) {
-          // for some reason failure is 200 + success=false here, so throwing the message to use the same error handler
-          throw response.message;
-        }
-
-        logger.info(__("Waiting for the console to become ready:"), response.message);
-
-        consoleWatch(response.task_href + '?attributes=task_results');
-      }
-
-      function consoleError(error) {
-        logger.error(__("There was an error opening the console:"), error);
-      }
-
-      // try to get the task results every second, until Finished (or error)
-      function consoleWatch(url) {
-        $timeout(function() {
-          $http.get(url)
-          .then(function(response) {
-            var task = response.data;
-
-            if ((task.state === 'Finished') && (task.status === 'Ok')) {
-              // success
-              consoleOpen(task.task_results);
-            } else if ((task.state === 'Queued') && (task.status === 'Ok')) {
-              // waiting
-              consoleWatch(url);
-            } else {
-              // failure
-              throw task.message;
-            }
-          })
-          .catch(consoleError);
-        }, 1000);
-      }
-
-      function consoleOpen(results) {
-        switch (results.proto) {
-          case 'spice':
-            openSpice(results);
-            break;
-          case 'vnc':
-            openVnc(results);
-            break;
-          case 'remote':
-            openRemote(results);
-            break;
-          default:
-            logger.error(__("Unsupported console protocol returned:"), results.proto);
-        }
-      }
-
-      function openSpice(results) {
-        var url = '/bower_components/spice-html5-bower/spiceHTML5/spice_auto.html' +
-          '?host=' + $location.host() +
-          '&port=' + $location.port() +
-          '&path=' + results.url +
-          '&password=' + results.secret;
-
-        // encrypt is divined automagically in spice_auto
-
-        window.open(url);
-      }
-
-      function openVnc(results) {
-        var url = '/bower_components/no-vnc/vnc_auto.html' +
-          '?host=' + $location.host() +
-          '&port=' + $location.port() +
-          '&path=' + results.url +
-          '&password=' + results.secret +
-          '&true_color=1';
-
-        if ($location.protocol() === 'https') {
-          url += '&encrypt=1'
-        }
-
-        window.open(url);
-      }
-
-      function openRemote(results) {
-        // openstack
-        window.open(results.remote_url);
+        Consoles.open(item.id);
       }
     }
 
