@@ -153,15 +153,15 @@
     };
 
     function createBlueprint(action) {
-      BlueprintDetailsModal.showModal('create', '-1');
-    }
+      BlueprintDetailsModal.showModal('create', {});
+    };
 
     function editBlueprint(action, item) {
       $state.go('blueprints.designer', {blueprintId: item.id});
     }
 
     function publishBlueprint(action, item) {
-      BlueprintDetailsModal.showModal('publish', item.id);
+      BlueprintDetailsModal.showModal('publish', item);
     };
 
     function deleteBlueprint(action, item) {

@@ -41,7 +41,8 @@
         "visibility": {
           "id": 800,
           "name": "Private"
-        }
+        },
+        "chartDataModel": {}
       },
       {
         "id": 1,
@@ -59,7 +60,8 @@
         "dialog": {
           "id": 1000000000014,
           "name": "AWScreate_vpc"
-        }
+        },
+        "chartDataModel": {}
       },
       {
         "id": 2,
@@ -73,7 +75,8 @@
         "dialog": {
           "id": 1000000000004,
           "name": "Project 1"
-        }
+        },
+        "chartDataModel": {}
       },
       {
         "id": 3,
@@ -91,7 +94,8 @@
         "dialog": {
           "id": 1000000000001,
           "name": "RenameVM"
-        }
+        },
+        "chartDataModel": {}
       }
     ];
 
@@ -137,6 +141,7 @@
     };
 
     blueprint.saveBlueprint = function(tmpBlueprint) {
+
       tmpBlueprint.last_modified = new Date();
       if (tmpBlueprint.chartDataModel && tmpBlueprint.chartDataModel.nodes) {
         tmpBlueprint.num_nodes = tmpBlueprint.chartDataModel.nodes.length;
@@ -161,8 +166,6 @@
         blueprint.blueprints.splice(index, 1);
       }
     };
-
-
 
     blueprint.getBlueprintById = function(id) {
       for (var i = 0; i < blueprint.blueprints.length; i++) {

@@ -13,14 +13,14 @@
 
     return modalBlueprint;
 
-    function showModal(action, blueprintId) {
+    function showModal(action, blueprint) {
       var modalOptions = {
         templateUrl: 'app/components/blueprint-details-modal/blueprint-details-modal.html',
         controller: BlueprintDetailsModalController,
         controllerAs: 'vm',
         resolve: {
           action: resolveAction,
-          blueprintId: resolveBlueprintId,
+          blueprint: resolveBlueprint,
           serviceCatalogs: resolveServiceCatalogs,
           serviceDialogs: resolveServiceDialogs,
           tenants: resolveTenants
@@ -31,8 +31,8 @@
 
       return modal.result;
 
-      function resolveBlueprintId() {
-        return blueprintId;
+      function resolveBlueprint() {
+        return blueprint;
       }
 
       function resolveAction() {
@@ -75,11 +75,11 @@
   }
 
   /** @ngInject */
-  function BlueprintDetailsModalController(action, blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, tenants, $state,               // jshint ignore:line
-                                           BrowseEntryPointModal, CreateCatalogModal, $modalInstance, CollectionsApi, Notifications, sprintf, $scope, $timeout) { // jshint ignore:line
+  function BlueprintDetailsModalController(action, blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, tenants, $state,   // jshint ignore:line
+                                           BrowseEntryPointModal, CreateCatalogModal, $modalInstance, CollectionsApi, Notifications, $scope, // jshint ignore:line
+                                           $timeout,  sprintf, $rootScope) {                                                                         // jshint ignore:line
     var vm = this;
-
-    vm.blueprint = BlueprintsState.getBlueprintById(blueprintId);
+    vm.blueprint = blueprint;
 
     if (action === 'create') {
       vm.modalTitle = __('Create Blueprint');
@@ -211,7 +211,7 @@
 
     function cancelBlueprintDetails() {
       $modalInstance.close();
-      $state.go($state.current, {}, {reload: true});
+      //$state.go($state.current, {}, {reload: true});
     }
 
     function saveBlueprintDetails() {
@@ -221,36 +221,49 @@
       for(var i = 0; i < vm.serviceCatalogs.length; i += 1) {
         if(vm.serviceCatalogs[i].new) {
           vm.serviceCatalogs[i].new = null;
-          console.log("saving new cat: " + JSON.stringify(vm.serviceCatalogs[i],null,2));
           BlueprintsState.addNewCatalog(vm.serviceCatalogs[i]);
         }
       }
 
       if(action == 'publish') {
         vm.blueprint.published = new Date();
+      } else if(action == 'create') {
+        vm.blueprint.chartDataModel = {};
       }
 
-      vm.blueprint.id = blueprintId;
       vm.blueprint.name = vm.modalData.resource.name;
 
-      vm.blueprint.visibility = vm.modalData.resource.visibility;
-      vm.blueprint.catalog = vm.modalData.resource.catalog;
-      vm.blueprint.dialog = vm.modalData.resource.dialog;
+      if(vm.blueprint.visibility && vm.blueprint.visibility.id != vm.modalData.resource.visibility.id) {
+        vm.blueprint.visibility = vm.modalData.resource.visibility;
+      }
+
+      if(vm.blueprint.catalog && vm.blueprint.catalog.id != vm.modalData.resource.catalog.id) {
+        vm.blueprint.catalog = vm.modalData.resource.catalog;
+      }
+
+      if(vm.blueprint.dialog && vm.blueprint.dialog.id != vm.modalData.resource.dialog.id) {
+        vm.blueprint.dialog = vm.modalData.resource.dialog;
+      }
 
       vm.blueprint.provEP = vm.modalData.resource.provEP;
       vm.blueprint.reConfigEP = vm.modalData.resource.reConfigEP;
       vm.blueprint.retireEP = vm.modalData.resource.retireEP;
 
-      BlueprintsState.saveBlueprint(vm.blueprint);
+      //
       saveSuccess();
 
       function saveSuccess() {
-        $modalInstance.close();
         if (action === 'create') {
           Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
+          BlueprintsState.saveBlueprint(vm.blueprint);
+          $modalInstance.close();
           $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
-        } else if (action === 'edit' || action === 'publish') {
+        } else if(action == 'edit') {
           Notifications.success(sprintf(__('%s was updated.'), vm.blueprint.name));
+          $modalInstance.close({editedblueprint: vm.blueprint});
+        } else if(action == 'publish') {
+          $modalInstance.close();
+          Notifications.success(sprintf(__('%s was published.'), vm.blueprint.name));
           $state.go($state.current, {}, {reload: true});
         }
       }

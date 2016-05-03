@@ -1,24 +1,24 @@
 angular.module('app.states').controller('canvasCtrl', ['$scope',
-  function($scope) {
+  function ($scope) {
     var chartDataModel = {};
-    if ($scope.$parent.chartDataModel) {
-      chartDataModel = $scope.$parent.chartDataModel;
+    if ($scope.$parent.blueprint.chartDataModel) {
+      chartDataModel = $scope.$parent.blueprint.chartDataModel;
     }
 
-    //
     // Create the view-model for the chart and attach to the scope.
-    //
     $scope.chartViewModel = new flowchart.ChartViewModel(chartDataModel);
 
-    $scope.$watch("chartViewModel.data", function(oldValue, newValue) {
-      $scope.$emit('BlueprintChanged', {chartDataModel: $scope.chartViewModel.data});
-    });
+    $scope.$watch("chartViewModel.data", function (oldValue, newValue) {
+      if (!angular.equals(oldValue, newValue)) {
+        $scope.$emit('BlueprintCanvasChanged', {'chartDataModel': $scope.chartViewModel.data});
+      }
+    }, true);
 
-    $scope.startCallback = function(event, ui, item) {
+    $scope.startCallback = function (event, ui, item) {
       $scope.draggedItem = item;
     };
 
-    $scope.dropCallback = function(event, ui) {
+    $scope.dropCallback = function (event, ui) {
       var newNode = angular.copy($scope.draggedItem);
       newNode.id = nextNodeID++;
       newNode.name = newNode.title;
@@ -40,12 +40,10 @@ angular.module('app.states').controller('canvasCtrl', ['$scope',
 
     $scope.addNewNode = function(newNode) {
       $scope.chartViewModel.addNode(newNode);
-      $scope.$emit('BlueprintChanged', {chartDataModel: $scope.chartViewModel.data});
     };
 
     $scope.deleteSelected = function() {
       $scope.chartViewModel.deleteSelected();
-      $scope.$emit('BlueprintChanged', {chartDataModel: $scope.chartViewModel.data});
     };
 
     /*

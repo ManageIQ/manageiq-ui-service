@@ -1,55 +1,89 @@
-angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', 'BlueprintsState', 'BlueprintDetailsModal', '$state',
+angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', 'BlueprintsState', 'BlueprintDetailsModal', 'SaveBlueprintModal', '$rootScope', '$state',
   'Notifications',
-    function($scope, $timeout, BlueprintsState, BlueprintDetailsModal, $state, Notifications) {
-      $scope.chartDataModel = {};
-      var blueprint = {};
+    function($scope, $timeout, BlueprintsState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope, $state, Notifications) {
 
-      var blueprintId = $scope.$parent.vm.blueprintId;
-      if (blueprintId) {
-        if (blueprintId !== '-1') {
-          blueprint = BlueprintsState.getBlueprintById(blueprintId);
-          if (blueprint) {
-            $scope.blueprintName = blueprint.name;
-            $scope.chartDataModel = blueprint.chartDataModel;
-          } else {
-            console.log("Error getting blueprint " + blueprintId);
+      // dev level debug output
+      var debug = false;
+
+      $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+
+        if(fromState.name === "blueprints.designer" && toState.name !== "blueprints.designer") {
+          if (debug) {
+            console.log("Changing from blueprints design state");
+            console.log("    defaultPrevented = : " + event.defaultPrevented);
+            console.log("    fromState.okToNavAway = " + fromState.okToNavAway);
           }
-        } else {
-          blueprint.id = blueprintId;
-          saveBlueprint();
-        }
-      }
-
-      $scope.blueprintNameChange = function() {
-        blueprint.name = $scope.blueprintName;
-      };
-
-      $scope.$on('BlueprintChanged', function(evt, args) {
-        if (args.chartDataModel) {
-          blueprint.chartDataModel = args.chartDataModel;
-          saveBlueprint();
+          var origBlueprint = angular.copy(BlueprintsState.getBlueprintById(blueprintId));
+          if (debug) { console.log("    angular.equals(origBlueprint, $scope.blueprint: " + angular.equals(origBlueprint, $scope.blueprint)); }
+          if(!angular.equals(origBlueprint, $scope.blueprint) && !event.defaultPrevented && !fromState.okToNavAway){
+            if (debug) { console.log("  ---> Somethings changed, stopping progression to handle it") };
+            SaveBlueprintModal.showModal($scope.blueprint, toState, toParams, fromState, fromParams);
+            event.preventDefault();
+          }
         }
       });
 
-      function saveBlueprint() {
-        blueprint.id = BlueprintsState.saveBlueprint(blueprint);
-        if (!$scope.blueprintName) {
-          $scope.blueprintName = "Untitled Blueprint " + blueprint.id;
-          blueprint.name = $scope.blueprintName;
-        }
+      $scope.blueprint = {};
+      var blueprintDirty = false;
+
+      var blueprintId = $scope.$parent.vm.blueprintId;
+      if (blueprintId) {
+          $scope.blueprint = angular.copy(BlueprintsState.getBlueprintById(blueprintId));
+          if (!$scope.blueprint) {
+            console.log("Error getting blueprint " + blueprintId);
+          }
       }
 
+      $scope.$watch("blueprint", function (oldValue, newValue) {
+
+        if (debug) { console.log("blueprint change event captured") }
+
+        if(!angular.equals(oldValue,newValue,true)) {
+          blueprintDirty = true;
+          $state.current.okToNavAway = false;
+          if (debug) { console.log("blueprint is dirty"); }
+        } else {
+          if (debug) { console.log("blueprint is NOT dirty"); }
+        }
+      }, true);
+
+      $scope.$on('BlueprintCanvasChanged', function(evt, args) {
+        if (args.chartDataModel && !angular.equals($scope.blueprint.chartDataModel, args.chartDataMode)) {
+          $scope.blueprint.chartDataModel = args.chartDataModel;
+          blueprintDirty = true;
+          if (debug) { console.log("blueprint.chartDataModel updated"); }
+        }
+      });
+
+      $scope.blueprintUnchanged = function() {
+        return !blueprintDirty;
+      };
+
+      $scope.saveBlueprint = function() {
+
+        BlueprintsState.saveBlueprint($scope.blueprint);
+
+        // get another copy to work, different obj from what was saved
+        $scope.blueprint = angular.copy($scope.blueprint);
+
+        $timeout(function() {
+          blueprintDirty = false;
+          $state.current.okToNavAway = false;
+          if (debug) { console.log("saving blueprint - $state.current: " + angular.toJson($state.current,true)); }
+        });
+      };
+
       $scope.deleteBlueprint = function(){
-        BlueprintsState.deleteBlueprint(blueprint.id);
-        Notifications.success(blueprint.name + __(' was deleted.'));
+        BlueprintsState.deleteBlueprint($scope.blueprint.id);
+        Notifications.success($scope.blueprint.name + __(' was deleted.'));
         $state.go('blueprints.list');
       };
 
       $scope.editDetails = function() {
-        BlueprintDetailsModal.showModal('edit', blueprint.id);
+        BlueprintDetailsModal.showModal('edit', $scope.blueprint);
       };
 
-      /*  Caatalog Editor Toolbox Methods */
+      /*  Catalog Editor Toolbox Methods */
 
       $scope.toolboxVisible = false;
 
