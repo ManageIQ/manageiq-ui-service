@@ -1,0 +1,800 @@
+# Sergio Ocón <sergio.ocon@redhat.com>, 2016. #zanata
+# Victor Estival <victor.estival@gmail.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2016-04-04 03:06-0400\n"
+"Last-Translator: Victor Estival <victor.estival@gmail.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"X-Generator: Zanata 3.8.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: app/components/navigation/header-nav.html:42
+msgid "(Current Group)"
+msgstr "(Grupo actual)"
+
+#: app/components/retire-service-modal/retire-service-modal.html:12
+msgid "1 Week"
+msgstr "1 Semana"
+
+#: app/components/retire-service-modal/retire-service-modal.html:13
+msgid "2 Weeks"
+msgstr "2 Semanas"
+
+#: app/components/retire-service-modal/retire-service-modal.html:14
+msgid "3 Weeks"
+msgstr "3 Semanas"
+
+#: app/components/retire-service-modal/retire-service-modal.html:15
+msgid "4 Weeks"
+msgstr "4 Semanas"
+
+#: app/states/about-me/about-me.html:1
+#: app/states/about-me/about-me.state.js:20
+#: app/states/about-me/about-me.state.js:29
+msgid "About Me"
+msgstr "Acerca de mi"
+
+#: app/components/custom-button/custom-button.directive.js:120
+#: app/components/custom-button/custom-button.directive.js:132
+msgid "Action not able to submit."
+msgstr "La acción no pudo enviarse"
+
+#: app/states/products/details/details.state.js:35
+msgid "Activated Products Details View"
+msgstr "Vista de detale de los Productos Activados"
+
+#: app/states/products/details/details.html:18
+msgid "Active"
+msgstr "Activo"
+
+#: app/states/requests/list/list.state.js:81
+msgid "Approved"
+msgstr "Aprobado"
+
+#: app/states/dashboard/dashboard.html:91
+msgid "Approved Requests"
+msgstr "Peticiones Aprobadas"
+
+#: app/states/requests/details/details.html:73
+msgid "Approver"
+msgstr "Aprobador"
+
+#: app/components/confirmation/confirmation.directive.js:95
+msgid "Are you sure you wish to proceed?"
+msgstr "¿Seguro que quiere continuar?"
+
+#: app/states/requests/details/details.html:3
+msgid "Back to My Requests"
+msgstr "Volver a Mis Peticiones"
+
+#: app/states/services/details/details.html:3
+msgid "Back to My Services"
+msgstr "Volver a Mis Servicios"
+
+#: app/states/services/custom_button_details/custom_button_details.html:7
+#: app/states/services/reconfigure/reconfigure.html:3
+msgid "Back to Service"
+msgstr "Volver al Servicio"
+
+#: app/states/marketplace/details/details.html:3
+#: app/states/services/custom_button_details/custom_button_details.html:3
+msgid "Back to Service Catalog"
+msgstr "Volver al Catálogo de Servicios"
+
+#: app/states/blueprints/list/list.state.js:19
+#: app/states/blueprints/list/list.state.js:29
+msgid "Blueprint List"
+msgstr "Listado de Blueprints"
+
+#: app/config/navigation.config.js:37
+msgid "Blueprints"
+msgstr "Blueprints"
+
+#: app/components/custom-button/custom-button.directive.js:100
+msgid "Button action not supported."
+msgstr "La acción del botón no está soportada"
+
+#: app/states/services/details/details.html:116
+msgid "CPU"
+msgstr "CPU"
+
+#: app/components/confirmation/confirmation.directive.js:97
+#: app/components/edit-service-modal/edit-service-modal.html:21
+#: app/components/ownership-service-modal/ownership-service-modal.html:32
+#: app/components/retire-service-modal/retire-service-modal.html:24
+#: app/states/services/reconfigure/reconfigure.html:24
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: app/states/marketplace/list/list.state.js:105
+#: app/states/marketplace/list/list.state.js:86
+msgid "Catalog Name"
+msgstr "Nombre del Catálogo"
+
+#: app/components/navigation/header-nav.html:34
+msgid "Change Group:"
+msgstr "Cambiar Grupo:"
+
+#: app/components/navigation/header-nav.html:46
+msgid "Change to this Group"
+msgstr "Cambiar a este Grupo"
+
+#: app/states/services/details/details.html:42
+msgid "Confirm, would you like to remove this service?"
+msgstr "Confirme, ¿quiere eliminar este servicio?"
+
+#: app/states/services/details/details.html:57
+msgid "Confirm, would you like to retire this service?"
+msgstr "Confirme, ¿le gustaría retirar el servicio?"
+
+#: app/states/services/list/list.state.js:124
+#: app/states/services/list/list.state.js:91
+msgid "Created"
+msgstr "Creado"
+
+#: app/states/services/details/details.html:106
+#: app/states/services/list/list.html:40
+msgid "Created On"
+msgstr "Creado el"
+
+#: app/states/products/details/details.html:33
+msgid "Creation Date"
+msgstr "Fecha de Creación"
+
+#: app/states/services/list/list.state.js:75
+msgid "Current"
+msgstr "Actual"
+
+#: app/components/navigation/header-nav.html:53
+msgid "Current Group"
+msgstr "Grupo Actual"
+
+#: app/states/dashboard/dashboard.html:45
+msgid "Current Services"
+msgstr "Servicios Actuales"
+
+#: app/components/navigation/header-nav.html:40
+msgid "Currently Selected Group"
+msgstr "Grupo Seleccionado Actualmente"
+
+#: app/components/custom-button/custom-button.html:28
+#: app/components/custom-button/custom-button.html:30
+msgid "Custom Actions"
+msgstr "Acción Personalizada"
+
+#: app/states/services/custom_button_details/custom_button_details.html:10
+msgid "Custom Button:"
+msgstr "Botón Personalizado"
+
+#: app/states/services/custom_button_details/custom_button_details.state.js:46
+msgid "Custom button action"
+msgstr "Botón de Acciones Personalizado"
+
+#: app/config/navigation.config.js:14
+#: app/states/dashboard/dashboard.state.js:154
+#: app/states/dashboard/dashboard.state.js:20
+msgid "Dashboard"
+msgstr "Panel"
+
+#: app/states/requests/list/list.state.js:81
+msgid "Denied"
+msgstr "Denegado"
+
+#: app/states/dashboard/dashboard.html:104
+msgid "Denied Requests"
+msgstr "Peticiones Denegadas"
+
+#: app/components/edit-service-modal/edit-service-modal.html:13
+#: app/states/marketplace/list/list.state.js:80
+#: app/states/requests/list/list.state.js:60
+#: app/states/requests/list/list.state.js:92
+msgid "Description"
+msgstr "Descripción"
+
+#: app/states/services/details/details.html:128
+msgid "Disk Count"
+msgstr "Número de Discos"
+
+#: app/states/services/details/details.html:134
+msgid "Disk Space Allocated"
+msgstr "Espacio de disco asignado"
+
+#: app/states/services/details/details.html:140
+msgid "Disk Space Used"
+msgstr "Espacio de disco usado"
+
+#: app/components/edit-service-modal/edit-service-modal.html:5
+#: app/states/services/details/details.html:65
+msgid "Edit Service"
+msgstr "Editar servicio"
+
+#: app/states/error/error.state.js:21
+msgid "Error"
+msgstr "Error"
+
+#: app/config/authorization.config.js:105
+msgid "Error retrieving user info"
+msgstr "Error al obtener la información del usuario"
+
+#: app/states/marketplace/list/list.state.js:87
+msgid "Filter by Catalog Name"
+msgstr "Filtrar por Nombre de catálogo"
+
+#: app/states/services/list/list.state.js:92
+msgid "Filter by Created On"
+msgstr "Filtrar por Fecha de creación"
+
+#: app/states/marketplace/list/list.state.js:81
+#: app/states/requests/list/list.state.js:61
+msgid "Filter by Description"
+msgstr "Filtrar por Descripción"
+
+#: app/states/requests/list/list.state.js:67
+msgid "Filter by ID"
+msgstr "Filtrar por ID"
+
+#: app/states/marketplace/list/list.state.js:75
+#: app/states/services/list/list.state.js:67
+msgid "Filter by Name"
+msgstr "Filtrar por Nombre"
+
+#: app/states/services/list/list.state.js:86
+msgid "Filter by Owner"
+msgstr "Filtrar por Propietario"
+
+#: app/states/requests/list/list.state.js:73
+msgid "Filter by Request Date"
+msgstr "Filtrar por Fecha de petición"
+
+#: app/states/services/list/list.state.js:73
+msgid "Filter by Retirement Date"
+msgstr "Filtrar por Fecha de Retiro"
+
+#: app/states/requests/list/list.state.js:79
+msgid "Filter by Status"
+msgstr "Filtrar por Estado"
+
+#: app/states/services/list/list.state.js:80
+msgid "Filter by VMs"
+msgstr "Filtrar por MV"
+
+#: app/components/confirmation/confirmation.directive.js:54
+#: app/components/confirmation/confirmation.directive.js:59
+msgid "For Sizing"
+msgstr "Por Tamaño"
+
+#: app/states/services/details/details.html:100
+msgid "Group"
+msgstr "Grupo"
+
+#: app/states/help/help.html:1
+#: app/states/help/help.state.js:20
+#: app/states/help/help.state.js:29
+msgid "Help"
+msgstr "Ayuda"
+
+#: app/states/products/details/details.html:56
+msgid "Hourly"
+msgstr "Cada hora"
+
+#: app/states/requests/list/list.html:24
+msgid "ID"
+msgstr "ID"
+
+#: app/states/services/details/details.html:49
+msgid "Inactivate the service"
+msgstr "Desactivar el servicio"
+
+#: app/states/products/details/details.html:19
+msgid "Inactive"
+msgstr "Inactivo"
+
+#: app/resources/authentication-api.factory.js:30
+msgid "Incorrect username or password."
+msgstr "Nombre de usuario o contraseña incorrectos."
+
+#: app/states/requests/details/details.html:83
+msgid "Last Message"
+msgstr "Último mensaje"
+
+#: app/states/services/details/details.html:186
+msgid "Last Scan"
+msgstr "Último escaneo"
+
+#: app/states/products/details/details.html:38
+#: app/states/requests/details/details.html:91
+msgid "Last Updated"
+msgstr "Última actualización"
+
+#: app/states/login/login.html:39
+msgid "Log In"
+msgstr "Iniciar sesión"
+
+#: app/components/navigation/header-nav.html:19
+msgid "Log into the full administrative UI"
+msgstr "Iniciar sesión con el interfaz completo de administración"
+
+#: app/states/login/login.state.js:20
+#: app/states/login/login.state.js:32
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: app/components/navigation/header-nav.html:61
+#: app/states/logout/logout.state.js:18
+#: app/states/logout/logout.state.js:27
+msgid "Logout"
+msgstr "Finalizar sesión"
+
+#: app/skin/skin.module.js:8
+#: app/states/error/error.html:3
+msgid "ManageIQ Self Service"
+msgstr "Autoservicio de ManageIQ"
+
+#: app/states/services/details/details.html:122
+msgid "Memory"
+msgstr "Memoria"
+
+#: app/states/services/details/details.html:147
+msgid "Memory on Disk"
+msgstr "Memoria en disco"
+
+#: app/states/products/details/details.html:57
+msgid "Monthly"
+msgstr "Mensual"
+
+#: app/components/ss-card/ss-card.html:9
+msgid "More"
+msgstr "Más"
+
+#: app/config/navigation.config.js:25
+msgid "My Requests"
+msgstr "Mis peticiones"
+
+#: app/config/navigation.config.js:19
+msgid "My Services"
+msgstr "Mis servicios"
+
+#: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/services/services-state.service.js:14
+#: app/states/marketplace/list/list.state.js:100
+#: app/states/marketplace/list/list.state.js:74
+#: app/states/services/list/list.state.js:104
+#: app/states/services/list/list.state.js:66
+msgid "Name"
+msgstr "Nombre"
+
+#: app/states/services/list/list.html:24
+msgid "Never"
+msgstr "Nunca"
+
+#: app/components/dialog-content/dialog-content.html:3
+msgid "No Provisioning Dialog Available."
+msgstr "No hay disponible un Diálogo de Provisión"
+
+#: app/components/retire-service-modal/retire-service-modal.html:11
+msgid "No Warning"
+msgstr "Sin avisos"
+
+#: app/states/services/list/list.state.js:114
+#: app/states/services/list/list.state.js:79
+msgid "Number of VMs"
+msgstr "Número de MV"
+
+#: app/states/services/details/details.html:94
+#: app/states/services/list/list.html:35
+#: app/states/services/list/list.state.js:119
+#: app/states/services/list/list.state.js:85
+msgid "Owner"
+msgstr "Propietario"
+
+#: app/states/login/login.html:20
+msgid "Password"
+msgstr "Contraseña"
+
+#: app/states/requests/list/list.state.js:81
+msgid "Pending"
+msgstr "Pendiente"
+
+#: app/states/dashboard/dashboard.html:78
+msgid "Pending Requests"
+msgstr "Peticiones pendientes"
+
+#: app/states/services/details/details.html:37
+msgid "Permanently delete the service"
+msgstr "Borrar el servicio permanentemente"
+
+#: app/states/services/details/details.html:191
+#: app/states/services/details/details.html:192
+#: app/states/services/details/details.html:193
+msgid "Power State"
+msgstr "Estado de operación"
+
+#: app/states/products/details/details.html:50
+msgid "Pricing"
+msgstr "Precio"
+
+#: app/states/products/details/details.html:10
+msgid "Product"
+msgstr "Producto"
+
+#: app/states/products/details/details.html:17
+msgid "Product Status"
+msgstr "Estado de producto"
+
+#: app/states/products/details/details.html:28
+msgid "Product Tags"
+msgstr "Etiquetas de producto"
+
+#: app/states/products/details/details.html:23
+msgid "Product Type"
+msgstr "Tipo de producto"
+
+#: app/states/products/details/details.state.js:19
+msgid "Products Details"
+msgstr "Detalles de productos"
+
+#: app/states/products/details/details.html:43
+msgid "Provisioning Answers"
+msgstr "Respuestas de Provisión"
+
+#: app/states/services/details/details.html:67
+msgid "Reconfigure"
+msgstr "Reconfigurar"
+
+#: app/states/services/reconfigure/reconfigure.html:5
+msgid "Reconfigure Service:"
+msgstr "Reconfigurar el Servicio:"
+
+#: app/states/services/reconfigure/reconfigure.state.js:117
+msgid "Reconfigure this service has been cancelled"
+msgstr "Se ha cancelado la reconfiguración del servicio"
+
+#: app/components/dialog-content/dialog-content.html:114
+msgid "Refresh"
+msgstr "Actualizar"
+
+#: app/states/services/details/details.html:37
+#: app/states/services/details/details.html:41
+msgid "Remove Service"
+msgstr "Eliminar Servicio"
+
+#: app/states/requests/details/details.html:67
+msgid "Request Approval State"
+msgstr "Estado de aprobación de la Petición"
+
+#: app/services/requests-state.service.js:13
+#: app/states/requests/details/details.html:55
+#: app/states/requests/list/list.state.js:102
+#: app/states/requests/list/list.state.js:72
+msgid "Request Date"
+msgstr "Fecha de petición"
+
+#: app/states/requests/details/details.html:37
+#: app/states/requests/list/list.state.js:66
+#: app/states/requests/list/list.state.js:97
+msgid "Request ID"
+msgstr "ID de petición"
+
+#: app/states/requests/list/list.state.js:19
+#: app/states/requests/list/list.state.js:40
+msgid "Request List"
+msgstr "Lista de peticiones"
+
+#: app/states/requests/details/details.html:43
+msgid "Request State"
+msgstr "Situación de la petición"
+
+#: app/states/dashboard/dashboard.state.js:157
+#: app/states/requests/list/list.state.js:107
+#: app/states/requests/list/list.state.js:78
+msgid "Request Status"
+msgstr "Estado de la petición"
+
+#: app/states/requests/details/details.html:97
+msgid "Request Type"
+msgstr "Tipo de petición"
+
+#: app/states/requests/details/details.html:5
+msgid "Request:"
+msgstr "Petición:"
+
+#: app/states/requests/list/list.html:29
+msgid "Requested"
+msgstr "Pedido"
+
+#: app/states/requests/details/details.html:61
+msgid "Requested By"
+msgstr "Pedido por"
+
+#: app/states/requests/details/details.state.js:19
+msgid "Requests Details"
+msgstr "Detalles de la petición"
+
+#: app/states/services/details/details.html:50
+msgid "Retire"
+msgstr "Retirar"
+
+#: app/states/services/details/details.html:54
+msgid "Retire Now"
+msgstr "Retirar ahora"
+
+#: app/states/services/details/details.html:56
+msgid "Retire Service Now"
+msgstr "Retirar el servicio ahora"
+
+#: app/states/services/list/list.state.js:75
+msgid "Retired"
+msgstr "Retirado"
+
+#: app/states/dashboard/dashboard.html:58
+msgid "Retired Services"
+msgstr "Servicios retirados"
+
+#: app/components/retire-service-modal/retire-service-modal.html:18
+#: app/states/dashboard/dashboard.state.js:162
+#: app/states/services/details/details.html:86
+#: app/states/services/list/list.html:22
+#: app/states/services/list/list.state.js:109
+#: app/states/services/list/list.state.js:72
+msgid "Retirement Date"
+msgstr "Fecha de retiro"
+
+#: app/components/retire-service-modal/retire-service-modal.html:9
+msgid "Retirement Warning"
+msgstr "Alarma de retiro"
+
+#: app/states/dashboard/dashboard.html:32
+msgid "Retiring Soon"
+msgstr "Se retirará en breve"
+
+#: app/components/edit-service-modal/edit-service-modal.html:22
+#: app/components/ownership-service-modal/ownership-service-modal.html:33
+#: app/components/retire-service-modal/retire-service-modal.html:25
+msgid "Save"
+msgstr "Guardar"
+
+#: app/states/services/details/details.html:62
+msgid "Schedule Retirement"
+msgstr "Programar retiro"
+
+#: app/components/retire-service-modal/retire-service-modal.html:5
+msgid "Schedule Service Retirement"
+msgstr "Programar retiro de servicio"
+
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:67
+msgid "Scheduling retirement for"
+msgstr "Programando retiro para"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:19
+msgid "Select a Group"
+msgstr "Seleccione un grupo"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:9
+msgid "Select an Owner"
+msgstr "Seleccione un propietario"
+
+#: app/skin/skin.module.js:11
+#: index.html:4
+msgid "Self Service"
+msgstr "Autoservicio"
+
+#: app/config/navigation.config.js:31
+#: app/states/marketplace/list/list.state.js:19
+#: app/states/marketplace/list/list.state.js:51
+msgid "Service Catalog"
+msgstr "Catálogo de servicios"
+
+#: app/states/services/custom_button_details/custom_button_details.state.js:19
+msgid "Service Custom Button Details"
+msgstr "Detalles de Botón Personalizado"
+
+#: app/states/products/details/details.state.js:28
+#: app/states/services/details/details.state.js:19
+#: app/states/services/details/details.state.js:62
+#: app/states/services/reconfigure/reconfigure.state.js:19
+#: app/states/services/reconfigure/reconfigure.state.js:41
+msgid "Service Details"
+msgstr "Detalles de servicio"
+
+#: app/states/services/details/details.html:79
+msgid "Service Id"
+msgstr "ID de servicio"
+
+#: app/states/services/list/list.state.js:19
+#: app/states/services/list/list.state.js:39
+msgid "Service List"
+msgstr "Lista de servicios"
+
+#: app/states/marketplace/details/details.state.js:19
+#: app/states/marketplace/details/details.state.js:46
+msgid "Service Template Details"
+msgstr "Detalles de Plantilla de servicio"
+
+#: app/states/marketplace/details/details.html:5
+#: app/states/services/details/details.html:5
+msgid "Service:"
+msgstr "Servicio:"
+
+#: app/states/services/details/details.html:66
+msgid "Set Ownership"
+msgstr "Asignar dueño:"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:5
+msgid "Set Service Ownership"
+msgstr "Asignar dueño al servicio"
+
+#: app/states/products/details/details.html:55
+msgid "Setup"
+msgstr "Configuración"
+
+#: app/states/services/details/details.html:181
+msgid "Size"
+msgstr "Tamaño"
+
+#: app/states/services/list/list.state.js:75
+msgid "Soon"
+msgstr "En breve"
+
+#: app/states/marketplace/details/details.html:31
+#: app/states/services/custom_button_details/custom_button_details.html:21
+#: app/states/services/reconfigure/reconfigure.html:23
+msgid "Submit Request"
+msgstr "Enviar petición"
+
+#: app/states/requests/list/list.html:35
+#: app/states/requests/list/list.html:37
+#: app/states/requests/list/list.html:39
+msgid "The current approval status of the request"
+msgstr "El estado actual de aprovación de la petición"
+
+#: app/states/services/details/details.html:186
+msgid "The last heartbeat received from the instances"
+msgstr "El último heartbeat recibido por las instancias"
+
+#: app/states/dashboard/dashboard.html:50
+msgid "The number of active services"
+msgstr "El número de servicios activos"
+
+#: app/states/services/list/list.html:29
+msgid "The number of instances running this service"
+msgstr "El número de instancias ejecutando este servicio"
+
+#: app/states/dashboard/dashboard.html:37
+msgid "The number of services retiring within the next 30 days"
+msgstr "El número de servicios que se retirarán los próximos 30 días"
+
+#: app/states/dashboard/dashboard.html:63
+msgid ""
+"The number of services which have hit their retirement period or been "
+"retired"
+msgstr ""
+"El número de servicios que han llegado a su periodo de retiro o has sido "
+"retirados"
+
+#: app/states/404/404.html:6
+msgid ""
+"The page you are looking for might have been removed, had its name changed, "
+"or is temporarily unavailable."
+msgstr ""
+"La página que está buscando puede que haya sido borrada, su nombre haya "
+"cambiado, o no esté disponible temporalmente."
+
+#: app/states/404/404.html:5
+msgid "The page you requested cannot be found."
+msgstr "La página que pidió no ha sido encontrada"
+
+#: app/config/navigation.config.js:40
+msgid "The total number of available blueprints"
+msgstr "El número total de blueprints disponible"
+
+#: app/config/navigation.config.js:34
+msgid "The total number of available catalog items"
+msgstr "El número total de elementos disponibles en el catálogo"
+
+#: app/config/navigation.config.js:28
+msgid "The total number of requests that you have submitted"
+msgstr "El número total de peticiones que ha enviado"
+
+#: app/config/navigation.config.js:22
+msgid ""
+"The total number of services that you have ordered, both active and retired"
+msgstr ""
+"El número total de servicios que ha ordenado, tanto activos como retirados"
+
+#: app/states/error/error.html:10
+msgid "There was a problem loading the page."
+msgstr "Hubo un error al cargar la página."
+
+#: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
+msgid "There was an error editing this service."
+msgstr "Hubo un error al editar el servicio."
+
+#: app/states/services/details/details.state.js:106
+msgid "There was an error removing this service."
+msgstr "Hubo un error eliminando el servicio."
+
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
+#: app/states/services/details/details.state.js:128
+msgid "There was an error retiring this service."
+msgstr "Hubo un error retirando el servicio."
+
+#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:93
+msgid "There was an error saving ownership of this service."
+msgstr "Hubo un error al guardar el dueño del servicio."
+
+#: app/states/marketplace/details/details.state.js:101
+#: app/states/services/custom_button_details/custom_button_details.state.js:93
+#: app/states/services/reconfigure/reconfigure.state.js:112
+msgid "There was an error submitting this request:"
+msgstr "Hubo un error al enviar esta petición:"
+
+#: app/states/services/details/details.html:164
+msgid "This service has no associated VMs"
+msgstr "Este servicio no tiene MV asociadas"
+
+#: app/components/navigation/header-nav.html:4
+msgid "Toggle navigation"
+msgstr "Conmutar navegación"
+
+#: app/states/dashboard/dashboard.html:20
+msgid "Total Requests"
+msgstr "Peticiones totales"
+
+#: app/states/dashboard/dashboard.html:9
+msgid "Total Services"
+msgstr "Servicios Totales"
+
+#: app/states/login/login.state.js:41
+#: app/states/login/login.state.js:61
+msgid "User does not have privileges to login."
+msgstr "El usuario no tiene privilegios para entrar."
+
+#: app/states/login/login.html:12
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: app/states/services/list/list.html:30
+msgid "VMs"
+msgstr "MV"
+
+#: app/states/services/details/details.html:176
+msgid "Vendor"
+msgstr "Proveedor"
+
+#: app/states/services/details/details.html:163
+msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
+msgstr "Máquinas Virtuales ({{ ::vm.service.vms.length }})"
+
+#: app/states/404/404.html:7
+#: app/states/error/error.html:13
+msgid "We apologize for the inconvenience."
+msgstr "Disculpe las molestias."
+
+#: app/states/services/details/details.html:43
+msgid "Yes, Remove Service"
+msgstr "Sí, borre el servicio"
+
+#: app/states/services/details/details.html:58
+msgid "Yes, Retire Service Now"
+msgstr "Sí, retire el servicio ahora"
+
+#: app/config/authorization.config.js:47
+msgid "Your session has timed out."
+msgstr "Su sesión a expirado."
+
+#: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
+msgid "was edited."
+msgstr "fue editado."
+
+#: app/states/services/details/details.state.js:101
+msgid "was removed."
+msgstr "fue eliminado."
+
+#: app/states/services/details/details.state.js:123
+msgid "was retired."
+msgstr "fue retirado."

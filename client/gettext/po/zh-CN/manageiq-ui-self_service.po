@@ -1,0 +1,794 @@
+# leahliu <lliu@redhat.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2016-04-08 01:47-0400\n"
+"Last-Translator: leahliu <lliu@redhat.com>\n"
+"Language-Team: Chinese (China)\n"
+"Language: zh-CN\n"
+"X-Generator: Zanata 3.8.3\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: app/components/navigation/header-nav.html:42
+msgid "(Current Group)"
+msgstr "（当前组）"
+
+#: app/components/retire-service-modal/retire-service-modal.html:12
+msgid "1 Week"
+msgstr "1 周"
+
+#: app/components/retire-service-modal/retire-service-modal.html:13
+msgid "2 Weeks"
+msgstr "2 周"
+
+#: app/components/retire-service-modal/retire-service-modal.html:14
+msgid "3 Weeks"
+msgstr "3 周"
+
+#: app/components/retire-service-modal/retire-service-modal.html:15
+msgid "4 Weeks"
+msgstr "4 周"
+
+#: app/states/about-me/about-me.html:1
+#: app/states/about-me/about-me.state.js:20
+#: app/states/about-me/about-me.state.js:29
+msgid "About Me"
+msgstr "关于我"
+
+#: app/components/custom-button/custom-button.directive.js:120
+#: app/components/custom-button/custom-button.directive.js:132
+msgid "Action not able to submit."
+msgstr "操作无法提交。"
+
+#: app/states/products/details/details.state.js:35
+msgid "Activated Products Details View"
+msgstr "激活的产品详情视图"
+
+#: app/states/products/details/details.html:18
+msgid "Active"
+msgstr "激活"
+
+#: app/states/requests/list/list.state.js:81
+msgid "Approved"
+msgstr "已批准"
+
+#: app/states/dashboard/dashboard.html:91
+msgid "Approved Requests"
+msgstr "已批准的请求"
+
+#: app/states/requests/details/details.html:73
+msgid "Approver"
+msgstr "审核人"
+
+#: app/components/confirmation/confirmation.directive.js:95
+msgid "Are you sure you wish to proceed?"
+msgstr "您确定要继续吗？"
+
+#: app/states/requests/details/details.html:3
+msgid "Back to My Requests"
+msgstr "返回我的请求"
+
+#: app/states/services/details/details.html:3
+msgid "Back to My Services"
+msgstr "返回我的服务"
+
+#: app/states/services/custom_button_details/custom_button_details.html:7
+#: app/states/services/reconfigure/reconfigure.html:3
+msgid "Back to Service"
+msgstr "返回服务"
+
+#: app/states/marketplace/details/details.html:3
+#: app/states/services/custom_button_details/custom_button_details.html:3
+msgid "Back to Service Catalog"
+msgstr "返回服务目录"
+
+#: app/states/blueprints/list/list.state.js:19
+#: app/states/blueprints/list/list.state.js:29
+msgid "Blueprint List"
+msgstr "蓝图列表"
+
+#: app/config/navigation.config.js:37
+msgid "Blueprints"
+msgstr "蓝图"
+
+#: app/components/custom-button/custom-button.directive.js:100
+msgid "Button action not supported."
+msgstr "不支持按钮操作。"
+
+#: app/states/services/details/details.html:116
+msgid "CPU"
+msgstr "CPU"
+
+#: app/components/confirmation/confirmation.directive.js:97
+#: app/components/edit-service-modal/edit-service-modal.html:21
+#: app/components/ownership-service-modal/ownership-service-modal.html:32
+#: app/components/retire-service-modal/retire-service-modal.html:24
+#: app/states/services/reconfigure/reconfigure.html:24
+msgid "Cancel"
+msgstr "取消"
+
+#: app/states/marketplace/list/list.state.js:105
+#: app/states/marketplace/list/list.state.js:86
+msgid "Catalog Name"
+msgstr "目录名称"
+
+#: app/components/navigation/header-nav.html:34
+msgid "Change Group:"
+msgstr "目录组："
+
+#: app/components/navigation/header-nav.html:46
+msgid "Change to this Group"
+msgstr "更换至这个组"
+
+#: app/states/services/details/details.html:42
+msgid "Confirm, would you like to remove this service?"
+msgstr "确认，您是否要删除这个服务？"
+
+#: app/states/services/details/details.html:57
+msgid "Confirm, would you like to retire this service?"
+msgstr "确认，您是否要停用这个服务？"
+
+#: app/states/services/list/list.state.js:124
+#: app/states/services/list/list.state.js:91
+msgid "Created"
+msgstr "已创建"
+
+#: app/states/services/details/details.html:106
+#: app/states/services/list/list.html:40
+msgid "Created On"
+msgstr "创建于"
+
+#: app/states/products/details/details.html:33
+msgid "Creation Date"
+msgstr "创建日期"
+
+#: app/states/services/list/list.state.js:75
+msgid "Current"
+msgstr "当前"
+
+#: app/components/navigation/header-nav.html:53
+msgid "Current Group"
+msgstr "当前组"
+
+#: app/states/dashboard/dashboard.html:45
+msgid "Current Services"
+msgstr "当前服务"
+
+#: app/components/navigation/header-nav.html:40
+msgid "Currently Selected Group"
+msgstr "当前所选组"
+
+#: app/components/custom-button/custom-button.html:28
+#: app/components/custom-button/custom-button.html:30
+msgid "Custom Actions"
+msgstr "自定义动作"
+
+#: app/states/services/custom_button_details/custom_button_details.html:10
+msgid "Custom Button:"
+msgstr "自定义按钮："
+
+#: app/states/services/custom_button_details/custom_button_details.state.js:46
+msgid "Custom button action"
+msgstr "自定义按钮动作"
+
+#: app/config/navigation.config.js:14
+#: app/states/dashboard/dashboard.state.js:154
+#: app/states/dashboard/dashboard.state.js:20
+msgid "Dashboard"
+msgstr "仪表板"
+
+#: app/states/requests/list/list.state.js:81
+msgid "Denied"
+msgstr "已拒绝"
+
+#: app/states/dashboard/dashboard.html:104
+msgid "Denied Requests"
+msgstr "已拒绝的请求"
+
+#: app/components/edit-service-modal/edit-service-modal.html:13
+#: app/states/marketplace/list/list.state.js:80
+#: app/states/requests/list/list.state.js:60
+#: app/states/requests/list/list.state.js:92
+msgid "Description"
+msgstr "描述"
+
+#: app/states/services/details/details.html:128
+msgid "Disk Count"
+msgstr "磁盘计数"
+
+#: app/states/services/details/details.html:134
+msgid "Disk Space Allocated"
+msgstr "已分配磁盘空间"
+
+#: app/states/services/details/details.html:140
+msgid "Disk Space Used"
+msgstr "已使用磁盘空间"
+
+#: app/components/edit-service-modal/edit-service-modal.html:5
+#: app/states/services/details/details.html:65
+msgid "Edit Service"
+msgstr "编辑服务"
+
+#: app/states/error/error.state.js:21
+msgid "Error"
+msgstr "错误"
+
+#: app/config/authorization.config.js:105
+msgid "Error retrieving user info"
+msgstr "检索应用信息时出错"
+
+#: app/states/marketplace/list/list.state.js:87
+msgid "Filter by Catalog Name"
+msgstr "根据分类名称过滤"
+
+#: app/states/services/list/list.state.js:92
+msgid "Filter by Created On"
+msgstr "根据创建位置过滤"
+
+#: app/states/marketplace/list/list.state.js:81
+#: app/states/requests/list/list.state.js:61
+msgid "Filter by Description"
+msgstr "根据描述过滤"
+
+#: app/states/requests/list/list.state.js:67
+msgid "Filter by ID"
+msgstr "根据 ID 过滤"
+
+#: app/states/marketplace/list/list.state.js:75
+#: app/states/services/list/list.state.js:67
+msgid "Filter by Name"
+msgstr "根据名称过滤"
+
+#: app/states/services/list/list.state.js:86
+msgid "Filter by Owner"
+msgstr "根据所有者过滤"
+
+#: app/states/requests/list/list.state.js:73
+msgid "Filter by Request Date"
+msgstr "根据请求日期过滤"
+
+#: app/states/services/list/list.state.js:73
+msgid "Filter by Retirement Date"
+msgstr "根据过期日期过滤"
+
+#: app/states/requests/list/list.state.js:79
+msgid "Filter by Status"
+msgstr "根据状态过滤"
+
+#: app/states/services/list/list.state.js:80
+msgid "Filter by VMs"
+msgstr "根据 VM 过滤"
+
+#: app/components/confirmation/confirmation.directive.js:54
+#: app/components/confirmation/confirmation.directive.js:59
+msgid "For Sizing"
+msgstr "根据大小过滤"
+
+#: app/states/services/details/details.html:100
+msgid "Group"
+msgstr "组"
+
+#: app/states/help/help.html:1
+#: app/states/help/help.state.js:20
+#: app/states/help/help.state.js:29
+msgid "Help"
+msgstr "帮助"
+
+#: app/states/products/details/details.html:56
+msgid "Hourly"
+msgstr "每小时"
+
+#: app/states/requests/list/list.html:24
+msgid "ID"
+msgstr "ID"
+
+#: app/states/services/details/details.html:49
+msgid "Inactivate the service"
+msgstr "取消激活该服务"
+
+#: app/states/products/details/details.html:19
+msgid "Inactive"
+msgstr "取消激活"
+
+#: app/resources/authentication-api.factory.js:30
+msgid "Incorrect username or password."
+msgstr "用户名或密码不正确"
+
+#: app/states/requests/details/details.html:83
+msgid "Last Message"
+msgstr "上一条消息"
+
+#: app/states/services/details/details.html:186
+msgid "Last Scan"
+msgstr "上一次扫描"
+
+#: app/states/products/details/details.html:38
+#: app/states/requests/details/details.html:91
+msgid "Last Updated"
+msgstr "上一次更新"
+
+#: app/states/login/login.html:39
+msgid "Log In"
+msgstr "登录"
+
+#: app/components/navigation/header-nav.html:19
+msgid "Log into the full administrative UI"
+msgstr "登录全面管理 UI"
+
+#: app/states/login/login.state.js:20
+#: app/states/login/login.state.js:32
+msgid "Login"
+msgstr "登录"
+
+#: app/components/navigation/header-nav.html:61
+#: app/states/logout/logout.state.js:18
+#: app/states/logout/logout.state.js:27
+msgid "Logout"
+msgstr "退出"
+
+#: app/skin/skin.module.js:8
+#: app/states/error/error.html:3
+msgid "ManageIQ Self Service"
+msgstr "ManageIQ 自助服务"
+
+#: app/states/services/details/details.html:122
+msgid "Memory"
+msgstr "内存"
+
+#: app/states/services/details/details.html:147
+msgid "Memory on Disk"
+msgstr "磁盘中的内存"
+
+#: app/states/products/details/details.html:57
+msgid "Monthly"
+msgstr "每月"
+
+#: app/components/ss-card/ss-card.html:9
+msgid "More"
+msgstr "更多"
+
+#: app/config/navigation.config.js:25
+msgid "My Requests"
+msgstr "我的请求"
+
+#: app/config/navigation.config.js:19
+msgid "My Services"
+msgstr "我的服务"
+
+#: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/services/services-state.service.js:14
+#: app/states/marketplace/list/list.state.js:100
+#: app/states/marketplace/list/list.state.js:74
+#: app/states/services/list/list.state.js:104
+#: app/states/services/list/list.state.js:66
+msgid "Name"
+msgstr "名称"
+
+#: app/states/services/list/list.html:24
+msgid "Never"
+msgstr "从不"
+
+#: app/components/dialog-content/dialog-content.html:3
+msgid "No Provisioning Dialog Available."
+msgstr "没有可用的部署对话。"
+
+#: app/components/retire-service-modal/retire-service-modal.html:11
+msgid "No Warning"
+msgstr "没有警告"
+
+#: app/states/services/list/list.state.js:114
+#: app/states/services/list/list.state.js:79
+msgid "Number of VMs"
+msgstr "VM 数"
+
+#: app/states/services/details/details.html:94
+#: app/states/services/list/list.html:35
+#: app/states/services/list/list.state.js:119
+#: app/states/services/list/list.state.js:85
+msgid "Owner"
+msgstr "拥有者"
+
+#: app/states/login/login.html:20
+msgid "Password"
+msgstr "密码"
+
+#: app/states/requests/list/list.state.js:81
+msgid "Pending"
+msgstr "等待处理"
+
+#: app/states/dashboard/dashboard.html:78
+msgid "Pending Requests"
+msgstr "等待处理的请求"
+
+#: app/states/services/details/details.html:37
+msgid "Permanently delete the service"
+msgstr "永久删除该服务"
+
+#: app/states/services/details/details.html:191
+#: app/states/services/details/details.html:192
+#: app/states/services/details/details.html:193
+msgid "Power State"
+msgstr "电源状态"
+
+#: app/states/products/details/details.html:50
+msgid "Pricing"
+msgstr "定价"
+
+#: app/states/products/details/details.html:10
+msgid "Product"
+msgstr "产品"
+
+#: app/states/products/details/details.html:17
+msgid "Product Status"
+msgstr "产品状态"
+
+#: app/states/products/details/details.html:28
+msgid "Product Tags"
+msgstr "产品标签"
+
+#: app/states/products/details/details.html:23
+msgid "Product Type"
+msgstr "产品类型"
+
+#: app/states/products/details/details.state.js:19
+msgid "Products Details"
+msgstr "产品详情"
+
+#: app/states/products/details/details.html:43
+msgid "Provisioning Answers"
+msgstr "预配问题答案"
+
+#: app/states/services/details/details.html:67
+msgid "Reconfigure"
+msgstr "重新配置"
+
+#: app/states/services/reconfigure/reconfigure.html:5
+msgid "Reconfigure Service:"
+msgstr "重新配置服务："
+
+#: app/states/services/reconfigure/reconfigure.state.js:117
+msgid "Reconfigure this service has been cancelled"
+msgstr "已取消重新配置这个服务的操作"
+
+#: app/components/dialog-content/dialog-content.html:114
+msgid "Refresh"
+msgstr "刷新"
+
+#: app/states/services/details/details.html:37
+#: app/states/services/details/details.html:41
+msgid "Remove Service"
+msgstr "删除服务"
+
+#: app/states/requests/details/details.html:67
+msgid "Request Approval State"
+msgstr "请求批准状态"
+
+#: app/services/requests-state.service.js:13
+#: app/states/requests/details/details.html:55
+#: app/states/requests/list/list.state.js:102
+#: app/states/requests/list/list.state.js:72
+msgid "Request Date"
+msgstr "请求日期"
+
+#: app/states/requests/details/details.html:37
+#: app/states/requests/list/list.state.js:66
+#: app/states/requests/list/list.state.js:97
+msgid "Request ID"
+msgstr "请求 ID"
+
+#: app/states/requests/list/list.state.js:19
+#: app/states/requests/list/list.state.js:40
+msgid "Request List"
+msgstr "请求列表"
+
+#: app/states/requests/details/details.html:43
+msgid "Request State"
+msgstr "请求状态"
+
+#: app/states/dashboard/dashboard.state.js:157
+#: app/states/requests/list/list.state.js:107
+#: app/states/requests/list/list.state.js:78
+msgid "Request Status"
+msgstr "请求状态"
+
+#: app/states/requests/details/details.html:97
+msgid "Request Type"
+msgstr "请求类型"
+
+#: app/states/requests/details/details.html:5
+msgid "Request:"
+msgstr "请求："
+
+#: app/states/requests/list/list.html:29
+msgid "Requested"
+msgstr "已请求"
+
+#: app/states/requests/details/details.html:61
+msgid "Requested By"
+msgstr "请求人"
+
+#: app/states/requests/details/details.state.js:19
+msgid "Requests Details"
+msgstr "请求详情"
+
+#: app/states/services/details/details.html:50
+msgid "Retire"
+msgstr "停用"
+
+#: app/states/services/details/details.html:54
+msgid "Retire Now"
+msgstr "现在停用"
+
+#: app/states/services/details/details.html:56
+msgid "Retire Service Now"
+msgstr "现在停用服务"
+
+#: app/states/services/list/list.state.js:75
+msgid "Retired"
+msgstr "已停用"
+
+#: app/states/dashboard/dashboard.html:58
+msgid "Retired Services"
+msgstr "已停用服务"
+
+#: app/components/retire-service-modal/retire-service-modal.html:18
+#: app/states/dashboard/dashboard.state.js:162
+#: app/states/services/details/details.html:86
+#: app/states/services/list/list.html:22
+#: app/states/services/list/list.state.js:109
+#: app/states/services/list/list.state.js:72
+msgid "Retirement Date"
+msgstr "停用日期"
+
+#: app/components/retire-service-modal/retire-service-modal.html:9
+msgid "Retirement Warning"
+msgstr "停用警告"
+
+#: app/states/dashboard/dashboard.html:32
+msgid "Retiring Soon"
+msgstr "马上停用"
+
+#: app/components/edit-service-modal/edit-service-modal.html:22
+#: app/components/ownership-service-modal/ownership-service-modal.html:33
+#: app/components/retire-service-modal/retire-service-modal.html:25
+msgid "Save"
+msgstr "保存"
+
+#: app/states/services/details/details.html:62
+msgid "Schedule Retirement"
+msgstr "调度停用"
+
+#: app/components/retire-service-modal/retire-service-modal.html:5
+msgid "Schedule Service Retirement"
+msgstr "调度服务停用"
+
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:67
+msgid "Scheduling retirement for"
+msgstr "调度停用"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:19
+msgid "Select a Group"
+msgstr "选择组"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:9
+msgid "Select an Owner"
+msgstr "选择拥有者"
+
+#: app/skin/skin.module.js:11
+#: index.html:4
+msgid "Self Service"
+msgstr "自助服务"
+
+#: app/config/navigation.config.js:31
+#: app/states/marketplace/list/list.state.js:19
+#: app/states/marketplace/list/list.state.js:51
+msgid "Service Catalog"
+msgstr "服务类别"
+
+#: app/states/services/custom_button_details/custom_button_details.state.js:19
+msgid "Service Custom Button Details"
+msgstr "服务自定义按钮详情"
+
+#: app/states/products/details/details.state.js:28
+#: app/states/services/details/details.state.js:19
+#: app/states/services/details/details.state.js:62
+#: app/states/services/reconfigure/reconfigure.state.js:19
+#: app/states/services/reconfigure/reconfigure.state.js:41
+msgid "Service Details"
+msgstr "服务详情"
+
+#: app/states/services/details/details.html:79
+msgid "Service Id"
+msgstr "服务 Id"
+
+#: app/states/services/list/list.state.js:19
+#: app/states/services/list/list.state.js:39
+msgid "Service List"
+msgstr "服务列表"
+
+#: app/states/marketplace/details/details.state.js:19
+#: app/states/marketplace/details/details.state.js:46
+msgid "Service Template Details"
+msgstr "服务模板详情"
+
+#: app/states/marketplace/details/details.html:5
+#: app/states/services/details/details.html:5
+msgid "Service:"
+msgstr "服务："
+
+#: app/states/services/details/details.html:66
+msgid "Set Ownership"
+msgstr "设定拥有者"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:5
+msgid "Set Service Ownership"
+msgstr "设定服务拥有者"
+
+#: app/states/products/details/details.html:55
+msgid "Setup"
+msgstr "设置"
+
+#: app/states/services/details/details.html:181
+msgid "Size"
+msgstr "大小"
+
+#: app/states/services/list/list.state.js:75
+msgid "Soon"
+msgstr "很快"
+
+#: app/states/marketplace/details/details.html:31
+#: app/states/services/custom_button_details/custom_button_details.html:21
+#: app/states/services/reconfigure/reconfigure.html:23
+msgid "Submit Request"
+msgstr "提交请求"
+
+#: app/states/requests/list/list.html:35
+#: app/states/requests/list/list.html:37
+#: app/states/requests/list/list.html:39
+msgid "The current approval status of the request"
+msgstr "该请求的当前批准状态"
+
+#: app/states/services/details/details.html:186
+msgid "The last heartbeat received from the instances"
+msgstr "从事务中收到的最后 heartbeat"
+
+#: app/states/dashboard/dashboard.html:50
+msgid "The number of active services"
+msgstr "活跃服务数"
+
+#: app/states/services/list/list.html:29
+msgid "The number of instances running this service"
+msgstr "运行这个服务的实例数"
+
+#: app/states/dashboard/dashboard.html:37
+msgid "The number of services retiring within the next 30 days"
+msgstr "在未来三十天内要停用的服务数"
+
+#: app/states/dashboard/dashboard.html:63
+msgid ""
+"The number of services which have hit their retirement period or been "
+"retired"
+msgstr "达到其停用期限或已停用的服务数"
+
+#: app/states/404/404.html:6
+msgid ""
+"The page you are looking for might have been removed, had its name changed, "
+"or is temporarily unavailable."
+msgstr "您查看的页面可能已被删除、改名或暂时不可用。"
+
+#: app/states/404/404.html:5
+msgid "The page you requested cannot be found."
+msgstr "无法找到您请求的页面。"
+
+#: app/config/navigation.config.js:40
+msgid "The total number of available blueprints"
+msgstr "可用蓝图总数"
+
+#: app/config/navigation.config.js:34
+msgid "The total number of available catalog items"
+msgstr "可用类别项目总数"
+
+#: app/config/navigation.config.js:28
+msgid "The total number of requests that you have submitted"
+msgstr "您提交的请求总数"
+
+#: app/config/navigation.config.js:22
+msgid ""
+"The total number of services that you have ordered, both active and retired"
+msgstr "您要求的服务总数，包括活跃和停用的服务。"
+
+#: app/states/error/error.html:10
+msgid "There was a problem loading the page."
+msgstr "载入该页面有问题。"
+
+#: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
+msgid "There was an error editing this service."
+msgstr "编辑此服务时出错。"
+
+#: app/states/services/details/details.state.js:106
+msgid "There was an error removing this service."
+msgstr "删除此服务时出错。"
+
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
+#: app/states/services/details/details.state.js:128
+msgid "There was an error retiring this service."
+msgstr "停用此服务时出错。"
+
+#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:93
+msgid "There was an error saving ownership of this service."
+msgstr "保存此服务的拥有者时出错。"
+
+#: app/states/marketplace/details/details.state.js:101
+#: app/states/services/custom_button_details/custom_button_details.state.js:93
+#: app/states/services/reconfigure/reconfigure.state.js:112
+msgid "There was an error submitting this request:"
+msgstr "提交此请求时出错："
+
+#: app/states/services/details/details.html:164
+msgid "This service has no associated VMs"
+msgstr "这个服务没有关联的 VM"
+
+#: app/components/navigation/header-nav.html:4
+msgid "Toggle navigation"
+msgstr "切换导航"
+
+#: app/states/dashboard/dashboard.html:20
+msgid "Total Requests"
+msgstr "请求总数"
+
+#: app/states/dashboard/dashboard.html:9
+msgid "Total Services"
+msgstr "服务总数"
+
+#: app/states/login/login.state.js:41
+#: app/states/login/login.state.js:61
+msgid "User does not have privileges to login."
+msgstr "用户没有登录的特权。"
+
+#: app/states/login/login.html:12
+msgid "Username"
+msgstr "用户名"
+
+#: app/states/services/list/list.html:30
+msgid "VMs"
+msgstr "VM"
+
+#: app/states/services/details/details.html:176
+msgid "Vendor"
+msgstr "销售商"
+
+#: app/states/services/details/details.html:163
+msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
+msgstr "虚拟机 ({{ ::vm.service.vms.length }})"
+
+#: app/states/404/404.html:7
+#: app/states/error/error.html:13
+msgid "We apologize for the inconvenience."
+msgstr "对为您带来的不便深表歉意。"
+
+#: app/states/services/details/details.html:43
+msgid "Yes, Remove Service"
+msgstr "是，请删除服务"
+
+#: app/states/services/details/details.html:58
+msgid "Yes, Retire Service Now"
+msgstr "是，请现在停用服务"
+
+#: app/config/authorization.config.js:47
+msgid "Your session has timed out."
+msgstr "您的会话已超时。"
+
+#: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
+msgid "was edited."
+msgstr "已编辑。"
+
+#: app/states/services/details/details.state.js:101
+msgid "was removed."
+msgstr "已删除。"
+
+#: app/states/services/details/details.state.js:123
+msgid "was retired."
+msgstr "已停用。"
