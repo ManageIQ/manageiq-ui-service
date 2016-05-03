@@ -37,7 +37,9 @@
     "ngstorage": "~0.3.10",
     "patternfly": "~2.3.0",
     "sprintf": "~1.0.3",
-    "toastr": "~2.1.1"
+    "toastr": "~2.1.1",
+    "no-vnc": "~0.5.1",
+    "spice-html5-bower": "v0.1.6.1"
   },
   "overrides": {
     "patternfly": {
@@ -61,6 +63,12 @@
         "build/ngprogress.js",
         "ngProgress.css"
       ]
+    },
+    "no-vnc": {
+      "main": []
+    },
+    "spice-html5-bower": {
+      "main": []
     }
   }
 }
