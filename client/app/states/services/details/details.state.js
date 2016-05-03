@@ -31,7 +31,6 @@
       'picture.image_href',
       'evm_owner.name',
       'miq_group.description',
-      'vms',
       'aggregate_all_vm_cpus',
       'aggregate_all_vm_memory',
       'aggregate_all_vm_disk_count',
@@ -43,13 +42,17 @@
       'provision_dialog',
       'service_template'
     ];
-    var options = {attributes: requestAttributes};
+    var options = {
+      attributes: requestAttributes,
+      decorators: [ 'vms.supports_console?' ],
+      expand: 'vms',
+    };
 
     return CollectionsApi.get('services', $stateParams.serviceId, options);
   }
 
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications) {
+  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications, jQuery, Consoles) {
     var vm = this;
 
     vm.showRemoveService = $state.actionFeatures.service_delete.show;
@@ -85,7 +88,8 @@
 
     vm.listConfig = {
       selectItems: false,
-      showSelectBox: false
+      showSelectBox: false,
+      onClick: maybeOpenConsole,
     };
 
     activate();
@@ -104,6 +108,23 @@
 
       function removeFailure(data) {
         Notifications.error(__('There was an error removing this service.'));
+      }
+    }
+
+    /*
+      FIXME
+      this is a hack because it's impossible to access the current scope inside of
+      pf-data-list, and pf-data-list's actionButtons doesn't support hiding buttons
+      based on a condition
+      so the button gets .open-console-button instead of ng-click="vm.openConsole(item)"
+      and we're abusing onClick to verify the event came from that button and call
+      openConsole if so
+     */
+    function maybeOpenConsole(item, event) {
+      var $target = jQuery(event.target);
+
+      if ($target.is('.open-console-button') || $target.is('.open-console-button *')) {
+        Consoles.open(item.id);
       }
     }
 

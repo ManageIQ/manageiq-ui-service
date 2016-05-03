@@ -64,6 +64,13 @@
         params.push('attributes=' + options.attributes);
       }
 
+      if (options.decorators) {
+        if (angular.isArray(options.decorators)) {
+          options.decorators = options.decorators.join(',');
+        }
+        params.push('decorators=' + options.decorators);
+      }
+
       if (options.filter) {
         angular.forEach(options.filter, function(filter) {
           params.push('filter[]=' + filter);
