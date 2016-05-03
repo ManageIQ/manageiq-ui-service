@@ -4,4 +4,7 @@
   <project>manageiq-ui-self_service</project>
   <project-version>d-release</project-version>
   <project-type>gettext</project-type>
+  <rules>
+    <rule pattern="**/po/*.pot">po/{locale}/{filename}.po</rule>
+  </rules>
 </config>
