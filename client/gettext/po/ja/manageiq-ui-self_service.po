@@ -1,0 +1,795 @@
+# miey <myamamot@redhat.com>, 2016. #zanata
+# noriko <noriko@fedoraproject.org>, 2016. #zanata
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2016-04-06 09:11-0400\n"
+"Last-Translator: noriko <noriko@fedoraproject.org>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"X-Generator: Zanata 3.8.3\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: app/components/navigation/header-nav.html:42
+msgid "(Current Group)"
+msgstr "(現在のグループ)"
+
+#: app/components/retire-service-modal/retire-service-modal.html:12
+msgid "1 Week"
+msgstr "1 週間"
+
+#: app/components/retire-service-modal/retire-service-modal.html:13
+msgid "2 Weeks"
+msgstr "2 週間"
+
+#: app/components/retire-service-modal/retire-service-modal.html:14
+msgid "3 Weeks"
+msgstr "3 週間"
+
+#: app/components/retire-service-modal/retire-service-modal.html:15
+msgid "4 Weeks"
+msgstr "4 週間"
+
+#: app/states/about-me/about-me.html:1
+#: app/states/about-me/about-me.state.js:20
+#: app/states/about-me/about-me.state.js:29
+msgid "About Me"
+msgstr "ユーザー詳細"
+
+#: app/components/custom-button/custom-button.directive.js:120
+#: app/components/custom-button/custom-button.directive.js:132
+msgid "Action not able to submit."
+msgstr "アクションを送信できません。"
+
+#: app/states/products/details/details.state.js:35
+msgid "Activated Products Details View"
+msgstr "作動している製品の詳細表示"
+
+#: app/states/products/details/details.html:18
+msgid "Active"
+msgstr "動作中"
+
+#: app/states/requests/list/list.state.js:81
+msgid "Approved"
+msgstr "承認済み"
+
+#: app/states/dashboard/dashboard.html:91
+msgid "Approved Requests"
+msgstr "承認済みの要求"
+
+#: app/states/requests/details/details.html:73
+msgid "Approver"
+msgstr "承認者"
+
+#: app/components/confirmation/confirmation.directive.js:95
+msgid "Are you sure you wish to proceed?"
+msgstr "本当に続行してもよいですか?"
+
+#: app/states/requests/details/details.html:3
+msgid "Back to My Requests"
+msgstr "マイリクエストに戻る"
+
+#: app/states/services/details/details.html:3
+msgid "Back to My Services"
+msgstr "マイサービスに戻る"
+
+#: app/states/services/custom_button_details/custom_button_details.html:7
+#: app/states/services/reconfigure/reconfigure.html:3
+msgid "Back to Service"
+msgstr "サービスに戻る"
+
+#: app/states/marketplace/details/details.html:3
+#: app/states/services/custom_button_details/custom_button_details.html:3
+msgid "Back to Service Catalog"
+msgstr "サービスカタログに戻る"
+
+#: app/states/blueprints/list/list.state.js:19
+#: app/states/blueprints/list/list.state.js:29
+msgid "Blueprint List"
+msgstr "ブループリント一覧"
+
+#: app/config/navigation.config.js:37
+msgid "Blueprints"
+msgstr "ブループリント"
+
+#: app/components/custom-button/custom-button.directive.js:100
+msgid "Button action not supported."
+msgstr "ボタンアクションには対応していません。"
+
+#: app/states/services/details/details.html:116
+msgid "CPU"
+msgstr "CPU"
+
+#: app/components/confirmation/confirmation.directive.js:97
+#: app/components/edit-service-modal/edit-service-modal.html:21
+#: app/components/ownership-service-modal/ownership-service-modal.html:32
+#: app/components/retire-service-modal/retire-service-modal.html:24
+#: app/states/services/reconfigure/reconfigure.html:24
+msgid "Cancel"
+msgstr "取り消し"
+
+#: app/states/marketplace/list/list.state.js:105
+#: app/states/marketplace/list/list.state.js:86
+msgid "Catalog Name"
+msgstr "カタログ名"
+
+#: app/components/navigation/header-nav.html:34
+msgid "Change Group:"
+msgstr "グループの変更:"
+
+#: app/components/navigation/header-nav.html:46
+msgid "Change to this Group"
+msgstr "このグループに変更する"
+
+#: app/states/services/details/details.html:42
+msgid "Confirm, would you like to remove this service?"
+msgstr "確認、このサービスを削除しますか？"
+
+#: app/states/services/details/details.html:57
+msgid "Confirm, would you like to retire this service?"
+msgstr "確認、このサービスをリタイアさせますか？"
+
+#: app/states/services/list/list.state.js:124
+#: app/states/services/list/list.state.js:91
+msgid "Created"
+msgstr "作成"
+
+#: app/states/services/details/details.html:106
+#: app/states/services/list/list.html:40
+msgid "Created On"
+msgstr "作成日"
+
+#: app/states/products/details/details.html:33
+msgid "Creation Date"
+msgstr "作成日"
+
+#: app/states/services/list/list.state.js:75
+msgid "Current"
+msgstr "現在"
+
+#: app/components/navigation/header-nav.html:53
+msgid "Current Group"
+msgstr "現在のグループ"
+
+#: app/states/dashboard/dashboard.html:45
+msgid "Current Services"
+msgstr "現在のサービス"
+
+#: app/components/navigation/header-nav.html:40
+msgid "Currently Selected Group"
+msgstr "現在選択されているグループ"
+
+#: app/components/custom-button/custom-button.html:28
+#: app/components/custom-button/custom-button.html:30
+msgid "Custom Actions"
+msgstr "カスタムのアクション"
+
+#: app/states/services/custom_button_details/custom_button_details.html:10
+msgid "Custom Button:"
+msgstr "カスタムのボタン:"
+
+#: app/states/services/custom_button_details/custom_button_details.state.js:46
+msgid "Custom button action"
+msgstr "カスタムのボタンアクション"
+
+#: app/config/navigation.config.js:14
+#: app/states/dashboard/dashboard.state.js:154
+#: app/states/dashboard/dashboard.state.js:20
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+#: app/states/requests/list/list.state.js:81
+msgid "Denied"
+msgstr "拒否"
+
+#: app/states/dashboard/dashboard.html:104
+msgid "Denied Requests"
+msgstr "拒否された要求"
+
+#: app/components/edit-service-modal/edit-service-modal.html:13
+#: app/states/marketplace/list/list.state.js:80
+#: app/states/requests/list/list.state.js:60
+#: app/states/requests/list/list.state.js:92
+msgid "Description"
+msgstr "説明"
+
+#: app/states/services/details/details.html:128
+msgid "Disk Count"
+msgstr "ディスク数"
+
+#: app/states/services/details/details.html:134
+msgid "Disk Space Allocated"
+msgstr "割り当てディスク領域"
+
+#: app/states/services/details/details.html:140
+msgid "Disk Space Used"
+msgstr "使用ディスク領域"
+
+#: app/components/edit-service-modal/edit-service-modal.html:5
+#: app/states/services/details/details.html:65
+msgid "Edit Service"
+msgstr "サービスの編集"
+
+#: app/states/error/error.state.js:21
+msgid "Error"
+msgstr "エラー"
+
+#: app/config/authorization.config.js:105
+msgid "Error retrieving user info"
+msgstr "ユーザー情報の取得時にエラー"
+
+#: app/states/marketplace/list/list.state.js:87
+msgid "Filter by Catalog Name"
+msgstr "カタログ名でフィルター"
+
+#: app/states/services/list/list.state.js:92
+msgid "Filter by Created On"
+msgstr "作成日でフィルター"
+
+#: app/states/marketplace/list/list.state.js:81
+#: app/states/requests/list/list.state.js:61
+msgid "Filter by Description"
+msgstr "説明でフィルター"
+
+#: app/states/requests/list/list.state.js:67
+msgid "Filter by ID"
+msgstr "ID でフィルター"
+
+#: app/states/marketplace/list/list.state.js:75
+#: app/states/services/list/list.state.js:67
+msgid "Filter by Name"
+msgstr "名前でフィルター"
+
+#: app/states/services/list/list.state.js:86
+msgid "Filter by Owner"
+msgstr "所有者でフィルター"
+
+#: app/states/requests/list/list.state.js:73
+msgid "Filter by Request Date"
+msgstr "要求日でフィルター"
+
+#: app/states/services/list/list.state.js:73
+msgid "Filter by Retirement Date"
+msgstr "リタイア日でフィルター"
+
+#: app/states/requests/list/list.state.js:79
+msgid "Filter by Status"
+msgstr "ステータスでフィルター"
+
+#: app/states/services/list/list.state.js:80
+msgid "Filter by VMs"
+msgstr "仮想マシンでフィルター"
+
+#: app/components/confirmation/confirmation.directive.js:54
+#: app/components/confirmation/confirmation.directive.js:59
+msgid "For Sizing"
+msgstr "サイズの拡大縮小"
+
+#: app/states/services/details/details.html:100
+msgid "Group"
+msgstr "グループ"
+
+#: app/states/help/help.html:1
+#: app/states/help/help.state.js:20
+#: app/states/help/help.state.js:29
+msgid "Help"
+msgstr "ヘルプ"
+
+#: app/states/products/details/details.html:56
+msgid "Hourly"
+msgstr "毎時"
+
+#: app/states/requests/list/list.html:24
+msgid "ID"
+msgstr "ID"
+
+#: app/states/services/details/details.html:49
+msgid "Inactivate the service"
+msgstr "サービスをリタイアさせる"
+
+#: app/states/products/details/details.html:19
+msgid "Inactive"
+msgstr "休止中"
+
+#: app/resources/authentication-api.factory.js:30
+msgid "Incorrect username or password."
+msgstr "ユーザー名またはパスワードが間違っています。"
+
+#: app/states/requests/details/details.html:83
+msgid "Last Message"
+msgstr "最後のメッセージ"
+
+#: app/states/services/details/details.html:186
+msgid "Last Scan"
+msgstr "最後のスキャン"
+
+#: app/states/products/details/details.html:38
+#: app/states/requests/details/details.html:91
+msgid "Last Updated"
+msgstr "最終更新日"
+
+#: app/states/login/login.html:39
+msgid "Log In"
+msgstr "ログイン"
+
+#: app/components/navigation/header-nav.html:19
+msgid "Log into the full administrative UI"
+msgstr "管理詳細 UI にログインする"
+
+#: app/states/login/login.state.js:20
+#: app/states/login/login.state.js:32
+msgid "Login"
+msgstr "ログイン"
+
+#: app/components/navigation/header-nav.html:61
+#: app/states/logout/logout.state.js:18
+#: app/states/logout/logout.state.js:27
+msgid "Logout"
+msgstr "ログアウト"
+
+#: app/skin/skin.module.js:8
+#: app/states/error/error.html:3
+msgid "ManageIQ Self Service"
+msgstr "ManageIQ セルフサービス"
+
+#: app/states/services/details/details.html:122
+msgid "Memory"
+msgstr "メモリー"
+
+#: app/states/services/details/details.html:147
+msgid "Memory on Disk"
+msgstr "ディスクのメモリー"
+
+#: app/states/products/details/details.html:57
+msgid "Monthly"
+msgstr "毎月"
+
+#: app/components/ss-card/ss-card.html:9
+msgid "More"
+msgstr "詳細"
+
+#: app/config/navigation.config.js:25
+msgid "My Requests"
+msgstr "マイリクエスト"
+
+#: app/config/navigation.config.js:19
+msgid "My Services"
+msgstr "マイサービス"
+
+#: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/services/services-state.service.js:14
+#: app/states/marketplace/list/list.state.js:100
+#: app/states/marketplace/list/list.state.js:74
+#: app/states/services/list/list.state.js:104
+#: app/states/services/list/list.state.js:66
+msgid "Name"
+msgstr "名前"
+
+#: app/states/services/list/list.html:24
+msgid "Never"
+msgstr "なし"
+
+#: app/components/dialog-content/dialog-content.html:3
+msgid "No Provisioning Dialog Available."
+msgstr "利用できるプロビジョニングダイアログがありません。"
+
+#: app/components/retire-service-modal/retire-service-modal.html:11
+msgid "No Warning"
+msgstr "警告なし"
+
+#: app/states/services/list/list.state.js:114
+#: app/states/services/list/list.state.js:79
+msgid "Number of VMs"
+msgstr "仮想マシン数"
+
+#: app/states/services/details/details.html:94
+#: app/states/services/list/list.html:35
+#: app/states/services/list/list.state.js:119
+#: app/states/services/list/list.state.js:85
+msgid "Owner"
+msgstr "所有者"
+
+#: app/states/login/login.html:20
+msgid "Password"
+msgstr "パスワード"
+
+#: app/states/requests/list/list.state.js:81
+msgid "Pending"
+msgstr "保留"
+
+#: app/states/dashboard/dashboard.html:78
+msgid "Pending Requests"
+msgstr "保留の要求"
+
+#: app/states/services/details/details.html:37
+msgid "Permanently delete the service"
+msgstr "サービスを永久に削除する"
+
+#: app/states/services/details/details.html:191
+#: app/states/services/details/details.html:192
+#: app/states/services/details/details.html:193
+msgid "Power State"
+msgstr "電力の状態"
+
+#: app/states/products/details/details.html:50
+msgid "Pricing"
+msgstr "価格設定"
+
+#: app/states/products/details/details.html:10
+msgid "Product"
+msgstr "製品"
+
+#: app/states/products/details/details.html:17
+msgid "Product Status"
+msgstr "製品の状態"
+
+#: app/states/products/details/details.html:28
+msgid "Product Tags"
+msgstr "製品のタグ"
+
+#: app/states/products/details/details.html:23
+msgid "Product Type"
+msgstr "製品のタイプ"
+
+#: app/states/products/details/details.state.js:19
+msgid "Products Details"
+msgstr "製品の詳細"
+
+#: app/states/products/details/details.html:43
+msgid "Provisioning Answers"
+msgstr "プロビジョニング用の答え"
+
+#: app/states/services/details/details.html:67
+msgid "Reconfigure"
+msgstr "再設定"
+
+#: app/states/services/reconfigure/reconfigure.html:5
+msgid "Reconfigure Service:"
+msgstr "サービスの再設定:"
+
+#: app/states/services/reconfigure/reconfigure.state.js:117
+msgid "Reconfigure this service has been cancelled"
+msgstr "このサービスの再設定が取り消されました"
+
+#: app/components/dialog-content/dialog-content.html:114
+msgid "Refresh"
+msgstr "更新"
+
+#: app/states/services/details/details.html:37
+#: app/states/services/details/details.html:41
+msgid "Remove Service"
+msgstr "サービスの削除"
+
+#: app/states/requests/details/details.html:67
+msgid "Request Approval State"
+msgstr "要求の承認状況"
+
+#: app/services/requests-state.service.js:13
+#: app/states/requests/details/details.html:55
+#: app/states/requests/list/list.state.js:102
+#: app/states/requests/list/list.state.js:72
+msgid "Request Date"
+msgstr "要求日"
+
+#: app/states/requests/details/details.html:37
+#: app/states/requests/list/list.state.js:66
+#: app/states/requests/list/list.state.js:97
+msgid "Request ID"
+msgstr "要求 ID"
+
+#: app/states/requests/list/list.state.js:19
+#: app/states/requests/list/list.state.js:40
+msgid "Request List"
+msgstr "要求一覧"
+
+#: app/states/requests/details/details.html:43
+msgid "Request State"
+msgstr "要求の状態"
+
+#: app/states/dashboard/dashboard.state.js:157
+#: app/states/requests/list/list.state.js:107
+#: app/states/requests/list/list.state.js:78
+msgid "Request Status"
+msgstr "要求の状態"
+
+#: app/states/requests/details/details.html:97
+msgid "Request Type"
+msgstr "要求のタイプ"
+
+#: app/states/requests/details/details.html:5
+msgid "Request:"
+msgstr "要求:"
+
+#: app/states/requests/list/list.html:29
+msgid "Requested"
+msgstr "要求済み"
+
+#: app/states/requests/details/details.html:61
+msgid "Requested By"
+msgstr "要求者"
+
+#: app/states/requests/details/details.state.js:19
+msgid "Requests Details"
+msgstr "要求の詳細"
+
+#: app/states/services/details/details.html:50
+msgid "Retire"
+msgstr "リタイア"
+
+#: app/states/services/details/details.html:54
+msgid "Retire Now"
+msgstr "今すぐリタイアさせる"
+
+#: app/states/services/details/details.html:56
+msgid "Retire Service Now"
+msgstr "サービスを今すぐリタイアさせます"
+
+#: app/states/services/list/list.state.js:75
+msgid "Retired"
+msgstr "リタイア済み"
+
+#: app/states/dashboard/dashboard.html:58
+msgid "Retired Services"
+msgstr "リタイアさせたサービス"
+
+#: app/components/retire-service-modal/retire-service-modal.html:18
+#: app/states/dashboard/dashboard.state.js:162
+#: app/states/services/details/details.html:86
+#: app/states/services/list/list.html:22
+#: app/states/services/list/list.state.js:109
+#: app/states/services/list/list.state.js:72
+msgid "Retirement Date"
+msgstr "リタイアの日付け"
+
+#: app/components/retire-service-modal/retire-service-modal.html:9
+msgid "Retirement Warning"
+msgstr "リタイア警告"
+
+#: app/states/dashboard/dashboard.html:32
+msgid "Retiring Soon"
+msgstr "もうすぐリタイア"
+
+#: app/components/edit-service-modal/edit-service-modal.html:22
+#: app/components/ownership-service-modal/ownership-service-modal.html:33
+#: app/components/retire-service-modal/retire-service-modal.html:25
+msgid "Save"
+msgstr "保存"
+
+#: app/states/services/details/details.html:62
+msgid "Schedule Retirement"
+msgstr "リタイアをスケジュールする"
+
+#: app/components/retire-service-modal/retire-service-modal.html:5
+msgid "Schedule Service Retirement"
+msgstr "サービスのリタイアをスケジュールする"
+
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:67
+msgid "Scheduling retirement for"
+msgstr "リタイアのスケジュール"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:19
+msgid "Select a Group"
+msgstr "グループの選択"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:9
+msgid "Select an Owner"
+msgstr "所有者の選択"
+
+#: app/skin/skin.module.js:11
+#: index.html:4
+msgid "Self Service"
+msgstr "セルフサービス"
+
+#: app/config/navigation.config.js:31
+#: app/states/marketplace/list/list.state.js:19
+#: app/states/marketplace/list/list.state.js:51
+msgid "Service Catalog"
+msgstr "サービスカタログ"
+
+#: app/states/services/custom_button_details/custom_button_details.state.js:19
+msgid "Service Custom Button Details"
+msgstr "サービスのカスタムボタン詳細"
+
+#: app/states/products/details/details.state.js:28
+#: app/states/services/details/details.state.js:19
+#: app/states/services/details/details.state.js:62
+#: app/states/services/reconfigure/reconfigure.state.js:19
+#: app/states/services/reconfigure/reconfigure.state.js:41
+msgid "Service Details"
+msgstr "サービスの詳細"
+
+#: app/states/services/details/details.html:79
+msgid "Service Id"
+msgstr "サービスの ID"
+
+#: app/states/services/list/list.state.js:19
+#: app/states/services/list/list.state.js:39
+msgid "Service List"
+msgstr "サービス一覧"
+
+#: app/states/marketplace/details/details.state.js:19
+#: app/states/marketplace/details/details.state.js:46
+msgid "Service Template Details"
+msgstr "サービスのテンプレート詳細"
+
+#: app/states/marketplace/details/details.html:5
+#: app/states/services/details/details.html:5
+msgid "Service:"
+msgstr "サービス:"
+
+#: app/states/services/details/details.html:66
+msgid "Set Ownership"
+msgstr "所有権の設定"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:5
+msgid "Set Service Ownership"
+msgstr "サービスの所有権の設定"
+
+#: app/states/products/details/details.html:55
+msgid "Setup"
+msgstr "セットアップ"
+
+#: app/states/services/details/details.html:181
+msgid "Size"
+msgstr "サイズ"
+
+#: app/states/services/list/list.state.js:75
+msgid "Soon"
+msgstr "すぐ"
+
+#: app/states/marketplace/details/details.html:31
+#: app/states/services/custom_button_details/custom_button_details.html:21
+#: app/states/services/reconfigure/reconfigure.html:23
+msgid "Submit Request"
+msgstr "要求の送信"
+
+#: app/states/requests/list/list.html:35
+#: app/states/requests/list/list.html:37
+#: app/states/requests/list/list.html:39
+msgid "The current approval status of the request"
+msgstr "レポートの現在の承認状態です"
+
+#: app/states/services/details/details.html:186
+msgid "The last heartbeat received from the instances"
+msgstr "インスタンスから最後に受信したハートビート"
+
+#: app/states/dashboard/dashboard.html:50
+msgid "The number of active services"
+msgstr "動作中のサービス数"
+
+#: app/states/services/list/list.html:29
+msgid "The number of instances running this service"
+msgstr "このサービスを実行するインスタンス数"
+
+#: app/states/dashboard/dashboard.html:37
+msgid "The number of services retiring within the next 30 days"
+msgstr "今後 30 日以内にリタイアするサービス数"
+
+#: app/states/dashboard/dashboard.html:63
+msgid ""
+"The number of services which have hit their retirement period or been "
+"retired"
+msgstr "リタイア期間終了またはリタイア済みのサービス数"
+
+#: app/states/404/404.html:6
+msgid ""
+"The page you are looking for might have been removed, had its name changed, "
+"or is temporarily unavailable."
+msgstr "お探しのページは削除されたか、名前が変更されたか、一時的に利用できません。"
+
+#: app/states/404/404.html:5
+msgid "The page you requested cannot be found."
+msgstr "要求したページが見つかりません。"
+
+#: app/config/navigation.config.js:40
+msgid "The total number of available blueprints"
+msgstr "利用できるブループリントの合計数"
+
+#: app/config/navigation.config.js:34
+msgid "The total number of available catalog items"
+msgstr "利用可能なカタログアイテムの合計数"
+
+#: app/config/navigation.config.js:28
+msgid "The total number of requests that you have submitted"
+msgstr "送信済みの要求の合計数"
+
+#: app/config/navigation.config.js:22
+msgid ""
+"The total number of services that you have ordered, both active and retired"
+msgstr "動作中およびリタイアさせたサービスいずれも含めユーザーがオーダーしたサービスの合計数です"
+
+#: app/states/error/error.html:10
+msgid "There was a problem loading the page."
+msgstr "ページの読込中に問題が発生しました。"
+
+#: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
+msgid "There was an error editing this service."
+msgstr "このサービスの編集中にエラーが発生しました。"
+
+#: app/states/services/details/details.state.js:106
+msgid "There was an error removing this service."
+msgstr "このサービスの削除中にエラーが発生しました。"
+
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
+#: app/states/services/details/details.state.js:128
+msgid "There was an error retiring this service."
+msgstr "このサービスのリタイア中にエラーが発生しました。"
+
+#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:93
+msgid "There was an error saving ownership of this service."
+msgstr "このサービスの所有権を保存中にエラーがー発生しました。"
+
+#: app/states/marketplace/details/details.state.js:101
+#: app/states/services/custom_button_details/custom_button_details.state.js:93
+#: app/states/services/reconfigure/reconfigure.state.js:112
+msgid "There was an error submitting this request:"
+msgstr "この要求を送信する際にエラーが発生しました。"
+
+#: app/states/services/details/details.html:164
+msgid "This service has no associated VMs"
+msgstr "このサービスには関連付けられた仮想マシンがありません"
+
+#: app/components/navigation/header-nav.html:4
+msgid "Toggle navigation"
+msgstr "ナビゲーションの切り替え"
+
+#: app/states/dashboard/dashboard.html:20
+msgid "Total Requests"
+msgstr "要求の合計数"
+
+#: app/states/dashboard/dashboard.html:9
+msgid "Total Services"
+msgstr "サービス合計数"
+
+#: app/states/login/login.state.js:41
+#: app/states/login/login.state.js:61
+msgid "User does not have privileges to login."
+msgstr "ユーザーにはログインの特権がありません"
+
+#: app/states/login/login.html:12
+msgid "Username"
+msgstr "ユーザー名"
+
+#: app/states/services/list/list.html:30
+msgid "VMs"
+msgstr "仮想マシン"
+
+#: app/states/services/details/details.html:176
+msgid "Vendor"
+msgstr "ベンダー"
+
+#: app/states/services/details/details.html:163
+msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
+msgstr "仮想マシン ({{ ::vm.service.vms.length }})"
+
+#: app/states/404/404.html:7
+#: app/states/error/error.html:13
+msgid "We apologize for the inconvenience."
+msgstr "ご不便をおかけして申し訳ありません。"
+
+#: app/states/services/details/details.html:43
+msgid "Yes, Remove Service"
+msgstr "はい。サービスを削除します。"
+
+#: app/states/services/details/details.html:58
+msgid "Yes, Retire Service Now"
+msgstr "はい。今すぐサービスをリタイアします。"
+
+#: app/config/authorization.config.js:47
+msgid "Your session has timed out."
+msgstr "セッションがタイムアウトしました。"
+
+#: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
+msgid "was edited."
+msgstr ": 編集しました。"
+
+#: app/states/services/details/details.state.js:101
+msgid "was removed."
+msgstr ": 削除しました。"
+
+#: app/states/services/details/details.state.js:123
+msgid "was retired."
+msgstr ": リタイアしました。"
