@@ -22,62 +22,72 @@
     };
 
     var persistence = {
-      // FIXME this one is broken, waiting for the API
-      // ensure a cart exists, and return its id
-      cartId: function() {
-        return CollectionsApi.query('service_orders', {
-          expand: 'resources',
-          filter: [ 'state=cart' ],
-        })
-        .then(function(response) {
-          if (response.resources && response.resources.length) {
-            return response.resources[0].id;
-          } else {
-            return CollectionsApi.post('service_orders', null, {}, { state: "cart" })
-            .then(function(response) {
-              return response.results[0].id;
-            });
-          }
-        });
-      },
-
       // an array of items already in the basket
-      getItems: function(serviceOrderId) {
-        var path = 'service_orders/' + serviceOrderId + '/service_requests';
+      getItems: function() {
+        return CollectionsApi.query('service_orders/cart/service_requests', {
+          expand: 'resources',
+        })
+        .catch(function(err) {
+          // 404 means cart doesn't exist yet, we can simply create it
+          if (err.status !== 404) {
+            return $q.reject(err);
+          }
 
-        return CollectionsApi.query(path, { expand: 'resources' })
+          return CollectionsApi.post('service_orders', null, {}, { state: "cart" })
+          .then(function() {
+            // we just care it's been successfully created
+            return {};
+          });
+        })
         .then(function(response) {
           return response.resources || [];
         });
       },
 
       // order the cart
-      orderCart: function(serviceOrderId) {
-        return CollectionsApi.post('service_orders', serviceOrderId, null, {
+      orderCart: function() {
+        return CollectionsApi.post('service_orders', 'cart', null, {
           action: 'order',
         });
       },
 
       // clear the cart
-      clearCart: function(serviceOrderId) {
-        return CollectionsApi.post('service_orders', serviceOrderId, null, {
+      clearCart: function() {
+        return CollectionsApi.post('service_orders', 'cart', null, {
           action: 'clear',
         });
       },
 
-      // remove a thingy from the cart
-//      removeItem: function(serviceOrderId, thingyId) {
-        // TODO
-//      },
-
       // add a thingy to the cart
-      addItem: function(serviceOrderId, thingy) {
-        // TODO
+      addItem: function(request) {
+        return CollectionsApi.post('service_orders/cart/service_requests', null, null, {
+          action: "add",
+          resources: [ request ],
+        })
+        .then(function(response) {
+          // handle failure
+          if (response.results[0].success === false) {
+            return $q.reject(response.results[0].message);
+          }
+
+          return response.results[0];
+        });
       },
 
-      // TODO remove
-      removeItem: function(item) {
-        return $http.delete(item.href);
+      // remove a thingy from the cart
+      removeItem: function(requestId) {
+        return CollectionsApi.post('service_orders/cart/service_requests', null, null, {
+          action: "remove",
+          resources: [ { id: requestId } ],
+        })
+        .then(function(response) {
+          // handle failure
+          if (response.results[0].success === false) {
+            return $q.reject(response.results[0].message);
+          }
+
+          return response.results[0];
+        });
       },
     };
 
@@ -86,23 +96,23 @@
     return service;
 
     function add(item) {
-      state.items.push(item);
-      notify();
+      return persistence.addItem(item.data)
+      .then(function(response) {
+        state.items.push({
+          id: response.service_request_id,
+          description: item.description,
+        });
+        notify();
+      });
     }
 
     function reload() {
-      var serviceOrderId = null;
-
-      persistence.cartId()
-      .then(function(id) {
-        serviceOrderId = id;
-
-        return persistence.getItems(id);
-      })
+      return persistence.getItems()
       .then(function(items) {
         state = {
-          serviceOrderId: serviceOrderId,
-          items: lodash.cloneDeep(items),
+          items: items.map(function(o) {
+            return lodash.pick(o, ['id', 'description']);
+          }),
         };
 
         notify();
@@ -111,22 +121,20 @@
 
     function doReset() {
       state = {
-        serviceOrderId: null,
         items: [],
       };
     }
 
     function reset() {
-      return persistence.clearCart(state.serviceOrderId)
+      return persistence.clearCart()
       .then(reload);
     }
 
     function removeItem(item) {
-      // FIXME
-      persistence.removeItem(item)
+      return persistence.removeItem(item.id)
       .then(function() {
         state.items = lodash.filter(state.items, function(i) {
-          return i !== item;
+          return i.id !== item.id;
         });
 
         notify();
@@ -134,7 +142,7 @@
     }
 
     function submit() {
-      return persistence.orderCart(state.serviceOrderId)
+      return persistence.orderCart()
       .then(reload);
     }
 

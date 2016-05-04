@@ -74,24 +74,25 @@
       vm.serviceTemplate.id
     );
 
-    function doSubmit(success, failure, process) {
-      var dialogFieldData = {
-        href: '/api/service_templates/' + serviceTemplate.id
-      };
+    function dataForSubmit(href) {
+      var dialogFieldData = {};
+      dialogFieldData[href] = '/api/service_templates/' + serviceTemplate.id;
 
       angular.forEach(allDialogFields, function(dialogField) {
         dialogFieldData[dialogField.name] = dialogField.default_value;
       });
 
-      return CollectionsApi.post(dialogUrl, serviceTemplate.id, {}, {
-        action: 'order',
-        resource: dialogFieldData,
-        process: process,
-      }).then(success, failure);
+      return dialogFieldData;
     }
 
     function submitDialog() {
-      doSubmit(submitSuccess, submitFailure, true);
+      var dialogFieldData = dataForSubmit('href');
+
+      return CollectionsApi.post(dialogUrl, serviceTemplate.id, {}, {
+        action: 'order',
+        resource: dialogFieldData,
+        process: true,
+      }).then(submitSuccess, submitFailure);
 
       function submitSuccess(result) {
         Notifications.success(result.message);
@@ -113,15 +114,20 @@
         return;
       }
 
-      doSubmit(submitSuccess, submitFailure, false);
+      var dialogFieldData = dataForSubmit('service_template_href');
 
-      function submitSuccess(result) {
+      ShoppingCart.add({
+        description: vm.serviceTemplate.name,
+        data: dialogFieldData,
+      })
+      .then(addSuccess, addFailure);
+
+      function addSuccess(result) {
         Notifications.success(__("Item added to shopping cart"));
-        ShoppingCart.add(result);
       }
 
-      function submitFailure(result) {
-        Notifications.error(__('There was an error submitting this request: ') + result);
+      function addFailure(result) {
+        Notifications.error(__('There was an error adding to shopping cart: ') + result);
       }
     }
   }
