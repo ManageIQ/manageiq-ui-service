@@ -18,7 +18,8 @@
         controllerAs: 'vm',
         title: N_('Request List'),
         resolve: {
-          requests: resolveRequests
+          requests: resolveRequests,
+          orders: resolveOrders,
         }
       }
     };
@@ -34,12 +35,22 @@
   }
 
   /** @ngInject */
-  function StateController($state, requests, RequestsState, $filter, $rootScope, lodash) {
+  function resolveOrders(CollectionsApi) {
+    return CollectionsApi.query('service_orders', {
+      expand: ['resources', 'service_requests'],
+      filter: ['state=ordered'],
+    });
+  }
+
+  /** @ngInject */
+  function StateController($state, requests, orders, RequestsState, $filter, $rootScope, lodash) {
     var vm = this;
 
     vm.title = __('Request List');
     vm.requests = requests.resources;
     vm.requestsList = angular.copy(vm.requests);
+
+    vm.orders = orders.resources;
 
     if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
       $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
