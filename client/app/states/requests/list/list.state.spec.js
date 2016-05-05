@@ -33,7 +33,7 @@ describe('Dashboard', function() {
     beforeEach(function() {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'Notifications');
 
-      controller = $controller($state.get('requests.list').controller, {requests: requests});
+      controller = $controller($state.get('requests.list').controller, {requests: requests, orders: []});
       $rootScope.$apply();
     });
 
