@@ -10,9 +10,9 @@
     gettextCatalog.debug = false;
 
     gettextCatalog.loadAndSet = function(lang) {
-      gettextCatalog.setCurrentLanguage(lang);
-
       if (lang) {
+        lang = lang.replace('_', '-');
+        gettextCatalog.setCurrentLanguage(lang);
         gettextCatalog.loadRemote("gettext/json/" + lang + "/manageiq-ui-self_service.json");
       }
     };
