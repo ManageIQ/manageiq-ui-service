@@ -31,12 +31,9 @@
       </div>
       <div class="col-lg-2 col-md-4 hidden-sm hidden-xs">
         <span class="text-capitalize no-wrap">
-          <span class="spinner spinner-xs spinner-inline" ng-if="item.approval_state == 'pending_approval'"
-          tooltip="{{'The current approval status of the request'|translate}}" tooltip-placement="bottom"></span>
-          <span class="pficon-error-circle-o" ng-if="item.approval_state == 'denied'" 
-          tooltip="{{'The current approval status of the request'|translate}}" tooltip-placement="bottom"></span>
-          <span class="pficon-ok" ng-if="item.approval_state == 'approved'" 
-          tooltip="{{'The current approval status of the request'|translate}}" tooltip-placement="bottom"></span>
+          <span class="fa fa-clock-o" ng-if="item.approval_state == 'pending_approval'" tooltip="{{'The current approval status of the request'|translate}}" tooltip-placement="bottom"></span>
+          <span class="pficon-error-circle-o" ng-if="item.approval_state == 'denied'" tooltip="{{'The current approval status of the request'|translate}}" tooltip-placement="bottom"></span>
+          <span class="pficon-ok" ng-if="item.approval_state == 'approved'" tooltip="{{'The current approval status of the request'|translate}}" tooltip-placement="bottom"></span>
           {{ item.approval_state }}
         </span>
       </div>
