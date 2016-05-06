@@ -50,7 +50,6 @@
       vm.dialogs = dialogs.resources[0].content;
     }
 
-    vm.submitDialog = submitDialog;
     vm.addToCart = addToCart;
     vm.cartAllowed = ShoppingCart.allowed;
 
@@ -83,30 +82,6 @@
       });
 
       return dialogFieldData;
-    }
-
-    function submitDialog() {
-      var dialogFieldData = dataForSubmit('href');
-
-      return CollectionsApi.post(dialogUrl, serviceTemplate.id, {}, {
-        action: 'order',
-        resource: dialogFieldData,
-        process: true,
-      }).then(submitSuccess, submitFailure);
-
-      function submitSuccess(result) {
-        Notifications.success(result.message);
-
-        if ($state.navFeatures.requests.show) {
-          $state.go('requests.list');
-        } else {
-          $state.go('dashboard');
-        }
-      }
-
-      function submitFailure(result) {
-        Notifications.error(__('There was an error submitting this request: ') + result);
-      }
     }
 
     function addToCart() {
