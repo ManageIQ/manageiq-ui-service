@@ -10,18 +10,43 @@
 .layout-pf-alt-fixed .nav-pf-vertical-alt
   top: 58px
 
-  .list-group-item.active
-    background: $app-color-light-blue-3
-    border-color: $app-color-light-blue-4
-
-    &::before
-      background: $color-lochmara-approx
-
+.nav-pf-vertical-alt
+  background-color: #292e34
+  .list-group-item:last-child
+    border-bottom: 0
+  .list-group-item
+    background-color: #292e34
+    border-color: #000000
+    i
+      color: #72767b
+      font-size: 14px !important
     a
-      color: $color-lochmara-approx
-
+      color: #dbdada
     a:hover
-      color: $color-lochmara-approx
+      color: #fff
+    .badge
+      background-color: #393f44
+      border: none
+
+  .list-group-item:hover
+    background-color: #393f44
+    i
+      color: #39a5dc
+      font-size: 14px
+    .badge
+      background-color: #292e34
+
+  .list-group-item.active
+    background-color: #393f44
+    border-color: #000000
+    i
+      color: #39a5dc
+      font-size: 14px
+    .badge
+      background-color: #292e34
+
+  .list-group-item.active:before
+    width: 3px
 
 .navbar__user-name
   display: inline-block
