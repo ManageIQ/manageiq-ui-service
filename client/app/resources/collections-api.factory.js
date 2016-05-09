@@ -37,7 +37,7 @@
     }
 
     function post(collection, id, options, data) {
-      var url = API_BASE + '/api/' + collection + '/' + id + buildQuery(options);
+      var url = API_BASE + '/api/' + collection + '/' + (id || "") + buildQuery(options);
 
       return $http.post(url, data, buildConfig(options))
         .then(handleSuccess);

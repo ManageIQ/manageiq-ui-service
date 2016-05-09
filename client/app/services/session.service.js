@@ -5,7 +5,7 @@
     .factory('Session', SessionFactory);
 
   /** @ngInject */
-  function SessionFactory($http, moment, $sessionStorage, gettextCatalog, $window, $state, lodash) {
+  function SessionFactory($http, moment, $sessionStorage, gettextCatalog, $window, $state, lodash, RBAC) {
     var model = {
       token: null,
       user: {}
@@ -84,6 +84,9 @@
     }
 
     function setRBAC(productFeatures) {
+      RBAC.set(productFeatures);
+
+      // FIXME move these to the RBAC service as well
       $state.actionFeatures = setRBACForActions(productFeatures);
       $state.navFeatures = setRBACForNavigation(productFeatures);
     }

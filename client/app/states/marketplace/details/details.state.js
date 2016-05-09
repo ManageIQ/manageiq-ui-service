@@ -40,7 +40,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, CollectionsApi, dialogs, serviceTemplate, Notifications, DialogFieldRefresh) {
+  function StateController($state, CollectionsApi, dialogs, serviceTemplate, Notifications, DialogFieldRefresh, ShoppingCart) {
     var vm = this;
 
     vm.title = __('Service Template Details');
@@ -50,7 +50,8 @@
       vm.dialogs = dialogs.resources[0].content;
     }
 
-    vm.submitDialog = submitDialog;
+    vm.addToCart = addToCart;
+    vm.cartAllowed = ShoppingCart.allowed;
 
     var autoRefreshableDialogFields = [];
     var allDialogFields = [];
@@ -72,33 +73,36 @@
       vm.serviceTemplate.id
     );
 
-    function submitDialog() {
-      var dialogFieldData = {
-        href: '/api/service_templates/' + serviceTemplate.id
-      };
+    function dataForSubmit(href) {
+      var dialogFieldData = {};
+      dialogFieldData[href] = '/api/service_templates/' + serviceTemplate.id;
 
       angular.forEach(allDialogFields, function(dialogField) {
         dialogFieldData[dialogField.name] = dialogField.default_value;
       });
 
-      CollectionsApi.post(
-        dialogUrl,
-        serviceTemplate.id,
-        {},
-        JSON.stringify({action: 'order', resource: dialogFieldData})
-      ).then(submitSuccess, submitFailure);
+      return dialogFieldData;
+    }
 
-      function submitSuccess(result) {
-        Notifications.success(result.message);
-        if ($state.navFeatures.requests.show) {
-          $state.go('requests.list');
-        } else {
-          $state.go('dashboard');
-        }
+    function addToCart() {
+      if (!ShoppingCart.allowed()) {
+        return;
       }
 
-      function submitFailure(result) {
-        Notifications.error(__('There was an error submitting this request: ') + result);
+      var dialogFieldData = dataForSubmit('service_template_href');
+
+      ShoppingCart.add({
+        description: vm.serviceTemplate.name,
+        data: dialogFieldData,
+      })
+      .then(addSuccess, addFailure);
+
+      function addSuccess(result) {
+        Notifications.success(__("Item added to shopping cart"));
+      }
+
+      function addFailure(result) {
+        Notifications.error(__('There was an error adding to shopping cart: ') + result);
       }
     }
   }
