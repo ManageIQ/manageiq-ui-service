@@ -27,9 +27,9 @@
 
       <div class="col-md-2">
         <span class="no-wrap">
-          <i ng-class="{'fa fa-globe': item.visibility.id == '900',
-                        'fa fa-lock': item.visibility.id == '800',
-                        'fa fa-home': (item.visibility.id != '800' && item.visibility.id != '900')}"></i>
+          <i ng-if="item.visibility.id == '900'" class="fa fa-globe fa-2"></i>
+          <img ng-if="item.visibility.id == '800'" width="20px" src="assets/images/blueprint-designer/private.svg">
+          <img ng-if="item.visibility.id != '800' && item.visibility.id != '900'" width="20px" src="assets/images/blueprint-designer/tenant.svg">
           {{ item.visibility.name }}
         </span>
       </div>
@@ -43,7 +43,7 @@
           <strong>Published</strong>
         </span>
         <span class="no-wrap" ng-if="item.published == null">
-          <strong>[ Publish <span class="fa fa-arrow-right">]</span></strong>
+          <strong>[ Publish ]</strong>
         </span>
       </div>
     </div>

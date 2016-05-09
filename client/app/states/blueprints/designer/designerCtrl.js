@@ -106,91 +106,105 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
       });
 
       $scope.tabs = [
-            { preTitle: 'Compute', title: 'Cloud', subtabs: [
-                {title: 'AWS', items: [
-                    {title: 'Amazon Operations', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Create - Elastic Load Balancer', image: 'assets/images/miq-icons/aws-elb.jpg'},
-                    {title: 'Create - RDS Instance', image: 'assets/images/miq-icons/aws-rds.jpg'},
-                    {title: 'Create - S3 Bucket', image: 'assets/images/miq-icons/aws-s3bucket.jpg'},
-                    {title: 'Create - Virtual Private Cloud', image: 'assets/images/miq-icons/aws-vpc.jpg'},
-                    {title: 'RedHat - PaaS', image: 'assets/images/miq-icons/RH-ShadowMan.jpg'},
-                    {title: 'OpenShift All-In-One', image: 'assets/images/miq-icons/OpenShift.png'},
-                    {title: 'OpenShift HA', image: 'assets/images/miq-icons/OpenShift-ha.jpg'}]},
-                {title: 'Azure', items: [
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]},
-                {title: 'GCE', items: [
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]},
-                {title: 'OpenStack', items: [
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]}
+            { preTitle:'Compute', title:'Cloud', subtabs: [
+                {title:'AWS', items: [
+                    {title: 'Ansible', image: 'assets/images/blueprint-designer/Ansible_Logo.svg'},
+                    {title: 'AWS', image: 'assets/images/blueprint-designer/AWS-Logo.svg'},
+                    {title: 'Azure', image: 'assets/images/blueprint-designer/Azure-Logo.svg'},
+                    {title: 'Chef', image: 'assets/images/blueprint-designer/Chef-Logo.png'},
+                    {title: 'Cloudformation', image: 'assets/images/blueprint-designer/Cloudformation-Logo.svg'},
+                    {title: 'GCE', image: 'assets/images/blueprint-designer/GCE_Logo.png'},
+                    {title: 'Kubernetes', image: 'assets/images/blueprint-designer/kubernetes-Logo.svg'},
+                    {title: 'NetApp', image: 'assets/images/blueprint-designer/NetApp_Logo.svg'},
+                    {title: 'Nuage', image: 'assets/images/blueprint-designer/Nuage-Logo.svg'},
+                    {title: 'OpenShift', image: 'assets/images/blueprint-designer/OpenShift-Logo-NoText.svg'},
+                    {title: 'Openstack Heat', image: 'assets/images/blueprint-designer/Openstack-Heat-Logos.svg'},
+                    {title: 'OpenStack', image: 'assets/images/blueprint-designer/Openstack-Logo.svg'},
+                    {title: 'Openstack Neutrons', image: 'assets/images/blueprint-designer/Openstack-Neutrons-Logos.svg'},
+                    {title: 'Puppet', image: 'assets/images/blueprint-designer/Puppet-Logo.svg'},
+                    {title: 'RedHat', image: 'assets/images/blueprint-designer/RedHat_logo.svg'},
+                    {title: 'Atomic', image: 'assets/images/blueprint-designer/RH_Atomic-Logo-NoText.svg'},
+                    {title: 'RHEV', image: 'assets/images/blueprint-designer/RHEV_Logo.svg'},
+                    {title: 'Satellite', image: 'assets/images/blueprint-designer/Satellite_Logo.svg'},
+                    {title: 'Storage', image: 'assets/images/blueprint-designer/Storage_Logo.svg'},
+                    {title: 'Vmware', image: 'assets/images/blueprint-designer/Vmware-Logo.svg'}
+                  ]
+                },
+                {title:'Azure', items: [
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]},
+                {title:'GCE', items: [
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]},
+                {title:'OpenStack', items: [
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]}
             ]
             },
-            { preTitle: 'Compute', title: 'Containers', subtabs: [
-                {title: 'AP', items: [
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]},
-                {title: 'Kubernetes', items: [
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]},
-                {title: 'OSE', items: [
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]}
+            { preTitle:'Compute', title:'Containers', subtabs: [
+                {title:'AP', items: [
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]},
+                {title:'Kubernetes', items: [
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]},
+                {title:'OSE', items: [
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
+                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]}
             ]
             },
             { preTitle: 'Compute', title: 'Infrastructure', subtabs:
@@ -225,17 +239,18 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
                     {title: 'Hawkular'}
                 ]
             },
-            { title: 'Bundles', items: [
-                {title: 'Bundle', image: 'assets/images/miq-icons/catalogItem.png'},
-                {title: 'Bundle', image: 'assets/images/miq-icons/catalogItem.png'},
-                {title: 'Bundle', image: 'assets/images/miq-icons/catalogItem.png'},
-                {title: 'Bundle', image: 'assets/images/miq-icons/catalogItem.png'},
-                {title: 'Bundle', image: 'assets/images/miq-icons/catalogItem.png'},
-                {title: 'Bundle', image: 'assets/images/miq-icons/catalogItem.png'},
-                {title: 'Bundle', image: 'assets/images/miq-icons/catalogItem.png'},
-                {title: 'Bundle', image: 'assets/images/miq-icons/catalogItem.png'}]
+            // 'uf06b' is the font awesome varible content for the 'gift'
+            { title:'Bundles', items: [
+                {title: 'Bundle', bundle: true},
+                {title: 'Bundle', bundle: true},
+                {title: 'Bundle', bundle: true},
+                {title: 'Bundle', bundle: true},
+                {title: 'Bundle', bundle: true},
+                {title: 'Bundle', bundle: true},
+                {title: 'Bundle', bundle: true},
+                {title: 'Bundle', bundle: true}]
             }
         ];
 
-      $scope.newItem = {title: 'New Item', image: 'assets/images/miq-icons/catalogItem.png'};
-    }]);
+        $scope.newItem = {title: 'New Item', image: 'assets/images/blueprint-designer/catalogItem.png'};
+}]);

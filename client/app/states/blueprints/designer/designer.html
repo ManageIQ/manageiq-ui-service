@@ -50,16 +50,21 @@
                   <li class="catalog-item" ng-repeat="item in subtab.items | filter:searchText"
                     data-drag="true" jqyoui-draggable="{onStart:'startCallback(item)'}" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
                     ng-click="addNodeByClick(item)">
-                    <img src="{{item.image}}" width="38px"> {{ item.title }}
+                    <img ng-if="item.image" src="{{item.image}}">
+                    <i ng-if="item.bundle" class="fa fa-gift"></i>
+                    {{ item.title }}
                   </li>
                 </ul>
               </tab>
             </tabset>
+            <!- Primary Tabs without SubTabs (Bundles) -->
             <ul class="catalog-items-list" ng-if="tab.subtabs == null">
               <li class="catalog-item" ng-repeat="item in tab.items"
                   data-drag="true" jqyoui-draggable="{onStart:'startCallback(item)'}" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
                   ng-click="addNodeByClick(item)">
-                <img src="{{item.image}}" width="38px"> {{ item.title }}
+                <img ng-if="item.image" src="{{item.image}}">
+                <i ng-if="item.bundle" class="fa fa-gift"></i>
+                <span>{{ item.title }}</span>
               </li>
             </ul>
           </tab>

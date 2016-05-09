@@ -133,6 +133,13 @@ var flowchart = {
     };
 
     //
+    // Is node a bundle
+    //
+    this.bundle = function() {
+      return this.data.bundle || "";
+    };
+
+    //
     // background color for the node.
     //
     this.backgroundColor = function() {
