@@ -79,9 +79,12 @@
 
   // Custom Globals
   "globals"       : {         // additional predefined global variables
-    "angular": false,
+    "angular": true,
     "d3": false,
     "__": false,
-    "N_": false
+    "N_": false,
+    "$": true,
+    "flowchart": true,
+    "hasClassSVG": true
   }
 }

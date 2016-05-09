@@ -5,6 +5,7 @@
     'app.core',
 
     'ui.bootstrap',
-    'patternfly'
+    'patternfly',
+    'ngSVGAttributes'
   ]);
 })();
