@@ -17,7 +17,7 @@
     function query(collection, options) {
       var url = API_BASE + '/api/' + collection;
 
-      if(options.mock) {
+      if (options.mock) {
         return MockData.retrieveMockData(collection);
       } else {
         return $http.get(url + buildQuery(options), buildConfig(options))

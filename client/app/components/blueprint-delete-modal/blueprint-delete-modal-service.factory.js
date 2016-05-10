@@ -34,10 +34,10 @@
   /** @ngInject */
   function BlueprintDeleteModalController(blueprints, BlueprintsState, $state, $modalInstance, CollectionsApi, Notifications) {
     var vm = this;
+
     vm.blueprintsList = blueprints;
 
-
-    if(vm.blueprintsList.length == 1) {
+    if (vm.blueprintsList.length === 1) {
       vm.delBlueprintsLabel = vm.blueprintsList[0].name + __('?');
     } else {
       vm.delBlueprintsLabel = vm.blueprintsList.length + ' ' + __('blueprints?');
@@ -51,16 +51,14 @@
     }
 
     function findWithAttr(array, attr, value) {
-      for(var i = 0; i < array.length; i += 1) {
-        if(array[i][attr] === value) {
+      for (var i = 0; i < array.length; i += 1) {
+        if (array[i][attr] === value) {
           return i;
         }
       }
     }
 
     function deleteBlueprints() {
-      //CollectionsApi.post('Blueprints', vm.Blueprint.id, {}, vm.modalData).then(saveSuccess, saveFailure);
-
       angular.forEach(vm.blueprintsList, deleteBlueprint);
 
       function deleteBlueprint(blueprint) {

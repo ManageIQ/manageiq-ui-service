@@ -1,9 +1,8 @@
-
 (function() {
   'use strict';
 
   angular.module('app.services')
-    .factory('BlueprintsState', BlueprintsStateFactory);
+      .factory('BlueprintsState', BlueprintsStateFactory);
 
   /** @ngInject */
   function BlueprintsStateFactory() {
@@ -11,7 +10,7 @@
 
     blueprint.sort = {
       isAscending: true,
-      currentField: { id: 'name', title: __('Name'), sortType: 'alpha' }
+      currentField: {id: 'name', title: __('Name'), sortType: 'alpha'}
     };
 
     blueprint.filters = [];
@@ -110,12 +109,12 @@
 
     blueprint.selectedBlueprints = [];
 
-    blueprint.handleSelectionChange = function (tmpBlueprint) {
-      if(tmpBlueprint.selected){
+    blueprint.handleSelectionChange = function(tmpBlueprint) {
+      if (tmpBlueprint.selected) {
         blueprint.selectedBlueprints.push(tmpBlueprint);
       } else {
         var index = findWithAttr(blueprint.selectedBlueprints, 'id', tmpBlueprint.id);
-        if (index != -1) {
+        if (index !== -1) {
           blueprint.selectedBlueprints.splice(index, 1);
         } else {
           console.log("Cound't find blueprint to unselect.");
@@ -123,11 +122,11 @@
       }
     };
 
-    blueprint.getSelectedBlueprints = function () {
+    blueprint.getSelectedBlueprints = function() {
       return blueprint.selectedBlueprints;
     };
 
-    blueprint.unselectBlueprints = function () {
+    blueprint.unselectBlueprints = function() {
       blueprint.selectedBlueprints = [];
     };
 
@@ -135,13 +134,13 @@
       return blueprint.blueprints;
     };
 
-    blueprint.getNextUniqueId = function () {
+    blueprint.getNextUniqueId = function() {
       return blueprint.blueprints.length;
-    }
+    };
 
     blueprint.saveBlueprint = function(tmpBlueprint) {
       tmpBlueprint.last_modified = new Date();
-      if(tmpBlueprint.chartDataModel && tmpBlueprint.chartDataModel.nodes) {
+      if (tmpBlueprint.chartDataModel && tmpBlueprint.chartDataModel.nodes) {
         tmpBlueprint.num_nodes = tmpBlueprint.chartDataModel.nodes.length;
       } else {
         tmpBlueprint.num_nodes = 0;
@@ -149,9 +148,7 @@
 
       var index = findBlueprintIndexById(tmpBlueprint.id);
       if (index === -1) {
-        //console.log("Saving new blueprint " + tmpBlueprint.id);
         tmpBlueprint.id = blueprint.getNextUniqueId();
-        //console.log("Saving new blueprint " + tmpBlueprint.id);
         blueprint.blueprints.push(tmpBlueprint);
       } else {
         blueprint.blueprints[index] = tmpBlueprint;
@@ -173,7 +170,7 @@
 
     blueprint.getBlueprintById = function(id) {
       for (var i = 0; i < blueprint.blueprints.length; i++) {
-        if (blueprint.blueprints[i].id.toString() === id) {
+        if (blueprint.blueprints[i].id.toString() === id.toString()) {
           return blueprint.blueprints[i];
         }
       }
@@ -182,7 +179,7 @@
     };
 
     function findBlueprintIndexById(id) {
-      for (var i = 0; i <  blueprint.blueprints.length; i++) {
+      for (var i = 0; i < blueprint.blueprints.length; i++) {
         if (blueprint.blueprints[i].id === id) {
           return i;
         }
@@ -192,8 +189,8 @@
     }
 
     function findWithAttr(array, attr, value) {
-      for(var i = 0; i < array.length; i += 1) {
-        if(array[i][attr] === value) {
+      for (var i = 0; i < array.length; i += 1) {
+        if (array[i][attr] === value) {
           return i;
         }
       }

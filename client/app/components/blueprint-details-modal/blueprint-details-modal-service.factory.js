@@ -67,7 +67,7 @@
           attributes: ['id', 'name'],
           sort_by: 'name',
           sort_options: 'ignore_case'
-         };
+        };
 
         return CollectionsApi.query('tenants', options);
       }
@@ -75,10 +75,11 @@
   }
 
   /** @ngInject */
-  function BlueprintDetailsModalController(action, blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, tenants, $state, $modalInstance, CollectionsApi, Notifications) {
+  function BlueprintDetailsModalController(action, blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, tenants, $state, // jshint ignore:line
+                                           $modalInstance, CollectionsApi, Notifications) { // jshint ignore:line
     var vm = this;
 
-    if(action == 'create') {
+    if (action === 'create') {
       vm.modalTitle = __('Create Blueprint');
       vm.modalBtnPrimaryLabel  = __('Create');
     } else {
@@ -103,10 +104,6 @@
     }];
     vm.visibilityOptions = vm.visibilityOptions.concat(tenants.resources);
 
-    //console.log("visibilityOptions = " + JSON.stringify(vm.visibilityOptions,null,2));
-    //console.log("serviceCatalogs = " + JSON.stringify(vm.serviceCatalogs,null,2));
-    //console.log("serviceDialogs = " + JSON.stringify(vm.serviceDialogs,null,2));
-
     vm.saveBlueprintDetails = saveBlueprintDetails;
     vm.cancelBlueprintDetails = cancelBlueprintDetails;
     vm.isUnassigned = isUnassigned;
@@ -125,20 +122,21 @@
       }
     };
 
-    if(vm.modalData.resource.visibility == null){
+    if (!vm.modalData.resource.visibility) {
       vm.modalData.resource.visibility = vm.visibilityOptions[0];
     } else {
-      vm.modalData.resource.visibility = vm.visibilityOptions[ findWithAttr(vm.visibilityOptions, 'id', vm.modalData.resource.visibility.id) ];
+      vm.modalData.resource.visibility = vm.visibilityOptions[
+            findWithAttr(vm.visibilityOptions, 'id', vm.modalData.resource.visibility.id)
+          ];
     }
 
-    if(vm.modalData.resource.catalog == null){
+    if (!vm.modalData.resource.catalog) {
       vm.modalData.resource.catalog = vm.serviceCatalogs[0];
     } else {
-      //console.log("vm.modalData.resource.catalog = " + JSON.stringify(vm.modalData.resource.catalog,null,2));
       vm.modalData.resource.catalog = vm.serviceCatalogs[ findWithAttr(vm.serviceCatalogs, 'id', vm.modalData.resource.catalog.id) ];
     }
 
-    if(vm.modalData.resource.dialog == null){
+    if (!vm.modalData.resource.dialog) {
       vm.modalData.resource.dialog = vm.serviceDialogs[0];
     } else {
       vm.modalData.resource.dialog = vm.serviceDialogs[ findWithAttr(vm.serviceDialogs, 'id', vm.modalData.resource.dialog.id) ];
@@ -150,19 +148,19 @@
     }
 
     function findWithAttr(array, attr, value) {
-      for(var i = 0; i < array.length; i += 1) {
-        if(array[i][attr] === value) {
+      for (var i = 0; i < array.length; i += 1) {
+        if (array[i][attr] === value) {
           return i;
         }
       }
     }
 
     function isUnassigned() {
-      return vm.modalData.resource.catalog == vm.serviceCatalogs[0];
+      return vm.modalData.resource.catalog === vm.serviceCatalogs[0];
     }
 
     function catalogChanged() {
-      if(isUnassigned()){
+      if (isUnassigned()) {
         vm.modalData.resource.provEP = '';
         vm.modalData.resource.reConfigEP = '';
         vm.modalData.resource.retireEP = '';
@@ -177,8 +175,6 @@
     }
 
     function saveBlueprintDetails() {
-      //CollectionsApi.post('Blueprints', vm.Blueprint.id, {}, vm.modalData).then(saveSuccess, saveFailure);
-
       vm.blueprint.id = blueprintId;
       vm.blueprint.name = vm.modalData.resource.name;
 
@@ -196,9 +192,9 @@
       function saveSuccess() {
         $modalInstance.close();
         Notifications.success(vm.blueprint.name + __(' was ' + action + 'ed.'));
-        if(action == 'create') {
+        if (action === 'create') {
           $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
-        } else if(action == 'edit') {
+        } else if (action === 'edit') {
           $state.go($state.current, {}, {reload: true});
         }
       }

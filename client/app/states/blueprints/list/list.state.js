@@ -137,7 +137,7 @@
             name: __('Delete'),
             title: __('Delete Blueprint'),
             actionFn: deleteBlueprints,
-            isDisabled: (BlueprintsState.getSelectedBlueprints().length == 0)
+            isDisabled: (BlueprintsState.getSelectedBlueprints().length === 0)
           }
         ]
       }
@@ -145,13 +145,13 @@
 
     function createBlueprint(action) {
       BlueprintDetailsModal.showModal('create', '-1');
-    };
+    }
 
     function editBlueprint(action, item) {
       $state.go('blueprints.designer', {blueprintId: item.id});
     }
 
-    function deleteBlueprint(action, item){
+    function deleteBlueprint(action, item) {
       // clear any prev. selections, make single selection
       item = angular.copy(item);
       item.selected = true;
@@ -161,12 +161,11 @@
       BlueprintsState.unselectBlueprints();
     }
 
-    function deleteBlueprints(action){
-      //console.log("Selected Blueprints: "+JSON.stringify(BlueprintsState.getSelectedBlueprints(),null,2));
+    function deleteBlueprints(action) {
       BlueprintDeleteModal.showModal(BlueprintsState.getSelectedBlueprints());
     }
 
-    function canDeleteBlueprints(){
+    function canDeleteBlueprints() {
       return BlueprintsState.getSelectedBlueprints().length > 0;
     }
 
@@ -261,9 +260,9 @@
     function matchesFilter(item, filter) {
       if ('name' === filter.id) {
         return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else  if ('visibility' === filter.id) {
+      } else if ('visibility' === filter.id) {
         return item.visibility.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else  if ('catalog' === filter.id) {
+      } else if ('catalog' === filter.id) {
         return item.catalog.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       }
 

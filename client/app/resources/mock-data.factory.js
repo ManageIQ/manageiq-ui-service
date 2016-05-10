@@ -13,8 +13,7 @@
     return service;
 
     function retrieveMockData(collection) {
-
-      if(collection == 'service_catalogs'){
+      if (collection === 'service_catalogs') {
         return { "resources": [
           {
           "href": "http://localhost:8001/api/service_catalogs/1000000000007",
@@ -310,9 +309,9 @@
             }
           ]
         }
-        ]}
-      } else if(collection == 'service_dialogs'){
-          return { "resources": [
+        ]};
+      } else if (collection === 'service_dialogs') {
+        return { "resources": [
           {
             "href": "http://localhost:8001/api/service_dialogs/1000000000014",
             "id": 1000000000014,
@@ -397,8 +396,8 @@
             "href": "http://localhost:8001/api/service_dialogs/1",
             "id": 1
           }
-        ]}
-      } else if(collection == 'tenants'){
+        ]};
+      } else if (collection === 'tenants') {
         return { "resources": [
           {
             "href": "http://localhost:8001/api/tenants/1",
@@ -425,7 +424,7 @@
             "id": 1000000000003,
             "name": "Test 2"
           }
-        ]}
+        ]};
       }
     }
   }

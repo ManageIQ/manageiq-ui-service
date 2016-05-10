@@ -43,9 +43,9 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
         $state.go('blueprints.list');
       };
 
-      $scope.editDetails = function(){
+      $scope.editDetails = function() {
         BlueprintDetailsModal.showModal('edit', blueprint.id);
-      }
+      };
 
       /*  Caatalog Editor Toolbox Methods */
 
@@ -59,7 +59,7 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
         $timeout(function() {
           $( "#subtabs>ul" ).addClass('nav-tabs-pf');
         });
-      }
+      };
 
       $scope.hideToolbox = function() {
         $scope.toolboxVisible = false;
@@ -70,8 +70,8 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
       });
 
       $scope.tabs = [
-            { preTitle:'Compute', title:'Cloud', subtabs: [
-                {title:'AWS', items: [
+            { preTitle: 'Compute', title: 'Cloud', subtabs: [
+                {title: 'AWS', items: [
                     {title: 'Amazon Operations', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Create - Elastic Load Balancer', image: 'assets/images/miq-icons/aws-elb.jpg'},
                     {title: 'Create - RDS Instance', image: 'assets/images/miq-icons/aws-rds.jpg'},
@@ -80,7 +80,7 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
                     {title: 'RedHat - PaaS', image: 'assets/images/miq-icons/RH-ShadowMan.jpg'},
                     {title: 'OpenShift All-In-One', image: 'assets/images/miq-icons/OpenShift.png'},
                     {title: 'OpenShift HA', image: 'assets/images/miq-icons/OpenShift-ha.jpg'}]},
-                {title:'Azure', items: [
+                {title: 'Azure', items: [
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
@@ -89,7 +89,7 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]},
-                {title:'GCE', items: [
+                {title: 'GCE', items: [
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
@@ -98,7 +98,7 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]},
-                {title:'OpenStack', items: [
+                {title: 'OpenStack', items: [
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
@@ -109,8 +109,8 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]}
             ]
             },
-            { preTitle:'Compute', title:'Containers', subtabs: [
-                {title:'AP', items: [
+            { preTitle: 'Compute', title: 'Containers', subtabs: [
+                {title: 'AP', items: [
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
@@ -119,7 +119,7 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]},
-                {title:'Kubernetes', items: [
+                {title: 'Kubernetes', items: [
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
@@ -128,7 +128,7 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]},
-                {title:'OSE', items: [
+                {title: 'OSE', items: [
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'},
@@ -139,39 +139,39 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
                     {title: 'Service Item', image: 'assets/images/miq-icons/catalogItem.png'}]}
             ]
             },
-            { preTitle:'Compute', title:'Infrastructure', subtabs:
+            { preTitle: 'Compute', title: 'Infrastructure', subtabs:
               [
-                {title:'OpenStack'},
-                {title:'RHEV'},
-                {title:'SCVMM'},
-                {title:'VMware'}
+                {title: 'OpenStack'},
+                {title: 'RHEV'},
+                {title: 'SCVMM'},
+                {title: 'VMware'}
               ]
             },
-            { title:'Storage', subtabs:
+            { title: 'Storage', subtabs:
               [
-                {title:'NetApp'},
-                {title:'USM'}
+                {title: 'NetApp'},
+                {title: 'USM'}
               ]
             },
-            { title:'Network', subtabs:
+            { title: 'Network', subtabs:
               [
-                {title:'Azure Stacks'},
-                {title:'CloudFormation'},
-                {title:'Heat Templates'}
+                {title: 'Azure Stacks'},
+                {title: 'CloudFormation'},
+                {title: 'Heat Templates'}
               ]
             },
-            { title:'Orchestration', subtabs:
+            { title: 'Orchestration', subtabs:
                 [
-                    {title:'Ansible'},
-                    {title:'Satellite'}
+                    {title: 'Ansible'},
+                    {title: 'Satellite'}
                 ]
             },
-            { title:'Middleware', subtabs:
+            { title: 'Middleware', subtabs:
                 [
-                    {title:'Hawkular'}
+                    {title: 'Hawkular'}
                 ]
             },
-            { title:'Bundles', items: [
+            { title: 'Bundles', items: [
                 {title: 'Bundle', image: 'assets/images/miq-icons/catalogItem.png'},
                 {title: 'Bundle', image: 'assets/images/miq-icons/catalogItem.png'},
                 {title: 'Bundle', image: 'assets/images/miq-icons/catalogItem.png'},
@@ -183,5 +183,5 @@ angular.module('app.states').controller('designerCtrl', ['$scope', '$timeout', '
             }
         ];
 
-        $scope.newItem = {title: 'New Item', image: 'assets/images/miq-icons/catalogItem.png'};
-}]);
+      $scope.newItem = {title: 'New Item', image: 'assets/images/miq-icons/catalogItem.png'};
+    }]);
