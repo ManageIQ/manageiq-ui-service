@@ -365,6 +365,7 @@ module.exports = (function() {
       temp + '**/*.css'
     ],
     browserSyncOptions: {
+      browser: 'google-chrome',
       proxy: 'localhost:' + (process.env.PORT || '8001'),
       port: 3001,
       startPath: '/self_service/',
