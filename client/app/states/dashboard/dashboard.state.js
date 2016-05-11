@@ -201,11 +201,13 @@
 
     vm.navigateToRequestsList = function(filterValue) {
       RequestsState.setFilters([{'id': 'approval_state', 'title': __('Request Status'), 'value': filterValue}]);
+      RequestsState.filterApplied = true;
       $state.go('requests.list');
     };
 
     vm.navigateToServicesList = function(filterValue) {
       ServicesState.setFilters([{'id': 'retirement', 'title': __('Retirement Date'), 'value': filterValue}]);
+      ServicesState.filterApplied = true;
       $state.go('services.list');
     };
   }

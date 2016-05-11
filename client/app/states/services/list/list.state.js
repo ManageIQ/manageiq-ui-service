@@ -96,7 +96,7 @@
           }
         ],
         resultsCount: vm.servicesList.length,
-        appliedFilters: ServicesState.getFilters(),
+        appliedFilters: ServicesState.filterApplied ? ServicesState.getFilters() : [],
         onFilterChange: filterChange
       },
       sortConfig: {
@@ -133,8 +133,11 @@
       }
     };
 
-    /* Apply the filtering to the data list */
-    filterChange(ServicesState.getFilters());
+    if (ServicesState.filterApplied) {
+      /* Apply the filtering to the data list */
+      filterChange(ServicesState.getFilters());
+      ServicesState.filterApplied = false;
+    }
 
     function handleClick(item, e) {
       $state.go('services.details', {serviceId: item.id});
