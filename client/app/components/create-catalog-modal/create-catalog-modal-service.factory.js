@@ -30,17 +30,16 @@
     var vm = this;
 
     vm.modalData = {
-        'catalogName': ''
+      'catalogName': ''
     };
 
     vm.saveCatalog = saveCatalog;
 
     function saveCatalog() {
-
       saveSuccess();
 
       function saveSuccess() {
-        if(vm.modalData.catalogName && vm.modalData.catalogName.length > 0) {
+        if (vm.modalData.catalogName && vm.modalData.catalogName.length > 0) {
           $modalInstance.close({catalogName: vm.modalData.catalogName});
         } else {
           console.log("Catalog Name not provided.");

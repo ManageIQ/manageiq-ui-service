@@ -40,11 +40,11 @@
     vm.getTreeData = getTreeData;
     vm.onNodeExpanded = onNodeExpanded;
 
-    if(vm.entryPointType === 'provisioning') {
+    if (vm.entryPointType === 'provisioning') {
       vm.entryPointTypeTitle = __('Provisioning');
-    } else if(vm.entryPointType === 'reconfigure') {
+    } else if (vm.entryPointType === 'reconfigure') {
       vm.entryPointTypeTitle = __('Reconfigure');
-    } else if(vm.entryPointType === 'retirement') {
+    } else if (vm.entryPointType === 'retirement') {
       vm.entryPointTypeTitle = __('Retirement');
     }
 
@@ -54,23 +54,22 @@
     }
 
     function findWithAttr(array, attr, value) {
-      for(var i = 0; i < array.length; i += 1) {
-        if(array[i][attr] === value) {
+      for (var i = 0; i < array.length; i += 1) {
+        if (array[i][attr] === value) {
           return i;
         }
       }
     }
 
     function saveEntryPoint() {
-
       saveSuccess();
 
       function saveSuccess() {
-        var curNode, pathToNode, selectedNodes = $('#entryPointsTree').treeview('getSelected');
-        if(selectedNodes && selectedNodes.length === 1) {
+        var selectedNodes = $('#entryPointsTree').treeview('getSelected');
+        if (selectedNodes && selectedNodes.length === 1) {
           // construct full path to parent
-          curNode = selectedNodes[0];
-          pathToNode = "\\" + curNode.text;
+          var curNode = selectedNodes[0];
+          var pathToNode = "\\" + curNode.text;
           curNode = $('#entryPointsTree').treeview('getParent', curNode);
           while (curNode.text.indexOf) {
             pathToNode = "\\" + curNode.text + pathToNode;
@@ -87,35 +86,36 @@
       }
     }
 
-    function onNodeExpanded(event, node){
-      if(node.nodes){
+    function onNodeExpanded(event, node) {
+      if (node.nodes) {
         var nodeToExpand = onlyOneExpandableChild(node.nodes);
-        if(nodeToExpand) {
+        if (nodeToExpand) {
           $('#entryPointsTree').treeview('expandNode', [nodeToExpand.nodeId]);
         }
       }
     }
 
-    function onlyOneExpandableChild(nodes){
-      var expandableNodeCount = 0, lastExpandableNode, node, i;
+    function onlyOneExpandableChild(nodes) {
+      var expandableNodeCount = 0;
+      var lastExpandableNode;
 
-      for (i = 0; i < nodes.length; i++) {
-        node = nodes[i];
-        if(node.nodes){
+      for (var i = 0; i < nodes.length; i++) {
+        var node = nodes[i];
+        if (node.nodes) {
           expandableNodeCount++;
           lastExpandableNode = node;
         }
       }
 
-      if(expandableNodeCount === 1){
-        return lastExpandableNode
+      if (expandableNodeCount === 1) {
+        return lastExpandableNode;
       } else {
         return null;
       }
     }
 
     // 'id' is for entry point id
-    function getTreeData(){
+    function getTreeData() {
       return [
         {
           text: 'Parent 1',

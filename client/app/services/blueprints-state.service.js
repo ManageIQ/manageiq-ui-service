@@ -136,12 +136,11 @@
       blueprint.newCatalogs.push(newCat);
     };
 
-    blueprint.getNextUniqueId = function () {
+    blueprint.getNextUniqueId = function() {
       return blueprint.blueprints.length;
     };
 
     blueprint.saveBlueprint = function(tmpBlueprint) {
-
       tmpBlueprint.last_modified = new Date();
       if (tmpBlueprint.chartDataModel && tmpBlueprint.chartDataModel.nodes) {
         tmpBlueprint.num_nodes = tmpBlueprint.chartDataModel.nodes.length;

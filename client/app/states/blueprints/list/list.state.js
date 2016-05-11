@@ -154,7 +154,7 @@
 
     function createBlueprint(action) {
       BlueprintDetailsModal.showModal('create', {});
-    };
+    }
 
     function editBlueprint(action, item) {
       $state.go('blueprints.designer', {blueprintId: item.id});
@@ -162,7 +162,7 @@
 
     function publishBlueprint(action, item) {
       BlueprintDetailsModal.showModal('publish', item);
-    };
+    }
 
     function deleteBlueprint(action, item) {
       // clear any prev. selections, make single selection
@@ -183,9 +183,8 @@
     }
 
     function updateActionForItemFn(action, item) {
-      //console.log("updateActionForItemFn:  action.name=" + action.name + ", item.published=" + item.published);
-      return (action.name == 'Publish') && (item.published !== null);
-    };
+      return (action.name === 'Publish') && (item.published !== null);
+    }
 
     /* Apply the filtering to the data list */
     filterChange(BlueprintsState.getFilters());

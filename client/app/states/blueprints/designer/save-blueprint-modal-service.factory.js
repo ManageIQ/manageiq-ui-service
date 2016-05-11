@@ -39,7 +39,6 @@
     vm.save = save;
     vm.doNotSave = doNotSave;
 
-
     function save() {
       BlueprintsState.saveBlueprint(blueprint);
       saveSuccess();
