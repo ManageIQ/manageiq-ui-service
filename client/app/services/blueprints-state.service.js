@@ -42,7 +42,8 @@
           "id": 800,
           "name": "Private"
         },
-        "chartDataModel": {}
+        "chartDataModel": {},
+        "provEP": "path/to/default/prov/entry/point"
       },
       {
         "id": 1,
@@ -61,7 +62,8 @@
           "id": 1000000000014,
           "name": "AWScreate_vpc"
         },
-        "chartDataModel": {}
+        "chartDataModel": {},
+        "provEP": "path/to/default/prov/entry/point"
       },
       {
         "id": 2,
@@ -76,7 +78,8 @@
           "id": 1000000000004,
           "name": "Project 1"
         },
-        "chartDataModel": {}
+        "chartDataModel": {},
+        "provEP": "path/to/default/prov/entry/point"
       },
       {
         "id": 3,
@@ -95,7 +98,8 @@
           "id": 1000000000001,
           "name": "RenameVM"
         },
-        "chartDataModel": {}
+        "chartDataModel": {},
+        "provEP": "path/to/default/prov/entry/point"
       }
     ];
 

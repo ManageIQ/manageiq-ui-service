@@ -24,7 +24,6 @@
         <select name="catalog" id="catalog" class="base-info-select"
                 ng-options="item as item.name for item in vm.serviceCatalogs"
                 ng-model="vm.modalData.resource.catalog"
-                ng-change="vm.catalogChanged()"
                 ng-required="vm.isCatalogRequired()">
                 <option value="" translate>Unassigned</option>
         </select><br>
@@ -38,7 +37,6 @@
         <select name="dialog"  id="dialog" class="base-info-select"
                 ng-options="item as item.description for item in vm.serviceDialogs"
                 ng-model="vm.modalData.resource.dialog"
-                ng-disabled="vm.isCatalogUnassigned()"
                 ng-required="vm.isDialogRequired()">
                 <option value="" translate>Select Dialog</option>
         </select><br>
@@ -46,13 +44,18 @@
       </div>
     </div>
   </form>
-  <a href="#advOps" id="advOpsHref" data-toggle="collapse" class="collapsed" ng-class="{'disabled':vm.isCatalogUnassigned()}" translate>Advanced Options</a>
+  <a href="#advOps" id="advOpsHref" data-toggle="collapse" class="collapsed" translate>Advanced Options</a>
   <div id="advOps" class="collapse">
-    <form class="form-horizontal">
-      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-8" pf-label="{{'Provisioning Entry Point'|translate}}">
-        <input id="provEP" class="entry-point-input" name="provEP" type="text" ng-model="vm.modalData.resource.provEP"/>
-        <button type="button" class="btn btn-default entry-point-btn" ng-click="vm.selectEntryPoint('provisioning')" translate>Browse</button>
-        <a ng-click="vm.modalData.resource.provEP = ''"><span class="pficon pficon-close clear-entry-point"></span></a>
+    <form novalidate name="advOptsForm" id="advOptsForm" class="form-horizontal">
+      <!-- could not use pf-form-group due to it's requirement that errors only display after fields are 'dirty' -->
+      <div class="form-group" ng-class="{ 'has-error' : vm.modalData.resource.provEP === undefined || vm.modalData.resource.provEP.length === 0 }">
+        <label for="provEP" class="control-label col-sm-4" translate>Provisioning Entry Point</label>
+        <div class="col-sm-8">
+          <input name= "provEP" id="provEP" class="entry-point-input" name="provEP" type="text" ng-model="vm.modalData.resource.provEP" required/>
+          <button type="button" class="btn btn-default entry-point-btn" ng-click="vm.selectEntryPoint('provisioning')" translate>Browse</button>
+          <a ng-click="vm.modalData.resource.provEP = ''"><span class="pficon pficon-close clear-entry-point"></span></a>
+          <span ng-show="advOptsForm.provEP.$error.required" class="control-label" translate>Please enter a Provisioning Entry Point</span>
+        </div>
       </div>
       <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-8" pf-label="{{'Reconfigure Entry Point'|translate}}">
         <input id="reConfigEP" class="entry-point-input" name="reConfigEP" type="text" ng-model="vm.modalData.resource.reConfigEP"/>
@@ -72,7 +75,7 @@
   <button type="button"
           class="btn btn-primary"
           ng-click="vm.saveBlueprintDetails()"
-          ng-disabled="detailsForm.catalog.$error.required || detailsForm.dialog.$error.required || detailsForm.name.$error.required">
+          ng-disabled="detailsForm.catalog.$error.required || detailsForm.dialog.$error.required || detailsForm.name.$error.required || advOptsForm.provEP.$error.required">
           {{vm.modalBtnPrimaryLabel}}
   </button>
 </div>

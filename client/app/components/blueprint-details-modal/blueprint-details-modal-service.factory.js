@@ -107,7 +107,6 @@
     vm.saveBlueprintDetails = saveBlueprintDetails;
     vm.cancelBlueprintDetails = cancelBlueprintDetails;
     vm.isCatalogUnassigned = isCatalogUnassigned;
-    vm.catalogChanged = catalogChanged;
     vm.isCatalogRequired = isCatalogRequired;
     vm.isDialogRequired = isDialogRequired;
     vm.selectEntryPoint = selectEntryPoint;
@@ -120,7 +119,7 @@
         'visibility': vm.blueprint.visibility,
         'catalog': vm.blueprint.catalog,
         'dialog': vm.blueprint.dialog,
-        'provEP':  vm.blueprint.provEP,
+        'provEP':  vm.blueprint.provEP || "path/to/default/prov/entry/point",
         'reConfigEP': vm.blueprint.reConfigEP,
         'retireEP': vm.blueprint.retireEP
       }
@@ -156,7 +155,7 @@
     }
 
     function isCatalogUnassigned() {
-      return vm.modalData.resource.catalog === undefined;
+      return (vm.modalData.resource.catalog === undefined || vm.modalData.resource.catalog === null);
     }
 
     function isCatalogRequired() {
@@ -164,17 +163,7 @@
     }
 
     function isDialogRequired() {
-      return (action === 'publish') && (vm.modalData.resource.dialog === undefined);
-    }
-
-    function catalogChanged() {
-      if (isCatalogUnassigned()) {
-        vm.modalData.resource.provEP = '';
-        vm.modalData.resource.reConfigEP = '';
-        vm.modalData.resource.retireEP = '';
-        jQuery('#advOps').removeClass('in');
-        jQuery('#advOpsHref').toggleClass('collapsed');
-      }
+      return (action === 'publish') && (vm.modalData.resource.dialog === undefined || vm.modalData.resource.dialog === null);
     }
 
     function createCatalog() {
@@ -205,7 +194,7 @@
       $modalInstance.close();
     }
 
-    function saveBlueprintDetails() {
+    function saveBlueprintDetails() {   // jshint ignore:line
       // Save any new catalogs
       for (var i = 0; i < vm.serviceCatalogs.length; i += 1) {
         if (vm.serviceCatalogs[i].new) {
@@ -226,11 +215,13 @@
         vm.blueprint.visibility = vm.modalData.resource.visibility;
       }
 
-      if (!vm.blueprint.catalog || (vm.blueprint.catalog.id.toString() !== vm.modalData.resource.catalog.id.toString())) {
+      if (!vm.blueprint.catalog || !vm.modalData.resource.catalog ||
+          (vm.blueprint.catalog.id.toString() !== vm.modalData.resource.catalog.id.toString())) {
         vm.blueprint.catalog = vm.modalData.resource.catalog;
       }
 
-      if (!vm.blueprint.dialog || (vm.blueprint.dialog.id.toString() !== vm.modalData.resource.dialog.id.toString())) {
+      if (!vm.blueprint.dialog || !vm.modalData.resource.dialog ||
+          (vm.blueprint.dialog.id.toString() !== vm.modalData.resource.dialog.id.toString())) {
         vm.blueprint.dialog = vm.modalData.resource.dialog;
       }
 
