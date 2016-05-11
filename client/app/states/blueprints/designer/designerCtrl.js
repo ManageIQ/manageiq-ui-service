@@ -78,16 +78,11 @@ angular.module('app.states')
         $timeout(function() {
           blueprintDirty = false;
           $state.current.okToNavAway = false;
+          $( "#saveBtm" ).blur();
           if (debug) {
             console.log("saving blueprint - $state.current: " + angular.toJson($state.current, true));
           }
         });
-      };
-
-      $scope.deleteBlueprint = function() {
-        BlueprintsState.deleteBlueprint($scope.blueprint.id);
-        Notifications.success($scope.blueprint.name + __(' was deleted.'));
-        $state.go('blueprints.list');
       };
 
       $scope.editDetails = function() {
@@ -100,11 +95,12 @@ angular.module('app.states')
 
       $scope.showToolbox = function() {
         $scope.toolboxVisible = true;
-
-        // add class to subtabs to apply PF style
+        // add class to subtabs to apply PF style and
+        // focus to filter input box
 
         $timeout(function() {
           $( "#subtabs>ul" ).addClass('nav-tabs-pf');
+          $( "#filterFld" ).focus();
         });
       };
 
