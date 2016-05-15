@@ -3,7 +3,7 @@
 
   angular.module('app.components')
     .component('dynamicTabs', {
-      controller: function(DialogEdit, lodash) {
+      controller: function(DialogEdit, lodash, EditDialogModal) {
         /**
          * After loading component data, activate first tab if there is any
          */
@@ -16,6 +16,10 @@
             DialogEdit.activeTab = 0;
             this.tabList[0].active = true;
           }
+        };
+
+        this.editDialogModal = function(tab) {
+          EditDialogModal.showModal(tab);
         };
 
         /**

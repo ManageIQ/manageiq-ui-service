@@ -3,7 +3,7 @@
 
   angular.module('app.components')
     .component('dialogDashboard', {
-      controller: function(DialogEdit, lodash) {
+      controller: function(DialogEdit, EditDialogModal, lodash) {
         /**
          * Load component data
          */
@@ -40,6 +40,10 @@
               return box.position === id;
             }
           );
+        };
+
+        this.editDialogModal = function(tab, box) {
+          EditDialogModal.showModal(tab, box);
         };
 
         /**

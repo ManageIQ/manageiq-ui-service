@@ -4,6 +4,7 @@
     data-tabs='tabs'>
   <li ng-class='{active: tab.active}' ng-repeat='tab in dynamicTabs.tabList'>
     <a class="selectTab" ng-click='dynamicTabs.selectTab(tab.position)' data-toggle='tab'>
+      <i class="pficon-edit" ng-click='dynamicTabs.editDialogModal(tab.position)'></i>
       {{ tab.label }}
       <i class='deleteTab glyphicon glyphicon-remove' ng-click='dynamicTabs.deleteTab(tab.position)'></i>
     </a>
