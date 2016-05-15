@@ -7,9 +7,11 @@
         fieldData: '=',
         boxPosition: '=',
       },
-      controller: function(EditDialogModal) {
-        this.editDialogModal = function(box, field) {
-          EditDialogModal.showModal(box, field);
+      controller: function(DialogEdit, EditDialogModal) {
+        this.service = DialogEdit;
+
+        this.editDialogModal = function(tab, box, field) {
+          EditDialogModal.showModal(tab, box, field);
         };
       },
       controllerAs: 'dialogField',

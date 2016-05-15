@@ -11,6 +11,11 @@
            jqyoui-droppable='{multiple: true, onDrop: "dialogDashboard.droppableOptions"}'
            ng-model='box.dialog_fields'>
         <div class="panel-heading">
+          <i class="pficon-edit"
+             ng-click='dialogDashboard.editDialogModal(
+               dialogDashboard.service.activeTab,
+               box.position
+             )'></i>
           <strong>{{ box.label }}</strong>
           <button type="button" class="close"
                   ng-click="dialogDashboard.removeBox(box.position)">

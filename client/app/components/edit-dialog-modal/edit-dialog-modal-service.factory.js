@@ -12,7 +12,7 @@
 
     return modalDialog;
 
-    function showModal(box, field) {
+    function showModal(tab, box, field) {
       var modalOptions = {
         templateUrl: 'app/components/edit-dialog-modal/edit-dialog-modal.html',
         controller: EditDialogModalController,
@@ -27,7 +27,7 @@
       return modal.result;
 
       function resolveDialogDetails() {
-        return {boxId: box, fieldId: field};
+        return {tabId: tab, boxId: box, fieldId: field};
       }
     }
   }
@@ -45,16 +45,53 @@
     vm.addEntry = addEntry;
     vm.removeEntry = removeEntry;
 
+    // recognize edited element type
+    if (vm.dialog.fieldId === undefined &&
+        vm.dialog.boxId === undefined &&
+        vm.dialog.tabId !== undefined) {
+      vm.element = 'tab';
+    } else if (vm.dialog.fieldId === undefined &&
+             vm.dialog.boxId !== undefined &&
+             vm.dialog.tabId !== undefined) {
+      vm.element = 'box';
+    } else if (vm.dialog.fieldId !== undefined &&
+             vm.dialog.boxId !== undefined &&
+             vm.dialog.tabId !== undefined) {
+      vm.element = 'field';
+    }
+
     // clone data from service
-    vm.modalData = lodash.cloneDeep(
-      DialogEdit.getData().content[0].dialog_tabs[
-        DialogEdit.activeTab
-      ].dialog_groups[
-        vm.dialog.boxId
-      ].dialog_fields[
-        vm.dialog.fieldId
-      ]
-    );
+    switch (vm.element) {
+      case 'tab':
+        vm.modalData = lodash.cloneDeep(
+          DialogEdit.getData().content[0].dialog_tabs[
+            DialogEdit.activeTab
+          ]
+        );
+        break;
+      case 'box':
+        vm.modalData = lodash.cloneDeep(
+          DialogEdit.getData().content[0].dialog_tabs[
+            DialogEdit.activeTab
+          ].dialog_groups[
+            vm.dialog.boxId
+          ]
+        );
+        break;
+      case 'field':
+        vm.modalData = lodash.cloneDeep(
+          DialogEdit.getData().content[0].dialog_tabs[
+            DialogEdit.activeTab
+          ].dialog_groups[
+            vm.dialog.boxId
+          ].dialog_fields[
+            vm.dialog.fieldId
+          ]
+        );
+        break;
+      default:
+        break;
+    }
 
     activate();
 
@@ -65,16 +102,37 @@
      * Check for changes in modal
      */
     function modalUnchanged() {
-      return lodash.isMatch(
-        DialogEdit.getData().content[0].dialog_tabs[
-          DialogEdit.activeTab
-        ].dialog_groups[
-          vm.dialog.boxId
-        ].dialog_fields[
-          vm.dialog.fieldId
-        ],
-        vm.modalData
-      );
+      switch (vm.element) {
+        case 'tab':
+          return lodash.isMatch(
+            DialogEdit.getData().content[0].dialog_tabs[
+              DialogEdit.activeTab
+            ],
+            vm.modalData
+          );
+        case 'box':
+          return lodash.isMatch(
+            DialogEdit.getData().content[0].dialog_tabs[
+              DialogEdit.activeTab
+            ].dialog_groups[
+              vm.dialog.boxId
+            ],
+            vm.modalData
+          );
+        case 'field':
+          return lodash.isMatch(
+            DialogEdit.getData().content[0].dialog_tabs[
+              DialogEdit.activeTab
+            ].dialog_groups[
+              vm.dialog.boxId
+            ].dialog_fields[
+              vm.dialog.fieldId
+            ],
+            vm.modalData
+          );
+        default:
+          break;
+      }
     }
 
     /**
@@ -83,13 +141,42 @@
     function saveDialogFieldDetails() {
       // TODO: add verification for required forms
       // store data to service
-      DialogEdit.getData().content[0].dialog_tabs[
-        DialogEdit.activeTab
-      ].dialog_groups[
-        vm.dialog.boxId
-      ].dialog_fields[
-        vm.dialog.fieldId
-      ] = vm.modalData;
+      switch (vm.element) {
+        case 'tab':
+          DialogEdit.getData().content[0].dialog_tabs[
+            DialogEdit.activeTab
+          ].label = vm.modalData.label;
+          // description
+          DialogEdit.getData().content[0].dialog_tabs[
+            DialogEdit.activeTab
+          ].description = vm.modalData.description;
+          break;
+        case 'box':
+          // label
+          DialogEdit.getData().content[0].dialog_tabs[
+            DialogEdit.activeTab
+          ].dialog_groups[
+            vm.dialog.boxId
+          ].label = vm.modalData.label;
+          // description
+          DialogEdit.getData().content[0].dialog_tabs[
+            DialogEdit.activeTab
+          ].dialog_groups[
+            vm.dialog.boxId
+          ].description = vm.modalData.description;
+          break;
+        case 'field':
+          DialogEdit.getData().content[0].dialog_tabs[
+            DialogEdit.activeTab
+          ].dialog_groups[
+            vm.dialog.boxId
+          ].dialog_fields[
+            vm.dialog.fieldId
+          ] = vm.modalData;
+          break;
+        default:
+          break;
+      }
 
       // close modal
       $modalInstance.close();
