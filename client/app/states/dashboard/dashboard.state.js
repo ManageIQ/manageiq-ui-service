@@ -145,23 +145,17 @@
     return CollectionsApi.query('services', options);
   }
 
-  function chainRequestPromises(promiseArray, vm, type) {
-    var count = 0;
-    if (promiseArray.length > 0) {
-      promiseArray[0].then(function success(data) {
-        count = data.subcount;
-        promiseArray[1].then(function success(data) {
-          count += data.subcount;
-          vm.requestsCount[type] = count;
-          vm.requestsCount.total += count;
-        });
-      });
-    }
+  function resolveRequestPromises(promiseArray, vm, type, lodash, $q) {
+    $q.all(promiseArray).then(function(data) {
+      var count = lodash.sumBy(data, 'subcount');
+      vm.requestsCount[type] = count;
+      vm.requestsCount.total += count;
+    });
   }
 
   /** @ngInject */
   function StateController($state, RequestsState, ServicesState, definedServiceIdsServices, retiredServices,
-    expiringServices, pendingRequests, approvedRequests, deniedRequests, lodash) {
+    expiringServices, pendingRequests, approvedRequests, deniedRequests, lodash, $q) {
     var vm = this;
     if (angular.isDefined(definedServiceIdsServices)) {
       vm.servicesCount = {};
@@ -186,8 +180,8 @@
 
     vm.requestsFeature = false;
 
-    if (angular.isDefined(pendingRequests) &&
-        angular.isDefined(approvedRequests) &&
+    if (angular.isDefined(pendingRequests) ||
+        angular.isDefined(approvedRequests) ||
         angular.isDefined(deniedRequests)) {
       vm.requestsCount = {};
       vm.requestsCount.total = 0;
@@ -195,8 +189,8 @@
       var allRequests = [pendingRequests, approvedRequests, deniedRequests];
       var allRequestTypes = ['pending', 'approved', 'denied'];
 
-      lodash.times(3, function(n) {
-        chainRequestPromises(allRequests[n], vm, allRequestTypes[n]);
+      allRequests.forEach(function(promise, n) {
+        resolveRequestPromises(promise, vm, allRequestTypes[n], lodash, $q);
       });
 
       vm.requestsFeature = true;
