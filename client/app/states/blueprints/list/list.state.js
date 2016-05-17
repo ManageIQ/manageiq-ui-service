@@ -32,7 +32,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, blueprints, BlueprintsState, $filter, $rootScope) {
+  function StateController($state, blueprints, BlueprintsState, BlueprintDetailsModal, BlueprintDeleteModal, $filter, $rootScope) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -49,9 +49,10 @@
 
     vm.listConfig = {
       selectItems: false,
-      showSelectBox: false,
+      showSelectBox: true,
       selectionMatchProp: 'service_status',
-      onClick: handleClick
+      onClick: handleClick,
+      onCheckBoxChange: handleCheckBoxChange
     };
 
     vm.actionButtons = [
@@ -59,6 +60,11 @@
         name: __('Edit'),
         title: __('Edit Blueprint'),
         actionFn: editBlueprint
+      },
+      {
+        name: __('Delete'),
+        title: __('Delete Blueprint'),
+        actionFn: deleteBlueprint
       }
     ];
 
@@ -69,6 +75,18 @@
             id: 'name',
             title: __('Name'),
             placeholder: __('Filter by Name'),
+            filterType: 'text'
+          },
+          {
+            id: 'visibility',
+            title: __('Visibility'),
+            placeholder: __('Filter by Visibility'),
+            filterType: 'text'
+          },
+          {
+            id: 'catalog',
+            title: __('Catalog'),
+            placeholder: __('Filter by Catalog'),
             filterType: 'text'
           }
         ],
@@ -82,6 +100,26 @@
             id: 'name',
             title: __('Name'),
             sortType: 'alpha'
+          },
+          {
+            id: 'last_modified',
+            title: __('Last Modified'),
+            sortType: 'numeric'
+          },
+          {
+            id: 'num_nodes',
+            title: __('Items'),
+            sortType: 'numeric'
+          },
+          {
+            id: 'visibility',
+            title: __('Visibility'),
+            sortType: 'alpha'
+          },
+          {
+            id: 'catalog',
+            title: __('Catalog'),
+            sortType: 'alpha'
           }
         ],
         onSortChange: sortChange,
@@ -92,24 +130,43 @@
         primaryActions: [
           {
             name: __('Create'),
-            title: __('Create a new Service Catalog'),
+            title: __('Create a new Blueprint'),
             actionFn: createBlueprint
+          },
+          {
+            name: __('Delete'),
+            title: __('Delete Blueprint'),
+            actionFn: deleteBlueprints,
+            isDisabled: (BlueprintsState.getSelectedBlueprints().length === 0)
           }
         ]
       }
     };
 
     function createBlueprint(action) {
-      $state.go('blueprints.designer', {blueprintId: -1});
+      BlueprintDetailsModal.showModal('create', '-1');
     }
 
     function editBlueprint(action, item) {
       $state.go('blueprints.designer', {blueprintId: item.id});
     }
 
-    function deleteBlueprint(blueprintId) {
-      BlueprintsState.deleteBlueprint(blueprintId);
-      console.log("Blueprint deleted (" + blueprintId + ")");
+    function deleteBlueprint(action, item) {
+      // clear any prev. selections, make single selection
+      item = angular.copy(item);
+      item.selected = true;
+      BlueprintsState.unselectBlueprints();
+      BlueprintsState.handleSelectionChange(item);
+      BlueprintDeleteModal.showModal(BlueprintsState.getSelectedBlueprints());
+      BlueprintsState.unselectBlueprints();
+    }
+
+    function deleteBlueprints(action) {
+      BlueprintDeleteModal.showModal(BlueprintsState.getSelectedBlueprints());
+    }
+
+    function canDeleteBlueprints() {
+      return BlueprintsState.getSelectedBlueprints().length > 0;
     }
 
     /* Apply the filtering to the data list */
@@ -117,6 +174,11 @@
 
     function handleClick(item, e) {
       $state.go('blueprints.designer', {blueprintId: item.id});
+    }
+
+    function handleCheckBoxChange(item, e) {
+      BlueprintsState.handleSelectionChange(item);
+      vm.toolbarConfig.actionsConfig.primaryActions[1].isDisabled = !canDeleteBlueprints();
     }
 
     function sortChange(sortId, isAscending) {
@@ -130,6 +192,14 @@
       var compValue = 0;
       if (vm.toolbarConfig.sortConfig.currentField.id === 'name') {
         compValue = item1.name.localeCompare(item2.name);
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'last_modified') {
+        compValue = new Date(item1.last_modified) - new Date(item2.last_modified);
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'num_nodes') {
+        compValue = item1.num_nodes - item2.num_nodes;
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'visibility') {
+        compValue = item1.visibility.name.localeCompare(item2.visibility.name);
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'catalog') {
+        compValue = item1.catalog.name.localeCompare(item2.catalog.name);
       }
 
       if (!vm.toolbarConfig.sortConfig.isAscending) {
@@ -190,6 +260,10 @@
     function matchesFilter(item, filter) {
       if ('name' === filter.id) {
         return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else if ('visibility' === filter.id) {
+        return item.visibility.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else if ('catalog' === filter.id) {
+        return item.catalog.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       }
 
       return false;

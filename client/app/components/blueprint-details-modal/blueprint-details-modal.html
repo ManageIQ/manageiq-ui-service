@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 class="modal-title" id="myModalLabel">{{vm.modalTitle}}</h4>
+</div>
+<div class="modal-body">
+  <h3 translate>Basic Info.</h3>
+  <form class="form-horizontal">
+    <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Blueprint Name'|translate}}" required>
+      <input id="name" name="name"
+             ng-model="vm.modalData.resource.name" type="text" required/>
+    </div>
+    <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Visibility'|translate}}" required>
+      <select pf-select
+              ng-options="item as item.name for item in vm.visibilityOptions"
+              ng-model="vm.modalData.resource.visibility" required>
+      </select>
+    </div>
+    <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Catalog'|translate}}" required>
+      <select pf-select
+              ng-options="item as item.name for item in vm.serviceCatalogs"
+              ng-model="vm.modalData.resource.catalog"
+              ng-change="vm.catalogChanged()" required>
+      </select>
+    </div>
+    <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Dialog'|translate}}" required>
+      <select pf-select
+              ng-options="item as item.description for item in vm.serviceDialogs"
+              ng-model="vm.modalData.resource.dialog"
+              ng-disabled="vm.isUnassigned()" required>
+      </select>
+    </div>
+  </form>
+  <a href="#advOps" id="advOpsHref" data-toggle="collapse" class="collapsed" ng-class="{'disabled':vm.isUnassigned()}" translate>Advanced Options</a>
+  <div id="advOps" class="collapse">
+    <form class="form-horizontal">
+      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Provisioning Entry Point'|translate}}">
+        <input id="provEP" name="provEP" type="text" ng-model="vm.modalData.resource.provEP"/>
+        <a ng-click="vm.modalData.resource.provEP = ''"><span class="pficon pficon-close clear-entry-point"></span></a>
+      </div>
+      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Reconfigure Entry Point'|translate}}">
+        <input id="reConfigEP" name="reConfigEP" type="text" ng-model="vm.modalData.resource.reConfigEP"/>
+        <a ng-click="vm.modalData.resource.reConfigEP = ''"><span class="pficon pficon-close clear-entry-point"></span></a>
+      </div>
+      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Retirement Entry Point'|translate}}">
+        <input id="retireEP" name="retireEP" type="text" ng-model="vm.modalData.resource.retireEP"/>
+        <a ng-click="vm.modalData.resource.retireEP = ''"><span class="pficon pficon-close clear-entry-point"></span></a>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" ng-click="vm.cancelBlueprintDetails()" translate>Cancel</button>
+  <button type="button"
+          class="btn btn-primary"
+          ng-click="vm.saveBlueprintDetails()">
+          {{vm.modalBtnPrimaryLabel}}
+  </button>
+</div>

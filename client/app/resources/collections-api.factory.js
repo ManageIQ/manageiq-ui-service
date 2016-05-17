@@ -5,7 +5,7 @@
     .factory('CollectionsApi', CollectionsApiFactory);
 
   /** @ngInject */
-  function CollectionsApiFactory($http, API_BASE) {
+  function CollectionsApiFactory($http, API_BASE, MockData) {
     var service = {
       query: query,
       get: get,
@@ -17,8 +17,12 @@
     function query(collection, options) {
       var url = API_BASE + '/api/' + collection;
 
-      return $http.get(url + buildQuery(options), buildConfig(options))
-        .then(handleSuccess);
+      if (options.mock) {
+        return MockData.retrieveMockData(collection);
+      } else {
+        return $http.get(url + buildQuery(options), buildConfig(options))
+            .then(handleSuccess);
+      }
 
       function handleSuccess(response) {
         return response.data;
