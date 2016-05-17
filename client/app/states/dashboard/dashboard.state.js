@@ -25,9 +25,7 @@
           definedServiceIdsServices: resolveServicesWithDefinedServiceIds,
           retiredServices: resolveRetiredServices,
           expiringServices: resolveExpiringServices,
-          pendingRequests: resolvePendingRequests,
-          approvedRequests: resolveApprovedRequests,
-          deniedRequests: resolveDeniedRequests
+          allRequests: resolveAllRequests
         }
       }
     };
@@ -39,13 +37,17 @@
   // TODO API OR-ing bug/"design limitation" has forced an implementation change in how we gather count data for Requests
   // TODO One API call would now be split into two - one for ServiceTemplateProvisionRequest and other for ServiceReconfigureRequest
 
-  function resolvePendingRequests(CollectionsApi, $state) {
+  function resolveAllRequests(CollectionsApi, $state) {
     if (!$state.navFeatures.requests.show) {
       return undefined;
     }
 
-    return [pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi),
-            pendingRequestsForServiceReconfigureRequest(CollectionsApi)];
+    return [[pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi),
+             pendingRequestsForServiceReconfigureRequest(CollectionsApi)],
+            [approvedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
+             approvedRequestsForServiceReconfigureRequest(CollectionsApi)],
+            [deniedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
+             deniedRequestsForServiceReconfigureRequest(CollectionsApi)]];
   }
 
   function pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
@@ -62,16 +64,6 @@
     return CollectionsApi.query('requests', options);
   }
 
-  /** @ngInject */
-  function resolveApprovedRequests(CollectionsApi, $state) {
-    if (!$state.navFeatures.requests.show) {
-      return undefined;
-    }
-
-    return [approvedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
-            approvedRequestsForServiceReconfigureRequest(CollectionsApi)];
-  }
-
   function approvedRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
     var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=approved'];
     var options = {expand: false, filter: filterValues };
@@ -84,16 +76,6 @@
     var options = {expand: false, filter: filterValues };
 
     return CollectionsApi.query('requests', options);
-  }
-
-  /** @ngInject */
-  function resolveDeniedRequests(CollectionsApi, $state) {
-    if (!$state.navFeatures.requests.show) {
-      return undefined;
-    }
-
-    return [deniedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
-            deniedRequestsForServiceReconfigureRequest(CollectionsApi)];
   }
 
   function deniedRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
@@ -155,7 +137,7 @@
 
   /** @ngInject */
   function StateController($state, RequestsState, ServicesState, definedServiceIdsServices, retiredServices,
-    expiringServices, pendingRequests, approvedRequests, deniedRequests, lodash, $q) {
+    expiringServices, allRequests, lodash, $q) {
     var vm = this;
     if (angular.isDefined(definedServiceIdsServices)) {
       vm.servicesCount = {};
@@ -180,13 +162,10 @@
 
     vm.requestsFeature = false;
 
-    if (angular.isDefined(pendingRequests) ||
-        angular.isDefined(approvedRequests) ||
-        angular.isDefined(deniedRequests)) {
+    if (angular.isDefined(allRequests)) {
       vm.requestsCount = {};
       vm.requestsCount.total = 0;
 
-      var allRequests = [pendingRequests, approvedRequests, deniedRequests];
       var allRequestTypes = ['pending', 'approved', 'denied'];
 
       allRequests.forEach(function(promise, n) {
