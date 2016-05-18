@@ -26,7 +26,9 @@
 
   /** @ngInject */
   function resolveServices(CollectionsApi) {
-    var options = {expand: 'resources', attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms']};
+    var options = {expand: 'resources',
+                   attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms'],
+                   filter: ['service_id=nil']};
 
     return CollectionsApi.query('services', options);
   }
@@ -94,7 +96,7 @@
           }
         ],
         resultsCount: vm.servicesList.length,
-        appliedFilters: ServicesState.getFilters(),
+        appliedFilters: ServicesState.filterApplied ? ServicesState.getFilters() : [],
         onFilterChange: filterChange
       },
       sortConfig: {
@@ -131,8 +133,11 @@
       }
     };
 
-    /* Apply the filtering to the data list */
-    filterChange(ServicesState.getFilters());
+    if (ServicesState.filterApplied) {
+      /* Apply the filtering to the data list */
+      filterChange(ServicesState.getFilters());
+      ServicesState.filterApplied = false;
+    }
 
     function handleClick(item, e) {
       $state.go('services.details', {serviceId: item.id});

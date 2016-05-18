@@ -39,9 +39,7 @@ describe('Dashboard', function() {
     var retiredServices = {};
     var resolveNonRetiredServices = {};
     var expiringServices = {};
-    var pendingRequests = {};
-    var approvedRequests = {};
-    var deniedRequests = {};
+    var resolveAllRequests = [];
 
     beforeEach(function() {
       bard.inject('$controller', '$log', '$state', '$rootScope');
@@ -51,9 +49,7 @@ describe('Dashboard', function() {
         retiredServices: retiredServices,
         nonRetiredServices: resolveNonRetiredServices,
         expiringServices: expiringServices,
-        pendingRequests: pendingRequests,
-        approvedRequests: approvedRequests,
-        deniedRequests: deniedRequests
+        allRequests: resolveAllRequests
       };
 
       controller = $controller($state.get('dashboard').controller, controllerResolves);
