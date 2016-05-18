@@ -134,147 +134,106 @@ angular.module('app.states')
       $scope.tabs = [
             { preTitle: 'Compute', title: 'Cloud', subtabs: [
                 {title: 'AWS', items: [
-                    {title: 'Ansible', image: 'assets/images/blueprint-designer/Ansible_Logo.svg'},
-                    {title: 'AWS', image: 'assets/images/blueprint-designer/AWS-Logo.svg'},
-                    {title: 'Azure', image: 'assets/images/blueprint-designer/Azure-Logo.svg'},
-                    {title: 'Chef', image: 'assets/images/blueprint-designer/Chef-Logo.png'},
-                    {title: 'Cloudformation', image: 'assets/images/blueprint-designer/Cloudformation-Logo.svg'},
-                    {title: 'GCE', image: 'assets/images/blueprint-designer/GCE_Logo.png'},
-                    {title: 'Kubernetes', image: 'assets/images/blueprint-designer/kubernetes-Logo.svg'},
-                    {title: 'NetApp', image: 'assets/images/blueprint-designer/NetApp_Logo.svg'},
-                    {title: 'Nuage', image: 'assets/images/blueprint-designer/Nuage-Logo.svg'},
-                    {title: 'OpenShift', image: 'assets/images/blueprint-designer/OpenShift-Logo-NoText.svg'},
-                    {title: 'Openstack Heat', image: 'assets/images/blueprint-designer/Openstack-Heat-Logos.svg'},
-                    {title: 'OpenStack', image: 'assets/images/blueprint-designer/Openstack-Logo.svg'},
-                    {title: 'Openstack Neutrons', image: 'assets/images/blueprint-designer/Openstack-Neutrons-Logos.svg'},
-                    {title: 'Puppet', image: 'assets/images/blueprint-designer/Puppet-Logo.svg'},
-                    {title: 'RedHat', image: 'assets/images/blueprint-designer/RedHat_logo.svg'},
-                    {title: 'Atomic', image: 'assets/images/blueprint-designer/RH_Atomic-Logo-NoText.svg'},
-                    {title: 'RHEV', image: 'assets/images/blueprint-designer/RHEV_Logo.svg'},
-                    {title: 'Satellite', image: 'assets/images/blueprint-designer/Satellite_Logo.svg'},
-                    {title: 'Storage', image: 'assets/images/blueprint-designer/Storage_Logo.svg'},
-                    {title: 'Vmware', image: 'assets/images/blueprint-designer/Vmware-Logo.svg'}
+                    {title: 'AWS', image: 'assets/images/blueprint-designer/AWS-Logo.svg'}
                   ]
                 },
                 {title: 'Azure', items: [
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]},
+                  {title: 'Azure', image: 'assets/images/blueprint-designer/Azure-Logo.svg'}
+                ]},
                 {title: 'GCE', items: [
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]},
+                  {title: 'GCE', image: 'assets/images/blueprint-designer/GCE_Logo.png'}
+                ]},
                 {title: 'OpenStack', items: [
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]}
+                  {title: 'OpenStack', image: 'assets/images/blueprint-designer/Openstack-Logo.svg'}
+                ]}
             ]
             },
             { preTitle: 'Compute', title: 'Containers', subtabs: [
-                {title: 'AP', items: [
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]},
                 {title: 'Kubernetes', items: [
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]},
+                    {title: 'Kubernetes', image: 'assets/images/blueprint-designer/kubernetes-Logo.svg'}
+                   ]},
                 {title: 'OSE', items: [
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'},
-                    {title: 'Service Item', image: 'assets/images/blueprint-designer/catalogItem.png'}]}
+                  {title: 'OpenShift', image: 'assets/images/blueprint-designer/OpenShift-Logo-NoText.svg'}
+                ]}
             ]
             },
             { preTitle: 'Compute', title: 'Infrastructure', subtabs:
               [
-                {title: 'OpenStack'},
-                {title: 'RHEV'},
+                {title: 'OpenStack', items: [
+                  {title: 'OpenStack', image: 'assets/images/blueprint-designer/Openstack-Logo.svg'}
+                ]},
+                {title: 'RHEV', items: [
+                  {title: 'RHEV', image: 'assets/images/blueprint-designer/RHEV_Logo.svg'}
+                ]},
                 {title: 'SCVMM'},
-                {title: 'VMware'}
+                {title: 'VMware', items: [
+                  {title: 'Vmware', image: 'assets/images/blueprint-designer/Vmware-Logo.svg'}
+                ]}
               ]
+            },
+            { preTitle: 'Configuration', title: 'Management', subtabs:
+                [
+                  {title: 'Ansible', items: [
+                    {title: 'Ansible', image: 'assets/images/blueprint-designer/Ansible_Logo.svg'}
+                  ]},
+                  {title: 'Chef', items: [
+                    {title: 'Chef', image: 'assets/images/blueprint-designer/Chef-Logo.png'}
+                  ]},
+                  {title: 'Puppet', items: [
+                    {title: 'Puppet', image: 'assets/images/blueprint-designer/Puppet-Logo.svg'}
+                  ]},
+                  {title: 'Satellite', items: [
+                    {title: 'Satellite', image: 'assets/images/blueprint-designer/Satellite_Logo.svg'}
+                  ]}
+                ]
             },
             { title: 'Storage', subtabs:
               [
-                {title: 'NetApp'},
-                {title: 'USM'}
+                {title: 'NetApp', items: [
+                  {title: 'NetApp', image: 'assets/images/blueprint-designer/NetApp_Logo.svg'}
+                ]},
+                {title: 'USM', items: [
+                  {title: 'Storage', image: 'assets/images/blueprint-designer/Storage_Logo.svg'}
+                ]}
               ]
+            },
+            { title: 'Middleware', subtabs:
+                [
+                  {title: 'Hawkular'}
+                ]
             },
             { title: 'Network', subtabs:
               [
-                {title: 'Azure Stacks'},
-                {title: 'CloudFormation'},
-                {title: 'Heat Templates'}
+                {title: 'Neutron', items: [
+                   {title: 'OpenStack Neutron', image: 'assets/images/blueprint-designer/Openstack-Neutrons-Logos.svg'}
+                ]},
+                {title: 'Nuage', items: [
+                  {title: 'Nuage', image: 'assets/images/blueprint-designer/Nuage-Logo.svg'}
+                ]}
               ]
             },
             { title: 'Orchestration', subtabs:
                 [
-                    {title: 'Ansible'},
-                    {title: 'Satellite'}
+                    {title: 'Azure Stacks'},
+                    {title: 'CloudFormation', items: [
+                      {title: 'Cloudformation', image: 'assets/images/blueprint-designer/Cloudformation-Logo.svg'}
+                    ]},
+                    {title: 'Heat Templates', items: [
+                      {title: 'Openstack Heat', image: 'assets/images/blueprint-designer/Openstack-Heat-Logos.svg'}
+                    ]}
                 ]
             },
-            { title: 'Middleware', subtabs:
-                [
-                    {title: 'Hawkular'}
-                ]
-            },
+
             // 'uf06b' is the font awesome varible content for the 'gift'
-            { title: 'Bundles', items: [
-                {title: 'Bundle', bundle: true},
-                {title: 'Bundle', bundle: true},
-                {title: 'Bundle', bundle: true},
-                {title: 'Bundle', bundle: true},
-                {title: 'Bundle', bundle: true},
-                {title: 'Bundle', bundle: true},
-                {title: 'Bundle', bundle: true},
-                {title: 'Bundle', bundle: true}]
+            { title: 'Bundles', active: true, items: [
+                {title: 'Bundle 1', bundle: true},
+                {title: 'Bundle 2', bundle: true},
+                {title: 'Bundle 3', bundle: true},
+                {title: 'Bundle 4', bundle: true},
+                {title: 'Bundle 5', bundle: true},
+                {title: 'Bundle 6', bundle: true},
+                {title: 'Bundle 7', bundle: true},
+                {title: 'Bundle 8', bundle: true}]
             }
         ];
 
