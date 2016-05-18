@@ -82,7 +82,7 @@
           }
         ],
         resultsCount: vm.requestsList.length,
-        appliedFilters: RequestsState.getFilters(),
+        appliedFilters: RequestsState.filterApplied ? RequestsState.getFilters() : [],
         onFilterChange: filterChange
       },
       sortConfig: {
@@ -114,8 +114,11 @@
       }
     };
 
-    /* Apply the filtering to the data list */
-    filterChange(RequestsState.getFilters());
+    if (RequestsState.filterApplied) {
+      /* Apply the filtering to the data list */
+      filterChange(RequestsState.getFilters());
+      RequestsState.filterApplied = false;
+    }
 
     function handleClick(item, e) {
       $state.go('requests.details', {requestId: item.id});
