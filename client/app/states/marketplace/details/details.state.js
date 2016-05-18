@@ -102,7 +102,10 @@
       }
 
       function addFailure(result) {
-        Notifications.error(__('There was an error adding to shopping cart: ') + result);
+        var errors = result.split(",");
+        for (var i = 0; i<errors.length; ++i) {
+          Notifications.error(__("There was an error adding to shopping cart: ") + errors[i]);
+        }
       }
     }
   }
