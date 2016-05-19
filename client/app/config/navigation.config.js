@@ -103,7 +103,7 @@
     }
 
     function updateBlueprintsCount(item, data) {
-      Navigation.items.primary[item].count = -1;
+      Navigation.items.primary[item].count = 4;
     }
   }
 })();
