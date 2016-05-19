@@ -68,6 +68,7 @@
     "jscs": "^2.7.0",
     "jshint-stylish": "^1.0.1",
     "karma": "^0.13.0",
+    "karma-json-fixtures-preprocessor": "0.0.4",
     "karma-chai": "^0.1.0",
     "karma-chai-sinon": "^0.1.4",
     "karma-coverage": "^0.2.7",

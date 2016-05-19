@@ -1,0 +1,55 @@
+<ol class="breadcrumb">
+  <li>
+    <a ui-sref="^">
+      <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to Dialog Detail'|translate}}
+    </a>
+  </li>
+  <li class="active">
+    <strong translate>Dialog:</strong> {{ vm.dialog.label }}
+  </li>
+</ol>
+
+<div class="col-md-12 list-view-container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 translate>Dialog Content</h2>
+      <dynamic-tabs></dynamic-tabs>
+      <dialog-dashboard></dialog-dashboard>
+    </div>
+    <div class="col-md-6">
+      <h2 translate>General</h2>
+      <form class="form-horizontal">
+        <div pf-form-group
+             pf-label="{{'Name'|translate}}"
+             required>
+          <input id="name"
+                 name="name"
+                 ng-model="vm.dialog.content[0].label"
+                 type="text"
+                 required/>
+        </div>
+        <div pf-form-group
+             pf-label="{{'Description'|translate}}"
+             pf-input-class="col-sm-9">
+            <textarea id="description"
+                      name="description"
+                      ng-model="vm.dialog.content[0].description">
+              {{ vm.dialog.content[0].description }}
+            </textarea>
+        </div>
+      </form>
+      <h2 translate>Toolbox</h2>
+      <div class='draggable'>
+        <dialog-components-static></dialog-components-static>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pull-right">
+  <button type="button" class="btn btn-default" ng-click="vm.dismissChanges()" translate>Cancel</button>
+  <button type="button"
+          class="btn btn-primary"
+          ng-click="vm.saveDialogDetails()"
+          ng-disabled="vm.dialogUnchanged()" translate>Save
+  </button>
+</div>

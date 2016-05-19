@@ -97,6 +97,7 @@
         services:    {show: entitledForServices(productFeatures)},
         requests:    {show: entitledForRequests(productFeatures)},
         marketplace: {show: entitledForServiceCatalogs(productFeatures)},
+        dialogs:     {show: entitledForDialogs(productFeatures)},
         blueprints:  {show: entitledForCatalogItems(productFeatures) && $state.blueprints_flag}
       };
       model.navFeatures = features;
@@ -149,6 +150,10 @@
 
     function entitledForServiceCatalogs(productFeatures) {
       return angular.isDefined(productFeatures.svc_catalog_provision);
+    }
+
+    function entitledForDialogs(productFeatures) {
+      return angular.isDefined(productFeatures.miq_ae_customization_explorer);
     }
 
     function entitledForRequests(productFeatures) {

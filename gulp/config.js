@@ -77,6 +77,8 @@ module.exports = (function() {
     var options = {
       files: [].concat(
         './node_modules/phantomjs-polyfill/bind-polyfill.js',
+        client + 'fixtures/**/*.json',
+
         wiredep({devDependencies: true}).js,
         specHelperFiles,
         getClientJsFiles(true),
@@ -93,8 +95,22 @@ module.exports = (function() {
           {type: 'text-summary'}
         ]
       },
-      preprocessors: {}
+      preprocessors: {},
+      plugins: [
+        'karma-json-fixtures-preprocessor'
+      ],
+      jsonFixturesPreprocessor: {
+        // strip this from the file path \ fixture name
+        stripPrefix: client + 'fixtures/',
+        // strip this to the file path \ fixture name
+        prependPrefix: '',
+        // change the global fixtures variable name
+        variableName: '__fixtures__',
+        // camelize fixture filenames (e.g 'fixtures/aa-bb_cc.json' becames __fixtures__['fixtures/aaBbCc'])
+        camelizeFilenames: true,
+      }
     };
+    options.preprocessors[client + 'fixtures/**/*.json']  = ['json_fixtures'];
     options.preprocessors[client + 'app/**/!(*.spec)+(.js)'] = ['coverage'];
 
     return options;
@@ -365,6 +381,7 @@ module.exports = (function() {
       temp + '**/*.css'
     ],
     browserSyncOptions: {
+      browser: 'google-chrome',
       proxy: 'localhost:' + (process.env.PORT || '8001'),
       port: 3001,
       startPath: '/self_service/',

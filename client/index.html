@@ -23,6 +23,7 @@
   </style>
   <!-- build:css styles/lib.css -->
   <!-- bower:css -->
+  <link rel="stylesheet" href="/bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
   <link rel="stylesheet" href="/bower_components/angular-patternfly/dist/styles/angular-patternfly.css" />
   <link rel="stylesheet" href="/bower_components/ngprogress/ngProgress.css" />
   <link rel="stylesheet" href="/bower_components/patternfly/dist/css/patternfly.css" />
@@ -55,16 +56,20 @@
   <script src="/bower_components/angular-animate/angular-animate.js"></script>
   <script src="/bower_components/angular-base64/angular-base64.js"></script>
   <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+  <script src="/bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>
+  <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
+  <script src="/bower_components/angular-dragdrop/src/angular-dragdrop.js"></script>
   <script src="/bower_components/angular-gettext/dist/angular-gettext.js"></script>
   <script src="/bower_components/angular-messages/angular-messages.js"></script>
   <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
-  <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
-  <script src="/bower_components/angular-dragdrop/src/angular-dragdrop.js"></script>
   <script src="/bower_components/angular-patternfly/dist/angular-patternfly.js"></script>
   <script src="/bower_components/angular-resource/angular-resource.js"></script>
   <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
   <script src="/bower_components/angular-svg-base/src/svgDirs.js"></script>
   <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="/bower_components/angular-ui-sortable/sortable.js"></script>
   <script src="/bower_components/lodash/lodash.js"></script>
   <script src="/bower_components/moment/moment.js"></script>
   <script src="/bower_components/ngprogress/build/ngprogress.js"></script>
@@ -111,7 +116,13 @@
   <script src="/client/app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js"></script>
   <script src="/client/app/components/confirmation/confirmation.directive.js"></script>
   <script src="/client/app/components/custom-button/custom-button.directive.js"></script>
+  <script src="/client/app/components/dialog-components-static/dialog-components-static.component.js"></script>
   <script src="/client/app/components/dialog-content/dialog-content.directive.js"></script>
+  <script src="/client/app/components/dialog-dashboard/dialog-dashboard.component.js"></script>
+  <script src="/client/app/components/dialog-field/dialog-field.component.js"></script>
+  <script src="/client/app/components/dialog-modal-template/dialog-modal-template.directive.js"></script>
+  <script src="/client/app/components/dynamic-tabs/dynamic-tabs.component.js"></script>
+  <script src="/client/app/components/edit-dialog-modal/edit-dialog-modal-service.factory.js"></script>
   <script src="/client/app/components/edit-service-modal/edit-service-modal-service.factory.js"></script>
   <script src="/client/app/components/flowchart/dragging_service.js"></script>
   <script src="/client/app/components/flowchart/flowchart_directive.js"></script>
@@ -140,7 +151,9 @@
   <script src="/client/app/resources/mock-data.factory.js"></script>
   <script src="/client/app/services/blueprints-state.service.js"></script>
   <script src="/client/app/services/consoles.service.js"></script>
+  <script src="/client/app/services/dialog-edit.service.js"></script>
   <script src="/client/app/services/dialog-field-refresh.service.js"></script>
+  <script src="/client/app/services/dialogs-state.service.js"></script>
   <script src="/client/app/services/marketplace-state.service.js"></script>
   <script src="/client/app/services/messages.service.js"></script>
   <script src="/client/app/services/navcounts.service.js"></script>
@@ -159,6 +172,10 @@
   <script src="/client/app/states/blueprints/designer/designerCtrl.js"></script>
   <script src="/client/app/states/blueprints/list/list.state.js"></script>
   <script src="/client/app/states/dashboard/dashboard.state.js"></script>
+  <script src="/client/app/states/dialogs/details/details.state.js"></script>
+  <script src="/client/app/states/dialogs/dialogs.state.js"></script>
+  <script src="/client/app/states/dialogs/edit/edit.state.js"></script>
+  <script src="/client/app/states/dialogs/list/list.state.js"></script>
   <script src="/client/app/states/error/error.state.js"></script>
   <script src="/client/app/states/help/help.state.js"></script>
   <script src="/client/app/states/login/login.state.js"></script>

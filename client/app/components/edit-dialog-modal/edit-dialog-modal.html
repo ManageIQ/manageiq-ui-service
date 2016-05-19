@@ -1,0 +1,88 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 class="modal-title" id="myModalLabel" translate>Edit Dialog field</h4>
+</div>
+
+<div class="modal-body">
+  <form class="form-horizontal" ng-switch on="vm.modalData.type">
+    <h3>Element Information</h3>
+    <!-- general details same for each component - element information -->
+    <div pf-form-group pf-label="{{'Label'|translate}}" required>
+      <input id="label" name="label"
+             ng-model="vm.modalData.label" type="text" required/>
+    </div>
+    <div ng-if="vm.element === 'field'"
+         pf-form-group
+         pf-label="{{'Name'|translate}}" required>
+      <input id="name" name="name"
+             ng-model="vm.modalData.name" type="text" required/>
+    </div>
+    <div pf-form-group pf-input-class="col-sm-9" pf-label="{{'Description'|translate}}">
+      <textarea id="description" name="description" ng-model="vm.modalData.description">
+        {{ vm.modalData.description }}
+      </textarea>
+    </div>
+    <div ng-if="vm.element === 'field'"
+         pf-form-group
+         pf-label="{{'Dynamic'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.dynamic"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate}}"/>
+    </div>
+    <h3 ng-if="vm.element === 'field'">Options</h3>
+    <!-- component specific details -->
+    <div ng-if="vm.element === 'field' && !vm.modalData.dynamic"
+         ng-switch on="vm.modalData.type">
+      <dialog-modal-template ng-switch-when="DialogFieldTextBox"
+                             template="edit-dialog-modal-text-box.html">
+      </dialog-modal-template>
+      <dialog-modal-template ng-switch-when="DialogFieldTextAreaBox"
+                             template="edit-dialog-modal-text-area-box.html">
+      </dialog-modal-template>
+      <dialog-modal-template ng-switch-when="DialogFieldCheckBox"
+                             template="edit-dialog-modal-check-box.html">
+      </dialog-modal-template>
+      <dialog-modal-template ng-switch-when="DialogFieldDateControl"
+                             template="edit-dialog-modal-date-time-control.html">
+      </dialog-modal-template>
+      <dialog-modal-template ng-switch-when="DialogFieldDateTimeControl"
+                             template="edit-dialog-modal-date-time-control.html">
+      </dialog-modal-template>
+      <dialog-modal-template ng-switch-when="DialogFieldRadioButton"
+                             template="edit-dialog-modal-radio-button-drop-down-list.html">
+      </dialog-modal-template>
+      <dialog-modal-template ng-switch-when="DialogFieldDropDownList"
+                             template="edit-dialog-modal-radio-button-drop-down-list.html">
+      </dialog-modal-template>
+    </div>
+    <div ng-if="vm.element === 'field' && vm.modalData.dynamic">
+      <dialog-modal-template template="edit-dialog-modal-dynamic.html">
+      </dialog-modal-template>
+    </div>
+    <h3 ng-if="vm.element === 'field'">Advanced</h3>
+    <!-- general details same for each component - advanced -->
+    <div ng-if="vm.element === 'field'" pf-form-group pf-label="{{'Reconfigurable'|translate}}">
+      <input bs-switch
+             ng-model="vm.modalData.reconfigurable"
+             type="checkbox"
+             switch-on-text="{{'Yes'|translate}}"
+             switch-off-text="{{'No'|translate}}" >
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-danger"
+          type="button"
+          ng-click="vm.deleteField()">Delete</button>
+  <button type="button" class="btn btn-default" ng-click="$dismiss()" translate>Cancel</button>
+  <button type="button"
+          class="btn btn-primary"
+          ng-click="vm.saveDialogFieldDetails()"
+          ng-disabled="vm.modalUnchanged()" translate>Save
+  </button>
+</div>

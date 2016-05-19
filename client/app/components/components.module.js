@@ -5,6 +5,9 @@
     'app.core',
 
     'ui.bootstrap',
+    'ui.sortable',
+    'ngDragDrop',
+    'frapontillo.bootstrap-switch',
     'patternfly',
     'ngSVGAttributes'
   ]);

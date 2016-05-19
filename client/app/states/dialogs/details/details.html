@@ -1,0 +1,77 @@
+<ol class="breadcrumb">
+  <li>
+    <a ui-sref="^"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to My Dialogs'|translate}}</a>
+  </li>
+  <li class="active"> <strong translate>Dialog:</strong> {{ ::vm.dialog.label }}
+  </li>
+</ol>
+
+<div class="ss-details-wrapper">
+  <div class="panel panel-default ss-details-panel">
+    <div class="panel-body">
+      <section>
+        <div class="col-md-12 ss-details-header">
+          <div class="row">
+            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6">
+              <div class="ss-details-header__title-img">
+                <span class="ss-details-header__title-img__center"></span>
+                <img class="ss-details-header__title-img__logo" ng-src="{{ ::vm.dialog.picture.image_href }}"
+                  ng-if=" ::vm.dialog.picture.image_href "/>
+                <img class="ss-details-header__title-img__logo" src="images/service.png"
+                  ng-if=" ::!vm.dialog.picture.image_href "/>
+              </div>
+              <div class="ss-details-header__title">
+                <h2>{{ ::vm.dialog.label }}</h2>
+                <h4>{{ ::vm.dialog.description || vm.dialog.label }}</h4>
+              </div>
+            </div>
+
+            <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6 ss-details-header__actions">
+              <div class="ss-details-header__actions__inner">
+                <button class="btn btn-danger" type="button" ng-click="vm.dialog.removeDialog()" translate>Remove Dialog</button>
+                <button class="btn btn-primary" type="button" ng-click="vm.dialog.performAction()" translate>Edit Dialog</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <section class="ss-form-readonly">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="control-label col-sm-4" translate>Dialog ID</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" disabled value="{{ ::vm.dialog.id }}" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" translate>Dialog Created On</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" disabled value="{{ ::vm.dialog.created_at | date:'medium' }}" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" translate>Dialog Updated On</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" disabled value="{{ ::vm.dialog.updated_at | date:'medium' }}" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="panel panel-default ss-details-panel">
+    <div class="panel-body">
+      <section class="ss-details-section">
+        <!-- TODO: vzdy prvni index? proc jednoprvkove pole? -->
+        <dialog-content dialog="vm.dialog.content[0]" input-disabled="true"></dialog-content>
+      </section>
+    </div>
+  </div>
+</div>
