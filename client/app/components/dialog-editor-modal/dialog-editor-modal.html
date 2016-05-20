@@ -37,31 +37,31 @@
     <!-- component specific details -->
     <div ng-if="vm.element === 'field' && !vm.modalData.dynamic"
          ng-switch on="vm.modalData.type">
-      <dialog-modal-template ng-switch-when="DialogFieldTextBox"
-                             template="edit-dialog-modal-text-box.html">
-      </dialog-modal-template>
-      <dialog-modal-template ng-switch-when="DialogFieldTextAreaBox"
-                             template="edit-dialog-modal-text-area-box.html">
-      </dialog-modal-template>
-      <dialog-modal-template ng-switch-when="DialogFieldCheckBox"
-                             template="edit-dialog-modal-check-box.html">
-      </dialog-modal-template>
-      <dialog-modal-template ng-switch-when="DialogFieldDateControl"
-                             template="edit-dialog-modal-date-time-control.html">
-      </dialog-modal-template>
-      <dialog-modal-template ng-switch-when="DialogFieldDateTimeControl"
-                             template="edit-dialog-modal-date-time-control.html">
-      </dialog-modal-template>
-      <dialog-modal-template ng-switch-when="DialogFieldRadioButton"
-                             template="edit-dialog-modal-radio-button-drop-down-list.html">
-      </dialog-modal-template>
-      <dialog-modal-template ng-switch-when="DialogFieldDropDownList"
-                             template="edit-dialog-modal-radio-button-drop-down-list.html">
-      </dialog-modal-template>
+      <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextBox"
+                             template="text-box.html">
+      </dialog-editor-modal-field-template>
+      <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextAreaBox"
+                             template="text-area-box.html">
+      </dialog-editor-modal-field-template>
+      <dialog-editor-modal-field-template ng-switch-when="DialogFieldCheckBox"
+                             template="check-box.html">
+      </dialog-editor-modal-field-template>
+      <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateControl"
+                             template="date-time-control.html">
+      </dialog-editor-modal-field-template>
+      <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateTimeControl"
+                             template="date-time-control.html">
+      </dialog-editor-modal-field-template>
+      <dialog-editor-modal-field-template ng-switch-when="DialogFieldRadioButton"
+                             template="radio-button-drop-down-list.html">
+      </dialog-editor-modal-field-template>
+      <dialog-editor-modal-field-template ng-switch-when="DialogFieldDropDownList"
+                             template="radio-button-drop-down-list.html">
+      </dialog-editor-modal-field-template>
     </div>
     <div ng-if="vm.element === 'field' && vm.modalData.dynamic">
-      <dialog-modal-template template="edit-dialog-modal-dynamic.html">
-      </dialog-modal-template>
+      <dialog-editor-modal-field-template template="dynamic.html">
+      </dialog-editor-modal-field-template>
     </div>
     <h3 ng-if="vm.element === 'field'">Advanced</h3>
     <!-- general details same for each component - advanced -->

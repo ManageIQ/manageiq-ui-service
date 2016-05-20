@@ -4,9 +4,9 @@
   // works as placeholders for drag&drop dialog components
 
   angular.module('app.components')
-    .component('dialogComponentsStatic', {
+    .component('dialogEditorFieldStatic', {
       controller: function() {
-        this.components = {
+        this.fields = {
           dialogFieldTextBox: {
             icon: "fa-font",
             label: __("Text Box"),
@@ -173,7 +173,7 @@
           },
         };
       },
-      controllerAs: 'dialogComponentsStatic',
-      templateUrl: 'app/components/dialog-components-static/dialog-components-static.html'
+      controllerAs: 'dialogEditorFieldStatic',
+      templateUrl: 'app/components/dialog-editor-field-static/dialog-editor-field-static.html'
     });
 })();

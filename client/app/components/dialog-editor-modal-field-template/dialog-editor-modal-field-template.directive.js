@@ -2,10 +2,10 @@
   'use strict';
 
   angular.module('app.components')
-    .directive('dialogModalTemplate', function() {
+    .directive('dialogEditorModalFieldTemplate', function() {
       return {
         templateUrl: function(tElement, tAttrs) {
-          return 'app/components/dialog-modal-template/' + tAttrs.template;
+          return 'app/components/dialog-editor-modal-field-template/' + tAttrs.template;
         },
         scope: true,
       };

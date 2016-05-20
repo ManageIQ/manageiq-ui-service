@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('component: dynamicTabs', function() {
+describe('component: dialogEditorTabs', function() {
   beforeEach(function() {
     module('app.components', 'gettext');
   });
@@ -18,18 +18,18 @@ describe('component: dynamicTabs', function() {
       scope = $rootScope.$new();
       lodash = $injector.get('lodash');
 
-      bard.inject('DialogEdit', 'EditDialogModal');
-      DialogEdit.setData(lodash.cloneDeep(window.__fixtures__['client/fixtures/dialogData']));
+      bard.inject('DialogEditor', 'DialogEditorModal');
+      DialogEditor.setData(lodash.cloneDeep(window.__fixtures__['client/fixtures/dialogData']));
 
-      element = $compile('<dialog-field></dialog-field>')(scope);
+      element = $compile('<dialog-editor-field></dialog-editor-field>')(scope);
       scope.$apply();
-      controller = element.controller('dialogField');
+      controller = element.controller('dialogEditorField');
     }));
 
     it('should call function to show modal', function() {
-      sinon.spy(EditDialogModal, 'showModal');
+      sinon.spy(DialogEditorModal, 'showModal');
       controller.editDialogModal(1, 1);
-      expect(EditDialogModal.showModal).to.have.been.calledOnce;
+      expect(DialogEditorModal.showModal).to.have.been.calledOnce;
     });
   });
 });

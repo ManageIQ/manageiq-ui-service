@@ -2,15 +2,15 @@
   'use strict';
 
   angular.module('app.components')
-    .component('dialogDashboard', {
-      controller: function(DialogEdit, EditDialogModal, lodash) {
+    .component('dialogEditorBoxes', {
+      controller: function(DialogEditor, DialogEditorModal, lodash) {
         /**
          * Load component data
          */
         this.$onInit = function() {
-          this.service = DialogEdit;
+          this.service = DialogEditor;
           // load data from service
-          this.dialogTabs = DialogEdit.getData().content[0].dialog_tabs;
+          this.dialogTabs = DialogEditor.getData().content[0].dialog_tabs;
         };
 
         /**
@@ -18,15 +18,15 @@
          * New box automaticaly does have last position in list
          */
         this.addBox = function() {
-          this.dialogTabs[DialogEdit.activeTab].dialog_groups.push({
+          this.dialogTabs[DialogEditor.activeTab].dialog_groups.push({
             description: __("Description"),
             label: __("Label"),
             display: "edit",
             position: 0,
             dialog_fields: [],
           });
-          DialogEdit.updatePositions(
-            this.dialogTabs[DialogEdit.activeTab].dialog_groups
+          DialogEditor.updatePositions(
+            this.dialogTabs[DialogEditor.activeTab].dialog_groups
           );
         };
 
@@ -35,7 +35,7 @@
          */
         this.removeBox = function(id) {
           lodash.remove(
-            this.dialogTabs[DialogEdit.activeTab].dialog_groups,
+            this.dialogTabs[DialogEditor.activeTab].dialog_groups,
             function(box) {
               return box.position === id;
             }
@@ -43,7 +43,7 @@
         };
 
         this.editDialogModal = function(tab, box) {
-          EditDialogModal.showModal(tab, box);
+          DialogEditorModal.showModal(tab, box);
         };
 
         /**
@@ -52,7 +52,7 @@
         this.droppableOptions = function(e, ui) {
           var droppedItem = angular.element(e.target).scope();
 
-          DialogEdit.updatePositions(
+          DialogEditor.updatePositions(
             droppedItem.box.dialog_fields
           );
         };
@@ -66,7 +66,7 @@
           stop: function(e, ui) {
             var sortedBox = ui.item.scope();
 
-            DialogEdit.updatePositions(
+            DialogEditor.updatePositions(
               sortedBox.$parent.tab.dialog_groups
             );
           },
@@ -80,13 +80,13 @@
           stop: function(e, ui) {
             var sortedField = ui.item.scope();
 
-            DialogEdit.updatePositions(
+            DialogEditor.updatePositions(
               sortedField.$parent.box.dialog_fields
             );
           },
         };
       },
-      controllerAs: 'dialogDashboard',
-      templateUrl: 'app/components/dialog-dashboard/dialog-dashboard.html'
+      controllerAs: 'dialogEditorBoxes',
+      templateUrl: 'app/components/dialog-editor-boxes/dialog-editor-boxes.html'
     });
 })();

@@ -2,24 +2,24 @@
   'use strict';
 
   angular.module('app.components')
-    .component('dynamicTabs', {
-      controller: function(DialogEdit, lodash, EditDialogModal) {
+    .component('dialogEditorTabs', {
+      controller: function(DialogEditor, lodash, DialogEditorModal) {
         /**
          * After loading component data, activate first tab if there is any
          */
         this.$onInit = function() {
           // load data from service
-          this.tabList = DialogEdit.getData().content[0].dialog_tabs;
+          this.tabList = DialogEditor.getData().content[0].dialog_tabs;
 
           // set active tab
           if (this.tabList.length !== 0) {
-            DialogEdit.activeTab = 0;
+            DialogEditor.activeTab = 0;
             this.tabList[0].active = true;
           }
         };
 
         this.editDialogModal = function(tab) {
-          EditDialogModal.showModal(tab);
+          DialogEditorModal.showModal(tab);
         };
 
         /**
@@ -45,7 +45,7 @@
           });
 
           // set activity for a new tab
-          DialogEdit.activeTab = nextIndex;
+          DialogEditor.activeTab = nextIndex;
         };
 
         /**
@@ -75,10 +75,10 @@
             return tab.position === id;
           });
 
-          DialogEdit.updatePositions(this.tabList);
+          DialogEditor.updatePositions(this.tabList);
           var activeTabData = lodash.find(this.tabList, {active: true});
           if (activeTabData !== undefined) {
-            DialogEdit.activeTab = activeTabData.position;
+            DialogEditor.activeTab = activeTabData.position;
           }
         };
 
@@ -94,7 +94,7 @@
           var selectedTab = this.tabList[id];
           selectedTab.active = true;
 
-          DialogEdit.activeTab = id;
+          DialogEditor.activeTab = id;
         };
 
         this.sortableOptions = {
@@ -104,14 +104,14 @@
           revert: 50,
           stop: function(e, ui) {
             var sortedTab = ui.item.scope();
-            var tabList = sortedTab.$parent.dynamicTabs.tabList;
+            var tabList = sortedTab.$parent.dialogEditorTabs.tabList;
 
-            DialogEdit.updatePositions(tabList);
-            DialogEdit.activeTab = lodash.find(tabList, {active: true}).position;
+            DialogEditor.updatePositions(tabList);
+            DialogEditor.activeTab = lodash.find(tabList, {active: true}).position;
           },
         };
       },
-      controllerAs: 'dynamicTabs',
-      templateUrl: 'app/components/dynamic-tabs/dynamic-tabs.html',
+      controllerAs: 'dialogEditorTabs',
+      templateUrl: 'app/components/dialog-editor-tabs/dialog-editor-tabs.html',
     });
 })();

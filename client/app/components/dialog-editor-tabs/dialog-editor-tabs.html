@@ -1,0 +1,15 @@
+<ul ui-sortable='dialogEditorTabs.sortableOptions'
+    ng-model='dialogEditorTabs.tabList'
+    class='nav nav-tabs'
+    data-tabs='tabs'>
+  <li ng-class='{active: tab.active}' ng-repeat='tab in dialogEditorTabs.tabList'>
+    <a class="selectTab" ng-click='dialogEditorTabs.selectTab(tab.position)' data-toggle='tab'>
+      <i class="pficon-edit" ng-click='dialogEditorTabs.editDialogModal(tab.position)'></i>
+      {{ tab.label }}
+      <i class='deleteTab glyphicon glyphicon-remove' ng-click='dialogEditorTabs.deleteTab(tab.position)'></i>
+    </a>
+  </li>
+  <li class='nosort'>
+    <a ng-click='dialogEditorTabs.addTab()'><i class='pficon-add-circle-o'></i>&nbsp;Create Tab</a>
+  </li>
+</ul>

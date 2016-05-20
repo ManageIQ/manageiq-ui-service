@@ -2,10 +2,10 @@
   'use strict';
 
   angular.module('app.services')
-    .factory('DialogEdit', DialogEditFactory);
+    .factory('DialogEditor', DialogEditorFactory);
 
   /** @ngInject */
-  function DialogEditFactory() {
+  function DialogEditorFactory() {
     var service = {
       data: {},
       activeTab: 0,

@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.components')
-    .factory('EditDialogModal', EditDialogFactory);
+    .factory('DialogEditorModal', EditDialogFactory);
 
   /** @ngInject */
   function EditDialogFactory($modal) {
@@ -14,8 +14,8 @@
 
     function showModal(tab, box, field) {
       var modalOptions = {
-        templateUrl: 'app/components/edit-dialog-modal/edit-dialog-modal.html',
-        controller: EditDialogModalController,
+        templateUrl: 'app/components/dialog-editor-modal/dialog-editor-modal.html',
+        controller: DialogEditorModalController,
         controllerAs: 'vm',
         size: 'lg',
         resolve: {
@@ -33,9 +33,9 @@
   }
 
   /** @ngInject */
-  function EditDialogModalController(dialogDetails, $state, $modalInstance,
-                                     CollectionsApi, Notifications,
-                                     DialogEdit, lodash) {
+  function DialogEditorModalController(dialogDetails, $state, $modalInstance,
+                                       CollectionsApi, Notifications,
+                                       DialogEditor, lodash) {
     var vm = this;
 
     vm.dialog = dialogDetails;
@@ -64,15 +64,15 @@
     switch (vm.element) {
       case 'tab':
         vm.modalData = lodash.cloneDeep(
-          DialogEdit.getData().content[0].dialog_tabs[
-            DialogEdit.activeTab
+          DialogEditor.getData().content[0].dialog_tabs[
+            DialogEditor.activeTab
           ]
         );
         break;
       case 'box':
         vm.modalData = lodash.cloneDeep(
-          DialogEdit.getData().content[0].dialog_tabs[
-            DialogEdit.activeTab
+          DialogEditor.getData().content[0].dialog_tabs[
+            DialogEditor.activeTab
           ].dialog_groups[
             vm.dialog.boxId
           ]
@@ -80,8 +80,8 @@
         break;
       case 'field':
         vm.modalData = lodash.cloneDeep(
-          DialogEdit.getData().content[0].dialog_tabs[
-            DialogEdit.activeTab
+          DialogEditor.getData().content[0].dialog_tabs[
+            DialogEditor.activeTab
           ].dialog_groups[
             vm.dialog.boxId
           ].dialog_fields[
@@ -105,15 +105,15 @@
       switch (vm.element) {
         case 'tab':
           return lodash.isMatch(
-            DialogEdit.getData().content[0].dialog_tabs[
-              DialogEdit.activeTab
+            DialogEditor.getData().content[0].dialog_tabs[
+              DialogEditor.activeTab
             ],
             vm.modalData
           );
         case 'box':
           return lodash.isMatch(
-            DialogEdit.getData().content[0].dialog_tabs[
-              DialogEdit.activeTab
+            DialogEditor.getData().content[0].dialog_tabs[
+              DialogEditor.activeTab
             ].dialog_groups[
               vm.dialog.boxId
             ],
@@ -121,8 +121,8 @@
           );
         case 'field':
           return lodash.isMatch(
-            DialogEdit.getData().content[0].dialog_tabs[
-              DialogEdit.activeTab
+            DialogEditor.getData().content[0].dialog_tabs[
+              DialogEditor.activeTab
             ].dialog_groups[
               vm.dialog.boxId
             ].dialog_fields[
@@ -143,31 +143,31 @@
       // store data to service
       switch (vm.element) {
         case 'tab':
-          DialogEdit.getData().content[0].dialog_tabs[
-            DialogEdit.activeTab
+          DialogEditor.getData().content[0].dialog_tabs[
+            DialogEditor.activeTab
           ].label = vm.modalData.label;
           // description
-          DialogEdit.getData().content[0].dialog_tabs[
-            DialogEdit.activeTab
+          DialogEditor.getData().content[0].dialog_tabs[
+            DialogEditor.activeTab
           ].description = vm.modalData.description;
           break;
         case 'box':
           // label
-          DialogEdit.getData().content[0].dialog_tabs[
-            DialogEdit.activeTab
+          DialogEditor.getData().content[0].dialog_tabs[
+            DialogEditor.activeTab
           ].dialog_groups[
             vm.dialog.boxId
           ].label = vm.modalData.label;
           // description
-          DialogEdit.getData().content[0].dialog_tabs[
-            DialogEdit.activeTab
+          DialogEditor.getData().content[0].dialog_tabs[
+            DialogEditor.activeTab
           ].dialog_groups[
             vm.dialog.boxId
           ].description = vm.modalData.description;
           break;
         case 'field':
-          DialogEdit.getData().content[0].dialog_tabs[
-            DialogEdit.activeTab
+          DialogEditor.getData().content[0].dialog_tabs[
+            DialogEditor.activeTab
           ].dialog_groups[
             vm.dialog.boxId
           ].dialog_fields[
@@ -187,8 +187,8 @@
      */
     function deleteField() {
       lodash.remove(
-        DialogEdit.getData().content[0].dialog_tabs[
-          DialogEdit.activeTab
+        DialogEditor.getData().content[0].dialog_tabs[
+          DialogEditor.activeTab
         ].dialog_groups[
           vm.dialog.boxId
         ].dialog_fields,

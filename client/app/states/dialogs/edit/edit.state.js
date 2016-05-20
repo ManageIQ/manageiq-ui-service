@@ -45,10 +45,10 @@
   }
 
   /** @ngInject */
-  function StateController($state, dialog, DialogEdit, CollectionsApi, Notifications) {
+  function StateController($state, dialog, DialogEditor, CollectionsApi, Notifications) {
     var vm = this;
 
-    DialogEdit.setData(dialog);
+    DialogEditor.setData(dialog);
 
     vm.dialog = dialog;
     vm.saveDialogDetails = saveDialogDetails;
@@ -62,11 +62,11 @@
     function saveDialogDetails() {
       // load dialog data
       var dialogData = {
-        description: DialogEdit.getData().content[0].description,
-        label: DialogEdit.getData().content[0].label,
+        description: DialogEditor.getData().content[0].description,
+        label: DialogEditor.getData().content[0].label,
         dialog_tabs: [],
       };
-      DialogEdit.getData().content[0].dialog_tabs.forEach(function(tab) {
+      DialogEditor.getData().content[0].dialog_tabs.forEach(function(tab) {
         delete tab.active
         dialogData.dialog_tabs.push(tab);
       });
@@ -74,7 +74,7 @@
       // save the dialog
       CollectionsApi.post(
         'service_dialogs',
-        DialogEdit.getData().id,
+        DialogEditor.getData().id,
         {},
         angular.toJson({action: 'create', resource: dialogData})
       ).then(saveSuccess, saveFailure);

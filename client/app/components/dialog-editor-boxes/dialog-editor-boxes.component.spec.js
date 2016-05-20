@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('component: dynamicTabs', function() {
+describe('component: dialogEditorTabs', function() {
   beforeEach(function() {
     module('app.components', 'gettext');
   });
@@ -18,24 +18,24 @@ describe('component: dynamicTabs', function() {
       scope = $rootScope.$new();
       lodash = $injector.get('lodash');
 
-      bard.inject('DialogEdit');
-      DialogEdit.setData(lodash.cloneDeep(window.__fixtures__['client/fixtures/dialogData']));
+      bard.inject('DialogEditor');
+      DialogEditor.setData(lodash.cloneDeep(window.__fixtures__['client/fixtures/dialogData']));
 
-      element = $compile('<dialog-dashboard></dialog-dashboard>')(scope);
+      element = $compile('<dialog-editor-boxes></dialog-editor-boxes>')(scope);
       scope.$apply();
-      controller = element.controller('dialogDashboard');
+      controller = element.controller('dialogEditorBoxes');
     }));
 
     it('should add new box to first tab', function() {
-      DialogEdit.activeTab = 0;
+      DialogEditor.activeTab = 0;
       controller.addBox();
-      expect(DialogEdit.getData().content[0].dialog_tabs[0].dialog_groups.length).to.equal(2);
+      expect(DialogEditor.getData().content[0].dialog_tabs[0].dialog_groups.length).to.equal(2);
     });
 
     it('removes the first box', function() {
-      DialogEdit.activeTab = 1;
+      DialogEditor.activeTab = 1;
       controller.removeBox(0);
-      expect(DialogEdit.getData().content[0].dialog_tabs[1].dialog_groups.length).to.equal(0);
+      expect(DialogEditor.getData().content[0].dialog_tabs[1].dialog_groups.length).to.equal(0);
     });
   });
 });
