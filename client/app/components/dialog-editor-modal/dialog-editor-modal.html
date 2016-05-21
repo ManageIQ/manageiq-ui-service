@@ -6,73 +6,90 @@
 </div>
 
 <div class="modal-body">
-  <form class="form-horizontal" ng-switch on="vm.modalData.type">
-    <h3>Element Information</h3>
-    <!-- general details same for each component - element information -->
-    <div pf-form-group pf-label="{{'Label'|translate}}" required>
-      <input id="label" name="label"
-             ng-model="vm.modalData.label" type="text" required/>
-    </div>
-    <div ng-if="vm.element === 'field'"
-         pf-form-group
-         pf-label="{{'Name'|translate}}" required>
-      <input id="name" name="name"
-             ng-model="vm.modalData.name" type="text" required/>
-    </div>
-    <div pf-form-group pf-input-class="col-sm-9" pf-label="{{'Description'|translate}}">
-      <textarea id="description" name="description" ng-model="vm.modalData.description">
-        {{ vm.modalData.description }}
-      </textarea>
-    </div>
-    <div ng-if="vm.element === 'field'"
-         pf-form-group
-         pf-label="{{'Dynamic'|translate}}">
-      <input bs-switch
-             ng-model="vm.modalData.dynamic"
-             type="checkbox"
-             switch-on-text="{{'Yes'|translate}}"
-             switch-off-text="{{'No'|translate}}"/>
-    </div>
-    <h3 ng-if="vm.element === 'field'">Options</h3>
-    <!-- component specific details -->
-    <div ng-if="vm.element === 'field' && !vm.modalData.dynamic"
-         ng-switch on="vm.modalData.type">
-      <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextBox"
-                             template="text-box.html">
-      </dialog-editor-modal-field-template>
-      <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextAreaBox"
-                             template="text-area-box.html">
-      </dialog-editor-modal-field-template>
-      <dialog-editor-modal-field-template ng-switch-when="DialogFieldCheckBox"
-                             template="check-box.html">
-      </dialog-editor-modal-field-template>
-      <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateControl"
-                             template="date-time-control.html">
-      </dialog-editor-modal-field-template>
-      <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateTimeControl"
-                             template="date-time-control.html">
-      </dialog-editor-modal-field-template>
-      <dialog-editor-modal-field-template ng-switch-when="DialogFieldRadioButton"
-                             template="radio-button-drop-down-list.html">
-      </dialog-editor-modal-field-template>
-      <dialog-editor-modal-field-template ng-switch-when="DialogFieldDropDownList"
-                             template="radio-button-drop-down-list.html">
-      </dialog-editor-modal-field-template>
-    </div>
-    <div ng-if="vm.element === 'field' && vm.modalData.dynamic">
-      <dialog-editor-modal-field-template template="dynamic.html">
-      </dialog-editor-modal-field-template>
-    </div>
-    <h3 ng-if="vm.element === 'field'">Advanced</h3>
-    <!-- general details same for each component - advanced -->
-    <div ng-if="vm.element === 'field'" pf-form-group pf-label="{{'Reconfigurable'|translate}}">
-      <input bs-switch
-             ng-model="vm.modalData.reconfigurable"
-             type="checkbox"
-             switch-on-text="{{'Yes'|translate}}"
-             switch-off-text="{{'No'|translate}}" >
-    </div>
-  </form>
+  <ul class="nav nav-tabs" style="margin-bottom: 20px;">
+    <li ng-class="{active:vm.modalTabIsSet('element_information')}">
+      <a ng-click="vm.modalTabSet('element_information')">Element Information</a>
+    </li>
+    <li ng-if="vm.element === 'field'" ng-class="{active:vm.modalTabIsSet('options')}">
+      <a ng-click="vm.modalTabSet('options')">Options</a>
+    </li>
+    <li ng-if="vm.element === 'field'" ng-class="{active:vm.modalTabIsSet('advanced')}">
+      <a ng-click="vm.modalTabSet('advanced')">Advanced</a>
+    </li>
+  </ul>
+  <!-- general details same for each component - element information -->
+  <div ng-show="vm.modalTabIsSet('element_information')">
+    <form class="form-horizontal">
+      <div pf-form-group pf-label="{{'Label'|translate}}" required>
+        <input id="label" name="label"
+               ng-model="vm.modalData.label" type="text" required/>
+      </div>
+      <div ng-if="vm.element === 'field'"
+           pf-form-group
+           pf-label="{{'Name'|translate}}" required>
+        <input id="name" name="name"
+               ng-model="vm.modalData.name" type="text" required/>
+      </div>
+      <div pf-form-group pf-input-class="col-sm-9" pf-label="{{'Description'|translate}}">
+        <textarea id="description" name="description" ng-model="vm.modalData.description">
+          {{ vm.modalData.description }}
+        </textarea>
+      </div>
+      <div ng-if="vm.element === 'field'"
+           pf-form-group
+           pf-label="{{'Dynamic'|translate}}">
+        <input bs-switch
+               ng-model="vm.modalData.dynamic"
+               type="checkbox"
+               switch-on-text="{{'Yes'|translate}}"
+               switch-off-text="{{'No'|translate}}"/>
+      </div>
+    </form>
+  </div>
+  <!-- field specific details -->
+  <div ng-show="vm.modalTabIsSet('options')">
+    <form class="form-horizontal">
+      <div ng-if="!vm.modalData.dynamic" ng-switch on="vm.modalData.type">
+        <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextBox"
+                               template="text-box.html">
+        </dialog-editor-modal-field-template>
+        <dialog-editor-modal-field-template ng-switch-when="DialogFieldTextAreaBox"
+                               template="text-area-box.html">
+        </dialog-editor-modal-field-template>
+        <dialog-editor-modal-field-template ng-switch-when="DialogFieldCheckBox"
+                               template="check-box.html">
+        </dialog-editor-modal-field-template>
+        <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateControl"
+                               template="date-time-control.html">
+        </dialog-editor-modal-field-template>
+        <dialog-editor-modal-field-template ng-switch-when="DialogFieldDateTimeControl"
+                               template="date-time-control.html">
+        </dialog-editor-modal-field-template>
+        <dialog-editor-modal-field-template ng-switch-when="DialogFieldRadioButton"
+                               template="radio-button-drop-down-list.html">
+        </dialog-editor-modal-field-template>
+        <dialog-editor-modal-field-template ng-switch-when="DialogFieldDropDownList"
+                               template="radio-button-drop-down-list.html">
+        </dialog-editor-modal-field-template>
+      </div>
+      <div ng-if="vm.modalData.dynamic">
+        <dialog-editor-modal-field-template template="dynamic.html">
+        </dialog-editor-modal-field-template>
+      </div>
+    </form>
+  </div>
+  <!-- general details same for each field - advanced -->
+  <div ng-show="vm.modalTabIsSet('advanced')">
+    <form class="form-horizontal">
+      <div pf-form-group pf-label="{{'Reconfigurable'|translate}}">
+        <input bs-switch
+               ng-model="vm.modalData.reconfigurable"
+               type="checkbox"
+               switch-on-text="{{'Yes'|translate}}"
+               switch-off-text="{{'No'|translate}}" >
+      </div>
+    </form>
+  </div>
 </div>
 
 <div class="modal-footer">

@@ -44,6 +44,10 @@
     vm.modalUnchanged = modalUnchanged;
     vm.addEntry = addEntry;
     vm.removeEntry = removeEntry;
+    vm.modalTabSet = modalTabSet;
+    vm.modalTabIsSet = modalTabIsSet;
+
+    vm.modalTab = 'element_information';
 
     // recognize edited element type
     if (vm.dialog.fieldId === undefined &&
@@ -98,6 +102,13 @@
     function activate() {
     }
 
+    function modalTabSet(tab) {
+      vm.modalTab = tab;
+    }
+
+    function modalTabIsSet(tab) {
+      return vm.modalTab === tab;
+    }
     /**
      * Check for changes in modal
      */
