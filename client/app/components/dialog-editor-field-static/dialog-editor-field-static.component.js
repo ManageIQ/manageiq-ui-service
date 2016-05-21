@@ -8,7 +8,7 @@
       controller: function() {
         this.fields = {
           dialogFieldTextBox: {
-            icon: "fa-font",
+            icon: "fa fa-font",
             label: __("Text Box"),
             placeholders: {
               name: "name",
@@ -32,7 +32,7 @@
             }
           },
           dialogFieldTextAreaBox: {
-            icon: "fa-file-text-o",
+            icon: "fa fa-file-text-o",
             label: __("Text Area"),
             placeholders: {
               name: "name",
@@ -54,7 +54,7 @@
             }
           },
           dialogFieldCheckBox: {
-            icon: "fa-check-square-o",
+            icon: "fa fa-check-square-o",
             label: __("Check Box"),
             placeholders: {
               name: "name",
@@ -76,7 +76,7 @@
             }
           },
           dialogFieldDropDownList: {
-            icon: "fa-caret-square-o-down",
+            icon: "fa fa-caret-square-o-down",
             label: __("Dropdown List"),
             placeholders: {
               name: "name",
@@ -99,7 +99,7 @@
             }
           },
           dialogFieldRadioButton: {
-            icon: "fa-circle-o",
+            icon: "fa fa-circle-o",
             label: __("Radio Button"),
             placeholders: {
               name: "name",
@@ -126,7 +126,7 @@
             }
           },
           dialogFieldDateControl: {
-            icon: "fa-calendar",
+            icon: "fa fa-calendar",
             label: __("Date Control"),
             placeholders: {
               name: "name",
@@ -149,7 +149,7 @@
             }
           },
           dialogFieldDateTimeControl: {
-            icon: "fa-clock-o",
+            icon: "fa fa-clock-o",
             label: __("Date Time Control"),
             placeholders: {
               name: "name",
