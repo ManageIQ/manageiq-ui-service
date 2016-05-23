@@ -1,7 +1,8 @@
 angular.module('app.states')
     .controller('designerCtrl', ['$scope', '$timeout', 'BlueprintsState', 'BlueprintDetailsModal', 'SaveBlueprintModal', '$rootScope',
-                '$state', 'Notifications',
-    function($scope, $timeout, BlueprintsState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope, $state, Notifications) {
+                '$state', 'CollectionsApi', 'Notifications',
+    function($scope, $timeout, BlueprintsState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope, $state, CollectionsApi,
+             Notifications) {
       // dev level debug output
       var debug = false;
 
@@ -133,7 +134,7 @@ angular.module('app.states')
 
       $scope.tabs = [
             { preTitle: 'Compute', title: 'Cloud', subtabs: [
-                {title: 'AWS', items: [
+                {title: 'Amazon Web Services', items: [
                     {title: 'AWS', image: 'assets/images/blueprint-designer/AWS-Logo.svg'}
                   ]
                 },
@@ -223,19 +224,113 @@ angular.module('app.states')
                     ]}
                 ]
             },
-
-            // 'uf06b' is the font awesome varible content for the 'gift'
             { title: 'Bundles', active: true, items: [
                 {title: 'Bundle 1', bundle: true},
                 {title: 'Bundle 2', bundle: true},
                 {title: 'Bundle 3', bundle: true},
                 {title: 'Bundle 4', bundle: true},
-                {title: 'Bundle 5', bundle: true},
-                {title: 'Bundle 6', bundle: true},
-                {title: 'Bundle 7', bundle: true},
-                {title: 'Bundle 8', bundle: true}]
+                {title: 'Bundle 5', bundle: true}
+              ]
             }
         ];
 
+      retrieveDesignerTabs();
       $scope.newItem = {title: 'New Item', image: 'assets/images/blueprint-designer/catalogItem.png'};
+
+      function retrieveDesignerTabs() {
+        var attributes = ['picture', 'picture.image_href', 'service_type', 'prov_type', 'service_template_catalog.name'];
+        var options = {
+          expand: 'resources',
+          filter: ['service_template_catalog_id>0', 'display=true'],
+          attributes: attributes};
+
+        var srvTemplates = CollectionsApi.query('service_templates', options);
+
+        srvTemplates.then(function(data) {
+          srvTemplates = data.resources;
+          var bundles = getBundles(srvTemplates);
+          if (bundles.length > 0) {
+            var origBundleItems = $scope.tabs[$scope.tabs.length - 1].items;
+            $scope.tabs[$scope.tabs.length - 1].items = bundles.concat(origBundleItems);
+          }
+
+          matchAtomicServiceItemsToSubTabs(srvTemplates);
+        });
+      }
+
+      function getBundles(srvTemplates) {
+        var bundles = [];
+        for (var i = 0; i<srvTemplates.length; i++) {
+          if (srvTemplates[i].service_type === 'composite') {
+            var newBundle = {title: srvTemplates[i].service_template_catalog.name, bundle: true};
+            if (srvTemplates[i].picture && srvTemplates[i].picture.image_href) {
+              newBundle.image = srvTemplates[i].picture.image_href;
+            }
+            bundles.push(newBundle);
+          }
+        }
+
+        return bundles;
+      }
+
+      function matchAtomicServiceItemsToSubTabs(srvTemplates) {
+        var subTab;
+        var newItem;
+        for (var i = 0; i<srvTemplates.length; i++) {
+          if (srvTemplates[i].service_type === 'atomic') {
+            if (srvTemplates[i].prov_type === 'openstack') {
+              subTab = findSubTabByProvType(srvTemplates[i].prov_type);
+              if (subTab) {
+                addToSubTab(subTab, srvTemplates[i]);
+              }
+            } else if (srvTemplates[i].prov_type === 'generic') {
+              subTab = findSubTabByCatalogName(srvTemplates[i].service_template_catalog.name);
+              if (subTab) {
+                addToSubTab(subTab, srvTemplates[i]);
+              }
+            }
+          }
+        }
+      }
+
+      function addToSubTab(subTab, srvTemplate) {
+        var newItem = {title: srvTemplate.service_template_catalog.name};
+        if (srvTemplate.picture && srvTemplate.picture.image_href) {
+          newItem.image = srvTemplate.picture.image_href;
+        } else {
+          newItem.image = "images/service.png";
+        }
+        subTab.items.push(newItem);
+      }
+
+      function findSubTabByProvType(title) {
+        for (var i = 0; i<$scope.tabs.length; i++) {
+          for (var s = 0; s<$scope.tabs[i].subtabs.length; s++) {
+            if ($scope.tabs[i].subtabs[s].title.toLowerCase() === title.toLowerCase() ) {
+              return $scope.tabs[i].subtabs[s];
+            }
+          }
+        }
+
+        return null;
+      }
+
+      function findSubTabByCatalogName(catalogName) {
+        var firstWordOfCat = catalogName.split(" ")[0];
+        for (var i = 0; i<$scope.tabs.length; i++) {
+          if ($scope.tabs[i].subtabs) {
+            for (var s = 0; s < $scope.tabs[i].subtabs.length; s++) {
+              var firstWordOfTab = $scope.tabs[i].subtabs[s].title;
+              firstWordOfTab = firstWordOfTab.split(" ")[0];
+              if (firstWordOfTab.toLowerCase() === firstWordOfCat.toLowerCase()) {
+                return $scope.tabs[i].subtabs[s];
+              }
+            }
+          }
+        }
+
+        console.log("Couldn't Find Sub-Tab for service_template: " + catalogName);
+
+        return null;
+      }
     }]);

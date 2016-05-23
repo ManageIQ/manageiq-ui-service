@@ -2,6 +2,11 @@
 // Flowchart module.
 //
 angular.module('flowChart', ['dragging'] )
+.filter('trustAsResourceUrl', ['$sce', function($sce) {
+  return function(val) {
+    return $sce.trustAsResourceUrl(val);
+  };
+}])
 
 //
 // Directive that generates the rendered chart from the data model.

@@ -46,7 +46,7 @@
     </text>
 
     <image ng-if="node.image()"
-           xlink:href="{{node.image()}}"
+           xlink:href="{{node.image() | trustAsResourceUrl}}"
            ng-attr-x="{{(node.width()/2) - 40}}"
            ng-attr-y="{{20}}"
            height="80px"
@@ -61,7 +61,7 @@
        </text>
     </g>
 
-    <g><text ng-if="node.bundle()"
+    <g><text ng-if="node.bundle() && !node.image()"
              x="44"
              y="88"
              font-family="FontAwesome"

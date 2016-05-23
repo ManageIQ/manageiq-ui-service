@@ -50,7 +50,7 @@
                                       data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
                                       ng-click="addNodeByClick(item)">
                                       <img ng-if="item.image" src="{{item.image}}">
-                                      <i ng-if="item.bundle" class="fa fa-gift"></i>
+                                      <i ng-if="item.bundle && !item.image" class="fa fa-gift"></i>
                                       {{ item.title }}
                                   </li>
                               </ul>
@@ -63,7 +63,7 @@
                               data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
                               ng-click="addNodeByClick(item)">
                               <img ng-if="item.image" src="{{item.image}}">
-                              <i ng-if="item.bundle" class="fa fa-gift"></i>
+                              <i ng-if="item.bundle && !item.image" class="fa fa-gift"></i>
                               <span>{{ item.title }}</span>
                           </li>
                       </ul>
