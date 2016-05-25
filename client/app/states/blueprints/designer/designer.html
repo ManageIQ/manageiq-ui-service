@@ -59,7 +59,7 @@
             </tabset>
             <!- Primary Tabs without SubTabs (Bundles) -->
             <ul class="catalog-items-list" ng-if="tab.subtabs == null">
-              <li class="catalog-item" ng-repeat="item in tab.items"
+              <li class="catalog-item" ng-repeat="item in tab.items | filter:searchText"
                   data-drag="true" jqyoui-draggable="{onStart:'startCallback(item)'}" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
                   ng-click="addNodeByClick(item)">
                 <img ng-if="item.image" src="{{item.image}}">
