@@ -188,8 +188,7 @@
     }
 
     function deleteBlueprint(action, item) {
-      BlueprintsState.deleteBlueprint(item.id);
-      vm.toolbarConfig.actionsConfig.primaryActions[1].isDisabled = !canDeleteBlueprints();
+      BlueprintDeleteModal.showModal([item]);
     }
 
     function deleteBlueprints(action) {

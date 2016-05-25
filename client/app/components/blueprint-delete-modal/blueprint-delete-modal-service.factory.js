@@ -58,7 +58,6 @@
         BlueprintsState.deleteBlueprint(blueprint.id);
       }
 
-      BlueprintsState.unselectBlueprints();
       saveSuccess();
 
       function saveSuccess() {
