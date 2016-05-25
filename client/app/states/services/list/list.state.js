@@ -137,6 +137,8 @@
       /* Apply the filtering to the data list */
       filterChange(ServicesState.getFilters());
       ServicesState.filterApplied = false;
+    } else {
+      applyFilters();
     }
 
     function handleClick(item, e) {
