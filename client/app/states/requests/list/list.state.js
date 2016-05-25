@@ -118,6 +118,8 @@
       /* Apply the filtering to the data list */
       filterChange(RequestsState.getFilters());
       RequestsState.filterApplied = false;
+    } else {
+      applyFilters();
     }
 
     function handleClick(item, e) {
