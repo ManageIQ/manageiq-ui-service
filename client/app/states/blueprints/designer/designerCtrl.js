@@ -82,6 +82,7 @@ angular.module('app.states')
         blueprint.last_modified = new Date();
         blueprint.name = __('Untitled Blueprint ') + blueprint.id;
         blueprint.chartDataModel = {};
+        blueprint.visibility = {"id": 800, "name": "Private"};
 
         blueprintDirty = true;
         $state.current.okToNavAway = false;
