@@ -28,6 +28,10 @@
           <button id="toggleToolbox" class="btn btn-primary" type="button" ng-click="showToolbox()"
                   data-toggle="tooltip" data-placement="bottom" title="Add Service Item To Canvas" translate>Add Item
           </button>
+          <button id="removeItems" class="btn" type="button" ng-class="{'disabled': !itemsSelected()}"
+                  ng-click="removeSelectedItemsFromCanvas()" data-toggle="tooltip" data-placement="bottom"
+                  title="Remove Items From Canvas" translate>Remove
+          </button>
       </div>
 
       <div class="toolbox-canvas-container"

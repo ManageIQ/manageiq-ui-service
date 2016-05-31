@@ -173,6 +173,7 @@
         vm.newCatalog = {"id": BlueprintsState.getNewCatalogs().length, "name": opts.catalogName, "new": 'true'};
         vm.serviceCatalogs.push(vm.newCatalog);
         vm.modalData.resource.catalog = vm.newCatalog;
+        $( "#createCatalog" ).blur();
       });
     }
 

@@ -28,7 +28,7 @@
                 <option value="" translate>Unassigned</option>
         </select><br>
         <span ng-show="detailsForm.catalog.$error.required" class="control-label" translate>Select a Catalog</span>
-        <button type="button" class="btn btn-default base-info-btn" ng-click="vm.createCatalog()" translate>Create Catalog</button>
+        <button type="button" id="createCatalog" class="btn btn-default base-info-btn" ng-click="vm.createCatalog()" translate>Create Catalog</button>
       </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error' : vm.isDialogRequired() }">

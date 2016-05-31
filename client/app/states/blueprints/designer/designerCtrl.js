@@ -30,6 +30,8 @@ angular.module('app.states')
       });
 
       $scope.blueprint = {};
+      $scope.chartViewModel = {};
+
       var blueprintDirty = false;
 
       var blueprintId = $scope.$parent.vm.blueprintId;
@@ -108,6 +110,19 @@ angular.module('app.states')
 
       $scope.editDetails = function() {
         BlueprintDetailsModal.showModal('edit', $scope.blueprint);
+      };
+
+      $scope.itemsSelected = function() {
+        if ($scope.chartViewModel) {
+          return $scope.chartViewModel.getSelectedNodes().length > 0;
+        } else {
+          return false;
+        }
+      };
+
+      $scope.removeSelectedItemsFromCanvas = function() {
+        $scope.$broadcast('removeSelectedItems');
+        $( "#removeItems" ).blur();
       };
 
       /*  Catalog Editor Toolbox Methods */

@@ -7,6 +7,7 @@ angular.module('app.states').controller('canvasCtrl', ['$scope',
 
     // Create the view-model for the chart and attach to the scope.
     $scope.chartViewModel = new flowchart.ChartViewModel(chartDataModel);
+    $scope.$parent.chartViewModel = $scope.chartViewModel;
 
     $scope.$watch("chartViewModel.data", function(oldValue, newValue) {
       if (!angular.equals(oldValue, newValue)) {
@@ -41,6 +42,10 @@ angular.module('app.states').controller('canvasCtrl', ['$scope',
     $scope.addNewNode = function(newNode) {
       $scope.chartViewModel.addNode(newNode);
     };
+
+    $scope.$on('removeSelectedItems', function(evt, args) {
+      $scope.deleteSelected();
+    });
 
     $scope.deleteSelected = function() {
       $scope.chartViewModel.deleteSelected();
