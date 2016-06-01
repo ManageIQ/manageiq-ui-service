@@ -120,6 +120,19 @@ angular.module('app.states')
         }
       };
 
+      $scope.onlyOneTtemSelected = function() {
+        if ($scope.chartViewModel) {
+          return $scope.chartViewModel.getSelectedNodes().length === 1;
+        } else {
+          return false;
+        }
+      };
+
+      $scope.duplicateSelectedItem = function() {
+        $scope.$broadcast('duplicateSelectedItem');
+        $( "#duplicateItem" ).blur();
+      };
+
       $scope.removeSelectedItemsFromCanvas = function() {
         $scope.$broadcast('removeSelectedItems');
         $( "#removeItems" ).blur();

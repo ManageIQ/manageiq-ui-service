@@ -1,5 +1,5 @@
-angular.module('app.states').controller('canvasCtrl', ['$scope',
-  function($scope) {
+angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
+  function($scope, $filter) {
     var chartDataModel = {};
     if ($scope.$parent.blueprint.chartDataModel) {
       chartDataModel = $scope.$parent.blueprint.chartDataModel;
@@ -43,13 +43,57 @@ angular.module('app.states').controller('canvasCtrl', ['$scope',
       $scope.chartViewModel.addNode(newNode);
     };
 
+    $scope.$on('duplicateSelectedItem', function(evt, args) {
+      $scope.duplicateSelected();
+    });
+
     $scope.$on('removeSelectedItems', function(evt, args) {
       $scope.deleteSelected();
     });
 
+    $scope.duplicateSelected = function() {
+      var dupNode = angular.copy($scope.chartViewModel.getSelectedNodes()[0]);
+
+      if (!dupNode) {
+        return;
+      }
+
+      dupNode.data.id = getNewId();
+
+      var copyName = getCopyName(dupNode.data.name);
+
+      dupNode.data.name = copyName.name;
+      dupNode.data.x = dupNode.data.x + 15 * copyName.numDups;
+      dupNode.data.y = dupNode.data.y + 15 * copyName.numDups;
+
+      $scope.addNewNode(dupNode.data);
+    };
+
     $scope.deleteSelected = function() {
       $scope.chartViewModel.deleteSelected();
     };
+
+    function getNewId() {
+      // random number between 1 and 600
+      return Math.floor((Math.random() * 600) + 1);
+    }
+
+    function getCopyName(baseName) {
+      var baseNameLength = baseName.indexOf(' Copy');
+
+      if (baseNameLength === -1) {
+        baseNameLength = baseName.length;
+      }
+
+      baseName = baseName.substr(0, baseNameLength);
+
+      var filteredArray = $filter('filter')( $scope.chartViewModel.data.nodes, {name: baseName}, false);
+
+      var copyName = baseName + " Copy" + ((filteredArray.length === 1) ? "" : " " + filteredArray.length) ;
+      var numDups = filteredArray.length;
+
+      return {'name': copyName, 'numDups': numDups};
+    }
 
     /*
      *    FlowChart Vars and Methods
@@ -76,6 +120,11 @@ angular.module('app.states').controller('canvasCtrl', ['$scope',
     var aKeyCode = 65;
 
     //
+    // Code for D key
+    //
+    var dKeyCode = 68;
+
+    //
     // Code for esc key.
     //
     var escKeyCode = 27;
@@ -100,6 +149,17 @@ angular.module('app.states').controller('canvasCtrl', ['$scope',
         // Ctrl + A
         //
         $scope.chartViewModel.selectAll();
+        args.origEvent.stopPropagation();
+        args.origEvent.preventDefault();
+      }
+
+      if (args.origEvent.keyCode === dKeyCode && ctrlDown) {
+        //
+        // Ctrl + D
+        //
+        if ($scope.chartViewModel.getSelectedNodes().length === 1) {
+          $scope.duplicateSelected();
+        }
         args.origEvent.stopPropagation();
         args.origEvent.preventDefault();
       }
