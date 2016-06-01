@@ -9,10 +9,7 @@
             <input type="text" class="blueprint-name-input" ng-model="blueprint.name"
                    ng-change="blueprintNameChange()"
                    placeholder="{{'Untitled Blueprint'|translate}}">
-            <button class="btn btn-primary" type="button" ng-click="editDetails()" data-toggle="tooltip"
-                    data-placement="bottom" title="{{'Edit Blueprint Details'|translate}}" translate>Details
-            </button>
-            <button class="btn btn-primary" type="button" ng-click="saveBlueprint()" id="saveBtm"
+            <button class="btn btn-primary btb-sm" type="button" ng-click="saveBlueprint()" id="saveBtm"
                     ng-class="{'disabled': blueprintUnchanged()}" data-toggle="tooltip" data-placement="bottom"
                     title="{{'Save Blueprint'|translate}}" translate>Save
             </button>
@@ -36,6 +33,11 @@
                   ng-click="removeSelectedItemsFromCanvas()" data-toggle="tooltip" data-placement="bottom"
                   title="Remove Items From Canvas" translate>Remove
           </button>
+          <span class="more-actions">
+              <button id="blueprintDetails" class="btn" type="button" ng-click="editDetails()" data-toggle="tooltip"
+                      data-placement="bottom" title="{{'Edit Blueprint Details'|translate}}" translate>Blueprint Details
+              </button>
+          </span>
       </div>
 
       <div class="toolbox-canvas-container"
