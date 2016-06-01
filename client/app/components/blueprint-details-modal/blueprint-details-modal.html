@@ -44,7 +44,7 @@
       </div>
     </div>
   </form>
-  <a href="#advOps" id="advOpsHref" data-toggle="collapse" class="collapsed" translate>Advanced Options</a>
+  <a id="advOpsHref" ng-click="vm.toggleAdvOps()" data-toggle="collapse" class="collapsed" translate>Advanced Options</a>
   <div id="advOps" class="collapse">
     <form novalidate name="advOptsForm" id="advOptsForm" class="form-horizontal">
       <!-- could not use pf-form-group due to it's requirement that errors only display after fields are 'dirty' -->

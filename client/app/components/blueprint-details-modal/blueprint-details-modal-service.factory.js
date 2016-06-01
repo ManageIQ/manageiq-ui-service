@@ -111,6 +111,7 @@
     vm.isDialogRequired = isDialogRequired;
     vm.selectEntryPoint = selectEntryPoint;
     vm.createCatalog = createCatalog;
+    vm.toggleAdvOps = toggleAdvOps;
 
     vm.modalData = {
       'action': action,
@@ -189,6 +190,11 @@
           vm.modalData.resource.retireEP =  opts.entryPointData;
         }
       });
+    }
+
+    function toggleAdvOps() {
+      $( "#advOpsHref" ).toggleClass("collapsed");
+      $( "#advOps" ).toggleClass("in");
     }
 
     function cancelBlueprintDetails() {
