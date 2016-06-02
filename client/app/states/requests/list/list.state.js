@@ -34,7 +34,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, requests, RequestsState, $filter, $rootScope) {
+  function StateController($state, requests, RequestsState, $filter, $rootScope, lodash) {
     var vm = this;
 
     vm.title = __('Request List');
@@ -204,7 +204,16 @@
       if ('description' === filter.id) {
         return item.description.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'approval_state') {
-        return item.approval_state.toLowerCase() === filter.value.toLowerCase();
+        var value;
+        if (lodash.lastIndexOf([__('Pending'), 'Pending'], filter.value) > -1) {
+          value = "pending_approval";
+        } else if (lodash.lastIndexOf([__('Denied'), 'Denied'], filter.value) > -1) {
+          value = "denied";
+        } else if (lodash.lastIndexOf([__('Approved'), 'Approved'], filter.value) > -1) {
+          value = "approved";
+        }
+
+        return item.approval_state === value;
       } else if (filter.id === 'request_id') {
         return String(item.id).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if ('request_date' === filter.id) {
