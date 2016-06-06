@@ -7,6 +7,10 @@ angular.module('app.states')
       var debug = false;
 
       $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        if (toState.name === 'login') {
+          return;
+        }
+
         if (fromState.name === "blueprints.designer" && toState.name !== "blueprints.designer") {
           if (debug) {
             console.log("Changing from blueprints design state");
