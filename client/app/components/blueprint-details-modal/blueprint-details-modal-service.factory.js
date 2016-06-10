@@ -112,6 +112,8 @@
     vm.selectEntryPoint = selectEntryPoint;
     vm.createCatalog = createCatalog;
     vm.toggleAdvOps = toggleAdvOps;
+    vm.tabClicked = tabClicked;
+    vm.isSelectedTab = isSelectedTab;
 
     vm.modalData = {
       'action': action,
@@ -195,6 +197,16 @@
     function toggleAdvOps() {
       $( "#advOpsHref" ).toggleClass("collapsed");
       $( "#advOps" ).toggleClass("in");
+    }
+
+    vm.selectedTabName = "general";
+
+    function tabClicked(tabname) {
+      vm.selectedTabName = tabname;
+    }
+
+    function isSelectedTab(tabName) {
+      return vm.selectedTabName === tabName;
     }
 
     function cancelBlueprintDetails() {
