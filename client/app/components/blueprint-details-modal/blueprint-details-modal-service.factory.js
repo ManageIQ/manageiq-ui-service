@@ -76,7 +76,7 @@
 
   /** @ngInject */
   function BlueprintDetailsModalController(action, blueprintId, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, tenants, $state, // jshint ignore:line
-                                           $modalInstance, CollectionsApi, Notifications) { // jshint ignore:line
+                                           $modalInstance, CollectionsApi, Notifications, sprintf) { // jshint ignore:line
     var vm = this;
 
     if (action === 'create') {
@@ -191,10 +191,11 @@
 
       function saveSuccess() {
         $modalInstance.close();
-        Notifications.success(vm.blueprint.name + __(' was ' + action + 'ed.'));
         if (action === 'create') {
+          Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
           $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
         } else if (action === 'edit') {
+          Notifications.success(sprintf(__('%s was updated.'), vm.blueprint.name));
           $state.go($state.current, {}, {reload: true});
         }
       }
