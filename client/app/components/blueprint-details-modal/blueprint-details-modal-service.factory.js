@@ -81,6 +81,10 @@
     var vm = this;
     vm.blueprint = blueprint;
 
+    if (!vm.blueprint.chartDataModel || !vm.blueprint.chartDataModel.nodes) {
+      vm.blueprint.chartDataModel.nodes = [];
+    }
+
     if (action === 'create') {
       vm.modalTitle = __('Create Blueprint');
       vm.modalBtnPrimaryLabel  = __('Create');
@@ -115,6 +119,7 @@
     vm.toggleAdvOps = toggleAdvOps;
     vm.tabClicked = tabClicked;
     vm.isSelectedTab = isSelectedTab;
+    vm.disableOrderListTabs = disableOrderListTabs;
     vm.dndServiceItemMoved = dndServiceItemMoved;
 
     vm.modalData = {
@@ -206,12 +211,20 @@
 
     vm.selectedTabName = "general";
 
-    function tabClicked(tabname) {
-      vm.selectedTabName = tabname;
+    function tabClicked(tabName) {
+      if ( (tabName === 'provision_order' || tabName === 'action_order') && disableOrderListTabs()) {
+        return;
+      } else {
+        vm.selectedTabName = tabName;
+      }
     }
 
     function isSelectedTab(tabName) {
       return vm.selectedTabName === tabName;
+    }
+
+    function disableOrderListTabs() {
+      return vm.blueprint.chartDataModel.nodes.length <= 1;
     }
 
     function cancelBlueprintDetails() {
