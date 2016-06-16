@@ -47,13 +47,14 @@ gulp.task('dev-imgs', task('images', {key: 'devImgs'}));
 gulp.task('gettext-extract', task('gettext-extract'));
 gulp.task('gettext-compile', task('gettext-compile'));
 gulp.task('gettext-copy', task('gettext-copy'));
+gulp.task('console-copy', task('console-copy'));
 
 /**
  * Build tasks
  */
 gulp.task('inject', ['wiredep', 'sass', 'templatecache'], task('inject'));
 gulp.task('optimize', ['inject'], task('optimize'));
-gulp.task('build', ['optimize', 'images', 'imgs', 'skin-images', 'fonts', 'gettext-copy'], task('build'));
+gulp.task('build', ['optimize', 'images', 'imgs', 'skin-images', 'fonts', 'gettext-copy', 'console-copy'], task('build'));
 gulp.task('build-specs', ['templatecache'], task('buildSpecs'));
 
 /**

@@ -79,6 +79,8 @@ switch (environment) {
     router.use('/app/*', function(req, res) {
       four0four.send404(req, res);
     });
+    // makes both /bower_components and /self_service/bower_components/ work
+    router.use(express.static('./'));
     // Any deep link calls should return index.html
     app.use('/*', express.static('./client/index.html'));
     break;
