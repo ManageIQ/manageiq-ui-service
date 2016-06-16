@@ -404,7 +404,7 @@ module.exports = (function() {
   };
 
   config.gettextCopy = {
-    inputs: 'client/gettext/json/*.json',
+    inputs: 'client/gettext/json/**/*.json',
     outputDir: build + 'gettext/json/',
   };
 
