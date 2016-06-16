@@ -408,6 +408,17 @@ module.exports = (function() {
     outputDir: build + 'gettext/json/',
   };
 
+  config.consoleCopy = [
+    {
+      input: 'bower_components/no-vnc/**/*',
+      output: build + 'bower_components/no-vnc',
+    },
+    {
+      input: 'bower_components/spice-html5-bower/**/*',
+      output: build + 'bower_components/spice-html5-bower',
+    },
+  ];
+
   // task bump: Revs the package and bower files
   config.bump = {
     packages: [
