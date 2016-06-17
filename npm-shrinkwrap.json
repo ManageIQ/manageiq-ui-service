@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "gulp-header": {
+      "version": "1.8.2",
+      "from": "gulp-angular-templatecache"
+    }
+  }
+}
