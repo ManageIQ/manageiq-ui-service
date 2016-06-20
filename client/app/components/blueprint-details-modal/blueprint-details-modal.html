@@ -123,7 +123,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <ul>
-                                <li ng-repeat=" item in vm.dndModels.list | orderBy:'id' "
+                                <li ng-repeat=" item in vm.dndModels.provOrder.list | orderBy:'id' "
                                     ng-include="item.type + '.html'">
                                 </li>
                             </ul>
@@ -132,6 +132,37 @@
                 </div>
             </div>
         </tab>
+        <tab ng-click="vm.tabClicked('action_order')" disable="vm.disableOrderListTabs()">
+
+            <tab-heading translate>
+                Action Order
+            </tab-heading>
+            <div ng-show="vm.isSelectedTab('action_order')">
+                <h4 translate>Rearrange Items to set Action Order
+                    <input  class="actionOrderCheckbox"
+                            ng-model="vm.actionOrderEqualsProvOrder"
+                            ng-change="vm.toggleActionEqualsProvOrder()"
+                            type="checkbox"
+                            ng-checked="vm.actionOrderEqualsProvOrder">
+                    <span class="actionOrderCheckboxTitle" translate>Same as Provision Order</span>
+                </h4>
+
+                <div class="dnd-ordered-lists row">
+                    <!-- Main Order List -->
+                    <div class="col-md-12">
+                        <div class="row">
+                            <ul>
+                                <li ng-repeat=" item in vm.dndModels.actionOrder.list | orderBy:'id' "
+                                    ng-include="item.type + '.html'">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </tab>
+     </tabset>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="vm.cancelBlueprintDetails()" translate>Cancel</button>
@@ -155,10 +186,11 @@
     <ul dnd-list="list">
         <li ng-repeat="item in list"
             dnd-draggable="item"
+            dnd-disable-if="vm.actionOrderEqualsProvOrder && item.listType === 'actionOrder'"
             dnd-effect-allowed="move"
             dnd-moved="vm.dndServiceItemMoved(list, $index)"
             dnd-selected="vm.dndModels.selected = item"
-            ng-class="{selected: vm.dndModels.selected === item}"
+            ng-class="{selected: vm.dndModels.selected === item, notdraggable: vm.actionOrderEqualsProvOrder && item.listType === 'actionOrder'}"
             ng-include="item.type + '.html'">
         </li>
     </ul>

@@ -121,6 +121,7 @@
     vm.isSelectedTab = isSelectedTab;
     vm.disableOrderListTabs = disableOrderListTabs;
     vm.dndServiceItemMoved = dndServiceItemMoved;
+    vm.toggleActionEqualsProvOrder = toggleActionEqualsProvOrder
 
     vm.modalData = {
       'action': action,
@@ -136,7 +137,9 @@
     };
 
     vm.provOrderChanged = false;
-    vm.dndModels = getProvisionOrderList(vm.blueprint.chartDataModel.nodes);
+    vm.actionOrderChanged = false;
+    vm.actionOrderEqualsProvOrder = true;
+    setOrderLists(vm.blueprint.chartDataModel.nodes);
 
     if (!vm.modalData.resource.visibility) {
       vm.modalData.resource.visibility = vm.visibilityOptions[0];
@@ -232,87 +235,142 @@
     }
 
     /**
-     * Prov Order List has the following pseudo-structure:
+     * Order Lists have the following pseudo-structure:
      *
-     *   1. Container[0].columns[0][ItemA, ItemB].columns[1][ItemC, ItemD] ]
-     *   2. Container[1].columns[0][ItemE, ItemF].columns[1][ItemG, ItemH] ]
+     *   1. List/Container[0].columns[0][ItemA, ItemB].columns[1][ItemC, ItemD] ]
+     *   2. List/Container[1].columns[0][ItemE, ItemF].columns[1][ItemG, ItemH] ]
      *   etc...
      *
+     * JSON obj.:
+     *    {
+     *       "selected": null,
+     *       "list": [
+     *          {
+     *           "type": "container",
+     *            "id": 1                  // id is used for row #. Ex "1. ---"
+     *            "columns": [             // left and right 'columns' within the 'container'
+     *              [
+     *                { "id": 10, "name": "AWS", "type": "item"}
+     *              ],
+     *              [
+     *                {"id": 11, "name": "Azure", "type": "item"}
+     *              ]
+     *            ]
+     *          }
+     *        ]
+     *      }
+     *
      * This method converts the service items on a blueprint's canvas into a structure
-     * required for the DND Prov Order List.
+     * required for the DND Provision and Action Order Lists.
      */
-    function getProvisionOrderList(blueprintServiceItems) {
+    function setOrderLists(blueprintServiceItems) {
       var items = angular.copy(blueprintServiceItems);
-      var containers = [];
+      var lists = [];
       var item;
+      var order;
+      var i;
+      var l;
+
+      // lists[0] = prov. order list, lists[1] = action order list
+      lists[0] = {"containers": []};
+      lists[1] = {"containers": []};
 
       // Mark all blueprint service items as type = 'item'
-      // Put into appropriate prov. order 'container'
-      for (var i = 0; i < items.length; i++) {
+      // Put into appropriate list order 'containers'
+      for (i = 0; i < items.length; i++) {
         item = items[i];
         item.type = "item";
         if (!item.provision_order) {
           item.provision_order = 0;
         }
-        if (containers[item.provision_order]) {
-          containers[item.provision_order].columns[0].push(item);
-        } else {
-          containers[item.provision_order] =
+        // Add item to provOrderList and actionOrderList
+        for (l = 0; l < 2; l++) {
+          if (l === 0) {
+            item.listType = "provOrder";    // listType denotes which list an item was dragged from
+            order = item.provision_order;
+          } else if (item.action_order !== undefined) {
+            item = angular.copy(items[i]);
+            item.listType = "actionOrder";
+            order = item.action_order;
+          } else {
+            // no action order defined, only build provOrder list
+            continue;
+          }
+          // if container already exists, push in new item
+          if (lists[l].containers[order]) {
+            lists[l].containers[order].columns[0].push(item);
+          } else {
+            // create new container
+            lists[l].containers[order] =
             {
               "type": "container",
-              "id": item.provision_order + 1,
               "columns": [
                 [item],
                 []
               ]
             };
+          }
         }
       }
 
-      // remove any undefined containers, balance left and right 'columns' of containers with items
-      for (i = 0; i < containers.length; i++) {
-        var container = containers[i];
-        if (!container) {
-          containers.splice(i, 1);
-        } else {
-          container.columns = balanceColumns(container.columns[0], container.columns[1]);
+      // normalize containers, add empty row, re-number list
+      // lists[0] = prov. order list, lists[1] = action order list
+      for (l = 0; l < 2; l++) {
+        if (lists[l].containers.length) {
+          var containers = lists[l].containers;
+          normalizeContainers(containers);
+          addEmptyContainerRow(containers);
+          renumberContainersList(containers);
         }
       }
 
-      // Add last empty row/list #
-      addEmptyContainerRow(containers);
+      // Set dndModels
+      vm.dndModels = {'provOrder': {}, 'actionOrder': {}};
 
-      renumberContainersList(containers);
-
-      return {
+      // lists[0] = prov. order list
+      vm.dndModels.provOrder = {
         selected: null,
-        list: containers
+        list: lists[0].containers
       };
+
+      // lists[1] = action order list
+      if (lists[1].containers.length) {  // does actionOrder list have any rows?
+        // action order has unique order and is editable
+        vm.actionOrderEqualsProvOrder = false;
+        vm.dndModels.actionOrder = {
+          selected: null,
+          list: lists[1].containers
+        };
+      } else {
+        // action order == prov. order
+        vm.actionOrderEqualsProvOrder = true;
+        initActionOrderFromProvOrderList();
+      }
+    }
+
+    function toggleActionEqualsProvOrder() {
+      vm.actionOrderChanged = true;
+      // Make actionOrder list a new list, set listType to 'actionOrder'
+      initActionOrderFromProvOrderList();
     }
 
     function dndServiceItemMoved(list, index) {
+      var containers;
       var container;
-
-      vm.provOrderChanged = true;
+      var origItem = angular.copy(list[index]);
 
       // Remove item from orig. list/column
       list.splice(index, 1);
 
-      // Sort containers by id
-      var containers = $filter('orderBy')(vm.dndModels.list, 'id');
-
-      // Remove any empty rows (except last) and balance 'columns'/lists of items
-      for (var i = 0; i < containers.length - 1; i++) {
-        container = containers[i];
-        if (container.type === 'container') {
-          if (container.columns[0].length === 0 && container.columns[1].length === 0) {
-            // Remove Empty Row
-            containers.splice(i, 1);
-          } else {
-            container.columns = balanceColumns(container.columns[0], container.columns[1]);
-          }
-        }
+      if (origItem.listType === "provOrder") {
+        vm.provOrderChanged = true;
+        containers = $filter('orderBy')(vm.dndModels.provOrder.list, 'id');
+      } else if (origItem.listType === "actionOrder") {
+        vm.actionOrderChanged = true;
+        containers = $filter('orderBy')(vm.dndModels.actionOrder.list, 'id');
       }
+
+      normalizeContainers(containers);
 
       // if last row not empty, add new empty row (list number)
       container = containers[containers.length - 1];
@@ -322,7 +380,47 @@
 
       renumberContainersList(containers);
 
-      vm.dndModels.list = containers;
+      if (origItem.listType === "provOrder") {
+        vm.dndModels.provOrder.list = containers;
+        if (vm.actionOrderEqualsProvOrder) {
+          initActionOrderFromProvOrderList();
+        }
+      } else if (origItem.listType === "actionOrder") {
+        vm.dndModels.actionOrder.list = containers;
+      }
+    }
+
+    function normalizeContainers(containers) {
+      // Remove any empty rows (except last) and balance 'columns'/lists of items
+      // Empty/undefined rows may happen if item.id's are not sequential
+      for (var i = 0; i < containers.length; i++) {
+        var container = containers[i];
+        if (container.type === 'container') {
+          if (container.columns[0].length === 0 && container.columns[1].length === 0) {
+            // Remove Empty Row
+            containers.splice(i, 1);
+          } else {
+            container.columns = balanceColumns(container.columns[0], container.columns[1]);
+          }
+        }
+      }
+    }
+
+    function initActionOrderFromProvOrderList() {
+      // Make actionOrder list a new list, set listType to 'actionOrder'
+      var actionOrderList = angular.copy(vm.dndModels.provOrder.list);
+      for (var l = 0; l < actionOrderList.length - 1; l++) {    // length - 1 to not process last empty row
+        for (var cols = 0; cols < actionOrderList[l].columns.length; cols++) {  // will be 2 columns
+          for (var col = 0; col < actionOrderList[l].columns[cols].length; col++) {  // Number of items in a column
+            actionOrderList[l].columns[cols][col].listType = "actionOrder";
+          }
+        }
+      }
+      vm.dndModels.actionOrder.list = actionOrderList;
+      if (vm.actionOrderEqualsProvOrder) {
+        // remove last empty row
+        vm.dndModels.actionOrder.list.splice(vm.dndModels.actionOrder.list.length - 1, 1);
+      }
     }
 
     function addEmptyContainerRow( containers ) {
@@ -395,7 +493,11 @@
       vm.blueprint.retireEP = vm.modalData.resource.retireEP;
 
       if (vm.provOrderChanged) {
-        saveProvisionOrder();
+        saveOrder("provisionOrder");
+      }
+
+      if (vm.actionOrderChanged) {
+        saveOrder("actionOrder");
       }
 
       if (action === 'publish') {
@@ -407,24 +509,41 @@
 
       saveSuccess();
 
-      function saveProvisionOrder() {
-        for (var i = 0; i < vm.dndModels.list.length; i++) {
-          var container = vm.dndModels.list[i];
+      function saveOrder(orderType) {
+        var list;
+
+        if (orderType === 'provisionOrder') {
+          list = vm.dndModels.provOrder.list;
+        } else if (orderType === 'actionOrder') {
+          list = vm.dndModels.actionOrder.list;
+        }
+
+        for (var i = 0; i < list.length; i++) {
+          var container = list[i];
           if (container.type === 'container') {
-            var srvItems = container.columns[0].concat(container.columns[1]);
-            for (var j = 0; j < srvItems.length; j++) {
-              var srvItem = srvItems[j];
-              updateServiceItemProvOrder(srvItem, container.id - 1);
+            var items = container.columns[0].concat(container.columns[1]);
+            for (var j = 0; j < items.length; j++) {
+              var item = items[j];
+              updateOrder(orderType, item, container.id - 1);
             }
           }
         }
       }
 
-      function updateServiceItemProvOrder(srvItem, provOrderNum) {
+      function updateOrder(orderType, item, orderNum) {
         for (var i = 0; i < vm.blueprint.chartDataModel.nodes.length; i++) {
           var node = vm.blueprint.chartDataModel.nodes[i];
-          if (node.id === srvItem.id && node.name === srvItem.name) {
-            node.provision_order = provOrderNum;
+          if (node.id === item.id && node.name === item.name) {
+            if (orderType === 'provisionOrder') {
+              node.provision_order = orderNum;
+            } else if (orderType === 'actionOrder') {
+              if (vm.actionOrderEqualsProvOrder) {
+                // remove action_order, defer to provision_order
+                delete node.action_order;
+              } else {
+                node.action_order = orderNum;
+              }
+            }
 
             return;
           }

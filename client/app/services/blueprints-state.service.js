@@ -109,7 +109,8 @@
               "x": 42,
               "y": 27,
               "width": 150,
-              "provision_order": 0
+              "provision_order": 0,
+              "action_order": 0
             },
             {
               "title": "Azure",
@@ -120,7 +121,8 @@
               "x": 211,
               "y": 25,
               "width": 150,
-              "provision_order": 0
+              "provision_order": 0,
+              "action_order": 1
             },
             {
               "title": "GCE",
@@ -131,7 +133,8 @@
               "x": 44,
               "y": 197,
               "width": 150,
-              "provision_order": 1
+              "provision_order": 1,
+              "action_order": 1
             },
             {
               "title": "Kubernetes",
@@ -142,7 +145,8 @@
               "x": 217,
               "y": 197,
               "width": 150,
-              "provision_order": 1
+              "provision_order": 1,
+              "action_order": 1
             },
             {
               "title": "OpenStack",
@@ -153,7 +157,8 @@
               "x": 43,
               "y": 374,
               "width": 150,
-              "provision_order": 2
+              "provision_order": 2,
+              "action_order": 1
             },
             {
               "title": "Bundle 3",
@@ -164,7 +169,8 @@
               "x": 41,
               "y": 559,
               "width": 150,
-              "provision_order": 2
+              "provision_order": 2,
+              "action_order": 2
             },
             {
               "title": "Bundle 2",
@@ -175,7 +181,8 @@
               "x": 221,
               "y": 371,
               "width": 150,
-              "provision_order": 3
+              "provision_order": 3,
+              "action_order": 2
             }
           ],
           "connections": []
