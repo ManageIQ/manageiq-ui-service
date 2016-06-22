@@ -83,6 +83,11 @@
         actionFn: editBlueprint
       },
       {
+        name: __('Duplicate'),
+        title: __('Duplicate Blueprint'),
+        actionFn: duplicateBlueprint
+      },
+      {
         name: __('Delete'),
         title: __('Delete Blueprint'),
         actionFn: deleteBlueprint
@@ -170,6 +175,11 @@
 
     function editBlueprint(action, item) {
       $state.go('blueprints.designer', {blueprintId: item.id});
+    }
+
+    function duplicateBlueprint(action, item) {
+      BlueprintsState.duplicateBlueprint(item);
+      $state.go($state.current, {}, {reload: true});
     }
 
     function publishBlueprint(action, item) {

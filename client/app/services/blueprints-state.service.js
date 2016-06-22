@@ -5,7 +5,7 @@
       .factory('BlueprintsState', BlueprintsStateFactory);
 
   /** @ngInject */
-  function BlueprintsStateFactory() {
+  function BlueprintsStateFactory($filter) {
     var blueprint = {};
 
     blueprint.sort = {
@@ -234,6 +234,13 @@
       return blueprint.blueprints.length;
     };
 
+    blueprint.duplicateBlueprint = function(origBlueprint) {
+      var newBlueprint = angular.copy(origBlueprint);
+      newBlueprint.id = blueprint.getNextUniqueId();
+      newBlueprint.name = getCopyName(newBlueprint.name);
+      blueprint.blueprints.push(newBlueprint);
+    };
+
     blueprint.saveBlueprint = function(tmpBlueprint) {
       tmpBlueprint.last_modified = new Date();
       if (tmpBlueprint.chartDataModel && tmpBlueprint.chartDataModel.nodes) {
@@ -290,6 +297,22 @@
       }
 
       return -1;
+    }
+
+    function getCopyName(baseName) {
+      var baseNameLength = baseName.indexOf(' Copy');
+
+      if (baseNameLength === -1) {
+        baseNameLength = baseName.length;
+      }
+
+      baseName = baseName.substr(0, baseNameLength);
+
+      var filteredArray = $filter('filter')( blueprint.blueprints, {name: baseName}, false);
+
+      var copyName = baseName + " Copy" + ((filteredArray.length === 1) ? "" : " " + filteredArray.length) ;
+
+      return copyName;
     }
 
     return blueprint;
