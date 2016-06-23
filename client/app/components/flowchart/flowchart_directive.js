@@ -118,58 +118,6 @@ angular.module('flowChart', ['dragging'] )
   this.nodeClass = 'node';
 
   //
-  // Search up the HTML element tree for an element the requested class.
-  //
-  this.searchUp = function(element, parentClass) {
-    //
-    // Reached the root.
-    //
-    if (element === null || element.length === 0) {
-      return null;
-    }
-
-    //
-    // Check if the element has the class that identifies it as a connector.
-    //
-    if (hasClassSVG(element, parentClass)) {
-      //
-      // Found the connector element.
-      //
-      return element;
-    }
-
-    //
-    // Recursively search parent elements.
-    //
-    return this.searchUp(element.parent(), parentClass);
-  };
-
-  //
-  // Hit test and retreive node and connector that was hit at the specified coordinates.
-  //
-  this.hitTest = function(clientX, clientY) {
-    //
-    // Retreive the element the mouse is currently over.
-    //
-    return this.document.elementFromPoint(clientX, clientY);
-  };
-
-  //
-  // Hit test and retreive node and connector that was hit at the specified coordinates.
-  //
-  this.checkForHit = function(mouseOverElement, whichClass) {
-    //
-    // Find the parent element, if any, that is a connector.
-    //
-    var hoverElement = this.searchUp(this.jQuery(mouseOverElement), whichClass);
-    if (!hoverElement) {
-      return null;
-    }
-
-    return hoverElement.scope();
-  };
-
-  //
   // Translate the coordinates so they are relative to the svg element.
   //
   this.translateCoordinates = function(x, y, evt) {
@@ -235,46 +183,17 @@ angular.module('flowChart', ['dragging'] )
   };
 
   //
-  // Called for each mouse move on the svg element.
+  // Handle nodeMouseOver on an node.
   //
-  $scope.mouseMove = function(evt) {
-    //
-    // Clear out all cached mouse over elements.
-    //
-    $scope.mouseOverConnection = null;
-    $scope.mouseOverConnector = null;
+  $scope.nodeMouseOver = function(evt, node) {
+    $scope.mouseOverNode = node;
+  };
+
+  //
+  // Handle nodeMouseLeave on an node.
+  //
+  $scope.nodeMouseLeave = function(evt, node) {
     $scope.mouseOverNode = null;
-
-    var mouseOverElement = controller.hitTest(evt.clientX, evt.clientY);
-    if (mouseOverElement === null) {
-      // Mouse isn't over anything, just clear all.
-      return;
-    }
-
-    var cScope;
-
-    if (!$scope.draggingConnection) { // Only allow 'connection mouse over' when not dragging out a connection.
-
-      // Figure out if the mouse is over a connection.
-      cScope = controller.checkForHit(mouseOverElement, controller.connectionClass);
-      $scope.mouseOverConnection = (cScope && cScope.connection) ? cScope.connection : null;
-      if ($scope.mouseOverConnection) {
-        // Don't attempt to mouse over anything else.
-        return;
-      }
-    }
-
-    // Figure out if the mouse is over a connector.
-    cScope = controller.checkForHit(mouseOverElement, controller.connectorClass);
-    $scope.mouseOverConnector = (cScope && cScope.connector) ? cScope.connector : null;
-    if ($scope.mouseOverConnector) {
-      // Don't attempt to mouse over anything else.
-      return;
-    }
-
-    // Figure out if the mouse is over a node.
-    cScope = controller.checkForHit(mouseOverElement, controller.nodeClass);
-    $scope.mouseOverNode = (cScope && cScope.node) ? cScope.node : null;
   };
 
   //
@@ -326,6 +245,22 @@ angular.module('flowChart', ['dragging'] )
   };
 
   //
+  // Handle connectionMouseOver on an connection.
+  //
+  $scope.connectionMouseOver = function(evt, connection) {
+    if (!$scope.draggingConnection) {  // Only allow 'connection mouse over' when not dragging out a connection.
+      $scope.mouseOverConnection = connection;
+    }
+  };
+
+  //
+  // Handle connectionMouseLeave on an connection.
+  //
+  $scope.connectionMouseLeave = function(evt, connection) {
+    $scope.mouseOverConnection = null;
+  };
+
+  //
   // Handle mousedown on a connection.
   //
   $scope.connectionMouseDown = function(evt, connection) {
@@ -335,6 +270,20 @@ angular.module('flowChart', ['dragging'] )
     // Don't let the chart handle the mouse down.
     evt.stopPropagation();
     evt.preventDefault();
+  };
+
+  //
+  // Handle connectorMouseOver on an connector.
+  //
+  $scope.connectorMouseOver = function(evt, node, connector, connectorIndex, isInputConnector) {
+    $scope.mouseOverConnector = connector;
+  };
+
+  //
+  // Handle connectorMouseLeave on an connector.
+  //
+  $scope.connectorMouseLeave = function(evt, node, connector, connectorIndex, isInputConnector) {
+    $scope.mouseOverConnector = null;
   };
 
   //

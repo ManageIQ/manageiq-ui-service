@@ -26,14 +26,13 @@ var flowchart = {
   //
   // Height of a connector in a node.
   //
-  flowchart.connectorHeight = 35;
+  flowchart.connectorHeight = 25;
 
   //
   // Compute the Y coordinate of a connector, given its index.
   //
   flowchart.computeConnectorY = function(connectorIndex) {
-    return flowchart.nodeNameHeight + (connectorIndex * flowchart.connectorHeight) +
-			(flowchart.defaultNodeHeight - flowchart.nodeNameHeight);
+    return flowchart.defaultNodeHeight / 2 + connectorIndex * flowchart.connectorHeight;
   };
 
   //
@@ -171,12 +170,16 @@ var flowchart = {
     // Height of the node.
     //
     this.height = function() {
-      var numConnectors =
-      Math.max(
-      this.inputConnectors.length,
-      this.outputConnectors.length);
+      /*
+        var numConnectors =
+        Math.max(
+        this.inputConnectors.length,
+        this.outputConnectors.length);
 
-      return flowchart.computeConnectorY(numConnectors);
+        return flowchart.computeConnectorY(numConnectors);
+      */
+
+      return flowchart.defaultNodeHeight;
     };
 
     //
@@ -498,13 +501,7 @@ var flowchart = {
     //
     // Create a view model for a new connection.
     //
-    this.createNewConnection = function(startConnector, endConnector) {
-      /* This function is throwing JSHint errors:
-       line 494  col 40   This function has too many statements. (34)              (W071)
-       line 494  col 40   This function's cyclomatic complexity is too high. (13)  (W074)
-
-       Fix and uncomment when we get to creating connections in SDUI
-
+    this.createNewConnection = function(startConnector, endConnector) {  // jshint ignore:line
       var connectionsDataModel = this.data.connections;
       if (!connectionsDataModel) {
         connectionsDataModel = this.data.connections = [];
@@ -566,7 +563,6 @@ var flowchart = {
 
       var connectionViewModel = new flowchart.ConnectionViewModel(connectionDataModel, outputConnector, inputConnector);
       connectionsViewModel.push(connectionViewModel);
-      */
     };
 
     //

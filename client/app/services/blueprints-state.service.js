@@ -106,11 +106,21 @@
               "id": 10,
               "name": "AWS",
               "backgroundColor": "#fff",
-              "x": 42,
-              "y": 27,
+              "x": 444,
+              "y": 103,
               "width": 150,
               "provision_order": 0,
-              "action_order": 0
+              "action_order": 0,
+              inputConnectors: [
+                {
+                  name: "In"
+                }
+              ],
+              outputConnectors: [
+                {
+                  name: "Out"
+                }
+              ]
             },
             {
               "title": "Azure",
@@ -139,7 +149,7 @@
             {
               "title": "Kubernetes",
               "image": "assets/images/blueprint-designer/kubernetes-Logo.svg",
-              "id": 14,
+              "id": 13,
               "name": "Kubernetes",
               "backgroundColor": "#fff",
               "x": 217,
@@ -151,7 +161,7 @@
             {
               "title": "OpenStack",
               "image": "assets/images/blueprint-designer/Openstack-Logo.svg",
-              "id": 15,
+              "id": 14,
               "name": "OpenStack",
               "backgroundColor": "#fff",
               "x": 43,
@@ -163,11 +173,11 @@
             {
               "title": "Bundle 3",
               "bundle": true,
-              "id": 10,
+              "id": 15,
               "name": "Bundle 3",
               "backgroundColor": "#fff",
-              "x": 41,
-              "y": 559,
+              "x": 44,
+              "y": 24,
               "width": 150,
               "provision_order": 2,
               "action_order": 2
@@ -175,14 +185,30 @@
             {
               "title": "Bundle 2",
               "bundle": true,
-              "id": 11,
+              "id": 16,
               "name": "Bundle 2",
               "backgroundColor": "#fff",
-              "x": 221,
-              "y": 371,
+              "x": 659,
+              "y": 218,
               "width": 150,
               "provision_order": 3,
-              "action_order": 2
+              "action_order": 2,
+              inputConnectors: [
+                {
+                  name: "In 1"
+                },
+                {
+                  name: "In 2"
+                }
+              ],
+              outputConnectors: [
+                {
+                  name: " Out 1"
+                },
+                {
+                  name: " Out 2"
+                }
+              ]
             }
           ],
           "connections": []
@@ -255,6 +281,8 @@
       } else {
         blueprint.blueprints[index] = tmpBlueprint;
       }
+
+      // console.log("Saved Blueprint: " + angular.toJson(tmpBlueprint, true));
 
       return;
     };
