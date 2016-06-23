@@ -121,7 +121,7 @@
     vm.isSelectedTab = isSelectedTab;
     vm.disableOrderListTabs = disableOrderListTabs;
     vm.dndServiceItemMoved = dndServiceItemMoved;
-    vm.toggleActionEqualsProvOrder = toggleActionEqualsProvOrder
+    vm.toggleActionEqualsProvOrder = toggleActionEqualsProvOrder;
 
     vm.modalData = {
       'action': action,
@@ -263,7 +263,7 @@
      * This method converts the service items on a blueprint's canvas into a structure
      * required for the DND Provision and Action Order Lists.
      */
-    function setOrderLists(blueprintServiceItems) {
+    function setOrderLists(blueprintServiceItems) {     // jshint ignore:line
       var items = angular.copy(blueprintServiceItems);
       var lists = [];
       var item;

@@ -1,7 +1,7 @@
 angular.module('app.states')
     .controller('designerCtrl', ['$scope', '$timeout', 'BlueprintsState', 'BlueprintDetailsModal', 'SaveBlueprintModal', '$rootScope',
                 '$state', 'CollectionsApi', 'Notifications',
-    function($scope, $timeout, BlueprintsState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope, $state, CollectionsApi,
+    function($scope, $timeout, BlueprintsState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope, $state, CollectionsApi, // jshint ignore:line
              Notifications) {
       // dev level debug output
       var debug = false;
