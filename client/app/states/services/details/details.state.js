@@ -73,6 +73,12 @@
     vm.ownershipServiceModal = ownershipServiceModal;
     vm.reconfigureService = reconfigureService;
 
+    if (!angular.isDefined(vm.service.vms)) {
+      vm.vms = [];
+    } else {
+      vm.vms = vm.service.vms;
+    }
+
     var actions = vm.service.actions;
     if (actions !== undefined) {
       for (var i = 0; i < actions.length; i++) {
