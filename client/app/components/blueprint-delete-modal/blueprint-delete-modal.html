@@ -5,7 +5,7 @@
   <h3 class="modal-title">Delete Blueprint</h3>
 </div>
 <div class="modal-body">
-  <h3 translate>Are you sure you want to delete {{vm.delBlueprintsLabel}}</h3>
+  <h3 translate translate-n="vm.blueprintsList.length" translate-plural="Are you sure you want to delete {{$count}} blueprints?">Are you sure you want to delete {{vm.blueprintsList[0].name}}?</h3>
   <span ng-if="vm.blueprintsList.length > 1">
     <a href="#blueprintsList" id="blueprintsListHref" data-toggle="collapse" class="collapsed" translate>Show Blueprint Names</a>
     <div id="blueprintsList" class="collapse">

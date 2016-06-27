@@ -36,13 +36,6 @@
     var vm = this;
 
     vm.blueprintsList = blueprints;
-
-    if (vm.blueprintsList.length === 1) {
-      vm.delBlueprintsLabel = vm.blueprintsList[0].name + __('?');
-    } else {
-      vm.delBlueprintsLabel = vm.blueprintsList.length + ' ' + __('blueprints?');
-    }
-
     vm.deleteBlueprints = deleteBlueprints;
 
     activate();
