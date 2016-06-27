@@ -242,15 +242,14 @@
       saveSuccess();
 
       function saveSuccess() {
+        Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
         if (action === 'create') {
           $modalInstance.close();
-          Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
           BlueprintsState.saveBlueprint(vm.blueprint);
           $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
         } else if (action === 'edit') {
-          $modalInstance.close();
-          Notifications.success(sprintf(__('%s was updated.'), vm.blueprint.name));
           $modalInstance.close({editedblueprint: vm.blueprint});
+          Notifications.success(sprintf(__('%s was updated.'), vm.blueprint.name));
         } else if (action === 'publish') {
           $modalInstance.close();
           Notifications.success(sprintf(__('%s was published.'), vm.blueprint.name));
