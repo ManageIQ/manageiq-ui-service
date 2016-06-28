@@ -1,45 +1,49 @@
-<div class="row">
-  <div class="col-md-12 ">
-    <div pf-toolbar id="requestToolbar" config="vm.toolbarConfig"></div>
-  </div>
-</div>
-
-<pf-notification-list></pf-notification-list>
-
-<div class="col-md-12 list-view-container">
-  <request-list items="vm.requestsList" config="vm.listConfig"></request-list>
-</div>
-
-<br />
-<h2 translate>My Orders</h2>
-
-<div class="col-md-12 list-view-container">
-  <div pf-data-list id="orderList" config="vm.orderListConfig" items="vm.orders">
+<tabset>
+  <tab heading="My Requests">
     <div class="row">
-      <div class="col-lg-5 col-md-5 col-sm-8 col-xs-8">
-        <span class="no-wrap">
-          <span class="ss-list-view__title-img">
-            <span class="ss-list-view__title-img__center"></span>
-            <img class="ss-list-view__title-img__logo" src="images/miq_logo_transparent.png" />
-          </span>
-          {{ item.name }}
-        </span>
-      </div>
-      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-        <span class="no-wrap">
-          <strong translate>ID </strong>&nbsp;{{ item.id }}
-        </span>
-      </div>
-      <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
-        <span class="no-wrap">
-          <strong translate>ordered </strong>&nbsp;{{ item.placed_at | date }}
-        </span>
-      </div>
-      <div class="col-lg-2 col-md-4 hidden-sm hidden-xs">
-        <span class="no-wrap" translate-plural="{{ $count }} items" translate translate-n="item.service_requests.length || 0">
-          {{ $count }} item
-        </span>
+      <div class="col-md-12 ">
+        <div pf-toolbar id="requestToolbar" config="vm.toolbarConfig"></div>
       </div>
     </div>
-  </div>
-</div>
+
+    <pf-notification-list></pf-notification-list>
+
+    <div class="col-md-12 list-view-container">
+      <request-list items="vm.requestsList" config="vm.listConfig"></request-list>
+    </div>
+  </tab>
+  <tab heading="My Orders">
+    <pf-notification-list></pf-notification-list>
+
+    <div class="col-md-12 list-view-container">
+      <div pf-list-view id="orderList" config="vm.orderListConfig" items="vm.orders">
+        <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-8 col-xs-8">
+            <span class="no-wrap">
+              <span class="ss-list-view__title-img">
+                <span class="ss-list-view__title-img__center"></span>
+                <img class="ss-list-view__title-img__logo" src="images/miq_logo_transparent.png" />
+              </span>
+              {{ item.name }}
+            </span>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+            <span class="no-wrap">
+              <strong translate>ID </strong>&nbsp;{{ item.id }}
+            </span>
+          </div>
+          <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+            <span class="no-wrap">
+              <strong translate>ordered </strong>&nbsp;{{ item.placed_at | date }}
+            </span>
+          </div>
+          <div class="col-lg-2 col-md-4 hidden-sm hidden-xs">
+            <span class="no-wrap" translate-plural="{{ $count }} items" translate translate-n="item.service_requests.length || 0">
+              {{ $count }} item
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </tab>
+</tabset>
