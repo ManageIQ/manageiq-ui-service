@@ -26,9 +26,12 @@
 
   /** @ngInject */
   function resolveBlueprints(CollectionsApi) {
-    // var options = {expand: 'resources', attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms']};
+    var options = {
+      mock: true,
+      expand: 'resources'
+    };
 
-    // return CollectionsApi.query('blueprints', options);
+    return CollectionsApi.query('blueprints', options);
   }
 
   /** @ngInject */
@@ -39,7 +42,11 @@
 
     vm.title = __('Blueprint List');
 
-    // Mock Blueprints
+    // For mock RESTFul api operations
+    if (!BlueprintsState.getBlueprints()) {
+      BlueprintsState.setBlueprints(blueprints.resources);
+    }
+
     vm.blueprints = BlueprintsState.getBlueprints();
 
     /* This notification 'splice' code doesn't work.  Splice needs a third argument, the items to splice in
