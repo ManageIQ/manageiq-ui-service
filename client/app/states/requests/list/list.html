@@ -8,14 +8,14 @@
 
     <pf-notification-list></pf-notification-list>
 
-    <div class="col-md-12 list-view-container">
+    <div class="col-md-12 list-view-container -in-a-tab">
       <request-list items="vm.requestsList" config="vm.listConfig"></request-list>
     </div>
   </tab>
   <tab heading="My Orders">
     <pf-notification-list></pf-notification-list>
 
-    <div class="col-md-12 list-view-container">
+    <div class="col-md-12 list-view-container -in-a-tab -without-toolbar">
       <div pf-list-view id="orderList" config="vm.orderListConfig" items="vm.orders">
         <div class="row">
           <div class="col-lg-5 col-md-5 col-sm-8 col-xs-8">
