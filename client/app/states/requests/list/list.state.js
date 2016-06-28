@@ -51,6 +51,11 @@
     vm.requestsList = angular.copy(vm.requests);
 
     vm.orders = orders.resources;
+    vm.orderListConfig = {
+      showSelectBox: false,
+      selectionMatchProp: 'id',
+      onClick: handleOrderClick,
+    };
 
     if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
       $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
@@ -59,8 +64,8 @@
     vm.listConfig = {
       selectItems: false,
       showSelectBox: false,
-      selectionMatchProp: 'request_status',
-      onClick: handleClick
+      selectionMatchProp: 'id',
+      onClick: handleRequestClick,
     };
 
     vm.toolbarConfig = {
@@ -133,8 +138,12 @@
       applyFilters();
     }
 
-    function handleClick(item, e) {
-      $state.go('requests.details', {requestId: item.id});
+    function handleRequestClick(item, _e) {
+      $state.go('requests.details', { requestId: item.id });
+    }
+
+    function handleOrderClick(item, _e) {
+      $state.go('requests.order_details', { serviceOrderId: item.id });
     }
 
     function sortChange(sortId, direction) {
