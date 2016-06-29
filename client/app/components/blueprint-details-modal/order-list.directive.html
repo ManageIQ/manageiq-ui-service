@@ -1,0 +1,26 @@
+<ul>
+    <li ng-repeat=" item in list | orderBy:'id' ">
+      <span ng-if="item.type === 'container'">
+        <span class="container-heading">{{item.id}}.</span>
+        <div class="container-element">
+            <div class="column" ng-repeat="list in item.columns">
+                <ul dnd-list="list">
+                    <li ng-repeat="item in list"
+                        dnd-draggable="item",
+                        dnd-disable-if="item.disabled",
+                        dnd-effect-allowed="move"
+                        dnd-moved="moved(list, $index)",
+                        ng-class="{notdraggable: item.disabled}">
+                        <div class="item">
+                            <img ng-if="item.image" class="item-image" src="{{item.image}}">
+                            <i ng-if="item.bundle && !item.image" class="fa fa-gift fa-2x item-icon"></i>
+                            {{item.name}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+      </span>
+    </li>
+</ul>

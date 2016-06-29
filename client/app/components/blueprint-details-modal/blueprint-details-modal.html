@@ -122,11 +122,7 @@
                     <!-- Main Order List -->
                     <div class="col-md-12">
                         <div class="row">
-                            <ul>
-                                <li ng-repeat=" item in vm.dndModels.provOrder.list | orderBy:'id' "
-                                    ng-include="item.type + '.html'">
-                                </li>
-                            </ul>
+                            <order-list list="vm.dndModels.provOrder.list"/>
                         </div>
                     </div>
                 </div>
@@ -151,11 +147,7 @@
                     <!-- Main Order List -->
                     <div class="col-md-12">
                         <div class="row">
-                            <ul>
-                                <li ng-repeat=" item in vm.dndModels.actionOrder.list | orderBy:'id' "
-                                    ng-include="item.type + '.html'">
-                                </li>
-                            </ul>
+                            <order-list list="vm.dndModels.actionOrder.list"/>
                         </div>
                     </div>
                 </div>
@@ -178,36 +170,4 @@
     $(function () {
         $('.modal-header').parent().css("width", "700px");
     });
-</script>
-
-<!-- Templates for the DND Lists used in Set Prov/Action Order.-->
-
-<script type="text/ng-template" id="list.html">
-    <ul dnd-list="list">
-        <li ng-repeat="item in list"
-            dnd-draggable="item"
-            dnd-disable-if="vm.actionOrderEqualsProvOrder && item.listType === 'actionOrder'"
-            dnd-effect-allowed="move"
-            dnd-moved="vm.dndServiceItemMoved(list, $index)"
-            dnd-selected="vm.dndModels.selected = item"
-            ng-class="{selected: vm.dndModels.selected === item, notdraggable: vm.actionOrderEqualsProvOrder && item.listType === 'actionOrder'}"
-            ng-include="item.type + '.html'">
-        </li>
-    </ul>
-</script>
-
-<script type="text/ng-template" id="container.html">
-    <span class="container-heading">{{item.id}}.</span>
-    <div class="container-element">
-        <div class="column" ng-repeat="list in item.columns" ng-include="'list.html'"></div>
-        <div class="clearfix"></div>
-    </div>
-</script>
-
-<script type="text/ng-template" id="item.html">
-    <div class="item">
-        <img ng-if="item.image" class="item-image" src="{{item.image}}">
-        <i ng-if="item.bundle && !item.image" class="fa fa-gift fa-2x item-icon"></i>
-        {{item.name}}
-    </div>
 </script>

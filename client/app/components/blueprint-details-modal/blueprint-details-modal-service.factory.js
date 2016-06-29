@@ -77,7 +77,7 @@
   /** @ngInject */
   function BlueprintDetailsModalController(action, blueprint, BlueprintsState, MarketplaceState, serviceCatalogs, serviceDialogs, tenants,     // jshint ignore:line
                                            $state, BrowseEntryPointModal, CreateCatalogModal, $modalInstance, CollectionsApi, Notifications,
-                                           sprintf, $filter) {
+                                           sprintf, $filter, $scope) {
     var vm = this;
     vm.blueprint = blueprint;
 
@@ -234,32 +234,7 @@
       $modalInstance.close();
     }
 
-    /**
-     * Order Lists have the following pseudo-structure:
-     *
-     *   1. List/Container[0].columns[0][ItemA, ItemB].columns[1][ItemC, ItemD] ]
-     *   2. List/Container[1].columns[0][ItemE, ItemF].columns[1][ItemG, ItemH] ]
-     *   etc...
-     *
-     * JSON obj.:
-     *    {
-     *       "selected": null,
-     *       "list": [
-     *          {
-     *           "type": "container",
-     *            "id": 1                  // id is used for row #. Ex "1. ---"
-     *            "columns": [             // left and right 'columns' within the 'container'
-     *              [
-     *                { "id": 10, "name": "AWS", "type": "item"}
-     *              ],
-     *              [
-     *                {"id": 11, "name": "Azure", "type": "item"}
-     *              ]
-     *            ]
-     *          }
-     *        ]
-     *      }
-     *
+    /*
      * This method converts the service items on a blueprint's canvas into a structure
      * required for the DND Provision and Action Order Lists.
      */
@@ -286,11 +261,11 @@
         // Add item to provOrderList and actionOrderList
         for (l = 0; l < 2; l++) {
           if (l === 0) {
-            item.listType = "provOrder";    // listType denotes which list an item was dragged from
+            item.parentListName = "provOrder";    // parentListName denotes which list an item was dragged from
             order = item.provision_order;
           } else if (item.action_order !== undefined) {
             item = angular.copy(items[i]);
-            item.listType = "actionOrder";
+            item.parentListName = "actionOrder";
             order = item.action_order;
           } else {
             // no action order defined, only build provOrder list
@@ -310,17 +285,6 @@
               ]
             };
           }
-        }
-      }
-
-      // normalize containers, add empty row, re-number list
-      // lists[0] = prov. order list, lists[1] = action order list
-      for (l = 0; l < 2; l++) {
-        if (lists[l].containers.length) {
-          var containers = lists[l].containers;
-          normalizeContainers(containers);
-          addEmptyContainerRow(containers);
-          renumberContainersList(containers);
         }
       }
 
@@ -350,117 +314,46 @@
 
     function toggleActionEqualsProvOrder() {
       vm.actionOrderChanged = true;
-      // Make actionOrder list a new list, set listType to 'actionOrder'
+      // Make actionOrder list a new list, set parentListName to 'actionOrder'
       initActionOrderFromProvOrderList();
     }
 
-    function dndServiceItemMoved(list, index) {
-      var containers;
-      var container;
-      var origItem = angular.copy(list[index]);
+    $scope.$on('dnd-item-moved', function(evt, args) {
+      dndServiceItemMoved(args.item);
+    });
 
-      // Remove item from orig. list/column
-      list.splice(index, 1);
-
-      if (origItem.listType === "provOrder") {
+    function dndServiceItemMoved(origItem) {
+      if (origItem.parentListName === "provOrder") {
         vm.provOrderChanged = true;
-        containers = $filter('orderBy')(vm.dndModels.provOrder.list, 'id');
-      } else if (origItem.listType === "actionOrder") {
+      } else if (origItem.parentListName === "actionOrder") {
         vm.actionOrderChanged = true;
-        containers = $filter('orderBy')(vm.dndModels.actionOrder.list, 'id');
       }
 
-      normalizeContainers(containers);
-
-      // if last row not empty, add new empty row (list number)
-      container = containers[containers.length - 1];
-      if (container.type === 'container' && (container.columns[0].length !== 0 || container.columns[1].length !== 0)) {
-        addEmptyContainerRow(containers);
-      }
-
-      renumberContainersList(containers);
-
-      if (origItem.listType === "provOrder") {
-        vm.dndModels.provOrder.list = containers;
-        if (vm.actionOrderEqualsProvOrder) {
-          initActionOrderFromProvOrderList();
-        }
-      } else if (origItem.listType === "actionOrder") {
-        vm.dndModels.actionOrder.list = containers;
-      }
-    }
-
-    function normalizeContainers(containers) {
-      // Remove any empty rows (except last) and balance 'columns'/lists of items
-      // Empty/undefined rows may happen if item.id's are not sequential
-      for (var i = 0; i < containers.length; i++) {
-        var container = containers[i];
-        if (container.type === 'container') {
-          if (container.columns[0].length === 0 && container.columns[1].length === 0) {
-            // Remove Empty Row
-            containers.splice(i, 1);
-          } else {
-            container.columns = balanceColumns(container.columns[0], container.columns[1]);
-          }
-        }
+      if (origItem.parentListName === "provOrder" && vm.actionOrderEqualsProvOrder) {
+        initActionOrderFromProvOrderList();
       }
     }
 
     function initActionOrderFromProvOrderList() {
-      // Make actionOrder list a new list, set listType to 'actionOrder'
+      // Make actionOrder list a new list, set parentListName to 'actionOrder'
       var actionOrderList = angular.copy(vm.dndModels.provOrder.list);
-      for (var l = 0; l < actionOrderList.length - 1; l++) {    // length - 1 to not process last empty row
+      for (var l = 0; l < actionOrderList.length; l++) {
         for (var cols = 0; cols < actionOrderList[l].columns.length; cols++) {  // will be 2 columns
           for (var col = 0; col < actionOrderList[l].columns[cols].length; col++) {  // Number of items in a column
-            actionOrderList[l].columns[cols][col].listType = "actionOrder";
+            var item = actionOrderList[l].columns[cols][col];
+            item.parentListName = "actionOrder";
+            item.disabled = vm.actionOrderEqualsProvOrder;
           }
         }
       }
-      vm.dndModels.actionOrder.list = actionOrderList;
-      if (vm.actionOrderEqualsProvOrder) {
+
+      var lastrow = actionOrderList[ actionOrderList.length - 1 ];
+      if (vm.actionOrderEqualsProvOrder && lastrow.columns[0].length === 0 && lastrow.columns[1].length === 0) {
         // remove last empty row
-        vm.dndModels.actionOrder.list.splice(vm.dndModels.actionOrder.list.length - 1, 1);
-      }
-    }
-
-    function addEmptyContainerRow( containers ) {
-      containers.push(
-          {
-            "type": "container",
-            "columns": [
-              [],
-              []
-            ]
-          }
-       );
-    }
-
-    function renumberContainersList( containers ) {
-      for (var i = 0; i < containers.length; i++) {
-        containers[i].id = i + 1;
-      }
-    }
-
-    function balanceColumns(left, right) {
-      var all = left.concat(right);
-      // sort all items in container alphabetically by name
-      all = $filter('orderBy')(all, 'name');
-      left = [];
-      right = [];
-
-      for (var i = 0; i < all.length; i += 1) {
-        if ( isEven(i) ) {
-          left.push(all[i]);
-        } else {
-          right.push(all[i]);
-        }
+        actionOrderList.splice(actionOrderList.length - 1, 1);
       }
 
-      return [left, right];
-    }
-
-    function isEven(n) {
-      return n % 2 === 0;
+      vm.dndModels.actionOrder.list = actionOrderList;
     }
 
     function saveBlueprintDetails() {   // jshint ignore:line
