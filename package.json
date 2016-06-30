@@ -21,7 +21,7 @@
   "devDependencies": {
     "body-parser": "^1.12.2",
     "bower": "^1.7.9",
-    "browser-sync": "^2.2.4",
+    "browser-sync": "^2.13.0",
     "chai": "^2.3.0",
     "del": "^2.0.2",
     "express": "^4.12.3",
