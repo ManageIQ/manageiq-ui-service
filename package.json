@@ -84,7 +84,7 @@
   },
   "dependencies": {},
   "engines": {
-    "node": "0.12.x",
-    "npm": "2.1.x"
+    "node": "4.x",
+    "npm": "3.x"
   }
 }
