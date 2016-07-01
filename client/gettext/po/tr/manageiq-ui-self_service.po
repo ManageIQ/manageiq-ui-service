@@ -1,0 +1,1053 @@
+# Akın Ömeroğlu <akinomeroglu@gmail.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2016-07-01 08:59-0400\n"
+"Last-Translator: Akın Ömeroğlu <akinomeroglu@gmail.com>\n"
+"Language-Team: Turkish\n"
+"Language: tr\n"
+"X-Generator: Zanata 3.8.4\n"
+"Plural-Forms: nplurals=2; plural=(n>1)\n"
+
+#: app/components/navigation/header-nav.html:48
+msgid "(Current Group)"
+msgstr "(Şimdiki Grup)"
+
+#: app/components/retire-service-modal/retire-service-modal.html:12
+msgid "1 Week"
+msgstr "1 Hafta"
+
+#: app/components/retire-service-modal/retire-service-modal.html:13
+msgid "2 Weeks"
+msgstr "2 Hafta"
+
+#: app/components/retire-service-modal/retire-service-modal.html:14
+msgid "3 Weeks"
+msgstr "3 Hafta"
+
+#: app/components/retire-service-modal/retire-service-modal.html:15
+msgid "4 Weeks"
+msgstr "4 Hafta"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal-service.factory.js:41
+msgid "?"
+msgstr "?"
+
+#: app/states/about-me/about-me.html:1
+#: app/states/about-me/about-me.state.js:20
+#: app/states/about-me/about-me.state.js:29
+msgid "About Me"
+msgstr "Hakkında"
+
+#: app/components/custom-button/custom-button.directive.js:120
+#: app/components/custom-button/custom-button.directive.js:132
+msgid "Action not able to submit."
+msgstr "Aksiyon gönderilmeye uygun değil"
+
+#: app/states/products/details/details.state.js:35
+msgid "Activated Products Details View"
+msgstr "Aktive Edilmiş Ürün Detayları Gösterimi"
+
+#: app/states/products/details/details.html:18
+msgid "Active"
+msgstr "Aktif"
+
+#: app/states/blueprints/designer/designer.html:71
+msgid "Add New Catalog Item..."
+msgstr "Yeni Katalog Öğesi Ekle..."
+
+#: app/states/blueprints/designer/designer.html:27
+msgid "Add Service Item"
+msgstr "Servis Öğesi Ekle"
+
+#: app/states/marketplace/details/details.html:31
+msgid "Add to Shopping Cart"
+msgstr "Sepete Ekle"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:35
+msgid "Advanced Options"
+msgstr "Gelişmiş Özellikler"
+
+#: app/states/requests/list/list.state.js:212
+#: app/states/requests/list/list.state.js:81
+msgid "Approved"
+msgstr "Onaylandı"
+
+#: app/states/dashboard/dashboard.html:91
+msgid "Approved Requests"
+msgstr "Onaylanan İstekler"
+
+#: app/states/requests/details/details.html:72
+msgid "Approver"
+msgstr "Onaylayan"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:8
+msgid "Are you sure you want to delete {{vm.delBlueprintsLabel}}"
+msgstr ""
+"{{vm.delBlueprintsLabel}} isimli planı silmek istediğinizden emin misiniz?"
+
+#: app/components/confirmation/confirmation.directive.js:95
+msgid "Are you sure you wish to proceed?"
+msgstr "Devam etmek istediğinize emin misiniz?"
+
+#: app/states/blueprints/designer/designer.html:4
+msgid "Back to Blueprints"
+msgstr "Planlara Dön"
+
+#: app/states/requests/details/details.html:3
+msgid "Back to My Requests"
+msgstr "İsteklerime Dön"
+
+#: app/states/services/details/details.html:3
+msgid "Back to My Services"
+msgstr "Servislerime Dön"
+
+#: app/states/services/custom_button_details/custom_button_details.html:7
+#: app/states/services/reconfigure/reconfigure.html:3
+msgid "Back to Service"
+msgstr "Servise Dön"
+
+#: app/states/marketplace/details/details.html:3
+#: app/states/services/custom_button_details/custom_button_details.html:3
+msgid "Back to Service Catalog"
+msgstr "Servis Kataloğuna Dön"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:8
+msgid "Basic Info."
+msgstr "Temel Bilgi"
+
+#: app/states/blueprints/designer/designer.html:6
+msgid "Blueprint Editor:"
+msgstr "Plan Editörü"
+
+#: app/states/blueprints/list/list.state.js:19
+#: app/states/blueprints/list/list.state.js:39
+msgid "Blueprint List"
+msgstr "Plan Listesi"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:10
+msgid "Blueprint Name"
+msgstr "Plan İsmi"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal-service.factory.js:73
+msgid "Blueprint(s) deleted."
+msgstr "Planlar Silindi"
+
+#: app/config/navigation.config.js:37
+msgid "Blueprints"
+msgstr "Planlar"
+
+#: app/components/custom-button/custom-button.directive.js:100
+msgid "Button action not supported."
+msgstr "Buton aksiyonu desteklenmiyor"
+
+#: app/states/services/details/details.html:116
+msgid "CPU"
+msgstr "CPU"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:17
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:54
+#: app/components/confirmation/confirmation.directive.js:97
+#: app/components/edit-service-modal/edit-service-modal.html:21
+#: app/components/ownership-service-modal/ownership-service-modal.html:32
+#: app/components/retire-service-modal/retire-service-modal.html:24
+#: app/states/services/reconfigure/reconfigure.html:24
+msgid "Cancel"
+msgstr "İptal"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:20
+#: app/states/blueprints/list/list.state.js:121
+#: app/states/blueprints/list/list.state.js:88
+msgid "Catalog"
+msgstr "Katalog"
+
+#: app/states/marketplace/list/list.state.js:105
+#: app/states/marketplace/list/list.state.js:86
+msgid "Catalog Name"
+msgstr "Katalog İsmi"
+
+#: app/components/navigation/header-nav.html:40
+msgid "Change Group:"
+msgstr "Grubu Değiştir"
+
+#: app/components/navigation/header-nav.html:52
+msgid "Change to this Group"
+msgstr "Bu Gruba değiştir"
+
+#: app/components/shopping-cart/shopping-cart.html:42
+msgid "Clear"
+msgstr "Temizle"
+
+#: app/components/shopping-cart/shopping-cart.html:34
+msgid "Close"
+msgstr "Kapat"
+
+#: app/states/blueprints/designer/designer.html:13
+msgid "Confirm, would you like to delete this blueprint?"
+msgstr "Bu planı silmek mi istiyorsunuz? Onaylayın"
+
+#: app/states/services/details/details.html:42
+msgid "Confirm, would you like to remove this service?"
+msgstr "Bu servisi silmek mi istiyorsunuz? Onaylayın"
+
+#: app/states/services/details/details.html:57
+msgid "Confirm, would you like to retire this service?"
+msgstr "Bu servisi emekli mi etmek istiyorsunuz? Onaylayın"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:84
+#: app/states/blueprints/list/list.state.js:132
+msgid "Create"
+msgstr "Oluştur"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:83
+msgid "Create Blueprint"
+msgstr "Plan Oluştur"
+
+#: app/states/blueprints/list/list.state.js:133
+msgid "Create a new Blueprint"
+msgstr "Yeni bir Plan Oluştur"
+
+#: app/states/services/list/list.state.js:126
+#: app/states/services/list/list.state.js:93
+msgid "Created"
+msgstr "Oluşturuldu"
+
+#: app/states/services/details/details.html:106
+#: app/states/services/list/list.html:40
+msgid "Created On"
+msgstr "Oluşturuldu"
+
+#: app/states/products/details/details.html:33
+msgid "Creation Date"
+msgstr "Oluşturulma Tarihi"
+
+#: app/states/services/list/list.state.js:77
+msgid "Current"
+msgstr "Şimdiki"
+
+#: app/components/navigation/header-nav.html:59
+msgid "Current Group"
+msgstr "Şimdiki Grup"
+
+#: app/states/dashboard/dashboard.html:45
+msgid "Current Services"
+msgstr "Şimdiki Servisler"
+
+#: app/components/navigation/header-nav.html:46
+msgid "Currently Selected Group"
+msgstr "Şu an Seçili Gruplar"
+
+#: app/components/custom-button/custom-button.html:28
+#: app/components/custom-button/custom-button.html:30
+msgid "Custom Actions"
+msgstr "Özel Aksiyonlar"
+
+#: app/states/services/custom_button_details/custom_button_details.html:10
+msgid "Custom Button:"
+msgstr "Özel Düğme:"
+
+#: app/states/services/custom_button_details/custom_button_details.state.js:46
+msgid "Custom button action"
+msgstr "Özel Düğme Aksiyonu"
+
+#: app/config/navigation.config.js:14
+#: app/states/dashboard/dashboard.state.js:178
+#: app/states/dashboard/dashboard.state.js:20
+msgid "Dashboard"
+msgstr "Gösterge Paneli"
+
+#: app/states/blueprints/designer/designer.html:9
+#: app/states/blueprints/list/list.state.js:137
+#: app/states/blueprints/list/list.state.js:65
+msgid "Delete"
+msgstr "Sil"
+
+#: app/states/blueprints/designer/designer.html:12
+#: app/states/blueprints/list/list.state.js:138
+#: app/states/blueprints/list/list.state.js:66
+msgid "Delete Blueprint"
+msgstr "Planı Sil"
+
+#: app/states/requests/list/list.state.js:210
+#: app/states/requests/list/list.state.js:81
+msgid "Denied"
+msgstr "Reddedildi"
+
+#: app/states/dashboard/dashboard.html:104
+msgid "Denied Requests"
+msgstr "Reddedilen İstekler"
+
+#: app/components/edit-service-modal/edit-service-modal.html:13
+#: app/states/marketplace/list/list.state.js:80
+#: app/states/requests/list/list.state.js:60
+#: app/states/requests/list/list.state.js:92
+msgid "Description"
+msgstr "Tanım"
+
+#: app/states/blueprints/designer/designer.html:8
+msgid "Details"
+msgstr "Detaylar"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:27
+msgid "Dialog"
+msgstr "Diyalog"
+
+#: app/states/services/details/details.html:128
+msgid "Disk Count"
+msgstr "Disk Adedi"
+
+#: app/states/services/details/details.html:134
+msgid "Disk Space Allocated"
+msgstr "Ayrılan Disk Alanı"
+
+#: app/states/services/details/details.html:140
+msgid "Disk Space Used"
+msgstr "Kullanılan Disk Alanı"
+
+#: app/states/blueprints/list/list.state.js:60
+msgid "Edit"
+msgstr "Düzenle"
+
+#: app/states/blueprints/list/list.state.js:61
+msgid "Edit Blueprint"
+msgstr "Planı Düzenle"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:86
+msgid "Edit Blueprint Details"
+msgstr "Plan Ayrıntılarını Düzenle"
+
+#: app/components/edit-service-modal/edit-service-modal.html:5
+#: app/states/services/details/details.html:65
+msgid "Edit Service"
+msgstr "Servisi Düzenle"
+
+#: app/states/error/error.state.js:21
+msgid "Error"
+msgstr "Hata"
+
+#: app/config/authorization.config.js:107
+msgid "Error retrieving user info"
+msgstr "Kullanıcı bilgisini alırken hata"
+
+#: app/states/blueprints/list/list.state.js:89
+msgid "Filter by Catalog"
+msgstr "Kataloga göre filtrele"
+
+#: app/states/marketplace/list/list.state.js:87
+msgid "Filter by Catalog Name"
+msgstr "Katalog ismine göre filtrele"
+
+#: app/states/services/list/list.state.js:94
+msgid "Filter by Created On"
+msgstr "Oluşturulmaya göre filtrele"
+
+#: app/states/marketplace/list/list.state.js:81
+#: app/states/requests/list/list.state.js:61
+msgid "Filter by Description"
+msgstr "Tanıma göre filtrele"
+
+#: app/states/requests/list/list.state.js:67
+msgid "Filter by ID"
+msgstr "ID'ye göre filtrele"
+
+#: app/states/blueprints/list/list.state.js:77
+#: app/states/marketplace/list/list.state.js:75
+#: app/states/services/list/list.state.js:69
+msgid "Filter by Name"
+msgstr "İsme göre filtrele"
+
+#: app/states/services/list/list.state.js:88
+msgid "Filter by Owner"
+msgstr "Sahibine göre filtrele"
+
+#: app/states/requests/list/list.state.js:73
+msgid "Filter by Request Date"
+msgstr "İstek tarihine göre filtrele"
+
+#: app/states/services/list/list.state.js:75
+msgid "Filter by Retirement Date"
+msgstr "Emeklilik tarihine göre filtrele"
+
+#: app/states/requests/list/list.state.js:79
+msgid "Filter by Status"
+msgstr "Duruma göre filtrele"
+
+#: app/states/services/list/list.state.js:82
+msgid "Filter by VMs"
+msgstr "VM'lere göre filtrele"
+
+#: app/states/blueprints/list/list.state.js:83
+msgid "Filter by Visibility"
+msgstr "Görünürlülüğe göre filtrele"
+
+#: app/components/confirmation/confirmation.directive.js:54
+#: app/components/confirmation/confirmation.directive.js:59
+msgid "For Sizing"
+msgstr "Boyutlandırma İçin"
+
+#: app/states/services/details/details.html:100
+msgid "Group"
+msgstr "Grup"
+
+#: app/states/help/help.html:1
+#: app/states/help/help.state.js:20
+#: app/states/help/help.state.js:29
+msgid "Help"
+msgstr "Yardım"
+
+#: app/states/products/details/details.html:56
+msgid "Hourly"
+msgstr "Saatlik"
+
+#: app/states/requests/list/list.html:24
+msgid "ID"
+msgstr "ID"
+
+#: app/states/services/details/details.html:49
+msgid "Inactivate the service"
+msgstr "Servisi deaktifleştir"
+
+#: app/states/products/details/details.html:19
+msgid "Inactive"
+msgstr "İnaktif"
+
+#: app/resources/authentication-api.factory.js:30
+msgid "Incorrect username or password."
+msgstr "Kullanıcı adı ya da parola hatalı"
+
+#: app/states/marketplace/details/details.state.js:101
+msgid "Item added to shopping cart"
+msgstr "Öge sepete eklendi"
+
+#: app/states/blueprints/list/list.html:24
+#: app/states/blueprints/list/list.state.js:111
+msgid "Items"
+msgstr "Ögeler"
+
+#: app/states/requests/details/details.html:82
+msgid "Last Message"
+msgstr "Son Mesaj"
+
+#: app/states/blueprints/list/list.html:18
+#: app/states/blueprints/list/list.state.js:106
+msgid "Last Modified"
+msgstr "Son Düzenlenme"
+
+#: app/states/services/details/details.html:186
+msgid "Last Scan"
+msgstr "Son Tarama"
+
+#: app/states/products/details/details.html:38
+#: app/states/requests/details/details.html:90
+msgid "Last Updated"
+msgstr "Son Güncelleme"
+
+#: app/states/login/login.html:39
+msgid "Log In"
+msgstr "Giriş"
+
+#: app/components/navigation/header-nav.html:19
+msgid "Log into the full administrative UI"
+msgstr "Tam yetkili arayüze giriş yap"
+
+#: app/states/login/login.state.js:20
+#: app/states/login/login.state.js:32
+msgid "Login"
+msgstr "Giriş"
+
+#: app/components/navigation/header-nav.html:67
+#: app/states/logout/logout.state.js:18
+#: app/states/logout/logout.state.js:27
+msgid "Logout"
+msgstr "Çıkış"
+
+#: app/skin/skin.module.js:8
+#: app/states/error/error.html:3
+msgid "ManageIQ Self Service"
+msgstr "ManageIQ Self Servis"
+
+#: app/states/services/details/details.html:122
+msgid "Memory"
+msgstr "Bellek"
+
+#: app/states/services/details/details.html:147
+msgid "Memory on Disk"
+msgstr "Diskteki bellek"
+
+#: app/states/products/details/details.html:57
+msgid "Monthly"
+msgstr "Aylık"
+
+#: app/components/ss-card/ss-card.html:9
+msgid "More"
+msgstr "Daha Fazla"
+
+#: app/config/navigation.config.js:25
+msgid "My Requests"
+msgstr "İsteklerim"
+
+#: app/config/navigation.config.js:19
+msgid "My Services"
+msgstr "Servislerim"
+
+#: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/services/blueprints-state.service.js:13
+#: app/services/services-state.service.js:14
+#: app/states/blueprints/list/list.state.js:101
+#: app/states/blueprints/list/list.state.js:76
+#: app/states/marketplace/list/list.state.js:100
+#: app/states/marketplace/list/list.state.js:74
+#: app/states/services/list/list.state.js:106
+#: app/states/services/list/list.state.js:68
+msgid "Name"
+msgstr "Ad"
+
+#: app/states/services/list/list.html:24
+msgid "Never"
+msgstr "Asla"
+
+#: app/components/dialog-content/dialog-content.html:3
+msgid "No Provisioning Dialog Available."
+msgstr "Devreye Alma Diyalogu Yok"
+
+#: app/components/retire-service-modal/retire-service-modal.html:11
+msgid "No Warning"
+msgstr "Uyarı Yok"
+
+#: app/states/services/list/list.state.js:116
+#: app/states/services/list/list.state.js:81
+msgid "Number of VMs"
+msgstr "VM Sayısı"
+
+#: app/states/services/details/details.html:199
+msgid "Open a HTML5 console for this VM"
+msgstr "Bu VM'e HTML5 konsol aç"
+
+#: app/components/shopping-cart/shopping-cart.html:50
+msgid "Order"
+msgstr "Talep et"
+
+#: app/states/services/details/details.html:94
+#: app/states/services/list/list.html:35
+#: app/states/services/list/list.state.js:121
+#: app/states/services/list/list.state.js:87
+msgid "Owner"
+msgstr "Sahip"
+
+#: app/states/login/login.html:20
+msgid "Password"
+msgstr "Parola"
+
+#: app/states/requests/list/list.state.js:208
+#: app/states/requests/list/list.state.js:81
+msgid "Pending"
+msgstr "Bekliyor"
+
+#: app/states/dashboard/dashboard.html:78
+msgid "Pending Requests"
+msgstr "Bekleyen İsteklerim"
+
+#: app/states/blueprints/designer/designer.html:9
+msgid "Permanently delete the blueprint"
+msgstr "Planı kalıcı olarak sil"
+
+#: app/states/services/details/details.html:37
+msgid "Permanently delete the service"
+msgstr "Servisi kalıcı olarak sil"
+
+#: app/states/services/details/details.html:191
+#: app/states/services/details/details.html:192
+#: app/states/services/details/details.html:193
+msgid "Power State"
+msgstr "Güç Durumu"
+
+#: app/states/products/details/details.html:50
+msgid "Pricing"
+msgstr "Ücretlendirme"
+
+#: app/states/products/details/details.html:10
+msgid "Product"
+msgstr "Ürün"
+
+#: app/states/products/details/details.html:17
+msgid "Product Status"
+msgstr "Ürün Durumu"
+
+#: app/states/products/details/details.html:28
+msgid "Product Tags"
+msgstr "Ürün Etiketleri"
+
+#: app/states/products/details/details.html:23
+msgid "Product Type"
+msgstr "Ürün Tipi"
+
+#: app/states/products/details/details.state.js:19
+msgid "Products Details"
+msgstr "Ürün Detayları"
+
+#: app/states/products/details/details.html:43
+msgid "Provisioning Answers"
+msgstr "Devreye Alma Cevapları"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:38
+msgid "Provisioning Entry Point"
+msgstr "Devreye Alma Giriş Nokası"
+
+#: app/states/services/details/details.html:67
+msgid "Reconfigure"
+msgstr "Tekrar ayarla"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:42
+msgid "Reconfigure Entry Point"
+msgstr "Yeniden Ayarlama Giriş Noktası"
+
+#: app/states/services/reconfigure/reconfigure.html:5
+msgid "Reconfigure Service:"
+msgstr "Servisi Yeniden Ayarla:"
+
+#: app/states/services/reconfigure/reconfigure.state.js:117
+msgid "Reconfigure this service has been cancelled"
+msgstr "Servisin yeniden ayarlanması iptal edildi"
+
+#: app/components/dialog-content/dialog-content.html:114
+msgid "Refresh"
+msgstr "Yenile"
+
+#: app/components/shopping-cart/shopping-cart.html:17
+msgid "Remove"
+msgstr "Kaldır"
+
+#: app/states/services/details/details.html:37
+#: app/states/services/details/details.html:41
+msgid "Remove Service"
+msgstr "Servisi Kaldır"
+
+#: app/states/requests/details/details.html:61
+msgid "Request Approval State"
+msgstr "Onay Durumunu İste"
+
+#: app/services/requests-state.service.js:13
+#: app/states/requests/details/details.html:49
+#: app/states/requests/list/list.state.js:102
+#: app/states/requests/list/list.state.js:72
+msgid "Request Date"
+msgstr "İstek Tarihi"
+
+#: app/states/requests/details/details.html:37
+#: app/states/requests/list/list.state.js:66
+#: app/states/requests/list/list.state.js:97
+msgid "Request ID"
+msgstr "İstek ID"
+
+#: app/states/requests/list/list.state.js:19
+#: app/states/requests/list/list.state.js:40
+msgid "Request List"
+msgstr "İstek Listesi"
+
+#: app/states/requests/details/details.html:43
+msgid "Request State"
+msgstr "İstek Durumu"
+
+#: app/states/dashboard/dashboard.state.js:181
+#: app/states/requests/list/list.state.js:107
+#: app/states/requests/list/list.state.js:78
+msgid "Request Status"
+msgstr "İstek Durumu"
+
+#: app/states/requests/details/details.html:96
+msgid "Request Type"
+msgstr "İstek Tipi"
+
+#: app/states/requests/details/details.html:5
+msgid "Request:"
+msgstr "İstek:"
+
+#: app/states/requests/list/list.html:29
+msgid "Requested"
+msgstr "İstendi"
+
+#: app/states/requests/details/details.html:55
+msgid "Requested By"
+msgstr "İsteyen"
+
+#: app/states/requests/details/details.state.js:19
+msgid "Requests Details"
+msgstr "İstek Detayları"
+
+#: app/states/services/details/details.html:50
+msgid "Retire"
+msgstr "Devreden Çıkar"
+
+#: app/states/services/details/details.html:54
+msgid "Retire Now"
+msgstr "Şimdi Devreden Çıkar"
+
+#: app/states/services/details/details.html:56
+msgid "Retire Service Now"
+msgstr "Servisi Devreden Çıkar"
+
+#: app/states/services/list/list.state.js:77
+msgid "Retired"
+msgstr "Devreden Çıkarıldı"
+
+#: app/states/dashboard/dashboard.html:58
+msgid "Retired Services"
+msgstr "Devreden Çıkarılan Servisler"
+
+#: app/components/retire-service-modal/retire-service-modal.html:18
+#: app/states/dashboard/dashboard.state.js:187
+#: app/states/services/details/details.html:86
+#: app/states/services/list/list.html:22
+#: app/states/services/list/list.state.js:111
+#: app/states/services/list/list.state.js:74
+msgid "Retirement Date"
+msgstr "Devreden Çıkarma Tarihi"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:46
+msgid "Retirement Entry Point"
+msgstr "Devreden Çıkarma Giriş Noktası"
+
+#: app/components/retire-service-modal/retire-service-modal.html:9
+msgid "Retirement Warning"
+msgstr "Devreden Çıkarma Uyarısı"
+
+#: app/states/dashboard/dashboard.html:32
+msgid "Retiring Soon"
+msgstr "Yakında Devre Dışı"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:87
+#: app/components/edit-service-modal/edit-service-modal.html:22
+#: app/components/ownership-service-modal/ownership-service-modal.html:33
+#: app/components/retire-service-modal/retire-service-modal.html:25
+msgid "Save"
+msgstr "Kaydet"
+
+#: app/states/services/details/details.html:62
+msgid "Schedule Retirement"
+msgstr "Devreden Çıkarmayı Takvimlendir"
+
+#: app/components/retire-service-modal/retire-service-modal.html:5
+msgid "Schedule Service Retirement"
+msgstr "Servis Devreden Çıkarılmasını Takvimlendir"
+
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:67
+msgid "Scheduling retirement for"
+msgstr "Devreden çıkarma takvimleniyor"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:96
+msgid "Select Dialog"
+msgstr "Diyalogu Seç"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:19
+msgid "Select a Group"
+msgstr "Grubu Seç"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:9
+msgid "Select an Owner"
+msgstr "Sahibi Seç"
+
+#: app/skin/skin.module.js:11
+#: index.html:4
+msgid "Self Service"
+msgstr "Self Servis"
+
+#: app/config/navigation.config.js:31
+#: app/states/marketplace/list/list.state.js:19
+#: app/states/marketplace/list/list.state.js:51
+msgid "Service Catalog"
+msgstr "Servis Katalogu"
+
+#: app/states/services/custom_button_details/custom_button_details.state.js:19
+msgid "Service Custom Button Details"
+msgstr "Servis Özel Butonu Ayrıntıları"
+
+#: app/states/products/details/details.state.js:28
+#: app/states/services/details/details.state.js:19
+#: app/states/services/details/details.state.js:65
+#: app/states/services/reconfigure/reconfigure.state.js:19
+#: app/states/services/reconfigure/reconfigure.state.js:41
+msgid "Service Details"
+msgstr "Servis Detayları"
+
+#: app/states/services/details/details.html:79
+msgid "Service Id"
+msgstr "Servis ID"
+
+#: app/states/services/list/list.state.js:19
+#: app/states/services/list/list.state.js:41
+msgid "Service List"
+msgstr "Servis Listesi"
+
+#: app/states/marketplace/details/details.state.js:19
+#: app/states/marketplace/details/details.state.js:46
+msgid "Service Template Details"
+msgstr "Servis Şablonu Detayları"
+
+#: app/states/marketplace/details/details.html:5
+#: app/states/services/details/details.html:5
+msgid "Service:"
+msgstr "Servis:"
+
+#: app/states/services/details/details.html:66
+msgid "Set Ownership"
+msgstr "Sahipliği Ayarla"
+
+#: app/components/ownership-service-modal/ownership-service-modal.html:5
+msgid "Set Service Ownership"
+msgstr "Servis Sahipliğini Ayarla"
+
+#: app/states/products/details/details.html:55
+msgid "Setup"
+msgstr "Kurulum"
+
+#: app/components/shopping-cart/shopping-cart.html:5
+msgid "Shopping Cart"
+msgstr "Sepet"
+
+#: app/components/navigation/header-nav.html:25
+msgid "Shopping cart"
+msgstr "Sepet"
+
+#: app/components/shopping-cart/shopping-cart.html:26
+msgid "Shopping cart is empty."
+msgstr "Sepetiniz boş"
+
+#: app/components/shopping-cart/shopping-cart.directive.js:47
+msgid "Shopping cart successfully ordered"
+msgstr "Sepet başarıyla sipariş edildi"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:10
+msgid "Show Blueprint Names"
+msgstr "Plan isimlerini göster"
+
+#: app/states/services/details/details.html:181
+msgid "Size"
+msgstr "Boyut"
+
+#: app/states/services/list/list.state.js:77
+msgid "Soon"
+msgstr "Yakında"
+
+#: app/states/services/custom_button_details/custom_button_details.html:21
+#: app/states/services/reconfigure/reconfigure.html:23
+msgid "Submit Request"
+msgstr "İsteği Gönder"
+
+#: app/states/requests/list/list.html:34
+#: app/states/requests/list/list.html:35
+#: app/states/requests/list/list.html:36
+msgid "The current approval status of the request"
+msgstr "İsteğin şu andaki onay durumu"
+
+#: app/states/services/details/details.html:186
+msgid "The last heartbeat received from the instances"
+msgstr "Bu birimlerden alınan son sağlık durumu bilgisi"
+
+#: app/states/dashboard/dashboard.html:50
+msgid "The number of active services"
+msgstr "Aktif servislerin sayısı"
+
+#: app/states/services/list/list.html:29
+msgid "The number of instances running this service"
+msgstr "Bu servisi çalıştıran toplam birim"
+
+#: app/states/dashboard/dashboard.html:37
+msgid "The number of services retiring within the next 30 days"
+msgstr "30 gün içinde devre dışı kalacak servislerin sayısı"
+
+#: app/states/dashboard/dashboard.html:63
+msgid ""
+"The number of services which have hit their retirement period or been "
+"retired"
+msgstr "Devreden çıkarılmış ya da çıkarılacak servisler toplamı"
+
+#: app/states/404/404.html:6
+msgid ""
+"The page you are looking for might have been removed, had its name changed, "
+"or is temporarily unavailable."
+msgstr ""
+"Ulaşmaya çalıştığınız sayfa kaldırılmış, ismi değiştirilmiş ya da geçici "
+"süreyle ulaşılamıyor olabilir."
+
+#: app/states/404/404.html:5
+msgid "The page you requested cannot be found."
+msgstr "İstediğiniz sayfa bulunamadı."
+
+#: app/config/navigation.config.js:40
+msgid "The total number of available blueprints"
+msgstr "Kullanılabilir planların toplam sayısı"
+
+#: app/config/navigation.config.js:34
+msgid "The total number of available catalog items"
+msgstr "Katalog ögelerinin toplam sayısı"
+
+#: app/config/navigation.config.js:28
+msgid "The total number of requests that you have submitted"
+msgstr "Gönderdiğiniz toplam talep sayısı"
+
+#: app/config/navigation.config.js:22
+msgid ""
+"The total number of services that you have ordered, both active and retired"
+msgstr "Talep ettiğiniz aktif ve devre dışı bırakılmış servisler toplamı"
+
+#: app/states/error/error.html:10
+msgid "There was a problem loading the page."
+msgstr "Sayfa yüklenirken bir problem oluştu."
+
+#: app/states/marketplace/details/details.state.js:107
+msgid "There was an error adding to shopping cart:"
+msgstr "Sepete eklerken bir hata oluştu:"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal-service.factory.js:78
+msgid "There was an error deleting Blueprints."
+msgstr "Planı silerken bir hata oluştu."
+
+#: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
+msgid "There was an error editing this service."
+msgstr "Servisi düzenlerken bir hata oluştu:"
+
+#: app/services/consoles.service.js:37
+msgid "There was an error opening the console"
+msgstr "Konsolu açarken bir hata oluştu"
+
+#: app/services/consoles.service.js:38
+msgid "There was an error opening the console:"
+msgstr "Konsolu açarken bir hata oluştu:"
+
+#: app/states/services/details/details.state.js:110
+msgid "There was an error removing this service."
+msgstr "Servisi kaldırırken bir hata oluştu:"
+
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
+#: app/states/services/details/details.state.js:149
+msgid "There was an error retiring this service."
+msgstr "Servisi devre dışı bırakırken bir hata oluştu."
+
+#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:93
+msgid "There was an error saving ownership of this service."
+msgstr "Servis sahibini kaydederken bir hata oluştu:"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:203
+msgid "There was an error saving this Blueprint."
+msgstr "Planı kaydederken bir hata oluştu."
+
+#: app/components/shopping-cart/shopping-cart.directive.js:51
+#: app/states/services/custom_button_details/custom_button_details.state.js:93
+#: app/states/services/reconfigure/reconfigure.state.js:112
+msgid "There was an error submitting this request:"
+msgstr "Talebi gönderirken bir hata oluştu:"
+
+#: app/states/services/details/details.html:164
+msgid "This service has no associated VMs"
+msgstr "Servisle ilişkilendirilmiş VM yok."
+
+#: app/components/navigation/header-nav.html:4
+msgid "Toggle navigation"
+msgstr "Navigasyonu değiştir"
+
+#: app/states/dashboard/dashboard.html:20
+msgid "Total Requests"
+msgstr "Toplam İstekler"
+
+#: app/states/dashboard/dashboard.html:9
+msgid "Total Services"
+msgstr "Toplam Servisler"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:93
+msgid "Unassigned"
+msgstr "Atanmamış"
+
+#: app/services/consoles.service.js:75
+msgid "Unsupported console protocol returned"
+msgstr "Desteklenmeyen konsol protokolü döndü"
+
+#: app/services/consoles.service.js:76
+msgid "Unsupported console protocol returned:"
+msgstr "Desteklenmeyen konsol protokolü döndü:"
+
+#: app/states/blueprints/designer/designer.html:7
+msgid "Untitled Blueprint"
+msgstr "İsimsiz plan"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:115
+msgid "Untitled Catalog"
+msgstr "İsimsiz Katalog"
+
+#: app/states/login/login.state.js:41
+#: app/states/login/login.state.js:61
+msgid "User does not have privileges to login."
+msgstr "Kullanıcı giriş haklarına sahip değil"
+
+#: app/states/login/login.html:12
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
+#: app/states/services/list/list.html:30
+msgid "VMs"
+msgstr "VM'ler"
+
+#: app/states/services/details/details.html:176
+msgid "Vendor"
+msgstr "Üretici"
+
+#: app/states/services/details/details.html:163
+msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
+msgstr "Sanal Makineler ({{ ::vm.service.vms.length }})"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:14
+#: app/states/blueprints/list/list.state.js:116
+#: app/states/blueprints/list/list.state.js:82
+msgid "Visibility"
+msgstr "Görünürlük"
+
+#: app/services/consoles.service.js:30
+msgid "Waiting for the console to become ready"
+msgstr "Konsolun hazır olması bekleniyor"
+
+#: app/services/consoles.service.js:31
+msgid "Waiting for the console to become ready:"
+msgstr "Konsolun hazır olması bekleniyor:"
+
+#: app/states/404/404.html:7
+#: app/states/error/error.html:13
+msgid "We apologize for the inconvenience."
+msgstr "Rahatsızlık için özür dileriz."
+
+#: app/states/blueprints/designer/designer.html:14
+msgid "Yes, Delete Blueprint"
+msgstr "Evet, Planı sil"
+
+#: app/states/services/details/details.html:43
+msgid "Yes, Remove Service"
+msgstr "Evet, Servisi Kaldır"
+
+#: app/states/services/details/details.html:58
+msgid "Yes, Retire Service Now"
+msgstr "Evet, Servisi devre dışı bırak"
+
+#: app/config/authorization.config.js:47
+msgid "Your session has timed out."
+msgstr "Oturumunuz zaman aşımına uğradı"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal-service.factory.js:43
+msgid "blueprints?"
+msgstr "planlar?"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:194
+msgid "was ed."
+msgstr "düzenlendi."
+
+#: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
+msgid "was edited."
+msgstr "düzenlendi."
+
+#: app/states/services/details/details.state.js:105
+msgid "was removed."
+msgstr "kaldırıldı."
+
+#: app/states/services/details/details.state.js:144
+msgid "was retired."
+msgstr "devre dışı bırakıldı."
