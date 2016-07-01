@@ -24,6 +24,12 @@
           }
         });
 
+        allDialogFields.forEach(function(dialogField) {
+          if (_.includes(dialogFieldsToRefresh, dialogField.name)) {
+            dialogField.beingRefreshed = true;
+          }
+        });
+
         if (dialogFieldsToRefresh !== []) {
           refreshMultipleDialogFields(allDialogFields, dialogFieldsToRefresh, url, resourceId);
         }
@@ -45,6 +51,7 @@
         Notifications.error('There was an error refreshing this dialog: ' + result);
       }
 
+      dialogField.beingRefreshed = true;
       fetchDialogFieldInfo(allDialogFields, [dialogField.name], url, resourceId, refreshSuccess, refreshFailure);
     }
 
@@ -117,6 +124,8 @@
           dialogField.default_value = newDialogField.values;
         }
       }
+
+      dialogField.beingRefreshed = false;
 
       function copyDynamicAttributes(currentDialogField, newDialogField) {
         currentDialogField.data_type = newDialogField.data_type;
