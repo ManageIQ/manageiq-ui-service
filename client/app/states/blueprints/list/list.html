@@ -3,10 +3,12 @@
     <div pf-data-toolbar id="blueprintToolbar" config="vm.toolbarConfig"></div>
   </div>
 </div>
+
 <pf-notification-list></pf-notification-list>
+
 <div class="col-md-12 list-view-container">
   <pf-notification-list></pf-notification-list>
-  <div pf-data-list id="blueprintList" class="blueprints-list" config="vm.listConfig" items="vm.blueprintsList" actions="vm.actionButtons">
+  <div pf-list-view id="blueprintList" class="blueprints-list" config="vm.listConfig" items="vm.blueprintsList" actions="vm.actionButtons">
     <div class="row">
       <div class="col-md-2">
         <span class="no-wrap">
@@ -24,7 +26,6 @@
           {{ item.num_nodes }}&nbsp;<span translate>Items</span>
         </span>
       </div>
-
 
       <div class="col-md-2">
         <span class="no-wrap">

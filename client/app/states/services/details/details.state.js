@@ -114,7 +114,7 @@
     /*
       FIXME
       this is a hack because it's impossible to access the current scope inside of
-      pf-data-list, and pf-data-list's actionButtons doesn't support hiding buttons
+      pf-list-view, and pf-list-view's actionButtons doesn't support hiding buttons
       based on a condition
       so the button gets .open-console-button instead of ng-click="vm.openConsole(item)"
       and we're abusing onClick to verify the event came from that button and call
