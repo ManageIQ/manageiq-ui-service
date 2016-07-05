@@ -1,0 +1,12 @@
+<div class="toast-pf alert alert-{{vm.notificationType}} pull-right"
+     ng-class="{'alert-dismissable': vm.notification.persistent}"
+     ng-mouseenter="vm.handleEnter()" ng-mouseleave="vm.handleLeave()" ng-click="vm.handleClick()">
+  <button ng-if="vm.notification.persistent" type="button" class="close" ng-click="vm.handleDismiss()" aria-hidden="true">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <span class="pficon pficon-ok" ng-show="vm.notificationType === 'success'"></span>
+  <span class="pficon pficon-info" ng-show="vm.notificationType === 'info'"></span>
+  <span class="pficon pficon-error-circle-o" ng-show="vm.notificationType === 'danger'"></span>
+  <span class="pficon pficon-warning-triangle-o" ng-show="vm.notificationType === 'warning'"></span>
+  <strong>{{vm.notification.header}}</strong> {{vm.notification.message | translate}}
+</div>

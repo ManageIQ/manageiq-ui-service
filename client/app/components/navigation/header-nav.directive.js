@@ -24,7 +24,7 @@
     }
 
     /** @ngInject */
-    function HeaderNavController(Text, Navigation, Messages, Session, API_BASE, ShoppingCart, $rootScope, $scope, $modal) {
+    function HeaderNavController(Text, Navigation, Messages, Session, API_BASE, ShoppingCart, $rootScope, $scope, $modal, EventNotifications) {
       var vm = this;
 
       vm.text = Text.app;
@@ -39,6 +39,13 @@
       vm.shoppingCart = {
         count: 0,
         open: function() {
+          // TODO:: Remove this. Used to create a mock event for testing
+          var notificationData = {
+            status: 'warning',
+            message: 'Shopping cart has been emptied!'
+          };
+          EventNotifications.add('event', notificationData.status, notificationData.message, notificationData);
+
           return $modal.open({
             template: '<shopping-cart modal-instance="modalInstance"></shopping-cart>',
             size: 'lg',
@@ -50,6 +57,10 @@
         allowed: ShoppingCart.allowed,
       };
 
+      vm.notificationsDrawerShown = false;
+      vm.toggleNotificationsList = toggleNotificationsList;
+      vm.newNotifications = false;
+
       function activate() {
         vm.messages = Messages.items;
         refresh();
@@ -59,13 +70,30 @@
         }
       }
 
-      function refresh() {
+      function refreshCart() {
         vm.shoppingCart.count = ShoppingCart.count();
       }
 
-      var destroy = $rootScope.$on('shoppingCartUpdated', refresh);
+      function refreshUnreadNotifications() {
+        vm.newNotifications = EventNotifications.state().unreadNotifications;
+      }
+
+      function refresh() {
+        refreshCart();
+        refreshUnreadNotifications();
+      }
+
+      var destroyCart = $rootScope.$on('shoppingCartUpdated', refreshCart);
+
+      var destroyUnreadNotifications = $scope.$watch(function() {
+          return EventNotifications.state().unreadNotifications;
+        },
+        refreshUnreadNotifications,
+        true);
+
       $scope.$on('destroy', function() {
-        destroy();
+        destroyCart();
+        destroyUnreadNotifications();
       });
 
       function toggleNavigation() {
@@ -79,6 +107,10 @@
 
       function clearMessages() {
         Messages.clear();
+      }
+
+      function toggleNotificationsList() {
+        vm.notificationsDrawerShown = !vm.notificationsDrawerShown;
       }
     }
   }
