@@ -19,7 +19,7 @@
               </div>
               <div class="ss-details-header__title">
                 <h2>{{ ::vm.order.name }}</h2>
-                <h4>ordered {{ ::vm.order.placed_at | date }}</h4>
+                <h4>ordered {{ ::(vm.order.placed_at || vm.order.updated_at) | date }}</h4>
               </div>
             </div>
           </div>
