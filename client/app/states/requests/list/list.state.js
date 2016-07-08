@@ -51,11 +51,7 @@
     vm.requestsList = angular.copy(vm.requests);
 
     vm.orders = orders.resources;
-    vm.orderListConfig = {
-      showSelectBox: false,
-      selectionMatchProp: 'id',
-      onClick: handleOrderClick,
-    };
+    vm.ordersList = angular.copy(vm.orders);
 
     if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
       $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
@@ -68,6 +64,12 @@
       onClick: handleRequestClick,
     };
 
+    vm.orderListConfig = {
+      showSelectBox: false,
+      selectionMatchProp: 'id',
+      onClick: handleOrderClick,
+    };
+
     vm.toolbarConfig = {
       filterConfig: {
         fields: [
@@ -75,58 +77,108 @@
             id: 'description',
             title:  __('Description'),
             placeholder: __('Filter by Description'),
-            filterType: 'text'
+            filterType: 'text',
           },
           {
             id: 'request_id',
             title: __('Request ID'),
             placeholder: __('Filter by ID'),
-            filterType: 'text'
+            filterType: 'text',
           },
           {
             id: 'request_date',
             title: __('Request Date'),
             placeholder: __('Filter by Request Date'),
-            filterType: 'text'
+            filterType: 'text',
           },
           {
             id: 'approval_state',
             title: __('Request Status'),
             placeholder: __('Filter by Status'),
             filterType: 'select',
-            filterValues: [__('Pending'), __('Denied'), __('Approved')]
-          }
+            filterValues: [__('Pending'), __('Denied'), __('Approved')],
+          },
         ],
         resultsCount: vm.requestsList.length,
         appliedFilters: RequestsState.filterApplied ? RequestsState.getFilters() : [],
-        onFilterChange: filterChange
+        onFilterChange: filterChange,
       },
       sortConfig: {
         fields: [
           {
             id: 'description',
             title: __('Description'),
-            sortType: 'alpha'
+            sortType: 'alpha',
           },
           {
             id: 'id',
             title: __('Request ID'),
-            sortType: 'numeric'
+            sortType: 'numeric',
           },
           {
             id: 'requested',
             title: __('Request Date'),
-            sortType: 'numeric'
+            sortType: 'numeric',
           },
           {
             id: 'status',
             title: __('Request Status'),
-            sortType: 'alpha'
-          }
+            sortType: 'alpha',
+          },
         ],
         onSortChange: sortChange,
         isAscending: RequestsState.getSort().isAscending,
-        currentField: RequestsState.getSort().currentField
+        currentField: RequestsState.getSort().currentField,
+      },
+    };
+
+    vm.orderToolbarConfig = {
+      filterConfig: {
+        fields: [
+           {
+            id: 'name',
+            title:  __('Name'),
+            placeholder: __('Filter by Name'),
+            filterType: 'text',
+          },
+          {
+            id: 'id',
+            title: __('Order ID'),
+            placeholder: __('Filter by ID'),
+            filterType: 'text',
+          },
+          {
+            id: 'placed_at',
+            title: __('Ordered Date'),
+            placeholder: __('Filter by Ordered Date'),
+            filterType: 'text',
+          },
+        ],
+        resultsCount: vm.ordersList.length,
+        appliedFilters: OrdersState.filterApplied ? OrdersState.getFilters() : [],
+        onFilterChange: orderFilterChange,
+      },
+      sortConfig: {
+        fields: [
+          {
+            id: 'name',
+            title: __('Name'),
+            sortType: 'alpha',
+          },
+          {
+            id: 'id',
+            title: __('Order ID'),
+            sortType: 'numeric',
+          },
+          {
+            id: 'placed_at',
+            title: __('Ordered Date'),
+            sortType: 'numeric',
+          },
+        ],
+        onSortChange: orderSortChange,
+        isAscending: OrdersState.getSort().isAscending,
+        currentField: OrdersState.getSort().currentField
       }
     };
 
@@ -136,6 +188,13 @@
       RequestsState.filterApplied = false;
     } else {
       applyFilters();
+    }
+
+    if (OrdersState.filterApplied) {
+      orderFilterChange(OrdersState.getFilters());
+      OrdersState.filterApplied = false;
+    } else {
+      orderApplyFilters();
     }
 
     function handleRequestClick(item, _e) {
@@ -151,6 +210,13 @@
 
       /* Keep track of the current sorting state */
       RequestsState.setSort(sortId, vm.toolbarConfig.sortConfig.isAscending);
+    }
+
+    function orderSortChange(sortId, direction) {
+      vm.ordersList.sort(orderCompareFn);
+
+      /* Keep track of the current sorting state */
+      OrdersState.setSort(sortId, vm.orderToolbarConfig.sortConfig.isAscending);
     }
 
     function compareFn(item1, item2) {
@@ -172,9 +238,31 @@
       return compValue;
     }
 
+    function orderCompareFn(item1, item2) {
+      var compValue = 0;
+      if (vm.orderToolbarConfig.sortConfig.currentField.id === 'name') {
+        compValue = item1.name.localeCompare(item2.name);
+      } else if (vm.orderToolbarConfig.sortConfig.currentField.id === 'id') {
+        compValue = item1.id - item2.id;
+      } else if (vm.orderToolbarConfig.sortConfig.currentField.id === 'placed_at') {
+        compValue = new Date(item1.placed_at || item1.updated_at) - new Date(item2.placed_at || item2.updated_at);
+      }
+
+      if (!vm.orderToolbarConfig.sortConfig.isAscending) {
+        compValue = compValue * -1;
+      }
+
+      return compValue;
+    }
+
     function filterChange(filters) {
       applyFilters(filters);
       vm.toolbarConfig.filterConfig.resultsCount = vm.requestsList.length;
+    }
+
+    function orderFilterChange(filters) {
+      orderApplyFilters(filters);
+      vm.orderToolbarConfig.filterConfig.resultsCount = vm.ordersList.length;
     }
 
     function applyFilters(filters) {
@@ -192,13 +280,34 @@
       sortChange(RequestsState.getSort().currentField, RequestsState.getSort().isAscending);
 
       function filterChecker(item) {
-        if (matchesFilters(item, filters)) {
+        if (matchesFilters(item, filters, requestMatchesFilter)) {
           vm.requestsList.push(item);
         }
       }
     }
 
-    function matchesFilters(item, filters) {
+    function orderApplyFilters(filters) {
+      vm.ordersList = [];
+      if (filters && filters.length > 0) {
+        angular.forEach(vm.orders, filterChecker);
+      } else {
+        vm.ordersList = vm.orders;
+      }
+
+      /* Keep track of the current filtering state */
+      OrdersState.setFilters(filters);
+
+      /* Make sure sorting direction is maintained */
+      orderSortChange(OrdersState.getSort().currentField, OrdersState.getSort().isAscending);
+
+      function filterChecker(item) {
+        if (matchesFilters(item, filters, orderMatchesFilter)) {
+          vm.ordersList.push(item);
+        }
+      }
+    }
+
+    function matchesFilters(item, filters, matchesFilter) {
       var matches = true;
       angular.forEach(filters, filterMatcher);
 
@@ -213,7 +322,7 @@
       return matches;
     }
 
-    function matchesFilter(item, filter) {
+    function requestMatchesFilter(item, filter) {
       if (filter.id === 'description') {
         return item.description.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'approval_state') {
@@ -231,6 +340,18 @@
         return String(item.id).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'request_date') {
         return $filter('date')(item.created_on).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      }
+
+      return false;
+    }
+
+    function orderMatchesFilter(item, filter) {
+      if (filter.id === 'name') {
+        return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else if (filter.id === 'id') {
+        return String(item.id).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else if (filter.id === 'placed_at') {
+        return $filter('date')(item.placed_at || item.updated_at).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       }
 
       return false;
