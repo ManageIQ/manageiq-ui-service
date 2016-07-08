@@ -6,13 +6,13 @@
 
   /** @ngInject */
   function RequestsStateFactory() {
-    var service = {};   
+    var service = {};
 
     service.sort = {
       isAscending: false,
       currentField: { id: 'requested', title: __('Request Date'), sortType: 'numeric' }
     };
-    
+
     service.filters = [];
 
     service.setSort = function(currentField, isAscending) {
