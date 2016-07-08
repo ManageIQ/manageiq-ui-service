@@ -251,11 +251,11 @@
     }
 
     function matchesFilter(item, filter) {
-      if ('name' === filter.id) {
+      if (filter.id === 'name') {
         return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else if ('visibility' === filter.id) {
+      } else if (filter.id === 'visibility') {
         return item.visibility.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else if ('catalog' === filter.id) {
+      } else if (filter.id === 'catalog') {
         return item.catalog.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       }
 

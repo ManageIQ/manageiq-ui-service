@@ -47,7 +47,7 @@
     }
 
     function booleanConverter(value) {
-      return 'true' === value.toLowerCase();
+      return value.toLowerCase() === 'true';
     }
 
     function regExpConverter(value) {
