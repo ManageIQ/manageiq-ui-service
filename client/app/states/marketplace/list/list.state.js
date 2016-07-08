@@ -123,13 +123,6 @@
     }
 
     function filterChange(filters) {
-      vm.filtersText = '';
-      angular.forEach(filters, filterTextFactory);
-
-      function filterTextFactory(filter) {
-        vm.filtersText += filter.title + ' : ' + filter.value + '\n';
-      }
-
       applyFilters(filters);
       vm.toolbarConfig.filterConfig.resultsCount = vm.serviceTemplatesList.length;
     }
