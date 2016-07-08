@@ -54,6 +54,14 @@
       todayHighlight: true
     };
 
+    vm.warningOptions = [
+      { value: 0, label: __('No Warning') },
+      { value: 7, label: __('1 Week') },
+      { value: 14, label: __('2 Weeks') },
+      { value: 21, label: __('3 Weeks') },
+      { value: 28, label: __('4 Weeks') },
+    ];
+
     activate();
 
     function activate() {

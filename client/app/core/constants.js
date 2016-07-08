@@ -1,4 +1,4 @@
-/* global toastr:false, moment:false, _:false, $:false, sprintf: false */
+/* global toastr:false, _:false, $:false, sprintf: false */
 (function() {
   'use strict';
 
@@ -6,6 +6,5 @@
     .constant('lodash', _)
     .constant('jQuery', $)
     .constant('toastr', toastr)
-    .constant('moment', moment)
     .constant('sprintf', sprintf);
 })();

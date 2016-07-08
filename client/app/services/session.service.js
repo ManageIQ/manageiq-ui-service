@@ -5,7 +5,7 @@
     .factory('Session', SessionFactory);
 
   /** @ngInject */
-  function SessionFactory($http, moment, $sessionStorage, gettextCatalog, $window, $state, lodash, RBAC) {
+  function SessionFactory($http, $sessionStorage, gettextCatalog, $window, $state, lodash, RBAC) {
     var model = {
       token: null,
       user: {}

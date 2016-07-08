@@ -1,11 +1,13 @@
 <div class="row">
   <div class="col-md-12">
-	  <div pf-data-toolbar id="serviceToolbar" config="vm.toolbarConfig"></div>
+    <div pf-toolbar id="serviceToolbar" config="vm.toolbarConfig"></div>
   </div>
 </div>
+
 <div class="col-md-12 list-view-container">
   <pf-notification-list></pf-notification-list>
-  <div pf-data-list id="serviceList" config="vm.listConfig" items="vm.servicesList">
+
+  <div pf-list-view id="serviceList" config="vm.listConfig" items="vm.servicesList">
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
         <span class="no-wrap">
