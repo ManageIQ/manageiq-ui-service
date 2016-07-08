@@ -146,7 +146,7 @@
     }
 
     function matchesFilter(item, filter) {
-      if ('name' === filter.id) {
+      if (filter.id === 'name') {
         return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       }
 

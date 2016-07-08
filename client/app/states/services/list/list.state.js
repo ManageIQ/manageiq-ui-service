@@ -238,15 +238,15 @@
     }
 
     function matchesFilter(item, filter) {
-      if ('name' === filter.id) {
+      if (filter.id === 'name') {
         return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else if ('vms' === filter.id) {
+      } else if (filter.id === 'vms') {
         return String(item.v_total_vms).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else if ('owner' === filter.id && angular.isDefined(item.evm_owner)) {
+      } else if (filter.id === 'owner' && angular.isDefined(item.evm_owner)) {
         return item.evm_owner.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else if ('retirement' === filter.id) {
+      } else if (filter.id === 'retirement') {
         return checkRetirementDate(item, filter.value.toLowerCase());
-      } else if ('created' === filter.id) {
+      } else if (filter.id === 'created') {
         return $filter('date')(item.created_at).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       }
 

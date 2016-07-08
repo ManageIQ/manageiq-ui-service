@@ -214,7 +214,7 @@
     }
 
     function matchesFilter(item, filter) {
-      if ('description' === filter.id) {
+      if (filter.id === 'description') {
         return item.description.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'approval_state') {
         var value;
@@ -229,7 +229,7 @@
         return item.approval_state === value;
       } else if (filter.id === 'request_id') {
         return String(item.id).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else if ('request_date' === filter.id) {
+      } else if (filter.id === 'request_date') {
         return $filter('date')(item.created_on).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       }
 
