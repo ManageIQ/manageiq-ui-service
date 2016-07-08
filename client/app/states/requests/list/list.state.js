@@ -43,7 +43,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, requests, orders, RequestsState, $filter, $rootScope, lodash) {
+  function StateController($state, requests, orders, RequestsState, OrdersState, $filter, $rootScope, lodash) {
     var vm = this;
 
     vm.title = __('Request List');
