@@ -54,24 +54,13 @@
   /** @ngInject */
   function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications, jQuery, Consoles) {
     var vm = this;
+    setInitialVars(vm);
 
-    vm.showRemoveService = $state.actionFeatures.service_delete.show;
-    vm.showRetireService = $state.actionFeatures.service_retire_now.show;
-    vm.showScheduleRetirementService = $state.actionFeatures.service_retire.show;
-    vm.showEditService = $state.actionFeatures.service_edit.show;
-    vm.showReconfigureService = $state.actionFeatures.service_reconfigure.show;
-    vm.showSetOwnership = $state.actionFeatures.service_ownership.show;
-
-    vm.title = __('Service Details');
-    vm.service = service;
-
-    vm.activate = activate;
-    vm.removeService = removeService;
-    vm.editServiceModal = editServiceModal;
-    vm.retireServiceNow = retireServiceNow;
-    vm.retireServiceLater = retireServiceLater;
-    vm.ownershipServiceModal = ownershipServiceModal;
-    vm.reconfigureService = reconfigureService;
+    if (!angular.isDefined(vm.service.vms)) {
+      vm.vms = [];
+    } else {
+      vm.vms = vm.service.vms;
+    }
 
     var actions = vm.service.actions;
     if (actions !== undefined) {
@@ -95,6 +84,26 @@
     activate();
 
     function activate() {
+    }
+
+    function setInitialVars(vm) {
+      vm.showRemoveService = $state.actionFeatures.service_delete.show;
+      vm.showRetireService = $state.actionFeatures.service_retire_now.show;
+      vm.showScheduleRetirementService = $state.actionFeatures.service_retire.show;
+      vm.showEditService = $state.actionFeatures.service_edit.show;
+      vm.showReconfigureService = $state.actionFeatures.service_reconfigure.show;
+      vm.showSetOwnership = $state.actionFeatures.service_ownership.show;
+
+      vm.title = __('Service Details');
+      vm.service = service;
+
+      vm.activate = activate;
+      vm.removeService = removeService;
+      vm.editServiceModal = editServiceModal;
+      vm.retireServiceNow = retireServiceNow;
+      vm.retireServiceLater = retireServiceLater;
+      vm.ownershipServiceModal = ownershipServiceModal;
+      vm.reconfigureService = reconfigureService;
     }
 
     function removeService() {
