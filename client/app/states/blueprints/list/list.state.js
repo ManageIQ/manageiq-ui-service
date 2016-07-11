@@ -53,22 +53,33 @@
     vm.listConfig = {
       selectItems: false,
       showSelectBox: true,
-      selectionMatchProp: 'service_status',
-      updateActionForItemFn: updateActionForItemFn,
       onClick: handleClick,
       onCheckBoxChange: handleCheckBoxChange
     };
 
     vm.actionButtons = [
       {
-        name: __('Edit'),
-        title: __('Edit Blueprint'),
-        actionFn: editBlueprint
-      },
-      {
         name: __('Publish'),
         title: __('Publish Blueprint'),
         actionFn: publishBlueprint
+      }
+    ];
+
+    vm.enableButtonForItemFn = function(action, item) {
+      if (action.name === __('Publish')) {
+        if (item.num_nodes > 0 && !item.published) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    };
+
+    vm.menuActions = [
+      {
+        name: __('Edit'),
+        title: __('Edit Blueprint'),
+        actionFn: editBlueprint
       },
       {
         name: __('Delete'),

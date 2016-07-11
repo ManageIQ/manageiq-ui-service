@@ -6,14 +6,18 @@
 
 <div class="col-md-12 list-view-container">
   <pf-notification-list></pf-notification-list>
-  <div pf-list-view id="blueprintList" class="blueprints-list" config="vm.listConfig" items="vm.blueprintsList" actions="vm.actionButtons">
+  <div pf-list-view id="blueprintList" class="blueprints-list" config="vm.listConfig" items="vm.blueprintsList"
+       action-buttons="vm.actionButtons"
+       enable-button-for-item-fn="vm.enableButtonForItemFn"
+       menu-actions="vm.menuActions"
+       update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
     <div class="row">
       <div class="col-md-2">
         <span class="no-wrap">
           {{ item.name }}
         </span>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-3">
         <span class="no-wrap">
           <strong translate>Last Modified</strong>&nbsp;{{ item.last_modified | date:'yyyy-MM-dd hh:mm a' }}
         </span>
@@ -28,8 +32,8 @@
       <div class="col-md-2">
         <span class="no-wrap">
           <i ng-if="item.visibility.id == '900'" class="fa fa-globe fa-2"></i>
-          <img ng-if="item.visibility.id == '800'" width="20px" src="assets/images/blueprint-designer/private.svg">
-          <img ng-if="item.visibility.id != '800' && item.visibility.id != '900'" width="20px" src="assets/images/blueprint-designer/tenant.svg">
+          <i ng-if="item.visibility.id == '800'" class="pficon pficon-private"></i>
+          <i ng-if="item.visibility.id != '800' && item.visibility.id != '900'" class="pficon pficon-tenant"></i>
           {{ item.visibility.name }}
         </span>
       </div>
@@ -38,12 +42,12 @@
           {{ ((item.catalog != null) ? item.catalog.name : "Unassigned")|translate }}
         </span>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-1">
         <span class="no-wrap" ng-if="item.published != null">
           <strong>Published</strong>
         </span>
         <span class="no-wrap" ng-if="item.published == null">
-          <strong>[ Publish ]</strong>
+          <strong>Draft</strong>
         </span>
       </div>
     </div>

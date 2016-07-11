@@ -53,11 +53,7 @@ module.exports = (function() {
     // Ignore CSS and JavaScript this is not needed or is undesired
     exclude: [
       // Exclude the bootstrap CSS, the Sass version will be @imported instead
-      /bootstrap\.css/,
-      // Exclude the main boostrap JS which is a dependency of bootstrap-treeview
-      // bower_components/patternfly/components/bootstrap/dist/js/bootstrap.js
-      // will be used instead
-      'bower_components/bootstrap/dist/js/bootstrap.js'
+      /bootstrap\.css/
     ]
   };
 
