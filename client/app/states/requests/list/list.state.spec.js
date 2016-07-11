@@ -23,8 +23,16 @@ describe('Dashboard', function() {
 
   describe('controller', function() {
     var controller;
+
     var requests = {
       name: 'requests',
+      count: 1,
+      subcount: 1,
+      resources: []
+    };
+
+    var orders = {
+      name: 'orders',
       count: 1,
       subcount: 1,
       resources: []
@@ -33,7 +41,7 @@ describe('Dashboard', function() {
     beforeEach(function() {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'Notifications');
 
-      controller = $controller($state.get('requests.list').controller, {requests: requests});
+      controller = $controller($state.get('requests.list').controller, {requests: requests, orders: orders});
       $rootScope.$apply();
     });
 

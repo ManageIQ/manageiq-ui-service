@@ -1,0 +1,35 @@
+<ol class="breadcrumb">
+  <li>
+    <a ui-sref="^"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to My Requests'|translate}}</a>
+  </li>
+  <li class="active"> <strong translate>Orders:</strong> {{ ::vm.order.name }}
+  </li>
+</ol>
+
+<div class="ss-details-wrapper">
+  <div class="panel panel-default ss-details-panel">
+    <div class="panel-body">
+      <section>
+        <div class="col-md-12 ss-details-header">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="ss-details-header__title-img">
+                <span class="ss-details-header__title-img__center"></span>
+                <img class="ss-details-header__title-img__logo" src="images/miq_logo_transparent.png" />
+              </div>
+              <div class="ss-details-header__title">
+                <h2>{{ ::vm.order.name }}</h2>
+                <h4>ordered {{ ::(vm.order.placed_at || vm.order.updated_at) | date }}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="panel panel-default ss-details-panel">
+    <div class="panel-body">
+      <request-list items="vm.order.service_requests" config="vm.requestListConfig"></request-list>
+    </div>
+  </div>
+</div>
