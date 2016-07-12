@@ -2,15 +2,15 @@
   'use strict';
 
   angular.module('app.services')
-    .factory('RequestsState', RequestsStateFactory);
+    .factory('OrdersState', OrdersStateFactory);
 
   /** @ngInject */
-  function RequestsStateFactory() {
+  function OrdersStateFactory() {
     var service = {};
 
     service.sort = {
       isAscending: false,
-      currentField: { id: 'requested', title: __('Request Date'), sortType: 'numeric' }
+      currentField: { id: 'placed_at', title: __('Ordered Date'), sortType: 'numeric' },
     };
 
     service.filters = [];
