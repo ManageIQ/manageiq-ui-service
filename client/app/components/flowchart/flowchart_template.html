@@ -45,11 +45,30 @@
       {{node.name()}}
     </text>
 
-    <image xlink:href="{{node.image()}}"
+    <image ng-if="node.image()"
+           xlink:href="{{node.image()}}"
            ng-attr-x="{{(node.width()/2) - 40}}"
            ng-attr-y="{{20}}"
            height="80px"
            width="80px"/>
+
+    <g><text ng-if="node.bundle()"
+             x="6"
+             y="22"
+             font-family="FontAwesome"
+             font-size="20">
+         {{'\uf06b'}}
+       </text>
+    </g>
+
+    <g><text ng-if="node.bundle()"
+             x="44"
+             y="88"
+             font-family="FontAwesome"
+             font-size="76">
+      {{'\uf06b'}}
+    </text>
+    </g>
 
     <g
       ng-repeat="connector in node.inputConnectors"

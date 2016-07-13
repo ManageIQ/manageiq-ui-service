@@ -4,18 +4,20 @@
   </div>
 </div>
 
-<pf-notification-list></pf-notification-list>
-
 <div class="col-md-12 list-view-container">
   <pf-notification-list></pf-notification-list>
-  <div pf-list-view id="blueprintList" class="blueprints-list" config="vm.listConfig" items="vm.blueprintsList" actions="vm.actionButtons">
+  <div pf-list-view id="blueprintList" class="blueprints-list" config="vm.listConfig" items="vm.blueprintsList"
+       action-buttons="vm.actionButtons"
+       enable-button-for-item-fn="vm.enableButtonForItemFn"
+       menu-actions="vm.menuActions"
+       update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
     <div class="row">
       <div class="col-md-2">
         <span class="no-wrap">
           {{ item.name }}
         </span>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-3">
         <span class="no-wrap">
           <strong translate>Last Modified</strong>&nbsp;{{ item.last_modified | date:'yyyy-MM-dd hh:mm a' }}
         </span>
@@ -29,15 +31,23 @@
 
       <div class="col-md-2">
         <span class="no-wrap">
-          <i ng-class="{'fa fa-globe': item.visibility.id == '900',
-                        'fa fa-lock': item.visibility.id == '800',
-                        'fa fa-home': (item.visibility.id != '800' && item.visibility.id != '900')}"></i>
+          <i ng-if="item.visibility.id == '900'" class="fa fa-globe fa-2"></i>
+          <i ng-if="item.visibility.id == '800'" class="pficon pficon-private"></i>
+          <i ng-if="item.visibility.id != '800' && item.visibility.id != '900'" class="pficon pficon-tenant"></i>
           {{ item.visibility.name }}
         </span>
       </div>
       <div class="col-md-2">
         <span class="no-wrap">
-          {{ item.catalog.name }}
+          {{ ((item.catalog != null) ? item.catalog.name : "Unassigned")|translate }}
+        </span>
+      </div>
+      <div class="col-md-1">
+        <span class="no-wrap" ng-if="item.published != null">
+          <strong>Published</strong>
+        </span>
+        <span class="no-wrap" ng-if="item.published == null">
+          <strong>Draft</strong>
         </span>
       </div>
     </div>

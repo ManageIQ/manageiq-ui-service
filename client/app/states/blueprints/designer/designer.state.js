@@ -16,7 +16,8 @@
         templateUrl: 'app/states/blueprints/designer/designer.html',
         controller: StateController,
         controllerAs: 'vm',
-        title: 'Blueprint Designer'
+        title: 'Blueprint Designer',
+        'okToNavAway': false
       }
     };
   }

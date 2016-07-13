@@ -34,7 +34,7 @@
       width: 98%
       height: 100%
       margin-left: 15px
-      background-image: url('/client/assets/images/canvas-dot-grid.png')
+      background-image: url('/client/assets/images/blueprint-designer/canvas-dot-grid.png')
       background-repeat: repeat
 
     .toolbox-container
@@ -62,9 +62,9 @@
 
       .catalog-items-list
         list-style: none
-        float: left
         padding-left: 0px
         max-height: 300px
+        padding-bottom: 4px
         overflow-y: auto
 
       .catalog-item
@@ -79,11 +79,27 @@
         cursor: pointer
         border-radius: 1px
         float: left
-        min-width: 306px
+        min-width: 325px
         min-height: 52px
         height: 36px
         vertical-align: middle
         position: relative
+
+        .fa
+          font-size: 26px
+          margin-right: 8px
+          margin-top: 6px
+          vertical-align: middle
+
+        span
+          position: relative
+          top: 4px
+
+        img
+          height: 100%
+          object-fit: contain
+          margin-right: 8px
+          //border: 1.5px solid red
 
         &::before
           border-color: #0d6f9a
@@ -99,9 +115,6 @@
           bottom: 4px
           width: 10px
 
-        img
-          margin-right: 8px
-
     .toolbox-footer
       margin-top: 10px
       margin-bottom: 10px
@@ -115,10 +128,23 @@
         padding: 13px 18px
         cursor: pointer
         width: 306px
-        min-width: 306px
+        min-width: 325px
         min-height: 52px
         height: 36px
         vertical-align: middle
+
+      .search-text
+        border: 1px solid #bbb
+        float: right
+        margin-top: -38px
+        text-decoration: none
+
+      .clear-search-text
+        position: absolute
+        bottom: 74px
+        right: 35px
+        color: #bbb
+        cursor: pointer
 
         span
           font-size: 20px
@@ -130,6 +156,19 @@
 
     a
       color: #0a0a0a
+
+    ::-webkit-input-placeholder
+      font-style: italic
+      padding-left: 10px
+    :-moz-placeholder
+      font-style: italic
+      padding-left: 10px
+    ::-moz-placeholder
+      font-style: italic
+      padding-left: 10px
+    :-ms-input-placeholder
+      font-style: italic
+      padding-left: 10px
 
 #subtabs
   .nav-tabs-pf

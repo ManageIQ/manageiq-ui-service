@@ -53,7 +53,7 @@ module.exports = (function() {
     // Ignore CSS and JavaScript this is not needed or is undesired
     exclude: [
       // Exclude the bootstrap CSS, the Sass version will be @imported instead
-      /bootstrap\.css/,
+      /bootstrap\.css/
     ]
   };
 

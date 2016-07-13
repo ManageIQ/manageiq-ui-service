@@ -42,14 +42,7 @@
           "id": 800,
           "name": "Private"
         },
-        "catalog": {
-          "id": -1,
-          "name": "Unassigned"
-        },
-        "dialog": {
-          "id": -1,
-          "name": "Select Dialog"
-        }
+        "chartDataModel": {}
       },
       {
         "id": 1,
@@ -67,7 +60,8 @@
         "dialog": {
           "id": 1000000000014,
           "name": "AWScreate_vpc"
-        }
+        },
+        "chartDataModel": {}
       },
       {
         "id": 2,
@@ -78,14 +72,11 @@
           "id": 900,
           "name": "Public"
         },
-        "catalog": {
-          "id": -1,
-          "name": "Unassigned"
-        },
         "dialog": {
-          "id": -1,
-          "name": "Select Dialog"
-        }
+          "id": 1000000000004,
+          "name": "Project 1"
+        },
+        "chartDataModel": {}
       },
       {
         "id": 3,
@@ -103,9 +94,12 @@
         "dialog": {
           "id": 1000000000001,
           "name": "RenameVM"
-        }
+        },
+        "chartDataModel": {}
       }
     ];
+
+    blueprint.newCatalogs = [];
 
     blueprint.selectedBlueprints = [];
 
@@ -132,6 +126,14 @@
 
     blueprint.getBlueprints = function() {
       return blueprint.blueprints;
+    };
+
+    blueprint.getNewCatalogs = function() {
+      return blueprint.newCatalogs;
+    };
+
+    blueprint.addNewCatalog = function(newCat) {
+      blueprint.newCatalogs.push(newCat);
     };
 
     blueprint.getNextUniqueId = function() {
@@ -162,10 +164,6 @@
       if (index !== -1) {
         blueprint.blueprints.splice(index, 1);
       }
-    };
-
-    blueprint.getBlueprints = function() {
-      return blueprint.blueprints;
     };
 
     blueprint.getBlueprintById = function(id) {

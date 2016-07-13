@@ -36,7 +36,7 @@
           blueprints: {
             title: N_('Blueprints'),
             state: 'blueprints',
-            icon: 'fa fa-sitemap',
+            icon: 'pficon pficon-blueprint',
             tooltip: N_('The total number of available blueprints'),
           }
         },

@@ -41,21 +41,41 @@
     // Mock Blueprints
     vm.blueprints = BlueprintsState.getBlueprints();
 
+    /* This notification 'splice' code doesn't work.  Splice needs a third argument, the items to splice in
+     * Not sure what this code is trying to accomplish, but it exists in login, request list, & services list
     if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
       $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
     }
+    */
 
     vm.blueprintsList = angular.copy(vm.blueprints);
 
     vm.listConfig = {
       selectItems: false,
       showSelectBox: true,
-      selectionMatchProp: 'service_status',
       onClick: handleClick,
       onCheckBoxChange: handleCheckBoxChange
     };
 
     vm.actionButtons = [
+      {
+        name: __('Publish'),
+        title: __('Publish Blueprint'),
+        actionFn: publishBlueprint
+      }
+    ];
+
+    vm.enableButtonForItemFn = function(action, item) {
+      if (action.name === __('Publish')) {
+        if (item.num_nodes > 0 && !item.published) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    };
+
+    vm.menuActions = [
       {
         name: __('Edit'),
         title: __('Edit Blueprint'),
@@ -144,11 +164,15 @@
     };
 
     function createBlueprint(action) {
-      BlueprintDetailsModal.showModal('create', '-1');
+      BlueprintDetailsModal.showModal('create', {});
     }
 
     function editBlueprint(action, item) {
       $state.go('blueprints.designer', {blueprintId: item.id});
+    }
+
+    function publishBlueprint(action, item) {
+      BlueprintDetailsModal.showModal('publish', item);
     }
 
     function deleteBlueprint(action, item) {
@@ -167,6 +191,10 @@
 
     function canDeleteBlueprints() {
       return BlueprintsState.getSelectedBlueprints().length > 0;
+    }
+
+    function updateActionForItemFn(action, item) {
+      return (action.name === 'Publish') && (item.published !== null);
     }
 
     /* Apply the filtering to the data list */

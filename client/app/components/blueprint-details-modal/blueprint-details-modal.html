@@ -5,46 +5,63 @@
   <h4 class="modal-title" id="myModalLabel">{{vm.modalTitle}}</h4>
 </div>
 <div class="modal-body">
-  <h3 translate>Basic Info.</h3>
-  <form class="form-horizontal">
+  <h3 translate>General</h3>
+  <form novalidate name="detailsForm" id="detailsForm" class="form-horizontal">
     <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Blueprint Name'|translate}}" required>
       <input id="name" name="name"
              ng-model="vm.modalData.resource.name" type="text" required/>
     </div>
     <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Visibility'|translate}}" required>
-      <select pf-select
+      <select class="base-info-select"
               ng-options="item as item.name for item in vm.visibilityOptions"
               ng-model="vm.modalData.resource.visibility" required>
       </select>
     </div>
-    <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Catalog'|translate}}" required>
-      <select pf-select
-              ng-options="item as item.name for item in vm.serviceCatalogs"
-              ng-model="vm.modalData.resource.catalog"
-              ng-change="vm.catalogChanged()" required>
-      </select>
+    <!-- could not use pf-form-group due to it's requirement that errors only display after fields are 'dirty' -->
+    <div class="form-group" ng-class="{ 'has-error' : vm.isCatalogRequired() }">
+      <label for="catalog" class="control-label col-sm-4" translate>Catalog</label>
+      <div class="col-sm-6">
+        <select name="catalog" id="catalog" class="base-info-select"
+                ng-options="item as item.name for item in vm.serviceCatalogs"
+                ng-model="vm.modalData.resource.catalog"
+                ng-change="vm.catalogChanged()"
+                ng-required="vm.isCatalogRequired()">
+                <option value="" translate>Unassigned</option>
+        </select><br>
+        <span ng-show="detailsForm.catalog.$error.required" class="control-label" translate>Select a Catalog</span>
+        <button type="button" class="btn btn-default base-info-btn" ng-click="vm.createCatalog()" translate>Create Catalog</button>
+      </div>
     </div>
-    <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Dialog'|translate}}" required>
-      <select pf-select
-              ng-options="item as item.description for item in vm.serviceDialogs"
-              ng-model="vm.modalData.resource.dialog"
-              ng-disabled="vm.isUnassigned()" required>
-      </select>
+    <div class="form-group" ng-class="{ 'has-error' : vm.isDialogRequired() }">
+      <label for="dialog" class="control-label col-sm-4" translate>Dialog</label>
+      <div class="col-sm-6">
+        <select name="dialog"  id="dialog" class="base-info-select"
+                ng-options="item as item.description for item in vm.serviceDialogs"
+                ng-model="vm.modalData.resource.dialog"
+                ng-disabled="vm.isCatalogUnassigned()"
+                ng-required="vm.isDialogRequired()">
+                <option value="" translate>Select Dialog</option>
+        </select><br>
+        <span ng-show="detailsForm.dialog.$error.required" class="control-label" translate>Select a Dialog</span>
+      </div>
     </div>
   </form>
-  <a href="#advOps" id="advOpsHref" data-toggle="collapse" class="collapsed" ng-class="{'disabled':vm.isUnassigned()}" translate>Advanced Options</a>
+  <a href="#advOps" id="advOpsHref" data-toggle="collapse" class="collapsed" ng-class="{'disabled':vm.isCatalogUnassigned()}" translate>Advanced Options</a>
   <div id="advOps" class="collapse">
     <form class="form-horizontal">
-      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Provisioning Entry Point'|translate}}">
-        <input id="provEP" name="provEP" type="text" ng-model="vm.modalData.resource.provEP"/>
+      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-8" pf-label="{{'Provisioning Entry Point'|translate}}">
+        <input id="provEP" class="entry-point-input" name="provEP" type="text" ng-model="vm.modalData.resource.provEP"/>
+        <button type="button" class="btn btn-default entry-point-btn" ng-click="vm.selectEntryPoint('provisioning')" translate>Browse</button>
         <a ng-click="vm.modalData.resource.provEP = ''"><span class="pficon pficon-close clear-entry-point"></span></a>
       </div>
-      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Reconfigure Entry Point'|translate}}">
-        <input id="reConfigEP" name="reConfigEP" type="text" ng-model="vm.modalData.resource.reConfigEP"/>
+      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-8" pf-label="{{'Reconfigure Entry Point'|translate}}">
+        <input id="reConfigEP" class="entry-point-input" name="reConfigEP" type="text" ng-model="vm.modalData.resource.reConfigEP"/>
+        <button type="button" class="btn btn-default entry-point-btn" ng-click="vm.selectEntryPoint('reconfigure')" translate>Browse</button>
         <a ng-click="vm.modalData.resource.reConfigEP = ''"><span class="pficon pficon-close clear-entry-point"></span></a>
       </div>
-      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6" pf-label="{{'Retirement Entry Point'|translate}}">
-        <input id="retireEP" name="retireEP" type="text" ng-model="vm.modalData.resource.retireEP"/>
+      <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-8" pf-label="{{'Retirement Entry Point'|translate}}">
+        <input id="retireEP" class="entry-point-input" name="retireEP" type="text" ng-model="vm.modalData.resource.retireEP"/>
+        <button type="button" class="btn btn-default entry-point-btn" ng-click="vm.selectEntryPoint('retirement')" translate>Browse</button>
         <a ng-click="vm.modalData.resource.retireEP = ''"><span class="pficon pficon-close clear-entry-point"></span></a>
       </div>
     </form>
@@ -54,7 +71,13 @@
   <button type="button" class="btn btn-default" ng-click="vm.cancelBlueprintDetails()" translate>Cancel</button>
   <button type="button"
           class="btn btn-primary"
-          ng-click="vm.saveBlueprintDetails()">
+          ng-click="vm.saveBlueprintDetails()"
+          ng-disabled="detailsForm.catalog.$error.required || detailsForm.dialog.$error.required || detailsForm.name.$error.required">
           {{vm.modalBtnPrimaryLabel}}
   </button>
 </div>
+<script>
+  $(function() {
+    $('.modal-header').parent().css("width","700px");
+  });
+</script>
