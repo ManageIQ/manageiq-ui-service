@@ -21,7 +21,7 @@
         return MockData.retrieveMockData(collection);
       } else {
         return $http.get(url + buildQuery(options), buildConfig(options))
-            .then(handleSuccess);
+          .then(handleSuccess);
       }
 
       function handleSuccess(response) {
@@ -61,35 +61,35 @@
         if (angular.isArray(options.expand)) {
           options.expand = options.expand.join(',');
         }
-        params.push('expand=' + options.expand);
+        params.push('expand=' + encodeURIComponent(options.expand));
       }
 
       if (options.attributes) {
         if (angular.isArray(options.attributes)) {
           options.attributes = options.attributes.join(',');
         }
-        params.push('attributes=' + options.attributes);
+        params.push('attributes=' + encodeURIComponent(options.attributes));
       }
 
       if (options.decorators) {
         if (angular.isArray(options.decorators)) {
           options.decorators = options.decorators.join(',');
         }
-        params.push('decorators=' + options.decorators);
+        params.push('decorators=' + encodeURIComponent(options.decorators));
       }
 
       if (options.filter) {
         angular.forEach(options.filter, function(filter) {
-          params.push('filter[]=' + filter);
+          params.push('filter[]=' + encodeURIComponent(filter));
         });
       }
 
       if (options.sort_by) {
-        params.push('sort_by=' + options.sort_by);
+        params.push('sort_by=' + encodeURIComponent(options.sort_by));
       }
 
       if (options.sort_options) {
-        params.push('sort_options=' + options.sort_options);
+        params.push('sort_options=' + encodeURIComponent(options.sort_options));
       }
 
       if (params.length) {
