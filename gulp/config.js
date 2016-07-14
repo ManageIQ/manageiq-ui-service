@@ -384,6 +384,12 @@ module.exports = (function() {
     }
   };
 
+  config.availableLanguages = {
+    catalogs: 'client/gettext/json/*/*.json',
+    availLangsFile: 'client/gettext/json/available_languages.json',
+    supportedLangsFile: 'client/gettext/json/supported_languages.json'
+  };
+
   var poDir = 'client/gettext/po/';
 
   config.gettextExtract = {
@@ -404,7 +410,7 @@ module.exports = (function() {
   };
 
   config.gettextCopy = {
-    inputs: 'client/gettext/json/**/*.json',
+    inputs: ['client/gettext/json/**/*.json', config.availableLanguages.availLangsFile],
     outputDir: build + 'gettext/json/',
   };
 
