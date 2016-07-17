@@ -14,6 +14,9 @@
       ready: availableAvailable.promise,
       onLogin: onLogin,
       onReload: onReload,
+      chosen: {
+        code: null,
+      },
       setLocale: setLocale,
     };
 
@@ -42,7 +45,13 @@
     }
 
     function onLogin(data) {
-      var code = getLocale(data);
+      var code = 'en';
+      if (!service.chosen.code || (service.chosen.code === '_user_')) {
+        code = getLocale(data);
+      } else {
+        code = service.chosen.code;
+      }
+
       setLocale(code);
     }
 
