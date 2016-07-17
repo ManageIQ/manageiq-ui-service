@@ -12,6 +12,7 @@
         'en': 'English',  // not translated on purpose
       },
       ready: availableAvailable.promise,
+      browser: browser,
       onLogin: onLogin,
       onReload: onReload,
       chosen: {
@@ -32,6 +33,28 @@
         lodash.extend(service.available, response.data);
         availableAvailable.resolve(service.available);
       });
+    }
+
+    // returns a list of user's preferred languages, in order
+    function browser() {
+      var ary = [];
+
+      // the standard
+      if (lodash.isArray(window.navigator.languages)) {
+        ary = lodash.slice(window.navigator.languages);
+      }
+
+      // IE 11 and older browers
+      if (window.navigator.language) {
+        ary.push(window.navigator.language);
+      }
+
+      // IE<11
+      if (window.navigator.userLanguage) {
+        ary.push(window.navigator.userLanguage);
+      }
+
+      return lodash.uniq(ary);
     }
 
     function setLocale(code) {
