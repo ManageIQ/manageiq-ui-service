@@ -1,0 +1,12 @@
+<a href="#">
+  <span translate>
+    Switch Language:
+  </span>
+</a>
+<ul class="dropdown-menu scrollable-menu">
+  <li ng-repeat="(code, name) in vm.available">
+    <a href="#" ng-click="vm.switch(code)">
+      {{name || code}}
+    </a>
+  </li>
+</ul>
