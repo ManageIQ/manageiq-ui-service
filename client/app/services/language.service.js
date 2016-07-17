@@ -19,6 +19,7 @@
         code: null,
       },
       save: save,
+      match: match,
       user_href: null,
       setLocale: setLocale,
     };
@@ -58,6 +59,10 @@
     }
 
     function setLocale(code) {
+      if (!code || (code === '_browser_')) {
+        code = service.match(service.available, service.browser());
+      }
+
       gettextCatalog.loadAndSet(code);
 
       return code;
@@ -119,6 +124,40 @@
           },
         },
       });
+    }
+
+    // returns the best match from available
+    function match(available, requested) {
+      var shorten = function(str) {
+        return {
+          orig: str,
+          short: str.replace(/[-_].*$/, ''),
+        };
+      };
+
+      var short = {
+        available: lodash.keys(available).map(shorten),
+        requested: requested.map(shorten),
+      };
+
+      for (var k in short.requested) {
+        /* jshint -W089, -W083 */
+        var r = short.requested[k];
+
+        var match = lodash.find(short.available, function(a) {
+          // try exact match first
+          return a.orig.toLowerCase() === r.orig.toLowerCase();
+        }) || lodash.find(short.available, function(a) {
+          // lowercase, only language code match second
+          return a.short.toLowerCase() === r.short.toLowerCase();
+        });
+
+        if (match) {
+          return match.orig;
+        }
+      }
+
+      return 'en';
     }
   }
 })();
