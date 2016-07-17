@@ -17,6 +17,8 @@
       chosen: {
         code: null,
       },
+      save: save,
+      user_href: null,
       setLocale: setLocale,
     };
 
@@ -41,21 +43,32 @@
     function getLocale(data) {
       return data
         && data.settings
-        && data.settings.locale;
+        && data.settings.ui_self_service
+        && data.settings.ui_self_service.display
+        && data.settings.ui_self_service.display.locale;
+    }
+
+    function setUser(data) {
+      service.user_href = data.identity.user_href.replace(/^.*?\/api\//, '/api/');
     }
 
     function onLogin(data) {
+      setUser(data);
+
       var code = 'en';
       if (!service.chosen.code || (service.chosen.code === '_user_')) {
         code = getLocale(data);
       } else {
         code = service.chosen.code;
+        save(code);
       }
 
       setLocale(code);
     }
 
     function onReload(data) {
+      setUser(data);
+
       var code = getLocale(data);
       setLocale(code);
     }

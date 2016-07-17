@@ -43,6 +43,7 @@
 
       vm.switch = function(code) {
         Language.setLocale(code);
+        Language.save(code);
       };
     }
   }
