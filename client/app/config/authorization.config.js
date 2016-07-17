@@ -56,7 +56,7 @@
   }
 
   /** @ngInject */
-  function init($rootScope, $state, Session, jQuery, $sessionStorage, logger) {
+  function init($rootScope, $state, Session, jQuery, $sessionStorage, logger, Language) {
     $rootScope.$on('$stateChangeStart', changeStart);
     $rootScope.$on('$stateChangeError', changeError);
     $rootScope.$on('$stateChangeSuccess', changeSuccess);
@@ -88,6 +88,7 @@
       });
 
       Session.loadUser()
+        .then(Language.onReload)
         .then(rbacReloadOrLogin(toState, toParams))
         .catch(badUser);
     }

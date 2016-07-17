@@ -26,7 +26,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, Text, API_LOGIN, API_PASSWORD, AuthenticationApi, CollectionsApi, Session, $rootScope, Notifications) {
+  function StateController($state, Text, API_LOGIN, API_PASSWORD, AuthenticationApi, CollectionsApi, Session, $rootScope, Notifications, Language) {
     var vm = this;
 
     vm.title = __('Login');
@@ -50,6 +50,7 @@
 
       return AuthenticationApi.login(vm.credentials.login, vm.credentials.password)
         .then(Session.loadUser)
+        .then(Language.onLogin)
         .then(function() {
           if (Session.activeNavigationFeatures()) {
             if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
