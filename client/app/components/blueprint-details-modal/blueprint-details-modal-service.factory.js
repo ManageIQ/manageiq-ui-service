@@ -444,13 +444,12 @@
       }
 
       function saveSuccess() {
-        Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
         if (action === 'create') {
+          Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
           $modalInstance.close();
           BlueprintsState.saveBlueprint(vm.blueprint);
           $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
         } else if (action === 'edit') {
-          Notifications.success(sprintf(__('%s was updated.'), vm.blueprint.name));
           $modalInstance.close({editedblueprint: vm.blueprint});
           Notifications.success(sprintf(__('%s was updated.'), vm.blueprint.name));
         } else if (action === 'publish') {

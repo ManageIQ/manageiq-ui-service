@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<div class="col-md-12 list-view-container">
+<div class="list-view-container">
   <pf-notification-list></pf-notification-list>
   <div pf-list-view id="blueprintList" class="blueprints-list" config="vm.listConfig" items="vm.blueprintsList"
        action-buttons="vm.actionButtons"
@@ -23,7 +23,7 @@
         </span>
       </div>
 
-      <div class="col-md-2">
+      <div class="col-md-1">
         <span class="no-wrap">
           {{ item.num_nodes }}&nbsp;<span translate>Items</span>
         </span>
@@ -42,7 +42,7 @@
           {{ ((item.catalog != null) ? item.catalog.name : "Unassigned")|translate }}
         </span>
       </div>
-      <div class="col-md-1">
+      <div class="col-md-2">
         <span class="no-wrap" ng-if="item.published != null">
           <strong>Published</strong>
         </span>
@@ -59,6 +59,7 @@
       $(".simple-filter .dropdown-menu li a").click(function(){
         $(".simple-filter input").focus();
       });
+      $("#blueprintList .list-view-pf .list-group-item .list-view-pf-actions .btn-default").addClass("btn-primary");
     }, 500);
   });
 </script>
