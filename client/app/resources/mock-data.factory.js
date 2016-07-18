@@ -397,6 +397,106 @@
             "id": 1
           }
         ]};
+      } else if (collection === 'service_templates') {
+        return { "resources": [
+          {
+            "href": "http://localhost:8001/api/service_templates/1000000000037",
+            "id": 1000000000037,
+            "name": "testDropdown",
+            "description": "TestDropdown",
+            "guid": "f33b7a36-42ca-11e4-b745-005056b3585a",
+            "options": {},
+            "created_at": "2014-09-23T02:40:16Z",
+            "updated_at": "2014-09-23T02:40:16Z",
+            "display": true,
+            "service_type": "atomic",
+            "prov_type": "generic",
+            "service_template_catalog_id": 1000000000003,
+            "long_description": "",
+            "tenant_id": 1000000000001,
+            "service_template_catalog": {
+              "name": "DevOps Team Alpha"
+            },
+            "actions": [
+              {
+                "name": "edit",
+                "method": "post",
+                "href": "http://localhost:8001/api/service_templates/1000000000037"
+              },
+              {
+                "name": "delete",
+                "method": "delete",
+                "href": "http://localhost:8001/api/service_templates/1000000000037"
+              }
+            ]
+          },
+          {
+            "href": "http://localhost:8001/api/service_templates/1000000000039",
+            "id": 1000000000039,
+            "name": "A_Test2",
+            "description": "A_Test2",
+            "guid": "b4bb271e-1ff8-11e5-835f-54ee751077a8",
+            "options": {},
+            "created_at": "2015-07-01T13:54:34Z",
+            "updated_at": "2015-07-01T13:54:34Z",
+            "display": true,
+            "service_type": "atomic",
+            "prov_type": "generic",
+            "service_template_catalog_id": 1000000000007,
+            "long_description": "",
+            "tenant_id": 1000000000001,
+            "service_template_catalog": {
+              "name": "Amazon Operations"
+            },
+            "actions": [
+              {
+                "name": "edit",
+                "method": "post",
+                "href": "http://localhost:8001/api/service_templates/1000000000039"
+              },
+              {
+                "name": "delete",
+                "method": "delete",
+                "href": "http://localhost:8001/api/service_templates/1000000000039"
+              }
+            ]
+          },
+          {
+            "href": "http://localhost:8001/api/service_templates/1000000000038",
+            "id": 1000000000038,
+            "name": "A_Test1",
+            "description": "A_test1",
+            "guid": "8c130f3e-1ff8-11e5-835f-54ee751077a8",
+            "options": {
+              "button_order": [
+                "cbg-1000000000163"
+              ]
+            },
+            "created_at": "2015-07-01T13:53:26Z",
+            "updated_at": "2015-08-06T16:33:40Z",
+            "display": true,
+            "service_type": "composite",
+            "service_template_catalog_id": 1000000000007,
+            "long_description": "",
+            "tenant_id": 1000000000001,
+            "service_template_catalog": {
+              "name": "Amazon Operations"
+            },
+            "actions": [
+              {
+                "name": "edit",
+                "method": "post",
+                "href": "http://localhost:8001/api/service_templates/1000000000038"
+              },
+              {
+                "name": "delete",
+                "method": "delete",
+                "href": "http://localhost:8001/api/service_templates/1000000000038"
+              }
+            ]
+          }
+        ]
+        };
       } else if (collection === 'tenants') {
         return { "resources": [
           {

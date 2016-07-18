@@ -32,6 +32,17 @@
       return service.filters;
     };
 
+    service.publishedBlueprints = [];
+
+    service.getPublishedBlueprints = function() {
+      return service.publishedBlueprints;
+    };
+
+    service.publishBlueprint = function(blueprint) {
+      blueprint.service_template_catalog = {"name": blueprint.catalog.name};
+      service.publishedBlueprints.push(blueprint);
+    };
+
     return service;
   }
 })();

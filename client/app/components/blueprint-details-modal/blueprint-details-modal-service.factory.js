@@ -75,8 +75,8 @@
   }
 
   /** @ngInject */
-  function BlueprintDetailsModalController(action, blueprint, BlueprintsState, jQuery, serviceCatalogs, serviceDialogs, tenants, $state,         // jshint ignore:line
-                                           BrowseEntryPointModal, CreateCatalogModal, $modalInstance, CollectionsApi, Notifications, sprintf) {  // jshint ignore:line
+  function BlueprintDetailsModalController(action, blueprint, BlueprintsState, MarketplaceState, serviceCatalogs, serviceDialogs, tenants,     // jshint ignore:line
+                                           $state, BrowseEntryPointModal, CreateCatalogModal, $modalInstance, CollectionsApi, Notifications, sprintf) {
     var vm = this;
     vm.blueprint = blueprint;
 
@@ -203,12 +203,6 @@
         }
       }
 
-      if (action === 'publish') {
-        vm.blueprint.published = new Date();
-      } else if (action === 'create') {
-        vm.blueprint.chartDataModel = {};
-      }
-
       vm.blueprint.name = vm.modalData.resource.name;
 
       if (!vm.blueprint.visibility || (vm.blueprint.visibility.id.toString() !== vm.modalData.resource.visibility.id.toString())) {
@@ -229,6 +223,13 @@
       vm.blueprint.reConfigEP = vm.modalData.resource.reConfigEP;
       vm.blueprint.retireEP = vm.modalData.resource.retireEP;
 
+      if (action === 'publish') {
+        vm.blueprint.published = new Date();
+        MarketplaceState.publishBlueprint(vm.blueprint);
+      } else if (action === 'create') {
+        vm.blueprint.chartDataModel = {};
+      }
+
       //
       saveSuccess();
 
@@ -239,6 +240,7 @@
           BlueprintsState.saveBlueprint(vm.blueprint);
           $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
         } else if (action === 'edit') {
+          Notifications.success(sprintf(__('%s was updated.'), vm.blueprint.name));
           $modalInstance.close({editedblueprint: vm.blueprint});
           Notifications.success(sprintf(__('%s was updated.'), vm.blueprint.name));
         } else if (action === 'publish') {
