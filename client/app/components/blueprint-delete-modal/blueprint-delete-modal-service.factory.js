@@ -52,7 +52,7 @@
     }
 
     function deleteBlueprints() {
-      angular.forEach(vm.blueprintsList, deleteBlueprint);
+      angular.forEach(angular.copy(vm.blueprintsList), deleteBlueprint);
 
       function deleteBlueprint(blueprint) {
         BlueprintsState.deleteBlueprint(blueprint.id);

@@ -111,12 +111,7 @@
       if (tmpBlueprint.selected) {
         blueprint.selectedBlueprints.push(tmpBlueprint);
       } else {
-        var index = findWithAttr(blueprint.selectedBlueprints, 'id', tmpBlueprint.id);
-        if (index !== -1) {
-          blueprint.selectedBlueprints.splice(index, 1);
-        } else {
-          console.log("Cound't find blueprint to unselect.");
-        }
+        blueprint.unselectBlueprint(tmpBlueprint.id);
       }
     };
 
@@ -126,6 +121,13 @@
 
     blueprint.unselectBlueprints = function() {
       blueprint.selectedBlueprints = [];
+    };
+
+    blueprint.unselectBlueprint = function(id) {
+      var index = findWithAttr(blueprint.selectedBlueprints, 'id', id);
+      if (index !== -1) {
+        blueprint.selectedBlueprints.splice(index, 1);
+      }
     };
 
     blueprint.getBlueprints = function() {
@@ -154,19 +156,21 @@
 
       var index = findBlueprintIndexById(tmpBlueprint.id);
       if (index === -1) {
-        tmpBlueprint.id = blueprint.getNextUniqueId();
         blueprint.blueprints.push(tmpBlueprint);
       } else {
         blueprint.blueprints[index] = tmpBlueprint;
       }
 
-      return tmpBlueprint.id;
+      return;
     };
 
     blueprint.deleteBlueprint = function(id) {
       var index = findBlueprintIndexById(id);
       if (index !== -1) {
+        blueprint.unselectBlueprint(id);
         blueprint.blueprints.splice(index, 1);
+      } else {
+        console.log("cound not delete/find blueprint: id = " + id);
       }
     };
 

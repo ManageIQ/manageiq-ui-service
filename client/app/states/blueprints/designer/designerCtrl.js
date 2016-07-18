@@ -9,12 +9,14 @@ angular.module('app.states')
         if (fromState.name === "blueprints.designer" && toState.name !== "blueprints.designer") {
           if (debug) {
             console.log("Changing from blueprints design state");
-            console.log("    defaultPrevented = : " + event.defaultPrevented);
-            console.log("    fromState.okToNavAway = " + fromState.okToNavAway);
+            console.log("    !defaultPrevented = : " + !event.defaultPrevented);
+            console.log("    !fromState.okToNavAway = " + !fromState.okToNavAway);
           }
           var origBlueprint = angular.copy(BlueprintsState.getBlueprintById(blueprintId));
           if (debug) {
-            console.log("    angular.equals(origBlueprint, $scope.blueprint: " + angular.equals(origBlueprint, $scope.blueprint));
+            console.log("    !angular.equals(origBlueprint, $scope.blueprint: " + !angular.equals(origBlueprint, $scope.blueprint));
+            console.log("        Orig            : " + angular.toJson(origBlueprint, true));
+            console.log("        $scope.blueprint: " + angular.toJson($scope.blueprint, true));
           }
           if (!angular.equals(origBlueprint, $scope.blueprint) && !event.defaultPrevented && !fromState.okToNavAway) {
             if (debug) {
@@ -35,6 +37,9 @@ angular.module('app.states')
         if (!$scope.blueprint) {
           console.log("Error getting blueprint " + blueprintId);
         }
+      } else {
+        $scope.blueprint = angular.copy(newBlueprint());
+        blueprintId = $scope.blueprint.id;
       }
 
       $scope.$watch("blueprint", function(oldValue, newValue) {
@@ -68,6 +73,20 @@ angular.module('app.states')
       $scope.blueprintUnchanged = function() {
         return !blueprintDirty;
       };
+
+      function newBlueprint() {
+        var blueprint = {};
+
+        blueprint.id = BlueprintsState.getNextUniqueId();
+        blueprint.last_modified = new Date();
+        blueprint.name = __('Untitled Blueprint ') + blueprint.id;
+        blueprint.chartDataModel = {};
+
+        blueprintDirty = true;
+        $state.current.okToNavAway = false;
+
+        return blueprint;
+      }
 
       $scope.saveBlueprint = function() {
         BlueprintsState.saveBlueprint($scope.blueprint);

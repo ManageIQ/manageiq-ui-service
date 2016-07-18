@@ -53,5 +53,14 @@
     </div>
   </div>
 </div>
+<script>
+  $(function() {
+    setTimeout(function(){
+      $(".simple-filter .dropdown-menu li a").click(function(){
+        $(".simple-filter input").focus();
+      });
+    }, 500);
+  });
+</script>
 
 

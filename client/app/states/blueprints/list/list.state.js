@@ -32,7 +32,8 @@
   }
 
   /** @ngInject */
-  function StateController($state, blueprints, BlueprintsState, BlueprintDetailsModal, BlueprintDeleteModal, $filter, $rootScope, Language) {
+  function StateController($state, blueprints, BlueprintsState, BlueprintDetailsModal, BlueprintDeleteModal, Notifications, $filter,
+                           $rootScope, Language) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -164,7 +165,7 @@
     };
 
     function createBlueprint(action) {
-      BlueprintDetailsModal.showModal('create', {});
+      $state.go('blueprints.designer');
     }
 
     function editBlueprint(action, item) {
@@ -172,17 +173,16 @@
     }
 
     function publishBlueprint(action, item) {
-      BlueprintDetailsModal.showModal('publish', item);
+      if (item.num_nodes === 0) {
+        Notifications.error(__('Cannot publish a blueprint with no service items.'));
+      } else {
+        BlueprintDetailsModal.showModal('publish', item);
+      }
     }
 
     function deleteBlueprint(action, item) {
-      // clear any prev. selections, make single selection
-      item = angular.copy(item);
-      item.selected = true;
-      BlueprintsState.unselectBlueprints();
-      BlueprintsState.handleSelectionChange(item);
-      BlueprintDeleteModal.showModal(BlueprintsState.getSelectedBlueprints());
-      BlueprintsState.unselectBlueprints();
+      BlueprintsState.deleteBlueprint(item.id);
+      vm.toolbarConfig.actionsConfig.primaryActions[1].isDisabled = !canDeleteBlueprints();
     }
 
     function deleteBlueprints(action) {
@@ -227,7 +227,13 @@
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'visibility') {
         compValue = item1.visibility.name.localeCompare(item2.visibility.name);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'catalog') {
-        compValue = item1.catalog.name.localeCompare(item2.catalog.name);
+        if (!item1.catalog) {
+          compValue = -1;
+        } else if (!item2.catalog) {
+          compValue = 1;
+        } else {
+          compValue = item1.catalog.name.localeCompare(item2.catalog.name);
+        }
       }
 
       if (!vm.toolbarConfig.sortConfig.isAscending) {
@@ -284,7 +290,13 @@
       } else if (filter.id === 'visibility') {
         return item.visibility.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'catalog') {
-        return item.catalog.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+        if (filter.value.toLowerCase() === "unassigned" && !item.catalog) {
+          return true;
+        } else if (!item.catalog) {
+          return false;
+        } else {
+          return item.catalog.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+        }
       }
 
       return false;
