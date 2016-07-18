@@ -116,9 +116,19 @@
                 Provision Order
             </tab-heading>
             <div ng-show="vm.isSelectedTab('provision_order')">
-                <h4>Rearrange Items to set Provision Order</h4>
-                <div ng-repeat="node in vm.blueprint.chartDataModel.nodes">
-                    Node: {{node.name}}
+                <h4 translate>Rearrange Items to set Provision Order</h4>
+
+                <div class="dnd-ordered-lists row">
+                    <!-- Main Order List -->
+                    <div class="col-md-12">
+                        <div class="row">
+                            <ul>
+                                <li ng-repeat=" item in vm.dndModels.list | orderBy:'id' "
+                                    ng-include="item.type + '.html'">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </tab>
@@ -132,8 +142,40 @@
         {{vm.modalBtnPrimaryLabel}}
     </button>
 </div>
+
 <script>
     $(function () {
         $('.modal-header').parent().css("width", "700px");
     });
+</script>
+
+<!-- Templates for the DND Lists used in Set Prov/Action Order.-->
+
+<script type="text/ng-template" id="list.html">
+    <ul dnd-list="list">
+        <li ng-repeat="item in list"
+            dnd-draggable="item"
+            dnd-effect-allowed="move"
+            dnd-moved="vm.dndServiceItemMoved(list, $index)"
+            dnd-selected="vm.dndModels.selected = item"
+            ng-class="{selected: vm.dndModels.selected === item}"
+            ng-include="item.type + '.html'">
+        </li>
+    </ul>
+</script>
+
+<script type="text/ng-template" id="container.html">
+    <span class="container-heading">{{item.id}}.</span>
+    <div class="container-element">
+        <div class="column" ng-repeat="list in item.columns" ng-include="'list.html'"></div>
+        <div class="clearfix"></div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="item.html">
+    <div class="item">
+        <img ng-if="item.image" class="item-image" src="{{item.image}}">
+        <i ng-if="item.bundle && !item.image" class="fa fa-gift fa-2x item-icon"></i>
+        {{item.name}}
+    </div>
 </script>

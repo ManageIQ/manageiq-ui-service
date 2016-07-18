@@ -6,6 +6,7 @@
 
     'ui.bootstrap',
     'patternfly',
-    'ngSVGAttributes'
+    'ngSVGAttributes',
+    'dndLists'
   ]);
 })();

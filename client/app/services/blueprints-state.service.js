@@ -98,7 +98,88 @@
           "id": 1000000000001,
           "name": "RenameVM"
         },
-        "chartDataModel": {},
+        "chartDataModel": {
+          "nodes": [
+            {
+              "title": "AWS",
+              "image": "assets/images/blueprint-designer/AWS-Logo.svg",
+              "id": 10,
+              "name": "AWS",
+              "backgroundColor": "#fff",
+              "x": 42,
+              "y": 27,
+              "width": 150,
+              "provision_order": 0
+            },
+            {
+              "title": "Azure",
+              "image": "assets/images/blueprint-designer/Azure-Logo.svg",
+              "id": 11,
+              "name": "Azure",
+              "backgroundColor": "#fff",
+              "x": 211,
+              "y": 25,
+              "width": 150,
+              "provision_order": 0
+            },
+            {
+              "title": "GCE",
+              "image": "assets/images/blueprint-designer/GCE_Logo.png",
+              "id": 12,
+              "name": "GCE",
+              "backgroundColor": "#fff",
+              "x": 44,
+              "y": 197,
+              "width": 150,
+              "provision_order": 1
+            },
+            {
+              "title": "Kubernetes",
+              "image": "assets/images/blueprint-designer/kubernetes-Logo.svg",
+              "id": 14,
+              "name": "Kubernetes",
+              "backgroundColor": "#fff",
+              "x": 217,
+              "y": 197,
+              "width": 150,
+              "provision_order": 1
+            },
+            {
+              "title": "OpenStack",
+              "image": "assets/images/blueprint-designer/Openstack-Logo.svg",
+              "id": 15,
+              "name": "OpenStack",
+              "backgroundColor": "#fff",
+              "x": 43,
+              "y": 374,
+              "width": 150,
+              "provision_order": 2
+            },
+            {
+              "title": "Bundle 3",
+              "bundle": true,
+              "id": 10,
+              "name": "Bundle 3",
+              "backgroundColor": "#fff",
+              "x": 41,
+              "y": 559,
+              "width": 150,
+              "provision_order": 2
+            },
+            {
+              "title": "Bundle 2",
+              "bundle": true,
+              "id": 11,
+              "name": "Bundle 2",
+              "backgroundColor": "#fff",
+              "x": 221,
+              "y": 371,
+              "width": 150,
+              "provision_order": 3
+            }
+          ],
+          "connections": []
+        },
         "provEP": "path/to/default/prov/entry/point"
       }
     ];
