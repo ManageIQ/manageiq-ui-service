@@ -38,12 +38,12 @@
 
               <tabset>
                   <tab ng-repeat="tab in tabs" heading="" active="tab.active">
-                      <tab-heading>
+                      <tab-heading ng-click="tabClicked()">
                           <div class="tab-pre-title">{{tab.preTitle}}</div>
                           <div class="tab-title" ng-class="{'tab-single-line':tab.preTitle == null}">{{tab.title}}</div>
                       </tab-heading>
                       <tabset id="subtabs" ng-if="tab.subtabs != null">
-                          <tab ng-repeat="subtab in tab.subtabs" heading="{{subtab.title}}" active="subtab.active">
+                          <tab ng-repeat="subtab in tab.subtabs" heading="{{subtab.title}}" active="subtab.active" ng-click="tabClicked()">
                               <ul class="catalog-items-list">
                                   <li class="catalog-item" ng-repeat="item in subtab.items | filter:searchText"
                                       data-drag="true" jqyoui-draggable="{onStart:'startCallback(item)'}"

@@ -132,6 +132,10 @@ angular.module('app.states')
         $scope.hideToolbox();
       });
 
+      $scope.tabClicked = function() {
+        $( "#filterFld" ).focus();
+      };
+
       $scope.tabs = [
             { preTitle: 'Compute', title: 'Cloud', subtabs: [
                 {title: 'Amazon Web Services', items: [

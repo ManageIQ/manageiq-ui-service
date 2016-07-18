@@ -174,7 +174,14 @@
 
     function publishBlueprint(action, item) {
       if (item.num_nodes === 0) {
-        Notifications.error(__('Cannot publish a blueprint with no service items.'));
+        Notifications.error(__('Cannot publish a blueprint with no service items.'), false, false);
+
+        // Make sure all notifications disappear after delay
+        if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
+          for (var i = 0; i < $rootScope.notifications.data.length; i++) {
+            $rootScope.notifications.data[i].isPersistent = false;
+          }
+        }
       } else {
         BlueprintDetailsModal.showModal('publish', item);
       }
