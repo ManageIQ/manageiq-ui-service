@@ -13,7 +13,9 @@
       if (lang) {
         lang = lang.replace('_', '-');
         gettextCatalog.setCurrentLanguage(lang);
-        gettextCatalog.loadRemote("gettext/json/" + lang + "/manageiq-ui-self_service.json");
+        if (lang !== 'en') {
+          gettextCatalog.loadRemote("gettext/json/" + lang + "/manageiq-ui-self_service.json");
+        }
       }
     };
 
