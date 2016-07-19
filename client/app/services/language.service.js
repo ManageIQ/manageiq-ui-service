@@ -5,7 +5,7 @@
     .factory('Language', LanguageFactory);
 
   /** @ngInject */
-  function LanguageFactory($http, $q, gettextCatalog, lodash) {
+  function LanguageFactory($http, $q, gettextCatalog, lodash, Text) {
     var availableAvailable = $q.defer();
     var service = {
       available: {
@@ -64,6 +64,9 @@
       }
 
       gettextCatalog.loadAndSet(code);
+      if (Text.init) {
+        Text.init();
+      }
 
       return code;
     }
