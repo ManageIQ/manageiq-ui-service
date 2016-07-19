@@ -27,6 +27,11 @@
           <span class="badge" ng-show="vm.shoppingCart.count" ng-bind="vm.shoppingCart.count"></span>
         </a>
       </li>
+      <li>
+        <a title="{{'Toggle notifications list' | translate}}" class="nav-item-iconic" ng-click="vm.toggleNotificationsList()">
+          <span class="fa" ng-class="{'fa-bell': vm.newNotifications, 'fa-bell-o': !vm.newNotifications}"></span>
+        </a>
+      </li>
       <li dropdown>
         <a dropdown-toggle class="nav-item-iconic" title="{{ ::vm.user().userid }}">
           <i class="fa pficon-user"></i>
@@ -69,5 +74,10 @@
       </li>
     </ul>
   </nav>
+
+  <div toast-notification-list></div>
+
+  <div notification-drawer shown="vm.notificationsDrawerShown"></div>
+
   <!-- /.navbar-collapse -->
 </header>

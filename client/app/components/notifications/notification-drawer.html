@@ -1,0 +1,7 @@
+<div ng-class="{'notification-drawer-expanded': vm.drawerExpanded}">
+  <div pf-notification-drawer drawer-hidden="!vm.shown" notification-groups="vm.notificationGroups"
+       title-include="{{vm.titleHtml}}" heading-include="{{vm.headingHTML}}" subheading-include="{{vm.subHeadingHTML}}"
+       notification-body-include="{{vm.notificationHTML}}" notification-footer-include="{{vm.notificationFooterHTML}}"
+       custom-scope="vm">
+  </div>
+</div>

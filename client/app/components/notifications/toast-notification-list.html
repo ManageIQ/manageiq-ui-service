@@ -1,0 +1,5 @@
+<div class="toast-notificaton-list" data-ng-show="vm.toastNotifications.length > 0">
+  <div ng-repeat="notification in vm.toastNotifications">
+    <div toast-notification notification="notification" notification-index="$index"></div>
+  </div>
+</div>

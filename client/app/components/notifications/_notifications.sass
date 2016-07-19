@@ -1,0 +1,77 @@
+.toast-notificaton-list
+  position: absolute
+  right: 15px
+  top: 15px
+  z-index: 100
+  .toast-pf.alert
+    padding-left: 68px
+    &.alert-dismissable
+      padding-right: 28px
+
+    > .pficon
+      top: -1px
+
+.layout-pf-alt-fixed .navbar-pf-alt .drawer-pf
+  height: calc(100vh - 80px)
+  top: 58px
+
+.drawer-pf .drawer-pf-title .drawer-pf-toggle-expand
+  cursor: pointer
+  left: 0
+  padding: 2px 5px
+  position: absolute
+  &:before
+    content: "\f100"
+    font-family: "FontAwesome"
+
+.notification-drawer-expanded .drawer-pf
+  left: 270px
+  width: inherit
+  .drawer-pf-title a.drawer-pf-toggle-expand:before
+    content: "\f101"
+  .drawer-pf-notification-info
+    padding: 0
+  .notification-message
+    padding-right: 0
+
+.drawer-pf .panel-counter.sub-heading
+  font-size: 12px
+  font-weight: normal
+
+.drawer-pf-notification
+  .notification-message
+    overflow: hidden
+    padding-left: 12px
+    text-overflow: ellipsis
+    white-space: nowrap
+  .expanded-notification
+    .drawer-pf-notification-info
+      .date
+        border-right: none
+        padding-right: 0
+      .info-title
+        margin-right: 5px
+    .dropdown-kebab-pf
+      margin-top: -5px
+      position: absolute
+      right: 10px
+  .progress
+    background-color: #fff
+    border-color: #292e34
+    border-radius: 5px
+    box-shadow: inset 0 0 1px rgba(3,3,3,1)
+    height: 10px
+    margin-bottom: 0px
+    .progress-bar-info
+      background-color: #0088ce
+  .mini-progress
+    .time
+      left: 40px
+      position: absolute
+      width: 65px
+    .mini-progress-area
+      left: 115px
+      margin-bottom: 5px
+      margin-top: 5px
+      position: absolute
+      right: 55px
