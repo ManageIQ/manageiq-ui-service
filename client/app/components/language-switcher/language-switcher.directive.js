@@ -20,7 +20,7 @@
     return directive;
 
     /** @ngInject */
-    function LanguageSwitcherController(gettextCatalog, Language, lodash) {
+    function LanguageSwitcherController($scope, gettextCatalog, Language, lodash) {
       var vm = this;
       vm.mode = vm.mode || 'menu';
 
@@ -34,6 +34,14 @@
         delete hardcoded._user_;
       } else {
         vm.chosen = Language.chosen = { code: '_user_' };
+
+        $scope.$watch('vm.chosen.code', function(val) {
+          if (!val || (val === '_user_')) {
+            val = "en";
+          }
+
+          Language.setLocale(val);
+        });
       }
 
       Language.ready
