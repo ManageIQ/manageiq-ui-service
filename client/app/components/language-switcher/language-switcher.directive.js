@@ -20,7 +20,7 @@
     return directive;
 
     /** @ngInject */
-    function LanguageSwitcherController($scope, gettextCatalog, Language, lodash) {
+    function LanguageSwitcherController($scope, gettextCatalog, Language, lodash, $state) {
       var vm = this;
       vm.mode = vm.mode || 'menu';
 
@@ -52,6 +52,7 @@
       vm.switch = function(code) {
         Language.setLocale(code);
         Language.save(code);
+        $state.reload();
       };
     }
   }
