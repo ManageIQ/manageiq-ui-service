@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ManageIQ/manageiq-ui-self_service.svg)](https://travis-ci.org/ManageIQ/manageiq-ui-self_service)
 [![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-ui-self_service/badges/gpa.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-self_service)
+[![Coverage Status](http://img.shields.io/coveralls/ManageIQ/manageiq-ui-self_service.svg)](https://coveralls.io/r/ManageIQ/manageiq-ui-self_service)
 [![Dependency Status](https://gemnasium.com/ManageIQ/manageiq-ui-self_service.svg)](https://gemnasium.com/ManageIQ/manageiq-ui-self_service)
 [![Security](https://hakiri.io/github/ManageIQ/manageiq-ui-self_service/master.svg)](https://hakiri.io/github/ManageIQ/manageiq-ui-self_service/master)
 
