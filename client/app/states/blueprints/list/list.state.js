@@ -32,7 +32,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, blueprints, BlueprintsState, $filter, $rootScope) {
+  function StateController($state, blueprints, BlueprintsState, $filter, $rootScope, Language) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -152,5 +152,7 @@
 
       return false;
     }
+
+    Language.fixState(BlueprintsState, vm.toolbarConfig);
   }
 })();
