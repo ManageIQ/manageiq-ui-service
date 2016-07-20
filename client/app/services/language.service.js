@@ -172,7 +172,10 @@
         return;
       }
 
-      state.sort.currentField = lodash.find(fields, { id: current.id }) || current;
+      var found = lodash.find(fields, { id: current.id }) || current;
+
+      // can't just replace currentField, the original instance stays inside pf-sort
+      state.sort.currentField.title = found.title;
     }
   }
 })();
