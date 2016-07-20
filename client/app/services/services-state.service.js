@@ -7,13 +7,13 @@
 
   /** @ngInject */
   function ServicesStateFactory() {
-    var service = {};   
+    var service = {};
 
     service.sort = {
       isAscending: true,
       currentField: { id: 'name', title: __('Name'), sortType: 'alpha' }
     };
-    
+
     service.filters = [];
 
     service.setSort = function(currentField, isAscending) {
