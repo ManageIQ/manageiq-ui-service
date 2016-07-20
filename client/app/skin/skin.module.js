@@ -6,7 +6,7 @@
     .config(configure);
 
   /** @ngInject */
-  function Text($timeout) {
+  function Text($timeout, $rootScope) {
     var o = {
       app: {
         name: null,
@@ -14,13 +14,14 @@
       login: {
         brand: null,
       },
-      init: init,
     };
 
     function init() {
       o.app.name = __('ManageIQ Self Service');
       o.login.brand = '<strong>ManageIQ</strong> ' + __('Self Service');
     }
+
+    $rootScope.$on('gettextLanguageChanged', init);
 
     return o;
   }
