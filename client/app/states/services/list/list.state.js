@@ -34,7 +34,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, services, ServicesState, $filter, $rootScope) {
+  function StateController($state, services, ServicesState, $filter, $rootScope, Language) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -267,5 +267,7 @@
 
       return false;
     }
+
+    Language.fixState(ServicesState, vm.toolbarConfig);
   }
 })();

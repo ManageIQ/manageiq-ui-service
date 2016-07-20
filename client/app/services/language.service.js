@@ -22,6 +22,7 @@
       match: match,
       user_href: null,
       setLocale: setLocale,
+      fixState: fixState,
     };
 
     init();
@@ -161,6 +162,17 @@
       }
 
       return 'en';
+    }
+
+    function fixState(state, toolbarConfig) {
+      var fields = toolbarConfig.sortConfig.fields;
+      var current = state.sort.currentField;
+
+      if (!current || !current.id) {
+        return;
+      }
+
+      state.sort.currentField = lodash.find(fields, { id: current.id }) || current;
     }
   }
 })();
