@@ -50,6 +50,7 @@
     /* jshint validthis: true */
     var vm = this;
     var categoryNames = [];
+    var visibilityNames = ['Private', 'Public'];
 
     vm.title = __('Blueprint List');
 
@@ -59,18 +60,22 @@
     }
 
     vm.blueprints = BlueprintsState.getBlueprints();
-    angular.forEach(vm.blueprints, addMockCategoryFilter);
-
     vm.serviceCatalogs = serviceCatalogs.resources;
+
+    angular.forEach(vm.blueprints, addMockFilters);
     angular.forEach(vm.serviceCatalogs, addCategoryFilter);
 
-    function addMockCategoryFilter(blueprint) {
+    function addMockFilters(blueprint) {
       if (!blueprint.catalog) {
         if (!categoryNames.includes(__('Unassigned'))) {
           categoryNames.push(__('Unassigned'));
         }
       } else {
         categoryNames.push(blueprint.catalog.name);
+      }
+
+      if (!visibilityNames.includes(blueprint.visibility.name)) {
+        visibilityNames.push(blueprint.visibility.name);
       }
     }
 
@@ -143,7 +148,8 @@
             id: 'visibility',
             title: __('Visibility'),
             placeholder: __('Filter by Visibility'),
-            filterType: 'text'
+            filterType: 'select',
+            filterValues: visibilityNames
           },
           {
             id: 'catalog',
