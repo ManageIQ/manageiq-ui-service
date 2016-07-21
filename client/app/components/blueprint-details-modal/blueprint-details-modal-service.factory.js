@@ -348,7 +348,7 @@
       }
 
       var lastrow = actionOrderList[ actionOrderList.length - 1 ];
-      if (vm.actionOrderEqualsProvOrder && lastrow.columns[0].length === 0 && lastrow.columns[1].length === 0) {
+      if (lastrow && vm.actionOrderEqualsProvOrder && lastrow.columns[0].length === 0 && lastrow.columns[1].length === 0) {
         // remove last empty row
         actionOrderList.splice(actionOrderList.length - 1, 1);
       }

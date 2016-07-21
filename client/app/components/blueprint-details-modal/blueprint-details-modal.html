@@ -14,7 +14,7 @@
             </tab-heading>
 
           <span ng-show="vm.isSelectedTab('general')">
-              <form novalidate name="detailsForm" id="detailsForm" class="form-horizontal">
+              <form name="detailsForm" id="detailsForm" class="form-horizontal">
                   <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6"
                        pf-label="{{'Blueprint Name'|translate}}"
                        required>
@@ -34,13 +34,13 @@
                       <label for="catalog" class="control-label col-sm-4" translate>Catalog</label>
 
                       <div class="col-sm-6">
-                          <select name="catalog" id="catalog" class="base-info-select"
+                          <select name="catalog" id="catalog" class="base-info-select form-control"
                                   ng-options="item as item.name for item in vm.serviceCatalogs"
                                   ng-model="vm.modalData.resource.catalog"
                                   ng-required="vm.isCatalogRequired()">
                               <option value="" translate>Unassigned</option>
-                          </select><br>
-                          <span ng-show="detailsForm.catalog.$error.required" class="control-label"
+                          </select>
+                          <span ng-show="detailsForm.catalog.$error.required" class="help-block"
                                 translate>Select a Catalog</span>
                           <button type="button" id="createCatalog" class="btn btn-default base-info-btn"
                                   ng-click="vm.createCatalog()"
@@ -52,13 +52,13 @@
                       <label for="dialog" class="control-label col-sm-4" translate>Dialog</label>
 
                       <div class="col-sm-6">
-                          <select name="dialog" id="dialog" class="base-info-select"
+                          <select name="dialog" id="dialog" class="base-info-select form-control"
                                   ng-options="item as item.description for item in vm.serviceDialogs"
                                   ng-model="vm.modalData.resource.dialog"
                                   ng-required="vm.isDialogRequired()">
                               <option value="" translate>Select Dialog</option>
-                          </select><br>
-                          <span ng-show="detailsForm.dialog.$error.required" class="control-label"
+                          </select>
+                          <span ng-show="detailsForm.dialog.$error.required" class="help-block"
                                 translate>Select a Dialog</span>
                       </div>
                   </div>
@@ -74,14 +74,14 @@
                           <label for="provEP" class="control-label col-sm-4" translate>Provisioning Entry Point</label>
 
                           <div class="col-sm-8">
-                              <input name="provEP" id="provEP" class="entry-point-input" name="provEP" type="text"
+                              <input name="provEP" id="provEP" class="entry-point-input form-control" name="provEP" type="text"
                                      ng-model="vm.modalData.resource.provEP" required/>
                               <button type="button" class="btn btn-default entry-point-btn"
                                       ng-click="vm.selectEntryPoint('provisioning')" translate>Browse
                               </button>
                               <a ng-click="vm.modalData.resource.provEP = ''"><span
                                       class="pficon pficon-close clear-entry-point"></span></a>
-                              <span ng-show="advOptsForm.provEP.$error.required" class="control-label" translate>Please enter a Provisioning Entry Point</span>
+                              <span ng-show="advOptsForm.provEP.$error.required" class="help-block" translate>Please enter a Provisioning Entry Point</span>
                           </div>
                       </div>
                       <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-8"
@@ -161,7 +161,7 @@
     <button type="button"
             class="btn btn-primary"
             ng-click="vm.saveBlueprintDetails()"
-            ng-disabled="detailsForm.catalog.$error.required || detailsForm.dialog.$error.required || detailsForm.name.$error.required || advOptsForm.provEP.$error.required">
+            ng-disabled="!vm.modalData.resource.name || !vm.modalData.resource.catalog || !vm.modalData.resource.dialog || !vm.modalData.resource.provEP">
         {{vm.modalBtnPrimaryLabel}}
     </button>
 </div>
