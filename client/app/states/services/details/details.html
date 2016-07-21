@@ -191,7 +191,7 @@
                 <i class="fa pficon fa-power-off" ng-if="item.power_state == 'off'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
                 <i class="pficon pficon-ok" ng-if="item.power_state == 'on'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
                 <i class="fa pficon fa-pause" ng-if="item.power_state == 'suspended'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
-                <strong ng-if="item.power_state == 'never' || item.power_state == 'unknown'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom" translate>{{'Power State'|translate}}</strong>&nbsp;{{ item.power_state }}
+                <strong ng-if="item.power_state == 'never' || item.power_state == 'unknown'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom" translate>Power State</strong>&nbsp;{{ item.power_state }}
               </span>
             </div>
             <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
