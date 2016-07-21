@@ -18,7 +18,8 @@
         controllerAs: 'vm',
         title: N_('Blueprint List'),
         resolve: {
-          blueprints: resolveBlueprints
+          blueprints: resolveBlueprints,
+          serviceCatalogs: resolveServiceCatalogs
         }
       }
     };
@@ -34,11 +35,21 @@
     return CollectionsApi.query('blueprints', options);
   }
 
+  function resolveServiceCatalogs(CollectionsApi) {
+    var options = {
+      expand: 'resources',
+      sort_by: 'name',
+      sort_options: 'ignore_case'};
+
+    return CollectionsApi.query('service_catalogs', options);
+  }
+
   /** @ngInject */
-  function StateController($state, blueprints, BlueprintsState, BlueprintDetailsModal, BlueprintDeleteModal, Notifications, $filter,
+  function StateController($state, blueprints, BlueprintsState, serviceCatalogs, BlueprintDetailsModal, BlueprintDeleteModal, Notifications,
                            $rootScope, Language) {
     /* jshint validthis: true */
     var vm = this;
+    var categoryNames = [];
 
     vm.title = __('Blueprint List');
 
@@ -48,6 +59,24 @@
     }
 
     vm.blueprints = BlueprintsState.getBlueprints();
+    angular.forEach(vm.blueprints, addMockCategoryFilter);
+
+    vm.serviceCatalogs = serviceCatalogs.resources;
+    angular.forEach(vm.serviceCatalogs, addCategoryFilter);
+
+    function addMockCategoryFilter(blueprint) {
+      if (!blueprint.catalog) {
+        if (!categoryNames.includes(__('Unassigned'))) {
+          categoryNames.push(__('Unassigned'));
+        }
+      } else {
+        categoryNames.push(blueprint.catalog.name);
+      }
+    }
+
+    function addCategoryFilter(item) {
+      categoryNames.push(item.name);
+    }
 
     /* This notification 'splice' code doesn't work.  Splice needs a third argument, the items to splice in
      * Not sure what this code is trying to accomplish, but it exists in login, request list, & services list
@@ -120,7 +149,8 @@
             id: 'catalog',
             title: __('Catalog'),
             placeholder: __('Filter by Catalog'),
-            filterType: 'text'
+            filterType: 'select',
+            filterValues: categoryNames
           }
         ],
         resultsCount: vm.blueprintsList.length,
