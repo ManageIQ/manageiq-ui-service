@@ -51,6 +51,7 @@
     var vm = this;
     var categoryNames = [];
     var visibilityNames = ['Private', 'Public'];
+    var publishStateNames = ['Draft', 'Published'];
 
     vm.title = __('Blueprint List');
 
@@ -157,6 +158,13 @@
             placeholder: __('Filter by Catalog'),
             filterType: 'select',
             filterValues: categoryNames
+          },
+          {
+            id: 'publishState',
+            title: __('Publish State'),
+            placeholder: __('Filter by Publish State'),
+            filterType: 'select',
+            filterValues: publishStateNames
           }
         ],
         resultsCount: vm.blueprintsList.length,
@@ -355,6 +363,13 @@
           return false;
         } else {
           return item.catalog.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+        }
+      } else if (filter.id === 'publishState') {
+        if ( (filter.value.toLowerCase() === "published" && item.published) ||
+             (filter.value.toLowerCase() === "draft" && !item.published)) {
+          return true;
+        } else {
+          return false;
         }
       }
 
