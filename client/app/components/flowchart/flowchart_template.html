@@ -32,10 +32,36 @@
       ng-attr-height="{{node.height()}}"
       fill="{{node.backgroundColor()}}"
       fill-opacity="1.0"
-      >
+      />
       <!-- Removed filter="url(#dropshadow)" from node rect, redraw issues & not working correctly in FF -->
 
-    </rect>
+    <g id="nodeToolBar" ng-if="node == mouseOverNode">
+      <rect   class="node-toolbar"
+              ry="6"
+              rx="6"
+              x="0"
+              ng-attr-y="{{node.height()+1}}"
+              ng-attr-width="{{node.width()}}"
+              height="30"
+              fill="{{node.backgroundColor()}}"
+              fill-opacity="1.0"
+      />
+
+      <g class="svg-triangle" >
+        <polyline points="4,152 14,140 24,152"/>
+      </g>
+
+      <g ng-repeat="nodeAction in chart.nodeActions">
+        <text ng-if="nodeAction.fontFamily()"
+              class="node-toolbar-icons"
+              font-family="{{nodeAction.fontFamily()}}"
+              ng-click="nodeActionClick($event, node, nodeAction)"
+              ng-attr-x="{{10 + ($index * 24)}}"
+              ng-attr-y="{{node.height()+22}}">
+          {{nodeAction.fontContent()}}
+        </text>
+      </g>
+    </g>
 
     <text
       class="node-header"

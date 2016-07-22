@@ -260,6 +260,63 @@ var flowchart = {
   };
 
   //
+  // View model for a node action.
+  //
+  flowchart.NodeActionViewModel = function(nodeActionDataModel) {
+    this.data = nodeActionDataModel;
+
+    //
+    // id of the node action.
+    //
+    this.id = function() {
+      return this.data.id || "";
+    };
+
+    //
+    // Name of the node action.
+    //
+    this.name = function() {
+      return this.data.name || "";
+    };
+
+    //
+    // Font Family for the the node.
+    //
+    this.fontFamily = function() {
+      return this.data.fontFamily || "";
+    };
+
+    //
+    // Font Content for the the node.
+    //
+    this.fontContent = function() {
+      return this.data.fontContent || "";
+    };
+
+    //
+    // Image for the the node.
+    //
+    this.image = function() {
+      return this.data.image || "";
+    };
+  };
+
+  //
+  // Wrap the node actions data-model in a view-model.
+  //
+  var createNodeActionsViewModel = function(nodeActionsDataModel) {
+    var nodeActionsViewModel = [];
+
+    if (nodeActionsDataModel) {
+      for (var i = 0; i < nodeActionsDataModel.length; ++i) {
+        nodeActionsViewModel.push(new flowchart.NodeActionViewModel(nodeActionsDataModel[i]));
+      }
+    }
+
+    return nodeActionsViewModel;
+  };
+
+  //
   // View model for a connection.
   //
   flowchart.ConnectionViewModel = function(connectionDataModel, sourceConnector, destConnector) {
@@ -494,6 +551,9 @@ var flowchart = {
 
     // Create a view-model for nodes.
     this.nodes = createNodesViewModel(this.data.nodes);
+
+    // Create a view-model for nodes.
+    this.nodeActions = createNodeActionsViewModel(this.data.nodeActions);
 
     // Create a view-model for connections.
     this.connections = this._createConnectionsViewModel(this.data.connections);

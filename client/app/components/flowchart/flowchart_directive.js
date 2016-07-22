@@ -245,6 +245,13 @@ angular.module('flowChart', ['dragging'] )
   };
 
   //
+  // Handle click on a node action
+  //
+  $scope.nodeActionClick = function(evt, node, nodeAction) {
+    console.log("Node Action '" + nodeAction.name() + "' executed on " + node.name());
+  };
+
+  //
   // Handle connectionMouseOver on an connection.
   //
   $scope.connectionMouseOver = function(evt, connection) {
