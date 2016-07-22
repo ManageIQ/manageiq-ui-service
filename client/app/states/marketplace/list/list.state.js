@@ -45,7 +45,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, serviceTemplates, serviceCatalogs, MarketplaceState) {
+  function StateController($state, serviceTemplates, serviceCatalogs, MarketplaceState, Language) {
     var vm = this;
 
     vm.title = __('Service Catalog');
@@ -201,5 +201,7 @@
 
       return compValue;
     }
+
+    Language.fixState(MarketplaceState, vm.toolbarConfig);
   }
 })();

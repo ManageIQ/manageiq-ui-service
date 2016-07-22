@@ -43,7 +43,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, requests, orders, RequestsState, OrdersState, $filter, $rootScope, lodash) {
+  function StateController($state, requests, orders, RequestsState, OrdersState, $filter, $rootScope, lodash, Language) {
     var vm = this;
 
     vm.title = __('Request List');
@@ -356,5 +356,8 @@
 
       return false;
     }
+
+    Language.fixState(RequestsState, vm.toolbarConfig);
+    Language.fixState(OrdersState, vm.orderToolbarConfig);
   }
 })();

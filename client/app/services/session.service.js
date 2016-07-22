@@ -56,8 +56,7 @@
           currentUser(response.data.identity);
           setRBAC(response.data.authorization.product_features);
 
-          var locale = response.data.settings && response.data.settings.locale;
-          gettextCatalog.loadAndSet(locale);
+          return response.data;
         });
     }
 
