@@ -18,10 +18,12 @@
   <g
     ng-repeat="node in chart.nodes"
     ng-mousedown="nodeMouseDown($event, node)"
+    ng-mouseover="nodeMouseOver($event, node)"
+    ng-mouseleave="nodeMouseLeave($event, node)"
     ng-attr-transform="translate({{node.x()}}, {{node.y()}})"
     >
     <rect
-      ng-attr-class="{{node.selected() && 'selected-node-rect' || (node == mouseOverNode && 'mouseover-node-rect' || 'node-rect')}}"
+      ng-class="{'selected-node-rect': node.selected(), 'mouseover-node-rect': node == mouseOverNode, 'node-rect': node != mouseOverNode}"
       ry="0"
       rx="0"
       x="0" 
@@ -46,7 +48,7 @@
     </text>
 
     <image ng-if="node.image()"
-           xlink:href="{{node.image()}}"
+           xlink:href="{{node.image() | trustAsResourceUrl}}"
            ng-attr-x="{{(node.width()/2) - 40}}"
            ng-attr-y="{{20}}"
            height="80px"
@@ -61,7 +63,7 @@
        </text>
     </g>
 
-    <g><text ng-if="node.bundle()"
+    <g><text ng-if="node.bundle() && !node.image()"
              x="44"
              y="88"
              font-family="FontAwesome"
@@ -73,10 +75,12 @@
     <g
       ng-repeat="connector in node.inputConnectors"
       ng-mousedown="connectorMouseDown($event, node, connector, $index, true)"
+      ng-mouseover="connectorMouseOver($event, node, connector, $index, true)"
+      ng-mouseleave="connectorMouseLeave($event, node, connector, $index, true)"
       class="connector input-connector"
       >
       <text
-        ng-attr-x="{{connector.x() + 20}}"
+        ng-attr-x="{{connector.x() + 12}}"
         ng-attr-y="{{connector.y()}}"
         text-anchor="left"
         alignment-baseline="middle"
@@ -95,10 +99,12 @@
     <g
       ng-repeat="connector in node.outputConnectors"
       ng-mousedown="connectorMouseDown($event, node, connector, $index, false)"
+      ng-mouseover="connectorMouseOver($event, node, connector, $index, false)"
+      ng-mouseleave="connectorMouseLeave($event, node, connector, $index, false)"
       class="connector output-connector"
       >
       <text
-        ng-attr-x="{{connector.x() - 20}}"
+        ng-attr-x="{{connector.x() - 12}}"
         ng-attr-y="{{connector.y()}}"
         text-anchor="end"
         alignment-baseline="middle"
@@ -120,6 +126,8 @@
       ng-repeat="connection in chart.connections"
       class="connection"
       ng-mousedown="connectionMouseDown($event, connection)"
+      ng-mouseover="connectionMouseOver($event, connection)"
+      ng-mouseleave="connectionMouseLeave($event, connection)"
       >
         <path
           ng-attr-class="{{connection.selected() && 'selected-connection-line' || (connection == mouseOverConnection && 'mouseover-connection-line' || 'connection-line')}}"

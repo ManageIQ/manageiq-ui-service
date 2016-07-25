@@ -37,7 +37,7 @@
     vm.entryPointType = entryPointType;
 
     vm.saveEntryPoint = saveEntryPoint;
-    vm.getTreeData = getTreeData;
+    vm.getTreeNodes = getTreeNodes;
     vm.onNodeExpanded = onNodeExpanded;
 
     if (vm.entryPointType === 'provisioning') {
@@ -115,7 +115,18 @@
     }
 
     // 'id' is for entry point id
-    function getTreeData() {
+    function getTreeNodes() {
+      /*
+       * Can use logic here to return different tree for the different entry point types
+       *
+      if (vm.entryPointType === 'provisioning') {
+        ...
+      } else if (vm.entryPointType === 'reconfigure') {
+        ...
+      } else if (vm.entryPointType === 'retirement') {
+        ...
+      } */
+
       return [
         {
           text: 'Parent 1',

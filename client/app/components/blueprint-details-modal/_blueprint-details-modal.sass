@@ -1,6 +1,21 @@
+.modal-body
+  #blueprint-detail-tabs
+    .tab-content
+      padding-top: 24px
+    h4
+      margin-top: 0px
+      padding-bottom: 14px
+    input[type="checkbox"]
+      margin-left: 124px
+      vertical-align: text-top
+
+.actionOrderCheckboxTitle
+  font-size: 12px
+
 #advOpsHref
   text-decoration: none
   font-size: 18px
+  cursor: pointer
 
   &:before
     font-family: 'FontAwesome'
@@ -64,3 +79,127 @@
   position: absolute
   top: 0px
   left: 352px
+
+.dnd-ordered-lists .row
+
+  .container-heading
+    font-size: 27px
+    font-weight: 100
+
+  ul
+    width: 99%
+
+  .item-image
+    width: 18%
+    padding-right: 10px
+    margin-top: -4px
+
+  .item-icon
+    vertical-align: middle
+    padding-right: 16px
+    padding-left: 4px
+
+  /**
+   * For the correct positioning of the placeholder element, the dnd-list and
+   * it's children must have position: relative
+   */
+  ul[dnd-list], ul[dnd-list] > li
+    position: relative
+    margin-bottom: 12px
+
+  /**
+   * The dnd-list should always have a min-height,
+   * otherwise you can't drop to it once it's empty
+   */
+  ul[dnd-list]
+    min-height: 42px
+    margin: 0px
+    padding-left: 0px
+
+  /**
+   * The dnd-lists's child elements currently MUST have
+   * position: relative. Otherwise we can not determine
+   * whether the mouse pointer is in the upper or lower
+   * half of the element we are dragging over. In other
+   * browsers we can use event.offsetY for this.
+   */
+  li
+    background-color: #fff
+    display: block
+    padding: 0px
+
+
+
+  /**
+   * Reduce opacity of elements during the drag operation. This allows the user
+   * to see where he is dropping his element, even if the element is huge. The
+   * .dndDragging class is automatically set during the drag operation.
+   */
+  .dndDragging
+    opacity: 0.7
+
+  /**
+   * The dndDraggingSource class will be applied to the source element of a drag
+   * operation. It makes sense to hide it to give the user the feeling that he's
+   * actually moving it. Note that the source element has also .dndDragging class.
+   */
+  .dndDraggingSource
+    display: none
+
+  /**
+   * An element with .dndPlaceholder class will be added as child of the dnd-list
+   * while the user is dragging over it.
+   */
+  .dndPlaceholder
+    //background-color: #ddd;
+    border: 2px dashed #bbb
+    min-height: 42px
+    display: block
+    position: relative
+
+  /***************************** Element Selection *****************************/
+
+  .selected .item
+    color: #3c763d
+    background-color: #dff0d8
+
+  /***************************** Element type specific styles *****************************/
+
+  .item
+    padding: 10px 15px
+    border: 1px solid #ddd
+    padding-left: 25px
+    cursor: pointer
+    max-height: 47px
+
+  .item::before
+    border-color: #0d6f9a
+    background-image: -webkit-linear-gradient(top, #0088ce 60%, #fff 0%)
+    background-image: linear-gradient(to bottom, #0088ce 60%, #fff 0%)
+    background-position: left
+    background-repeat: repeat-y
+    background-size: 2px 5px
+    border: 4px solid #0088ce
+    position: absolute
+    content: ""
+    top: 3px
+    left: 4px
+    bottom: 4px
+    width: 10px
+
+  .notdraggable
+    opacity: 0.4
+    background-color: #ededed
+
+    .item
+      cursor: auto
+
+  .container-element
+    margin: 10px
+    margin-top: -45px
+    margin-left: 50px
+
+  .container-element .column
+    float: left
+    width: 50%
+    padding-right: 30px

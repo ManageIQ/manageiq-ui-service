@@ -26,19 +26,27 @@
 
   /** @ngInject */
   function resolveBlueprints(CollectionsApi) {
-    // var options = {expand: 'resources', attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms']};
+    var options = {
+      mock: true,
+      expand: 'resources'
+    };
 
-    // return CollectionsApi.query('blueprints', options);
+    return CollectionsApi.query('blueprints', options);
   }
 
   /** @ngInject */
-  function StateController($state, blueprints, BlueprintsState, BlueprintDetailsModal, BlueprintDeleteModal, $filter, $rootScope, Language) {
+  function StateController($state, blueprints, BlueprintsState, BlueprintDetailsModal, BlueprintDeleteModal, Notifications, $filter,
+                           $rootScope, Language) {
     /* jshint validthis: true */
     var vm = this;
 
     vm.title = __('Blueprint List');
 
-    // Mock Blueprints
+    // For mock RESTFul api operations
+    if (!BlueprintsState.getBlueprints()) {
+      BlueprintsState.setBlueprints(blueprints.resources);
+    }
+
     vm.blueprints = BlueprintsState.getBlueprints();
 
     /* This notification 'splice' code doesn't work.  Splice needs a third argument, the items to splice in
@@ -80,6 +88,11 @@
         name: __('Edit'),
         title: __('Edit Blueprint'),
         actionFn: editBlueprint
+      },
+      {
+        name: __('Duplicate'),
+        title: __('Duplicate Blueprint'),
+        actionFn: duplicateBlueprint
       },
       {
         name: __('Delete'),
@@ -164,25 +177,35 @@
     };
 
     function createBlueprint(action) {
-      BlueprintDetailsModal.showModal('create', {});
+      $state.go('blueprints.designer');
     }
 
     function editBlueprint(action, item) {
       $state.go('blueprints.designer', {blueprintId: item.id});
     }
 
+    function duplicateBlueprint(action, item) {
+      BlueprintsState.duplicateBlueprint(item);
+      $state.go($state.current, {}, {reload: true});
+    }
+
     function publishBlueprint(action, item) {
-      BlueprintDetailsModal.showModal('publish', item);
+      if (item.num_nodes === 0) {
+        Notifications.error(__('Cannot publish a blueprint with no service items.'), false, false);
+
+        // Make sure all notifications disappear after delay
+        if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
+          for (var i = 0; i < $rootScope.notifications.data.length; i++) {
+            $rootScope.notifications.data[i].isPersistent = false;
+          }
+        }
+      } else {
+        BlueprintDetailsModal.showModal('publish', item);
+      }
     }
 
     function deleteBlueprint(action, item) {
-      // clear any prev. selections, make single selection
-      item = angular.copy(item);
-      item.selected = true;
-      BlueprintsState.unselectBlueprints();
-      BlueprintsState.handleSelectionChange(item);
-      BlueprintDeleteModal.showModal(BlueprintsState.getSelectedBlueprints());
-      BlueprintsState.unselectBlueprints();
+      BlueprintDeleteModal.showModal([item]);
     }
 
     function deleteBlueprints(action) {
@@ -227,7 +250,13 @@
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'visibility') {
         compValue = item1.visibility.name.localeCompare(item2.visibility.name);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'catalog') {
-        compValue = item1.catalog.name.localeCompare(item2.catalog.name);
+        if (!item1.catalog) {
+          compValue = -1;
+        } else if (!item2.catalog) {
+          compValue = 1;
+        } else {
+          compValue = item1.catalog.name.localeCompare(item2.catalog.name);
+        }
       }
 
       if (!vm.toolbarConfig.sortConfig.isAscending) {
@@ -284,7 +313,13 @@
       } else if (filter.id === 'visibility') {
         return item.visibility.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'catalog') {
-        return item.catalog.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+        if (filter.value.toLowerCase() === "unassigned" && !item.catalog) {
+          return true;
+        } else if (!item.catalog) {
+          return false;
+        } else {
+          return item.catalog.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+        }
       }
 
       return false;

@@ -5,7 +5,7 @@
       .factory('BlueprintsState', BlueprintsStateFactory);
 
   /** @ngInject */
-  function BlueprintsStateFactory() {
+  function BlueprintsStateFactory($filter) {
     var blueprint = {};
 
     blueprint.sort = {
@@ -32,73 +32,6 @@
       return blueprint.filters;
     };
 
-    blueprint.blueprints = [
-      {
-        "id": 0,
-        "name": "Create RDS Instance",
-        "last_modified": "2014-09-08T16:17:40Z",
-        "num_nodes": 0,
-        "visibility": {
-          "id": 800,
-          "name": "Private"
-        },
-        "chartDataModel": {}
-      },
-      {
-        "id": 1,
-        "name": "Create S3 Bucket",
-        "last_modified": "2015-04-16T18:24:21Z",
-        "num_nodes": 0,
-        "visibility": {
-          "id": 1000000000004,
-          "name": "Project 1"
-        },
-        "catalog": {
-          "id": 1000000000007,
-          "name": "Amazon Operations"
-        },
-        "dialog": {
-          "id": 1000000000014,
-          "name": "AWScreate_vpc"
-        },
-        "chartDataModel": {}
-      },
-      {
-        "id": 2,
-        "name": "Dev DB Server",
-        "last_modified": "2015-01-16T18:24:21Z",
-        "num_nodes": 0,
-        "visibility": {
-          "id": 900,
-          "name": "Public"
-        },
-        "dialog": {
-          "id": 1000000000004,
-          "name": "Project 1"
-        },
-        "chartDataModel": {}
-      },
-      {
-        "id": 3,
-        "name": "Amazon DEV Instance",
-        "last_modified": "2016-02-23T11:08:22Z",
-        "num_nodes": 0,
-        "visibility": {
-          "id": 1000000000001,
-          "name": "My Company"
-        },
-        "catalog": {
-          "id": 1000000000003,
-          "name": "DevOps Team Alpha"
-        },
-        "dialog": {
-          "id": 1000000000001,
-          "name": "RenameVM"
-        },
-        "chartDataModel": {}
-      }
-    ];
-
     blueprint.newCatalogs = [];
 
     blueprint.selectedBlueprints = [];
@@ -107,12 +40,7 @@
       if (tmpBlueprint.selected) {
         blueprint.selectedBlueprints.push(tmpBlueprint);
       } else {
-        var index = findWithAttr(blueprint.selectedBlueprints, 'id', tmpBlueprint.id);
-        if (index !== -1) {
-          blueprint.selectedBlueprints.splice(index, 1);
-        } else {
-          console.log("Cound't find blueprint to unselect.");
-        }
+        blueprint.unselectBlueprint(tmpBlueprint.id);
       }
     };
 
@@ -122,6 +50,17 @@
 
     blueprint.unselectBlueprints = function() {
       blueprint.selectedBlueprints = [];
+    };
+
+    blueprint.unselectBlueprint = function(id) {
+      var index = findWithAttr(blueprint.selectedBlueprints, 'id', id);
+      if (index !== -1) {
+        blueprint.selectedBlueprints.splice(index, 1);
+      }
+    };
+
+    blueprint.setBlueprints = function(blueprints) {
+      blueprint.blueprints = blueprints;
     };
 
     blueprint.getBlueprints = function() {
@@ -140,6 +79,13 @@
       return blueprint.blueprints.length;
     };
 
+    blueprint.duplicateBlueprint = function(origBlueprint) {
+      var newBlueprint = angular.copy(origBlueprint);
+      newBlueprint.id = blueprint.getNextUniqueId();
+      newBlueprint.name = getCopyName(newBlueprint.name);
+      blueprint.blueprints.push(newBlueprint);
+    };
+
     blueprint.saveBlueprint = function(tmpBlueprint) {
       tmpBlueprint.last_modified = new Date();
       if (tmpBlueprint.chartDataModel && tmpBlueprint.chartDataModel.nodes) {
@@ -150,19 +96,23 @@
 
       var index = findBlueprintIndexById(tmpBlueprint.id);
       if (index === -1) {
-        tmpBlueprint.id = blueprint.getNextUniqueId();
         blueprint.blueprints.push(tmpBlueprint);
       } else {
         blueprint.blueprints[index] = tmpBlueprint;
       }
 
-      return tmpBlueprint.id;
+      // console.log("Saved Blueprint: " + angular.toJson(tmpBlueprint, true));
+
+      return;
     };
 
     blueprint.deleteBlueprint = function(id) {
       var index = findBlueprintIndexById(id);
       if (index !== -1) {
+        blueprint.unselectBlueprint(id);
         blueprint.blueprints.splice(index, 1);
+      } else {
+        console.log("cound not delete/find blueprint: id = " + id);
       }
     };
 
@@ -194,6 +144,22 @@
       }
 
       return -1;
+    }
+
+    function getCopyName(baseName) {
+      var baseNameLength = baseName.indexOf(' Copy');
+
+      if (baseNameLength === -1) {
+        baseNameLength = baseName.length;
+      }
+
+      baseName = baseName.substr(0, baseNameLength);
+
+      var filteredArray = $filter('filter')( blueprint.blueprints, {name: baseName}, false);
+
+      var copyName = baseName + " Copy" + ((filteredArray.length === 1) ? "" : " " + filteredArray.length) ;
+
+      return copyName;
     }
 
     return blueprint;

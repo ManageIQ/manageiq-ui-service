@@ -5,7 +5,7 @@
   <h3 class="modal-title">Select {{vm.entryPointTypeTitle}} Entry Point</h3>
 </div>
 <div class="modal-body">
-  <div id="entryPointsTree" ng-model="vm.selectedEntryPoint"></div>
+  <div id="entryPointsTree" ng-model="vm.selectedEntryPoint" browse-entry-point></div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" ng-click="$dismiss()" translate>Cancel</button>
@@ -15,29 +15,3 @@
           Save
   </button>
 </div>
-
-<script>
-  $(function() {
-    $('#entryPointsTree').treeview({
-      collapseIcon: "fa fa-angle-down",
-      data: angular.element($("#entryPointsTree")).scope().vm.getTreeData(),
-      levels: 2,
-      expandIcon: "fa fa-angle-right",
-      nodeIcon: "fa fa-folder",
-      showBorder: false,
-      onNodeExpanded: function(event, node) {
-        angular.element($("#entryPointsTree")).scope().vm.onNodeExpanded(event, node);
-      }
-    });
-
-    // Get the inital root nodes
-    var i, rootNode = $('#entryPointsTree').treeview('getExpanded');
-    // Collapse all
-    $('#entryPointsTree').treeview('collapseAll');
-    // Auto-magically expand the root nodes
-    for (i = 0; i < rootNode.length; i++) {
-      $('#entryPointsTree').treeview('expandNode', [rootNode[i].nodeId]);
-    }
-
-  });
-</script>
