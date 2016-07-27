@@ -46,7 +46,6 @@
   function StateController($state, requests, orders, RequestsState, OrdersState, $filter, $rootScope, lodash, Language) {
     var vm = this;
 
-    vm.title = __('Request List');
     vm.requests = requests.resources;
     vm.requestsList = angular.copy(vm.requests);
 

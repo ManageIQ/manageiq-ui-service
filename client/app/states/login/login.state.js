@@ -29,7 +29,6 @@
   function StateController($state, Text, API_LOGIN, API_PASSWORD, AuthenticationApi, CollectionsApi, Session, $rootScope, Notifications, Language) {
     var vm = this;
 
-    vm.title = __('Login');
     vm.text = Text.login;
 
     vm.credentials = {

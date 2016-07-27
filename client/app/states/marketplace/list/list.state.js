@@ -48,7 +48,6 @@
   function StateController($state, serviceTemplates, serviceCatalogs, MarketplaceState, Language) {
     var vm = this;
 
-    vm.title = __('Service Catalog');
     vm.serviceTemplates = serviceTemplates.resources;
 
     // Mock published blueprints

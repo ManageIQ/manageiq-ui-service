@@ -43,7 +43,6 @@
   function StateController($state, CollectionsApi, dialogs, serviceTemplate, Notifications, DialogFieldRefresh, ShoppingCart) {
     var vm = this;
 
-    vm.title = __('Service Template Details');
     vm.serviceTemplate = serviceTemplate;
 
     if (dialogs.subcount > 0) {

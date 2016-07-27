@@ -25,7 +25,5 @@
   /** @ngInject */
   function StateController() {
     var vm = this;
-
-    vm.title = __('About Me');
   }
 })();
