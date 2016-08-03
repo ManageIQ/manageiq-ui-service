@@ -130,6 +130,11 @@ angular.module('flowChart', ['dragging'] )
     return point.matrixTransform(matrix.inverse());
   };
 
+  $scope.hideConnectors = false;
+  $scope.$on('hideConnectors', function(evt, args) {
+    $scope.hideConnectors = args.hideConnectors;
+  });
+
   //
   // Called on mouse down in the chart.
   //
@@ -249,6 +254,10 @@ angular.module('flowChart', ['dragging'] )
   //
   $scope.nodeActionClick = function(evt, node, nodeAction) {
     console.log("Node Action '" + nodeAction.name() + "' executed on " + node.name());
+    if (nodeAction.name() === "connect") {
+      $scope.hideConnectors = false;
+      $scope.$emit('hideConnectors', {'hideConnectors': $scope.hideConnectors});
+    }
   };
 
   //

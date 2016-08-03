@@ -37,6 +37,13 @@
               <button id="blueprintDetails" class="btn" type="button" ng-click="editDetails()" data-toggle="tooltip"
                       data-placement="bottom" title="{{'Edit Blueprint Details'|translate}}" translate>Blueprint Details
               </button>
+              <span class="showHideConnectors">
+                  <input  ng-model="hideConnectors"
+                          ng-change="toggleshowHideConnectors()"
+                          type="checkbox"
+                          ng-checked="hideConnectors">
+                  <span class="showHideConnectorsLabel" translate>Hide Connectors</span>
+              </span>
           </span>
       </div>
 

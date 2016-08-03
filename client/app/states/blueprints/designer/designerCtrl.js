@@ -169,6 +169,18 @@ angular.module('app.states')
         $( "#filterFld" ).focus();
       };
 
+      $scope.hideConnectors = false;
+
+      // broadcast hideConnectors change down to canvas
+      $scope.toggleshowHideConnectors = function() {
+        $scope.$broadcast('hideConnectors', {hideConnectors: $scope.hideConnectors});
+      };
+
+      // listen for hideConnectors change from canvas
+      $scope.$on('hideConnectors', function(evt, args) {
+        $scope.hideConnectors = args.hideConnectors;
+      });
+
       $scope.tabs = [
             { preTitle: 'Compute', title: 'Cloud', subtabs: [
                 {title: 'Amazon Web Services', items: [

@@ -98,7 +98,7 @@
     </text>
     </g>
 
-    <g
+    <g ng-if="!hideConnectors"
       ng-repeat="connector in node.inputConnectors"
       ng-mousedown="connectorMouseDown($event, node, connector, $index, true)"
       ng-mouseover="connectorMouseOver($event, node, connector, $index, true)"
@@ -122,7 +122,7 @@
         />
     </g>
 
-    <g
+    <g ng-if="!hideConnectors"
       ng-repeat="connector in node.outputConnectors"
       ng-mousedown="connectorMouseDown($event, node, connector, $index, false)"
       ng-mouseover="connectorMouseOver($event, node, connector, $index, false)"
@@ -148,7 +148,7 @@
   </g>
 
   <g>
-    <g
+    <g ng-if="!hideConnectors"
       ng-repeat="connection in chart.connections"
       class="connection"
       ng-mousedown="connectionMouseDown($event, connection)"
