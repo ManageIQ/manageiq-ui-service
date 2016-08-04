@@ -1,20 +1,22 @@
 <svg
-  id="not-designer-canvas"
   class="draggable-container"
   xmlns="http://www.w3.org/2000/svg"
   ng-mousedown="mouseDown($event)"
   ng-mousemove="mouseMove($event)"  
   >
-  <defs>
-    <filter id="dropshadow" x="0" y="0" width="120%" height="120%">
-      <feOffset result="offOut" in="SourceGraphic" dx="-2" dy="-2" />
-      <feColorMatrix result="matrixOut" in="offOut" type="matrix"
-                     values="0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0" />
-      <feGaussianBlur result="blurOut" in="matrixOut" stdDeviation="6" />
-      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
-    </filter>
-  </defs>
 
+  <!-- Connection Mode Notification -->
+  <g ng-if="inConnectingMode">
+    <rect class="connecting-mode-rec" ry="1" rx="1" x="0" y="0" width="640" height="32" />
+    <text class="connecting-mode-label" x="12" y="22" ng-if="availableConnections()">
+      Select a second item to complete the connection or click on the canvas to cancel
+    </text>
+    <text class="connecting-mode-label-warning" x="12" y="22" ng-if="!availableConnections()">
+      No available connections! Click on the canvas to cancel
+    </text>
+  </g>
+
+  <!-- Main Node Loop -->
   <g
     ng-repeat="node in chart.nodes"
     ng-mousedown="nodeMouseDown($event, node)"
@@ -22,8 +24,10 @@
     ng-mouseleave="nodeMouseLeave($event, node)"
     ng-attr-transform="translate({{node.x()}}, {{node.y()}})"
     >
+
+    <!-- Node -->
     <rect
-      ng-class="{'selected-node-rect': node.selected(), 'mouseover-node-rect': node == mouseOverNode, 'node-rect': node != mouseOverNode}"
+      ng-class="{'invalid-node-rect': node.invalid(), 'selected-node-rect': node.selected(), 'mouseover-node-rect': node == mouseOverNode, 'node-rect': node != mouseOverNode}"
       ry="0"
       rx="0"
       x="0" 
@@ -33,9 +37,9 @@
       fill="{{node.backgroundColor()}}"
       fill-opacity="1.0"
       />
-      <!-- Removed filter="url(#dropshadow)" from node rect, redraw issues & not working correctly in FF -->
 
-    <g id="nodeToolBar" ng-if="node == mouseOverNode">
+    <!-- Bottom Node Toolbar -->
+    <g id="nodeToolBar" ng-if="node == mouseOverNode && !inConnectingMode">
       <rect   class="node-toolbar"
               ry="6"
               rx="6"
@@ -63,8 +67,11 @@
       </g>
     </g>
 
+    <!-- Node Title -->
+
     <text
       class="node-header"
+      ng-class="{'invalid-node-header': node.invalid()}"
       ng-attr-x="{{node.width()/2}}"
       ng-attr-y="{{node.height() - 24}}"
       text-anchor="middle"
@@ -73,7 +80,9 @@
       {{node.name()}}
     </text>
 
+    <!-- Node Icon/Image -->
     <image ng-if="node.image()"
+           ng-class="{'invalid-node-img': node.invalid()}"
            xlink:href="{{node.image() | trustAsResourceUrl}}"
            ng-attr-x="{{(node.width()/2) - 40}}"
            ng-attr-y="{{20}}"
@@ -94,33 +103,75 @@
              y="88"
              font-family="FontAwesome"
              font-size="76">
-      {{'\uf06b'}}
-    </text>
+         {{'\uf06b'}}
+       </text>
     </g>
 
+    <!-- Connected Input Connectors -->
+
     <g ng-if="!hideConnectors"
-      ng-repeat="connector in node.inputConnectors"
+      ng-repeat="connector in node.inputConnectors | filter: isConnectorConnected"
       ng-mousedown="connectorMouseDown($event, node, connector, $index, true)"
       ng-mouseover="connectorMouseOver($event, node, connector, $index, true)"
       ng-mouseleave="connectorMouseLeave($event, node, connector, $index, true)"
       class="connector input-connector"
       >
-      <text
-        ng-attr-x="{{connector.x() + 12}}"
-        ng-attr-y="{{connector.y()}}"
-        text-anchor="left"
-        alignment-baseline="middle"
-        >
-        {{connector.name()}}
-      </text>
-      
-      <circle       
-        ng-attr-class="{{connector == mouseOverConnector && 'mouseover-connector-circle' || 'connector-circle'}}"
+
+      <circle ng-if="!inConnectingMode || isConnectedTo(connector, connectingModeSourceNode)"
+        ng-class="{'mouseover-connector-circle': connector == mouseOverConnector,
+                   'connector-circle': connector != mouseOverConnector}"
         ng-attr-r="{{connectorSize}}" 
         ng-attr-cx="{{connector.x()}}"
         ng-attr-cy="{{connector.y()}}"
         />
     </g>
+
+    <!-- Unconnected Input Connectors -->
+
+    <g ng-if="inConnectingMode"
+       ng-repeat="connector in node.inputConnectors | filter: isConnectorUnconnectedAndValid"
+       ng-mousedown="connectorMouseDown($event, node, connector, $index, true)"
+       ng-mouseover="connectorMouseOver($event, node, connector, $index, true)"
+       ng-mouseleave="connectorMouseLeave($event, node, connector, $index, true)"
+       class="connector input-connector"
+    >
+
+      <text ng-if="connector.fontFamily()"
+            class="connector-icons"
+            font-family="{{connector.fontFamily()}}"
+            ng-attr-x="{{connector.x() - 28}}"
+            ng-attr-y="{{connector.y() + 7}}">
+        {{connector.fontContent()}}
+      </text>
+
+      <circle
+              ng-class="{'unconnected-circle': connector != mouseOverConnector,
+                         'mouseover-unconnected-circle': connector == mouseOverConnector}"
+              ng-attr-r="{{connectorSize}}"
+              ng-attr-cx="{{connector.x()}}"
+              ng-attr-cy="{{connector.y()}}"
+      />
+
+      <g ng-if="connector == mouseOverConnector">
+        <rect class="connector-tooltip"
+              ry="1"
+              rx="1"
+              ng-attr-x="{{connector.x() - 4}}"
+              ng-attr-y="{{connector.y() + 12}}"
+              ng-attr-width="{{80}}"
+              height="20"
+        />
+        <text
+              class="connector-tooltip-text"
+              ng-attr-x="{{connector.x() + 2}}"
+              ng-attr-y="{{connector.y() + 26}}"
+              text-anchor="start"
+              alignment-baseline="top"
+        >{{connector.name()}}</text>
+      </g>
+    </g>
+
+    <!-- Output Connectors -->
 
     <g ng-if="!hideConnectors"
       ng-repeat="connector in node.outputConnectors"
@@ -129,34 +180,31 @@
       ng-mouseleave="connectorMouseLeave($event, node, connector, $index, false)"
       class="connector output-connector"
       >
-      <text
-        ng-attr-x="{{connector.x() - 12}}"
-        ng-attr-y="{{connector.y()}}"
-        text-anchor="end"
-        alignment-baseline="middle"
-        >
-        {{connector.name()}}
-      </text>
-
-      <circle             
-        ng-attr-class="{{connector == mouseOverConnector && 'mouseover-connector-circle' || 'connector-circle'}}"
+      <circle ng-if="!inConnectingMode || (connectingModeSourceNode === connector.parentNode())"
+        ng-class="{'connector-circle': connector != mouseOverConnector,
+                   'mouseover-connector-circle': connector == mouseOverConnector}"
+        ng-attr-r="{{connectorSize}}"
         ng-attr-r="{{connectorSize}}" 
         ng-attr-cx="{{connector.x()}}"
         ng-attr-cy="{{connector.y()}}"
         />
     </g>
-  </g>
+  </g> <!--  End Nodes Loop -->
 
-  <g>
-    <g ng-if="!hideConnectors"
-      ng-repeat="connection in chart.connections"
-      class="connection"
-      ng-mousedown="connectionMouseDown($event, connection)"
-      ng-mouseover="connectionMouseOver($event, connection)"
-      ng-mouseleave="connectionMouseLeave($event, connection)"
-      >
+  <!-- Connections -->
+
+  <g ng-if="!hideConnectors"
+    ng-repeat="connection in chart.connections"
+    class="connection"
+    ng-mousedown="connectionMouseDown($event, connection)"
+    ng-mouseover="connectionMouseOver($event, connection)"
+    ng-mouseleave="connectionMouseLeave($event, connection)"
+    >
+      <g ng-if="!inConnectingMode || connectingModeSourceNode === connection.source.parentNode()">
         <path
-          ng-attr-class="{{connection.selected() && 'selected-connection-line' || (connection == mouseOverConnection && 'mouseover-connection-line' || 'connection-line')}}"
+          ng-class="{'selected-connection-line': connection.selected(),
+                     'mouseover-connection-line': connection == mouseOverConnection,
+                     'connection-line': connection != mouseOverConnection}"
           ng-attr-d="M {{connection.sourceCoordX()}}, {{connection.sourceCoordY()}}
                      C {{connection.sourceTangentX()}}, {{connection.sourceTangentY()}}
                        {{connection.destTangentX()}}, {{connection.destTangentY()}}
@@ -164,33 +212,40 @@
           >
         </path>
 
-      <text
-            ng-attr-class="{{connection.selected() && 'selected-connection-name' || (connection == mouseOverConnection && 'mouseover-connection-name' || 'connection-name')}}"
-        ng-attr-x="{{connection.middleX()}}"
-        ng-attr-y="{{connection.middleY()}}"
-        text-anchor="middle"
-        alignment-baseline="middle"
-        >{{connection.name()}}</text>
+        <text ng-if="connection == mouseOverConnection"
+          ng-class="{'selected-connection-name': connection.selected(),
+                     'mouseover-connection-name': connection == mouseOverConnection && !connection.selected(),
+                     'connection-name': connection != mouseOverConnection && !connection.selected()}"
+          ng-attr-x="{{connection.middleX()}}"
+          ng-attr-y="{{connection.middleY()}}"
+          text-anchor="middle"
+          alignment-baseline="middle"
+          >{{connection.name()}}
+        </text>
 
         <circle
-            ng-attr-class="{{connection.selected() && 'selected-connection-endpoint' || (connection == mouseOverConnection && 'mouseover-connection-endpoint' || 'connection-endpoint')}}"
-            r="5" 
-            ng-attr-cx="{{connection.sourceCoordX()}}" 
-            ng-attr-cy="{{connection.sourceCoordY()}}" 
+            ng-class="{'selected-connection-endpoint': connection.selected(),
+                       'mouseover-connection-endpoint': connection == mouseOverConnection && !connection.selected(),
+                       'connection-endpoint': connection != mouseOverConnection && !connection.selected()}"
+            r="5"
+            ng-attr-cx="{{connection.sourceCoordX()}}"
+            ng-attr-cy="{{connection.sourceCoordY()}}"
             >
         </circle>
 
         <circle
-            ng-attr-class="{{connection.selected() && 'selected-connection-endpoint' || (connection == mouseOverConnection && 'mouseover-connection-endpoint' || 'connection-endpoint')}}"
-            r="5" 
-            ng-attr-cx="{{connection.destCoordX()}}" 
-            ng-attr-cy="{{connection.destCoordY()}}" 
+            ng-class="{'selected-connection-endpoint': connection.selected(),
+                       'mouseover-connection-endpoint': connection == mouseOverConnection && !connection.selected(),
+                       'connection-endpoint': connection != mouseOverConnection && !connection.selected()}"
+            r="5"
+            ng-attr-cx="{{connection.destCoordX()}}"
+            ng-attr-cy="{{connection.destCoordY()}}"
             >
         </circle>
-    </g>
+      </g>
   </g>
 
-  <g
+  <!--g
     ng-if="draggingConnection"
     >
     <path
@@ -204,7 +259,7 @@
 
     <circle
         class="dragging-connection dragging-connection-endpoint"
-        r="4" 
+        r="connectorSize - 2"
         ng-attr-cx="{{dragPoint1.x}}" 
         ng-attr-cy="{{dragPoint1.y}}" 
         >
@@ -212,12 +267,12 @@
 
     <circle
         class="dragging-connection dragging-connection-endpoint"
-        r="4" 
+        r="connectorSize - 2"
         ng-attr-cx="{{dragPoint2.x}}" 
         ng-attr-cy="{{dragPoint2.y}}" 
         >
     </circle>
-  </g>
+  </g -->
 
   <rect
       ng-if="dragSelecting"

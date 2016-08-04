@@ -22,23 +22,25 @@
   <div class="blueprint-designer-container">
 
       <div class="toolbar">
-          <button id="toggleToolbox" class="btn btn-primary" type="button" ng-click="showToolbox()"
+          <button id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': inConnectingMode}" type="button" ng-click="showToolbox()"
                   data-toggle="tooltip" data-placement="bottom" title="Add Service Item To Canvas" translate>Add Item
           </button>
-          <button id="duplicateItem" class="btn" type="button" ng-class="{'disabled': !onlyOneTtemSelected()}"
+          <button id="duplicateItem" class="btn" type="button" ng-class="{'disabled': !onlyOneTtemSelected() || inConnectingMode}"
                   ng-click="duplicateSelectedItem()" data-toggle="tooltip" data-placement="bottom"
                   title="Duplicate Item (Ctrl-D)" translate>Duplicate
           </button>
-          <button id="removeItems" class="btn" type="button" ng-class="{'disabled': !itemsSelected()}"
+          <button id="removeItems" class="btn" type="button" ng-class="{'disabled': !itemsSelected() || inConnectingMode}"
                   ng-click="removeSelectedItemsFromCanvas()" data-toggle="tooltip" data-placement="bottom"
                   title="Remove Items From Canvas" translate>Remove
           </button>
           <span class="more-actions">
               <button id="blueprintDetails" class="btn" type="button" ng-click="editDetails()" data-toggle="tooltip"
+                      ng-class="{'disabled': inConnectingMode}"
                       data-placement="bottom" title="{{'Edit Blueprint Details'|translate}}" translate>Blueprint Details
               </button>
               <span class="showHideConnectors">
-                  <input  ng-model="hideConnectors"
+                  <input  ng-class="{'disabled': inConnectingMode}"
+                          ng-model="hideConnectors"
                           ng-change="toggleshowHideConnectors()"
                           type="checkbox"
                           ng-checked="hideConnectors">
@@ -105,7 +107,7 @@
           </div>
 
           <div class="canvas-container" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropCallback'}">
-              <flow-chart class="canvas" chart="chartViewModel"></flow-chart>
+              <flow-chart class="canvas" ng-class="{'canvas-in-connection-mode': inConnectingMode}" chart="chartViewModel"></flow-chart>
           </div>
       </div>
   </div>

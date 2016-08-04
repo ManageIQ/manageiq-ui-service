@@ -117,7 +117,7 @@ angular.module('app.states')
       };
 
       $scope.itemsSelected = function() {
-        if ($scope.chartViewModel) {
+        if ($scope.chartViewModel && $scope.chartViewModel.getSelectedNodes) {
           return $scope.chartViewModel.getSelectedNodes().length > 0;
         } else {
           return false;
@@ -125,7 +125,7 @@ angular.module('app.states')
       };
 
       $scope.onlyOneTtemSelected = function() {
-        if ($scope.chartViewModel) {
+        if ($scope.chartViewModel && $scope.chartViewModel.getSelectedNodes) {
           return $scope.chartViewModel.getSelectedNodes().length === 1;
         } else {
           return false;
@@ -169,6 +169,7 @@ angular.module('app.states')
         $( "#filterFld" ).focus();
       };
 
+      $scope.inConnectingMode = false;
       $scope.hideConnectors = false;
 
       // broadcast hideConnectors change down to canvas
@@ -176,9 +177,10 @@ angular.module('app.states')
         $scope.$broadcast('hideConnectors', {hideConnectors: $scope.hideConnectors});
       };
 
-      // listen for hideConnectors change from canvas
-      $scope.$on('hideConnectors', function(evt, args) {
-        $scope.hideConnectors = args.hideConnectors;
+      // listen for in connecting mode from canvas
+      $scope.$on('inConnectingMode', function(evt, args) {
+        $scope.inConnectingMode = args.inConnectingMode;
+        $scope.hideConnectors = false;
       });
 
       $scope.tabs = [

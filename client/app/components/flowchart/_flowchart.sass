@@ -1,9 +1,19 @@
 .node-header
   font-size: 12px
 
+.invalid-node-header
+  fill: #bababa
+
 .node-rect
   stroke: #b1b1b1
   stroke-width: 2
+  fill: white
+
+.invalid-node-rect
+  fill: #cdcdcd
+
+.invalid-node-img
+  opacity: .2
 
 .node-toolbar
   fill: #fff5c3
@@ -22,6 +32,24 @@
   stroke: #b1b1b1
   stroke-width: 2
 
+.connecting-mode-rec
+  fill: #8a8a8a
+
+.connecting-mode-label
+  fill: white
+  font-size: 16px
+
+.connecting-mode-label-warning
+  fill: red
+  font-size: 16px
+
+.connector-icons
+  fill: #0099d3
+  font-size: 16px
+  cursor: pointer
+  &:hover
+    fill: #00384d
+
 .mouseover-node-rect
   stroke: #b1b1b1
   stroke-width: 3
@@ -29,6 +57,14 @@
 .selected-node-rect
   stroke: #0099d3
   stroke-width: 3
+
+.connector-tooltip
+  fill: #F1F1F1
+  stroke: black
+  stroke-width: 1
+
+.connector-tooltip-text
+  font-size: 10px
 
 .connector-circle
   fill: white
@@ -39,6 +75,18 @@
   fill: white
   stroke: black
   stroke-width: 3
+
+.unconnected-circle
+  fill: green
+  stroke: black
+  stroke-width: 2
+  stroke-opacity: "0.8"
+
+.mouseover-unconnected-circle
+  fill: green
+  stroke: black
+  stroke-width: 3
+  stroke-opacity: "0.8"
 
 .connection
 
@@ -73,7 +121,7 @@
   fill: red
 
 .mouseover-connection-name
-  fill: gray
+  fill: black
 
 .dragging-connection
   pointer-events: none

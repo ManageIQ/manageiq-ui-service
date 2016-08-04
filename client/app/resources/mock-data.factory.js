@@ -28,196 +28,171 @@
             "chartDataModel": {},
             "provEP": "path/to/default/prov/entry/point"
           },
-            {
-              "id": 1,
-              "name": "Create S3 Bucket",
-              "last_modified": "2015-04-16T18:24:21Z",
-              "num_nodes": 0,
-              "visibility": {
-                "id": 1000000000004,
-                "name": "Project 1"
-              },
-              "catalog": {
-                "id": 1000000000007,
-                "name": "Amazon Operations"
-              },
-              "dialog": {
-                "id": 1000000000014,
-                "name": "AWScreate_vpc"
-              },
-              "chartDataModel": {},
-              "provEP": "path/to/default/prov/entry/point"
+          {
+            "id": 1,
+            "name": "Create S3 Bucket",
+            "last_modified": "2015-04-16T18:24:21Z",
+            "num_nodes": 0,
+            "visibility": {
+              "id": 1000000000004,
+              "name": "Project 1"
             },
-            {
-              "id": 2,
-              "name": "Dev DB Server",
-              "last_modified": "2015-01-16T18:24:21Z",
-              "num_nodes": 0,
-              "visibility": {
-                "id": 900,
-                "name": "Public"
-              },
-              "dialog": {
-                "id": 1000000000004,
-                "name": "Project 1"
-              },
-              "chartDataModel": {},
-              "provEP": "path/to/default/prov/entry/point"
+            "catalog": {
+              "id": 1000000000007,
+              "name": "Amazon Operations"
             },
-            {
-              "id": 3,
-              "name": "Amazon DEV Instance",
-              "last_modified": "2016-02-23T11:08:22Z",
-              "num_nodes": 7,
-              "visibility": {
-                "id": 1000000000001,
-                "name": "My Company"
-              },
-              "catalog": {
-                "id": 1000000000003,
-                "name": "DevOps Team Alpha"
-              },
-              "dialog": {
-                "id": 1000000000001,
-                "name": "RenameVM"
-              },
-              "chartDataModel": {
-                "nodeActions": [
-                  {
-                    "id": 1,
-                    "name": "connect",
-                    "fontFamily": "FontAwesome",
-                    "fontContent": "\uf1e0"
-                  },
-                  {
-                    "id": 2,
-                    "name": "edit",
-                    "fontFamily": "PatternFlyIcons-webfont",
-                    "fontContent": "\ue60a"
-                  },
-                  {
-                    "id": 3,
-                    "name": "tag",
-                    "fontFamily": "FontAwesome",
-                    "fontContent": "\uf02b"
-                  }
-                ],
-                "nodes": [
-                  {
-                    "title": "AWS",
-                    "image": "assets/images/blueprint-designer/AWS-Logo.svg",
-                    "id": 10,
-                    "name": "AWS",
-                    "backgroundColor": "#fff",
-                    "x": 444,
-                    "y": 103,
-                    "width": 150,
-                    "provision_order": 0,
-                    "action_order": 0,
-                    inputConnectors: [
-                      {
-                        name: "In"
-                      }
-                    ],
-                    outputConnectors: [
-                      {
-                        name: "Out"
-                      }
-                    ]
-                  },
-                  {
-                    "title": "Azure",
-                    "image": "assets/images/blueprint-designer/Azure-Logo.svg",
-                    "id": 11,
-                    "name": "Azure",
-                    "backgroundColor": "#fff",
-                    "x": 211,
-                    "y": 25,
-                    "width": 150,
-                    "provision_order": 0,
-                    "action_order": 1
-                  },
-                  {
-                    "title": "GCE",
-                    "image": "assets/images/blueprint-designer/GCE_Logo.png",
-                    "id": 12,
-                    "name": "GCE",
-                    "backgroundColor": "#fff",
-                    "x": 44,
-                    "y": 197,
-                    "width": 150,
-                    "provision_order": 1,
-                    "action_order": 1
-                  },
-                  {
-                    "title": "Kubernetes",
-                    "image": "assets/images/blueprint-designer/kubernetes-Logo.svg",
-                    "id": 13,
-                    "name": "Kubernetes",
-                    "backgroundColor": "#fff",
-                    "x": 217,
-                    "y": 197,
-                    "width": 150,
-                    "provision_order": 1,
-                    "action_order": 1
-                  },
-                  {
-                    "title": "OpenStack",
-                    "image": "assets/images/blueprint-designer/Openstack-Logo.svg",
-                    "id": 14,
-                    "name": "OpenStack",
-                    "backgroundColor": "#fff",
-                    "x": 43,
-                    "y": 374,
-                    "width": 150,
-                    "provision_order": 2,
-                    "action_order": 1
-                  },
-                  {
-                    "title": "Bundle 3",
-                    "bundle": true,
-                    "id": 15,
-                    "name": "Bundle 3",
-                    "backgroundColor": "#fff",
-                    "x": 44,
-                    "y": 24,
-                    "width": 150,
-                    "provision_order": 2,
-                    "action_order": 2
-                  },
-                  {
-                    "title": "Bundle 2",
-                    "bundle": true,
-                    "id": 16,
-                    "name": "Bundle 2",
-                    "backgroundColor": "#fff",
-                    "x": 659,
-                    "y": 218,
-                    "width": 150,
-                    "provision_order": 3,
-                    "action_order": 2,
-                    inputConnectors: [
-                      {
-                        name: "In 1"
-                      },
-                      {
-                        name: "In 2"
-                      }
-                    ],
-                    outputConnectors: [
-                      {
-                        name: " Out 1"
-                      },
-                      {
-                        name: " Out 2"
-                      }
-                    ]
-                  }
-                ],
-                "connections": []
-              },
-              "provEP": "path/to/default/prov/entry/point"
-            }
+            "dialog": {
+              "id": 1000000000014,
+              "name": "AWScreate_vpc"
+            },
+            "chartDataModel": {},
+            "provEP": "path/to/default/prov/entry/point"
+          },
+          {
+            "id": 2,
+            "name": "Dev DB Server",
+            "last_modified": "2015-01-16T18:24:21Z",
+            "num_nodes": 0,
+            "visibility": {
+              "id": 900,
+              "name": "Public"
+            },
+            "dialog": {
+              "id": 1000000000004,
+              "name": "Project 1"
+            },
+            "chartDataModel": {},
+            "provEP": "path/to/default/prov/entry/point"
+          },
+          {
+            "id": 3,
+            "name": "Amazon DEV Instance",
+            "last_modified": "2016-02-23T11:08:22Z",
+            "num_nodes": 7,
+            "visibility": {
+              "id": 1000000000001,
+              "name": "My Company"
+            },
+            "catalog": {
+              "id": 1000000000003,
+              "name": "DevOps Team Alpha"
+            },
+            "dialog": {
+              "id": 1000000000001,
+              "name": "RenameVM"
+            },
+            "chartDataModel": {
+              "nodeActions": [
+                {
+                  "id": 1,
+                  "name": "connect",
+                  "fontFamily": "FontAwesome",
+                  "fontContent": "\uf1e0"
+                },
+                {
+                  "id": 2,
+                  "name": "edit",
+                  "fontFamily": "PatternFlyIcons-webfont",
+                  "fontContent": "\ue60a"
+                },
+                {
+                  "id": 3,
+                  "name": "tag",
+                  "fontFamily": "FontAwesome",
+                  "fontContent": "\uf02b"
+                }
+              ],
+              "nodes": [
+                {
+                  "title": "Nuage",
+                  "image": "assets/images/blueprint-designer/Nuage-Logo.svg",
+                  "id": 10,
+                  "name": "Nuage",
+                  "backgroundColor": "#fff",
+                  "x": 511,
+                  "y": 262,
+                  "width": 150,
+                  "inputConnectors": [
+                    {
+                      "name": "Network",
+                      "type": "network",
+                      "fontFamily": "PatternFlyIcons-webfont",
+                      "fontContent": "\ue909"
+                    },
+                    {
+                      "name": "Container",
+                      "type": "container",
+                      "fontFamily": "PatternFlyIcons-webfont",
+                      "fontContent": "\ue621"
+                    }
+                  ]
+                },
+                {
+                  "title": "Vmware",
+                  "image": "assets/images/blueprint-designer/Vmware-Logo.svg",
+                  "id": 11,
+                  "name": "Vmware",
+                  "backgroundColor": "#fff",
+                  "x": 157,
+                  "y": 43,
+                  "width": 150,
+                  "validConnectionTypes": ["network", "storage"]
+                },
+                {
+                  "title": "NetApp",
+                  "image": "assets/images/blueprint-designer/NetApp_Logo.svg",
+                  "id": 12,
+                  "name": "NetApp",
+                  "backgroundColor": "#fff",
+                  "x": 267,
+                  "y": 260,
+                  "width": 150,
+                  "inputConnectors": [
+                    {
+                      "name": "Storage",
+                      "type": "storage",
+                      "fontFamily": "PatternFlyIcons-webfont",
+                      "fontContent": "\ue90e"
+                    },
+                    {
+                      "name": "Container",
+                      "type": "container",
+                      "fontFamily": "PatternFlyIcons-webfont",
+                      "fontContent": "\ue621"
+                    }
+                  ]
+                },
+                {
+                  "title": "OpenStack",
+                  "image": "assets/images/blueprint-designer/Openstack-Logo.svg",
+                  "id": 13,
+                  "name": "OpenStack",
+                  "backgroundColor": "#fff",
+                  "x": 384,
+                  "y": 43,
+                  "width": 150,
+                  "validConnectionTypes": [
+                    "storage"
+                  ]
+                },
+                {
+                  "title": "OpenShift",
+                  "image": "assets/images/blueprint-designer/OpenShift-Logo-NoText.svg",
+                  "id": 14,
+                  "name": "OpenShift",
+                  "backgroundColor": "#fff",
+                  "x": 626,
+                  "y": 41,
+                  "width": 150,
+                  "validConnectionTypes": [
+                    "container"
+                  ]
+                }
+              ],
+              "connections": []
+            },
+            "provEP": "path/to/default/prov/entry/point"
+          }
           ]};
       } else if (collection === 'service_catalogs') {
         return { "resources": [

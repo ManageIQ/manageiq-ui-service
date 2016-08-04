@@ -100,7 +100,7 @@ angular.module('flowChart', ['dragging'] )
   // Init data-model variables.
   //
   $scope.draggingConnection = false;
-  $scope.connectorSize = 7;
+  $scope.connectorSize = 6;
   $scope.dragSelecting = false;
 
   //
@@ -135,10 +135,41 @@ angular.module('flowChart', ['dragging'] )
     $scope.hideConnectors = args.hideConnectors;
   });
 
+  $scope.isConnectorConnected = function(connector) {
+    return (connector && connector.connected());
+  };
+
+  $scope.isConnectorUnconnectedAndValid = function(connector) {
+    return (connector && !connector.connected() && !connector.invalid() &&
+            connector.parentNode() !== $scope.connectingModeSourceNode);
+  };
+
+  // determins if a dest. connector is connected to the source node
+  $scope.isConnectedTo = function(connector, node) {
+    var connections = $scope.chart.connections;
+    for (var i = 0; i < connections.length; i++) {
+      var connection = connections[i];
+      if (connection.dest === connector && connection.source.parentNode() === node) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
+  $scope.availableConnections = function() {
+    return $scope.chart.validConnections;
+  };
+
   //
   // Called on mouse down in the chart.
   //
   $scope.mouseDown = function(evt) {
+    if ($scope.inConnectingMode ) {
+      // camceling out of connection mode, remove unused output connector
+      $scope.cancelConnectingMode();
+    }
+
     $scope.chart.deselectAll();
 
     $scope.$emit('clickOnChart');
@@ -255,9 +286,37 @@ angular.module('flowChart', ['dragging'] )
   $scope.nodeActionClick = function(evt, node, nodeAction) {
     console.log("Node Action '" + nodeAction.name() + "' executed on " + node.name());
     if (nodeAction.name() === "connect") {
-      $scope.hideConnectors = false;
-      $scope.$emit('hideConnectors', {'hideConnectors': $scope.hideConnectors});
+      $scope.startConnectingMode(node);
     }
+  };
+
+  $scope.inConnectingMode = false;
+  $scope.connectingModeOutputConnector = null;
+  $scope.connectingModeSourceNode = null;
+
+  $scope.startConnectingMode = function(node) {
+    $scope.inConnectingMode = true;
+    $scope.hideConnectors = false;
+    // emit up to parent components so that they may enable/disable controls based on
+    // canvas connecting mode status
+    $scope.$emit('inConnectingMode', {'inConnectingMode': $scope.inConnectingMode});
+    $scope.connectingModeSourceNode = node;
+    $scope.connectingModeOutputConnector = node.getOutputConnector();
+    $scope.chart.updateValidNodesAndConnectors($scope.connectingModeSourceNode);
+  };
+
+  $scope.cancelConnectingMode = function() {
+    // if output connector not connected to something, remove it
+    if (!$scope.connectingModeOutputConnector.connected()) {
+      $scope.chart.removeOutputConnector($scope.connectingModeOutputConnector);
+    }
+    $scope.stopConnectingMode();
+  };
+
+  $scope.stopConnectingMode = function() {
+    $scope.inConnectingMode = false;
+    $scope.chart.resetValidNodesAndConnectors();
+    $scope.$emit('inConnectingMode', {'inConnectingMode': $scope.inConnectingMode});
   };
 
   //
@@ -306,9 +365,14 @@ angular.module('flowChart', ['dragging'] )
   // Handle mousedown on an input connector.
   //
   $scope.connectorMouseDown = function(evt, node, connector, connectorIndex, isInputConnector) {
+    if ($scope.inConnectingMode && node !== $scope.connectingModeSourceNode) {
+      $scope.chart.createNewConnection($scope.connectingModeOutputConnector, $scope.mouseOverConnector);
+      $scope.stopConnectingMode();
+    }
+
     //
     // Initiate dragging out of a connection.
-    //
+    /*
     dragging.startDrag(evt, {
 
       //
@@ -360,9 +424,9 @@ angular.module('flowChart', ['dragging'] )
         delete $scope.dragTangent1;
         delete $scope.dragPoint2;
         delete $scope.dragTangent2;
-      },
-
+      }
     });
+    */
   };
 }])
 ;

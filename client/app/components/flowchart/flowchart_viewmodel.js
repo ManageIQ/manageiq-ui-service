@@ -75,12 +75,40 @@ var flowchart = {
     this.y = function() {
       return this._y;
     };
-    var connectorViewModel =
+
     //
     // The parent node that the connector is attached to.
     //
     this.parentNode = function() {
       return this._parentNode;
+    };
+
+    //
+    // Is this connector connected?
+    //
+    this.connected = function() {
+      return this.data.connected;
+    };
+
+    //
+    // Is this connector invalid for a connecton?
+    //
+    this.invalid = function() {
+      return this.data.invalid;
+    };
+
+    //
+    // Font Family for the the node.
+    //
+    this.fontFamily = function() {
+      return this.data.fontFamily || "";
+    };
+
+    //
+    // Font Content for the the node.
+    //
+    this.fontContent = function() {
+      return this.data.fontContent || "";
     };
   };
 
@@ -125,6 +153,13 @@ var flowchart = {
     };
 
     //
+    // id of the node.
+    //
+    this.id = function() {
+      return this.data.id || -1;
+    };
+
+    //
     // Image for the the node.
     //
     this.image = function() {
@@ -164,6 +199,20 @@ var flowchart = {
     //
     this.width = function() {
       return this.data.width;
+    };
+
+    //
+    // Returns valid connection types for the node.
+    //
+    this.validConnectionTypes = function() {
+      return this.data.validConnectionTypes || [];
+    };
+
+    //
+    // Is this node valid for current connection?
+    //
+    this.invalid = function() {
+      return this.data.invalid;
     };
 
     //
@@ -221,6 +270,16 @@ var flowchart = {
 
       // Add to node's view model.
       connectorsViewModel.push(connectorViewModel);
+
+      return connectorViewModel;
+    };
+
+    //
+    // Internal function to remove a connector.
+    this._removeConnector = function(connectorDataModel, connectorsDataModel, connectorsViewModel) {
+      var connectorIndex = connectorsDataModel.indexOf(connectorDataModel);
+      connectorsDataModel.splice(connectorIndex, 1);
+      connectorsViewModel.splice(connectorIndex, 1);
     };
 
     //
@@ -234,13 +293,28 @@ var flowchart = {
     };
 
     //
-    // Add an ouput connector to the node.
+    // Get the single ouput connector for the node.
     //
-    this.addOutputConnector = function(connectorDataModel) {
+    this.getOutputConnector = function() {
       if (!this.data.outputConnectors) {
         this.data.outputConnectors = [];
       }
-      this._addConnector(connectorDataModel, this.data.width, this.data.outputConnectors, this.outputConnectors);
+
+      if (this.data.outputConnectors.length === 0) {
+        var connectorDataModel = {name: 'out'};
+        return this._addConnector(connectorDataModel, this.data.width, this.data.outputConnectors, this.outputConnectors);
+      } else {
+        return this.outputConnectors[0];
+      }
+    };
+
+    //
+    // Remove an ouput connector from the node.
+    //
+    this.removeOutputConnector = function(connectorDataModel) {
+      if (this.data.outputConnectors) {
+        this._removeConnector(connectorDataModel, this.data.outputConnectors, this.outputConnectors);
+      }
     };
   };
 
@@ -328,7 +402,7 @@ var flowchart = {
     this._selected = false;
 
     this.name = function() {
-      return this.data.name || "";
+      return destConnector.name() || "";
     };
 
     this.sourceCoordX = function() {
@@ -558,6 +632,9 @@ var flowchart = {
     // Create a view-model for connections.
     this.connections = this._createConnectionsViewModel(this.data.connections);
 
+    // Are there any valid connections (used in connection mode) ?
+    this.validConnections = true;
+
     //
     // Create a view model for a new connection.
     //
@@ -574,6 +651,7 @@ var flowchart = {
 
       var startNode = startConnector.parentNode();
       var startConnectorIndex = startNode.outputConnectors.indexOf(startConnector);
+      var startConnector = startNode.outputConnectors[startConnectorIndex];
       var startConnectorType = 'output';
       if (startConnectorIndex === -1) {
         startConnectorIndex = startNode.inputConnectors.indexOf(startConnector);
@@ -585,6 +663,7 @@ var flowchart = {
 
       var endNode = endConnector.parentNode();
       var endConnectorIndex = endNode.inputConnectors.indexOf(endConnector);
+      var endConnector = endNode.inputConnectors[endConnectorIndex];
       var endConnectorType = 'input';
       if (endConnectorIndex === -1) {
         endConnectorIndex = endNode.outputConnectors.indexOf(endConnector);
@@ -623,6 +702,9 @@ var flowchart = {
 
       var connectionViewModel = new flowchart.ConnectionViewModel(connectionDataModel, outputConnector, inputConnector);
       connectionsViewModel.push(connectionViewModel);
+
+      startConnector.data.connected = true;
+      endConnector.data.connected = true;
     };
 
     //
@@ -677,6 +759,46 @@ var flowchart = {
         connection.deselect();
       }
     };
+
+    //
+    // Mark nodes & connectors as valid/invalid based on source node's
+    // valid connection types
+    //
+    this.updateValidNodesAndConnectors = function(sourceNode) {
+      this.validConnections = false;
+      var validConnectionTypes = sourceNode.validConnectionTypes();
+      for (var i = 0; i < this.nodes.length; ++i) {
+        var node = this.nodes[i];
+        node.data.invalid = true;
+        for (var c = 0; c < node.inputConnectors.length; c++) {
+          var inputConnector = node.inputConnectors[c];
+          inputConnector.data.invalid = (validConnectionTypes.indexOf(inputConnector.data.type) === -1);
+          if(!inputConnector.data.invalid && node != sourceNode && !inputConnector.data.connected){
+            node.data.invalid = false;
+            this.validConnections = true;
+          }
+        }
+      }
+    }
+
+    //
+    // Mark nodes & connectors as valid
+    //
+    this.resetValidNodesAndConnectors = function() {
+      for (var i = 0; i < this.nodes.length; ++i) {
+        var node = this.nodes[i];
+        node.data.invalid = false;
+        for (var c = 0; c < node.inputConnectors.length; c++) {
+          var inputConnector = node.inputConnectors[c];
+          inputConnector.data.invalid = false;
+        }
+      }
+    }
+
+    this.removeOutputConnector = function(connectorViewModel) {
+      var parentNode = connectorViewModel.parentNode();
+      parentNode.removeOutputConnector(connectorViewModel.data);
+    }
 
     //
     // Update the location of the node and its connectors.
@@ -762,15 +884,34 @@ var flowchart = {
       //
       for (var connectionIndex = 0; connectionIndex < this.connections.length; ++connectionIndex) {
         var connection = this.connections[connectionIndex];
-        if (!connection.selected() &&
-        deletedNodeIds.indexOf(connection.data.source.nodeID) === -1 &&
-        deletedNodeIds.indexOf(connection.data.dest.nodeID) === -1)        {
-          //
-          // The nodes this connection is attached to, where not deleted,
-          // so keep the connection.
-          //
-          newConnectionViewModels.push(connection);
-          newConnectionDataModels.push(connection.data);
+        if (!connection.selected()) {
+          if (deletedNodeIds.indexOf(connection.data.source.nodeID) === -1 &&
+              deletedNodeIds.indexOf(connection.data.dest.nodeID) === -1) {
+            //
+            // The nodes this connection is attached to, where not deleted,
+            // so keep the connection.
+            //
+            newConnectionViewModels.push(connection);
+            newConnectionDataModels.push(connection.data);
+          }
+        } else {
+          // connection selected, so it will be deleted (ie. not included in the 'newConnection models)
+          // also delete the connection's source node's output connector (if source node hasn't been deleteed
+          if (deletedNodeIds.indexOf(connection.data.source.nodeID) === -1) {
+            var sourceConnectorViewModel = connection.source;
+            if (sourceConnectorViewModel) {
+              sourceConnectorViewModel._parentNode.removeOutputConnector(sourceConnectorViewModel.data);
+              // also set connected to false on the dest node
+              var destConnectorViewModel = connection.dest;
+              if (destConnectorViewModel) {
+                destConnectorViewModel.data.connected = false;
+              } else {
+                throw new Error("Failed to find dest node of deleted connection!");
+              }
+            } else {
+              throw new Error("Failed to find source node of deleted connection!");
+            }
+          }
         }
       }
 
