@@ -202,6 +202,20 @@ var flowchart = {
     };
 
     //
+    // Font Family for the the node.
+    //
+    this.fontFamily = function() {
+      return this.data.fontFamily || "";
+    };
+
+    //
+    // Font Content for the the node.
+    //
+    this.fontContent = function() {
+      return this.data.fontContent || "";
+    };
+
+    //
     // Returns valid connection types for the node.
     //
     this.validConnectionTypes = function() {

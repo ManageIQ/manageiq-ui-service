@@ -80,7 +80,7 @@
       {{node.name()}}
     </text>
 
-    <!-- Node Icon/Image -->
+    <!-- Node Image -->
     <image ng-if="node.image()"
            ng-class="{'invalid-node-img': node.invalid()}"
            xlink:href="{{node.image() | trustAsResourceUrl}}"
@@ -89,20 +89,22 @@
            height="80px"
            width="80px"/>
 
+    <!-- Node Icon -->
+    <text ng-if="node.fontFamily() && !node.image()"
+          class="node-center-icon"
+          ng-class="{'invalid-node-header': node.invalid()}"
+          font-family="{{node.fontFamily()}}"
+          ng-attr-x="{{(node.width()/2) - 40 + ((node.bundle()) ? 11 : 0) }}"
+          ng-attr-y="{{90}}">
+      {{node.fontContent()}}
+    </text>
+
+    <!-- Sm. Top Left Bundle Icon -->
     <g><text ng-if="node.bundle()"
              x="6"
              y="22"
              font-family="FontAwesome"
              font-size="20">
-         {{'\uf06b'}}
-       </text>
-    </g>
-
-    <g><text ng-if="node.bundle() && !node.image()"
-             x="44"
-             y="88"
-             font-family="FontAwesome"
-             font-size="76">
          {{'\uf06b'}}
        </text>
     </g>

@@ -22,7 +22,11 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
     $scope.dropCallback = function(event, ui) {
       var newNode = angular.copy($scope.draggedItem);
       newNode.id = nextNodeID++;
-      newNode.name = newNode.title;
+      if (newNode.type && newNode.type === 'generic') {
+        newNode.name = 'New ' + newNode.title;
+      } else {
+        newNode.name = newNode.title;
+      }
       newNode.backgroundColor = '#fff';
       newNode.x = event.clientX - 350;
       newNode.y = event.clientY - 200;
@@ -32,7 +36,11 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
     $scope.addNodeByClick = function(item) {
       var newNode = angular.copy(item);
       newNode.id = nextNodeID++;
-      newNode.name = newNode.title;
+      if (newNode.type && newNode.type === 'generic') {
+        newNode.name = 'New ' + newNode.title;
+      } else {
+        newNode.name = newNode.title;
+      }
       newNode.backgroundColor = '#fff';
       newNode.x = 250 + (nextNodeID * 4 + 160);
       newNode.y = 200 + (nextNodeID * 4 + 160);

@@ -90,12 +90,16 @@
               </tabset>
 
               <div class="toolbox-footer">
+                  <!-- Create New Item -->
                   <div class="new-catalog-item"
-                       data-drag="true" jqyoui-draggable="{onStart:'startCallback(newItem)'}"
+                       data-drag="true" jqyoui-draggable="{onStart:'startCallback( getNewItem() )'}"
                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
-                       ng-click="addNodeByClick(newItem)">
-                      <span class="pficon pficon-add-circle-o" style="color: #00a8e1"></span> {{'Add New Catalog Item...'|translate}}
+                       ng-click="addNodeByClick( getNewItem() )">
+                      <span class="pficon pficon-add-circle-o"></span>
+                      <span class="new-catalog-item-label">{{'Create ' + getNewItem().title | translate}}</span>
+                      <span ng-if="getNewItem().icon" class="{{getNewItem().icon}} new-catalog-item-icon"></span>
                   </div>
+                  <!-- Filter -->
                   <input ng-model="searchText" id="filterFld" class="search-text"
                          placeholder="{{'Filter by name'|translate}}">
                   <a ng-click="searchText = ''"><span class="pficon pficon-close clear-search-text"></span></a>

@@ -186,9 +186,8 @@ angular.module('app.states')
       $scope.tabs = [
             { preTitle: 'Compute', title: 'Cloud', subtabs: [
                 {title: 'Amazon Web Services', items: [
-                    {title: 'AWS', image: 'assets/images/blueprint-designer/AWS-Logo.svg'}
-                  ]
-                },
+                  {title: 'AWS', image: 'assets/images/blueprint-designer/AWS-Logo.svg'}
+                ]},
                 {title: 'Azure', items: [
                   {title: 'Azure', image: 'assets/images/blueprint-designer/Azure-Logo.svg'}
                 ]},
@@ -197,7 +196,14 @@ angular.module('app.states')
                 ]},
                 {title: 'OpenStack', items: [
                   {title: 'OpenStack', image: 'assets/images/blueprint-designer/Openstack-Logo.svg'}
-                ]}
+                ]},
+                {title: 'Generic',
+                 items: [],
+                 newItem: {title: 'Instance',
+                           type: 'generic',
+                           icon: "pficon-virtual-machine",
+                           fontFamily: "PatternFlyIcons-webfont",
+                           fontContent: "\ue90f"}}
             ]
             },
             { preTitle: 'Compute', title: 'Containers', subtabs: [
@@ -220,7 +226,14 @@ angular.module('app.states')
                 {title: 'SCVMM'},
                 {title: 'VMware', items: [
                   {title: 'Vmware', image: 'assets/images/blueprint-designer/Vmware-Logo.svg'}
-                ]}
+                ]},
+                {title: 'Generic',
+                 items: [],
+                 newItem: {title: 'VM',
+                           type: 'generic',
+                           icon: "pficon-virtual-machine",
+                           fontFamily: "PatternFlyIcons-webfont",
+                           fontContent: "\ue90f"}}
               ]
             },
             { preTitle: 'Configuration', title: 'Management', subtabs:
@@ -261,7 +274,14 @@ angular.module('app.states')
                 ]},
                 {title: 'Nuage', items: [
                   {title: 'Nuage', image: 'assets/images/blueprint-designer/Nuage-Logo.svg'}
-                ]}
+                ]},
+                {title: 'Generic',
+                 items: [],
+                 newItem: {title: 'Load Balancer',
+                           type: 'generic',
+                           icon: "pficon-network",
+                           fontFamily: "PatternFlyIcons-webfont",
+                           fontContent: "\ue909"}}
               ]
             },
             { title: 'Orchestration', subtabs:
@@ -276,17 +296,17 @@ angular.module('app.states')
                 ]
             },
             { title: 'Bundles', active: true, items: [
-                {title: 'Bundle 1', bundle: true},
-                {title: 'Bundle 2', bundle: true},
-                {title: 'Bundle 3', bundle: true},
-                {title: 'Bundle 4', bundle: true},
-                {title: 'Bundle 5', bundle: true}
-              ]
+                {title: 'Bundle 1', bundle: true, fontFamily: "FontAwesome", fontContent: "\uf06b"},
+                {title: 'Bundle 2', bundle: true, fontFamily: "FontAwesome", fontContent: "\uf06b"},
+                {title: 'Bundle 3', bundle: true, fontFamily: "FontAwesome", fontContent: "\uf06b"},
+                {title: 'Bundle 4', bundle: true, fontFamily: "FontAwesome", fontContent: "\uf06b"},
+                {title: 'Bundle 5', bundle: true, fontFamily: "FontAwesome", fontContent: "\uf06b"}
+              ],
+              newItem: {title: 'Bundle', type: 'generic', bundle: true, fontFamily: "FontAwesome", fontContent: "\uf06b"}
             }
         ];
 
       retrieveDesignerTabs();
-      $scope.newItem = {title: 'New Item', image: 'assets/images/blueprint-designer/catalogItem.png'};
 
       function retrieveDesignerTabs() {
         var attributes = ['picture', 'picture.image_href', 'service_type', 'prov_type', 'service_template_catalog.name'];
@@ -384,4 +404,34 @@ angular.module('app.states')
 
         return null;
       }
+
+      $scope.getNewItem = function() {
+        var activeTab = $scope.activeTab();
+        var activeSubTab = $scope.activeSubTab();
+
+        if (activeTab && !activeSubTab && activeTab.newItem) {
+          return activeTab.newItem;
+        }
+
+        if (activeTab && activeSubTab && activeSubTab.newItem) {
+          return activeSubTab.newItem;
+        }
+
+        return {title: 'Item', image: 'assets/images/blueprint-designer/catalogItem.png'};
+      };
+
+      $scope.activeTab = function() {
+        return $scope.tabs.filter(function(tab) {
+          return tab.active;
+        })[0];
+      };
+
+      $scope.activeSubTab = function() {
+        var activeTab = $scope.activeTab();
+        if (activeTab && activeTab.subtabs) {
+          return activeTab.subtabs.filter(function(subtab) {
+            return subtab.active;
+          })[0];
+        }
+      };
     }]);
