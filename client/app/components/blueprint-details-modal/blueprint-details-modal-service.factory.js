@@ -41,7 +41,7 @@
 
       function resolveServiceCatalogs(CollectionsApi) {
         var options = {
-          mock: true,
+          mock: false,
           expand: 'resources',
           sort_by: 'name',
           sort_options: 'ignore_case'};
@@ -51,9 +51,9 @@
 
       function resolveServiceDialogs(CollectionsApi) {
         var options = {
-          mock: true,
+          mock: false,
           expand: 'resources',
-          attributes: ['id', 'description'],
+          attributes: ['id', 'description', 'label'],
           sort_by: 'description',
           sort_options: 'ignore_case'};
 
@@ -62,7 +62,7 @@
 
       function resolveTenants(CollectionsApi) {
         var options = {
-          mock: true,
+          mock: false,
           expand: 'resources',
           attributes: ['id', 'name'],
           sort_by: 'name',
@@ -81,8 +81,8 @@
     var vm = this;
     vm.blueprint = blueprint;
 
-    if (!vm.blueprint.chartDataModel || !vm.blueprint.chartDataModel.nodes) {
-      vm.blueprint.chartDataModel.nodes = [];
+    if (!vm.blueprint.ui_properties.chartDataModel || !vm.blueprint.ui_properties.chartDataModel.nodes) {
+      vm.blueprint.ui_properties.chartDataModel = {'nodes': []};
     }
 
     if (action === 'create') {
@@ -96,7 +96,8 @@
       vm.modalBtnPrimaryLabel  = __('Save');
     }
 
-    vm.serviceCatalogs = serviceCatalogs.resources.concat(BlueprintsState.getNewCatalogs());
+    // vm.serviceCatalogs = serviceCatalogs.resources.concat(BlueprintsState.getNewCatalogs());
+    vm.serviceCatalogs = serviceCatalogs.resources;
 
     vm.serviceDialogs = serviceDialogs.resources;
 
@@ -128,8 +129,10 @@
       'resource': {
         'name': vm.blueprint.name || __('Untitled Blueprint ') + BlueprintsState.getNextUniqueId(),
         'visibility': vm.blueprint.visibility,
-        'catalog': vm.blueprint.catalog,
-        'dialog': vm.blueprint.dialog,
+        'catalog_id': ((vm.blueprint.bundle && vm.blueprint.bundle.service_template_catalog_id)
+                        ? vm.blueprint.bundle.service_template_catalog_id : null ),
+        'dialog_id': ((vm.blueprint.bundle && vm.blueprint.bundle.service_template_dialog_id)
+                        ? vm.blueprint.bundle.service_template_dialog_id : null ),
         'provEP':  vm.blueprint.provEP || "path/to/default/prov/entry/point",
         'reConfigEP': vm.blueprint.reConfigEP,
         'retireEP': vm.blueprint.retireEP
@@ -139,7 +142,7 @@
     vm.provOrderChanged = false;
     vm.actionOrderChanged = false;
     vm.actionOrderEqualsProvOrder = true;
-    setOrderLists(vm.blueprint.chartDataModel.nodes);
+    setOrderLists(vm.blueprint.ui_properties.chartDataModel.nodes);
 
     if (!vm.modalData.resource.visibility) {
       vm.modalData.resource.visibility = vm.visibilityOptions[0];
@@ -149,12 +152,12 @@
           ];
     }
 
-    if (vm.modalData.resource.catalog) {
-      vm.modalData.resource.catalog = vm.serviceCatalogs[ findWithAttr(vm.serviceCatalogs, 'id', vm.modalData.resource.catalog.id) ];
+    if (vm.modalData.resource.catalog_id) {
+      vm.modalData.resource.catalog = vm.serviceCatalogs[ findWithAttr(vm.serviceCatalogs, 'id', vm.modalData.resource.catalog_id) ];
     }
 
-    if (vm.modalData.resource.dialog) {
-      vm.modalData.resource.dialog = vm.serviceDialogs[ findWithAttr(vm.serviceDialogs, 'id', vm.modalData.resource.dialog.id) ];
+    if (vm.modalData.resource.dialog_id) {
+      vm.modalData.resource.dialog = vm.serviceDialogs[ findWithAttr(vm.serviceDialogs, 'id', vm.modalData.resource.dialog_id) ];
     }
 
     activate();
@@ -227,7 +230,7 @@
     }
 
     function disableOrderListTabs() {
-      return vm.blueprint.chartDataModel.nodes.length <= 1;
+      return vm.blueprint.ui_properties.chartDataModel.nodes.length <= 1;
     }
 
     function cancelBlueprintDetails() {
@@ -357,13 +360,13 @@
     }
 
     function saveBlueprintDetails() {   // jshint ignore:line
-      // Save any new catalogs
+      /* Save any new catalogs
       for (var i = 0; i < vm.serviceCatalogs.length; i += 1) {
         if (vm.serviceCatalogs[i].new) {
           vm.serviceCatalogs[i].new = null;
           BlueprintsState.addNewCatalog(vm.serviceCatalogs[i]);
         }
-      }
+      } */
 
       vm.blueprint.name = vm.modalData.resource.name;
 
@@ -371,14 +374,22 @@
         vm.blueprint.visibility = vm.modalData.resource.visibility;
       }
 
-      if (!vm.blueprint.catalog || !vm.modalData.resource.catalog ||
-          (vm.blueprint.catalog.id.toString() !== vm.modalData.resource.catalog.id.toString())) {
-        vm.blueprint.catalog = vm.modalData.resource.catalog;
+      if (vm.modalData.resource.catalog) {
+        vm.blueprint.bundle.service_template_catalog_id = vm.modalData.resource.catalog.id;
+        // Hack until catalog_name is returned with blueprint(s)
+        vm.blueprint.ui_properties.catalog_name = vm.modalData.resource.catalog.name;
+      } else {
+        vm.blueprint.bundle.service_template_catalog_id = null;
+        vm.blueprint.ui_properties.catalog_name = null;
       }
 
-      if (!vm.blueprint.dialog || !vm.modalData.resource.dialog ||
-          (vm.blueprint.dialog.id.toString() !== vm.modalData.resource.dialog.id.toString())) {
-        vm.blueprint.dialog = vm.modalData.resource.dialog;
+      if (vm.modalData.resource.dialog) {
+        vm.blueprint.bundle.service_template_dialog_id = vm.modalData.resource.dialog.id;
+        // Hack until dialog_id is returned in a bundle
+        vm.blueprint.ui_properties.dialog_label = vm.modalData.resource.dialog.label;
+      } else {
+        vm.blueprint.bundle.service_template_dialog_id = null;
+        vm.blueprint.ui_properties.dialog_label = null;
       }
 
       vm.blueprint.provEP = vm.modalData.resource.provEP;
@@ -396,8 +407,6 @@
       if (action === 'publish') {
         vm.blueprint.published = new Date();
         MarketplaceState.publishBlueprint(vm.blueprint);
-      } else if (action === 'create') {
-        vm.blueprint.chartDataModel = {};
       }
 
       saveSuccess();
@@ -424,8 +433,8 @@
       }
 
       function updateOrder(orderType, item, orderNum) {
-        for (var i = 0; i < vm.blueprint.chartDataModel.nodes.length; i++) {
-          var node = vm.blueprint.chartDataModel.nodes[i];
+        for (var i = 0; i < vm.blueprint.ui_properties.chartDataModel.nodes.length; i++) {
+          var node = vm.blueprint.ui_properties.chartDataModel.nodes[i];
           if (node.id === item.id && node.name === item.name) {
             if (orderType === 'provisionOrder') {
               node.provision_order = orderNum;

@@ -53,7 +53,7 @@
 
                       <div class="col-sm-6">
                           <select name="dialog" id="dialog" class="base-info-select form-control"
-                                  ng-options="item as item.description for item in vm.serviceDialogs"
+                                  ng-options="item as item.label for item in vm.serviceDialogs"
                                   ng-model="vm.modalData.resource.dialog"
                                   ng-required="vm.isDialogRequired()">
                               <option value="" translate>Select Dialog</option>
@@ -161,7 +161,8 @@
     <button type="button"
             class="btn btn-primary"
             ng-click="vm.saveBlueprintDetails()"
-            ng-disabled="!vm.modalData.resource.name || !vm.modalData.resource.catalog || !vm.modalData.resource.dialog || !vm.modalData.resource.provEP">
+            ng-disabled="!vm.modalData.resource.name || (vm.isCatalogRequired() && !vm.modalData.resource.catalog) ||
+                         (vm.isDialogRequired() && !vm.modalData.resource.dialog) || !vm.modalData.resource.provEP">
         {{vm.modalBtnPrimaryLabel}}
     </button>
 </div>

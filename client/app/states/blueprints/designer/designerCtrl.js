@@ -3,77 +3,42 @@ angular.module('app.states')
                 '$state', 'CollectionsApi', 'Notifications',
     function($scope, $timeout, BlueprintsState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope, $state, CollectionsApi, // jshint ignore:line
              Notifications) {
-      // dev level debug output
-      var debug = false;
 
       $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         if (toState.name === 'login') {
           return;
         }
-
         if (fromState.name === "blueprints.designer" && toState.name !== "blueprints.designer") {
-          if (debug) {
-            console.log("Changing from blueprints design state");
-            console.log("    !defaultPrevented = : " + !event.defaultPrevented);
-            console.log("    !fromState.okToNavAway = " + !fromState.okToNavAway);
-          }
-          var origBlueprint = angular.copy(BlueprintsState.getBlueprintById(blueprintId));
-          if (debug) {
-            console.log("    !angular.equals(origBlueprint, $scope.blueprint: " + !angular.equals(origBlueprint, $scope.blueprint));
-            console.log("        Orig            : " + angular.toJson(origBlueprint, true));
-            console.log("        $scope.blueprint: " + angular.toJson($scope.blueprint, true));
-          }
-          if (!angular.equals(origBlueprint, $scope.blueprint) && !event.defaultPrevented && !fromState.okToNavAway) {
-            if (debug) {
-              console.log("  ---> Somethings changed, stopping progression to handle it");
-            }
+          var origBlueprint = BlueprintsState.getOriginalBlueprint();
+          if (!BlueprintsState.doNotSave() && !angular.equals(origBlueprint, $scope.blueprint) && !event.defaultPrevented) {
             SaveBlueprintModal.showModal($scope.blueprint, toState, toParams, fromState, fromParams);
             event.preventDefault();
           }
         }
       });
 
-      $scope.blueprint = {};
-      $scope.chartViewModel = {};
+      $scope.blueprint = $scope.$parent.vm.blueprint;
 
       var blueprintDirty = false;
 
-      var blueprintId = $scope.$parent.vm.blueprintId;
-      if (blueprintId) {
-        $scope.blueprint = angular.copy(BlueprintsState.getBlueprintById(blueprintId));
-        if (!$scope.blueprint) {
-          console.log("Error getting blueprint " + blueprintId);
-        }
+      if ($scope.blueprint) {
+        BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
       } else {
         $scope.blueprint = angular.copy(newBlueprint());
-        blueprintId = $scope.blueprint.id;
       }
 
-      $scope.$watch("blueprint", function(oldValue, newValue) {
-        if (debug) {
-          console.log("blueprint change event captured");
-        }
+      // console.log("RETRIEVED Blueprint: " + angular.toJson($scope.blueprint, true));
 
+      $scope.$watch("blueprint", function(oldValue, newValue) {
         if (!angular.equals(oldValue, newValue, true)) {
           blueprintDirty = true;
-          $state.current.okToNavAway = false;
-          if (debug) {
-            console.log("blueprint is dirty");
-          }
-        } else {
-          if (debug) {
-            console.log("blueprint is NOT dirty");
-          }
         }
       }, true);
 
       $scope.$on('BlueprintCanvasChanged', function(evt, args) {
-        if (args.chartDataModel && !angular.equals($scope.blueprint.chartDataModel, args.chartDataMode)) {
-          $scope.blueprint.chartDataModel = args.chartDataModel;
+        if (args.chartDataModel && !angular.equals($scope.blueprint.ui_properties.chartDataModel, args.chartDataMode)) {
+          $scope.blueprint.ui_properties.chartDataModel = args.chartDataModel;
           blueprintDirty = true;
-          if (debug) {
-            console.log("blueprint.chartDataModel updated");
-          }
         }
       });
 
@@ -84,25 +49,28 @@ angular.module('app.states')
       function newBlueprint() {
         var blueprint = BlueprintsState.getNewBlueprintObj();
         blueprintDirty = true;
-        $state.current.okToNavAway = false;
 
         return blueprint;
       }
 
       $scope.saveBlueprint = function() {
-        BlueprintsState.saveBlueprint($scope.blueprint);
+        BlueprintsState.saveBlueprint($scope.blueprint).then(saveSuccess, saveFailure);
 
-        // get another copy to work, different obj from what was saved
-        $scope.blueprint = angular.copy($scope.blueprint);
-
-        $timeout(function() {
-          blueprintDirty = false;
-          $state.current.okToNavAway = false;
-          $( "#saveBtm" ).blur();
-          if (debug) {
-            console.log("saving blueprint - $state.current: " + angular.toJson($state.current, true));
+        function saveSuccess(newBlueprintId) {
+          if (newBlueprintId) {
+            $state.go($state.current, {blueprintId: newBlueprintId}, {reload: true});
+            return;
           }
-        });
+
+          // get another copy to work, different obj from what was saved
+          BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
+          blueprintDirty = false;
+          $( "#saveBtm" ).blur();
+        }
+
+        function saveFailure() {
+          console.log("Failed to save blueprint.");
+        }
       };
 
       $scope.editDetails = function() {
@@ -302,100 +270,113 @@ angular.module('app.states')
       retrieveDesignerTabs();
 
       function retrieveDesignerTabs() {
-        var attributes = ['picture', 'picture.image_href', 'service_type', 'prov_type', 'service_template_catalog.name'];
+        var attributes = ['name', 'picture', 'picture.image_href', 'service_type', 'prov_type', 'service_template_catalog.name', 'generic_subtype'];
         var options = {
           expand: 'resources',
           filter: ['service_template_catalog_id>0', 'display=true'],
           attributes: attributes};
 
         var srvTemplates = CollectionsApi.query('service_templates', options);
-
-        srvTemplates.then(function(data) {
-          srvTemplates = data.resources;
-          var bundles = getBundles(srvTemplates);
-          if (bundles.length > 0) {
-            var origBundleItems = $scope.tabs[$scope.tabs.length - 1].items;
-            $scope.tabs[$scope.tabs.length - 1].items = bundles.concat(origBundleItems);
-          }
-
-          matchAtomicServiceItemsToSubTabs(srvTemplates);
-        });
+        srvTemplates.then(matchServiceTemplatesToTabs);
       }
 
-      function getBundles(srvTemplates) {
+      function matchServiceTemplatesToTabs(data) {
+        var srvTemplates = data.resources;
         var bundles = [];
         for (var i = 0; i<srvTemplates.length; i++) {
           if (srvTemplates[i].service_type === 'composite') {
-            var newBundle = {title: srvTemplates[i].service_template_catalog.name, bundle: true};
-            if (srvTemplates[i].picture && srvTemplates[i].picture.image_href) {
-              newBundle.image = srvTemplates[i].picture.image_href;
-            }
+            var newBundle = getBundle(srvTemplates[i]);
             bundles.push(newBundle);
+          } else {
+            matchAtomicServiceItemToTabs(srvTemplates[i]);
           }
         }
 
-        return bundles;
+        if (bundles.length > 0) {
+          var origBundleItems = $scope.tabs[$scope.tabs.length - 1].items;
+          $scope.tabs[$scope.tabs.length - 1].items = bundles.concat(origBundleItems);
+        }
       }
 
-      function matchAtomicServiceItemsToSubTabs(srvTemplates) {
+      function getBundle(srvTemplate) {
+        var newBundle = {title: srvTemplate.name,
+                         id: srvTemplate.id,
+                         bundle: true,
+                         fontFamily: "FontAwesome",
+                         fontContent: "\uf06b"};
+
+        if (srvTemplate.picture && srvTemplate.picture.image_href) {
+          newBundle.image = srvTemplate.picture.image_href;
+        }
+
+        return newBundle;
+      }
+
+      function matchAtomicServiceItemToTabs(srvTemplate) {
         var subTab;
         var newItem;
-        for (var i = 0; i<srvTemplates.length; i++) {
-          if (srvTemplates[i].service_type === 'atomic') {
-            if (srvTemplates[i].prov_type === 'openstack') {
-              subTab = findSubTabByProvType(srvTemplates[i].prov_type);
-              if (subTab) {
-                addToSubTab(subTab, srvTemplates[i]);
-              }
-            } else if (srvTemplates[i].prov_type === 'generic') {
-              subTab = findSubTabByCatalogName(srvTemplates[i].service_template_catalog.name);
-              if (subTab) {
-                addToSubTab(subTab, srvTemplates[i]);
-              }
-            }
+        if (srvTemplate.service_type === 'atomic') {
+          if (srvTemplate.prov_type !== 'generic') {
+            subTab = findSubTabByProvType(srvTemplate.prov_type);
+          } else {
+            subTab = findSubTabByGenericSubType(srvTemplate.generic_subtype);
+          }
+          if (subTab) {
+            addToSubTab(subTab, srvTemplate);
           }
         }
       }
 
-      function addToSubTab(subTab, srvTemplate) {
-        var newItem = {title: srvTemplate.service_template_catalog.name};
-        if (srvTemplate.picture && srvTemplate.picture.image_href) {
-          newItem.image = srvTemplate.picture.image_href;
-        } else {
-          newItem.image = "images/service.png";
-        }
-        subTab.items.push(newItem);
-      }
-
-      function findSubTabByProvType(title) {
-        for (var i = 0; i<$scope.tabs.length; i++) {
-          for (var s = 0; s<$scope.tabs[i].subtabs.length; s++) {
-            if ($scope.tabs[i].subtabs[s].title.toLowerCase() === title.toLowerCase() ) {
-              return $scope.tabs[i].subtabs[s];
-            }
-          }
-        }
-
-        return null;
-      }
-
-      function findSubTabByCatalogName(catalogName) {
-        var firstWordOfCat = catalogName.split(" ")[0];
+      function findSubTabByProvType(provType) {
         for (var i = 0; i<$scope.tabs.length; i++) {
           if ($scope.tabs[i].subtabs) {
             for (var s = 0; s < $scope.tabs[i].subtabs.length; s++) {
-              var firstWordOfTab = $scope.tabs[i].subtabs[s].title;
-              firstWordOfTab = firstWordOfTab.split(" ")[0];
-              if (firstWordOfTab.toLowerCase() === firstWordOfCat.toLowerCase()) {
+              if ($scope.tabs[i].subtabs[s].title.toLowerCase() === provType.toLowerCase()) {
                 return $scope.tabs[i].subtabs[s];
               }
             }
           }
         }
 
-        console.log("Couldn't Find Sub-Tab for service_template: " + catalogName);
+        console.log("Couldn't Find Sub-Tab for prov_type: " + provType);
 
         return null;
+      }
+
+      function findSubTabByGenericSubType(genericSubType) {
+        for (var i = 0; i<$scope.tabs.length; i++) {
+          if ($scope.tabs[i].subtabs) {
+            for (var s = 0; s < $scope.tabs[i].subtabs.length; s++) {
+              if ($scope.tabs[i].title.toLowerCase() === 'network' &&
+                  $scope.tabs[i].subtabs[s].title.toLowerCase() === 'generic' &&
+                  genericSubType === 'load_balancer') {
+                return $scope.tabs[i].subtabs[s];
+              }
+
+              if ($scope.tabs[i].preTitle &&
+                  $scope.tabs[i].preTitle.toLowerCase() === 'compute' &&
+                  $scope.tabs[i].title.toLowerCase() === 'infrastructure' &&
+                  $scope.tabs[i].subtabs[s].title.toLowerCase() === 'generic' &&
+                  genericSubType === 'vm') {
+                return $scope.tabs[i].subtabs[s];
+              }
+            }
+          }
+        }
+
+        console.log("Couldn't Find Sub-Tab for generic subtype: " + genericSubType);
+
+        return null;
+      }
+
+      function addToSubTab(subTab, srvTemplate) {
+        var newItem = {title: srvTemplate.name, id: srvTemplate.id};
+        if (srvTemplate.picture && srvTemplate.picture.image_href) {
+          newItem.image = srvTemplate.picture.image_href;
+        } else {
+          newItem.image = "images/service.png";
+        }
+        subTab.items.push(newItem);
       }
 
       $scope.getNewItem = function() {
@@ -410,7 +391,7 @@ angular.module('app.states')
           return activeSubTab.newItem;
         }
 
-        return {title: 'Item', image: 'assets/images/blueprint-designer/catalogItem.png'};
+        return {title: 'Item', image: 'images/service.png'};
       };
 
       $scope.activeTab = function() {

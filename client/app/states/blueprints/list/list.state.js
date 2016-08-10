@@ -19,7 +19,8 @@
         title: N_('Blueprint List'),
         resolve: {
           blueprints: resolveBlueprints,
-          serviceCatalogs: resolveServiceCatalogs
+          serviceCatalogs: resolveServiceCatalogs,
+          tenants: resolveTenants
         }
       }
     };
@@ -28,8 +29,9 @@
   /** @ngInject */
   function resolveBlueprints(CollectionsApi) {
     var options = {
-      mock: true,
-      expand: 'resources'
+      mock: false,
+      expand: 'resources',
+      attributes: 'bundle'
     };
 
     return CollectionsApi.query('blueprints', options);
@@ -44,9 +46,21 @@
     return CollectionsApi.query('service_catalogs', options);
   }
 
+  function resolveTenants(CollectionsApi) {
+    var options = {
+      mock: false,
+      expand: 'resources',
+      attributes: ['id', 'name'],
+      sort_by: 'name',
+      sort_options: 'ignore_case'
+    };
+
+    return CollectionsApi.query('tenants', options);
+  }
+
   /** @ngInject */
-  function StateController($state, blueprints, BlueprintsState, serviceCatalogs, BlueprintDetailsModal, BlueprintDeleteModal, Notifications,
-                           $rootScope, Language) {
+  function StateController($state, blueprints, BlueprintsState, serviceCatalogs, tenants, BlueprintDetailsModal, BlueprintDeleteModal,
+                           Notifications, $rootScope, Language) {
     /* jshint validthis: true */
     var vm = this;
     var categoryNames = [];
@@ -55,16 +69,19 @@
 
     vm.title = __('Blueprint List');
 
-    // For mock RESTFul api operations
+    /* For mock RESTFul api operations
     if (!BlueprintsState.getBlueprints()) {
       BlueprintsState.setBlueprints(blueprints.resources);
     }
+    vm.blueprints = BlueprintsState.getBlueprints(); */
 
-    vm.blueprints = BlueprintsState.getBlueprints();
+    vm.blueprints = blueprints.resources;
     vm.serviceCatalogs = serviceCatalogs.resources;
+    vm.tenants = tenants.resources;
 
-    angular.forEach(vm.blueprints, addMockFilters);
+    // angular.forEach(vm.blueprints, addMockFilters);
     angular.forEach(vm.serviceCatalogs, addCategoryFilter);
+    angular.forEach(vm.tenants, addVisibilityFilter);
 
     function addMockFilters(blueprint) {
       if (!blueprint.catalog) {
@@ -82,6 +99,10 @@
 
     function addCategoryFilter(item) {
       categoryNames.push(item.name);
+    }
+
+    function addVisibilityFilter(item) {
+      visibilityNames.push(item.name);
     }
 
     /* This notification 'splice' code doesn't work.  Splice needs a third argument, the items to splice in
@@ -110,7 +131,7 @@
 
     vm.enableButtonForItemFn = function(action, item) {
       if (action.name === __('Publish')) {
-        if (item.num_nodes > 0 && !item.published) {
+        if (item.ui_properties.num_items > 0 && !item.published) {
           return true;
         } else {
           return false;
@@ -184,7 +205,7 @@
             sortType: 'numeric'
           },
           {
-            id: 'num_nodes',
+            id: 'num_items',
             title: __('Items'),
             sortType: 'numeric'
           },
@@ -234,7 +255,7 @@
     }
 
     function publishBlueprint(action, item) {
-      if (item.num_nodes === 0) {
+      if (item.ui_properties.num_items === 0) {
         Notifications.error(__('Cannot publish a blueprint with no service items.'), false, false);
 
         // Make sure all notifications disappear after delay
@@ -288,18 +309,18 @@
       if (vm.toolbarConfig.sortConfig.currentField.id === 'name') {
         compValue = item1.name.localeCompare(item2.name);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'last_modified') {
-        compValue = new Date(item1.last_modified) - new Date(item2.last_modified);
-      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'num_nodes') {
-        compValue = item1.num_nodes - item2.num_nodes;
+        compValue = new Date(item1.updated_at) - new Date(item2.updated_at);
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'num_items') {
+        compValue = item1.ui_properties.num_items - item2.ui_properties.num_items;
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'visibility') {
         compValue = item1.visibility.name.localeCompare(item2.visibility.name);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'catalog') {
-        if (!item1.catalog) {
+        if (!item1.ui_properties.catalog_name) {
           compValue = -1;
-        } else if (!item2.catalog) {
+        } else if (!item2.ui_properties.catalog_name) {
           compValue = 1;
         } else {
-          compValue = item1.catalog.name.localeCompare(item2.catalog.name);
+          compValue = item1.ui_properties.catalog_name.localeCompare(item2.ui_properties.catalog_name);
         }
       }
 
@@ -357,12 +378,12 @@
       } else if (filter.id === 'visibility') {
         return item.visibility.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'catalog') {
-        if (filter.value.toLowerCase() === "unassigned" && !item.catalog) {
+        if (filter.value.toLowerCase() === "unassigned" && !item.ui_properties.catalog_name) {
           return true;
-        } else if (!item.catalog) {
+        } else if (!item.ui_properties.catalog_name) {
           return false;
         } else {
-          return item.catalog.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+          return item.ui_properties.catalog_name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
         }
       } else if (filter.id === 'publishState') {
         if ( (filter.value.toLowerCase() === "published" && item.published) ||

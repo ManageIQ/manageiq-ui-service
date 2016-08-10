@@ -17,15 +17,29 @@
         controller: StateController,
         controllerAs: 'vm',
         title: 'Blueprint Designer',
-        'okToNavAway': false
+        resolve: {
+          blueprint: resolveBlueprint,
+        }
       }
     };
   }
+  /** @ngInject */
+  function resolveBlueprint($stateParams, CollectionsApi) {
+    var options = {attributes: ['bundle']};
+
+    if ($stateParams.blueprintId) {
+      return CollectionsApi.get('blueprints', $stateParams.blueprintId, options);
+    } else {
+      return null;
+    }
+  }
 
   /** @ngInject */
-  function StateController($state, $stateParams) {
+  function StateController($state, $stateParams, blueprint) {
     var vm = this;
     vm.title = 'Blueprint Designer';
-    vm.blueprintId = $stateParams.blueprintId;
+    if (blueprint) {
+      vm.blueprint = blueprint;
+    }
   }
 })();

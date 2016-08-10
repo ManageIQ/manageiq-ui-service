@@ -1,8 +1,8 @@
 angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
   function($scope, $filter) {
     var chartDataModel = {};
-    if ($scope.$parent.blueprint.chartDataModel) {
-      chartDataModel = $scope.$parent.blueprint.chartDataModel;
+    if ($scope.$parent.blueprint.ui_properties && $scope.$parent.blueprint.ui_properties.chartDataModel) {
+      chartDataModel = $scope.$parent.blueprint.ui_properties.chartDataModel;
     }
 
     // Create the view-model for the chart and attach to the scope.

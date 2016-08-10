@@ -19,13 +19,13 @@
       </div>
       <div class="col-md-3">
         <span class="no-wrap">
-          <strong translate>Last Modified</strong>&nbsp;{{ item.last_modified | date:'yyyy-MM-dd hh:mm a' }}
+          <strong translate>Last Modified</strong>&nbsp;{{ item.updated_at | date:'yyyy-MM-dd hh:mm a' }}
         </span>
       </div>
 
       <div class="col-md-1">
         <span class="no-wrap">
-          {{ item.num_nodes }}&nbsp;<span translate>Items</span>
+          {{ item.ui_properties.num_items }} <span translate>Items</span>
         </span>
       </div>
 
@@ -33,13 +33,13 @@
         <span class="no-wrap">
           <i ng-if="item.visibility.id == '900'" class="fa fa-globe fa-2"></i>
           <i ng-if="item.visibility.id == '800'" class="pficon pficon-private"></i>
-          <i ng-if="item.visibility.id != '800' && item.visibility.id != '900'" class="pficon pficon-tenant"></i>
-          {{ item.visibility.name }}
+          <i ng-if="item.visibility && item.visibility.id != '800' && item.visibility.id != '900'" class="pficon pficon-tenant"></i>
+          {{ ((item.visibility != null) ? item.visibility.name : "Unassigned")|translate }}
         </span>
       </div>
       <div class="col-md-2">
         <span class="no-wrap">
-          {{ ((item.catalog != null) ? item.catalog.name : "Unassigned")|translate }}
+          {{ ((item.ui_properties.catalog_name != null) ? item.ui_properties.catalog_name : "Unassigned")|translate }}
         </span>
       </div>
       <div class="col-md-2">

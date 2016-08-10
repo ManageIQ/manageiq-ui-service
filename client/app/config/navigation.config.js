@@ -87,7 +87,14 @@
     }
 
     function fetchBlueprints() {
-      updateBlueprintsCount('blueprints', null);
+      var options = {
+        expand: false,
+        filter: ['id>0'],
+        auto_refresh: true,
+      };
+
+      CollectionsApi.query('blueprints', options)
+          .then(lodash.partial(updateBlueprintsCount, 'blueprints'));
     }
 
     function updateCount(item, data) {
@@ -103,7 +110,7 @@
     }
 
     function updateBlueprintsCount(item, data) {
-      Navigation.items.primary[item].count = 4;
+      Navigation.items.primary[item].count = data.subcount;
     }
   }
 })();
