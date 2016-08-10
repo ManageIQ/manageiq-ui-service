@@ -97,6 +97,7 @@
     "body-parser": "^1.12.2",
     "express": "^4.12.3",
     "http-proxy": "^1.13.2",
+    "jshint-json": "^1.0.0",
     "morgan": "^1.5.2",
     "serve-favicon": "^2.2.0"
   },
