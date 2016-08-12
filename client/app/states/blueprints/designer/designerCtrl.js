@@ -82,14 +82,7 @@ angular.module('app.states')
       };
 
       function newBlueprint() {
-        var blueprint = {};
-
-        blueprint.id = BlueprintsState.getNextUniqueId();
-        blueprint.last_modified = new Date();
-        blueprint.name = __('Untitled Blueprint ') + blueprint.id;
-        blueprint.chartDataModel = {};
-        blueprint.visibility = {"id": 800, "name": "Private"};
-
+        var blueprint = BlueprintsState.getNewBlueprintObj();
         blueprintDirty = true;
         $state.current.okToNavAway = false;
 
