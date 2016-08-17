@@ -66,6 +66,7 @@
     var categoryNames = [];
     var visibilityNames = ['Private', 'Public'];
     var publishStateNames = ['Draft', 'Published'];
+    BlueprintsState.unselectBlueprints();
 
     vm.title = __('Blueprint List');
 

@@ -108,7 +108,6 @@
     };
 
     blueprint.saveBlueprint = function(tmpBlueprint) {
-
       var deferred = $q.defer();
 
       if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel  && tmpBlueprint.ui_properties.chartDataModel.nodes) {
@@ -125,8 +124,7 @@
         CollectionsApi.post('blueprints', null, {}, blueprintObj).then(createSuccess, createFailure);
       }
 
-      function getBlueprintPostObj(tmpBlueprint) {
-
+      function getBlueprintPostObj(tmpBlueprint) {                                    // jshint ignore:line
         // console.log("SDUI Blueprint: " + angular.toJson(tmpBlueprint, true));
 
         var blueprintObj = {
@@ -209,14 +207,34 @@
       return deferred.promise;
     };
 
-    blueprint.deleteBlueprint = function(id) {
-      var index = findBlueprintIndexById(id);
-      if (index !== -1) {
-        blueprint.unselectBlueprint(id);
-        blueprint.blueprints.splice(index, 1);
-      } else {
-        console.log("cound not delete/find blueprint: id = " + id);
+    blueprint.deleteBlueprints = function(blueprints) {
+      // blueprint.unselectBlueprint(id);
+
+      var deferred = $q.defer();
+
+      var resources = [];
+      for (var i = 0; i < blueprints.length; i++) {
+        resources.push({"id": blueprints[i].id});
       }
+
+      var blueprintObj = {
+        "action": "delete",
+        "resources": resources
+      };
+
+      CollectionsApi.post('blueprints', null, {}, blueprintObj).then(deleteSuccess, deleteFailure);
+
+      function deleteSuccess() {
+        Notifications.success(__('Blueprint(s) were succesfully deleted.'));
+        deferred.resolve();
+      }
+
+      function deleteFailure() {
+        Notifications.error(__('There was an error deleting the blueprint(s).'));
+        deferred.reject();
+      }
+
+      return deferred.promise;
     };
 
     blueprint.getNewBlueprintObj = function() {
