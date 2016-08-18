@@ -138,9 +138,6 @@
 
         // Hack until backend returns multiple service templates and catalog name
         blueprintObj.ui_properties.num_items = tmpBlueprint.num_items;
-        if (tmpBlueprint.ui_properties.catalog_name) {
-          blueprintObj.ui_properties.catalog_name = tmpBlueprint.ui_properties.catalog_name;
-        }
 
         if (tmpBlueprint.id) {
           blueprintObj.action = "edit";

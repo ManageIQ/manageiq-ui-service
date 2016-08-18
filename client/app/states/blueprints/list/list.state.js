@@ -74,6 +74,9 @@
 
     angular.forEach(vm.serviceCatalogs, addCategoryFilter);
     angular.forEach(vm.tenants, addVisibilityFilter);
+    angular.forEach(vm.blueprints, getNamesFromIDs);
+
+
 
     function addCategoryFilter(item) {
       if (!categoryNames.includes(__('Unassigned'))) {
@@ -84,6 +87,23 @@
 
     function addVisibilityFilter(item) {
       visibilityNames.push(item.name);
+    }
+
+    function getNamesFromIDs(item) {
+      item.ui_properties.catalog_name = getCatalogName(item);
+    }
+
+    function getCatalogName(item) {
+      if (item.bundle && item.bundle.service_template_catalog_id) {
+        var catalogID = item.bundle.service_template_catalog_id;
+        for (var i = 0; i < vm.serviceCatalogs.length; i++) {
+          if (vm.serviceCatalogs[i].id === catalogID) {
+            return vm.serviceCatalogs[i].name;
+          }
+        }
+      }
+
+      return __('Unassigned');
     }
 
     /* This notification 'splice' code doesn't work.  Splice needs a third argument, the items to splice in
