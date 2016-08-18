@@ -189,9 +189,7 @@
       var modalInstance = CreateCatalogModal.showModal();
 
       modalInstance.then(function(opts) {
-        vm.newCatalog = {"id": BlueprintsState.getNewCatalogs().length, "name": opts.catalogName, "new": 'true'};
-        vm.serviceCatalogs.push(vm.newCatalog);
-        vm.modalData.resource.catalog = vm.newCatalog;
+        console.log("New Catalog Name is '" + opts.catalogName + "'");
         $( "#createCatalog" ).blur();
       });
     }
@@ -405,8 +403,10 @@
       }
 
       if (action === 'publish') {
-        vm.blueprint.published = new Date();
-        MarketplaceState.publishBlueprint(vm.blueprint);
+        $modalInstance.close();
+        saveFailure();
+
+        return;
       }
 
       saveSuccess();
@@ -469,7 +469,11 @@
       }
 
       function saveFailure() {
-        Notifications.error(__('There was an error saving this Blueprint.'));
+        if (action === 'publish') {
+          Notifications.error(__('The Publish Blueprint feature is not yet implemented.'));
+        } else {
+          Notifications.error(__("There was an error saving this Blueprint's Details."));
+        }
       }
     }
   }

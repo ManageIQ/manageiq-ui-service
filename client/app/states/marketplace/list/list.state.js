@@ -50,9 +50,6 @@
 
     vm.serviceTemplates = serviceTemplates.resources;
 
-    // Mock published blueprints
-    vm.serviceTemplates = vm.serviceTemplates.concat(MarketplaceState.getPublishedBlueprints());
-
     vm.serviceTemplatesList = angular.copy(vm.serviceTemplates);
 
     vm.serviceCatalogs = serviceCatalogs.resources;

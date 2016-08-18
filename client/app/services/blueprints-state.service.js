@@ -32,9 +32,9 @@
       return blueprint.filters;
     };
 
-    blueprint.newCatalogs = [];
-
+    blueprint.origBlueprint = null;
     blueprint.selectedBlueprints = [];
+    blueprint.doNotSaveFlag = false;
 
     blueprint.handleSelectionChange = function(tmpBlueprint) {
       if (tmpBlueprint.selected) {
@@ -59,35 +59,6 @@
       }
     };
 
-    blueprint.setBlueprints = function(blueprints) {
-      blueprint.blueprints = blueprints;
-    };
-
-    blueprint.getBlueprints = function() {
-      return blueprint.blueprints;
-    };
-
-    blueprint.getNewCatalogs = function() {
-      return blueprint.newCatalogs;
-    };
-
-    blueprint.addNewCatalog = function(newCat) {
-      blueprint.newCatalogs.push(newCat);
-    };
-
-    blueprint.getNextUniqueId = function() {
-      return blueprint.blueprints.length;
-    };
-
-    blueprint.duplicateBlueprint = function(origBlueprint) {
-      var newBlueprint = angular.copy(origBlueprint);
-      newBlueprint.id = blueprint.getNextUniqueId();
-      newBlueprint.name = getCopyName(newBlueprint.name);
-      blueprint.blueprints.push(newBlueprint);
-    };
-
-    blueprint.origBlueprint = null;
-
     blueprint.saveOriginalBlueprint = function(origBlueprint) {
       blueprint.origBlueprint = origBlueprint;
       blueprint.setDoNotSave(false);
@@ -96,8 +67,6 @@
     blueprint.getOriginalBlueprint = function() {
       return blueprint.origBlueprint;
     };
-
-    blueprint.doNotSaveFlag = false;
 
     blueprint.setDoNotSave = function(value) {
       blueprint.doNotSaveFlag = value;
@@ -125,8 +94,6 @@
       }
 
       function getBlueprintPostObj(tmpBlueprint) {                                    // jshint ignore:line
-        // console.log("SDUI Blueprint: " + angular.toJson(tmpBlueprint, true));
-
         var blueprintObj = {
           "name": tmpBlueprint.name,
           "description": "description",
@@ -179,8 +146,6 @@
           blueprintObj.action = "edit";
         }
 
-        // console.log("POST Blueprint Obj: " + angular.toJson(blueprintObj, true));
-
         return blueprintObj;
       }
 
@@ -208,8 +173,6 @@
     };
 
     blueprint.deleteBlueprints = function(blueprints) {
-      // blueprint.unselectBlueprint(id);
-
       var deferred = $q.defer();
 
       var resources = [];
@@ -239,9 +202,7 @@
 
     blueprint.getNewBlueprintObj = function() {
       var tmpBlueprint = {};
-      // tmpBlueprint.id = blueprint.getNextUniqueId();
-      // tmpBlueprint.last_modified = new Date();
-      tmpBlueprint.name = __('Untitled Blueprint ');
+      tmpBlueprint.name = __('Untitled Blueprint');
       tmpBlueprint.visibility = {"id": 800, "name": "Private"};
       tmpBlueprint.bundle = {};
       tmpBlueprint.ui_properties = {
@@ -274,29 +235,6 @@
       return tmpBlueprint;
     };
 
-    blueprint.getBlueprintById = function(id) {
-      /*
-      for (var i = 0; i < blueprint.blueprints.length; i++) {
-        if (blueprint.blueprints[i].id.toString() === id.toString()) {
-          return blueprint.blueprints[i];
-        }
-      }
-
-      return {};
-      */
-      return CollectionsApi.get('blueprints', id, {});
-    };
-
-    function findBlueprintIndexById(id) {
-      for (var i = 0; i < blueprint.blueprints.length; i++) {
-        if (blueprint.blueprints[i].id === id) {
-          return i;
-        }
-      }
-
-      return -1;
-    }
-
     function findWithAttr(array, attr, value) {
       for (var i = 0; i < array.length; i += 1) {
         if (array[i][attr] === value) {
@@ -305,22 +243,6 @@
       }
 
       return -1;
-    }
-
-    function getCopyName(baseName) {
-      var baseNameLength = baseName.indexOf(' Copy');
-
-      if (baseNameLength === -1) {
-        baseNameLength = baseName.length;
-      }
-
-      baseName = baseName.substr(0, baseNameLength);
-
-      var filteredArray = $filter('filter')( blueprint.blueprints, {name: baseName}, false);
-
-      var copyName = baseName + " Copy" + ((filteredArray.length === 1) ? "" : " " + filteredArray.length) ;
-
-      return copyName;
     }
 
     return blueprint;

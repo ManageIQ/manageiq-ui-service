@@ -251,7 +251,7 @@
     }
 
     function duplicateBlueprint(action, item) {
-      BlueprintsState.duplicateBlueprint(item);
+      Notifications.error(__('Duplicate blueprint feature not available.'), false, false);
       $state.go($state.current, {}, {reload: true});
     }
 
@@ -280,10 +280,6 @@
 
     function canDeleteBlueprints() {
       return BlueprintsState.getSelectedBlueprints().length > 0;
-    }
-
-    function updateActionForItemFn(action, item) {
-      return (action.name === 'Publish') && (item.published !== null);
     }
 
     /* Apply the filtering to the data list */
