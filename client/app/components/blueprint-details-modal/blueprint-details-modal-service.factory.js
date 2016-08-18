@@ -41,7 +41,6 @@
 
       function resolveServiceCatalogs(CollectionsApi) {
         var options = {
-          mock: false,
           expand: 'resources',
           sort_by: 'name',
           sort_options: 'ignore_case'};
@@ -51,7 +50,6 @@
 
       function resolveServiceDialogs(CollectionsApi) {
         var options = {
-          mock: false,
           expand: 'resources',
           attributes: ['id', 'description', 'label'],
           sort_by: 'description',
@@ -62,7 +60,6 @@
 
       function resolveTenants(CollectionsApi) {
         var options = {
-          mock: false,
           expand: 'resources',
           attributes: ['id', 'name'],
           sort_by: 'name',

@@ -29,7 +29,6 @@
   /** @ngInject */
   function resolveBlueprints(CollectionsApi) {
     var options = {
-      mock: false,
       expand: 'resources',
       attributes: 'bundle'
     };
@@ -48,7 +47,6 @@
 
   function resolveTenants(CollectionsApi) {
     var options = {
-      mock: false,
       expand: 'resources',
       attributes: ['id', 'name'],
       sort_by: 'name',
@@ -70,35 +68,17 @@
 
     vm.title = __('Blueprint List');
 
-    /* For mock RESTFul api operations
-    if (!BlueprintsState.getBlueprints()) {
-      BlueprintsState.setBlueprints(blueprints.resources);
-    }
-    vm.blueprints = BlueprintsState.getBlueprints(); */
-
     vm.blueprints = blueprints.resources;
     vm.serviceCatalogs = serviceCatalogs.resources;
     vm.tenants = tenants.resources;
 
-    // angular.forEach(vm.blueprints, addMockFilters);
     angular.forEach(vm.serviceCatalogs, addCategoryFilter);
     angular.forEach(vm.tenants, addVisibilityFilter);
 
-    function addMockFilters(blueprint) {
-      if (!blueprint.catalog) {
-        if (!categoryNames.includes(__('Unassigned'))) {
-          categoryNames.push(__('Unassigned'));
-        }
-      } else {
-        categoryNames.push(blueprint.catalog.name);
-      }
-
-      if (!visibilityNames.includes(blueprint.visibility.name)) {
-        visibilityNames.push(blueprint.visibility.name);
-      }
-    }
-
     function addCategoryFilter(item) {
+      if (!categoryNames.includes(__('Unassigned'))) {
+        categoryNames.push(__('Unassigned'));
+      }
       categoryNames.push(item.name);
     }
 
