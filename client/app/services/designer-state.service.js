@@ -8,7 +8,7 @@
   function DesignerStateFactory($filter, CollectionsApi, Notifications, $state, sprintf, $q) {
     var designer = {};
 
-    designer.getDesignerToolboxTabs = function() {
+    designer.getDesignerToolboxTabs = function(srvTemplates) {
       var toolboxTabs = [
         {
           preTitle: 'Compute', title: 'Cloud',
@@ -19,7 +19,7 @@
             {title: 'OpenStack'},
             {title: 'Generic',
               newItem: {
-                title: 'Instance',
+                name: 'Instance',
                 type: 'generic',
                 icon: "pficon-virtual-machine",
                 fontFamily: "PatternFlyIcons-webfont",
@@ -44,7 +44,7 @@
             {title: 'VMware'},
             {title: 'Generic',
               newItem: {
-                title: 'VM',
+                name: 'VM',
                 type: 'generic',
                 icon: "pficon-virtual-machine",
                 fontFamily: "PatternFlyIcons-webfont",
@@ -82,7 +82,7 @@
             {title: 'Nuage'},
             {title: 'Generic',
               newItem: {
-                title: 'Load Balancer',
+                name: 'Load Balancer',
                 type: 'generic',
                 icon: "pficon-network",
                 fontFamily: "PatternFlyIcons-webfont",
@@ -105,27 +105,13 @@
         }
       ];
 
-      retrieveDesignerTabs();
+      var bundleTabIndex = 8;
+
+      matchServiceTemplatesToTabs(srvTemplates);
 
       return toolboxTabs;
 
-      function retrieveDesignerTabs() {
-        // Get all service templates to catorgorize under appropriate designer toolbox tabs
-        var attributes = ['name', 'picture', 'picture.image_href', 'service_type', 'prov_type', 'service_template_catalog.name',
-                          'generic_subtype'];
-        var options = {
-          expand: 'resources',
-          filter: ['service_template_catalog_id>0', 'display=true'],
-          attributes: attributes
-        };
-
-        var srvTemplates = CollectionsApi.query('service_templates', options);
-        srvTemplates.then(matchServiceTemplatesToTabs);
-      }
-
-      function matchServiceTemplatesToTabs(data) {
-        var srvTemplates = data.resources;
-
+      function matchServiceTemplatesToTabs(srvTemplates) {
         for (var i = 0; i < srvTemplates.length; i++) {
           if (srvTemplates[i].service_type === 'composite') {
             addToBundleTab(srvTemplates[i]);
@@ -194,7 +180,7 @@
 
       function addToBundleTab(srvTemplate) {
         var newBundle = {
-          title: srvTemplate.name,
+          name: srvTemplate.name,
           id: srvTemplate.id,
           bundle: true,
           fontFamily: "FontAwesome",
@@ -205,15 +191,16 @@
           newBundle.image = srvTemplate.picture.image_href;
         }
 
-        var bundleTab = toolboxTabs[toolboxTabs.length - 1];
+        var bundleTab = toolboxTabs[bundleTabIndex];
         if (!bundleTab.items) {
           bundleTab.items = [];
         }
         bundleTab.items.push(newBundle);
+        // console.log("--> Added " + newBundle.name + " to Bundle Tab");
       }
 
       function addToSubTab(subTab, srvTemplate) {
-        var newItem = {title: srvTemplate.name, id: srvTemplate.id};
+        var newItem = {name: srvTemplate.name, id: srvTemplate.id};
         if (srvTemplate.picture && srvTemplate.picture.image_href) {
           newItem.image = srvTemplate.picture.image_href;
         } else {
@@ -223,6 +210,7 @@
           subTab.items = [];
         }
         subTab.items.push(newItem);
+        // console.log("--> Added " + newItem.name + " to " + subTab.title + " Tab");
       }
     };
 

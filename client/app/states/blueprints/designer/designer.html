@@ -70,7 +70,7 @@
                                       ng-click="addNodeByClick(item)">
                                       <img ng-if="item.image" src="{{item.image}}">
                                       <i ng-if="item.bundle && !item.image" class="fa fa-gift"></i>
-                                      {{ item.title }}
+                                      {{ item.name }}
                                   </li>
                               </ul>
                           </tab>
@@ -83,7 +83,7 @@
                               ng-click="addNodeByClick(item)">
                               <img ng-if="item.image" src="{{item.image}}">
                               <i ng-if="item.bundle && !item.image" class="fa fa-gift"></i>
-                              <span>{{ item.title }}</span>
+                              <span>{{ item.name }}</span>
                           </li>
                       </ul>
                   </tab>
@@ -96,7 +96,7 @@
                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
                        ng-click="addNodeByClick( getNewItem() )">
                       <span class="pficon pficon-add-circle-o"></span>
-                      <span class="new-catalog-item-label">{{'Create ' + getNewItem().title | translate}}</span>
+                      <span class="new-catalog-item-label">{{'Create ' + getNewItem().name | translate}}</span>
                       <span ng-if="getNewItem().icon" class="{{getNewItem().icon}} new-catalog-item-icon"></span>
                   </div>
                   <!-- Filter -->

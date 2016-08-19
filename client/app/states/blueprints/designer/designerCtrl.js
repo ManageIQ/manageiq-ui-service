@@ -144,7 +144,7 @@ angular.module('app.states')
         $scope.hideConnectors = false;
       });
 
-      $scope.tabs = DesignerState.getDesignerToolboxTabs();
+      $scope.tabs = DesignerState.getDesignerToolboxTabs($scope.$parent.vm.serviceTemplates);
 
       $scope.getNewItem = function() {
         var activeTab = $scope.activeTab();
@@ -158,7 +158,7 @@ angular.module('app.states')
           return activeSubTab.newItem;
         }
 
-        return {title: 'Item', image: 'images/service.png'};
+        return {name: 'New Item', image: 'images/service.png'};
       };
 
       $scope.activeTab = function() {
