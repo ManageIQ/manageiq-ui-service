@@ -3,18 +3,18 @@
 # jfenal <jfenal@free.fr>, 2016. #zanata
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-04-08 01:56-0400\n"
+"PO-Revision-Date: 2016-08-29 08:26-0400\n"
 "Last-Translator: Loic Avenel <lavenel@redhat.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
-"X-Generator: Zanata 3.8.3\n"
+"X-Generator: Zanata 3.9.3\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
-#: app/components/navigation/header-nav.html:42
+#: app/components/navigation/header-nav.html:48
 msgid "(Current Group)"
 msgstr "(Groupe Actuel)"
 
@@ -60,8 +60,13 @@ msgstr "Vue détaillées des Produits activés"
 msgid "Active"
 msgstr "Actif"
 
+#: app/states/marketplace/details/details.html:31
+msgid "Add to Shopping Cart"
+msgstr "Ajoutez au Panier"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:334
+#: app/states/requests/list/list.state.js:99
 msgid "Approved"
 msgstr "Approuvée"
 
@@ -71,7 +76,7 @@ msgid "Approved Requests"
 msgstr "Demandes approuvées"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:73
+#: app/states/requests/details/details.html:72
 msgid "Approver"
 msgstr "Approbateur"
 
@@ -82,6 +87,7 @@ msgstr "Êtes-vous sûr de vouloir continuer ?"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/requests/details/details.html:3
+#: app/states/requests/order_details/order_details.html:3
 msgid "Back to My Requests"
 msgstr "Retour à Mes Demandes "
 
@@ -102,13 +108,17 @@ msgid "Back to Service Catalog"
 msgstr "Retour au Catalogue de Services"
 
 #: app/states/blueprints/list/list.state.js:19
-#: app/states/blueprints/list/list.state.js:29
+#: app/states/blueprints/list/list.state.js:39
 msgid "Blueprint List"
 msgstr "Liste de Blueprint"
 
 #: app/config/navigation.config.js:37
 msgid "Blueprints"
 msgstr "Blueprints"
+
+#: app/components/language-switcher/language-switcher.directive.js:29
+msgid "Browser Default"
+msgstr "Navigateur par défaut"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/custom-button/custom-button.directive.js:100
@@ -133,15 +143,23 @@ msgstr "Annuler"
 #: app/states/marketplace/list/list.state.js:105
 #: app/states/marketplace/list/list.state.js:86
 msgid "Catalog Name"
-msgstr "Nom du catalogue"
+msgstr "Catalogue"
 
-#: app/components/navigation/header-nav.html:34
+#: app/components/navigation/header-nav.html:40
 msgid "Change Group:"
 msgstr "Changement de Groupe:"
 
-#: app/components/navigation/header-nav.html:46
+#: app/components/navigation/header-nav.html:52
 msgid "Change to this Group"
 msgstr "Changement vers ce groupe"
+
+#: app/components/shopping-cart/shopping-cart.html:42
+msgid "Clear"
+msgstr "Vider"
+
+#: app/components/shopping-cart/shopping-cart.html:34
+msgid "Close"
+msgstr "Fermer"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/details/details.html:42
@@ -154,8 +172,8 @@ msgid "Confirm, would you like to retire this service?"
 msgstr "Confirmation, voulez-vous retirer ce service ?"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:124
-#: app/states/services/list/list.state.js:91
+#: app/states/services/list/list.state.js:126
+#: app/states/services/list/list.state.js:93
 msgid "Created"
 msgstr "Créé"
 
@@ -171,11 +189,11 @@ msgid "Creation Date"
 msgstr "Date de création"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Current"
 msgstr "Actuel"
 
-#: app/components/navigation/header-nav.html:53
+#: app/components/navigation/header-nav.html:59
 msgid "Current Group"
 msgstr "Groupe Actuel"
 
@@ -184,7 +202,7 @@ msgstr "Groupe Actuel"
 msgid "Current Services"
 msgstr "Services actuels"
 
-#: app/components/navigation/header-nav.html:40
+#: app/components/navigation/header-nav.html:46
 msgid "Currently Selected Group"
 msgstr "Groupe Actuel seclectioné"
 
@@ -203,13 +221,14 @@ msgstr "Bouton Action Personnalisé"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/config/navigation.config.js:14
-#: app/states/dashboard/dashboard.state.js:154
+#: app/states/dashboard/dashboard.state.js:178
 #: app/states/dashboard/dashboard.state.js:20
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:332
+#: app/states/requests/list/list.state.js:99
 msgid "Denied"
 msgstr "Refusée"
 
@@ -221,8 +240,8 @@ msgstr "Demandes refusées"
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/edit-service-modal/edit-service-modal.html:13
 #: app/states/marketplace/list/list.state.js:80
-#: app/states/requests/list/list.state.js:60
-#: app/states/requests/list/list.state.js:92
+#: app/states/requests/list/list.state.js:110
+#: app/states/requests/list/list.state.js:78
 msgid "Description"
 msgstr "Description"
 
@@ -252,7 +271,7 @@ msgstr "Modifier le service"
 msgid "Error"
 msgstr "Erreur"
 
-#: app/config/authorization.config.js:105
+#: app/config/authorization.config.js:108
 msgid "Error retrieving user info"
 msgstr "Erreur de récuperation des informations utilisateur"
 
@@ -262,49 +281,56 @@ msgid "Filter by Catalog Name"
 msgstr "Filtrer par nom de catalogue"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:92
+#: app/states/services/list/list.state.js:94
 msgid "Filter by Created On"
 msgstr "Filtrer par date de création"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/marketplace/list/list.state.js:81
-#: app/states/requests/list/list.state.js:61
+#: app/states/requests/list/list.state.js:79
 msgid "Filter by Description"
 msgstr "Filter par description"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:67
+#: app/states/requests/list/list.state.js:147
+#: app/states/requests/list/list.state.js:85
 msgid "Filter by ID"
 msgstr "Filtrer par ID"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
+#: app/states/blueprints/list/list.state.js:62
 #: app/states/marketplace/list/list.state.js:75
-#: app/states/services/list/list.state.js:67
+#: app/states/requests/list/list.state.js:141
+#: app/states/services/list/list.state.js:69
 msgid "Filter by Name"
 msgstr "Filtrer par nom"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:86
-msgid "Filter by Owner"
-msgstr "Filter par utilisateur"
+#: app/states/requests/list/list.state.js:153
+msgid "Filter by Ordered Date"
+msgstr "Filtrer par date"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:73
+#: app/states/services/list/list.state.js:88
+msgid "Filter by Owner"
+msgstr "Filtrer par utilisateur"
+
+# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
+#: app/states/requests/list/list.state.js:91
 msgid "Filter by Request Date"
 msgstr "Filtrer par date de demande"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:73
+#: app/states/services/list/list.state.js:75
 msgid "Filter by Retirement Date"
 msgstr "Filtrer par date de décommissionnement "
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:79
+#: app/states/requests/list/list.state.js:97
 msgid "Filter by Status"
 msgstr "Filtrer par état"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:80
+#: app/states/services/list/list.state.js:82
 msgid "Filter by VMs"
 msgstr "Filtrer par VM"
 
@@ -332,7 +358,8 @@ msgid "Hourly"
 msgstr "À l'heure"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.html:24
+#: app/components/request-list/request-list.html:15
+#: app/states/requests/list/list.html:38
 msgid "ID"
 msgstr "ID"
 
@@ -351,8 +378,16 @@ msgstr "Inactif"
 msgid "Incorrect username or password."
 msgstr "Mot de passe ou utilisateur incorrect"
 
+#: app/states/marketplace/details/details.state.js:101
+msgid "Item added to shopping cart"
+msgstr "Article(s) ajouté(s) dans le panier"
+
+#: app/states/login/login.html:28
+msgid "Language"
+msgstr "Language"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:83
+#: app/states/requests/details/details.html:82
 msgid "Last Message"
 msgstr "Dernier message"
 
@@ -363,12 +398,12 @@ msgstr "Dernier balayage"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/products/details/details.html:38
-#: app/states/requests/details/details.html:91
+#: app/states/requests/details/details.html:90
 msgid "Last Updated"
 msgstr "Dernière mise à jour"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/login/login.html:39
+#: app/states/login/login.html:34
 msgid "Log In"
 msgstr "Connexion"
 
@@ -384,14 +419,14 @@ msgid "Login"
 msgstr "Connexion"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/navigation/header-nav.html:61
+#: app/components/navigation/header-nav.html:69
 #: app/states/logout/logout.state.js:18
 #: app/states/logout/logout.state.js:27
 msgid "Logout"
 msgstr "Déconnexion"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/skin/skin.module.js:8
+#: app/skin/skin.module.js:20
 #: app/states/error/error.html:3
 msgid "ManageIQ Self Service"
 msgstr "Self-service ManageIQ"
@@ -416,8 +451,13 @@ msgstr "Mensuel"
 msgid "More"
 msgstr "Plus"
 
+#: app/states/requests/list/list.html:15
+msgid "My Orders"
+msgstr "Mes Commandes"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/config/navigation.config.js:25
+#: app/states/requests/list/list.html:2
 msgid "My Requests"
 msgstr "Mes demandes"
 
@@ -428,11 +468,17 @@ msgstr "Mes services"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/services/blueprints-state.service.js:14
+#: app/services/marketplace-state.service.js:13
 #: app/services/services-state.service.js:14
+#: app/states/blueprints/list/list.state.js:61
+#: app/states/blueprints/list/list.state.js:74
 #: app/states/marketplace/list/list.state.js:100
 #: app/states/marketplace/list/list.state.js:74
-#: app/states/services/list/list.state.js:104
-#: app/states/services/list/list.state.js:66
+#: app/states/requests/list/list.state.js:140
+#: app/states/requests/list/list.state.js:165
+#: app/states/services/list/list.state.js:106
+#: app/states/services/list/list.state.js:68
 msgid "Name"
 msgstr "Nom"
 
@@ -452,16 +498,43 @@ msgid "No Warning"
 msgstr "Aucun avertissement"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:114
-#: app/states/services/list/list.state.js:79
+#: app/states/services/list/list.state.js:116
+#: app/states/services/list/list.state.js:81
 msgid "Number of VMs"
 msgstr "Nombre de VM"
+
+#: app/states/services/details/details.html:199
+msgid "Open a HTML5 console for this VM"
+msgstr "Ouvrir une console HTML5 pour cette VM"
+
+#: app/components/shopping-cart/shopping-cart.html:50
+msgid "Order"
+msgstr "Commander"
+
+#: app/states/requests/order_details/order_details.state.js:19
+msgid "Order Details"
+msgstr "Détails de la commande"
+
+#: app/states/requests/list/list.state.js:146
+#: app/states/requests/list/list.state.js:170
+msgid "Order ID"
+msgstr "ID de la commande"
+
+#: app/services/orders-state.service.js:13
+#: app/states/requests/list/list.state.js:152
+#: app/states/requests/list/list.state.js:175
+msgid "Ordered Date"
+msgstr "Date de la commande"
+
+#: app/states/requests/order_details/order_details.html:5
+msgid "Orders:"
+msgstr "Commandes;"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/details/details.html:94
 #: app/states/services/list/list.html:35
-#: app/states/services/list/list.state.js:119
-#: app/states/services/list/list.state.js:85
+#: app/states/services/list/list.state.js:121
+#: app/states/services/list/list.state.js:87
 msgid "Owner"
 msgstr "Utilisateur"
 
@@ -471,7 +544,8 @@ msgid "Password"
 msgstr "Mot de passe"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:330
+#: app/states/requests/list/list.state.js:99
 msgid "Pending"
 msgstr "En cours"
 
@@ -489,6 +563,7 @@ msgstr "Supprimer définitivement le service"
 #: app/states/services/details/details.html:191
 #: app/states/services/details/details.html:192
 #: app/states/services/details/details.html:193
+#: app/states/services/details/details.html:194
 msgid "Power State"
 msgstr "Alimentation"
 
@@ -544,6 +619,10 @@ msgstr "La reconfiguration du service a été annulé"
 msgid "Refresh"
 msgstr "Rafraîchir"
 
+#: app/components/shopping-cart/shopping-cart.html:17
+msgid "Remove"
+msgstr "Supprimer"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/details/details.html:37
 #: app/states/services/details/details.html:41
@@ -551,28 +630,28 @@ msgid "Remove Service"
 msgstr "Supprimer le service"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:67
+#: app/states/requests/details/details.html:61
 msgid "Request Approval State"
 msgstr "État de l'approbation"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/services/requests-state.service.js:13
-#: app/states/requests/details/details.html:55
-#: app/states/requests/list/list.state.js:102
-#: app/states/requests/list/list.state.js:72
+#: app/states/requests/details/details.html:49
+#: app/states/requests/list/list.state.js:120
+#: app/states/requests/list/list.state.js:90
 msgid "Request Date"
 msgstr "Date de la demande"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/requests/details/details.html:37
-#: app/states/requests/list/list.state.js:66
-#: app/states/requests/list/list.state.js:97
+#: app/states/requests/list/list.state.js:115
+#: app/states/requests/list/list.state.js:84
 msgid "Request ID"
 msgstr "ID de la demande"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/requests/list/list.state.js:19
-#: app/states/requests/list/list.state.js:40
+#: app/states/requests/list/list.state.js:49
 msgid "Request List"
 msgstr "Liste des demandes"
 
@@ -582,14 +661,14 @@ msgid "Request State"
 msgstr "État de la demande"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.state.js:157
-#: app/states/requests/list/list.state.js:107
-#: app/states/requests/list/list.state.js:78
+#: app/states/dashboard/dashboard.state.js:181
+#: app/states/requests/list/list.state.js:125
+#: app/states/requests/list/list.state.js:96
 msgid "Request Status"
 msgstr "État de la demande"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:97
+#: app/states/requests/details/details.html:96
 msgid "Request Type"
 msgstr "Type de demande"
 
@@ -599,12 +678,12 @@ msgid "Request:"
 msgstr "Demande :"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.html:29
+#: app/components/request-list/request-list.html:20
 msgid "Requested"
 msgstr "Demandé"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:61
+#: app/states/requests/details/details.html:55
 msgid "Requested By"
 msgstr "Demandeur"
 
@@ -629,7 +708,7 @@ msgid "Retire Service Now"
 msgstr "Décommissionner le service maintenant"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Retired"
 msgstr "Décommissionné"
 
@@ -640,11 +719,11 @@ msgstr "Services décommissionnés"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/retire-service-modal/retire-service-modal.html:18
-#: app/states/dashboard/dashboard.state.js:162
+#: app/states/dashboard/dashboard.state.js:187
 #: app/states/services/details/details.html:86
 #: app/states/services/list/list.html:22
-#: app/states/services/list/list.state.js:109
-#: app/states/services/list/list.state.js:72
+#: app/states/services/list/list.state.js:111
+#: app/states/services/list/list.state.js:74
 msgid "Retirement Date"
 msgstr "Date de décommissionnement"
 
@@ -689,7 +768,7 @@ msgid "Select an Owner"
 msgstr "Sélectionnez un utilisateur"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/skin/skin.module.js:11
+#: app/skin/skin.module.js:21
 #: index.html:4
 msgid "Self Service"
 msgstr "Self-service"
@@ -708,7 +787,7 @@ msgstr "Information sur le bouton personnalisé du Service"
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/products/details/details.state.js:28
 #: app/states/services/details/details.state.js:19
-#: app/states/services/details/details.state.js:62
+#: app/states/services/details/details.state.js:97
 #: app/states/services/reconfigure/reconfigure.state.js:19
 #: app/states/services/reconfigure/reconfigure.state.js:41
 msgid "Service Details"
@@ -721,7 +800,7 @@ msgstr "ID du dervice"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/list/list.state.js:19
-#: app/states/services/list/list.state.js:39
+#: app/states/services/list/list.state.js:41
 msgid "Service List"
 msgstr "Liste des services"
 
@@ -739,16 +818,32 @@ msgstr "Service :"
 
 #: app/states/services/details/details.html:66
 msgid "Set Ownership"
-msgstr "Définir utilisateur"
+msgstr "Définir un utilisateur"
 
 #: app/components/ownership-service-modal/ownership-service-modal.html:5
 msgid "Set Service Ownership"
-msgstr "Définir utilisateur du Service"
+msgstr "Définir l'utilisateur du Service"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/products/details/details.html:55
 msgid "Setup"
 msgstr "Configuration"
+
+#: app/components/shopping-cart/shopping-cart.html:5
+msgid "Shopping Cart"
+msgstr "Panier"
+
+#: app/components/navigation/header-nav.html:25
+msgid "Shopping cart"
+msgstr "Panier"
+
+#: app/components/shopping-cart/shopping-cart.html:26
+msgid "Shopping cart is empty."
+msgstr "Le panier est vide"
+
+#: app/components/shopping-cart/shopping-cart.directive.js:47
+msgid "Shopping cart successfully ordered"
+msgstr "Le panier a été commandé avec succès   "
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/details/details.html:181
@@ -756,21 +851,24 @@ msgid "Size"
 msgstr "Taille"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Soon"
 msgstr "Bientôt"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/details/details.html:31
 #: app/states/services/custom_button_details/custom_button_details.html:21
 #: app/states/services/reconfigure/reconfigure.html:23
 msgid "Submit Request"
 msgstr "Soumettre une demande"
 
+#: app/components/language-switcher/language-switcher.html:2
+msgid "Switch Language:"
+msgstr "Changer de Langue:"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.html:35
-#: app/states/requests/list/list.html:37
-#: app/states/requests/list/list.html:39
+#: app/components/request-list/request-list.html:25
+#: app/components/request-list/request-list.html:26
+#: app/components/request-list/request-list.html:27
 msgid "The current approval status of the request"
 msgstr "État actuel de l'approbation"
 
@@ -844,19 +942,31 @@ msgstr ""
 msgid "There was a problem loading the page."
 msgstr "Un problème est survenu lors du chargement de la page."
 
+#: app/states/marketplace/details/details.state.js:107
+msgid "There was an error adding to shopping cart:"
+msgstr "Un problème est survenu lors de l'ajout d'article au panier:"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
 msgstr "Un problème est survenu lors de l'édition du service."
 
+#: app/services/consoles.service.js:37
+msgid "There was an error opening the console"
+msgstr "Un problème est survenu en ouvrant la console"
+
+#: app/services/consoles.service.js:38
+msgid "There was an error opening the console:"
+msgstr "Un problème est survenu en ouvrant la console:"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:106
+#: app/states/services/details/details.state.js:119
 msgid "There was an error removing this service."
 msgstr "Un problème est survenu lors de la suppression de ce service."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
-#: app/states/services/details/details.state.js:128
+#: app/states/services/details/details.state.js:158
 msgid "There was an error retiring this service."
 msgstr "Un problème est survenu lors du décommissionnement de ce service."
 
@@ -866,7 +976,7 @@ msgstr ""
 "Il y a une erreur lors de la définition de l'utilisateur de ce service"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/details/details.state.js:101
+#: app/components/shopping-cart/shopping-cart.directive.js:51
 #: app/states/services/custom_button_details/custom_button_details.state.js:93
 #: app/states/services/reconfigure/reconfigure.state.js:112
 msgid "There was an error submitting this request:"
@@ -892,8 +1002,20 @@ msgstr "Nombre de demandes"
 msgid "Total Services"
 msgstr "Nombre de services"
 
+#: app/services/consoles.service.js:75
+msgid "Unsupported console protocol returned"
+msgstr "Protocol non supporté"
+
+#: app/services/consoles.service.js:76
+msgid "Unsupported console protocol returned:"
+msgstr "Protocol non supporté:"
+
+#: app/components/language-switcher/language-switcher.directive.js:28
+msgid "User Default"
+msgstr "Défaut utilisateur "
+
 #: app/states/login/login.state.js:41
-#: app/states/login/login.state.js:61
+#: app/states/login/login.state.js:62
 msgid "User does not have privileges to login."
 msgstr "L'utilisateur n'est pas autorisé a se connecter"
 
@@ -912,10 +1034,17 @@ msgstr "VM"
 msgid "Vendor"
 msgstr "Fournisseur"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/details/details.html:163
-msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
-msgstr "Machines virtuelles ({{ ::vm.service.vms.length }})"
+msgid "Virtual Machines ({{ ::vm.vms.length }})"
+msgstr "Machines Virtuelles ({{ ::vm.vms.length }})"
+
+#: app/services/consoles.service.js:30
+msgid "Waiting for the console to become ready"
+msgstr "En attente de la console"
+
+#: app/services/consoles.service.js:31
+msgid "Waiting for the console to become ready:"
+msgstr "En attente de la console:"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/404/404.html:7
@@ -938,17 +1067,31 @@ msgstr "Oui, décommissionner le service maintenant"
 msgid "Your session has timed out."
 msgstr "Votre session a expiré."
 
+#: app/config/gettext.config.js:31
+msgid "locale_name"
+msgstr "Français"
+
+#: app/states/requests/list/list.html:43
+msgid "ordered"
+msgstr "Commandé"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
 msgid "was edited."
 msgstr "a été modifié(e)."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:101
+#: app/states/services/details/details.state.js:114
 msgid "was removed."
 msgstr "a été suprimé(e)."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:123
+#: app/states/services/details/details.state.js:153
 msgid "was retired."
 msgstr "a été décommissionné(e)."
+
+#: app/states/requests/list/list.html:47
+msgid "{{ $count }} item"
+msgid_plural "{{ $count }} items"
+msgstr[0] "{{ $count }} Article"
+msgstr[1] "{{ $count }} Artiches"

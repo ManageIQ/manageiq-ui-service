@@ -1,18 +1,19 @@
+# Milan Zázrivec <mzazrivec@redhat.com>, 2016. #zanata
 # xhuang <xhuang@redhat.com>, 2016. #zanata
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-04-18 09:02-0400\n"
-"Last-Translator: xhuang <xhuang@redhat.com>\n"
+"PO-Revision-Date: 2016-08-22 09:42-0400\n"
+"Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>\n"
 "Language-Team: Chinese (Simplified, China)\n"
 "Language: zh-Hans-CN\n"
-"X-Generator: Zanata 3.8.3\n"
+"X-Generator: Zanata 3.9.3\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: app/components/navigation/header-nav.html:42
+#: app/components/navigation/header-nav.html:48
 msgid "(Current Group)"
 msgstr "(当前组)"
 
@@ -51,7 +52,12 @@ msgstr "已激活的产品细节视图"
 msgid "Active"
 msgstr "活动的"
 
-#: app/states/requests/list/list.state.js:81
+#: app/states/marketplace/details/details.html:31
+msgid "Add to Shopping Cart"
+msgstr "添加到购物车"
+
+#: app/states/requests/list/list.state.js:334
+#: app/states/requests/list/list.state.js:99
 msgid "Approved"
 msgstr "已批准的"
 
@@ -59,7 +65,7 @@ msgstr "已批准的"
 msgid "Approved Requests"
 msgstr "已批准的请求"
 
-#: app/states/requests/details/details.html:73
+#: app/states/requests/details/details.html:72
 msgid "Approver"
 msgstr "批准者"
 
@@ -68,6 +74,7 @@ msgid "Are you sure you wish to proceed?"
 msgstr "您确定要执行吗？"
 
 #: app/states/requests/details/details.html:3
+#: app/states/requests/order_details/order_details.html:3
 msgid "Back to My Requests"
 msgstr "返回至我的请求"
 
@@ -86,13 +93,17 @@ msgid "Back to Service Catalog"
 msgstr "返回至服务目录"
 
 #: app/states/blueprints/list/list.state.js:19
-#: app/states/blueprints/list/list.state.js:29
+#: app/states/blueprints/list/list.state.js:39
 msgid "Blueprint List"
 msgstr "蓝图列表"
 
 #: app/config/navigation.config.js:37
 msgid "Blueprints"
 msgstr "蓝图"
+
+#: app/components/language-switcher/language-switcher.directive.js:29
+msgid "Browser Default"
+msgstr "浏览器默认设置"
 
 #: app/components/custom-button/custom-button.directive.js:100
 msgid "Button action not supported."
@@ -115,13 +126,21 @@ msgstr "取消"
 msgid "Catalog Name"
 msgstr "目录名称"
 
-#: app/components/navigation/header-nav.html:34
+#: app/components/navigation/header-nav.html:40
 msgid "Change Group:"
 msgstr "修改组："
 
-#: app/components/navigation/header-nav.html:46
+#: app/components/navigation/header-nav.html:52
 msgid "Change to this Group"
 msgstr "改为这个组"
+
+#: app/components/shopping-cart/shopping-cart.html:42
+msgid "Clear"
+msgstr "清除"
+
+#: app/components/shopping-cart/shopping-cart.html:34
+msgid "Close"
+msgstr "关闭"
 
 #: app/states/services/details/details.html:42
 msgid "Confirm, would you like to remove this service?"
@@ -131,8 +150,8 @@ msgstr "确认，您要删除这个服务吗？"
 msgid "Confirm, would you like to retire this service?"
 msgstr "确认，您要退订这个服务吗？"
 
-#: app/states/services/list/list.state.js:124
-#: app/states/services/list/list.state.js:91
+#: app/states/services/list/list.state.js:126
+#: app/states/services/list/list.state.js:93
 msgid "Created"
 msgstr "已创建"
 
@@ -145,11 +164,11 @@ msgstr "创建日期"
 msgid "Creation Date"
 msgstr "创建日期"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Current"
 msgstr "当前的"
 
-#: app/components/navigation/header-nav.html:53
+#: app/components/navigation/header-nav.html:59
 msgid "Current Group"
 msgstr "当前组"
 
@@ -157,7 +176,7 @@ msgstr "当前组"
 msgid "Current Services"
 msgstr "当前服务"
 
-#: app/components/navigation/header-nav.html:40
+#: app/components/navigation/header-nav.html:46
 msgid "Currently Selected Group"
 msgstr "当前所选的组"
 
@@ -175,12 +194,13 @@ msgid "Custom button action"
 msgstr "自定义按钮动作"
 
 #: app/config/navigation.config.js:14
-#: app/states/dashboard/dashboard.state.js:154
+#: app/states/dashboard/dashboard.state.js:178
 #: app/states/dashboard/dashboard.state.js:20
 msgid "Dashboard"
 msgstr "仪表板"
 
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:332
+#: app/states/requests/list/list.state.js:99
 msgid "Denied"
 msgstr "已拒绝"
 
@@ -190,8 +210,8 @@ msgstr "已拒绝的请求"
 
 #: app/components/edit-service-modal/edit-service-modal.html:13
 #: app/states/marketplace/list/list.state.js:80
-#: app/states/requests/list/list.state.js:60
-#: app/states/requests/list/list.state.js:92
+#: app/states/requests/list/list.state.js:110
+#: app/states/requests/list/list.state.js:78
 msgid "Description"
 msgstr "描述"
 
@@ -216,7 +236,7 @@ msgstr "编辑服务"
 msgid "Error"
 msgstr "错误"
 
-#: app/config/authorization.config.js:105
+#: app/config/authorization.config.js:108
 msgid "Error retrieving user info"
 msgstr "检索用户信息出错"
 
@@ -224,41 +244,48 @@ msgstr "检索用户信息出错"
 msgid "Filter by Catalog Name"
 msgstr "根据目录名称过滤"
 
-#: app/states/services/list/list.state.js:92
+#: app/states/services/list/list.state.js:94
 msgid "Filter by Created On"
 msgstr "根据创建日期过滤"
 
 #: app/states/marketplace/list/list.state.js:81
-#: app/states/requests/list/list.state.js:61
+#: app/states/requests/list/list.state.js:79
 msgid "Filter by Description"
 msgstr "根据描述过滤"
 
-#: app/states/requests/list/list.state.js:67
+#: app/states/requests/list/list.state.js:147
+#: app/states/requests/list/list.state.js:85
 msgid "Filter by ID"
 msgstr "根据 ID 过滤"
 
+#: app/states/blueprints/list/list.state.js:62
 #: app/states/marketplace/list/list.state.js:75
-#: app/states/services/list/list.state.js:67
+#: app/states/requests/list/list.state.js:141
+#: app/states/services/list/list.state.js:69
 msgid "Filter by Name"
 msgstr "根据名称过滤"
 
-#: app/states/services/list/list.state.js:86
+#: app/states/requests/list/list.state.js:153
+msgid "Filter by Ordered Date"
+msgstr "根据排序日期过滤"
+
+#: app/states/services/list/list.state.js:88
 msgid "Filter by Owner"
 msgstr "根据所有者过滤"
 
-#: app/states/requests/list/list.state.js:73
+#: app/states/requests/list/list.state.js:91
 msgid "Filter by Request Date"
 msgstr "根据请求日期过滤"
 
-#: app/states/services/list/list.state.js:73
+#: app/states/services/list/list.state.js:75
 msgid "Filter by Retirement Date"
 msgstr "根据退订日期过滤"
 
-#: app/states/requests/list/list.state.js:79
+#: app/states/requests/list/list.state.js:97
 msgid "Filter by Status"
 msgstr "根据状态过滤"
 
-#: app/states/services/list/list.state.js:80
+#: app/states/services/list/list.state.js:82
 msgid "Filter by VMs"
 msgstr "根据虚拟机过滤"
 
@@ -281,7 +308,8 @@ msgstr "帮助"
 msgid "Hourly"
 msgstr "小时"
 
-#: app/states/requests/list/list.html:24
+#: app/components/request-list/request-list.html:15
+#: app/states/requests/list/list.html:38
 msgid "ID"
 msgstr "ID"
 
@@ -297,7 +325,15 @@ msgstr "不活动的"
 msgid "Incorrect username or password."
 msgstr "错误的用户名或密码。"
 
-#: app/states/requests/details/details.html:83
+#: app/states/marketplace/details/details.state.js:101
+msgid "Item added to shopping cart"
+msgstr "添加到购物车的项"
+
+#: app/states/login/login.html:28
+msgid "Language"
+msgstr "语言"
+
+#: app/states/requests/details/details.html:82
 msgid "Last Message"
 msgstr "最近一条消息"
 
@@ -306,11 +342,11 @@ msgid "Last Scan"
 msgstr "最近扫描日期"
 
 #: app/states/products/details/details.html:38
-#: app/states/requests/details/details.html:91
+#: app/states/requests/details/details.html:90
 msgid "Last Updated"
 msgstr "最近更新日期"
 
-#: app/states/login/login.html:39
+#: app/states/login/login.html:34
 msgid "Log In"
 msgstr "登录"
 
@@ -323,13 +359,13 @@ msgstr "登入完全管理性用户界面"
 msgid "Login"
 msgstr "登录"
 
-#: app/components/navigation/header-nav.html:61
+#: app/components/navigation/header-nav.html:69
 #: app/states/logout/logout.state.js:18
 #: app/states/logout/logout.state.js:27
 msgid "Logout"
 msgstr "登出"
 
-#: app/skin/skin.module.js:8
+#: app/skin/skin.module.js:20
 #: app/states/error/error.html:3
 msgid "ManageIQ Self Service"
 msgstr "ManageIQ 自助服务"
@@ -350,7 +386,12 @@ msgstr "每月"
 msgid "More"
 msgstr "更多"
 
+#: app/states/requests/list/list.html:15
+msgid "My Orders"
+msgstr "我的订单"
+
 #: app/config/navigation.config.js:25
+#: app/states/requests/list/list.html:2
 msgid "My Requests"
 msgstr "我的请求"
 
@@ -359,11 +400,17 @@ msgid "My Services"
 msgstr "我的服务"
 
 #: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/services/blueprints-state.service.js:14
+#: app/services/marketplace-state.service.js:13
 #: app/services/services-state.service.js:14
+#: app/states/blueprints/list/list.state.js:61
+#: app/states/blueprints/list/list.state.js:74
 #: app/states/marketplace/list/list.state.js:100
 #: app/states/marketplace/list/list.state.js:74
-#: app/states/services/list/list.state.js:104
-#: app/states/services/list/list.state.js:66
+#: app/states/requests/list/list.state.js:140
+#: app/states/requests/list/list.state.js:165
+#: app/states/services/list/list.state.js:106
+#: app/states/services/list/list.state.js:68
 msgid "Name"
 msgstr "名称"
 
@@ -379,15 +426,42 @@ msgstr "没有可用的置备对话框。"
 msgid "No Warning"
 msgstr "没有警告"
 
-#: app/states/services/list/list.state.js:114
-#: app/states/services/list/list.state.js:79
+#: app/states/services/list/list.state.js:116
+#: app/states/services/list/list.state.js:81
 msgid "Number of VMs"
 msgstr "虚拟机的数量"
 
+#: app/states/services/details/details.html:199
+msgid "Open a HTML5 console for this VM"
+msgstr "打开这个虚拟机的 HTML5 控制台"
+
+#: app/components/shopping-cart/shopping-cart.html:50
+msgid "Order"
+msgstr "订单"
+
+#: app/states/requests/order_details/order_details.state.js:19
+msgid "Order Details"
+msgstr "订单细节"
+
+#: app/states/requests/list/list.state.js:146
+#: app/states/requests/list/list.state.js:170
+msgid "Order ID"
+msgstr "订单 ID"
+
+#: app/services/orders-state.service.js:13
+#: app/states/requests/list/list.state.js:152
+#: app/states/requests/list/list.state.js:175
+msgid "Ordered Date"
+msgstr "订单日期"
+
+#: app/states/requests/order_details/order_details.html:5
+msgid "Orders:"
+msgstr "订单："
+
 #: app/states/services/details/details.html:94
 #: app/states/services/list/list.html:35
-#: app/states/services/list/list.state.js:119
-#: app/states/services/list/list.state.js:85
+#: app/states/services/list/list.state.js:121
+#: app/states/services/list/list.state.js:87
 msgid "Owner"
 msgstr "所有者"
 
@@ -395,7 +469,8 @@ msgstr "所有者"
 msgid "Password"
 msgstr "密码"
 
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:330
+#: app/states/requests/list/list.state.js:99
 msgid "Pending"
 msgstr "待定的"
 
@@ -410,6 +485,7 @@ msgstr "永久地删除服务"
 #: app/states/services/details/details.html:191
 #: app/states/services/details/details.html:192
 #: app/states/services/details/details.html:193
+#: app/states/services/details/details.html:194
 msgid "Power State"
 msgstr "电源状态"
 
@@ -457,30 +533,34 @@ msgstr "已取消重新配置这个服务"
 msgid "Refresh"
 msgstr "刷新"
 
+#: app/components/shopping-cart/shopping-cart.html:17
+msgid "Remove"
+msgstr "删除"
+
 #: app/states/services/details/details.html:37
 #: app/states/services/details/details.html:41
 msgid "Remove Service"
 msgstr "删除服务"
 
-#: app/states/requests/details/details.html:67
+#: app/states/requests/details/details.html:61
 msgid "Request Approval State"
 msgstr "请求批准状态"
 
 #: app/services/requests-state.service.js:13
-#: app/states/requests/details/details.html:55
-#: app/states/requests/list/list.state.js:102
-#: app/states/requests/list/list.state.js:72
+#: app/states/requests/details/details.html:49
+#: app/states/requests/list/list.state.js:120
+#: app/states/requests/list/list.state.js:90
 msgid "Request Date"
 msgstr "请求日期"
 
 #: app/states/requests/details/details.html:37
-#: app/states/requests/list/list.state.js:66
-#: app/states/requests/list/list.state.js:97
+#: app/states/requests/list/list.state.js:115
+#: app/states/requests/list/list.state.js:84
 msgid "Request ID"
 msgstr "请求 ID"
 
 #: app/states/requests/list/list.state.js:19
-#: app/states/requests/list/list.state.js:40
+#: app/states/requests/list/list.state.js:49
 msgid "Request List"
 msgstr "请求列表"
 
@@ -488,13 +568,13 @@ msgstr "请求列表"
 msgid "Request State"
 msgstr "请求状态"
 
-#: app/states/dashboard/dashboard.state.js:157
-#: app/states/requests/list/list.state.js:107
-#: app/states/requests/list/list.state.js:78
+#: app/states/dashboard/dashboard.state.js:181
+#: app/states/requests/list/list.state.js:125
+#: app/states/requests/list/list.state.js:96
 msgid "Request Status"
 msgstr "请求状态"
 
-#: app/states/requests/details/details.html:97
+#: app/states/requests/details/details.html:96
 msgid "Request Type"
 msgstr "请求类型"
 
@@ -502,11 +582,11 @@ msgstr "请求类型"
 msgid "Request:"
 msgstr "请求："
 
-#: app/states/requests/list/list.html:29
+#: app/components/request-list/request-list.html:20
 msgid "Requested"
 msgstr "已请求的"
 
-#: app/states/requests/details/details.html:61
+#: app/states/requests/details/details.html:55
 msgid "Requested By"
 msgstr "请求者"
 
@@ -526,7 +606,7 @@ msgstr "现在退订"
 msgid "Retire Service Now"
 msgstr "现在退订服务"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Retired"
 msgstr "已退订的"
 
@@ -535,11 +615,11 @@ msgid "Retired Services"
 msgstr "已退订的服务"
 
 #: app/components/retire-service-modal/retire-service-modal.html:18
-#: app/states/dashboard/dashboard.state.js:162
+#: app/states/dashboard/dashboard.state.js:187
 #: app/states/services/details/details.html:86
 #: app/states/services/list/list.html:22
-#: app/states/services/list/list.state.js:109
-#: app/states/services/list/list.state.js:72
+#: app/states/services/list/list.state.js:111
+#: app/states/services/list/list.state.js:74
 msgid "Retirement Date"
 msgstr "退订日期"
 
@@ -577,7 +657,7 @@ msgstr "选择组"
 msgid "Select an Owner"
 msgstr "选择所有者"
 
-#: app/skin/skin.module.js:11
+#: app/skin/skin.module.js:21
 #: index.html:4
 msgid "Self Service"
 msgstr "自注服务"
@@ -594,7 +674,7 @@ msgstr "服务自定义按钮细节"
 
 #: app/states/products/details/details.state.js:28
 #: app/states/services/details/details.state.js:19
-#: app/states/services/details/details.state.js:62
+#: app/states/services/details/details.state.js:97
 #: app/states/services/reconfigure/reconfigure.state.js:19
 #: app/states/services/reconfigure/reconfigure.state.js:41
 msgid "Service Details"
@@ -605,7 +685,7 @@ msgid "Service Id"
 msgstr "服务 ID"
 
 #: app/states/services/list/list.state.js:19
-#: app/states/services/list/list.state.js:39
+#: app/states/services/list/list.state.js:41
 msgid "Service List"
 msgstr "服务列表"
 
@@ -631,23 +711,42 @@ msgstr "设置服务所有权"
 msgid "Setup"
 msgstr "设置"
 
+#: app/components/shopping-cart/shopping-cart.html:5
+msgid "Shopping Cart"
+msgstr "购物车"
+
+#: app/components/navigation/header-nav.html:25
+msgid "Shopping cart"
+msgstr "购物车"
+
+#: app/components/shopping-cart/shopping-cart.html:26
+msgid "Shopping cart is empty."
+msgstr "购物车为空。"
+
+#: app/components/shopping-cart/shopping-cart.directive.js:47
+msgid "Shopping cart successfully ordered"
+msgstr "购物车已成功排序"
+
 #: app/states/services/details/details.html:181
 msgid "Size"
 msgstr "大小"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Soon"
 msgstr "即将"
 
-#: app/states/marketplace/details/details.html:31
 #: app/states/services/custom_button_details/custom_button_details.html:21
 #: app/states/services/reconfigure/reconfigure.html:23
 msgid "Submit Request"
 msgstr "提交请求"
 
-#: app/states/requests/list/list.html:35
-#: app/states/requests/list/list.html:37
-#: app/states/requests/list/list.html:39
+#: app/components/language-switcher/language-switcher.html:2
+msgid "Switch Language:"
+msgstr "切换语言："
+
+#: app/components/request-list/request-list.html:25
+#: app/components/request-list/request-list.html:26
+#: app/components/request-list/request-list.html:27
 msgid "The current approval status of the request"
 msgstr "请求的当前批准状态"
 
@@ -704,16 +803,28 @@ msgstr "您已预订的服务总数，包括活动的及退订的。"
 msgid "There was a problem loading the page."
 msgstr "加载页面出现问题。"
 
+#: app/states/marketplace/details/details.state.js:107
+msgid "There was an error adding to shopping cart:"
+msgstr "添加至购物车出错："
+
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
 msgstr "编辑这个服务出错。"
 
-#: app/states/services/details/details.state.js:106
+#: app/services/consoles.service.js:37
+msgid "There was an error opening the console"
+msgstr "打开控制台出错"
+
+#: app/services/consoles.service.js:38
+msgid "There was an error opening the console:"
+msgstr "打开控制台出错"
+
+#: app/states/services/details/details.state.js:119
 msgid "There was an error removing this service."
 msgstr "删除这个服务出错。"
 
 #: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
-#: app/states/services/details/details.state.js:128
+#: app/states/services/details/details.state.js:158
 msgid "There was an error retiring this service."
 msgstr "退订这个服务出错。"
 
@@ -721,7 +832,7 @@ msgstr "退订这个服务出错。"
 msgid "There was an error saving ownership of this service."
 msgstr "保存这个服务的所有权出错。"
 
-#: app/states/marketplace/details/details.state.js:101
+#: app/components/shopping-cart/shopping-cart.directive.js:51
 #: app/states/services/custom_button_details/custom_button_details.state.js:93
 #: app/states/services/reconfigure/reconfigure.state.js:112
 msgid "There was an error submitting this request:"
@@ -743,8 +854,20 @@ msgstr "请求的总数"
 msgid "Total Services"
 msgstr "服务的总数"
 
+#: app/services/consoles.service.js:75
+msgid "Unsupported console protocol returned"
+msgstr "返回不受支持的控制台协议"
+
+#: app/services/consoles.service.js:76
+msgid "Unsupported console protocol returned:"
+msgstr "返回不受支持的控制台协议："
+
+#: app/components/language-switcher/language-switcher.directive.js:28
+msgid "User Default"
+msgstr "用户默认值"
+
 #: app/states/login/login.state.js:41
-#: app/states/login/login.state.js:61
+#: app/states/login/login.state.js:62
 msgid "User does not have privileges to login."
 msgstr "用户没有登录权限。"
 
@@ -761,8 +884,16 @@ msgid "Vendor"
 msgstr "供应商"
 
 #: app/states/services/details/details.html:163
-msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
-msgstr "虚拟机 ({{ ::vm.service.vms.length }})"
+msgid "Virtual Machines ({{ ::vm.vms.length }})"
+msgstr "虚拟机 ({{ ::vm.vms.length }})"
+
+#: app/services/consoles.service.js:30
+msgid "Waiting for the console to become ready"
+msgstr "正在等待控制台就绪"
+
+#: app/services/consoles.service.js:31
+msgid "Waiting for the console to become ready:"
+msgstr "正在等待控制台就绪："
 
 #: app/states/404/404.html:7
 #: app/states/error/error.html:13
@@ -781,14 +912,27 @@ msgstr "是，现在退订服务"
 msgid "Your session has timed out."
 msgstr "您的会话已超时。"
 
+#: app/config/gettext.config.js:31
+msgid "locale_name"
+msgstr "简体中文"
+
+#: app/states/requests/list/list.html:43
+msgid "ordered"
+msgstr "已排序"
+
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
 msgid "was edited."
 msgstr "已编辑。"
 
-#: app/states/services/details/details.state.js:101
+#: app/states/services/details/details.state.js:114
 msgid "was removed."
 msgstr "已删除。"
 
-#: app/states/services/details/details.state.js:123
+#: app/states/services/details/details.state.js:153
 msgid "was retired."
 msgstr "已退订。"
+
+#: app/states/requests/list/list.html:47
+msgid "{{ $count }} item"
+msgid_plural "{{ $count }} items"
+msgstr[0] "{{ $count }} item"

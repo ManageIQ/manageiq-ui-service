@@ -1,18 +1,18 @@
 # Milan Zázrivec <mzazrivec@redhat.com>, 2016. #zanata
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-04-01 08:09-0400\n"
+"PO-Revision-Date: 2016-07-22 04:45-0400\n"
 "Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>\n"
 "Language-Team: Slovak\n"
 "Language: sk\n"
-"X-Generator: Zanata 3.8.3\n"
+"X-Generator: Zanata 3.9.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
 
-#: app/components/navigation/header-nav.html:42
+#: app/components/navigation/header-nav.html:48
 msgid "(Current Group)"
 msgstr "(Aktuálna skupina)"
 
@@ -52,8 +52,13 @@ msgstr "Detaily aktivovaných produktov"
 msgid "Active"
 msgstr "Aktívne"
 
+#: app/states/marketplace/details/details.html:31
+msgid "Add to Shopping Cart"
+msgstr "Pridať do nákupného vozíka"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:334
+#: app/states/requests/list/list.state.js:99
 msgid "Approved"
 msgstr "Schválené"
 
@@ -63,7 +68,7 @@ msgid "Approved Requests"
 msgstr "Schválené požiadavky"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:73
+#: app/states/requests/details/details.html:72
 msgid "Approver"
 msgstr "Schválil"
 
@@ -74,6 +79,7 @@ msgstr "Skutočne chcete pokračovať?"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/requests/details/details.html:3
+#: app/states/requests/order_details/order_details.html:3
 msgid "Back to My Requests"
 msgstr "Naspäť k mojím dotazom"
 
@@ -94,13 +100,17 @@ msgid "Back to Service Catalog"
 msgstr "Naspäť ku katalógom služieb"
 
 #: app/states/blueprints/list/list.state.js:19
-#: app/states/blueprints/list/list.state.js:29
+#: app/states/blueprints/list/list.state.js:39
 msgid "Blueprint List"
 msgstr "Zoznam náčrtov"
 
 #: app/config/navigation.config.js:37
 msgid "Blueprints"
 msgstr "Náčrty"
+
+#: app/components/language-switcher/language-switcher.directive.js:29
+msgid "Browser Default"
+msgstr "Východzie nastavenie prehliadača"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/custom-button/custom-button.directive.js:100
@@ -127,13 +137,21 @@ msgstr "Zrušiť"
 msgid "Catalog Name"
 msgstr "Meno katalógu"
 
-#: app/components/navigation/header-nav.html:34
+#: app/components/navigation/header-nav.html:40
 msgid "Change Group:"
 msgstr "Zmeň skupinu:"
 
-#: app/components/navigation/header-nav.html:46
+#: app/components/navigation/header-nav.html:52
 msgid "Change to this Group"
 msgstr "Zmeň túto skupinu"
+
+#: app/components/shopping-cart/shopping-cart.html:42
+msgid "Clear"
+msgstr "Vyprázdniť"
+
+#: app/components/shopping-cart/shopping-cart.html:34
+msgid "Close"
+msgstr "Zavrieť"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/details/details.html:42
@@ -146,8 +164,8 @@ msgid "Confirm, would you like to retire this service?"
 msgstr "Skutočne si prajete vyradiť túto službu?"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:124
-#: app/states/services/list/list.state.js:91
+#: app/states/services/list/list.state.js:126
+#: app/states/services/list/list.state.js:93
 msgid "Created"
 msgstr "Vytvorený"
 
@@ -163,11 +181,11 @@ msgid "Creation Date"
 msgstr "Dátum vytvorenia"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Current"
 msgstr "Aktuálny"
 
-#: app/components/navigation/header-nav.html:53
+#: app/components/navigation/header-nav.html:59
 msgid "Current Group"
 msgstr "Aktuálna skupina"
 
@@ -176,7 +194,7 @@ msgstr "Aktuálna skupina"
 msgid "Current Services"
 msgstr "Aktuálne služby"
 
-#: app/components/navigation/header-nav.html:40
+#: app/components/navigation/header-nav.html:46
 msgid "Currently Selected Group"
 msgstr "Momentálne označená skupina"
 
@@ -195,13 +213,14 @@ msgstr "Užívateľská akcia tlačítka"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/config/navigation.config.js:14
-#: app/states/dashboard/dashboard.state.js:154
+#: app/states/dashboard/dashboard.state.js:178
 #: app/states/dashboard/dashboard.state.js:20
 msgid "Dashboard"
 msgstr "Riadiaci panel"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:332
+#: app/states/requests/list/list.state.js:99
 msgid "Denied"
 msgstr "Zamietnuté"
 
@@ -213,8 +232,8 @@ msgstr "Zamietnuté požiadavky"
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/edit-service-modal/edit-service-modal.html:13
 #: app/states/marketplace/list/list.state.js:80
-#: app/states/requests/list/list.state.js:60
-#: app/states/requests/list/list.state.js:92
+#: app/states/requests/list/list.state.js:110
+#: app/states/requests/list/list.state.js:78
 msgid "Description"
 msgstr "Popis"
 
@@ -244,7 +263,7 @@ msgstr "Editácia služby"
 msgid "Error"
 msgstr "Chyba"
 
-#: app/config/authorization.config.js:105
+#: app/config/authorization.config.js:108
 msgid "Error retrieving user info"
 msgstr "Chyba pri zisťovaní informácii o užívateľovi"
 
@@ -254,49 +273,56 @@ msgid "Filter by Catalog Name"
 msgstr "Filtruj podľa názvu katalógu"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:92
+#: app/states/services/list/list.state.js:94
 msgid "Filter by Created On"
 msgstr "Filter vytvorený"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/marketplace/list/list.state.js:81
-#: app/states/requests/list/list.state.js:61
+#: app/states/requests/list/list.state.js:79
 msgid "Filter by Description"
 msgstr "Filtruj podľa popisu"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:67
+#: app/states/requests/list/list.state.js:147
+#: app/states/requests/list/list.state.js:85
 msgid "Filter by ID"
 msgstr "Filtruj podľa ID"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
+#: app/states/blueprints/list/list.state.js:62
 #: app/states/marketplace/list/list.state.js:75
-#: app/states/services/list/list.state.js:67
+#: app/states/requests/list/list.state.js:141
+#: app/states/services/list/list.state.js:69
 msgid "Filter by Name"
 msgstr "Filtruj podľa názvu"
 
+#: app/states/requests/list/list.state.js:153
+msgid "Filter by Ordered Date"
+msgstr "Filtrovať podľa dátumu objednania"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:86
+#: app/states/services/list/list.state.js:88
 msgid "Filter by Owner"
 msgstr "Filtruj podľa vlastníka"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:73
+#: app/states/requests/list/list.state.js:91
 msgid "Filter by Request Date"
 msgstr "Filtruj podľa dátumu požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:73
+#: app/states/services/list/list.state.js:75
 msgid "Filter by Retirement Date"
 msgstr "Filtruj podľa dátumu vyradenia"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:79
+#: app/states/requests/list/list.state.js:97
 msgid "Filter by Status"
 msgstr "Filtruj podľa statusu"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:80
+#: app/states/services/list/list.state.js:82
 msgid "Filter by VMs"
 msgstr "Filtruj podľa virtuálnych strojov"
 
@@ -324,7 +350,8 @@ msgid "Hourly"
 msgstr "Po hodinách"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.html:24
+#: app/components/request-list/request-list.html:15
+#: app/states/requests/list/list.html:38
 msgid "ID"
 msgstr "Identifikátor"
 
@@ -343,8 +370,16 @@ msgstr "Neaktívny"
 msgid "Incorrect username or password."
 msgstr "Nesprávne prihlasovacie meno alebo heslo"
 
+#: app/states/marketplace/details/details.state.js:101
+msgid "Item added to shopping cart"
+msgstr "Položka pridaná do nákupného vozíka"
+
+#: app/states/login/login.html:28
+msgid "Language"
+msgstr "Jazyk"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:83
+#: app/states/requests/details/details.html:82
 msgid "Last Message"
 msgstr "Posledná správa"
 
@@ -355,12 +390,12 @@ msgstr "Posledná kontrola"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/products/details/details.html:38
-#: app/states/requests/details/details.html:91
+#: app/states/requests/details/details.html:90
 msgid "Last Updated"
 msgstr "Posledná aktualizácia"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/login/login.html:39
+#: app/states/login/login.html:34
 msgid "Log In"
 msgstr "Prihlásiť sa"
 
@@ -376,14 +411,14 @@ msgid "Login"
 msgstr "Prihlásenie"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/navigation/header-nav.html:61
+#: app/components/navigation/header-nav.html:69
 #: app/states/logout/logout.state.js:18
 #: app/states/logout/logout.state.js:27
 msgid "Logout"
 msgstr "Odhlásenie"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/skin/skin.module.js:8
+#: app/skin/skin.module.js:20
 #: app/states/error/error.html:3
 msgid "ManageIQ Self Service"
 msgstr "ManageIQ samoobsluha"
@@ -408,8 +443,13 @@ msgstr "Mesačne"
 msgid "More"
 msgstr "Viac"
 
+#: app/states/requests/list/list.html:15
+msgid "My Orders"
+msgstr "Moje objednávky"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/config/navigation.config.js:25
+#: app/states/requests/list/list.html:2
 msgid "My Requests"
 msgstr "Moje požiadavky"
 
@@ -420,11 +460,17 @@ msgstr "Moje služby"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/services/blueprints-state.service.js:14
+#: app/services/marketplace-state.service.js:13
 #: app/services/services-state.service.js:14
+#: app/states/blueprints/list/list.state.js:61
+#: app/states/blueprints/list/list.state.js:74
 #: app/states/marketplace/list/list.state.js:100
 #: app/states/marketplace/list/list.state.js:74
-#: app/states/services/list/list.state.js:104
-#: app/states/services/list/list.state.js:66
+#: app/states/requests/list/list.state.js:140
+#: app/states/requests/list/list.state.js:165
+#: app/states/services/list/list.state.js:106
+#: app/states/services/list/list.state.js:68
 msgid "Name"
 msgstr "Meno"
 
@@ -444,16 +490,43 @@ msgid "No Warning"
 msgstr "Žiadne varovania"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:114
-#: app/states/services/list/list.state.js:79
+#: app/states/services/list/list.state.js:116
+#: app/states/services/list/list.state.js:81
 msgid "Number of VMs"
 msgstr "Počet virtuálnych strojov"
+
+#: app/states/services/details/details.html:199
+msgid "Open a HTML5 console for this VM"
+msgstr "Otvoriť HTML5 konzolu pre tento virtuálny stroj"
+
+#: app/components/shopping-cart/shopping-cart.html:50
+msgid "Order"
+msgstr "Objednať"
+
+#: app/states/requests/order_details/order_details.state.js:19
+msgid "Order Details"
+msgstr "Detaily objednávky"
+
+#: app/states/requests/list/list.state.js:146
+#: app/states/requests/list/list.state.js:170
+msgid "Order ID"
+msgstr "ID objednávky"
+
+#: app/services/orders-state.service.js:13
+#: app/states/requests/list/list.state.js:152
+#: app/states/requests/list/list.state.js:175
+msgid "Ordered Date"
+msgstr "Dátum objednávky"
+
+#: app/states/requests/order_details/order_details.html:5
+msgid "Orders:"
+msgstr "Objednávky:"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/details/details.html:94
 #: app/states/services/list/list.html:35
-#: app/states/services/list/list.state.js:119
-#: app/states/services/list/list.state.js:85
+#: app/states/services/list/list.state.js:121
+#: app/states/services/list/list.state.js:87
 msgid "Owner"
 msgstr "Vlastník"
 
@@ -463,7 +536,8 @@ msgid "Password"
 msgstr "Heslo"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:330
+#: app/states/requests/list/list.state.js:99
 msgid "Pending"
 msgstr "Zostávajúce"
 
@@ -481,6 +555,7 @@ msgstr "Trvalo zmaž túto službu"
 #: app/states/services/details/details.html:191
 #: app/states/services/details/details.html:192
 #: app/states/services/details/details.html:193
+#: app/states/services/details/details.html:194
 msgid "Power State"
 msgstr "Stav napájania"
 
@@ -536,6 +611,10 @@ msgstr "Rekonfigurácia služby bola zrušená"
 msgid "Refresh"
 msgstr "Aktualizácia"
 
+#: app/components/shopping-cart/shopping-cart.html:17
+msgid "Remove"
+msgstr "Odstrániť"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/details/details.html:37
 #: app/states/services/details/details.html:41
@@ -543,28 +622,28 @@ msgid "Remove Service"
 msgstr "Odstrániť službu"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:67
+#: app/states/requests/details/details.html:61
 msgid "Request Approval State"
 msgstr "Stav schválenia požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/services/requests-state.service.js:13
-#: app/states/requests/details/details.html:55
-#: app/states/requests/list/list.state.js:102
-#: app/states/requests/list/list.state.js:72
+#: app/states/requests/details/details.html:49
+#: app/states/requests/list/list.state.js:120
+#: app/states/requests/list/list.state.js:90
 msgid "Request Date"
 msgstr "Dátum požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/requests/details/details.html:37
-#: app/states/requests/list/list.state.js:66
-#: app/states/requests/list/list.state.js:97
+#: app/states/requests/list/list.state.js:115
+#: app/states/requests/list/list.state.js:84
 msgid "Request ID"
 msgstr "ID požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/requests/list/list.state.js:19
-#: app/states/requests/list/list.state.js:40
+#: app/states/requests/list/list.state.js:49
 msgid "Request List"
 msgstr "Zoznam požiadavkov"
 
@@ -574,14 +653,14 @@ msgid "Request State"
 msgstr "Stav požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.state.js:157
-#: app/states/requests/list/list.state.js:107
-#: app/states/requests/list/list.state.js:78
+#: app/states/dashboard/dashboard.state.js:181
+#: app/states/requests/list/list.state.js:125
+#: app/states/requests/list/list.state.js:96
 msgid "Request Status"
 msgstr "Stav požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:97
+#: app/states/requests/details/details.html:96
 msgid "Request Type"
 msgstr "Typ požiadavku"
 
@@ -591,12 +670,12 @@ msgid "Request:"
 msgstr "Požiadavka:"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.html:29
+#: app/components/request-list/request-list.html:20
 msgid "Requested"
 msgstr "Vyžiadaný"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:61
+#: app/states/requests/details/details.html:55
 msgid "Requested By"
 msgstr "Vyžiadal"
 
@@ -621,7 +700,7 @@ msgid "Retire Service Now"
 msgstr "Vyradiť službu hneď"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Retired"
 msgstr "Vyradený"
 
@@ -632,11 +711,11 @@ msgstr "Vyradené služby"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/retire-service-modal/retire-service-modal.html:18
-#: app/states/dashboard/dashboard.state.js:162
+#: app/states/dashboard/dashboard.state.js:187
 #: app/states/services/details/details.html:86
 #: app/states/services/list/list.html:22
-#: app/states/services/list/list.state.js:109
-#: app/states/services/list/list.state.js:72
+#: app/states/services/list/list.state.js:111
+#: app/states/services/list/list.state.js:74
 msgid "Retirement Date"
 msgstr "Dátum vyradenia"
 
@@ -681,7 +760,7 @@ msgid "Select an Owner"
 msgstr " Vyber vlastníka"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/skin/skin.module.js:11
+#: app/skin/skin.module.js:21
 #: index.html:4
 msgid "Self Service"
 msgstr "Samoobsluha"
@@ -700,7 +779,7 @@ msgstr "Detaily užívateľskeho tlačítka pre službu"
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/products/details/details.state.js:28
 #: app/states/services/details/details.state.js:19
-#: app/states/services/details/details.state.js:62
+#: app/states/services/details/details.state.js:97
 #: app/states/services/reconfigure/reconfigure.state.js:19
 #: app/states/services/reconfigure/reconfigure.state.js:41
 msgid "Service Details"
@@ -713,7 +792,7 @@ msgstr "ID služby"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/list/list.state.js:19
-#: app/states/services/list/list.state.js:39
+#: app/states/services/list/list.state.js:41
 msgid "Service List"
 msgstr "Zoznam služieb"
 
@@ -742,27 +821,46 @@ msgstr "Nastav vlastníctvo služby"
 msgid "Setup"
 msgstr "Nastavenie"
 
+#: app/components/shopping-cart/shopping-cart.html:5
+msgid "Shopping Cart"
+msgstr "Nákupný vozík"
+
+#: app/components/navigation/header-nav.html:25
+msgid "Shopping cart"
+msgstr "Nákupný vozík"
+
+#: app/components/shopping-cart/shopping-cart.html:26
+msgid "Shopping cart is empty."
+msgstr "Nákupný vozík je prázdny."
+
+#: app/components/shopping-cart/shopping-cart.directive.js:47
+msgid "Shopping cart successfully ordered"
+msgstr "Obsah nákupného vozíka bol úspešne objednaný"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/details/details.html:181
 msgid "Size"
 msgstr "Veľkosť"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Soon"
 msgstr "Čoskoro"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/details/details.html:31
 #: app/states/services/custom_button_details/custom_button_details.html:21
 #: app/states/services/reconfigure/reconfigure.html:23
 msgid "Submit Request"
 msgstr "Odoslať požiadavku"
 
+#: app/components/language-switcher/language-switcher.html:2
+msgid "Switch Language:"
+msgstr "Zmena jazyka:"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.html:35
-#: app/states/requests/list/list.html:37
-#: app/states/requests/list/list.html:39
+#: app/components/request-list/request-list.html:25
+#: app/components/request-list/request-list.html:26
+#: app/components/request-list/request-list.html:27
 msgid "The current approval status of the request"
 msgstr "Aktuálny stav schválenia požiadavku"
 
@@ -833,19 +931,31 @@ msgstr "Celkový počet objednaných  služieb, aktívnych aj vyradených."
 msgid "There was a problem loading the page."
 msgstr "Nastal problém pri načítaní stránky."
 
+#: app/states/marketplace/details/details.state.js:107
+msgid "There was an error adding to shopping cart:"
+msgstr "Pri pridávaní do nákupného vozíka nastala chyba:"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
 msgstr "Pri editácii služby nastala chyba."
 
+#: app/services/consoles.service.js:37
+msgid "There was an error opening the console"
+msgstr "Pri otváraní konzoly nastala chyba"
+
+#: app/services/consoles.service.js:38
+msgid "There was an error opening the console:"
+msgstr "Pri otváraní konzoly nastala chyba:"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:106
+#: app/states/services/details/details.state.js:119
 msgid "There was an error removing this service."
 msgstr "Pri odstraňovaní služby nastala chyba."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
-#: app/states/services/details/details.state.js:128
+#: app/states/services/details/details.state.js:158
 msgid "There was an error retiring this service."
 msgstr "Pri vyraďovaní služby nastala chyba."
 
@@ -854,7 +964,7 @@ msgid "There was an error saving ownership of this service."
 msgstr "Pri nastavovaní vlastníctva služby nastala chyba"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/details/details.state.js:101
+#: app/components/shopping-cart/shopping-cart.directive.js:51
 #: app/states/services/custom_button_details/custom_button_details.state.js:93
 #: app/states/services/reconfigure/reconfigure.state.js:112
 msgid "There was an error submitting this request:"
@@ -880,8 +990,20 @@ msgstr "Celkový počet žiadostí"
 msgid "Total Services"
 msgstr "Celkový počet služieb"
 
+#: app/services/consoles.service.js:75
+msgid "Unsupported console protocol returned"
+msgstr "Nepodporovaný protokol konzoly"
+
+#: app/services/consoles.service.js:76
+msgid "Unsupported console protocol returned:"
+msgstr "Nepodporovaný protokol konzoly:"
+
+#: app/components/language-switcher/language-switcher.directive.js:28
+msgid "User Default"
+msgstr "Užívateľské nastavenia"
+
 #: app/states/login/login.state.js:41
-#: app/states/login/login.state.js:61
+#: app/states/login/login.state.js:62
 msgid "User does not have privileges to login."
 msgstr "Užívateľ nemá oprávnenia na prihlásenie"
 
@@ -900,10 +1022,17 @@ msgstr "Virtuálne stroje"
 msgid "Vendor"
 msgstr "Dodávateľ"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/details/details.html:163
-msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
-msgstr "Virtuálne stroje ({{ ::vm.service.vms.length }})"
+msgid "Virtual Machines ({{ ::vm.vms.length }})"
+msgstr "Virtuálne stroje ({{ ::vm.vms.length }})"
+
+#: app/services/consoles.service.js:30
+msgid "Waiting for the console to become ready"
+msgstr "Čaká sa, kým bude konzola pripravená"
+
+#: app/services/consoles.service.js:31
+msgid "Waiting for the console to become ready:"
+msgstr "Čaká sa, kým bude konzola pripravená"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/404/404.html:7
@@ -926,17 +1055,32 @@ msgstr "Áno, vyraď službu hneď"
 msgid "Your session has timed out."
 msgstr "Platnosť vášho prihlásenia vypršala."
 
+#: app/config/gettext.config.js:31
+msgid "locale_name"
+msgstr "Slovensky"
+
+#: app/states/requests/list/list.html:43
+msgid "ordered"
+msgstr "objednané"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
 msgid "was edited."
 msgstr "bol zmenený."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:101
+#: app/states/services/details/details.state.js:114
 msgid "was removed."
 msgstr "bol odstránený."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:123
+#: app/states/services/details/details.state.js:153
 msgid "was retired."
 msgstr "bol vyradený."
+
+#: app/states/requests/list/list.html:47
+msgid "{{ $count }} item"
+msgid_plural "{{ $count }} items"
+msgstr[0] "{{ $count }} položka"
+msgstr[1] "{{ $count }} položky"
+msgstr[2] "{{ $count }} položiek"

@@ -1,19 +1,20 @@
+# Milan Zázrivec <mzazrivec@redhat.com>, 2016. #zanata
 # Sergio Ocón <sergio.ocon@redhat.com>, 2016. #zanata
 # Victor Estival <victor.estival@gmail.com>, 2016. #zanata
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-04-04 03:06-0400\n"
-"Last-Translator: Victor Estival <victor.estival@gmail.com>\n"
+"PO-Revision-Date: 2016-07-29 04:06-0400\n"
+"Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
-"X-Generator: Zanata 3.8.3\n"
+"X-Generator: Zanata 3.9.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: app/components/navigation/header-nav.html:42
+#: app/components/navigation/header-nav.html:48
 msgid "(Current Group)"
 msgstr "(Grupo actual)"
 
@@ -52,7 +53,12 @@ msgstr "Vista de detale de los Productos Activados"
 msgid "Active"
 msgstr "Activo"
 
-#: app/states/requests/list/list.state.js:81
+#: app/states/marketplace/details/details.html:31
+msgid "Add to Shopping Cart"
+msgstr "Añadir a la cesta"
+
+#: app/states/requests/list/list.state.js:334
+#: app/states/requests/list/list.state.js:99
 msgid "Approved"
 msgstr "Aprobado"
 
@@ -60,7 +66,7 @@ msgstr "Aprobado"
 msgid "Approved Requests"
 msgstr "Peticiones Aprobadas"
 
-#: app/states/requests/details/details.html:73
+#: app/states/requests/details/details.html:72
 msgid "Approver"
 msgstr "Aprobador"
 
@@ -69,6 +75,7 @@ msgid "Are you sure you wish to proceed?"
 msgstr "¿Seguro que quiere continuar?"
 
 #: app/states/requests/details/details.html:3
+#: app/states/requests/order_details/order_details.html:3
 msgid "Back to My Requests"
 msgstr "Volver a Mis Peticiones"
 
@@ -87,13 +94,17 @@ msgid "Back to Service Catalog"
 msgstr "Volver al Catálogo de Servicios"
 
 #: app/states/blueprints/list/list.state.js:19
-#: app/states/blueprints/list/list.state.js:29
+#: app/states/blueprints/list/list.state.js:39
 msgid "Blueprint List"
 msgstr "Listado de Blueprints"
 
 #: app/config/navigation.config.js:37
 msgid "Blueprints"
 msgstr "Blueprints"
+
+#: app/components/language-switcher/language-switcher.directive.js:29
+msgid "Browser Default"
+msgstr "Por defecto en el navegador"
 
 #: app/components/custom-button/custom-button.directive.js:100
 msgid "Button action not supported."
@@ -116,13 +127,21 @@ msgstr "Cancelar"
 msgid "Catalog Name"
 msgstr "Nombre del Catálogo"
 
-#: app/components/navigation/header-nav.html:34
+#: app/components/navigation/header-nav.html:40
 msgid "Change Group:"
 msgstr "Cambiar Grupo:"
 
-#: app/components/navigation/header-nav.html:46
+#: app/components/navigation/header-nav.html:52
 msgid "Change to this Group"
 msgstr "Cambiar a este Grupo"
+
+#: app/components/shopping-cart/shopping-cart.html:42
+msgid "Clear"
+msgstr "Vaciar"
+
+#: app/components/shopping-cart/shopping-cart.html:34
+msgid "Close"
+msgstr "Cerrar"
 
 #: app/states/services/details/details.html:42
 msgid "Confirm, would you like to remove this service?"
@@ -132,8 +151,8 @@ msgstr "Confirme, ¿quiere eliminar este servicio?"
 msgid "Confirm, would you like to retire this service?"
 msgstr "Confirme, ¿le gustaría retirar el servicio?"
 
-#: app/states/services/list/list.state.js:124
-#: app/states/services/list/list.state.js:91
+#: app/states/services/list/list.state.js:126
+#: app/states/services/list/list.state.js:93
 msgid "Created"
 msgstr "Creado"
 
@@ -146,11 +165,11 @@ msgstr "Creado el"
 msgid "Creation Date"
 msgstr "Fecha de Creación"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Current"
 msgstr "Actual"
 
-#: app/components/navigation/header-nav.html:53
+#: app/components/navigation/header-nav.html:59
 msgid "Current Group"
 msgstr "Grupo Actual"
 
@@ -158,7 +177,7 @@ msgstr "Grupo Actual"
 msgid "Current Services"
 msgstr "Servicios Actuales"
 
-#: app/components/navigation/header-nav.html:40
+#: app/components/navigation/header-nav.html:46
 msgid "Currently Selected Group"
 msgstr "Grupo Seleccionado Actualmente"
 
@@ -176,12 +195,13 @@ msgid "Custom button action"
 msgstr "Botón de Acciones Personalizado"
 
 #: app/config/navigation.config.js:14
-#: app/states/dashboard/dashboard.state.js:154
+#: app/states/dashboard/dashboard.state.js:178
 #: app/states/dashboard/dashboard.state.js:20
 msgid "Dashboard"
 msgstr "Panel"
 
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:332
+#: app/states/requests/list/list.state.js:99
 msgid "Denied"
 msgstr "Denegado"
 
@@ -191,8 +211,8 @@ msgstr "Peticiones Denegadas"
 
 #: app/components/edit-service-modal/edit-service-modal.html:13
 #: app/states/marketplace/list/list.state.js:80
-#: app/states/requests/list/list.state.js:60
-#: app/states/requests/list/list.state.js:92
+#: app/states/requests/list/list.state.js:110
+#: app/states/requests/list/list.state.js:78
 msgid "Description"
 msgstr "Descripción"
 
@@ -217,7 +237,7 @@ msgstr "Editar servicio"
 msgid "Error"
 msgstr "Error"
 
-#: app/config/authorization.config.js:105
+#: app/config/authorization.config.js:108
 msgid "Error retrieving user info"
 msgstr "Error al obtener la información del usuario"
 
@@ -225,41 +245,48 @@ msgstr "Error al obtener la información del usuario"
 msgid "Filter by Catalog Name"
 msgstr "Filtrar por Nombre de catálogo"
 
-#: app/states/services/list/list.state.js:92
+#: app/states/services/list/list.state.js:94
 msgid "Filter by Created On"
 msgstr "Filtrar por Fecha de creación"
 
 #: app/states/marketplace/list/list.state.js:81
-#: app/states/requests/list/list.state.js:61
+#: app/states/requests/list/list.state.js:79
 msgid "Filter by Description"
 msgstr "Filtrar por Descripción"
 
-#: app/states/requests/list/list.state.js:67
+#: app/states/requests/list/list.state.js:147
+#: app/states/requests/list/list.state.js:85
 msgid "Filter by ID"
 msgstr "Filtrar por ID"
 
+#: app/states/blueprints/list/list.state.js:62
 #: app/states/marketplace/list/list.state.js:75
-#: app/states/services/list/list.state.js:67
+#: app/states/requests/list/list.state.js:141
+#: app/states/services/list/list.state.js:69
 msgid "Filter by Name"
 msgstr "Filtrar por Nombre"
 
-#: app/states/services/list/list.state.js:86
+#: app/states/requests/list/list.state.js:153
+msgid "Filter by Ordered Date"
+msgstr "Filtrado por Fecha de Pedido"
+
+#: app/states/services/list/list.state.js:88
 msgid "Filter by Owner"
 msgstr "Filtrar por Propietario"
 
-#: app/states/requests/list/list.state.js:73
+#: app/states/requests/list/list.state.js:91
 msgid "Filter by Request Date"
 msgstr "Filtrar por Fecha de petición"
 
-#: app/states/services/list/list.state.js:73
+#: app/states/services/list/list.state.js:75
 msgid "Filter by Retirement Date"
 msgstr "Filtrar por Fecha de Retiro"
 
-#: app/states/requests/list/list.state.js:79
+#: app/states/requests/list/list.state.js:97
 msgid "Filter by Status"
 msgstr "Filtrar por Estado"
 
-#: app/states/services/list/list.state.js:80
+#: app/states/services/list/list.state.js:82
 msgid "Filter by VMs"
 msgstr "Filtrar por MV"
 
@@ -282,7 +309,8 @@ msgstr "Ayuda"
 msgid "Hourly"
 msgstr "Cada hora"
 
-#: app/states/requests/list/list.html:24
+#: app/components/request-list/request-list.html:15
+#: app/states/requests/list/list.html:38
 msgid "ID"
 msgstr "ID"
 
@@ -298,7 +326,15 @@ msgstr "Inactivo"
 msgid "Incorrect username or password."
 msgstr "Nombre de usuario o contraseña incorrectos."
 
-#: app/states/requests/details/details.html:83
+#: app/states/marketplace/details/details.state.js:101
+msgid "Item added to shopping cart"
+msgstr "Se añadió el elemento a la cesta de la compra"
+
+#: app/states/login/login.html:28
+msgid "Language"
+msgstr "Idioma"
+
+#: app/states/requests/details/details.html:82
 msgid "Last Message"
 msgstr "Último mensaje"
 
@@ -307,11 +343,11 @@ msgid "Last Scan"
 msgstr "Último escaneo"
 
 #: app/states/products/details/details.html:38
-#: app/states/requests/details/details.html:91
+#: app/states/requests/details/details.html:90
 msgid "Last Updated"
 msgstr "Última actualización"
 
-#: app/states/login/login.html:39
+#: app/states/login/login.html:34
 msgid "Log In"
 msgstr "Iniciar sesión"
 
@@ -324,13 +360,13 @@ msgstr "Iniciar sesión con el interfaz completo de administración"
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: app/components/navigation/header-nav.html:61
+#: app/components/navigation/header-nav.html:69
 #: app/states/logout/logout.state.js:18
 #: app/states/logout/logout.state.js:27
 msgid "Logout"
 msgstr "Finalizar sesión"
 
-#: app/skin/skin.module.js:8
+#: app/skin/skin.module.js:20
 #: app/states/error/error.html:3
 msgid "ManageIQ Self Service"
 msgstr "Autoservicio de ManageIQ"
@@ -351,7 +387,12 @@ msgstr "Mensual"
 msgid "More"
 msgstr "Más"
 
+#: app/states/requests/list/list.html:15
+msgid "My Orders"
+msgstr "Mis pedidos"
+
 #: app/config/navigation.config.js:25
+#: app/states/requests/list/list.html:2
 msgid "My Requests"
 msgstr "Mis peticiones"
 
@@ -360,11 +401,17 @@ msgid "My Services"
 msgstr "Mis servicios"
 
 #: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/services/blueprints-state.service.js:14
+#: app/services/marketplace-state.service.js:13
 #: app/services/services-state.service.js:14
+#: app/states/blueprints/list/list.state.js:61
+#: app/states/blueprints/list/list.state.js:74
 #: app/states/marketplace/list/list.state.js:100
 #: app/states/marketplace/list/list.state.js:74
-#: app/states/services/list/list.state.js:104
-#: app/states/services/list/list.state.js:66
+#: app/states/requests/list/list.state.js:140
+#: app/states/requests/list/list.state.js:165
+#: app/states/services/list/list.state.js:106
+#: app/states/services/list/list.state.js:68
 msgid "Name"
 msgstr "Nombre"
 
@@ -380,15 +427,42 @@ msgstr "No hay disponible un Diálogo de Provisión"
 msgid "No Warning"
 msgstr "Sin avisos"
 
-#: app/states/services/list/list.state.js:114
-#: app/states/services/list/list.state.js:79
+#: app/states/services/list/list.state.js:116
+#: app/states/services/list/list.state.js:81
 msgid "Number of VMs"
 msgstr "Número de MV"
 
+#: app/states/services/details/details.html:199
+msgid "Open a HTML5 console for this VM"
+msgstr "Abrir una consola HTML5 para esta MV"
+
+#: app/components/shopping-cart/shopping-cart.html:50
+msgid "Order"
+msgstr "Pedido"
+
+#: app/states/requests/order_details/order_details.state.js:19
+msgid "Order Details"
+msgstr "Detalle del pedido"
+
+#: app/states/requests/list/list.state.js:146
+#: app/states/requests/list/list.state.js:170
+msgid "Order ID"
+msgstr "ID del pedido"
+
+#: app/services/orders-state.service.js:13
+#: app/states/requests/list/list.state.js:152
+#: app/states/requests/list/list.state.js:175
+msgid "Ordered Date"
+msgstr "Fecha del pedido"
+
+#: app/states/requests/order_details/order_details.html:5
+msgid "Orders:"
+msgstr "Pedidos:"
+
 #: app/states/services/details/details.html:94
 #: app/states/services/list/list.html:35
-#: app/states/services/list/list.state.js:119
-#: app/states/services/list/list.state.js:85
+#: app/states/services/list/list.state.js:121
+#: app/states/services/list/list.state.js:87
 msgid "Owner"
 msgstr "Propietario"
 
@@ -396,7 +470,8 @@ msgstr "Propietario"
 msgid "Password"
 msgstr "Contraseña"
 
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:330
+#: app/states/requests/list/list.state.js:99
 msgid "Pending"
 msgstr "Pendiente"
 
@@ -411,6 +486,7 @@ msgstr "Borrar el servicio permanentemente"
 #: app/states/services/details/details.html:191
 #: app/states/services/details/details.html:192
 #: app/states/services/details/details.html:193
+#: app/states/services/details/details.html:194
 msgid "Power State"
 msgstr "Estado de operación"
 
@@ -458,30 +534,34 @@ msgstr "Se ha cancelado la reconfiguración del servicio"
 msgid "Refresh"
 msgstr "Actualizar"
 
+#: app/components/shopping-cart/shopping-cart.html:17
+msgid "Remove"
+msgstr "Quitar"
+
 #: app/states/services/details/details.html:37
 #: app/states/services/details/details.html:41
 msgid "Remove Service"
 msgstr "Eliminar Servicio"
 
-#: app/states/requests/details/details.html:67
+#: app/states/requests/details/details.html:61
 msgid "Request Approval State"
 msgstr "Estado de aprobación de la Petición"
 
 #: app/services/requests-state.service.js:13
-#: app/states/requests/details/details.html:55
-#: app/states/requests/list/list.state.js:102
-#: app/states/requests/list/list.state.js:72
+#: app/states/requests/details/details.html:49
+#: app/states/requests/list/list.state.js:120
+#: app/states/requests/list/list.state.js:90
 msgid "Request Date"
 msgstr "Fecha de petición"
 
 #: app/states/requests/details/details.html:37
-#: app/states/requests/list/list.state.js:66
-#: app/states/requests/list/list.state.js:97
+#: app/states/requests/list/list.state.js:115
+#: app/states/requests/list/list.state.js:84
 msgid "Request ID"
 msgstr "ID de petición"
 
 #: app/states/requests/list/list.state.js:19
-#: app/states/requests/list/list.state.js:40
+#: app/states/requests/list/list.state.js:49
 msgid "Request List"
 msgstr "Lista de peticiones"
 
@@ -489,13 +569,13 @@ msgstr "Lista de peticiones"
 msgid "Request State"
 msgstr "Situación de la petición"
 
-#: app/states/dashboard/dashboard.state.js:157
-#: app/states/requests/list/list.state.js:107
-#: app/states/requests/list/list.state.js:78
+#: app/states/dashboard/dashboard.state.js:181
+#: app/states/requests/list/list.state.js:125
+#: app/states/requests/list/list.state.js:96
 msgid "Request Status"
 msgstr "Estado de la petición"
 
-#: app/states/requests/details/details.html:97
+#: app/states/requests/details/details.html:96
 msgid "Request Type"
 msgstr "Tipo de petición"
 
@@ -503,11 +583,11 @@ msgstr "Tipo de petición"
 msgid "Request:"
 msgstr "Petición:"
 
-#: app/states/requests/list/list.html:29
+#: app/components/request-list/request-list.html:20
 msgid "Requested"
 msgstr "Pedido"
 
-#: app/states/requests/details/details.html:61
+#: app/states/requests/details/details.html:55
 msgid "Requested By"
 msgstr "Pedido por"
 
@@ -527,7 +607,7 @@ msgstr "Retirar ahora"
 msgid "Retire Service Now"
 msgstr "Retirar el servicio ahora"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Retired"
 msgstr "Retirado"
 
@@ -536,11 +616,11 @@ msgid "Retired Services"
 msgstr "Servicios retirados"
 
 #: app/components/retire-service-modal/retire-service-modal.html:18
-#: app/states/dashboard/dashboard.state.js:162
+#: app/states/dashboard/dashboard.state.js:187
 #: app/states/services/details/details.html:86
 #: app/states/services/list/list.html:22
-#: app/states/services/list/list.state.js:109
-#: app/states/services/list/list.state.js:72
+#: app/states/services/list/list.state.js:111
+#: app/states/services/list/list.state.js:74
 msgid "Retirement Date"
 msgstr "Fecha de retiro"
 
@@ -578,7 +658,7 @@ msgstr "Seleccione un grupo"
 msgid "Select an Owner"
 msgstr "Seleccione un propietario"
 
-#: app/skin/skin.module.js:11
+#: app/skin/skin.module.js:21
 #: index.html:4
 msgid "Self Service"
 msgstr "Autoservicio"
@@ -595,7 +675,7 @@ msgstr "Detalles de Botón Personalizado"
 
 #: app/states/products/details/details.state.js:28
 #: app/states/services/details/details.state.js:19
-#: app/states/services/details/details.state.js:62
+#: app/states/services/details/details.state.js:97
 #: app/states/services/reconfigure/reconfigure.state.js:19
 #: app/states/services/reconfigure/reconfigure.state.js:41
 msgid "Service Details"
@@ -606,7 +686,7 @@ msgid "Service Id"
 msgstr "ID de servicio"
 
 #: app/states/services/list/list.state.js:19
-#: app/states/services/list/list.state.js:39
+#: app/states/services/list/list.state.js:41
 msgid "Service List"
 msgstr "Lista de servicios"
 
@@ -632,23 +712,42 @@ msgstr "Asignar dueño al servicio"
 msgid "Setup"
 msgstr "Configuración"
 
+#: app/components/shopping-cart/shopping-cart.html:5
+msgid "Shopping Cart"
+msgstr "Cesta de la compra"
+
+#: app/components/navigation/header-nav.html:25
+msgid "Shopping cart"
+msgstr "Cesta de la compra"
+
+#: app/components/shopping-cart/shopping-cart.html:26
+msgid "Shopping cart is empty."
+msgstr "La cesta de la compra está vacía."
+
+#: app/components/shopping-cart/shopping-cart.directive.js:47
+msgid "Shopping cart successfully ordered"
+msgstr "Se pidió la cesta de la compra con éxito"
+
 #: app/states/services/details/details.html:181
 msgid "Size"
 msgstr "Tamaño"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:77
 msgid "Soon"
 msgstr "En breve"
 
-#: app/states/marketplace/details/details.html:31
 #: app/states/services/custom_button_details/custom_button_details.html:21
 #: app/states/services/reconfigure/reconfigure.html:23
 msgid "Submit Request"
 msgstr "Enviar petición"
 
-#: app/states/requests/list/list.html:35
-#: app/states/requests/list/list.html:37
-#: app/states/requests/list/list.html:39
+#: app/components/language-switcher/language-switcher.html:2
+msgid "Switch Language:"
+msgstr "Cambiar idioma:"
+
+#: app/components/request-list/request-list.html:25
+#: app/components/request-list/request-list.html:26
+#: app/components/request-list/request-list.html:27
 msgid "The current approval status of the request"
 msgstr "El estado actual de aprovación de la petición"
 
@@ -710,16 +809,28 @@ msgstr ""
 msgid "There was a problem loading the page."
 msgstr "Hubo un error al cargar la página."
 
+#: app/states/marketplace/details/details.state.js:107
+msgid "There was an error adding to shopping cart:"
+msgstr "Hubo un error al añadir a la cesta de la compra:"
+
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
 msgstr "Hubo un error al editar el servicio."
 
-#: app/states/services/details/details.state.js:106
+#: app/services/consoles.service.js:37
+msgid "There was an error opening the console"
+msgstr "Hubo un error al abrir la consola"
+
+#: app/services/consoles.service.js:38
+msgid "There was an error opening the console:"
+msgstr "Hubo un error al abrir la consola:"
+
+#: app/states/services/details/details.state.js:119
 msgid "There was an error removing this service."
 msgstr "Hubo un error eliminando el servicio."
 
 #: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
-#: app/states/services/details/details.state.js:128
+#: app/states/services/details/details.state.js:158
 msgid "There was an error retiring this service."
 msgstr "Hubo un error retirando el servicio."
 
@@ -727,7 +838,7 @@ msgstr "Hubo un error retirando el servicio."
 msgid "There was an error saving ownership of this service."
 msgstr "Hubo un error al guardar el dueño del servicio."
 
-#: app/states/marketplace/details/details.state.js:101
+#: app/components/shopping-cart/shopping-cart.directive.js:51
 #: app/states/services/custom_button_details/custom_button_details.state.js:93
 #: app/states/services/reconfigure/reconfigure.state.js:112
 msgid "There was an error submitting this request:"
@@ -749,8 +860,20 @@ msgstr "Peticiones totales"
 msgid "Total Services"
 msgstr "Servicios Totales"
 
+#: app/services/consoles.service.js:75
+msgid "Unsupported console protocol returned"
+msgstr "Protocolo de consola devuelto no está soportado"
+
+#: app/services/consoles.service.js:76
+msgid "Unsupported console protocol returned:"
+msgstr "Protocolo de consola devuelto no está soportado:"
+
+#: app/components/language-switcher/language-switcher.directive.js:28
+msgid "User Default"
+msgstr "Predeterminados para el usuario"
+
 #: app/states/login/login.state.js:41
-#: app/states/login/login.state.js:61
+#: app/states/login/login.state.js:62
 msgid "User does not have privileges to login."
 msgstr "El usuario no tiene privilegios para entrar."
 
@@ -767,8 +890,16 @@ msgid "Vendor"
 msgstr "Proveedor"
 
 #: app/states/services/details/details.html:163
-msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
-msgstr "Máquinas Virtuales ({{ ::vm.service.vms.length }})"
+msgid "Virtual Machines ({{ ::vm.vms.length }})"
+msgstr "Máquinas Virtuales ({{ ::vm.vms.length }})"
+
+#: app/services/consoles.service.js:30
+msgid "Waiting for the console to become ready"
+msgstr "Esperando a que la consola esté preparada"
+
+#: app/services/consoles.service.js:31
+msgid "Waiting for the console to become ready:"
+msgstr "Esperando a que la consola esté preparada:"
 
 #: app/states/404/404.html:7
 #: app/states/error/error.html:13
@@ -787,14 +918,28 @@ msgstr "Sí, retire el servicio ahora"
 msgid "Your session has timed out."
 msgstr "Su sesión a expirado."
 
+#: app/config/gettext.config.js:31
+msgid "locale_name"
+msgstr "Español"
+
+#: app/states/requests/list/list.html:43
+msgid "ordered"
+msgstr "pedidos"
+
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
 msgid "was edited."
 msgstr "fue editado."
 
-#: app/states/services/details/details.state.js:101
+#: app/states/services/details/details.state.js:114
 msgid "was removed."
 msgstr "fue eliminado."
 
-#: app/states/services/details/details.state.js:123
+#: app/states/services/details/details.state.js:153
 msgid "was retired."
 msgstr "fue retirado."
+
+#: app/states/requests/list/list.html:47
+msgid "{{ $count }} item"
+msgid_plural "{{ $count }} items"
+msgstr[0] "{{ $count }} elemento"
+msgstr[1] "{{ $count }} elementos"

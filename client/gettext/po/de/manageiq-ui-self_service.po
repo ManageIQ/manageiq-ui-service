@@ -1,114 +1,112 @@
-# Dmitry Misahrov <misharov@redhat.com>, 2016. #zanata
-# Dmitry Shevrin <dmitry@redhat.com>, 2016. #zanata
+# Martin Welk <mwelk@redhat.com>, 2016. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-07-26 02:51-0400\n"
-"Last-Translator: Dmitry Misahrov <misharov@redhat.com>\n"
-"Language-Team: Russian\n"
-"Language: ru\n"
+"PO-Revision-Date: 2016-07-22 10:43-0400\n"
+"Last-Translator: Martin Welk <mwelk@redhat.com>\n"
+"Language-Team: German\n"
+"Language: de\n"
 "X-Generator: Zanata 3.9.3\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: app/components/navigation/header-nav.html:48
 msgid "(Current Group)"
-msgstr "(Текущая группа)"
+msgstr "(Aktuelle Gruppe)"
 
 #: app/components/retire-service-modal/retire-service-modal.html:12
 msgid "1 Week"
-msgstr "1 неделя"
+msgstr "1 Woche"
 
 #: app/components/retire-service-modal/retire-service-modal.html:13
 msgid "2 Weeks"
-msgstr "2 недели"
+msgstr "2 Wochen"
 
 #: app/components/retire-service-modal/retire-service-modal.html:14
 msgid "3 Weeks"
-msgstr "3 недели"
+msgstr "3 Wochen"
 
 #: app/components/retire-service-modal/retire-service-modal.html:15
 msgid "4 Weeks"
-msgstr "4 недели"
+msgstr "4 Wochen"
 
 #: app/states/about-me/about-me.html:1
 #: app/states/about-me/about-me.state.js:20
 #: app/states/about-me/about-me.state.js:29
 msgid "About Me"
-msgstr "Информация"
+msgstr "Über mich"
 
 #: app/components/custom-button/custom-button.directive.js:120
 #: app/components/custom-button/custom-button.directive.js:132
 msgid "Action not able to submit."
-msgstr "Невозможно выполнить действие."
+msgstr "Aktion kann nicht ausgeführt werden."
 
 #: app/states/products/details/details.state.js:35
 msgid "Activated Products Details View"
-msgstr "Просмотр активированных продуктов"
+msgstr "Detailansicht für Produkte aktiviert"
 
 #: app/states/products/details/details.html:18
 msgid "Active"
-msgstr "Активен"
+msgstr "Aktiv"
 
 #: app/states/marketplace/details/details.html:31
 msgid "Add to Shopping Cart"
-msgstr "Добавить в корзину"
+msgstr "Zum Warenkorb hinzufügen"
 
 #: app/states/requests/list/list.state.js:334
 #: app/states/requests/list/list.state.js:99
 msgid "Approved"
-msgstr "Одобрено"
+msgstr "Bestätigt"
 
 #: app/states/dashboard/dashboard.html:91
 msgid "Approved Requests"
-msgstr "Одобренные запросы"
+msgstr "Bestätigte Aufträge"
 
 #: app/states/requests/details/details.html:72
 msgid "Approver"
-msgstr "Одобряющий"
+msgstr "Freigabe durch"
 
 #: app/components/confirmation/confirmation.directive.js:95
 msgid "Are you sure you wish to proceed?"
-msgstr "Продолжить?"
+msgstr "Sind sie sicher, dass sie weitermachen möchten?"
 
 #: app/states/requests/details/details.html:3
 #: app/states/requests/order_details/order_details.html:3
 msgid "Back to My Requests"
-msgstr "Назад к моим запросам"
+msgstr "Zurück zu Meine Aufträge"
 
 #: app/states/services/details/details.html:3
 msgid "Back to My Services"
-msgstr "Назад к моим сервисам"
+msgstr "Zurück zu Meine Services"
 
 #: app/states/services/custom_button_details/custom_button_details.html:7
 #: app/states/services/reconfigure/reconfigure.html:3
 msgid "Back to Service"
-msgstr "Назад к сервису"
+msgstr "Zurück zu Service"
 
 #: app/states/marketplace/details/details.html:3
 #: app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Back to Service Catalog"
-msgstr "Назад к каталогу сервисов"
+msgstr "Zurück zum Servicekatalog"
 
 #: app/states/blueprints/list/list.state.js:19
 #: app/states/blueprints/list/list.state.js:39
 msgid "Blueprint List"
-msgstr "Список шаблонов"
+msgstr "Vorlagenliste"
 
 #: app/config/navigation.config.js:37
 msgid "Blueprints"
-msgstr "Шаблоны"
+msgstr "Vorlagen"
 
 #: app/components/language-switcher/language-switcher.directive.js:29
 msgid "Browser Default"
-msgstr "Язык браузера по умолчанию"
+msgstr "Browser-Voreinstellung"
 
 #: app/components/custom-button/custom-button.directive.js:100
 msgid "Button action not supported."
-msgstr "Действие не поддерживается."
+msgstr "Schaltflächenaktion nicht unterstützt."
 
 #: app/states/services/details/details.html:116
 msgid "CPU"
@@ -120,194 +118,194 @@ msgstr "CPU"
 #: app/components/retire-service-modal/retire-service-modal.html:24
 #: app/states/services/reconfigure/reconfigure.html:24
 msgid "Cancel"
-msgstr "Отменить"
+msgstr "Abbrechen"
 
 #: app/states/marketplace/list/list.state.js:105
 #: app/states/marketplace/list/list.state.js:86
 msgid "Catalog Name"
-msgstr "Название каталога"
+msgstr "Name des Katalogs"
 
 #: app/components/navigation/header-nav.html:40
 msgid "Change Group:"
-msgstr "Изменить группу:"
+msgstr "Gruppe wechseln:"
 
 #: app/components/navigation/header-nav.html:52
 msgid "Change to this Group"
-msgstr "Изменить на эту группу"
+msgstr "Zu dieser Gruppe wechseln:"
 
 #: app/components/shopping-cart/shopping-cart.html:42
 msgid "Clear"
-msgstr "Очистить"
+msgstr "Leeren"
 
 #: app/components/shopping-cart/shopping-cart.html:34
 msgid "Close"
-msgstr "Закрыть"
+msgstr "Schließen"
 
 #: app/states/services/details/details.html:42
 msgid "Confirm, would you like to remove this service?"
-msgstr "Подтвердите, что вы хотели бы удалить этот сервис?"
+msgstr "Bitte bestätigen, möchten sie diesen Service löschen?"
 
 #: app/states/services/details/details.html:57
 msgid "Confirm, would you like to retire this service?"
-msgstr "Подтвердите, что вы хотели бы удалить этот сервис?"
+msgstr "Bitte bestätigen, möchten sie diesen Service außer Betrieb nehmen?"
 
 #: app/states/services/list/list.state.js:126
 #: app/states/services/list/list.state.js:93
 msgid "Created"
-msgstr "Создан"
+msgstr "Erstellt"
 
 #: app/states/services/details/details.html:106
 #: app/states/services/list/list.html:40
 msgid "Created On"
-msgstr "Создано"
+msgstr "Erstellt am"
 
 #: app/states/products/details/details.html:33
 msgid "Creation Date"
-msgstr "Дата создания"
+msgstr "Erstellungsdatum"
 
 #: app/states/services/list/list.state.js:77
 msgid "Current"
-msgstr "Текущий"
+msgstr "Aktuell"
 
 #: app/components/navigation/header-nav.html:59
 msgid "Current Group"
-msgstr "Текущая группа"
+msgstr "Aktuelle Gruppe"
 
 #: app/states/dashboard/dashboard.html:45
 msgid "Current Services"
-msgstr "Текущие сервисы"
+msgstr "Aktueller Service"
 
 #: app/components/navigation/header-nav.html:46
 msgid "Currently Selected Group"
-msgstr "Выбранная группа"
+msgstr "Aktuell gewählte Gruppe"
 
 #: app/components/custom-button/custom-button.html:28
 #: app/components/custom-button/custom-button.html:30
 msgid "Custom Actions"
-msgstr "Пользовательские действия"
+msgstr "Eigene Aktionen"
 
 #: app/states/services/custom_button_details/custom_button_details.html:10
 msgid "Custom Button:"
-msgstr "Пользовательская  кнопка:"
+msgstr "Eigene Schaltflächen:"
 
 #: app/states/services/custom_button_details/custom_button_details.state.js:46
 msgid "Custom button action"
-msgstr "Действие пользовательской кнопки"
+msgstr "Eigene Schaltflächenaktion"
 
 #: app/config/navigation.config.js:14
 #: app/states/dashboard/dashboard.state.js:178
 #: app/states/dashboard/dashboard.state.js:20
 msgid "Dashboard"
-msgstr "Обзор"
+msgstr "Dashboard"
 
 #: app/states/requests/list/list.state.js:332
 #: app/states/requests/list/list.state.js:99
 msgid "Denied"
-msgstr "Отклонено"
+msgstr "Abgelehnt"
 
 #: app/states/dashboard/dashboard.html:104
 msgid "Denied Requests"
-msgstr "Отклоненные запросы"
+msgstr "Abgelehnte Aufträge"
 
 #: app/components/edit-service-modal/edit-service-modal.html:13
 #: app/states/marketplace/list/list.state.js:80
 #: app/states/requests/list/list.state.js:110
 #: app/states/requests/list/list.state.js:78
 msgid "Description"
-msgstr "Описание"
+msgstr "Beschreibung"
 
 #: app/states/services/details/details.html:128
 msgid "Disk Count"
-msgstr "Количество дисков"
+msgstr "Anzahl Festplatten"
 
 #: app/states/services/details/details.html:134
 msgid "Disk Space Allocated"
-msgstr "Выделенное дисковое пространство"
+msgstr "Belegter Festplattenplatz"
 
 #: app/states/services/details/details.html:140
 msgid "Disk Space Used"
-msgstr "Используемое дисковое пространство"
+msgstr "Verwendeter Festplattenplatz"
 
 #: app/components/edit-service-modal/edit-service-modal.html:5
 #: app/states/services/details/details.html:65
 msgid "Edit Service"
-msgstr "Редактировать сервис"
+msgstr "Service bearbeiten"
 
 #: app/states/error/error.state.js:21
 msgid "Error"
-msgstr "Ошибка"
+msgstr "Fehler"
 
 #: app/config/authorization.config.js:108
 msgid "Error retrieving user info"
-msgstr "Ошибка получения информации о пользователе"
+msgstr "Fehler beim Abfragen der Benutzerinformationen"
 
 #: app/states/marketplace/list/list.state.js:87
 msgid "Filter by Catalog Name"
-msgstr "Отфильтровать по имени каталога"
+msgstr "Filtern nach Katalogname"
 
 #: app/states/services/list/list.state.js:94
 msgid "Filter by Created On"
-msgstr "Отфильтровать по дате создания"
+msgstr "Filtern nach Erstellungsdatum"
 
 #: app/states/marketplace/list/list.state.js:81
 #: app/states/requests/list/list.state.js:79
 msgid "Filter by Description"
-msgstr "Отфильтровать по описанию"
+msgstr "Filtern nach Beschreibung"
 
 #: app/states/requests/list/list.state.js:147
 #: app/states/requests/list/list.state.js:85
 msgid "Filter by ID"
-msgstr "Отфильтровать по ID"
+msgstr "Filtern nach ID"
 
 #: app/states/blueprints/list/list.state.js:62
 #: app/states/marketplace/list/list.state.js:75
 #: app/states/requests/list/list.state.js:141
 #: app/states/services/list/list.state.js:69
 msgid "Filter by Name"
-msgstr "Отфильтровать по имени"
+msgstr "Filtern nach Name"
 
 #: app/states/requests/list/list.state.js:153
 msgid "Filter by Ordered Date"
-msgstr "Отфильтровать по дате заказа"
+msgstr "Filtern nach Bestelldatum"
 
 #: app/states/services/list/list.state.js:88
 msgid "Filter by Owner"
-msgstr "Отфильтровать по владельцу"
+msgstr "Filtern nach Eigentümer"
 
 #: app/states/requests/list/list.state.js:91
 msgid "Filter by Request Date"
-msgstr "Отфильтровать по дате запроса"
+msgstr "Filtern nach Auftragsdatum"
 
 #: app/states/services/list/list.state.js:75
 msgid "Filter by Retirement Date"
-msgstr "Отфильтровать по дате удаления"
+msgstr "Filtern nach Ablaufdatum"
 
 #: app/states/requests/list/list.state.js:97
 msgid "Filter by Status"
-msgstr "Отфильтровать по статусу"
+msgstr "Filtern nach Status"
 
 #: app/states/services/list/list.state.js:82
 msgid "Filter by VMs"
-msgstr "Отфильтровать по ВМ"
+msgstr "Filtern nach VMs"
 
 #: app/components/confirmation/confirmation.directive.js:54
 #: app/components/confirmation/confirmation.directive.js:59
 msgid "For Sizing"
-msgstr "Для размеров"
+msgstr "Zum Festlegen der Größe"
 
 #: app/states/services/details/details.html:100
 msgid "Group"
-msgstr "Группа"
+msgstr "Gruppe"
 
 #: app/states/help/help.html:1
 #: app/states/help/help.state.js:20
 #: app/states/help/help.state.js:29
 msgid "Help"
-msgstr "Помощь"
+msgstr "Hilfe"
 
 #: app/states/products/details/details.html:56
 msgid "Hourly"
-msgstr "По часам"
+msgstr "Stündlich"
 
 #: app/components/request-list/request-list.html:15
 #: app/states/requests/list/list.html:38
@@ -316,89 +314,89 @@ msgstr "ID"
 
 #: app/states/services/details/details.html:49
 msgid "Inactivate the service"
-msgstr "Отключить сервис"
+msgstr "Inaktivieren des Service"
 
 #: app/states/products/details/details.html:19
 msgid "Inactive"
-msgstr "Неактивно"
+msgstr "Inaktiv"
 
 #: app/resources/authentication-api.factory.js:30
 msgid "Incorrect username or password."
-msgstr "Неверное имя пользователя или пароль."
+msgstr "Benutzername oder Passwort falsch."
 
 #: app/states/marketplace/details/details.state.js:101
 msgid "Item added to shopping cart"
-msgstr "Добавлено в корзину"
+msgstr "Element zum Warenkorb hinzugefügt."
 
 #: app/states/login/login.html:28
 msgid "Language"
-msgstr "Язык"
+msgstr "Sprache"
 
 #: app/states/requests/details/details.html:82
 msgid "Last Message"
-msgstr "Последнее сообщение"
+msgstr "Letzte Meldung"
 
 #: app/states/services/details/details.html:186
 msgid "Last Scan"
-msgstr "Время последнего сканирования"
+msgstr "Letzter Scan"
 
 #: app/states/products/details/details.html:38
 #: app/states/requests/details/details.html:90
 msgid "Last Updated"
-msgstr "Время последнего обновления"
+msgstr "Letzte Aktualisierung"
 
 #: app/states/login/login.html:34
 msgid "Log In"
-msgstr "Войти"
+msgstr "Anmelden"
 
 #: app/components/navigation/header-nav.html:19
 msgid "Log into the full administrative UI"
-msgstr "Перейти в полный административный интерфейс"
+msgstr "Anmelden zum vollständigen Administratorzugang"
 
 #: app/states/login/login.state.js:20
 #: app/states/login/login.state.js:32
 msgid "Login"
-msgstr "Войти"
+msgstr "Anmeldung"
 
 #: app/components/navigation/header-nav.html:69
 #: app/states/logout/logout.state.js:18
 #: app/states/logout/logout.state.js:27
 msgid "Logout"
-msgstr "Выйти"
+msgstr "Abmeldung"
 
 #: app/skin/skin.module.js:20
 #: app/states/error/error.html:3
 msgid "ManageIQ Self Service"
-msgstr "Портал самообслуживания ManageIQ"
+msgstr "ManageIQ Selbstbedienung"
 
 #: app/states/services/details/details.html:122
 msgid "Memory"
-msgstr "Память"
+msgstr "Hauptspeicher"
 
 #: app/states/services/details/details.html:147
 msgid "Memory on Disk"
-msgstr "Память на диске"
+msgstr "Hauptspeicher auf Festplatte"
 
 #: app/states/products/details/details.html:57
 msgid "Monthly"
-msgstr "По месяцам"
+msgstr "Monatlich"
 
 #: app/components/ss-card/ss-card.html:9
 msgid "More"
-msgstr "Больше"
+msgstr "Mehr"
 
 #: app/states/requests/list/list.html:15
 msgid "My Orders"
-msgstr "Мои заказы"
+msgstr "Meine Bestellungen"
 
 #: app/config/navigation.config.js:25
 #: app/states/requests/list/list.html:2
 msgid "My Requests"
-msgstr "Мои запросы"
+msgstr "Meine Aufträge"
 
 #: app/config/navigation.config.js:19
 msgid "My Services"
-msgstr "Мои сервисы"
+msgstr "Meine Services"
 
 #: app/components/edit-service-modal/edit-service-modal.html:9
 #: app/services/blueprints-state.service.js:14
@@ -413,207 +411,207 @@ msgstr "Мои сервисы"
 #: app/states/services/list/list.state.js:106
 #: app/states/services/list/list.state.js:68
 msgid "Name"
-msgstr "Имя"
+msgstr "Name"
 
 #: app/states/services/list/list.html:24
 msgid "Never"
-msgstr "Никогда"
+msgstr "Nie"
 
 #: app/components/dialog-content/dialog-content.html:3
 msgid "No Provisioning Dialog Available."
-msgstr "Диалог подготовки недоступен."
+msgstr "Kein Provisionierungsdialog verfügbar."
 
 #: app/components/retire-service-modal/retire-service-modal.html:11
 msgid "No Warning"
-msgstr "Без предупреждения"
+msgstr "Keine Warnung"
 
 #: app/states/services/list/list.state.js:116
 #: app/states/services/list/list.state.js:81
 msgid "Number of VMs"
-msgstr "Количество ВМ"
+msgstr "Anzahl VMs"
 
 #: app/states/services/details/details.html:199
 msgid "Open a HTML5 console for this VM"
-msgstr "Открыть HTML5 консоль для этой ВМ"
+msgstr "Konsole (HTML5) für diese VM öffen"
 
 #: app/components/shopping-cart/shopping-cart.html:50
 msgid "Order"
-msgstr "Заказать"
+msgstr "Bestellung"
 
 #: app/states/requests/order_details/order_details.state.js:19
 msgid "Order Details"
-msgstr "Подробности заказа"
+msgstr "Bestelldetails"
 
 #: app/states/requests/list/list.state.js:146
 #: app/states/requests/list/list.state.js:170
 msgid "Order ID"
-msgstr "ID заказа"
+msgstr "Bestell-ID"
 
 #: app/services/orders-state.service.js:13
 #: app/states/requests/list/list.state.js:152
 #: app/states/requests/list/list.state.js:175
 msgid "Ordered Date"
-msgstr "Дата заказа"
+msgstr "Bestelldatum"
 
 #: app/states/requests/order_details/order_details.html:5
 msgid "Orders:"
-msgstr "Заказы:"
+msgstr "Bestellungen:"
 
 #: app/states/services/details/details.html:94
 #: app/states/services/list/list.html:35
 #: app/states/services/list/list.state.js:121
 #: app/states/services/list/list.state.js:87
 msgid "Owner"
-msgstr "Владелец"
+msgstr "Eigentümer"
 
 #: app/states/login/login.html:20
 msgid "Password"
-msgstr "Пароль"
+msgstr "Passwort"
 
 #: app/states/requests/list/list.state.js:330
 #: app/states/requests/list/list.state.js:99
 msgid "Pending"
-msgstr "Ожидание"
+msgstr "In Arbeit"
 
 #: app/states/dashboard/dashboard.html:78
 msgid "Pending Requests"
-msgstr "Ожидающие запросы"
+msgstr "Aufträge in Arbeit"
 
 #: app/states/services/details/details.html:37
 msgid "Permanently delete the service"
-msgstr "Удалить сервис безвозвратно"
+msgstr "Service permanent löschen"
 
 #: app/states/services/details/details.html:191
 #: app/states/services/details/details.html:192
 #: app/states/services/details/details.html:193
 #: app/states/services/details/details.html:194
 msgid "Power State"
-msgstr "Управление питанием"
+msgstr "Einschaltstatus"
 
 #: app/states/products/details/details.html:50
 msgid "Pricing"
-msgstr "Стоимость"
+msgstr "Preisgestaltung"
 
 #: app/states/products/details/details.html:10
 msgid "Product"
-msgstr "Продукт"
+msgstr "Produkt"
 
 #: app/states/products/details/details.html:17
 msgid "Product Status"
-msgstr "Статус продукта"
+msgstr "Produktstatus"
 
 #: app/states/products/details/details.html:28
 msgid "Product Tags"
-msgstr "Теги продукта"
+msgstr "Produkttags"
 
 #: app/states/products/details/details.html:23
 msgid "Product Type"
-msgstr "Тип продукта"
+msgstr "Produkttyp"
 
 #: app/states/products/details/details.state.js:19
 msgid "Products Details"
-msgstr "Детали продукта"
+msgstr "Produktdetails"
 
 #: app/states/products/details/details.html:43
 msgid "Provisioning Answers"
-msgstr "Ответы для подготовки"
+msgstr "Provisionierungsantworten"
 
 #: app/states/services/details/details.html:67
 msgid "Reconfigure"
-msgstr "Переконфигурировать"
+msgstr "Umkonfigurieren "
 
 #: app/states/services/reconfigure/reconfigure.html:5
 msgid "Reconfigure Service:"
-msgstr "Переконфигурировать сервис:"
+msgstr "Service umkonfigurieren:"
 
 #: app/states/services/reconfigure/reconfigure.state.js:117
 msgid "Reconfigure this service has been cancelled"
-msgstr "Переконфигурирование сервиса отменено"
+msgstr "Umkonfiguration des Service wurde abgebrochen"
 
 #: app/components/dialog-content/dialog-content.html:114
 msgid "Refresh"
-msgstr "Обновить"
+msgstr "Erneuern"
 
 #: app/components/shopping-cart/shopping-cart.html:17
 msgid "Remove"
-msgstr "Удалить"
+msgstr "Entfernen"
 
 #: app/states/services/details/details.html:37
 #: app/states/services/details/details.html:41
 msgid "Remove Service"
-msgstr "Удалить сервис"
+msgstr "Service entfernen"
 
 #: app/states/requests/details/details.html:61
 msgid "Request Approval State"
-msgstr "Статус одобрения запроса"
+msgstr "Freigabestatus des Auftrags"
 
 #: app/services/requests-state.service.js:13
 #: app/states/requests/details/details.html:49
 #: app/states/requests/list/list.state.js:120
 #: app/states/requests/list/list.state.js:90
 msgid "Request Date"
-msgstr "Дата запроса"
+msgstr "Auftragsdatum"
 
 #: app/states/requests/details/details.html:37
 #: app/states/requests/list/list.state.js:115
 #: app/states/requests/list/list.state.js:84
 msgid "Request ID"
-msgstr "ID запроса"
+msgstr "Auftrags-ID"
 
 #: app/states/requests/list/list.state.js:19
 #: app/states/requests/list/list.state.js:49
 msgid "Request List"
-msgstr "Список запросов"
+msgstr "Auftragsliste"
 
 #: app/states/requests/details/details.html:43
 msgid "Request State"
-msgstr "Статус запроса"
+msgstr "Auftragsstatus"
 
 #: app/states/dashboard/dashboard.state.js:181
 #: app/states/requests/list/list.state.js:125
 #: app/states/requests/list/list.state.js:96
 msgid "Request Status"
-msgstr "Статус запроса"
+msgstr "Auftragsstatus"
 
 #: app/states/requests/details/details.html:96
 msgid "Request Type"
-msgstr "Тип запроса"
+msgstr "Auftragstyp"
 
 #: app/states/requests/details/details.html:5
 msgid "Request:"
-msgstr "Запрос:"
+msgstr "Auftrag:"
 
 #: app/components/request-list/request-list.html:20
 msgid "Requested"
-msgstr "Запрошено"
+msgstr "Beauftrag"
 
 #: app/states/requests/details/details.html:55
 msgid "Requested By"
-msgstr "Запрошено"
+msgstr "Beauftragt durch"
 
 #: app/states/requests/details/details.state.js:19
 msgid "Requests Details"
-msgstr "Детали запросов"
+msgstr "Auftragsdetails"
 
 #: app/states/services/details/details.html:50
 msgid "Retire"
-msgstr "Удалить"
+msgstr "Außerbetriebnahme"
 
 #: app/states/services/details/details.html:54
 msgid "Retire Now"
-msgstr "Удалить немедленно"
+msgstr "Jetzt außer Betrieb nehmen"
 
 #: app/states/services/details/details.html:56
 msgid "Retire Service Now"
-msgstr "Удалить сервис немедленно"
+msgstr "Service jetzt außer Betrieb nehmen"
 
 #: app/states/services/list/list.state.js:77
 msgid "Retired"
-msgstr "Удалено"
+msgstr "Außer Betrieb"
 
 #: app/states/dashboard/dashboard.html:58
 msgid "Retired Services"
-msgstr "Удаленные сервисы"
+msgstr "Services außer Betrieb"
 
 #: app/components/retire-service-modal/retire-service-modal.html:18
 #: app/states/dashboard/dashboard.state.js:187
@@ -622,56 +620,56 @@ msgstr "Удаленные сервисы"
 #: app/states/services/list/list.state.js:111
 #: app/states/services/list/list.state.js:74
 msgid "Retirement Date"
-msgstr "Дата удаления"
+msgstr "Datum der Außerbetriebnahme"
 
 #: app/components/retire-service-modal/retire-service-modal.html:9
 msgid "Retirement Warning"
-msgstr "Предупреждение об удалении"
+msgstr "Warnung bis zur Außerbetriebnahme"
 
 #: app/states/dashboard/dashboard.html:32
 msgid "Retiring Soon"
-msgstr "Скоро будет удален"
+msgstr "Läuft in Kürze ab"
 
 #: app/components/edit-service-modal/edit-service-modal.html:22
 #: app/components/ownership-service-modal/ownership-service-modal.html:33
 #: app/components/retire-service-modal/retire-service-modal.html:25
 msgid "Save"
-msgstr "Сохранить"
+msgstr "Speichern"
 
 #: app/states/services/details/details.html:62
 msgid "Schedule Retirement"
-msgstr "Запланировать удаление"
+msgstr "Außerbetriebnahme planen"
 
 #: app/components/retire-service-modal/retire-service-modal.html:5
 msgid "Schedule Service Retirement"
-msgstr "Запланировать удаление сервиса"
+msgstr "Außerbetriebnahme des Service planen"
 
 #: app/components/retire-service-modal/retire-service-modal-service.factory.js:67
 msgid "Scheduling retirement for"
-msgstr "Запланировать удаление на"
+msgstr "Planen der Außerbetriebnahme für"
 
 #: app/components/ownership-service-modal/ownership-service-modal.html:19
 msgid "Select a Group"
-msgstr "Выбрать группу"
+msgstr "Gruppe auswählen"
 
 #: app/components/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
-msgstr "Выбрать владельца"
+msgstr "Eigentümer auswählen"
 
 #: app/skin/skin.module.js:21
 #: index.html:4
 msgid "Self Service"
-msgstr "Самообслуживание"
+msgstr "Selbstbedienung"
 
 #: app/config/navigation.config.js:31
 #: app/states/marketplace/list/list.state.js:19
 #: app/states/marketplace/list/list.state.js:51
 msgid "Service Catalog"
-msgstr "Каталог сервисов"
+msgstr "Servicekatalog"
 
 #: app/states/services/custom_button_details/custom_button_details.state.js:19
 msgid "Service Custom Button Details"
-msgstr "Подробности пользовательской кнопки сервиса"
+msgstr "Details der Serviceschaltfläche"
 
 #: app/states/products/details/details.state.js:28
 #: app/states/services/details/details.state.js:19
@@ -679,264 +677,268 @@ msgstr "Подробности пользовательской кнопки с�
 #: app/states/services/reconfigure/reconfigure.state.js:19
 #: app/states/services/reconfigure/reconfigure.state.js:41
 msgid "Service Details"
-msgstr "Подробности сервиса"
+msgstr "Servicedetails"
 
 #: app/states/services/details/details.html:79
 msgid "Service Id"
-msgstr "Идентификатор сервиса"
+msgstr "Service-ID"
 
 #: app/states/services/list/list.state.js:19
 #: app/states/services/list/list.state.js:41
 msgid "Service List"
-msgstr "Список сервисов"
+msgstr "Serviceliste"
 
 #: app/states/marketplace/details/details.state.js:19
 #: app/states/marketplace/details/details.state.js:46
 msgid "Service Template Details"
-msgstr "Подробности шаблона сервиса"
+msgstr "Details der Servicevorlage"
 
 #: app/states/marketplace/details/details.html:5
 #: app/states/services/details/details.html:5
 msgid "Service:"
-msgstr "Сервис:"
+msgstr "Service:"
 
 #: app/states/services/details/details.html:66
 msgid "Set Ownership"
-msgstr "Установить владельца"
+msgstr "Eigentümer setzen"
 
 #: app/components/ownership-service-modal/ownership-service-modal.html:5
 msgid "Set Service Ownership"
-msgstr "Установить владельца сервиса"
+msgstr "Eigentümer des Service setzen"
 
 #: app/states/products/details/details.html:55
 msgid "Setup"
-msgstr "Параметры"
+msgstr "Einstellungen"
 
 #: app/components/shopping-cart/shopping-cart.html:5
 msgid "Shopping Cart"
-msgstr "Корзина"
+msgstr "Warenkorb"
 
 #: app/components/navigation/header-nav.html:25
 msgid "Shopping cart"
-msgstr "Корзина"
+msgstr "Warenkorb"
 
 #: app/components/shopping-cart/shopping-cart.html:26
 msgid "Shopping cart is empty."
-msgstr "Корзина пуста."
+msgstr "Warenkorb ist leer."
 
 #: app/components/shopping-cart/shopping-cart.directive.js:47
 msgid "Shopping cart successfully ordered"
-msgstr "Заказ выполнен"
+msgstr "Warenkorb erfolgreich bestellt"
 
 #: app/states/services/details/details.html:181
 msgid "Size"
-msgstr "Размер"
+msgstr "Größe"
 
 #: app/states/services/list/list.state.js:77
 msgid "Soon"
-msgstr "Скоро"
+msgstr "In Kürze"
 
 #: app/states/services/custom_button_details/custom_button_details.html:21
 #: app/states/services/reconfigure/reconfigure.html:23
 msgid "Submit Request"
-msgstr "Отправить запрос"
+msgstr "Auftrag absenden"
 
 #: app/components/language-switcher/language-switcher.html:2
 msgid "Switch Language:"
-msgstr "Переключить язык:"
+msgstr "Sprache wechseln:"
 
 #: app/components/request-list/request-list.html:25
 #: app/components/request-list/request-list.html:26
 #: app/components/request-list/request-list.html:27
 msgid "The current approval status of the request"
-msgstr "Текущий статус одобрения запроса"
+msgstr "Derzeitiger Freigabestatus des Auftrags"
 
 #: app/states/services/details/details.html:186
 msgid "The last heartbeat received from the instances"
-msgstr "Последнее сообщение, полученное от экземпляров"
+msgstr ""
+"Die letzte Reaktion, die von den Instanzen empfangen wurde (Heartbeat)"
 
 #: app/states/dashboard/dashboard.html:50
 msgid "The number of active services"
-msgstr "Количество активных сервисов"
+msgstr "Anzahl aktiver Services"
 
 #: app/states/services/list/list.html:29
 msgid "The number of instances running this service"
-msgstr "Количество запущенных экземпляров сервиса"
+msgstr "Anzahl laufender Instanzen dieses Service"
 
 #: app/states/dashboard/dashboard.html:37
 msgid "The number of services retiring within the next 30 days"
-msgstr "Количество сервисов, подлежащих удалению в течение 30 дней"
+msgstr "Anzahl von Services, die in den nächsten 30 Tagen ablaufen"
 
 #: app/states/dashboard/dashboard.html:63
 msgid ""
 "The number of services which have hit their retirement period or been "
 "retired"
 msgstr ""
-"Количество сервисов, которые достигли времени удаления или были удалены"
+"Anzahl der Services, die ihr Ablaufdatum erreicht haben oder außer Betrieb "
+"sind"
 
 #: app/states/404/404.html:6
 msgid ""
 "The page you are looking for might have been removed, had its name changed, "
 "or is temporarily unavailable."
-msgstr "Страница была удалена, перемещена или временно недоступна."
+msgstr ""
+"Die Seite, nach der sie suchen, wurde möglicherweise entfernt, der Name "
+"wurde geändert oder sie ist zeitweilig nicht erreichbar."
 
 #: app/states/404/404.html:5
 msgid "The page you requested cannot be found."
-msgstr "Запрашиваемая страница не найдена."
+msgstr "Die angefragte Seite kann nicht gefunden werden."
 
 #: app/config/navigation.config.js:40
 msgid "The total number of available blueprints"
-msgstr "Общее количество доступных шаблонов"
+msgstr "Gesamtzahl verfügbarer Vorlagen"
 
 #: app/config/navigation.config.js:34
 msgid "The total number of available catalog items"
-msgstr "Общее количество доступных предметов в каталоге"
+msgstr "Gesamtzahl verfügbarer Katalogelement"
 
 #: app/config/navigation.config.js:28
 msgid "The total number of requests that you have submitted"
-msgstr "Общее количество отправленных запросов"
+msgstr "Gesamtzahl von Aufträge, die sie abgeschickt haben"
 
 #: app/config/navigation.config.js:22
 msgid ""
 "The total number of services that you have ordered, both active and retired"
-msgstr "Общее количество заказанных сервисов, активных и удаленных"
+msgstr ""
+"Gesamtzahl der aktiven und abgelaufenen Services, die sie bestellt haben"
 
 #: app/states/error/error.html:10
 msgid "There was a problem loading the page."
-msgstr "Проблема загрузки страницы."
+msgstr "Beim Laden der Seite ist ein Fehler aufgetreten."
 
 #: app/states/marketplace/details/details.state.js:107
 msgid "There was an error adding to shopping cart:"
-msgstr "Ошибка при добавлении в корзину:"
+msgstr "Es ist ein Fehler beim Hinzufügen zum Warenkorb aufgetreten:"
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
-msgstr "Ошибка редактирования сервиса."
+msgstr "Es ist ein Fehler beim Bearbeiten des Service aufgetreten."
 
 #: app/services/consoles.service.js:37
 msgid "There was an error opening the console"
-msgstr "Ошибка при открытии консоли"
+msgstr "Es ist ein Fehler beim Öffnen der Console aufgetreten"
 
 #: app/services/consoles.service.js:38
 msgid "There was an error opening the console:"
-msgstr "Ошибка при открытии консоли:"
+msgstr "Es ist ein Fehler beim Öffnen der Console aufgetreten:"
 
 #: app/states/services/details/details.state.js:119
 msgid "There was an error removing this service."
-msgstr "Ошибка удаления сервиса."
+msgstr "Es ist ein Fehler beim Entfernen des Service aufgetreten."
 
 #: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
 #: app/states/services/details/details.state.js:158
 msgid "There was an error retiring this service."
-msgstr "Ошибка удаления сервиса."
+msgstr "Es ist ein Fehler bei der Außerbetriebnahme des Service aufgetreten."
 
 #: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:93
 msgid "There was an error saving ownership of this service."
-msgstr "Ошибка смены владельца сервиса."
+msgstr "Es ist ein Fehler beim Speichern des Eigentümers aufgetreten."
 
 #: app/components/shopping-cart/shopping-cart.directive.js:51
 #: app/states/services/custom_button_details/custom_button_details.state.js:93
 #: app/states/services/reconfigure/reconfigure.state.js:112
 msgid "There was an error submitting this request:"
-msgstr "Ошибка отправления запроса"
+msgstr "Es ist ein Fehler beim Absenden des Auftrags aufgetreten:"
 
 #: app/states/services/details/details.html:164
 msgid "This service has no associated VMs"
-msgstr "Нет ассоциированных с сервисом виртуальных машин"
+msgstr "Mit diesem Service sind keine VMs verbunden"
 
 #: app/components/navigation/header-nav.html:4
 msgid "Toggle navigation"
-msgstr "Переключить навигацию"
+msgstr "Navigation umschalten"
 
 #: app/states/dashboard/dashboard.html:20
 msgid "Total Requests"
-msgstr "Общее количество запросов"
+msgstr "Gesamtzahl Aufträge"
 
 #: app/states/dashboard/dashboard.html:9
 msgid "Total Services"
-msgstr "Общее количество сервисов"
+msgstr "Gesamtzahl Services"
 
 #: app/services/consoles.service.js:75
 msgid "Unsupported console protocol returned"
-msgstr "Неподдерживаемый протокол консоли"
+msgstr "Nicht unterstütztes Konsolenprotokoll empfangen"
 
 #: app/services/consoles.service.js:76
 msgid "Unsupported console protocol returned:"
-msgstr "Неподдерживаемый протокол консоли:"
+msgstr "Nicht unterstütztes Konsolenprotokoll empfangen:"
 
 #: app/components/language-switcher/language-switcher.directive.js:28
 msgid "User Default"
-msgstr "По умолчанию как у пользователя"
+msgstr "Benutzerstandard"
 
 #: app/states/login/login.state.js:41
 #: app/states/login/login.state.js:62
 msgid "User does not have privileges to login."
-msgstr "У пользователя не хватает полномочий для входа."
+msgstr "Benutzer hat kein Recht zum Anmelden."
 
 #: app/states/login/login.html:12
 msgid "Username"
-msgstr "Имя пользователя"
+msgstr "Benutzername"
 
 #: app/states/services/list/list.html:30
 msgid "VMs"
-msgstr "ВМ"
+msgstr "VMs"
 
 #: app/states/services/details/details.html:176
 msgid "Vendor"
-msgstr "Вендор"
+msgstr "Anbieter"
 
 #: app/states/services/details/details.html:163
 msgid "Virtual Machines ({{ ::vm.vms.length }})"
-msgstr "Виртуальных машин ({{ ::vm.vms.length }})"
+msgstr "Virtuelle Maschinen ({{ ::vm.vms.length }})"
 
 #: app/services/consoles.service.js:30
 msgid "Waiting for the console to become ready"
-msgstr "Ожидание готовности консоли"
+msgstr "Warte darauf, dass die Konsole verfügbar wird"
 
 #: app/services/consoles.service.js:31
 msgid "Waiting for the console to become ready:"
-msgstr "Ожидание готовности консоли:"
+msgstr "Warte darauf, dass die Konsole verfügbar wird:"
 
 #: app/states/404/404.html:7
 #: app/states/error/error.html:13
 msgid "We apologize for the inconvenience."
-msgstr "Приносим извинения за доставленные неудобства."
+msgstr "Wir bitten, die Unannehmlichkeit zu entschuldigen."
 
 #: app/states/services/details/details.html:43
 msgid "Yes, Remove Service"
-msgstr "Да, удалить сервис"
+msgstr "Ja, Service löschen"
 
 #: app/states/services/details/details.html:58
 msgid "Yes, Retire Service Now"
-msgstr "Да, удалить сервис немедленно"
+msgstr "Ja, Service außer Betrieb nehmen"
 
 #: app/config/authorization.config.js:47
 msgid "Your session has timed out."
-msgstr "Время сессии истекло."
+msgstr "Ihre Sitzung ist abgelaufen."
 
 #: app/config/gettext.config.js:31
 msgid "locale_name"
-msgstr "локаль"
+msgstr "Deutsch"
 
 #: app/states/requests/list/list.html:43
 msgid "ordered"
-msgstr "заказан"
+msgstr "bestellt"
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
 msgid "was edited."
-msgstr "был отредактирован."
+msgstr "wurde bearbeitet."
 
 #: app/states/services/details/details.state.js:114
 msgid "was removed."
-msgstr "был удален."
+msgstr "wurde entfernt."
 
 #: app/states/services/details/details.state.js:153
 msgid "was retired."
-msgstr "был удален."
+msgstr "wurde außer Betrieb genommen."
 
 #: app/states/requests/list/list.html:47
 msgid "{{ $count }} item"
 msgid_plural "{{ $count }} items"
-msgstr[0] "{{ $count }} элемент"
-msgstr[1] "{{ $count }} элемента"
-msgstr[2] "{{ $count }} элементов"
+msgstr[0] "{{ $count }} Element"
+msgstr[1] "{{ $count }} Elemente"
