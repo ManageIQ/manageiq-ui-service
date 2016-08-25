@@ -20,11 +20,11 @@ angular.module('app.states')
 
       var blueprintDirty = false;
 
-      if ($scope.blueprint) {
-        BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
-      } else {
+      if (!$scope.blueprint) {
         $scope.blueprint = angular.copy(newBlueprint());
       }
+
+      BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
 
       // console.log("RETRIEVED Blueprint: " + angular.toJson($scope.blueprint, true));
 
@@ -55,11 +55,9 @@ angular.module('app.states')
       $scope.saveBlueprint = function() {
         BlueprintsState.saveBlueprint($scope.blueprint).then(saveSuccess, saveFailure);
 
-        function saveSuccess(newBlueprintId) {
-          if (newBlueprintId) {
-            $state.go($state.current, {blueprintId: newBlueprintId}, {reload: true});
-
-            return;
+        function saveSuccess(id) {
+          if (id) {
+            $state.go($state.current, {blueprintId: id}, {reload: true});
           }
 
           // get another copy to work, different obj from what was saved

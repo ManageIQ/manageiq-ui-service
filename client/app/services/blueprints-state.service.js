@@ -87,6 +87,8 @@
 
       var blueprintObj = getBlueprintPostObj(tmpBlueprint);
 
+      // console.log("Saving Blueprint: " + angular.toJson(blueprintObj, true));
+
       if (tmpBlueprint.id) {
         CollectionsApi.post('blueprints', tmpBlueprint.id, {}, blueprintObj).then(updateSuccess, updateFailure);
       } else {
@@ -103,40 +105,58 @@
 
         if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel) {
           var chartDataModel = tmpBlueprint.ui_properties.chartDataModel;
-          blueprintObj.ui_properties.chartDataModel = chartDataModel;
           if (chartDataModel.nodes) {
             var serviceTemplates = [];
             for (var i = 0; i < chartDataModel.nodes.length; i++) {
               var nodeSrvTemplate = chartDataModel.nodes[i];
-              serviceTemplates.push({"id": nodeSrvTemplate.id});
+              if (nodeSrvTemplate.id) {
+                serviceTemplates.push({"id": nodeSrvTemplate.id});
+              } else {
+                Notifications.warn("Cannot Save New Generic Item '" + nodeSrvTemplate.name + "'.  Saving New Generic Items Not Yet Implemented.");
+              }
             }
             blueprintObj.bundle.service_templates = serviceTemplates;
           }
+          blueprintObj.ui_properties.chartDataModel = chartDataModel;
         }
 
-        if (tmpBlueprint.bundle.service_template_catalog_id) {
-          blueprintObj.bundle.service_catalog = {"id": tmpBlueprint.bundle.service_template_catalog_id};
-        }
-
-        if (tmpBlueprint.bundle.service_template_dialog_id) {
-          blueprintObj.bundle.service_dialog = {"id": tmpBlueprint.bundle.service_template_dialog_id};
-        }
-
-        if (tmpBlueprint.provEP || tmpBlueprint.reConfigEP || tmpBlueprint.retireEP ) {
-          var automateEntrypoints = {};
-          if (tmpBlueprint.provEP) {
-            automateEntrypoints.Provision = tmpBlueprint.provEP;
+        if (tmpBlueprint.content.service_catalog) {
+          if (tmpBlueprint.content.service_catalog.id !== -1) {
+            blueprintObj.bundle.service_catalog = {"id": tmpBlueprint.content.service_catalog.id};
+          } else {
+            blueprintObj.bundle.service_catalog = null;
           }
-          if (tmpBlueprint.reConfigEP) {
-            automateEntrypoints.Reconfigure = tmpBlueprint.reConfigEP;
-          }
-          if (tmpBlueprint.retireEP) {
-            automateEntrypoints.Retire = tmpBlueprint.retireEP;
-          }
-          blueprintObj.bundle.automate_entrypoints = automateEntrypoints;
         }
 
-        // Hack until backend returns multiple service templates and catalog name
+        if (tmpBlueprint.content.service_dialog) {
+          if (tmpBlueprint.content.service_dialog.id !== -1) {
+            blueprintObj.bundle.service_dialog = {"id": tmpBlueprint.content.service_dialog.id};
+          } else {
+            blueprintObj.bundle.service_dialog = null;
+          }
+        }
+
+        var automateEntrypoints = {};
+        for (var e = 0; e < tmpBlueprint.content.automate_entrypoints.length; e++) {
+          var aep = tmpBlueprint.content.automate_entrypoints[e];
+          var newAepStr = blueprint.getEntryPointString(aep);
+          switch (aep.action) {
+            case "Provision":
+              automateEntrypoints.Provision = newAepStr;
+              break;
+            case "Reconfigure":
+              automateEntrypoints.Reconfigure = newAepStr;
+              break;
+            case "Retirement":
+              automateEntrypoints.Retirement = newAepStr;
+              break;
+          }
+        }
+
+        // console.log("Saving Entry Points: " + angular.toJson(automateEntrypoints, true));
+
+        blueprintObj.bundle.automate_entrypoints = automateEntrypoints;
+
         blueprintObj.ui_properties.num_items = tmpBlueprint.num_items;
 
         if (tmpBlueprint.id) {
@@ -146,9 +166,9 @@
         return blueprintObj;
       }
 
-      function updateSuccess() {
+      function updateSuccess(response) {
         Notifications.success(__(sprintf("%s blueprint was saved.", tmpBlueprint.name)));
-        deferred.resolve();
+        deferred.resolve(response.id);
       }
 
       function updateFailure() {
@@ -197,11 +217,27 @@
       return deferred.promise;
     };
 
+    blueprint.getEntryPointString = function(aep) {
+      var newAepStr = "";
+      newAepStr += ((aep.ae_namespace && aep.ae_namespace.length) ? (aep.ae_namespace) : "");
+      newAepStr += ((aep.ae_class && aep.ae_class.length) ? ("\/" + aep.ae_class) : "");
+      newAepStr += ((aep.ae_instance && aep.ae_instance.length) ? ("\/" + aep.ae_instance) : "");
+
+      return newAepStr;
+    };
+
     blueprint.getNewBlueprintObj = function() {
       var tmpBlueprint = {};
       tmpBlueprint.name = __('Untitled Blueprint');
-      tmpBlueprint.visibility = {"id": 800, "name": "Private"};
+      // tmpBlueprint.visibility = {"id": 800, "name": "Private"};
       tmpBlueprint.bundle = {};
+      // TODO Need to get full default paths
+      tmpBlueprint.content = {automate_entrypoints: [
+        {"action": "Provision",
+        "ae_namespace": "Service/Provisioning/StateMachines",
+        "ae_class": "ServiceProvision_Template",
+        "ae_instance": "default"}
+      ]};
       tmpBlueprint.ui_properties = {
         chartDataModel: {
           "nodeActions": [
@@ -223,13 +259,42 @@
               "fontFamily": "FontAwesome",
               "fontContent": "\uf02b"
             }
-          ]
+          ],
+          "nodes": []
         }
       };
 
       blueprint.setDoNotSave(false);
 
       return tmpBlueprint;
+    };
+
+    blueprint.difference = function(o1, o2) {
+      var k, kDiff,
+          diff = {};
+      for (k in o1) {
+        if (!o1.hasOwnProperty(k)) {
+          console.log("obj 2 doesn't have " + k);
+        } else if (typeof o1[k] !== 'object' || typeof o2[k] !== 'object') {
+          if (!(k in o2) || o1[k] !== o2[k]) {
+            diff[k] = o2[k];
+          }
+        } else if (kDiff = blueprint.difference(o1[k], o2[k])) {
+          diff[k] = kDiff;
+        }
+      }
+      for (k in o2) {
+        if (o2.hasOwnProperty(k) && !(k in o1)) {
+          diff[k] = o2[k];
+        }
+      }
+      for (k in diff) {
+        if (diff.hasOwnProperty(k)) {
+          return diff;
+        }
+      }
+
+      return false;
     };
 
     function findWithAttr(array, attr, value) {

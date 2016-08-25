@@ -78,10 +78,6 @@
     var vm = this;
     vm.blueprint = blueprint;
 
-    if (!vm.blueprint.ui_properties.chartDataModel || !vm.blueprint.ui_properties.chartDataModel.nodes) {
-      vm.blueprint.ui_properties.chartDataModel = {'nodes': []};
-    }
-
     if (action === 'create') {
       vm.modalTitle = __('Create Blueprint');
       vm.modalBtnPrimaryLabel  = __('Create');
@@ -126,15 +122,12 @@
       'resource': {
         'name': vm.blueprint.name || __('Untitled Blueprint ') + BlueprintsState.getNextUniqueId(),
         'visibility': vm.blueprint.visibility,
-        'catalog_id': ((vm.blueprint.bundle && vm.blueprint.bundle.service_template_catalog_id)
-                        ? vm.blueprint.bundle.service_template_catalog_id : null ),
-        'dialog_id': ((vm.blueprint.bundle && vm.blueprint.bundle.service_template_dialog_id)
-                        ? vm.blueprint.bundle.service_template_dialog_id : null ),
-        'provEP':  vm.blueprint.provEP || "path/to/default/prov/entry/point",
-        'reConfigEP': vm.blueprint.reConfigEP,
-        'retireEP': vm.blueprint.retireEP
+        'catalog_id': (vm.blueprint.content.service_catalog ? vm.blueprint.content.service_catalog.id : null ),
+        'dialog_id': (vm.blueprint.content.service_dialog ? vm.blueprint.content.service_dialog.id : null )
       }
     };
+
+    setModalDataEntrypoints();
 
     vm.provOrderChanged = false;
     vm.actionOrderChanged = false;
@@ -158,6 +151,32 @@
     }
 
     activate();
+
+    function setModalDataEntrypoints() {
+      vm.modalData.resource.provEP = {action: "Provision", value: ""};
+      vm.modalData.resource.reConfigEP = {action: "Reconfigure", value: ""};
+      vm.modalData.resource.retireEP = {action: "Retirement", value: ""};
+
+      if (vm.blueprint.content.automate_entrypoints) {
+        for (var i = 0; i < vm.blueprint.content.automate_entrypoints.length; i++) {
+          var aep = vm.blueprint.content.automate_entrypoints[i];
+          var newAepStr = BlueprintsState.getEntryPointString(aep);
+          // console.log("modal data = " + aep.action + ": " + newAepStr);
+          var newAepObj = {action: aep.action, index: i, value: newAepStr};
+          switch (aep.action) {
+            case "Provision":
+              vm.modalData.resource.provEP = newAepObj;
+              break;
+            case "Reconfigure":
+              vm.modalData.resource.reConfigEP = newAepObj;
+              break;
+            case "Retirement":
+              vm.modalData.resource.retireEP = newAepObj;
+              break;
+          }
+        }
+      }
+    }
 
     function activate() {
     }
@@ -196,11 +215,11 @@
 
       modalInstance.then(function(opts) {
         if (entryPointType === 'provisioning') {
-          vm.modalData.resource.provEP = opts.entryPointData;
+          vm.modalData.resource.provEP.value = opts.entryPointData;
         } else if (entryPointType === 'reconfigure') {
-          vm.modalData.resource.reConfigEP = opts.entryPointData;
+          vm.modalData.resource.reConfigEP.value = opts.entryPointData;
         } else if (entryPointType === 'retirement') {
-          vm.modalData.resource.retireEP =  opts.entryPointData;
+          vm.modalData.resource.retireEP.value =  opts.entryPointData;
         }
       });
     }
@@ -355,41 +374,35 @@
     }
 
     function saveBlueprintDetails() {   // jshint ignore:line
-      /* Save any new catalogs
-      for (var i = 0; i < vm.serviceCatalogs.length; i += 1) {
-        if (vm.serviceCatalogs[i].new) {
-          vm.serviceCatalogs[i].new = null;
-          BlueprintsState.addNewCatalog(vm.serviceCatalogs[i]);
-        }
-      } */
-
       vm.blueprint.name = vm.modalData.resource.name;
 
+      /*
       if (!vm.blueprint.visibility || (vm.blueprint.visibility.id.toString() !== vm.modalData.resource.visibility.id.toString())) {
         vm.blueprint.visibility = vm.modalData.resource.visibility;
       }
+      */
 
       if (vm.modalData.resource.catalog) {
-        vm.blueprint.bundle.service_template_catalog_id = vm.modalData.resource.catalog.id;
-        // Hack until catalog_name is returned with blueprint(s)
-        vm.blueprint.ui_properties.catalog_name = vm.modalData.resource.catalog.name;
+        if (!vm.blueprint.content.service_catalog || vm.modalData.resource.catalog.id !== vm.blueprint.content.service_catalog.id) {
+          vm.blueprint.content.service_catalog = {"id": vm.modalData.resource.catalog.id};
+        }
       } else {
-        vm.blueprint.bundle.service_template_catalog_id = null;
-        vm.blueprint.ui_properties.catalog_name = null;
+        if (vm.blueprint.content.service_catalog) {
+          vm.blueprint.content.service_catalog = {"id": -1};
+        }
       }
 
       if (vm.modalData.resource.dialog) {
-        vm.blueprint.bundle.service_template_dialog_id = vm.modalData.resource.dialog.id;
-        // Hack until dialog_id is returned in a bundle
-        vm.blueprint.ui_properties.dialog_label = vm.modalData.resource.dialog.label;
+        if (!vm.blueprint.content.service_dialog || vm.modalData.resource.dialog.id !== vm.blueprint.content.service_dialog.id) {
+          vm.blueprint.content.service_dialog = {"id": vm.modalData.resource.dialog.id};
+        }
       } else {
-        vm.blueprint.bundle.service_template_dialog_id = null;
-        vm.blueprint.ui_properties.dialog_label = null;
+        if (vm.blueprint.content.service_dialog) {
+          vm.blueprint.content.service_dialog = {"id": -1};
+        }
       }
 
-      vm.blueprint.provEP = vm.modalData.resource.provEP;
-      vm.blueprint.reConfigEP = vm.modalData.resource.reConfigEP;
-      vm.blueprint.retireEP = vm.modalData.resource.retireEP;
+      setBlueprintEntryPtsFromModalData();
 
       if (vm.provOrderChanged) {
         saveOrder("provisionOrder");
@@ -406,7 +419,53 @@
         return;
       }
 
+      /*
+      console.log("Orig Blueprint = " + angular.toJson(BlueprintsState.getOriginalBlueprint().content, true));
+      console.log("Updated Blueprint = " + angular.toJson(vm.blueprint.content, true));
+      console.log("Diff = " + angular.toJson(BlueprintsState.difference(vm.blueprint.content,
+                  BlueprintsState.getOriginalBlueprint().content), true));
+      */
+
       saveSuccess();
+
+      function setBlueprintEntryPtsFromModalData() {
+        processEntryPoint(vm.modalData.resource.provEP);
+        processEntryPoint(vm.modalData.resource.reConfigEP);
+        processEntryPoint(vm.modalData.resource.retireEP);
+      }
+
+      function processEntryPoint(modalData) {
+        var parts = modalData.value.split("\/");
+        var instance = (parts.length ? parts.splice(-1, 1)[0] : "");
+        var clazz = (parts.length ? parts.splice(-1, 1)[0] : "");
+        var namespace = parts.join("\/");
+        // console.log("blueprint data = " + modalData.action + " - " + namespace + ":" + clazz + ":" + instance);
+        if (modalData.index !== undefined) {
+          var bpAEP = vm.blueprint.content.automate_entrypoints[modalData.index];
+          if (bpAEP.ae_class === undefined && bpAEP.ae_instance === undefined && bpAEP.ae_namespace === namespace) {
+            return;
+          }
+          if (bpAEP.ae_namespace !== namespace) {
+            bpAEP.ae_namespace = namespace;
+          }
+          if (bpAEP.ae_class !== clazz) {
+            bpAEP.ae_class = clazz;
+          }
+          if (bpAEP.ae_instance !== instance) {
+            bpAEP.ae_instance = instance;
+          }
+        } else {
+          if (namespace.length || clazz.length || instance.length) {
+            // console.log("Adding new entry point");
+            vm.blueprint.content.automate_entrypoints.push({
+              action: modalData.action,
+              ae_namespace: namespace,
+              ae_class: clazz,
+              ae_instance: instance
+            });
+          }
+        }
+      }
 
       function saveOrder(orderType) {
         var list;
@@ -451,13 +510,15 @@
 
       function saveSuccess() {
         if (action === 'create') {
+          // This is not actually used anymore, flow has changed
+          // keeping it in case flow changes back again.
           Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
           $modalInstance.close();
           BlueprintsState.saveBlueprint(vm.blueprint);
           $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
         } else if (action === 'edit') {
           $modalInstance.close({editedblueprint: vm.blueprint});
-          Notifications.success(sprintf(__('%s was updated.'), vm.blueprint.name));
+          // Notifications.success(sprintf(__('%s details were updated.'), vm.blueprint.name));
         } else if (action === 'publish') {
           $modalInstance.close();
           Notifications.success(sprintf(__('%s was published.'), vm.blueprint.name));

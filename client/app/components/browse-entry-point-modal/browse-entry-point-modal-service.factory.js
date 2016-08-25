@@ -69,10 +69,10 @@
         if (selectedNodes && selectedNodes.length === 1) {
           // construct full path to parent
           var curNode = selectedNodes[0];
-          var pathToNode = "\\" + curNode.text;
+          var pathToNode = "\/" + curNode.text;
           curNode = $('#entryPointsTree').treeview('getParent', curNode);
           while (curNode.text.indexOf) {
-            pathToNode = "\\" + curNode.text + pathToNode;
+            pathToNode = "\/" + curNode.text + pathToNode;
             curNode = $('#entryPointsTree').treeview('getParent', curNode);
           }
           $modalInstance.close({entryPointType: vm.entryPointType, entryPointData: pathToNode});

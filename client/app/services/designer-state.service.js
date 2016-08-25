@@ -173,7 +173,7 @@
           }
         }
 
-        console.log("Couldn't Find Designer Toolbox Tab for generic subtype: " + genericSubType);
+        // console.log("Couldn't Find Designer Toolbox Tab for generic subtype: " + genericSubType);
 
         return null;
       }

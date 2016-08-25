@@ -26,10 +26,8 @@
   }
   /** @ngInject */
   function resolveBlueprint($stateParams, CollectionsApi) {
-    var options = {attributes: ['bundle']};
-
     if ($stateParams.blueprintId) {
-      return CollectionsApi.get('blueprints', $stateParams.blueprintId, options);
+      return CollectionsApi.get('blueprints', $stateParams.blueprintId, {});
     } else {
       return null;
     }
@@ -58,9 +56,10 @@
       vm.serviceTemplates = serviceTemplates.resources;
     }
 
-    if (vm.serviceTemplates && vm.blueprint && vm.blueprint.ui_properties && vm.blueprint.ui_properties.chartDataModel &&
-        vm.blueprint.ui_properties.chartDataModel.nodes && vm.blueprint.ui_properties.chartDataModel.nodes.length > 0) {
-      updateCanvasServiceTemplateNodes(vm.serviceTemplates, vm.blueprint.ui_properties.chartDataModel.nodes);
+    if (vm.blueprint && vm.blueprint.content && blueprint.content.service_templates && vm.blueprint.ui_properties &&
+        vm.blueprint.ui_properties.chartDataModel && vm.blueprint.ui_properties.chartDataModel.nodes &&
+        vm.blueprint.ui_properties.chartDataModel.nodes.length > 0) {
+      updateCanvasServiceTemplateNodes(vm.blueprint.content.service_templates, vm.blueprint.ui_properties.chartDataModel.nodes);
     }
 
     function updateCanvasServiceTemplateNodes(serviceTemplates, nodes) {
