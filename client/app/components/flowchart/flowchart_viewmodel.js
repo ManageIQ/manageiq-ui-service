@@ -316,6 +316,7 @@ var flowchart = {
 
       if (this.data.outputConnectors.length === 0) {
         var connectorDataModel = {name: 'out'};
+
         return this._addConnector(connectorDataModel, this.data.width, this.data.outputConnectors, this.outputConnectors);
       } else {
         return this.outputConnectors[0];
@@ -665,7 +666,7 @@ var flowchart = {
 
       var startNode = startConnector.parentNode();
       var startConnectorIndex = startNode.outputConnectors.indexOf(startConnector);
-      var startConnector = startNode.outputConnectors[startConnectorIndex];
+      startConnector = startNode.outputConnectors[startConnectorIndex];
       var startConnectorType = 'output';
       if (startConnectorIndex === -1) {
         startConnectorIndex = startNode.inputConnectors.indexOf(startConnector);
@@ -677,7 +678,7 @@ var flowchart = {
 
       var endNode = endConnector.parentNode();
       var endConnectorIndex = endNode.inputConnectors.indexOf(endConnector);
-      var endConnector = endNode.inputConnectors[endConnectorIndex];
+      endConnector = endNode.inputConnectors[endConnectorIndex];
       var endConnectorType = 'input';
       if (endConnectorIndex === -1) {
         endConnectorIndex = endNode.outputConnectors.indexOf(endConnector);
@@ -787,13 +788,13 @@ var flowchart = {
         for (var c = 0; c < node.inputConnectors.length; c++) {
           var inputConnector = node.inputConnectors[c];
           inputConnector.data.invalid = (validConnectionTypes.indexOf(inputConnector.data.type) === -1);
-          if(!inputConnector.data.invalid && node != sourceNode && !inputConnector.data.connected){
+          if (!inputConnector.data.invalid && node !== sourceNode && !inputConnector.data.connected) {
             node.data.invalid = false;
             this.validConnections = true;
           }
         }
       }
-    }
+    };
 
     //
     // Mark nodes & connectors as valid
@@ -807,12 +808,12 @@ var flowchart = {
           inputConnector.data.invalid = false;
         }
       }
-    }
+    };
 
     this.removeOutputConnector = function(connectorViewModel) {
       var parentNode = connectorViewModel.parentNode();
       parentNode.removeOutputConnector(connectorViewModel.data);
-    }
+    };
 
     //
     // Update the location of the node and its connectors.
@@ -917,9 +918,9 @@ var flowchart = {
               sourceConnectorViewModel._parentNode.removeOutputConnector(sourceConnectorViewModel.data);
               // also set connected to false on the dest node
               var destConnectorViewModel = connection.dest;
-              if (destConnectorViewModel) {
+              if (destConnectorViewModel) { // jshint ignore:line
                 destConnectorViewModel.data.connected = false;
-              } else {
+              } else { // jshint ignore:line
                 throw new Error("Failed to find dest node of deleted connection!");
               }
             } else {
