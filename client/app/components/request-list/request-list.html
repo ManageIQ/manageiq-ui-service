@@ -1,6 +1,6 @@
 <div pf-data-list id="requestList" config="vm.config" items="vm.items">
   <div class="row">
-    <div class="col-lg-5 col-md-5 col-sm-8 col-xs-8">
+    <div class="col-lg-4 col-md-5 col-sm-8 col-xs-8">
       <span class="no-wrap">
         <span class="ss-list-view__title-img">
           <span class="ss-list-view__title-img__center"></span>
@@ -15,7 +15,12 @@
         <strong translate>ID </strong>&nbsp;{{ item.id }}
       </span>
     </div>
-    <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+    <div class="col-lg-2 hidden-md hidden-sm hidden-xs">
+      <span class="no-wrap">
+        <strong translate>Requester </strong>&nbsp;{{ item.requester_name }}
+      </span>
+    </div>
+    <div class="col-lg-2 hidden-md hidden-sm hidden-xs">
       <span class="no-wrap">
         <strong translate>Requested </strong>&nbsp;{{ item.created_on | date }}
       </span>

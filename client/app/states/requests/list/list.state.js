@@ -27,7 +27,7 @@
 
   /** @ngInject */
   function resolveRequests(CollectionsApi) {
-    var attributes = ['picture', 'picture.image_href', 'approval_state', 'created_on', 'description'];
+    var attributes = ['picture', 'picture.image_href', 'approval_state', 'created_on', 'description', 'requester_name'];
     var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest'];
     var options = {expand: 'resources', attributes: attributes, filter: filterValues};
 
@@ -86,6 +86,12 @@
             filterType: 'text',
           },
           {
+            id: 'requester_name',
+            title: __('Requester'),
+            placeholder: __('Filter by Requester'),
+            filterType: 'text',
+          },
+          {
             id: 'request_date',
             title: __('Request Date'),
             placeholder: __('Filter by Request Date'),
@@ -114,6 +120,11 @@
             id: 'id',
             title: __('Request ID'),
             sortType: 'numeric',
+          },
+          {
+            id: 'requester_name',
+            title: __('Requester'),
+            sortType: 'alpha',
           },
           {
             id: 'requested',
@@ -225,6 +236,8 @@
         compValue = item1.description.localeCompare(item2.description);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'id') {
         compValue = item1.id - item2.id;
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'requester_name') {
+        compValue = item1.requester_name.localeCompare(item2.requester_name);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'requested') {
         compValue = new Date(item1.created_on) - new Date(item2.created_on);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'status') {
@@ -338,6 +351,8 @@
         return item.approval_state === value;
       } else if (filter.id === 'request_id') {
         return String(item.id).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else if (filter.id === 'requester_name') {
+        return String(item.requester_name).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'request_date') {
         return $filter('date')(item.created_on).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       }
