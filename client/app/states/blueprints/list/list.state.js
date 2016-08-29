@@ -76,7 +76,7 @@
     angular.forEach(vm.tenants, addVisibilityFilter);
 
     function addCategoryFilter(item) {
-      if (!categoryNames.includes(__('Unassigned'))) {
+      if (categoryNames.indexOf(__('Unassigned')) === -1) {
         categoryNames.push(__('Unassigned'));
       }
       categoryNames.push(item.name);
