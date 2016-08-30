@@ -23,6 +23,7 @@ angular.module('app.states')
       if (!$scope.blueprint) {
         $scope.blueprint = angular.copy(newBlueprint());
       }
+      $scope.blueprint.ui_properties.chartDataModel.nodeActions = DesignerState.getCanvasNodeToolbarActions();
 
       BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
 

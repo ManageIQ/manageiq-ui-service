@@ -118,6 +118,10 @@
             }
             blueprintObj.bundle.service_templates = serviceTemplates;
           }
+          if (tmpBlueprint.ui_properties.chartDataModel.nodeActions) {
+            // no need to persist node toolbar actions in backend
+            delete tmpBlueprint.ui_properties.chartDataModel.nodeActions;
+          }
           blueprintObj.ui_properties.chartDataModel = chartDataModel;
         }
 
@@ -241,26 +245,6 @@
       ]};
       tmpBlueprint.ui_properties = {
         chartDataModel: {
-          "nodeActions": [
-            {
-              "id": 1,
-              "name": "connect",
-              "fontFamily": "FontAwesome",
-              "fontContent": "\uf1e0"
-            },
-            {
-              "id": 2,
-              "name": "edit",
-              "fontFamily": "PatternFlyIcons-webfont",
-              "fontContent": "\ue60a"
-            },
-            {
-              "id": 3,
-              "name": "tag",
-              "fontFamily": "FontAwesome",
-              "fontContent": "\uf02b"
-            }
-          ],
           "nodes": []
         }
       };
