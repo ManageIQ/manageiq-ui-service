@@ -44,7 +44,7 @@
     ];
     var options = {
       attributes: requestAttributes,
-      decorators: [ 'vms.supports_console?' ],
+      decorators: [ 'vms.supports_console?', 'vms.supports_cockpit?' ],
       expand: 'vms',
     };
 
