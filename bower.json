@@ -34,6 +34,7 @@
     "angular-svg-base": "^0.0.2",
     "angular-ui-router": "~0.2.15",
     "bootstrap-treeview": "~1.2.0",
+    "es6-shim": "^0.35.1",
     "font-awesome": "^4.5.0",
     "jquery": "^2.1.4",
     "lodash": "~3.9.0",
