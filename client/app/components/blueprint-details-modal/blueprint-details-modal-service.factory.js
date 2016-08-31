@@ -78,12 +78,21 @@
     var vm = this;
     vm.blueprint = blueprint;
 
+    vm.tabs = [
+      {"title": __('General'), "active": true},
+      {"title": __('Publish'), "active": false},
+      {"title": __('Provision Order'), "active": false},
+      {"title": __('Action Order'), "active": false}
+    ];
+
     if (action === 'create') {
       vm.modalTitle = __('Create Blueprint');
       vm.modalBtnPrimaryLabel  = __('Create');
     } else if (action === 'publish') {
       vm.modalTitle = __('Publish ') + vm.blueprint.name;
       vm.modalBtnPrimaryLabel  = __('Publish');
+      vm.tabs[0].active = false;
+      vm.tabs[1].active = true;
     } else {
       vm.modalTitle = __('Edit Blueprint Details');
       vm.modalBtnPrimaryLabel  = __('Save');
@@ -114,8 +123,6 @@
     vm.selectEntryPoint = selectEntryPoint;
     vm.createCatalog = createCatalog;
     vm.toggleAdvOps = toggleAdvOps;
-    vm.tabClicked = tabClicked;
-    vm.isSelectedTab = isSelectedTab;
     vm.disableOrderListTabs = disableOrderListTabs;
     vm.dndServiceItemMoved = dndServiceItemMoved;
     vm.toggleActionEqualsProvOrder = toggleActionEqualsProvOrder;
@@ -124,6 +131,7 @@
       'action': action,
       'resource': {
         'name': vm.blueprint.name || __('Untitled Blueprint ') + BlueprintsState.getNextUniqueId(),
+        'description': vm.blueprint.description,
         'visibility': vm.blueprint.visibility,
         'catalog_id': (vm.blueprint.content.service_catalog ? vm.blueprint.content.service_catalog.id : null ),
         'dialog_id': (vm.blueprint.content.service_dialog ? vm.blueprint.content.service_dialog.id : null )
@@ -216,20 +224,6 @@
       $( "#advOps" ).toggleClass("in");
     }
 
-    vm.selectedTabName = "general";
-
-    function tabClicked(tabName) {
-      if ( (tabName === 'provision_order' || tabName === 'action_order') && disableOrderListTabs()) {
-        return;
-      } else {
-        vm.selectedTabName = tabName;
-      }
-    }
-
-    function isSelectedTab(tabName) {
-      return vm.selectedTabName === tabName;
-    }
-
     function disableOrderListTabs() {
       return vm.blueprint.ui_properties.chartDataModel.nodes.length <= 1;
     }
@@ -262,6 +256,7 @@
 
     function saveBlueprintDetails() {   // jshint ignore:line
       vm.blueprint.name = vm.modalData.resource.name;
+      vm.blueprint.description = vm.modalData.resource.description;
 
       /*
       if (!vm.blueprint.visibility || (vm.blueprint.visibility.id.toString() !== vm.modalData.resource.visibility.id.toString())) {

@@ -98,7 +98,7 @@
       function getBlueprintPostObj(tmpBlueprint) {                                    // jshint ignore:line
         var blueprintObj = {
           "name": tmpBlueprint.name,
-          "description": "description",
+          "description": tmpBlueprint.description,
           "bundle": {},
           "ui_properties": {}
         };
