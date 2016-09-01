@@ -8,10 +8,10 @@
   <!-- Connection Mode Notification -->
   <g ng-if="inConnectingMode">
     <rect class="connecting-mode-rec" ry="1" rx="1" x="0" y="0" width="640" height="32" />
-    <text class="connecting-mode-label" x="12" y="22" ng-if="availableConnections()">
+    <text class="connecting-mode-label" x="12" y="22" ng-if="availableConnections()" translate>
       Select a second item to complete the connection or click on the canvas to cancel
     </text>
-    <text class="connecting-mode-label-warning" x="12" y="22" ng-if="!availableConnections()">
+    <text class="connecting-mode-label-warning" x="12" y="22" ng-if="!availableConnections()" translate>
       No available connections! Click on the canvas to cancel
     </text>
   </g>

@@ -21,7 +21,6 @@
         resolve: {
           action: resolveAction,
           blueprint: resolveBlueprint,
-          blueprintTags: resolveBlueprintTags,
           allTags: resolveTags,
           serviceCatalogs: resolveServiceCatalogs,
           serviceDialogs: resolveServiceDialogs,
@@ -35,21 +34,6 @@
 
       function resolveBlueprint() {
         return blueprint;
-      }
-
-      function resolveBlueprintTags($stateParams, CollectionsApi) {
-        if ($stateParams.blueprintId) {
-          var attributes = ['categorization'];
-          var options = {
-            expand: 'resources',
-            attributes: attributes
-          };
-          var collection = 'blueprints' + "\/" + $stateParams.blueprintId + "\/" + 'tags';
-
-          return CollectionsApi.query(collection, options);
-        } else {
-          return null;
-        }
       }
 
       function resolveTags(CollectionsApi) {
@@ -99,7 +83,7 @@
   }
 
   /** @ngInject */
-  function BlueprintDetailsModalController(action, blueprint, blueprintTags, BlueprintsState, BlueprintOrderListService, serviceCatalogs,  // jshint ignore:line
+  function BlueprintDetailsModalController(action, blueprint, BlueprintsState, BlueprintOrderListService, serviceCatalogs,  // jshint ignore:line
                                            serviceDialogs, tenants, $state, BrowseEntryPointModal, CreateCatalogModal, $modalInstance,
                                            allTags, Notifications, sprintf, $filter, $scope) {
     var vm = this;
@@ -129,9 +113,14 @@
 
     vm.serviceDialogs = serviceDialogs.resources;
 
-    vm.allTags = allTags.resources;
-    vm.tagCategories = getTagCategories();
-    vm.tagCategory = vm.tagCategories[0];
+    vm.tags = {all: allTags.resources};
+    vm.tags.blueprint = vm.blueprint.tags;
+    vm.tags.categories = getTagCategories();
+    vm.tags.selectedCategory = vm.tags.categories[0];
+
+    console.log("\nvm.tags.blueprint = " + angular.toJson(vm.tags.blueprint.map(function(a) {
+          return a.categorization.display_name;
+        }), true));
 
     vm.visibilityOptions = [{
       id: 800,
@@ -158,6 +147,7 @@
     vm.dndServiceItemMoved = dndServiceItemMoved;
     vm.toggleActionEqualsProvOrder = toggleActionEqualsProvOrder;
     vm.addTag = addTag;
+    vm.removeTag = removeTag;
 
     vm.modalData = {
       'action': action,
@@ -216,16 +206,16 @@
       }
     }
 
-    $scope.$watch('vm.tagCategory', function(value) {
-      vm.filteredTags = $filter('filter')(vm.allTags, {name: vm.tagCategory.name});
-      if (vm.filteredTags) {
-        vm.tag = vm.filteredTags[0];
+    $scope.$watch('vm.tags.selectedCategory', function(value) {
+      vm.tags.filtered = $filter('filter')(vm.tags.all, {name: vm.tags.selectedCategory.name});
+      if (vm.tags.filtered) {
+        vm.tags.selectedTag = vm.tags.filtered[0];
       }
     }, true);
 
     function getTagCategories() {
       var lookup = {};
-      var items = vm.allTags;
+      var items = vm.tags.all;
       var result = [];
 
       for (var i = 0; i < items.length; i++) {
@@ -245,7 +235,16 @@
     }
 
     function addTag() {
-      console.log("Adding Tag: " + angular.toJson(vm.tag, true));
+      if (vm.tags.blueprint.indexOf(vm.tags.selectedTag) === -1) {
+        vm.tags.blueprint.push(vm.tags.selectedTag);
+      }
+    }
+
+    function removeTag(tag) {
+      var inBlueprintIndex = vm.tags.blueprint.indexOf(tag);
+      if (inBlueprintIndex !== -1) {
+        vm.tags.blueprint.splice(inBlueprintIndex, 1);
+      }
     }
 
     function isCatalogUnassigned() {
@@ -321,6 +320,8 @@
     function saveBlueprintDetails() {   // jshint ignore:line
       vm.blueprint.name = vm.modalData.resource.name;
       vm.blueprint.description = vm.modalData.resource.description;
+
+      vm.blueprint.tags = vm.tags.blueprint;
 
       /*
       if (!vm.blueprint.visibility || (vm.blueprint.visibility.id.toString() !== vm.modalData.resource.visibility.id.toString())) {
