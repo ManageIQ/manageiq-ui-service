@@ -1,8 +1,9 @@
 angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
   function($scope, $filter) {
     var chartDataModel = {};
-    if ($scope.$parent.blueprint.chartDataModel) {
-      chartDataModel = $scope.$parent.blueprint.chartDataModel;
+    var newNodeCount = 0;
+    if ($scope.$parent.blueprint.ui_properties && $scope.$parent.blueprint.ui_properties.chartDataModel) {
+      chartDataModel = $scope.$parent.blueprint.ui_properties.chartDataModel;
     }
 
     // Create the view-model for the chart and attach to the scope.
@@ -21,29 +22,25 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
 
     $scope.dropCallback = function(event, ui) {
       var newNode = angular.copy($scope.draggedItem);
-      newNode.id = nextNodeID++;
       if (newNode.type && newNode.type === 'generic') {
-        newNode.name = 'New ' + newNode.title;
-      } else {
-        newNode.name = newNode.title;
+        newNode.name = 'New ' + newNode.name;
       }
       newNode.backgroundColor = '#fff';
       newNode.x = event.clientX - 350;
       newNode.y = event.clientY - 200;
       $scope.addNewNode(newNode);
+      newNodeCount++;
     };
 
     $scope.addNodeByClick = function(item) {
       var newNode = angular.copy(item);
-      newNode.id = nextNodeID++;
       if (newNode.type && newNode.type === 'generic') {
-        newNode.name = 'New ' + newNode.title;
-      } else {
-        newNode.name = newNode.title;
+        newNode.name = 'New ' + newNode.name;
       }
+      newNodeCount++;
       newNode.backgroundColor = '#fff';
-      newNode.x = 250 + (nextNodeID * 4 + 160);
-      newNode.y = 200 + (nextNodeID * 4 + 160);
+      newNode.x = 250 + (newNodeCount * 4 + 160);
+      newNode.y = 200 + (newNodeCount * 4 + 160);
       $scope.addNewNode(newNode);
     };
 
@@ -136,11 +133,6 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
     // Code for esc key.
     //
     var escKeyCode = 27;
-
-    //
-    // Selects the next node id.
-    //
-    var nextNodeID = 10;
 
     //
     // Event handler for key-down on the flowchart.

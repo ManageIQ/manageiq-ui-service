@@ -40,24 +40,24 @@
     vm.doNotSave = doNotSave;
 
     function save() {
-      BlueprintsState.saveBlueprint(blueprint);
-      saveSuccess();
+      BlueprintsState.saveBlueprint(blueprint).then(saveSuccess, saveFailure);
 
       function saveSuccess() {
         $modalInstance.close();
-        Notifications.success(vm.blueprint.name + __(' was saved.'));
-        fromState.okToNavAway = true;
+        BlueprintsState.setDoNotSave(false);
+        BlueprintsState.saveOriginalBlueprint(angular.copy(blueprint));
         $state.go(toState, toParams);
       }
 
       function saveFailure() {
-        console.log("Failed to save blueprint.");
+        console.log("Failed to nav away and save blueprint.");
+        $modalInstance.close();
       }
     }
 
     function doNotSave() {
       $modalInstance.close();
-      fromState.okToNavAway = true;
+      BlueprintsState.setDoNotSave(true);
       $state.go(toState, toParams);
     }
   }

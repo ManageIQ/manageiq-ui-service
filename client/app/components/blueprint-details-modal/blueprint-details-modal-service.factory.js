@@ -41,7 +41,6 @@
 
       function resolveServiceCatalogs(CollectionsApi) {
         var options = {
-          mock: true,
           expand: 'resources',
           sort_by: 'name',
           sort_options: 'ignore_case'};
@@ -51,9 +50,8 @@
 
       function resolveServiceDialogs(CollectionsApi) {
         var options = {
-          mock: true,
           expand: 'resources',
-          attributes: ['id', 'description'],
+          attributes: ['id', 'description', 'label'],
           sort_by: 'description',
           sort_options: 'ignore_case'};
 
@@ -62,7 +60,6 @@
 
       function resolveTenants(CollectionsApi) {
         var options = {
-          mock: true,
           expand: 'resources',
           attributes: ['id', 'name'],
           sort_by: 'name',
@@ -81,10 +78,6 @@
     var vm = this;
     vm.blueprint = blueprint;
 
-    if (!vm.blueprint.chartDataModel || !vm.blueprint.chartDataModel.nodes) {
-      vm.blueprint.chartDataModel.nodes = [];
-    }
-
     if (action === 'create') {
       vm.modalTitle = __('Create Blueprint');
       vm.modalBtnPrimaryLabel  = __('Create');
@@ -96,7 +89,8 @@
       vm.modalBtnPrimaryLabel  = __('Save');
     }
 
-    vm.serviceCatalogs = serviceCatalogs.resources.concat(BlueprintsState.getNewCatalogs());
+    // vm.serviceCatalogs = serviceCatalogs.resources.concat(BlueprintsState.getNewCatalogs());
+    vm.serviceCatalogs = serviceCatalogs.resources;
 
     vm.serviceDialogs = serviceDialogs.resources;
 
@@ -128,18 +122,17 @@
       'resource': {
         'name': vm.blueprint.name || __('Untitled Blueprint ') + BlueprintsState.getNextUniqueId(),
         'visibility': vm.blueprint.visibility,
-        'catalog': vm.blueprint.catalog,
-        'dialog': vm.blueprint.dialog,
-        'provEP':  vm.blueprint.provEP || "path/to/default/prov/entry/point",
-        'reConfigEP': vm.blueprint.reConfigEP,
-        'retireEP': vm.blueprint.retireEP
+        'catalog_id': (vm.blueprint.content.service_catalog ? vm.blueprint.content.service_catalog.id : null ),
+        'dialog_id': (vm.blueprint.content.service_dialog ? vm.blueprint.content.service_dialog.id : null )
       }
     };
+
+    setModalDataEntrypoints();
 
     vm.provOrderChanged = false;
     vm.actionOrderChanged = false;
     vm.actionOrderEqualsProvOrder = true;
-    setOrderLists(vm.blueprint.chartDataModel.nodes);
+    setOrderLists(vm.blueprint.ui_properties.chartDataModel.nodes);
 
     if (!vm.modalData.resource.visibility) {
       vm.modalData.resource.visibility = vm.visibilityOptions[0];
@@ -149,15 +142,41 @@
           ];
     }
 
-    if (vm.modalData.resource.catalog) {
-      vm.modalData.resource.catalog = vm.serviceCatalogs[ findWithAttr(vm.serviceCatalogs, 'id', vm.modalData.resource.catalog.id) ];
+    if (vm.modalData.resource.catalog_id) {
+      vm.modalData.resource.catalog = vm.serviceCatalogs[ findWithAttr(vm.serviceCatalogs, 'id', vm.modalData.resource.catalog_id) ];
     }
 
-    if (vm.modalData.resource.dialog) {
-      vm.modalData.resource.dialog = vm.serviceDialogs[ findWithAttr(vm.serviceDialogs, 'id', vm.modalData.resource.dialog.id) ];
+    if (vm.modalData.resource.dialog_id) {
+      vm.modalData.resource.dialog = vm.serviceDialogs[ findWithAttr(vm.serviceDialogs, 'id', vm.modalData.resource.dialog_id) ];
     }
 
     activate();
+
+    function setModalDataEntrypoints() {
+      vm.modalData.resource.provEP = {action: "Provision", value: ""};
+      vm.modalData.resource.reConfigEP = {action: "Reconfigure", value: ""};
+      vm.modalData.resource.retireEP = {action: "Retirement", value: ""};
+
+      if (vm.blueprint.content.automate_entrypoints) {
+        for (var i = 0; i < vm.blueprint.content.automate_entrypoints.length; i++) {
+          var aep = vm.blueprint.content.automate_entrypoints[i];
+          var newAepStr = BlueprintsState.getEntryPointString(aep);
+          // console.log("modal data = " + aep.action + ": " + newAepStr);
+          var newAepObj = {action: aep.action, index: i, value: newAepStr};
+          switch (aep.action) {
+            case "Provision":
+              vm.modalData.resource.provEP = newAepObj;
+              break;
+            case "Reconfigure":
+              vm.modalData.resource.reConfigEP = newAepObj;
+              break;
+            case "Retirement":
+              vm.modalData.resource.retireEP = newAepObj;
+              break;
+          }
+        }
+      }
+    }
 
     function activate() {
     }
@@ -186,9 +205,7 @@
       var modalInstance = CreateCatalogModal.showModal();
 
       modalInstance.then(function(opts) {
-        vm.newCatalog = {"id": BlueprintsState.getNewCatalogs().length, "name": opts.catalogName, "new": 'true'};
-        vm.serviceCatalogs.push(vm.newCatalog);
-        vm.modalData.resource.catalog = vm.newCatalog;
+        console.log("New Catalog Name is '" + opts.catalogName + "'");
         $( "#createCatalog" ).blur();
       });
     }
@@ -198,11 +215,11 @@
 
       modalInstance.then(function(opts) {
         if (entryPointType === 'provisioning') {
-          vm.modalData.resource.provEP = opts.entryPointData;
+          vm.modalData.resource.provEP.value = opts.entryPointData;
         } else if (entryPointType === 'reconfigure') {
-          vm.modalData.resource.reConfigEP = opts.entryPointData;
+          vm.modalData.resource.reConfigEP.value = opts.entryPointData;
         } else if (entryPointType === 'retirement') {
-          vm.modalData.resource.retireEP =  opts.entryPointData;
+          vm.modalData.resource.retireEP.value =  opts.entryPointData;
         }
       });
     }
@@ -227,7 +244,7 @@
     }
 
     function disableOrderListTabs() {
-      return vm.blueprint.chartDataModel.nodes.length <= 1;
+      return vm.blueprint.ui_properties.chartDataModel.nodes.length <= 1;
     }
 
     function cancelBlueprintDetails() {
@@ -357,33 +374,35 @@
     }
 
     function saveBlueprintDetails() {   // jshint ignore:line
-      // Save any new catalogs
-      for (var i = 0; i < vm.serviceCatalogs.length; i += 1) {
-        if (vm.serviceCatalogs[i].new) {
-          vm.serviceCatalogs[i].new = null;
-          BlueprintsState.addNewCatalog(vm.serviceCatalogs[i]);
-        }
-      }
-
       vm.blueprint.name = vm.modalData.resource.name;
 
+      /*
       if (!vm.blueprint.visibility || (vm.blueprint.visibility.id.toString() !== vm.modalData.resource.visibility.id.toString())) {
         vm.blueprint.visibility = vm.modalData.resource.visibility;
       }
+      */
 
-      if (!vm.blueprint.catalog || !vm.modalData.resource.catalog ||
-          (vm.blueprint.catalog.id.toString() !== vm.modalData.resource.catalog.id.toString())) {
-        vm.blueprint.catalog = vm.modalData.resource.catalog;
+      if (vm.modalData.resource.catalog) {
+        if (!vm.blueprint.content.service_catalog || vm.modalData.resource.catalog.id !== vm.blueprint.content.service_catalog.id) {
+          vm.blueprint.content.service_catalog = {"id": vm.modalData.resource.catalog.id};
+        }
+      } else {
+        if (vm.blueprint.content.service_catalog) {
+          vm.blueprint.content.service_catalog = {"id": -1};
+        }
       }
 
-      if (!vm.blueprint.dialog || !vm.modalData.resource.dialog ||
-          (vm.blueprint.dialog.id.toString() !== vm.modalData.resource.dialog.id.toString())) {
-        vm.blueprint.dialog = vm.modalData.resource.dialog;
+      if (vm.modalData.resource.dialog) {
+        if (!vm.blueprint.content.service_dialog || vm.modalData.resource.dialog.id !== vm.blueprint.content.service_dialog.id) {
+          vm.blueprint.content.service_dialog = {"id": vm.modalData.resource.dialog.id};
+        }
+      } else {
+        if (vm.blueprint.content.service_dialog) {
+          vm.blueprint.content.service_dialog = {"id": -1};
+        }
       }
 
-      vm.blueprint.provEP = vm.modalData.resource.provEP;
-      vm.blueprint.reConfigEP = vm.modalData.resource.reConfigEP;
-      vm.blueprint.retireEP = vm.modalData.resource.retireEP;
+      setBlueprintEntryPtsFromModalData();
 
       if (vm.provOrderChanged) {
         saveOrder("provisionOrder");
@@ -394,13 +413,59 @@
       }
 
       if (action === 'publish') {
-        vm.blueprint.published = new Date();
-        MarketplaceState.publishBlueprint(vm.blueprint);
-      } else if (action === 'create') {
-        vm.blueprint.chartDataModel = {};
+        $modalInstance.close();
+        saveFailure();
+
+        return;
       }
 
+      /*
+      console.log("Orig Blueprint = " + angular.toJson(BlueprintsState.getOriginalBlueprint().content, true));
+      console.log("Updated Blueprint = " + angular.toJson(vm.blueprint.content, true));
+      console.log("Diff = " + angular.toJson(BlueprintsState.difference(vm.blueprint.content,
+                  BlueprintsState.getOriginalBlueprint().content), true));
+      */
+
       saveSuccess();
+
+      function setBlueprintEntryPtsFromModalData() {
+        processEntryPoint(vm.modalData.resource.provEP);
+        processEntryPoint(vm.modalData.resource.reConfigEP);
+        processEntryPoint(vm.modalData.resource.retireEP);
+      }
+
+      function processEntryPoint(modalData) {
+        var parts = modalData.value.split("\/");
+        var instance = (parts.length ? parts.splice(-1, 1)[0] : "");
+        var clazz = (parts.length ? parts.splice(-1, 1)[0] : "");
+        var namespace = parts.join("\/");
+        // console.log("blueprint data = " + modalData.action + " - " + namespace + ":" + clazz + ":" + instance);
+        if (modalData.index !== undefined) {
+          var bpAEP = vm.blueprint.content.automate_entrypoints[modalData.index];
+          if (bpAEP.ae_class === undefined && bpAEP.ae_instance === undefined && bpAEP.ae_namespace === namespace) {
+            return;
+          }
+          if (bpAEP.ae_namespace !== namespace) {
+            bpAEP.ae_namespace = namespace;
+          }
+          if (bpAEP.ae_class !== clazz) {
+            bpAEP.ae_class = clazz;
+          }
+          if (bpAEP.ae_instance !== instance) {
+            bpAEP.ae_instance = instance;
+          }
+        } else {
+          if (namespace.length || clazz.length || instance.length) {
+            // console.log("Adding new entry point");
+            vm.blueprint.content.automate_entrypoints.push({
+              action: modalData.action,
+              ae_namespace: namespace,
+              ae_class: clazz,
+              ae_instance: instance
+            });
+          }
+        }
+      }
 
       function saveOrder(orderType) {
         var list;
@@ -424,8 +489,8 @@
       }
 
       function updateOrder(orderType, item, orderNum) {
-        for (var i = 0; i < vm.blueprint.chartDataModel.nodes.length; i++) {
-          var node = vm.blueprint.chartDataModel.nodes[i];
+        for (var i = 0; i < vm.blueprint.ui_properties.chartDataModel.nodes.length; i++) {
+          var node = vm.blueprint.ui_properties.chartDataModel.nodes[i];
           if (node.id === item.id && node.name === item.name) {
             if (orderType === 'provisionOrder') {
               node.provision_order = orderNum;
@@ -445,13 +510,15 @@
 
       function saveSuccess() {
         if (action === 'create') {
+          // This is not actually used anymore, flow has changed
+          // keeping it in case flow changes back again.
           Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
           $modalInstance.close();
           BlueprintsState.saveBlueprint(vm.blueprint);
           $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
         } else if (action === 'edit') {
           $modalInstance.close({editedblueprint: vm.blueprint});
-          Notifications.success(sprintf(__('%s was updated.'), vm.blueprint.name));
+          // Notifications.success(sprintf(__('%s details were updated.'), vm.blueprint.name));
         } else if (action === 'publish') {
           $modalInstance.close();
           Notifications.success(sprintf(__('%s was published.'), vm.blueprint.name));
@@ -460,7 +527,11 @@
       }
 
       function saveFailure() {
-        Notifications.error(__('There was an error saving this Blueprint.'));
+        if (action === 'publish') {
+          Notifications.error(__('The Publish Blueprint feature is not yet implemented.'));
+        } else {
+          Notifications.error(__("There was an error saving this Blueprint's Details."));
+        }
       }
     }
   }

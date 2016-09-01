@@ -52,22 +52,16 @@
     }
 
     function deleteBlueprints() {
-      angular.forEach(angular.copy(vm.blueprintsList), deleteBlueprint);
+      BlueprintsState.deleteBlueprints(blueprints).then(deleteSuccess, deleteFailure);
 
-      function deleteBlueprint(blueprint) {
-        BlueprintsState.deleteBlueprint(blueprint.id);
-      }
-
-      saveSuccess();
-
-      function saveSuccess() {
+      function deleteSuccess() {
         $modalInstance.close();
-        Notifications.success(__('Blueprint(s) deleted.'));
         $state.go($state.current, {}, {reload: true});
       }
 
-      function saveFailure() {
-        Notifications.error(__('There was an error deleting Blueprints.'));
+      function deleteFailure() {
+        console.log("Failed to delete blueprint(s).");
+        $modalInstance.close();
       }
     }
   }

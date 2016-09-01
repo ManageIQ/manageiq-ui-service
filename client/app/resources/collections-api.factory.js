@@ -5,7 +5,7 @@
     .factory('CollectionsApi', CollectionsApiFactory);
 
   /** @ngInject */
-  function CollectionsApiFactory($http, API_BASE, MockData) {
+  function CollectionsApiFactory($http, API_BASE) {
     var service = {
       query: query,
       get: get,
@@ -17,12 +17,10 @@
     function query(collection, options) {
       var url = API_BASE + '/api/' + collection;
 
-      if (options.mock) {
-        return MockData.retrieveMockData(collection);
-      } else {
-        return $http.get(url + buildQuery(options), buildConfig(options))
-          .then(handleSuccess);
-      }
+      // console.log("query = " + url + buildQuery(options));
+
+      return $http.get(url + buildQuery(options), buildConfig(options))
+        .then(handleSuccess);
 
       function handleSuccess(response) {
         return response.data;
@@ -31,6 +29,8 @@
 
     function get(collection, id, options) {
       var url = API_BASE + '/api/' + collection + '/' + id;
+
+      // console.log("get = " + url + buildQuery(options));
 
       return $http.get(url + buildQuery(options), buildConfig(options))
         .then(handleSuccess);
@@ -42,6 +42,8 @@
 
     function post(collection, id, options, data) {
       var url = API_BASE + '/api/' + collection + '/' + (id || "") + buildQuery(options);
+
+      // console.log("post = " + url + buildQuery(options));
 
       return $http.post(url, data, buildConfig(options))
         .then(handleSuccess);

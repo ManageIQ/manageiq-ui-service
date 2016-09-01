@@ -5,7 +5,7 @@
       .factory('BlueprintsState', BlueprintsStateFactory);
 
   /** @ngInject */
-  function BlueprintsStateFactory($filter) {
+  function BlueprintsStateFactory($filter, CollectionsApi, Notifications, $state, sprintf, $q) {
     var blueprint = {};
 
     blueprint.sort = {
@@ -32,9 +32,9 @@
       return blueprint.filters;
     };
 
-    blueprint.newCatalogs = [];
-
+    blueprint.origBlueprint = null;
     blueprint.selectedBlueprints = [];
+    blueprint.doNotSaveFlag = false;
 
     blueprint.handleSelectionChange = function(tmpBlueprint) {
       if (tmpBlueprint.selected) {
@@ -59,114 +59,246 @@
       }
     };
 
-    blueprint.setBlueprints = function(blueprints) {
-      blueprint.blueprints = blueprints;
+    blueprint.saveOriginalBlueprint = function(origBlueprint) {
+      blueprint.origBlueprint = origBlueprint;
+      blueprint.setDoNotSave(false);
     };
 
-    blueprint.getBlueprints = function() {
-      return blueprint.blueprints;
+    blueprint.getOriginalBlueprint = function() {
+      return blueprint.origBlueprint;
     };
 
-    blueprint.getNewCatalogs = function() {
-      return blueprint.newCatalogs;
+    blueprint.setDoNotSave = function(value) {
+      blueprint.doNotSaveFlag = value;
     };
 
-    blueprint.addNewCatalog = function(newCat) {
-      blueprint.newCatalogs.push(newCat);
-    };
-
-    blueprint.getNextUniqueId = function() {
-      return blueprint.blueprints.length;
-    };
-
-    blueprint.duplicateBlueprint = function(origBlueprint) {
-      var newBlueprint = angular.copy(origBlueprint);
-      newBlueprint.id = blueprint.getNextUniqueId();
-      newBlueprint.name = getCopyName(newBlueprint.name);
-      blueprint.blueprints.push(newBlueprint);
+    blueprint.doNotSave = function() {
+      return blueprint.doNotSaveFlag;
     };
 
     blueprint.saveBlueprint = function(tmpBlueprint) {
-      tmpBlueprint.last_modified = new Date();
-      if (tmpBlueprint.chartDataModel && tmpBlueprint.chartDataModel.nodes) {
-        tmpBlueprint.num_nodes = tmpBlueprint.chartDataModel.nodes.length;
+      var deferred = $q.defer();
+
+      if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel  && tmpBlueprint.ui_properties.chartDataModel.nodes) {
+        tmpBlueprint.num_items = tmpBlueprint.ui_properties.chartDataModel.nodes.length;
       } else {
-        tmpBlueprint.num_nodes = 0;
+        tmpBlueprint.num_items = 0;
       }
 
-      var index = findBlueprintIndexById(tmpBlueprint.id);
-      if (index === -1) {
-        blueprint.blueprints.push(tmpBlueprint);
+      var blueprintObj = getBlueprintPostObj(tmpBlueprint);
+
+      // console.log("Saving Blueprint: " + angular.toJson(blueprintObj, true));
+
+      if (tmpBlueprint.id) {
+        CollectionsApi.post('blueprints', tmpBlueprint.id, {}, blueprintObj).then(updateSuccess, updateFailure);
       } else {
-        blueprint.blueprints[index] = tmpBlueprint;
+        CollectionsApi.post('blueprints', null, {}, blueprintObj).then(createSuccess, createFailure);
       }
 
-      // console.log("Saved Blueprint: " + angular.toJson(tmpBlueprint, true));
+      function getBlueprintPostObj(tmpBlueprint) {                                    // jshint ignore:line
+        var blueprintObj = {
+          "name": tmpBlueprint.name,
+          "description": "description",
+          "bundle": {},
+          "ui_properties": {}
+        };
 
-      return;
+        if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel) {
+          var chartDataModel = tmpBlueprint.ui_properties.chartDataModel;
+          if (chartDataModel.nodes) {
+            var serviceTemplates = [];
+            for (var i = 0; i < chartDataModel.nodes.length; i++) {
+              var nodeSrvTemplate = chartDataModel.nodes[i];
+              if (nodeSrvTemplate.id) {
+                serviceTemplates.push({"id": nodeSrvTemplate.id});
+              } else {
+                Notifications.warn("Cannot Save New Generic Item '" + nodeSrvTemplate.name +
+                    "'.  Saving New Generic Items Not Yet Implemented.");
+              }
+            }
+            blueprintObj.bundle.service_templates = serviceTemplates;
+          }
+          blueprintObj.ui_properties.chartDataModel = chartDataModel;
+        }
+
+        if (tmpBlueprint.content.service_catalog) {
+          if (tmpBlueprint.content.service_catalog.id !== -1) {
+            blueprintObj.bundle.service_catalog = {"id": tmpBlueprint.content.service_catalog.id};
+          } else {
+            blueprintObj.bundle.service_catalog = null;
+          }
+        }
+
+        if (tmpBlueprint.content.service_dialog) {
+          if (tmpBlueprint.content.service_dialog.id !== -1) {
+            blueprintObj.bundle.service_dialog = {"id": tmpBlueprint.content.service_dialog.id};
+          } else {
+            blueprintObj.bundle.service_dialog = null;
+          }
+        }
+
+        var automateEntrypoints = {};
+        for (var e = 0; e < tmpBlueprint.content.automate_entrypoints.length; e++) {
+          var aep = tmpBlueprint.content.automate_entrypoints[e];
+          var newAepStr = blueprint.getEntryPointString(aep);
+          switch (aep.action) {
+            case "Provision":
+              automateEntrypoints.Provision = newAepStr;
+              break;
+            case "Reconfigure":
+              automateEntrypoints.Reconfigure = newAepStr;
+              break;
+            case "Retirement":
+              automateEntrypoints.Retirement = newAepStr;
+              break;
+          }
+        }
+
+        // console.log("Saving Entry Points: " + angular.toJson(automateEntrypoints, true));
+
+        blueprintObj.bundle.automate_entrypoints = automateEntrypoints;
+
+        blueprintObj.ui_properties.num_items = tmpBlueprint.num_items;
+
+        if (tmpBlueprint.id) {
+          blueprintObj.action = "edit";
+        }
+
+        return blueprintObj;
+      }
+
+      function updateSuccess(response) {
+        Notifications.success(__(sprintf("%s blueprint was saved.", tmpBlueprint.name)));
+        deferred.resolve(response.id);
+      }
+
+      function updateFailure() {
+        Notifications.error(__('There was an error saving this blueprint.'));
+        deferred.reject();
+      }
+
+      function createSuccess(response) {
+        Notifications.success(__(sprintf("%s blueprint was created.", tmpBlueprint.name)));
+        deferred.resolve(response.results[0].id);
+      }
+
+      function createFailure() {
+        Notifications.error(__('There was an error creating this blueprint.'));
+        deferred.reject();
+      }
+
+      return deferred.promise;
     };
 
-    blueprint.deleteBlueprint = function(id) {
-      var index = findBlueprintIndexById(id);
-      if (index !== -1) {
-        blueprint.unselectBlueprint(id);
-        blueprint.blueprints.splice(index, 1);
-      } else {
-        console.log("cound not delete/find blueprint: id = " + id);
+    blueprint.deleteBlueprints = function(blueprints) {
+      var deferred = $q.defer();
+
+      var resources = [];
+      for (var i = 0; i < blueprints.length; i++) {
+        resources.push({"id": blueprints[i].id});
       }
+
+      var blueprintObj = {
+        "action": "delete",
+        "resources": resources
+      };
+
+      CollectionsApi.post('blueprints', null, {}, blueprintObj).then(deleteSuccess, deleteFailure);
+
+      function deleteSuccess() {
+        Notifications.success(__('Blueprint(s) were succesfully deleted.'));
+        deferred.resolve();
+      }
+
+      function deleteFailure() {
+        Notifications.error(__('There was an error deleting the blueprint(s).'));
+        deferred.reject();
+      }
+
+      return deferred.promise;
+    };
+
+    blueprint.getEntryPointString = function(aep) {
+      var newAepStr = "";
+      newAepStr += ((aep.ae_namespace && aep.ae_namespace.length) ? (aep.ae_namespace) : "");
+      newAepStr += ((aep.ae_class && aep.ae_class.length) ? ("\/" + aep.ae_class) : "");
+      newAepStr += ((aep.ae_instance && aep.ae_instance.length) ? ("\/" + aep.ae_instance) : "");
+
+      return newAepStr;
     };
 
     blueprint.getNewBlueprintObj = function() {
       var tmpBlueprint = {};
-      tmpBlueprint.id = blueprint.getNextUniqueId();
-      tmpBlueprint.last_modified = new Date();
-      tmpBlueprint.name = __('Untitled Blueprint ') + tmpBlueprint.id;
-      tmpBlueprint.visibility = {"id": 800, "name": "Private"};
-      tmpBlueprint.chartDataModel = {
-        "nodeActions": [
-          {
-            "id": 1,
-            "name": "connect",
-            "fontFamily": "FontAwesome",
-            "fontContent": "\uf1e0"
-          },
-          {
-            "id": 2,
-            "name": "edit",
-            "fontFamily": "PatternFlyIcons-webfont",
-            "fontContent": "\ue60a"
-          },
-          {
-            "id": 3,
-            "name": "tag",
-            "fontFamily": "FontAwesome",
-            "fontContent": "\uf02b"
-          }
-        ]
+      tmpBlueprint.name = __('Untitled Blueprint');
+      // tmpBlueprint.visibility = {"id": 800, "name": "Private"};
+      tmpBlueprint.bundle = {};
+      // TODO Need to get full default paths
+      tmpBlueprint.content = {automate_entrypoints: [
+        {"action": "Provision",
+        "ae_namespace": "Service/Provisioning/StateMachines",
+        "ae_class": "ServiceProvision_Template",
+        "ae_instance": "default"}
+      ]};
+      tmpBlueprint.ui_properties = {
+        chartDataModel: {
+          "nodeActions": [
+            {
+              "id": 1,
+              "name": "connect",
+              "fontFamily": "FontAwesome",
+              "fontContent": "\uf1e0"
+            },
+            {
+              "id": 2,
+              "name": "edit",
+              "fontFamily": "PatternFlyIcons-webfont",
+              "fontContent": "\ue60a"
+            },
+            {
+              "id": 3,
+              "name": "tag",
+              "fontFamily": "FontAwesome",
+              "fontContent": "\uf02b"
+            }
+          ],
+          "nodes": []
+        }
       };
+
+      blueprint.setDoNotSave(false);
 
       return tmpBlueprint;
     };
 
-    blueprint.getBlueprintById = function(id) {
-      for (var i = 0; i < blueprint.blueprints.length; i++) {
-        if (blueprint.blueprints[i].id.toString() === id.toString()) {
-          return blueprint.blueprints[i];
+    blueprint.difference = function(o1, o2) {
+      var k;
+      var kDiff;
+      var diff = {};
+
+      for (k in o1) {  // jshint ignore:line
+        if (!o1.hasOwnProperty(k)) {
+          console.log("obj 2 doesn't have " + k);
+        } else if (typeof o1[k] !== 'object' || typeof o2[k] !== 'object') {
+          if (!(k in o2) || o1[k] !== o2[k]) {
+            diff[k] = o2[k];
+          }
+        } else if (kDiff = blueprint.difference(o1[k], o2[k])) {    // jshint ignore:line
+          diff[k] = kDiff;
+        }
+      }
+      for (k in o2) {
+        if (o2.hasOwnProperty(k) && !(k in o1)) {
+          diff[k] = o2[k];
+        }
+      }
+      for (k in diff) {
+        if (diff.hasOwnProperty(k)) {
+          return diff;
         }
       }
 
-      return {};
+      return false;
     };
-
-    function findBlueprintIndexById(id) {
-      for (var i = 0; i < blueprint.blueprints.length; i++) {
-        if (blueprint.blueprints[i].id === id) {
-          return i;
-        }
-      }
-
-      return -1;
-    }
 
     function findWithAttr(array, attr, value) {
       for (var i = 0; i < array.length; i += 1) {
@@ -176,22 +308,6 @@
       }
 
       return -1;
-    }
-
-    function getCopyName(baseName) {
-      var baseNameLength = baseName.indexOf(' Copy');
-
-      if (baseNameLength === -1) {
-        baseNameLength = baseName.length;
-      }
-
-      baseName = baseName.substr(0, baseNameLength);
-
-      var filteredArray = $filter('filter')( blueprint.blueprints, {name: baseName}, false);
-
-      var copyName = baseName + " Copy" + ((filteredArray.length === 1) ? "" : " " + filteredArray.length) ;
-
-      return copyName;
     }
 
     return blueprint;
