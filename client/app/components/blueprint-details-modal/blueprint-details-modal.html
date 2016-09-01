@@ -28,6 +28,18 @@
                             ng-model="vm.modalData.resource.visibility" required>
                     </select>
                 </div>
+                <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6"
+                     pf-label="{{'Tags'|translate}}">
+                     <select class="tag-category-select"
+                             ng-options="item as item.description for item in vm.tagCategories"
+                             ng-model="vm.tagCategory">
+                     </select>
+                     <select class="tag-value-select"
+                             ng-options="item as item.categorization.description for item in vm.filteredTags"
+                             ng-model="vm.tag">
+                     </select>
+                    <a ng-click="vm.addTag()"><span class="fa fa-plus tag-add"></span></a>
+                </div>
             </form>
         </tab>
 
@@ -39,7 +51,7 @@
                     <label for="catalog" class="control-label col-sm-4" translate>Catalog</label>
 
                     <div class="col-sm-6">
-                        <select name="catalog" id="catalog" class="base-info-select form-control"
+                        <select name="catalog" id="catalog" class="base-info-select base-info-select-lg form-control"
                                 ng-options="item as item.name for item in vm.serviceCatalogs"
                                 ng-model="vm.modalData.resource.catalog"
                                 ng-required="vm.isCatalogRequired()">
@@ -57,7 +69,7 @@
                     <label for="dialog" class="control-label col-sm-4" translate>Dialog</label>
 
                     <div class="col-sm-6">
-                        <select name="dialog" id="dialog" class="base-info-select form-control"
+                        <select name="dialog" id="dialog" class="base-info-select base-info-select-lg form-control"
                                 ng-options="item as item.label for item in vm.serviceDialogs"
                                 ng-model="vm.modalData.resource.dialog"
                                 ng-required="vm.isDialogRequired()">

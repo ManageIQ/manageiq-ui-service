@@ -21,6 +21,8 @@
         resolve: {
           action: resolveAction,
           blueprint: resolveBlueprint,
+          blueprintTags: resolveBlueprintTags,
+          allTags: resolveTags,
           serviceCatalogs: resolveServiceCatalogs,
           serviceDialogs: resolveServiceDialogs,
           tenants: resolveTenants
@@ -33,6 +35,31 @@
 
       function resolveBlueprint() {
         return blueprint;
+      }
+
+      function resolveBlueprintTags($stateParams, CollectionsApi) {
+        if ($stateParams.blueprintId) {
+          var attributes = ['categorization'];
+          var options = {
+            expand: 'resources',
+            attributes: attributes
+          };
+          var collection = 'blueprints' + "\/" + $stateParams.blueprintId + "\/" + 'tags';
+
+          return CollectionsApi.query(collection, options);
+        } else {
+          return null;
+        }
+      }
+
+      function resolveTags(CollectionsApi) {
+        var attributes = ['categorization'];
+        var options = {
+          expand: 'resources',
+          attributes: attributes
+        };
+
+        return CollectionsApi.query('tags', options);
       }
 
       function resolveAction() {
@@ -72,9 +99,9 @@
   }
 
   /** @ngInject */
-  function BlueprintDetailsModalController(action, blueprint, BlueprintsState, BlueprintOrderListService, serviceCatalogs, serviceDialogs, tenants,     // jshint ignore:line
-                                           $state, BrowseEntryPointModal, CreateCatalogModal, $modalInstance, CollectionsApi, Notifications,
-                                           sprintf, $filter, $scope) {
+  function BlueprintDetailsModalController(action, blueprint, blueprintTags, BlueprintsState, BlueprintOrderListService, serviceCatalogs,  // jshint ignore:line
+                                           serviceDialogs, tenants, $state, BrowseEntryPointModal, CreateCatalogModal, $modalInstance,
+                                           allTags, Notifications, sprintf, $filter, $scope) {
     var vm = this;
     vm.blueprint = blueprint;
 
@@ -102,6 +129,10 @@
 
     vm.serviceDialogs = serviceDialogs.resources;
 
+    vm.allTags = allTags.resources;
+    vm.tagCategories = getTagCategories();
+    vm.tagCategory = vm.tagCategories[0];
+
     vm.visibilityOptions = [{
       id: 800,
       name: 'Private'
@@ -126,6 +157,7 @@
     vm.disableOrderListTabs = disableOrderListTabs;
     vm.dndServiceItemMoved = dndServiceItemMoved;
     vm.toggleActionEqualsProvOrder = toggleActionEqualsProvOrder;
+    vm.addTag = addTag;
 
     vm.modalData = {
       'action': action,
@@ -182,6 +214,38 @@
           }
         }
       }
+    }
+
+    $scope.$watch('vm.tagCategory', function(value) {
+      vm.filteredTags = $filter('filter')(vm.allTags, {name: vm.tagCategory.name});
+      if (vm.filteredTags) {
+        vm.tag = vm.filteredTags[0];
+      }
+    }, true);
+
+    function getTagCategories() {
+      var lookup = {};
+      var items = vm.allTags;
+      var result = [];
+
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+        if (!(item.categorization && item.categorization.category)) {
+          continue;
+        }
+        var category = item.categorization.category;
+
+        if (!(category.name in lookup)) {
+          lookup[category.name] = 1;
+          result.push(category);
+        }
+      }
+
+      return result;
+    }
+
+    function addTag() {
+      console.log("Adding Tag: " + angular.toJson(vm.tag, true));
     }
 
     function isCatalogUnassigned() {
