@@ -79,6 +79,28 @@
     blueprint.saveBlueprint = function(tmpBlueprint) {
       var deferred = $q.defer();
 
+      saveBlueprintProperties(tmpBlueprint).then(function(id) {
+        console.log("'" + tmpBlueprint.name + "' Blueprint Properties were saved.");
+        saveBlueprintTags(id, tmpBlueprint).then(function() {
+          console.log("'" + tmpBlueprint.name + "' Blueprint Tags were saved.");
+          deferred.resolve(id);
+        }, saveTagsfailure);
+      }, savePropsfailure);
+
+      function savePropsfailure() {
+        deferred.reject();
+      }
+
+      function saveTagsfailure() {
+        deferred.reject();
+      }
+
+      return deferred.promise;
+    };
+
+    function saveBlueprintProperties(tmpBlueprint) {
+      var deferred = $q.defer();
+
       if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel  && tmpBlueprint.ui_properties.chartDataModel.nodes) {
         tmpBlueprint.num_items = tmpBlueprint.ui_properties.chartDataModel.nodes.length;
       } else {
@@ -93,6 +115,24 @@
         CollectionsApi.post('blueprints', tmpBlueprint.id, {}, blueprintObj).then(updateSuccess, updateFailure);
       } else {
         CollectionsApi.post('blueprints', null, {}, blueprintObj).then(createSuccess, createFailure);
+      }
+
+      function updateSuccess(response) {
+        deferred.resolve(response.id);
+      }
+
+      function updateFailure() {
+        console.log('There was an error saving this blueprints properties.');
+        deferred.reject();
+      }
+
+      function createSuccess(response) {
+        deferred.resolve(response.results[0].id);
+      }
+
+      function createFailure() {
+        console.log('There was an error creating this blueprint.');
+        deferred.reject();
       }
 
       function getBlueprintPostObj(tmpBlueprint) {                                    // jshint ignore:line
@@ -158,8 +198,6 @@
           }
         }
 
-        // console.log("Saving Entry Points: " + angular.toJson(automateEntrypoints, true));
-
         blueprintObj.bundle.automate_entrypoints = automateEntrypoints;
 
         blueprintObj.ui_properties.num_items = tmpBlueprint.num_items;
@@ -171,28 +209,96 @@
         return blueprintObj;
       }
 
-      function updateSuccess(response) {
-        Notifications.success(__(sprintf("%s blueprint was saved.", tmpBlueprint.name)));
-        deferred.resolve(response.id);
+      return deferred.promise;
+    }
+
+    function saveBlueprintTags(blueprintId, tmpBlueprint) {
+      var deferred = $q.defer();
+
+      var blueprintTags = tmpBlueprint.tags;
+      var origBlueprintTags = blueprint.getOriginalBlueprint().tags;
+      var assignObj = getTagsToAddRemove("assign", blueprintTags, origBlueprintTags);
+      var unassignObj = getTagsToAddRemove("unassign", blueprintTags, origBlueprintTags);
+
+      var collection = 'blueprints' + "\/" + blueprintId + "\/" + 'tags';
+
+      if (assignObj.resources.length > 0) {
+        CollectionsApi.post(collection, null, {}, assignObj).then(function() {
+          console.log("  Blueprint tags assigned succesfully.");
+          if (unassignObj.resources.length > 0) {
+            CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
+              console.log("  Blueprint tags unassigned succesfully.");
+              deferred.resolve();
+            }, assignFailure);
+          } else {
+            deferred.resolve();
+          }
+        }, unassignFailure);
+      } else {
+        if (unassignObj.resources.length > 0) {
+          CollectionsApi.post(collection, null, {}, unassignObj).then(function () {
+            console.log("  Blueprint tags unassigned succesfully.");
+            deferred.resolve();
+          }, assignFailure);
+        } else {
+          deferred.resolve();
+        }
       }
 
-      function updateFailure() {
-        Notifications.error(__('There was an error saving this blueprint.'));
+      function assignFailure() {
+        console.log('There was an error assigning blueprint tags.');
         deferred.reject();
       }
 
-      function createSuccess(response) {
-        Notifications.success(__(sprintf("%s blueprint was created.", tmpBlueprint.name)));
-        deferred.resolve(response.results[0].id);
-      }
-
-      function createFailure() {
-        Notifications.error(__('There was an error creating this blueprint.'));
+      function unassignFailure() {
+        console.log('There was an error unassigning blueprint tags.');
         deferred.reject();
       }
 
       return deferred.promise;
-    };
+    }
+
+    function getTagsToAddRemove(action, blueprintTags, origBlueprintTags) {
+      var resultObj = {
+        "action": action,
+        "resources": []
+      };
+      var resources = [];
+
+      var tag;
+      var foundInOther;
+      var matchTag;
+
+      // if blueprintTag not in origBlueprintTags, assign
+      var bpComp1 = blueprintTags;
+      var bpComp2 = origBlueprintTags;
+
+      if (action === "unassign") {
+        // if origBlueprintTag not in blueprintTags, it was removed, unassign
+        bpComp1 = origBlueprintTags;
+        bpComp2 = blueprintTags;
+      }
+
+      for (var i = 0; i < bpComp1.length; i++) {
+        tag = bpComp1[i];
+        foundInOther = false;
+        for (var t = 0; t < bpComp2.length; t++) {
+          matchTag = bpComp2[t];
+          if (tag.id === matchTag.id) {
+            foundInOther = true;
+            break;
+          }
+        }
+        if (!foundInOther) {
+          // console.log("--> " + action + " " + tag.id + " - " + tag.categorization.display_name);
+          resources.push({id: tag.id});
+        }
+      }
+
+      resultObj.resources = resources;
+
+      return resultObj;
+    }
 
     blueprint.deleteBlueprints = function(blueprints) {
       var deferred = $q.defer();
@@ -236,6 +342,7 @@
       tmpBlueprint.name = __('Untitled Blueprint');
       // tmpBlueprint.visibility = {"id": 800, "name": "Private"};
       tmpBlueprint.bundle = {};
+      tmpBlueprint.tags = [];
       // TODO Need to get full default paths
       tmpBlueprint.content = {automate_entrypoints: [
         {"action": "Provision",
