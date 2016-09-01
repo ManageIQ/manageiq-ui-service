@@ -34,6 +34,18 @@
     #blueprintDetails
       margin-left: 16px
 
+    .showHideConnectors
+      display: block
+      font-size: 12px
+      font-weight: 600
+      float: right
+      padding-top: 2px
+      padding-right: 80px
+      vertical-align: middle
+
+    .showHideConnectorsLabel
+      vertical-align: text-bottom
+
   .toolbox-canvas-container
     //border: 4px solid green
     position: relative
@@ -127,7 +139,6 @@
 
         .new-catalog-item
           border: 2px dashed #bbb
-          color: #00a8e1
           padding: 13px 18px
           cursor: pointer
           width: 306px
@@ -135,6 +146,20 @@
           min-height: 52px
           height: 36px
           vertical-align: middle
+
+          span
+            color: #00a8e1
+            padding-right: 4px
+            font-size: 18px
+            vertical-align: middle
+
+          .new-catalog-item-icon
+            float: right
+            font-size: 22px
+
+          .new-catalog-item-label
+            color: #363636
+            font-size: 12px
 
         .search-text
           border: 1px solid #bbb
@@ -171,6 +196,10 @@
       width: 1396px
       height: 756px
       background-image: url('/client/assets/images/blueprint-designer/canvas-dot-grid.png')
+      background-repeat: repeat
+
+    .canvas-in-connection-mode
+      background-image: url('/client/assets/images/blueprint-designer/canvas-dot-grid-disabled.png')
       background-repeat: repeat
 
     a

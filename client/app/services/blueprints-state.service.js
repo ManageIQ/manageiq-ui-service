@@ -116,6 +116,38 @@
       }
     };
 
+    blueprint.getNewBlueprintObj = function() {
+      var tmpBlueprint = {};
+      tmpBlueprint.id = blueprint.getNextUniqueId();
+      tmpBlueprint.last_modified = new Date();
+      tmpBlueprint.name = __('Untitled Blueprint ') + tmpBlueprint.id;
+      tmpBlueprint.visibility = {"id": 800, "name": "Private"};
+      tmpBlueprint.chartDataModel = {
+        "nodeActions": [
+          {
+            "id": 1,
+            "name": "connect",
+            "fontFamily": "FontAwesome",
+            "fontContent": "\uf1e0"
+          },
+          {
+            "id": 2,
+            "name": "edit",
+            "fontFamily": "PatternFlyIcons-webfont",
+            "fontContent": "\ue60a"
+          },
+          {
+            "id": 3,
+            "name": "tag",
+            "fontFamily": "FontAwesome",
+            "fontContent": "\uf02b"
+          }
+        ]
+      };
+
+      return tmpBlueprint;
+    };
+
     blueprint.getBlueprintById = function(id) {
       for (var i = 0; i < blueprint.blueprints.length; i++) {
         if (blueprint.blueprints[i].id.toString() === id.toString()) {
