@@ -159,8 +159,8 @@
           },
           {
             id: 'placed_at',
-            title: __('Ordered Date'),
-            placeholder: __('Filter by Ordered Date'),
+            title: __('Order Date'),
+            placeholder: __('Filter by Order Date'),
             filterType: 'text',
           },
         ],
@@ -182,7 +182,7 @@
           },
           {
             id: 'placed_at',
-            title: __('Ordered Date'),
+            title: __('Order Date'),
             sortType: 'numeric',
           },
         ],
