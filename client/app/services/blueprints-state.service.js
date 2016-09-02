@@ -236,7 +236,7 @@
         }, unassignFailure);
       } else {
         if (unassignObj.resources.length > 0) {
-          CollectionsApi.post(collection, null, {}, unassignObj).then(function () {
+          CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
             console.log("  Blueprint tags unassigned succesfully.");
             deferred.resolve();
           }, assignFailure);

@@ -57,7 +57,7 @@ angular.module('app.states')
         BlueprintsState.saveBlueprint($scope.blueprint).then(saveSuccess, saveFailure);
 
         function saveSuccess(id) {
-          Notifications.success(__(sprintf("'%s' Blueprint was succesfully saved.", $scope.blueprint.name)));
+          Notifications.success(sprintf(__("'%s' was succesfully saved."), $scope.blueprint.name));
           if (id) {
             $state.go($state.current, {blueprintId: id}, {reload: true});
           }
@@ -73,7 +73,7 @@ angular.module('app.states')
         }
 
         function saveFailure() {
-          Notifications.error(__(sprintf("Failed to save blueprint '%s'.", $scope.blueprint.name)));
+          Notifications.error(sprintf(__("Failed to save '%s'."), $scope.blueprint.name));
         }
       };
 
