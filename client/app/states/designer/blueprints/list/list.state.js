@@ -13,7 +13,7 @@
     return {
       'blueprints.list': {
         url: '', // No url, this state is the index of projects
-        templateUrl: 'app/states/blueprints/list/list.html',
+        templateUrl: 'app/states/designer/blueprints/list/list.html',
         controller: StateController,
         controllerAs: 'vm',
         title: N_('Blueprint List'),

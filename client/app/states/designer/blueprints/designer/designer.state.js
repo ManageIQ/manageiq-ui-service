@@ -13,7 +13,7 @@
     return {
       'blueprints.designer': {
         url: '/:blueprintId',
-        templateUrl: 'app/states/blueprints/designer/designer.html',
+        templateUrl: 'app/states/designer/blueprints/designer/designer.html',
         controller: StateController,
         controllerAs: 'vm',
         title: 'Blueprint Designer',
