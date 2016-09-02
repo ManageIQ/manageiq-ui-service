@@ -1,5 +1,5 @@
 angular.module('app.states')
-    .controller('designerCtrl', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState', 'BlueprintDetailsModal', 'SaveBlueprintModal',
+    .controller('blueprintEditorCtrl', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState', 'BlueprintDetailsModal', 'SaveBlueprintModal',
                 '$rootScope', '$state', 'CollectionsApi', 'Notifications',
     function($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope, $state, CollectionsApi, // jshint ignore:line
              Notifications) {
@@ -7,7 +7,7 @@ angular.module('app.states')
         if (toState.name === 'login') {
           return;
         }
-        if (fromState.name === "blueprints.designer" && toState.name !== "blueprints.designer") {
+        if (fromState.name === "designer.blueprints.editor" && toState.name !== "designer.blueprints.editor") {
           var origBlueprint = BlueprintsState.getOriginalBlueprint();
           if (!BlueprintsState.doNotSave() && !angular.equals(origBlueprint, $scope.blueprint) && !event.defaultPrevented) {
             SaveBlueprintModal.showModal($scope.blueprint, toState, toParams, fromState, fromParams);

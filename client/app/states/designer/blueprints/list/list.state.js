@@ -223,11 +223,11 @@
     };
 
     function createBlueprint(action) {
-      $state.go('designer.blueprints.designer');
+      $state.go('designer.blueprints.editor');
     }
 
     function editBlueprint(action, item) {
-      $state.go('designer.blueprints.designer', {blueprintId: item.id});
+      $state.go('designer.blueprints.editor', {blueprintId: item.id});
     }
 
     function duplicateBlueprint(action, item) {
@@ -266,7 +266,7 @@
     filterChange(BlueprintsState.getFilters());
 
     function handleClick(item, e) {
-      $state.go('designer.blueprints.designer', {blueprintId: item.id});
+      $state.go('designer.blueprints.editor', {blueprintId: item.id});
     }
 
     function handleCheckBoxChange(item, e) {
