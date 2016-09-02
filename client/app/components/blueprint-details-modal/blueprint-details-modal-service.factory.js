@@ -118,10 +118,6 @@
     vm.tags.categories = getTagCategories();
     vm.tags.selectedCategory = vm.tags.categories[0];
 
-    console.log("\nvm.tags.blueprint = " + angular.toJson(vm.tags.blueprint.map(function(a) {
-          return a.categorization.display_name;
-        }), true));
-
     vm.visibilityOptions = [{
       id: 800,
       name: 'Private'
