@@ -9,38 +9,61 @@
   function navigation(NavigationProvider) {
     NavigationProvider.configure({
       items: {
-        primary: {
-          dashboard: {
-            title: N_('Dashboard'),
-            state: 'dashboard',
-            icon: 'fa fa-dashboard',
-          },
-          services: {
-            title: N_('My Services'),
-            state: 'services',
-            icon: 'fa fa-file-o',
-            tooltip: N_('The total number of services that you have ordered, both active and retired'),
-          },
-          requests: {
-            title: N_('My Requests'),
-            state: 'requests',
-            icon: 'fa fa-file-text-o',
-            tooltip: N_('The total number of requests that you have submitted'),
-          },
-          marketplace: {
-            title: N_('Service Catalog'),
-            state: 'marketplace',
-            icon: 'fa fa-copy',
-            tooltip: N_('The total number of available catalog items'),
-          },
-          blueprints: {
-            title: N_('Blueprints'),
-            state: 'blueprints',
-            icon: 'pficon pficon-blueprint',
-            tooltip: N_('The total number of available blueprints'),
-          }
+        dashboard: {
+          title: N_('Dashboard'),
+          state: 'dashboard',
+          iconClass: 'fa fa-dashboard'
         },
-        secondary: {
+        services: {
+          title: N_('My Services'),
+          state: 'services',
+          iconClass: 'fa fa-file-o',
+          badges: [
+            {
+              count: 287,
+              tooltip: N_('The total number of services that you have ordered, both active and retired')
+            }
+          ]
+        },
+        requests: {
+          title: N_('My Requests'),
+          state: 'requests',
+          iconClass: 'fa fa-file-text-o',
+          badges: [
+            {
+              count: 0,
+              tooltip: N_('The total number of requests that you have submitted')
+            }
+          ]
+        },
+        marketplace: {
+          title: N_('Service Catalog'),
+          state: 'marketplace',
+          iconClass: 'fa fa-copy',
+          badges: [
+            {
+              count: 0,
+              tooltip: N_('The total number of available catalog items')
+            }
+          ]
+        },
+        designer: {
+          title: N_('Designer'),
+          state: 'blueprints',
+          iconClass: 'pficon pficon-blueprint',
+          secondary: {
+            blueprints: {
+              title: N_('Blueprints'),
+              state: 'blueprints',
+              iconClass: 'pficon pficon-blueprint',
+              badges: [
+                {
+                  count: 0,
+                  tooltip: N_('The total number of available blueprints')
+                }
+              ]
+            }
+          }
         }
       }
     });
@@ -98,19 +121,19 @@
     }
 
     function updateCount(item, data) {
-      Navigation.items.primary[item].count = data.subcount;
+      Navigation.items[item].badges[0].count = data.subcount;
     }
 
     function updateServicesCount(item, data) {
-      Navigation.items.primary[item].count = data.subcount;
+      Navigation.items[item].badges[0].count = data.subcount;
     }
 
     function updateServiceTemplatesCount(item, data) {
-      Navigation.items.primary[item].count = data.subcount;
+      Navigation.items[item].badges[0].count = data.subcount;
     }
 
     function updateBlueprintsCount(item, data) {
-      Navigation.items.primary[item].count = data.subcount;
+      Navigation.items.designer.secondary[item].count = data.subcount;
     }
   }
 })();

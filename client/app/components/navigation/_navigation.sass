@@ -1,54 +1,24 @@
-.navbar-pf-alt
+.navbar-pf-vertical
   background-color: $app-color-dark-blue-gray
   background-image: url(../images/bg-navbar.png)
-  border-top: 0px
+  background-repeat: no-repeat
+  background-size: auto 100%
 
-  .navbar-brand .navbar-brand-name
+  .navbar-brand .navbar-brand-icon
     height: 20px
     margin-top: 10px
-
-.layout-pf-alt-fixed .nav-pf-vertical-alt
-  top: 58px
-
-.nav-pf-vertical-alt
-  background-color: #292e34
-  .list-group-item:last-child
-    border-bottom: 0
-  .list-group-item
-    background-color: #292e34
-    border-color: #000000
-    i
-      color: #72767b
-      font-size: 14px !important
-    a
-      color: #dbdada
-    a:hover
-      color: #fff
-    .badge
-      background-color: #393f44
-      border: none
-
-  .list-group-item:hover
-    background-color: #393f44
-    i
-      color: #39a5dc
-      font-size: 14px
-    .badge
-      background-color: #292e34
-
-  .list-group-item.active
-    background-color: #393f44
-    border-color: #000000
-    i
-      color: #39a5dc
-      font-size: 14px
-    .badge
-      background-color: #292e34
-
-  .list-group-item.active:before
-    width: 3px
 
 .navbar__user-name
   display: inline-block
   color: $color-white
   margin-left: 1ex
+
+.secondary-collapse-toggle-pf
+  &:before
+    content: '\f08d'
+  &.collapsed:before
+    -ms-transform: rotate(45deg)
+    -webkit-transform: rotate(45deg)
+    transform: rotate(45deg)
+    content: '\f08d'
+    display: inline-block
