@@ -49,12 +49,12 @@
         },
         designer: {
           title: N_('Designer'),
-          state: 'blueprints',
+          state: 'designer',
           iconClass: 'pficon pficon-blueprint',
           secondary: {
             blueprints: {
               title: N_('Blueprints'),
-              state: 'blueprints',
+              state: 'designer.blueprints',
               badges: [
                 {
                   count: 0,
@@ -64,7 +64,7 @@
             },
             rules: {
               title: N_('Rules'),
-              state: 'rules',
+              state: 'designer.rules',
               badges: [
                 {
                   count: 0,

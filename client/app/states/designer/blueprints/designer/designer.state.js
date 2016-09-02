@@ -11,7 +11,7 @@
 
   function getStates() {
     return {
-      'blueprints.designer': {
+      'designer.blueprints.designer': {
         url: '/:blueprintId',
         templateUrl: 'app/states/designer/blueprints/designer/designer.html',
         controller: StateController,

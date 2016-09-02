@@ -11,9 +11,9 @@
 
   function getStates() {
     return {
-      'rules': {
+      'designer.rules': {
         parent: 'application',
-        url: '/rules',
+        url: '/designer/rules',
         templateUrl: 'app/states/designer/rules/rules.html',
         controller: StateController,
         controllerAs: 'vm',
