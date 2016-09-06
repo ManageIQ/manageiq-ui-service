@@ -158,10 +158,6 @@
             }
             blueprintObj.bundle.service_templates = serviceTemplates;
           }
-          if (tmpBlueprint.ui_properties.chartDataModel.nodeActions) {
-            // no need to persist node toolbar actions in backend
-            delete tmpBlueprint.ui_properties.chartDataModel.nodeActions;
-          }
           blueprintObj.ui_properties.chartDataModel = chartDataModel;
         }
 

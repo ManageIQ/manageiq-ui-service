@@ -1,0 +1,5 @@
+<div class="node-toolbar" ng-style="{left: getLeft(), top: getTop()}">
+  <span ng-repeat="nodeAction in vm.nodeActions"
+        class="{{nodeAction.iconClass()}} node-toolbar-icons"
+        ng-click="actionIconClicked(nodeAction.action())"></span>
+</div>

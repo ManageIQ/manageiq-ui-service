@@ -38,34 +38,7 @@
       fill-opacity="1.0"
       />
 
-    <!-- Bottom Node Toolbar -->
-    <g id="nodeToolBar" ng-if="node == mouseOverNode && !inConnectingMode">
-      <rect   class="node-toolbar"
-              ry="6"
-              rx="6"
-              x="0"
-              ng-attr-y="{{node.height()+1}}"
-              ng-attr-width="{{node.width()}}"
-              height="30"
-              fill="{{node.backgroundColor()}}"
-              fill-opacity="1.0"
-      />
 
-      <g class="svg-triangle" >
-        <polyline points="4,152 14,140 24,152"/>
-      </g>
-
-      <g ng-repeat="nodeAction in chart.nodeActions">
-        <text ng-if="nodeAction.fontFamily()"
-              class="node-toolbar-icons"
-              font-family="{{nodeAction.fontFamily()}}"
-              ng-click="nodeActionClick($event, node, nodeAction)"
-              ng-attr-x="{{10 + ($index * 24)}}"
-              ng-attr-y="{{node.height()+22}}">
-          {{nodeAction.fontContent()}}
-        </text>
-      </g>
-    </g>
 
     <!-- Node Title -->
     <text
@@ -106,6 +79,20 @@
              font-size="20">
          {{'\uf06b'}}
        </text>
+    </g>
+
+    <!-- Bottom Node Toolbar -->
+    <g id="nodeToolBar" ng-if="node == mouseOverNode && !inConnectingMode">
+      <g class="svg-triangle" >
+        <polyline points="4,152 14,140 24,152"/>
+      </g>
+      <foreignobject ng-attr-x="{{node.x}}"
+                     ng-attr-y="{{node.height()+1}}"
+                     ng-attr-width="{{node.width()}}">
+        <body>
+          <node-toolbar node="node" node-actions="chart.nodeActions"/>
+        </body>
+      </foreignObject>
     </g>
 
     <!-- Connected Input Connectors -->

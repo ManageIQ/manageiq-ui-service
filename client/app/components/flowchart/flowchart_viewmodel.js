@@ -371,22 +371,15 @@ var flowchart = {
     //
     // Font Family for the the node.
     //
-    this.fontFamily = function() {
-      return this.data.fontFamily || "";
+    this.iconClass = function() {
+      return this.data.iconClass || "";
     };
 
     //
     // Font Content for the the node.
     //
-    this.fontContent = function() {
-      return this.data.fontContent || "";
-    };
-
-    //
-    // Image for the the node.
-    //
-    this.image = function() {
-      return this.data.image || "";
+    this.action = function() {
+      return this.data.action || "";
     };
   };
 
@@ -635,6 +628,27 @@ var flowchart = {
       return connectionsViewModel;
     };
 
+    this.nodeToolbarActions = [
+      {
+        "id": 1,
+        "name": "connect",
+        "iconClass": "fa fa-share-alt",
+        "action": "nodeActionConnect"
+      },
+      {
+        "id": 2,
+        "name": "edit",
+        "iconClass": "pf pficon-edit",
+        "action": "nodeActionEdit"
+      },
+      {
+        "id": 3,
+        "name": "tag",
+        "iconClass": "fa fa-tag",
+        "action": "nodeActionTag"
+      }
+    ];
+
     // Reference to the underlying data.
     this.data = chartDataModel;
 
@@ -642,7 +656,7 @@ var flowchart = {
     this.nodes = createNodesViewModel(this.data.nodes);
 
     // Create a view-model for nodes.
-    this.nodeActions = createNodeActionsViewModel(this.data.nodeActions);
+    this.nodeActions = createNodeActionsViewModel(this.nodeToolbarActions);
 
     // Create a view-model for connections.
     this.connections = this._createConnectionsViewModel(this.data.connections);

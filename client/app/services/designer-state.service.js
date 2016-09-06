@@ -214,29 +214,6 @@
       }
     };
 
-    designer.getCanvasNodeToolbarActions = function() {
-      return [
-        {
-          "id": 1,
-          "name": "connect",
-          "fontFamily": "FontAwesome",
-          "fontContent": "\uf1e0"
-        },
-        {
-          "id": 2,
-          "name": "edit",
-          "fontFamily": "PatternFlyIcons-webfont",
-          "fontContent": "\ue60a"
-        },
-        {
-          "id": 3,
-          "name": "tag",
-          "fontFamily": "FontAwesome",
-          "fontContent": "\uf02b"
-        }
-      ];
-    };
-
     return designer;
   }
 })();
