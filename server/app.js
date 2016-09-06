@@ -66,7 +66,7 @@ switch (environment) {
   default:
     console.log('** DEV **');
     router.use(express.static('./client/'));
-    router.use(express.static('./tmp'));
+    router.use(express.static('./.tmp')); // gulp dev build dir
     router.use(express.static('./client/assets'));
     var pictureProxy = httpProxy.createProxyServer({
       target: 'http://' + PROXY_HOST + '/pictures',
