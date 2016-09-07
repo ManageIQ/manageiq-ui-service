@@ -16,6 +16,31 @@
             <span class="badge" ng-show="vm.shoppingCart.count" ng-bind="vm.shoppingCart.count"></span>
           </a>
         </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle nav-item-iconic" id="aboutModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <span class="fa pficon-help"></span>
+            <span class="caret"></span>
+          </a>
+          <ul class ="dropdown-menu" aria-labelledby="aboutModal">
+            <li>
+              <a href="/support/index?support_tab=about">
+                Documentation
+              </a>
+            </li>
+            <li>
+              <a href="#" target = "_new"></a>
+            </li>
+            <li ng-controller="ModalCtrl">
+              <a href="#"  ng-click="open()" >
+                About
+              </a>
+              <div pf-about-modal is-open="isOpen" on-close="onClose()" additional-info="additionalInfo"
+               product-info="productInfo" title="title" copyright="copyright" img-alt="imgAlt" img-src="imgSrc">
+              </div>
+            </li>
+          </ul>
+        </li>
+
         <li dropdown>
           <a dropdown-toggle class="nav-item-iconic" title="{{ ::vm.user().userid }}">
             <i class="fa pficon-user"></i>
