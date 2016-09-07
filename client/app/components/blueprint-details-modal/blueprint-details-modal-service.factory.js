@@ -114,7 +114,7 @@
     vm.serviceDialogs = serviceDialogs.resources;
 
     vm.tags = {all: allTags.resources};
-    vm.tags.blueprint = vm.blueprint.tags;
+    vm.tags.of_item = vm.blueprint.tags;
     vm.tags.categories = getTagCategories();
     vm.tags.selectedCategory = vm.tags.categories[0];
 
@@ -142,8 +142,6 @@
     vm.disableOrderListTabs = disableOrderListTabs;
     vm.dndServiceItemMoved = dndServiceItemMoved;
     vm.toggleActionEqualsProvOrder = toggleActionEqualsProvOrder;
-    vm.addTag = addTag;
-    vm.removeTag = removeTag;
 
     vm.modalData = {
       'action': action,
@@ -202,13 +200,6 @@
       }
     }
 
-    $scope.$watch('vm.tags.selectedCategory', function(value) {
-      vm.tags.filtered = $filter('filter')(vm.tags.all, {name: vm.tags.selectedCategory.name});
-      if (vm.tags.filtered) {
-        vm.tags.selectedTag = vm.tags.filtered[0];
-      }
-    }, true);
-
     function getTagCategories() {
       var lookup = {};
       var items = vm.tags.all;
@@ -228,19 +219,6 @@
       }
 
       return result;
-    }
-
-    function addTag() {
-      if (vm.tags.blueprint.indexOf(vm.tags.selectedTag) === -1) {
-        vm.tags.blueprint.push(vm.tags.selectedTag);
-      }
-    }
-
-    function removeTag(tag) {
-      var inBlueprintIndex = vm.tags.blueprint.indexOf(tag);
-      if (inBlueprintIndex !== -1) {
-        vm.tags.blueprint.splice(inBlueprintIndex, 1);
-      }
     }
 
     function isCatalogUnassigned() {
@@ -317,7 +295,7 @@
       vm.blueprint.name = vm.modalData.resource.name;
       vm.blueprint.description = vm.modalData.resource.description;
 
-      vm.blueprint.tags = vm.tags.blueprint;
+      vm.blueprint.tags = vm.tags.of_item;
 
       /*
       if (!vm.blueprint.visibility || (vm.blueprint.visibility.id.toString() !== vm.modalData.resource.visibility.id.toString())) {
