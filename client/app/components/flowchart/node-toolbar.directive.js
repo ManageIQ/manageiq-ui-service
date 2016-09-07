@@ -23,6 +23,7 @@
     /** @ngInject */
     function NodeToolbarController($scope) {
       var vm = this;
+      vm.selectedAction = "none";
 
       $scope.getLeft = function() {
         return vm.node.x() + "px";
@@ -32,6 +33,7 @@
       };
 
       $scope.actionIconClicked = function(action) {
+        vm.selectedAction = action;
         $scope.$emit('nodeActionClicked', {'action': action, 'node': vm.node});
       };
     }

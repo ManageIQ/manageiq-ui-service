@@ -151,3 +151,46 @@
   stroke: blue
   stroke-width: 2
   fill: transparent
+
+.nodetoolbar-dialog
+  width: 300px
+  background-color: white
+  border: solid 1px #d1d1d1
+  margin-top: 4px
+
+.nodetoolbar-tag
+  margin-left: 48px
+
+.nodetoolbar-edit
+  margin-left: 15px
+
+.arrow_box
+  position: relative
+  background: #ffffff
+  border: 1px solid #514d52
+  border-radius: 5px
+  padding-left: 10px
+  padding-right: 10px
+  padding-bottom: 10px
+
+.arrow_box:after, .arrow_box:before
+  bottom: 100%
+  left: 50%
+  border: solid transparent
+  content: " "
+  height: 0
+  width: 0
+  position: absolute
+  pointer-events: none
+
+.arrow_box:after
+  border-color: rgba(255, 255, 255, 0)
+  border-bottom-color: #ffffff
+  border-width: 8px
+  margin-left: -136px
+
+.arrow_box:before
+  border-color: rgba(81, 77, 82, 0)
+  border-bottom-color: #514d52
+  border-width: 10px
+  margin-left: -138px

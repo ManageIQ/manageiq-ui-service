@@ -1,5 +1,19 @@
-<div class="node-toolbar" ng-style="{left: getLeft(), top: getTop()}">
+<div class="node-toolbar">
   <span ng-repeat="nodeAction in vm.nodeActions"
         class="{{nodeAction.iconClass()}} node-toolbar-icons"
-        ng-click="actionIconClicked(nodeAction.action())"></span>
+        ng-click="actionIconClicked(nodeAction.action())">
+  </span>
+  <div ng-if="vm.selectedAction === 'nodeActionTag'" class="nodetoolbar-dialog nodetoolbar-tag">
+    <div class="arrow_box" ng-style="{left: getLeft(), top: getTop()}">
+      Tag Item <br>
+      Tag Item <br>
+      Tag Item <br>
+      Tag Item <br>
+    </div>
+  </div>
+  <div ng-if="vm.selectedAction === 'nodeActionEdit'" class="nodetoolbar-dialog nodetoolbar-edit">
+    <div class="arrow_box" ng-style="{left: getLeft(), top: getTop()}">
+      Edit Properties
+    </div>
+  </div>
 </div>
