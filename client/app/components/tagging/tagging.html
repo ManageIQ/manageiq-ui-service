@@ -1,5 +1,5 @@
 <select class="tag-category-select"
-        ng-options="item as item.description for item in vm.tags.categories"
+        ng-options="category as category.description for category in vm.tags.categories"
         ng-model="vm.tags.selectedCategory">
 </select>
 <select class="tag-value-select"
