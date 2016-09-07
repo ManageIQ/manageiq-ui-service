@@ -1,7 +1,7 @@
 angular.module('app.states')
     .controller('blueprintEditorCtrl', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState',
                 'BlueprintDetailsModal', 'SaveBlueprintModal', '$rootScope', '$state', 'CollectionsApi', 'Notifications', 'sprintf',
-    function($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope,
+    function($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope, // jshint ignore:line
              $state, CollectionsApi, Notifications, sprintf) {
       $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         if (toState.name === 'login') {

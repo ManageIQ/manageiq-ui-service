@@ -22,6 +22,7 @@
           action: resolveAction,
           blueprint: resolveBlueprint,
           allTags: resolveTags,
+          tagCategories: resolveTagCategories,
           serviceCatalogs: resolveServiceCatalogs,
           serviceDialogs: resolveServiceDialogs,
           tenants: resolveTenants
@@ -37,13 +38,21 @@
       }
 
       function resolveTags(CollectionsApi) {
-        var attributes = ['categorization'];
+        var attributes = ['categorization', 'category.id', 'category.single_value'];
         var options = {
           expand: 'resources',
           attributes: attributes
         };
 
         return CollectionsApi.query('tags', options);
+      }
+
+      function resolveTagCategories(CollectionsApi) {
+        var options = {
+          expand: 'resources'
+        };
+
+        return CollectionsApi.query('categories', options);
       }
 
       function resolveAction() {
@@ -85,7 +94,7 @@
   /** @ngInject */
   function BlueprintDetailsModalController(action, blueprint, BlueprintsState, BlueprintOrderListService, serviceCatalogs,  // jshint ignore:line
                                            serviceDialogs, tenants, $state, BrowseEntryPointModal, CreateCatalogModal, $modalInstance,
-                                           allTags, Notifications, sprintf, $filter, $scope) {
+                                           allTags, tagCategories, Notifications, sprintf, $scope) {
     var vm = this;
     vm.blueprint = blueprint;
 
@@ -115,7 +124,7 @@
 
     vm.tags = {all: allTags.resources};
     vm.tags.of_item = vm.blueprint.tags;
-    vm.tags.categories = getTagCategories();
+    vm.tags.categories = tagCategories.resources;
     vm.tags.selectedCategory = vm.tags.categories[0];
 
     vm.visibilityOptions = [{
@@ -198,27 +207,6 @@
           }
         }
       }
-    }
-
-    function getTagCategories() {
-      var lookup = {};
-      var items = vm.tags.all;
-      var result = [];
-
-      for (var i = 0; i < items.length; i++) {
-        var item = items[i];
-        if (!(item.categorization && item.categorization.category)) {
-          continue;
-        }
-        var category = item.categorization.category;
-
-        if (!(category.name in lookup)) {
-          lookup[category.name] = 1;
-          result.push(category);
-        }
-      }
-
-      return result;
     }
 
     function isCatalogUnassigned() {

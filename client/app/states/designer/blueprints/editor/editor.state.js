@@ -36,7 +36,7 @@
 
   function resolveBlueprintTags($stateParams, CollectionsApi) {
     if ($stateParams.blueprintId) {
-      var attributes = ['categorization'];
+      var attributes = ['categorization', 'category.id', 'category.single_value'];
       var options = {
         expand: 'resources',
         attributes: attributes
