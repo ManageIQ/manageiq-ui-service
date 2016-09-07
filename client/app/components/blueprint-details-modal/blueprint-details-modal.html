@@ -28,25 +28,9 @@
                             ng-model="vm.modalData.resource.visibility" required>
                     </select>
                 </div>
-                <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6"
+                <div pf-form-group pf-label-class="col-sm-4 no-top" pf-input-class="col-sm-6"
                      pf-label="{{'Tags'|translate}}">
-                     <select class="tag-category-select"
-                             ng-options="item as item.description for item in vm.tags.categories"
-                             ng-model="vm.tags.selectedCategory">
-                     </select>
-                     <select class="tag-value-select"
-                             ng-options="item as item.categorization.description for item in vm.tags.filtered"
-                             ng-model="vm.tags.selectedTag">
-                     </select>
-                    <a ng-click="vm.addTag()"><span class="fa fa-plus tag-add"></span></a>
-                    <ul class="tag-list list-inline">
-                        <li ng-repeat="tag in vm.tags.blueprint">
-                            <span class="label label-info">
-                                {{tag.categorization.display_name}}
-                                <a><span class="pficon pficon-close" ng-click="vm.removeTag(tag)"></span></a>
-                            </span>
-                        </li>
-                    </ul>
+                       <tagging-widget tags="vm.tags"/>
                 </div>
             </form>
         </tab>
