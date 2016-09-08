@@ -1,25 +1,24 @@
 .blueprints-list
-  .fa, img
-    padding-right: 15px
-    font-size: 18px
-    vertical-align: middle
 
-  .list-view-pf .list-group-item
-    padding-bottom: 0
-    padding-top: 0
-    padding-left: 15px
-    line-height: 1.66666667
+  .list-view-pf
+    padding-bottom: 68px // Adding so dropdown menus on the last row don't get cut off
 
-  .dropdown-kebab-pf .dropdown-menu.dropdown-menu-right
-    padding-right: 0px
+    .list-group-item
+      padding-bottom: 0
+      padding-top: 0
+      line-height: 1.66666667
 
-  .dropdown-kebab-pf .dropdown-menu
-    margin-top: 4px
+  .dropdown-kebab-pf
+    .fa, img
+      padding-left: 5px
+      padding-right: 10px
+      font-size: 18px
+      vertical-align: middle
 
-  .dropdown-kebab-pf .dropdown-menu.dropdown-menu-right
-    left: auto
-    right: 1px
+    .dropdown-menu
+      margin-top: 4px
+      height: auto !important
+      overflow: visible !important
 
-.data-list-pf .list-menu
-  top: 9px
-
+      &.dropdown-menu-right
+        right: -5px
