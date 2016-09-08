@@ -1,5 +1,4 @@
-<span ng-controller="blueprintEditorCtrl">
-
+<span ng-controller="blueprintEditorCtrl" ng-class="{'wait-cursor': loading}">
   <span class="blueprint-designer-header">
     <ol class="breadcrumb">
         <li>
@@ -35,7 +34,7 @@
           </button>
           <span class="more-actions">
               <button id="blueprintDetails" class="btn" type="button" ng-click="editDetails()" data-toggle="tooltip"
-                      ng-class="{'disabled': inConnectingMode}"
+                      ng-class="{'disabled': inConnectingMode, 'wait-cursor': loading}"
                       data-placement="bottom" title="{{'Edit Blueprint Details' | translate}}" translate>Blueprint Details
               </button>
               <span class="showHideConnectors">
