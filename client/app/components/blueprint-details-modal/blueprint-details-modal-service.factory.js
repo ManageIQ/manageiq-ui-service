@@ -72,7 +72,7 @@
   }
 
   /** @ngInject */
-  function BlueprintDetailsModalController(action, blueprint, BlueprintsState, MarketplaceState, serviceCatalogs, serviceDialogs, tenants,     // jshint ignore:line
+  function BlueprintDetailsModalController(action, blueprint, BlueprintsState, BlueprintOrderListService, serviceCatalogs, serviceDialogs, tenants,     // jshint ignore:line
                                            $state, BrowseEntryPointModal, CreateCatalogModal, $modalInstance, CollectionsApi, Notifications,
                                            sprintf, $filter, $scope) {
     var vm = this;
@@ -89,7 +89,6 @@
       vm.modalBtnPrimaryLabel  = __('Save');
     }
 
-    // vm.serviceCatalogs = serviceCatalogs.resources.concat(BlueprintsState.getNewCatalogs());
     vm.serviceCatalogs = serviceCatalogs.resources;
 
     vm.serviceDialogs = serviceDialogs.resources;
@@ -102,6 +101,10 @@
       name: 'Public'
     }];
     vm.visibilityOptions = vm.visibilityOptions.concat(tenants.resources);
+
+    vm.provOrderChanged = false;
+    vm.actionOrderChanged = false;
+    vm.actionOrderEqualsProvOrder = true;
 
     vm.saveBlueprintDetails = saveBlueprintDetails;
     vm.cancelBlueprintDetails = cancelBlueprintDetails;
@@ -129,10 +132,7 @@
 
     setModalDataEntrypoints();
 
-    vm.provOrderChanged = false;
-    vm.actionOrderChanged = false;
-    vm.actionOrderEqualsProvOrder = true;
-    setOrderLists(vm.blueprint.ui_properties.chartDataModel.nodes);
+    BlueprintOrderListService.setOrderLists(vm);
 
     if (!vm.modalData.resource.visibility) {
       vm.modalData.resource.visibility = vm.visibilityOptions[0];
@@ -149,8 +149,6 @@
     if (vm.modalData.resource.dialog_id) {
       vm.modalData.resource.dialog = vm.serviceDialogs[ findWithAttr(vm.serviceDialogs, 'id', vm.modalData.resource.dialog_id) ];
     }
-
-    activate();
 
     function setModalDataEntrypoints() {
       vm.modalData.resource.provEP = {action: "Provision", value: ""};
@@ -174,17 +172,6 @@
               vm.modalData.resource.retireEP = newAepObj;
               break;
           }
-        }
-      }
-    }
-
-    function activate() {
-    }
-
-    function findWithAttr(array, attr, value) {
-      for (var i = 0; i < array.length; i += 1) {
-        if (array[i][attr] === value) {
-          return i;
         }
       }
     }
@@ -247,92 +234,10 @@
       return vm.blueprint.ui_properties.chartDataModel.nodes.length <= 1;
     }
 
-    function cancelBlueprintDetails() {
-      $modalInstance.close();
-    }
-
-    /*
-     * This method converts the service items on a blueprint's canvas into a structure
-     * required for the DND Provision and Action Order Lists.
-     */
-    function setOrderLists(blueprintServiceItems) {     // jshint ignore:line
-      var items = angular.copy(blueprintServiceItems);
-      var lists = [];
-      var item;
-      var order;
-      var i;
-      var l;
-
-      // lists[0] = prov. order list, lists[1] = action order list
-      lists[0] = {"containers": []};
-      lists[1] = {"containers": []};
-
-      // Mark all blueprint service items as type = 'item'
-      // Put into appropriate list order 'containers'
-      for (i = 0; i < items.length; i++) {
-        item = items[i];
-        item.type = "item";
-        if (!item.provision_order) {
-          item.provision_order = 0;
-        }
-        // Add item to provOrderList and actionOrderList
-        for (l = 0; l < 2; l++) {
-          if (l === 0) {
-            item.parentListName = "provOrder";    // parentListName denotes which list an item was dragged from
-            order = item.provision_order;
-          } else if (item.action_order !== undefined) {
-            item = angular.copy(items[i]);
-            item.parentListName = "actionOrder";
-            order = item.action_order;
-          } else {
-            // no action order defined, only build provOrder list
-            continue;
-          }
-          // if container already exists, push in new item
-          if (lists[l].containers[order]) {
-            lists[l].containers[order].columns[0].push(item);
-          } else {
-            // create new container
-            lists[l].containers[order] =
-            {
-              "type": "container",
-              "columns": [
-                [item],
-                []
-              ]
-            };
-          }
-        }
-      }
-
-      // Set dndModels
-      vm.dndModels = {'provOrder': {}, 'actionOrder': {}};
-
-      // lists[0] = prov. order list
-      vm.dndModels.provOrder = {
-        selected: null,
-        list: lists[0].containers
-      };
-
-      // lists[1] = action order list
-      if (lists[1].containers.length) {  // does actionOrder list have any rows?
-        // action order has unique order and is editable
-        vm.actionOrderEqualsProvOrder = false;
-        vm.dndModels.actionOrder = {
-          selected: null,
-          list: lists[1].containers
-        };
-      } else {
-        // action order == prov. order
-        vm.actionOrderEqualsProvOrder = true;
-        initActionOrderFromProvOrderList();
-      }
-    }
-
     function toggleActionEqualsProvOrder() {
       vm.actionOrderChanged = true;
       // Make actionOrder list a new list, set parentListName to 'actionOrder'
-      initActionOrderFromProvOrderList();
+      BlueprintOrderListService.initActionOrderFromProvOrderList(vm);
     }
 
     $scope.$on('dnd-item-moved', function(evt, args) {
@@ -347,30 +252,12 @@
       }
 
       if (origItem.parentListName === "provOrder" && vm.actionOrderEqualsProvOrder) {
-        initActionOrderFromProvOrderList();
+        BlueprintOrderListService.initActionOrderFromProvOrderList(vm);
       }
     }
 
-    function initActionOrderFromProvOrderList() {
-      // Make actionOrder list a new list, set parentListName to 'actionOrder'
-      var actionOrderList = angular.copy(vm.dndModels.provOrder.list);
-      for (var l = 0; l < actionOrderList.length; l++) {
-        for (var cols = 0; cols < actionOrderList[l].columns.length; cols++) {  // will be 2 columns
-          for (var col = 0; col < actionOrderList[l].columns[cols].length; col++) {  // Number of items in a column
-            var item = actionOrderList[l].columns[cols][col];
-            item.parentListName = "actionOrder";
-            item.disabled = vm.actionOrderEqualsProvOrder;
-          }
-        }
-      }
-
-      var lastrow = actionOrderList[ actionOrderList.length - 1 ];
-      if (lastrow && vm.actionOrderEqualsProvOrder && lastrow.columns[0].length === 0 && lastrow.columns[1].length === 0) {
-        // remove last empty row
-        actionOrderList.splice(actionOrderList.length - 1, 1);
-      }
-
-      vm.dndModels.actionOrder.list = actionOrderList;
+    function cancelBlueprintDetails() {
+      $modalInstance.close();
     }
 
     function saveBlueprintDetails() {   // jshint ignore:line
@@ -405,11 +292,11 @@
       setBlueprintEntryPtsFromModalData();
 
       if (vm.provOrderChanged) {
-        saveOrder("provisionOrder");
+        BlueprintOrderListService.saveOrder("provisionOrder", vm);
       }
 
       if (vm.actionOrderChanged) {
-        saveOrder("actionOrder");
+        BlueprintOrderListService.saveOrder("actionOrder", vm);
       }
 
       if (action === 'publish') {
@@ -427,6 +314,32 @@
       */
 
       saveSuccess();
+
+      function saveSuccess() {
+        if (action === 'create') {
+          // This is not actually used anymore, flow has changed
+          // keeping it in case flow changes back again.
+          Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
+          $modalInstance.close();
+          BlueprintsState.saveBlueprint(vm.blueprint);
+          $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
+        } else if (action === 'edit') {
+          $modalInstance.close({editedblueprint: vm.blueprint});
+          // Notifications.success(sprintf(__('%s details were updated.'), vm.blueprint.name));
+        } else if (action === 'publish') {
+          $modalInstance.close();
+          Notifications.success(sprintf(__('%s was published.'), vm.blueprint.name));
+          $state.go($state.current, {}, {reload: true});
+        }
+      }
+
+      function saveFailure() {
+        if (action === 'publish') {
+          Notifications.error(__('The Publish Blueprint feature is not yet implemented.'));
+        } else {
+          Notifications.error(__("There was an error saving this Blueprint's Details."));
+        }
+      }
 
       function setBlueprintEntryPtsFromModalData() {
         processEntryPoint(vm.modalData.resource.provEP);
@@ -466,71 +379,12 @@
           }
         }
       }
+    }  // end of saveBlueprintDetails
 
-      function saveOrder(orderType) {
-        var list;
-
-        if (orderType === 'provisionOrder') {
-          list = vm.dndModels.provOrder.list;
-        } else if (orderType === 'actionOrder') {
-          list = vm.dndModels.actionOrder.list;
-        }
-
-        for (var i = 0; i < list.length; i++) {
-          var container = list[i];
-          if (container.type === 'container') {
-            var items = container.columns[0].concat(container.columns[1]);
-            for (var j = 0; j < items.length; j++) {
-              var item = items[j];
-              updateOrder(orderType, item, container.id - 1);
-            }
-          }
-        }
-      }
-
-      function updateOrder(orderType, item, orderNum) {
-        for (var i = 0; i < vm.blueprint.ui_properties.chartDataModel.nodes.length; i++) {
-          var node = vm.blueprint.ui_properties.chartDataModel.nodes[i];
-          if (node.id === item.id && node.name === item.name) {
-            if (orderType === 'provisionOrder') {
-              node.provision_order = orderNum;
-            } else if (orderType === 'actionOrder') {
-              if (vm.actionOrderEqualsProvOrder) {
-                // remove action_order, defer to provision_order
-                delete node.action_order;
-              } else {
-                node.action_order = orderNum;
-              }
-            }
-
-            return;
-          }
-        }
-      }
-
-      function saveSuccess() {
-        if (action === 'create') {
-          // This is not actually used anymore, flow has changed
-          // keeping it in case flow changes back again.
-          Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
-          $modalInstance.close();
-          BlueprintsState.saveBlueprint(vm.blueprint);
-          $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
-        } else if (action === 'edit') {
-          $modalInstance.close({editedblueprint: vm.blueprint});
-          // Notifications.success(sprintf(__('%s details were updated.'), vm.blueprint.name));
-        } else if (action === 'publish') {
-          $modalInstance.close();
-          Notifications.success(sprintf(__('%s was published.'), vm.blueprint.name));
-          $state.go($state.current, {}, {reload: true});
-        }
-      }
-
-      function saveFailure() {
-        if (action === 'publish') {
-          Notifications.error(__('The Publish Blueprint feature is not yet implemented.'));
-        } else {
-          Notifications.error(__("There was an error saving this Blueprint's Details."));
+    function findWithAttr(array, attr, value) {
+      for (var i = 0; i < array.length; i += 1) {
+        if (array[i][attr] === value) {
+          return i;
         }
       }
     }
