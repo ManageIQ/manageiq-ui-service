@@ -20,8 +20,78 @@
     return directive;
 
     /** @ngInject */
-    function TaggingController($scope, $filter) {
+    function TaggingController($scope, $filter, $q, CollectionsApi) {
       var vm = this;
+
+      loadAllTagInfo();
+
+      function loadAllTagInfo() {
+        var deferred = $q.defer();
+
+        loadAllTags().then(function() {
+          console.log("Loaded All Tags");
+          loadAllCategories().then(function() {
+            console.log("Loaded Categories");
+            deferred.resolve();
+          }, loadAllTagsfailure);
+        }, loadAllCategoriesfailure);
+
+        function loadAllTagsfailure() {
+          deferred.reject();
+        }
+        function loadAllCategoriesfailure() {
+          deferred.reject();
+        }
+
+        return deferred.promise;
+      }
+
+      function loadAllTags() {
+        var deferred = $q.defer();
+
+        var attributes = ['categorization', 'category.id', 'category.single_value'];
+        var options = {
+          expand: 'resources',
+          attributes: attributes
+        };
+
+        CollectionsApi.query('tags', options).then(loadSuccess, loadFailure);
+
+        function loadSuccess(response) {
+          vm.tags.all = response.resources;
+          deferred.resolve();
+        }
+
+        function loadFailure() {
+          console.log('There was an error loading all tags.');
+          deferred.reject();
+        }
+
+        return deferred.promise;
+      }
+
+      function loadAllCategories() {
+        var deferred = $q.defer();
+
+        var options = {
+          expand: 'resources'
+        };
+
+        CollectionsApi.query('categories', options).then(loadSuccess, loadFailure);
+
+        function loadSuccess(response) {
+          vm.tags.categories = response.resources;
+          vm.tags.selectedCategory = vm.tags.categories[0];
+          deferred.resolve();
+        }
+
+        function loadFailure() {
+          console.log('There was an error loading categories.');
+          deferred.reject();
+        }
+
+        return deferred.promise;
+      }
 
       $scope.$watch('vm.tags.selectedCategory', function(value) {
         vm.tags.filtered = $filter('filter')(vm.tags.all, matchCategory);

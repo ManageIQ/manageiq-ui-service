@@ -21,8 +21,6 @@
         resolve: {
           action: resolveAction,
           blueprint: resolveBlueprint,
-          allTags: resolveTags,
-          tagCategories: resolveTagCategories,
           serviceCatalogs: resolveServiceCatalogs,
           serviceDialogs: resolveServiceDialogs,
           tenants: resolveTenants
@@ -35,24 +33,6 @@
 
       function resolveBlueprint() {
         return blueprint;
-      }
-
-      function resolveTags(CollectionsApi) {
-        var attributes = ['categorization', 'category.id', 'category.single_value'];
-        var options = {
-          expand: 'resources',
-          attributes: attributes
-        };
-
-        return CollectionsApi.query('tags', options);
-      }
-
-      function resolveTagCategories(CollectionsApi) {
-        var options = {
-          expand: 'resources'
-        };
-
-        return CollectionsApi.query('categories', options);
       }
 
       function resolveAction() {
@@ -94,7 +74,7 @@
   /** @ngInject */
   function BlueprintDetailsModalController(action, blueprint, BlueprintsState, BlueprintOrderListService, serviceCatalogs,  // jshint ignore:line
                                            serviceDialogs, tenants, $state, BrowseEntryPointModal, CreateCatalogModal, $modalInstance,
-                                           allTags, tagCategories, Notifications, sprintf, $scope) {
+                                           Notifications, sprintf, $scope) {
     var vm = this;
     vm.blueprint = blueprint;
 
@@ -122,10 +102,7 @@
 
     vm.serviceDialogs = serviceDialogs.resources;
 
-    vm.tags = {all: allTags.resources};
-    vm.tags.of_item = vm.blueprint.tags;
-    vm.tags.categories = tagCategories.resources;
-    vm.tags.selectedCategory = vm.tags.categories[0];
+    vm.tags = {"of_item": vm.blueprint.tags};
 
     vm.visibilityOptions = [{
       id: 800,
