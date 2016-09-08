@@ -1,27 +1,19 @@
 <tabset>
   <tab heading="{{'My Requests' | translate}}">
-    <div class="row">
-      <div class="col-md-12 ">
-        <div pf-toolbar id="requestToolbar" config="vm.toolbarConfig"></div>
-      </div>
-    </div>
+    <div pf-toolbar id="requestToolbar" config="vm.toolbarConfig"></div>
 
     <pf-notification-list></pf-notification-list>
 
-    <div class="col-md-12 list-view-container -in-a-tab">
+    <div class="list-view-container -in-a-tab">
       <request-list items="vm.requestsList" config="vm.listConfig"></request-list>
     </div>
   </tab>
   <tab heading="{{'My Orders' | translate}}">
-    <div class="row">
-      <div class="col-md-12 ">
-        <div pf-toolbar config="vm.orderToolbarConfig"></div>
-      </div>
-    </div>
+    <div pf-toolbar config="vm.orderToolbarConfig"></div>
 
     <pf-notification-list></pf-notification-list>
 
-    <div class="col-md-12 list-view-container -in-a-tab -without-toolbar">
+    <div class="list-view-container -in-a-tab -without-toolbar">
       <div pf-list-view id="orderList" config="vm.orderListConfig" items="vm.ordersList">
         <div class="row">
           <div class="col-lg-5 col-md-5 col-sm-8 col-xs-8">
