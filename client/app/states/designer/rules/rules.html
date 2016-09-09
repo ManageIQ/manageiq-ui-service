@@ -1,13 +1,76 @@
 <ui-view>
-  <div class="blank-slate-pf">
-    <div class="blank-slate-pf-icon">
-      <span class="pficon pficon pficon-warning-triangle-o"></span>
+  <span>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="designer"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Designer'|translate}}</a>
+      </li>
+      <li class="active"><strong>{{'Rules' | translate}}</strong>
+      </li>
+    </ol>
+
+    <pf-notification-list></pf-notification-list>
+  </span>
+  <div pf-toolbar class="designer-rules-toolbar" id="designerRulesToolbar" config="vm.toolbarConfig">
+    <actions>
+      <button class="btn btn-primary" type="button" ng-click="vm.addRule()" title="{{'Create a new rule' | translate}}">
+        <span class="fa fa-plus"></span>
+        {{'Create' | translate}}
+      </button>
+    </actions>
+  </div>
+  <div class="list-view-container">
+    <div pf-list-view id="designerRulesList" class="designer-rules-list" config="vm.listConfig" items="vm.designerRules"
+         action-buttons="vm.actionButtons"
+         enable-button-for-item-fn="vm.enableButtonForItemFn"
+         menu-actions="vm.menuActions"
+         update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1 col-sm-12">
+            <span>{{item.priority}}</span>
+          </div>
+          <div class="col-md-5 col-sm-12">
+            <span class="rule-item-heading">
+              {{'IF' | translate}}
+            </span>
+            <span class="rule-item-field">
+              {{item.field ? item.field : "Select a field"  | translate}}
+            </span>
+            <span class="rule-item-field rule-item-operation">
+              {{item.operation}}
+            </span>
+            <span class="rule-item-field">
+              {{item.value ? item.value : "Select a value" | translate}}
+            </span>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <span class="rule-item-heading">
+              {{'USE' | translate}}
+            </span>
+            <span class="rule-item-field">
+              {{item.profile ? item.profile.name : "Select a profile"  | translate}}
+            </span>
+          </div>
+          <div class="col-md-2 col-sm-12">
+            <div class="pull-right">
+              <a class="btn btn-link" type=button" ng-click="vm.editRule(item)">
+                <span class="pficon pficon-edit"></span>
+              </a>
+              <button class="btn btn-link" type=button"
+                      confirmation
+                      confirmation-if="true"
+                      confirmation-title="{{'Remove Rule'|translate}}"
+                      confirmation-message="{{'Confirm, would you like to remove this rule?'|translate}}"
+                      confirmation-ok-text="{{'Yes, Remove Rule'|translate}}"
+                      confirmation-on-ok="item.removeRule()"
+                      confirmation-ok-style="primary"
+                      confirmation-show-cancel="true" translate>
+                <span class="pficon pficon-delete"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <h1>
-      Designer Arbitration Rules
-    </h1>
-    <p>
-      Designer arbitration rules are not yet implemented. Work is in progress so please check back soon.
-    </p>
   </div>
 </ui-view>

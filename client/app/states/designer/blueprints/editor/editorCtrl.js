@@ -1,8 +1,8 @@
 angular.module('app.states')
-    .controller('blueprintEditorCtrl', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState', 'BlueprintDetailsModal', 'SaveBlueprintModal',
-                '$rootScope', '$state', 'CollectionsApi', 'Notifications',
-    function($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope, $state, CollectionsApi, // jshint ignore:line
-             Notifications) {
+    .controller('blueprintEditorCtrl', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState',
+                'BlueprintDetailsModal', 'SaveBlueprintModal', '$rootScope', '$state', 'CollectionsApi', 'Notifications',
+    function($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope,
+             $state, CollectionsApi, Notifications) {
       $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         if (toState.name === 'login') {
           return;
