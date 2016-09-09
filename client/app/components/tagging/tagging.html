@@ -7,6 +7,9 @@
         ng-model="vm.tags.selectedTag">
 </select>
 <a ng-click="addTag()"><span class="fa fa-plus tag-add"></span></a>
+
+<div ng-if="!vm.tags.of_item.length" class="no-tag-header" translate>There are no tags for this item.</div>
+
 <ul class="tag-list list-inline">
     <li ng-repeat="tag in vm.tags.of_item">
         <span class="label label-info">
@@ -15,3 +18,4 @@
         </span>
     </li>
 </ul>
+

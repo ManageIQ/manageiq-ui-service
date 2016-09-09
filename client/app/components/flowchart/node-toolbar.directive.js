@@ -25,16 +25,27 @@
       var vm = this;
       vm.selectedAction = "none";
 
-      $scope.getLeft = function() {
-        return vm.node.x() + "px";
-      };
-      $scope.getTop = function() {
-        return vm.node.y() + "px";
-      };
+      if (vm.node.tags()) {
+        vm.tags = {'of_item': vm.node.tags()};
+      }
+
+      // listen for tags changing
+      $scope.$on('tagsOfItemChanged', function() {
+        if (!vm.node.origTags()) {
+          vm.node.setOrigTags(vm.tags.orig_of_item);
+        }
+        vm.node.setTags(vm.tags.of_item);
+      });
 
       $scope.actionIconClicked = function(action) {
         vm.selectedAction = action;
         $scope.$emit('nodeActionClicked', {'action': action, 'node': vm.node});
+      };
+
+      $scope.close = function() {
+        vm.selectedAction = 'none';
+        vm.node.toolbarDlgOpen = false;
+        $scope.$emit('nodeActionClosed');
       };
     }
   }

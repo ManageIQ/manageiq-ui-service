@@ -23,7 +23,7 @@
   border-right: solid 1px #b1b1b1
   border-bottom: solid 1px #b1b1b1
   border-radius: 5px
-  background-color: #fff5c3
+  background-color: #F7F1D7
   height: 28px
   padding-left: 8px
 
@@ -34,11 +34,8 @@
   font-size: 16px
   cursor: pointer
 
-  &:hover
-    color: #00384d
-
 .svg-triangle polyline
-  fill: #fff5c3
+  fill: #F7F1D7
   stroke: #b1b1b1
   stroke-width: 2
 
@@ -152,17 +149,33 @@
   stroke-width: 2
   fill: transparent
 
+.node-dialog-close
+  font-size: 12px
+  padding-top: 7px
+
 .nodetoolbar-dialog
+  position: fixed
+  top: 19px
+  left: -19px
   width: 300px
-  background-color: white
-  border: solid 1px #d1d1d1
   margin-top: 4px
+  padding: 8px
 
-.nodetoolbar-tag
-  margin-left: 48px
+  .tag-list .label a
+    color: #fff
+    cursor: pointer
 
-.nodetoolbar-edit
-  margin-left: 15px
+.tag-dialog
+  left: 30px
+  width: 353px
+
+.node-tag-title
+  font-weight: 600
+  padding-top: 12px
+  padding-bottom: 12px
+
+.edit-dialog
+  left: 5px
 
 .arrow_box
   position: relative
@@ -187,10 +200,10 @@
   border-color: rgba(255, 255, 255, 0)
   border-bottom-color: #ffffff
   border-width: 8px
-  margin-left: -136px
+  margin-left: -41%
 
 .arrow_box:before
   border-color: rgba(81, 77, 82, 0)
   border-bottom-color: #514d52
   border-width: 10px
-  margin-left: -138px
+  margin-left: -41.5%

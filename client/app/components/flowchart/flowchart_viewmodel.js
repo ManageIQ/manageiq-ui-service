@@ -331,6 +331,25 @@ var flowchart = {
         this._removeConnector(connectorDataModel, this.data.outputConnectors, this.outputConnectors);
       }
     };
+
+    //
+    // Node Tagging
+    //
+    this.setTags = function(tags) {
+      this.data.tags = tags;
+    };
+
+    this.tags = function(tags) {
+      return this.data.tags;
+    };
+
+    this.setOrigTags = function(tags) {
+      this.data.origTags = tags;
+    };
+
+    this.origTags = function(tags) {
+      return this.data.origTags;
+    };
   };
 
   //
@@ -780,6 +799,8 @@ var flowchart = {
       for (var i = 0; i < nodes.length; ++i) {
         var node = nodes[i];
         node.deselect();
+        // close any/all open toolbar dialogs
+        node.toolbarDlgOpen = false;
       }
 
       var connections = this.connections;

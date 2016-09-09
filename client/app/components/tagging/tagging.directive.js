@@ -9,7 +9,9 @@
     var directive = {
       restrict: 'E',
       scope: {
-        tags: '='
+        tags: '=',
+        objectType: '@?',
+        objectId: '=?'
       },
       controller: TaggingController,
       templateUrl: 'app/components/tagging/tagging.html',
@@ -23,15 +25,23 @@
     function TaggingController($scope, $filter, $q, CollectionsApi) {
       var vm = this;
 
-      loadAllTagInfo();
+      if (!vm.tags) {
+        vm.tags = {};
+      }
+
+      if (!vm.tags.of_item && vm.objectType && vm.objectId) {
+        loadTagsOfItem().then(function() {
+          loadAllTagInfo();
+        });
+      } else {
+        loadAllTagInfo();
+      }
 
       function loadAllTagInfo() {
         var deferred = $q.defer();
 
         loadAllTags().then(function() {
-          console.log("Loaded All Tags");
           loadAllCategories().then(function() {
-            console.log("Loaded Categories");
             deferred.resolve();
           }, loadAllTagsfailure);
         }, loadAllCategoriesfailure);
@@ -93,6 +103,39 @@
         return deferred.promise;
       }
 
+      function loadTagsOfItem() {
+        var deferred = $q.defer();
+
+        var attributes = ['categorization', 'category.id', 'category.single_value'];
+        var options = {
+          expand: 'resources',
+          attributes: attributes
+        };
+
+        var collection = vm.objectType + "\/" + vm.objectId + "\/" + 'tags';
+
+        CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
+
+        function loadSuccess(response) {
+          vm.tags.of_item = response.resources;
+          deferred.resolve();
+        }
+
+        function loadFailure() {
+          console.log('There was an error loading ' + vm.objectType + ', id = ' + vm.objectId);
+          deferred.reject();
+        }
+
+        return deferred.promise;
+      }
+
+      vm.tagsOfItemChanged = false;
+      $scope.$on('$destroy', function() {
+        if (vm.tagsOfItemChanged) {
+          $scope.$emit('tagsOfItemChanged');
+        }
+      });
+
       $scope.$watch('vm.tags.selectedCategory', function(value) {
         vm.tags.filtered = $filter('filter')(vm.tags.all, matchCategory);
         if (vm.tags.filtered) {
@@ -124,6 +167,7 @@
         }
         // Add Selected Tag
         if (vm.tags.of_item.indexOf(vm.tags.selectedTag) === -1) {
+          saveOriginalTags();
           vm.tags.of_item.push(vm.tags.selectedTag);
         }
       };
@@ -131,9 +175,17 @@
       $scope.removeTag = function(tag) {
         var inBlueprintIndex = vm.tags.of_item.indexOf(tag);
         if (inBlueprintIndex !== -1) {
+          saveOriginalTags();
           vm.tags.of_item.splice(inBlueprintIndex, 1);
         }
       };
+
+      function saveOriginalTags() {
+        if (!vm.tags.orig_of_item) {
+          vm.tagsOfItemChanged = true;
+          vm.tags.orig_of_item = angular.copy(vm.tags.of_item);
+        }
+      }
     }
   }
 })();

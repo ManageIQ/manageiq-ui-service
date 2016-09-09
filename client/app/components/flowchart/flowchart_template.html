@@ -80,13 +80,14 @@
     </g>
 
     <!-- Bottom Node Toolbar -->
-    <g id="nodeToolBar" ng-if="node == mouseOverNode && !inConnectingMode">
+    <g id="nodeToolBar" ng-if="(node == mouseOverNode || node.toolbarDlgOpen) && !inConnectingMode">
       <g class="svg-triangle" >
         <polyline points="4,152 14,140 24,152"/>
       </g>
       <foreignobject ng-attr-x="{{node.x}}"
                      ng-attr-y="{{node.height()+1}}"
-                     ng-attr-width="{{node.width()}}">
+                     ng-attr-width="{{node.width()}}"
+                     ng-mousedown="$event.stopPropagation()">
         <body>
           <node-toolbar node="node" node-actions="chart.nodeActions"/>
         </body>
