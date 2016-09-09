@@ -5,13 +5,58 @@
       .factory('RulesState', RulesStateFactory);
 
   /** @ngInject */
-  function RulesStateFactory(CollectionsApi, Notifications, $state, sprintf, $q) {
+  function RulesStateFactory(CollectionsApi, Notifications, $state, sprintf, $q, $timeout) {
     var ruleState = {};
 
     ruleState.editRule = null;
 
     ruleState.handleEdit = function(ruleObj) {
       ruleState.editRule = ruleObj;
+    };
+
+    ruleState.getRules = function() {
+      var options = {
+        expand: 'resources'
+      };
+
+      return CollectionsApi.query('arbitration_rules', options);
+    };
+
+    ruleState.getProfiles = function() {
+      var options = {
+        expand: 'resources'
+      };
+
+      return CollectionsApi.query('arbitration_profiles', options);
+    };
+
+    ruleState.getRuleFields = function() {
+      var options = {
+        expand: 'resources'
+      };
+
+      // TODO: Get liest of fields from an API call
+      return $timeout(function() {
+        return {resources: [
+          "name",
+          "description",
+          "ems_id",
+          "flavor_id",
+          "cloud_network_id",
+          "cloud_subnet_id",
+          "security_group_id",
+          "authentication_id",
+          "availability_zone_id"
+        ]};
+      });
+    };
+
+    ruleState.getProfiles = function() {
+      var options = {
+        expand: 'resources'
+      };
+
+      return CollectionsApi.query('arbitration_profiles', options);
     };
 
     ruleState.addRule = function(ruleObj) {

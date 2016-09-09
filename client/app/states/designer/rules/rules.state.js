@@ -20,7 +20,7 @@
         title: N_('Rules'),
         resolve: {
           designerRules: resolveRules,
-          fields: resolveFields,
+          fields: resolveRuleFields,
           profiles: resolveProfiles
         }
       }
@@ -28,46 +28,21 @@
   }
 
   /** @ngInject */
-  function resolveRules(CollectionsApi) {
-    var options = {
-      expand: 'resources'
-    };
-
-    return CollectionsApi.query('arbitration_rules', options);
+  function resolveRules(RulesState) {
+    return RulesState.getRules();
   }
 
   /** @ngInject */
-  function resolveFields(CollectionsApi, $timeout) {
-    var options = {
-      expand: 'resources'
-    };
-
-    // TODO: Get liest of fields from an API call
-    return $timeout(function() {
-      return {resources: [
-        "name",
-        "description",
-        "ems_id",
-        "flavor_id",
-        "cloud_network_id",
-        "cloud_subnet_id",
-        "security_group_id",
-        "authentication_id",
-        "availability_zone_id"
-      ]};
-    });
+  function resolveRuleFields(RulesState) {
+    return RulesState.getRuleFields();
   }
 
-  function resolveProfiles(CollectionsApi) {
-    var options = {
-      expand: 'resources'
-    };
-
-    return CollectionsApi.query('arbitration_profiles', options);
+  function resolveProfiles(RulesState) {
+    return RulesState.getProfiles();
   }
 
   /** @ngInject */
-  function RulesController(designerRules, fields, profiles, RulesState, CollectionsApi, $state, Notifications, $scope, $rootScope, Language) {
+  function RulesController(designerRules, fields, profiles, RulesState, $scope) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -142,10 +117,7 @@
     };
 
     var refreshRules = function() {
-      var options = {
-        expand: 'resources'
-      };
-      CollectionsApi.query('arbitration_rules', options).then(loadSuccess, loadFailure);
+      RulesState.getRules().then(loadSuccess, loadFailure);
     };
 
     vm.title = __('Rules');
