@@ -148,8 +148,7 @@
         expression: {
           EQUAL: {
           }
-        },
-        arbitration_profile_id: undefined
+        }
       };
 
       return ruleObj;

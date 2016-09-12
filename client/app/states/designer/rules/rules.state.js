@@ -142,10 +142,14 @@
     });
 
     vm.addRule = function() {
-      var newRule = RulesState.getNewRuleObj();
-
-      // By default put new rules at the end of the prioritized list
-      newRule.priority = vm.designerRules.length + 1;
+      var newRule = {
+        priority: vm.designerRules.length + 1, // By default put new rules at the end of the prioritized list
+        operation: 'inject',
+        expression: {
+          EQUAL: {
+          }
+        }
+      };
 
       RulesState.addRule(newRule).then(addSuccess, addFailure);
 
