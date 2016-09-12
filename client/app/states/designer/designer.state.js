@@ -11,11 +11,10 @@
 
   function getStates() {
     return {
-      'blueprints': {
+      'designer': {
         parent: 'application',
-        url: '/blueprints',
-        redirectTo: 'blueprints.list',
-        template: '<ui-view></ui-view>'
+        url: '',
+        redirectTo: 'designer.blueprints'
       }
     };
   }

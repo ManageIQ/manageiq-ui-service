@@ -49,17 +49,26 @@
         },
         designer: {
           title: N_('Designer'),
-          state: 'blueprints',
+          state: 'designer',
           iconClass: 'pficon pficon-blueprint',
           secondary: {
             blueprints: {
               title: N_('Blueprints'),
-              state: 'blueprints',
-              iconClass: 'pficon pficon-blueprint',
+              state: 'designer.blueprints',
               badges: [
                 {
                   count: 0,
                   tooltip: N_('The total number of available blueprints')
+                }
+              ]
+            },
+            rules: {
+              title: N_('Rules'),
+              state: 'designer.rules',
+              badges: [
+                {
+                  count: 0,
+                  tooltip: N_('The total number of available arbitration rules')
                 }
               ]
             }
@@ -75,6 +84,7 @@
     NavCounts.add('requests', fetchRequests, 60 * 1000);
     NavCounts.add('marketplace', fetchServiceTemplates, 60 * 1000);
     NavCounts.add('blueprints', fetchBlueprints, 60 * 1000);
+    NavCounts.add('rules', fetchRules, 60 * 1000);
 
     function fetchRequests() {
       var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest'];
@@ -117,7 +127,18 @@
       };
 
       CollectionsApi.query('blueprints', options)
-          .then(lodash.partial(updateBlueprintsCount, 'blueprints'));
+        .then(lodash.partial(updateBlueprintsCount, 'blueprints'));
+    }
+
+    function fetchRules() {
+      var options = {
+        expand: false,
+        filter: ['id>0'],
+        auto_refresh: true,
+      };
+
+      CollectionsApi.query('arbitration_rules', options)
+          .then(lodash.partial(updateRulesCount, 'rules'));
     }
 
     function updateCount(item, data) {
@@ -133,6 +154,10 @@
     }
 
     function updateBlueprintsCount(item, data) {
+      Navigation.items.designer.secondary[item].count = data.subcount;
+    }
+
+    function updateRulesCount(item, data) {
       Navigation.items.designer.secondary[item].count = data.subcount;
     }
   }

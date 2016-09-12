@@ -11,9 +11,9 @@
 
   function getStates() {
     return {
-      'blueprints.list': {
+      'designer.blueprints.list': {
         url: '', // No url, this state is the index of projects
-        templateUrl: 'app/states/blueprints/list/list.html',
+        templateUrl: 'app/states/designer/blueprints/list/list.html',
         controller: StateController,
         controllerAs: 'vm',
         title: N_('Blueprint List'),
@@ -223,11 +223,11 @@
     };
 
     function createBlueprint(action) {
-      $state.go('blueprints.designer');
+      $state.go('designer.blueprints.editor');
     }
 
     function editBlueprint(action, item) {
-      $state.go('blueprints.designer', {blueprintId: item.id});
+      $state.go('designer.blueprints.editor', {blueprintId: item.id});
     }
 
     function duplicateBlueprint(action, item) {
@@ -266,7 +266,7 @@
     filterChange(BlueprintsState.getFilters());
 
     function handleClick(item, e) {
-      $state.go('blueprints.designer', {blueprintId: item.id});
+      $state.go('designer.blueprints.editor', {blueprintId: item.id});
     }
 
     function handleCheckBoxChange(item, e) {

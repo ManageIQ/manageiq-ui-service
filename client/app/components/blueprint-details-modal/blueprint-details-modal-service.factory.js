@@ -322,7 +322,7 @@
           Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
           $modalInstance.close();
           BlueprintsState.saveBlueprint(vm.blueprint);
-          $state.go('blueprints.designer', {blueprintId: vm.blueprint.id});
+          $state.go('designer/blueprints.editor', {blueprintId: vm.blueprint.id});
         } else if (action === 'edit') {
           $modalInstance.close({editedblueprint: vm.blueprint});
           // Notifications.success(sprintf(__('%s details were updated.'), vm.blueprint.name));
