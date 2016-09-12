@@ -81,46 +81,34 @@ angular.module('flowChart', ['dragging'] )
 // it is painful to unit test a directive without instantiating the DOM
 // (which is possible, just not ideal).
 //
-.controller('FlowChartController', ['$scope', 'dragging', '$element', function FlowChartController($scope, dragging, $element) {
-  var controller = this;// jscs:ignore safeContextKeyword
-
-  //
-  // Reference to the document and jQuery, can be overridden for testting.
-  //
-  this.document = document;
-
-  //
-  // Wrap jQuery so it can easily be  mocked for testing.
-  //
-  this.jQuery = function(element) {
-    return $(element);
-  };
+.controller('FlowChartController', ['dragging', '$element', function FlowChartController(dragging, $element) {
+  var vm = this;
 
   //
   // Init data-model variables.
   //
-  $scope.draggingConnection = false;
-  $scope.connectorSize = 6;
-  $scope.dragSelecting = false;
+  vm.draggingConnection = false;
+  vm.connectorSize = 6;
+  vm.dragSelecting = false;
 
   //
   // Reference to the connection, connector or node that the mouse is currently over.
   //
-  $scope.mouseOverConnector = null;
-  $scope.mouseOverConnection = null;
-  $scope.mouseOverNode = null;
+  vm.mouseOverConnector = null;
+  vm.mouseOverConnection = null;
+  vm.mouseOverNode = null;
 
   //
   // The class for connections and connectors.
   //
-  this.connectionClass = 'connection';
-  this.connectorClass = 'connector';
-  this.nodeClass = 'node';
+  vm.connectionClass = 'connection';
+  vm.connectorClass = 'connector';
+  vm.nodeClass = 'node';
 
   //
   // Translate the coordinates so they are relative to the svg element.
   //
-  this.translateCoordinates = function(x, y, evt) {
+  vm.translateCoordinates = function(x, y, evt) {
     var svgElem =  $element.get(0);
     var matrix = svgElem.getScreenCTM();
     var point = svgElem.createSVGPoint();
@@ -130,23 +118,23 @@ angular.module('flowChart', ['dragging'] )
     return point.matrixTransform(matrix.inverse());
   };
 
-  $scope.hideConnectors = false;
-  $scope.$on('hideConnectors', function(evt, args) {
-    $scope.hideConnectors = args.hideConnectors;
+  vm.hideConnectors = false;
+  vm.$on('hideConnectors', function(evt, args) {
+    vm.hideConnectors = args.hideConnectors;
   });
 
-  $scope.isConnectorConnected = function(connector) {
+  vm.isConnectorConnected = function(connector) {
     return (connector && connector.connected());
   };
 
-  $scope.isConnectorUnconnectedAndValid = function(connector) {
+  vm.isConnectorUnconnectedAndValid = function(connector) {
     return (connector && !connector.connected() && !connector.invalid() &&
-            connector.parentNode() !== $scope.connectingModeSourceNode);
+            connector.parentNode() !== vm.connectingModeSourceNode);
   };
 
   // determins if a dest. connector is connected to the source node
-  $scope.isConnectedTo = function(connector, node) {
-    var connections = $scope.chart.connections;
+  vm.isConnectedTo = function(connector, node) {
+    var connections = vm.chart.connections;
     for (var i = 0; i < connections.length; i++) {
       var connection = connections[i];
       if (connection.dest === connector && connection.source.parentNode() === node) {
@@ -157,22 +145,22 @@ angular.module('flowChart', ['dragging'] )
     return false;
   };
 
-  $scope.availableConnections = function() {
-    return $scope.chart.validConnections;
+  vm.availableConnections = function() {
+    return vm.chart.validConnections;
   };
 
   //
   // Called on mouse down in the chart.
   //
-  $scope.mouseDown = function(evt) {
-    if ($scope.inConnectingMode ) {
+  vm.mouseDown = function(evt) {
+    if (vm.inConnectingMode ) {
       // camceling out of connection mode, remove unused output connector
-      $scope.cancelConnectingMode();
+      vm.cancelConnectingMode();
     }
 
-    $scope.chart.deselectAll();
+    vm.chart.deselectAll();
 
-    $scope.$emit('clickOnChart');
+    vm.$emit('clickOnChart');
 
     dragging.startDrag(evt, {
 
@@ -180,10 +168,10 @@ angular.module('flowChart', ['dragging'] )
       // Commence dragging... setup variables to display the drag selection rect.
       //
       dragStarted: function(x, y) {
-        $scope.dragSelecting = true;
-        var startPoint = controller.translateCoordinates(x, y, evt);
-        $scope.dragSelectionStartPoint = startPoint;
-        $scope.dragSelectionRect = {
+        vm.dragSelecting = true;
+        var startPoint = vm.translateCoordinates(x, y, evt);
+        vm.dragSelectionStartPoint = startPoint;
+        vm.dragSelectionRect = {
           x: startPoint.x,
           y: startPoint.y,
           width: 0,
@@ -195,10 +183,10 @@ angular.module('flowChart', ['dragging'] )
       // Update the drag selection rect while dragging continues.
       //
       dragging: function(x, y) {
-        var startPoint = $scope.dragSelectionStartPoint;
-        var curPoint = controller.translateCoordinates(x, y, evt);
+        var startPoint = vm.dragSelectionStartPoint;
+        var curPoint = vm.translateCoordinates(x, y, evt);
 
-        $scope.dragSelectionRect = {
+        vm.dragSelectionRect = {
           x: curPoint.x > startPoint.x ? startPoint.x : curPoint.x,
           y: curPoint.y > startPoint.y ? startPoint.y : curPoint.y,
           width: curPoint.x > startPoint.x ? curPoint.x - startPoint.x : startPoint.x - curPoint.x,
@@ -210,10 +198,10 @@ angular.module('flowChart', ['dragging'] )
       // Dragging has ended... select all that are within the drag selection rect.
       //
       dragEnded: function() {
-        $scope.dragSelecting = false;
-        $scope.chart.applySelectionRect($scope.dragSelectionRect);
-        delete $scope.dragSelectionStartPoint;
-        delete $scope.dragSelectionRect;
+        vm.dragSelecting = false;
+        vm.chart.applySelectionRect(vm.dragSelectionRect);
+        delete vm.dragSelectionStartPoint;
+        delete vm.dragSelectionRect;
       },
     });
   };
@@ -221,22 +209,22 @@ angular.module('flowChart', ['dragging'] )
   //
   // Handle nodeMouseOver on an node.
   //
-  $scope.nodeMouseOver = function(evt, node) {
-    $scope.mouseOverNode = node;
+  vm.nodeMouseOver = function(evt, node) {
+    vm.mouseOverNode = node;
   };
 
   //
   // Handle nodeMouseLeave on an node.
   //
-  $scope.nodeMouseLeave = function(evt, node) {
-    $scope.mouseOverNode = null;
+  vm.nodeMouseLeave = function(evt, node) {
+    vm.mouseOverNode = null;
   };
 
   //
   // Handle mousedown on a node.
   //
-  $scope.nodeMouseDown = function(evt, node) {
-    var chart = $scope.chart;
+  vm.nodeMouseDown = function(evt, node) {
+    var chart = vm.chart;
     var lastMouseCoords;
 
     dragging.startDrag(evt, {
@@ -245,7 +233,7 @@ angular.module('flowChart', ['dragging'] )
       // Node dragging has commenced.
       //
       dragStarted: function(x, y) {
-        lastMouseCoords = controller.translateCoordinates(x, y, evt);
+        lastMouseCoords = vm.translateCoordinates(x, y, evt);
 
         //
         // If nothing is selected when dragging starts,
@@ -256,12 +244,12 @@ angular.module('flowChart', ['dragging'] )
           node.select();
         }
       },
-			
+
       //
       // Dragging selected nodes... update their x,y coordinates.
       //
       dragging: function(x, y) {
-        var curCoords = controller.translateCoordinates(x, y, evt);
+        var curCoords = vm.translateCoordinates(x, y, evt);
         var deltaX = curCoords.x - lastMouseCoords.x;
         var deltaY = curCoords.y - lastMouseCoords.y;
 
@@ -283,63 +271,63 @@ angular.module('flowChart', ['dragging'] )
   //
   // Handle click on a node action
   //
-  $scope.nodeActionClick = function(evt, node, nodeAction) {
+  vm.nodeActionClick = function(evt, node, nodeAction) {
     console.log("Node Action '" + nodeAction.name() + "' executed on " + node.name());
     if (nodeAction.name() === "connect") {
-      $scope.startConnectingMode(node);
+      vm.startConnectingMode(node);
     }
   };
 
-  $scope.inConnectingMode = false;
-  $scope.connectingModeOutputConnector = null;
-  $scope.connectingModeSourceNode = null;
+  vm.inConnectingMode = false;
+  vm.connectingModeOutputConnector = null;
+  vm.connectingModeSourceNode = null;
 
-  $scope.startConnectingMode = function(node) {
-    $scope.inConnectingMode = true;
-    $scope.hideConnectors = false;
+  vm.startConnectingMode = function(node) {
+    vm.inConnectingMode = true;
+    vm.hideConnectors = false;
     // emit up to parent components so that they may enable/disable controls based on
     // canvas connecting mode status
-    $scope.$emit('inConnectingMode', {'inConnectingMode': $scope.inConnectingMode});
-    $scope.connectingModeSourceNode = node;
-    $scope.connectingModeOutputConnector = node.getOutputConnector();
-    $scope.chart.updateValidNodesAndConnectors($scope.connectingModeSourceNode);
+    vm.$emit('inConnectingMode', {'inConnectingMode': vm.inConnectingMode});
+    vm.connectingModeSourceNode = node;
+    vm.connectingModeOutputConnector = node.getOutputConnector();
+    vm.chart.updateValidNodesAndConnectors(vm.connectingModeSourceNode);
   };
 
-  $scope.cancelConnectingMode = function() {
+  vm.cancelConnectingMode = function() {
     // if output connector not connected to something, remove it
-    if (!$scope.connectingModeOutputConnector.connected()) {
-      $scope.chart.removeOutputConnector($scope.connectingModeOutputConnector);
+    if (!vm.connectingModeOutputConnector.connected()) {
+      vm.chart.removeOutputConnector(vm.connectingModeOutputConnector);
     }
-    $scope.stopConnectingMode();
+    vm.stopConnectingMode();
   };
 
-  $scope.stopConnectingMode = function() {
-    $scope.inConnectingMode = false;
-    $scope.chart.resetValidNodesAndConnectors();
-    $scope.$emit('inConnectingMode', {'inConnectingMode': $scope.inConnectingMode});
+  vm.stopConnectingMode = function() {
+    vm.inConnectingMode = false;
+    vm.chart.resetValidNodesAndConnectors();
+    vm.$emit('inConnectingMode', {'inConnectingMode': vm.inConnectingMode});
   };
 
   //
   // Handle connectionMouseOver on an connection.
   //
-  $scope.connectionMouseOver = function(evt, connection) {
-    if (!$scope.draggingConnection) {  // Only allow 'connection mouse over' when not dragging out a connection.
-      $scope.mouseOverConnection = connection;
+  vm.connectionMouseOver = function(evt, connection) {
+    if (!vm.draggingConnection) {  // Only allow 'connection mouse over' when not dragging out a connection.
+      vm.mouseOverConnection = connection;
     }
   };
 
   //
   // Handle connectionMouseLeave on an connection.
   //
-  $scope.connectionMouseLeave = function(evt, connection) {
-    $scope.mouseOverConnection = null;
+  vm.connectionMouseLeave = function(evt, connection) {
+    vm.mouseOverConnection = null;
   };
 
   //
   // Handle mousedown on a connection.
   //
-  $scope.connectionMouseDown = function(evt, connection) {
-    var chart = $scope.chart;
+  vm.connectionMouseDown = function(evt, connection) {
+    var chart = vm.chart;
     chart.handleConnectionMouseDown(connection, evt.ctrlKey);
 
     // Don't let the chart handle the mouse down.
@@ -350,24 +338,24 @@ angular.module('flowChart', ['dragging'] )
   //
   // Handle connectorMouseOver on an connector.
   //
-  $scope.connectorMouseOver = function(evt, node, connector, connectorIndex, isInputConnector) {
-    $scope.mouseOverConnector = connector;
+  vm.connectorMouseOver = function(evt, node, connector, connectorIndex, isInputConnector) {
+    vm.mouseOverConnector = connector;
   };
 
   //
   // Handle connectorMouseLeave on an connector.
   //
-  $scope.connectorMouseLeave = function(evt, node, connector, connectorIndex, isInputConnector) {
-    $scope.mouseOverConnector = null;
+  vm.connectorMouseLeave = function(evt, node, connector, connectorIndex, isInputConnector) {
+    vm.mouseOverConnector = null;
   };
 
   //
   // Handle mousedown on an input connector.
   //
-  $scope.connectorMouseDown = function(evt, node, connector, connectorIndex, isInputConnector) {
-    if ($scope.inConnectingMode && node !== $scope.connectingModeSourceNode) {
-      $scope.chart.createNewConnection($scope.connectingModeOutputConnector, $scope.mouseOverConnector);
-      $scope.stopConnectingMode();
+  vm.connectorMouseDown = function(evt, node, connector, connectorIndex, isInputConnector) {
+    if (vm.inConnectingMode && node !== vm.connectingModeSourceNode) {
+      vm.chart.createNewConnection(vm.connectingModeOutputConnector, vm.mouseOverConnector);
+      vm.stopConnectingMode();
     }
 
     //

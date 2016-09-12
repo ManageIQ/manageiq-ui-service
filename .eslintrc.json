@@ -55,7 +55,7 @@
     "consistent-return": "off",
     "consistent-this": [
       "error",
-      "this"
+      "vm"
     ],
     "curly": "error",
     "default-case": "off",

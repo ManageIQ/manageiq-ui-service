@@ -6,33 +6,34 @@
     'app.config',
     'app.states',
     'ngProgress',
-    'gettext',
-  ]);
+    'gettext'
+  ]).controller('AppController', ['$rootScope', 'ngProgressFactory', AppController]);
 
-  angular.module('app').controller('AppController', ['$rootScope', '$scope', 'ngProgressFactory',
-    function($rootScope, $scope, ngProgressFactory) {
-      $scope.progressbar = ngProgressFactory.createInstance();
-      $scope.progressbar.setColor('#0088ce');
-      $scope.progressbar.setHeight('3px');
+  /** @ngInject */
+  function AppController($rootScope, ngProgressFactory) {
+    var vm = this;
+    vm.progressbar = ngProgressFactory.createInstance();
+    vm.progressbar.setColor('#0088ce');
+    vm.progressbar.setHeight('3px');
 
-      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        if (toState.resolve) {
-          $scope.progressbar.start();
-        }
-      });
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+      if (toState.resolve) {
+        vm.progressbar.start();
+      }
+    });
 
-      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-        if (toState.resolve) {
-          $scope.progressbar.complete();
-        }
-      });
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+      if (toState.resolve) {
+        vm.progressbar.complete();
+      }
+    });
 
-      $scope.keyDown = function(evt) {
-        $scope.$broadcast('bodyKeyDown', {origEvent: evt});
-      };
+    vm.keyDown = function(evt) {
+      vm.$broadcast('bodyKeyDown', {origEvent: evt});
+    };
 
-      $scope.keyUp = function(evt) {
-        $scope.$broadcast('bodyKeyUp', {origEvent: evt});
-      };
-    }]);
+    vm.keyUp = function(evt) {
+      vm.$broadcast('bodyKeyUp', {origEvent: evt});
+    };
+  }
 })();

@@ -17,12 +17,12 @@
     }
 
     function PubSub() {
-      var self = this;
+      var vm = this;
 
       var events = {};
 
-      self.on = onEvent;
-      self.trigger = triggerEvent;
+      vm.on = onEvent;
+      vm.trigger = triggerEvent;
 
       function onEvent(keys, handler) {
         if (!angular.isFunction(handler)) {
@@ -37,7 +37,7 @@
           events[key].push(handler);
         });
 
-        return self;
+        return vm;
       }
 
       function triggerEvent(key, args) {
@@ -45,7 +45,7 @@
 
         handlers.every(handle);
 
-        return self;
+        return vm;
 
         function handle(handler) {
           var result = handler(args);
