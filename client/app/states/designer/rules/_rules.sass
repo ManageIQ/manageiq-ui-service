@@ -3,17 +3,55 @@
   border-top: 1px solid #d0d0d0
 
 .designer-rules-list
+  height: 100%
+  overflow-x: hidden
+  overflow-y: auto
+  margin-bottom: 0
+  padding-left: 0
 
-  .list-view-pf .list-group-item
+  .list-group-item
     cursor: default
+
+  .content-container
+    padding: 0
+    width: 100%
+    margin: 0 15px
+
+  .rule-view-container
+    display: inline-block
+    position: static
+    left: 0
+    width: calc(100% - 35px)
+    margin-left: 35px
+
+  .rule-edit-container
+    display: inline-block
+    position: static
+    top: -2px
+    left: 0
+    width: calc(100% - 35px)
+    margin-left: 35px
+
+    .operation-select
+      width: 33% !important
+
+    .profile-select
+      width: 100% !important
+
+    .rule-edit-value
+      height: 27px
+      margin-top: 0px
+      position: relative
+      top: 2px
+      width: 30%
 
   .rule-item-heading
     display: inline-block
     font-size: 16px
     font-weight: 500
     padding-right: 15px
-    position: relative
-    top: 2px
+    position: absolute
+    left: 0
 
   .rule-item-field
     padding: 0 5px

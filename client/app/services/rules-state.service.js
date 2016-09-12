@@ -96,7 +96,7 @@
             id: nextRule.id,
             priority: nextRule.priority,
             operation: nextRule.operation,
-            expression: nextRule.expression.exp,
+            expression: nextRule.expression,
             arbitration_profile_id: nextRule.arbitration_profile_id
           };
           editRules.push(tmpRule);
@@ -113,12 +113,12 @@
       }
     };
 
-    ruleState.deleteRules = function(rules) {
+    ruleState.deleteRules = function(ruleIds) {
       var deferred = $q.defer();
 
       var resources = [];
-      for (var i = 0; i < rules.length; i++) {
-        resources.push({"id": rules[i].id});
+      for (var i = 0; i < ruleIds.length; i++) {
+        resources.push({"id": ruleIds[i]});
       }
 
       var ruleObj = {
@@ -146,7 +146,8 @@
         priority: 0,
         operation: 'inject',
         expression: {
-          EQUAL: {
+          exp: {
+            EQUAL: {}
           }
         }
       };
