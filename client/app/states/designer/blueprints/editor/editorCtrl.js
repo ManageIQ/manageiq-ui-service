@@ -1,8 +1,8 @@
 angular.module('app.states')
     .controller('blueprintEditorCtrl', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState',
-                'BlueprintDetailsModal', 'SaveBlueprintModal', '$rootScope', '$state', 'CollectionsApi', 'Notifications',
-    function($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope,
-             $state, CollectionsApi, Notifications) {
+                'BlueprintDetailsModal', 'SaveBlueprintModal', '$rootScope', '$state', 'CollectionsApi', 'Notifications', 'sprintf',
+    function($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $rootScope, // jshint ignore:line
+             $state, CollectionsApi, Notifications, sprintf) {
       $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         if (toState.name === 'login') {
           return;
@@ -57,18 +57,23 @@ angular.module('app.states')
         BlueprintsState.saveBlueprint($scope.blueprint).then(saveSuccess, saveFailure);
 
         function saveSuccess(id) {
+          Notifications.success(sprintf(__("'%s' was succesfully saved."), $scope.blueprint.name));
           if (id) {
             $state.go($state.current, {blueprintId: id}, {reload: true});
           }
 
-          // get another copy to work, different obj from what was saved
+          /*
+          Saving in case we decide to not always reload; for performance
+
+          get another copy to work, different obj from what was saved
           BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
           blueprintDirty = false;
           $( "#saveBtm" ).blur();
+          console.log("Saved blueprint from designer"); */
         }
 
         function saveFailure() {
-          console.log("Failed to save blueprint.");
+          Notifications.error(sprintf(__("Failed to save '%s'."), $scope.blueprint.name));
         }
       };
 

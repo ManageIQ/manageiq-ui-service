@@ -19,6 +19,7 @@
         title: 'Blueprint Designer',
         resolve: {
           blueprint: resolveBlueprint,
+          blueprintTags: resolveBlueprintTags,
           serviceTemplates: resolveServiceTemplates
         }
       }
@@ -28,6 +29,21 @@
   function resolveBlueprint($stateParams, CollectionsApi) {
     if ($stateParams.blueprintId) {
       return CollectionsApi.get('blueprints', $stateParams.blueprintId, {});
+    } else {
+      return null;
+    }
+  }
+
+  function resolveBlueprintTags($stateParams, CollectionsApi) {
+    if ($stateParams.blueprintId) {
+      var attributes = ['categorization', 'category.id', 'category.single_value'];
+      var options = {
+        expand: 'resources',
+        attributes: attributes
+      };
+      var collection = 'blueprints' + "\/" + $stateParams.blueprintId + "\/" + 'tags';
+
+      return CollectionsApi.query(collection, options);
     } else {
       return null;
     }
@@ -46,10 +62,13 @@
   }
 
   /** @ngInject */
-  function StateController($state, $stateParams, blueprint, serviceTemplates) {
+  function StateController($state, $stateParams, blueprint, blueprintTags, serviceTemplates) {
     var vm = this;
     vm.title = 'Blueprint Designer';
     if (blueprint) {
+      if (blueprintTags && blueprintTags.resources) {
+        blueprint.tags = blueprintTags.resources;
+      }
       vm.blueprint = blueprint;
     }
     if (serviceTemplates) {
