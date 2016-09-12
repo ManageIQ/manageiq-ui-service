@@ -136,10 +136,12 @@
         }
       });
 
+      vm.showTagDropdowns = false;
       $scope.$watch('vm.tags.selectedCategory', function(value) {
         vm.tags.filtered = $filter('filter')(vm.tags.all, matchCategory);
         if (vm.tags.filtered) {
           vm.tags.selectedTag = vm.tags.filtered[0];
+          vm.showTagDropdowns = true;
         }
       }, true);
 
