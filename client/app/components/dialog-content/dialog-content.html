@@ -63,11 +63,8 @@
                       ng-model="dialogField.default_value"
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
                       ng-change="dialogField.triggerAutoRefresh(dialogField)"
-                      class="form-control">
-                      <option ng-repeat="fieldValue in dialogField.values"
-                              value="{{ fieldValue[0] }}">
-                        {{ fieldValue[1] }}
-                      </option>
+                      class="form-control"
+                      ng-options="fieldValue[0] as fieldValue[1] for fieldValue in dialogField.values">
                     </select>
 
                     <span
