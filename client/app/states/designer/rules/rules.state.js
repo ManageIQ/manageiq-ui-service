@@ -73,10 +73,12 @@
           rule.operator = vm.operators[0];
           rule.field = rule.expression.exp.EQUAL.field;
           rule.value = rule.expression.exp.EQUAL.value;
-        } else {
+        } else if (rule.expression.exp.NOT) {
           rule.operator = vm.operators[1];
           rule.field = rule.expression.exp.NOT.field;
           rule.value = rule.expression.exp.NOT.value;
+        } else {
+          rule.operator = vm.operators[0];
         }
       } else {
         rule.operator = vm.operators[0];
@@ -146,12 +148,12 @@
 
         if (vm.updatePriorities === true && vm.designerRules && vm.designerRules.length > 0) {
           vm.designerRules.sort(compareRules);
-          angular.forEach(vm.designerRules, function (rule, index) {
+          angular.forEach(vm.designerRules, function(rule, index) {
             rule.priority = index + 1;
           });
           vm.updatePriorities = false;
           var editRules = [];
-          angular.forEach(vm.designerRules, function (rule) {
+          angular.forEach(vm.designerRules, function(rule) {
             editRules.push(rule);
           });
           RulesState.editRules(editRules).then(editSuccess, editFailure);
@@ -168,6 +170,28 @@
       RulesState.getRules().then(loadSuccess, loadFailure);
     };
 
+    var updateRulesPriorities = function(saveRules) {
+      var editRules = [];
+
+      angular.forEach(vm.designerRules, function(rule, index) {
+        rule.priority = index + 1;
+      });
+
+      function editSuccess() {
+        refreshRules();
+      }
+
+      function editFailure() {
+      }
+
+      if (saveRules === true) {
+        angular.forEach(vm.designerRules, function(rule) {
+          editRules.push(convertToRuleObj(rule));
+        });
+        RulesState.editRules(editRules).then(editSuccess, editFailure);
+      }
+    };
+
     vm.title = __('Rules');
     vm.designerRules = designerRules.resources;
     vm.fields = fields.resources;
@@ -181,6 +205,7 @@
       vm.operatorNames.push(operator.name);
     });
     vm.updatePriorities = false;
+    vm.editMode = false;
 
     updateRulesInfo();
 
@@ -200,9 +225,9 @@
       updateRuleInfo(newRule);
 
       vm.designerRules.splice(0, 0, newRule);
-      angular.forEach(vm.designerRules, function (nextRule, index) {
-        nextRule.priority = index + 1;
-      });
+      updateRulesPriorities(false);
+
+      vm.editMode = true;
     };
 
     vm.editRule = function(rule) {
@@ -213,6 +238,7 @@
         value: rule.value,
         arbitration_profile_id: rule.arbitration_profile_id
       };
+      vm.editMode = true;
     };
 
     vm.removeRule = function(rule) {
@@ -232,11 +258,10 @@
 
     vm.cancelEditRule = function(rule) {
       rule.editMode = false;
+      vm.editMode = false;
       if (!rule.original) {
-        vm.designerRules.splice(0 ,1);
-        angular.forEach(vm.designerRules, function (nextRule, index) {
-          nextRule.priority = index + 1;
-        });
+        vm.designerRules.splice(0, 1);
+        updateRulesPriorities(false);
       } else {
         rule.field = rule.original.field;
         rule.operator = vm.operators.find(function(nextOperator) {
@@ -258,8 +283,9 @@
       }
 
       function addSuccess() {
+        vm.editMode = false;
         if (vm.designerRules.length > 1) {
-          angular.forEach(vm.designerRules, function (nextRule, index) {
+          angular.forEach(vm.designerRules, function(nextRule, index) {
             if (index > 0) {
               editRules.push(convertToRuleObj(nextRule));
             }
@@ -272,6 +298,7 @@
 
       function saveSuccess() {
         rule.editMode = false;
+        vm.editMode = false;
         refreshRules();
       }
 
@@ -279,6 +306,43 @@
       }
     };
 
+    vm.ruleDrag = function(rule) {
+      vm.dragRule = rule;
+    };
+
+    vm.ruleMoved = function() {
+      var ruleIndex = vm.designerRules.findIndex(function(nextRule) {
+        return nextRule === vm.dragRule;
+      });
+      if (ruleIndex >= 0) {
+        vm.designerRules.splice(ruleIndex, 1);
+      }
+    };
+
+    vm.adjustPriorities = function(event) {
+      updateRulesPriorities(true);
+    };
+
+    vm.downPriority = function(rule) {
+      var index = vm.designerRules.indexOf(rule);
+      if (index >= 0 && index < vm.designerRules.length) {
+        vm.designerRules.splice(index, 1);
+        vm.designerRules.splice(index + 1, 0, rule);
+      }
+      updateRulesPriorities(true);
+    };
+
+    vm.upPriority = function(rule) {
+      var index = vm.designerRules.indexOf(rule);
+      if (index > 0) {
+        vm.designerRules.splice(index, 1);
+        vm.designerRules.splice(index - 1, 0, rule);
+      }
+      updateRulesPriorities(true);
+    };
+    vm.dropCallback = function(event, ui, item, index) {
+      console.log("Dropped " + item.value + " at index " + index);
+    };
     vm.toolbarConfig = {
       actionsConfig: {
         actionsInclude: true

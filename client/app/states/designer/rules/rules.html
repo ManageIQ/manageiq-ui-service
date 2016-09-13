@@ -19,10 +19,37 @@
     </actions>
   </div>
   <div class="list-view-container">
-    <ul class="designer-rules-list list-view-pf">
-      <li class="list-group-item" ng-repeat="item in vm.designerRules track by $index">
+    <ul class="designer-rules-list list-view-pf" dnd-list="vm.designerRules">
+      <li class="list-group-item" ng-repeat="item in vm.designerRules track by $index"
+          dnd-draggable="item"
+          dnd-effect-allowed="move"
+          dnd-disable-if="vm.editMode"
+          dnd-dragstart="vm.ruleDrag(item)"
+          dnd-moved="vm.ruleMoved()"
+          dnd-dragend="vm.adjustPriorities()"
+          ng-class="{'drag-original': item == vm.dragRule}">
         <div class="content-container">
-          <div class="row">
+          <div class="drag-contents">
+            <span class="rule-item-heading">
+              {{'IF' | translate}}
+            </span>
+            <span>
+            {{item.field ? item.field : "Select a field"  | translate}}
+            </span>
+            <span class="rule-item-field rule-item-operation">
+              {{item.operator && item.operator.name ? item.operator.name : "Select an operator"  | translate}}
+            </span>
+            <span class="rule-item-field">
+              {{item.value ? item.value : "Enter a value" | translate}}
+            </span>
+            <span class="rule-item-heading">
+              {{'USE' | translate}}
+            </span>
+            <span class="rule-item-field">
+              {{item.profileName ? item.profileName : "Select a profile"  | translate}}
+            </span>
+          </div>
+          <div class="row item-contents">
             <div class="col-md-1 col-sm-12">
               <span>{{item.priority}}</span>
             </div>
@@ -70,7 +97,7 @@
               </span>
               </div>
             </div>
-            <div class="col-md-2 col-sm-12">
+            <div class="col-md-2 col-sm-12 designer-buttons">
               <div ng-if="item.editMode" class="pull-right">
                 <button class="btn btn-primary" type=button" ng-click="vm.saveRule(item)">
                   {{'Save' | translate}}
@@ -80,20 +107,30 @@
                 </button>
               </div>
               <div ng-if="!item.editMode" class="pull-right">
-                <a class="btn btn-link" type=button" ng-click="vm.editRule(item)">
-                  <span class="pficon pficon-edit"></span>
-                </a>
-                <button class="btn btn-link" type=button"
-                        confirmation
-                        confirmation-if="true"
-                        confirmation-title="{{'Delete Rule'|translate}}"
-                        confirmation-message="{{'Are you sure you want to delete this rule?'|translate}}"
-                        confirmation-ok-text="{{'Delete'|translate}}"
-                        confirmation-on-ok="vm.removeRule(item)"
-                        confirmation-ok-style="primary"
-                        confirmation-show-cancel="true" translate>
-                  <span class="pficon pficon-delete"></span>
-                </button>
+                <div class="btn-container">
+                  <a class="btn btn-link priority-button" type=button" ng-click="vm.downPriority(item)">
+                    <span class="fa fa-arrow-down"></span>
+                  </a>
+                  <a class="btn btn-link priority-button" type=button" ng-click="vm.upPriority(item)">
+                    <span class="fa fa-arrow-up"></span>
+                  </a>
+                </div>
+                <div class="btn-container">
+                  <a class="btn btn-link" type=button" ng-click="vm.editRule(item)">
+                    <span class="pficon pficon-edit"></span>
+                  </a>
+                  <button class="btn btn-link" type=button"
+                          confirmation
+                          confirmation-if="true"
+                          confirmation-title="{{'Delete Rule'|translate}}"
+                          confirmation-message="{{'Are you sure you want to delete this rule?'|translate}}"
+                          confirmation-ok-text="{{'Delete'|translate}}"
+                          confirmation-on-ok="vm.removeRule(item)"
+                          confirmation-ok-style="primary"
+                          confirmation-show-cancel="true" translate>
+                    <span class="pficon pficon-delete"></span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
