@@ -273,7 +273,7 @@
           var promises = [];
           for (var i = 0; i < chartDataModel.nodes.length; i++) {
             var nodeSrvTemplate = chartDataModel.nodes[i];
-            if (nodeSrvTemplate.origTags !== undefined && nodeSrvTemplate.tags !== undefined) {
+            if (nodeSrvTemplate.origTags !== undefined && nodeSrvTemplate.tags !== undefined && nodeSrvTemplate.id !== undefined) {
               promises.push(saveServiceItemTags(nodeSrvTemplate.id, nodeSrvTemplate.tags, nodeSrvTemplate.origTags));
             }
           }
@@ -290,7 +290,7 @@
             deferred.resolve();
           }
         } else {
-          console.log("    No Service Items");
+          console.log("    No Service Items to save tags for");
           deferred.resolve();
         }
       }

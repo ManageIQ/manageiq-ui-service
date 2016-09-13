@@ -30,9 +30,14 @@
       }
 
       if (!vm.tags.of_item && vm.objectType && vm.objectId) {
-        loadTagsOfItem().then(function() {
+        if (vm.objectId !== -1) {
+          loadTagsOfItem().then(function() {
+            loadAllTagInfo();
+          });
+        } else {
+          vm.tags.of_item = [];
           loadAllTagInfo();
-        });
+        }
       } else {
         loadAllTagInfo();
       }
