@@ -1,5 +1,11 @@
-angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
-  function($scope, $filter) {
+(function() {
+  'use strict';
+
+  angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter', ComponentController]);
+
+  /** @ngInject */
+  function ComponentController($scope, $filter) {
+    var vm = this;
     var chartDataModel = {};
     var newNodeCount = 0;
     if ($scope.$parent.blueprint.ui_properties && $scope.$parent.blueprint.ui_properties.chartDataModel) {
@@ -7,32 +13,32 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
     }
 
     // Create the view-model for the chart and attach to the scope.
-    $scope.chartViewModel = new flowchart.ChartViewModel(chartDataModel);
-    $scope.$parent.chartViewModel = $scope.chartViewModel;
+    vm.chartViewModel = new flowchart.ChartViewModel(chartDataModel);
+    $scope.$parent.chartViewModel = vm.chartViewModel;
 
     $scope.$watch("chartViewModel.data", function(oldValue, newValue) {
       if (!angular.equals(oldValue, newValue)) {
-        $scope.$emit('BlueprintCanvasChanged', {'chartDataModel': $scope.chartViewModel.data});
+        $scope.$emit('BlueprintCanvasChanged', {'chartDataModel': vm.chartViewModel.data});
       }
     }, true);
 
-    $scope.startCallback = function(event, ui, item) {
-      $scope.draggedItem = item;
+    vm.startCallback = function(event, ui, item) {
+      vm.draggedItem = item;
     };
 
-    $scope.dropCallback = function(event, ui) {
-      var newNode = angular.copy($scope.draggedItem);
+    vm.dropCallback = function(event, ui) {
+      var newNode = angular.copy(vm.draggedItem);
       if (newNode.type && newNode.type === 'generic') {
         newNode.name = 'New ' + newNode.name;
       }
       newNode.backgroundColor = '#fff';
       newNode.x = event.clientX - 350;
       newNode.y = event.clientY - 200;
-      $scope.addNewNode(newNode);
+      vm.addNewNode(newNode);
       newNodeCount++;
     };
 
-    $scope.addNodeByClick = function(item) {
+    vm.addNodeByClick = function(item) {
       var newNode = angular.copy(item);
       if (newNode.type && newNode.type === 'generic') {
         newNode.name = 'New ' + newNode.name;
@@ -41,23 +47,23 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
       newNode.backgroundColor = '#fff';
       newNode.x = 250 + (newNodeCount * 4 + 160);
       newNode.y = 200 + (newNodeCount * 4 + 160);
-      $scope.addNewNode(newNode);
+      vm.addNewNode(newNode);
     };
 
-    $scope.addNewNode = function(newNode) {
-      $scope.chartViewModel.addNode(newNode);
+    vm.addNewNode = function(newNode) {
+      vm.chartViewModel.addNode(newNode);
     };
 
     $scope.$on('duplicateSelectedItem', function(evt, args) {
-      $scope.duplicateSelected();
+      vm.duplicateSelected();
     });
 
     $scope.$on('removeSelectedItems', function(evt, args) {
-      $scope.deleteSelected();
+      vm.deleteSelected();
     });
 
-    $scope.duplicateSelected = function() {
-      var dupNode = angular.copy($scope.chartViewModel.getSelectedNodes()[0]);
+    vm.duplicateSelected = function() {
+      var dupNode = angular.copy(vm.chartViewModel.getSelectedNodes()[0]);
 
       if (!dupNode) {
         return;
@@ -71,11 +77,11 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
       dupNode.data.x = dupNode.data.x + 15 * copyName.numDups;
       dupNode.data.y = dupNode.data.y + 15 * copyName.numDups;
 
-      $scope.addNewNode(dupNode.data);
+      vm.addNewNode(dupNode.data);
     };
 
-    $scope.deleteSelected = function() {
-      $scope.chartViewModel.deleteSelected();
+    vm.deleteSelected = function() {
+      vm.chartViewModel.deleteSelected();
     };
 
     function getNewId() {
@@ -92,7 +98,7 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
 
       baseName = baseName.substr(0, baseNameLength);
 
-      var filteredArray = $filter('filter')( $scope.chartViewModel.data.nodes, {name: baseName}, false);
+      var filteredArray = $filter('filter')( vm.chartViewModel.data.nodes, {name: baseName}, false);
 
       var copyName = baseName + " Copy" + ((filteredArray.length === 1) ? "" : " " + filteredArray.length) ;
       var numDups = filteredArray.length;
@@ -148,7 +154,7 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
         //
         // Ctrl + A
         //
-        $scope.chartViewModel.selectAll();
+        vm.chartViewModel.selectAll();
         args.origEvent.stopPropagation();
         args.origEvent.preventDefault();
       }
@@ -157,8 +163,8 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
         //
         // Ctrl + D
         //
-        if ($scope.chartViewModel.getSelectedNodes().length === 1) {
-          $scope.duplicateSelected();
+        if (vm.chartViewModel.getSelectedNodes().length === 1) {
+          vm.duplicateSelected();
         }
         args.origEvent.stopPropagation();
         args.origEvent.preventDefault();
@@ -174,12 +180,12 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
         //
         // Delete key.
         //
-        $scope.deleteSelected();
+        vm.deleteSelected();
       }
 
       if (args.origEvent.keyCode === escKeyCode) {
         // Escape.
-        $scope.chartViewModel.deselectAll();
+        vm.chartViewModel.deselectAll();
       }
 
       if (args.origEvent.keyCode === ctrlKeyCode) {
@@ -188,4 +194,5 @@ angular.module('app.states').controller('canvasCtrl', ['$scope', '$filter',
         args.origEvent.preventDefault();
       }
     });
-  }]);
+  }
+})();

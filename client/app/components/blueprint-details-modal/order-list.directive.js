@@ -38,18 +38,20 @@
         list: '='
       },
       templateUrl: 'app/components/blueprint-details-modal/order-list.directive.html',
-      controller: OrderListController
+      controller: ['$scope', '$filter', OrderListController],
+      controllerAs: 'vm'
     };
 
     return directive;
   }
 
   function OrderListController($scope, $filter) {
-    $scope.listDisabled = false;
+    var vm = this;
+    vm.listDisabled = false;
 
     normalizeContainers();
 
-    $scope.moved = function(list, index) {
+    vm.moved = function(list, index) {
       var origItem = angular.copy(list[index]);
 
       // Remove item from orig. list/column
@@ -63,7 +65,7 @@
     function normalizeContainers() {
       // Remove any empty rows and balance 'columns'/lists of items
       // Empty/undefined rows may happen if item.id's are not sequential
-      var containers = $filter('orderBy')($scope.list, 'id');
+      var containers = $filter('orderBy')(vm.list, 'id');
       var container;
       for (var i = 0; i < containers.length; i++) {
         container = containers[i];
@@ -79,25 +81,25 @@
 
       // if last row not empty, add new empty row (list number)
       container = containers[containers.length - 1];
-      if (container && container.type === 'container' && !$scope.listDisabled &&
-         (container.columns[0].length !== 0 || container.columns[1].length !== 0)) {
+      if (container && container.type === 'container' && !vm.listDisabled &&
+        (container.columns[0].length !== 0 || container.columns[1].length !== 0)) {
         addEmptyContainerRow(containers);
       }
 
-      renumberContainersList( containers );
+      renumberContainersList(containers);
 
-      $scope.list = containers;
+      vm.list = containers;
     }
 
-    function addEmptyContainerRow( containers ) {
+    function addEmptyContainerRow(containers) {
       containers.push(
-          {
-            "type": "container",
-            "columns": [
-              [],
-              []
-            ]
-          }
+        {
+          "type": "container",
+          "columns": [
+            [],
+            []
+          ]
+        }
       );
     }
 
@@ -111,8 +113,8 @@
       for (var i = 0; i < all.length; i += 1) {
         // all items in a list should all be enabled or disabled
         // order-list directive does not support disabling individual items in a list
-        $scope.listDisabled = all[i].disabled;
-        if ( isEven(i) ) {
+        vm.listDisabled = all[i].disabled;
+        if (isEven(i)) {
           left.push(all[i]);
         } else {
           right.push(all[i]);
@@ -126,7 +128,7 @@
       return n % 2 === 0;
     }
 
-    function renumberContainersList( containers ) {
+    function renumberContainersList(containers) {
       for (var i = 0; i < containers.length; i++) {
         containers[i].id = i + 1;
       }
