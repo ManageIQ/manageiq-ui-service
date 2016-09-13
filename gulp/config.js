@@ -7,6 +7,7 @@ module.exports = (function() {
   var src = './';
   var client = src + 'client/';
   var server = src + 'server/';
+  var tests = src + 'tests/';
   var build = '../manageiq/public/self_service/';
   var temp = './.tmp/';
   var reports = './reports/';
@@ -26,8 +27,8 @@ module.exports = (function() {
     client + 'app/**/*.sass'
   ];
   var templateFiles = client + 'app/**/*.html';
-  var serverIntegrationSpecs = [client + 'tests/server-integration/**/*.spec.js'];
-  var specHelperFiles = client + 'test-helpers/*.js';
+   var serverIntegrationSpecs = [tests + 'server-integration/**/*.spec.js'];
+  var specHelperFiles = tests + 'test-helpers/*.js';
 
   var imageFiles = [
     client + 'assets/images/**/*.*'
@@ -59,15 +60,15 @@ module.exports = (function() {
 
   var serverApp = server + 'app.js';
 
-  function getClientJsFiles(ordered, excludeSpecs) {
-    var files = [client + 'app/**/*.js', client + 'skin/**/*.js'];
+  function getClientJsFiles(ordered, includeSpecs) {
+    var files = [client + 'app/**/*.js', client + 'app/skin/**/*.js'];
 
     if (ordered) {
       files = [].concat(client + 'app/globals.js', client + 'app/app.module.js', client + 'app/**/*module*.js', files)
     }
 
-    if (excludeSpecs) {
-      files = [].concat(files, '!' + client + 'app/**/*.spec.js');
+    if (includeSpecs) {
+      files = [].concat(files,  tests + '**/*.spec.js');
     }
 
     return files;
@@ -79,7 +80,7 @@ module.exports = (function() {
         './node_modules/phantomjs-polyfill/bind-polyfill.js',
         wiredep({devDependencies: true}).js,
         specHelperFiles,
-        getClientJsFiles(true),
+        getClientJsFiles(true, true),
         config.templatecache.build + config.templatecache.output,
         config.test.serverIntegrationSpecs
       ),
@@ -95,7 +96,7 @@ module.exports = (function() {
       },
       preprocessors: {}
     };
-    options.preprocessors[client + 'app/**/!(*.spec)+(.js)'] = ['coverage'];
+    options.preprocessors[client + 'app/**/*.js'] = ['coverage'];
 
     return options;
   }
@@ -323,11 +324,11 @@ module.exports = (function() {
 
   // task build-specs: Builds a specs index file
   config.buildSpecs = {
-    index: client + specsFile,
-    build: client,
+    index: tests + specsFile,
+    build: tests,
     templateCache: config.templatecache.build + config.templatecache.output,
     options: merge({}, wiredepOptions, {devDependencies: true}),
-    specs: [client + 'app/**/*.spec.js'],
+    specs: [tests + '*.spec.js'],
     serverIntegrationSpecs: serverIntegrationSpecs,
     files: getClientJsFiles(true, true),
     order: clientJsOrder,
