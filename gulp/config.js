@@ -108,7 +108,7 @@ module.exports = (function() {
 
   // task jshint: Runs JsHint on client code
   config.jshint = {
-    src: getClientJsFiles(),
+    src: getClientJsFiles(true, false),
     rcFile: './.jshintrc',
     reporter: 'jshint-stylish',
     options: {
@@ -118,13 +118,13 @@ module.exports = (function() {
 
   // task jscs: Runs JsCs on client code
   config.jscs = {
-    src: getClientJsFiles(),
+    src: getClientJsFiles(true, false),
     rcFile: './.jscsrc'
   };
 
   // task plato: Analyze client code with Plato
   config.plato = {
-    src: getClientJsFiles()[0],
+    src: getClientJsFiles(true, false)[0],
     output: reports + 'plato',
     options: {
       title: 'Plato Inspections Report',
@@ -290,7 +290,7 @@ module.exports = (function() {
     index: client + indexFile,
     build: client,
     options: wiredepOptions,
-    files: getClientJsFiles(true, true),
+    files: getClientJsFiles(true, false),
     order: clientJsOrder
   };
 
@@ -330,7 +330,7 @@ module.exports = (function() {
     options: merge({}, wiredepOptions, {devDependencies: true}),
     specs: [tests + '*.spec.js'],
     serverIntegrationSpecs: serverIntegrationSpecs,
-    files: getClientJsFiles(true, true),
+    files: getClientJsFiles(true, false),
     order: clientJsOrder,
     testLibraries: [
       nodeModules + 'mocha/mocha.js',
@@ -358,7 +358,7 @@ module.exports = (function() {
     browserReloadDelay: 1000,
     specsFile: specsFile,
     sass: sassFiles,
-    js: getClientJsFiles(),
+    js: getClientJsFiles(true, false),
     html: [].concat(client + indexFile, templateFiles),
     devFiles: [
       client + '**/*.js',
