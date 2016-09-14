@@ -29,11 +29,11 @@
     });
 
     vm.keyDown = function(evt) {
-      vm.$broadcast('bodyKeyDown', {origEvent: evt});
+      $rootScope.$broadcast('bodyKeyDown', {origEvent: evt});
     };
 
     vm.keyUp = function(evt) {
-      vm.$broadcast('bodyKeyUp', {origEvent: evt});
+      $rootScope.$broadcast('bodyKeyUp', {origEvent: evt});
     };
   }
 })();
