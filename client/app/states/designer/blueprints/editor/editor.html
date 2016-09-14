@@ -58,15 +58,28 @@
                           <div class="tab-pre-title">{{tab.preTitle}}</div>
                           <div class="tab-title" ng-class="{'tab-single-line':tab.preTitle == null}">{{tab.title}}</div>
                       </tab-heading>
-                      <tabset id="subtabs" ng-if="tab.subtabs != null">
+
+                      <tabset class="subtabs" ng-if="tab.subtabs">
                           <tab ng-repeat="subtab in tab.subtabs" heading="{{subtab.title}}" active="subtab.active" ng-click="tabClicked()">
-                              <draggable-items items="subtab.items"
+
+                              <tabset class="subtabs" ng-if="subtab.subtabs">
+                                  <tab ng-repeat="subsubtab in subtab.subtabs" heading="{{subsubtab.title}}" active="subsubtab.active" ng-click="tabClicked()">
+                                      <draggable-items items="subsubtab.items"
+                                                       start-drag-callback="startCallback"
+                                                       click-callback="addNodeByClick"/>
+                                  </tab>
+                              </tabset>
+
+                              <!-- SubTabs without Sub-Sub Tabs -->
+                              <draggable-items ng-if="!subtab.subtabs"
+                                               items="subtab.items"
                                                start-drag-callback="startCallback"
                                                click-callback="addNodeByClick"/>
                           </tab>
                       </tabset>
-                      <!- Primary Tabs without SubTabs (Bundles) -->
-                      <draggable-items ng-if="tab.subtabs == null" items="tab.items"
+
+                      <!-- Primary Tabs without SubTabs (Bundles) -->
+                      <draggable-items ng-if="!tab.subtabs" items="tab.items"
                           start-drag-callback="startCallback"
                           click-callback="addNodeByClick"/>
                   </tab>

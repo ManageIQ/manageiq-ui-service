@@ -120,7 +120,7 @@ angular.module('app.states')
           // focus to filter input box
 
           $timeout(function() {
-            $( "#subtabs>ul" ).addClass('nav-tabs-pf');
+            $( ".subtabs>ul" ).addClass('nav-tabs-pf');
             $( "#filterFld" ).focus();
           });
         };
@@ -156,13 +156,18 @@ angular.module('app.states')
         $scope.getNewItem = function() {
           var activeTab = $scope.activeTab();
           var activeSubTab = $scope.activeSubTab();
+          var activeSubSubTab = $scope.activeSubSubTab();
 
-          if (activeTab && !activeSubTab && activeTab.newItem) {
-            return activeTab.newItem;
+          if (activeSubSubTab && activeSubSubTab.newItem) {
+            return activeSubSubTab.newItem;
           }
 
-          if (activeTab && activeSubTab && activeSubTab.newItem) {
+          if (activeSubTab && activeSubTab.newItem) {
             return activeSubTab.newItem;
+          }
+
+          if (activeTab && activeTab.newItem) {
+            return activeTab.newItem;
           }
 
           return {name: 'New Item', image: 'images/service.png'};
@@ -179,6 +184,15 @@ angular.module('app.states')
           if (activeTab && activeTab.subtabs) {
             return activeTab.subtabs.filter(function(subtab) {
               return subtab.active;
+            })[0];
+          }
+        };
+
+        $scope.activeSubSubTab = function() {
+          var activeSubTab = $scope.activeSubTab();
+          if (activeSubTab && activeSubTab.subtabs) {
+            return activeSubTab.subtabs.filter(function(subsubtab) {
+              return subsubtab.active;
             })[0];
           }
         };
