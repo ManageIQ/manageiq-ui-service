@@ -8,7 +8,7 @@
   function BrowseEntryPointFactory($modal) {
     var modalOpen = false;
     var modalEntryPoint = {
-      showModal: showModal
+      showModal: showModal,
     };
 
     return modalEntryPoint;
@@ -18,7 +18,7 @@
         templateUrl: 'app/components/browse-entry-point-modal/browse-entry-point-modal.html',
         controller: BrowseEntryPointModalController,
         controllerAs: 'vm',
-        resolve: { entryPointType: resolveEntryPointType }
+        resolve: { entryPointType: resolveEntryPointType },
       };
 
       var modal = $modal.open(modalOptions);
@@ -167,25 +167,25 @@
                               href: '#grandchild1',
                               icon: 'fa fa-file-o',
                               tags: ['0'],
-                              id: 3
+                              id: 3,
                             },
                             {
                               text: 'gggrandchild 16',
                               href: '#grandchild2',
                               icon: 'fa fa-file-o',
                               tags: ['0'],
-                              id: 4
-                            }
-                          ]
+                              id: 4,
+                            },
+                          ],
                         },
                         {
                           text: 'gggrandchild6',
                           href: '#grandchild2',
                           icon: 'fa fa-file-o',
                           tags: ['0'],
-                          id: 4
-                        }
-                      ]
+                          id: 4,
+                        },
+                      ],
                     },
                     {
                       text: 'do not auto expand 6',
@@ -199,36 +199,36 @@
                           href: '#grandchild1',
                           icon: 'fa fa-file-o',
                           tags: ['0'],
-                          id: 3
+                          id: 3,
                         },
                         {
                           text: 'gggrandchild 8',
                           href: '#grandchild2',
                           icon: 'fa fa-file-o',
                           tags: ['0'],
-                          id: 4
-                        }
-                      ]
-                    }
-                  ]
+                          id: 4,
+                        },
+                      ],
+                    },
+                  ],
                 },
                 {
                   text: 'Grandchild 2',
                   href: '#grandchild2',
                   icon: 'fa fa-file-o',
                   tags: ['0'],
-                  id: 4
-                }
-              ]
+                  id: 4,
+                },
+              ],
             },
             {
               text: 'Child 2',
               href: '#child2',
               icon: 'fa fa-file-o',
               tags: ['0'],
-              id: 5
-            }
-          ]
+              id: 5,
+            },
+          ],
         },
         {
           text: 'Parent 2',
@@ -236,53 +236,53 @@
           tags: ['0'],
           id: 6,
           nodes: [
-          {
-            text: 'Child 1',
-            href: '#child1',
-            icon: 'fa fa-file-o',
-            tags: ['2'],
-            id: 2,
-            nodes: [
-              {
-                text: 'Grandchild 1',
-                href: '#grandchild1',
-                icon: 'fa fa-file-o',
-                tags: ['0'],
-                id: 3,
-                nodes: [
-                  {
-                    text: 'GGrandchild 3',
-                    href: '#grandchild1',
-                    icon: 'fa fa-file-o',
-                    tags: ['0'],
-                    id: 3
-                  },
-                  {
-                    text: 'GGrandchild 4',
-                    href: '#grandchild2',
-                    icon: 'fa fa-file-o',
-                    tags: ['0'],
-                    id: 4
-                  }
-                ]
-              },
-              {
-                text: 'Grandchild 2',
-                href: '#grandchild2',
-                icon: 'fa fa-file-o',
-                tags: ['0'],
-                id: 4
-              }
-            ]
-          },
-          {
-            text: 'Child 2',
-            href: '#child2',
-            icon: 'fa fa-file-o',
-            tags: ['0'],
-            id: 5
-          }
-        ]
+            {
+              text: 'Child 1',
+              href: '#child1',
+              icon: 'fa fa-file-o',
+              tags: ['2'],
+              id: 2,
+              nodes: [
+                {
+                  text: 'Grandchild 1',
+                  href: '#grandchild1',
+                  icon: 'fa fa-file-o',
+                  tags: ['0'],
+                  id: 3,
+                  nodes: [
+                    {
+                      text: 'GGrandchild 3',
+                      href: '#grandchild1',
+                      icon: 'fa fa-file-o',
+                      tags: ['0'],
+                      id: 3,
+                    },
+                    {
+                      text: 'GGrandchild 4',
+                      href: '#grandchild2',
+                      icon: 'fa fa-file-o',
+                      tags: ['0'],
+                      id: 4,
+                    },
+                  ],
+                },
+                {
+                  text: 'Grandchild 2',
+                  href: '#grandchild2',
+                  icon: 'fa fa-file-o',
+                  tags: ['0'],
+                  id: 4,
+                },
+              ],
+            },
+            {
+              text: 'Child 2',
+              href: '#child2',
+              icon: 'fa fa-file-o',
+              tags: ['0'],
+              id: 5,
+            },
+          ],
         },
         {
           text: 'Parent 3',
@@ -302,16 +302,16 @@
                   href: '#grandchild1',
                   icon: 'fa fa-file-o',
                   tags: ['0'],
-                  id: 3
+                  id: 3,
                 },
                 {
                   text: 'Grandchild 2',
                   href: '#grandchild2',
                   icon: 'fa fa-file-o',
                   tags: ['0'],
-                  id: 4
-                }
-              ]
+                  id: 4,
+                },
+              ],
             },
             {
               text: 'do not auto expand 9',
@@ -325,19 +325,19 @@
                   href: '#grandchild1',
                   icon: 'fa fa-file-o',
                   tags: ['0'],
-                  id: 3
+                  id: 3,
                 },
                 {
                   text: 'Grandchild 2',
                   href: '#grandchild2',
                   icon: 'fa fa-file-o',
                   tags: ['0'],
-                  id: 4
-                }
-              ]
-            }
-          ]
-        }
+                  id: 4,
+                },
+              ],
+            },
+          ],
+        },
       ];
     }
   }

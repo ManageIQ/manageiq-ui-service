@@ -18,9 +18,9 @@
         controllerAs: 'vm',
         title: N_('Requests Details'),
         resolve: {
-          request: resolveRequest
-        }
-      }
+          request: resolveRequest,
+        },
+      },
     };
   }
 

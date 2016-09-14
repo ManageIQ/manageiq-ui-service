@@ -7,14 +7,14 @@
 
   function modalStateHelperProvider($stateProvider) {
     var provider = {
-      $get: [ModalStateHelper]
+      $get: [ModalStateHelper],
     };
 
     return provider;
 
     function ModalStateHelper() {
       var service = {
-        configureModals: configureModals
+        configureModals: configureModals,
       };
 
       return service;
@@ -30,7 +30,7 @@
       var stateConfig = {
         url: options.url,
         onEnter: ['$uibModal', '$state', onEnter],
-        onExit: onExit
+        onExit: onExit,
       };
 
       $stateProvider.state(stateName, stateConfig);

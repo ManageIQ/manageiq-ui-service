@@ -7,12 +7,12 @@
   /** @ngInject */
   function MessagesFactory() {
     var model = {
-      messages: []
+      messages: [],
     };
 
     var service = {
       items: model.messages,
-      clear: clear
+      clear: clear,
     };
 
     init();

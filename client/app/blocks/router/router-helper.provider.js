@@ -10,12 +10,12 @@
     /* jshint validthis:true */
     var config = {
       docTitle: undefined,
-      resolveAlways: {}
+      resolveAlways: {},
     };
 
     var provider = {
       configure: configure,
-      $get: RouterHelper
+      $get: RouterHelper,
     };
 
     $locationProvider.html5Mode(true);
@@ -32,13 +32,13 @@
       var hasOtherwise = false;
       var stateCounts = {
         errors: 0,
-        changes: 0
+        changes: 0,
       };
 
       var service = {
         configureStates: configureStates,
         getStates: getStates,
-        stateCounts: stateCounts
+        stateCounts: stateCounts,
       };
 
       init();

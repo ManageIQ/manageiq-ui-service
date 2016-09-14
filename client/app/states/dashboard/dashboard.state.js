@@ -19,15 +19,15 @@
         controllerAs: 'vm',
         title: N_('Dashboard'),
         data: {
-          requireUser: true
+          requireUser: true,
         },
         resolve: {
           definedServiceIdsServices: resolveServicesWithDefinedServiceIds,
           retiredServices: resolveRetiredServices,
           expiringServices: resolveExpiringServices,
-          allRequests: resolveAllRequests
-        }
-      }
+          allRequests: resolveAllRequests,
+        },
+      },
     };
   }
 

@@ -7,7 +7,7 @@
   /** @ngInject */
   function RecursionHelperFactory($compile) {
     var service = {
-      compile: compile
+      compile: compile,
     };
 
     return service;
@@ -30,7 +30,7 @@
 
       return {
         pre: (link && link.pre) ? link.pre : null,
-        post: post
+        post: post,
       };
 
       /**

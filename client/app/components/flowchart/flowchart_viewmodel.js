@@ -431,7 +431,7 @@ var flowchart = {
     this.sourceCoord = function() {
       return {
         x: this.sourceCoordX(),
-        y: this.sourceCoordY()
+        y: this.sourceCoordY(),
       };
     };
 
@@ -454,7 +454,7 @@ var flowchart = {
     this.destCoord = function() {
       return {
         x: this.destCoordX(),
-        y: this.destCoordY()
+        y: this.destCoordY(),
       };
     };
 

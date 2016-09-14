@@ -91,7 +91,7 @@
           },
         }).result;
       },
-      allowed: ShoppingCart.allowed
+      allowed: ShoppingCart.allowed,
     };
 
     function getNavigationItems(items) {

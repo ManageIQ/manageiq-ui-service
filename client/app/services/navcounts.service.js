@@ -10,7 +10,7 @@
 
     var service = {
       add: add,
-      counts: counts
+      counts: counts,
     };
 
     return service;
@@ -19,7 +19,7 @@
       if (!counts[key]) {
         counts[key] = {
           func: func,
-          interval: interval
+          interval: interval,
         };
       }
     }

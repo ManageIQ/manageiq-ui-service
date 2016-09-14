@@ -11,7 +11,7 @@
       info: info,
       success: success,
       error: error,
-      warning: warning
+      warning: warning,
     };
 
     var defaults = {
@@ -25,7 +25,7 @@
       // Classes
       toastClass: 'toasts',
       titleClass: 'toasts__title',
-      messageClass: 'toasts__message'
+      messageClass: 'toasts__message',
     };
 
     return service;

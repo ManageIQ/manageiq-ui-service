@@ -13,14 +13,14 @@
     return {
       'blank': {
         abstract: true,
-        templateUrl: 'app/layouts/blank.html'
+        templateUrl: 'app/layouts/blank.html',
       },
       'application': {
         abstract: true,
         templateUrl: 'app/layouts/application.html',
         onEnter: enterApplication,
-        onExit: exitApplication
-      }
+        onExit: exitApplication,
+      },
     };
   }
 

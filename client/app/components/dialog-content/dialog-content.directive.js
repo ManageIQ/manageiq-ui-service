@@ -12,13 +12,13 @@
       scope: {
         dialog: '=',
         options: '=?',
-        inputDisabled: '=?'
+        inputDisabled: '=?',
       },
       link: link,
       templateUrl: 'app/components/dialog-content/dialog-content.html',
       controller: DialogContentController,
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;
@@ -35,7 +35,7 @@
       vm.dateOptions = {
         autoclose: true,
         todayBtn: 'linked',
-        todayHighlight: true
+        todayHighlight: true,
       };
       vm.supportedDialog = true;
       vm.API_BASE = API_BASE;

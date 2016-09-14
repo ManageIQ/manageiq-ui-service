@@ -11,7 +11,7 @@
       listenForAutoRefreshMessages: listenForAutoRefreshMessages,
       refreshSingleDialogField: refreshSingleDialogField,
       setupDialogData: setupDialogData,
-      triggerAutoRefresh: triggerAutoRefresh
+      triggerAutoRefresh: triggerAutoRefresh,
     };
 
     return service;
@@ -144,8 +144,8 @@
           action: 'refresh_dialog_fields',
           resource: {
             dialog_fields: dialogFieldInfoToSend(allDialogFields),
-            fields: dialogFieldsToFetch
-          }
+            fields: dialogFieldsToFetch,
+          },
         })
       ).then(successCallback, failureCallback);
     }

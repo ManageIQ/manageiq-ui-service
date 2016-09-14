@@ -19,9 +19,9 @@
         title: N_('Service Template Details'),
         resolve: {
           dialogs: resolveDialogs,
-          serviceTemplate: resolveServiceTemplate
-        }
-      }
+          serviceTemplate: resolveServiceTemplate,
+        },
+      },
     };
   }
 
@@ -102,7 +102,7 @@
 
       function addFailure(result) {
         var errors = result.split(",");
-        for (var i = 0; i<errors.length; ++i) {
+        for (var i = 0; i < errors.length; ++i) {
           Notifications.error(__("There was an error adding to shopping cart: ") + errors[i]);
         }
       }

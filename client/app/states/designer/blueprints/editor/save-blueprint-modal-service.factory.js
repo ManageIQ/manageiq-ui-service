@@ -8,7 +8,7 @@
   function SaveBlueprintFactory($modal) {
     var modalOpen = false;
     var modalSaveBlueprint = {
-      showModal: showModal
+      showModal: showModal,
     };
 
     return modalSaveBlueprint;
@@ -23,8 +23,8 @@
           toState: toState,
           toParams: toParams,
           fromState: fromState,
-          fromParams: fromParams
-        }
+          fromParams: fromParams,
+        },
       };
       var modal = $modal.open(modalOptions);
 

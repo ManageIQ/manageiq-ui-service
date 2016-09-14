@@ -11,6 +11,10 @@
   ],
   "plugins": [
   ],
+  "globals": {
+    "__": true,  // Zanata parsing cue
+    "N_": true   // Zanata parsing cue
+  },
   "rules": {
     "accessor-pairs": "error",
     "array-bracket-spacing": "off",
@@ -24,7 +28,7 @@
       "always"
     ],
     "brace-style": [
-      2,
+      "error",
       "1tbs",
       {
         "allowSingleLine": true
@@ -38,7 +42,10 @@
       }
     ],
     "class-methods-use-this": "error",
-    "comma-dangle": "error",
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
     "comma-spacing": [
       "error",
       {
@@ -55,7 +62,7 @@
     "consistent-return": "off",
     "consistent-this": [
       "error",
-      "vm"
+      "this"
     ],
     "curly": "error",
     "default-case": "off",

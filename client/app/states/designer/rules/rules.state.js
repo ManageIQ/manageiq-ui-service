@@ -21,9 +21,9 @@
         resolve: {
           designerRules: resolveRules,
           fields: resolveRuleFields,
-          profiles: resolveProfiles
-        }
-      }
+          profiles: resolveProfiles,
+        },
+      },
     };
   }
 
@@ -131,7 +131,7 @@
     vm.editRuleId = -1;
     vm.listConfig = {
       selectItems: false,
-      showSelectBox: false
+      showSelectBox: false,
     };
 
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
@@ -147,8 +147,8 @@
         operation: 'inject',
         expression: {
           EQUAL: {
-          }
-        }
+          },
+        },
       };
 
       RulesState.addRule(newRule).then(addSuccess, addFailure);
@@ -183,8 +183,8 @@
 
     vm.toolbarConfig = {
       actionsConfig: {
-        actionsInclude: true
-      }
+        actionsInclude: true,
+      },
     };
   }
 })();

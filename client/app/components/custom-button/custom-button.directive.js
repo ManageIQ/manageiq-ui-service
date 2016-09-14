@@ -13,13 +13,13 @@
         customActions: '=',
         actions: '=?',
         serviceId: '=',
-        serviceTemplateCatalogId: '='
+        serviceTemplateCatalogId: '=',
       },
       link: link,
       templateUrl: 'app/components/custom-button/custom-button.html',
       controller: CustomButtonController,
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;
@@ -88,7 +88,7 @@
             buttonId: button.id,
             dialogId: button.resource_action.dialog_id,
             serviceId: serviceId,
-            serviceTemplateCatalogId: serviceTemplateCatalogId
+            serviceTemplateCatalogId: serviceTemplateCatalogId,
           });
         } else {
           if (assignedButton.method === 'post') {

@@ -15,7 +15,7 @@
   function exceptionHandlerProvider() {
     /* jshint validthis:true */
     this.config = {
-      appErrorPrefix: undefined
+      appErrorPrefix: undefined,
     };
 
     this.configure = function(appErrorPrefix) {

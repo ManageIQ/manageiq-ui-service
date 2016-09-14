@@ -15,8 +15,8 @@
         parent: 'application',
         url: '/designer/blueprints',
         redirectTo: 'designer.blueprints.list',
-        template: '<ui-view></ui-view>'
-      }
+        template: '<ui-view></ui-view>',
+      },
     };
   }
 })();

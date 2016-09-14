@@ -20,9 +20,9 @@
         params: {dialogId: null, button: null, serviceTemplateCatalogId: null},
         resolve: {
           dialog: resolveDialog,
-          service: resolveService
-        }
-      }
+          service: resolveService,
+        },
+      },
     };
   }
 

@@ -6,6 +6,6 @@
     'app.components',
     'ui.bootstrap.tabs',
     'flowChart',
-    'ngDragDrop'
+    'ngDragDrop',
   ]);
 })();

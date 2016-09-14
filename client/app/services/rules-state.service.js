@@ -16,7 +16,7 @@
 
     ruleState.getRules = function() {
       var options = {
-        expand: 'resources'
+        expand: 'resources',
       };
 
       return CollectionsApi.query('arbitration_rules', options);
@@ -24,7 +24,7 @@
 
     ruleState.getProfiles = function() {
       var options = {
-        expand: 'resources'
+        expand: 'resources',
       };
 
       return CollectionsApi.query('arbitration_profiles', options);
@@ -32,7 +32,7 @@
 
     ruleState.getRuleFields = function() {
       var options = {
-        expand: 'resources'
+        expand: 'resources',
       };
 
       // TODO: Get liest of fields from an API call
@@ -46,14 +46,14 @@
           "cloud_subnet_id",
           "security_group_id",
           "authentication_id",
-          "availability_zone_id"
+          "availability_zone_id",
         ]};
       });
     };
 
     ruleState.getProfiles = function() {
       var options = {
-        expand: 'resources'
+        expand: 'resources',
       };
 
       return CollectionsApi.query('arbitration_profiles', options);
@@ -97,14 +97,14 @@
             priority: nextRule.priority,
             operation: nextRule.operation,
             expression: nextRule.expression.exp,
-            arbitration_profile_id: nextRule.arbitration_profile_id
+            arbitration_profile_id: nextRule.arbitration_profile_id,
           };
           editRules.push(tmpRule);
         });
 
         var editObj = {
           "action": "edit",
-          "resources": editRules
+          "resources": editRules,
         };
 
         CollectionsApi.post('arbitration_rules', null, {}, editObj).then(editSuccess, editFailure);
@@ -123,7 +123,7 @@
 
       var ruleObj = {
         "action": "delete",
-        "resources": resources
+        "resources": resources,
       };
 
       CollectionsApi.post('arbitration_rules', null, {}, ruleObj).then(deleteSuccess, deleteFailure);
@@ -147,8 +147,8 @@
         operation: 'inject',
         expression: {
           EQUAL: {
-          }
-        }
+          },
+        },
       };
 
       return ruleObj;

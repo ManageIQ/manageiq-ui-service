@@ -15,7 +15,7 @@
       templateUrl: 'app/components/shopping-cart/shopping-cart.html',
       controller: ShoppingCartController,
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;

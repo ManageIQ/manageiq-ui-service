@@ -35,11 +35,11 @@
       restrict: 'AE',
       replace: true,
       scope: {
-        list: '='
+        list: '=',
       },
       templateUrl: 'app/components/blueprint-details-modal/order-list.directive.html',
       controller: ['$scope', '$filter', OrderListController],
-      controllerAs: 'vm'
+      controllerAs: 'vm',
     };
 
     return directive;
@@ -97,8 +97,8 @@
           "type": "container",
           "columns": [
             [],
-            []
-          ]
+            [],
+          ],
         }
       );
     }

@@ -15,8 +15,8 @@
         parent: 'application',
         url: '/services',
         redirectTo: 'services.list',
-        template: '<ui-view></ui-view>'
-      }
+        template: '<ui-view></ui-view>',
+      },
     };
   }
 })();

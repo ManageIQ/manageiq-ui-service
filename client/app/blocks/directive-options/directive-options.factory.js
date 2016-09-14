@@ -7,7 +7,7 @@
   /** @ngInject */
   function DirectiveOptionsFactory($interpolate) {
     var service = {
-      load: load
+      load: load,
     };
 
     var converters = {};

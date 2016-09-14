@@ -15,7 +15,7 @@
       templateUrl: 'app/components/request-list/request-list.html',
       controller: RequestListController,
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;

@@ -20,9 +20,9 @@
         resolve: {
           blueprints: resolveBlueprints,
           serviceCatalogs: resolveServiceCatalogs,
-          tenants: resolveTenants
-        }
-      }
+          tenants: resolveTenants,
+        },
+      },
     };
   }
 
@@ -30,7 +30,7 @@
   function resolveBlueprints(CollectionsApi) {
     var options = {
       expand: 'resources',
-      attributes: 'bundle'
+      attributes: 'bundle',
     };
 
     return CollectionsApi.query('blueprints', options);
@@ -50,7 +50,7 @@
       expand: 'resources',
       attributes: ['id', 'name'],
       sort_by: 'name',
-      sort_options: 'ignore_case'
+      sort_options: 'ignore_case',
     };
 
     return CollectionsApi.query('tenants', options);
@@ -99,15 +99,15 @@
       selectItems: false,
       showSelectBox: true,
       onClick: handleClick,
-      onCheckBoxChange: handleCheckBoxChange
+      onCheckBoxChange: handleCheckBoxChange,
     };
 
     vm.actionButtons = [
       {
         name: __('Publish'),
         title: __('Publish Blueprint'),
-        actionFn: publishBlueprint
-      }
+        actionFn: publishBlueprint,
+      },
     ];
 
     vm.enableButtonForItemFn = function(action, item) {
@@ -124,18 +124,18 @@
       {
         name: __('Edit'),
         title: __('Edit Blueprint'),
-        actionFn: editBlueprint
+        actionFn: editBlueprint,
       },
       {
         name: __('Duplicate'),
         title: __('Duplicate Blueprint'),
-        actionFn: duplicateBlueprint
+        actionFn: duplicateBlueprint,
       },
       {
         name: __('Delete'),
         title: __('Delete Blueprint'),
-        actionFn: deleteBlueprint
-      }
+        actionFn: deleteBlueprint,
+      },
     ];
 
     vm.toolbarConfig = {
@@ -145,81 +145,81 @@
             id: 'name',
             title: __('Name'),
             placeholder: __('Filter by Name'),
-            filterType: 'text'
+            filterType: 'text',
           },
           {
             id: 'visibility',
             title: __('Visibility'),
             placeholder: __('Filter by Visibility'),
             filterType: 'select',
-            filterValues: visibilityNames
+            filterValues: visibilityNames,
           },
           {
             id: 'catalog',
             title: __('Catalog'),
             placeholder: __('Filter by Catalog'),
             filterType: 'select',
-            filterValues: categoryNames
+            filterValues: categoryNames,
           },
           {
             id: 'publishState',
             title: __('Publish State'),
             placeholder: __('Filter by Publish State'),
             filterType: 'select',
-            filterValues: publishStateNames
-          }
+            filterValues: publishStateNames,
+          },
         ],
         resultsCount: vm.blueprintsList.length,
         appliedFilters: BlueprintsState.getFilters(),
-        onFilterChange: filterChange
+        onFilterChange: filterChange,
       },
       sortConfig: {
         fields: [
           {
             id: 'name',
             title: __('Name'),
-            sortType: 'alpha'
+            sortType: 'alpha',
           },
           {
             id: 'last_modified',
             title: __('Last Modified'),
-            sortType: 'numeric'
+            sortType: 'numeric',
           },
           {
             id: 'num_items',
             title: __('Items'),
-            sortType: 'numeric'
+            sortType: 'numeric',
           },
           {
             id: 'visibility',
             title: __('Visibility'),
-            sortType: 'alpha'
+            sortType: 'alpha',
           },
           {
             id: 'catalog',
             title: __('Catalog'),
-            sortType: 'alpha'
-          }
+            sortType: 'alpha',
+          },
         ],
         onSortChange: sortChange,
         isAscending: BlueprintsState.getSort().isAscending,
-        currentField: BlueprintsState.getSort().currentField
+        currentField: BlueprintsState.getSort().currentField,
       },
       actionsConfig: {
         primaryActions: [
           {
             name: __('Create'),
             title: __('Create a new Blueprint'),
-            actionFn: createBlueprint
+            actionFn: createBlueprint,
           },
           {
             name: __('Delete'),
             title: __('Delete Blueprint'),
             actionFn: deleteBlueprints,
-            isDisabled: (BlueprintsState.getSelectedBlueprints().length === 0)
-          }
-        ]
-      }
+            isDisabled: (BlueprintsState.getSelectedBlueprints().length === 0),
+          },
+        ],
+      },
     };
 
     function createBlueprint(action) {

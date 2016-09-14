@@ -18,16 +18,16 @@
         controllerAs: 'vm',
         title: N_('Service Details'),
         resolve: {
-          service: resolveService
-        }
-      }
+          service: resolveService,
+        },
+      },
     };
   }
 
   /** @ngInject */
   function resolveService($stateParams, CollectionsApi) {
     var requestAttributes = [
-      'provision_dialog'
+      'provision_dialog',
     ];
     var options = {attributes: requestAttributes};
 
@@ -89,7 +89,7 @@
 
     function submitDialog() {
       var dialogFieldData = {
-        href: '/api/services/' + service.id
+        href: '/api/services/' + service.id,
       };
 
       angular.forEach(allDialogFields, function(dialogField) {

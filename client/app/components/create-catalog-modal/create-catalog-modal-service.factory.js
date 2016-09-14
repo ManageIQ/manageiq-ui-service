@@ -8,7 +8,7 @@
   function CreateCatalogFactory($modal) {
     var modalOpen = false;
     var modalCreateCatalog = {
-      showModal: showModal
+      showModal: showModal,
     };
 
     return modalCreateCatalog;
@@ -17,7 +17,7 @@
       var modalOptions = {
         templateUrl: 'app/components/create-catalog-modal/create-catalog-modal.html',
         controller: CreateCatalogModalController,
-        controllerAs: 'vm'
+        controllerAs: 'vm',
       };
       var modal = $modal.open(modalOptions);
 
@@ -30,7 +30,7 @@
     var vm = this;
 
     vm.modalData = {
-      'catalogName': ''
+      'catalogName': '',
     };
 
     vm.saveCatalog = saveCatalog;

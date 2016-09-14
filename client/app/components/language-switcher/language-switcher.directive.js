@@ -14,7 +14,7 @@
       templateUrl: 'app/components/language-switcher/language-switcher.html',
       controller: LanguageSwitcherController,
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;

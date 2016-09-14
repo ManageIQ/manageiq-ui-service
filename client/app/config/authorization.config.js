@@ -13,7 +13,7 @@
     function interceptor($injector, $q) {
       return {
         response: response,
-        responseError: responseError
+        responseError: responseError,
       };
 
       function response(res) {

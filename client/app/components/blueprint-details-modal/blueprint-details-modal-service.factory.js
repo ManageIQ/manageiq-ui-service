@@ -8,7 +8,7 @@
   function BlueprintDetailsFactory($modal) {
     var modalOpen = false;
     var modalBlueprint = {
-      showModal: showModal
+      showModal: showModal,
     };
 
     return modalBlueprint;
@@ -23,8 +23,8 @@
           blueprint: resolveBlueprint,
           serviceCatalogs: resolveServiceCatalogs,
           serviceDialogs: resolveServiceDialogs,
-          tenants: resolveTenants
-        }
+          tenants: resolveTenants,
+        },
       };
 
       var modal = $modal.open(modalOptions);
@@ -63,7 +63,7 @@
           expand: 'resources',
           attributes: ['id', 'name'],
           sort_by: 'name',
-          sort_options: 'ignore_case'
+          sort_options: 'ignore_case',
         };
 
         return CollectionsApi.query('tenants', options);
@@ -95,10 +95,10 @@
 
     vm.visibilityOptions = [{
       id: 800,
-      name: 'Private'
+      name: 'Private',
     }, {
       id: 900,
-      name: 'Public'
+      name: 'Public',
     }];
     vm.visibilityOptions = vm.visibilityOptions.concat(tenants.resources);
 
@@ -126,8 +126,8 @@
         'name': vm.blueprint.name || __('Untitled Blueprint ') + BlueprintsState.getNextUniqueId(),
         'visibility': vm.blueprint.visibility,
         'catalog_id': (vm.blueprint.content.service_catalog ? vm.blueprint.content.service_catalog.id : null ),
-        'dialog_id': (vm.blueprint.content.service_dialog ? vm.blueprint.content.service_dialog.id : null )
-      }
+        'dialog_id': (vm.blueprint.content.service_dialog ? vm.blueprint.content.service_dialog.id : null ),
+      },
     };
 
     setModalDataEntrypoints();
@@ -374,7 +374,7 @@
               action: modalData.action,
               ae_namespace: namespace,
               ae_class: clazz,
-              ae_instance: instance
+              ae_instance: instance,
             });
           }
         }

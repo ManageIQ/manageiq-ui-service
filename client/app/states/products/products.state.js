@@ -14,8 +14,8 @@
       'products': {
         url: '/',
         redirectTo: 'marketplace',
-        template: '<ui-view></ui-view>'
-      }
+        template: '<ui-view></ui-view>',
+      },
     };
   }
 })();

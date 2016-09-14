@@ -12,7 +12,7 @@
         dashboard: {
           title: N_('Dashboard'),
           state: 'dashboard',
-          iconClass: 'fa fa-dashboard'
+          iconClass: 'fa fa-dashboard',
         },
         services: {
           title: N_('My Services'),
@@ -21,9 +21,9 @@
           badges: [
             {
               count: 287,
-              tooltip: N_('The total number of services that you have ordered, both active and retired')
-            }
-          ]
+              tooltip: N_('The total number of services that you have ordered, both active and retired'),
+            },
+          ],
         },
         requests: {
           title: N_('My Requests'),
@@ -32,9 +32,9 @@
           badges: [
             {
               count: 0,
-              tooltip: N_('The total number of requests that you have submitted')
-            }
-          ]
+              tooltip: N_('The total number of requests that you have submitted'),
+            },
+          ],
         },
         marketplace: {
           title: N_('Service Catalog'),
@@ -43,9 +43,9 @@
           badges: [
             {
               count: 0,
-              tooltip: N_('The total number of available catalog items')
-            }
-          ]
+              tooltip: N_('The total number of available catalog items'),
+            },
+          ],
         },
         designer: {
           title: N_('Designer'),
@@ -58,9 +58,9 @@
               badges: [
                 {
                   count: 0,
-                  tooltip: N_('The total number of available blueprints')
-                }
-              ]
+                  tooltip: N_('The total number of available blueprints'),
+                },
+              ],
             },
             rules: {
               title: N_('Rules'),
@@ -68,13 +68,13 @@
               badges: [
                 {
                   count: 0,
-                  tooltip: N_('The total number of available arbitration rules')
-                }
-              ]
-            }
-          }
-        }
-      }
+                  tooltip: N_('The total number of available arbitration rules'),
+                },
+              ],
+            },
+          },
+        },
+      },
     });
   }
 
@@ -90,7 +90,7 @@
       var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest'];
       var options = {
         auto_refresh: true,
-        filter: filterValues
+        filter: filterValues,
       };
 
       CollectionsApi.query('requests', options)

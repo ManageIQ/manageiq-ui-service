@@ -19,9 +19,9 @@
         title: 'Blueprint Designer',
         resolve: {
           blueprint: resolveBlueprint,
-          serviceTemplates: resolveServiceTemplates
-        }
-      }
+          serviceTemplates: resolveServiceTemplates,
+        },
+      },
     };
   }
   /** @ngInject */
@@ -39,7 +39,7 @@
     var options = {
       expand: 'resources',
       filter: ['service_template_catalog_id>0', 'display=true'],
-      attributes: attributes
+      attributes: attributes,
     };
 
     return CollectionsApi.query('service_templates', options);
