@@ -60,29 +60,15 @@
                       </tab-heading>
                       <tabset id="subtabs" ng-if="tab.subtabs != null">
                           <tab ng-repeat="subtab in tab.subtabs" heading="{{subtab.title}}" active="subtab.active" ng-click="tabClicked()">
-                              <ul class="catalog-items-list">
-                                  <li class="catalog-item" ng-repeat="item in subtab.items | filter:searchText"
-                                      data-drag="true" jqyoui-draggable="{onStart:'startCallback(item)'}"
-                                      data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
-                                      ng-click="addNodeByClick(item)">
-                                      <img ng-if="item.image" src="{{item.image}}">
-                                      <i ng-if="item.bundle && !item.image" class="fa fa-gift"></i>
-                                      {{ item.name }}
-                                  </li>
-                              </ul>
+                              <draggable-items items="subtab.items"
+                                               start-drag-callback="startCallback"
+                                               click-callback="addNodeByClick"/>
                           </tab>
                       </tabset>
                       <!- Primary Tabs without SubTabs (Bundles) -->
-                      <ul class="catalog-items-list" ng-if="tab.subtabs == null">
-                          <li class="catalog-item" ng-repeat="item in tab.items | filter:searchText"
-                              data-drag="true" jqyoui-draggable="{onStart:'startCallback(item)'}"
-                              data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
-                              ng-click="addNodeByClick(item)">
-                              <img ng-if="item.image" src="{{item.image}}">
-                              <i ng-if="item.bundle && !item.image" class="fa fa-gift"></i>
-                              <span>{{ item.name }}</span>
-                          </li>
-                      </ul>
+                      <draggable-items ng-if="tab.subtabs == null" items="tab.items"
+                          start-drag-callback="startCallback"
+                          click-callback="addNodeByClick"/>
                   </tab>
               </tabset>
 
