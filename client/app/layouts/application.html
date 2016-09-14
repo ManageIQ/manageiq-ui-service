@@ -42,13 +42,7 @@
             <li>
               <a href="#" target = "_new"></a>
             </li>
-            <li ng-controller="ModalCtrl as info">
-              <a href="#"  ng-click="info.open()" >
-                About
-              </a>
-              <div pf-about-modal is-open="info.isOpen" on-close="info.onClose()" additional-info="info.additionalInfo"
-               product-info="info.productInfo" title="info.title" copyright="info.copyright" img-alt="info.imgAlt" img-src="info.imgSrc">
-              </div>
+            <li about-modal>
             </li>
           </ul>
         </li>
