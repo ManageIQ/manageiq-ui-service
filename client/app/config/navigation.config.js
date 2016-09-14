@@ -154,11 +154,11 @@
     }
 
     function updateBlueprintsCount(item, data) {
-      Navigation.items.designer.secondary[item].count = data.subcount;
+      Navigation.items.designer.secondary[item].badges[0].count = data.subcount;
     }
 
     function updateRulesCount(item, data) {
-      Navigation.items.designer.secondary[item].count = data.subcount;
+      Navigation.items.designer.secondary[item].badges[0].count = data.subcount;
     }
   }
 })();
