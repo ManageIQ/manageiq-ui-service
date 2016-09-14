@@ -15,11 +15,11 @@
       warning: warning,
 
       // straight to console; bypass toastr
-      log: $log.log
+      log: $log.log,
     };
 
     var options = {
-      positionClass: 'toast-bottom-right'
+      positionClass: 'toast-bottom-right',
     };
 
     return service;

@@ -19,9 +19,9 @@
         controllerAs: 'vm',
         title: N_('Login'),
         data: {
-          layout: 'blank'
-        }
-      }
+          layout: 'blank',
+        },
+      },
     };
   }
 
@@ -33,7 +33,7 @@
 
     vm.credentials = {
       login: API_LOGIN,
-      password: API_PASSWORD
+      password: API_PASSWORD,
     };
 
     if (Session.privileges_error) {

@@ -19,8 +19,8 @@
         title: N_('Order Details'),
         resolve: {
           order: resolveOrder,
-        }
-      }
+        },
+      },
     };
   }
 

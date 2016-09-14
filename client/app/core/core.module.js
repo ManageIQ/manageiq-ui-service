@@ -23,6 +23,6 @@
 
     // Third party modules
     'ui.router',
-    'base64'
+    'base64',
   ]);
 })();

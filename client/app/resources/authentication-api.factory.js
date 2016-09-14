@@ -7,7 +7,7 @@
   /** @ngInject */
   function AuthenticationApiFactory($http, $base64, API_BASE, Session, Notifications) {
     var service = {
-      login: login
+      login: login,
     };
 
     return service;
@@ -18,7 +18,7 @@
           'Authorization': 'Basic ' + $base64.encode([userLogin, password].join(':')),
           'X-Auth-Token': undefined,
           'X-Miq-Group': undefined,
-        }
+        },
       }).then(loginSuccess, loginFailure);
 
       function loginSuccess(response) {

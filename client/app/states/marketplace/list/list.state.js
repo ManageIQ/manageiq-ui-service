@@ -19,9 +19,9 @@
         title: N_('Service Catalog'),
         resolve: {
           serviceTemplates: resolveServiceTemplates,
-          serviceCatalogs: resolveServiceCatalogs
-        }
-      }
+          serviceCatalogs: resolveServiceCatalogs,
+        },
+      },
     };
   }
 
@@ -74,43 +74,43 @@
             id: 'template_name',
             title: __('Name'),
             placeholder: __('Filter by Name'),
-            filterType: 'text'
+            filterType: 'text',
           },
           {
             id: 'template_description',
             title: __('Description'),
             placeholder: __('Filter by Description'),
-            filterType: 'text'
+            filterType: 'text',
           },
           {
             id: 'catalog_name',
             title: __('Catalog Name'),
             placeholder: __('Filter by Catalog Name'),
             filterType: 'select',
-            filterValues: categoryNames
-          }
+            filterValues: categoryNames,
+          },
         ],
         resultsCount: vm.serviceTemplatesList.length,
         appliedFilters: MarketplaceState.getFilters(),
-        onFilterChange: filterChange
+        onFilterChange: filterChange,
       },
       sortConfig: {
         fields: [
           {
             id: 'name',
-            title:  __('Name'),
-            sortType: 'alpha'
+            title: __('Name'),
+            sortType: 'alpha',
           },
           {
             id: 'catalog_name',
-            title:  __('Catalog Name'),
-            sortType: 'alpha'
-          }
+            title: __('Catalog Name'),
+            sortType: 'alpha',
+          },
         ],
         onSortChange: sortChange,
         isAscending: MarketplaceState.getSort().isAscending,
-        currentField: MarketplaceState.getSort().currentField
-      }
+        currentField: MarketplaceState.getSort().currentField,
+      },
     };
 
     /* Apply the filtering to the data list */

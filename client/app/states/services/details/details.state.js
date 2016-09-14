@@ -18,9 +18,9 @@
         controllerAs: 'vm',
         title: N_('Service Details'),
         resolve: {
-          service: resolveService
-        }
-      }
+          service: resolveService,
+        },
+      },
     };
   }
 
@@ -40,7 +40,7 @@
       'actions',
       'custom_actions',
       'provision_dialog',
-      'service_template'
+      'service_template',
     ];
     var options = {
       attributes: requestAttributes,

@@ -7,7 +7,7 @@
   /** @ngInject */
   function MultiTranscludeFactory() {
     var service = {
-      transclude: transclude
+      transclude: transclude,
     };
 
     return service;

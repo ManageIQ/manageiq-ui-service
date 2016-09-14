@@ -8,13 +8,13 @@
   function NavigationProvider() {
     var provider = {
       $get: Navigation,
-      configure: configure
+      configure: configure,
     };
 
     var model = {
       items: {
-        primary: {}
-      }
+        primary: {},
+      },
     };
 
     return provider;
@@ -26,7 +26,7 @@
     /** @ngInject */
     function Navigation($rootScope, $window, lodash) {
       var service = {
-        items: model.items
+        items: model.items,
       };
 
       return service;

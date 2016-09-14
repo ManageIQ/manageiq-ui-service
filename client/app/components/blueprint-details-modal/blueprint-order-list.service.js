@@ -56,8 +56,8 @@
               "type": "container",
               "columns": [
                 [item],
-                []
-              ]
+                [],
+              ],
             };
           }
         }
@@ -69,7 +69,7 @@
       // lists[0] = prov. order list
       vm.dndModels.provOrder = {
         selected: null,
-        list: lists[0].containers
+        list: lists[0].containers,
       };
 
       // lists[1] = action order list
@@ -78,7 +78,7 @@
         vm.actionOrderEqualsProvOrder = false;
         vm.dndModels.actionOrder = {
           selected: null,
-          list: lists[1].containers
+          list: lists[1].containers,
         };
       } else {
         // action order == prov. order

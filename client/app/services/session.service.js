@@ -8,7 +8,7 @@
   function SessionFactory($http, $sessionStorage, gettextCatalog, $window, $state, lodash, RBAC) {
     var model = {
       token: null,
-      user: {}
+      user: {},
     };
 
     var service = {
@@ -19,7 +19,7 @@
       currentUser: currentUser,
       loadUser: loadUser,
       switchGroup: switchGroup,
-      activeNavigationFeatures: activeNavigationFeatures
+      activeNavigationFeatures: activeNavigationFeatures,
     };
 
     destroy();
@@ -92,11 +92,11 @@
 
     function setRBACForNavigation(productFeatures) {
       var features = {
-        dashboard:   {show: entitledForDashboard(productFeatures)},
-        services:    {show: entitledForServices(productFeatures)},
-        requests:    {show: entitledForRequests(productFeatures)},
+        dashboard: {show: entitledForDashboard(productFeatures)},
+        services: {show: entitledForServices(productFeatures)},
+        requests: {show: entitledForRequests(productFeatures)},
         marketplace: {show: entitledForServiceCatalogs(productFeatures)},
-        blueprints:  {show: entitledForCatalogItems(productFeatures) && $state.blueprints_flag}
+        blueprints: {show: entitledForCatalogItems(productFeatures) && $state.blueprints_flag},
       };
       model.navFeatures = features;
 
@@ -105,13 +105,13 @@
 
     function setRBACForActions(productFeatures) {
       var features = {
-        service_view:        {show: angular.isDefined(productFeatures.service_view)},
-        service_edit:        {show: angular.isDefined(productFeatures.service_edit)},
-        service_delete:      {show: angular.isDefined(productFeatures.service_delete)},
+        service_view: {show: angular.isDefined(productFeatures.service_view)},
+        service_edit: {show: angular.isDefined(productFeatures.service_edit)},
+        service_delete: {show: angular.isDefined(productFeatures.service_delete)},
         service_reconfigure: {show: angular.isDefined(productFeatures.service_reconfigure)},
-        service_retire_now:  {show: angular.isDefined(productFeatures.service_retire_now)},
-        service_retire:      {show: angular.isDefined(productFeatures.service_retire)},
-        service_ownership:   {show: angular.isDefined(productFeatures.service_ownership)}
+        service_retire_now: {show: angular.isDefined(productFeatures.service_retire_now)},
+        service_retire: {show: angular.isDefined(productFeatures.service_retire)},
+        service_ownership: {show: angular.isDefined(productFeatures.service_ownership)},
       };
       model.actionFeatures = features;
 

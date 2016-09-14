@@ -23,7 +23,7 @@
         showBorder: false,
         onNodeExpanded: function(event, node) {
           scope.vm.onNodeExpanded(event, node);
-        }
+        },
       });
 
       // Get the inital root nodes

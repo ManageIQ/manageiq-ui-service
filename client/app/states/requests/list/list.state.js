@@ -20,8 +20,8 @@
         resolve: {
           requests: resolveRequests,
           orders: resolveOrders,
-        }
-      }
+        },
+      },
     };
   }
 
@@ -72,9 +72,9 @@
     vm.toolbarConfig = {
       filterConfig: {
         fields: [
-           {
+          {
             id: 'description',
-            title:  __('Description'),
+            title: __('Description'),
             placeholder: __('Filter by Description'),
             filterType: 'text',
           },
@@ -145,9 +145,9 @@
     vm.orderToolbarConfig = {
       filterConfig: {
         fields: [
-           {
+          {
             id: 'name',
-            title:  __('Name'),
+            title: __('Name'),
             placeholder: __('Filter by Name'),
             filterType: 'text',
           },
@@ -188,8 +188,8 @@
         ],
         onSortChange: orderSortChange,
         isAscending: OrdersState.getSort().isAscending,
-        currentField: OrdersState.getSort().currentField
-      }
+        currentField: OrdersState.getSort().currentField,
+      },
     };
 
     if (RequestsState.filterApplied) {

@@ -92,7 +92,7 @@
           },
         }).result;
       },
-      allowed: ShoppingCart.allowed
+      allowed: ShoppingCart.allowed,
     };
 
     vm.notificationsDrawerShown = false;

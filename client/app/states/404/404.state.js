@@ -18,9 +18,9 @@
         templateUrl: 'app/states/404/404.html',
         title: '404',
         data: {
-          layout: 'blank'
-        }
-      }
+          layout: 'blank',
+        },
+      },
     };
   }
 })();

@@ -9,7 +9,7 @@
     var service = {
       start: start,
       stop: stop,
-      stopAll: stopAll
+      stopAll: stopAll,
     };
 
     var polls = {};

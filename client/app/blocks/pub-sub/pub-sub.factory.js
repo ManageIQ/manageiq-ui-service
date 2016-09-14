@@ -7,7 +7,7 @@
   /** @ngInject */
   function PubSubFactory(logger) {
     var service = {
-      events: events
+      events: events,
     };
 
     return service;

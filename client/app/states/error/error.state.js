@@ -20,12 +20,12 @@
         controllerAs: 'vm',
         title: N_('Error'),
         data: {
-          layout: 'blank'
+          layout: 'blank',
         },
         params: {
-          error: null
-        }
-      }
+          error: null,
+        },
+      },
     };
   }
 

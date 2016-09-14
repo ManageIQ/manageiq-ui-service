@@ -15,8 +15,8 @@
         url: '/logout',
         controller: StateController,
         controllerAs: 'vm',
-        title: N_('Logout')
-      }
+        title: N_('Logout'),
+      },
     };
   }
 

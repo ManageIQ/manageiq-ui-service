@@ -38,7 +38,7 @@ angular.module('flowChart', ['dragging'] )
   return {
     restrict: 'A',
     scope: {
-      viewModel: "="
+      viewModel: "=",
     },
     link: function(scope, elem, attr) {
       //
@@ -72,7 +72,7 @@ angular.module('flowChart', ['dragging'] )
 
         scope.$digest();
       });
-    }
+    },
   };
 })
 

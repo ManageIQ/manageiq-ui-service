@@ -7,7 +7,7 @@
   /** @ngInject */
   function EditServiceFactory($modal) {
     var modalService = {
-      showModal: showModal
+      showModal: showModal,
     };
 
     return modalService;
@@ -19,8 +19,8 @@
         controllerAs: 'vm',
         size: 'lg',
         resolve: {
-          serviceDetails: resolveServiceDetails
-        }
+          serviceDetails: resolveServiceDetails,
+        },
       };
       var modal = $modal.open(modalOptions);
 
@@ -43,8 +43,8 @@
       'action': 'edit',
       'resource': {
         'name': vm.service.name || '',
-        'description': vm.service.description || ''
-      }
+        'description': vm.service.description || '',
+      },
     };
 
     activate();

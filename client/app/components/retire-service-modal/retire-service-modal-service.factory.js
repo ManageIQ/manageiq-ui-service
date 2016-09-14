@@ -7,7 +7,7 @@
   /** @ngInject */
   function RetireServiceFactory($modal) {
     var modalService = {
-      showModal: showModal
+      showModal: showModal,
     };
 
     return modalService;
@@ -19,8 +19,8 @@
         controllerAs: 'vm',
         size: 'lg',
         resolve: {
-          serviceDetails: resolveServiceDetails
-        }
+          serviceDetails: resolveServiceDetails,
+        },
       };
       var modal = $modal.open(modalOptions);
 
@@ -44,14 +44,14 @@
       action: 'retire',
       resource: {
         date: vm.service.retires_on ? existingUTCDate : new Date(),
-        warn: vm.service.retirement_warn || 0
-      }
+        warn: vm.service.retirement_warn || 0,
+      },
     };
 
     vm.dateOptions = {
       autoclose: true,
       todayBtn: 'linked',
-      todayHighlight: true
+      todayHighlight: true,
     };
 
     vm.warningOptions = [

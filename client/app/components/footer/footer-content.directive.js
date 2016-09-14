@@ -14,7 +14,7 @@
       templateUrl: 'app/components/footer/footer-content.html',
       controller: FooterController,
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;

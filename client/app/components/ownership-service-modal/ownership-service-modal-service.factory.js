@@ -7,7 +7,7 @@
   /** @ngInject */
   function OwnershipServiceFactory($modal) {
     var modalService = {
-      showModal: showModal
+      showModal: showModal,
     };
 
     return modalService;
@@ -21,8 +21,8 @@
         resolve: {
           serviceDetails: resolveServiceDetails,
           users: resolveUsers,
-          groups: resolveGroups
-        }
+          groups: resolveGroups,
+        },
       };
       var modal = $modal.open(modalOptions);
 
@@ -32,7 +32,7 @@
       function resolveServiceDetails(CollectionsApi) {
         var requestAttributes = [
           'evm_owner.userid',
-          'miq_group.description'
+          'miq_group.description',
         ];
         var options = {attributes: requestAttributes};
 
@@ -68,12 +68,12 @@
       'action': 'set_ownership',
       'resource': {
         'owner': {
-          'userid': vm.service.evm_owner && vm.service.evm_owner.userid || ''
+          'userid': vm.service.evm_owner && vm.service.evm_owner.userid || '',
         },
         'group': {
-          'description': vm.service.miq_group && vm.service.miq_group.description || ''
-        }
-      }
+          'description': vm.service.miq_group && vm.service.miq_group.description || '',
+        },
+      },
     };
     activate();
 
