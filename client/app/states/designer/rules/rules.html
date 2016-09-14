@@ -12,7 +12,10 @@
   </span>
   <div pf-toolbar class="designer-rules-toolbar" id="designerRulesToolbar" config="vm.toolbarConfig">
     <actions>
-      <button class="btn btn-primary" type="button" ng-click="vm.addRule()" title="{{'Create a new rule' | translate}}">
+      <button class="btn btn-primary" type="button"
+              ng-click="vm.addRule()"
+              ng-disabled="vm.editMode"
+              title="{{'Create a new rule' | translate}}">
         <span class="fa fa-plus"></span>
         {{'Create' | translate}}
       </button>
@@ -108,18 +111,23 @@
               </div>
               <div ng-if="!item.editMode" class="pull-right">
                 <div class="btn-container">
-                  <a class="btn btn-link priority-button" type=button" ng-click="vm.downPriority(item)">
+                  <button class="btn btn-link priority-button" type=button"
+                     ng-click="vm.downPriority(item)"
+                     ng-disabled="vm.editMode">
                     <span class="fa fa-arrow-down"></span>
-                  </a>
-                  <a class="btn btn-link priority-button" type=button" ng-click="vm.upPriority(item)">
+                  </button>
+                  <button class="btn btn-link priority-button" type=button"
+                     ng-click="vm.upPriority(item)"
+                     ng-disabled="vm.editMode">
                     <span class="fa fa-arrow-up"></span>
-                  </a>
+                  </button>
                 </div>
                 <div class="btn-container">
-                  <a class="btn btn-link" type=button" ng-click="vm.editRule(item)">
+                  <button class="btn btn-link" type=button" ng-click="vm.editRule(item)" ng-disabled="vm.editMode">
                     <span class="pficon pficon-edit"></span>
-                  </a>
+                  </button>
                   <button class="btn btn-link" type=button"
+                          ng-disabled="vm.editMode"
                           confirmation
                           confirmation-if="true"
                           confirmation-title="{{'Delete Rule'|translate}}"

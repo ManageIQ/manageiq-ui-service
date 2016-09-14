@@ -24,6 +24,8 @@
       .priority-button
         visibility: visible
         pointer-events: all
+      .priority-button[disabled]
+        visibility: hidden
 
     &::before
       border-color: #0d6f9a
@@ -39,6 +41,11 @@
       left: 4px
       height: 55px
       width: 10px
+
+  .btn[disabled]
+    .fa, .pficon
+      color: #8b8d8f !important
+      opacity: 1
 
   .content-container
     padding: 0

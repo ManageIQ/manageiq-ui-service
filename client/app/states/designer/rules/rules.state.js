@@ -42,7 +42,7 @@
   }
 
   /** @ngInject */
-  function RulesController(designerRules, fields, profiles, RulesState, $scope, $timeout) {
+  function RulesController(designerRules, fields, profiles, RulesState, SaveRuleModal, $state, $scope, $timeout) {
     /* jshint validthis: true */
     var vm = this;
     vm.operators = [
@@ -210,10 +210,51 @@
     updateRulesInfo();
 
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-      if (toState.name === 'login') {
+      var editedRule;
+
+      if (toState.name === 'login' || vm.saveModalShown) {
         return;
       }
-      /** TODO Check if editing a rule **/
+
+      if (fromState.name === "designer.rules" && toState.name !== "designer.rules" && vm.editMode) {
+        editedRule = vm.designerRules.find(function(rule) {
+          return rule.editMode === true;
+        });
+        if (!editedRule && vm.designerRules[0] && !vm.designerRules[0].id) {
+          editedRule = vm.designerRules[0];
+        }
+        vm.saveModalShown = true;
+        SaveRuleModal.showModal(save, doNotSave, cancel);
+        event.preventDefault();
+      }
+
+      function save() {
+        vm.editMode = false;
+        vm.saveModalShown = false;
+        function saveSuccess() {
+          $state.go(toState, toParams);
+        }
+
+        function saveFailure() {
+          $state.go(toState, toParams);
+        }
+
+        if (editedRule.original) {
+          RulesState.editRules([convertToRuleObj(editedRule)]).then(saveSuccess, saveFailure);
+        } else {
+          RulesState.addRule(convertToRuleObj(editedRule)).then(saveSuccess, saveFailure);
+        }
+      }
+
+      function doNotSave() {
+        vm.editMode = false;
+        vm.saveModalShown = false;
+        $state.go(toState, toParams);
+      }
+
+      function cancel() {
+        vm.saveModalShown = false;
+      }
     });
 
     vm.addRule = function() {
