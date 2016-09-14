@@ -7,7 +7,7 @@ angular.module('app.states')
           if (toState.name === 'login') {
             return;
           }
-          if (fromState.name === "blueprints.designer" && toState.name !== "blueprints.designer") {
+          if (fromState.name === "designer.blueprints.editor" && toState.name !== "designer.blueprints.editor") {
             var origBlueprint = BlueprintsState.getOriginalBlueprint();
             if (!BlueprintsState.doNotSave() && !angular.equals(origBlueprint, $scope.blueprint) && !event.defaultPrevented) {
               SaveBlueprintModal.showModal($scope.blueprint, toState, toParams, fromState, fromParams);
