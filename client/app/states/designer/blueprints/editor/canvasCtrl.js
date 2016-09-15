@@ -12,7 +12,7 @@
       chartDataModel = $scope.$parent.blueprint.ui_properties.chartDataModel;
     }
 
-      // Create the view-model for the chart and attach to the scope.
+    // Create the view-model for the chart and attach to the scope.
     $scope.chartViewModel = new flowchart.ChartViewModel(chartDataModel);
     $scope.$parent.chartViewModel = $scope.chartViewModel;
 
@@ -85,7 +85,7 @@
     };
 
     function getNewId() {
-        // random number between 1 and 600
+      // random number between 1 and 600
       return Math.floor((Math.random() * 600) + 1);
     }
 
@@ -106,43 +106,43 @@
       return {'name': copyName, 'numDups': numDups};
     }
 
-      /*
-       *    FlowChart Vars and Methods
-       */
+    /*
+     *    FlowChart Vars and Methods
+     */
 
-      //
-      // Code for the delete key.
-      //
+    //
+    // Code for the delete key.
+    //
     var deleteKeyCode = 46;
 
-      //
-      // Code for control key.
-      //
+    //
+    // Code for control key.
+    //
     var ctrlKeyCode = 17;
 
-      //
-      // Set to true when the ctrl key is down.
-      //
+    //
+    // Set to true when the ctrl key is down.
+    //
     var ctrlDown = false;
 
-      //
-      // Code for A key.
-      //
+    //
+    // Code for A key.
+    //
     var aKeyCode = 65;
 
-      //
-      // Code for D key
-      //
+    //
+    // Code for D key
+    //
     var dKeyCode = 68;
 
-      //
-      // Code for esc key.
-      //
+    //
+    // Code for esc key.
+    //
     var escKeyCode = 27;
 
-      //
-      // Event handler for key-down on the flowchart.
-      //
+    //
+    // Event handler for key-down on the flowchart.
+    //
     $scope.$on('bodyKeyDown', function(evt, args) {
       if (args.origEvent.keyCode === ctrlKeyCode) {
         ctrlDown = true;
@@ -151,18 +151,18 @@
       }
 
       if (args.origEvent.keyCode === aKeyCode && ctrlDown) {
-          //
-          // Ctrl + A
-          //
+        //
+        // Ctrl + A
+        //
         $scope.chartViewModel.selectAll();
         args.origEvent.stopPropagation();
         args.origEvent.preventDefault();
       }
 
       if (args.origEvent.keyCode === dKeyCode && ctrlDown) {
-          //
-          // Ctrl + D
-          //
+        //
+        // Ctrl + D
+        //
         if ($scope.chartViewModel.getSelectedNodes().length === 1) {
           $scope.duplicateSelected();
         }
@@ -171,20 +171,20 @@
       }
     });
 
-      //
-      // Event handler for key-up on the flowchart.
-      //
+    //
+    // Event handler for key-up on the flowchart.
+    //
 
     $scope.$on('bodyKeyUp', function(evt, args) {
       if (args.origEvent.keyCode === deleteKeyCode) {
-          //
-          // Delete key.
-          //
+        //
+        // Delete key.
+        //
         $scope.deleteSelected();
       }
 
       if (args.origEvent.keyCode === escKeyCode) {
-          // Escape.
+        // Escape.
         $scope.chartViewModel.deselectAll();
       }
 
