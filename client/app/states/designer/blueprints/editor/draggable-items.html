@@ -1,0 +1,10 @@
+<ul class="catalog-items-list">
+    <li class="catalog-item" ng-repeat="item in vm.items | filter:searchText"
+        data-drag="true" jqyoui-draggable="{onStart:'vm.startDragCallbackfmDir(item)'}"
+        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+        ng-click="vm.clickCallbackfmDir(item)">
+        <img ng-if="item.image" src="{{item.image}}">
+        <i ng-if="item.bundle && !item.image" class="fa fa-gift"></i>
+        <span>{{ item.name }}</span>
+    </li>
+</ul>

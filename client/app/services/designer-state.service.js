@@ -94,7 +94,18 @@
         {
           title: 'Orchestration',
           subtabs: [
-            {title: 'Azure Stacks'},
+            {title: 'Azure Stacks',
+             subtabs: [
+               {title: 'One'},
+               {title: 'Two',
+                 newItem: {
+                   name: 'Generic Two Item',
+                   type: 'generic',
+                   icon: "pficon-regions",
+                   fontFamily: "PatternFlyIcons-webfont",
+                   fontContent: "\ue909",
+                 }}
+             ]},
             {title: 'CloudFormation'},
             {title: 'Heat Templates'},
           ],

@@ -47,9 +47,9 @@
   <!-- endinject -->
   <!-- endbuild -->
 </head>
-<body ng-controller="AppController"
-      ng-keydown="keyDown($event)"
-      ng-keyup="keyUp($event)">
+<body ng-controller="AppController as vm"
+      ng-keydown="vm.keyDown($event)"
+      ng-keyup="vm.keyUp($event)">
   <div class="ng-cloak splash">
     <div class="splash__overlay">
       <div class="splash__message"></div>
@@ -191,6 +191,7 @@
   <script src="/client/app/states/dashboard/dashboard.state.js"></script>
   <script src="/client/app/states/designer/blueprints/blueprints.state.js"></script>
   <script src="/client/app/states/designer/blueprints/editor/canvasCtrl.js"></script>
+  <script src="/client/app/states/designer/blueprints/editor/draggable-items.directive.js"></script>
   <script src="/client/app/states/designer/blueprints/editor/editor.state.js"></script>
   <script src="/client/app/states/designer/blueprints/editor/editorCtrl.js"></script>
   <script src="/client/app/states/designer/blueprints/editor/save-blueprint-modal-service.factory.js"></script>
