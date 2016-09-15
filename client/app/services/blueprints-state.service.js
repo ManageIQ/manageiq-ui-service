@@ -273,7 +273,8 @@
           var promises = [];
           for (var i = 0; i < chartDataModel.nodes.length; i++) {
             var nodeSrvTemplate = chartDataModel.nodes[i];
-            if (angular.isDefined(nodeSrvTemplate.origTags) && angular.isDefined(nodeSrvTemplate.tags) && angular.isDefined(nodeSrvTemplate.id)) {
+            if (angular.isDefined(nodeSrvTemplate.origTags) && angular.isDefined(nodeSrvTemplate.tags)
+              && angular.isDefined(nodeSrvTemplate.id)) {
               promises.push(saveServiceItemTags(nodeSrvTemplate.id, nodeSrvTemplate.tags, nodeSrvTemplate.origTags));
             }
           }
