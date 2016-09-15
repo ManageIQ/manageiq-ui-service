@@ -18,8 +18,6 @@
       var lists = [];
       var i, item, l, order;
 
-
-      // lists[0] = prov. order list, lists[1] = action order list
       lists[0] = {"containers": []};
       lists[1] = {"containers": []};
 

@@ -6,7 +6,6 @@
 
   /** @ngInject */
   function BrowseEntryPointFactory($modal) {
-    var modalOpen = false;
     var modalEntryPoint = {
       showModal: showModal,
     };
@@ -53,14 +52,6 @@
     function activate() {
     }
 
-    function findWithAttr(array, attr, value) {
-      for (var i = 0; i < array.length; i += 1) {
-        if (array[i][attr] === value) {
-          return i;
-        }
-      }
-    }
-
     function saveEntryPoint() {
       saveSuccess();
 
@@ -79,10 +70,6 @@
         } else {
           console.log("No " + vm.entryPointTypeTitle + " Entry Point selected.");
         }
-      }
-
-      function saveFailure() {
-        console.log("Failed to save " + vm.entryPointTypeTitle + " Entry Point.");
       }
     }
 

@@ -22,8 +22,6 @@
 
   /** @ngInject */
   function StateController($state, Session) {
-    var vm = this;
-
     activate();
 
     function activate() {

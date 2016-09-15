@@ -31,10 +31,6 @@
     };
 
     ruleState.getRuleFields = function() {
-      var options = {
-        expand: 'resources',
-      };
-
       // TODO: Get liest of fields from an API call
       return $timeout(function() {
         return {resources: [

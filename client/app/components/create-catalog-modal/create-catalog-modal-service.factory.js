@@ -6,7 +6,6 @@
 
   /** @ngInject */
   function CreateCatalogFactory($modal) {
-    var modalOpen = false;
     var modalCreateCatalog = {
       showModal: showModal,
     };
@@ -44,10 +43,6 @@
         } else {
           console.log("Catalog Name not provided.");
         }
-      }
-
-      function saveFailure() {
-        console.log("Failed to save Catalog.");
       }
     }
   }

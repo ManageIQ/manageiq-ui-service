@@ -1,3 +1,5 @@
+/*eslint no-unused-vars: 0*/
+
 //
 // http://www.justinmccandless.com/blog/Patching+jQuery's+Lack+of+SVG+Support
 //
@@ -18,7 +20,7 @@ var removeClassSVG = function(obj, remove) {
   // if the class already doesn't exist, return false now
   if (index === -1) {
     return false;
-  }  else {
+  } else {
     // string manipulation to remove the class
     classes = classes.substring(0, index) + classes.substring((index + remove.length), classes.length);
 
@@ -37,12 +39,12 @@ var hasClassSVG = function(obj, has) {
   if (!classes) {
     return false;
   }
-    
+
   var index = classes.search(has);
 
   if (index === -1) {
     return false;
-  }  else {
+  } else {
     return true;
   }
 };
