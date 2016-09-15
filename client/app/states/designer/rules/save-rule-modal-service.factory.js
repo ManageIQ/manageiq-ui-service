@@ -7,7 +7,7 @@
   /** @ngInject */
   function SaveRuleFactory($modal) {
     var modalSaveRule = {
-      showModal: showModal
+      showModal: showModal,
     };
 
     return modalSaveRule;
@@ -20,8 +20,8 @@
         resolve: {
           saveCallback: resolveSave,
           doNotSaveCallback: resolveDoNotSave,
-          cancelCallback: resolveCancel
-        }
+          cancelCallback: resolveCancel,
+        },
       };
 
       function resolveSave() {

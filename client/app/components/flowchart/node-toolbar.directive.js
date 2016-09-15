@@ -10,12 +10,12 @@
       restrict: 'E',
       scope: {
         node: '=',
-        nodeActions: '='
+        nodeActions: '=',
       },
       controller: NodeToolbarController,
       templateUrl: 'app/components/flowchart/node-toolbar.html',
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;

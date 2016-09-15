@@ -479,7 +479,7 @@ var flowchart = {
     };
 
     this.middleX = function(scale) {
-      if (typeof (scale) === "undefined") {
+      if (angular.isUndefined(typeof (scale))) {
         scale = 0.5;
       }
 
@@ -487,7 +487,7 @@ var flowchart = {
     };
 
     this.middleY = function(scale) {
-      if (typeof (scale) === "undefined") {
+      if (angular.isUndefined(typeof (scale))) {
         scale = 0.5;
       }
 
@@ -652,20 +652,20 @@ var flowchart = {
         "id": 1,
         "name": "connect",
         "iconClass": "fa fa-share-alt",
-        "action": "nodeActionConnect"
+        "action": "nodeActionConnect",
       },
       {
         "id": 2,
         "name": "edit",
         "iconClass": "pf pficon-edit",
-        "action": "nodeActionEdit"
+        "action": "nodeActionEdit",
       },
       {
         "id": 3,
         "name": "tag",
         "iconClass": "fa fa-tag",
-        "action": "nodeActionTag"
-      }
+        "action": "nodeActionTag",
+      },
     ];
 
     // Reference to the underlying data.

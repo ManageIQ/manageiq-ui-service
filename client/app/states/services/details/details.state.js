@@ -56,14 +56,14 @@
     var vm = this;
     setInitialVars(vm);
 
-    if (!angular.isDefined(vm.service.vms)) {
+    if (angular.isUndefined(vm.service.vms)) {
       vm.vms = [];
     } else {
       vm.vms = vm.service.vms;
     }
 
     var actions = vm.service.actions;
-    if (actions !== undefined) {
+    if (angular.isDefined(actions)) {
       for (var i = 0; i < actions.length; i++) {
         if (actions[i].name === "reconfigure") {
           vm.service.reconfigure = true;

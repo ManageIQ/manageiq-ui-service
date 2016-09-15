@@ -11,12 +11,12 @@
       scope: {
         tags: '=',
         objectType: '@?',
-        objectId: '=?'
+        objectId: '=?',
       },
       controller: TaggingController,
       templateUrl: 'app/components/tagging/tagging.html',
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;
@@ -67,7 +67,7 @@
         var attributes = ['categorization', 'category.id', 'category.single_value'];
         var options = {
           expand: 'resources',
-          attributes: attributes
+          attributes: attributes,
         };
 
         CollectionsApi.query('tags', options).then(loadSuccess, loadFailure);
@@ -89,7 +89,7 @@
         var deferred = $q.defer();
 
         var options = {
-          expand: 'resources'
+          expand: 'resources',
         };
 
         CollectionsApi.query('categories', options).then(loadSuccess, loadFailure);
@@ -114,7 +114,7 @@
         var attributes = ['categorization', 'category.id', 'category.single_value'];
         var options = {
           expand: 'resources',
-          attributes: attributes
+          attributes: attributes,
         };
 
         var collection = vm.objectType + "\/" + vm.objectId + "\/" + 'tags';
@@ -160,7 +160,7 @@
 
       $scope.addTag = function() {
         // Handle single_value category/tags
-        if (vm.tags.selectedTag.category && vm.tags.selectedTag.category.single_value !== undefined) {
+        if (vm.tags.selectedTag.category && angular.isDefined(vm.tags.selectedTag.category.single_value)) {
           if (vm.tags.selectedTag.category.single_value) {
             // Find existing tag w/ category in tags.of_item
             for (var i = 0; i < vm.tags.of_item.length; i++) {

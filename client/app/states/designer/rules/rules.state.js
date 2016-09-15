@@ -48,12 +48,12 @@
     vm.operators = [
       {
         value: 'EQUAL',
-        name: "equals"
+        name: "equals",
       },
       {
         value: 'NOT',
-        name: "does not equal"
-      }
+        name: "does not equal",
+      },
     ];
 
     var compareRules = function(item1, item2) {
@@ -106,11 +106,11 @@
       var ruleObj = {
         id: rule.id,
         priority: rule.priority,
-        operation: rule.operation
+        operation: rule.operation,
       };
       var fieldObj = {
         field: rule.field,
-        value: rule.value
+        value: rule.value,
       };
 
       var operator = vm.operators.find(function(nextOperator) {
@@ -118,11 +118,11 @@
       });
       if (operator.value === "EQUAL") {
         ruleObj.expression = {
-          EQUAL: fieldObj
+          EQUAL: fieldObj,
         };
       } else {
         ruleObj.expression = {
-          NOT: fieldObj
+          NOT: fieldObj,
         };
       }
       var profile = vm.profiles.find(function(nextProfile) {
@@ -277,7 +277,7 @@
         field: rule.field,
         operator: rule.operator.value,
         value: rule.value,
-        arbitration_profile_id: rule.arbitration_profile_id
+        arbitration_profile_id: rule.arbitration_profile_id,
       };
       vm.editMode = true;
     };

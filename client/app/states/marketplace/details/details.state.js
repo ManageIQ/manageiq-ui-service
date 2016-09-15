@@ -102,7 +102,7 @@
 
       function addFailure(result) {
         var errors = result.split(",");
-        for (var i = 0; i<errors.length; ++i) {
+        for (var i = 0; i < errors.length; ++i) {
           EventNotifications.error(__("There was an error adding to shopping cart: ") + errors[i]);
         }
       }

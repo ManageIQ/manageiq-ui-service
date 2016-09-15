@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.services')
-      .factory('BlueprintsState', BlueprintsStateFactory);
+    .factory('BlueprintsState', BlueprintsStateFactory);
 
   /** @ngInject */
   function BlueprintsStateFactory($filter, CollectionsApi, EventNotifications, $state, sprintf, $q) {
@@ -108,7 +108,7 @@
     function saveBlueprintProperties(tmpBlueprint) {
       var deferred = $q.defer();
 
-      if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel  && tmpBlueprint.ui_properties.chartDataModel.nodes) {
+      if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel && tmpBlueprint.ui_properties.chartDataModel.nodes) {
         tmpBlueprint.num_items = tmpBlueprint.ui_properties.chartDataModel.nodes.length;
       } else {
         tmpBlueprint.num_items = 0;
@@ -163,7 +163,7 @@
                 serviceTemplates.push({"id": nodeSrvTemplate.id});
               } else {
                 EventNotifications.warn("Cannot Save New Generic Item '" + nodeSrvTemplate.name +
-                    "'.  Saving New Generic Items Not Yet Implemented.");
+                  "'.  Saving New Generic Items Not Yet Implemented.");
               }
             }
             blueprintObj.bundle.service_templates = serviceTemplates;
@@ -273,7 +273,8 @@
           var promises = [];
           for (var i = 0; i < chartDataModel.nodes.length; i++) {
             var nodeSrvTemplate = chartDataModel.nodes[i];
-            if (nodeSrvTemplate.origTags !== undefined && nodeSrvTemplate.tags !== undefined && nodeSrvTemplate.id !== undefined) {
+            if (angular.isDefined(nodeSrvTemplate.origTags) && angular.isDefined(nodeSrvTemplate.tags)
+              && angular.isDefined(nodeSrvTemplate.id)) {
               promises.push(saveServiceItemTags(nodeSrvTemplate.id, nodeSrvTemplate.tags, nodeSrvTemplate.origTags));
             }
           }
@@ -346,7 +347,7 @@
     function getTagsToAddRemove(action, tags, origTags) {
       var resultObj = {
         "action": action,
-        "resources": []
+        "resources": [],
       };
       var resources = [];
 
@@ -429,12 +430,16 @@
       tmpBlueprint.bundle = {};
       tmpBlueprint.tags = [];
       // TODO Need to get full default paths
-      tmpBlueprint.content = {automate_entrypoints: [
-        {"action": "Provision",
-        "ae_namespace": "Service/Provisioning/StateMachines",
-        "ae_class": "ServiceProvision_Template",
-        "ae_instance": "default"},
-      ]};
+      tmpBlueprint.content = {
+        automate_entrypoints: [
+          {
+            "action": "Provision",
+            "ae_namespace": "Service/Provisioning/StateMachines",
+            "ae_class": "ServiceProvision_Template",
+            "ae_instance": "default",
+          },
+        ],
+      };
       tmpBlueprint.ui_properties = {
         chartDataModel: {
           "nodes": [],
