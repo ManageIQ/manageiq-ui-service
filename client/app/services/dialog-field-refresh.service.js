@@ -58,7 +58,7 @@
     function selectDefaultValue(dialogField, newDialogField) {
       if (typeof (newDialogField.values) === 'object') {
         dialogField.values = newDialogField.values;
-        if (newDialogField.default_value !== undefined && newDialogField.default_value !== null) {
+        if (angular.isDefined(newDialogField.default_value) && newDialogField.default_value !== null) {
           dialogField.default_value = newDialogField.default_value;
         } else {
           dialogField.default_value = newDialogField.values[0][0];
@@ -67,7 +67,7 @@
         if (dialogField.type === 'DialogFieldDateControl' || dialogField.type === 'DialogFieldDateTimeControl') {
           dialogField.default_value = new Date(newDialogField.values);
         } else {
-          if (newDialogField.default_value === undefined || newDialogField.default_value === null || newDialogField.default_value === '') {
+          if (angular.isUndefined(newDialogField.default_value) || newDialogField.default_value === null || newDialogField.default_value === '') {
             dialogField.default_value = newDialogField.values;
           }
         }

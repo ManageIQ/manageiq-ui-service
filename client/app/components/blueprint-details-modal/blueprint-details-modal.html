@@ -79,7 +79,7 @@
                 <form novalidate name="advOptsForm" id="advOptsForm" class="form-horizontal">
                     <!-- could not use pf-form-group due to it's requirement that errors only display after fields are 'dirty' -->
                     <div class="form-group"
-                         ng-class="{ 'has-error' : vm.modalData.resource.provEP.value === undefined || vm.modalData.resource.provEP.value.length === 0 }">
+                         ng-class="{ 'has-error' : angular.isUndefined(vm.modalData.resource.provEP.value) || vm.modalData.resource.provEP.value.length === 0 }">
                         <label for="provEP" class="control-label col-sm-4" translate>Provisioning Entry Point</label>
 
                         <div class="col-sm-8">

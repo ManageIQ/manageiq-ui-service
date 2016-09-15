@@ -182,14 +182,14 @@
       if (vm.toolbarConfig.sortConfig.currentField.id === 'name') {
         compValue = item1.name.localeCompare(item2.name);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'catalog_name') {
-        if ( !angular.isDefined(item1.service_template_catalog) 
+        if ( angular.isUndefined(item1.service_template_catalog)
            && angular.isDefined(item2.service_template_catalog) ) {
           compValue = 1;
         } else if ( angular.isDefined(item1.service_template_catalog) 
-                && !angular.isDefined(item2.service_template_catalog) ) {
+                && angular.isUndefined(item2.service_template_catalog) ) {
           compValue = -1;
-        } else if ( !angular.isDefined(item1.service_template_catalog) 
-                 && !angular.isDefined(item2.service_template_catalog) ) {
+        } else if ( angular.isUndefined(item1.service_template_catalog)
+                 && angular.isUndefined(item2.service_template_catalog) ) {
           compValue = 0;
         } else {
           compValue = item1.service_template_catalog.name.localeCompare(item2.service_template_catalog.name);

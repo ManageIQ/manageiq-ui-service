@@ -148,9 +148,9 @@
 
     function refreshNotifications() {
       vm.notificationGroups = EventNotifications.state().groups;
-      vm.newNotifications = vm.notificationGroups.find(function(group) {
+      vm.newNotifications = angular.isDefined(vm.notificationGroups.find(function(group) {
           return group.unreadCount > 0;
-        }) !== undefined;
+        }));
     }
 
     function refreshToast() {

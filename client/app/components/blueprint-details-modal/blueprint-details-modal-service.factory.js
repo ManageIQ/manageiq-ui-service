@@ -187,7 +187,7 @@
     }
 
     function isCatalogUnassigned() {
-      return (vm.modalData.resource.catalog === undefined || vm.modalData.resource.catalog === null);
+      return (angular.isUndefined(vm.modalData.resource.catalog) || vm.modalData.resource.catalog === null);
     }
 
     function isCatalogRequired() {
@@ -195,7 +195,7 @@
     }
 
     function isDialogRequired() {
-      return (action === 'publish') && (vm.modalData.resource.dialog === undefined || vm.modalData.resource.dialog === null);
+      return (action === 'publish') && (angular.isUndefined(vm.modalData.resource.dialog) || vm.modalData.resource.dialog === null);
     }
 
     function createCatalog() {
@@ -352,9 +352,9 @@
         var clazz = (parts.length ? parts.splice(-1, 1)[0] : "");
         var namespace = parts.join("\/");
         // console.log("blueprint data = " + modalData.action + " - " + namespace + ":" + clazz + ":" + instance);
-        if (modalData.index !== undefined) {
+        if (angular.isDefined(modalData.index)) {
           var bpAEP = vm.blueprint.content.automate_entrypoints[modalData.index];
-          if (bpAEP.ae_class === undefined && bpAEP.ae_instance === undefined && bpAEP.ae_namespace === namespace) {
+          if (angular.isUndefined(bpAEP.ae_class) && angular.isUndefined(bpAEP.ae_instance) && angular.isUndefined(bpAEP.ae_namespace )) {
             return;
           }
           if (bpAEP.ae_namespace !== namespace) {

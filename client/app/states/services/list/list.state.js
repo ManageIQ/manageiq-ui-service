@@ -45,7 +45,7 @@
     }
 
     angular.forEach(services.resources, function(item) {
-      if (!angular.isDefined(item.service_id)) {
+      if (angular.isUndefined(item.service_id)) {
         vm.services.push(item);
       }
     });
@@ -158,14 +158,14 @@
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'vms') {
         compValue = item1.v_total_vms - item2.v_total_vms;
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'owner') {
-        if ( !angular.isDefined(item1.evm_owner) 
+        if ( angular.isUndefined(item1.evm_owner)
            && angular.isDefined(item2.evm_owner) ) {
           compValue = 1;
         } else if ( angular.isDefined(item1.evm_owner) 
-                && !angular.isDefined(item2.evm_owner) ) {
+                && angular.isUndefined(item2.evm_owner) ) {
           compValue = -1;
-        } else if ( !angular.isDefined(item1.evm_owner) 
-                 && !angular.isDefined(item2.evm_owner) ) {
+        } else if ( angular.isUndefined(item1.evm_owner)
+                 && angular.isUndefined(item2.evm_owner) ) {
           compValue = 0;
         } else {
           compValue = item1.evm_owner.name.localeCompare(item2.evm_owner.name);
@@ -258,7 +258,7 @@
       if (filterValue === 'retired' && angular.isDefined(item.retires_on)) {
         return angular.isDefined(item.retired) && item.retired === true;
       } else if (filterValue === 'current') {
-        return !angular.isDefined(item.retired) || item.retired === false;
+        return angular.isUndefined(item.retired) || item.retired === false;
       } else if (filterValue === 'soon' && angular.isDefined(item.retires_on)) {
         return new Date(item.retires_on) >= currentDate 
           && new Date(item.retires_on) <= currentDate.setDate(currentDate.getDate() + 30);

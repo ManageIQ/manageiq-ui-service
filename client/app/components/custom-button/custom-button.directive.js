@@ -82,7 +82,7 @@
         var assignedButton = {};
         angular.forEach(vm.actions, actionButtonMapping);
 
-        if (button.resource_action.dialog_id !== undefined && button.resource_action.dialog_id !== null) {
+        if (angular.isDefined(button.resource_action.dialog_id) && button.resource_action.dialog_id !== null) {
           $state.go('services.custom_button_details', {
             button: button,
             buttonId: button.id,

@@ -38,7 +38,7 @@
           if (l === 0) {
             item.parentListName = "provOrder";    // parentListName denotes which list an item was dragged from
             order = item.provision_order;
-          } else if (item.action_order !== undefined) {
+          } else if ( angular.isDefined(item.action_order)) {
             item = angular.copy(items[i]);
             item.parentListName = "actionOrder";
             order = item.action_order;

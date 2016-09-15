@@ -36,9 +36,9 @@
         group.unreadCount = group.notifications.filter(function(notification) {
           return notification.unread;
         }).length;
-        state.unreadNotifications = state.groups.find(function(group) {
+        state.unreadNotifications = angular.isDefined(state.groups.find(function(group) {
             return group.unreadCount > 0;
-          }) !== undefined;
+          }));
       }
     };
 

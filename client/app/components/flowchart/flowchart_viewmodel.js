@@ -479,7 +479,7 @@ var flowchart = {
     };
 
     this.middleX = function(scale) {
-      if (typeof (scale) === "undefined") {
+      if (angular.isUndefined(typeof (scale))) {
         scale = 0.5;
       }
 
@@ -487,7 +487,7 @@ var flowchart = {
     };
 
     this.middleY = function(scale) {
-      if (typeof (scale) === "undefined") {
+      if (angular.isUndefined(typeof (scale))) {
         scale = 0.5;
       }
 

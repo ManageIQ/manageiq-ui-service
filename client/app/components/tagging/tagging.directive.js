@@ -160,7 +160,7 @@
 
       $scope.addTag = function() {
         // Handle single_value category/tags
-        if (vm.tags.selectedTag.category && vm.tags.selectedTag.category.single_value !== undefined) {
+        if (vm.tags.selectedTag.category && angular.isDefined(vm.tags.selectedTag.category.single_value)) {
           if (vm.tags.selectedTag.category.single_value) {
             // Find existing tag w/ category in tags.of_item
             for (var i = 0; i < vm.tags.of_item.length; i++) {
