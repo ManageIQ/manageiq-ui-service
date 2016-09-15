@@ -55,19 +55,33 @@
       fetchDialogFieldInfo(allDialogFields, [dialogField.name], url, resourceId, refreshSuccess, refreshFailure);
     }
 
+    function selectDefaultValue(dialogField, newDialogField) {
+      if (typeof (newDialogField.values) === 'object') {
+        dialogField.values = newDialogField.values;
+        if (newDialogField.default_value !== undefined && newDialogField.default_value !== null) {
+          dialogField.default_value = newDialogField.default_value;
+        } else {
+          dialogField.default_value = newDialogField.values[0][0];
+        }
+      } else {
+        if (dialogField.type === 'DialogFieldDateControl' || dialogField.type === 'DialogFieldDateTimeControl') {
+          dialogField.default_value = new Date(newDialogField.values);
+        } else {
+          if (newDialogField.default_value === undefined || newDialogField.default_value === null || newDialogField.default_value === '') {
+            dialogField.default_value = newDialogField.values;
+          }
+        }
+      }
+    }
+
     function setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields) {
       angular.forEach(dialogs, function(dialog) {
         angular.forEach(dialog.dialog_tabs, function(dialogTab) {
           angular.forEach(dialogTab.dialog_groups, function(dialogGroup) {
             angular.forEach(dialogGroup.dialog_fields, function(dialogField) {
               allDialogFields.push(dialogField);
-              if (dialogField.default_value === '' && dialogField.values !== '') {
-                dialogField.default_value = dialogField.values;
-              }
 
-              if (typeof (dialogField.values) === 'object' && dialogField.default_value === undefined) {
-                dialogField.default_value = String(dialogField.values[0][0]);
-              }
+              selectDefaultValue(dialogField, dialogField);
 
               dialogField.triggerAutoRefresh = function() {
                 triggerAutoRefresh(dialogField);
@@ -110,20 +124,7 @@
     function updateAttributesForDialogField(dialogField, newDialogField) {
       copyDynamicAttributes(dialogField, newDialogField);
 
-      if (typeof (newDialogField.values) === 'object') {
-        dialogField.values = newDialogField.values;
-        if (newDialogField.default_value !== undefined && newDialogField.default_value !== null) {
-          dialogField.default_value = newDialogField.default_value;
-        } else {
-          dialogField.default_value = String(newDialogField.values[0][0]);
-        }
-      } else {
-        if (dialogField.type === 'DialogFieldDateControl' || dialogField.type === 'DialogFieldDateTimeControl') {
-          dialogField.default_value = new Date(newDialogField.values);
-        } else {
-          dialogField.default_value = newDialogField.values;
-        }
-      }
+      selectDefaultValue(dialogField, newDialogField);
 
       dialogField.beingRefreshed = false;
 

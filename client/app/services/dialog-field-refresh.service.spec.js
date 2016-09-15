@@ -280,23 +280,45 @@ describe('app.services.DialogFieldRefresh', function() {
       });
     });
 
-    describe('when the dialog field has an object for values but no default value', function() {
-      var dialogField = {name: 'dialog1', values: [[1, 'one']]};
-      var dialogs = [{dialog_tabs: [{dialog_groups: [{dialog_fields: [dialogField]}]}]}];
+    describe('when the dialog field has an object for values', function() {
+      describe('when there is no default value assigned', function() {
+        var dialogField = {name: 'dialog1', values: [[1, 'one'], [2, 'two']], default_value: null};
+        var dialogs = [{dialog_tabs: [{dialog_groups: [{dialog_fields: [dialogField]}]}]}];
 
-      it('pushes the dialog field into the all dialog fields array', function() {
-        DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
-        expect(allDialogFields.length).to.equal(1);
+        it('pushes the dialog field into the all dialog fields array', function() {
+          DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
+          expect(allDialogFields.length).to.equal(1);
+        });
+
+        it('assigns the default value to the first value', function() {
+          DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
+          expect(dialogField.default_value).to.equal(1);
+        });
+
+        it('sets up the triggering of auto refresh', function() {
+          DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
+          expect(dialogField).to.respondTo('triggerAutoRefresh');
+        });
       });
 
-      it('assigns the default value', function() {
-        DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
-        expect(dialogField.default_value).to.equal('1');
-      });
+      describe('when there is a default value assigned', function() {
+        var dialogField = {name: 'dialog1', values: [[1, 'one'], [2, 'two']], default_value: 2};
+        var dialogs = [{dialog_tabs: [{dialog_groups: [{dialog_fields: [dialogField]}]}]}];
 
-      it('sets up the triggering of auto refresh', function() {
-        DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
-        expect(dialogField).to.respondTo('triggerAutoRefresh');
+        it('pushes the dialog field into the all dialog fields array', function() {
+          DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
+          expect(allDialogFields.length).to.equal(1);
+        });
+
+        it('assigns the default value', function() {
+          DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
+          expect(dialogField.default_value).to.equal(2);
+        });
+
+        it('sets up the triggering of auto refresh', function() {
+          DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
+          expect(dialogField).to.respondTo('triggerAutoRefresh');
+        });
       });
     });
 
