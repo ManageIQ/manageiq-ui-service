@@ -149,8 +149,8 @@
     function refreshNotifications() {
       vm.notificationGroups = EventNotifications.state().groups;
       vm.newNotifications = angular.isDefined(vm.notificationGroups.find(function(group) {
-          return group.unreadCount > 0;
-        }));
+        return group.unreadCount > 0;
+      }));
     }
 
     function refreshToast() {
@@ -166,13 +166,13 @@
     var destroyCart = $scope.$on('shoppingCartUpdated', refreshCart);
 
     var destroyNotifications = $scope.$watch(function() {
-        return EventNotifications.state().groups;
-      },
+      return EventNotifications.state().groups;
+    },
       refreshNotifications, true);
 
     var destroyToast = $scope.$watch(function() {
-        return EventNotifications.state().toastNotifications;
-      },
+      return EventNotifications.state().toastNotifications;
+    },
       refreshToast, true);
 
     var destroy = $scope.$on('shoppingCartUpdated', refresh);

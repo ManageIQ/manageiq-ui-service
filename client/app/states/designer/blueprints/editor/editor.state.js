@@ -21,8 +21,8 @@
           blueprint: resolveBlueprint,
           blueprintTags: resolveBlueprintTags,
           serviceTemplates: resolveServiceTemplates,
-        }
-      }
+        },
+      },
     };
   }
   /** @ngInject */
@@ -39,7 +39,7 @@
       var attributes = ['categorization', 'category.id', 'category.single_value'];
       var options = {
         expand: 'resources',
-        attributes: attributes
+        attributes: attributes,
       };
       var collection = 'blueprints' + "\/" + $stateParams.blueprintId + "\/" + 'tags';
 

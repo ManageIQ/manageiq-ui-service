@@ -38,7 +38,7 @@
         list: '=',
       },
       templateUrl: 'app/components/blueprint-details-modal/order-list.directive.html',
-      controller: OrderListController
+      controller: OrderListController,
     };
 
     return directive;
@@ -91,13 +91,13 @@
 
     function addEmptyContainerRow( containers ) {
       containers.push(
-          {
-            "type": "container",
-            "columns": [
+        {
+          "type": "container",
+          "columns": [
               [],
               [],
-            ],
-          }
+          ],
+        }
       );
     }
 

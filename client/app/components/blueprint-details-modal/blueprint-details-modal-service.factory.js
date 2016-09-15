@@ -82,7 +82,7 @@
       {"title": __('General'), "active": true},
       {"title": __('Publish'), "active": false},
       {"title": __('Provision Order'), "active": false},
-      {"title": __('Action Order'), "active": false}
+      {"title": __('Action Order'), "active": false},
     ];
 
     if (action === 'create') {

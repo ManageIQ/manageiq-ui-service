@@ -147,7 +147,7 @@
         operation: 'inject',
         expression: {
           exp: {
-            EQUAL: {}
+            EQUAL: {},
           },
         },
       };

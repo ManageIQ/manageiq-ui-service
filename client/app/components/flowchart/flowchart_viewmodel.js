@@ -652,20 +652,20 @@ var flowchart = {
         "id": 1,
         "name": "connect",
         "iconClass": "fa fa-share-alt",
-        "action": "nodeActionConnect"
+        "action": "nodeActionConnect",
       },
       {
         "id": 2,
         "name": "edit",
         "iconClass": "pf pficon-edit",
-        "action": "nodeActionEdit"
+        "action": "nodeActionEdit",
       },
       {
         "id": 3,
         "name": "tag",
         "iconClass": "fa fa-tag",
-        "action": "nodeActionTag"
-      }
+        "action": "nodeActionTag",
+      },
     ];
 
     // Reference to the underlying data.

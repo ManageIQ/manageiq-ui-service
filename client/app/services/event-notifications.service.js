@@ -28,7 +28,7 @@
       dismissToast: dismissToast,
       state: function() {
         return state;
-      }
+      },
     };
 
     var updateUnreadCount = function(group) {
@@ -37,8 +37,8 @@
           return notification.unread;
         }).length;
         state.unreadNotifications = angular.isDefined(state.groups.find(function(group) {
-            return group.unreadCount > 0;
-          }));
+          return group.unreadCount > 0;
+        }));
       }
     };
 
@@ -52,8 +52,8 @@
           notificationType: 'event',
           heading: "Events",
           unreadCount: 0,
-          notifications: []
-        }
+          notifications: [],
+        },
       ];
       state.unreadNotifications = false;
       state.toastNotifications = [];
@@ -67,7 +67,7 @@
         type: type,
         message: message,
         data: notificationData,
-        timeStamp: (new Date()).getTime()
+        timeStamp: (new Date()).getTime(),
       };
 
       var group = state.groups.find(function(notificationGroup) {
@@ -128,7 +128,7 @@
         if (!notification) {
           notification = {
             type: type,
-            message: message
+            message: message,
           };
         }
 

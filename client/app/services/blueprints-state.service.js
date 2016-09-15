@@ -347,7 +347,7 @@
     function getTagsToAddRemove(action, tags, origTags) {
       var resultObj = {
         "action": action,
-        "resources": []
+        "resources": [],
       };
       var resources = [];
 
@@ -436,9 +436,9 @@
             "action": "Provision",
             "ae_namespace": "Service/Provisioning/StateMachines",
             "ae_class": "ServiceProvision_Template",
-            "ae_instance": "default"
+            "ae_instance": "default",
           },
-        ]
+        ],
       };
       tmpBlueprint.ui_properties = {
         chartDataModel: {
