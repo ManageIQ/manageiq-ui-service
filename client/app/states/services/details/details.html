@@ -195,7 +195,10 @@
             </div>
             <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
               <span class="no-wrap">
-                <button class="btn btn-default open-console-button" ng-if="item['supports_console?'] && item.power_state == 'on'" tooltip="{{'Open a HTML5 console for this VM'|translate}}" tooltip-placement="right">
+                <button class="btn btn-default open-console-button" ng-if="item['supports_console?'] && item.power_state == 'on'" tooltip="{{'Open a HTML5 console for this VM'|translate}}" tooltip-placement="left">
+                  <i class="fa fa-html5 fa-lg"></i>
+                </button>
+                <button class="btn btn-default open-console-button" ng-if="item['supports_cockpit?'] && item.power_state == 'on'" tooltip="{{'Open Cockpit console for this VM'|translate}}" tooltip-placement="left">
                   <i class="fa fa-html5 fa-lg"></i>
                 </button>
               </span>
