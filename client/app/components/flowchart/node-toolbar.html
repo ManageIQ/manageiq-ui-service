@@ -1,0 +1,23 @@
+<div class="node-toolbar">
+  <span ng-repeat="nodeAction in vm.nodeActions"
+        class="{{nodeAction.iconClass()}} node-toolbar-icons"
+        ng-click="actionIconClicked(nodeAction.action())">
+  </span>
+  <div ng-if="vm.selectedAction === 'nodeActionTag'" class="nodetoolbar-dialog tag-dialog">
+    <div class="arrow_box">
+      <button type="button" class="close" ng-click="close()" aria-hidden="true">
+        <span class="pficon pficon-close node-dialog-close"></span>
+      </button>
+      <div class="node-tag-title">{{vm.node.name()}} {{"Tags" | translate}}</div>
+      <tagging-widget tags="vm.tags" object-type="service_templates" object-id="vm.node.id()"/>
+    </div>
+  </div>
+  <div ng-if="vm.selectedAction === 'nodeActionEdit'" class="nodetoolbar-dialog edit-dialog">
+    <div class="arrow_box">
+      <button type="button" class="close" ng-click="close()" aria-hidden="true">
+        <span class="pficon pficon-close node-dialog-close"></span>
+      </button>
+      Edit Properties
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div ng-class="{'spinner': !vm.showTagDropdowns, 'tag-spinner': !vm.showTagDropdowns}" class="spinner spinner-xs spinner-inline"></div>
+
+<div ng-show="vm.showTagDropdowns">
+    <select class="tag-category-select"
+            ng-options="category as category.description for category in vm.tags.categories"
+            ng-model="vm.tags.selectedCategory">
+    </select>
+    <select class="tag-value-select"
+            ng-options="item as item.categorization.description for item in vm.tags.filtered"
+            ng-model="vm.tags.selectedTag">
+    </select>
+    <a ng-click="addTag()"><span class="fa fa-plus tag-add"></span></a>
+</div>
+
+<div ng-if="vm.tags.of_item && !vm.tags.of_item.length" class="no-tag-header" translate>There are no tags for this item.</div>
+
+<ul class="tag-list list-inline">
+    <li ng-repeat="tag in vm.tags.of_item">
+        <span class="label label-info">
+            {{tag.categorization.display_name}}
+            <a><span class="pficon pficon-close" ng-click="removeTag(tag)"></span></a>
+        </span>
+    </li>
+</ul>
+

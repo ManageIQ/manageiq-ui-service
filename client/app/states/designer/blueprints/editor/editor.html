@@ -1,5 +1,4 @@
-<span ng-controller="blueprintEditorCtrl">
-
+<span ng-controller="blueprintEditorCtrl" ng-class="{'wait-cursor': loading}">
   <span class="blueprint-designer-header">
     <ol class="breadcrumb">
         <li>
@@ -35,8 +34,8 @@
           </button>
           <span class="more-actions">
               <button id="blueprintDetails" class="btn" type="button" ng-click="editDetails()" data-toggle="tooltip"
-                      ng-class="{'disabled': inConnectingMode}"
-                      data-placement="bottom" title="{{'Edit Blueprint Details'|translate}}" translate>Blueprint Details
+                      ng-class="{'disabled': inConnectingMode, 'wait-cursor': loading}"
+                      data-placement="bottom" title="{{'Edit Blueprint Details' | translate}}" translate>Blueprint Details
               </button>
               <span class="showHideConnectors">
                   <input  ng-class="{'disabled': inConnectingMode}"
@@ -96,12 +95,12 @@
                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
                        ng-click="addNodeByClick( getNewItem() )">
                       <span class="pficon pficon-add-circle-o"></span>
-                      <span class="new-catalog-item-label">{{'Create ' + getNewItem().name | translate}}</span>
+                      <span class="new-catalog-item-label">{{'Create' | translate}} {{getNewItem().name}}</span>
                       <span ng-if="getNewItem().icon" class="{{getNewItem().icon}} new-catalog-item-icon"></span>
                   </div>
                   <!-- Filter -->
                   <input ng-model="searchText" id="filterFld" class="search-text"
-                         placeholder="{{'Filter by name'|translate}}">
+                         placeholder="{{'Filter by name' | translate}}">
                   <a ng-click="searchText = ''"><span class="pficon pficon-close clear-search-text"></span></a>
               </div>
               <div class="close-toolbox">

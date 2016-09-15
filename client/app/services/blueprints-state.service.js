@@ -79,6 +79,35 @@
     blueprint.saveBlueprint = function(tmpBlueprint) {
       var deferred = $q.defer();
 
+      saveBlueprintProperties(tmpBlueprint).then(function(id) {
+        console.log("'" + tmpBlueprint.name + "' Blueprint Properties were saved.");
+        saveBlueprintTags(id, tmpBlueprint).then(function() {
+          console.log("'" + tmpBlueprint.name + "' Blueprint Tags were saved.");
+          saveBlueprintServiceItemTags(tmpBlueprint).then(function() {
+            console.log("'" + tmpBlueprint.name + "' Blueprint Service Item Tags were saved.");
+            deferred.resolve(id);
+          }, saveServiceItemTagsfailure);
+        }, saveTagsfailure);
+      }, savePropsfailure);
+
+      function savePropsfailure() {
+        deferred.reject();
+      }
+
+      function saveTagsfailure() {
+        deferred.reject();
+      }
+
+      function saveServiceItemTagsfailure() {
+        deferred.reject();
+      }
+
+      return deferred.promise;
+    };
+
+    function saveBlueprintProperties(tmpBlueprint) {
+      var deferred = $q.defer();
+
       if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel  && tmpBlueprint.ui_properties.chartDataModel.nodes) {
         tmpBlueprint.num_items = tmpBlueprint.ui_properties.chartDataModel.nodes.length;
       } else {
@@ -95,20 +124,41 @@
         CollectionsApi.post('blueprints', null, {}, blueprintObj).then(createSuccess, createFailure);
       }
 
+      function updateSuccess(response) {
+        deferred.resolve(response.id);
+      }
+
+      function updateFailure() {
+        console.log('There was an error saving this blueprints properties.');
+        deferred.reject();
+      }
+
+      function createSuccess(response) {
+        deferred.resolve(response.results[0].id);
+      }
+
+      function createFailure() {
+        console.log('There was an error creating this blueprint.');
+        deferred.reject();
+      }
+
       function getBlueprintPostObj(tmpBlueprint) {                                    // jshint ignore:line
         var blueprintObj = {
           "name": tmpBlueprint.name,
-          "description": "description",
+          "description": tmpBlueprint.description,
           "bundle": {},
           "ui_properties": {}
         };
 
         if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel) {
-          var chartDataModel = tmpBlueprint.ui_properties.chartDataModel;
+          var chartDataModel = angular.copy(tmpBlueprint.ui_properties.chartDataModel);
           if (chartDataModel.nodes) {
             var serviceTemplates = [];
             for (var i = 0; i < chartDataModel.nodes.length; i++) {
               var nodeSrvTemplate = chartDataModel.nodes[i];
+              // No need to save tags with the chartDataModel
+              delete nodeSrvTemplate.origTags;
+              delete nodeSrvTemplate.tags;
               if (nodeSrvTemplate.id) {
                 serviceTemplates.push({"id": nodeSrvTemplate.id});
               } else {
@@ -117,10 +167,6 @@
               }
             }
             blueprintObj.bundle.service_templates = serviceTemplates;
-          }
-          if (tmpBlueprint.ui_properties.chartDataModel.nodeActions) {
-            // no need to persist node toolbar actions in backend
-            delete tmpBlueprint.ui_properties.chartDataModel.nodeActions;
           }
           blueprintObj.ui_properties.chartDataModel = chartDataModel;
         }
@@ -158,8 +204,6 @@
           }
         }
 
-        // console.log("Saving Entry Points: " + angular.toJson(automateEntrypoints, true));
-
         blueprintObj.bundle.automate_entrypoints = automateEntrypoints;
 
         blueprintObj.ui_properties.num_items = tmpBlueprint.num_items;
@@ -171,28 +215,175 @@
         return blueprintObj;
       }
 
-      function updateSuccess(response) {
-        Notifications.success(__(sprintf("%s blueprint was saved.", tmpBlueprint.name)));
-        deferred.resolve(response.id);
+      return deferred.promise;
+    }
+
+    function saveBlueprintTags(blueprintId, tmpBlueprint) {
+      var deferred = $q.defer();
+
+      var blueprintTags = tmpBlueprint.tags;
+      var origBlueprintTags = blueprint.getOriginalBlueprint().tags;
+      var assignObj = getTagsToAddRemove("assign", blueprintTags, origBlueprintTags);
+      var unassignObj = getTagsToAddRemove("unassign", blueprintTags, origBlueprintTags);
+
+      var collection = 'blueprints' + "\/" + blueprintId + "\/" + 'tags';
+
+      if (assignObj.resources.length > 0) {
+        CollectionsApi.post(collection, null, {}, assignObj).then(function() {
+          console.log("  Blueprint tags assigned succesfully.");
+          if (unassignObj.resources.length > 0) {
+            CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
+              console.log("  Blueprint tags unassigned succesfully.");
+              deferred.resolve();
+            }, assignFailure);
+          } else {
+            deferred.resolve();
+          }
+        }, unassignFailure);
+      } else {
+        if (unassignObj.resources.length > 0) {
+          CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
+            console.log("  Blueprint tags unassigned succesfully.");
+            deferred.resolve();
+          }, assignFailure);
+        } else {
+          deferred.resolve();
+        }
       }
 
-      function updateFailure() {
-        Notifications.error(__('There was an error saving this blueprint.'));
+      function assignFailure() {
+        console.log('There was an error assigning blueprint tags.');
         deferred.reject();
       }
 
-      function createSuccess(response) {
-        Notifications.success(__(sprintf("%s blueprint was created.", tmpBlueprint.name)));
-        deferred.resolve(response.results[0].id);
-      }
-
-      function createFailure() {
-        Notifications.error(__('There was an error creating this blueprint.'));
+      function unassignFailure() {
+        console.log('There was an error unassigning blueprint tags.');
         deferred.reject();
       }
 
       return deferred.promise;
-    };
+    }
+
+    function saveBlueprintServiceItemTags(tmpBlueprint) {
+      var deferred = $q.defer();
+
+      if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel) {
+        var chartDataModel = tmpBlueprint.ui_properties.chartDataModel;
+        if (chartDataModel.nodes && chartDataModel.nodes.length > 0) {
+          var promises = [];
+          for (var i = 0; i < chartDataModel.nodes.length; i++) {
+            var nodeSrvTemplate = chartDataModel.nodes[i];
+            if (nodeSrvTemplate.origTags !== undefined && nodeSrvTemplate.tags !== undefined && nodeSrvTemplate.id !== undefined) {
+              promises.push(saveServiceItemTags(nodeSrvTemplate.id, nodeSrvTemplate.tags, nodeSrvTemplate.origTags));
+            }
+          }
+          if (promises.length > 0) {
+            $q.all(promises).then(function(ids) {
+              console.log("    Saved Service Item Tags for " + ids);
+              deferred.resolve();
+            }, function(ids) {
+              console.log("    Failed to save Service Item Tags for " + ids);
+              deferred.reject();
+            });
+          } else {
+            console.log("    No Tags to save for Service Items");
+            deferred.resolve();
+          }
+        } else {
+          console.log("    No Service Items to save tags for");
+          deferred.resolve();
+        }
+      }
+
+      return deferred.promise;
+    }
+
+    function saveServiceItemTags(id, tags, origTags) {
+      var deferred = $q.defer();
+
+      var assignObj = getTagsToAddRemove("assign", tags, origTags);
+      var unassignObj = getTagsToAddRemove("unassign", tags, origTags);
+
+      var collection = 'service_templates' + "\/" + id + "\/" + 'tags';
+
+      if (assignObj.resources.length > 0) {
+        CollectionsApi.post(collection, null, {}, assignObj).then(function() {
+          console.log("    Service Item tags assigned succesfully for " + id);
+          if (unassignObj.resources.length > 0) {
+            CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
+              console.log("    Service Item tags unassigned succesfully for " + id);
+              deferred.resolve(id);
+            }, assignFailure);
+          } else {
+            console.log("    No unassigned tags for Service Item " + id);
+            deferred.resolve(id);
+          }
+        }, unassignFailure);
+      } else {
+        console.log("    No assigned tags for Service Item " + id);
+        if (unassignObj.resources.length > 0) {
+          CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
+            console.log("    Service Item tags unassigned succesfully for " + id);
+            deferred.resolve(id);
+          }, assignFailure);
+        } else {
+          console.log("    No unassigned tags for Service Item " + id);
+          deferred.resolve(id);
+        }
+      }
+
+      function assignFailure() {
+        deferred.reject(id);
+      }
+
+      function unassignFailure() {
+        deferred.reject(id);
+      }
+
+      return deferred.promise;
+    }
+
+    function getTagsToAddRemove(action, tags, origTags) {
+      var resultObj = {
+        "action": action,
+        "resources": []
+      };
+      var resources = [];
+
+      var tag;
+      var foundInOther;
+      var matchTag;
+
+      // if blueprintTag not in origBlueprintTags, assign
+      var bpComp1 = tags;
+      var bpComp2 = origTags;
+
+      if (action === "unassign") {
+        // if origBlueprintTag not in blueprintTags, it was removed, unassign
+        bpComp1 = origTags;
+        bpComp2 = tags;
+      }
+
+      for (var i = 0; i < bpComp1.length; i++) {
+        tag = bpComp1[i];
+        foundInOther = false;
+        for (var t = 0; t < bpComp2.length; t++) {
+          matchTag = bpComp2[t];
+          if (tag.id === matchTag.id) {
+            foundInOther = true;
+            break;
+          }
+        }
+        if (!foundInOther) {
+          // console.log("--> " + action + " " + tag.id + " - " + tag.categorization.display_name);
+          resources.push({id: tag.id});
+        }
+      }
+
+      resultObj.resources = resources;
+
+      return resultObj;
+    }
 
     blueprint.deleteBlueprints = function(blueprints) {
       var deferred = $q.defer();
@@ -236,6 +427,7 @@
       tmpBlueprint.name = __('Untitled Blueprint');
       // tmpBlueprint.visibility = {"id": 800, "name": "Private"};
       tmpBlueprint.bundle = {};
+      tmpBlueprint.tags = [];
       // TODO Need to get full default paths
       tmpBlueprint.content = {automate_entrypoints: [
         {"action": "Provision",

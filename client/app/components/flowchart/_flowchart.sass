@@ -19,19 +19,23 @@
   opacity: .2
 
 .node-toolbar
-  fill: #fff5c3
-  stroke: #b1b1b1
-  stroke-width: 2
+  border-left: solid 1px #b1b1b1
+  border-right: solid 1px #b1b1b1
+  border-bottom: solid 1px #b1b1b1
+  border-radius: 5px
+  background-color: #F7F1D7
+  height: 28px
+  padding-left: 8px
 
 .node-toolbar-icons
-  fill: #0099d3
+  padding-right: 16px
+  padding-top: 4px
+  color: #0099d3
   font-size: 16px
   cursor: pointer
-  &:hover
-    fill: #00384d
 
 .svg-triangle polyline
-  fill: #fff5c3
+  fill: #F7F1D7
   stroke: #b1b1b1
   stroke-width: 2
 
@@ -91,9 +95,7 @@
   stroke-width: 3
   stroke-opacity: "0.8"
 
-.connection
-
-.connection-line 
+.connection-line
   stroke: gray
   stroke-width: 4
   fill: transparent
@@ -144,3 +146,62 @@
   stroke: blue
   stroke-width: 2
   fill: transparent
+
+.node-dialog-close
+  font-size: 12px
+  padding-top: 7px
+
+.nodetoolbar-dialog
+  position: fixed
+  top: 19px
+  left: -19px
+  width: 300px
+  margin-top: 4px
+  padding: 8px
+
+  .tag-list .label a
+    color: #fff
+    cursor: pointer
+
+.tag-dialog
+  left: 30px
+  width: 353px
+
+.node-tag-title
+  font-weight: 600
+  padding-top: 12px
+  padding-bottom: 12px
+
+.edit-dialog
+  left: 5px
+
+.arrow_box
+  position: relative
+  background: #ffffff
+  border: 1px solid #514d52
+  border-radius: 5px
+  padding-left: 10px
+  padding-right: 10px
+  padding-bottom: 10px
+
+.arrow_box:after, .arrow_box:before
+  bottom: 100%
+  left: 50%
+  border: solid transparent
+  content: " "
+  height: 0
+  width: 0
+  position: absolute
+  pointer-events: none
+
+.arrow_box:after
+  border-color: rgba(255, 255, 255, 0)
+  border-bottom-color: #ffffff
+  border-width: 8px
+  margin-left: -41%
+
+.arrow_box:before
+  border-color: rgba(81, 77, 82, 0)
+  border-bottom-color: #514d52
+  border-width: 10px
+  margin-left: -41.5%
