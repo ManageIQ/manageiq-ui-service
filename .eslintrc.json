@@ -12,6 +12,7 @@
   "plugins": [
   ],
   "globals": {
+    "flowchart": true,  // Blueprints support lib
     "__": true,  // Zanata parsing cue
     "N_": true   // Zanata parsing cue
   },

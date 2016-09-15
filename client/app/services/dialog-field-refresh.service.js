@@ -3,10 +3,10 @@
   'use strict';
 
   angular.module('app.services')
-    .factory('DialogFieldRefresh', DialogFieldRefreshFactory);
+    .factory('DialogFieldRefresh', ['lodash', 'CollectionsApi', 'EventNotifications', DialogFieldRefreshFactory]);
 
   /** @ngInject */
-  function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
+  function DialogFieldRefreshFactory(lodash, CollectionsApi, EventNotifications) {
     var service = {
       listenForAutoRefreshMessages: listenForAutoRefreshMessages,
       refreshSingleDialogField: refreshSingleDialogField,
@@ -25,7 +25,7 @@
         });
 
         allDialogFields.forEach(function(dialogField) {
-          if (_.includes(dialogFieldsToRefresh, dialogField.name)) {
+          if (lodash.includes(dialogFieldsToRefresh, dialogField.name)) {
             dialogField.beingRefreshed = true;
           }
         });
