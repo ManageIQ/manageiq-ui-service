@@ -37,7 +37,7 @@
     </div>
     <div class="col-md-4 col-sm-3" ng-if="notificationGroup.notificationType == 'task'">
       <div class="drawer-pf-notification-info expanded-info" ng-click="customScope.markRead(notification, notificationGroup)">
-        <span class="info-title">Started: </span>
+        <span class="info-title" translate>Started: </span>
         <span class="date">{{notification.data.startTime | date:'MM/dd/yyyy'}}</span>
         <span class="time">{{notification.data.startTime | date:'h:mm:ss a'}}</span>
       </div>
@@ -49,7 +49,7 @@
     </div>
     <div class="col-md-4 col-sm-3" ng-if="notificationGroup.notificationType == 'task'">
       <div class="drawer-pf-notification-info" ng-click="customScope.markRead(notification, notificationGroup)">
-        <span class="info-title">Completed: </span>
+        <span class="info-title" translate>Completed: </span>
         <span class="date">{{notification.data.endTime | date:'MM/dd/yyyy'}}</span>
         <span class="time">{{notification.data.endTime | date:'h:mm:ss a'}}</span>
       </div>

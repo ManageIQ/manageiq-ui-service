@@ -86,13 +86,6 @@
       visibilityNames.push(item.name);
     }
 
-    /* This notification 'splice' code doesn't work.  Splice needs a third argument, the items to splice in
-     * Not sure what this code is trying to accomplish, but it exists in login, request list, & services list
-    if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
-      $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
-    }
-    */
-
     vm.blueprintsList = angular.copy(vm.blueprints);
 
     vm.listConfig = {
