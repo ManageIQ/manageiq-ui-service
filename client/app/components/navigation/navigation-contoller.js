@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('app.components').controller('navigationController', [
+  angular.module('app.components').controller('NavigationController', [
     'Text',
     'Navigation',
     'Messages',
