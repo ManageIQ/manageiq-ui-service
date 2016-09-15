@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.components')
-      .factory('BlueprintOrderListService', BlueprintOrderListFactory);
+    .factory('BlueprintOrderListService', BlueprintOrderListFactory);
 
   /** @ngInject */
   function BlueprintOrderListFactory(CollectionsApi, sprintf, $q) {
@@ -16,10 +16,8 @@
       var blueprintServiceItems = vm.blueprint.ui_properties.chartDataModel.nodes;
       var items = angular.copy(blueprintServiceItems);
       var lists = [];
-      var item;
-      var order;
-      var i;
-      var l;
+      var i, item, l, order;
+
 
       // lists[0] = prov. order list, lists[1] = action order list
       lists[0] = {"containers": []};
@@ -38,7 +36,7 @@
           if (l === 0) {
             item.parentListName = "provOrder";    // parentListName denotes which list an item was dragged from
             order = item.provision_order;
-          } else if ( angular.isDefined(item.action_order)) {
+          } else if (angular.isDefined(item.action_order)) {
             item = angular.copy(items[i]);
             item.parentListName = "actionOrder";
             order = item.action_order;
@@ -51,8 +49,7 @@
             lists[l].containers[order].columns[0].push(item);
           } else {
             // create new container
-            lists[l].containers[order] =
-            {
+            lists[l].containers[order] = {
               "type": "container",
               "columns": [
                 [item],
@@ -100,7 +97,7 @@
         }
       }
 
-      var lastrow = actionOrderList[ actionOrderList.length - 1 ];
+      var lastrow = actionOrderList[actionOrderList.length - 1];
       if (lastrow && vm.actionOrderEqualsProvOrder && lastrow.columns[0].length === 0 && lastrow.columns[1].length === 0) {
         // remove last empty row
         actionOrderList.splice(actionOrderList.length - 1, 1);
