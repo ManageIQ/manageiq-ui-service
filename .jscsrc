@@ -9,7 +9,7 @@
   "disallowMixedSpacesAndTabs": true,
   "disallowMultipleLineBreaks": true,
   "disallowMultipleLineStrings": true,
-  "disallowMultipleVarDecl": "strict",
+  "disallowMultipleVarDecl": { "allExcept": ["undefined"] },
   "disallowNewlineBeforeBlockStatements": true,
   "disallowOperatorBeforeLineBreak": ["*", "-", "/", ".", "!"],
   "disallowPaddingNewlinesBeforeKeywords": [
