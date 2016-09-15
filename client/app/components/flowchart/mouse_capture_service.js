@@ -2,11 +2,9 @@
   "use strict";
 
   // Service used to acquire 'mouse capture' then receive dragging events while the mouse is captured.
-
-  angular.module('mouseCapture', ['$rootScope'])
+  angular.module('mouseCapture', [])
     .factory('mouseCapture', ['$rootScope', Factory])
     .directive('mouseCapture', [ComponentDirective]);
-
 
   /** @ngInject */
   function Factory($rootScope) {
@@ -100,7 +98,6 @@
   function ComponentDirective() {
     return {
       restrict: 'A',
-
       controller: ['$scope', '$element', '$attrs', 'mouseCapture',
         function($scope, $element, $attrs, mouseCapture) {
           //
