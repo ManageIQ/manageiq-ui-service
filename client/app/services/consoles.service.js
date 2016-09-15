@@ -5,7 +5,7 @@
     .factory('Consoles', ConsolesFactory);
 
   /** @ngInject */
-  function ConsolesFactory(CollectionsApi, $http, $timeout, logger, $location, Notifications) {
+  function ConsolesFactory(CollectionsApi, $http, $timeout, logger, $location, EventNotifications) {
     var service = {
       open: openConsole,
     };
@@ -27,14 +27,14 @@
         throw response.message;
       }
 
-      Notifications.info(__("Waiting for the console to become ready"));
+      EventNotifications.info(__("Waiting for the console to become ready"));
       logger.info(__("Waiting for the console to become ready:"), response.message);
 
       consoleWatch(response.task_href + '?attributes=task_results');
     }
 
     function consoleError(error) {
-      Notifications.error(__("There was an error opening the console"));
+      EventNotifications.error(__("There was an error opening the console"));
       logger.error(__("There was an error opening the console:"), error);
     }
 
@@ -72,7 +72,7 @@
           openRemote(results);
           break;
         default:
-          Notifications.error(__("Unsupported console protocol returned"));
+          EventNotifications.error(__("Unsupported console protocol returned"));
           logger.error(__("Unsupported console protocol returned:"), results.proto);
       }
     }

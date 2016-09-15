@@ -33,7 +33,7 @@
   }
 
   /** @ngInject */
-  function SaveBlueprintModalController(blueprint, toState, toParams, fromState, fromParams, $state, $modalInstance, BlueprintsState, Notifications) {
+  function SaveBlueprintModalController(blueprint, toState, toParams, fromState, fromParams, $state, $modalInstance, BlueprintsState) {
     var vm = this;
     vm.blueprint = blueprint;
     vm.save = save;

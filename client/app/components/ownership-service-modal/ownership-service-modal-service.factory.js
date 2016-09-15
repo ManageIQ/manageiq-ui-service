@@ -56,7 +56,7 @@
   }
 
   /** @ngInject */
-  function OwnershipServiceModalController(serviceDetails, $state, $modalInstance, CollectionsApi, Notifications, users, groups, sprintf) {
+  function OwnershipServiceModalController(serviceDetails, $state, $modalInstance, CollectionsApi, EventNotifications, users, groups, sprintf) {
     var vm = this;
 
     vm.service = serviceDetails;
@@ -85,12 +85,12 @@
 
       function saveSuccess() {
         $modalInstance.close();
-        Notifications.success(__(sprintf("%s ownership was saved.", vm.service.name)));
+        EventNotifications.success(__(sprintf("%s ownership was saved.", vm.service.name)));
         $state.go($state.current, {}, {reload: true});
       }
 
       function saveFailure() {
-        Notifications.error(__('There was an error saving ownership of this service.'));
+        EventNotifications.error(__('There was an error saving ownership of this service.'));
       }
     }
   }

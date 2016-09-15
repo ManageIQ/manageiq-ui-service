@@ -61,7 +61,7 @@
     }
 
     /** @ngInject */
-    function CustomButtonController($state, Notifications, CollectionsApi) {
+    function CustomButtonController($state, EventNotifications, CollectionsApi) {
       var vm = this;
 
       vm.activate = activate;
@@ -97,7 +97,7 @@
           } else if (assignedButton.method === 'delete') {
             CollectionsApi.delete(assignedButton.collection, assignedButton.id, {}).then(deleteSuccess, deleteFailure);
           } else {
-            Notifications.error(__('Button action not supported.'));
+            EventNotifications.error(__('Button action not supported.'));
           }
         }
 
@@ -110,26 +110,26 @@
 
         function postSuccess(response) {
           if (response.success === false) {
-            Notifications.error(response.message);
+            EventNotifications.error(response.message);
           } else {
-            Notifications.success(response.message);
+            EventNotifications.success(response.message);
           }
         }
 
         function postFailure() {
-          Notifications.error(__('Action not able to submit.'));
+          EventNotifications.error(__('Action not able to submit.'));
         }
 
         function deleteSuccess(response) {
           if (response.success === false) {
-            Notifications.error(response.message);
+            EventNotifications.error(response.message);
           } else {
-            Notifications.success(response.message);
+            EventNotifications.success(response.message);
           }
         }
 
         function deleteFailure() {
-          Notifications.error(__('Action not able to submit.'));
+          EventNotifications.error(__('Action not able to submit.'));
         }
       }
     }

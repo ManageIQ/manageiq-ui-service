@@ -52,7 +52,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, Notifications, jQuery, Consoles) {
+  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, EventNotifications, jQuery, Consoles) {
     var vm = this;
     setInitialVars(vm);
 
@@ -110,12 +110,12 @@
       CollectionsApi.post('services', vm.service.id, {}, removeAction).then(removeSuccess, removeFailure);
 
       function removeSuccess() {
-        Notifications.success(vm.service.name + __(' was removed.'));
+        EventNotifications.success(vm.service.name + __(' was removed.'));
         $state.go('services.list');
       }
 
       function removeFailure(data) {
-        Notifications.error(__('There was an error removing this service.'));
+        EventNotifications.error(__('There was an error removing this service.'));
       }
     }
 
@@ -149,12 +149,12 @@
       CollectionsApi.post('services', vm.service.id, {}, data).then(retireSuccess, retireFailure);
 
       function retireSuccess() {
-        Notifications.success(vm.service.name + __(' was retired.'));
+        EventNotifications.success(vm.service.name + __(' was retired.'));
         $state.go('services.list');
       }
 
       function retireFailure() {
-        Notifications.error(__('There was an error retiring this service.'));
+        EventNotifications.error(__('There was an error retiring this service.'));
       }
     }
 

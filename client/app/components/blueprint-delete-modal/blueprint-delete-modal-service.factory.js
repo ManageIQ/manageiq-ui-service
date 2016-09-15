@@ -32,7 +32,7 @@
   }
 
   /** @ngInject */
-  function BlueprintDeleteModalController(blueprints, BlueprintsState, $state, $modalInstance, CollectionsApi, Notifications) {
+  function BlueprintDeleteModalController(blueprints, BlueprintsState, $state, $modalInstance, CollectionsApi) {
     var vm = this;
 
     vm.blueprintsList = blueprints;

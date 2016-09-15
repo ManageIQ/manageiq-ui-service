@@ -5,7 +5,7 @@
       .factory('RulesState', RulesStateFactory);
 
   /** @ngInject */
-  function RulesStateFactory(CollectionsApi, Notifications, $state, sprintf, $q, $timeout) {
+  function RulesStateFactory(CollectionsApi, EventNotifications, $state, sprintf, $q, $timeout) {
     var ruleState = {};
 
     ruleState.editRule = null;
@@ -65,12 +65,12 @@
       CollectionsApi.post('arbitration_rules', null, {}, ruleObj).then(createSuccess, createFailure);
 
       function createSuccess(response) {
-        Notifications.success(__(sprintf("The rule was created.")));
+        EventNotifications.success(__(sprintf("The rule was created.")));
         deferred.resolve(response.results[0].id);
       }
 
       function createFailure() {
-        Notifications.error(__('There was an error creating this rule.'));
+        EventNotifications.error(__('There was an error creating this rule.'));
         deferred.reject();
       }
 
@@ -85,7 +85,7 @@
       };
 
       var editFailure = function() {
-        Notifications.error(__('There was an error updating the rules.'));
+        EventNotifications.error(__('There was an error updating the rules.'));
         deferred.reject();
       };
 
@@ -129,12 +129,12 @@
       CollectionsApi.post('arbitration_rules', null, {}, ruleObj).then(deleteSuccess, deleteFailure);
 
       function deleteSuccess() {
-        Notifications.success(__('Rule(s) were succesfully deleted.'));
+        EventNotifications.success(__('Rule(s) were succesfully deleted.'));
         deferred.resolve();
       }
 
       function deleteFailure() {
-        Notifications.error(__('There was an error deleting the rule(s).'));
+        EventNotifications.error(__('There was an error deleting the rule(s).'));
         deferred.reject();
       }
 

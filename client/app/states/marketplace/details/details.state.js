@@ -40,7 +40,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, CollectionsApi, dialogs, serviceTemplate, Notifications, DialogFieldRefresh, ShoppingCart) {
+  function StateController($state, CollectionsApi, dialogs, serviceTemplate, EventNotifications, DialogFieldRefresh, ShoppingCart) {
     var vm = this;
 
     vm.serviceTemplate = serviceTemplate;
@@ -97,13 +97,13 @@
       .then(addSuccess, addFailure);
 
       function addSuccess(result) {
-        Notifications.success(__("Item added to shopping cart"));
+        EventNotifications.success(__("Item added to shopping cart"));
       }
 
       function addFailure(result) {
         var errors = result.split(",");
         for (var i = 0; i<errors.length; ++i) {
-          Notifications.error(__("There was an error adding to shopping cart: ") + errors[i]);
+          EventNotifications.error(__("There was an error adding to shopping cart: ") + errors[i]);
         }
       }
     }

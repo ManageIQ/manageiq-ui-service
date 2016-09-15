@@ -33,7 +33,7 @@
   }
 
   /** @ngInject */
-  function RetireServiceModalController(serviceDetails, $state, $modalInstance, CollectionsApi, Notifications) {
+  function RetireServiceModalController(serviceDetails, $state, $modalInstance, CollectionsApi, EventNotifications) {
     var vm = this;
 
     vm.service = serviceDetails;
@@ -72,12 +72,12 @@
 
       function retireSuccess() {
         $modalInstance.close();
-        Notifications.success(__('Scheduling retirement for') + vm.service.name  + '.');
+        EventNotifications.success(__('Scheduling retirement for') + vm.service.name  + '.');
         $state.go($state.current, {}, {reload: true});
       }
 
       function retireFailure() {
-        Notifications.error(__('There was an error retiring this service.'));
+        EventNotifications.error(__('There was an error retiring this service.'));
       }
     }
   }

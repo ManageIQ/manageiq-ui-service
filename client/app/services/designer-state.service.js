@@ -5,7 +5,7 @@
       .factory('DesignerState', DesignerStateFactory);
 
   /** @ngInject */
-  function DesignerStateFactory($filter, CollectionsApi, Notifications, $state, sprintf, $q) {
+  function DesignerStateFactory($filter, CollectionsApi, $state, sprintf, $q) {
     var designer = {};
 
     designer.getDesignerToolboxTabs = function(srvTemplates) {

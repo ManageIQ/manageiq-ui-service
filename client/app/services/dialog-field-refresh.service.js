@@ -6,7 +6,7 @@
     .factory('DialogFieldRefresh', DialogFieldRefreshFactory);
 
   /** @ngInject */
-  function DialogFieldRefreshFactory(CollectionsApi, Notifications) {
+  function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
     var service = {
       listenForAutoRefreshMessages: listenForAutoRefreshMessages,
       refreshSingleDialogField: refreshSingleDialogField,
@@ -48,7 +48,7 @@
       }
 
       function refreshFailure(result) {
-        Notifications.error('There was an error refreshing this dialog: ' + result);
+        EventNotifications.error('There was an error refreshing this dialog: ' + result);
       }
 
       dialogField.beingRefreshed = true;
@@ -101,7 +101,7 @@
       }
 
       function refreshFailure(result) {
-        Notifications.error('There was an error automatically refreshing dialogs' + result);
+        EventNotifications.error('There was an error automatically refreshing dialogs' + result);
       }
 
       fetchDialogFieldInfo(allDialogFields, fieldNamesToRefresh, url, resourceId, refreshSuccess, refreshFailure);

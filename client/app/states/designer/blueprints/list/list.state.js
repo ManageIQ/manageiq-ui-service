@@ -58,7 +58,7 @@
 
   /** @ngInject */
   function StateController($state, blueprints, BlueprintsState, serviceCatalogs, tenants, BlueprintDetailsModal, BlueprintDeleteModal,
-                           Notifications, $rootScope, Language) {
+                           EventNotifications, $rootScope, Language) {
     /* jshint validthis: true */
     var vm = this;
     var categoryNames = [];
@@ -231,13 +231,13 @@
     }
 
     function duplicateBlueprint(action, item) {
-      Notifications.error(__('Duplicate blueprint feature not available.'), false, false);
+      EventNotifications.error(__('Duplicate blueprint feature not available.'));
       $state.go($state.current, {}, {reload: true});
     }
 
     function publishBlueprint(action, item) {
       if (item.ui_properties.num_items === 0) {
-        Notifications.error(__('Cannot publish a blueprint with no service items.'), false, false);
+        EventNotifications.error(__('Cannot publish a blueprint with no service items.'));
 
         // Make sure all notifications disappear after delay
         if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {

@@ -5,7 +5,7 @@
       .factory('BlueprintOrderListService', BlueprintOrderListFactory);
 
   /** @ngInject */
-  function BlueprintOrderListFactory(CollectionsApi, Notifications, sprintf, $q) {
+  function BlueprintOrderListFactory(CollectionsApi, sprintf, $q) {
     var orderListSrv = {};
 
     /*
