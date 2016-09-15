@@ -5,7 +5,7 @@
       .factory('BlueprintsState', BlueprintsStateFactory);
 
   /** @ngInject */
-  function BlueprintsStateFactory($filter, CollectionsApi, Notifications, $state, sprintf, $q) {
+  function BlueprintsStateFactory($filter, CollectionsApi, EventNotifications, $state, sprintf, $q) {
     var blueprint = {};
 
     blueprint.sort = {
@@ -162,7 +162,7 @@
               if (nodeSrvTemplate.id) {
                 serviceTemplates.push({"id": nodeSrvTemplate.id});
               } else {
-                Notifications.warn("Cannot Save New Generic Item '" + nodeSrvTemplate.name +
+                EventNotifications.warn("Cannot Save New Generic Item '" + nodeSrvTemplate.name +
                     "'.  Saving New Generic Items Not Yet Implemented.");
               }
             }
@@ -401,12 +401,12 @@
       CollectionsApi.post('blueprints', null, {}, blueprintObj).then(deleteSuccess, deleteFailure);
 
       function deleteSuccess() {
-        Notifications.success(__('Blueprint(s) were succesfully deleted.'));
+        EventNotifications.success(__('Blueprint(s) were succesfully deleted.'));
         deferred.resolve();
       }
 
       function deleteFailure() {
-        Notifications.error(__('There was an error deleting the blueprint(s).'));
+        EventNotifications.error(__('There was an error deleting the blueprint(s).'));
         deferred.reject();
       }
 

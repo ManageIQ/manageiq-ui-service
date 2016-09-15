@@ -5,7 +5,7 @@
     .directive('shoppingCart', ShoppingCartDirective);
 
   /** @ngInject */
-  function ShoppingCartDirective(Notifications) {
+  function ShoppingCartDirective(EventNotifications) {
     var directive = {
       restrict: 'E',
       scope: {
@@ -44,11 +44,11 @@
       function submit() {
         ShoppingCart.submit()
         .then(function() {
-          Notifications.success(__('Shopping cart successfully ordered'));
+          EventNotifications.success(__('Shopping cart successfully ordered'));
           vm.modalInstance.dismiss();
         })
         .then(null, function(err) {
-          Notifications.error(__('There was an error submitting this request: ') + err);
+          EventNotifications.error(__('There was an error submitting this request: ') + err);
         });
       }
 

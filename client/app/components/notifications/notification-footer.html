@@ -1,0 +1,24 @@
+<div class="drawer-pf-action footer-actions">
+  <div class="footer-button-left">
+    <a class="btn btn-link" role="button"
+       ng-class="{'disabled': !notificationGroup.notifications || notificationGroup.notifications.length === 0}"
+       ng-click="customScope.markAllRead(notificationGroup)">
+      <span>{{'Mark All Read' | translate}}</span>
+    </a>
+  </div>
+  <div class="footer-button-right">
+    <a class="btn btn-link" role="button"
+       ng-class="{'disabled': !notificationGroup.notifications || notificationGroup.notifications.length === 0}"
+       confirmation
+       confirmation-if="true"
+       confirmation-title="{{'Clear All ' + notificationGroup.heading |translate}}"
+       confirmation-message="{{'Are you sure you would like to clear all ' + notificationGroup.heading + '?'|translate}}"
+       confirmation-ok-text="{{'Clear All'|translate}}"
+       confirmation-on-ok="customScope.clearAllNotifications(notificationGroup)"
+       confirmation-ok-style="primary"
+       confirmation-show-cancel="true" >
+      <span class="pficon pficon-close"></span>
+      <span>{{'Clear All' | translate}}</span>
+    </a>
+  </div>
+</div>

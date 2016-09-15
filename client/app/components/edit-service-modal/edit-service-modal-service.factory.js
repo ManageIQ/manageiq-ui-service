@@ -33,7 +33,7 @@
   }
 
   /** @ngInject */
-  function EditServiceModalController(serviceDetails, $state, $modalInstance, CollectionsApi, Notifications) {
+  function EditServiceModalController(serviceDetails, $state, $modalInstance, CollectionsApi, EventNotifications) {
     var vm = this;
 
     vm.service = serviceDetails;
@@ -57,12 +57,12 @@
 
       function saveSuccess() {
         $modalInstance.close();
-        Notifications.success(vm.service.name + __(' was edited.'));
+        EventNotifications.success(vm.service.name + __(' was edited.'));
         $state.go($state.current, {}, {reload: true});
       }
 
       function saveFailure() {
-        Notifications.error(__('There was an error editing this service.'));
+        EventNotifications.error(__('There was an error editing this service.'));
       }
     }
   }

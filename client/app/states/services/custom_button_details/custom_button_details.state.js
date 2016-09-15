@@ -41,7 +41,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, $stateParams, dialog, service, CollectionsApi, Notifications, DialogFieldRefresh) {
+  function StateController($state, $stateParams, dialog, service, CollectionsApi, EventNotifications, DialogFieldRefresh) {
     var vm = this;
     vm.title = __('Custom button action');
     vm.dialogs = dialog.content;
@@ -85,12 +85,12 @@
       ).then(submitSuccess, submitFailure);
 
       function submitSuccess(result) {
-        Notifications.success(result.message);
+        EventNotifications.success(result.message);
         $state.go('services.details', {serviceId: $stateParams.serviceId});
       }
 
       function submitFailure(result) {
-        Notifications.error(__('There was an error submitting this request: ') + result);
+        EventNotifications.error(__('There was an error submitting this request: ') + result);
       }
     }
   }

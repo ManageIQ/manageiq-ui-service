@@ -74,7 +74,7 @@
   /** @ngInject */
   function BlueprintDetailsModalController(action, blueprint, BlueprintsState, BlueprintOrderListService, serviceCatalogs,  // jshint ignore:line
                                            serviceDialogs, tenants, $state, BrowseEntryPointModal, CreateCatalogModal, $modalInstance,
-                                           Notifications, sprintf, $scope) {
+                                           EventNotifications, sprintf, $scope) {
     var vm = this;
     vm.blueprint = blueprint;
 
@@ -318,25 +318,25 @@
         if (action === 'create') {
           // This is not actually used anymore, flow has changed
           // keeping it in case flow changes back again.
-          Notifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
+          EventNotifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
           $modalInstance.close();
           BlueprintsState.saveBlueprint(vm.blueprint);
           $state.go('designer/blueprints.editor', {blueprintId: vm.blueprint.id});
         } else if (action === 'edit') {
           $modalInstance.close({editedblueprint: vm.blueprint});
-          // Notifications.success(sprintf(__('%s details were updated.'), vm.blueprint.name));
+          // EventNotifications.success(sprintf(__('%s details were updated.'), vm.blueprint.name));
         } else if (action === 'publish') {
           $modalInstance.close();
-          Notifications.success(sprintf(__('%s was published.'), vm.blueprint.name));
+          EventNotifications.success(sprintf(__('%s was published.'), vm.blueprint.name));
           $state.go($state.current, {}, {reload: true});
         }
       }
 
       function saveFailure() {
         if (action === 'publish') {
-          Notifications.error(__('The Publish Blueprint feature is not yet implemented.'));
+          EventNotifications.error(__('The Publish Blueprint feature is not yet implemented.'));
         } else {
-          Notifications.error(__("There was an error saving this Blueprint's Details."));
+          EventNotifications.error(__("There was an error saving this Blueprint's Details."));
         }
       }
 

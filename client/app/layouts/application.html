@@ -1,6 +1,13 @@
 <div class="layout-application" ng-controller="navigationController as vm">
   <div pf-vertical-navigation items="vm.items" brand-src="images/brand.svg" brand-alt="{{ ::vm.text.name }}" update-active-items-on-click="true"
        pinnable-menus="true" item-click-callback="vm.handleItemClick" show-badges="true">
+    <div pf-toast-notification-list notifications="vm.toastNotifications" show-close="true" close-callback="vm.handleDismissToast" update-viewing="vm.updateViewingToast"></div>
+
+    <div pf-notification-drawer drawer-hidden="!vm.notificationsDrawerShown" notification-groups="vm.notificationGroups" allow-expand="true"
+         drawer-title="{{'Notifications' | translate}}" heading-include="{{vm.headingHTML}}" subheading-include="{{vm.subHeadingHTML}}"
+         notification-body-include="{{vm.notificationHTML}}" notification-footer-include="{{vm.notificationFooterHTML}}"
+         custom-scope="vm">
+    </div>
     <div>
       <ul class="nav navbar-nav">
         <li>
@@ -14,6 +21,11 @@
           <a title="{{'Shopping cart' | translate}}" class="nav-item-iconic" ng-click="vm.shoppingCart.open()">
             <i class="fa fa-shopping-cart"></i>
             <span class="badge" ng-show="vm.shoppingCart.count" ng-bind="vm.shoppingCart.count"></span>
+          </a>
+        </li>
+        <li>
+          <a title="{{'Toggle notifications list' | translate}}" class="nav-item-iconic" ng-click="vm.toggleNotificationsList()">
+            <span class="fa" ng-class="{'fa-bell': vm.newNotifications, 'fa-bell-o': !vm.newNotifications}"></span>
           </a>
         </li>
         <li dropdown>

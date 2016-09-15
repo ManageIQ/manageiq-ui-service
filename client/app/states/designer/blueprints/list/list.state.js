@@ -58,7 +58,7 @@
 
   /** @ngInject */
   function StateController($state, blueprints, BlueprintsState, serviceCatalogs, tenants, BlueprintDetailsModal, BlueprintDeleteModal,
-                           Notifications, $rootScope, Language) {
+                           EventNotifications, $rootScope, Language) {
     /* jshint validthis: true */
     var vm = this;
     var categoryNames = [];
@@ -85,13 +85,6 @@
     function addVisibilityFilter(item) {
       visibilityNames.push(item.name);
     }
-
-    /* This notification 'splice' code doesn't work.  Splice needs a third argument, the items to splice in
-     * Not sure what this code is trying to accomplish, but it exists in login, request list, & services list
-    if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
-      $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
-    }
-    */
 
     vm.blueprintsList = angular.copy(vm.blueprints);
 
@@ -231,13 +224,13 @@
     }
 
     function duplicateBlueprint(action, item) {
-      Notifications.error(__('Duplicate blueprint feature not available.'), false, false);
+      EventNotifications.error(__('Duplicate blueprint feature not available.'));
       $state.go($state.current, {}, {reload: true});
     }
 
     function publishBlueprint(action, item) {
       if (item.ui_properties.num_items === 0) {
-        Notifications.error(__('Cannot publish a blueprint with no service items.'), false, false);
+        EventNotifications.error(__('Cannot publish a blueprint with no service items.'));
 
         // Make sure all notifications disappear after delay
         if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {

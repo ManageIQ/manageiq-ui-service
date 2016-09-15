@@ -1,0 +1,69 @@
+<div ng-if="!drawerExpanded" ng-click="customScope.markNotificationRead(notification, notificationGroup)">
+  <div class="dropdown pull-right dropdown-kebab-pf">
+    <button class="btn btn-link dropdown-toggle" type="button" ng-click="customScope.clearNotification(notification, notificationGroup)">
+      <span class="pficon pficon-close"></span>
+    </button>
+  </div>
+  <span ng-if="notification.type" class="pull-left {{customScope.getNotficationStatusIconClass(notification)}}" ng-click="customScope.markRead(notification, notificationGroup)"></span>
+  <span class="drawer-pf-notification-message notification-message"
+        ng-click="customScope.markRead(notification, notificationGroup)"
+        tooltip-popup-delay="500" tooltip-placement="bottom" tooltip="{{notification.message | translate}}">
+    {{notification.message | translate}}
+  </span>
+  <div ng-if="!notification.data.inProgress" class="drawer-pf-notification-info" ng-click="customScope.markRead(notification, notificationGroup)">
+    <span class="date">{{notification.timeStamp | date:'MM/dd/yyyy'}}</span>
+    <span class="time">{{notification.timeStamp | date:'h:mm:ss a'}}</span>
+  </div>
+  <div ng-if="notification.data.inProgress" class="mini-progress clearfix">
+    <span class="time">{{notification.timeStamp | date:'h:mm:ss a'}}</span>
+    <div class="mini-progress-area">
+      <div class="progress">
+        <span class="progress-bar progress-bar-info"
+              ng-style="{width: notification.data.percentComplete + '%'}" tooltip="{{notification.data.percentComplete}} + {{'% Complete' | translate}}">
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-if="drawerExpanded" class="container-fluid expanded-notification" ng-click="customScope.markNotificationRead(notification, notificationGroup)">
+  <div class="row">
+    <div ng-class="{'col-md-4': notificationGroup.notificationType == 'task'}" class="col-sm-6">
+      <span ng-if="notification.type" class="pull-left {{customScope.getNotficationStatusIconClass(notification)}}" ng-click="customScope.markRead(notification, notificationGroup)"></span>
+      <span class="drawer-pf-notification-message notification-message"
+            ng-click="customScope.markRead(notification, notificationGroup)"
+            tooltip-append-to-body="true" tooltip-popup-delay="500" tooltip-placement="bottom" tooltip="{{notification.message | translate}}">
+            {{notification.message | translate}}
+      </span>
+    </div>
+    <div class="col-md-4 col-sm-3" ng-if="notificationGroup.notificationType == 'task'">
+      <div class="drawer-pf-notification-info expanded-info" ng-click="customScope.markRead(notification, notificationGroup)">
+        <span class="info-title" translate>Started: </span>
+        <span class="date">{{notification.data.startTime | date:'MM/dd/yyyy'}}</span>
+        <span class="time">{{notification.data.startTime | date:'h:mm:ss a'}}</span>
+      </div>
+      <div ng-if="notification.inProgress" class="progress">
+        <div class="progress-bar progress-bar-info"
+             ng-style="{width: notification.data.percentComplete + '%'}" tooltip="{{notification.data.percentComplete}} + {{'% Complete' | translate}}">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-3" ng-if="notificationGroup.notificationType == 'task'">
+      <div class="drawer-pf-notification-info" ng-click="customScope.markRead(notification, notificationGroup)">
+        <span class="info-title" translate>Completed: </span>
+        <span class="date">{{notification.data.endTime | date:'MM/dd/yyyy'}}</span>
+        <span class="time">{{notification.data.endTime | date:'h:mm:ss a'}}</span>
+      </div>
+    </div>
+    <div class="col-sm-6" ng-if="notificationGroup.notificationType == 'event'">
+      <div class="drawer-pf-notification-info" ng-click="customScope.markRead(notification, notificationGroup)">
+        <span class="date">{{notification.timeStamp | date:'MM/dd/yyyy'}}</span>
+        <span class="time">{{notification.timeStamp | date:'h:mm:ss a'}}</span>
+      </div>
+    </div>
+    <div class="pull-right dropdown-kebab-pf">
+      <button class="btn btn-link dropdown-toggle" type="button" ng-click="customScope.clearNotification(notification, notificationGroup)">
+        <span class="pficon pficon-close"></span>
+      </button>
+    </div>
+  </div>
+</div>

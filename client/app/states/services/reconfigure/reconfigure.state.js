@@ -35,7 +35,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, $stateParams, CollectionsApi, service, Notifications, DialogFieldRefresh) {
+  function StateController($state, $stateParams, CollectionsApi, service, EventNotifications, DialogFieldRefresh) {
     var vm = this;
 
     vm.title = __('Service Details');
@@ -104,17 +104,17 @@
       ).then(submitSuccess, submitFailure);
 
       function submitSuccess(result) {
-        Notifications.success(result.message);
+        EventNotifications.success(result.message);
         $state.go('services.details', {serviceId: $stateParams.serviceId});
       }
 
       function submitFailure(result) {
-        Notifications.error(__('There was an error submitting this request: ') + result);
+        EventNotifications.error(__('There was an error submitting this request: ') + result);
       }
     }
 
     function cancelDialog() {
-      Notifications.success(__('Reconfigure this service has been cancelled'));
+      EventNotifications.success(__('Reconfigure this service has been cancelled'));
       $state.go('services.details', {serviceId: $stateParams.serviceId});
     }
   }
