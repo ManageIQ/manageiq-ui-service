@@ -19,9 +19,9 @@
         title: N_('Service Template Details'),
         resolve: {
           dialogs: resolveDialogs,
-          serviceTemplate: resolveServiceTemplate
-        }
-      }
+          serviceTemplate: resolveServiceTemplate,
+        },
+      },
     };
   }
 

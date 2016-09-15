@@ -13,13 +13,13 @@
         title: '@heading',
         description: '@',
         more: '@',
-        img: '@?'
+        img: '@?',
       },
       link: link,
       templateUrl: 'app/components/ss-card/ss-card.html',
       controller: SsCardController,
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;

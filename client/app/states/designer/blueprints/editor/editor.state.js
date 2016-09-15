@@ -20,7 +20,7 @@
         resolve: {
           blueprint: resolveBlueprint,
           blueprintTags: resolveBlueprintTags,
-          serviceTemplates: resolveServiceTemplates
+          serviceTemplates: resolveServiceTemplates,
         }
       }
     };
@@ -55,7 +55,7 @@
     var options = {
       expand: 'resources',
       filter: ['service_template_catalog_id>0', 'display=true'],
-      attributes: attributes
+      attributes: attributes,
     };
 
     return CollectionsApi.query('service_templates', options);

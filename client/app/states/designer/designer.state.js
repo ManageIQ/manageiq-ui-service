@@ -14,8 +14,8 @@
       'designer': {
         parent: 'application',
         url: '',
-        redirectTo: 'designer.blueprints'
-      }
+        redirectTo: 'designer.blueprints',
+      },
     };
   }
 })();

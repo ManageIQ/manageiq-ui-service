@@ -8,7 +8,7 @@
   function BlueprintDeleteFactory($modal) {
     var modalOpen = false;
     var modalBlueprint = {
-      showModal: showModal
+      showModal: showModal,
     };
 
     return modalBlueprint;
@@ -18,7 +18,7 @@
         templateUrl: 'app/components/blueprint-delete-modal/blueprint-delete-modal.html',
         controller: BlueprintDeleteModalController,
         controllerAs: 'vm',
-        resolve: { blueprints: resolveBlueprints }
+        resolve: { blueprints: resolveBlueprints },
       };
 
       var modal = $modal.open(modalOptions);

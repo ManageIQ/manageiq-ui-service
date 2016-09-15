@@ -8,7 +8,7 @@
   function BindAttrsDirective() {
     var directive = {
       restrict: 'A',
-      link: link
+      link: link,
     };
 
     return directive;

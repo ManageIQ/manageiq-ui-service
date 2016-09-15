@@ -18,9 +18,9 @@
         controllerAs: 'vm',
         title: N_('Service List'),
         resolve: {
-          services: resolveServices
-        }
-      }
+          services: resolveServices,
+        },
+      },
     };
   }
 
@@ -56,7 +56,7 @@
       selectItems: false,
       showSelectBox: false,
       selectionMatchProp: 'service_status',
-      onClick: handleClick
+      onClick: handleClick,
     };
 
     vm.toolbarConfig = {
@@ -66,70 +66,70 @@
             id: 'name',
             title: __('Name'),
             placeholder: __('Filter by Name'),
-            filterType: 'text'
+            filterType: 'text',
           },
           {
             id: 'retirement',
             title: __('Retirement Date'),
             placeholder: __('Filter by Retirement Date'),
             filterType: 'select',
-            filterValues: [__('Current'), __('Soon'), __('Retired')]
+            filterValues: [__('Current'), __('Soon'), __('Retired')],
           },
           {
             id: 'vms',
             title: __('Number of VMs'),
             placeholder: __('Filter by VMs'),
-            filterType: 'text'
+            filterType: 'text',
           },
           {
             id: 'owner',
             title: __('Owner'),
             placeholder: __('Filter by Owner'),
-            filterType: 'text'
+            filterType: 'text',
           },
           {
             id: 'created',
             title: __('Created'),
             placeholder: __('Filter by Created On'),
-            filterType: 'text'
-          }
+            filterType: 'text',
+          },
         ],
         resultsCount: vm.servicesList.length,
         appliedFilters: ServicesState.filterApplied ? ServicesState.getFilters() : [],
-        onFilterChange: filterChange
+        onFilterChange: filterChange,
       },
       sortConfig: {
         fields: [
           {
             id: 'name',
             title: __('Name'),
-            sortType: 'alpha'
+            sortType: 'alpha',
           },
           {
             id: 'retires',
             title: __('Retirement Date'),
-            sortType: 'numeric'
+            sortType: 'numeric',
           },
           {
             id: 'vms',
             title: __('Number of VMs'),
-            sortType: 'numeric'
+            sortType: 'numeric',
           },
           {
             id: 'owner',
             title: __('Owner'),
-            sortType: 'alpha'
+            sortType: 'alpha',
           },
           {
             id: 'created',
             title: __('Created'),
-            sortType: 'numeric'
-          }
+            sortType: 'numeric',
+          },
         ],
         onSortChange: sortChange,
         isAscending: ServicesState.getSort().isAscending,
-        currentField: ServicesState.getSort().currentField
-      }
+        currentField: ServicesState.getSort().currentField,
+      },
     };
 
     if (ServicesState.filterApplied) {

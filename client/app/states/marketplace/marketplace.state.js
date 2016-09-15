@@ -15,8 +15,8 @@
         parent: 'application',
         url: '/marketplace',
         redirectTo: 'marketplace.list',
-        template: '<ui-view></ui-view>'
-      }
+        template: '<ui-view></ui-view>',
+      },
     };
   }
 })();

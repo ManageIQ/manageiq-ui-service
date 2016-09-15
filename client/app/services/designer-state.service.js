@@ -23,17 +23,17 @@
                 type: 'generic',
                 icon: "pficon-virtual-machine",
                 fontFamily: "PatternFlyIcons-webfont",
-                fontContent: "\ue90f"
-              }
-            }
-          ]
+                fontContent: "\ue90f",
+              },
+            },
+          ],
         },
         {
           preTitle: 'Compute', title: 'Containers',
           subtabs: [
             {title: 'Kubernetes'},
-            {title: 'OSE'}
-          ]
+            {title: 'OSE'},
+          ],
         },
         {
           preTitle: 'Compute', title: 'Infrastructure',
@@ -48,10 +48,10 @@
                 type: 'generic',
                 icon: "pficon-virtual-machine",
                 fontFamily: "PatternFlyIcons-webfont",
-                fontContent: "\ue90f"
-              }
-            }
-          ]
+                fontContent: "\ue90f",
+              },
+            },
+          ],
         },
         {
           preTitle: 'Configuration', title: 'Management',
@@ -59,21 +59,21 @@
             {title: 'Ansible'},
             {title: 'Chef'},
             {title: 'Puppet'},
-            {title: 'Satellite'}
-          ]
+            {title: 'Satellite'},
+          ],
         },
         {
           title: 'Storage',
           subtabs: [
             {title: 'NetApp'},
-            {title: 'USM'}
-          ]
+            {title: 'USM'},
+          ],
         },
         {
           title: 'Middleware',
           subtabs: [
-            {title: 'Hawkular'}
-          ]
+            {title: 'Hawkular'},
+          ],
         },
         {
           title: 'Network',
@@ -86,23 +86,23 @@
                 type: 'generic',
                 icon: "pficon-network",
                 fontFamily: "PatternFlyIcons-webfont",
-                fontContent: "\ue909"
-              }
-            }
-          ]
+                fontContent: "\ue909",
+              },
+            },
+          ],
         },
         {
           title: 'Orchestration',
           subtabs: [
             {title: 'Azure Stacks'},
             {title: 'CloudFormation'},
-            {title: 'Heat Templates'}
-          ]
+            {title: 'Heat Templates'},
+          ],
         },
         {
           title: 'Bundles',
-          active: true
-        }
+          active: true,
+        },
       ];
 
       var bundleTabIndex = 8;
@@ -184,7 +184,7 @@
           id: srvTemplate.id,
           bundle: true,
           fontFamily: "FontAwesome",
-          fontContent: "\uf06b"
+          fontContent: "\uf06b",
         };
 
         if (srvTemplate.picture && srvTemplate.picture.image_href) {

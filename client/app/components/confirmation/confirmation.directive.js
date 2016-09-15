@@ -19,12 +19,12 @@
         onCancel: '&?confirmationOnCancel',
         okStyle: '@?confirmationOkStyle',
         confirmIf: '=?confirmationIf',
-        showCancel: '=?confirmationShowCancel'
+        showCancel: '=?confirmationShowCancel',
       },
       link: link,
       controller: ConfirmationController,
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;
@@ -33,7 +33,7 @@
       vm.activate({
         getOffset: getOffset,
         getPosition: getPosition,
-        size: getSizeOfConfirmation()
+        size: getSizeOfConfirmation(),
       });
 
       element.on(attrs.confirmationTrigger || 'click', vm.onTrigger);
@@ -68,7 +68,7 @@
 
         return {
           height: height,
-          width: width
+          width: width,
         };
       }
     }
@@ -79,7 +79,7 @@
 
       var modalOptions = {
         templateUrl: 'app/components/confirmation/confirmation.html',
-        scope: $scope
+        scope: $scope,
       };
 
       vm.top = 0;
@@ -138,38 +138,38 @@
         var shiftWidth = {
           center: widthCenter,
           left: widthLeft,
-          right: widthRight
+          right: widthRight,
         };
 
         var shiftHeight = {
           center: heightCenter,
           top: heightTop,
-          bottom: heightBottom
+          bottom: heightBottom,
         };
 
         switch (pos0) {
           case 'right':
             targetElPos = {
               top: shiftHeight[pos1](),
-              left: shiftWidth[pos0]()
+              left: shiftWidth[pos0](),
             };
             break;
           case 'left':
             targetElPos = {
               top: shiftHeight[pos1](),
-              left: hostElPos.left - targetElWidth
+              left: hostElPos.left - targetElWidth,
             };
             break;
           case 'bottom':
             targetElPos = {
               top: shiftHeight[pos0](),
-              left: shiftWidth[pos1]()
+              left: shiftWidth[pos1](),
             };
             break;
           default:
             targetElPos = {
               top: hostElPos.top - targetElHeight,
-              left: shiftWidth[pos1]()
+              left: shiftWidth[pos1](),
             };
             break;
         }

@@ -1,5 +1,5 @@
 
-angular.module('dragging', ['mouseCapture', ] )
+angular.module('dragging', ['mouseCapture' ] )
 
 //
 // Service used to help with dragging and clicking on elements.

@@ -6,7 +6,7 @@
     'app.config',
     'app.states',
     'ngProgress',
-    'gettext'
+    'gettext',
   ]).controller('AppController', ['$rootScope', 'ngProgressFactory', AppController]);
 
   /** @ngInject */

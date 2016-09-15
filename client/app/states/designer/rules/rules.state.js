@@ -21,9 +21,9 @@
         resolve: {
           designerRules: resolveRules,
           fields: resolveRuleFields,
-          profiles: resolveProfiles
-        }
-      }
+          profiles: resolveProfiles,
+        },
+      },
     };
   }
 
@@ -261,7 +261,7 @@
       var newRule = {
         operation: 'inject',
         operator: vm.operators[0],
-        editMode: true
+        editMode: true,
       };
       updateRuleInfo(newRule);
 
@@ -386,8 +386,8 @@
     };
     vm.toolbarConfig = {
       actionsConfig: {
-        actionsInclude: true
-      }
+        actionsInclude: true,
+      },
     };
   }
 })();

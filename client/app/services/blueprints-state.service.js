@@ -10,7 +10,7 @@
 
     blueprint.sort = {
       isAscending: true,
-      currentField: {id: 'name', title: __('Name'), sortType: 'alpha'}
+      currentField: {id: 'name', title: __('Name'), sortType: 'alpha'},
     };
 
     blueprint.filters = [];
@@ -147,7 +147,7 @@
           "name": tmpBlueprint.name,
           "description": tmpBlueprint.description,
           "bundle": {},
-          "ui_properties": {}
+          "ui_properties": {},
         };
 
         if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel) {
@@ -395,7 +395,7 @@
 
       var blueprintObj = {
         "action": "delete",
-        "resources": resources
+        "resources": resources,
       };
 
       CollectionsApi.post('blueprints', null, {}, blueprintObj).then(deleteSuccess, deleteFailure);
@@ -433,12 +433,12 @@
         {"action": "Provision",
         "ae_namespace": "Service/Provisioning/StateMachines",
         "ae_class": "ServiceProvision_Template",
-        "ae_instance": "default"}
+        "ae_instance": "default"},
       ]};
       tmpBlueprint.ui_properties = {
         chartDataModel: {
-          "nodes": []
-        }
+          "nodes": [],
+        },
       };
 
       blueprint.setDoNotSave(false);

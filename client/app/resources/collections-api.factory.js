@@ -9,7 +9,7 @@
     var service = {
       query: query,
       get: get,
-      post: post
+      post: post,
     };
 
     return service;

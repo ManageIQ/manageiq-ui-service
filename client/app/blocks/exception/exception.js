@@ -7,7 +7,7 @@
   /** @ngInject */
   function exception(logger) {
     var service = {
-      catcher: catcher
+      catcher: catcher,
     };
 
     return service;
