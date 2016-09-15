@@ -104,7 +104,7 @@
                    icon: "pficon-regions",
                    fontFamily: "PatternFlyIcons-webfont",
                    fontContent: "\ue909",
-                 }}
+                 }},
              ]},
             {title: 'CloudFormation'},
             {title: 'Heat Templates'},
