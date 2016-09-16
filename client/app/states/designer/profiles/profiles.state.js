@@ -31,35 +31,22 @@
   }
 
   /** @ngInject */
-  function ProfilesController(designerProfiles, ProfilesState, $state, $scope, $timeout) {
+  function ProfilesController(designerProfiles, ProfilesState, $state, $timeout) {
     /* jshint validthis: true */
     var vm = this;
-    var providerTypes = ['Amazon EC2', 'Azure', 'Google Compute Engine', 'OpenStack', 'VMware vCloud'];
+    vm.title = __('Profiles');
+    vm.designerProfiles = designerProfiles.resources;
     vm.designerProfilesList = [];
+    vm.confirmDelete = false;
+
+    var providerTypes = [];
+    angular.forEach(ProfilesState.providersInfo, function(info) {
+      providerTypes.push(info.title);
+    });
 
     var updateProfileInfo = function(profile) {
-      if (profile.ext_management_system && profile.ext_management_system.type) {
-        if (profile.ext_management_system.type.toLowerCase().indexOf('amazon') >= 0) {
-          profile.providerType = providerTypes[0];
-          profile.providerImage = "assets/images/providers/vendor-amazon.svg";
-        } else if (profile.ext_management_system.type.toLowerCase().indexOf('azure') >= 0) {
-          profile.providerType = providerTypes[1];
-          profile.providerImage = "assets/images/providers/vendor-azure.svg";
-        } else if (profile.ext_management_system.type.toLowerCase().indexOf('google') >= 0) {
-          profile.providerType = providerTypes[2];
-          profile.providerImage = "assets/images/providers/vendor-google.svg";
-        } else if (profile.ext_management_system.type.toLowerCase().indexOf('openstack') >= 0) {
-          profile.providerType = providerTypes[3];
-          profile.providerImage = "assets/images/providers/vendor-openstack_infra.svg";
-        } else if (profile.ext_management_system.type.toLowerCase().indexOf('vmware') >= 0) {
-          profile.providerType = providerTypes[4];
-          profile.providerImage = "assets/images/providers/vendor-vmware-cloud.svg";
-        } else {
-          profile.providerImage = "assets/images/providers/vendor-unknown.svg";
-        }
-      } else {
-        profile.providerImage = "assets/images/providers/vendor-unknown.svg";
-      }
+      profile.providerType = ProfilesState.getProviderType(profile);
+      profile.providerImage = ProfilesState.getProviderTypeImage(profile);
     };
 
     var updateProfilesInfo = function() {
@@ -139,7 +126,6 @@
           vm.designerProfilesList.push(item);
         }
       }
-      console.dir(vm.designerProfilesList);
     }
 
     function matchesFilters(item, filters) {
@@ -173,7 +159,48 @@
       return found;
     }
 
-    vm.menuActions = [];
+    vm.viewProfile = function(profile) {
+      $state.go('designer.profiles.details', {profileId: profile.id, edit: false});
+    };
+
+    vm.removeProfile = function(profile) {
+      if (profile) {
+        ProfilesState.deleteProfiles([profile.id]).then(removeSuccess, removeFailure);
+      }
+
+      function removeSuccess() {
+        refreshProfiles();
+      }
+
+      function removeFailure() {
+      }
+    };
+    vm.cancelRemoveProfile = function(profile) {
+      vm.profileToDelete = undefined;
+      vm.confirmDelete = false;
+    };
+
+    vm.handleView = function(action, profile) {
+      vm.viewProfile(profile);
+    };
+
+    vm.handleDelete = function(action, profile) {
+      vm.profileToDelete = profile;
+      vm.confirmDelete = true;
+    };
+
+    vm.menuActions = [
+      {
+        name: __('View'),
+        title: __('View Profile'),
+        actionFn: vm.handleView
+      },
+      {
+        name: __('Delete'),
+        title: __('Delete Profile'),
+        actionFn: vm.handleDelete
+      },
+    ];
 
     vm.toolbarConfig = {
       filterConfig: {
@@ -228,16 +255,15 @@
         onSortChange: sortChange,
         isAscending: ProfilesState.getSort().isAscending,
         currentField: ProfilesState.getSort().currentField,
-      }
+      },
     };
 
     vm.listConfig = {
       showSelectBox: false,
       selectItems: false,
+      onClick: vm.viewProfile,
     };
 
-    vm.title = __('Profiles');
-    vm.designerProfiles = designerProfiles.resources;
     updateProfilesInfo();
     applyFilters(ProfilesState.getFilters());
   }

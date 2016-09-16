@@ -9,7 +9,20 @@
     </ol>
   </span>
   <div pf-toolbar class="designer-rules-toolbar" id="designerProfilesToolbar" config="vm.toolbarConfig"></div>
-  <div class="list-view-container">
+  <div class="list-view-container"
+       confirmation
+       confirmation-if="true"
+       confirmation-trigger-value="vm.confirmDelete"
+       confirmation-title="{{'Delete Profile'|translate}}"
+       confirmation-message="{{'Are you sure you want to delete profile ' +
+                               (vm.profileToDelete ? vm.profileToDelete.name : '') +
+                               '?'|translate}}"
+       confirmation-ok-text="{{'Delete'|translate}}"
+       confirmation-on-ok="vm.removeProfile(item)"
+       confirmation-on-cancel="vm.cancelRemoveProfile(item)"
+       confirmation-ok-style="primary"
+       confirmation-show-cancel="true" translate>
+    >
     <div pf-list-view id="designerProfilesList" class="designer-profiles-list" config="vm.listConfig" items="vm.designerProfilesList"
          action-buttons="vm.actionButtons"
          menu-actions="vm.menuActions">

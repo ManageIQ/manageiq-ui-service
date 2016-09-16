@@ -37,8 +37,9 @@
     return RulesState.getRuleFields();
   }
 
-  function resolveProfiles(RulesState) {
-    return RulesState.getProfiles();
+  /** @ngInject */
+  function resolveProfiles(ProfilesState) {
+    return ProfilesState.getProfiles();
   }
 
   /** @ngInject */
