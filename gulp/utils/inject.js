@@ -12,7 +12,6 @@ var order = require('./order');
  */
 module.exports = function(src, label, ordering) {
   var options = {
-    read: false
   };
 
   if (label) {
