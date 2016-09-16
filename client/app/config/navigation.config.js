@@ -62,6 +62,16 @@
                 },
               ],
             },
+            profiles: {
+              title: N_('Profiles'),
+              state: 'designer.profiles',
+              badges: [
+                {
+                  count: 0,
+                  tooltip: N_('The total number of available profiles')
+                }
+              ]
+            },
             rules: {
               title: N_('Rules'),
               state: 'designer.rules',
@@ -80,11 +90,14 @@
 
   /** @ngInject */
   function init(lodash, CollectionsApi, Navigation, NavCounts) {
-    NavCounts.add('services', fetchServices, 60 * 1000);
-    NavCounts.add('requests', fetchRequests, 60 * 1000);
-    NavCounts.add('marketplace', fetchServiceTemplates, 60 * 1000);
-    NavCounts.add('blueprints', fetchBlueprints, 60 * 1000);
-    NavCounts.add('rules', fetchRules, 60 * 1000);
+    var refreshTimeMs = 60 * 1000;
+
+    NavCounts.add('services', fetchServices, refreshTimeMs);
+    NavCounts.add('requests', fetchRequests, refreshTimeMs);
+    NavCounts.add('marketplace', fetchServiceTemplates, refreshTimeMs);
+    NavCounts.add('blueprints', fetchBlueprints, refreshTimeMs);
+    NavCounts.add('profiles', fetchProfiles, refreshTimeMs);
+    NavCounts.add('rules', fetchRules, refreshTimeMs);
 
     function fetchRequests() {
       var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest'];
@@ -127,7 +140,18 @@
       };
 
       CollectionsApi.query('blueprints', options)
-        .then(lodash.partial(updateBlueprintsCount, 'blueprints'));
+        .then(lodash.partial(updateDesignerSecondaryCount, 'blueprints'));
+    }
+
+    function fetchProfiles() {
+      var options = {
+        expand: false,
+        filter: ['id>0'],
+        auto_refresh: true,
+      };
+
+      CollectionsApi.query('arbitration_profiles', options)
+        .then(lodash.partial(updateDesignerSecondaryCount, 'profiles'));
     }
 
     function fetchRules() {
@@ -138,7 +162,7 @@
       };
 
       CollectionsApi.query('arbitration_rules', options)
-          .then(lodash.partial(updateRulesCount, 'rules'));
+          .then(lodash.partial(updateDesignerSecondaryCount, 'rules'));
     }
 
     function updateCount(item, data) {
@@ -153,11 +177,7 @@
       Navigation.items[item].badges[0].count = data.subcount;
     }
 
-    function updateBlueprintsCount(item, data) {
-      Navigation.items.designer.secondary[item].badges[0].count = data.subcount;
-    }
-
-    function updateRulesCount(item, data) {
+    function updateDesignerSecondaryCount(item, data) {
       Navigation.items.designer.secondary[item].badges[0].count = data.subcount;
     }
   }
