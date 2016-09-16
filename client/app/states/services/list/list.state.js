@@ -26,9 +26,11 @@
 
   /** @ngInject */
   function resolveServices(CollectionsApi) {
-    var options = {expand: 'resources',
-                   attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms'],
-                   filter: ['service_id=nil']};
+    var options = {
+      expand: 'resources',
+      attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms'],
+      filter: ['service_id=nil']
+    };
 
     return CollectionsApi.query('services', options);
   }
@@ -158,14 +160,14 @@
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'vms') {
         compValue = item1.v_total_vms - item2.v_total_vms;
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'owner') {
-        if ( angular.isUndefined(item1.evm_owner)
-           && angular.isDefined(item2.evm_owner) ) {
+        if (angular.isUndefined(item1.evm_owner)
+          && angular.isDefined(item2.evm_owner)) {
           compValue = 1;
-        } else if ( angular.isDefined(item1.evm_owner) 
-                && angular.isUndefined(item2.evm_owner) ) {
+        } else if (angular.isDefined(item1.evm_owner)
+          && angular.isUndefined(item2.evm_owner)) {
           compValue = -1;
-        } else if ( angular.isUndefined(item1.evm_owner)
-                 && angular.isUndefined(item2.evm_owner) ) {
+        } else if (angular.isUndefined(item1.evm_owner)
+          && angular.isUndefined(item2.evm_owner)) {
           compValue = 0;
         } else {
           compValue = item1.evm_owner.name.localeCompare(item2.evm_owner.name);
@@ -174,7 +176,7 @@
         compValue = new Date(item1.created_at) - new Date(item2.created_at);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'retires') {
         compValue = getRetirementDate(item1.retires_on) - getRetirementDate(item2.retires_on);
-      } 
+      }
 
       if (!vm.toolbarConfig.sortConfig.isAscending) {
         compValue = compValue * -1;
@@ -260,7 +262,7 @@
       } else if (filterValue === 'current') {
         return angular.isUndefined(item.retired) || item.retired === false;
       } else if (filterValue === 'soon' && angular.isDefined(item.retires_on)) {
-        return new Date(item.retires_on) >= currentDate 
+        return new Date(item.retires_on) >= currentDate
           && new Date(item.retires_on) <= currentDate.setDate(currentDate.getDate() + 30);
       }
 

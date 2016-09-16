@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.services')
-      .factory('DesignerState', DesignerStateFactory);
+    .factory('DesignerState', DesignerStateFactory);
 
   /** @ngInject */
   function DesignerStateFactory($filter, CollectionsApi, $state, sprintf, $q) {
@@ -17,7 +17,8 @@
             {title: 'Azure'},
             {title: 'GCE'},
             {title: 'OpenStack'},
-            {title: 'Generic',
+            {
+              title: 'Generic',
               newItem: {
                 name: 'Instance',
                 type: 'generic',
@@ -42,7 +43,8 @@
             {title: 'RHEV'},
             {title: 'SCVMM'},
             {title: 'VMware'},
-            {title: 'Generic',
+            {
+              title: 'Generic',
               newItem: {
                 name: 'VM',
                 type: 'generic',
@@ -80,7 +82,8 @@
           subtabs: [
             {title: 'Neutron'},
             {title: 'Nuage'},
-            {title: 'Generic',
+            {
+              title: 'Generic',
               newItem: {
                 name: 'Load Balancer',
                 type: 'generic',
@@ -94,18 +97,22 @@
         {
           title: 'Orchestration',
           subtabs: [
-            {title: 'Azure Stacks',
-             subtabs: [
-               {title: 'One'},
-               {title: 'Two',
-                 newItem: {
-                   name: 'Generic Two Item',
-                   type: 'generic',
-                   icon: "pficon-regions",
-                   fontFamily: "PatternFlyIcons-webfont",
-                   fontContent: "\ue909",
-                 }},
-             ]},
+            {
+              title: 'Azure Stacks',
+              subtabs: [
+                {title: 'One'},
+                {
+                  title: 'Two',
+                  newItem: {
+                    name: 'Generic Two Item',
+                    type: 'generic',
+                    icon: "pficon-regions",
+                    fontFamily: "PatternFlyIcons-webfont",
+                    fontContent: "\ue909",
+                  }
+                }
+              ]
+            },
             {title: 'CloudFormation'},
             {title: 'Heat Templates'},
           ],
@@ -134,6 +141,7 @@
 
       function matchAtomicServiceItemToTabs(srvTemplate) {
         var subTab;
+        var newItem;
         if (srvTemplate.service_type === 'atomic') {
           if (srvTemplate.prov_type !== 'generic') {
             subTab = findSubTabByProvType(srvTemplate.prov_type);
@@ -167,16 +175,16 @@
           if (toolboxTabs[i].subtabs) {
             for (var s = 0; s < toolboxTabs[i].subtabs.length; s++) {
               if (toolboxTabs[i].title.toLowerCase() === 'network' &&
-                  toolboxTabs[i].subtabs[s].title.toLowerCase() === 'generic' &&
-                  genericSubType === 'load_balancer') {
+                toolboxTabs[i].subtabs[s].title.toLowerCase() === 'generic' &&
+                genericSubType === 'load_balancer') {
                 return toolboxTabs[i].subtabs[s];
               }
 
               if (toolboxTabs[i].preTitle &&
-                  toolboxTabs[i].preTitle.toLowerCase() === 'compute' &&
-                  toolboxTabs[i].title.toLowerCase() === 'infrastructure' &&
-                  toolboxTabs[i].subtabs[s].title.toLowerCase() === 'generic' &&
-                  genericSubType === 'vm') {
+                toolboxTabs[i].preTitle.toLowerCase() === 'compute' &&
+                toolboxTabs[i].title.toLowerCase() === 'infrastructure' &&
+                toolboxTabs[i].subtabs[s].title.toLowerCase() === 'generic' &&
+                genericSubType === 'vm') {
                 return toolboxTabs[i].subtabs[s];
               }
             }

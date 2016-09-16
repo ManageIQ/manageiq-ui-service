@@ -28,9 +28,11 @@
   /** @ngInject */
   function resolveServiceTemplates(CollectionsApi) {
     var attributes = ['picture', 'picture.image_href', 'service_template_catalog.name'];
-    var options = {expand: 'resources',
-                   filter: ['service_template_catalog_id>0', 'display=true'],
-                   attributes: attributes};
+    var options = {
+      expand: 'resources',
+      filter: ['service_template_catalog_id>0', 'display=true'],
+      attributes: attributes
+    };
 
     return CollectionsApi.query('service_templates', options);
   }
@@ -39,7 +41,8 @@
     var options = {
       expand: 'resources',
       sort_by: 'name',
-      sort_options: 'ignore_case'};
+      sort_options: 'ignore_case'
+    };
 
     return CollectionsApi.query('service_catalogs', options);
   }
@@ -170,7 +173,7 @@
         match = (String(item.name).toLowerCase().indexOf(String(filter.value).toLowerCase()) > -1 );
       } else if (filter.id === 'template_description') {
         match = (String(item.long_description).toLowerCase().indexOf(String(filter.value).toLowerCase()) > -1 );
-      } else if (filter.id === 'catalog_name' && angular.isDefined(item.service_template_catalog) ) {
+      } else if (filter.id === 'catalog_name' && angular.isDefined(item.service_template_catalog)) {
         match = item.service_template_catalog.name === filter.value;
       }
 
@@ -182,14 +185,14 @@
       if (vm.toolbarConfig.sortConfig.currentField.id === 'name') {
         compValue = item1.name.localeCompare(item2.name);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'catalog_name') {
-        if ( angular.isUndefined(item1.service_template_catalog)
-           && angular.isDefined(item2.service_template_catalog) ) {
+        if (angular.isUndefined(item1.service_template_catalog)
+          && angular.isDefined(item2.service_template_catalog)) {
           compValue = 1;
-        } else if ( angular.isDefined(item1.service_template_catalog) 
-                && angular.isUndefined(item2.service_template_catalog) ) {
+        } else if (angular.isDefined(item1.service_template_catalog)
+          && angular.isUndefined(item2.service_template_catalog)) {
           compValue = -1;
-        } else if ( angular.isUndefined(item1.service_template_catalog)
-                 && angular.isUndefined(item2.service_template_catalog) ) {
+        } else if (angular.isUndefined(item1.service_template_catalog)
+          && angular.isUndefined(item2.service_template_catalog)) {
           compValue = 0;
         } else {
           compValue = item1.service_template_catalog.name.localeCompare(item2.service_template_catalog.name);
