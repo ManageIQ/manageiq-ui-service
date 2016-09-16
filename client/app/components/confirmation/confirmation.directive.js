@@ -49,8 +49,7 @@
       // Private
 
       function getSizeOfConfirmation() {
-        var height;
-        var width;
+        var height, width;
         var sizerMessage = attrs.confirmationMessage || __('For Sizing');
         var sizer = angular.element('<div class="confirmation__dialog"><div class="confirmation__content">' +
           '<div class="confirmation__body"><p class="confirmation_message">' + sizerMessage +

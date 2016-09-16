@@ -22,7 +22,6 @@
 
     /** @ngInject */
     function RequestListController() {
-      var vm = this;
     }
   }
 })();

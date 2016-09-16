@@ -351,9 +351,7 @@
       };
       var resources = [];
 
-      var tag;
-      var foundInOther;
-      var matchTag;
+      var foundInOther, matchTag, tag ;
 
       // if blueprintTag not in origBlueprintTags, assign
       var bpComp1 = tags;
@@ -452,8 +450,7 @@
     };
 
     blueprint.difference = function(o1, o2) {
-      var k;
-      var kDiff;
+      var k, kDiff;
       var diff = {};
 
       for (k in o1) {  // jshint ignore:line

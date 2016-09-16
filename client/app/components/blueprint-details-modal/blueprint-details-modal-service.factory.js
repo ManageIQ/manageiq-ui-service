@@ -6,7 +6,6 @@
 
   /** @ngInject */
   function BlueprintDetailsFactory($modal) {
-    var modalOpen = false;
     var modalBlueprint = {
       showModal: showModal,
     };

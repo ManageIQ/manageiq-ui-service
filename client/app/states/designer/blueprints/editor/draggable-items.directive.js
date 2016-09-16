@@ -11,12 +11,12 @@
       scope: {
         items: '=',
         startDragCallback: '=',
-        clickCallback: '='
+        clickCallback: '=',
       },
       controller: draggableItemsController,
       templateUrl: 'app/states/designer/blueprints/editor/draggable-items.html',
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;

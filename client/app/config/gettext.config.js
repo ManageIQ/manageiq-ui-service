@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: 0*/
+
 (function() {
   'use strict';
 

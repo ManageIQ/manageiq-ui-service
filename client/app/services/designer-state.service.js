@@ -104,7 +104,7 @@
                    icon: "pficon-regions",
                    fontFamily: "PatternFlyIcons-webfont",
                    fontContent: "\ue909",
-                 }}
+                 }},
              ]},
             {title: 'CloudFormation'},
             {title: 'Heat Templates'},
@@ -134,7 +134,6 @@
 
       function matchAtomicServiceItemToTabs(srvTemplate) {
         var subTab;
-        var newItem;
         if (srvTemplate.service_type === 'atomic') {
           if (srvTemplate.prov_type !== 'generic') {
             subTab = findSubTabByProvType(srvTemplate.prov_type);

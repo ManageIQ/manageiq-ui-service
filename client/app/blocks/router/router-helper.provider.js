@@ -78,8 +78,7 @@
       // Private
 
       function handleRoutingErrors(event, toState, toParams, fromState, fromParams, error) {
-        var destination;
-        var msg;
+        var destination, msg;
 
         if (handlingStateChangeError) {
           return;

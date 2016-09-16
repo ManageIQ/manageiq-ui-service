@@ -24,6 +24,5 @@
 
   /** @ngInject */
   function StateController() {
-    var vm = this;
   }
 })();
