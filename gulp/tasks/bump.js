@@ -1,6 +1,5 @@
 'use strict';
 
-var print = require('gulp-print');
 var bump = require('gulp-bump');
 var log = require('../utils/log');
 
@@ -28,7 +27,6 @@ module.exports = function(gulp, options) {
     }
 
     return gulp.src(config.packages)
-      .pipe(print())
       .pipe(bump(bumpOptions))
       .pipe(gulp.dest(config.root));
   }

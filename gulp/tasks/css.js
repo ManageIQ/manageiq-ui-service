@@ -1,6 +1,6 @@
 'use strict';
 
-var minifyCss = require('gulp-minify-css');
+var cleanCSS = require('gulp-clean-css');
 var byteDiffFormatter = require('../utils/byteDiffFormatter');
 var bytediff = require('gulp-bytediff');
 var concat = require('gulp-concat');
@@ -15,7 +15,7 @@ module.exports = function(gulp, options) {
     return gulp.src(config.src)
       .pipe(concat(config.output))
       .pipe(options.verbose ? bytediff.start() : noop())
-      .pipe(minifyCss({}))
+      .pipe(cleanCSS({}))
       .pipe(options.verbose ? bytediff.stop(byteDiffFormatter) : noop())
       .pipe(gulp.dest(config.build));
   }
