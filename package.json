@@ -83,24 +83,24 @@
     "mocha": "^3.0.2",
     "mocha-clean": "^1.0.0",
     "ng-midway-tester": "^2.0.5",
-    "node-notifier": "^4.1.2",
+    "node-notifier": "^4.6.1",
     "phantomjs": "^2.1.7",
     "phantomjs-polyfill": "0.0.2",
     "plato": "~1.7.0",
     "q": "^1.2.0",
-    "request": "^2.74.0",
+    "request": "^2.75.0",
     "sinon": "^1.14.0",
     "sinon-chai": "^2.7.0",
     "wiredep": "^4.0.0",
     "yargs": "^5.0.0"
   },
   "dependencies": {
-    "body-parser": "^1.12.2",
+    "body-parser": "^1.15.1",
     "browser-sync": "^2.16.0",
-    "express": "^4.12.3",
+    "express": "^4.13.4",
     "http-proxy": "^1.15.1",
-    "morgan": "^1.5.2",
-    "serve-favicon": "^2.2.0"
+    "morgan": "^1.7.0",
+    "serve-favicon": "^2.3.0"
   },
   "engines": {
     "node": ">= 6.0.0",
