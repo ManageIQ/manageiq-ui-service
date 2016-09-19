@@ -1,3 +1,4 @@
+/*eslint camelcase: "off" */
 (function() {
   'use strict';
 
