@@ -35,7 +35,7 @@
     vm.handleItemClick = handleItemClick;
     vm.clearMessages = clearMessages;
     vm.API_BASE = API_BASE;
-    vm.group_switch = Session.switchGroup;
+    vm.groupSwitch = Session.switchGroup;
 
     function clearActiveItems() {
       angular.forEach(vm.items, function(item) {
