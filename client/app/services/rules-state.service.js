@@ -47,14 +47,6 @@
       });
     };
 
-    ruleState.getProfiles = function() {
-      var options = {
-        expand: 'resources',
-      };
-
-      return CollectionsApi.query('arbitration_profiles', options);
-    };
-
     ruleState.addRule = function(ruleObj) {
       var deferred = $q.defer();
 

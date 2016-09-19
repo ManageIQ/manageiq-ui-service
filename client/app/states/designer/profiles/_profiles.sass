@@ -1,3 +1,40 @@
 .designer-profiles-toolbar
   border-bottom: 1px solid #d0d0d0
   border-top: 1px solid #d0d0d0
+
+.designer-profiles-list
+
+  .list-view-pf
+    padding-bottom: 85px // Adding so dropdown menus on the last row don't get cut off
+
+    .list-view-pf-actions
+      margin: 0
+
+
+  .dropdown-kebab-pf
+    .btn-link
+      margin-top: -7px
+
+    .fa, img
+      padding-left: 5px
+      padding-right: 10px
+      font-size: 18px
+      vertical-align: middle
+
+    .dropdown-menu
+      margin-top: 4px
+      height: auto !important
+      overflow: visible !important
+
+      &.dropdown-menu-right
+        right: 0px
+
+  +block(ss-list-view)
+    +element(title-img)
+      height: 30px
+      width: 30px
+
+      +element(logo)
+        max-height: 25px
+        max-width: 25px
+        top: -10px

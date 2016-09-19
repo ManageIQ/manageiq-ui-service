@@ -12,6 +12,7 @@
         position: '@?confirmationPosition',
         title: '@?confirmationTitle',
         message: '@?confirmationMessage',
+        triggerOnValue: '=?confirmationTriggerValue',
         trigger: '@?confirmationTrigger',
         ok: '@?confirmationOkText',
         cancel: '@?confirmationCancelText',
@@ -36,7 +37,18 @@
         size: getSizeOfConfirmation(),
       });
 
-      element.on(attrs.confirmationTrigger || 'click', vm.onTrigger);
+      if (angular.isDefined(vm.triggerOnValue)) {
+        scope.$watch(function() {
+          return vm.triggerOnValue;
+        },
+        function(newValue) {
+          if (newValue === true) {
+            vm.onTrigger();
+          }
+        });
+      } else {
+        element.on(attrs.confirmationTrigger || 'click', vm.onTrigger);
+      }
 
       function getOffset() {
         return $window.pageYOffset;
