@@ -64,7 +64,7 @@
           class="node-center-icon"
           ng-class="{'invalid-node-header': node.invalid()}"
           font-family="{{node.fontFamily()}}"
-          ng-attr-x="{{(node.width()/2) - 40 + ((node.bundle()) ? 11 : 0) }}"
+          ng-attr-x="{{(node.width()/2) - 40 + ((node.bundle()) ? 4 : 0) }}"
           ng-attr-y="{{90}}">
       {{node.fontContent()}}
     </text>
@@ -73,9 +73,9 @@
     <g><text ng-if="node.bundle()"
              x="6"
              y="22"
-             font-family="FontAwesome"
+             font-family="PatternFlyIcons-webfont"
              font-size="20">
-         {{'\uf06b'}}
+         {{'\ue918'}}
        </text>
     </g>
 

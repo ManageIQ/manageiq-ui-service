@@ -175,7 +175,7 @@
         return activeTab.newItem;
       }
 
-      return {name: 'New Item', image: 'images/service.png'};
+      return null;
     };
 
     $scope.activeTab = function() {
