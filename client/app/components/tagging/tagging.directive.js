@@ -29,13 +29,13 @@
         vm.tags = {};
       }
 
-      if (!vm.tags.of_item && vm.objectType && vm.objectId) {
+      if (!vm.tags.ofItem && vm.objectType && vm.objectId) {
         if (vm.objectId !== -1) {
           loadTagsOfItem().then(function() {
             loadAllTagInfo();
           });
         } else {
-          vm.tags.of_item = [];
+          vm.tags.ofItem = [];
           loadAllTagInfo();
         }
       } else {
@@ -122,7 +122,7 @@
         CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
 
         function loadSuccess(response) {
-          vm.tags.of_item = response.resources;
+          vm.tags.ofItem = response.resources;
           deferred.resolve();
         }
 
@@ -163,8 +163,8 @@
         if (vm.tags.selectedTag.category && angular.isDefined(vm.tags.selectedTag.category.single_value)) {
           if (vm.tags.selectedTag.category.single_value) {
             // Find existing tag w/ category in tags.of_item
-            for (var i = 0; i < vm.tags.of_item.length; i++) {
-              var tag = vm.tags.of_item[i];
+            for (var i = 0; i < vm.tags.ofItem.length; i++) {
+              var tag = vm.tags.ofItem[i];
               if (tag.category.id === vm.tags.selectedTag.category.id) {
                 $scope.removeTag(tag);
                 break;
@@ -173,24 +173,24 @@
           }
         }
         // Add Selected Tag
-        if (vm.tags.of_item.indexOf(vm.tags.selectedTag) === -1) {
+        if (vm.tags.ofItem.indexOf(vm.tags.selectedTag) === -1) {
           saveOriginalTags();
-          vm.tags.of_item.push(vm.tags.selectedTag);
+          vm.tags.ofItem.push(vm.tags.selectedTag);
         }
       };
 
       $scope.removeTag = function(tag) {
-        var inBlueprintIndex = vm.tags.of_item.indexOf(tag);
+        var inBlueprintIndex = vm.tags.ofItem.indexOf(tag);
         if (inBlueprintIndex !== -1) {
           saveOriginalTags();
-          vm.tags.of_item.splice(inBlueprintIndex, 1);
+          vm.tags.ofItem.splice(inBlueprintIndex, 1);
         }
       };
 
       function saveOriginalTags() {
         if (!vm.tags.orig_of_item) {
           vm.tagsOfItemChanged = true;
-          vm.tags.orig_of_item = angular.copy(vm.tags.of_item);
+          vm.tags.orig_of_item = angular.copy(vm.tags.ofItem);
         }
       }
     }
