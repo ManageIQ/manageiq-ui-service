@@ -8,6 +8,8 @@ cache:
 before_install:
 - bundle install
 - npm install -g gulp bower
+after_script:
+- codeclimate-test-reporter < reports/coverage/report-lcov/lcov.info
 notifications:
   webhooks:
     urls:
