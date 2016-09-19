@@ -31,7 +31,7 @@
     "angular-patternfly": "^3.11.0",
     "angular-drag-and-drop-lists": "~1.4.0",
     "angular-svg-base": "^0.0.3",
-    "angular-ui-router": "~0.2.18",
+    "angular-ui-router": "~0.3.1",
     "es6-shim": "^0.35.1",
     "font-awesome": "^4.5.0",
     "lodash": "~3.9.0",
