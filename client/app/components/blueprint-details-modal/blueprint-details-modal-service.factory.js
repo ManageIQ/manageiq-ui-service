@@ -227,7 +227,7 @@
     }
 
     function disableOrderListTabs() {
-      return vm.blueprint.ui_properties.chartDataModel.nodes.length <= 1;
+      return vm.blueprint.ui_properties.chart_data_model.nodes.length <= 1;
     }
 
     function toggleActionEqualsProvOrder() {

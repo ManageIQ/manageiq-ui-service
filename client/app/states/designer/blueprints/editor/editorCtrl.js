@@ -40,8 +40,8 @@
     }, true);
 
     $scope.$on('BlueprintCanvasChanged', function(evt, args) {
-      if (args.chartDataModel && !angular.equals($scope.blueprint.ui_properties.chartDataModel, args.chartDataMode)) {
-        $scope.blueprint.ui_properties.chartDataModel = args.chartDataModel;
+      if (args.chartDataModel && !angular.equals($scope.blueprint.ui_properties.chart_data_model, args.chartDataMode)) {
+        $scope.blueprint.ui_properties.chart_data_model = args.chartDataModel;
         blueprintDirty = true;
       }
     });

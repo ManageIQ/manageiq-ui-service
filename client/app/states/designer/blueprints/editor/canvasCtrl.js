@@ -8,8 +8,8 @@
   function StateController($scope, $filter) {
     var chartDataModel = {};
     var newNodeCount = 0;
-    if ($scope.$parent.blueprint.ui_properties && $scope.$parent.blueprint.ui_properties.chartDataModel) {
-      chartDataModel = $scope.$parent.blueprint.ui_properties.chartDataModel;
+    if ($scope.$parent.blueprint.ui_properties && $scope.$parent.blueprint.ui_properties.chart_data_model) {
+      chartDataModel = $scope.$parent.blueprint.ui_properties.chart_data_model;
     }
 
     // Create the view-model for the chart and attach to the scope.
