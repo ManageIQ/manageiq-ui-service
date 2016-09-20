@@ -32,29 +32,35 @@
       {
         keyword: 'vmware',
         title: 'VMware vCloud',
-        image: 'assets/images/providers/vendor-vmware-cloud.svg',
+        image: 'assets/images/providers/vendor-vmware_cloud.svg',
       },
     ];
 
-    profileState.getProviderType = function(profile) {
+    profileState.getProviderType = function(typedObject) {
       var providerType = 'Unknown';
-      var info = profileState.providersInfo.find(function(providerInfo) {
-        return profile.ext_management_system.type.toLowerCase().indexOf(providerInfo.keyword) >= 0;
-      });
-      if (info) {
-        providerType = info.title;
+
+      if (typedObject) {
+        var info = profileState.providersInfo.find(function(providerInfo) {
+          return typedObject.type.toLowerCase().indexOf(providerInfo.keyword) >= 0;
+        });
+        if (info) {
+          providerType = info.title;
+        }
       }
 
       return providerType;
     };
 
-    profileState.getProviderTypeImage = function(profile) {
+    profileState.getProviderTypeImage = function(provider) {
       var providerImage = 'assets/images/providers/vendor-unknown.svg';
-      var info = profileState.providersInfo.find(function(providerInfo) {
-        return profile.ext_management_system.type.toLowerCase().indexOf(providerInfo.keyword) >= 0;
-      });
-      if (info) {
-        providerImage = info.image;
+
+      if (provider) {
+        var info = profileState.providersInfo.find(function(providerInfo) {
+          return provider.type.toLowerCase().indexOf(providerInfo.keyword) >= 0;
+        });
+        if (info) {
+          providerImage = info.image;
+        }
       }
 
       return providerImage;
@@ -96,20 +102,93 @@
     profileState.getProfileDetails = function(profileId) {
       var options = {
         attributes: [
+          'name',
+          'description',
           'ext_management_system',
           'created_at',
           'updated_at',
-          'key_pair',
           'authentication',
+          'cloud_network',
+          'cloud_subnet',
           'flavor',
           'availability_zone',
-          'security_group',
-          'cloud_subnet',
-          'cloud_network'
+          'security_group'
         ],
       };
 
       return CollectionsApi.get('arbitration_profiles', profileId, options);
+    };
+
+    profileState.getProviders = function() {
+      var options = {
+        expand: 'resources',
+        attributes: [
+          'id',
+          'name',
+          'type',
+          'key_pairs',
+          'availability_zones',
+          'cloud_networks',
+          'cloud_subnets',
+          'flavors',
+          'security_groups',
+        ],
+      };
+
+      return CollectionsApi.query('providers', options);
+    };
+
+    profileState.getCloudNetworks = function() {
+      var options = {
+        expand: 'resources',
+        attributes: [
+          'security_groups',
+          'cloud_subnets'
+        ]
+      };
+
+      return CollectionsApi.query('cloud_networks', options);
+    };
+
+    profileState.addProfile = function(profileObj) {
+      var deferred = $q.defer();
+
+      CollectionsApi.post('arbitration_profiles', null, {}, profileObj).then(createSuccess, createFailure);
+
+      function createSuccess(response) {
+        EventNotifications.success(sprintf(__("Profile %s was created."), profileObj.name));
+        deferred.resolve(response.results[0].id);
+      }
+
+      function createFailure() {
+        EventNotifications.error(sprintf(__("There was an error creating profile %s."), profileObj.name));
+        deferred.reject();
+      }
+
+      return deferred.promise;
+    };
+
+    profileState.editProfile = function(profile) {
+      var deferred = $q.defer();
+
+      var editSuccess = function(response) {
+        EventNotifications.success(sprintf(__('Profile %s was successfully updated.'), profile.name));
+        deferred.resolve(response.id);
+      };
+
+      var editFailure = function() {
+        EventNotifications.error(sprintf(__('There was an error updating profile %s.'), profile.name));
+        deferred.reject();
+      };
+
+      var editObj = {
+        "action": "edit",
+        "resources": [profile]
+      };
+
+      CollectionsApi.post('arbitration_profiles', null, {}, editObj).then(editSuccess, editFailure);
+
+      return deferred.promise;
     };
 
     profileState.deleteProfiles = function(profileIds) {

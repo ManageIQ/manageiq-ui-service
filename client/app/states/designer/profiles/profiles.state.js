@@ -31,7 +31,7 @@
   }
 
   /** @ngInject */
-  function ProfilesController(designerProfiles, ProfilesState, $state, $timeout) {
+  function ProfilesController(designerProfiles, ProfilesState, $state, $timeout, $rootScope, $scope) {
     /* jshint validthis: true */
     var vm = this;
     vm.title = __('Profiles');
@@ -45,8 +45,8 @@
     });
 
     var updateProfileInfo = function(profile) {
-      profile.providerType = ProfilesState.getProviderType(profile);
-      profile.providerImage = ProfilesState.getProviderTypeImage(profile);
+      profile.providerType = ProfilesState.getProviderType(profile.ext_management_system);
+      profile.providerImage = ProfilesState.getProviderTypeImage(profile.ext_management_system);
     };
 
     var updateProfilesInfo = function() {
@@ -159,8 +159,16 @@
       return found;
     }
 
+    vm.addProfile = function() {
+      $state.go('designer.profiles.editor');
+    };
+
+    vm.editProfile = function(profile) {
+      $state.go('designer.profiles.editor', {profileId: profile.id});
+    };
+
     vm.viewProfile = function(profile) {
-      $state.go('designer.profiles.details', {profileId: profile.id, edit: false});
+      $state.go('designer.profiles.details', {profileId: profile.id});
     };
 
     vm.removeProfile = function(profile) {
@@ -184,6 +192,10 @@
       vm.viewProfile(profile);
     };
 
+    vm.handleEdit = function(action, profile) {
+      vm.editProfile(profile);
+    };
+
     vm.handleDelete = function(action, profile) {
       vm.profileToDelete = profile;
       vm.confirmDelete = true;
@@ -194,6 +206,11 @@
         name: __('View'),
         title: __('View Profile'),
         actionFn: vm.handleView
+      },
+      {
+        name: __('Edit'),
+        title: __('Edit Profile'),
+        actionFn: vm.handleEdit
       },
       {
         name: __('Delete'),
@@ -256,6 +273,15 @@
         isAscending: ProfilesState.getSort().isAscending,
         currentField: ProfilesState.getSort().currentField,
       },
+      actionsConfig: {
+        primaryActions: [
+          {
+            name: __('Create'),
+            title: __('Create a new Profile'),
+            actionFn: vm.addProfile,
+          }
+        ],
+      },
     };
 
     vm.listConfig = {
@@ -266,5 +292,13 @@
 
     updateProfilesInfo();
     applyFilters(ProfilesState.getFilters());
+
+    var onDestroy = $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+      if (toState.name === 'designer.profiles') {
+        refreshProfiles();
+      }
+    });
+
+    $scope.$on('$destroy', onDestroy);
   }
 })();
