@@ -86,8 +86,9 @@
       </g>
       <foreignobject ng-attr-x="{{node.x}}"
                      ng-attr-y="{{node.height()+1}}"
-                     ng-attr-width="{{node.width()}}"
-                     ng-mousedown="$event.stopPropagation()">
+                     ng-mousedown="$event.stopPropagation()"
+                     height="100%"
+                     width="100%">
         <body>
           <node-toolbar node="node" node-actions="chart.nodeActions"/>
         </body>
