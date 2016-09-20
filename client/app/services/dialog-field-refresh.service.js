@@ -1,4 +1,5 @@
 /* jshint -W117 */
+/*eslint camelcase: "off" */
 (function() {
   'use strict';
 

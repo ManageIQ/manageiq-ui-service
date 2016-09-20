@@ -12,10 +12,10 @@
     <a ng-click="addTag()"><span class="fa fa-plus tag-add"></span></a>
 </div>
 
-<div ng-if="vm.tags.of_item && !vm.tags.of_item.length" class="no-tag-header" translate>There are no tags for this item.</div>
+<div ng-if="vm.tags.ofItem && !vm.tags.ofItem.length" class="no-tag-header" translate>There are no tags for this item.</div>
 
 <ul class="tag-list list-inline">
-    <li ng-repeat="tag in vm.tags.of_item">
+    <li ng-repeat="tag in vm.tags.ofItem">
         <span class="label label-info">
             {{tag.categorization.display_name}}
             <a><span class="pficon pficon-close" ng-click="removeTag(tag)"></span></a>
