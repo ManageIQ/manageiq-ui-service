@@ -36,7 +36,7 @@
       password: API_PASSWORD,
     };
 
-    if (Session.privileges_error) {
+    if (Session.privilegesError) {
       Notifications.error(__('User does not have privileges to login.'));
     }
 
@@ -44,8 +44,8 @@
 
     function onSubmit() {
       // clearing a flag that *could* have been set before redirect to /login
-      Session.timeout_notified = false;
-      Session.privileges_error = false;
+      Session.timeoutNotified = false;
+      Session.privilegesError = false;
 
       return AuthenticationApi.login(vm.credentials.login, vm.credentials.password)
         .then(Session.loadUser)
@@ -57,7 +57,7 @@
             }
             $state.go('dashboard');
           } else {
-            Session.privileges_error = true;
+            Session.privilegesError = true;
             Notifications.error(__('User does not have privileges to login.'));
           }
         });

@@ -105,16 +105,16 @@
 
     function setRBACForActions(productFeatures) {
       var features = {
-        service_view: {show: angular.isDefined(productFeatures.service_view)},
-        service_edit: {show: angular.isDefined(productFeatures.service_edit)},
-        service_delete: {show: angular.isDefined(productFeatures.service_delete)},
-        service_reconfigure: {show: angular.isDefined(productFeatures.service_reconfigure)},
-        service_retire_now: {show: angular.isDefined(productFeatures.service_retire_now)},
-        service_retire: {show: angular.isDefined(productFeatures.service_retire)},
-        service_ownership: {show: angular.isDefined(productFeatures.service_ownership)},
+        serviceView: {show: angular.isDefined(productFeatures.service_view)},
+        serviceEdit: {show: angular.isDefined(productFeatures.service_edit)},
+        serviceDelete: {show: angular.isDefined(productFeatures.service_delete)},
+        serviceReconfigure: {show: angular.isDefined(productFeatures.service_reconfigure)},
+        serviceRetireNow: {show: angular.isDefined(productFeatures.service_retire_now)},
+        serviceRetire: {show: angular.isDefined(productFeatures.service_retire)},
+        serviceOwnership: {show: angular.isDefined(productFeatures.service_ownership)},
       };
       model.actionFeatures = features;
-
+      
       return model.actionFeatures;
     }
 
