@@ -32,7 +32,7 @@
       // listen for tags changing
       $scope.$on('tagsOfItemChanged', function() {
         if (!vm.node.origTags()) {
-          vm.node.setOrigTags(vm.tags.orig_of_item);
+          vm.node.setOrigTags(vm.tags.origOfItem);
         }
         vm.node.setTags(vm.tags.ofItem);
       });

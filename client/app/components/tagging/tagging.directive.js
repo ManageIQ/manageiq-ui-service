@@ -188,9 +188,9 @@
       };
 
       function saveOriginalTags() {
-        if (!vm.tags.orig_of_item) {
+        if (!vm.tags.origOfItem) {
           vm.tagsOfItemChanged = true;
-          vm.tags.orig_of_item = angular.copy(vm.tags.ofItem);
+          vm.tags.origOfItem = angular.copy(vm.tags.ofItem);
         }
       }
     }
