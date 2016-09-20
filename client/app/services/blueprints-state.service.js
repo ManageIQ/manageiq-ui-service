@@ -109,8 +109,8 @@
     function saveBlueprintProperties(tmpBlueprint) {
       var deferred = $q.defer();
 
-      if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel && tmpBlueprint.ui_properties.chartDataModel.nodes) {
-        tmpBlueprint.num_items = tmpBlueprint.ui_properties.chartDataModel.nodes.length;
+      if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chart_data_model && tmpBlueprint.ui_properties.chart_data_model.nodes) {
+        tmpBlueprint.num_items = tmpBlueprint.ui_properties.chart_data_model.nodes.length;
       } else {
         tmpBlueprint.num_items = 0;
       }
@@ -151,8 +151,8 @@
           "ui_properties": {},
         };
 
-        if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel) {
-          var chartDataModel = angular.copy(tmpBlueprint.ui_properties.chartDataModel);
+        if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chart_data_model) {
+          var chartDataModel = angular.copy(tmpBlueprint.ui_properties.chart_data_model);
           if (chartDataModel.nodes) {
             var serviceTemplates = [];
             for (var i = 0; i < chartDataModel.nodes.length; i++) {
@@ -169,7 +169,7 @@
             }
             blueprintObj.bundle.service_templates = serviceTemplates;
           }
-          blueprintObj.ui_properties.chartDataModel = chartDataModel;
+          blueprintObj.ui_properties.chart_data_model = chartDataModel;
         }
 
         if (tmpBlueprint.content.service_catalog) {
@@ -268,8 +268,8 @@
     function saveBlueprintServiceItemTags(tmpBlueprint) {
       var deferred = $q.defer();
 
-      if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chartDataModel) {
-        var chartDataModel = tmpBlueprint.ui_properties.chartDataModel;
+      if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chart_data_model) {
+        var chartDataModel = tmpBlueprint.ui_properties.chart_data_model;
         if (chartDataModel.nodes && chartDataModel.nodes.length > 0) {
           var promises = [];
           for (var i = 0; i < chartDataModel.nodes.length; i++) {
@@ -440,7 +440,7 @@
         ],
       };
       tmpBlueprint.ui_properties = {
-        chartDataModel: {
+        chart_data_model: {
           "nodes": [],
         },
       };
