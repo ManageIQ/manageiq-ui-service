@@ -16,7 +16,7 @@ The Self Service UI for the [ManageIQ](http://github.com/ManageIQ/manageiq) proj
 
 ### Prerequisites
 
-- Install nodejs 6.x and npm 3.x (or newer)
+- Install nodejs 0.10.46 and npm 3.10.7
 - Install bower and gulp globally: `npm install -g bower gulp`
 - Have the [ManageIQ](http://github.com/ManageIQ/manageiq) repo cloned into a
   directory named `manageiq`, and ready to be started.
