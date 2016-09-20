@@ -71,6 +71,12 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label class="control-label col-sm-4" translate>Flavor</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" disabled value="{{vm.profile.flavor.name}}"/>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="control-label col-sm-4" translate>Cloud Network</label>
                   <div class="col-sm-8">
                     <input class="form-control" disabled value="{{vm.profile.cloud_network.name}}"/>
@@ -80,12 +86,6 @@
                   <label class="control-label col-sm-4" translate>Cloud Subnet</label>
                   <div class="col-sm-8">
                     <input class="form-control" disabled value="{{vm.profile.cloud_subnet.name}}"/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label col-sm-4" translate>Flavor</label>
-                  <div class="col-sm-8">
-                    <input class="form-control" disabled value="{{vm.profile.flavor.name}}"/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -105,7 +105,7 @@
     <div class="panel panel-default ss-details-panel ss-details-panel-bottom">
       <div class="panel-body">
         <section class="ss-details-section">
-          <button class="btn btn-default" type="button" translate ui-sref="^">< Back to Profiles</button>
+          <button class="btn btn-primary" type="button" ng-click="vm.editProfile()" translate>Edit</button>
         </section>
       </div>
     </div>

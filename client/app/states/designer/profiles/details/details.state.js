@@ -34,19 +34,24 @@
   }
 
   /** @ngInject */
-  function StateController(profile, sprintf, ProfilesState) {
+  function StateController(profile, ProfilesState, $state, sprintf) {
     var vm = this;
 
     function setTitle() {
-      vm.title = sprintf(__("View Profile: %s"), profile.name);
+      vm.title = sprintf(__("View Profile: %s"), vm.profile.name);
+    }
+
+    function editProfile() {
+      $state.go('designer.profiles.editor', {profileId: vm.profile.id});
     }
 
     function setInitialVars(vm) {
       vm.profile = profile;
-      vm.profile.providerType = ProfilesState.getProviderType(vm.profile);
-      vm.profile.providerImage = ProfilesState.getProviderTypeImage(vm.profile);
+      vm.profile.providerType = ProfilesState.getProviderType(vm.profile.ext_management_system);
+      vm.profile.providerImage = ProfilesState.getProviderTypeImage(vm.profile.ext_management_system);
 
       setTitle();
+      vm.editProfile = editProfile;
     }
 
     setInitialVars(vm);
