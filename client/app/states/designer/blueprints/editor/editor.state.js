@@ -97,6 +97,9 @@
             } else {
               node.image = null;
             }
+            // This service template is already on the canvas
+            // disable it in toolbox
+            srvTemplate.disableInToolbox = true;
             foundNodesSrvTemplate = true;
             break;
           }

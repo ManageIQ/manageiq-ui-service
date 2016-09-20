@@ -27,7 +27,9 @@
       var vm = this;  // jshint ignore:line
 
       vm.clickCallbackfmDir = function(item) {
-        vm.clickCallback(item);
+        if (!item.disableInToolbox) {
+          vm.clickCallback(item);
+        }
       };
 
       vm.startDragCallbackfmDir = function(event, ui, item) {

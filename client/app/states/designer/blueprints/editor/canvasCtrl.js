@@ -2,10 +2,10 @@
   "use strict";
 
   angular.module('app.states')
-    .controller('CanvasController', ['$scope', '$filter', StateController]);
+    .controller('CanvasController', ['$scope', '$filter', 'DesignerState', StateController]);
 
   /** @ngInject */
-  function StateController($scope, $filter) {
+  function StateController($scope, $filter, DesignerState) {
     var chartDataModel = {};
     var newNodeCount = 0;
     if ($scope.$parent.blueprint.ui_properties && $scope.$parent.blueprint.ui_properties.chart_data_model) {
@@ -27,6 +27,7 @@
     };
 
     $scope.dropCallback = function(event, ui) {
+      $scope.draggedItem.disableInToolbox = true;
       var newNode = angular.copy($scope.draggedItem);
       if (newNode.type && newNode.type === 'generic') {
         newNode.name = 'New ' + newNode.name;
@@ -39,6 +40,7 @@
     };
 
     $scope.addNodeByClick = function(item) {
+      item.disableInToolbox = true;
       var newNode = angular.copy(item);
       if (newNode.type && newNode.type === 'generic') {
         newNode.name = 'New ' + newNode.name;
@@ -81,6 +83,16 @@
     };
 
     $scope.deleteSelected = function() {
+      var selectedNodes = $scope.chartViewModel.getSelectedNodes();
+
+      // Re-Enable selectedNodes in toolbox
+      for (var i = 0; i < selectedNodes.length; i++) {
+        var tabItem = DesignerState.getTabItemById(selectedNodes[i].id());
+        if (tabItem) {
+          tabItem.disableInToolbox = false;
+        }
+      }
+
       $scope.chartViewModel.deleteSelected();
     };
 

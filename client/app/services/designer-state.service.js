@@ -9,6 +9,7 @@
     var designer = {};
 
     designer.getDesignerToolboxTabs = function(srvTemplates) {
+      designer.tabItems = [];
       var toolboxTabs = [
         {
           title: 'Compute',
@@ -67,7 +68,8 @@
           subtabs: [
             {
               title: 'Generic',
-              generic_subtype: 'storage'},
+              generic_subtype: 'storage'
+            },
           ],
         },
         {
@@ -75,7 +77,8 @@
           subtabs: [
             {
               title: 'Generic',
-              generic_subtype: 'load_balancer'},
+              generic_subtype: 'load_balancer'
+            },
           ],
         },
         {
@@ -185,11 +188,16 @@
           newBundle.image = srvTemplate.picture.image_href;
         }
 
+        if (srvTemplate.disableInToolbox !== undefined) {
+          newBundle.disableInToolbox = srvTemplate.disableInToolbox;
+        }
+
         var bundleTab = toolboxTabs[bundleTabIndex];
         if (!bundleTab.items) {
           bundleTab.items = [];
         }
         bundleTab.items.push(newBundle);
+        designer.tabItems.push(newBundle);
         // console.log("--> Added " + newBundle.name + " to Bundle Tab");
       }
 
@@ -200,12 +208,22 @@
         } else {
           newItem.image = "images/service.png";
         }
+        if (srvTemplate.disableInToolbox !== undefined) {
+          newItem.disableInToolbox = srvTemplate.disableInToolbox;
+        }
         if (!subTab.items) {
           subTab.items = [];
         }
         subTab.items.push(newItem);
+        designer.tabItems.push(newItem);
         // console.log("--> Added " + newItem.name + " to " + subTab.title + " Tab");
       }
+    };
+
+    designer.getTabItemById = function(id) {
+      var tabItems = $filter('filter')(designer.tabItems, {id: id});
+
+      return tabItems[0];
     };
 
     return designer;
