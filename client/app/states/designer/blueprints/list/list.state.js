@@ -41,7 +41,8 @@
     var options = {
       expand: 'resources',
       sort_by: 'name',
-      sort_options: 'ignore_case'};
+      sort_options: 'ignore_case'
+    };
 
     return CollectionsApi.query('service_catalogs', options);
   }
@@ -357,8 +358,8 @@
           return item.ui_properties.catalog_name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
         }
       } else if (filter.id === 'publishState') {
-        if ( (filter.value.toLowerCase() === "published" && item.published) ||
-             (filter.value.toLowerCase() === "draft" && !item.published)) {
+        if ((filter.value.toLowerCase() === "published" && item.published)
+          || (filter.value.toLowerCase() === "draft" && !item.published)) {
           return true;
         } else {
           return false;

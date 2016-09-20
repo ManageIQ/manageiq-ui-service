@@ -163,8 +163,8 @@
               if (nodeSrvTemplate.id) {
                 serviceTemplates.push({"id": nodeSrvTemplate.id});
               } else {
-                EventNotifications.warn("Cannot Save New Generic Item '" + nodeSrvTemplate.name +
-                  "'.  Saving New Generic Items Not Yet Implemented.");
+                EventNotifications.warn("Cannot Save New Generic Item '" + nodeSrvTemplate.name
+                  + "'.  Saving New Generic Items Not Yet Implemented.");
               }
             }
             blueprintObj.bundle.service_templates = serviceTemplates;

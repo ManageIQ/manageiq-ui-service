@@ -174,17 +174,17 @@
         for (var i = 0; i < toolboxTabs.length; i++) {
           if (toolboxTabs[i].subtabs) {
             for (var s = 0; s < toolboxTabs[i].subtabs.length; s++) {
-              if (toolboxTabs[i].title.toLowerCase() === 'network' &&
-                toolboxTabs[i].subtabs[s].title.toLowerCase() === 'generic' &&
-                genericSubType === 'load_balancer') {
+              if (toolboxTabs[i].title.toLowerCase() === 'network'
+                && toolboxTabs[i].subtabs[s].title.toLowerCase() === 'generic'
+                && genericSubType === 'load_balancer') {
                 return toolboxTabs[i].subtabs[s];
               }
 
-              if (toolboxTabs[i].preTitle &&
-                toolboxTabs[i].preTitle.toLowerCase() === 'compute' &&
-                toolboxTabs[i].title.toLowerCase() === 'infrastructure' &&
-                toolboxTabs[i].subtabs[s].title.toLowerCase() === 'generic' &&
-                genericSubType === 'vm') {
+              if (toolboxTabs[i].preTitle
+                && toolboxTabs[i].preTitle.toLowerCase() === 'compute'
+                && toolboxTabs[i].title.toLowerCase() === 'infrastructure'
+                && toolboxTabs[i].subtabs[s].title.toLowerCase() === 'generic'
+                && genericSubType === 'vm') {
                 return toolboxTabs[i].subtabs[s];
               }
             }

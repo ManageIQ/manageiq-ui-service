@@ -138,10 +138,10 @@
 
     function entitledForCatalogItems(productFeatures) {
       var actions = ["atomic_catalogitem_edit",
-                     "atomic_catalogitem_new",
-                     "catalog_items_view",
-                     "catalogitem_edit",
-                     "catalogitem_new"];
+        "atomic_catalogitem_new",
+        "catalog_items_view",
+        "catalogitem_edit",
+        "catalogitem_new"];
 
       return isAnyActionAllowed(actions, productFeatures);
     }
@@ -155,9 +155,9 @@
     }
 
     function entitledForDashboard(productFeatures) {
-      return entitledForServices(productFeatures) ||
-             entitledForRequests(productFeatures) ||
-             entitledForServiceCatalogs(productFeatures);
+      return entitledForServices(productFeatures)
+        || entitledForRequests(productFeatures)
+        || entitledForServiceCatalogs(productFeatures);
     }
 
     function activeNavigationFeatures() {
