@@ -57,7 +57,7 @@
               dialogField.default_value = dialogField.values;
             }
 
-            if (typeof (dialogField.values) === 'object' && angular.isUndefined(dialogField.default_value)) {
+            if (angular.isObject(dialogField.values) && angular.isUndefined(dialogField.default_value)) {
               dialogField.default_value = String(dialogField.values[0][0]);
             }
 

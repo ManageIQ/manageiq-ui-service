@@ -57,7 +57,7 @@
     }
 
     function selectDefaultValue(dialogField, newDialogField) {
-      if (typeof (newDialogField.values) === 'object') {
+      if (angular.isObject(newDialogField.values)) {
         dialogField.values = newDialogField.values;
         if (angular.isDefined(newDialogField.default_value) && newDialogField.default_value !== null) {
           dialogField.default_value = newDialogField.default_value;
@@ -132,9 +132,9 @@
 
       function copyDynamicAttributes(currentDialogField, newDialogField) {
         currentDialogField.data_type = newDialogField.data_type;
-        currentDialogField.options   = newDialogField.options;
+        currentDialogField.options = newDialogField.options;
         currentDialogField.read_only = newDialogField.read_only;
-        currentDialogField.required  = newDialogField.required;
+        currentDialogField.required = newDialogField.required;
       }
     }
 
