@@ -5,7 +5,7 @@
       .factory('DesignerState', DesignerStateFactory);
 
   /** @ngInject */
-  function DesignerStateFactory($filter, CollectionsApi, $state, sprintf, $q) {
+  function DesignerStateFactory($filter, $log) {
     var designer = {};
 
     designer.getDesignerToolboxTabs = function(srvTemplates) {
@@ -109,15 +109,15 @@
           if (srvTemplate.prov_type !== 'generic') {
             subTab = findSubTabByProvType(srvTemplate.prov_type);
             if (!subTab) {
-              console.log("Couldn't find toolbox Tab for Prov_Type: " + srvTemplate.prov_type);
+              $log.warn("Couldn't find toolbox Tab for Prov_Type: " + srvTemplate.prov_type);
             }
           } else if (srvTemplate.generic_subtype) {
             subTab = findSubTabByGenericSubType(srvTemplate.generic_subtype);
             if (!subTab) {
-              console.log("Couldn't find toolbox Tab for Generic_Subtype: " + srvTemplate.generic_subtype);
+              $log.warn("Couldn't find toolbox Tab for Generic_Subtype: " + srvTemplate.generic_subtype);
             }
           } else {
-            console.log("Error: No generic_subtype for Generic " + srvTemplate.name);
+            $log.error("Error: No generic_subtype for Generic " + srvTemplate.name);
           }
           if (subTab) {
             addToSubTab(subTab, srvTemplate);
@@ -198,7 +198,7 @@
         }
         bundleTab.items.push(newBundle);
         designer.tabItems.push(newBundle);
-        // console.log("--> Added " + newBundle.name + " to Bundle Tab");
+        // $log.debug("--> Added " + newBundle.name + " to Bundle Tab");
       }
 
       function addToSubTab(subTab, srvTemplate) {
@@ -216,7 +216,7 @@
         }
         subTab.items.push(newItem);
         designer.tabItems.push(newItem);
-        // console.log("--> Added " + newItem.name + " to " + subTab.title + " Tab");
+        // $log.debug("--> Added " + newItem.name + " to " + subTab.title + " Tab");
       }
     };
 

@@ -22,7 +22,7 @@
     return directive;
 
     /** @ngInject */
-    function TaggingController($scope, $filter, $q, CollectionsApi) {
+    function TaggingController($scope, $filter, $q, $log, CollectionsApi) {
       var vm = this;
 
       if (!vm.tags) {
@@ -78,7 +78,7 @@
         }
 
         function loadFailure() {
-          console.log('There was an error loading all tags.');
+          $log.error('There was an error loading all tags.');
           deferred.reject();
         }
 
@@ -101,7 +101,7 @@
         }
 
         function loadFailure() {
-          console.log('There was an error loading categories.');
+          $log.error('There was an error loading categories.');
           deferred.reject();
         }
 
@@ -127,7 +127,7 @@
         }
 
         function loadFailure() {
-          console.log('There was an error loading ' + vm.objectType + ', id = ' + vm.objectId);
+          $log.error('There was an error loading ' + vm.objectType + ', id = ' + vm.objectId);
           deferred.reject();
         }
 

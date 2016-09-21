@@ -31,7 +31,7 @@
 
     BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
 
-    // console.log("RETRIEVED Blueprint: " + angular.toJson($scope.blueprint, true));
+    // $log.debug("RETRIEVED Blueprint: " + angular.toJson($scope.blueprint, true));
 
     $scope.$watch("blueprint", function(oldValue, newValue) {
       if (!angular.equals(oldValue, newValue, true)) {
@@ -73,7 +73,7 @@
          BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
          blueprintDirty = false;
          $( "#saveBtm" ).blur();
-         console.log("Saved blueprint from designer"); */
+         $log.debug("Saved blueprint from designer"); */
       }
 
       function saveFailure() {

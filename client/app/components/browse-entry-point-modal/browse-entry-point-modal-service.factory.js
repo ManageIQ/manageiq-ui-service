@@ -31,7 +31,7 @@
   }
 
   /** @ngInject */
-  function BrowseEntryPointModalController(entryPointType, $state, $modalInstance) {
+  function BrowseEntryPointModalController(entryPointType, $state, $modalInstance, $log) {
     var vm = this;
     vm.entryPointType = entryPointType;
 
@@ -68,7 +68,7 @@
           }
           $modalInstance.close({entryPointType: vm.entryPointType, entryPointData: pathToNode});
         } else {
-          console.log("No " + vm.entryPointTypeTitle + " Entry Point selected.");
+          $log.warn("No " + vm.entryPointTypeTitle + " Entry Point selected.");
         }
       }
     }

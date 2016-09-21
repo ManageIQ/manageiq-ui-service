@@ -169,7 +169,7 @@
         for (var i = 0; i < vm.blueprint.content.automate_entrypoints.length; i++) {
           var aep = vm.blueprint.content.automate_entrypoints[i];
           var newAepStr = BlueprintsState.getEntryPointString(aep);
-          // console.log("modal data = " + aep.action + ": " + newAepStr);
+          // $log.debug("modal data = " + aep.action + ": " + newAepStr);
           var newAepObj = {action: aep.action, index: i, value: newAepStr};
           switch (aep.action) {
             case "Provision":
@@ -202,7 +202,6 @@
       var modalInstance = CreateCatalogModal.showModal();
 
       modalInstance.then(function(opts) {
-        console.log("New Catalog Name is '" + opts.catalogName + "'");
         angular.element( "#createCatalog" ).blur();
       });
     }
@@ -306,9 +305,9 @@
       }
 
       /*
-      console.log("Orig Blueprint = " + angular.toJson(BlueprintsState.getOriginalBlueprint().content, true));
-      console.log("Updated Blueprint = " + angular.toJson(vm.blueprint.content, true));
-      console.log("Diff = " + angular.toJson(BlueprintsState.difference(vm.blueprint.content,
+       $log.debug("Orig Blueprint = " + angular.toJson(BlueprintsState.getOriginalBlueprint().content, true));
+       $log.debug("Updated Blueprint = " + angular.toJson(vm.blueprint.content, true));
+       $log.debug("Diff = " + angular.toJson(BlueprintsState.difference(vm.blueprint.content,
                   BlueprintsState.getOriginalBlueprint().content), true));
       */
 
@@ -351,7 +350,7 @@
         var instance = (parts.length ? parts.splice(-1, 1)[0] : "");
         var clazz = (parts.length ? parts.splice(-1, 1)[0] : "");
         var namespace = parts.join("\/");
-        // console.log("blueprint data = " + modalData.action + " - " + namespace + ":" + clazz + ":" + instance);
+        // $log.debug("blueprint data = " + modalData.action + " - " + namespace + ":" + clazz + ":" + instance);
         if (angular.isDefined(modalData.index)) {
           var bpAEP = vm.blueprint.content.automate_entrypoints[modalData.index];
           if (angular.isUndefined(bpAEP.ae_class) && angular.isUndefined(bpAEP.ae_instance) && angular.isUndefined(bpAEP.ae_namespace )) {
@@ -368,7 +367,7 @@
           }
         } else {
           if (namespace.length || clazz.length || instance.length) {
-            // console.log("Adding new entry point");
+            // $log.debug("Adding new entry point");
             vm.blueprint.content.automate_entrypoints.push({
               action: modalData.action,
               ae_namespace: namespace,

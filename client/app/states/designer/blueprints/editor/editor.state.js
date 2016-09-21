@@ -63,7 +63,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, $stateParams, blueprint, blueprintTags, serviceTemplates) {
+  function StateController($log, blueprint, blueprintTags, serviceTemplates) {
     var vm = this;
     vm.title = 'Blueprint Designer';
     if (blueprint) {
@@ -105,7 +105,7 @@
           }
         }
         if (!foundNodesSrvTemplate) {
-          console.log("Cound Not Find Service Template for Canvas Node: " + node.name + "(" + node.id + ")");
+          $log.error("Cound Not Find Service Template for Canvas Node: " + node.name + "(" + node.id + ")");
         }
       }
     }

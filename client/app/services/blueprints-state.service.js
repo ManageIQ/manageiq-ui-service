@@ -6,7 +6,7 @@
     .factory('BlueprintsState', BlueprintsStateFactory);
 
   /** @ngInject */
-  function BlueprintsStateFactory($filter, CollectionsApi, EventNotifications, $state, sprintf, $q) {
+  function BlueprintsStateFactory(CollectionsApi, EventNotifications, $log, $q) {
     var blueprint = {};
 
     blueprint.sort = {
@@ -81,11 +81,11 @@
       var deferred = $q.defer();
 
       saveBlueprintProperties(tmpBlueprint).then(function(id) {
-        console.log("'" + tmpBlueprint.name + "' Blueprint Properties were saved.");
+        $log.info("'" + tmpBlueprint.name + "' Blueprint Properties were saved.");
         saveBlueprintTags(id, tmpBlueprint).then(function() {
-          console.log("'" + tmpBlueprint.name + "' Blueprint Tags were saved.");
+          $log.info("'" + tmpBlueprint.name + "' Blueprint Tags were saved.");
           saveBlueprintServiceItemTags(tmpBlueprint).then(function() {
-            console.log("'" + tmpBlueprint.name + "' Blueprint Service Item Tags were saved.");
+            $log.info("'" + tmpBlueprint.name + "' Blueprint Service Item Tags were saved.");
             deferred.resolve(id);
           }, saveServiceItemTagsfailure);
         }, saveTagsfailure);
@@ -117,7 +117,7 @@
 
       var blueprintObj = getBlueprintPostObj(tmpBlueprint);
 
-      // console.log("Saving Blueprint: " + angular.toJson(blueprintObj, true));
+      // $log.debug("Saving Blueprint: " + angular.toJson(blueprintObj, true));
 
       if (tmpBlueprint.id) {
         CollectionsApi.post('blueprints', tmpBlueprint.id, {}, blueprintObj).then(updateSuccess, updateFailure);
@@ -130,7 +130,7 @@
       }
 
       function updateFailure() {
-        console.log('There was an error saving this blueprints properties.');
+        $log.error('There was an error saving this blueprints properties.');
         deferred.reject();
       }
 
@@ -139,7 +139,7 @@
       }
 
       function createFailure() {
-        console.log('There was an error creating this blueprint.');
+        $log.error('There was an error creating this blueprint.');
         deferred.reject();
       }
 
@@ -231,10 +231,10 @@
 
       if (assignObj.resources.length > 0) {
         CollectionsApi.post(collection, null, {}, assignObj).then(function() {
-          console.log("  Blueprint tags assigned succesfully.");
+          $log.info("  Blueprint tags assigned succesfully.");
           if (unassignObj.resources.length > 0) {
             CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
-              console.log("  Blueprint tags unassigned succesfully.");
+              $log.info("  Blueprint tags unassigned succesfully.");
               deferred.resolve();
             }, assignFailure);
           } else {
@@ -244,7 +244,7 @@
       } else {
         if (unassignObj.resources.length > 0) {
           CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
-            console.log("  Blueprint tags unassigned succesfully.");
+            $log.info("  Blueprint tags unassigned succesfully.");
             deferred.resolve();
           }, assignFailure);
         } else {
@@ -253,12 +253,12 @@
       }
 
       function assignFailure() {
-        console.log('There was an error assigning blueprint tags.');
+        $log.error('There was an error assigning blueprint tags.');
         deferred.reject();
       }
 
       function unassignFailure() {
-        console.log('There was an error unassigning blueprint tags.');
+        $log.error('There was an error unassigning blueprint tags.');
         deferred.reject();
       }
 
@@ -281,18 +281,18 @@
           }
           if (promises.length > 0) {
             $q.all(promises).then(function(ids) {
-              console.log("    Saved Service Item Tags for " + ids);
+              $log.debug("    Saved Service Item Tags for " + ids);
               deferred.resolve();
             }, function(ids) {
-              console.log("    Failed to save Service Item Tags for " + ids);
+              $log.debug("    Failed to save Service Item Tags for " + ids);
               deferred.reject();
             });
           } else {
-            console.log("    No Tags to save for Service Items");
+            $log.debug("    No Tags to save for Service Items");
             deferred.resolve();
           }
         } else {
-          console.log("    No Service Items to save tags for");
+          $log.debug("    No Service Items to save tags for");
           deferred.resolve();
         }
       }
@@ -310,26 +310,26 @@
 
       if (assignObj.resources.length > 0) {
         CollectionsApi.post(collection, null, {}, assignObj).then(function() {
-          console.log("    Service Item tags assigned succesfully for " + id);
+          $log.info("    Service Item tags assigned succesfully for " + id);
           if (unassignObj.resources.length > 0) {
             CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
-              console.log("    Service Item tags unassigned succesfully for " + id);
+              $log.info("    Service Item tags unassigned succesfully for " + id);
               deferred.resolve(id);
             }, assignFailure);
           } else {
-            console.log("    No unassigned tags for Service Item " + id);
+            $log.debug("    No unassigned tags for Service Item " + id);
             deferred.resolve(id);
           }
         }, unassignFailure);
       } else {
-        console.log("    No assigned tags for Service Item " + id);
+        $log.debug("    No assigned tags for Service Item " + id);
         if (unassignObj.resources.length > 0) {
           CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
-            console.log("    Service Item tags unassigned succesfully for " + id);
+            $log.debug("    Service Item tags unassigned succesfully for " + id);
             deferred.resolve(id);
           }, assignFailure);
         } else {
-          console.log("    No unassigned tags for Service Item " + id);
+          $log.debug("    No unassigned tags for Service Item " + id);
           deferred.resolve(id);
         }
       }
@@ -375,7 +375,7 @@
           }
         }
         if (!foundInOther) {
-          // console.log("--> " + action + " " + tag.id + " - " + tag.categorization.display_name);
+          // $log.debug("--> " + action + " " + tag.id + " - " + tag.categorization.display_name);
           resources.push({id: tag.id});
         }
       }
@@ -456,7 +456,7 @@
 
       for (k in o1) {  // jshint ignore:line
         if (!o1.hasOwnProperty(k)) {
-          console.log("obj 2 doesn't have " + k);
+          $log.warn("obj 2 doesn't have " + k);
         } else if (!angular.isObject(o1[k]) || !angular.isObject(o2[k]) ) {
           if (!(k in o2) || o1[k] !== o2[k]) {
             diff[k] = o2[k];

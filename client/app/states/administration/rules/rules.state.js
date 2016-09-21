@@ -44,7 +44,7 @@
   }
 
   /** @ngInject */
-  function RulesController(arbitrationRules, fields, profiles, RulesState, SaveRuleModal, $state, $scope, $timeout) {
+  function RulesController(arbitrationRules, fields, profiles, RulesState, SaveRuleModal, $state, $scope, $timeout, $log) {
     /* jshint validthis: true */
     var vm = this;
     vm.operators = [
@@ -384,7 +384,7 @@
       updateRulesPriorities(true);
     };
     vm.dropCallback = function(event, ui, item, index) {
-      console.log("Dropped " + item.value + " at index " + index);
+      $log.debug("Dropped " + item.value + " at index " + index);
     };
     vm.toolbarConfig = {
       actionsConfig: {
