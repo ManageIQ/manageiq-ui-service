@@ -1,4 +1,4 @@
-/*eslint camelcase: "off" */
+/* eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -41,7 +41,7 @@
     var options = {
       expand: 'resources',
       sort_by: 'name',
-      sort_options: 'ignore_case'
+      sort_options: 'ignore_case',
     };
 
     return CollectionsApi.query('service_catalogs', options);
