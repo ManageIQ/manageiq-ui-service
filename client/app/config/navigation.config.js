@@ -1,4 +1,3 @@
-/*eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -63,19 +62,26 @@
                 },
               ],
             },
+          },
+        },
+        administration: {
+          title: N_('Administration'),
+          state: 'administration',
+          iconClass: 'pficon pficon-settomgs',
+          secondary: {
             profiles: {
               title: N_('Profiles'),
-              state: 'designer.profiles',
+              state: 'administration.profiles',
               badges: [
                 {
                   count: 0,
-                  tooltip: N_('The total number of available profiles')
+                  tooltip: N_('The total number of available arbitration profiles')
                 }
               ]
             },
             rules: {
               title: N_('Rules'),
-              state: 'designer.rules',
+              state: 'administration.rules',
               badges: [
                 {
                   count: 0,
@@ -152,7 +158,7 @@
       };
 
       CollectionsApi.query('arbitration_profiles', options)
-        .then(lodash.partial(updateDesignerSecondaryCount, 'profiles'));
+        .then(lodash.partial(updateAdministrationSecondaryCount, 'profiles'));
     }
 
     function fetchRules() {
@@ -163,7 +169,7 @@
       };
 
       CollectionsApi.query('arbitration_rules', options)
-          .then(lodash.partial(updateDesignerSecondaryCount, 'rules'));
+          .then(lodash.partial(updateAdministrationSecondaryCount, 'rules'));
     }
 
     function updateCount(item, data) {
@@ -180,6 +186,10 @@
 
     function updateDesignerSecondaryCount(item, data) {
       Navigation.items.designer.secondary[item].badges[0].count = data.subcount;
+    }
+
+    function updateAdministrationSecondaryCount(item, data) {
+      Navigation.items.administration.secondary[item].badges[0].count = data.subcount;
     }
   }
 })();

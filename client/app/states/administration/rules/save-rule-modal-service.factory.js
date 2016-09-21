@@ -14,7 +14,7 @@
 
     function showModal(saveCallback, doNotSaveCallback, cancelCallback) {
       var modalOptions = {
-        templateUrl: 'app/states/designer/rules/save-rule-modal.html',
+        templateUrl: 'app/states/administration/rules/save-rule-modal.html',
         controller: SaveRuleModalController,
         controllerAs: 'vm',
         resolve: {
