@@ -1,9 +1,7 @@
 //
 // Global accessor.
 //
-var flowchart = {
-
-};
+var flowchart = {};
 
 // Module.
 (function() {
@@ -119,8 +117,7 @@ var flowchart = {
 
     if (connectorDataModels) {
       for (var i = 0; i < connectorDataModels.length; ++i) {
-        var connectorViewModel =
-        new flowchart.ConnectorViewModel(connectorDataModels[i], x, flowchart.computeConnectorY(i), parentNode);
+        var connectorViewModel = new flowchart.ConnectorViewModel(connectorDataModels[i], x, flowchart.computeConnectorY(i), parentNode);
         viewModels.push(connectorViewModel);
       }
     }
@@ -233,13 +230,13 @@ var flowchart = {
     //
     this.height = function() {
       /*
-        var numConnectors =
-        Math.max(
-        this.inputConnectors.length,
-        this.outputConnectors.length);
+       var numConnectors =
+       Math.max(
+       this.inputConnectors.length,
+       this.outputConnectors.length);
 
-        return flowchart.computeConnectorY(numConnectors);
-      */
+       return flowchart.computeConnectorY(numConnectors);
+       */
 
       return flowchart.defaultNodeHeight;
     };
@@ -275,9 +272,8 @@ var flowchart = {
     //
     // Internal function to add a connector.
     this._addConnector = function(connectorDataModel, x, connectorsDataModel, connectorsViewModel) {
-      var connectorViewModel =
-      new flowchart.ConnectorViewModel(connectorDataModel, x,
-      flowchart.computeConnectorY(connectorsViewModel.length), this);
+      var connectorViewModel = new flowchart.ConnectorViewModel(connectorDataModel, x,
+        flowchart.computeConnectorY(connectorsViewModel.length), this);
 
       connectorsDataModel.push(connectorDataModel);
 
@@ -626,7 +622,7 @@ var flowchart = {
     //
     this._createConnectionViewModel = function(connectionDataModel) {
       var sourceConnector = this.findOutputConnector(connectionDataModel.source.nodeID, connectionDataModel.source.connectorIndex);
-      var destConnector = this.findInputConnector(connectionDataModel.dest.nodeID, connectionDataModel.dest.connectorIndex);			
+      var destConnector = this.findInputConnector(connectionDataModel.dest.nodeID, connectionDataModel.dest.connectorIndex);
 
       return new flowchart.ConnectionViewModel(connectionDataModel, sourceConnector, destConnector);
     };
@@ -868,7 +864,7 @@ var flowchart = {
     this.handleNodeClicked = function(node, ctrlKey) {
       if (ctrlKey) {
         node.toggleSelected();
-      }      else {
+      } else {
         this.deselectAll();
         node.select();
       }
@@ -890,7 +886,7 @@ var flowchart = {
     this.handleConnectionMouseDown = function(connection, ctrlKey) {
       if (ctrlKey) {
         connection.toggleSelected();
-      }      else {
+      } else {
         this.deselectAll();
         connection.select();
       }
@@ -907,9 +903,9 @@ var flowchart = {
 
       //
       /* Sort nodes into:
-      *		nodes to keep and
-      *		nodes to delete.
-      */
+       *		nodes to keep and
+       *		nodes to delete.
+       */
 
       for (var nodeIndex = 0; nodeIndex < this.nodes.length; ++nodeIndex) {
         var node = this.nodes[nodeIndex];
@@ -917,7 +913,7 @@ var flowchart = {
           // Only retain non-selected nodes.
           newNodeViewModels.push(node);
           newNodeDataModels.push(node.data);
-        }        else {
+        } else {
           // Keep track of nodes that were deleted, so their connections can also
           // be deleted.
           deletedNodeIds.push(node.data.id);
@@ -934,8 +930,8 @@ var flowchart = {
       for (var connectionIndex = 0; connectionIndex < this.connections.length; ++connectionIndex) {
         var connection = this.connections[connectionIndex];
         if (!connection.selected()) {
-          if (deletedNodeIds.indexOf(connection.data.source.nodeID) === -1 &&
-              deletedNodeIds.indexOf(connection.data.dest.nodeID) === -1) {
+          if (deletedNodeIds.indexOf(connection.data.source.nodeID) === -1
+            && deletedNodeIds.indexOf(connection.data.dest.nodeID) === -1) {
             //
             // The nodes this connection is attached to, where not deleted,
             // so keep the connection.
@@ -981,10 +977,10 @@ var flowchart = {
 
       for (var i = 0; i < this.nodes.length; ++i) {
         var node = this.nodes[i];
-        if (node.x() >= selectionRect.x &&
-        node.y() >= selectionRect.y &&
-        node.x() + node.width() <= selectionRect.x + selectionRect.width &&
-        node.y() + node.height() <= selectionRect.y + selectionRect.height)        {
+        if (node.x() >= selectionRect.x
+          && node.y() >= selectionRect.y
+          && node.x() + node.width() <= selectionRect.x + selectionRect.width
+          && node.y() + node.height() <= selectionRect.y + selectionRect.height) {
           // Select nodes that are within the selection rect.
           node.select();
         }
@@ -992,8 +988,8 @@ var flowchart = {
 
       for (i = 0; i < this.connections.length; ++i) {
         var connection = this.connections[i];
-        if (connection.source.parentNode().selected() &&
-        connection.dest.parentNode().selected())        {
+        if (connection.source.parentNode().selected()
+          && connection.dest.parentNode().selected()) {
           // Select the connection if both its parent nodes are selected.
           connection.select();
         }

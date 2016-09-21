@@ -59,8 +59,8 @@
       }
 
       function iterateBFields(item) {
-        if (lodash.result(lodash.find(item.dialog_fields, {'dynamic': true}), 'name') ||
-        lodash.result(lodash.find(item.dialog_fields, {'type': 'DialogFieldTagControl'}), 'name')) {
+        if (lodash.result(lodash.find(item.dialog_fields, {'dynamic': true}), 'name')
+        || lodash.result(lodash.find(item.dialog_fields, {'type': 'DialogFieldTagControl'}), 'name')) {
           vm.supportedDialog = false;
         }
       }
