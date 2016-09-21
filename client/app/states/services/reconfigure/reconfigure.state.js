@@ -101,7 +101,7 @@
         'services',
         $stateParams.serviceId,
         {},
-        JSON.stringify({action: 'reconfigure', resource: dialogFieldData})
+        angular.toJson({action: 'reconfigure', resource: dialogFieldData})
       ).then(submitSuccess, submitFailure);
 
       function submitSuccess(result) {

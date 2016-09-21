@@ -46,7 +46,7 @@ angular.module('flowChart', ['dragging'] )
       //
       var updateJson = function() {
         if (scope.viewModel) {
-          var json = JSON.stringify(scope.viewModel.data, null, 4);
+          var json = angular.toJson(scope.viewModel.data, null, 4);
           $(elem).val(json);
         }
       };

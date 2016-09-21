@@ -143,7 +143,7 @@
         url,
         resourceId,
         {},
-        JSON.stringify({
+        angular.toJson({
           action: 'refresh_dialog_fields',
           resource: {
             dialog_fields: dialogFieldInfoToSend(allDialogFields),

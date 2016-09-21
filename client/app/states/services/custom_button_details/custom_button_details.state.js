@@ -81,7 +81,7 @@
         'services',
         $stateParams.serviceId,
         {},
-        JSON.stringify({action: $stateParams.button.name, resource: dialogFieldData})
+        angular.toJson({action: $stateParams.button.name, resource: dialogFieldData})
       ).then(submitSuccess, submitFailure);
 
       function submitSuccess(result) {
