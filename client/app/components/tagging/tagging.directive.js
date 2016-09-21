@@ -117,7 +117,7 @@
           attributes: attributes,
         };
 
-        var collection = vm.objectType + "\/" + vm.objectId + "\/" + 'tags';
+        var collection = vm.objectType + '\/' + vm.objectId + '\/ tags';
 
         CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
 
