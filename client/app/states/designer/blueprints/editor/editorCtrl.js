@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.states')
-    .controller('BlueprintEditorCtrl', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState', 'BlueprintDetailsModal',
+    .controller('BlueprintEditorController', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState', 'BlueprintDetailsModal',
       'SaveBlueprintModal', '$state', 'Notifications', 'sprintf', ComponentController]);
 
   /** @ngInject */

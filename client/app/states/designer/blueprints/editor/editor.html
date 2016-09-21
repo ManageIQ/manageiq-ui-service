@@ -1,4 +1,4 @@
-<span ng-controller="BlueprintEditorCtrl" ng-class="{'wait-cursor': loading}">
+<span ng-controller="BlueprintEditorController" ng-class="{'wait-cursor': loading}">
   <span class="blueprint-designer-header">
     <ol class="breadcrumb">
         <li>
@@ -47,7 +47,7 @@
       </div>
 
       <div class="toolbox-canvas-container"
-           ng-controller="CanvasCtrl"
+           ng-controller="CanvasController"
            mouse-capture>
 
           <div class="toolbox-container" id="toolbox" ng-if="toolboxVisible">

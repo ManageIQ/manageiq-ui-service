@@ -2,7 +2,7 @@
   "use strict";
 
   angular.module('app.states')
-    .controller('CanvasCtrl', ['$scope', '$filter', StateController]);
+    .controller('CanvasController', ['$scope', '$filter', StateController]);
 
   /** @ngInject */
   function StateController($scope, $filter) {
