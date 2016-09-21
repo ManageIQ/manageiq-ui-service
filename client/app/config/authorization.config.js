@@ -1,3 +1,4 @@
+/*eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -43,9 +44,9 @@
 
         if ('login' !== $state.current.name) {
           // prevent multiple instances of the same notification - cleared on login submit
-          if (!Session.timeout_notified) {
+          if (!Session.timeoutNotified) {
             Notifications.message('danger', '', __('Your session has timed out.'), true);
-            Session.timeout_notified = true;
+            Session.timeoutNotified = true;
           }
 
           Session.destroy();
@@ -98,7 +99,7 @@
         if (Session.activeNavigationFeatures()) {
           $state.go(toState, toParams);
         } else {
-          Session.privileges_error = true;
+          Session.privilegesError = true;
           $state.go('login');
         }
       };

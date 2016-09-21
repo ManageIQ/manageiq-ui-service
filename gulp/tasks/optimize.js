@@ -22,12 +22,12 @@ module.exports = function(gulp, options) {
       log('Optimizing the js, css, and html');
     }
 
-    var assets = useref({searchPath: './'});
+    var assets = useref.assets({searchPath: './'});
 
     // Filters are named for the gulp-useref path
-    var cssFilter = filter(config.cssFilter, {restore: true});
-    var jsAppFilter = filter(config.appJsFilter, {restore: true});
-    var jslibFilter = filter(config.libJsFilter, {restore: true});
+    var cssFilter = filter(config.cssFilter);
+    var jsAppFilter = filter(config.appJsFilter);
+    var jslibFilter = filter(config.libJsFilter);
 
     return gulp.src(config.index)
       .pipe(plumber())
@@ -36,19 +36,27 @@ module.exports = function(gulp, options) {
       // Get the css
       .pipe(cssFilter)
       .pipe(csso())
-      .pipe(cssFilter.restore)
+      .pipe(cssFilter.restore())
       // Get the custom javascript
       .pipe(jsAppFilter)
-      .pipe(ngAnnotate(config.ngAnnotateOptions))
-      .pipe(uglify())
+
+      // FIXME Disabling minifiction and injection until the following issue with ng-annotate has been resolved
+      // Issue : https://github.com/olov/ng-annotate/issues/168
+      //
+      //.pipe(ngAnnotate(config.ngAnnotateOptions))
+      //.pipe(uglify())
+
       .pipe(getHeader())
-      .pipe(jsAppFilter.restore)
+      .pipe(jsAppFilter.restore())
       // Get the vendor javascript
       .pipe(jslibFilter)
       .pipe(uglify()) // another option is to override wiredep to use min files
-      .pipe(jslibFilter.restore)
+      .pipe(jslibFilter.restore())
       // Take inventory of the file names for future rev numbers
       .pipe(rev())
+      // Apply the concat and file replacement with useref
+      .pipe(assets.restore())
+      .pipe(useref())
       // Replace the file names in the html with rev numbers
       .pipe(revReplace())
       .pipe(gulp.dest(config.build));

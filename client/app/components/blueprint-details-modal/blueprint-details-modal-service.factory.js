@@ -102,7 +102,7 @@
 
     vm.serviceDialogs = serviceDialogs.resources;
 
-    vm.tags = {"of_item": vm.blueprint.tags};
+    vm.tags = {"ofItem": vm.blueprint.tags};
 
     vm.visibilityOptions = [{
       id: 800,
@@ -227,7 +227,7 @@
     }
 
     function disableOrderListTabs() {
-      return vm.blueprint.ui_properties.chartDataModel.nodes.length <= 1;
+      return vm.blueprint.ui_properties.chart_data_model.nodes.length <= 1;
     }
 
     function toggleActionEqualsProvOrder() {
@@ -260,7 +260,7 @@
       vm.blueprint.name = vm.modalData.resource.name;
       vm.blueprint.description = vm.modalData.resource.description;
 
-      vm.blueprint.tags = vm.tags.of_item;
+      vm.blueprint.tags = vm.tags.ofItem;
 
       /*
       if (!vm.blueprint.visibility || (vm.blueprint.visibility.id.toString() !== vm.modalData.resource.visibility.id.toString())) {

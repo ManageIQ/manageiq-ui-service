@@ -14,7 +14,7 @@
      * required for the DND Provision and Action Order Lists.
      */
     orderListSrv.setOrderLists = function(vm) {
-      var blueprintServiceItems = vm.blueprint.ui_properties.chartDataModel.nodes;
+      var blueprintServiceItems = vm.blueprint.ui_properties.chart_data_model.nodes;
       var items = angular.copy(blueprintServiceItems);
       var lists = [];
       var i, item, l, order;
@@ -127,8 +127,8 @@
     };
 
     orderListSrv.updateOrder = function(orderType, item, orderNum, vm) {
-      for (var i = 0; i < vm.blueprint.ui_properties.chartDataModel.nodes.length; i++) {
-        var node = vm.blueprint.ui_properties.chartDataModel.nodes[i];
+      for (var i = 0; i < vm.blueprint.ui_properties.chart_data_model.nodes.length; i++) {
+        var node = vm.blueprint.ui_properties.chart_data_model.nodes[i];
         if (node.id === item.id && node.name === item.name) {
           if (orderType === 'provisionOrder') {
             node.provision_order = orderNum;

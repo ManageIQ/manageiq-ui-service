@@ -1,3 +1,4 @@
+/*eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -20,7 +21,7 @@
       },
       save: save,
       match: match,
-      user_href: null,
+      userHref: null,
       setLocale: setLocale,
       fixState: fixState,
     };
@@ -78,7 +79,7 @@
     }
 
     function setUser(data) {
-      service.user_href = data.identity.user_href.replace(/^.*?\/api\//, '/api/');
+      service.userHref = data.identity.user_href.replace(/^.*?\/api\//, '/api/');
     }
 
     function onLogin(data) {
@@ -103,8 +104,8 @@
     }
 
     function save(code) {
-      if (!service.user_href) {
-        console.error('Trying to save language selection without a valid user_href');
+      if (!service.userHref) {
+        console.error('Trying to save language selection without a valid userHref');
 
         return;
       }
@@ -113,7 +114,7 @@
         code = null;
       }
 
-      return $http.post(service.user_href, {
+      return $http.post(service.userHref, {
         action: 'edit',
         resource: {
           settings: {

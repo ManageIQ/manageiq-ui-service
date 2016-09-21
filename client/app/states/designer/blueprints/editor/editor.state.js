@@ -76,9 +76,9 @@
     }
 
     if (vm.blueprint && vm.blueprint.content && blueprint.content.service_templates && vm.blueprint.ui_properties &&
-        vm.blueprint.ui_properties.chartDataModel && vm.blueprint.ui_properties.chartDataModel.nodes &&
-        vm.blueprint.ui_properties.chartDataModel.nodes.length > 0) {
-      updateCanvasServiceTemplateNodes(vm.blueprint.content.service_templates, vm.blueprint.ui_properties.chartDataModel.nodes);
+        vm.blueprint.ui_properties.chart_data_model && vm.blueprint.ui_properties.chart_data_model.nodes &&
+        vm.blueprint.ui_properties.chart_data_model.nodes.length > 0) {
+      updateCanvasServiceTemplateNodes(vm.blueprint.content.service_templates, vm.blueprint.ui_properties.chart_data_model.nodes);
     }
 
     function updateCanvasServiceTemplateNodes(serviceTemplates, nodes) {

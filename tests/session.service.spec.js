@@ -65,9 +65,9 @@ describe('Session', function() {
       expect($state.navFeatures.requests.show).to.eq(false);
       expect($state.navFeatures.marketplace.show).to.eq(false);
 
-      expect($state.actionFeatures.service_edit.show).to.eq(true);
-      expect($state.actionFeatures.service_delete.show).to.eq(false);
-      expect($state.actionFeatures.service_reconfigure.show).to.eq(false);
+      expect($state.actionFeatures.serviceEdit.show).to.eq(true);
+      expect($state.actionFeatures.serviceDelete.show).to.eq(false);
+      expect($state.actionFeatures.serviceReconfigure.show).to.eq(false);
     });
 
     it('sets visibility for "Service Catalogs" and "Requests" only on navbar and enables "Service Request" button', function() {
