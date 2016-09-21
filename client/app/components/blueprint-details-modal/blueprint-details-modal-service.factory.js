@@ -102,7 +102,7 @@
 
     vm.serviceDialogs = serviceDialogs.resources;
 
-    vm.tags = {"ofItem": vm.blueprint.tags};
+    vm.tagsOfItem = vm.blueprint.tags;
 
     vm.visibilityOptions = [{
       id: 800,
@@ -237,7 +237,7 @@
       vm.blueprint.name = vm.modalData.resource.name;
       vm.blueprint.description = vm.modalData.resource.description;
 
-      vm.blueprint.tags = vm.tags.ofItem;
+      vm.blueprint.tags = vm.tagsOfItem;
 
       /*
       if (!vm.blueprint.visibility || (vm.blueprint.visibility.id.toString() !== vm.modalData.resource.visibility.id.toString())) {

@@ -327,23 +327,8 @@ var flowchart = {};
       }
     };
 
-    //
-    // Node Tagging
-    //
-    this.setTags = function(tags) {
-      this.data.tags = tags;
-    };
-
-    this.tags = function(tags) {
+    this.tags = function() {
       return this.data.tags;
-    };
-
-    this.setOrigTags = function(tags) {
-      this.data.origTags = tags;
-    };
-
-    this.origTags = function(tags) {
-      return this.data.origTags;
     };
   };
 

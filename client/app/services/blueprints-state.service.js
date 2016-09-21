@@ -96,10 +96,6 @@
         deferred.reject();
       }
 
-      function saveServiceItemTagsfailure() {
-        deferred.reject();
-      }
-
       return deferred.promise;
     };
 
@@ -108,7 +104,7 @@
 
       var blueprintObj = getBlueprintPostObj(tmpBlueprint);
 
-      // $log.debug("Saving Blueprint: " + angular.toJson(blueprintObj, true));
+      // $log.debug("Saving Blueprint = " + angular.toJson(blueprintObj, true));
 
       if (tmpBlueprint.id) {
         CollectionsApi.post('blueprints', tmpBlueprint.id, {}, blueprintObj).then(updateSuccess, updateFailure);
