@@ -46,8 +46,8 @@ angular.module('flowChart', ['dragging'] )
       //
       var updateJson = function() {
         if (scope.viewModel) {
-          var json = JSON.stringify(scope.viewModel.data, null, 4);
-          $(elem).val(json);
+          var json = angular.toJson(scope.viewModel.data, null, 4);
+          angular.element(elem).val(json);
         }
       };
 
@@ -65,8 +65,8 @@ angular.module('flowChart', ['dragging'] )
       // Handle the change event from the textarea and update the data model
       // from the modified json.
       //
-      $(elem).bind("input propertychange", function() {
-        var json = $(elem).val();
+      angular.element(elem).bind("input propertychange", function() {
+        var json = angular.element(elem).val();
         var dataModel = JSON.parse(json);
         scope.viewModel = new flowchart.ChartViewModel(dataModel);
 
@@ -94,7 +94,7 @@ angular.module('flowChart', ['dragging'] )
   // Wrap jQuery so it can easily be  mocked for testing.
   //
   this.jQuery = function(element) {
-    return $(element);
+    return angular.element(element);
   };
 
   //

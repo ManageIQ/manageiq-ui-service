@@ -203,7 +203,7 @@
 
       modalInstance.then(function(opts) {
         console.log("New Catalog Name is '" + opts.catalogName + "'");
-        $( "#createCatalog" ).blur();
+        angular.element( "#createCatalog" ).blur();
       });
     }
 
@@ -222,8 +222,8 @@
     }
 
     function toggleAdvOps() {
-      $( "#advOpsHref" ).toggleClass("collapsed");
-      $( "#advOps" ).toggleClass("in");
+      angular.element( "#advOpsHref" ).toggleClass("collapsed");
+      angular.element( "#advOps" ).toggleClass("in");
     }
 
     function disableOrderListTabs() {

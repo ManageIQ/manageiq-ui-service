@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.states')
-    .controller('BlueprintEditorCtrl', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState', 'BlueprintDetailsModal',
+    .controller('BlueprintEditorController', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState', 'BlueprintDetailsModal',
       'SaveBlueprintModal', '$state', 'Notifications', 'sprintf', ComponentController]);
 
   /** @ngInject */
@@ -107,12 +107,12 @@
 
     $scope.duplicateSelectedItem = function() {
       $scope.$broadcast('duplicateSelectedItem');
-      $("#duplicateItem").blur();
+      angular.element("#duplicateItem").blur();
     };
 
     $scope.removeSelectedItemsFromCanvas = function() {
       $scope.$broadcast('removeSelectedItems');
-      $("#removeItems").blur();
+      angular.element("#removeItems").blur();
     };
 
     /*  Catalog Editor Toolbox Methods */
@@ -125,8 +125,8 @@
       // focus to filter input box
 
       $timeout(function() {
-        $(".subtabs>ul").addClass('nav-tabs-pf');
-        $("#filterFld").focus();
+        angular.element(".subtabs>ul").addClass('nav-tabs-pf');
+        angular.element("#filterFld").focus();
       });
     };
 
@@ -139,7 +139,7 @@
     });
 
     $scope.tabClicked = function() {
-      $("#filterFld").focus();
+      angular.element("#filterFld").focus();
     };
 
     $scope.inConnectingMode = false;

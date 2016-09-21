@@ -5,7 +5,7 @@
     .directive('customButton', CustomButtonDirective);
 
   /** @ngInject */
-  function CustomButtonDirective($window, $timeout) {
+  function CustomButtonDirective($document, $window, $timeout) {
     var directive = {
       restrict: 'AE',
       replace: true,
@@ -46,8 +46,8 @@
         vm.collapseCustomButtons = false;
 
         $timeout(function() {
-          var outerWidth = document.querySelectorAll('.ss-details-header__actions')[0].offsetWidth;
-          var innerWidth = document.querySelectorAll('.ss-details-header__actions__inner')[0].offsetWidth;
+          var outerWidth = $document.querySelectorAll('.ss-details-header__actions')[0].offsetWidth;
+          var innerWidth = $document.querySelectorAll('.ss-details-header__actions__inner')[0].offsetWidth;
           if (innerWidth >= outerWidth) {
             // Not enough room - collapse them down
             vm.collapseCustomButtons = true;

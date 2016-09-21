@@ -4,7 +4,6 @@
 
   angular.module('app.core')
     .constant('lodash', _)
-    .constant('jQuery', $)
     .constant('toastr', toastr)
     .constant('sprintf', sprintf);
 })();

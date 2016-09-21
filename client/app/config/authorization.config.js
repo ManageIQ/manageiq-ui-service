@@ -57,7 +57,7 @@
   }
 
   /** @ngInject */
-  function init($rootScope, $state, Session, jQuery, $sessionStorage, logger, Language) {
+  function init($rootScope, $state, Session, $sessionStorage, logger, Language) {
     $rootScope.$on('$stateChangeStart', changeStart);
     $rootScope.$on('$stateChangeError', changeError);
     $rootScope.$on('$stateChangeSuccess', changeSuccess);
@@ -123,7 +123,7 @@
     }
 
     function changeSuccess() {
-      jQuery('html, body').animate({scrollTop: 0}, 200);
+      angular.element('html, body').animate({scrollTop: 0}, 200);
     }
   }
 })();
