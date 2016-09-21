@@ -3,11 +3,11 @@
 
   angular.module('app.states')
     .controller('BlueprintEditorController', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState', 'BlueprintDetailsModal',
-      'SaveBlueprintModal', '$state', 'Notifications', 'sprintf', ComponentController]);
+      'SaveBlueprintModal', '$state', 'EventNotifications', 'sprintf', ComponentController]);
 
   /** @ngInject */
   function ComponentController($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $state,
-                               Notifications, sprintf) {
+                               EventNotifications, sprintf) {
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
       if (toState.name === 'login') {
         return;
@@ -61,7 +61,7 @@
       BlueprintsState.saveBlueprint($scope.blueprint).then(saveSuccess, saveFailure);
 
       function saveSuccess(id) {
-        Notifications.success(sprintf(__("'%s' was succesfully saved."), $scope.blueprint.name));
+        EventNotifications.success(sprintf(__("'%s' was succesfully saved."), $scope.blueprint.name));
         if (id) {
           $state.go($state.current, {blueprintId: id}, {reload: true});
         }
@@ -77,7 +77,7 @@
       }
 
       function saveFailure() {
-        Notifications.error(sprintf(__("Failed to save '%s'."), $scope.blueprint.name));
+        EventNotifications.error(sprintf(__("Failed to save '%s'."), $scope.blueprint.name));
       }
     };
 
