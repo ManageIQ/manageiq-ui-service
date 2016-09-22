@@ -1,3 +1,4 @@
+/* eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -76,8 +77,8 @@
                 {
                   count: 0,
                   tooltip: N_('The total number of available arbitration profiles')
-                }
-              ]
+                },
+              ],
             },
             rules: {
               title: N_('Rules'),
