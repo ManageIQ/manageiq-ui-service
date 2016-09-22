@@ -2,7 +2,15 @@
   'use strict';
     
   angular.module('app.components')
-    .controller('ModalCtrl', function (ServerInfo) {
+      .directive('aboutModal', function() {
+          return {
+              templateUrl: "app/components/about-modal/about-modal.html",
+              controller: ModalCtrl,
+              controllerAs: "info",
+          };
+      });
+  /** @ngInject */
+  function ModalCtrl(ServerInfo) {
       var controller = this;
       this.additionalInfo = "";
       this.copyright = "Copyright (c) 2016 ManageIQ. Sponsored by Red Hat Inc.";
@@ -23,12 +31,5 @@
       this.onClose = function() {
         controller.isOpen = false;
       };
-    })
-    .directive('aboutModal', function() {
-      return {
-        templateUrl: "app/components/about-modal/about-modal.html",
-        controller: "ModalCtrl",
-        controllerAs: "info",
-      };
-    });
+    }
 })();
