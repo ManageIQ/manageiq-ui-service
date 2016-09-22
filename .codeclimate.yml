@@ -7,6 +7,7 @@ engines:
 ratings:
   paths:
   - client/app/**
+  - "**.js"
 exclude_paths:
 - tests/**/*
 - node_modules/**
