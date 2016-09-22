@@ -266,11 +266,11 @@
     blueprint.getNewBlueprintObj = function() {
       var tmpBlueprint = {};
       tmpBlueprint.name = __('Untitled Blueprint');
-      // tmpBlueprint.visibility = {"id": 800, "name": "Private"};
       tmpBlueprint.tags = [];
       // TODO Need to get default Provision entry point
       tmpBlueprint.ui_properties = {
         automate_entrypoints: {Provision: "Service/Provisioning/StateMachines/ServiceProvision_Template/default"},
+        visibility: {"id": 800, "name": "Private"},
         chart_data_model: {
           "nodes": [],
         },

@@ -134,7 +134,7 @@
       'resource': {
         'name': vm.blueprint.name || __('Untitled Blueprint ') + BlueprintsState.getNextUniqueId(),
         'description': vm.blueprint.description,
-        'visibility': vm.blueprint.visibility,
+        'visibility': vm.blueprint.ui_properties.visibility,
         'catalog': vm.blueprint.ui_properties.service_catalog,
         'dialog': vm.blueprint.ui_properties.service_dialog,
         'provEP': (vm.blueprint.ui_properties.automate_entrypoints && vm.blueprint.ui_properties.automate_entrypoints.Provision
@@ -236,14 +236,9 @@
     function saveBlueprintDetails() {   // jshint ignore:line
       vm.blueprint.name = vm.modalData.resource.name;
       vm.blueprint.description = vm.modalData.resource.description;
+      vm.blueprint.ui_properties.visibility = vm.modalData.resource.visibility;
 
       vm.blueprint.tags = vm.tagsOfItem;
-
-      /*
-      if (!vm.blueprint.visibility || (vm.blueprint.visibility.id.toString() !== vm.modalData.resource.visibility.id.toString())) {
-        vm.blueprint.visibility = vm.modalData.resource.visibility;
-      }
-      */
 
       if (vm.modalData.resource.catalog) {
         if (!vm.blueprint.ui_properties.service_catalog || vm.modalData.resource.catalog.id
@@ -280,12 +275,6 @@
       } else if (vm.blueprint.ui_properties.automate_entrypoints && vm.blueprint.ui_properties.automate_entrypoints.Retirement) {
         vm.blueprint.ui_properties.automate_entrypoints.Retirement = null;
       }
-
-      /*
-
-
-      setBlueprintEntryPtsFromModalData();
-      */
 
       if (vm.provOrderChanged) {
         BlueprintOrderListService.saveOrder("provisionOrder", vm);

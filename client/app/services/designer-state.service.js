@@ -36,7 +36,7 @@
               generic_subtype: 'vm',
               newItem: {
                 name: 'Instance',
-                type: 'generic',
+                type: 'new-generic',
                 generic_subtype: 'vm',
                 icon: "pficon-virtual-machine",
                 fontFamily: "PatternFlyIcons-webfont",
@@ -54,7 +54,7 @@
               generic_subtype: 'playbook',
               newItem: {
                 name: 'Playbook',
-                type: 'generic',
+                type: 'new-generic',
                 generic_subtype: 'playbook',
                 icon: "pficon-virtual-machine",
                 fontFamily: "PatternFlyIcons-webfont",

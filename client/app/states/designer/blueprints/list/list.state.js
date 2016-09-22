@@ -59,7 +59,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, blueprints, BlueprintsState, serviceCatalogs, tenants, BlueprintDetailsModal, BlueprintDeleteModal,
+  function StateController($state, blueprints, BlueprintsState, serviceCatalogs, tenants, BlueprintDetailsModal, BlueprintDeleteModal,  // jshint ignore:line
                            EventNotifications, $rootScope, $filter, Language) {
     /* jshint validthis: true */
     var vm = this;

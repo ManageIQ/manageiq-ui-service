@@ -29,10 +29,11 @@
     };
 
     $scope.dropCallback = function(event, ui) {
-      $scope.draggedItem.disableInToolbox = true;
       var newNode = angular.copy($scope.draggedItem);
-      if (newNode.type && newNode.type === 'generic') {
+      if (newNode.type && newNode.type === 'new-generic') {
         newNode.name = 'New ' + newNode.name;
+      } else {
+        $scope.draggedItem.disableInToolbox = true;
       }
       newNode.backgroundColor = '#fff';
       newNode.x = event.clientX - 350;
@@ -42,10 +43,11 @@
     };
 
     $scope.addNodeByClick = function(item) {
-      item.disableInToolbox = true;
       var newNode = angular.copy(item);
-      if (newNode.type && newNode.type === 'generic') {
+      if (newNode.type && newNode.type === 'new-generic') {
         newNode.name = 'New ' + newNode.name;
+      } else {
+        item.disableInToolbox = true;
       }
       newNodeCount++;
       newNode.backgroundColor = '#fff';
@@ -55,12 +57,17 @@
     };
 
     $scope.addNewNode = function(newNode) {
-      getTags(newNode.id).then(function(tags) {
-        newNode.tags = tags;
+      if (!newNode.type || newNode.type !== 'new-generic') {
+        getTags(newNode.id).then(function(tags) {
+          newNode.tags = tags;
+          $scope.chartViewModel.addNode(newNode);
+        }, function() {
+          $scope.chartViewModel.addNode(newNode);
+        });
+      } else {
+        newNode.tags = [];
         $scope.chartViewModel.addNode(newNode);
-      }, function() {
-        $scope.chartViewModel.addNode(newNode);
-      });
+      }
     };
 
     function getTags(id) {
