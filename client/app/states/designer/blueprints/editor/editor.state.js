@@ -42,7 +42,7 @@
         expand: 'resources',
         attributes: attributes,
       };
-      var collection = 'blueprints \/' + $stateParams.blueprintId + '\/ tags';
+      var collection = 'blueprints/' + $stateParams.blueprintId + '/tags';
 
       return CollectionsApi.query(collection, options);
     } else {

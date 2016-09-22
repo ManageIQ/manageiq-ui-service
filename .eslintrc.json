@@ -63,7 +63,7 @@
     "consistent-return": "off",
     "consistent-this": [
       "error",
-      "this"
+      "vm"
     ],
     "curly": "error",
     "default-case": "off",
@@ -226,6 +226,7 @@
     "no-unneeded-ternary": "error",
     "no-unsafe-negation": "error",
     "no-unused-expressions": "off",
+    "no-unused-vars": "off",
     "no-use-before-define": "off",
     "no-useless-call": "error",
     "no-useless-computed-key": "error",
