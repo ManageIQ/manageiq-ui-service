@@ -52,7 +52,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, EventNotifications, jQuery, Consoles) {
+  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, EventNotifications, Consoles) {
     var vm = this;
     setInitialVars(vm);
 
@@ -129,7 +129,7 @@
       openConsole if so
      */
     function maybeOpenConsole(item, event) {
-      var $target = jQuery(event.target);
+      var $target = angular.element(event.target);
 
       if ($target.is('.open-console-button') || $target.is('.open-console-button *')) {
         Consoles.open(item.id);

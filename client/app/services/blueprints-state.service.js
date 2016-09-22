@@ -163,8 +163,8 @@
               if (nodeSrvTemplate.id) {
                 serviceTemplates.push({"id": nodeSrvTemplate.id});
               } else {
-                EventNotifications.warn("Cannot Save New Generic Item '" + nodeSrvTemplate.name +
-                  "'.  Saving New Generic Items Not Yet Implemented.");
+                EventNotifications.warn("Cannot Save New Generic Item '" + nodeSrvTemplate.name
+                  + "'.  Saving New Generic Items Not Yet Implemented.");
               }
             }
             blueprintObj.bundle.service_templates = serviceTemplates;
@@ -457,7 +457,7 @@
       for (k in o1) {  // jshint ignore:line
         if (!o1.hasOwnProperty(k)) {
           console.log("obj 2 doesn't have " + k);
-        } else if (typeof o1[k] !== 'object' || typeof o2[k] !== 'object') {
+        } else if (!angular.isObject(o1[k]) || !angular.isObject(o2[k]) ) {
           if (!(k in o2) || o1[k] !== o2[k]) {
             diff[k] = o2[k];
           }

@@ -78,11 +78,11 @@
     }
 
     function openSpice(results) {
-      var url = '/self_service/bower_components/spice-html5-bower/spiceHTML5/spice_auto.html' +
-        '?host=' + $location.host() +
-        '&port=' + $location.port() +
-        '&path=' + results.url +
-        '&password=' + results.secret;
+      var url = '/self_service/bower_components/spice-html5-bower/spiceHTML5/spice_auto.html'
+        + '?host=' + $location.host()
+        + '&port=' + $location.port()
+        + '&path=' + results.url
+        + '&password=' + results.secret;
 
       // encrypt is divined automagically in spice_auto
 
@@ -90,12 +90,12 @@
     }
 
     function openVnc(results) {
-      var url = '/self_service/bower_components/no-vnc/vnc_auto.html' +
-        '?host=' + $location.host() +
-        '&port=' + $location.port() +
-        '&path=' + results.url +
-        '&password=' + results.secret +
-        '&true_color=1';
+      var url = '/self_service/bower_components/no-vnc/vnc_auto.html'
+        + '?host=' + $location.host()
+        + '&port=' + $location.port()
+        + '&path=' + results.url
+        + '&password=' + results.secret
+        + '&true_color=1';
 
       if ($location.protocol() === 'https') {
         url += '&encrypt=1';

@@ -56,15 +56,15 @@
       saveSuccess();
 
       function saveSuccess() {
-        var selectedNodes = $('#entryPointsTree').treeview('getSelected');
+        var selectedNodes = angular.element('#entryPointsTree').treeview('getSelected');
         if (selectedNodes && selectedNodes.length === 1) {
           // construct full path to parent
           var curNode = selectedNodes[0];
           var pathToNode = "\/" + curNode.text;
-          curNode = $('#entryPointsTree').treeview('getParent', curNode);
+          curNode = angular.element('#entryPointsTree').treeview('getParent', curNode);
           while (curNode.text.indexOf) {
             pathToNode = "\/" + curNode.text + pathToNode;
-            curNode = $('#entryPointsTree').treeview('getParent', curNode);
+            curNode = angular.element('#entryPointsTree').treeview('getParent', curNode);
           }
           $modalInstance.close({entryPointType: vm.entryPointType, entryPointData: pathToNode});
         } else {
@@ -77,7 +77,7 @@
       if (node.nodes) {
         var nodeToExpand = onlyOneExpandableChild(node.nodes);
         if (nodeToExpand) {
-          $('#entryPointsTree').treeview('expandNode', [nodeToExpand.nodeId]);
+          ('#entryPointsTree').treeview('expandNode', [nodeToExpand.nodeId]);
         }
       }
     }

@@ -57,7 +57,7 @@
               dialogField.default_value = dialogField.values;
             }
 
-            if (typeof (dialogField.values) === 'object' && angular.isUndefined(dialogField.default_value)) {
+            if (angular.isObject(dialogField.values) && angular.isUndefined(dialogField.default_value)) {
               dialogField.default_value = String(dialogField.values[0][0]);
             }
 
@@ -101,7 +101,7 @@
         'services',
         $stateParams.serviceId,
         {},
-        JSON.stringify({action: 'reconfigure', resource: dialogFieldData})
+        angular.toJson({action: 'reconfigure', resource: dialogFieldData})
       ).then(submitSuccess, submitFailure);
 
       function submitSuccess(result) {

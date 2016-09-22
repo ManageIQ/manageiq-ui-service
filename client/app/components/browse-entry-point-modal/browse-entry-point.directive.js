@@ -14,7 +14,7 @@
     return directive;
 
     function link(scope, element, attrs) {
-      $('#entryPointsTree').treeview({
+      angular.element('#entryPointsTree').treeview({
         collapseIcon: "fa fa-angle-down",
         data: scope.vm.getTreeNodes(),
         levels: 2,
@@ -28,13 +28,13 @@
 
       // Get the inital root nodes
       var i;
-      var rootNode = $('#entryPointsTree').treeview('getExpanded');
+      var rootNode = angular.element('#entryPointsTree').treeview('getExpanded');
 
       // Collapse all
-      $('#entryPointsTree').treeview('collapseAll');
+      angular.element('#entryPointsTree').treeview('collapseAll');
       // Auto-magically expand the root nodes
       for (i = 0; i < rootNode.length; i++) {
-        $('#entryPointsTree').treeview('expandNode', [rootNode[i].nodeId]);
+        angular.element('#entryPointsTree').treeview('expandNode', [rootNode[i].nodeId]);
       }
     }
   }

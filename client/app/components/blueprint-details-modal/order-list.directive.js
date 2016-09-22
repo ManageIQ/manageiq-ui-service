@@ -79,8 +79,8 @@
 
       // if last row not empty, add new empty row (list number)
       container = containers[containers.length - 1];
-      if (container && container.type === 'container' && !$scope.listDisabled &&
-         (container.columns[0].length !== 0 || container.columns[1].length !== 0)) {
+      if (container && container.type === 'container' && !$scope.listDisabled
+        && (container.columns[0].length !== 0 || container.columns[1].length !== 0)) {
         addEmptyContainerRow(containers);
       }
 
