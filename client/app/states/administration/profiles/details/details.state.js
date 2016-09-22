@@ -11,9 +11,9 @@
 
   function getStates() {
     return {
-      'designer.profiles.details': {
+      'administration.profiles.details': {
         url: '/:profileId',
-        templateUrl: 'app/states/designer/profiles/details/details.html',
+        templateUrl: 'app/states/administration/profiles/details/details.html',
         controller: StateController,
         controllerAs: 'vm',
         title: N_('Profile Details'),
@@ -42,7 +42,7 @@
     }
 
     function editProfile() {
-      $state.go('designer.profiles.editor', {profileId: vm.profile.id});
+      $state.go('administration.profiles.editor', {profileId: vm.profile.id});
     }
 
     function setInitialVars(vm) {

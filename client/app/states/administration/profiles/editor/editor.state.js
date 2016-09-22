@@ -11,9 +11,9 @@
 
   function getStates() {
     return {
-      'designer.profiles.editor': {
+      'administration.profiles.editor': {
         url: '/edit/:profileId',
-        templateUrl: 'app/states/designer/profiles/editor/editor.html',
+        templateUrl: 'app/states/administration/profiles/editor/editor.html',
         controller: StateController,
         controllerAs: 'vm',
         resolve: {
@@ -204,18 +204,18 @@
 
     function handleSave() {
       if (vm.profile) {
-        vm.saveProfile('designer.profiles.details', {profileId: vm.profile.id});
+        vm.saveProfile('administration.profiles.details', {profileId: vm.profile.id});
       } else {
-        vm.saveProfile('designer.profiles');
+        vm.saveProfile('administration.profiles');
       }
     }
 
     function handleCancel() {
       vm.dirty = false;
       if (vm.profile) {
-        $state.go('designer.profiles.details', {profileId: vm.profile.id});
+        $state.go('administration.profiles.details', {profileId: vm.profile.id});
       } else {
-        $state.go('designer.profiles');
+        $state.go('administration.profiles');
       }
     }
 
@@ -281,7 +281,7 @@
         return;
       }
 
-      if (fromState.name === "designer.profiles.editor" && toState.name !== "designer.profiles.editor" && vm.dirty) {
+      if (fromState.name === "administration.profiles.editor" && toState.name !== "administration.profiles.editor" && vm.dirty) {
         vm.saveModalShown = true;
         SaveProfileModal.showModal(save, doNotSave, cancel);
         event.preventDefault();

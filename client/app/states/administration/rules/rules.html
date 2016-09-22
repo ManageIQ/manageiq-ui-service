@@ -2,13 +2,13 @@
   <span>
     <ol class="breadcrumb">
       <li>
-        <a ui-sref="designer"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Designer'|translate}}</a>
+        {{'Administration'|translate}}
       </li>
       <li class="active"><strong>{{'Rules' | translate}}</strong>
       </li>
     </ol>
   </span>
-  <div pf-toolbar class="designer-rules-toolbar" id="designerRulesToolbar" config="vm.toolbarConfig">
+  <div pf-toolbar class="arbitration-rules-toolbar" id="arbitrationRulesToolbar" config="vm.toolbarConfig">
     <actions>
       <button class="btn btn-primary" type="button"
               ng-click="vm.addRule()"
@@ -20,8 +20,8 @@
     </actions>
   </div>
   <div class="list-view-container">
-    <ul class="designer-rules-list list-view-pf" dnd-list="vm.designerRules">
-      <li class="list-group-item" ng-repeat="item in vm.designerRules track by $index"
+    <ul class="arbitration-rules-list list-view-pf" dnd-list="vm.arbitrationRules">
+      <li class="list-group-item" ng-repeat="item in vm.arbitrationRules track by $index"
           dnd-draggable="item"
           dnd-effect-allowed="move"
           dnd-disable-if="vm.editMode"
@@ -98,7 +98,7 @@
               </span>
               </div>
             </div>
-            <div class="col-md-2 col-sm-12 designer-buttons">
+            <div class="col-md-2 col-sm-12 arbitration-buttons">
               <div ng-if="item.editMode" class="pull-right">
                 <button class="btn btn-primary" type=button" ng-click="vm.saveRule(item)">
                   {{'Save' | translate}}
