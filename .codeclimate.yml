@@ -12,3 +12,4 @@ exclude_paths:
 - node_modules/**
 - gulp/**
 - bower_components/**
+- reports/**
