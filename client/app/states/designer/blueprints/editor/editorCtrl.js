@@ -1,3 +1,5 @@
+/* eslint angular/controller-as: "off" */
+
 (function() {
   'use strict';
 

@@ -87,11 +87,15 @@
       count: 0,
       open: function() {
         return $modal.open({
-          template: '<shopping-cart modal-instance="modalInstance"></shopping-cart>',
+          template: '<shopping-cart modal-instance="vm.modalInstance"></shopping-cart>',
           size: 'lg',
-          controller: function($scope, $modalInstance) {
-            $scope.modalInstance = $modalInstance;
+          controller: function($modalInstance) {
+            var vm = this;
+            vm.modalInstance = $modalInstance;
           },
+          controllerAs: 'vm',
+          bindToController: true,
+
         }).result;
       },
       allowed: ShoppingCart.allowed,

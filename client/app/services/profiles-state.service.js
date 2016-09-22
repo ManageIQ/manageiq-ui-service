@@ -112,7 +112,7 @@
           'cloud_subnet',
           'flavor',
           'availability_zone',
-          'security_group'
+          'security_group',
         ],
       };
 
@@ -143,8 +143,8 @@
         expand: 'resources',
         attributes: [
           'security_groups',
-          'cloud_subnets'
-        ]
+          'cloud_subnets',
+        ],
       };
 
       return CollectionsApi.query('cloud_networks', options);
@@ -183,7 +183,7 @@
 
       var editObj = {
         "action": "edit",
-        "resources": [profile]
+        "resources": [profile],
       };
 
       CollectionsApi.post('arbitration_profiles', null, {}, editObj).then(editSuccess, editFailure);
@@ -201,7 +201,7 @@
 
       var profileObj = {
         action: "delete",
-        resources: resources
+        resources: resources,
       };
 
       CollectionsApi.post('arbitration_profiles', null, {}, profileObj).then(deleteSuccess, deleteFailure);

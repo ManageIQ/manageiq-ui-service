@@ -205,17 +205,17 @@
       {
         name: __('View'),
         title: __('View Profile'),
-        actionFn: vm.handleView
+        actionFn: vm.handleView,
       },
       {
         name: __('Edit'),
         title: __('Edit Profile'),
-        actionFn: vm.handleEdit
+        actionFn: vm.handleEdit,
       },
       {
         name: __('Delete'),
         title: __('Delete Profile'),
-        actionFn: vm.handleDelete
+        actionFn: vm.handleDelete,
       },
     ];
 
@@ -279,7 +279,7 @@
             name: __('Create'),
             title: __('Create a new Profile'),
             actionFn: vm.addProfile,
-          }
+          },
         ],
       },
     };

@@ -1,4 +1,4 @@
-/*eslint camelcase: "off" */
+/* eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -32,7 +32,7 @@
     var options = {
       expand: 'resources',
       filter: ['service_template_catalog_id>0', 'display=true'],
-      attributes: attributes
+      attributes: attributes,
     };
 
     return CollectionsApi.query('service_templates', options);
@@ -42,7 +42,7 @@
     var options = {
       expand: 'resources',
       sort_by: 'name',
-      sort_options: 'ignore_case'
+      sort_options: 'ignore_case',
     };
 
     return CollectionsApi.query('service_catalogs', options);

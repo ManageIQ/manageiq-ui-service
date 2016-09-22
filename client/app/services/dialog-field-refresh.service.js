@@ -1,6 +1,6 @@
 /* jshint -W117 */
-/*eslint camelcase: "off" */
-/*eslint angular/angularelement: "off" */
+/* eslint camelcase: "off" */
+/* eslint angular/angularelement: "off" */
 
 (function() {
   'use strict';
