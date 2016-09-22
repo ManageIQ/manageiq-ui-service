@@ -31,7 +31,7 @@
   }
 
   /** @ngInject */
-  function BlueprintDeleteModalController(blueprints, BlueprintsState, $state, $modalInstance, CollectionsApi) {
+  function BlueprintDeleteModalController(blueprints, BlueprintsState, $state, $modalInstance, $log, CollectionsApi) {
     var vm = this;
 
     vm.blueprintsList = blueprints;
@@ -51,7 +51,7 @@
       }
 
       function deleteFailure() {
-        console.log("Failed to delete blueprint(s).");
+        $log.error("Failed to delete blueprint(s).");
         $modalInstance.close();
       }
     }

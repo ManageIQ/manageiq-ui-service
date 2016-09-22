@@ -63,7 +63,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, $stateParams, blueprint, blueprintTags, serviceTemplates) {
+  function StateController($log, blueprint, blueprintTags, serviceTemplates) {
     var vm = this;
     vm.title = 'Blueprint Designer';
     if (blueprint) {
@@ -76,10 +76,10 @@
       vm.serviceTemplates = serviceTemplates.resources;
     }
 
-    if (vm.blueprint && vm.blueprint.content && blueprint.content.service_templates && vm.blueprint.ui_properties
+    if (vm.blueprint && vm.serviceTemplates && vm.blueprint.ui_properties
         && vm.blueprint.ui_properties.chart_data_model && vm.blueprint.ui_properties.chart_data_model.nodes
         && vm.blueprint.ui_properties.chart_data_model.nodes.length > 0) {
-      updateCanvasServiceTemplateNodes(vm.blueprint.content.service_templates, vm.blueprint.ui_properties.chart_data_model.nodes);
+      updateCanvasServiceTemplateNodes(vm.serviceTemplates, vm.blueprint.ui_properties.chart_data_model.nodes);
     }
 
     function updateCanvasServiceTemplateNodes(serviceTemplates, nodes) {
@@ -97,12 +97,15 @@
             } else {
               node.image = null;
             }
+            // This service template is already on the canvas
+            // disable it in toolbox
+            srvTemplate.disableInToolbox = true;
             foundNodesSrvTemplate = true;
             break;
           }
         }
         if (!foundNodesSrvTemplate) {
-          console.log("Cound Not Find Service Template for Canvas Node: " + node.name + "(" + node.id + ")");
+          $log.error("Cound Not Find Service Template for Canvas Node: " + node.name + "(" + node.id + ")");
         }
       }
     }

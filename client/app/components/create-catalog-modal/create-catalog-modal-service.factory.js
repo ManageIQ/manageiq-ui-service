@@ -25,7 +25,7 @@
   }
 
   /** @ngInject */
-  function CreateCatalogModalController($state, $modalInstance) {
+  function CreateCatalogModalController($state, $modalInstance, $log) {
     var vm = this;
 
     vm.modalData = {
@@ -41,7 +41,7 @@
         if (vm.modalData.catalogName && vm.modalData.catalogName.length > 0) {
           $modalInstance.close({catalogName: vm.modalData.catalogName});
         } else {
-          console.log("Catalog Name not provided.");
+          $log.error("Catalog Name not provided.");
         }
       }
     }

@@ -17,7 +17,7 @@
     function query(collection, options) {
       var url = API_BASE + '/api/' + collection;
 
-      // console.log("query = " + url + buildQuery(options));
+      // $log.debug("query = " + url + buildQuery(options));
 
       return $http.get(url + buildQuery(options), buildConfig(options))
         .then(handleSuccess);
@@ -30,7 +30,7 @@
     function get(collection, id, options) {
       var url = API_BASE + '/api/' + collection + '/' + id;
 
-      // console.log("get = " + url + buildQuery(options));
+      // $log.debug("get = " + url + buildQuery(options));
 
       return $http.get(url + buildQuery(options), buildConfig(options))
         .then(handleSuccess);
@@ -43,7 +43,7 @@
     function post(collection, id, options, data) {
       var url = API_BASE + '/api/' + collection + '/' + (id || "") + buildQuery(options);
 
-      // console.log("post = " + url + buildQuery(options));
+      // $log.debug("post = " + url + buildQuery(options));
 
       return $http.post(url, data, buildConfig(options))
         .then(handleSuccess);

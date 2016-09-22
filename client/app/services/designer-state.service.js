@@ -2,26 +2,42 @@
   'use strict';
 
   angular.module('app.services')
-    .factory('DesignerState', DesignerStateFactory);
+      .factory('DesignerState', DesignerStateFactory);
 
   /** @ngInject */
-  function DesignerStateFactory($filter, CollectionsApi, $state, sprintf, $q) {
+  function DesignerStateFactory($filter, $log) {
     var designer = {};
 
     designer.getDesignerToolboxTabs = function(srvTemplates) {
+      designer.tabItems = [];
       var toolboxTabs = [
         {
-          preTitle: 'Compute', title: 'Cloud',
+          title: 'Compute',
           subtabs: [
-            {title: 'AWS'},
-            {title: 'Azure'},
-            {title: 'GCE'},
-            {title: 'OpenStack'},
+            {
+              title: 'Cloud',
+              subtabs: [
+                {title: 'AWS', prov_type: 'amazon'},
+                {title: 'Azure', prov_type: 'azure'},
+                {title: 'GCE', prov_type: 'google'},
+                {title: 'OpenStack', prov_type: 'openstack'},
+              ],
+            },
+            {
+              title: 'Infrastructure',
+              subtabs: [
+                {title: 'RHEV', prov_type: 'redhat'},
+                {title: 'SCVMM', prov_type: 'microsoft'},
+                {title: 'VMware', prov_type: 'vmware'},
+              ],
+            },
             {
               title: 'Generic',
+              generic_subtype: 'vm',
               newItem: {
                 name: 'Instance',
                 type: 'generic',
+                generic_subtype: 'vm',
                 icon: "pficon-virtual-machine",
                 fontFamily: "PatternFlyIcons-webfont",
                 fontContent: "\ue90f",
@@ -30,91 +46,39 @@
           ],
         },
         {
-          preTitle: 'Compute', title: 'Containers',
+          preTitle: 'Configuration',
+          title: 'Management',
           subtabs: [
-            {title: 'Kubernetes'},
-            {title: 'OSE'},
-          ],
-        },
-        {
-          preTitle: 'Compute', title: 'Infrastructure',
-          subtabs: [
-            {title: 'OpenStack'},
-            {title: 'RHEV'},
-            {title: 'SCVMM'},
-            {title: 'VMware'},
             {
               title: 'Generic',
+              generic_subtype: 'playbook',
               newItem: {
-                name: 'VM',
+                name: 'Playbook',
                 type: 'generic',
+                generic_subtype: 'playbook',
                 icon: "pficon-virtual-machine",
                 fontFamily: "PatternFlyIcons-webfont",
                 fontContent: "\ue90f",
               },
             },
-          ],
-        },
-        {
-          preTitle: 'Configuration', title: 'Management',
-          subtabs: [
-            {title: 'Ansible'},
-            {title: 'Chef'},
-            {title: 'Puppet'},
-            {title: 'Satellite'},
           ],
         },
         {
           title: 'Storage',
           subtabs: [
-            {title: 'NetApp'},
-            {title: 'USM'},
-          ],
-        },
-        {
-          title: 'Middleware',
-          subtabs: [
-            {title: 'Hawkular'},
+            {
+              title: 'Generic',
+              generic_subtype: 'storage'
+            },
           ],
         },
         {
           title: 'Network',
           subtabs: [
-            {title: 'Neutron'},
-            {title: 'Nuage'},
             {
               title: 'Generic',
-              newItem: {
-                name: 'Load Balancer',
-                type: 'generic',
-                icon: "pficon-network",
-                fontFamily: "PatternFlyIcons-webfont",
-                fontContent: "\ue909",
-              },
+              generic_subtype: 'load_balancer'
             },
-          ],
-        },
-        {
-          title: 'Orchestration',
-          subtabs: [
-            {
-              title: 'Azure Stacks',
-              subtabs: [
-                {title: 'One'},
-                {
-                  title: 'Two',
-                  newItem: {
-                    name: 'Generic Two Item',
-                    type: 'generic',
-                    icon: "pficon-regions",
-                    fontFamily: "PatternFlyIcons-webfont",
-                    fontContent: "\ue909",
-                  }
-                }
-              ]
-            },
-            {title: 'CloudFormation'},
-            {title: 'Heat Templates'},
           ],
         },
         {
@@ -123,7 +87,7 @@
         },
       ];
 
-      var bundleTabIndex = 8;
+      var bundleTabIndex = 4;
 
       matchServiceTemplatesToTabs(srvTemplates);
 
@@ -141,12 +105,19 @@
 
       function matchAtomicServiceItemToTabs(srvTemplate) {
         var subTab;
-        var newItem;
         if (srvTemplate.service_type === 'atomic') {
           if (srvTemplate.prov_type !== 'generic') {
             subTab = findSubTabByProvType(srvTemplate.prov_type);
-          } else {
+            if (!subTab) {
+              $log.warn("Couldn't find toolbox Tab for Prov_Type: " + srvTemplate.prov_type);
+            }
+          } else if (srvTemplate.generic_subtype) {
             subTab = findSubTabByGenericSubType(srvTemplate.generic_subtype);
+            if (!subTab) {
+              $log.warn("Couldn't find toolbox Tab for Generic_Subtype: " + srvTemplate.generic_subtype);
+            }
+          } else {
+            $log.error("Error: No generic_subtype for Generic " + srvTemplate.name);
           }
           if (subTab) {
             addToSubTab(subTab, srvTemplate);
@@ -155,45 +126,52 @@
       }
 
       function findSubTabByProvType(provType) {
+        var subTab = null;
         for (var i = 0; i < toolboxTabs.length; i++) {
           if (toolboxTabs[i].subtabs) {
-            for (var s = 0; s < toolboxTabs[i].subtabs.length; s++) {
-              if (toolboxTabs[i].subtabs[s].title.toLowerCase() === provType.toLowerCase()) {
-                return toolboxTabs[i].subtabs[s];
-              }
-            }
+            subTab =  matchSubTabs(toolboxTabs[i].subtabs, {prov_type: provType});
+          }
+          if (subTab) {
+            return subTab;
           }
         }
-
-        console.log("Couldn't Find Designer Toolbox Tab for prov_type: " + provType);
-
-        return null;
       }
 
       function findSubTabByGenericSubType(genericSubType) {
+        var subTab = null;
         for (var i = 0; i < toolboxTabs.length; i++) {
           if (toolboxTabs[i].subtabs) {
-            for (var s = 0; s < toolboxTabs[i].subtabs.length; s++) {
-              if (toolboxTabs[i].title.toLowerCase() === 'network'
-                && toolboxTabs[i].subtabs[s].title.toLowerCase() === 'generic'
-                && genericSubType === 'load_balancer') {
-                return toolboxTabs[i].subtabs[s];
-              }
+            subTab = matchSubTabs(toolboxTabs[i].subtabs, {generic_subtype: genericSubType});
+          }
+          if (subTab) {
+            return subTab;
+          }
+        }
+      }
 
-              if (toolboxTabs[i].preTitle
-                && toolboxTabs[i].preTitle.toLowerCase() === 'compute'
-                && toolboxTabs[i].title.toLowerCase() === 'infrastructure'
-                && toolboxTabs[i].subtabs[s].title.toLowerCase() === 'generic'
-                && genericSubType === 'vm') {
-                return toolboxTabs[i].subtabs[s];
+      function matchSubTabs(subTabs, matchObj) {
+        var subTab = null;
+
+        for (var i = 0; i < subTabs.length; i++) {
+          if (subTab) {
+            break;
+          }
+          if (subTabs[i].subtabs) {
+            subTab = matchSubTabs(subTabs[i].subtabs, matchObj);
+          } else {
+            if (matchObj.prov_type && subTabs[i].prov_type) {
+              if (subTabs[i].prov_type.toLowerCase() === matchObj.prov_type.toLowerCase()) {
+                return subTabs[i];
+              }
+            } else if (matchObj.generic_subtype && subTabs[i].generic_subtype) {
+              if (subTabs[i].generic_subtype.toLowerCase() === matchObj.generic_subtype.toLowerCase()) {
+                return subTabs[i];
               }
             }
           }
         }
 
-        // console.log("Couldn't Find Designer Toolbox Tab for generic subtype: " + genericSubType);
-
-        return null;
+        return subTab;
       }
 
       function addToBundleTab(srvTemplate) {
@@ -201,12 +179,17 @@
           name: srvTemplate.name,
           id: srvTemplate.id,
           bundle: true,
-          fontFamily: "FontAwesome",
-          fontContent: "\uf06b",
+          icon: "pf pficon-bundle",
+          fontFamily: "PatternFlyIcons-webfont",
+          fontContent: "\ue918",
         };
 
         if (srvTemplate.picture && srvTemplate.picture.image_href) {
           newBundle.image = srvTemplate.picture.image_href;
+        }
+
+        if (srvTemplate.disableInToolbox !== undefined) {
+          newBundle.disableInToolbox = srvTemplate.disableInToolbox;
         }
 
         var bundleTab = toolboxTabs[bundleTabIndex];
@@ -214,7 +197,8 @@
           bundleTab.items = [];
         }
         bundleTab.items.push(newBundle);
-        // console.log("--> Added " + newBundle.name + " to Bundle Tab");
+        designer.tabItems.push(newBundle);
+        // $log.debug("--> Added " + newBundle.name + " to Bundle Tab");
       }
 
       function addToSubTab(subTab, srvTemplate) {
@@ -224,12 +208,22 @@
         } else {
           newItem.image = "images/service.png";
         }
+        if (srvTemplate.disableInToolbox !== undefined) {
+          newItem.disableInToolbox = srvTemplate.disableInToolbox;
+        }
         if (!subTab.items) {
           subTab.items = [];
         }
         subTab.items.push(newItem);
-        // console.log("--> Added " + newItem.name + " to " + subTab.title + " Tab");
+        designer.tabItems.push(newItem);
+        // $log.debug("--> Added " + newItem.name + " to " + subTab.title + " Tab");
       }
+    };
+
+    designer.getTabItemById = function(id) {
+      var tabItems = $filter('filter')(designer.tabItems, {id: id});
+
+      return tabItems[0];
     };
 
     return designer;

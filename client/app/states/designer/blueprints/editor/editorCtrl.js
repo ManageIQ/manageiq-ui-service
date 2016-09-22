@@ -3,11 +3,11 @@
 
   angular.module('app.states')
     .controller('BlueprintEditorController', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState', 'BlueprintDetailsModal',
-      'SaveBlueprintModal', '$state', 'Notifications', 'sprintf', ComponentController]);
+      'SaveBlueprintModal', '$state', 'EventNotifications', 'sprintf', ComponentController]);
 
   /** @ngInject */
   function ComponentController($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $state,
-                               Notifications, sprintf) {
+                               EventNotifications, sprintf) {
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
       if (toState.name === 'login') {
         return;
@@ -31,7 +31,7 @@
 
     BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
 
-    // console.log("RETRIEVED Blueprint: " + angular.toJson($scope.blueprint, true));
+    // $log.debug("RETRIEVED Blueprint: " + angular.toJson($scope.blueprint, true));
 
     $scope.$watch("blueprint", function(oldValue, newValue) {
       if (!angular.equals(oldValue, newValue, true)) {
@@ -61,7 +61,7 @@
       BlueprintsState.saveBlueprint($scope.blueprint).then(saveSuccess, saveFailure);
 
       function saveSuccess(id) {
-        Notifications.success(sprintf(__("'%s' was succesfully saved."), $scope.blueprint.name));
+        EventNotifications.success(sprintf(__("'%s' was succesfully saved."), $scope.blueprint.name));
         if (id) {
           $state.go($state.current, {blueprintId: id}, {reload: true});
         }
@@ -73,11 +73,11 @@
          BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
          blueprintDirty = false;
          $( "#saveBtm" ).blur();
-         console.log("Saved blueprint from designer"); */
+         $log.debug("Saved blueprint from designer"); */
       }
 
       function saveFailure() {
-        Notifications.error(sprintf(__("Failed to save '%s'."), $scope.blueprint.name));
+        EventNotifications.error(sprintf(__("Failed to save '%s'."), $scope.blueprint.name));
       }
     };
 
@@ -175,7 +175,7 @@
         return activeTab.newItem;
       }
 
-      return {name: 'New Item', image: 'images/service.png'};
+      return null;
     };
 
     $scope.activeTab = function() {

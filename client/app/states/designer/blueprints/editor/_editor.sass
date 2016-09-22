@@ -68,6 +68,12 @@
       padding-right: 26px
       padding-bottom: 10px
 
+      .draggable-item-icon
+        font-size: 28px
+        vertical-align: middle
+        padding-top: 6px
+        padding-right: 6px
+
       .tab-pre-title
         font-size: 12px
         margin-bottom: -6px
@@ -133,12 +139,17 @@
           bottom: 4px
           width: 10px
 
+      .not-draggable
+        opacity: 0.4
+        background-color: #ededed
+        cursor: auto
+
       .toolbox-footer
+        width: 90%
         margin-top: 10px
         margin-bottom: 10px
-        margin-left: 15px
+        margin-left: 2px
         margin-right: 184px
-        display: initial
 
         .new-catalog-item
           border: 2px dashed #bbb
@@ -165,17 +176,17 @@
             font-size: 12px
 
         .search-text
+          position: relative
           border: 1px solid #bbb
           float: right
-          margin-top: -38px
-          padding-left: 6px
           width: 14%
           text-decoration: none
 
         .clear-search-text
-          position: absolute
-          bottom: 75px
-          right: 33px
+          position: relative
+          float: right
+          bottom: -6px
+          right: -197px
           color: #bbb
           cursor: pointer
 
@@ -186,6 +197,7 @@
 
       .close-toolbox
         text-align: center
+        padding-top: 36px
 
     .canvas-container
       width: 99%

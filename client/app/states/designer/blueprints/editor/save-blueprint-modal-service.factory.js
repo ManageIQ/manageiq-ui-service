@@ -32,7 +32,8 @@
   }
 
   /** @ngInject */
-  function SaveBlueprintModalController(blueprint, toState, toParams, fromState, fromParams, $state, $modalInstance, BlueprintsState) {
+  function SaveBlueprintModalController(blueprint, toState, toParams, fromState, fromParams, $state, $modalInstance, $log,
+                                        BlueprintsState) {
     var vm = this;
     vm.blueprint = blueprint;
     vm.save = save;
@@ -49,7 +50,7 @@
       }
 
       function saveFailure() {
-        console.log("Failed to nav away and save blueprint.");
+        $log.error("Failed to nav away and save blueprint.");
         $modalInstance.close();
       }
     }

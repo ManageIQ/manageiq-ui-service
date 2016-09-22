@@ -66,7 +66,8 @@
                                   <tab ng-repeat="subsubtab in subtab.subtabs" heading="{{subsubtab.title}}" active="subsubtab.active" ng-click="tabClicked()">
                                       <draggable-items items="subsubtab.items"
                                                        start-drag-callback="startCallback"
-                                                       click-callback="addNodeByClick"/>
+                                                       click-callback="addNodeByClick"
+                                                       search-text="searchText"/>
                                   </tab>
                               </tabset>
 
@@ -74,20 +75,22 @@
                               <draggable-items ng-if="!subtab.subtabs"
                                                items="subtab.items"
                                                start-drag-callback="startCallback"
-                                               click-callback="addNodeByClick"/>
+                                               click-callback="addNodeByClick"
+                                               search-text="searchText"/>
                           </tab>
                       </tabset>
 
                       <!-- Primary Tabs without SubTabs (Bundles) -->
                       <draggable-items ng-if="!tab.subtabs" items="tab.items"
                           start-drag-callback="startCallback"
-                          click-callback="addNodeByClick"/>
+                          click-callback="addNodeByClick"
+                          search-text="searchText"/>
                   </tab>
               </tabset>
 
               <div class="toolbox-footer">
                   <!-- Create New Item -->
-                  <div class="new-catalog-item"
+                  <div class="new-catalog-item" ng-if="getNewItem()"
                        data-drag="true" jqyoui-draggable="{onStart:'startCallback( getNewItem() )'}"
                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
                        ng-click="addNodeByClick( getNewItem() )">
