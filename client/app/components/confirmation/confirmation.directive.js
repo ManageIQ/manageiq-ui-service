@@ -30,24 +30,24 @@
 
     return directive;
 
-    function link(scope, element, attrs, vm, transclude) {
-      vm.activate({
+    function link(scope, element, attrs, controller, transclude) {
+      controller.activate({
         getOffset: getOffset,
         getPosition: getPosition,
         size: getSizeOfConfirmation(),
       });
 
-      if (angular.isDefined(vm.triggerOnValue)) {
+      if (angular.isDefined(controller.triggerOnValue)) {
         scope.$watch(function() {
-          return vm.triggerOnValue;
+          return controller.triggerOnValue;
         },
         function(newValue) {
           if (newValue === true) {
-            vm.onTrigger();
+            controller.onTrigger();
           }
         });
       } else {
-        element.on(attrs.confirmationTrigger || 'click', vm.onTrigger);
+        element.on(attrs.confirmationTrigger || 'click', controller.onTrigger);
       }
 
       function getOffset() {

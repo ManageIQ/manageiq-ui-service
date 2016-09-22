@@ -54,7 +54,7 @@
   /** @ngInject */
   function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, EventNotifications, Consoles) {
     var vm = this;
-    setInitialVars(vm);
+    setInitialVars();
 
     if (angular.isUndefined(vm.service.vms)) {
       vm.vms = [];
@@ -86,7 +86,7 @@
     function activate() {
     }
 
-    function setInitialVars(vm) {
+    function setInitialVars() {
       vm.showRemoveService = $state.actionFeatures.serviceDelete.show;
       vm.showRetireService = $state.actionFeatures.serviceRetireNow.show;
       vm.showScheduleRetirementService = $state.actionFeatures.serviceRetire.show;
