@@ -14,7 +14,7 @@
 
     function showModal(saveCallback, doNotSaveCallback, cancelCallback) {
       var modalOptions = {
-        templateUrl: 'app/states/designer/profiles/editor/save-profile-modal.html',
+        templateUrl: 'app/states/administration/profiles/editor/save-profile-modal.html',
         controller: SaveProfileModalController,
         controllerAs: 'vm',
         resolve: {

@@ -12,15 +12,15 @@
 
   function getStates() {
     return {
-      'designer.rules': {
+      'administration.rules': {
         parent: 'application',
-        url: '/designer/rules',
-        templateUrl: 'app/states/designer/rules/rules.html',
+        url: '/administration/rules',
+        templateUrl: 'app/states/administration/rules/rules.html',
         controller: RulesController,
         controllerAs: 'vm',
         title: N_('Rules'),
         resolve: {
-          designerRules: resolveRules,
+          arbitrationRules: resolveRules,
           fields: resolveRuleFields,
           profiles: resolveProfiles,
         },
@@ -44,7 +44,7 @@
   }
 
   /** @ngInject */
-  function RulesController(designerRules, fields, profiles, RulesState, SaveRuleModal, $state, $scope, $timeout) {
+  function RulesController(arbitrationRules, fields, profiles, RulesState, SaveRuleModal, $state, $scope, $timeout) {
     /* jshint validthis: true */
     var vm = this;
     vm.operators = [
@@ -97,11 +97,11 @@
     };
 
     var updateRulesInfo = function() {
-      angular.forEach(vm.designerRules, function(rule) {
+      angular.forEach(vm.arbitrationRules, function(rule) {
         updateRuleInfo(rule);
       });
 
-      vm.designerRules.sort(compareRules);
+      vm.arbitrationRules.sort(compareRules);
     };
 
     var convertToRuleObj = function(rule) {
@@ -137,7 +137,7 @@
       return ruleObj;
     };
 
-    var loadSuccess = function(designerRules) {
+    var loadSuccess = function(arbitrationRules) {
       function editSuccess() {
         refreshRules();
       }
@@ -146,16 +146,16 @@
       }
 
       $timeout(function() {  // Done in a timeout since results are massaged outside of a $digest
-        vm.designerRules = designerRules.resources;
+        vm.arbitrationRules = arbitrationRules.resources;
 
-        if (vm.updatePriorities === true && vm.designerRules && vm.designerRules.length > 0) {
-          vm.designerRules.sort(compareRules);
-          angular.forEach(vm.designerRules, function(rule, index) {
+        if (vm.updatePriorities === true && vm.arbitrationRules && vm.arbitrationRules.length > 0) {
+          vm.arbitrationRules.sort(compareRules);
+          angular.forEach(vm.arbitrationRules, function(rule, index) {
             rule.priority = index + 1;
           });
           vm.updatePriorities = false;
           var editRules = [];
-          angular.forEach(vm.designerRules, function(rule) {
+          angular.forEach(vm.arbitrationRules, function(rule) {
             editRules.push(rule);
           });
           RulesState.editRules(editRules).then(editSuccess, editFailure);
@@ -175,7 +175,7 @@
     var updateRulesPriorities = function(saveRules) {
       var editRules = [];
 
-      angular.forEach(vm.designerRules, function(rule, index) {
+      angular.forEach(vm.arbitrationRules, function(rule, index) {
         rule.priority = index + 1;
       });
 
@@ -187,7 +187,7 @@
       }
 
       if (saveRules === true) {
-        angular.forEach(vm.designerRules, function(rule) {
+        angular.forEach(vm.arbitrationRules, function(rule) {
           editRules.push(convertToRuleObj(rule));
         });
         RulesState.editRules(editRules).then(editSuccess, editFailure);
@@ -195,7 +195,7 @@
     };
 
     vm.title = __('Rules');
-    vm.designerRules = designerRules.resources;
+    vm.arbitrationRules = arbitrationRules.resources;
     vm.fields = fields.resources;
     vm.profiles = profiles.resources;
     vm.profileNames = [];
@@ -218,12 +218,12 @@
         return;
       }
 
-      if (fromState.name === "designer.rules" && toState.name !== "designer.rules" && vm.editMode) {
-        editedRule = vm.designerRules.find(function(rule) {
+      if (fromState.name === "administration.rules" && toState.name !== "administration.rules" && vm.editMode) {
+        editedRule = vm.arbitrationRules.find(function(rule) {
           return rule.editMode === true;
         });
-        if (!editedRule && vm.designerRules[0] && !vm.designerRules[0].id) {
-          editedRule = vm.designerRules[0];
+        if (!editedRule && vm.arbitrationRules[0] && !vm.arbitrationRules[0].id) {
+          editedRule = vm.arbitrationRules[0];
         }
         vm.saveModalShown = true;
         SaveRuleModal.showModal(save, doNotSave, cancel);
@@ -267,7 +267,7 @@
       };
       updateRuleInfo(newRule);
 
-      vm.designerRules.splice(0, 0, newRule);
+      vm.arbitrationRules.splice(0, 0, newRule);
       updateRulesPriorities(false);
 
       vm.editMode = true;
@@ -303,7 +303,7 @@
       rule.editMode = false;
       vm.editMode = false;
       if (!rule.original) {
-        vm.designerRules.splice(0, 1);
+        vm.arbitrationRules.splice(0, 1);
         updateRulesPriorities(false);
       } else {
         rule.field = rule.original.field;
@@ -327,8 +327,8 @@
 
       function addSuccess() {
         vm.editMode = false;
-        if (vm.designerRules.length > 1) {
-          angular.forEach(vm.designerRules, function(nextRule, index) {
+        if (vm.arbitrationRules.length > 1) {
+          angular.forEach(vm.arbitrationRules, function(nextRule, index) {
             if (index > 0) {
               editRules.push(convertToRuleObj(nextRule));
             }
@@ -354,11 +354,11 @@
     };
 
     vm.ruleMoved = function() {
-      var ruleIndex = vm.designerRules.findIndex(function(nextRule) {
+      var ruleIndex = vm.arbitrationRules.findIndex(function(nextRule) {
         return nextRule === vm.dragRule;
       });
       if (ruleIndex >= 0) {
-        vm.designerRules.splice(ruleIndex, 1);
+        vm.arbitrationRules.splice(ruleIndex, 1);
       }
     };
 
@@ -367,19 +367,19 @@
     };
 
     vm.downPriority = function(rule) {
-      var index = vm.designerRules.indexOf(rule);
-      if (index >= 0 && index < vm.designerRules.length) {
-        vm.designerRules.splice(index, 1);
-        vm.designerRules.splice(index + 1, 0, rule);
+      var index = vm.arbitrationRules.indexOf(rule);
+      if (index >= 0 && index < vm.arbitrationRules.length) {
+        vm.arbitrationRules.splice(index, 1);
+        vm.arbitrationRules.splice(index + 1, 0, rule);
       }
       updateRulesPriorities(true);
     };
 
     vm.upPriority = function(rule) {
-      var index = vm.designerRules.indexOf(rule);
+      var index = vm.arbitrationRules.indexOf(rule);
       if (index > 0) {
-        vm.designerRules.splice(index, 1);
-        vm.designerRules.splice(index - 1, 0, rule);
+        vm.arbitrationRules.splice(index, 1);
+        vm.arbitrationRules.splice(index - 1, 0, rule);
       }
       updateRulesPriorities(true);
     };

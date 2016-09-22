@@ -11,15 +11,15 @@
 
   function getStates() {
     return {
-      'designer.profiles': {
+      'administration.profiles': {
         parent: 'application',
-        url: '/designer/profiles',
-        templateUrl: 'app/states/designer/profiles/profiles.html',
+        url: '/administration/profiles',
+        templateUrl: 'app/states/administration/profiles/profiles.html',
         controller: ProfilesController,
         controllerAs: 'vm',
         title: N_('Profiles'),
         resolve: {
-          designerProfiles: resolveProfiles,
+          arbitrationProfiles: resolveProfiles,
         },
       },
     };
@@ -31,12 +31,12 @@
   }
 
   /** @ngInject */
-  function ProfilesController(designerProfiles, ProfilesState, $state, $timeout, $rootScope, $scope) {
+  function ProfilesController(arbitrationProfiles, ProfilesState, $state, $timeout, $rootScope, $scope) {
     /* jshint validthis: true */
     var vm = this;
     vm.title = __('Profiles');
-    vm.designerProfiles = designerProfiles.resources;
-    vm.designerProfilesList = [];
+    vm.arbitrationProfiles = arbitrationProfiles.resources;
+    vm.arbitrationProfilesList = [];
     vm.confirmDelete = false;
 
     var providerTypes = [];
@@ -50,16 +50,16 @@
     };
 
     var updateProfilesInfo = function() {
-      angular.forEach(vm.designerProfiles, function(profile) {
+      angular.forEach(vm.arbitrationProfiles, function(profile) {
         updateProfileInfo(profile);
       });
 
-      vm.designerProfiles.sort(compareProfiles);
+      vm.arbitrationProfiles.sort(compareProfiles);
     };
 
-    var loadSuccess = function(designerProfiles) {
+    var loadSuccess = function(arbitrationProfiles) {
       $timeout(function() {  // Done in a timeout since results are massaged outside of a $digest
-        vm.designerProfiles = designerProfiles.resources;
+        vm.arbitrationProfiles = arbitrationProfiles.resources;
         updateProfilesInfo();
         applyFilters(ProfilesState.getFilters());
       });
@@ -73,7 +73,7 @@
     };
 
     function sortChange(sortId, isAscending) {
-      vm.designerProfiles.sort(compareProfiles);
+      vm.arbitrationProfiles.sort(compareProfiles);
 
       /* Keep track of the current sorting state */
       ProfilesState.setSort(sortId, vm.toolbarConfig.sortConfig.isAscending);
@@ -104,15 +104,15 @@
 
     function filterChange(filters) {
       applyFilters(filters);
-      vm.toolbarConfig.filterConfig.resultsCount = vm.designerProfiles.length;
+      vm.toolbarConfig.filterConfig.resultsCount = vm.arbitrationProfiles.length;
     }
 
     function applyFilters(filters) {
-      vm.designerProfilesList = [];
+      vm.arbitrationProfilesList = [];
       if (filters && filters.length > 0) {
-        angular.forEach(vm.designerProfiles, filterChecker);
+        angular.forEach(vm.arbitrationProfiles, filterChecker);
       } else {
-        vm.designerProfilesList = vm.designerProfiles;
+        vm.arbitrationProfilesList = vm.arbitrationProfiles;
       }
 
       /* Keep track of the current filtering state */
@@ -123,7 +123,7 @@
 
       function filterChecker(item) {
         if (matchesFilters(item, filters)) {
-          vm.designerProfilesList.push(item);
+          vm.arbitrationProfilesList.push(item);
         }
       }
     }
@@ -160,15 +160,15 @@
     }
 
     vm.addProfile = function() {
-      $state.go('designer.profiles.editor');
+      $state.go('administration.profiles.editor');
     };
 
     vm.editProfile = function(profile) {
-      $state.go('designer.profiles.editor', {profileId: profile.id});
+      $state.go('administration.profiles.editor', {profileId: profile.id});
     };
 
     vm.viewProfile = function(profile) {
-      $state.go('designer.profiles.details', {profileId: profile.id});
+      $state.go('administration.profiles.details', {profileId: profile.id});
     };
 
     vm.removeProfile = function(profile) {
@@ -242,7 +242,7 @@
             filterValues: providerTypes,
           },
         ],
-        resultsCount: vm.designerProfilesList.length,
+        resultsCount: vm.arbitrationProfilesList.length,
         appliedFilters: ProfilesState.getFilters(),
         onFilterChange: filterChange,
       },
@@ -294,7 +294,7 @@
     applyFilters(ProfilesState.getFilters());
 
     var onDestroy = $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-      if (toState.name === 'designer.profiles') {
+      if (toState.name === 'administration.profiles') {
         refreshProfiles();
       }
     });
