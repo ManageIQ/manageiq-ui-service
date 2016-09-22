@@ -87,12 +87,12 @@
     }
 
     function setInitialVars(vm) {
-      vm.showRemoveService = $state.actionFeatures.service_delete.show;
-      vm.showRetireService = $state.actionFeatures.service_retire_now.show;
-      vm.showScheduleRetirementService = $state.actionFeatures.service_retire.show;
-      vm.showEditService = $state.actionFeatures.service_edit.show;
-      vm.showReconfigureService = $state.actionFeatures.service_reconfigure.show;
-      vm.showSetOwnership = $state.actionFeatures.service_ownership.show;
+      vm.showRemoveService = $state.actionFeatures.serviceDelete.show;
+      vm.showRetireService = $state.actionFeatures.serviceRetireNow.show;
+      vm.showScheduleRetirementService = $state.actionFeatures.serviceRetire.show;
+      vm.showEditService = $state.actionFeatures.serviceEdit.show;
+      vm.showReconfigureService = $state.actionFeatures.serviceReconfigure.show;
+      vm.showSetOwnership = $state.actionFeatures.serviceOwnership.show;
 
       vm.service = service;
 
