@@ -219,7 +219,7 @@
       }
     }
 
-    function setInitialVars() {
+    function setInitialVars(vm) {
       vm.profile = profile;
       vm.editInfo = {};
 
@@ -269,7 +269,7 @@
       updateSelections();
     }
 
-    setInitialVars();
+    setInitialVars(vm);
 
     activate();
 

@@ -127,6 +127,14 @@
     return CollectionsApi.query('services', options);
   }
 
+  function resolveRequestPromises(promiseArray, vm, type, lodash, $q) {
+    $q.all(promiseArray).then(function(data) {
+      var count = lodash.sum(data, 'subcount');
+      vm.requestsCount[type] = count;
+      vm.requestsCount.total += count;
+    });
+  }
+
   /** @ngInject */
   function StateController($state, RequestsState, ServicesState, definedServiceIdsServices, retiredServices,
     expiringServices, allRequests, lodash, $q) {
@@ -161,7 +169,7 @@
       var allRequestTypes = ['pending', 'approved', 'denied'];
 
       allRequests.forEach(function(promise, n) {
-        resolveRequestPromises(promise, allRequestTypes[n], lodash, $q);
+        resolveRequestPromises(promise, vm, allRequestTypes[n], lodash, $q);
       });
 
       vm.requestsFeature = true;
@@ -178,13 +186,5 @@
       ServicesState.filterApplied = true;
       $state.go('services.list');
     };
-
-    function resolveRequestPromises(promiseArray, type, lodash, $q) {
-      $q.all(promiseArray).then(function(data) {
-        var count = lodash.sum(data, 'subcount');
-        vm.requestsCount[type] = count;
-        vm.requestsCount.total += count;
-      });
-    }
   }
 })();

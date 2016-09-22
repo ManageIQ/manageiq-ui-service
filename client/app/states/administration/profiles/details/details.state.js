@@ -45,7 +45,7 @@
       $state.go('administration.profiles.editor', {profileId: vm.profile.id});
     }
 
-    function setInitialVars() {
+    function setInitialVars(vm) {
       vm.profile = profile;
       vm.profile.providerType = ProfilesState.getProviderType(vm.profile.ext_management_system);
       vm.profile.providerImage = ProfilesState.getProviderTypeImage(vm.profile.ext_management_system);
@@ -54,7 +54,7 @@
       vm.editProfile = editProfile;
     }
 
-    setInitialVars();
+    setInitialVars(vm);
 
     activate();
 

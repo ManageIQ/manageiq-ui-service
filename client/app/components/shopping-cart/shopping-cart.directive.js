@@ -20,8 +20,8 @@
 
     return directive;
 
-    function link(scope, element, attrs, controller, transclude) {
-      controller.activate();
+    function link(scope, element, attrs, vm, transclude) {
+      vm.activate();
     }
 
     /** @ngInject */
