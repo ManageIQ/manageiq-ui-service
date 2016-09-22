@@ -1,4 +1,6 @@
 /* eslint camelcase: "off" */
+/* eslint consistent-this: "off" */
+
 (function() {
   'use strict';
 

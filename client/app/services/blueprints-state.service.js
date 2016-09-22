@@ -227,7 +227,7 @@
       var assignObj = getTagsToAddRemove("assign", blueprintTags, origBlueprintTags);
       var unassignObj = getTagsToAddRemove("unassign", blueprintTags, origBlueprintTags);
 
-      var collection = 'blueprints \/' + blueprintId + '\/ tags';
+      var collection = 'blueprints/' + blueprintId + '/tags';
 
       if (assignObj.resources.length > 0) {
         CollectionsApi.post(collection, null, {}, assignObj).then(function() {
@@ -306,7 +306,7 @@
       var assignObj = getTagsToAddRemove("assign", tags, origTags);
       var unassignObj = getTagsToAddRemove("unassign", tags, origTags);
 
-      var collection = 'service_templates \/' + id + '\/ tags';
+      var collection = 'service_templates/' + id + '/tags';
 
       if (assignObj.resources.length > 0) {
         CollectionsApi.post(collection, null, {}, assignObj).then(function() {
