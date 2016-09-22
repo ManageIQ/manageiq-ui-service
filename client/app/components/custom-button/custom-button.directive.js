@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.components')
-    .directive('customButton', ['$window', '$timeout', CustomButtonDirective]);
+    .directive('customButton', CustomButtonDirective);
 
   /** @ngInject */
   function CustomButtonDirective($window, $timeout) {
