@@ -4,3 +4,12 @@ engines:
     channel: "eslint-3"
     config:
       config: .eslintrc.json
+ratings:
+  paths:
+  - client/app/**
+exclude_paths:
+- tests/**/*
+- node_modules/**
+- gulp/**
+- bower_components/**
+- reports/**
