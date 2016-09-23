@@ -16,13 +16,13 @@
     vm.copyright = __("Copyright (c) 2016 ManageIQ. Sponsored by Red Hat Inc.");
     vm.imgAlt = __("ManageIQ logo");
     vm.imgSrc = "images/login-screen-logo.png";
-    vm.title = _("ManageIQ UI Self Service");
+    vm.title = __("ManageIQ UI Self Service");
     ServerInfo.promise.then( function() {
       vm.productInfo = [
-        { name: _('Version: '), value: ServerInfo.data.version },
-        { name: _('Server Name: '), value: ServerInfo.data.server },
-        { name: _('User Name: '), value: ServerInfo.data.user },
-        { name: _('User Role: '), value: ServerInfo.data.role },
+        { name: __('Version: '), value: ServerInfo.data.version },
+        { name: __('Server Name: '), value: ServerInfo.data.server },
+        { name: __('User Name: '), value: ServerInfo.data.user },
+        { name: __('User Role: '), value: ServerInfo.data.role },
       ];
     });
     this.open = function() {
