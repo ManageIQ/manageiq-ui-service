@@ -1,4 +1,5 @@
 /* eslint camelcase: "off" */
+/* eslint no-cond-assign: "off" */
 (function() {
   'use strict';
 
