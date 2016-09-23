@@ -25,10 +25,10 @@
         { name: __('User Role: '), value: ServerInfo.data.role },
       ];
     });
-    this.open = function() {
+    vm.open = function() {
       vm.isOpen = true;
     };
-    this.onClose = function() {
+    vm.onClose = function() {
       vm.isOpen = false;
     };
   }
