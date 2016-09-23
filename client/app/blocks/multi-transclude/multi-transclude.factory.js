@@ -15,7 +15,9 @@
     function transclude(element, transcludeFn, removeEmptyTranscludeTargets) {
       transcludeFn(transcluder);
 
-      if (!!removeEmptyTranscludeTargets) {
+      var removeEmptyBool = !!removeEmptyTranscludeTargets;
+
+      if (removeEmptyBool) {
         removeEmptyTargets();
       }
 
