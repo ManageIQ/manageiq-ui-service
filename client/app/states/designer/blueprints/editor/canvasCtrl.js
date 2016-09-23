@@ -96,7 +96,7 @@
             category: {id: tag.category.id},
             categorization: {
               display_name: tag.categorization.display_name,
-            }
+            },
           };
         }
 
