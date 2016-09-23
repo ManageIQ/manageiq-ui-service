@@ -84,10 +84,7 @@
         $log.info("'" + tmpBlueprint.name + "' Blueprint Properties were saved.");
         saveBlueprintTags(id, tmpBlueprint).then(function() {
           $log.info("'" + tmpBlueprint.name + "' Blueprint Tags were saved.");
-          saveBlueprintServiceItemTags(tmpBlueprint).then(function() {
-            $log.info("'" + tmpBlueprint.name + "' Blueprint Service Item Tags were saved.");
-            deferred.resolve(id);
-          }, saveServiceItemTagsfailure);
+          deferred.resolve(id);
         }, saveTagsfailure);
       }, savePropsfailure);
 
@@ -99,25 +96,15 @@
         deferred.reject();
       }
 
-      function saveServiceItemTagsfailure() {
-        deferred.reject();
-      }
-
       return deferred.promise;
     };
 
     function saveBlueprintProperties(tmpBlueprint) {
       var deferred = $q.defer();
 
-      if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chart_data_model && tmpBlueprint.ui_properties.chart_data_model.nodes) {
-        tmpBlueprint.num_items = tmpBlueprint.ui_properties.chart_data_model.nodes.length;
-      } else {
-        tmpBlueprint.num_items = 0;
-      }
-
       var blueprintObj = getBlueprintPostObj(tmpBlueprint);
 
-      // $log.debug("Saving Blueprint: " + angular.toJson(blueprintObj, true));
+      // $log.debug("Saving Blueprint = " + angular.toJson(blueprintObj, true));
 
       if (tmpBlueprint.id) {
         CollectionsApi.post('blueprints', tmpBlueprint.id, {}, blueprintObj).then(updateSuccess, updateFailure);
@@ -147,67 +134,10 @@
         var blueprintObj = {
           "name": tmpBlueprint.name,
           "description": tmpBlueprint.description,
-          "bundle": {},
-          "ui_properties": {},
+          "ui_properties": tmpBlueprint.ui_properties,
         };
 
-        if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chart_data_model) {
-          var chartDataModel = angular.copy(tmpBlueprint.ui_properties.chart_data_model);
-          if (chartDataModel.nodes) {
-            var serviceTemplates = [];
-            for (var i = 0; i < chartDataModel.nodes.length; i++) {
-              var nodeSrvTemplate = chartDataModel.nodes[i];
-              // No need to save tags with the chartDataModel
-              delete nodeSrvTemplate.origTags;
-              delete nodeSrvTemplate.tags;
-              if (nodeSrvTemplate.id) {
-                serviceTemplates.push({"id": nodeSrvTemplate.id});
-              } else {
-                EventNotifications.warn("Cannot Save New Generic Item '" + nodeSrvTemplate.name
-                  + "'.  Saving New Generic Items Not Yet Implemented.");
-              }
-            }
-            blueprintObj.bundle.service_templates = serviceTemplates;
-          }
-          blueprintObj.ui_properties.chart_data_model = chartDataModel;
-        }
-
-        if (tmpBlueprint.content.service_catalog) {
-          if (tmpBlueprint.content.service_catalog.id !== -1) {
-            blueprintObj.bundle.service_catalog = {"id": tmpBlueprint.content.service_catalog.id};
-          } else {
-            blueprintObj.bundle.service_catalog = null;
-          }
-        }
-
-        if (tmpBlueprint.content.service_dialog) {
-          if (tmpBlueprint.content.service_dialog.id !== -1) {
-            blueprintObj.bundle.service_dialog = {"id": tmpBlueprint.content.service_dialog.id};
-          } else {
-            blueprintObj.bundle.service_dialog = null;
-          }
-        }
-
-        var automateEntrypoints = {};
-        for (var e = 0; e < tmpBlueprint.content.automate_entrypoints.length; e++) {
-          var aep = tmpBlueprint.content.automate_entrypoints[e];
-          var newAepStr = blueprint.getEntryPointString(aep);
-          switch (aep.action) {
-            case "Provision":
-              automateEntrypoints.Provision = newAepStr;
-              break;
-            case "Reconfigure":
-              automateEntrypoints.Reconfigure = newAepStr;
-              break;
-            case "Retirement":
-              automateEntrypoints.Retirement = newAepStr;
-              break;
-          }
-        }
-
-        blueprintObj.bundle.automate_entrypoints = automateEntrypoints;
-
-        blueprintObj.ui_properties.num_items = tmpBlueprint.num_items;
+        blueprintObj.ui_properties.num_items = tmpBlueprint.ui_properties.chart_data_model.nodes.length;
 
         if (tmpBlueprint.id) {
           blueprintObj.action = "edit";
@@ -260,86 +190,6 @@
       function unassignFailure() {
         $log.error('There was an error unassigning blueprint tags.');
         deferred.reject();
-      }
-
-      return deferred.promise;
-    }
-
-    function saveBlueprintServiceItemTags(tmpBlueprint) {
-      var deferred = $q.defer();
-
-      if (tmpBlueprint.ui_properties && tmpBlueprint.ui_properties.chart_data_model) {
-        var chartDataModel = tmpBlueprint.ui_properties.chart_data_model;
-        if (chartDataModel.nodes && chartDataModel.nodes.length > 0) {
-          var promises = [];
-          for (var i = 0; i < chartDataModel.nodes.length; i++) {
-            var nodeSrvTemplate = chartDataModel.nodes[i];
-            if (angular.isDefined(nodeSrvTemplate.origTags) && angular.isDefined(nodeSrvTemplate.tags)
-              && angular.isDefined(nodeSrvTemplate.id)) {
-              promises.push(saveServiceItemTags(nodeSrvTemplate.id, nodeSrvTemplate.tags, nodeSrvTemplate.origTags));
-            }
-          }
-          if (promises.length > 0) {
-            $q.all(promises).then(function(ids) {
-              $log.debug("    Saved Service Item Tags for " + ids);
-              deferred.resolve();
-            }, function(ids) {
-              $log.debug("    Failed to save Service Item Tags for " + ids);
-              deferred.reject();
-            });
-          } else {
-            $log.debug("    No Tags to save for Service Items");
-            deferred.resolve();
-          }
-        } else {
-          $log.debug("    No Service Items to save tags for");
-          deferred.resolve();
-        }
-      }
-
-      return deferred.promise;
-    }
-
-    function saveServiceItemTags(id, tags, origTags) {
-      var deferred = $q.defer();
-
-      var assignObj = getTagsToAddRemove("assign", tags, origTags);
-      var unassignObj = getTagsToAddRemove("unassign", tags, origTags);
-
-      var collection = 'service_templates/' + id + '/tags';
-
-      if (assignObj.resources.length > 0) {
-        CollectionsApi.post(collection, null, {}, assignObj).then(function() {
-          $log.info("    Service Item tags assigned succesfully for " + id);
-          if (unassignObj.resources.length > 0) {
-            CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
-              $log.info("    Service Item tags unassigned succesfully for " + id);
-              deferred.resolve(id);
-            }, assignFailure);
-          } else {
-            $log.debug("    No unassigned tags for Service Item " + id);
-            deferred.resolve(id);
-          }
-        }, unassignFailure);
-      } else {
-        $log.debug("    No assigned tags for Service Item " + id);
-        if (unassignObj.resources.length > 0) {
-          CollectionsApi.post(collection, null, {}, unassignObj).then(function() {
-            $log.debug("    Service Item tags unassigned succesfully for " + id);
-            deferred.resolve(id);
-          }, assignFailure);
-        } else {
-          $log.debug("    No unassigned tags for Service Item " + id);
-          deferred.resolve(id);
-        }
-      }
-
-      function assignFailure() {
-        deferred.reject(id);
-      }
-
-      function unassignFailure() {
-        deferred.reject(id);
       }
 
       return deferred.promise;
@@ -413,33 +263,14 @@
       return deferred.promise;
     };
 
-    blueprint.getEntryPointString = function(aep) {
-      var newAepStr = "";
-      newAepStr += ((aep.ae_namespace && aep.ae_namespace.length) ? (aep.ae_namespace) : "");
-      newAepStr += ((aep.ae_class && aep.ae_class.length) ? ("\/" + aep.ae_class) : "");
-      newAepStr += ((aep.ae_instance && aep.ae_instance.length) ? ("\/" + aep.ae_instance) : "");
-
-      return newAepStr;
-    };
-
     blueprint.getNewBlueprintObj = function() {
       var tmpBlueprint = {};
       tmpBlueprint.name = __('Untitled Blueprint');
-      // tmpBlueprint.visibility = {"id": 800, "name": "Private"};
-      tmpBlueprint.bundle = {};
       tmpBlueprint.tags = [];
-      // TODO Need to get full default paths
-      tmpBlueprint.content = {
-        automate_entrypoints: [
-          {
-            "action": "Provision",
-            "ae_namespace": "Service/Provisioning/StateMachines",
-            "ae_class": "ServiceProvision_Template",
-            "ae_instance": "default",
-          },
-        ],
-      };
+      // TODO Need to get default Provision entry point
       tmpBlueprint.ui_properties = {
+        automate_entrypoints: {Provision: "Service/Provisioning/StateMachines/ServiceProvision_Template/default"},
+        visibility: {"id": 800, "name": "Private"},
         chart_data_model: {
           "nodes": [],
         },

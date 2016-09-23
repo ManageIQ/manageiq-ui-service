@@ -25,17 +25,7 @@
       var vm = this;
       vm.selectedAction = "none";
 
-      if (vm.node.tags()) {
-        vm.tags = {'of_item': vm.node.tags()};
-      }
-
-      // listen for tags changing
-      $scope.$on('tagsOfItemChanged', function() {
-        if (!vm.node.origTags()) {
-          vm.node.setOrigTags(vm.tags.origOfItem);
-        }
-        vm.node.setTags(vm.tags.ofItem);
-      });
+      vm.tagsOfItem = vm.node.tags();
 
       $scope.actionIconClicked = function(action) {
         vm.selectedAction = action;

@@ -102,7 +102,7 @@
 
     vm.serviceDialogs = serviceDialogs.resources;
 
-    vm.tags = {"ofItem": vm.blueprint.tags};
+    vm.tagsOfItem = vm.blueprint.tags;
 
     vm.visibilityOptions = [{
       id: 800,
@@ -134,13 +134,17 @@
       'resource': {
         'name': vm.blueprint.name || __('Untitled Blueprint ') + BlueprintsState.getNextUniqueId(),
         'description': vm.blueprint.description,
-        'visibility': vm.blueprint.visibility,
-        'catalog_id': (vm.blueprint.content.service_catalog ? vm.blueprint.content.service_catalog.id : null ),
-        'dialog_id': (vm.blueprint.content.service_dialog ? vm.blueprint.content.service_dialog.id : null ),
+        'visibility': vm.blueprint.ui_properties.visibility,
+        'catalog': vm.blueprint.ui_properties.service_catalog,
+        'dialog': vm.blueprint.ui_properties.service_dialog,
+        'provEP': (vm.blueprint.ui_properties.automate_entrypoints && vm.blueprint.ui_properties.automate_entrypoints.Provision
+            ? blueprint.ui_properties.automate_entrypoints.Provision : null ),
+        'reConfigEP': (vm.blueprint.ui_properties.automate_entrypoints && vm.blueprint.ui_properties.automate_entrypoints.Reconfigure
+            ? blueprint.ui_properties.automate_entrypoints.Reconfigure : null ),
+        'retireEP': (vm.blueprint.ui_properties.automate_entrypoints && vm.blueprint.ui_properties.automate_entrypoints.Retirement
+            ? blueprint.ui_properties.automate_entrypoints.Retirement : null ),
       },
     };
-
-    setModalDataEntrypoints();
 
     BlueprintOrderListService.setOrderLists(vm);
 
@@ -152,38 +156,12 @@
           ];
     }
 
-    if (vm.modalData.resource.catalog_id) {
-      vm.modalData.resource.catalog = vm.serviceCatalogs[ findWithAttr(vm.serviceCatalogs, 'id', vm.modalData.resource.catalog_id) ];
+    if (vm.modalData.resource.catalog) {
+      vm.modalData.resource.catalog = vm.serviceCatalogs[ findWithAttr(vm.serviceCatalogs, 'id', vm.modalData.resource.catalog.id) ];
     }
 
-    if (vm.modalData.resource.dialog_id) {
-      vm.modalData.resource.dialog = vm.serviceDialogs[ findWithAttr(vm.serviceDialogs, 'id', vm.modalData.resource.dialog_id) ];
-    }
-
-    function setModalDataEntrypoints() {
-      vm.modalData.resource.provEP = {action: "Provision", value: ""};
-      vm.modalData.resource.reConfigEP = {action: "Reconfigure", value: ""};
-      vm.modalData.resource.retireEP = {action: "Retirement", value: ""};
-
-      if (vm.blueprint.content.automate_entrypoints) {
-        for (var i = 0; i < vm.blueprint.content.automate_entrypoints.length; i++) {
-          var aep = vm.blueprint.content.automate_entrypoints[i];
-          var newAepStr = BlueprintsState.getEntryPointString(aep);
-          // $log.debug("modal data = " + aep.action + ": " + newAepStr);
-          var newAepObj = {action: aep.action, index: i, value: newAepStr};
-          switch (aep.action) {
-            case "Provision":
-              vm.modalData.resource.provEP = newAepObj;
-              break;
-            case "Reconfigure":
-              vm.modalData.resource.reConfigEP = newAepObj;
-              break;
-            case "Retirement":
-              vm.modalData.resource.retireEP = newAepObj;
-              break;
-          }
-        }
-      }
+    if (vm.modalData.resource.dialog) {
+      vm.modalData.resource.dialog = vm.serviceDialogs[ findWithAttr(vm.serviceDialogs, 'id', vm.modalData.resource.dialog.id) ];
     }
 
     function isCatalogUnassigned() {
@@ -211,11 +189,11 @@
 
       modalInstance.then(function(opts) {
         if (entryPointType === 'provisioning') {
-          vm.modalData.resource.provEP.value = opts.entryPointData;
+          vm.modalData.resource.provEP = opts.entryPointData;
         } else if (entryPointType === 'reconfigure') {
-          vm.modalData.resource.reConfigEP.value = opts.entryPointData;
+          vm.modalData.resource.reConfigEP = opts.entryPointData;
         } else if (entryPointType === 'retirement') {
-          vm.modalData.resource.retireEP.value =  opts.entryPointData;
+          vm.modalData.resource.retireEP =  opts.entryPointData;
         }
       });
     }
@@ -258,36 +236,45 @@
     function saveBlueprintDetails() {   // jshint ignore:line
       vm.blueprint.name = vm.modalData.resource.name;
       vm.blueprint.description = vm.modalData.resource.description;
+      vm.blueprint.ui_properties.visibility = vm.modalData.resource.visibility;
 
-      vm.blueprint.tags = vm.tags.ofItem;
-
-      /*
-      if (!vm.blueprint.visibility || (vm.blueprint.visibility.id.toString() !== vm.modalData.resource.visibility.id.toString())) {
-        vm.blueprint.visibility = vm.modalData.resource.visibility;
-      }
-      */
+      vm.blueprint.tags = vm.tagsOfItem;
 
       if (vm.modalData.resource.catalog) {
-        if (!vm.blueprint.content.service_catalog || vm.modalData.resource.catalog.id !== vm.blueprint.content.service_catalog.id) {
-          vm.blueprint.content.service_catalog = {"id": vm.modalData.resource.catalog.id};
+        if (!vm.blueprint.ui_properties.service_catalog || vm.modalData.resource.catalog.id
+            !== vm.blueprint.ui_properties.service_catalog.id) {
+          vm.blueprint.ui_properties.service_catalog = {"id": vm.modalData.resource.catalog.id};
         }
       } else {
-        if (vm.blueprint.content.service_catalog) {
-          vm.blueprint.content.service_catalog = {"id": -1};
+        if (vm.blueprint.ui_properties.service_catalog) {
+          delete(vm.blueprint.ui_properties.service_catalog);
         }
       }
 
       if (vm.modalData.resource.dialog) {
-        if (!vm.blueprint.content.service_dialog || vm.modalData.resource.dialog.id !== vm.blueprint.content.service_dialog.id) {
-          vm.blueprint.content.service_dialog = {"id": vm.modalData.resource.dialog.id};
+        if (!vm.blueprint.ui_properties.service_dialog || vm.modalData.resource.dialog.id
+            !== vm.blueprint.ui_properties.service_dialog.id) {
+          vm.blueprint.ui_properties.service_dialog = {"id": vm.modalData.resource.dialog.id};
         }
       } else {
-        if (vm.blueprint.content.service_dialog) {
-          vm.blueprint.content.service_dialog = {"id": -1};
+        if (vm.blueprint.ui_properties.service_dialog) {
+          delete(vm.blueprint.ui_properties.service_dialog);
         }
       }
 
-      setBlueprintEntryPtsFromModalData();
+      vm.blueprint.ui_properties.automate_entrypoints.Provision = vm.modalData.resource.provEP;
+
+      if (vm.modalData.resource.reConfigEP) {
+        vm.blueprint.ui_properties.automate_entrypoints.Reconfigure = vm.modalData.resource.reConfigEP;
+      } else if (vm.blueprint.ui_properties.automate_entrypoints && vm.blueprint.ui_properties.automate_entrypoints.Reconfigure) {
+        vm.blueprint.ui_properties.automate_entrypoints.Reconfigure = null;
+      }
+
+      if (vm.modalData.resource.retireEP) {
+        vm.blueprint.ui_properties.automate_entrypoints.Retirement = vm.modalData.resource.retireEP;
+      } else if (vm.blueprint.ui_properties.automate_entrypoints && vm.blueprint.ui_properties.automate_entrypoints.Retirement) {
+        vm.blueprint.ui_properties.automate_entrypoints.Retirement = null;
+      }
 
       if (vm.provOrderChanged) {
         BlueprintOrderListService.saveOrder("provisionOrder", vm);
@@ -305,10 +292,10 @@
       }
 
       /*
-       $log.debug("Orig Blueprint = " + angular.toJson(BlueprintsState.getOriginalBlueprint().content, true));
-       $log.debug("Updated Blueprint = " + angular.toJson(vm.blueprint.content, true));
-       $log.debug("Diff = " + angular.toJson(BlueprintsState.difference(vm.blueprint.content,
-                  BlueprintsState.getOriginalBlueprint().content), true));
+       $log.debug("Orig Blueprint = " + angular.toJson(BlueprintsState.getOriginalBlueprint().ui_properties, true));
+       $log.debug("Updated Blueprint = " + angular.toJson(vm.blueprint.ui_properties, true));
+       $log.debug("Diff = " + angular.toJson(BlueprintsState.difference(vm.blueprint,
+                  BlueprintsState.getOriginalBlueprint()), true));
       */
 
       saveSuccess();
@@ -336,45 +323,6 @@
           EventNotifications.error(__('The Publish Blueprint feature is not yet implemented.'));
         } else {
           EventNotifications.error(__("There was an error saving this Blueprint's Details."));
-        }
-      }
-
-      function setBlueprintEntryPtsFromModalData() {
-        processEntryPoint(vm.modalData.resource.provEP);
-        processEntryPoint(vm.modalData.resource.reConfigEP);
-        processEntryPoint(vm.modalData.resource.retireEP);
-      }
-
-      function processEntryPoint(modalData) {
-        var parts = modalData.value.split("\/");
-        var instance = (parts.length ? parts.splice(-1, 1)[0] : "");
-        var clazz = (parts.length ? parts.splice(-1, 1)[0] : "");
-        var namespace = parts.join("\/");
-        // $log.debug("blueprint data = " + modalData.action + " - " + namespace + ":" + clazz + ":" + instance);
-        if (angular.isDefined(modalData.index)) {
-          var bpAEP = vm.blueprint.content.automate_entrypoints[modalData.index];
-          if (angular.isUndefined(bpAEP.ae_class) && angular.isUndefined(bpAEP.ae_instance) && angular.isUndefined(bpAEP.ae_namespace )) {
-            return;
-          }
-          if (bpAEP.ae_namespace !== namespace) {
-            bpAEP.ae_namespace = namespace;
-          }
-          if (bpAEP.ae_class !== clazz) {
-            bpAEP.ae_class = clazz;
-          }
-          if (bpAEP.ae_instance !== instance) {
-            bpAEP.ae_instance = instance;
-          }
-        } else {
-          if (namespace.length || clazz.length || instance.length) {
-            // $log.debug("Adding new entry point");
-            vm.blueprint.content.automate_entrypoints.push({
-              action: modalData.action,
-              ae_namespace: namespace,
-              ae_class: clazz,
-              ae_instance: instance,
-            });
-          }
         }
       }
     }  // end of saveBlueprintDetails

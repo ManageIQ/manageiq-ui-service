@@ -9,9 +9,7 @@
     var directive = {
       restrict: 'E',
       scope: {
-        tags: '=',
-        objectType: '@?',
-        objectId: '=?',
+        tagsOfItem: '=',
       },
       controller: TaggingController,
       templateUrl: 'app/components/tagging/tagging.html',
@@ -25,22 +23,9 @@
     function TaggingController($scope, $filter, $q, $log, CollectionsApi) {
       var vm = this;
 
-      if (!vm.tags) {
-        vm.tags = {};
-      }
+      vm.tags = {};
 
-      if (!vm.tags.ofItem && vm.objectType && vm.objectId) {
-        if (vm.objectId !== -1) {
-          loadTagsOfItem().then(function() {
-            loadAllTagInfo();
-          });
-        } else {
-          vm.tags.ofItem = [];
-          loadAllTagInfo();
-        }
-      } else {
-        loadAllTagInfo();
-      }
+      loadAllTagInfo();
 
       function loadAllTagInfo() {
         var deferred = $q.defer();
@@ -108,39 +93,6 @@
         return deferred.promise;
       }
 
-      function loadTagsOfItem() {
-        var deferred = $q.defer();
-
-        var attributes = ['categorization', 'category.id', 'category.single_value'];
-        var options = {
-          expand: 'resources',
-          attributes: attributes,
-        };
-
-        var collection = vm.objectType + '/' + vm.objectId + '/tags';
-
-        CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
-
-        function loadSuccess(response) {
-          vm.tags.ofItem = response.resources;
-          deferred.resolve();
-        }
-
-        function loadFailure() {
-          $log.error('There was an error loading ' + vm.objectType + ', id = ' + vm.objectId);
-          deferred.reject();
-        }
-
-        return deferred.promise;
-      }
-
-      vm.tagsOfItemChanged = false;
-      $scope.$on('$destroy', function() {
-        if (vm.tagsOfItemChanged) {
-          $scope.$emit('tagsOfItemChanged');
-        }
-      });
-
       vm.showTagDropdowns = false;
       $scope.$watch('vm.tags.selectedCategory', function(value) {
         vm.tags.filtered = $filter('filter')(vm.tags.all, matchCategory);
@@ -163,8 +115,8 @@
         if (vm.tags.selectedTag.category && angular.isDefined(vm.tags.selectedTag.category.single_value)) {
           if (vm.tags.selectedTag.category.single_value) {
             // Find existing tag w/ category in tags.of_item
-            for (var i = 0; i < vm.tags.ofItem.length; i++) {
-              var tag = vm.tags.ofItem[i];
+            for (var i = 0; i < vm.tagsOfItem.length; i++) {
+              var tag = vm.tagsOfItem[i];
               if (tag.category.id === vm.tags.selectedTag.category.id) {
                 $scope.removeTag(tag);
                 break;
@@ -172,26 +124,29 @@
             }
           }
         }
+
+        var matchingTag = $filter('filter')(vm.tagsOfItem, {id: vm.tags.selectedTag.id});
+
         // Add Selected Tag
-        if (vm.tags.ofItem.indexOf(vm.tags.selectedTag) === -1) {
-          saveOriginalTags();
-          vm.tags.ofItem.push(vm.tags.selectedTag);
+        if (!matchingTag.length) {
+          vm.tagsOfItem.push(getSmTagObj(vm.tags.selectedTag));
         }
       };
 
       $scope.removeTag = function(tag) {
-        var inBlueprintIndex = vm.tags.ofItem.indexOf(tag);
-        if (inBlueprintIndex !== -1) {
-          saveOriginalTags();
-          vm.tags.ofItem.splice(inBlueprintIndex, 1);
+        var index = vm.tagsOfItem.indexOf(tag);
+        if (index !== -1) {
+          vm.tagsOfItem.splice(index, 1);
         }
       };
 
-      function saveOriginalTags() {
-        if (!vm.tags.origOfItem) {
-          vm.tagsOfItemChanged = true;
-          vm.tags.origOfItem = angular.copy(vm.tags.ofItem);
-        }
+      function getSmTagObj(tag) {
+        return {id: tag.id,
+                category: {id: tag.category.id},
+                categorization: {
+                  display_name: tag.categorization.display_name,
+                }
+              };
       }
     }
   }

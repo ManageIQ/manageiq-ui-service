@@ -67,15 +67,6 @@
         if (id) {
           $state.go($state.current, {blueprintId: id}, {reload: true});
         }
-
-        /*
-         Saving in case we decide to not always reload; for performance
-
-         get another copy to work, different obj from what was saved
-         BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
-         blueprintDirty = false;
-         $( "#saveBtm" ).blur();
-         $log.debug("Saved blueprint from designer"); */
       }
 
       function saveFailure() {

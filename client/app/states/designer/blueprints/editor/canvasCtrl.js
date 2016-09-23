@@ -4,10 +4,10 @@
   "use strict";
 
   angular.module('app.states')
-    .controller('CanvasController', ['$scope', '$filter', 'DesignerState', StateController]);
+    .controller('CanvasController', ['$scope', '$filter', 'DesignerState', '$q', 'CollectionsApi', '$log', StateController]);
 
   /** @ngInject */
-  function StateController($scope, $filter, DesignerState) {
+  function StateController($scope, $filter, DesignerState, $q, CollectionsApi, $log) {
     var chartDataModel = {};
     var newNodeCount = 0;
     if ($scope.$parent.blueprint.ui_properties && $scope.$parent.blueprint.ui_properties.chart_data_model) {
@@ -29,10 +29,11 @@
     };
 
     $scope.dropCallback = function(event, ui) {
-      $scope.draggedItem.disableInToolbox = true;
       var newNode = angular.copy($scope.draggedItem);
-      if (newNode.type && newNode.type === 'generic') {
+      if (newNode.type && newNode.type === 'new-generic') {
         newNode.name = 'New ' + newNode.name;
+      } else {
+        $scope.draggedItem.disableInToolbox = true;
       }
       newNode.backgroundColor = '#fff';
       newNode.x = event.clientX - 350;
@@ -42,10 +43,11 @@
     };
 
     $scope.addNodeByClick = function(item) {
-      item.disableInToolbox = true;
       var newNode = angular.copy(item);
-      if (newNode.type && newNode.type === 'generic') {
+      if (newNode.type && newNode.type === 'new-generic') {
         newNode.name = 'New ' + newNode.name;
+      } else {
+        item.disableInToolbox = true;
       }
       newNodeCount++;
       newNode.backgroundColor = '#fff';
@@ -55,8 +57,59 @@
     };
 
     $scope.addNewNode = function(newNode) {
-      $scope.chartViewModel.addNode(newNode);
+      if (!newNode.type || newNode.type !== 'new-generic') {
+        getTags(newNode.id).then(function(tags) {
+          newNode.tags = tags;
+          $scope.chartViewModel.addNode(newNode);
+        }, function() {
+          $scope.chartViewModel.addNode(newNode);
+        });
+      } else {
+        newNode.tags = [];
+        $scope.chartViewModel.addNode(newNode);
+      }
     };
+
+    function getTags(id) {
+      var deferred = $q.defer();
+
+      var attributes = ['categorization', 'category.id', 'category.single_value'];
+      var options = {
+        expand: 'resources',
+        attributes: attributes,
+      };
+
+      var collection = 'service_templates' + '/' + id + '/tags';
+
+      CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
+
+      function loadSuccess(response) {
+        var tags = [];
+        angular.forEach(response.resources, processTag);
+
+        function processTag(tag) {
+          tags.push(getSmTagObj(tag));
+        }
+
+        function getSmTagObj(tag) {
+          return {id: tag.id,
+            category: {id: tag.category.id},
+            categorization: {
+              display_name: tag.categorization.display_name,
+            }
+          };
+        }
+
+        deferred.resolve(tags);
+      }
+
+      function loadFailure() {
+        $log.error('There was an error service template tags');
+        deferred.reject();
+      }
+
+      return deferred.promise;
+    }
 
     $scope.$on('duplicateSelectedItem', function(evt, args) {
       $scope.duplicateSelected();

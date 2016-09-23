@@ -59,8 +59,8 @@
   }
 
   /** @ngInject */
-  function StateController($state, blueprints, BlueprintsState, serviceCatalogs, tenants, BlueprintDetailsModal, BlueprintDeleteModal,
-                           EventNotifications, $rootScope, Language) {
+  function StateController($state, blueprints, BlueprintsState, serviceCatalogs, tenants, BlueprintDetailsModal, BlueprintDeleteModal,  // jshint ignore:line
+                           EventNotifications, $rootScope, $filter, Language) {
     /* jshint validthis: true */
     var vm = this;
     var categoryNames = [];
@@ -76,6 +76,7 @@
 
     angular.forEach(vm.serviceCatalogs, addCategoryFilter);
     angular.forEach(vm.tenants, addVisibilityFilter);
+    angular.forEach(vm.blueprints, getNamesFromIds);
 
     function addCategoryFilter(item) {
       if (categoryNames.indexOf(__('Unassigned')) === -1) {
@@ -86,6 +87,13 @@
 
     function addVisibilityFilter(item) {
       visibilityNames.push(item.name);
+    }
+
+    function getNamesFromIds(blueprint) {
+      if (blueprint.ui_properties.service_catalog) {
+        var categoryName = $filter('filter')(vm.serviceCatalogs, {id: blueprint.ui_properties.service_catalog.id});
+        blueprint.ui_properties.service_catalog.name = categoryName[0].name;
+      }
     }
 
     vm.blueprintsList = angular.copy(vm.blueprints);
