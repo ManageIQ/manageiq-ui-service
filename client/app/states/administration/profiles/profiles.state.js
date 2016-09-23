@@ -32,7 +32,6 @@
 
   /** @ngInject */
   function ProfilesController(arbitrationProfiles, ProfilesState, $state, $timeout, $rootScope, $scope) {
-    /* jshint validthis: true */
     var vm = this;
     vm.title = __('Profiles');
     vm.arbitrationProfiles = arbitrationProfiles.resources;

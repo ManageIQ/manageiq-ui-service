@@ -131,7 +131,7 @@
         deferred.reject();
       }
 
-      function getBlueprintPostObj(tmpBlueprint) {                                    // jshint ignore:line
+      function getBlueprintPostObj(tmpBlueprint) {
         var blueprintObj = {
           "name": tmpBlueprint.name,
           "description": tmpBlueprint.description,
@@ -286,14 +286,14 @@
       var k, kDiff;
       var diff = {};
 
-      for (k in o1) {  // jshint ignore:line
+      for (k in o1) {
         if (!o1.hasOwnProperty(k)) {
           $log.warn("obj 2 doesn't have " + k);
         } else if (!angular.isObject(o1[k]) || !angular.isObject(o2[k]) ) {
           if (!(k in o2) || o1[k] !== o2[k]) {
             diff[k] = o2[k];
           }
-        } else if (kDiff = blueprint.difference(o1[k], o2[k])) {    // jshint ignore:line
+        } else if (kDiff = blueprint.difference(o1[k], o2[k])) {
           diff[k] = kDiff;
         }
       }

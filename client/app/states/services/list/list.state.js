@@ -37,7 +37,6 @@
 
   /** @ngInject */
   function StateController($state, services, ServicesState, $filter, $rootScope, Language) {
-    /* jshint validthis: true */
     var vm = this;
 
     vm.services = [];

@@ -45,7 +45,6 @@
 
   /** @ngInject */
   function RulesController(arbitrationRules, fields, profiles, RulesState, SaveRuleModal, $state, $scope, $timeout, $log) {
-    /* jshint validthis: true */
     var vm = this;
     vm.operators = [
       {

@@ -666,7 +666,7 @@ var flowchart = {};
     //
     // Create a view model for a new connection.
     //
-    this.createNewConnection = function(startConnector, endConnector) {  // jshint ignore:line
+    this.createNewConnection = function(startConnector, endConnector) {
       var connectionsDataModel = this.data.connections;
       if (!connectionsDataModel) {
         connectionsDataModel = this.data.connections = [];
@@ -933,9 +933,9 @@ var flowchart = {};
               sourceConnectorViewModel._parentNode.removeOutputConnector(sourceConnectorViewModel.data);
               // also set connected to false on the dest node
               var destConnectorViewModel = connection.dest;
-              if (destConnectorViewModel) { // jshint ignore:line
+              if (destConnectorViewModel) {
                 destConnectorViewModel.data.connected = false;
-              } else { // jshint ignore:line
+              } else {
                 throw new Error("Failed to find dest node of deleted connection!");
               }
             } else {

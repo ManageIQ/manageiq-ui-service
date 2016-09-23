@@ -1,4 +1,3 @@
-/* jshint -W117, -W030 */
 describe('app.services.Language', function() {
   beforeEach(function() {
     module('app.states', 'app.services', 'gettext', bard.fakeToastr);

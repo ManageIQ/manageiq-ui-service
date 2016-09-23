@@ -1,4 +1,3 @@
-/*jshint -W117 */
 'use strict';
 
 module.exports = function() {

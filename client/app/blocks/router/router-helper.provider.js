@@ -7,7 +7,6 @@
 
   /** @ngInject */
   function routerHelperProvider($locationProvider, $stateProvider, $urlRouterProvider, $injector) {
-    /* jshint validthis:true */
     var config = {
       docTitle: undefined,
       resolveAlways: {},

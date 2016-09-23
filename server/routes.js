@@ -1,4 +1,3 @@
-/*jshint -W117 */
 'use strict';
 
 var router = require('express').Router();

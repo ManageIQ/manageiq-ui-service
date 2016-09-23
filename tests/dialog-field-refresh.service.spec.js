@@ -1,4 +1,3 @@
-/* jshint -W117, -W030 */
 describe('app.services.DialogFieldRefresh', function() {
   beforeEach(function() {
     module('app.states', 'app.config', 'app.services', 'gettext', bard.fakeToastr);

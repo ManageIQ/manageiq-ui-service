@@ -59,9 +59,8 @@
   }
 
   /** @ngInject */
-  function StateController($state, blueprints, BlueprintsState, serviceCatalogs, tenants, BlueprintDetailsModal, BlueprintDeleteModal,  // jshint ignore:line
+  function StateController($state, blueprints, BlueprintsState, serviceCatalogs, tenants, BlueprintDetailsModal, BlueprintDeleteModal,
                            EventNotifications, $rootScope, $filter, Language) {
-    /* jshint validthis: true */
     var vm = this;
     var categoryNames = [];
     var visibilityNames = ['Private', 'Public'];

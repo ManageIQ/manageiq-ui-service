@@ -73,7 +73,7 @@
   }
 
   /** @ngInject */
-  function BlueprintDetailsModalController(action, blueprint, BlueprintsState, BlueprintOrderListService, serviceCatalogs,  // jshint ignore:line
+  function BlueprintDetailsModalController(action, blueprint, BlueprintsState, BlueprintOrderListService, serviceCatalogs,
                                            serviceDialogs, tenants, $state, BrowseEntryPointModal, CreateCatalogModal, $modalInstance,
                                            EventNotifications, sprintf, $scope) {
     var vm = this;
@@ -234,7 +234,7 @@
       $modalInstance.close();
     }
 
-    function saveBlueprintDetails() {   // jshint ignore:line
+    function saveBlueprintDetails() {
       vm.blueprint.name = vm.modalData.resource.name;
       vm.blueprint.description = vm.modalData.resource.description;
       vm.blueprint.ui_properties.visibility = vm.modalData.resource.visibility;
