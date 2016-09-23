@@ -5,7 +5,7 @@
     .factory('Consoles', ConsolesFactory);
 
   /** @ngInject */
-  function ConsolesFactory(CollectionsApi, $http, $timeout, logger, $location, EventNotifications) {
+  function ConsolesFactory($window, CollectionsApi, $http, $timeout, logger, $location, EventNotifications) {
     var service = {
       open: openConsole,
     };
@@ -86,7 +86,7 @@
 
       // encrypt is divined automagically in spice_auto
 
-      window.open(url);
+      $window.open(url);
     }
 
     function openVnc(results) {
@@ -101,12 +101,12 @@
         url += '&encrypt=1';
       }
 
-      window.open(url);
+      $window.open(url);
     }
 
     function openRemote(results) {
       // openstack
-      window.open(results.remote_url);
+      $window.open(results.remote_url);
     }
   }
 })();

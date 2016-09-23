@@ -7,7 +7,7 @@
     .run(init);
 
   /** @ngInject */
-  function init(gettextCatalog, gettext) {
+  function init($window, gettextCatalog, gettext) {
     // prepend [MISSING] to untranslated strings
     gettextCatalog.debug = false;
 
@@ -21,8 +21,8 @@
       }
     };
 
-    window.N_ = gettext;
-    window.__ = gettextCatalog.getString.bind(gettextCatalog);
+    $window.N_ = gettext;
+    $window.__ = gettextCatalog.getString.bind(gettextCatalog);
   }
 })();
 

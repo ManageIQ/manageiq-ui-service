@@ -6,7 +6,7 @@
     .factory('Language', LanguageFactory);
 
   /** @ngInject */
-  function LanguageFactory($http, $q, $log, gettextCatalog, lodash) {
+  function LanguageFactory($http, $q, $log, $window, gettextCatalog, lodash) {
     var availableAvailable = $q.defer();
     var service = {
       available: {
@@ -43,18 +43,18 @@
       var ary = [];
 
       // the standard
-      if (lodash.isArray(window.navigator.languages)) {
-        ary = lodash.slice(window.navigator.languages);
+      if (lodash.isArray($window.navigator.languages)) {
+        ary = lodash.slice($window.navigator.languages);
       }
 
       // IE 11 and older browers
-      if (window.navigator.language) {
-        ary.push(window.navigator.language);
+      if ($window.navigator.language) {
+        ary.push($window.navigator.language);
       }
 
       // IE<11
-      if (window.navigator.userLanguage) {
-        ary.push(window.navigator.userLanguage);
+      if ($window.navigator.userLanguage) {
+        ary.push($window.navigator.userLanguage);
       }
 
       return lodash.uniq(ary);
