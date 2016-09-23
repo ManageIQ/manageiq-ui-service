@@ -5,24 +5,24 @@
     .directive('aboutModal', function() {
       return {
         templateUrl: "app/components/about-modal/about-modal.html",
-        controller: ModalCtrl,
-        controllerAs: "info",
+        controller: ModalController,
+        controllerAs: "vm",
       };
     });
   /** @ngInject */
-  function ModalCtrl(ServerInfo) {
+  function ModalController(ServerInfo) {
     var vm = this;
-    this.additionalInfo = "";
-    this.copyright = "Copyright (c) 2016 ManageIQ. Sponsored by Red Hat Inc.";
-    this.imgAlt = "ManageIQ logo";
-    this.imgSrc = "images/login-screen-logo.png";
-    this.title = "ManageIQ UI Self Service";
+    vm.additionalInfo = "";
+    vm.copyright = __("Copyright (c) 2016 ManageIQ. Sponsored by Red Hat Inc.");
+    vm.imgAlt = __("ManageIQ logo");
+    vm.imgSrc = "images/login-screen-logo.png";
+    vm.title = _("ManageIQ UI Self Service");
     ServerInfo.promise.then( function() {
       vm.productInfo = [
-        { name: 'Version', value: ServerInfo.data.version },
-        { name: 'Server Name', value: ServerInfo.data.server },
-        { name: 'User Name', value: ServerInfo.data.user },
-        { name: 'User Role', value: ServerInfo.data.role },
+        { name: _('Version: '), value: ServerInfo.data.version },
+        { name: _('Server Name: '), value: ServerInfo.data.server },
+        { name: _('User Name: '), value: ServerInfo.data.user },
+        { name: _('User Role: '), value: ServerInfo.data.role },
       ];
     });
     this.open = function() {

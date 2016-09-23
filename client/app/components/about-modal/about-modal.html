@@ -1,6 +1,8 @@
-<a href="#"  ng-click="info.open()" >
-    About
+<a href="#"  ng-click="vm.open()" >
+    <span translate>
+      About
+    </span>
 </a>
-<div pf-about-modal is-open="info.isOpen" on-close="info.onClose()" additional-info="info.additionalInfo"
-     product-info="info.productInfo" title="info.title" copyright="info.copyright" img-alt="info.imgAlt" img-src="info.imgSrc">
+<div pf-about-modal is-open="vm.isOpen" on-close="vm.onClose()" additional-info="vm.additionalInfo"
+     product-info="vm.productInfo" title="vm.title" copyright="vm.copyright" img-alt="vm.imgAlt" img-src="vm.imgSrc">
 </div>

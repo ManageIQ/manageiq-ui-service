@@ -6,17 +6,17 @@
 
   /** @ngInject */
   function ServerInfo($q) {
-    this.data = {};
-    var self = this;
-    this.promise = $q(function(resolve, reject) {
-      self.set = function(data) {
-        self.data = {
+    var vm = this;
+    vm.data = {};
+    vm.promise = $q(function(resolve, reject) {
+      vm.set = function(data) {
+        vm.data = {
           user: data.identity.name,
           role: data.identity.role,
           version: data.server_info.version + '.' + data.server_info.build,
           server: data.server_info.appliance,
         };
-        resolve(self.data);
+        resolve(vm.data);
         
         return data;
       };
