@@ -12,7 +12,7 @@
         items: '=',
         startDragCallback: '=',
         clickCallback: '=',
-        searchText: '='
+        searchText: '=',
       },
       controller: draggableItemsController,
       templateUrl: 'app/states/designer/blueprints/editor/draggable-items.html',

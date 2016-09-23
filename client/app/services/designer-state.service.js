@@ -68,7 +68,7 @@
           subtabs: [
             {
               title: 'Generic',
-              generic_subtype: 'storage'
+              generic_subtype: 'storage',
             },
           ],
         },
@@ -77,7 +77,7 @@
           subtabs: [
             {
               title: 'Generic',
-              generic_subtype: 'load_balancer'
+              generic_subtype: 'load_balancer',
             },
           ],
         },

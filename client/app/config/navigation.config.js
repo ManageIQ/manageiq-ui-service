@@ -76,7 +76,7 @@
               badges: [
                 {
                   count: 0,
-                  tooltip: N_('The total number of available arbitration profiles')
+                  tooltip: N_('The total number of available arbitration profiles'),
                 },
               ],
             },
