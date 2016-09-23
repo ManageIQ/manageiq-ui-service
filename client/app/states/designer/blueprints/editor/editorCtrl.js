@@ -1,4 +1,5 @@
 /* eslint angular/controller-as: "off" */
+/* eslint camelcase: "off" */
 
 (function() {
   'use strict';
