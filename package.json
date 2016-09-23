@@ -45,8 +45,6 @@
     "gulp-imagemin": "^2.2.1",
     "gulp-inject": "^1.2.0",
     "gulp-eslint": "^3.0.1",
-    "gulp-jscs": "^3.0.2",
-    "gulp-jshint": "^1.9.2",
     "gulp-karma": "0.0.4",
     "gulp-load-plugins": "^0.8.1",
     "gulp-load-utils": "0.0.4",

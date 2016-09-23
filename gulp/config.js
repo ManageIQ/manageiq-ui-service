@@ -106,23 +106,7 @@ module.exports = (function() {
     lazy: true
   };
 
-  // task jshint: Runs JsHint on client code
-  config.jshint = {
-    src: getClientJsFiles(true, false),
-    rcFile: './.jshintrc',
-    reporter: 'jshint-stylish',
-    options: {
-      verbose: true
-    }
-  };
-
-  // task jscs: Runs JsCs on client code
-  config.jscs = {
-    src: getClientJsFiles(true, false),
-    rcFile: './.jscsrc'
-  };
-
-  // task ESLint:
+  // task ESLint: Runs ESLint on client code
   config.eslint = {
     src: getClientJsFiles(true, false)
   };

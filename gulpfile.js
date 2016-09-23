@@ -17,8 +17,6 @@ gulp.task('default', ['help']);
  * Check the code for errors
  */
 gulp.task('eslint', task('eslint'));
-gulp.task('jshint', task('jshint'));
-gulp.task('jscs', task('jscs'));
 gulp.task('plato', task('plato'));
 gulp.task('vet', ['eslint']);
 
