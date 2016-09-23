@@ -122,6 +122,12 @@ module.exports = (function() {
     rcFile: './.jscsrc'
   };
 
+  // task ESLint:
+  config.eslint = {
+    src: getClientJsFiles(true, false),
+    rcFile: './.eslintrc.json'
+  };
+
   // task plato: Analyze client code with Plato
   config.plato = {
     src: getClientJsFiles(true, false)[0],
