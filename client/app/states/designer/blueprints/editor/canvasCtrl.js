@@ -79,7 +79,7 @@
         attributes: attributes,
       };
 
-      var collection = 'service_templates' + '/' + id + '/tags';
+      var collection = 'service_templates/' + id + '/tags';
 
       CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
 
