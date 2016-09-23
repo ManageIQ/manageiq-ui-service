@@ -4,10 +4,10 @@
   "use strict";
 
   angular.module('app.states')
-    .controller('CanvasController', ['$scope', '$filter', 'DesignerState', '$q', 'CollectionsApi', StateController]);
+    .controller('CanvasController', ['$scope', '$filter', 'DesignerState', '$q', 'CollectionsApi', '$log', StateController]);
 
   /** @ngInject */
-  function StateController($scope, $filter, DesignerState, $q, CollectionsApi) {
+  function StateController($scope, $filter, DesignerState, $q, CollectionsApi, $log) {
     var chartDataModel = {};
     var newNodeCount = 0;
     if ($scope.$parent.blueprint.ui_properties && $scope.$parent.blueprint.ui_properties.chart_data_model) {
@@ -79,7 +79,7 @@
         attributes: attributes,
       };
 
-      var collection = "service_templates" + "\/" + id + "\/" + 'tags';
+      var collection = 'service_templates' + '/' + id + '/tags';
 
       CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
 
@@ -104,7 +104,7 @@
       }
 
       function loadFailure() {
-        console.log('There was an error service template tags');
+        $log.error('There was an error service template tags');
         deferred.reject();
       }
 
