@@ -6,7 +6,7 @@
     .factory('Language', LanguageFactory);
 
   /** @ngInject */
-  function LanguageFactory($http, $q, gettextCatalog, lodash) {
+  function LanguageFactory($http, $q, $log, gettextCatalog, lodash) {
     var availableAvailable = $q.defer();
     var service = {
       available: {
@@ -105,7 +105,7 @@
 
     function save(code) {
       if (!service.userHref) {
-        console.error('Trying to save language selection without a valid userHref');
+        $log.error('Trying to save language selection without a valid userHref');
 
         return;
       }
