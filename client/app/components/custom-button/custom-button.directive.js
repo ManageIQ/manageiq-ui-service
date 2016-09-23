@@ -1,3 +1,4 @@
+/* eslint angular/document-service: "off" */
 (function() {
   'use strict';
 
