@@ -82,7 +82,7 @@ angular.module('flowChart', ['dragging'] )
 // it is painful to unit test a directive without instantiating the DOM
 // (which is possible, just not ideal).
 //
-.controller('FlowChartController', ['$scope', 'dragging', '$element', function FlowChartController($scope, dragging, $element) {
+.controller('FlowChartController', ['$scope', 'dragging', '$element', '$document', function FlowChartController($scope, dragging, $element, $document) {
   var controller = this;// jscs:ignore safeContextKeyword
 
   //
@@ -160,6 +160,14 @@ angular.module('flowChart', ['dragging'] )
 
   $scope.availableConnections = function() {
     return $scope.chart.validConnections;
+  };
+
+  $scope.foreignObjectSupported = function() {
+    if ($document[0].implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#Extensibility', '1.1')) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   //
