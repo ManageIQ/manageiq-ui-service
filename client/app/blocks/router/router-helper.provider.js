@@ -63,12 +63,12 @@
         // Route cancellation:
         // On routing error, go to the dashboard.
         // Provide an exit clause if it tries to do it twice.
-        $rootScope.$on('$stateChangeError', handleRoutingErrors);
-        $rootScope.$on('$stateChangeSuccess', updateTitle);
+        var unregisterError = $rootScope.$on('$stateChangeError', handleRoutingErrors);
+        var unregisterSuccess = $rootScope.$on('$stateChangeSuccess', updateTitle);
         // Hack in redirect to default children
         // Discussions: https://github.com/angular-ui/ui-router/issues/1235
         // https://github.com/angular-ui/ui-router/issues/27
-        $rootScope.$on('$stateChangeStart', redirectTo);
+        var unregisterStart = $rootScope.$on('$stateChangeStart', redirectTo);
       }
 
       function getStates() {

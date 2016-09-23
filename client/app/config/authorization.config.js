@@ -58,9 +58,9 @@
 
   /** @ngInject */
   function init($rootScope, $state, Session, $sessionStorage, logger, Language) {
-    $rootScope.$on('$stateChangeStart', changeStart);
-    $rootScope.$on('$stateChangeError', changeError);
-    $rootScope.$on('$stateChangeSuccess', changeSuccess);
+    var unregisterStart = $rootScope.$on('$stateChangeStart', changeStart);
+    var unregisterError = $rootScope.$on('$stateChangeError', changeError);
+    var unregisterSuccess = $rootScope.$on('$stateChangeSuccess', changeSuccess);
 
     function changeStart(event, toState, toParams, fromState, fromParams) {
       if (toState.data && !toState.data.requireUser) {
