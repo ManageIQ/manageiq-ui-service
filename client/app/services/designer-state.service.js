@@ -189,7 +189,7 @@
           newBundle.image = srvTemplate.picture.image_href;
         }
 
-        if (srvTemplate.disableInToolbox !== undefined) {
+        if (angular.isDefined(srvTemplate.disableInToolbox)) {
           newBundle.disableInToolbox = srvTemplate.disableInToolbox;
         }
 
@@ -209,7 +209,7 @@
         } else {
           newItem.image = "images/service.png";
         }
-        if (srvTemplate.disableInToolbox !== undefined) {
+        if (angular.isDefined(srvTemplate.disableInToolbox)) {
           newItem.disableInToolbox = srvTemplate.disableInToolbox;
         }
         if (!subTab.items) {
