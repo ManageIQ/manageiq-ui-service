@@ -74,11 +74,8 @@
       vm.blueprint = blueprint;
     }
 
-
     function processTag(tag) {
-
       if (tag.categorization && tag.categorization.display_name) {
-
         tag.categorization.displayName = tag.categorization.display_name;
 
         delete(tag.categorization.display_name);
