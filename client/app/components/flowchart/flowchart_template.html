@@ -39,7 +39,7 @@
       />
 
     <!-- Node Title -->
-    <text
+    <text ng-if="!foreignObjectSupported()"
       class="node-header"
       ng-class="{'invalid-node-header': node.invalid()}"
       ng-attr-x="{{node.width()/2}}"
@@ -49,6 +49,20 @@
       >
       {{node.name()}}
     </text>
+
+    <foreignObject ng-if="foreignObjectSupported()"
+                   x="0"
+                   ng-attr-y="{{node.height() - 42}}"
+                   ng-attr-width="{{node.width()}}"
+                   ng-attr-height="{{node.height() - 42}}">
+      <body>
+        <div class="node-header"
+             ng-attr-width="{{node.width()}}"
+             ng-attr-height="{{node.height() - 42}}">
+          <p ng-style="{width: node.width()}">{{node.name()}}</p>
+        </div>
+      </body>
+    </foreignObject>
 
     <!-- Node Image -->
     <image ng-if="node.image()"
