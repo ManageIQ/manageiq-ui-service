@@ -1,4 +1,5 @@
 /* eslint camelcase: "off" */
+/* eslint multiline-ternary: "off" */
 (function() {
   'use strict';
 
