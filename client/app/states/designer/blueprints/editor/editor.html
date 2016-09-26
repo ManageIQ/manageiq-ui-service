@@ -47,7 +47,7 @@
       </div>
 
       <div class="toolbox-canvas-container"
-           ng-controller="CanvasController"
+           ng-controller="CanvasController as cvm"
            mouse-capture>
 
           <div class="toolbox-container" id="toolbox" ng-if="toolboxVisible">
@@ -65,8 +65,8 @@
                               <tabset class="subtabs" ng-if="subtab.subtabs">
                                   <tab ng-repeat="subsubtab in subtab.subtabs" heading="{{subsubtab.title}}" active="subsubtab.active" ng-click="tabClicked()">
                                       <draggable-items items="subsubtab.items"
-                                                       start-drag-callback="startCallback"
-                                                       click-callback="addNodeByClick"
+                                                       start-drag-callback="cvm.startCallback"
+                                                       click-callback="cvm.addNodeByClick"
                                                        search-text="searchText"/>
                                   </tab>
                               </tabset>
@@ -74,16 +74,16 @@
                               <!-- SubTabs without Sub-Sub Tabs -->
                               <draggable-items ng-if="!subtab.subtabs"
                                                items="subtab.items"
-                                               start-drag-callback="startCallback"
-                                               click-callback="addNodeByClick"
+                                               start-drag-callback="cvm.startCallback"
+                                               click-callback="cvm.addNodeByClick"
                                                search-text="searchText"/>
                           </tab>
                       </tabset>
 
                       <!-- Primary Tabs without SubTabs (Bundles) -->
                       <draggable-items ng-if="!tab.subtabs" items="tab.items"
-                          start-drag-callback="startCallback"
-                          click-callback="addNodeByClick"
+                          start-drag-callback="cvm.startCallback"
+                          click-callback="cvm.addNodeByClick"
                           search-text="searchText"/>
                   </tab>
               </tabset>
@@ -91,9 +91,9 @@
               <div class="toolbox-footer">
                   <!-- Create New Item -->
                   <div class="new-catalog-item" ng-if="getNewItem()"
-                       data-drag="true" jqyoui-draggable="{onStart:'startCallback( getNewItem() )'}"
+                       data-drag="true" jqyoui-draggable="{onStart:'cvm.startCallback( getNewItem() )'}"
                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
-                       ng-click="addNodeByClick( getNewItem() )">
+                       ng-click="cvm.addNodeByClick( getNewItem() )">
                       <span class="pficon pficon-add-circle-o"></span>
                       <span class="new-catalog-item-label">{{'Create' | translate}} {{getNewItem().name}}</span>
                       <span ng-if="getNewItem().icon" class="{{getNewItem().icon}} new-catalog-item-icon"></span>
@@ -109,8 +109,8 @@
               </div>
           </div>
 
-          <div class="canvas-container" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropCallback'}">
-              <flow-chart class="canvas" ng-class="{'canvas-in-connection-mode': inConnectingMode}" chart="chartViewModel"></flow-chart>
+          <div class="canvas-container" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'cvm.dropCallback'}">
+              <flow-chart class="canvas" ng-class="{'canvas-in-connection-mode': inConnectingMode}" chart="cvm.chartViewModel"></flow-chart>
           </div>
       </div>
   </div>
