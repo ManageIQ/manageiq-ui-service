@@ -72,8 +72,7 @@
                     </div>
                 </div>
             </form>
-            <a id="advOpsHref" ng-click="vm.toggleAdvOps()" data-toggle="collapse" class="collapsed" translate>Advanced
-                Options</a>
+            <a id="advOpsHref" ng-click="vm.toggleAdvOps()" data-toggle="collapse" class="collapsed" translate>Advanced Options</a>
 
             <div id="advOps" class="collapse">
                 <form novalidate name="advOptsForm" id="advOptsForm" class="form-horizontal">
@@ -133,7 +132,7 @@
             </div>
         </tab>
         <tab active="vm.tabs[3].active" heading="{{vm.tabs[3].title}}"  disable="vm.disableOrderListTabs()">
-            <h4 translate>Rearrange Items to set Action Order
+            <h4>{{ 'Rearrange Items to set Action Order' | translate}}
                 <input class="actionOrderCheckbox"
                        ng-model="vm.actionOrderEqualsProvOrder"
                        ng-change="vm.toggleActionEqualsProvOrder()"
