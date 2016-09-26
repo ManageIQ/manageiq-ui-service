@@ -2,7 +2,7 @@
   <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
     <span class="pficon pficon-close"></span>
   </button>
-  <h3 class="modal-title">Delete Blueprint</h3>
+  <h3 class="modal-title" translate>Delete Blueprint</h3>
 </div>
 <div class="modal-body">
   <h3 translate translate-n="vm.blueprintsList.length" translate-plural="Are you sure you want to delete {{$count}} blueprints?">Are you sure you want to delete {{vm.blueprintsList[0].name}}?</h3>
@@ -17,7 +17,7 @@
   <button type="button" class="btn btn-default" ng-click="$dismiss()" translate>Cancel</button>
   <button type="button"
           class="btn btn-primary"
-          ng-click="vm.deleteBlueprints()">
+          ng-click="vm.deleteBlueprints()" translate>
           Delete
   </button>
 </div>
