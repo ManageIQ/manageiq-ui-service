@@ -1,4 +1,3 @@
-/* eslint angular/controller-as: "off" */
 /* eslint camelcase: "off" */
 
 (function() {
@@ -11,45 +10,46 @@
   /** @ngInject */
   function ComponentController($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $state,
                                EventNotifications, sprintf) {
+    var vm = this;
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
       if (toState.name === 'login') {
         return;
       }
       if (fromState.name === "designer.blueprints.editor" && toState.name !== "designer.blueprints.editor") {
         var origBlueprint = BlueprintsState.getOriginalBlueprint();
-        if (!BlueprintsState.doNotSave() && !angular.equals(origBlueprint, $scope.blueprint) && !event.defaultPrevented) {
-          SaveBlueprintModal.showModal($scope.blueprint, toState, toParams, fromState, fromParams);
+        if (!BlueprintsState.doNotSave() && !angular.equals(origBlueprint, vm.blueprint) && !event.defaultPrevented) {
+          SaveBlueprintModal.showModal(vm.blueprint, toState, toParams, fromState, fromParams);
           event.preventDefault();
         }
       }
     });
 
-    $scope.blueprint = $scope.$parent.vm.blueprint;
+    vm.blueprint = $scope.$parent.vm.blueprint;
 
     var blueprintDirty = false;
 
-    if (!$scope.blueprint) {
-      $scope.blueprint = angular.copy(newBlueprint());
+    if (!vm.blueprint) {
+      vm.blueprint = angular.copy(newBlueprint());
     }
 
-    BlueprintsState.saveOriginalBlueprint(angular.copy($scope.blueprint));
+    BlueprintsState.saveOriginalBlueprint(angular.copy(vm.blueprint));
 
-    // $log.debug("RETRIEVED Blueprint: " + angular.toJson($scope.blueprint, true));
+    // $log.debug("RETRIEVED Blueprint: " + angular.toJson(vm.blueprint, true));
 
-    $scope.$watch("blueprint", function(oldValue, newValue) {
+    $scope.$watch("vm.blueprint", function(oldValue, newValue) {
       if (!angular.equals(oldValue, newValue, true)) {
         blueprintDirty = true;
       }
     }, true);
 
     $scope.$on('BlueprintCanvasChanged', function(evt, args) {
-      if (args.chartDataModel && !angular.equals($scope.blueprint.ui_properties.chart_data_model, args.chartDataMode)) {
-        $scope.blueprint.ui_properties.chart_data_model = args.chartDataModel;
+      if (args.chartDataModel && !angular.equals(vm.blueprint.ui_properties.chart_data_model, args.chartDataMode)) {
+        vm.blueprint.ui_properties.chart_data_model = args.chartDataModel;
         blueprintDirty = true;
       }
     });
 
-    $scope.blueprintUnchanged = function() {
+    vm.blueprintUnchanged = function() {
       return !blueprintDirty;
     };
 
@@ -60,61 +60,61 @@
       return blueprint;
     }
 
-    $scope.saveBlueprint = function() {
-      BlueprintsState.saveBlueprint($scope.blueprint).then(saveSuccess, saveFailure);
+    vm.saveBlueprint = function() {
+      BlueprintsState.saveBlueprint(vm.blueprint).then(saveSuccess, saveFailure);
 
       function saveSuccess(id) {
-        EventNotifications.success(sprintf(__("'%s' was succesfully saved."), $scope.blueprint.name));
+        EventNotifications.success(sprintf(__("'%s' was succesfully saved."), vm.blueprint.name));
         if (id) {
           $state.go($state.current, {blueprintId: id}, {reload: true});
         }
       }
 
       function saveFailure() {
-        EventNotifications.error(sprintf(__("Failed to save '%s'."), $scope.blueprint.name));
+        EventNotifications.error(sprintf(__("Failed to save '%s'."), vm.blueprint.name));
       }
     };
 
-    $scope.editDetails = function() {
-      $scope.loading = true;
-      BlueprintDetailsModal.showModal('edit', $scope.blueprint).then(
+    vm.editDetails = function() {
+      vm.loading = true;
+      BlueprintDetailsModal.showModal('edit', vm.blueprint).then(
         function() {
-          $scope.loading = false;
+          vm.loading = false;
         });
     };
 
-    $scope.itemsSelected = function() {
-      if ($scope.chartViewModel && $scope.chartViewModel.getSelectedNodes) {
-        return $scope.chartViewModel.getSelectedNodes().length > 0;
+    vm.itemsSelected = function() {
+      if (vm.chartViewModel && vm.chartViewModel.getSelectedNodes) {
+        return vm.chartViewModel.getSelectedNodes().length > 0;
       } else {
         return false;
       }
     };
 
-    $scope.onlyOneTtemSelected = function() {
-      if ($scope.chartViewModel && $scope.chartViewModel.getSelectedNodes) {
-        return $scope.chartViewModel.getSelectedNodes().length === 1;
+    vm.onlyOneTtemSelected = function() {
+      if (vm.chartViewModel && vm.chartViewModel.getSelectedNodes) {
+        return vm.chartViewModel.getSelectedNodes().length === 1;
       } else {
         return false;
       }
     };
 
-    $scope.duplicateSelectedItem = function() {
+    vm.duplicateSelectedItem = function() {
       $scope.$broadcast('duplicateSelectedItem');
       angular.element("#duplicateItem").blur();
     };
 
-    $scope.removeSelectedItemsFromCanvas = function() {
+    vm.removeSelectedItemsFromCanvas = function() {
       $scope.$broadcast('removeSelectedItems');
       angular.element("#removeItems").blur();
     };
 
     /*  Catalog Editor Toolbox Methods */
 
-    $scope.toolboxVisible = false;
+    vm.toolboxVisible = false;
 
-    $scope.showToolbox = function() {
-      $scope.toolboxVisible = true;
+    vm.showToolbox = function() {
+      vm.toolboxVisible = true;
       // add class to subtabs to apply PF style and
       // focus to filter input box
 
@@ -124,38 +124,38 @@
       });
     };
 
-    $scope.hideToolbox = function() {
-      $scope.toolboxVisible = false;
+    vm.hideToolbox = function() {
+      vm.toolboxVisible = false;
     };
 
     $scope.$on('clickOnChart', function(evt) {
-      $scope.hideToolbox();
+      vm.hideToolbox();
     });
 
-    $scope.tabClicked = function() {
+    vm.tabClicked = function() {
       angular.element("#filterFld").focus();
     };
 
-    $scope.inConnectingMode = false;
-    $scope.hideConnectors = false;
+    vm.inConnectingMode = false;
+    vm.hideConnectors = false;
 
     // broadcast hideConnectors change down to canvas
-    $scope.toggleshowHideConnectors = function() {
-      $scope.$broadcast('hideConnectors', {hideConnectors: $scope.hideConnectors});
+    vm.toggleshowHideConnectors = function() {
+      $scope.$broadcast('hideConnectors', {hideConnectors: vm.hideConnectors});
     };
 
     // listen for in connecting mode from canvas
     $scope.$on('inConnectingMode', function(evt, args) {
-      $scope.inConnectingMode = args.inConnectingMode;
-      $scope.hideConnectors = false;
+      vm.inConnectingMode = args.inConnectingMode;
+      vm.hideConnectors = false;
     });
 
-    $scope.tabs = DesignerState.getDesignerToolboxTabs($scope.$parent.vm.serviceTemplates);
+    vm.tabs = DesignerState.getDesignerToolboxTabs($scope.$parent.vm.serviceTemplates);
 
-    $scope.getNewItem = function() {
-      var activeTab = $scope.activeTab();
-      var activeSubTab = $scope.activeSubTab();
-      var activeSubSubTab = $scope.activeSubSubTab();
+    vm.getNewItem = function() {
+      var activeTab = vm.activeTab();
+      var activeSubTab = vm.activeSubTab();
+      var activeSubSubTab = vm.activeSubSubTab();
 
       if (activeSubSubTab && activeSubSubTab.newItem) {
         return activeSubSubTab.newItem;
@@ -172,14 +172,14 @@
       return null;
     };
 
-    $scope.activeTab = function() {
-      return $scope.tabs.filter(function(tab) {
+    vm.activeTab = function() {
+      return vm.tabs.filter(function(tab) {
         return tab.active;
       })[0];
     };
 
-    $scope.activeSubTab = function() {
-      var activeTab = $scope.activeTab();
+    vm.activeSubTab = function() {
+      var activeTab = vm.activeTab();
       if (activeTab && activeTab.subtabs) {
         return activeTab.subtabs.filter(function(subtab) {
           return subtab.active;
@@ -187,8 +187,8 @@
       }
     };
 
-    $scope.activeSubSubTab = function() {
-      var activeSubTab = $scope.activeSubTab();
+    vm.activeSubSubTab = function() {
+      var activeSubTab = vm.activeSubTab();
       if (activeSubTab && activeSubTab.subtabs) {
         return activeSubTab.subtabs.filter(function(subsubtab) {
           return subsubtab.active;

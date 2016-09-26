@@ -10,13 +10,13 @@
 
     var chartDataModel = {};
     var newNodeCount = 0;
-    if ($scope.$parent.blueprint.ui_properties && $scope.$parent.blueprint.ui_properties.chart_data_model) {
-      chartDataModel = $scope.$parent.blueprint.ui_properties.chart_data_model;
+    if ($scope.$parent.evm.blueprint.ui_properties && $scope.$parent.evm.blueprint.ui_properties.chart_data_model) {
+      chartDataModel = $scope.$parent.evm.blueprint.ui_properties.chart_data_model;
     }
 
     // Create the view-model for the chart and attach to the scope.
     vm.chartViewModel = new flowchart.ChartViewModel(chartDataModel);
-    $scope.$parent.chartViewModel = vm.chartViewModel;
+    $scope.$parent.evm.chartViewModel = vm.chartViewModel;
 
     $scope.$watch("vm.chartViewModel.data", function(oldValue, newValue) {
       if (!angular.equals(oldValue, newValue)) {
