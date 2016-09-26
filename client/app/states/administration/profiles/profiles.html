@@ -14,9 +14,7 @@
        confirmation-if="true"
        confirmation-trigger-value="vm.confirmDelete"
        confirmation-title="{{'Delete Profile'|translate}}"
-       confirmation-message="{{'Are you sure you want to delete profile ' +
-                               (vm.profileToDelete ? vm.profileToDelete.name : '') +
-                               '?'|translate}}"
+       confirmation-message="{{'Are you sure you want to delete profile [[profile_name]]?'|translate|substitute:{profile_name: vm.profileToDelete ? vm.profileToDelete.name : ''} }}"
        confirmation-ok-text="{{'Delete'|translate}}"
        confirmation-on-ok="vm.removeProfile(item)"
        confirmation-on-cancel="vm.cancelRemoveProfile(item)"
