@@ -42,7 +42,7 @@
         "properties": "always"
       }
     ],
-    "class-methods-use-this": "error",
+//    "class-methods-use-this": "error",
     "comma-dangle": [
       "error",
       "always-multiline"
@@ -74,7 +74,7 @@
     "dot-notation": "error",
     "eol-last": "error",
     "eqeqeq": "error",
-    "func-call-spacing": "error",
+//    "func-call-spacing": "error",
     "func-names": "off",
     "func-style": "off",
     "generator-star-spacing": "error",
@@ -131,10 +131,10 @@
     "max-params": "off",
     "max-statements": "off",
     "max-statements-per-line": "off",
-    "multiline-ternary": [
-      "error",
-      "never"
-    ],
+//    "multiline-ternary": [
+//      "error",
+//      "never"
+//    ],
     "new-parens": "error",
     "newline-after-var": "off",
     "newline-before-return": "error",
@@ -157,7 +157,7 @@
     "no-extra-label": "error",
     "no-extra-parens": "off",
     "no-floating-decimal": "error",
-    "no-global-assign": "error",
+//    "no-global-assign": "error",
     "no-implicit-coercion": [
       "error",
       {
@@ -215,7 +215,7 @@
     "no-spaced-func": "error",
     "no-sync": "error",
     "no-tabs": "off",
-    "no-template-curly-in-string": "error",
+//    "no-template-curly-in-string": "error",
     "no-ternary": "off",
     "no-throw-literal": "error",
     "no-trailing-spaces": "off",
@@ -224,7 +224,7 @@
     "no-underscore-dangle": "off",
     "no-unmodified-loop-condition": "error",
     "no-unneeded-ternary": "error",
-    "no-unsafe-negation": "error",
+//    "no-unsafe-negation": "error",
     "no-unused-expressions": "off",
     "no-unused-vars": "off",
     "no-use-before-define": "off",
@@ -301,7 +301,7 @@
       "always"
     ],
     "strict": "off",
-    "symbol-description": "error",
+//    "symbol-description": "error",
     "template-curly-spacing": "error",
     "unicode-bom": [
       "error",
