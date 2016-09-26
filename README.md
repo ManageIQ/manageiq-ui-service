@@ -10,47 +10,70 @@
 [![Translate](https://img.shields.io/badge/translate-zanata-blue.svg)](https://translate.zanata.org/zanata/project/view/manageiq-ui-self_service)
 [![License](http://img.shields.io/badge/license-APACHE2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-The Self Service UI for the [ManageIQ](http://github.com/ManageIQ/manageiq) project
+The Service UI (SUI) for the [ManageIQ](http://github.com/ManageIQ/manageiq) project.
 
-## Installation
+## Developer Setup
+Logging in to the SUI requires a running instance of ManageIQ. Instructions on how to install ManageIQ can be found 
+[here](https://github.com/ManageIQ/guides/blob/master/developer_setup.md).
 
-### Prerequisites
+### Install Repository and Prerequisites
 
-- Install nodejs 0.10.46 and npm 3.10.7
-- Install bower and gulp globally: `npm install -g bower gulp`
 - Have the [ManageIQ](http://github.com/ManageIQ/manageiq) repo cloned into a
   directory named `manageiq`, and ready to be started.
+- Have this repo as a sibling to the `manageiq` directory:
+`git clone git@github.com:ManageIQ/manageiq-ui-self_service.git`.
+- Have nodejs **0.10.46** and npm **3.10.7** installed ([NVM](https://github.com/creationix/nvm) is a popular solution 
+to manage node and npm versions).
+- Have Ruby version **2.2.2+** and the latest Bundler installed.
+  - `gem install bundler`
+- Have bower and gulp globally installed.
+  - `npm install -g bower gulp`
 
-### Repository and dependencies
+### Install Dependencies
 
-- Clone this repo as a sibling to the `manageiq` directory:
-  `git clone git@github.com:ManageIQ/manageiq-ui-self_service.git`
 - `cd manageiq-ui-self_service`
 - `bundle install`
 - `npm install`
+- `bower install`
 
-## Development
+### Setup
+    
+- From the `manageiq-ui-self_service` directory, build the production version of
+  the SUI. This task  will compile the assets and drop them into the `manageiq/public/self_service` directory.
+  - `gulp build`
 
-- In the `manageiq` directory, start the ManageIQ application with either
-  `bundle exec rake evm:start` or `bundle exec rails server`.  This will start
-  the server listening on http://localhost:3000, in order to serve up the REST
-  API.
-- In the `manageiq-ui-self_service` directory, start the development version of
-  the self service UI with `gulp serve-dev`, which will start the UI listening
-  on http://localhost:3001, and talking to the REST API at
-  http://[::1]:3000.  This command will also open a browser page to
-  http://localhost:3001/self_service/login.  
-  The REST API host can be overriden via a PROXY\_HOST environment variable, for
-  example: `PROXY_HOST=127.0.0.1:3000 gulp serve-dev`.
 
-## Deployment
+### Deployment
 
-- In the `manageiq-ui-self_service` directory, build the production version of
-  the self service UI with `gulp build`.  This will compile the assets and drop
-  them into the `manageiq/public/self_service` directory.  The ManageIQ
-  application can then be run with either `bundle exec rake evm:start` or
-  `bundle exec rails server`, and the self service UI can be accessed at
-  http://localhost:3000/self_service.
+- From the `manageiq` directory, start the ManageIQ application to initiate the server listening on 
+http://localhost:3000 order and serve up the REST API.
+  Either one of the following commands can be used.
+  - `bundle exec rails server`
+  - `bundle exec rake evm:start`
+ 
+- From the `manageiq-ui-self_service` directory, start the development version of
+  the self service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
+  _http://[::1]:3000_.  This command will also open a browser page to  _http://localhost:3001/self_service/login_.
+  - `gulp serve-dev`
+
+### Troubleshooting
+- When running ManageIQ with `bundle exec rake evm:start`, it may be necessary to override the REST API host via a 
+PROXY\_HOST environment variable.
+  - `PROXY_HOST=127.0.0.1:3000 gulp serve-dev`
+  
+- `ActiveRecord::ConnectionTimeoutError: could not obtain a connection from the pool within 5.000 seconds; all pooled 
+connections were in use` or `Error: socket hang up`
+might be caused to by lower than expected connection pool size this is remiedie by navitating to 
+`manageiq/config/database.yml` and increasing the `pool: xx` value.
+- For a full list of gulp tasks available to the SUI.
+  - `gulp help`
+
+## Documentation
+
+* [Coding Style and Standards](https://github.com/ManageIQ/manageiq/issues/8781)
+* [Internationalization Guidelines](i18n.md)
+* [Complete ManageIQ Documentation](https://github.com/ManageIQ/guides/blob/master/README.md)
+
 
 ## License
 
