@@ -2,11 +2,11 @@
 (function() {
   'use strict';
 
-  angular.module('app.states')
+  angular.module('app.components')
     .directive('rulesList', function() {
       return {
         restrict: 'AE',
-        templateUrl: "app/states/administration/rules/rules-list.html",
+        templateUrl: "app/components/rules/rules-list.html",
         scope: {
           arbitrationRules: "=",
           fields: "=",

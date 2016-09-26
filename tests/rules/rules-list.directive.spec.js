@@ -1,4 +1,3 @@
-/* jshint -W117, -W030 */
 describe('app.states.RulesListDirective', function() {
   var $scope;
   var $compile;

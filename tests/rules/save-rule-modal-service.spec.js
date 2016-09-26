@@ -1,4 +1,3 @@
-/* jshint -W117, -W030 */
 describe('app.components.SaveRuleModal', function() {
   beforeEach(function () {
     module('app.components', 'ui.bootstrap', 'gettext');

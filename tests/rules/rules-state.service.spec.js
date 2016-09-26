@@ -1,4 +1,3 @@
-/* jshint -W117, -W030 */
 describe('app.services.RulesState', function() {
   beforeEach(function () {
     module('app.services', 'app.config', 'app.states', 'gettext');
