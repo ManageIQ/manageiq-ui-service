@@ -10,7 +10,7 @@
 [![Translate](https://img.shields.io/badge/translate-zanata-blue.svg)](https://translate.zanata.org/zanata/project/view/manageiq-ui-self_service)
 [![License](http://img.shields.io/badge/license-APACHE2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-The Service UI (SUI) for the [ManageIQ](http://github.com/ManageIQ/manageiq) project.
+The Service UI (SUI) previously Self Service UI (SSUI), for the [ManageIQ](http://github.com/ManageIQ/manageiq) project.
 
 ## Developer Setup
 Logging in to the SUI requires a running instance of ManageIQ. Instructions on how to install ManageIQ can be found 
@@ -24,15 +24,12 @@ Logging in to the SUI requires a running instance of ManageIQ. Instructions on h
 `git clone git@github.com:ManageIQ/manageiq-ui-self_service.git`.
 - Have nodejs **0.10.46** and npm **3.10.7** installed ([NVM](https://github.com/creationix/nvm) is a popular solution 
 to manage node and npm versions).
-- Have Ruby version **2.2.2+** and the latest Bundler installed.
-  - `gem install bundler`
 - Have bower and gulp globally installed.
   - `npm install -g bower gulp`
 
 ### Install Dependencies
 
 - `cd manageiq-ui-self_service`
-- `bundle install`
 - `npm install`
 - `bower install`
 
