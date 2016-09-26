@@ -1,5 +1,4 @@
 /* eslint camelcase: "off" */
-/* eslint consistent-this: "off" */
 
 (function() {
   'use strict';
@@ -15,8 +14,8 @@
      * This method converts the service items on a blueprint's canvas into a structure
      * required for the DND Provision and Action Order Lists.
      */
-    orderListSrv.setOrderLists = function(vm) {
-      var blueprintServiceItems = vm.blueprint.ui_properties.chart_data_model.nodes;
+    orderListSrv.setOrderLists = function(obj) {
+      var blueprintServiceItems = obj.blueprint.ui_properties.chart_data_model.nodes;
       var items = angular.copy(blueprintServiceItems);
       var lists = [];
       var i, item, l, order;
@@ -62,10 +61,10 @@
       }
 
       // Set dndModels
-      vm.dndModels = {'provOrder': {}, 'actionOrder': {}};
+      obj.dndModels = {'provOrder': {}, 'actionOrder': {}};
 
       // lists[0] = prov. order list
-      vm.dndModels.provOrder = {
+      obj.dndModels.provOrder = {
         selected: null,
         list: lists[0].containers,
       };
@@ -73,47 +72,47 @@
       // lists[1] = action order list
       if (lists[1].containers.length) {  // does actionOrder list have any rows?
         // action order has unique order and is editable
-        vm.actionOrderEqualsProvOrder = false;
-        vm.dndModels.actionOrder = {
+        obj.actionOrderEqualsProvOrder = false;
+        obj.dndModels.actionOrder = {
           selected: null,
           list: lists[1].containers,
         };
       } else {
         // action order == prov. order
-        vm.actionOrderEqualsProvOrder = true;
-        orderListSrv.initActionOrderFromProvOrderList(vm);
+        obj.actionOrderEqualsProvOrder = true;
+        orderListSrv.initActionOrderFromProvOrderList(obj);
       }
     };
 
-    orderListSrv.initActionOrderFromProvOrderList = function(vm) {
+    orderListSrv.initActionOrderFromProvOrderList = function(obj) {
       // Make actionOrder list a new list, set parentListName to 'actionOrder'
-      var actionOrderList = angular.copy(vm.dndModels.provOrder.list);
+      var actionOrderList = angular.copy(obj.dndModels.provOrder.list);
       for (var l = 0; l < actionOrderList.length; l++) {
         for (var cols = 0; cols < actionOrderList[l].columns.length; cols++) {  // will be 2 columns
           for (var col = 0; col < actionOrderList[l].columns[cols].length; col++) {  // Number of items in a column
             var item = actionOrderList[l].columns[cols][col];
             item.parentListName = "actionOrder";
-            item.disabled = vm.actionOrderEqualsProvOrder;
+            item.disabled = obj.actionOrderEqualsProvOrder;
           }
         }
       }
 
       var lastrow = actionOrderList[actionOrderList.length - 1];
-      if (lastrow && vm.actionOrderEqualsProvOrder && lastrow.columns[0].length === 0 && lastrow.columns[1].length === 0) {
+      if (lastrow && obj.actionOrderEqualsProvOrder && lastrow.columns[0].length === 0 && lastrow.columns[1].length === 0) {
         // remove last empty row
         actionOrderList.splice(actionOrderList.length - 1, 1);
       }
 
-      vm.dndModels.actionOrder.list = actionOrderList;
+      obj.dndModels.actionOrder.list = actionOrderList;
     };
 
-    orderListSrv.saveOrder = function(orderType, vm) {
+    orderListSrv.saveOrder = function(orderType, obj) {
       var list;
 
       if (orderType === 'provisionOrder') {
-        list = vm.dndModels.provOrder.list;
+        list = obj.dndModels.provOrder.list;
       } else if (orderType === 'actionOrder') {
-        list = vm.dndModels.actionOrder.list;
+        list = obj.dndModels.actionOrder.list;
       }
 
       for (var i = 0; i < list.length; i++) {
@@ -122,20 +121,20 @@
           var items = container.columns[0].concat(container.columns[1]);
           for (var j = 0; j < items.length; j++) {
             var item = items[j];
-            orderListSrv.updateOrder(orderType, item, container.id - 1, vm);
+            orderListSrv.updateOrder(orderType, item, container.id - 1, obj);
           }
         }
       }
     };
 
-    orderListSrv.updateOrder = function(orderType, item, orderNum, vm) {
-      for (var i = 0; i < vm.blueprint.ui_properties.chart_data_model.nodes.length; i++) {
-        var node = vm.blueprint.ui_properties.chart_data_model.nodes[i];
+    orderListSrv.updateOrder = function(orderType, item, orderNum, obj) {
+      for (var i = 0; i < obj.blueprint.ui_properties.chart_data_model.nodes.length; i++) {
+        var node = obj.blueprint.ui_properties.chart_data_model.nodes[i];
         if (node.id === item.id && node.name === item.name) {
           if (orderType === 'provisionOrder') {
             node.provision_order = orderNum;
           } else if (orderType === 'actionOrder') {
-            if (vm.actionOrderEqualsProvOrder) {
+            if (obj.actionOrderEqualsProvOrder) {
               // remove action_order, defer to provision_order
               delete node.action_order;
             } else {
