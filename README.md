@@ -19,7 +19,8 @@ Logging in to the SUI requires a running instance of ManageIQ. Instructions on h
 ### Install Repository and Prerequisites
 
 - Have the [ManageIQ](http://github.com/ManageIQ/manageiq) repo cloned into a
-  directory named `manageiq`, and ready to be started.
+  directory named `manageiq`, and ready to be started. See [here](https://github.com/ManageIQ/guides/blob/master/developer_setup.md)
+  for the steps reqiured to setup ManageIQ.
 - Have this repo as a sibling to the `manageiq` directory:
 `git clone git@github.com:ManageIQ/manageiq-ui-self_service.git`.
 - Have nodejs **0.10.46** and npm **3.10.7** installed ([NVM](https://github.com/creationix/nvm) is a popular solution 
@@ -59,8 +60,8 @@ PROXY\_HOST environment variable.
   - `PROXY_HOST=127.0.0.1:3000 gulp serve-dev`
   
 - `ActiveRecord::ConnectionTimeoutError: could not obtain a connection from the pool within 5.000 seconds; all pooled 
-connections were in use` or `Error: socket hang up`
-might be caused to by lower than expected connection pool size this is remiedie by navitating to 
+connections were in use` or `Error: socket hang up` or ` Error: connect ECONNREFUSED`
+might be caused to by lower than expected connection pool size this is remedied by navigating to 
 `manageiq/config/database.yml` and increasing the `pool: xx` value.
 - For a full list of gulp tasks available to the SUI.
   - `gulp help`
