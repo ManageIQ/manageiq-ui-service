@@ -1,5 +1,3 @@
-/* eslint angular/controller-as: "off" */
-
 (function() {
   "use strict";
 
@@ -8,41 +6,43 @@
 
   /** @ngInject */
   function StateController($scope, $filter, DesignerState, $q, CollectionsApi, $log) {
+    var vm = this;
+
     var chartDataModel = {};
     var newNodeCount = 0;
-    if ($scope.$parent.blueprint.ui_properties && $scope.$parent.blueprint.ui_properties.chart_data_model) {
-      chartDataModel = $scope.$parent.blueprint.ui_properties.chart_data_model;
+    if ($scope.$parent.evm.blueprint.ui_properties && $scope.$parent.evm.blueprint.ui_properties.chart_data_model) {
+      chartDataModel = $scope.$parent.evm.blueprint.ui_properties.chart_data_model;
     }
 
     // Create the view-model for the chart and attach to the scope.
-    $scope.chartViewModel = new flowchart.ChartViewModel(chartDataModel);
-    $scope.$parent.chartViewModel = $scope.chartViewModel;
+    vm.chartViewModel = new flowchart.ChartViewModel(chartDataModel);
+    $scope.$parent.evm.chartViewModel = vm.chartViewModel;
 
-    $scope.$watch("chartViewModel.data", function(oldValue, newValue) {
+    $scope.$watch("vm.chartViewModel.data", function(oldValue, newValue) {
       if (!angular.equals(oldValue, newValue)) {
-        $scope.$emit('BlueprintCanvasChanged', {'chartDataModel': $scope.chartViewModel.data});
+        $scope.$emit('BlueprintCanvasChanged', {'chartDataModel': vm.chartViewModel.data});
       }
     }, true);
 
-    $scope.startCallback = function(event, ui, item) {
-      $scope.draggedItem = item;
+    vm.startCallback = function(event, ui, item) {
+      vm.draggedItem = item;
     };
 
-    $scope.dropCallback = function(event, ui) {
-      var newNode = angular.copy($scope.draggedItem);
+    vm.dropCallback = function(event, ui) {
+      var newNode = angular.copy(vm.draggedItem);
       if (newNode.type && newNode.type === 'new-generic') {
         newNode.name = 'New ' + newNode.name;
       } else {
-        $scope.draggedItem.disableInToolbox = true;
+        vm.draggedItem.disableInToolbox = true;
       }
       newNode.backgroundColor = '#fff';
       newNode.x = event.clientX - 350;
       newNode.y = event.clientY - 200;
-      $scope.addNewNode(newNode);
+      vm.addNewNode(newNode);
       newNodeCount++;
     };
 
-    $scope.addNodeByClick = function(item) {
+    vm.addNodeByClick = function(item) {
       var newNode = angular.copy(item);
       if (newNode.type && newNode.type === 'new-generic') {
         newNode.name = 'New ' + newNode.name;
@@ -53,20 +53,20 @@
       newNode.backgroundColor = '#fff';
       newNode.x = 250 + (newNodeCount * 4 + 160);
       newNode.y = 200 + (newNodeCount * 4 + 160);
-      $scope.addNewNode(newNode);
+      vm.addNewNode(newNode);
     };
 
-    $scope.addNewNode = function(newNode) {
+    vm.addNewNode = function(newNode) {
       if (!newNode.type || newNode.type !== 'new-generic') {
         getTags(newNode.id).then(function(tags) {
           newNode.tags = tags;
-          $scope.chartViewModel.addNode(newNode);
+          vm.chartViewModel.addNode(newNode);
         }, function() {
-          $scope.chartViewModel.addNode(newNode);
+          vm.chartViewModel.addNode(newNode);
         });
       } else {
         newNode.tags = [];
-        $scope.chartViewModel.addNode(newNode);
+        vm.chartViewModel.addNode(newNode);
       }
     };
 
@@ -112,15 +112,15 @@
     }
 
     $scope.$on('duplicateSelectedItem', function(evt, args) {
-      $scope.duplicateSelected();
+      vm.duplicateSelected();
     });
 
     $scope.$on('removeSelectedItems', function(evt, args) {
-      $scope.deleteSelected();
+      vm.deleteSelected();
     });
 
-    $scope.duplicateSelected = function() {
-      var dupNode = angular.copy($scope.chartViewModel.getSelectedNodes()[0]);
+    vm.duplicateSelected = function() {
+      var dupNode = angular.copy(vm.chartViewModel.getSelectedNodes()[0]);
 
       if (!dupNode) {
         return;
@@ -134,11 +134,11 @@
       dupNode.data.x = dupNode.data.x + 15 * copyName.numDups;
       dupNode.data.y = dupNode.data.y + 15 * copyName.numDups;
 
-      $scope.addNewNode(dupNode.data);
+      vm.addNewNode(dupNode.data);
     };
 
-    $scope.deleteSelected = function() {
-      var selectedNodes = $scope.chartViewModel.getSelectedNodes();
+    vm.deleteSelected = function() {
+      var selectedNodes = vm.chartViewModel.getSelectedNodes();
 
       // Re-Enable selectedNodes in toolbox
       for (var i = 0; i < selectedNodes.length; i++) {
@@ -148,7 +148,7 @@
         }
       }
 
-      $scope.chartViewModel.deleteSelected();
+      vm.chartViewModel.deleteSelected();
     };
 
     function getNewId() {
@@ -165,7 +165,7 @@
 
       baseName = baseName.substr(0, baseNameLength);
 
-      var filteredArray = $filter('filter')($scope.chartViewModel.data.nodes, {name: baseName}, false);
+      var filteredArray = $filter('filter')(vm.chartViewModel.data.nodes, {name: baseName}, false);
 
       var copyName = baseName + " Copy" + ((filteredArray.length === 1) ? "" : " " + filteredArray.length);
       var numDups = filteredArray.length;
@@ -221,7 +221,7 @@
         //
         // Ctrl + A
         //
-        $scope.chartViewModel.selectAll();
+        vm.chartViewModel.selectAll();
         args.origEvent.stopPropagation();
         args.origEvent.preventDefault();
       }
@@ -230,8 +230,8 @@
         //
         // Ctrl + D
         //
-        if ($scope.chartViewModel.getSelectedNodes().length === 1) {
-          $scope.duplicateSelected();
+        if (vm.chartViewModel.getSelectedNodes().length === 1) {
+          vm.duplicateSelected();
         }
         args.origEvent.stopPropagation();
         args.origEvent.preventDefault();
@@ -247,12 +247,12 @@
         //
         // Delete key.
         //
-        $scope.deleteSelected();
+        vm.deleteSelected();
       }
 
       if (args.origEvent.keyCode === escKeyCode) {
         // Escape.
-        $scope.chartViewModel.deselectAll();
+        vm.chartViewModel.deselectAll();
       }
 
       if (args.origEvent.keyCode === ctrlKeyCode) {
