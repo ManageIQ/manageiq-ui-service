@@ -69,16 +69,26 @@
     if (blueprint) {
       if (blueprintTags && blueprintTags.resources) {
         blueprint.tags = blueprintTags.resources;
+        angular.forEach(blueprint.tags, processTag);   // <--- Add this line
       }
       vm.blueprint = blueprint;
     }
+
+    function processTag(tag) {
+      if (tag.categorization && tag.categorization.display_name) {
+        tag.categorization.displayName = tag.categorization.display_name;
+
+        delete(tag.categorization.display_name);
+      }
+    }
+
     if (serviceTemplates) {
       vm.serviceTemplates = serviceTemplates.resources;
     }
 
     if (vm.blueprint && vm.serviceTemplates && vm.blueprint.ui_properties
-        && vm.blueprint.ui_properties.chart_data_model && vm.blueprint.ui_properties.chart_data_model.nodes
-        && vm.blueprint.ui_properties.chart_data_model.nodes.length > 0) {
+      && vm.blueprint.ui_properties.chart_data_model && vm.blueprint.ui_properties.chart_data_model.nodes
+      && vm.blueprint.ui_properties.chart_data_model.nodes.length > 0) {
       updateCanvasServiceTemplateNodes(vm.serviceTemplates, vm.blueprint.ui_properties.chart_data_model.nodes);
     }
 

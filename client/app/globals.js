@@ -1,3 +1,4 @@
+/* eslint angular/window-service: "off" */
 // overriden from gettext.config once the initialization is done
 if (!window.__) {
   window.__ = function(str) {

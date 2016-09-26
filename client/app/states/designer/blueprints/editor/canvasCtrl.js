@@ -79,7 +79,7 @@
         attributes: attributes,
       };
 
-      var collection = 'service_templates' + '/' + id + '/tags';
+      var collection = 'service_templates/' + id + '/tags';
 
       CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
 
@@ -95,8 +95,8 @@
           return {id: tag.id,
             category: {id: tag.category.id},
             categorization: {
-              display_name: tag.categorization.display_name,
-            }
+              displayName: tag.categorization.display_name,
+            },
           };
         }
 

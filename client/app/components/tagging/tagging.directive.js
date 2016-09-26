@@ -144,8 +144,8 @@
         return {id: tag.id,
                 category: {id: tag.category.id},
                 categorization: {
-                  display_name: tag.categorization.display_name,
-                }
+                  displayName: tag.categorization.display_name,
+                },
               };
       }
     }
