@@ -10,13 +10,13 @@
       };
     });
   /** @ngInject */
-  function ModalController(ServerInfo) {
+  function ModalController(ServerInfo, Text) {
     var vm = this;
     vm.additionalInfo = "";
     vm.copyright = __("Copyright (c) 2016 ManageIQ. Sponsored by Red Hat Inc.");
-    vm.imgAlt = __("ManageIQ logo");
+    vm.imgAlt = __("Product logo");
     vm.imgSrc = "images/login-screen-logo.png";
-    vm.title = __("ManageIQ UI Self Service");
+    vm.title = Text.app.name;
     ServerInfo.promise.then( function() {
       vm.productInfo = [
         { name: __('Version: '), value: ServerInfo.data.version },
@@ -31,5 +31,7 @@
     vm.onClose = function() {
       vm.isOpen = false;
     };
+    
+    return vm;
   }
 })();

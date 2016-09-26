@@ -50,8 +50,5 @@
     "spice-html5-bower": {
       "main": []
     }
-  },
-  "resolutions": {
-    "patternfly": "~3.11.0"
   }
 }
