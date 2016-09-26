@@ -13,7 +13,6 @@
    * @return {[type]}
    */
   function exceptionHandlerProvider() {
-    /* jshint validthis:true */
     this.config = {
       appErrorPrefix: undefined,
     };

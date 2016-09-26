@@ -1,4 +1,3 @@
-/* jshint -W117, -W030 */
 describe('404', function() {
   beforeEach(function() {
     module('app.states', 'app.config', 'gettext');

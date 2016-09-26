@@ -1,4 +1,3 @@
-/* jshint -W117, -W030 */
 describe('services.reconfigure', function() {
   beforeEach(function() {
     module('app.states', 'app.config', 'gettext', bard.fakeToastr);

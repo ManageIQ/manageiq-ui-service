@@ -24,7 +24,7 @@
 
     /** @ngInject */
     function draggableItemsController($scope, $filter, $log) {
-      var vm = this;  // jshint ignore:line
+      var vm = this;
 
       vm.clickCallbackfmDir = function(item) {
         if (!item.disableInToolbox) {

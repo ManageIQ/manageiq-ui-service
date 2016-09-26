@@ -1,4 +1,3 @@
-/* jshint -W117 */
 /* eslint camelcase: "off" */
 /* eslint angular/angularelement: "off" */
 

@@ -143,7 +143,6 @@
       };
 
       for (var k in short.requested) {
-        /* jshint -W089, -W083 */
         var r = short.requested[k];
 
         var match = lodash.find(short.available, function(a) {
