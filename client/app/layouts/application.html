@@ -8,6 +8,9 @@
          notification-body-include="{{vm.notificationHTML}}" notification-footer-include="{{vm.notificationFooterHTML}}"
          custom-scope="vm">
     </div>
+    <div pf-about-modal is-open="vm.about.isOpen" on-close="vm.onCloseAbout()" additional-info="vm.about.additionalInfo"
+         product-info="vm.about.productInfo" title="vm.about.title" copyright="vm.about.copyright" img-alt="vm.about.imgAlt" img-src="vm.about.imgSrc">
+    </div>
     <div>
       <ul class="nav navbar-nav">
         <li>
@@ -44,7 +47,10 @@
                 ManageIQ.org
               </a>
             </li>
-            <li about-modal>
+            <li>
+              <a href="#" ng-click="vm.openAbout()">
+                {{'About' | translate}}
+              </a>
             </li>
           </ul>
         </li>
