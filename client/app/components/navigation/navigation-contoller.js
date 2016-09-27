@@ -14,6 +14,7 @@
     '$modal',
     '$state',
     'EventNotifications',
+    'ServerInfo',
     NavigationCtrl]);
 
   /** @ngInject */
@@ -26,7 +27,8 @@
                           $scope,
                           $modal,
                           $state,
-                          EventNotifications) {
+                          EventNotifications,
+                          ServerInfo) {
     var vm = this;
     vm.text = Text.app;
     vm.user = Session.currentUser;
@@ -115,6 +117,30 @@
     vm.notificationFooterHTML = 'app/components/notifications/notification-footer.html';
     vm.updateViewingToast = updateViewingToast;
     vm.handleDismissToast = handleDismissToast;
+
+    vm.about = {
+      isOpen: false,
+      additionalInfo: "",
+      copyright: __("Copyright (c) 2016 ManageIQ. Sponsored by Red Hat Inc."),
+      imgAlt: __("Product logo"),
+      imgSrc: "images/login-screen-logo.png",
+      title: Text.app.name,
+    };
+
+    ServerInfo.promise.then( function() {
+      vm.about.productInfo = [
+        { name: __('Version: '), value: ServerInfo.data.version },
+        { name: __('Server Name: '), value: ServerInfo.data.server },
+        { name: __('User Name: '), value: ServerInfo.data.user },
+        { name: __('User Role: '), value: ServerInfo.data.role },
+      ];
+    });
+    vm.openAbout = function() {
+      vm.about.isOpen = true;
+    };
+    vm.onCloseAbout = function() {
+      vm.about.isOpen = false;
+    };
 
     function getNavigationItems(items) {
       vm.items.splice(0, vm.items.length);
