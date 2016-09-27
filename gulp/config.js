@@ -61,7 +61,7 @@ module.exports = (function() {
   var serverApp = server + 'app.js';
 
   function getClientJsFiles(ordered, includeSpecs) {
-    var files = [client + 'app/**/*.js', client + 'app/skin/**/*.js'];
+    var files = [client + 'app/**/*.js', client + 'skin/**/*.js'];
 
     if (ordered) {
       files = [].concat(client + 'app/globals.js', client + 'app/app.module.js', client + 'app/**/*module*.js', files)
