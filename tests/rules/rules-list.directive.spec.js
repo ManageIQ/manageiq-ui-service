@@ -269,7 +269,7 @@ describe('app.states.RulesListDirective', function() {
       eventFire(angular.element(removeButton[0]).parent(), 'click');
       $scope.$digest();
 
-      var modalMessage = $document.find('.modal-body .confirmation__message');
+      var modalMessage = $document.find('#confirmDeleteRule .modal-body .confirmation__message');
       expect(modalMessage.length).to.eq(1);
     });
   });

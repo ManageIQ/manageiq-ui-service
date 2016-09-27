@@ -9,6 +9,7 @@
     var directive = {
       restrict: 'AE',
       scope: {
+        id: '@?confirmationId',
         position: '@?confirmationPosition',
         title: '@?confirmationTitle',
         message: '@?confirmationMessage',
