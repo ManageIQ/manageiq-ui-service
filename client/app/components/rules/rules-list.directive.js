@@ -44,36 +44,35 @@
       return compValue;
     };
 
-    var updateRuleInfo = function(rule) {
-      if (rule.expression && rule.expression.exp) {
-        if (rule.expression.exp.EQUAL) {
-          rule.operator = vm.operators[0];
-          rule.field = rule.expression.exp.EQUAL.field;
-          rule.value = rule.expression.exp.EQUAL.value;
-        } else if (rule.expression.exp.NOT) {
-          rule.operator = vm.operators[1];
-          rule.field = rule.expression.exp.NOT.field;
-          rule.value = rule.expression.exp.NOT.value;
-        } else {
-          rule.operator = vm.operators[0];
-        }
-      } else {
-        rule.operator = vm.operators[0];
-      }
-
-      if (vm.profiles && vm.profiles.length > 0) {
-        var profile = vm.profiles.find(function(nextProfile) {
-          return nextProfile.id === rule.arbitration_profile_id;
-        });
-        if (profile) {
-          rule.profileName = profile.name;
-        }
-      }
-    };
-
     var updateRulesInfo = function() {
+      var exp, operator;
+
       angular.forEach(vm.arbitrationRules, function(rule) {
-        updateRuleInfo(rule);
+        operator = vm.operators[0];
+
+        if (rule.expression && rule.expression.exp) {
+          if (rule.expression.exp.NOT) {
+            operator = vm.operators[1];
+          }
+          exp = rule.expression.exp[operator.value];
+        } else {
+          exp = null;
+        }
+
+        rule.operator = operator.name;
+        if (exp) {
+          rule.field = exp.field;
+          rule.value = exp.value;
+        }
+
+        if (vm.profiles && vm.profiles.length > 0) {
+          var profile = vm.profiles.find(function(nextProfile) {
+            return nextProfile.id === rule.arbitration_profile_id;
+          });
+          if (profile) {
+            rule.profileName = profile.name;
+          }
+        }
       });
 
       vm.arbitrationRules.sort(compareRules);
@@ -91,8 +90,9 @@
       };
 
       var operator = vm.operators.find(function(nextOperator) {
-        return nextOperator.name === rule.operator.name;
+        return nextOperator.name === rule.operator;
       });
+
       if (operator.value === "EQUAL") {
         ruleObj.expression = {
           EQUAL: fieldObj,
@@ -168,15 +168,21 @@
       }
     };
 
+    var getNames = function(objects) {
+      var names = [];
+
+      if (objects && objects.length > 0) {
+        angular.forEach(objects, function(nextObject) {
+          names.push(nextObject.name);
+        });
+      }
+
+      return names;
+    };
+
     vm.title = __('Rules');
-    vm.profileNames = [];
-    angular.forEach(vm.profiles, function(profile) {
-      vm.profileNames.push(profile.name);
-    });
-    vm.operatorNames = [];
-    angular.forEach(vm.operators, function(operator) {
-      vm.operatorNames.push(operator.name);
-    });
+    vm.profileNames = getNames(vm.profiles);
+    vm.operatorNames = getNames(vm.operators);
     vm.updatePriorities = false;
     vm.editMode = false;
 
@@ -202,8 +208,6 @@
       }
 
       function save() {
-        vm.editMode = false;
-        vm.saveModalShown = false;
         function saveSuccess() {
           $state.go(toState, toParams);
         }
@@ -220,8 +224,6 @@
       }
 
       function doNotSave() {
-        vm.editMode = false;
-        vm.saveModalShown = false;
         $state.go(toState, toParams);
       }
 
@@ -233,10 +235,9 @@
     vm.addRule = function() {
       var newRule = {
         operation: 'inject',
-        operator: vm.operators[0],
+        operator: vm.operators[0].name,
         editMode: true,
       };
-      updateRuleInfo(newRule);
 
       vm.arbitrationRules.splice(0, 0, newRule);
       updateRulesPriorities(false);
@@ -248,7 +249,7 @@
       rule.editMode = true;
       rule.original = {
         field: rule.field,
-        operator: rule.operator.value,
+        operator: rule.operator,
         value: rule.value,
         arbitration_profile_id: rule.arbitration_profile_id,
       };
@@ -278,9 +279,7 @@
         updateRulesPriorities(false);
       } else {
         rule.field = rule.original.field;
-        rule.operator = vm.operators.find(function(nextOperator) {
-          return nextOperator.value === rule.original.operator;
-        });
+        rule.operator = rule.original.operator;
         rule.value = rule.original.value;
         rule.profile = rule.original.profile;
         rule.original = undefined;
@@ -337,23 +336,24 @@
       updateRulesPriorities(true);
     };
 
-    vm.downPriority = function(rule) {
+    var moveRule = function(rule, delta) {
       var index = vm.arbitrationRules.indexOf(rule);
-      if (index >= 0 && index < vm.arbitrationRules.length) {
+      var newPosition = index + delta;
+      if (index >= 0 && newPosition >= 0 && newPosition < vm.arbitrationRules.length) {
         vm.arbitrationRules.splice(index, 1);
-        vm.arbitrationRules.splice(index + 1, 0, rule);
+        vm.arbitrationRules.splice(newPosition, 0, rule);
+        updateRulesPriorities(true);
       }
-      updateRulesPriorities(true);
+    };
+
+    vm.downPriority = function(rule) {
+      moveRule(rule, 1);
     };
 
     vm.upPriority = function(rule) {
-      var index = vm.arbitrationRules.indexOf(rule);
-      if (index > 0) {
-        vm.arbitrationRules.splice(index, 1);
-        vm.arbitrationRules.splice(index - 1, 0, rule);
-      }
-      updateRulesPriorities(true);
+      moveRule(rule, -1);
     };
+
     vm.dropCallback = function(event, ui, item, index) {
       $log.debug("Dropped " + item.value + " at index " + index);
     };
