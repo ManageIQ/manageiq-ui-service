@@ -13,7 +13,8 @@ module.exports = (function() {
   var reports = './reports/';
   var bower = './bower_components/';
   var nodeModules = './node_modules/';
-
+  var styles = 'templates/styles.html';
+  var javascripts = 'templates/javascripts.html';
   var config = {};
 
   /**
@@ -276,7 +277,7 @@ module.exports = (function() {
   // This task will also inject the application JavaScript
   // The inject task will inject the application CSS
   config.wiredep = {
-    index: client + indexFile,
+    index: [client + javascripts, client + styles],
     build: client,
     options: wiredepOptions,
     files: getClientJsFiles(true, false),
@@ -285,7 +286,7 @@ module.exports = (function() {
 
   // task inject: Injects the application CSS (compiled from Sass) into index.html
   config.inject = {
-    index: client + indexFile,
+    index: client + 'styles.html',
     build: client,
     css: [
       temp + 'styles/' + cssFile,
