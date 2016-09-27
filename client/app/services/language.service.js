@@ -101,6 +101,8 @@
 
       var code = getLocale(data);
       setLocale(code);
+      
+      return data;
     }
 
     function save(code) {
