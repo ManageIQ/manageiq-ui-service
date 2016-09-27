@@ -5,7 +5,7 @@
       .factory('ProfilesState', ProfilesStateFactory);
 
   /** @ngInject */
-  function ProfilesStateFactory(CollectionsApi, EventNotifications, sprintf, $q) {
+  function ProfilesStateFactory(CollectionsApi, EventNotifications, sprintf) {
     var profileState = {};
 
     profileState.providersInfo = [
@@ -151,34 +151,24 @@
     };
 
     profileState.addProfile = function(profileObj) {
-      var deferred = $q.defer();
-
-      CollectionsApi.post('arbitration_profiles', null, {}, profileObj).then(createSuccess, createFailure);
-
       function createSuccess(response) {
         EventNotifications.success(sprintf(__("Profile %s was created."), profileObj.name));
-        deferred.resolve(response.results[0].id);
       }
 
       function createFailure() {
         EventNotifications.error(sprintf(__("There was an error creating profile %s."), profileObj.name));
-        deferred.reject();
       }
 
-      return deferred.promise;
+      return CollectionsApi.post('arbitration_profiles', null, {}, profileObj).then(createSuccess, createFailure);
     };
 
     profileState.editProfile = function(profile) {
-      var deferred = $q.defer();
-
       var editSuccess = function(response) {
         EventNotifications.success(sprintf(__('Profile %s was successfully updated.'), profile.name));
-        deferred.resolve(response.id);
       };
 
       var editFailure = function() {
         EventNotifications.error(sprintf(__('There was an error updating profile %s.'), profile.name));
-        deferred.reject();
       };
 
       var editObj = {
@@ -186,14 +176,10 @@
         "resources": [profile],
       };
 
-      CollectionsApi.post('arbitration_profiles', null, {}, editObj).then(editSuccess, editFailure);
-
-      return deferred.promise;
+      return CollectionsApi.post('arbitration_profiles', null, {}, editObj).then(editSuccess, editFailure);
     };
 
     profileState.deleteProfiles = function(profileIds) {
-      var deferred = $q.defer();
-
       var resources = [];
       for (var i = 0; i < profileIds.length; i++) {
         resources.push({id: profileIds[i]});
@@ -204,19 +190,16 @@
         resources: resources,
       };
 
-      CollectionsApi.post('arbitration_profiles', null, {}, profileObj).then(deleteSuccess, deleteFailure);
 
       function deleteSuccess() {
         EventNotifications.success(__('Profile(s) were succesfully deleted.'));
-        deferred.resolve();
       }
 
       function deleteFailure() {
         EventNotifications.error(__('There was an error deleting the profile(s).'));
-        deferred.reject();
       }
 
-      return deferred.promise;
+      return CollectionsApi.post('arbitration_profiles', null, {}, profileObj).then(deleteSuccess, deleteFailure);
     };
 
     return profileState;
