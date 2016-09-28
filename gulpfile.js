@@ -56,7 +56,7 @@ gulp.task('available-languages', task('available-languages'));
  * Build tasks
  */
 gulp.task('devInject', ['wiredep', 'sass', 'templatecache'], task('inject'));
-gulp.task('buildInject', ['buildWiredep', 'buildSass', 'buildTemplatecache'], task('inject',{key: 'buildInject'}));
+gulp.task('buildInject', ['buildWiredep', 'buildSass', 'buildTemplatecache'], task('inject', {key: 'buildInject'}));
 gulp.task('optimize', ['buildInject', 'devInject'], task('optimize'));
 gulp.task('build', ['optimize', 'images', 'imgs', 'skin-images', 'fonts', 'gettext-copy', 'console-copy', 'available-languages'], task('build'));
 gulp.task('build-specs', ['templatecache'], task('buildSpecs'));

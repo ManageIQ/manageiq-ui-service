@@ -2,7 +2,7 @@
 
 module.exports = function() {
   var service = {
-    proxyHost: proxyHost ,
+    proxyHost: proxyHost,
     proxyErrorHandler: proxyErrorHandler
   };
 
@@ -10,22 +10,22 @@ module.exports = function() {
 
 // Private
 
-  function proxyHost(){
+  function proxyHost() {
     return process.env.PROXY_HOST || '[::1]:3000';
   }
 
   function proxyErrorHandler(req, res) {
     return function(err, data) {
-      if (!err)
+      if (!err) {
         return;
+      }
 
       res.writeHead(500, {
-        'Content-Type': 'text/plain'
+        'Content-Type': 'text/plain',
       });
 
       res.end('Something went wrong: ' + err);
       console.error(err);
     }
   }
-
 };

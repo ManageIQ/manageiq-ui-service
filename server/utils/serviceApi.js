@@ -3,14 +3,14 @@
 var express = require('express');
 var httpProxy = require('http-proxy');
 var url = require('url');
-var proxy = require('./proxy')();
+var proxyService = require('./proxy')();
 
 
 var router = express.Router();
 
-var proxyHost = proxy.proxyHost();
+var proxyHost = proxyService.proxyHost();
 var proxyTarget = 'http://' + proxyHost + '/api';
-var proxyErrorHandler = proxy.proxyErrorHandler;
+var proxyErrorHandler = proxyService.proxyErrorHandler;
 
 var proxy = httpProxy.createProxyServer({
   target: proxyTarget,

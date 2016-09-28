@@ -6,7 +6,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var httpProxy = require('http-proxy');
 var four0four = require('./utils/404')();
-var proxy = require('./utils/proxy')();
+var proxyService = require('./utils/proxy')();
 var serviceApp = require('./utils/serviceApp');
 var serviceApi = require('./utils/serviceApi');
 
@@ -44,8 +44,8 @@ switch (environment) {
     app.use('/*', express.static('./public/index.html'));
     break;
   default:
-    var proxyHost = proxy.proxyHost();
-    var proxyErrorHandler = proxy.proxyErrorHandler;
+    var proxyHost = proxyService.proxyHost();
+    var proxyErrorHandler = proxyService.proxyErrorHandler;
 
     console.log('** DEV **');
     app.use(express.static('./'));
