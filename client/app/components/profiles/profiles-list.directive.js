@@ -24,10 +24,7 @@
     vm.arbitrationProfilesList = [];
     vm.confirmDelete = false;
 
-    var providerTypes = [];
-    angular.forEach(ProfilesState.providersInfo, function(info) {
-      providerTypes.push(info.title);
-    });
+    var providerTypes = ProfilesState.getProviderTypes();
 
     var updateProfileInfo = function(profile) {
       profile.providerType = ProfilesState.getProviderType(profile.ext_management_system);

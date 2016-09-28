@@ -26,11 +26,7 @@
 
   /** @ngInject */
   function resolveProfile($stateParams, ProfilesState) {
-    if ($stateParams.profileId) {
-      return ProfilesState.getProfileDetails($stateParams.profileId);
-    } else {
-      return null;
-    }
+    return ProfilesState.getProfileDetails($stateParams.profileId);
   }
 
   /** @ngInject */
