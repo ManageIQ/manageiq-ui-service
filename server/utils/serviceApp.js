@@ -1,3 +1,6 @@
+/* eslint-disable no-undef, angular/log */
+
+
 'use strict';
 
 var express = require('express');

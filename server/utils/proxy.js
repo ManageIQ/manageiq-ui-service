@@ -1,9 +1,11 @@
+/* eslint-disable no-undef, no-console, no-process-env, angular/log */
+
 'use strict';
 
 module.exports = function() {
   var service = {
     proxyHost: proxyHost,
-    proxyErrorHandler: proxyErrorHandler
+    proxyErrorHandler: proxyErrorHandler,
   };
 
   return service;
@@ -26,6 +28,6 @@ module.exports = function() {
 
       res.end('Something went wrong: ' + err);
       console.error(err);
-    }
+    };
   }
 };

@@ -1,3 +1,5 @@
+/* eslint-disable no-undef, no-console, no-process-env, angular/log, no-path-concat */
+
 'use strict';
 
 var express = require('express');
