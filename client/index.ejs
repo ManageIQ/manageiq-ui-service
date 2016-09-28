@@ -13,16 +13,16 @@
     [ng-cloak] {
       display: none;
     }
+
     [ng-cloak].splash {
       display: block !important;
     }
+
     .splash {
       display: none;
       background-color: #428bca;
     }
   </style>
-
-  <%- include styles.html %>
 
   <!-- build:css styles/lib.css -->
   <!-- bower:css -->
@@ -33,6 +33,9 @@
   <!-- inject:css -->
   <!-- endinject -->
   <!-- endbuild -->
+
+  <!-- <%- include styles.html %> -->
+
 </head>
 <body ng-controller="AppController as vm"
       ng-keydown="vm.keyDown($event)"
@@ -45,7 +48,7 @@
 
 <ui-view></ui-view>
 
-<%- include javascripts.html %>
+<!-- <%- include javascripts.html %> -->
 
 <!-- build:js js/lib.js -->
 <!-- bower:js -->
