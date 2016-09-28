@@ -2,6 +2,7 @@
   <div pf-toolbar class="arbitration-rules-toolbar" id="arbitrationProfilesToolbar" config="vm.toolbarConfig"></div>
   <div class="list-view-container"
        confirmation
+       confirmation-id="confirmDeleteProfile"
        confirmation-trigger-value="vm.confirmDelete"
        confirmation-title="{{'Delete Profile'|translate}}"
        confirmation-message="{{'Are you sure you want to delete profile [[profile_name]]?'|translate|substitute:{profile_name: vm.profileToDelete ? vm.profileToDelete.name : ''} }}"
