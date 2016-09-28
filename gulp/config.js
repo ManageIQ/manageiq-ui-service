@@ -13,14 +13,14 @@ module.exports = (function() {
   var reports = './reports/';
   var bower = './bower_components/';
   var nodeModules = './node_modules/';
-  var styles = 'templates/styles.html';
-  var javascripts = 'templates/javascripts.html';
+  var styles = 'partials/styles.html';
+  var javascripts = 'partials/javascripts.html';
   var config = {};
 
   /**
    * Files
    */
-  var indexFile = 'index.html';
+  var indexFile = 'index.ejs';
   var specsFile = 'specs.html';
   var cssFile = 'styles.css';
   var sassFiles = [

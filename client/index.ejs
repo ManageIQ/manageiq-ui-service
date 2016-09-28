@@ -21,6 +21,9 @@
       background-color: #428bca;
     }
   </style>
+
+  <%- include styles.html %>
+
   <!-- build:css styles/lib.css -->
   <!-- bower:css -->
   <!-- endbower -->
@@ -34,24 +37,27 @@
 <body ng-controller="AppController as vm"
       ng-keydown="vm.keyDown($event)"
       ng-keyup="vm.keyUp($event)">
-  <div class="ng-cloak splash">
-    <div class="splash__overlay">
-      <div class="splash__message"></div>
-    </div>
+<div class="ng-cloak splash">
+  <div class="splash__overlay">
+    <div class="splash__message"></div>
   </div>
+</div>
 
-  <ui-view></ui-view>
+<ui-view></ui-view>
 
-  <!-- build:js js/lib.js -->
-  <!-- bower:js -->
-  <!-- endbuild -->
+<%- include javascripts.html %>
 
-  <!-- build:js js/app.js-->
-  <!-- inject:js -->
-  <!-- endinject -->
+<!-- build:js js/lib.js -->
+<!-- bower:js -->
+<!-- endbower -->
+<!-- endbuild -->
 
-  <!-- inject:templates:js -->
-  <!-- endinject -->
-  <!-- endbuild -->
+<!-- build:js js/app.js-->
+<!-- inject:js -->
+<!-- endinject -->
+
+<!-- inject:templates:js -->
+<!-- endinject -->
+<!-- endbuild -->
 </body>
 </html>

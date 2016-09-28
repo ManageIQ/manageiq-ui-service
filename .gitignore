@@ -25,5 +25,5 @@ reports
 
 ### Project Files ###
 .idea*
-/client/javascripts.html
-/client/styles.html
+client/javascripts.html
+client/styles.html

@@ -17,8 +17,7 @@ var environment = process.env.NODE_ENV;
 
 // view engine setup
 app.set('views', './client');
-app.set('view engine', 'html');
-app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
 
 // Api
 app.use('/api', serviceApi);
