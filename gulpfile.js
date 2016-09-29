@@ -69,9 +69,9 @@ gulp.task('testonly', ['templatecache'], task('test', {singleRun: true}));
 gulp.task('autotest', task('test', {singleRun: false}));
 
 /**
- * Serves up injected html for dev, builds for evything else.
+ * Serves up injected html for dev, builds for everything else.
  */
-gulp.task('serve-dev', ['dev-fonts', 'dev-images', 'dev-skin-images', 'dev-imgs', 'inject', 'available-languages'], task('serve', {
+gulp.task('serve-dev', ['dev-fonts', 'dev-images', 'dev-skin-images', 'dev-imgs', 'devInject', 'available-languages'], task('serve', {
   isDev: true,
   specRunner: false
 }));
