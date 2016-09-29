@@ -366,7 +366,10 @@ module.exports = (function() {
       temp + '**/*.css'
     ],
     browserSyncOptions: {
-      proxy: 'localhost:' + (process.env.PORT || '8001'),
+      proxy: {
+        target: 'localhost:' + (process.env.PORT || '8001'),
+        ws: true,
+      },
       port: 3001,
       startPath: '/self_service/',
       files: [],
