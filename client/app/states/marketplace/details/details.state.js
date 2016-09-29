@@ -98,7 +98,11 @@
       .then(addSuccess, addFailure);
 
       function addSuccess(result) {
-        Notifications.success(__("Item added to shopping cart"));
+        if (result.duplicate) {
+          Notifications.success(__("Item added to shopping cart, but it's a duplicate of an existing item"));
+        } else {
+          Notifications.success(__("Item added to shopping cart"));
+        }
       }
 
       function addFailure(result) {

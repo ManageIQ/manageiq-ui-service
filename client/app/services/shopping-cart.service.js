@@ -98,16 +98,20 @@
     function add(item) {
       return persistence.addItem(item.data)
       .then(function(response) {
-        state.items.push({
+        var i = {
           id: response.service_request_id,
           description: item.description,
 
           // for duplicate detection
           data: item.data,
-        });
+        };
+
+        state.items.push(i);
 
         dedup();
         notify();
+
+        return i;
       });
     }
 
