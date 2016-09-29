@@ -101,7 +101,12 @@
         state.items.push({
           id: response.service_request_id,
           description: item.description,
+
+          // for duplicate detection
+          data: item.data,
         });
+
+        dedup();
         notify();
       });
     }
@@ -137,6 +142,7 @@
           return i.id !== item.id;
         });
 
+        dedup();
         notify();
       });
     }
@@ -156,6 +162,37 @@
 
     function allowed() {
       return RBAC.has('svc_catalog_provision');
+    }
+
+    function dedup() {
+      var potential = [];
+
+      state.items.forEach(function(item) {
+        if (!item.data) {
+          return;
+        }
+
+        item.duplicate = [];
+        potential.push(item);
+      });
+
+      for (var i = 0; i < potential.length - 1; i++) {
+        for (var j = i + 1; j < potential.length; j++) {
+          var a = potential[i];
+          var b = potential[j];
+
+          if (angular.equals(a.data, b.data)) {
+            a.duplicate.push(b.id);
+            b.duplicate.push(a.id);
+          }
+        }
+      }
+
+      potential.forEach(function(item) {
+        if (item.duplicate && !item.duplicate.length) {
+          delete item.duplicate;
+        }
+      });
     }
   }
 })();
