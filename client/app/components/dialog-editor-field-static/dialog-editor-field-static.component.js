@@ -21,15 +21,15 @@
               default_value: "",
               values_method_options: {},
               options: {
-                protected: false
+                protected: false,
               },
               label: __("Label"),
               position: 0,
               resource_action: {
                 resource_type: "DialogField",
-                ae_attributes: {}
-              }
-            }
+                ae_attributes: {},
+              },
+            },
           },
           dialogFieldTextAreaBox: {
             icon: "fa fa-file-text-o",
@@ -49,9 +49,9 @@
               position: 0,
               resource_action: {
                 resource_type: "DialogField",
-                ae_attributes: {}
-              }
-            }
+                ae_attributes: {},
+              },
+            },
           },
           dialogFieldCheckBox: {
             icon: "fa fa-check-square-o",
@@ -71,9 +71,9 @@
               position: 0,
               resource_action: {
                 resource_type: "DialogField",
-                ae_attributes: {}
-              }
-            }
+                ae_attributes: {},
+              },
+            },
           },
           dialogFieldDropDownList: {
             icon: "fa fa-caret-square-o-down",
@@ -94,9 +94,9 @@
               values_method_options: {},
               options: {
                 sort_by: "description",
-                sort_order: "ascending"
+                sort_order: "ascending",
               },
-            }
+            },
           },
           dialogFieldRadioButton: {
             icon: "fa fa-circle-o",
@@ -115,15 +115,15 @@
               values_method_options: {},
               options: {
                 sort_by: "description",
-                sort_order: "ascending"
+                sort_order: "ascending",
               },
               label: __("Label"),
               position: 3,
               resource_action: {
                 resource_type: "DialogField",
-                ae_attributes: {}
-              }
-            }
+                ae_attributes: {},
+              },
+            },
           },
           dialogFieldDateControl: {
             icon: "fa fa-calendar",
@@ -138,15 +138,15 @@
               required_method_options: {},
               values_method_options: {},
               options: {
-                show_past_dates: false
+                show_past_dates: false,
               },
               label: __("Label"),
               position: 0,
               resource_action: {
                 resource_type: "DialogField",
-                ae_attributes: {}
-              }
-            }
+                ae_attributes: {},
+              },
+            },
           },
           dialogFieldDateTimeControl: {
             icon: "fa fa-clock-o",
@@ -161,19 +161,19 @@
               required_method_options: {},
               values_method_options: {},
               options: {
-                show_past_dates: false
+                show_past_dates: false,
               },
               label: __("Label"),
               position: 0,
               resource_action: {
                 resource_type: "DialogField",
-                ae_attributes: {}
-              }
-            }
+                ae_attributes: {},
+              },
+            },
           },
         };
       },
       controllerAs: 'dialogEditorFieldStatic',
-      templateUrl: 'app/components/dialog-editor-field-static/dialog-editor-field-static.html'
+      templateUrl: 'app/components/dialog-editor-field-static/dialog-editor-field-static.html',
     });
 })();

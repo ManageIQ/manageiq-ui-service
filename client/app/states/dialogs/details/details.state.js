@@ -18,9 +18,9 @@
         controllerAs: 'vm',
         title: N_('Dialog Detail'),
         resolve: {
-          dialog: resolveDialog
-        }
-      }
+          dialog: resolveDialog,
+        },
+      },
     };
   }
 

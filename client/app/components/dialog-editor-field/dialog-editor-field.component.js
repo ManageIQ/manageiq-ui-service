@@ -15,6 +15,6 @@
         };
       },
       controllerAs: 'dialogEditorField',
-      templateUrl: 'app/components/dialog-editor-field/dialog-editor-field.html'
+      templateUrl: 'app/components/dialog-editor-field/dialog-editor-field.html',
     });
 })();

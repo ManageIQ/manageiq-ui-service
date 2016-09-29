@@ -18,9 +18,9 @@
         controllerAs: 'vm',
         title: N_('Dialog Editing'),
         resolve: {
-          dialog: resolveDialog
-        }
-      }
+          dialog: resolveDialog,
+        },
+      },
     };
   }
 
@@ -35,9 +35,9 @@
             "label": "New tab",
             "position": 0,
             "dialog_groups": [
-            ]
-          }]
-        }]
+            ],
+          }],
+        }],
       };
     }
 
@@ -67,7 +67,7 @@
         dialog_tabs: [],
       };
       DialogEditor.getData().content[0].dialog_tabs.forEach(function(tab) {
-        delete tab.active
+        delete tab.active;
         dialogData.dialog_tabs.push(tab);
       });
 
