@@ -19,7 +19,7 @@
       </div>
 
       <div class="col-md-1">
-        <span class="no-wrap">
+        <span id="numItems_{{$index}}" class="no-wrap">
           {{ item.ui_properties.num_items }} <span translate>Items</span>
         </span>
       </div>
@@ -33,7 +33,7 @@
         </span>
       </div>
       <div class="col-md-2">
-        <span class="no-wrap">
+        <span id="catalogName_{{$index}}" class="no-wrap">
           {{ (item.ui_properties.service_catalog ? item.ui_properties.service_catalog.name : "Unassigned")|translate }}
         </span>
       </div>
