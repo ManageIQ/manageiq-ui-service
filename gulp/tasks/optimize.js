@@ -8,6 +8,7 @@ var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
+var rename = require('gulp-rename');
 var getHeader = require('../utils/getHeader');
 var inject = require('../utils/inject');
 var log = require('../utils/log');
@@ -30,6 +31,7 @@ module.exports = function(gulp, options) {
     var jslibFilter = filter(config.libJsFilter);
 
     return gulp.src(config.index)
+      .pipe(rename("index.html"))
       .pipe(plumber())
       .pipe(inject(config.templateCache, 'templates'))
       .pipe(assets) // Gather all assets from the html with useref

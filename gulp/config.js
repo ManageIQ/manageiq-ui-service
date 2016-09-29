@@ -13,13 +13,14 @@ module.exports = (function() {
   var reports = './reports/';
   var bower = './bower_components/';
   var nodeModules = './node_modules/';
-
+  var styles = 'partials/styles.html';
+  var javascripts = 'partials/javascripts.html';
   var config = {};
 
   /**
    * Files
    */
-  var indexFile = 'index.html';
+  var indexFile = 'index.ejs';
   var specsFile = 'specs.html';
   var cssFile = 'styles.css';
   var sassFiles = [
@@ -276,7 +277,7 @@ module.exports = (function() {
   // This task will also inject the application JavaScript
   // The inject task will inject the application CSS
   config.wiredep = {
-    index: client + indexFile,
+    index: [client + javascripts, client + styles],
     build: client,
     options: wiredepOptions,
     files: getClientJsFiles(true, false),
@@ -285,7 +286,7 @@ module.exports = (function() {
 
   // task inject: Injects the application CSS (compiled from Sass) into index.html
   config.inject = {
-    index: client + indexFile,
+    index: client + 'styles.html',
     build: client,
     css: [
       temp + 'styles/' + cssFile,
@@ -294,7 +295,7 @@ module.exports = (function() {
   };
 
   config.optimize = {
-    index: client + indexFile,
+    index: temp + indexFile,
     build: build,
     cssFilter: '**/*.css',
     appJsFilter: '**/app.js',
@@ -422,6 +423,69 @@ module.exports = (function() {
       './bower.json'
     ],
     root: './'
+  };
+
+  // build configs
+  config.buildWiredep = {
+    index: client + indexFile,
+    build: temp,
+    options: wiredepOptions,
+    files: getClientJsFiles(true, false),
+    order: clientJsOrder
+  };
+
+  config.buildInject = {
+    index: temp + indexFile,
+    build: temp,
+    css: [
+      temp + 'styles/' + cssFile,
+      client + '/skin/**/*.css'
+    ]
+  };
+
+  config.buildSass = {
+    src: client + 'assets/sass/styles.sass',
+    build: temp + 'styles/',
+    output: cssFile,
+    options: {
+      // Only includes the styles if @imported
+      // Remember to then update exclude in wiredepOptions if using @import
+      loadPath: [
+        bower + 'bootstrap-sass-official/assets/stylesheets/',
+        bower + 'font-awesome/scss/',
+        bower + 'patternfly-sass/assets/stylesheets/',
+        // Hack so that font-awesome/variables can be found
+        client + 'assets/sass/'
+      ],
+      style: 'compact',
+      noCache: false,
+      compass: false,
+      bundleExec: true,
+      sourcemap: false,
+      precision: 8
+    },
+    autoprefixer: {
+      browsers: [
+        'last 2 versions',
+        '> 5%'
+      ],
+      cascade: true
+    }
+  };
+
+  config.buildTemplatecache = {
+    src: templateFiles,
+    build: temp,
+    output: 'templates.js',
+    minify: true, // Always minify the templates
+    minifyOptions: {
+      empty: true
+    },
+    templateOptions: {
+      module: 'app.core',
+      standalone: false,
+      root: 'app/'
+    }
   };
 
   return config;

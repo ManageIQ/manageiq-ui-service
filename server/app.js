@@ -1,51 +1,34 @@
+/* eslint-disable no-undef, no-console, no-process-env, angular/log, no-path-concat */
+
 'use strict';
 
 var express = require('express');
-var httpProxy = require('http-proxy');
-var app = express();
-var router = express.Router();
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var port = process.env.PORT || 8001;
+var httpProxy = require('http-proxy');
 var four0four = require('./utils/404')();
-var url = require('url');
+var proxyService = require('./utils/proxy')();
+var serviceApp = require('./utils/serviceApp');
+var serviceApi = require('./utils/serviceApi');
 
+var app = express();
+
+var port = process.env.PORT || 8001;
 var environment = process.env.NODE_ENV;
-var PROXY_HOST = process.env.PROXY_HOST || '[::1]:3000';
 
-var PROXY_TARGET = 'http://' + PROXY_HOST + '/api';
-var proxy_error_handler = function(req, res) {
-  return function(err, data) {
-    if (!err)
-      return;
+// view engine setup
+app.set('views', './client');
+app.set('view engine', 'ejs');
 
-    res.writeHead(500, {
-      'Content-Type': 'text/plain'
-    });
+// Api
+app.use('/api', serviceApi);
 
-    res.end('Something went wrong: ' + err);
-    console.error(err);
-  }
-}
-
-var proxy = httpProxy.createProxyServer({
-  target: PROXY_TARGET,
-});
-
-app.use('/api', function(req, res) {
-  var path = url.parse(req.url).path;
-
-  console.log('PROXY: ' + PROXY_TARGET + path);
-  proxy.web(req, res, proxy_error_handler(req, res));
-});
-
-router.use(favicon(__dirname + '/favicon.ico'));
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
-router.use(logger('dev'));
-
-app.use('/self_service/', router);
+// Endowing these assets with higher precedence than api will cause issues
+app.use(favicon(__dirname + '/favicon.ico'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(logger('dev'));
 
 console.log('About to crank up node');
 console.log('PORT=' + port);
@@ -54,7 +37,7 @@ console.log('NODE_ENV=' + environment);
 switch (environment) {
   case 'build':
     console.log('** BUILD **');
-    app.use(express.static('./build/'));
+    app.use(express.static('./build'));
     // Any invalid calls for templateUrls are under app/* and should return 404
     app.use('/app/*', function(req, res) {
       four0four.send404(req, res);
@@ -63,25 +46,30 @@ switch (environment) {
     app.use('/*', express.static('./public/index.html'));
     break;
   default:
+    var proxyHost = proxyService.proxyHost();
+    var proxyErrorHandler = proxyService.proxyErrorHandler;
+
     console.log('** DEV **');
-    router.use(express.static('./client/'));
-    router.use(express.static('./.tmp')); // gulp dev build dir
-    router.use(express.static('./client/assets'));
-    var pictureProxy = httpProxy.createProxyServer({
-      target: 'http://' + PROXY_HOST + '/pictures',
-    });
-    app.use('/pictures', function(req, res) {
-      pictureProxy.web(req, res, proxy_error_handler(req, res));
-    });
     app.use(express.static('./'));
-    // Any invalid calls for templateUrls are under app/* and should return 404
-    router.use('/app/*', function(req, res) {
-      four0four.send404(req, res);
+
+    // dev routes
+    app.use('/self_service/', serviceApp);
+
+    app.get('/self_service', function (req, res) {
+      res.render('index');
     });
-    // makes both /bower_components and /self_service/bower_components/ work
-    router.use(express.static('./'));
-    // Any deep link calls should return index.html
-    app.use('/*', express.static('./client/index.html'));
+
+    app.use('/pictures', function(req, res) {
+      pictureProxy.web(req, res, proxyErrorHandler(req, res));
+    });
+
+    var pictureProxy = httpProxy.createProxyServer({
+      target: 'http://' + proxyHost + '/pictures',
+    });
+
+    app.use('/*', function (req, res) {
+      res.render('index');
+    });
     break;
 }
 
