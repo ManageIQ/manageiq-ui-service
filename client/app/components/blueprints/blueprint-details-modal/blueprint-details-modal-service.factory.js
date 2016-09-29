@@ -16,7 +16,7 @@
 
     function showModal(action, blueprint) {
       var modalOptions = {
-        templateUrl: 'app/components/blueprint-details-modal/blueprint-details-modal.html',
+        templateUrl: 'app/components/blueprints/blueprint-details-modal/blueprint-details-modal.html',
         controller: BlueprintDetailsModalController,
         controllerAs: 'vm',
         resolve: {

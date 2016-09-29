@@ -14,7 +14,7 @@
 
     function showModal(blueprints) {
       var modalOptions = {
-        templateUrl: 'app/components/blueprint-delete-modal/blueprint-delete-modal.html',
+        templateUrl: 'app/components/blueprints/blueprint-delete-modal/blueprint-delete-modal.html',
         controller: BlueprintDeleteModalController,
         controllerAs: 'vm',
         resolve: { blueprints: resolveBlueprints },

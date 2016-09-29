@@ -14,7 +14,7 @@
 
     function showModal(entryPointType) {
       var modalOptions = {
-        templateUrl: 'app/components/browse-entry-point-modal/browse-entry-point-modal.html',
+        templateUrl: 'app/components/blueprints/blueprint-details-modal/browse-entry-point-modal/browse-entry-point-modal.html',
         controller: BrowseEntryPointModalController,
         controllerAs: 'vm',
         resolve: { entryPointType: resolveEntryPointType },

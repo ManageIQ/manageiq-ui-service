@@ -14,7 +14,7 @@
 
     function showModal() {
       var modalOptions = {
-        templateUrl: 'app/components/create-catalog-modal/create-catalog-modal.html',
+        templateUrl: 'app/components/blueprints/blueprint-details-modal/create-catalog-modal/create-catalog-modal.html',
         controller: CreateCatalogModalController,
         controllerAs: 'vm',
       };
