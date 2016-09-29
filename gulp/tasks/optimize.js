@@ -31,7 +31,7 @@ module.exports = function(gulp, options) {
     var jslibFilter = filter(config.libJsFilter);
 
     return gulp.src(config.index)
-      .pipe(rename(index.html))
+      .pipe(rename("index.html"))
       .pipe(plumber())
       .pipe(inject(config.templateCache, 'templates'))
       .pipe(assets) // Gather all assets from the html with useref
