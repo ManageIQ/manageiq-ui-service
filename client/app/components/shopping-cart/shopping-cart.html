@@ -17,6 +17,10 @@
               alt="{{ 'Remove' | translate }}">
         <i class="pficon pficon-delete"></i>
       </button>
+
+      <div ng-if="item.duplicate" class="pull-right text-warning cart-duplicate-icon">
+        <i class="fa fa-exclamation-triangle" title="{{'Duplicate'|translate}}"></i>
+      </div>
     </li>
   </ul>
 
