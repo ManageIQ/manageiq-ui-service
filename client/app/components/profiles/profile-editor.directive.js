@@ -20,7 +20,7 @@
     });
 
   /** @ngInject */
-  function ProfileEditorController(ProfilesState, $scope, $state, SaveProfileModal) {
+  function ProfileEditorController(ProfilesState, $scope, $state, lodash, SaveProfileModal) {
     var vm = this;
     var listState = 'administration.profiles';
     var detailsState = listState + '.details';
@@ -50,7 +50,7 @@
       var found;
 
       if (angular.isArray(objectArray)) {
-        found = objectArray.find(function(nextObject) {
+        found = lodash.find(objectArray, function(nextObject) {
           return (nextObject.name === name);
         });
       }
@@ -113,7 +113,7 @@
 
     function getIdForName(list, name) {
       if (list && list.length > 0) {
-        var found = list.find(function(nextObject) {
+        var found = lodash.find(list, function(nextObject) {
           return (nextObject.name === name);
         });
         if (found) {
@@ -231,7 +231,7 @@
       angular.forEach(vm.providers, function(provider) {
         var providerType = ProfilesState.getProviderType(provider);
         if (providerType !== 'Unknown') {
-          var found = vm.providerTypes.find(function(nextType) {
+          var found = lodash.find(vm.providerTypes, function(nextType) {
             return nextType === providerType;
           });
           if (!found) {

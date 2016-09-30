@@ -18,7 +18,7 @@
     });
 
   /** @ngInject */
-  function ProfilesListController(ProfilesState, $state, $scope) {
+  function ProfilesListController(ProfilesState, $state, $scope, lodash) {
     var vm = this;
     vm.title = __('Profiles');
     vm.arbitrationProfilesList = [];
@@ -90,7 +90,7 @@
       vm.arbitrationProfilesList = [];
       if (filters && filters.length > 0) {
         angular.forEach(vm.arbitrationProfiles, function(profile) {
-          var doNotAdd = filters.find(function(filter) {
+          var doNotAdd = lodash.find(filters, function(filter) {
             if (!matchesFilter(profile, filter)) {
               return true;
             }

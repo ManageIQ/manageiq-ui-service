@@ -19,7 +19,7 @@
     });
 
   /** @ngInject */
-  function RulesListController(RulesState, SaveRuleModal, $state, $rootScope, $timeout, $log, $scope) {
+  function RulesListController(RulesState, SaveRuleModal, $state, $rootScope, $timeout, $log, $scope, lodash) {
     /* jshint validthis: true */
     var vm = this;
     vm.operators = [
@@ -66,7 +66,7 @@
         }
 
         if (vm.profiles && vm.profiles.length > 0) {
-          var profile = vm.profiles.find(function(nextProfile) {
+          var profile = lodash.find(vm.profiles, function(nextProfile) {
             return nextProfile.id === rule.arbitration_profile_id;
           });
           if (profile) {
@@ -89,7 +89,7 @@
         value: rule.value,
       };
 
-      var operator = vm.operators.find(function(nextOperator) {
+      var operator = lodash.find(vm.operators, function(nextOperator) {
         return nextOperator.name === rule.operator;
       });
 
@@ -102,7 +102,7 @@
           NOT: fieldObj,
         };
       }
-      var profile = vm.profiles.find(function(nextProfile) {
+      var profile = lodash.find(vm.profiles, function(nextProfile) {
         return nextProfile.name === rule.profileName;
       });
       if (profile) {
@@ -196,7 +196,7 @@
       }
 
       if (fromState.name === "administration.rules" && toState.name !== "administration.rules" && vm.editMode) {
-        editedRule = vm.arbitrationRules.find(function(rule) {
+        editedRule = lodash.find(vm.arbitrationRules, function(rule) {
           return rule.editMode === true;
         });
         if (!editedRule && vm.arbitrationRules[0] && !vm.arbitrationRules[0].id) {
@@ -324,9 +324,14 @@
     };
 
     vm.ruleMoved = function() {
-      var ruleIndex = vm.arbitrationRules.findIndex(function(nextRule) {
-        return nextRule === vm.dragRule;
-      });
+      var ruleIndex = -1;
+
+      for (var i = 0; i < vm.arbitrationRules.length; i++) {
+        if (vm.arbitrationRules[i] === vm.dragRule) {
+          ruleIndex = i;
+        }
+      }
+
       if (ruleIndex >= 0) {
         vm.arbitrationRules.splice(ruleIndex, 1);
       }

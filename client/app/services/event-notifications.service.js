@@ -5,7 +5,7 @@
   .factory('EventNotifications', EventNotificationsFactory);
 
   /** @ngInject */
-  function EventNotificationsFactory($timeout) {
+  function EventNotificationsFactory($timeout, lodash) {
     var state = {};
     var toastDelay = 8 * 1000;
 
@@ -36,7 +36,7 @@
         group.unreadCount = group.notifications.filter(function(notification) {
           return notification.unread;
         }).length;
-        state.unreadNotifications = angular.isDefined(state.groups.find(function(group) {
+        state.unreadNotifications = angular.isDefined(lodash.find(state.groups, function(group) {
           return group.unreadCount > 0;
         }));
       }
@@ -70,7 +70,7 @@
         timeStamp: (new Date()).getTime(),
       };
 
-      var group = state.groups.find(function(notificationGroup) {
+      var group = lodash.find(state.groups, function(notificationGroup) {
         return notificationGroup.notificationType === notificationType;
       });
 
@@ -103,12 +103,12 @@
 
     function update(notificationType, type, message, notificationData, id, showToast) {
       var notification;
-      var group = state.groups.find(function(notificationGroup) {
+      var group = lodash.find(state.groups, function(notificationGroup) {
         return notificationGroup.notificationType === notificationType;
       });
 
       if (group) {
-        notification = group.notifications.find(function(notification) {
+        notification = lodash.find(group.notifications, function(notification) {
           return notification.id === id;
         });
 
@@ -186,7 +186,7 @@
       var index;
 
       if (!group) {
-        group = state.groups.find(function(nextGroup) {
+        group = lodash.find(state.groups, function(nextGroup) {
           return notification.notificationType === nextGroup.notificationType;
         });
       }
