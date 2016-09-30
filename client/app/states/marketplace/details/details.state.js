@@ -97,11 +97,16 @@
 
       var dialogFieldData = dataForSubmit('service_template_href');
 
+      vm.addingToCart = true;
+
       ShoppingCart.add({
         description: vm.serviceTemplate.name,
         data: dialogFieldData,
       })
-      .then(addSuccess, addFailure);
+      .then(addSuccess, addFailure)
+      .then(function() {
+        vm.addingToCart = false;
+      });
 
       function addSuccess(result) {
         if (result.duplicate) {
