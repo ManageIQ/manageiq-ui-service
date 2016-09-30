@@ -3,5 +3,6 @@
 
   angular.module('app.services', [
     'ngStorage',
+    'ngCookies',
   ]);
 })();
