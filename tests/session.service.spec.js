@@ -26,6 +26,9 @@ describe('Session', function() {
         set location(str) {
           return;
         },
+        get document() {
+          return window.document;
+        },
       });
     });
 

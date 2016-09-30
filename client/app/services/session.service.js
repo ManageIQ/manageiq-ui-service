@@ -5,7 +5,7 @@
     .factory('Session', SessionFactory);
 
   /** @ngInject */
-  function SessionFactory($http, $sessionStorage, gettextCatalog, $window, $state, lodash, RBAC) {
+  function SessionFactory($http, $sessionStorage, gettextCatalog, $window, $state, $cookies, lodash, RBAC) {
     var model = {
       token: null,
       user: {},
@@ -18,6 +18,8 @@
       active: active,
       currentUser: currentUser,
       loadUser: loadUser,
+      requestWsToken: requestWsToken,
+      destroyWsToken: destroyWsToken,
       switchGroup: switchGroup,
       activeNavigationFeatures: activeNavigationFeatures,
     };
@@ -38,6 +40,7 @@
     function destroy() {
       model.token = null;
       model.user = {};
+      destroyWsToken();
       delete $http.defaults.headers.common['X-Auth-Token'];
       delete $http.defaults.headers.common['X-Miq-Group'];
       delete $sessionStorage.miqGroup;
@@ -58,6 +61,20 @@
 
           return response.data;
         });
+    }
+
+    function requestWsToken(arg) {
+      return $http.get('/api/auth?requester_type=ws')
+      .then(function(response) {
+        destroyWsToken();
+        $cookies.put('ws_token', response.data.auth_token, { path: '/ws/notifications' });
+
+        return arg;
+      });
+    }
+
+    function destroyWsToken() {
+      $cookies.remove('ws_token', { path: '/ws/notifications' });
     }
 
     function currentUser(user) {

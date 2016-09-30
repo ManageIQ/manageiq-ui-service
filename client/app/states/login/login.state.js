@@ -49,6 +49,7 @@
 
       return AuthenticationApi.login(vm.credentials.login, vm.credentials.password)
         .then(Session.loadUser)
+        .then(Session.requestWsToken)
         .then(ServerInfo.set)
         .then(ProductInfo.set)
         .then(Language.onLogin)
