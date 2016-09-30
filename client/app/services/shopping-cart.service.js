@@ -120,10 +120,15 @@
       .then(function(items) {
         state = {
           items: items.map(function(o) {
-            return lodash.pick(o, ['id', 'description']);
+            return {
+              id: o.id,
+              description: o.description,
+              data: optionsToData(o.options),
+            };
           }),
         };
 
+        dedup();
         notify();
       });
     }
@@ -197,6 +202,17 @@
           delete item.duplicate;
         }
       });
+    }
+
+    // convert options value from the API to the format used when sending - for deduplication across reloads
+    function optionsToData(options) {
+      var data = { "service_template_href": "/api/service_templates/" + options.src_id };
+
+      lodash.each(options.dialog, function(value, key) {
+        data[ key.replace(/^dialog_/, '') ] = value;
+      });
+
+      return data;
     }
   }
 })();
