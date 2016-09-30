@@ -2,6 +2,7 @@
 
 'use strict';
 
+var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
@@ -11,6 +12,7 @@ var four0four = require('./utils/404')();
 var proxyService = require('./utils/proxy')();
 var serviceApp = require('./utils/serviceApp');
 var serviceApi = require('./utils/serviceApi');
+var wsProxy = require('./utils/wsProxy');
 
 var app = express();
 
@@ -73,7 +75,14 @@ switch (environment) {
     break;
 }
 
-app.listen(port, function() {
+var server = http.createServer(app);
+
+server.on('upgrade', function (req, socket, head) {
+  console.log('PROXY(ws,upgrade): ' + req.url);
+  wsProxy.ws(req, socket, head);
+});
+
+server.listen(port, function() {
   console.log('Express server listening on port ' + port);
   console.log('env = ' + app.get('env') + '\n__dirname = '
     + __dirname + '\nprocess.cwd = ' + process.cwd());
