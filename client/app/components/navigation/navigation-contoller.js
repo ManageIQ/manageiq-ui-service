@@ -13,6 +13,7 @@
     '$scope',
     '$modal',
     '$state',
+    'lodash',
     'EventNotifications',
     'ServerInfo',
     NavigationCtrl]);
@@ -27,6 +28,7 @@
                           $scope,
                           $modal,
                           $state,
+                          lodash,
                           EventNotifications,
                           ServerInfo) {
     var vm = this;
@@ -180,9 +182,7 @@
 
     function refreshNotifications() {
       vm.notificationGroups = EventNotifications.state().groups;
-      vm.newNotifications = angular.isDefined(vm.notificationGroups.find(function(group) {
-        return group.unreadCount > 0;
-      }));
+      vm.newNotifications = EventNotifications.state().unreadNotifications;
     }
 
     function refreshToast() {

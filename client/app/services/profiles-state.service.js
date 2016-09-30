@@ -5,65 +5,60 @@
       .factory('ProfilesState', ProfilesStateFactory);
 
   /** @ngInject */
-  function ProfilesStateFactory(CollectionsApi, EventNotifications, sprintf, $q) {
+  function ProfilesStateFactory(CollectionsApi, EventNotifications, sprintf) {
     var profileState = {};
 
-    profileState.providersInfo = [
-      {
-        keyword: 'amazon',
-        title: 'Amazon EC2',
-        image: 'assets/images/providers/vendor-amazon.svg',
-      },
-      {
-        keyword: 'azure',
-        title: 'Azure',
-        image: 'assets/images/providers/vendor-azure.svg',
-      },
-      {
-        keyword: 'google',
-        title: 'Google Compute Engine',
-        image: 'assets/images/providers/vendor-google.svg',
-      },
-      {
-        keyword: 'openstack',
-        title: 'OpenStack',
-        image: 'assets/images/providers/vendor-openstack_infra.svg',
-      },
-      {
-        keyword: 'vmware',
-        title: 'VMware vCloud',
-        image: 'assets/images/providers/vendor-vmware_cloud.svg',
-      },
-    ];
-
-    profileState.getProviderType = function(typedObject) {
-      var providerType = 'Unknown';
-
-      if (typedObject) {
-        var info = profileState.providersInfo.find(function(providerInfo) {
-          return typedObject.type.toLowerCase().indexOf(providerInfo.keyword) >= 0;
-        });
-        if (info) {
-          providerType = info.title;
-        }
-      }
-
-      return providerType;
+    var providerTypes = {
+      amazon: 'Amazon EC2',
+      azure: 'Azure',
+      google: 'Google Compute Engine',
+      openstack: 'OpenStack',
+      vmware: 'VMware vCloud',
+      unknown: 'Unknown',
+    };
+    var providerImages = {
+      amazon: 'assets/images/providers/vendor-amazon.svg',
+      azure: 'assets/images/providers/vendor-azure.svg',
+      google: 'assets/images/providers/vendor-google.svg',
+      openstack: 'assets/images/providers/vendor-openstack_infra.svg',
+      vmware: 'assets/images/providers/vendor-vmware_cloud.svg',
+      unknown: 'assets/images/providers/vendor-unknown.svg',
     };
 
-    profileState.getProviderTypeImage = function(provider) {
-      var providerImage = 'assets/images/providers/vendor-unknown.svg';
+    var providerTypeKeys = ['amazon', 'azure', 'google', 'openstack', 'vmware'];
 
-      if (provider) {
-        var info = profileState.providersInfo.find(function(providerInfo) {
-          return provider.type.toLowerCase().indexOf(providerInfo.keyword) >= 0;
+    function getProviderKey(typedObject) {
+      var key;
+
+      if (typedObject) {
+        key = providerTypeKeys.find(function(nextKey) {
+          return typedObject.type.toLowerCase().indexOf(nextKey) >= 0;
         });
-        if (info) {
-          providerImage = info.image;
-        }
       }
 
-      return providerImage;
+      if (!key) {
+        key = 'unknown';
+      }
+
+      return key;
+    }
+
+    profileState.getProviderTypes = function() {
+      var returnTypes = [];
+
+      angular.forEach(providerTypeKeys, function(key) {
+        returnTypes.push(providerTypes[key]);
+      });
+
+      return returnTypes;
+    };
+
+    profileState.getProviderType = function(typedObject) {
+      return  providerTypes[getProviderKey(typedObject)];
+    };
+
+    profileState.getProviderTypeImage = function(typedObject) {
+      return  providerImages[getProviderKey(typedObject)];
     };
 
     profileState.sort = {
@@ -151,34 +146,24 @@
     };
 
     profileState.addProfile = function(profileObj) {
-      var deferred = $q.defer();
-
-      CollectionsApi.post('arbitration_profiles', null, {}, profileObj).then(createSuccess, createFailure);
-
       function createSuccess(response) {
         EventNotifications.success(sprintf(__("Profile %s was created."), profileObj.name));
-        deferred.resolve(response.results[0].id);
       }
 
       function createFailure() {
         EventNotifications.error(sprintf(__("There was an error creating profile %s."), profileObj.name));
-        deferred.reject();
       }
 
-      return deferred.promise;
+      return CollectionsApi.post('arbitration_profiles', null, {}, profileObj).then(createSuccess, createFailure);
     };
 
     profileState.editProfile = function(profile) {
-      var deferred = $q.defer();
-
       var editSuccess = function(response) {
         EventNotifications.success(sprintf(__('Profile %s was successfully updated.'), profile.name));
-        deferred.resolve(response.id);
       };
 
       var editFailure = function() {
         EventNotifications.error(sprintf(__('There was an error updating profile %s.'), profile.name));
-        deferred.reject();
       };
 
       var editObj = {
@@ -186,14 +171,10 @@
         "resources": [profile],
       };
 
-      CollectionsApi.post('arbitration_profiles', null, {}, editObj).then(editSuccess, editFailure);
-
-      return deferred.promise;
+      return CollectionsApi.post('arbitration_profiles', null, {}, editObj).then(editSuccess, editFailure);
     };
 
     profileState.deleteProfiles = function(profileIds) {
-      var deferred = $q.defer();
-
       var resources = [];
       for (var i = 0; i < profileIds.length; i++) {
         resources.push({id: profileIds[i]});
@@ -204,19 +185,16 @@
         resources: resources,
       };
 
-      CollectionsApi.post('arbitration_profiles', null, {}, profileObj).then(deleteSuccess, deleteFailure);
 
       function deleteSuccess() {
         EventNotifications.success(__('Profile(s) were succesfully deleted.'));
-        deferred.resolve();
       }
 
       function deleteFailure() {
         EventNotifications.error(__('There was an error deleting the profile(s).'));
-        deferred.reject();
       }
 
-      return deferred.promise;
+      return CollectionsApi.post('arbitration_profiles', null, {}, profileObj).then(deleteSuccess, deleteFailure);
     };
 
     return profileState;

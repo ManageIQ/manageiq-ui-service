@@ -1,16 +1,18 @@
-<div class="modal-header">
-  <button type="button" class="close" ng-click="vm.cancel()" aria-hidden="true">
-    <span class="pficon pficon-close"></span>
-  </button>
-  <h3 class="modal-title" translate>Save Changes</h3>
-</div>
-<div class="modal-body">
-  <h4 translate>If you do not save, your changes will be lost.</h4>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-default" ng-click="vm.cancel()" translate>Cancel</button>
-  <button type="button" class="btn btn-default" ng-click="vm.doNotSave()" translate>Do Not Save</button>
-  <button type="button" class="btn btn-primary" ng-click="vm.save()" translate>
-    Save
-  </button>
+<div class="save-profile-modal">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="vm.cancel()" aria-hidden="true">
+      <span class="pficon pficon-close"></span>
+    </button>
+    <h3 class="modal-title" translate>Save Changes</h3>
+  </div>
+  <div class="modal-body">
+    <h4 translate>If you do not save, your changes will be lost.</h4>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="vm.cancel()" translate>Cancel</button>
+    <button type="button" class="btn btn-default" ng-click="vm.doNotSave()" translate>Do Not Save</button>
+    <button type="button" class="btn btn-primary" ng-click="vm.save()" translate>
+      Save
+    </button>
+  </div>
 </div>
