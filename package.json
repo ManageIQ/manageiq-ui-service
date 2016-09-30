@@ -30,6 +30,7 @@
     "ejs": "^2.5.2",
     "eslint": "^3.5.0",
     "eslint-plugin-angular": "^1.4.0",
+    "eslint-config-angular": "^0.2.0",
     "glob": "^7.0.6",
     "gulp": "^3.9.1",
     "gulp-angular-gettext": "^2.1.0",
