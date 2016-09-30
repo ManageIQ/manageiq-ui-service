@@ -19,6 +19,7 @@
         return state;
       },
       allowed: allowed,
+      isDuplicate: isDuplicate,
     };
 
     var persistence = {
@@ -98,11 +99,20 @@
     function add(item) {
       return persistence.addItem(item.data)
       .then(function(response) {
-        state.items.push({
+        var newItem = {
           id: response.service_request_id,
           description: item.description,
-        });
+
+          // for duplicate detection
+          data: clientToCommon(item.data),
+        };
+
+        state.items.push(newItem);
+
+        dedup();
         notify();
+
+        return newItem;
       });
     }
 
@@ -111,10 +121,15 @@
       .then(function(items) {
         state = {
           items: items.map(function(o) {
-            return lodash.pick(o, ['id', 'description']);
+            return {
+              id: o.id,
+              description: o.description,
+              data: apiToCommon(o.options),
+            };
           }),
         };
 
+        dedup();
         notify();
       });
     }
@@ -137,6 +152,7 @@
           return i.id !== item.id;
         });
 
+        dedup();
         notify();
       });
     }
@@ -156,6 +172,77 @@
 
     function allowed() {
       return RBAC.has('svc_catalog_provision');
+    }
+
+    function dedup() {
+      var potential = [];
+
+      state.items.forEach(function(item) {
+        if (!item.data) {
+          return;
+        }
+
+        item.duplicate = [];
+        potential.push(item);
+      });
+
+      for (var i = 0; i < potential.length - 1; i++) {
+        for (var j = i + 1; j < potential.length; j++) {
+          var a = potential[i];
+          var b = potential[j];
+
+          if (angular.equals(a.data, b.data)) {
+            a.duplicate.push(b.id);
+            b.duplicate.push(a.id);
+          }
+        }
+      }
+
+      potential.forEach(function(item) {
+        if (item.duplicate && !item.duplicate.length) {
+          delete item.duplicate;
+        }
+      });
+    }
+
+    function isDuplicate(item) {
+      var data = clientToCommon(item);
+
+      for (var i in state.items) {
+        if (!state.items[i].data) {
+          continue;
+        }
+
+        if (angular.equals(data, state.items[i].data)) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    // convert options value from the API to the format used when sending - for deduplication across reloads
+    function apiToCommon(options) {
+      var data = { "service_template_href": "/api/service_templates/" + options.src_id };
+
+      lodash.each(options.dialog, function(value, key) {
+        data[ key.replace(/^dialog_/, '') ] = value;
+      });
+
+      return data;
+    }
+
+    // remove falsy fields from data, to achieve compatibility with data received back from the API
+    function clientToCommon(data) {
+      data = angular.copy(data);
+
+      lodash.each(data, function(value, key) {
+        if (!value) {
+          delete data[key];
+        }
+      });
+
+      return data;
     }
   }
 })();
