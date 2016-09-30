@@ -19,7 +19,7 @@
     });
 
   /** @ngInject */
-  function RulesListController(RulesState, SaveRuleModal, $state, $rootScope, $timeout, $log, $scope, lodash) {
+  function RulesListController(RulesState, SaveRuleModal, $state, ListUtils, $timeout, $log, $scope) {
     /* jshint validthis: true */
     var vm = this;
     vm.operators = [
@@ -66,9 +66,7 @@
         }
 
         if (vm.profiles && vm.profiles.length > 0) {
-          var profile = lodash.find(vm.profiles, function(nextProfile) {
-            return nextProfile.id === rule.arbitration_profile_id;
-          });
+          var profile = ListUtils.findByField(vm.profiles, rule.arbitration_profile_id, 'id');
           if (profile) {
             rule.profileName = profile.name;
           }
@@ -89,9 +87,7 @@
         value: rule.value,
       };
 
-      var operator = lodash.find(vm.operators, function(nextOperator) {
-        return nextOperator.name === rule.operator;
-      });
+      var operator = ListUtils.findByField(vm.operators, rule.operator, 'name');
 
       if (operator.value === "EQUAL") {
         ruleObj.expression = {
@@ -102,9 +98,7 @@
           NOT: fieldObj,
         };
       }
-      var profile = lodash.find(vm.profiles, function(nextProfile) {
-        return nextProfile.name === rule.profileName;
-      });
+      var profile = ListUtils.findByField(vm.profiles, rule.profileName, 'name');
       if (profile) {
         ruleObj.arbitration_profile_id =  profile.id;
       }
@@ -196,9 +190,7 @@
       }
 
       if (fromState.name === "administration.rules" && toState.name !== "administration.rules" && vm.editMode) {
-        editedRule = lodash.find(vm.arbitrationRules, function(rule) {
-          return rule.editMode === true;
-        });
+        editedRule = ListUtils.findByField(vm.arbitrationRules, true, 'editMode');
         if (!editedRule && vm.arbitrationRules[0] && !vm.arbitrationRules[0].id) {
           editedRule = vm.arbitrationRules[0];
         }
