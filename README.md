@@ -23,7 +23,7 @@ Logging in to the SUI requires a running instance of ManageIQ. Instructions on h
   for the steps reqiured to setup ManageIQ.
 - Have this repo as a sibling to the `manageiq` directory:
 `git clone git@github.com:ManageIQ/manageiq-ui-self_service.git`.
-- Have nodejs **0.10.46** and npm **3.10.7** installed ([NVM](https://github.com/creationix/nvm) is a popular solution 
+- Have nodejs **v6.7.0** and npm **3.10.7** installed ([NVM](https://github.com/creationix/nvm) is a popular solution 
 to manage node and npm versions).
 - Have bower and gulp globally installed.
   - `npm install -g bower gulp`
