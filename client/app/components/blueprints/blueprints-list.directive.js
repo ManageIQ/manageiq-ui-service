@@ -20,7 +20,7 @@
 
   /** @ngInject */
   function BlueprintController($state, BlueprintsState, BlueprintDetailsModal, BlueprintDeleteModal, EventNotifications, $rootScope, $filter,
-                               Language) {
+                               Language, ListView) {
     var vm = this;
     var categoryNames = [];
     var visibilityNames = ['Private', 'Public'];
@@ -132,33 +132,7 @@
         onFilterChange: filterChange,
       },
       sortConfig: {
-        fields: [
-          {
-            id: 'name',
-            title: __('Name'),
-            sortType: 'alpha',
-          },
-          {
-            id: 'last_modified',
-            title: __('Last Modified'),
-            sortType: 'numeric',
-          },
-          {
-            id: 'num_items',
-            title: __('Items'),
-            sortType: 'numeric',
-          },
-          {
-            id: 'visibility',
-            title: __('Visibility'),
-            sortType: 'alpha',
-          },
-          {
-            id: 'catalog',
-            title: __('Catalog'),
-            sortType: 'alpha',
-          },
-        ],
+        fields: getSortConfigFields(),
         onSortChange: sortChange,
         isAscending: BlueprintsState.getSort().isAscending,
         currentField: BlueprintsState.getSort().currentField,
@@ -179,6 +153,36 @@
         ],
       },
     };
+
+    function getSortConfigFields() {
+      return [
+        {
+          id: 'name',
+          title: __('Name'),
+          sortType: 'alpha',
+        },
+        {
+          id: 'last_modified',
+          title: __('Last Modified'),
+          sortType: 'numeric',
+        },
+        {
+          id: 'num_items',
+          title: __('Items'),
+          sortType: 'numeric',
+        },
+        {
+          id: 'visibility',
+          title: __('Visibility'),
+          sortType: 'alpha',
+        },
+        {
+          id: 'catalog',
+          title: __('Catalog'),
+          sortType: 'alpha',
+        },
+      ];
+    }
 
     function createBlueprint(action) {
       $state.go('designer.blueprints.editor');
@@ -267,47 +271,15 @@
     }
 
     function filterChange(filters) {
-      applyFilters(filters);
-      vm.toolbarConfig.filterConfig.resultsCount = vm.blueprintsList.length;
-    }
-
-    function applyFilters(filters) {
-      vm.blueprintsList = [];
-      if (filters && filters.length > 0) {
-        angular.forEach(vm.blueprints, filterChecker);
-      } else {
-        vm.blueprintsList = vm.blueprints;
-      }
-
-      /* Keep track of the current filtering state */
-      BlueprintsState.setFilters(filters);
+      vm.blueprintsList = ListView.applyFilters(filters, vm.blueprintsList, vm.blueprints, BlueprintsState, matchesFilter);
 
       /* Make sure sorting direction is maintained */
       sortChange(BlueprintsState.getSort().currentField, BlueprintsState.getSort().isAscending);
 
-      function filterChecker(item) {
-        if (matchesFilters(item, filters)) {
-          vm.blueprintsList.push(item);
-        }
-      }
+      vm.toolbarConfig.filterConfig.resultsCount = vm.blueprintsList.length;
     }
 
-    function matchesFilters(item, filters) {
-      var matches = true;
-      angular.forEach(filters, filterMatcher);
-
-      function filterMatcher(filter) {
-        if (!matchesFilter(item, filter)) {
-          matches = false;
-
-          return false;
-        }
-      }
-
-      return matches;
-    }
-
-    function matchesFilter(item, filter) {
+    var matchesFilter = function (item, filter) {
       if (filter.id === 'name') {
         return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'visibility') {
@@ -330,7 +302,7 @@
       }
 
       return false;
-    }
+    };
 
     Language.fixState(BlueprintsState, vm.toolbarConfig);
   }

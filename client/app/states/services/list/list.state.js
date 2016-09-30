@@ -36,7 +36,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, services, ServicesState, $filter, $rootScope, Language) {
+  function StateController($state, services, ServicesState, $filter, $rootScope, Language, ListView) {
     var vm = this;
 
     vm.services = [];
@@ -138,7 +138,10 @@
       filterChange(ServicesState.getFilters());
       ServicesState.filterApplied = false;
     } else {
-      applyFilters();
+      vm.servicesList = ListView.applyFilters(ServicesState.getFilters(), vm.servicesList, vm.services, ServicesState, matchesFilter);
+
+      /* Make sure sorting direction is maintained */
+      sortChange(ServicesState.getSort().currentField, ServicesState.getSort().isAscending);
     }
 
     function handleClick(item, e) {
@@ -197,44 +200,12 @@
     }
 
     function filterChange(filters) {
-      applyFilters(filters);
-      vm.toolbarConfig.filterConfig.resultsCount = vm.servicesList.length;
-    }
-
-    function applyFilters(filters) {
-      vm.servicesList = [];
-      if (filters && filters.length > 0) {
-        angular.forEach(vm.services, filterChecker);
-      } else {
-        vm.servicesList = vm.services;
-      }
-
-      /* Keep track of the current filtering state */
-      ServicesState.setFilters(filters);
+      vm.servicesList = ListView.applyFilters(filters, vm.servicesList, vm.services, ServicesState, matchesFilter);
 
       /* Make sure sorting direction is maintained */
       sortChange(ServicesState.getSort().currentField, ServicesState.getSort().isAscending);
 
-      function filterChecker(item) {
-        if (matchesFilters(item, filters)) {
-          vm.servicesList.push(item);
-        }
-      }
-    }
-
-    function matchesFilters(item, filters) {
-      var matches = true;
-      angular.forEach(filters, filterMatcher);
-
-      function filterMatcher(filter) {
-        if (!matchesFilter(item, filter)) {
-          matches = false;
-
-          return false;
-        }
-      }
-
-      return matches;
+      vm.toolbarConfig.filterConfig.resultsCount = vm.servicesList.length;
     }
 
     function matchesFilter(item, filter) {

@@ -222,54 +222,7 @@
           href: '#parent2',
           tags: ['0'],
           id: 6,
-          nodes: [
-            {
-              text: 'Child 1',
-              href: '#child1',
-              icon: 'fa fa-file-o',
-              tags: ['2'],
-              id: 2,
-              nodes: [
-                {
-                  text: 'Grandchild 1',
-                  href: '#grandchild1',
-                  icon: 'fa fa-file-o',
-                  tags: ['0'],
-                  id: 3,
-                  nodes: [
-                    {
-                      text: 'GGrandchild 3',
-                      href: '#grandchild1',
-                      icon: 'fa fa-file-o',
-                      tags: ['0'],
-                      id: 3,
-                    },
-                    {
-                      text: 'GGrandchild 4',
-                      href: '#grandchild2',
-                      icon: 'fa fa-file-o',
-                      tags: ['0'],
-                      id: 4,
-                    },
-                  ],
-                },
-                {
-                  text: 'Grandchild 2',
-                  href: '#grandchild2',
-                  icon: 'fa fa-file-o',
-                  tags: ['0'],
-                  id: 4,
-                },
-              ],
-            },
-            {
-              text: 'Child 2',
-              href: '#child2',
-              icon: 'fa fa-file-o',
-              tags: ['0'],
-              id: 5,
-            },
-          ],
+          nodes: [],
         },
         {
           text: 'Parent 3',
