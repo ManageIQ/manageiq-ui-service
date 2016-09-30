@@ -26,7 +26,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, Text, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ServerInfo) {
+  function StateController($state, Text, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ServerInfo, ProductInfo) {
     var vm = this;
 
     vm.text = Text.login;
@@ -50,6 +50,7 @@
       return AuthenticationApi.login(vm.credentials.login, vm.credentials.password)
         .then(Session.loadUser)
         .then(ServerInfo.set)
+        .then(ProductInfo.set)
         .then(Language.onLogin)
         .then(function() {
           if (Session.activeNavigationFeatures()) {
