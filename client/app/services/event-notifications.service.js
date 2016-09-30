@@ -5,7 +5,7 @@
   .factory('EventNotifications', EventNotificationsFactory);
 
   /** @ngInject */
-  function EventNotificationsFactory($timeout, lodash) {
+  function EventNotificationsFactory($timeout, lodash, ListUtils) {
     var state = {};
     var toastDelay = 8 * 1000;
 
@@ -70,9 +70,7 @@
         timeStamp: (new Date()).getTime(),
       };
 
-      var group = lodash.find(state.groups, function(notificationGroup) {
-        return notificationGroup.notificationType === notificationType;
-      });
+      var group = ListUtils.findByField(state.groups, notificationType, 'notificationType');
 
       if (group) {
         if (group.notifications) {
@@ -103,14 +101,10 @@
 
     function update(notificationType, type, message, notificationData, id, showToast) {
       var notification;
-      var group = lodash.find(state.groups, function(notificationGroup) {
-        return notificationGroup.notificationType === notificationType;
-      });
+      var group = ListUtils.findByField(state.groups, notificationType, 'notificationType');
 
       if (group) {
-        notification = lodash.find(group.notifications, function(notification) {
-          return notification.id === id;
-        });
+        notification = ListUtils.findByField(group.notifications, id, 'id');
 
         if (notification) {
           if (showToast) {
@@ -186,9 +180,7 @@
       var index;
 
       if (!group) {
-        group = lodash.find(state.groups, function(nextGroup) {
-          return notification.notificationType === nextGroup.notificationType;
-        });
+        group = ListUtils.findByField(state.groups, notification.notificationType, 'notificationType');
       }
 
       if (group) {

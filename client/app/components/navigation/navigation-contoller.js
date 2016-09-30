@@ -182,9 +182,7 @@
 
     function refreshNotifications() {
       vm.notificationGroups = EventNotifications.state().groups;
-      vm.newNotifications = angular.isDefined(lodash.find(vm.notificationGroups, function(group) {
-        return group.unreadCount > 0;
-      }));
+      vm.newNotifications = EventNotifications.state().unreadNotifications;
     }
 
     function refreshToast() {
