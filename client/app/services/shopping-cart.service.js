@@ -99,20 +99,20 @@
     function add(item) {
       return persistence.addItem(item.data)
       .then(function(response) {
-        var i = {
+        var newItem = {
           id: response.service_request_id,
           description: item.description,
 
           // for duplicate detection
-          data: dataToData(item.data),
+          data: clientToCommon(item.data),
         };
 
-        state.items.push(i);
+        state.items.push(newItem);
 
         dedup();
         notify();
 
-        return i;
+        return newItem;
       });
     }
 
@@ -124,7 +124,7 @@
             return {
               id: o.id,
               description: o.description,
-              data: optionsToData(o.options),
+              data: apiToCommon(o.options),
             };
           }),
         };
@@ -206,7 +206,7 @@
     }
 
     function isDuplicate(item) {
-      var data = dataToData(item);
+      var data = clientToCommon(item);
 
       for (var i in state.items) {
         if (!state.items[i].data) {
@@ -222,7 +222,7 @@
     }
 
     // convert options value from the API to the format used when sending - for deduplication across reloads
-    function optionsToData(options) {
+    function apiToCommon(options) {
       var data = { "service_template_href": "/api/service_templates/" + options.src_id };
 
       lodash.each(options.dialog, function(value, key) {
@@ -233,7 +233,7 @@
     }
 
     // remove falsy fields from data, to achieve compatibility with data received back from the API
-    function dataToData(data) {
+    function clientToCommon(data) {
       data = angular.copy(data);
 
       lodash.each(data, function(value, key) {
