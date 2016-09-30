@@ -19,6 +19,7 @@
         return state;
       },
       allowed: allowed,
+      isDuplicate: isDuplicate,
     };
 
     var persistence = {
@@ -202,6 +203,22 @@
           delete item.duplicate;
         }
       });
+    }
+
+    function isDuplicate(item) {
+      var data = dataToData(item);
+
+      for (var i in state.items) {
+        if (!state.items[i].data) {
+          continue;
+        }
+
+        if (angular.equals(data, state.items[i].data)) {
+          return true;
+        }
+      }
+
+      return false;
     }
 
     // convert options value from the API to the format used when sending - for deduplication across reloads
