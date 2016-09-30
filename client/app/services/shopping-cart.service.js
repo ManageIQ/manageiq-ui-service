@@ -103,7 +103,7 @@
           description: item.description,
 
           // for duplicate detection
-          data: item.data,
+          data: dataToData(item.data),
         };
 
         state.items.push(i);
@@ -210,6 +210,19 @@
 
       lodash.each(options.dialog, function(value, key) {
         data[ key.replace(/^dialog_/, '') ] = value;
+      });
+
+      return data;
+    }
+
+    // remove falsy fields from data, to achieve compatibility with data received back from the API
+    function dataToData(data) {
+      data = angular.copy(data);
+
+      lodash.each(data, function(value, key) {
+        if (!value) {
+          delete data[key];
+        }
       });
 
       return data;
