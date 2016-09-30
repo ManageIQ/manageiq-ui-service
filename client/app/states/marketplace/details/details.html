@@ -28,7 +28,18 @@
               </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ss-details-header__actions">
-              <button type="button" class="btn btn-primary" ng-click="vm.addToCart()" ng-disabled="! vm.cartAllowed()" translate>Add to Shopping Cart</button>
+              <button type="button"
+                      class="btn btn-primary"
+                      ng-disabled="! vm.cartAllowed()"
+                      confirmation
+                      confirmation-if="vm.alreadyInCart()"
+                      confirmation-title="{{'Duplicate Shopping Cart Item'|translate}}"
+                      confirmation-message="{{'There already is an identical item in the cart. Do you want to add it anyway?'|translate}}"
+                      confirmation-ok-text="{{'Add to Shopping Cart'|translate}}"
+                      confirmation-on-ok="vm.addToCart()"
+                      confirmation-ok-style="primary"
+                      confirmation-show-cancel="true"
+                      translate>Add to Shopping Cart</button>
             </div>
           </div>
         </div>

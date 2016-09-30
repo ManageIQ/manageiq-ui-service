@@ -52,6 +52,7 @@
 
     vm.addToCart = addToCart;
     vm.cartAllowed = ShoppingCart.allowed;
+    vm.alreadyInCart = alreadyInCart;
 
     var autoRefreshableDialogFields = [];
     var allDialogFields = [];
@@ -82,6 +83,11 @@
       });
 
       return dialogFieldData;
+    }
+
+
+    function alreadyInCart() {
+      return ShoppingCart.isDuplicate(dataForSubmit('service_template_href'));
     }
 
     function addToCart() {
