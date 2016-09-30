@@ -18,8 +18,8 @@
         onOk: '&confirmationOnOk',
         onCancel: '&?confirmationOnCancel',
         okStyle: '@?confirmationOkStyle',
-        confirmIf: '=?confirmationIf',
-        showCancel: '=?confirmationShowCancel'
+        confirmIf: '&?confirmationIf',
+        showCancel: '=?confirmationShowCancel',
       },
       link: link,
       controller: ConfirmationController,
@@ -74,7 +74,7 @@
     }
 
     /** @ngInject */
-    function ConfirmationController($scope, $modal) {
+    function ConfirmationController($scope, $modal, lodash) {
       var vm = this;
 
       var modalOptions = {
@@ -97,7 +97,7 @@
         vm.cancel = angular.isDefined(vm.cancel) ? vm.cancel : __('Cancel');
         vm.onCancel = angular.isDefined(vm.onCancel) ? vm.onCancel : angular.noop;
         vm.okClass = angular.isDefined(vm.okStyle) ? 'btn-' + vm.okStyle : '';
-        vm.confirmIf = angular.isDefined(vm.confirmIf) ? vm.confirmIf : true;
+        vm.confirmIf = angular.isDefined(vm.confirmIf) ? vm.confirmIf : lodash.constant(true);
         vm.showCancel = angular.isDefined(vm.showCancel) ? vm.showCancel : true;
       }
 
@@ -105,7 +105,7 @@
         var position = getModalPosition();
         var modal;
 
-        if (vm.confirmIf) {
+        if (vm.confirmIf()) {
           vm.left = position.left;
           vm.top = position.top - vm.getOffset();
 
