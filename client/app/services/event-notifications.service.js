@@ -5,7 +5,7 @@
   .factory('EventNotifications', EventNotificationsFactory);
 
   /** @ngInject */
-  function EventNotificationsFactory($timeout) {
+  function EventNotificationsFactory($timeout, lodash) {
     var state = {};
     var toastDelay = 8 * 1000;
 
@@ -36,7 +36,7 @@
         group.unreadCount = group.notifications.filter(function(notification) {
           return notification.unread;
         }).length;
-        state.unreadNotifications = angular.isDefined(state.groups.find(function(group) {
+        state.unreadNotifications = angular.isDefined(lodash.find(state.groups, function(group) {
           return group.unreadCount > 0;
         }));
       }
@@ -70,9 +70,7 @@
         timeStamp: (new Date()).getTime(),
       };
 
-      var group = state.groups.find(function(notificationGroup) {
-        return notificationGroup.notificationType === notificationType;
-      });
+      var group = lodash.find(state.groups, {notificationType: notificationType});
 
       if (group) {
         if (group.notifications) {
@@ -103,14 +101,10 @@
 
     function update(notificationType, type, message, notificationData, id, showToast) {
       var notification;
-      var group = state.groups.find(function(notificationGroup) {
-        return notificationGroup.notificationType === notificationType;
-      });
+      var group = lodash.find(state.groups, {notificationType: notificationType});
 
       if (group) {
-        notification = group.notifications.find(function(notification) {
-          return notification.id === id;
-        });
+        group = lodash.find(group.notifications, {id: id});
 
         if (notification) {
           if (showToast) {
@@ -136,10 +130,12 @@
       }
     }
 
-    function markRead(notification, group) {
+    function updateNotificationRead(unread, notification, group) {
       if (notification) {
-        notification.unread = false;
-        service.removeToast(notification);
+        notification.unread = unread;
+        if (!unread) {
+          service.removeToast(notification);
+        }
       }
       if (group) {
         updateUnreadCount(group);
@@ -150,17 +146,12 @@
       }
     }
 
+    function markRead(notification, group) {
+      updateNotificationRead(false, notification, group);
+    }
+
     function markUnread(notification, group) {
-      if (notification) {
-        notification.unread = true;
-      }
-      if (group) {
-        updateUnreadCount(group);
-      } else {
-        state.groups.forEach(function(group) {
-          updateUnreadCount(group);
-        });
-      }
+      updateNotificationRead(true, notification, group);
     }
 
     function markAllRead(group) {
@@ -186,9 +177,7 @@
       var index;
 
       if (!group) {
-        group = state.groups.find(function(nextGroup) {
-          return notification.notificationType === nextGroup.notificationType;
-        });
+        group = lodash.find(state.groups, {notificationType: notification.notificationType});
       }
 
       if (group) {

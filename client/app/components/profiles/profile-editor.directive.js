@@ -20,7 +20,7 @@
     });
 
   /** @ngInject */
-  function ProfileEditorController(ProfilesState, $scope, $state, SaveProfileModal) {
+  function ProfileEditorController(ProfilesState, $scope, $state, lodash, SaveProfileModal) {
     var vm = this;
     var listState = 'administration.profiles';
     var detailsState = listState + '.details';
@@ -46,18 +46,6 @@
       return nameArray;
     }
 
-    function findByName(name, objectArray) {
-      var found;
-
-      if (angular.isArray(objectArray)) {
-        found = objectArray.find(function(nextObject) {
-          return (nextObject.name === name);
-        });
-      }
-
-      return found;
-    }
-
     function updateSelections() {
       vm.providerNames.splice(0, vm.providerNames.length);
       angular.forEach(vm.providers, function(provider) {
@@ -69,7 +57,7 @@
       vm.providerNames.sort();
       vm.providerNameValid = vm.providerNames.indexOf(vm.editInfo.providerName) >= 0;
 
-      vm.editInfo.provider = findByName(vm.editInfo.providerName, vm.providers);
+      vm.editInfo.provider = lodash.find(vm.providers, {name: vm.editInfo.providerName});
 
       vm.keyPairs.splice(0, vm.keyPairs.length);
       vm.availabilityZones.splice(0, vm.availabilityZones.length);
@@ -84,7 +72,7 @@
         vm.flavors = getNameArray(vm.editInfo.provider.flavors);
         vm.cloudNetworkNames = getNameArray(vm.editInfo.provider.cloud_networks);
 
-        vm.editInfo.cloudNetworkObj = findByName(vm.editInfo.cloudNetwork, vm.cloudNetworks);
+        vm.editInfo.cloudNetworkObj = lodash.find(vm.cloudNetworks, {name: vm.editInfo.cloudNetwork});
         if (vm.editInfo.cloudNetworkObj) {
           vm.cloudSubnets = getNameArray(vm.editInfo.cloudNetworkObj.cloud_subnets);
           vm.securityGroups = getNameArray(vm.editInfo.cloudNetworkObj.security_groups);
@@ -113,9 +101,7 @@
 
     function getIdForName(list, name) {
       if (list && list.length > 0) {
-        var found = list.find(function(nextObject) {
-          return (nextObject.name === name);
-        });
+        var found = lodash.find(list, {name: name});
         if (found) {
           return found.id;
         } else {
@@ -228,17 +214,17 @@
       }
 
       vm.providerTypes = [];
-      angular.forEach(vm.providers, function(provider) {
-        var providerType = ProfilesState.getProviderType(provider);
-        if (providerType !== 'Unknown') {
-          var found = vm.providerTypes.find(function(nextType) {
-            return nextType === providerType;
-          });
-          if (!found) {
-            vm.providerTypes.push(providerType);
-          }
+
+      // only add provider types that there are existing providers for
+      angular.forEach(ProfilesState.getProviderTypes(), function(providerType) {
+        var providerExists = lodash.find(vm.providers, function(provider) {
+          return ProfilesState.getProviderType(provider) === providerType;
+        });
+        if (providerExists) {
+          vm.providerTypes.push(providerType);
         }
       });
+
       vm.providerTypes.sort();
 
       vm.providerNames = [];
