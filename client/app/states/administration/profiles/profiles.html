@@ -8,48 +8,5 @@
       </li>
     </ol>
   </span>
-  <div pf-toolbar class="arbitration-rules-toolbar" id="arbitrationProfilesToolbar" config="vm.toolbarConfig"></div>
-  <div class="list-view-container"
-       confirmation
-       confirmation-trigger-value="vm.confirmDelete"
-       confirmation-title="{{'Delete Profile'|translate}}"
-       confirmation-message="{{'Are you sure you want to delete profile [[profile_name]]?'|translate|substitute:{profile_name: vm.profileToDelete ? vm.profileToDelete.name : ''} }}"
-       confirmation-ok-text="{{'Delete'|translate}}"
-       confirmation-on-ok="vm.removeProfile(item)"
-       confirmation-on-cancel="vm.cancelRemoveProfile(item)"
-       confirmation-ok-style="primary"
-       confirmation-show-cancel="true">
-    <div pf-list-view id="arbitrationProfilesList" class="arbitration-profiles-list" config="vm.listConfig" items="vm.arbitrationProfilesList"
-         action-buttons="vm.actionButtons"
-         menu-actions="vm.menuActions">
-      <div class="row">
-        <div class="col-md-2 col-sm-4 col-xs-6">
-          <span class="no-wrap" tooltip="{{item.name}}" tooltip-placement="bottom">
-            {{ item.name }}
-          </span>
-        </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <span class="no-wrap">
-            <span class="ss-list-view__title-img">
-              <span class="ss-list-view__title-img__center"></span>
-              <img class="ss-list-view__title-img__logo" src="{{item.providerImage}}" ng-if="item.providerImage"/>
-            </span>
-            <span tooltip="{{item.ext_management_system.name}}" tooltip-placement="bottom">
-              {{item.ext_management_system.name}}
-            </span>
-          </span>
-        </div>
-        <div class="col-md-4 col-sm-4 hidden-xs">
-          <span class="no-wrap" tooltip="{{item.updated_at| date:'MMM dd, yyyy'}}" tooltip-placement="bottom">
-            <strong translate>Last Modified</strong>&nbsp;&nbsp;{{item.updated_at | date:'MMM dd, yyyy'}}
-          </span>
-        </div>
-        <div class="col-md-3 hidden-sm hidden-xs">
-          <span class="no-wrap" tooltip="{{item.description}}" tooltip-placement="bottom">
-            {{item.description}}
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div profiles-list arbitration-profiles="vm.arbitrationProfiles" refresh-fn="vm.refreshProfiles"></div>
 </ui-view>
