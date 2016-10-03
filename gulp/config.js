@@ -70,6 +70,8 @@ module.exports = (function() {
 
     if (includeSpecs) {
       files = [].concat(files,  tests + '**/*.spec.js');
+      files = [].concat(files,  bower + 'karma-read-json/karma-read-json.js');
+      files = [].concat(files, {pattern: tests + 'mock/**/*.json', included: false});
     }
 
     return files;
