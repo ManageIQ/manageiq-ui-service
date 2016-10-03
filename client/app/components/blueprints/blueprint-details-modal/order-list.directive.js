@@ -37,7 +37,7 @@
       scope: {
         list: '=',
       },
-      templateUrl: 'app/components/blueprint-details-modal/order-list.directive.html',
+      templateUrl: 'app/components/blueprints/blueprint-details-modal/order-list.directive.html',
       controller: OrderListController,
     };
 

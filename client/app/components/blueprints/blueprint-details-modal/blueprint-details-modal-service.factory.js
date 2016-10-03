@@ -16,7 +16,7 @@
 
     function showModal(action, blueprint) {
       var modalOptions = {
-        templateUrl: 'app/components/blueprint-details-modal/blueprint-details-modal.html',
+        templateUrl: 'app/components/blueprints/blueprint-details-modal/blueprint-details-modal.html',
         controller: BlueprintDetailsModalController,
         controllerAs: 'vm',
         resolve: {
@@ -241,41 +241,14 @@
 
       vm.blueprint.tags = vm.tagsOfItem;
 
-      if (vm.modalData.resource.catalog) {
-        if (!vm.blueprint.ui_properties.service_catalog || vm.modalData.resource.catalog.id
-            !== vm.blueprint.ui_properties.service_catalog.id) {
-          vm.blueprint.ui_properties.service_catalog = {"id": vm.modalData.resource.catalog.id};
-        }
-      } else {
-        if (vm.blueprint.ui_properties.service_catalog) {
-          delete(vm.blueprint.ui_properties.service_catalog);
-        }
-      }
-
-      if (vm.modalData.resource.dialog) {
-        if (!vm.blueprint.ui_properties.service_dialog || vm.modalData.resource.dialog.id
-            !== vm.blueprint.ui_properties.service_dialog.id) {
-          vm.blueprint.ui_properties.service_dialog = {"id": vm.modalData.resource.dialog.id};
-        }
-      } else {
-        if (vm.blueprint.ui_properties.service_dialog) {
-          delete(vm.blueprint.ui_properties.service_dialog);
-        }
-      }
+      vm.blueprint.ui_properties.service_catalog = setBlueprintFromModel(vm.modalData.resource.catalog,
+          vm.blueprint.ui_properties.service_catalog);
+      vm.blueprint.ui_properties.service_dialog = setBlueprintFromModel(vm.modalData.resource.dialog,
+          vm.blueprint.ui_properties.service_dialog);
 
       vm.blueprint.ui_properties.automate_entrypoints.Provision = vm.modalData.resource.provEP;
-
-      if (vm.modalData.resource.reConfigEP) {
-        vm.blueprint.ui_properties.automate_entrypoints.Reconfigure = vm.modalData.resource.reConfigEP;
-      } else if (vm.blueprint.ui_properties.automate_entrypoints && vm.blueprint.ui_properties.automate_entrypoints.Reconfigure) {
-        vm.blueprint.ui_properties.automate_entrypoints.Reconfigure = null;
-      }
-
-      if (vm.modalData.resource.retireEP) {
-        vm.blueprint.ui_properties.automate_entrypoints.Retirement = vm.modalData.resource.retireEP;
-      } else if (vm.blueprint.ui_properties.automate_entrypoints && vm.blueprint.ui_properties.automate_entrypoints.Retirement) {
-        vm.blueprint.ui_properties.automate_entrypoints.Retirement = null;
-      }
+      vm.blueprint.ui_properties.automate_entrypoints.Reconfigure = vm.modalData.resource.reConfigEP;
+      vm.blueprint.ui_properties.automate_entrypoints.Retirement = vm.modalData.resource.retireEP;
 
       if (vm.provOrderChanged) {
         BlueprintOrderListService.saveOrder("provisionOrder", vm);
@@ -298,6 +271,20 @@
        $log.debug("Diff = " + angular.toJson(BlueprintsState.difference(vm.blueprint,
                   BlueprintsState.getOriginalBlueprint()), true));
       */
+
+      function setBlueprintFromModel(modelData, blueprintData) {
+        if (modelData) {
+          if (!blueprintData || modelData.id !== blueprintData.id) {
+            blueprintData = {"id": modelData.id};
+          }
+        } else {
+          if (blueprintData) {
+            blueprintData = null;
+          }
+        }
+
+        return blueprintData;
+      }
 
       saveSuccess();
 
