@@ -232,7 +232,7 @@ module.exports = (function() {
     build: temp + 'styles/',
     output: cssFile,
     options: {
-      outputStyle: 'compress',
+      outputStyle: 'compressed',
       precision: 8
     },
     autoprefixer: {
@@ -438,7 +438,7 @@ module.exports = (function() {
     build: temp + 'styles/',
     output: cssFile,
     options: {
-      outputStyle: 'compress',
+      outputStyle: 'compressed',
       precision: 8
     },
     autoprefixer: {
