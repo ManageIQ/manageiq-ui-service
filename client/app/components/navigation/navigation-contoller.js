@@ -182,9 +182,12 @@
 
     function refreshNotifications() {
       vm.notificationGroups = EventNotifications.state().groups;
-      vm.newNotifications = angular.isDefined(vm.notificationGroups.find(function(group) {
-        return group.unreadCount > 0;
-      }));
+      vm.newNotifications = EventNotifications.state().unreadNotifications;
+      vm.unreadNotificationCount = 0;
+      angular.forEach(vm.notificationGroups, function(group) {
+        vm.unreadNotificationCount += group.unreadCount;
+      });
+      vm.notificationsIndicatorTooltip = __(vm.unreadNotificationCount + " unread notifications");
     }
 
     function refreshToast() {
@@ -231,15 +234,17 @@
 
     function getNotficationStatusIconClass(notification) {
       var retClass = '';
-      if (notification && notification.data && notification.data.status) {
-        if (notification.data.status === 'info') {
+      if (notification && notification.type) {
+        if (notification.type === 'info') {
           retClass = "pficon pficon-info";
-        } else if (notification.data.status === 'error') {
+        } else if (notification.type === 'error') {
           retClass = "pficon pficon-error-circle-o";
-        } else if (notification.data.status === 'warning') {
+        } else if (notification.type === 'warning') {
           retClass = "pficon pficon-warning-triangle-o";
-        } else if (notification.data.status === 'success') {
+        } else if (notification.type === 'success') {
           retClass = "pficon pficon-ok";
+        } else {
+          retClass = "pficon pficon-info";  // default to info
         }
       }
 
