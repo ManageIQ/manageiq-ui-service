@@ -2,7 +2,7 @@
 
 var filter = require('gulp-filter');
 var browserSync = require('browser-sync');
-var sass = require('gulp-ruby-sass');
+var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
 var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
@@ -17,9 +17,8 @@ module.exports = function(gulp, options) {
       browserSync.notify('Compiling Sass');
     }
 
-    return sass(config.src, config.options)
-      .pipe(plumber({errorHandler: options.onError}))
-      .on('error', options.onError)
+    return gulp.src(config.src)
+      .pipe(sass.sync().on('error', sass.logError))
       .pipe(autoprefixer(config.autoprefixer))
       .pipe(rename(config.output))
       .pipe(gulp.dest(config.build));
