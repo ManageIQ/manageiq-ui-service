@@ -232,20 +232,7 @@ module.exports = (function() {
     build: temp + 'styles/',
     output: cssFile,
     options: {
-      // Only includes the styles if @imported
-      // Remember to then update exclude in wiredepOptions if using @import
-      loadPath: [
-        bower + 'bootstrap-sass-official/assets/stylesheets/',
-        bower + 'font-awesome/scss/',
-        bower + 'patternfly-sass/assets/stylesheets/',
-        // Hack so that font-awesome/variables can be found
-        client + 'assets/sass/'
-      ],
-      style: 'compact',
-      noCache: false,
-      compass: false,
-      bundleExec: true,
-      sourcemap: false,
+      outputStyle: 'compact',
       precision: 8
     },
     autoprefixer: {
@@ -451,20 +438,7 @@ module.exports = (function() {
     build: temp + 'styles/',
     output: cssFile,
     options: {
-      // Only includes the styles if @imported
-      // Remember to then update exclude in wiredepOptions if using @import
-      loadPath: [
-        bower + 'bootstrap-sass-official/assets/stylesheets/',
-        bower + 'font-awesome/scss/',
-        bower + 'patternfly-sass/assets/stylesheets/',
-        // Hack so that font-awesome/variables can be found
-        client + 'assets/sass/'
-      ],
-      style: 'compact',
-      noCache: false,
-      compass: false,
-      bundleExec: true,
-      sourcemap: false,
+      outputStyle: 'compact',
       precision: 8
     },
     autoprefixer: {
