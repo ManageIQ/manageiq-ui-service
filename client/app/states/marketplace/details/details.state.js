@@ -85,7 +85,6 @@
       return dialogFieldData;
     }
 
-
     function alreadyInCart() {
       return ShoppingCart.isDuplicate(dataForSubmit('service_template_href'));
     }
