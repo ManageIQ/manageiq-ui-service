@@ -18,7 +18,7 @@ module.exports = function(gulp, options) {
     }
 
     return gulp.src(config.src)
-      .pipe(sass(config.options).on('error', sass.logError))
+      .pipe(sass(config.options).on('error', options.onError))
       .pipe(autoprefixer(config.autoprefixer))
       .pipe(rename(config.output))
       .pipe(gulp.dest(config.build));
