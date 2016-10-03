@@ -15,6 +15,7 @@
     '$state',
     'EventNotifications',
     'ServerInfo',
+    'ProductInfo',
     NavigationCtrl]);
 
   /** @ngInject */
@@ -28,7 +29,8 @@
                           $modal,
                           $state,
                           EventNotifications,
-                          ServerInfo) {
+                          ServerInfo,
+                          ProductInfo) {
     var vm = this;
     vm.text = Text.app;
     vm.user = Session.currentUser;
@@ -117,7 +119,6 @@
     vm.about = {
       isOpen: false,
       additionalInfo: "",
-      copyright: __("Copyright (c) 2016 ManageIQ. Sponsored by Red Hat Inc."),
       imgAlt: __("Product logo"),
       imgSrc: "images/login-screen-logo.png",
       title: Text.app.name,
@@ -130,6 +131,11 @@
         { name: __('User Name: '), value: ServerInfo.data.user },
         { name: __('User Role: '), value: ServerInfo.data.role },
       ];
+    });
+    ProductInfo.promise.then( function() {
+      vm.about.copyright = ProductInfo.data.copyright;
+      vm.about.supportWebsiteText = ProductInfo.data.supportWebsiteText;
+      vm.about.supportWebsite = ProductInfo.data.supportWebsite;
     });
     vm.openAbout = function() {
       vm.about.isOpen = true;
