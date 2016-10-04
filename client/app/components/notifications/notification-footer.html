@@ -10,7 +10,6 @@
     <a class="btn btn-link" role="button"
        ng-class="{'disabled': !notificationGroup.notifications || notificationGroup.notifications.length === 0}"
        confirmation
-       confirmation-if="true"
        confirmation-title="{{'Clear All [[heading]]'|translate|substitute:{heading: notificationGroup.heading} }}"
        confirmation-message="{{'Are you sure you would like to clear all [[heading]]?'|translate|substitute:{heading: notificationGroup.heading} }}"
        confirmation-ok-text="{{'Clear All'|translate}}"
