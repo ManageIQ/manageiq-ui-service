@@ -26,7 +26,8 @@
   }
 
   /** @ngInject */
-  function StateController($state, Text, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ServerInfo, ProductInfo) {
+  function StateController($state, Text, API_LOGIN, API_PASSWORD, AuthenticationApi, Session,   /* jshint -W072 */
+                           $rootScope, Notifications, Language, ServerInfo, ProductInfo) {
     var vm = this;
 
     vm.text = Text.login;

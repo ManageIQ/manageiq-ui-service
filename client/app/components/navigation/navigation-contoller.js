@@ -1,5 +1,3 @@
-/* eslint no-unused-vars: 0*/
-
 (function() {
   'use strict';
 
@@ -19,7 +17,7 @@
     NavigationCtrl]);
 
   /** @ngInject */
-  function NavigationCtrl(Text,
+  function NavigationCtrl(Text,                /* jshint -W072 */
                           Navigation,
                           Messages,
                           Session,
