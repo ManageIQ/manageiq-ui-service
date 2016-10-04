@@ -28,6 +28,26 @@
             <span class="fa" ng-class="{'fa-bell': vm.newNotifications, 'fa-bell-o': !vm.newNotifications}"></span>
           </a>
         </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle nav-item-iconic" id="aboutModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <span class="fa pficon-help"></span>
+            <span class="caret"></span>
+          </a>
+          <ul class ="dropdown-menu" aria-labelledby="aboutModal">
+            <li>
+              <a href="/support/index?support_tab=about">
+                {{ 'Documentation' | translate}}
+              </a>
+            </li>
+            <li>
+              <a href="http://www.manageiq.org" target="_new">
+                ManageIQ.org
+              </a>
+            </li>
+            <li about-modal>
+            </li>
+          </ul>
+        </li>
         <li dropdown>
           <a dropdown-toggle class="nav-item-iconic" title="{{ ::vm.user().userid }}">
             <i class="fa pficon-user"></i>

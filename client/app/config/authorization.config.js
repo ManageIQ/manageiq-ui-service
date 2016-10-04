@@ -1,4 +1,4 @@
-/*eslint camelcase: "off" */
+/* eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -57,10 +57,10 @@
   }
 
   /** @ngInject */
-  function init($rootScope, $state, Session, $sessionStorage, logger, Language) {
-    $rootScope.$on('$stateChangeStart', changeStart);
-    $rootScope.$on('$stateChangeError', changeError);
-    $rootScope.$on('$stateChangeSuccess', changeSuccess);
+  function init($rootScope, $state, Session, $sessionStorage, logger, Language, ServerInfo) {
+    var unregisterStart = $rootScope.$on('$stateChangeStart', changeStart);
+    var unregisterError = $rootScope.$on('$stateChangeError', changeError);
+    var unregisterSuccess = $rootScope.$on('$stateChangeSuccess', changeSuccess);
 
     function changeStart(event, toState, toParams, fromState, fromParams) {
       if (toState.data && !toState.data.requireUser) {
@@ -90,6 +90,7 @@
 
       Session.loadUser()
         .then(Language.onReload)
+        .then(ServerInfo.set)
         .then(rbacReloadOrLogin(toState, toParams))
         .catch(badUser);
     }
