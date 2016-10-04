@@ -1,6 +1,7 @@
 /*jshint node:true*/
 'use strict';
 
+var http = require('http');
 var express = require('express');
 var httpProxy = require('http-proxy');
 var app = express();
@@ -16,6 +17,8 @@ var environment = process.env.NODE_ENV;
 var PROXY_HOST = process.env.PROXY_HOST || '[::1]:3000';
 
 var PROXY_TARGET = 'http://' + PROXY_HOST + '/api';
+var WS_PROXY_TARGET = 'http://' + PROXY_HOST;
+
 var proxy_error_handler = function(req, res) {
   return function(err, data) {
     if (!err)
@@ -32,6 +35,11 @@ var proxy_error_handler = function(req, res) {
 
 var proxy = httpProxy.createProxyServer({
   target: PROXY_TARGET,
+});
+
+var wsProxy = httpProxy.createProxyServer({
+  target: WS_PROXY_TARGET,
+  ws: true,
 });
 
 app.use('/api', function(req, res) {
@@ -86,7 +94,14 @@ switch (environment) {
     break;
 }
 
-app.listen(port, function() {
+var server = http.createServer(app);
+
+server.on('upgrade', function (req, socket, head) {
+  console.log('PROXY(ws,upgrade): ' + req.url);
+  wsProxy.ws(req, socket, head);
+});
+
+server.listen(port, function() {
   console.log('Express server listening on port ' + port);
   console.log('env = ' + app.get('env') + '\n__dirname = '
     + __dirname + '\nprocess.cwd = ' + process.cwd());
