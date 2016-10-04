@@ -5,7 +5,7 @@
   .factory('EventNotifications', EventNotificationsFactory);
 
   /** @ngInject */
-  function EventNotificationsFactory($timeout, lodash, CollectionsApi) {
+  function EventNotificationsFactory($timeout, lodash, CollectionsApi, Session, logger, ActionCable) {
     var state = {};
     var toastDelay = 8 * 1000;
 
@@ -53,6 +53,25 @@
 
     doReset();
 
+    var cable = ActionCable.createConsumer('/ws/notifications');
+
+    cable.subscriptions.create('NotificationChannel', {
+      disconnected: function () {
+        var vm = this;
+        Session.requestWsToken().then(null, function () {
+          logger.warning('Unable to retrieve a valid ws_token!', null, 'Notifications');
+          // Disconnect permanently if the ws_token cannot be fetched
+          vm.consumer.connection.close({ allowReconnect: false });
+        });
+      },
+      received: function (data) {
+        $timeout(function () {
+          var msg = miqFormatNotification(data.text, data.bindings);
+          service.add('event', data.level, msg, {message: msg}, data.id);
+        });
+      },
+    });
+
     return service;
 
     function doReset() {
@@ -61,7 +80,7 @@
         heading: 'Events',
         unreadCount: 0,
         notifications: [],
-      }
+      };
       state.groups = [events];
       state.unreadNotifications = false;
       state.toastNotifications = [];
@@ -99,6 +118,7 @@
         type: type,
         message: message,
         data: notificationData,
+        href: id ? '/api/notifications/' + id : undefined,
         timeStamp: (new Date()).getTime(),
       };
 
@@ -194,6 +214,7 @@
         var resources = group.notifications.map(function (notification) {
           notification.unread = false;
           service.removeToast(notification);
+
           return { href: notification.href };
         });
         if (resources.length > 0) {
