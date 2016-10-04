@@ -8,6 +8,7 @@
   $selector: &;
   @if containsModifier($selector) {
     $block: getBlock($selector);
+
     @at-root {
       #{$selector} {
         #{$block + $elementSeparator + $element} {
@@ -26,7 +27,7 @@
 
 @mixin modifier($modifier) {
   @at-root {
-    #{&}#{$modifierSeparator+$modifier} {
+    #{&}#{$modifierSeparator + $modifier} {
       @content;
     }
   }
