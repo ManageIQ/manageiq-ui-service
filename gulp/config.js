@@ -20,7 +20,8 @@ module.exports = (function() {
   /**
    * Files
    */
-  var indexFile = 'index.ejs';
+  var indexFileEjs = 'index.ejs';
+  var indexFile = 'index.html';
   var specsFile = 'specs.html';
   var cssFile = 'styles.css';
   var sassFiles = [
@@ -51,7 +52,7 @@ module.exports = (function() {
   var wiredepOptions = {
     json: require('../bower.json'),
     directory: bower,
-    ignorePath: '..',
+    ignorePath: '../..',
     // Ignore CSS and JavaScript this is not needed or is undesired
     exclude: [
       // Exclude the bootstrap CSS, the Sass version will be @imported instead
@@ -268,6 +269,7 @@ module.exports = (function() {
   config.wiredep = {
     index: [client + javascripts, client + styles],
     build: client,
+    temp: temp,
     options: wiredepOptions,
     files: getClientJsFiles(true, false),
     order: clientJsOrder
@@ -295,6 +297,12 @@ module.exports = (function() {
       single_quotes: true
     },
     devHost: 'http://localhost:3000'
+  };
+
+  // task compileEjs: Injects javascripts.html and styles.html into build index.html
+  config.ejs = {
+    index: client + indexFileEjs,
+    build: temp
   };
 
   config.build = {
@@ -338,7 +346,7 @@ module.exports = (function() {
     specsFile: specsFile,
     sass: sassFiles,
     js: getClientJsFiles(true, false),
-    html: [].concat(client + indexFile, templateFiles),
+    html: [].concat(client + indexFileEjs, templateFiles),
     devFiles: [
       client + '**/*.js',
       client + '**/*.html',
@@ -415,56 +423,6 @@ module.exports = (function() {
       './bower.json'
     ],
     root: './'
-  };
-
-  // build configs
-  config.buildWiredep = {
-    index: client + indexFile,
-    build: temp,
-    options: wiredepOptions,
-    files: getClientJsFiles(true, false),
-    order: clientJsOrder
-  };
-
-  config.buildInject = {
-    index: temp + indexFile,
-    build: temp,
-    css: [
-      temp + 'styles/' + cssFile,
-      client + '/skin/**/*.css'
-    ]
-  };
-
-  config.buildSass = {
-    src: client + 'assets/sass/styles.sass',
-    build: temp + 'styles/',
-    output: cssFile,
-    options: {
-      outputStyle: 'compressed',
-      precision: 8
-    },
-    autoprefixer: {
-      browsers: [
-        'last 2 versions',
-        '> 5%'
-      ],
-      cascade: true
-    }
-  };
-
-  config.buildTemplatecache = {
-    src: templateFiles,
-    build: temp,
-    output: 'templates.js',
-    minify: true, // Always minify the templates
-    minifyOptions: {
-      empty: true
-    },
-    templateOptions: {
-      module: 'app.core',
-      standalone: false,
-      root: 'app/'
-    }
   };
 
   return config;
