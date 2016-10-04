@@ -10,6 +10,7 @@
       query: query,
       get: get,
       post: post,
+      delete: remove,
     };
 
     return service;
@@ -46,6 +47,20 @@
       // console.log("post = " + url + buildQuery(options));
 
       return $http.post(url, data, buildConfig(options))
+        .then(handleSuccess);
+
+      function handleSuccess(response) {
+        return response.data;
+      }
+    }
+
+    // delete is a reserved word in JS
+    function remove(collection, id, options) {
+      var url = API_BASE + '/api/' + collection + '/' + (id || "") + buildQuery(options);
+
+      // $log.debug("post = " + url + buildQuery(options));
+
+      return $http.delete(url, buildConfig(options))
         .then(handleSuccess);
 
       function handleSuccess(response) {
