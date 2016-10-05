@@ -21,7 +21,7 @@ msgstr ""
 msgid "'%s' was succesfully saved."
 msgstr ""
 
-#: app/layouts/application.html:49
+#: app/layouts/application.html:75
 msgid "(Current Group)"
 msgstr ""
 
@@ -39,6 +39,10 @@ msgstr ""
 
 #: app/components/retire-service-modal/retire-service-modal-service.factory.js:62
 msgid "4 Weeks"
+msgstr ""
+
+#: app/layouts/application.html:52
+msgid "About"
 msgstr ""
 
 #: app/states/about-me/about-me.html:1
@@ -72,7 +76,8 @@ msgstr ""
 msgid "Add Profile"
 msgstr ""
 
-#: app/states/marketplace/details/details.html:29
+#: app/states/marketplace/details/details.html:36
+#: app/states/marketplace/details/details.html:41
 msgid "Add to Shopping Cart"
 msgstr ""
 
@@ -99,11 +104,11 @@ msgstr ""
 msgid "Approver"
 msgstr ""
 
-#: app/states/administration/profiles/profiles.html:17
+#: app/states/administration/profiles/profiles.html:16
 msgid "Are you sure you want to delete profile [[profile_name]]?"
 msgstr ""
 
-#: app/states/administration/rules/rules.html:132
+#: app/states/administration/rules/rules.html:131
 msgid "Are you sure you want to delete this rule?"
 msgstr ""
 
@@ -117,7 +122,7 @@ msgstr[1] ""
 msgid "Are you sure you wish to proceed?"
 msgstr ""
 
-#: app/components/notifications/notification-footer.html:15
+#: app/components/notifications/notification-footer.html:14
 msgid "Are you sure you would like to clear all [[heading]]?"
 msgstr ""
 
@@ -189,7 +194,7 @@ msgstr ""
 msgid "Button action not supported."
 msgstr ""
 
-#: app/states/services/details/details.html:115
+#: app/states/services/details/details.html:113
 msgid "CPU"
 msgstr ""
 
@@ -225,28 +230,28 @@ msgstr ""
 msgid "Catalog Name"
 msgstr ""
 
-#: app/layouts/application.html:41
+#: app/layouts/application.html:67
 msgid "Change Group:"
 msgstr ""
 
-#: app/layouts/application.html:53
+#: app/layouts/application.html:79
 msgid "Change to this Group"
 msgstr ""
 
-#: app/components/shopping-cart/shopping-cart.html:42
+#: app/components/shopping-cart/shopping-cart.html:46
 msgid "Clear"
 msgstr ""
 
-#: app/components/notifications/notification-footer.html:16
-#: app/components/notifications/notification-footer.html:21
+#: app/components/notifications/notification-footer.html:15
+#: app/components/notifications/notification-footer.html:20
 msgid "Clear All"
 msgstr ""
 
-#: app/components/notifications/notification-footer.html:14
+#: app/components/notifications/notification-footer.html:13
 msgid "Clear All [[heading]]"
 msgstr ""
 
-#: app/components/shopping-cart/shopping-cart.html:34
+#: app/components/shopping-cart/shopping-cart.html:38
 msgid "Close"
 msgstr ""
 
@@ -264,11 +269,11 @@ msgstr ""
 msgid "Completed:"
 msgstr ""
 
-#: app/states/services/details/details.html:41
+#: app/states/services/details/details.html:40
 msgid "Confirm, would you like to remove this service?"
 msgstr ""
 
-#: app/states/services/details/details.html:56
+#: app/states/services/details/details.html:54
 msgid "Confirm, would you like to retire this service?"
 msgstr ""
 
@@ -307,7 +312,7 @@ msgstr ""
 msgid "Created"
 msgstr ""
 
-#: app/states/services/details/details.html:105
+#: app/states/services/details/details.html:103
 #: app/states/services/list/list.html:48
 msgid "Created On"
 msgstr ""
@@ -320,7 +325,7 @@ msgstr ""
 msgid "Current"
 msgstr ""
 
-#: app/layouts/application.html:60
+#: app/layouts/application.html:86
 msgid "Current Group"
 msgstr ""
 
@@ -328,7 +333,7 @@ msgstr ""
 msgid "Current Services"
 msgstr ""
 
-#: app/layouts/application.html:47
+#: app/layouts/application.html:73
 msgid "Currently Selected Group"
 msgstr ""
 
@@ -351,9 +356,9 @@ msgid "Dashboard"
 msgstr ""
 
 #: app/components/blueprint-delete-modal/blueprint-delete-modal.html:18
-#: app/states/administration/profiles/profiles.html:18
+#: app/states/administration/profiles/profiles.html:17
 #: app/states/administration/profiles/profiles.state.js:216
-#: app/states/administration/rules/rules.html:133
+#: app/states/administration/rules/rules.html:132
 #: app/states/designer/blueprints/list/list.state.js:130
 #: app/states/designer/blueprints/list/list.state.js:211
 msgid "Delete"
@@ -365,12 +370,12 @@ msgstr ""
 msgid "Delete Blueprint"
 msgstr ""
 
-#: app/states/administration/profiles/profiles.html:16
+#: app/states/administration/profiles/profiles.html:15
 #: app/states/administration/profiles/profiles.state.js:217
 msgid "Delete Profile"
 msgstr ""
 
-#: app/states/administration/rules/rules.html:131
+#: app/states/administration/rules/rules.html:130
 msgid "Delete Rule"
 msgstr ""
 
@@ -400,21 +405,25 @@ msgstr ""
 msgid "Dialog"
 msgstr ""
 
-#: app/states/services/details/details.html:127
+#: app/states/services/details/details.html:125
 msgid "Disk Count"
 msgstr ""
 
-#: app/states/services/details/details.html:133
+#: app/states/services/details/details.html:131
 msgid "Disk Space Allocated"
 msgstr ""
 
-#: app/states/services/details/details.html:139
+#: app/states/services/details/details.html:137
 msgid "Disk Space Used"
 msgstr ""
 
 #: app/states/administration/profiles/editor/save-profile-modal.html:12
 #: app/states/administration/rules/save-rule-modal.html:12
 msgid "Do Not Save"
+msgstr ""
+
+#: app/layouts/application.html:42
+msgid "Documentation"
 msgstr ""
 
 #: app/states/designer/blueprints/editor/save-blueprint-modal.html:12
@@ -425,6 +434,7 @@ msgstr ""
 msgid "Draft"
 msgstr ""
 
+#: app/components/shopping-cart/shopping-cart.html:22
 #: app/states/designer/blueprints/editor/editor.html:25
 #: app/states/designer/blueprints/list/list.state.js:125
 msgid "Duplicate"
@@ -432,6 +442,10 @@ msgstr ""
 
 #: app/states/designer/blueprints/list/list.state.js:126
 msgid "Duplicate Blueprint"
+msgstr ""
+
+#: app/states/marketplace/details/details.html:34
+msgid "Duplicate Shopping Cart Item"
 msgstr ""
 
 #: app/states/designer/blueprints/list/list.state.js:229
@@ -463,7 +477,7 @@ msgid "Edit Profile: %s"
 msgstr ""
 
 #: app/components/edit-service-modal/edit-service-modal.html:5
-#: app/states/services/details/details.html:64
+#: app/states/services/details/details.html:62
 msgid "Edit Service"
 msgstr ""
 
@@ -475,7 +489,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: app/config/authorization.config.js:109
+#: app/config/authorization.config.js:111
 msgid "Error retrieving user info"
 msgstr ""
 
@@ -575,7 +589,7 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: app/states/services/details/details.html:99
+#: app/states/services/details/details.html:97
 msgid "Group"
 msgstr ""
 
@@ -614,7 +628,7 @@ msgstr ""
 msgid "If you don't save, your changes will be lost."
 msgstr ""
 
-#: app/states/services/details/details.html:48
+#: app/states/services/details/details.html:47
 msgid "Inactivate the service"
 msgstr ""
 
@@ -626,12 +640,16 @@ msgstr ""
 msgid "Incorrect username or password."
 msgstr ""
 
-#: app/states/services/details/details.html:170
+#: app/states/services/details/details.html:168
 msgid "Instance name"
 msgstr ""
 
-#: app/states/marketplace/details/details.state.js:100
+#: app/states/marketplace/details/details.state.js:113
 msgid "Item added to shopping cart"
+msgstr ""
+
+#: app/states/marketplace/details/details.state.js:111
+msgid "Item added to shopping cart, but it's a duplicate of an existing item"
 msgstr ""
 
 #: app/states/designer/blueprints/list/list.html:23
@@ -653,14 +671,14 @@ msgid "Last Message"
 msgstr ""
 
 #: app/states/administration/profiles/details/details.html:35
-#: app/states/administration/profiles/profiles.html:45
+#: app/states/administration/profiles/profiles.html:44
 #: app/states/administration/profiles/profiles.state.js:258
 #: app/states/designer/blueprints/list/list.html:17
 #: app/states/designer/blueprints/list/list.state.js:180
 msgid "Last Modified"
 msgstr ""
 
-#: app/states/services/details/details.html:185
+#: app/states/services/details/details.html:183
 msgid "Last Scan"
 msgstr ""
 
@@ -673,7 +691,7 @@ msgstr ""
 msgid "Log In"
 msgstr ""
 
-#: app/layouts/application.html:15
+#: app/layouts/application.html:18
 msgid "Log into the full administrative UI"
 msgstr ""
 
@@ -681,7 +699,7 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: app/layouts/application.html:70
+#: app/layouts/application.html:96
 #: app/states/logout/logout.state.js:18
 msgid "Logout"
 msgstr ""
@@ -694,11 +712,11 @@ msgstr ""
 msgid "Mark All Read"
 msgstr ""
 
-#: app/states/services/details/details.html:121
+#: app/states/services/details/details.html:119
 msgid "Memory"
 msgstr ""
 
-#: app/states/services/details/details.html:146
+#: app/states/services/details/details.html:144
 msgid "Memory on Disk"
 msgstr ""
 
@@ -773,15 +791,15 @@ msgstr ""
 msgid "Number of VMs"
 msgstr ""
 
-#: app/states/services/details/details.html:201
+#: app/states/services/details/details.html:199
 msgid "Open Cockpit console for this VM"
 msgstr ""
 
-#: app/states/services/details/details.html:198
+#: app/states/services/details/details.html:196
 msgid "Open a HTML5 console for this VM"
 msgstr ""
 
-#: app/components/shopping-cart/shopping-cart.html:50
+#: app/components/shopping-cart/shopping-cart.html:54
 msgid "Order"
 msgstr ""
 
@@ -804,7 +822,7 @@ msgstr ""
 msgid "Orders:"
 msgstr ""
 
-#: app/states/services/details/details.html:93
+#: app/states/services/details/details.html:91
 #: app/states/services/list/list.html:40
 #: app/states/services/list/list.state.js:122
 #: app/states/services/list/list.state.js:88
@@ -836,10 +854,10 @@ msgstr ""
 msgid "Please enter a name for the new Catalog"
 msgstr ""
 
+#: app/states/services/details/details.html:188
+#: app/states/services/details/details.html:189
 #: app/states/services/details/details.html:190
 #: app/states/services/details/details.html:191
-#: app/states/services/details/details.html:192
-#: app/states/services/details/details.html:193
 msgid "Power State"
 msgstr ""
 
@@ -861,6 +879,10 @@ msgstr ""
 
 #: app/states/products/details/details.html:23
 msgid "Product Type"
+msgstr ""
+
+#: app/components/navigation/navigation-contoller.js:122
+msgid "Product logo"
 msgstr ""
 
 #: app/states/products/details/details.state.js:19
@@ -951,7 +973,7 @@ msgid "Rearrange Items to set Provision Order"
 msgstr ""
 
 #: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:45
-#: app/states/services/details/details.html:66
+#: app/states/services/details/details.html:64
 msgid "Reconfigure"
 msgstr ""
 
@@ -977,7 +999,7 @@ msgid "Remove"
 msgstr ""
 
 #: app/states/services/details/details.html:36
-#: app/states/services/details/details.html:40
+#: app/states/services/details/details.html:39
 msgid "Remove Service"
 msgstr ""
 
@@ -1038,15 +1060,15 @@ msgstr ""
 msgid "Requests Details"
 msgstr ""
 
-#: app/states/services/details/details.html:49
+#: app/states/services/details/details.html:48
 msgid "Retire"
 msgstr ""
 
-#: app/states/services/details/details.html:53
+#: app/states/services/details/details.html:52
 msgid "Retire Now"
 msgstr ""
 
-#: app/states/services/details/details.html:55
+#: app/states/services/details/details.html:53
 msgid "Retire Service Now"
 msgstr ""
 
@@ -1064,7 +1086,7 @@ msgstr ""
 
 #: app/components/retire-service-modal/retire-service-modal.html:13
 #: app/states/dashboard/dashboard.state.js:185
-#: app/states/services/details/details.html:85
+#: app/states/services/details/details.html:83
 #: app/states/services/list/list.html:20
 #: app/states/services/list/list.state.js:112
 #: app/states/services/list/list.state.js:75
@@ -1126,7 +1148,7 @@ msgstr ""
 msgid "Save Changes to {{vm.blueprint.name}}"
 msgstr ""
 
-#: app/states/services/details/details.html:61
+#: app/states/services/details/details.html:59
 msgid "Schedule Retirement"
 msgstr ""
 
@@ -1219,6 +1241,10 @@ msgstr ""
 msgid "Self Service"
 msgstr ""
 
+#: app/components/navigation/navigation-contoller.js:130
+msgid "Server Name:"
+msgstr ""
+
 #: app/config/navigation.config.js:40
 #: app/states/marketplace/list/list.state.js:20
 msgid "Service Catalog"
@@ -1234,7 +1260,7 @@ msgstr ""
 msgid "Service Details"
 msgstr ""
 
-#: app/states/services/details/details.html:78
+#: app/states/services/details/details.html:76
 msgid "Service Id"
 msgstr ""
 
@@ -1251,7 +1277,7 @@ msgstr ""
 msgid "Service:"
 msgstr ""
 
-#: app/states/services/details/details.html:65
+#: app/states/services/details/details.html:63
 msgid "Set Ownership"
 msgstr ""
 
@@ -1267,11 +1293,11 @@ msgstr ""
 msgid "Shopping Cart"
 msgstr ""
 
-#: app/layouts/application.html:21
+#: app/layouts/application.html:24
 msgid "Shopping cart"
 msgstr ""
 
-#: app/components/shopping-cart/shopping-cart.html:26
+#: app/components/shopping-cart/shopping-cart.html:30
 msgid "Shopping cart is empty."
 msgstr ""
 
@@ -1283,7 +1309,7 @@ msgstr ""
 msgid "Show Blueprint Names"
 msgstr ""
 
-#: app/states/services/details/details.html:180
+#: app/states/services/details/details.html:178
 msgid "Size"
 msgstr ""
 
@@ -1319,7 +1345,7 @@ msgstr ""
 msgid "The current approval status of the request"
 msgstr ""
 
-#: app/states/services/details/details.html:185
+#: app/states/services/details/details.html:183
 msgid "The last heartbeat received from the instances"
 msgstr ""
 
@@ -1371,6 +1397,10 @@ msgstr ""
 msgid "The total number of services that you have ordered, both active and retired"
 msgstr ""
 
+#: app/states/marketplace/details/details.html:35
+msgid "There already is an identical item in the cart. Do you want to add it anyway?"
+msgstr ""
+
 #: app/components/tagging/tagging.html:15
 msgid "There are no tags for this item."
 msgstr ""
@@ -1379,7 +1409,7 @@ msgstr ""
 msgid "There was a problem loading the page."
 msgstr ""
 
-#: app/states/marketplace/details/details.state.js:106
+#: app/states/marketplace/details/details.state.js:120
 msgid "There was an error adding to shopping cart:"
 msgstr ""
 
@@ -1446,11 +1476,11 @@ msgstr ""
 msgid "There was an error updating the rules."
 msgstr ""
 
-#: app/states/services/details/details.html:163
+#: app/states/services/details/details.html:161
 msgid "This service has no associated VMs"
 msgstr ""
 
-#: app/layouts/application.html:27
+#: app/layouts/application.html:30
 msgid "Toggle notifications list"
 msgstr ""
 
@@ -1491,8 +1521,16 @@ msgstr ""
 msgid "User Default"
 msgstr ""
 
+#: app/components/navigation/navigation-contoller.js:131
+msgid "User Name:"
+msgstr ""
+
+#: app/components/navigation/navigation-contoller.js:132
+msgid "User Role:"
+msgstr ""
+
 #: app/states/login/login.state.js:40
-#: app/states/login/login.state.js:61
+#: app/states/login/login.state.js:63
 msgid "User does not have privileges to login."
 msgstr ""
 
@@ -1504,8 +1542,12 @@ msgstr ""
 msgid "VMs"
 msgstr ""
 
-#: app/states/services/details/details.html:175
+#: app/states/services/details/details.html:173
 msgid "Vendor"
+msgstr ""
+
+#: app/components/navigation/navigation-contoller.js:129
+msgid "Version:"
 msgstr ""
 
 #: app/states/administration/profiles/profiles.state.js:206
@@ -1520,7 +1562,7 @@ msgstr ""
 msgid "View Profile: %s"
 msgstr ""
 
-#: app/states/services/details/details.html:162
+#: app/states/services/details/details.html:160
 msgid "Virtual Machines ({{ ::vm.vms.length }})"
 msgstr ""
 
@@ -1543,11 +1585,11 @@ msgstr ""
 msgid "We apologize for the inconvenience."
 msgstr ""
 
-#: app/states/services/details/details.html:42
+#: app/states/services/details/details.html:41
 msgid "Yes, Remove Service"
 msgstr ""
 
-#: app/states/services/details/details.html:57
+#: app/states/services/details/details.html:55
 msgid "Yes, Retire Service Now"
 msgstr ""
 
