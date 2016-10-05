@@ -86,7 +86,7 @@
 
       function saveSuccess() {
         $modalInstance.close();
-        EventNotifications.success(__(sprintf("%s ownership was saved.", vm.service.name)));
+        EventNotifications.success(sprintf(__("%s ownership was saved."), vm.service.name));
         $state.go($state.current, {}, {reload: true});
       }
 
