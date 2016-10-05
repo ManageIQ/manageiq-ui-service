@@ -7,5 +7,7 @@
   function mock($httpBackend) {
     $httpBackend.when('GET', /available_languages.json/)
       .respond({});
+    $httpBackend.when('GET', /\/api\/notifications/)
+      .respond({});
   }
 })();
