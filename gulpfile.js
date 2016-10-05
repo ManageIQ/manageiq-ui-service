@@ -73,6 +73,10 @@ gulp.task('serve-dev', ['dev-fonts', 'dev-images', 'dev-skin-images', 'dev-imgs'
   isDev: true,
   specRunner: false
 }));
+gulp.task('serve-build', ['build'], task('serve', {
+  isDev: false,
+  specRunner: false
+}));
 gulp.task('serve-specs', ['build-specs'], task('serve', {
   isDev: true,
   specRunner: true
