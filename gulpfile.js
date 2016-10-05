@@ -18,7 +18,6 @@ gulp.task('default', ['help']);
  */
 gulp.task('eslint', task('eslint'));
 gulp.task('sasslint', task('sasslint'));
-gulp.task('plato', task('plato'));
 gulp.task('vet', ['eslint', 'sasslint']);
 
 /**

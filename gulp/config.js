@@ -120,16 +120,6 @@ module.exports = (function() {
     src: sassFiles
   };
 
-  // task plato: Analyze client code with Plato
-  config.plato = {
-    src: getClientJsFiles(true, false)[0],
-    output: reports + 'plato',
-    options: {
-      title: 'Plato Inspections Report',
-      exclude: /.*\.spec\.js/
-    }
-  };
-
   // task clean: Directories to clean
   config.clean = {
     src: [
