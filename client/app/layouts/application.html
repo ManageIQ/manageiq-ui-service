@@ -21,14 +21,15 @@
       </ul>
       <ul class="nav navbar-nav navbar-right navbar-iconic">
         <li ng-if="vm.shoppingCart.allowed()">
-          <a title="{{'Shopping cart' | translate}}" class="nav-item-iconic" ng-click="vm.shoppingCart.open()">
+          <a title="{{'Shopping cart' | translate}}" class="nav-item-iconic indicator" ng-click="vm.shoppingCart.open()">
             <i class="fa fa-shopping-cart"></i>
             <span class="badge" ng-show="vm.shoppingCart.count" ng-bind="vm.shoppingCart.count"></span>
           </a>
         </li>
         <li>
-          <a title="{{'Toggle notifications list' | translate}}" class="nav-item-iconic" ng-click="vm.toggleNotificationsList()">
-            <span class="fa" ng-class="{'fa-bell': vm.newNotifications, 'fa-bell-o': !vm.newNotifications}"></span>
+          <a title="{{vm.notificationsIndicatorTooltip}}" class="nav-item-iconic indicator" ng-click="vm.toggleNotificationsList()">
+            <i class="fa" ng-class="{'fa-bell': vm.newNotifications, 'fa-bell-o': !vm.newNotifications}"></i>
+            <span class="badge" ng-show="vm.newNotifications">&#8226</span>
           </a>
         </li>
         <li class="dropdown">

@@ -67,7 +67,7 @@
         administration: {
           title: N_('Administration'),
           state: 'administration',
-          iconClass: 'pficon pficon-settomgs',
+          iconClass: 'fa fa-cog',
           secondary: {
             profiles: {
               title: N_('Profiles'),
