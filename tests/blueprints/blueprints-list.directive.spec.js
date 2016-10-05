@@ -53,7 +53,7 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
 
       expect(catName0.html()).to.eq("Amazon Operations");
       expect(catName1.html()).to.eq("OpenStack Operations");
-      expect(catName2.html()).to.eq("Unassigned");
+      expect(catName2.text()).to.eq("Unassigned");
     });
 
     it('should display the correct Visibility icons', function () {
