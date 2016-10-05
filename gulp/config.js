@@ -115,6 +115,11 @@ module.exports = (function() {
     src: getClientJsFiles(true, false)
   };
 
+  // task sasslint: Runs sass-lint on client code
+  config.sasslint = {
+    src: sassFiles
+  };
+
   // task plato: Analyze client code with Plato
   config.plato = {
     src: getClientJsFiles(true, false)[0],

@@ -17,8 +17,9 @@ gulp.task('default', ['help']);
  * Check the code for errors
  */
 gulp.task('eslint', task('eslint'));
+gulp.task('sasslint', task('sasslint'));
 gulp.task('plato', task('plato'));
-gulp.task('vet', ['eslint']);
+gulp.task('vet', ['eslint', 'sasslint']);
 
 /**
  * Cleans the build output
