@@ -29,12 +29,16 @@
           <i ng-if="item.visibility.id == '900'" class="fa fa-globe fa-2"></i>
           <i ng-if="item.visibility.id == '800'" class="pficon pficon-private"></i>
           <i ng-if="item.visibility && item.visibility.id != '800' && item.visibility.id != '900'" class="pficon pficon-tenant"></i>
-          {{ ((item.visibility != null) ? item.visibility.name : "Unassigned")|translate }}
+          <span ng-if="item.visibility">{{ item.visibility.name }}</span>
+          <span ng-if="!item.visibility" translate>Unassigned</span>
         </span>
       </div>
       <div class="col-md-2">
-        <span class="no-wrap">
-          {{ (item.content.service_catalog ? item.content.service_catalog.name : "Unassigned")|translate }}
+        <span ng-if="item.content.service_catalog" class="no-wrap">
+          {{ item.content.service_catalog.name }}
+        </span>
+        <span ng-if="!item.content.service_catalog" class="no-wrap" translate>
+          Unassigned
         </span>
       </div>
       <div class="col-md-2">
