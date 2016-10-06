@@ -1,0 +1,10 @@
+// splash screen
+.splash__message:before {
+  content: 'Magic UI';
+}
+
+.login-pf,
+.navbar-pf-vertical,
+.about-modal-pf {
+  background-color: #404;
+}
