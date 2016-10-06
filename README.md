@@ -52,12 +52,12 @@ http://localhost:3000 order and serve up the REST API.
 - From the `manageiq-ui-self_service` directory, start the development version of
   the self service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
   _http://[::1]:3000_.  This command will also open a browser page to  _http://localhost:3001/self_service/login_.
-  - `gulp serve-dev`
+  - `gulp serve`
 
 ### Troubleshooting
 - When running ManageIQ with `bundle exec rake evm:start`, it may be necessary to override the REST API host via a 
 PROXY\_HOST environment variable.
-  - `PROXY_HOST=127.0.0.1:3000 gulp serve-dev`
+  - `PROXY_HOST=127.0.0.1:3000 gulp serve`
   
 - `ActiveRecord::ConnectionTimeoutError: could not obtain a connection from the pool within 5.000 seconds; all pooled 
 connections were in use` or `Error: socket hang up` or ` Error: connect ECONNREFUSED`
