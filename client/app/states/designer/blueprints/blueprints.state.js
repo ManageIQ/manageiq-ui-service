@@ -13,7 +13,7 @@
     return {
       'designer.blueprints': {
         parent: 'application',
-        url: '/designer/blueprints',
+        url: '/blueprints',
         redirectTo: 'designer.blueprints.list',
         template: '<ui-view></ui-view>',
       },

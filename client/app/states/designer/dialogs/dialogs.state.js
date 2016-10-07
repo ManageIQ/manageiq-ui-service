@@ -11,10 +11,11 @@
 
   function getStates() {
     return {
-      'designer': {
+      'designer.dialogs': {
         parent: 'application',
-        url: '/designer',
-        redirectTo: 'designer.blueprints',
+        url: '/dialogs',
+        redirectTo: 'designer.dialogs.list',
+        template: '<ui-view></ui-view>',
       },
     };
   }
