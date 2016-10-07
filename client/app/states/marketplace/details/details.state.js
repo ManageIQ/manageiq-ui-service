@@ -52,6 +52,7 @@
 
     vm.addToCart = addToCart;
     vm.cartAllowed = ShoppingCart.allowed;
+    vm.alreadyInCart = alreadyInCart;
 
     var autoRefreshableDialogFields = [];
     var allDialogFields = [];
@@ -84,6 +85,10 @@
       return dialogFieldData;
     }
 
+    function alreadyInCart() {
+      return ShoppingCart.isDuplicate(dataForSubmit('service_template_href'));
+    }
+
     function addToCart() {
       if (!ShoppingCart.allowed()) {
         return;
@@ -91,14 +96,23 @@
 
       var dialogFieldData = dataForSubmit('service_template_href');
 
+      vm.addingToCart = true;
+
       ShoppingCart.add({
         description: vm.serviceTemplate.name,
         data: dialogFieldData,
       })
-      .then(addSuccess, addFailure);
+      .then(addSuccess, addFailure)
+      .then(function() {
+        vm.addingToCart = false;
+      });
 
       function addSuccess(result) {
-        Notifications.success(__("Item added to shopping cart"));
+        if (result.duplicate) {
+          Notifications.success(__("Item added to shopping cart, but it's a duplicate of an existing item"));
+        } else {
+          Notifications.success(__("Item added to shopping cart"));
+        }
       }
 
       function addFailure(result) {
