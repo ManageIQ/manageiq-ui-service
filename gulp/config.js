@@ -283,12 +283,11 @@ module.exports = (function() {
   config.optimize = {
     index: temp + indexFile,
     build: build,
-    cssFilter: '**/*.css',
-    appJsFilter: '**/app.js',
-    libJsFilter: '**/lib.js',
+    cssFilter: '.tmp/styles/*.css',
+    appJsFilter: '.tmp/js/app.js',
+    libJsFilter: '.tmp/js/lib.js',
     templateCache: config.templatecache.build + config.templatecache.output,
     ngAnnotateOptions: {
-      add: true,
       single_quotes: true
     },
     devHost: 'http://localhost:3000'
