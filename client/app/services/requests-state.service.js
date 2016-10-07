@@ -5,32 +5,10 @@
     .factory('RequestsState', RequestsStateFactory);
 
   /** @ngInject */
-  function RequestsStateFactory() {
+  function RequestsStateFactory(ListConfiguration) {
     var service = {};
 
-    service.sort = {
-      isAscending: false,
-      currentField: { id: 'requested', title: __('Request Date'), sortType: 'numeric' },
-    };
-
-    service.filters = [];
-
-    service.setSort = function(currentField, isAscending) {
-      service.sort.isAscending = isAscending;
-      service.sort.currentField = currentField;
-    };
-
-    service.getSort = function() {
-      return service.sort;
-    };
-
-    service.setFilters = function(filterArray) {
-      service.filters = filterArray;
-    };
-
-    service.getFilters = function() {
-      return service.filters;
-    };
+    ListConfiguration.setupListFunctions(service, { id: 'requested', title: __('Request Date'), sortType: 'numeric' });
 
     return service;
   }
