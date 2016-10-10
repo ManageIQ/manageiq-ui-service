@@ -28,13 +28,12 @@
 
     var blueprintDirty = false;
 
-    if (!vm.blueprint) {
-      vm.blueprint = angular.copy(newBlueprint());
-    }
-
     BlueprintsState.saveOriginalBlueprint(angular.copy(vm.blueprint));
 
-    // $log.debug("RETRIEVED Blueprint: " + angular.toJson(vm.blueprint, true));
+    // if new blueprint, focus on name field
+    if (vm.blueprint.name.length === 0) {
+      angular.element("#blueprintName").focus();
+    }
 
     $scope.$watch("vm.blueprint", function(oldValue, newValue) {
       if (!angular.equals(oldValue, newValue, true)) {
@@ -42,23 +41,9 @@
       }
     }, true);
 
-    $scope.$on('BlueprintCanvasChanged', function(evt, args) {
-      if (args.chartDataModel && !angular.equals(vm.blueprint.ui_properties.chart_data_model, args.chartDataMode)) {
-        vm.blueprint.ui_properties.chart_data_model = args.chartDataModel;
-        blueprintDirty = true;
-      }
-    });
-
-    vm.blueprintUnchanged = function() {
-      return !blueprintDirty;
+    vm.canSave = function() {
+      return vm.blueprint.name.length !== 0 && blueprintDirty;
     };
-
-    function newBlueprint() {
-      var blueprint = BlueprintsState.getNewBlueprintObj();
-      blueprintDirty = true;
-
-      return blueprint;
-    }
 
     vm.saveBlueprint = function() {
       BlueprintsState.saveBlueprint(vm.blueprint).then(saveSuccess, saveFailure);

@@ -266,7 +266,7 @@
 
     blueprint.getNewBlueprintObj = function() {
       var tmpBlueprint = {};
-      tmpBlueprint.name = __('Untitled Blueprint');
+      tmpBlueprint.name = "";
       tmpBlueprint.tags = [];
       // TODO Need to get default Provision entry point
       tmpBlueprint.ui_properties = {

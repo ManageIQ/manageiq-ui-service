@@ -5,10 +5,10 @@
             <a ui-sref="^"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to Blueprints'|translate}}</a>
         </li>
         <li class="active"><strong translate>Blueprint Editor: </strong>
-            <input type="text" class="blueprint-name-input" ng-model="evm.blueprint.name"
+            <input id="blueprintName" type="text" class="blueprint-name-input" ng-model="evm.blueprint.name"
                    placeholder="{{'Untitled Blueprint'|translate}}">
             <button class="btn btn-primary btb-sm" type="button" ng-click="evm.saveBlueprint()" id="saveBtm"
-                    ng-class="{'disabled': evm.blueprintUnchanged()}" data-toggle="tooltip" data-placement="bottom"
+                    ng-class="{'disabled': !evm.canSave()}" data-toggle="tooltip" data-placement="bottom"
                     title="{{'Save Blueprint'|translate}}" translate>Save
             </button>
         </li>
