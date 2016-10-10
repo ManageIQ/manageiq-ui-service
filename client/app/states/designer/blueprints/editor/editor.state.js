@@ -63,7 +63,7 @@
   }
 
   /** @ngInject */
-  function StateController($log, blueprint, blueprintTags, serviceTemplates) {
+  function StateController($log, BlueprintsState, blueprint, blueprintTags, serviceTemplates) {
     var vm = this;
     vm.title = 'Blueprint Designer';
     if (blueprint) {
@@ -72,6 +72,8 @@
         angular.forEach(blueprint.tags, processTag);   // <--- Add this line
       }
       vm.blueprint = blueprint;
+    } else {
+      vm.blueprint = BlueprintsState.getNewBlueprintObj();
     }
 
     function processTag(tag) {
