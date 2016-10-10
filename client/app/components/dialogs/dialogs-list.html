@@ -1,0 +1,34 @@
+<div pf-toolbar id="dialogsToolbar" config="vm.toolbarConfig"></div>
+
+<div class="list-view-container">
+  <div pf-list-view id="dialogList" class="dialogs-list" config="vm.listConfig" items="vm.dialogList"
+       action-buttons="vm.actionButtons"
+       enable-button-for-item-fn="vm.enableButtonForItemFn"
+       menu-actions="vm.menuActions"
+       update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
+    <div class="row">
+      <div class="col-md-4">
+        <span class="no-wrap">
+          {{ item.label }}
+        </span>
+      </div>
+      <div class="col-md-3">
+        <span class="no-wrap">
+          <strong translate>Last Updated</strong>&nbsp;{{ item.updated_at | date:'yyyy-MM-dd hh:mm a' }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function() {
+    setTimeout(function(){
+      $(".simple-filter .dropdown-menu li a").click(function(){
+        $(".simple-filter input").focus();
+      });
+      $("#dialogList .list-view-pf .list-group-item .list-view-pf-actions .btn-default").addClass("btn-primary");
+    }, 500);
+  });
+</script>
+
+
