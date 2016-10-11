@@ -293,6 +293,7 @@
           newNode.tags = tags;
         });
       }
+
       return newNode;
     };
 
