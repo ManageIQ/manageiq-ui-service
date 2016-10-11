@@ -19,15 +19,15 @@
 
       <div class="toolbar">
           <button id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': vm.inConnectingMode}" type="button" ng-click="vm.showToolbox()"
-                  data-toggle="tooltip" data-placement="bottom" title="Add Service Item To Canvas" translate>Add Item
+                  data-toggle="tooltip" data-placement="bottom" title="{{'Add Service Item To Canvas'|translate}}" translate>Add Item
           </button>
           <button id="duplicateItem" class="btn" type="button" ng-class="{'disabled': !vm.onlyOneTtemSelected() || vm.inConnectingMode}"
                   ng-click="vm.duplicateSelectedItem()" data-toggle="tooltip" data-placement="bottom"
-                  title="Duplicate Item (Ctrl-D)" translate>Duplicate
+                  title="{{'Duplicate Item (Ctrl-D)'|translate}}" translate>Duplicate
           </button>
           <button id="removeItems" class="btn" type="button" ng-class="{'disabled': !vm.itemsSelected() || vm.inConnectingMode}"
                   ng-click="vm.removeSelectedItemsFromCanvas()" data-toggle="tooltip" data-placement="bottom"
-                  title="Remove Items From Canvas" translate>Remove
+                  title="{{'Remove Items From Canvas'|translate}}" translate>Remove
           </button>
           <span class="more-actions">
               <button id="blueprintDetails" class="btn" type="button" ng-click="vm.editDetails()" data-toggle="tooltip"
