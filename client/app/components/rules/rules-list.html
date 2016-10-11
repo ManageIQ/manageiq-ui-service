@@ -102,12 +102,12 @@
                 <div class="btn-container">
                   <button class="btn btn-link priority-button" type=button"
                           ng-click="vm.downPriority(item)"
-                          ng-disabled="vm.editMode">
+                          ng-disabled="vm.editMode" ng-class="{invisible: $index >= vm.arbitrationRules.length - 1}">
                     <span class="fa fa-arrow-down"></span>
                   </button>
                   <button class="btn btn-link priority-button" type=button"
                           ng-click="vm.upPriority(item)"
-                          ng-disabled="vm.editMode">
+                          ng-disabled="vm.editMode" ng-class="{invisible: $index <= 0}">
                     <span class="fa fa-arrow-up"></span>
                   </button>
                 </div>

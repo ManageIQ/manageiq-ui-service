@@ -24,6 +24,9 @@
       .priority-button
         visibility: visible
         pointer-events: all
+        &.invisible
+          opacity: 0
+          pointer-events: none
       .priority-button[disabled]
         visibility: hidden
 
