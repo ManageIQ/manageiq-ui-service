@@ -108,9 +108,10 @@
               </div>
           </div>
 
-          <div class="canvas-container" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'cvm.dropCallback'}">
-              <flow-chart class="canvas" ng-class="{'canvas-in-connection-mode': evm.inConnectingMode}" chart="cvm.chartViewModel"></flow-chart>
-          </div>
+          <blueprint-canvas drop-callback="cvm.dropCallback"
+                            in-connecting-mode="evm.inConnectingMode"
+                            chart-view-model="cvm.chartViewModel"/>
+
       </div>
   </div>
 </span>
