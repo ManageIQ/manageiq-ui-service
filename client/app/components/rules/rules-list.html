@@ -51,15 +51,15 @@
             </span>
               <div ng-if="item.editMode" class="rule-edit-container operations">
                 <select pf-select="{ noneSelectedText: 'None' }" class="operation-select"
-                        ng-model="item.field" ng-options="o as o for o in vm.fields">
+                        ng-model="item.field" ng-options="o as o for o in vm.fields" ng-change="vm.validateEditRow()">
                   <option value="">{{'Select a field' | translate}}</option>
                 </select>
-                <select pf-select class="operation-select" ng-model="item.operator">
+                <select pf-select class="operation-select" ng-model="item.operator" ng-change="vm.validateEditRow()">
                   <option value="">{{"Select an operator"  | translate}}</option>
                   <option ng-repeat="operatorName in vm.operatorNames track by $index">{{operatorName | translate}}</option>
                 </select>
                 <input ng-model="item.value" class="rule-edit-value" type="text"
-                       placeholder="{{'Enter a value' | translate}}"/>
+                       placeholder="{{'Enter a value' | translate}}" ng-change="vm.validateEditRow()"/>
               </div>
               <div ng-if="!item.editMode" class="rule-view-container">
               <span class="rule-item-field">
@@ -78,7 +78,7 @@
               {{'USE' | translate}}
             </span>
               <div ng-if="item.editMode" class="rule-edit-container">
-                <select pf-select class="profile-select" ng-model="item.profileName">
+                <select pf-select class="profile-select" ng-model="item.profileName" ng-change="vm.validateEditRow()">
                   <option value="">{{"Select a profile"  | translate}}</option>
                   <option ng-repeat="profile in vm.profileNames track by $index">{{profile}}</option>
                 </select>
@@ -91,7 +91,7 @@
             </div>
             <div class="col-md-2 col-sm-12 arbitration-buttons">
               <div ng-if="item.editMode" class="pull-right">
-                <button class="btn btn-primary" type=button" ng-click="vm.saveRule(item)">
+                <button class="btn btn-primary" type=button" ng-disabled="!vm.okToSave" ng-click="vm.saveRule(item)">
                   {{'Save' | translate}}
                 </button>
                 <button class="btn btn-default" type=button" ng-click="vm.cancelEditRule(item)">

@@ -10,7 +10,7 @@ describe('app.components.SaveRuleModal', function() {
     var cancelSpy;
 
     beforeEach(function () {
-      bard.inject('SaveRuleModal', '$rootScope', '$document');
+      bard.inject('SaveRuleModal', '$rootScope', '$document', '$timeout');
 
       callbackObject = {
         save: function () {},
@@ -23,32 +23,47 @@ describe('app.components.SaveRuleModal', function() {
     });
 
     it('should show the modal', function () {
-      var modal = SaveRuleModal.showModal(callbackObject.save, callbackObject.doNotSave, callbackObject.cancel);
+      var modal = SaveRuleModal.showModal(callbackObject.save, callbackObject.doNotSave, callbackObject.cancel, true);
       $rootScope.$digest();
 
       var saveDialog = $document.find('.save-rule-modal');
       expect(saveDialog.length).to.eq(1);
+    });
+
+    it('should show a save button when it is OK to save', function () {
+
+      var modal = SaveRuleModal.showModal(callbackObject.save, callbackObject.doNotSave, callbackObject.cancel, true);
+      $rootScope.$digest();
 
       var saveButton = $document.find('.save-rule-modal .btn.btn-primary');
-      expect(saveButton.length).to.eq(1);
+      expect(saveButton.length).to.eq(2);  // Buttons are cumulative since prior test modal cannot be closed
 
-      eventFire(saveButton[0], 'click');
+      eventFire(saveButton[1], 'click');
 
       $rootScope.$digest();
       expect(saveSpy).to.have.been.called;
 
       var closeButtons = $document.find('.save-rule-modal .btn.btn-default');
-      expect(closeButtons.length).to.eq(2);
+      expect(closeButtons.length).to.eq(4); // Buttons are cumulative since prior test modal cannot be closed
 
-      eventFire(closeButtons[0], 'click');
+      eventFire(closeButtons[2], 'click');
 
       $rootScope.$digest();
       expect(cancelSpy).to.have.been.called;
 
-      eventFire(closeButtons[1], 'click');
+      eventFire(closeButtons[3], 'click');
 
       $rootScope.$digest();
       expect(doNotSaveSpy).to.have.been.called;
+    });
+
+    it('should not show a save button when it is not OK to save', function () {
+
+      var modal = SaveRuleModal.showModal(callbackObject.save, callbackObject.doNotSave, callbackObject.cancel, false);
+      $rootScope.$digest();
+
+      var saveButton = $document.find('.save-rule-modal .btn.btn-primary');
+      expect(saveButton.length).to.eq(2); // Buttons are cumulative since prior test modal cannot be closed
     });
   });
 });
