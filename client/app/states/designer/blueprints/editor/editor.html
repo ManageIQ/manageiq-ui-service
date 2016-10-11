@@ -1,14 +1,14 @@
-<span ng-controller="BlueprintEditorController as evm" ng-class="{'wait-cursor': loading}">
+<span ng-controller="BlueprintEditorController as vm" ng-class="{'wait-cursor': loading}">
   <span class="blueprint-designer-header">
     <ol class="breadcrumb">
         <li>
             <a ui-sref="^"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to Blueprints'|translate}}</a>
         </li>
         <li class="active"><strong translate>Blueprint Editor: </strong>
-            <input id="blueprintName" type="text" class="blueprint-name-input" ng-model="evm.blueprint.name"
+            <input id="blueprintName" type="text" class="blueprint-name-input" ng-model="vm.blueprint.name"
                    placeholder="{{'Untitled Blueprint'|translate}}">
-            <button class="btn btn-primary btb-sm" type="button" ng-click="evm.saveBlueprint()" id="saveBtm"
-                    ng-class="{'disabled': !evm.canSave()}" data-toggle="tooltip" data-placement="bottom"
+            <button class="btn btn-primary btb-sm" type="button" ng-click="vm.saveBlueprint()" id="saveBtm"
+                    ng-class="{'disabled': !vm.canSave()}" data-toggle="tooltip" data-placement="bottom"
                     title="{{'Save Blueprint'|translate}}" translate>Save
             </button>
         </li>
@@ -18,99 +18,98 @@
   <div class="blueprint-designer-container">
 
       <div class="toolbar">
-          <button id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': evm.inConnectingMode}" type="button" ng-click="evm.showToolbox()"
+          <button id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': vm.inConnectingMode}" type="button" ng-click="vm.showToolbox()"
                   data-toggle="tooltip" data-placement="bottom" title="Add Service Item To Canvas" translate>Add Item
           </button>
-          <button id="duplicateItem" class="btn" type="button" ng-class="{'disabled': !evm.onlyOneTtemSelected() || evm.inConnectingMode}"
-                  ng-click="evm.duplicateSelectedItem()" data-toggle="tooltip" data-placement="bottom"
+          <button id="duplicateItem" class="btn" type="button" ng-class="{'disabled': !vm.onlyOneTtemSelected() || vm.inConnectingMode}"
+                  ng-click="vm.duplicateSelectedItem()" data-toggle="tooltip" data-placement="bottom"
                   title="Duplicate Item (Ctrl-D)" translate>Duplicate
           </button>
-          <button id="removeItems" class="btn" type="button" ng-class="{'disabled': !evm.itemsSelected() || evm.inConnectingMode}"
-                  ng-click="evm.removeSelectedItemsFromCanvas()" data-toggle="tooltip" data-placement="bottom"
+          <button id="removeItems" class="btn" type="button" ng-class="{'disabled': !vm.itemsSelected() || vm.inConnectingMode}"
+                  ng-click="vm.removeSelectedItemsFromCanvas()" data-toggle="tooltip" data-placement="bottom"
                   title="Remove Items From Canvas" translate>Remove
           </button>
           <span class="more-actions">
-              <button id="blueprintDetails" class="btn" type="button" ng-click="evm.editDetails()" data-toggle="tooltip"
-                      ng-class="{'disabled': evm.inConnectingMode, 'wait-cursor': loading}"
+              <button id="blueprintDetails" class="btn" type="button" ng-click="vm.editDetails()" data-toggle="tooltip"
+                      ng-class="{'disabled': vm.inConnectingMode, 'wait-cursor': loading}"
                       data-placement="bottom" title="{{'Edit Blueprint Details' | translate}}" translate>Blueprint Details
               </button>
               <span class="showHideConnectors">
-                  <input  ng-class="{'disabled': evm.inConnectingMode}"
-                          ng-model="evm.hideConnectors"
-                          ng-change="evm.toggleshowHideConnectors()"
+                  <input  ng-class="{'disabled': vm.inConnectingMode}"
+                          ng-model="vm.hideConnectors"
+                          ng-change="vm.toggleshowHideConnectors()"
                           type="checkbox"
-                          ng-checked="evm.hideConnectors">
+                          ng-checked="vm.hideConnectors">
                   <span class="showHideConnectorsLabel" translate>Hide Connectors</span>
               </span>
           </span>
       </div>
 
-      <div class="toolbox-canvas-container"
-           ng-controller="CanvasController as cvm"
-           mouse-capture>
+      <div class="toolbox-canvas-container">
 
-          <div class="toolbox-container" id="toolbox" ng-if="evm.toolboxVisible">
+          <div class="toolbox-container" id="toolbox" ng-if="vm.toolboxVisible">
 
               <tabset>
-                  <tab ng-repeat="tab in evm.tabs" heading="" active="tab.active">
-                      <tab-heading ng-click="evm.tabClicked()">
+                  <tab ng-repeat="tab in vm.tabs" heading="" active="tab.active">
+                      <tab-heading ng-click="vm.tabClicked()">
                           <div class="tab-pre-title">{{tab.preTitle}}</div>
                           <div class="tab-title" ng-class="{'tab-single-line':tab.preTitle == null}">{{tab.title}}</div>
                       </tab-heading>
 
                       <tabset class="subtabs" ng-if="tab.subtabs">
-                          <tab ng-repeat="subtab in tab.subtabs" heading="{{subtab.title}}" active="subtab.active" ng-click="evm.tabClicked()">
+                          <tab ng-repeat="subtab in tab.subtabs" heading="{{subtab.title}}" active="subtab.active" ng-click="vm.tabClicked()">
 
                               <tabset class="subtabs" ng-if="subtab.subtabs">
-                                  <tab ng-repeat="subsubtab in subtab.subtabs" heading="{{subsubtab.title}}" active="subsubtab.active" ng-click="evm.tabClicked()">
+                                  <tab ng-repeat="subsubtab in subtab.subtabs" heading="{{subsubtab.title}}" active="subsubtab.active" ng-click="vm.tabClicked()">
                                       <draggable-items items="subsubtab.items"
-                                                       start-drag-callback="cvm.startCallback"
-                                                       click-callback="cvm.addNodeByClick"
-                                                       search-text="evm.searchText"/>
+                                                       start-drag-callback="vm.startCallback"
+                                                       click-callback="vm.addNodeByClick"
+                                                       search-text="vm.searchText"/>
                                   </tab>
                               </tabset>
 
                               <!-- SubTabs without Sub-Sub Tabs -->
                               <draggable-items ng-if="!subtab.subtabs"
                                                items="subtab.items"
-                                               start-drag-callback="cvm.startCallback"
-                                               click-callback="cvm.addNodeByClick"
-                                               search-text="evm.searchText"/>
+                                               start-drag-callback="vm.startCallback"
+                                               click-callback="vm.addNodeByClick"
+                                               search-text="vm.searchText"/>
                           </tab>
                       </tabset>
 
                       <!-- Primary Tabs without SubTabs (Bundles) -->
                       <draggable-items ng-if="!tab.subtabs" items="tab.items"
-                          start-drag-callback="cvm.startCallback"
-                          click-callback="cvm.addNodeByClick"
-                          search-text="evm.searchText"/>
+                          start-drag-callback="vm.startCallback"
+                          click-callback="vm.addNodeByClick"
+                          search-text="vm.searchText"/>
                   </tab>
               </tabset>
 
               <div class="toolbox-footer">
                   <!-- Create New Item -->
-                  <div class="new-catalog-item" ng-if="evm.getNewItem()"
-                       data-drag="true" jqyoui-draggable="{onStart:'cvm.startCallback( evm.getNewItem() )'}"
+                  <div class="new-catalog-item" ng-if="vm.getNewItem()"
+                       data-drag="true" jqyoui-draggable="{onStart:'vm.startCallback( vm.getNewItem() )'}"
                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
-                       ng-click="cvm.addNodeByClick( evm.getNewItem() )">
+                       ng-click="vm.addNodeByClick( vm.getNewItem() )">
                       <span class="pficon pficon-add-circle-o"></span>
-                      <span class="new-catalog-item-label">{{'Create' | translate}} {{evm.getNewItem().name}}</span>
-                      <span ng-if="evm.getNewItem().icon" class="{{evm.getNewItem().icon}} new-catalog-item-icon"></span>
+                      <span class="new-catalog-item-label">{{'Create' | translate}} {{vm.getNewItem().name}}</span>
+                      <span ng-if="vm.getNewItem().icon" class="{{vm.getNewItem().icon}} new-catalog-item-icon"></span>
                   </div>
                   <!-- Filter -->
-                  <input ng-model="evm.searchText" id="filterFld" class="search-text"
+                  <input ng-model="vm.searchText" id="filterFld" class="search-text"
                          placeholder="{{'Filter by name' | translate}}">
-                  <a ng-click="evm.searchText = ''"><span class="pficon pficon-close clear-search-text"></span></a>
+                  <a ng-click="vm.searchText = ''"><span class="pficon pficon-close clear-search-text"></span></a>
               </div>
               <div class="close-toolbox">
-                  <a ng-if="evm.toolboxVisible" ng-click="evm.hideToolbox()" style="cursor: pointer"><span
+                  <a ng-if="vm.toolboxVisible" ng-click="vm.hideToolbox()" style="cursor: pointer"><span
                           class="fa fa-angle-double-up fa-2x"></span></a>
               </div>
           </div>
 
-          <blueprint-canvas drop-callback="cvm.dropCallback"
-                            in-connecting-mode="evm.inConnectingMode"
-                            chart-view-model="cvm.chartViewModel"/>
+          <blueprint-canvas dragged-item="vm.draggedItem"
+                            in-connecting-mode="vm.inConnectingMode"
+                            chart_data_model="vm.blueprint.ui_properties.chart_data_model"
+                            chart_view_model="vm.chartViewModel"/>
 
       </div>
   </div>

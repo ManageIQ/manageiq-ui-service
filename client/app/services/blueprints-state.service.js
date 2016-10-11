@@ -282,6 +282,61 @@
       return tmpBlueprint;
     };
 
+    blueprint.prepareNodeForCanvas = function(item) {
+      var newNode = angular.copy(item);
+      if (newNode.type && newNode.type === 'new-generic') {
+        newNode.name = 'New ' + newNode.name;
+        newNode.tags = [];
+      } else {
+        item.disableInToolbox = true;
+        getTagsForServiceItem(newNode.id).then(function(tags) {
+          newNode.tags = tags;
+        });
+      }
+      return newNode;
+    };
+
+    function getTagsForServiceItem(id) {
+      var deferred = $q.defer();
+
+      var attributes = ['categorization', 'category.id', 'category.single_value'];
+      var options = {
+        expand: 'resources',
+        attributes: attributes,
+      };
+
+      var collection = 'service_templates/' + id + '/tags';
+
+      CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
+
+      function loadSuccess(response) {
+        var tags = [];
+        angular.forEach(response.resources, processTag);
+
+        function processTag(tag) {
+          tags.push(getSmTagObj(tag));
+        }
+
+        function getSmTagObj(tag) {
+          return {id: tag.id,
+            category: {id: tag.category.id},
+            categorization: {
+              displayName: tag.categorization.display_name,
+            },
+          };
+        }
+
+        deferred.resolve(tags);
+      }
+
+      function loadFailure() {
+        $log.error('There was an error service template tags');
+        deferred.reject();
+      }
+
+      return deferred.promise;
+    }
+
     blueprint.difference = function(o1, o2) {
       var k, kDiff;
       var diff = {};

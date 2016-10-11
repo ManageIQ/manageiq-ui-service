@@ -135,6 +135,16 @@
       vm.hideConnectors = false;
     });
 
+    vm.draggedItem = null;
+    vm.startCallback = function(event, ui, item) {
+      vm.draggedItem = item;
+    };
+
+    vm.addNodeByClick = function(item) {
+      var newNode = BlueprintsState.prepareNodeForCanvas(item);
+      $scope.$broadcast('addNodeToCanvas', {newNode: newNode});
+    };
+
     vm.tabs = DesignerState.getDesignerToolboxTabs($scope.$parent.vm.serviceTemplates);
 
     vm.getNewItem = function() {
