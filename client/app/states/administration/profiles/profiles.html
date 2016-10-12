@@ -15,8 +15,8 @@
        confirmation-title="{{'Delete Profile'|translate}}"
        confirmation-message="{{'Are you sure you want to delete profile [[profile_name]]?'|translate|substitute:{profile_name: vm.profileToDelete ? vm.profileToDelete.name : ''} }}"
        confirmation-ok-text="{{'Delete'|translate}}"
-       confirmation-on-ok="vm.removeProfile(item)"
-       confirmation-on-cancel="vm.cancelRemoveProfile(item)"
+       confirmation-on-ok="vm.removeProfile(vm.profileToDelete)"
+       confirmation-on-cancel="vm.cancelRemoveProfile(vm.profileToDelete)"
        confirmation-ok-style="primary"
        confirmation-show-cancel="true">
     <div pf-list-view id="arbitrationProfilesList" class="arbitration-profiles-list" config="vm.listConfig" items="vm.arbitrationProfilesList"
