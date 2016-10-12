@@ -1,16 +1,27 @@
 /* eslint camelcase: "off" */
-
 (function() {
   'use strict';
 
-  angular.module('app.states')
-    .controller('BlueprintEditorController', ['$scope', '$timeout', 'BlueprintsState', 'DesignerState', 'BlueprintDetailsModal',
-      'SaveBlueprintModal', '$state', 'EventNotifications', 'sprintf', ComponentController]);
+  angular.module('app.components')
+      .directive('blueprintEditor', function() {
+        return {
+          restrict: 'AE',
+          templateUrl: "app/components/blueprints/blueprint-editor/blueprint-editor.html",
+          scope: {
+            blueprint: '=',
+            serviceTemplates: "=",
+          },
+          controller: BlueprintEditorController,
+          controllerAs: 'vm',
+          bindToController: true,
+        };
+      });
 
   /** @ngInject */
-  function ComponentController($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $state,
-                               EventNotifications, sprintf) {
+  function BlueprintEditorController($scope, $timeout, BlueprintsState, DesignerState, BlueprintDetailsModal, SaveBlueprintModal, $state,
+                                     EventNotifications, sprintf) {
     var vm = this;
+
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
       if (toState.name === 'login') {
         return;
@@ -23,8 +34,6 @@
         }
       }
     });
-
-    vm.blueprint = $scope.$parent.vm.blueprint;
 
     var blueprintDirty = false;
 
@@ -63,9 +72,9 @@
     vm.editDetails = function() {
       vm.loading = true;
       BlueprintDetailsModal.showModal('edit', vm.blueprint).then(
-        function() {
-          vm.loading = false;
-        });
+          function() {
+            vm.loading = false;
+          });
     };
 
     vm.itemsSelected = function() {
@@ -135,7 +144,17 @@
       vm.hideConnectors = false;
     });
 
-    vm.tabs = DesignerState.getDesignerToolboxTabs($scope.$parent.vm.serviceTemplates);
+    vm.draggedItem = null;
+    vm.startCallback = function(event, ui, item) {
+      vm.draggedItem = item;
+    };
+
+    vm.addNodeByClick = function(item) {
+      var newNode = BlueprintsState.prepareNodeForCanvas(item);
+      $scope.$broadcast('addNodeToCanvas', {newNode: newNode});
+    };
+
+    vm.tabs = DesignerState.getDesignerToolboxTabs(vm.serviceTemplates);
 
     vm.getNewItem = function() {
       var activeTab = vm.activeTab();

@@ -69,7 +69,7 @@
     if (blueprint) {
       if (blueprintTags && blueprintTags.resources) {
         blueprint.tags = blueprintTags.resources;
-        angular.forEach(blueprint.tags, processTag);   // <--- Add this line
+        angular.forEach(blueprint.tags, processTag);
       }
       vm.blueprint = blueprint;
     } else {

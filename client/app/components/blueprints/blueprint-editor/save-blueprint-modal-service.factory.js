@@ -14,7 +14,7 @@
 
     function showModal(blueprint, toState, toParams, fromState, fromParams) {
       var modalOptions = {
-        templateUrl: 'app/states/designer/blueprints/editor/save-blueprint-modal.html',
+        templateUrl: 'app/components/blueprints/blueprint-editor/save-blueprint-modal.html',
         controller: SaveBlueprintModalController,
         controllerAs: 'vm',
         resolve: {

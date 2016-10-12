@@ -1,0 +1,116 @@
+<span ng-class="{'wait-cursor': vm.loading}">
+  <span class="blueprint-designer-header">
+    <ol class="breadcrumb">
+        <li>
+            <a ui-sref="^"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to Blueprints'|translate}}</a>
+        </li>
+        <li class="active"><strong translate>Blueprint Editor: </strong>
+            <input id="blueprintName" type="text" class="blueprint-name-input" ng-model="vm.blueprint.name"
+                   placeholder="{{'Untitled Blueprint'|translate}}">
+            <button class="btn btn-primary btb-sm" type="button" ng-click="vm.saveBlueprint()" id="saveBtm"
+                    ng-class="{'disabled': !vm.canSave()}" data-toggle="tooltip" data-placement="bottom"
+                    title="{{'Save Blueprint'|translate}}" translate>Save
+            </button>
+        </li>
+    </ol>
+  </span>
+
+  <div class="blueprint-designer-container">
+
+      <div class="toolbar">
+          <button id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': vm.inConnectingMode}" type="button" ng-click="vm.showToolbox()"
+                  data-toggle="tooltip" data-placement="bottom" title="{{'Add Service Item To Canvas'|translate}}" translate>Add Item
+          </button>
+          <button id="duplicateItem" class="btn" type="button" ng-class="{'disabled': !vm.onlyOneTtemSelected() || vm.inConnectingMode}"
+                  ng-click="vm.duplicateSelectedItem()" data-toggle="tooltip" data-placement="bottom"
+                  title="{{'Duplicate Item (Ctrl-D)'|translate}}" translate>Duplicate
+          </button>
+          <button id="removeItems" class="btn" type="button" ng-class="{'disabled': !vm.itemsSelected() || vm.inConnectingMode}"
+                  ng-click="vm.removeSelectedItemsFromCanvas()" data-toggle="tooltip" data-placement="bottom"
+                  title="{{'Remove Items From Canvas'|translate}}" translate>Remove
+          </button>
+          <span class="more-actions">
+              <button id="blueprintDetails" class="btn" type="button" ng-click="vm.editDetails()" data-toggle="tooltip"
+                      ng-class="{'disabled': vm.inConnectingMode, 'wait-cursor': vm.loading}"
+                      data-placement="bottom" title="{{'Edit Blueprint Details' | translate}}" translate>Blueprint Details
+              </button>
+              <span class="showHideConnectors">
+                  <input  ng-class="{'disabled': vm.inConnectingMode}"
+                          ng-model="vm.hideConnectors"
+                          ng-change="vm.toggleshowHideConnectors()"
+                          type="checkbox"
+                          ng-checked="vm.hideConnectors">
+                  <span class="showHideConnectorsLabel" translate>Hide Connectors</span>
+              </span>
+          </span>
+      </div>
+
+      <div class="toolbox-canvas-container">
+
+          <div class="toolbox-container" id="toolbox" ng-if="vm.toolboxVisible">
+
+              <tabset>
+                  <tab ng-repeat="tab in vm.tabs" heading="" active="tab.active">
+                      <tab-heading ng-click="vm.tabClicked()">
+                          <div class="tab-pre-title">{{tab.preTitle}}</div>
+                          <div class="tab-title" ng-class="{'tab-single-line':tab.preTitle == null}">{{tab.title}}</div>
+                      </tab-heading>
+
+                      <tabset class="subtabs" ng-if="tab.subtabs">
+                          <tab ng-repeat="subtab in tab.subtabs" heading="{{subtab.title}}" active="subtab.active" ng-click="vm.tabClicked()">
+
+                              <tabset class="subtabs" ng-if="subtab.subtabs">
+                                  <tab ng-repeat="subsubtab in subtab.subtabs" heading="{{subsubtab.title}}" active="subsubtab.active" ng-click="vm.tabClicked()">
+                                      <draggable-items items="subsubtab.items"
+                                                       start-drag-callback="vm.startCallback"
+                                                       click-callback="vm.addNodeByClick"
+                                                       search-text="vm.searchText"/>
+                                  </tab>
+                              </tabset>
+
+                            <!-- SubTabs without Sub-Sub Tabs -->
+                              <draggable-items ng-if="!subtab.subtabs"
+                                               items="subtab.items"
+                                               start-drag-callback="vm.startCallback"
+                                               click-callback="vm.addNodeByClick"
+                                               search-text="vm.searchText"/>
+                          </tab>
+                      </tabset>
+
+                    <!-- Primary Tabs without SubTabs (Bundles) -->
+                      <draggable-items ng-if="!tab.subtabs" items="tab.items"
+                                       start-drag-callback="vm.startCallback"
+                                       click-callback="vm.addNodeByClick"
+                                       search-text="vm.searchText"/>
+                  </tab>
+              </tabset>
+
+              <div class="toolbox-footer">
+                  <!-- Create New Item -->
+                  <div class="new-catalog-item" ng-if="vm.getNewItem()"
+                       data-drag="true" jqyoui-draggable="{onStart:'vm.startCallback( vm.getNewItem() )'}"
+                       data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+                       ng-click="vm.addNodeByClick( vm.getNewItem() )">
+                      <span class="pficon pficon-add-circle-o"></span>
+                      <span class="new-catalog-item-label">{{'Create' | translate}} {{vm.getNewItem().name}}</span>
+                      <span ng-if="vm.getNewItem().icon" class="{{vm.getNewItem().icon}} new-catalog-item-icon"></span>
+                  </div>
+                <!-- Filter -->
+                  <input ng-model="vm.searchText" id="filterFld" class="search-text"
+                         placeholder="{{'Filter by name' | translate}}">
+                  <a ng-click="vm.searchText = ''"><span class="pficon pficon-close clear-search-text"></span></a>
+              </div>
+              <div class="close-toolbox">
+                  <a ng-if="vm.toolboxVisible" ng-click="vm.hideToolbox()" style="cursor: pointer"><span
+                          class="fa fa-angle-double-up fa-2x"></span></a>
+              </div>
+          </div>
+
+          <blueprint-canvas dragged-item="vm.draggedItem"
+                            in-connecting-mode="vm.inConnectingMode"
+                            chart_data_model="vm.blueprint.ui_properties.chart_data_model"
+                            chart_view_model="vm.chartViewModel"/>
+
+      </div>
+  </div>
+</span>
