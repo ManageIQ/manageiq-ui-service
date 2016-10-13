@@ -10,16 +10,16 @@ module.exports = function(gulp, options) {
   return task;
 
   function task() {
-    serve(options.isDev, options.specRunner);
+    serve(options.specRunner);
   }
 
-  function getNodeOptions(isDev) {
+  function getNodeOptions() {
     return {
       script: config.serverApp,
       delayTime: 1,
       env: {
         'PORT': config.serverPort,
-        'NODE_ENV': isDev ? 'dev' : 'build'
+        'NODE_ENV': 'dev'
       },
       watch: config.watch
     };
@@ -36,13 +36,12 @@ module.exports = function(gulp, options) {
    * serve the code
    * --debug-brk or --debug
    * --nosync
-   * @param  {Boolean} isDev - dev or build mode
    * @param  {Boolean} specRunner - server spec runner html
    */
-  function serve(isDev, specRunner) {
+  function serve(specRunner) {
     var debug = options.debug;
     var debugMode = options.debugBrk ? '--debug-brk' : options.debug ? '--debug' : '';
-    var nodeOptions = getNodeOptions(isDev);
+    var nodeOptions = getNodeOptions();
 
     if (debug) {
       runNodeInspector();
@@ -64,7 +63,7 @@ module.exports = function(gulp, options) {
       })
       .on('start', function() {
         log('*** nodemon started');
-        startBrowserSync(isDev, specRunner);
+        startBrowserSync(specRunner);
       })
       .on('crash', function() {
         log('*** nodemon crashed: script crashed for some reason');
@@ -88,7 +87,7 @@ module.exports = function(gulp, options) {
    * Start BrowserSync
    * --nosync will avoid browserSync
    */
-  function startBrowserSync(isDev, specRunner) {
+  function startBrowserSync(specRunner) {
     if (options.nosync || browserSync.active) {
       return;
     }
@@ -99,16 +98,11 @@ module.exports = function(gulp, options) {
       log('Starting BrowserSync on ' + browserSyncOptions.proxy);
     }
 
-    // If build: watches the files, builds, and restarts browser-sync.
-    // If dev: watches less, compiles it to css, browser-sync handles reload
-    if (isDev) {
-      gulp.watch([config.sass], ['sass'])
-        .on('change', changeEvent);
-      browserSyncOptions.files = config.devFiles;
-    } else {
-      gulp.watch([config.sass, config.js, config.html], ['optimize', browserSync.reload])
-        .on('change', changeEvent);
-    }
+    // Watches less, compiles it to css, browser-sync handles reload
+    gulp.watch([config.sass], ['sass'])
+      .on('change', changeEvent);
+    browserSyncOptions.files = config.devFiles;
+
 
     if (specRunner) {
       options.startPath = config.specsFile;

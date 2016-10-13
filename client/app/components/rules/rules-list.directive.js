@@ -195,7 +195,7 @@
           editedRule = vm.arbitrationRules[0];
         }
         vm.saveModalShown = true;
-        SaveRuleModal.showModal(save, doNotSave, cancel);
+        SaveRuleModal.showModal(save, doNotSave, cancel, vm.okToSave);
         event.preventDefault();
       }
 
@@ -208,10 +208,12 @@
           $state.go(toState, toParams);
         }
 
-        if (editedRule.original) {
-          RulesState.editRules([convertToRuleObj(editedRule)]).then(saveSuccess, saveFailure);
-        } else {
-          RulesState.addRule(convertToRuleObj(editedRule)).then(saveSuccess, saveFailure);
+        if (vm.okToSave) {
+          if (editedRule.original) {
+            RulesState.editRules([convertToRuleObj(editedRule)]).then(saveSuccess, saveFailure);
+          } else {
+            RulesState.addRule(convertToRuleObj(editedRule)).then(saveSuccess, saveFailure);
+          }
         }
       }
 
@@ -224,6 +226,11 @@
       }
     });
 
+    vm.validateEditRow = function() {
+      var editedRule = lodash.find(vm.arbitrationRules, 'editMode');
+      vm.okToSave = editedRule && editedRule.field && editedRule.operator && editedRule.value && editedRule.profileName;
+    };
+
     vm.addRule = function() {
       var newRule = {
         operation: 'inject',
@@ -235,6 +242,7 @@
       updateRulesPriorities(false);
 
       vm.editMode = true;
+      vm.validateEditRow();
     };
 
     vm.editRule = function(rule) {
@@ -246,6 +254,7 @@
         arbitration_profile_id: rule.arbitration_profile_id,
       };
       vm.editMode = true;
+      vm.validateEditRow();
     };
 
     vm.removeRule = function(rule) {
@@ -273,7 +282,7 @@
         rule.field = rule.original.field;
         rule.operator = rule.original.operator;
         rule.value = rule.original.value;
-        rule.profile = rule.original.profile;
+        rule.profileName = rule.original.profileName;
         rule.original = undefined;
       }
     };

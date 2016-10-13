@@ -1,125 +1,56 @@
+/* eslint camelcase: "off" */
 (function() {
-  "use strict";
+  'use strict';
 
-  angular.module('app.states')
-    .controller('CanvasController', ['$scope', '$filter', 'DesignerState', '$q', 'CollectionsApi', '$log', StateController]);
+  angular.module('app.components')
+      .directive('blueprintCanvas', function() {
+        return {
+          restrict: 'AE',
+          templateUrl: "app/components/blueprints/blueprint-canvas/blueprint-canvas.html",
+          scope: {
+            draggedItem: '=',
+            inConnectingMode: "=",
+            chartDataModel: "=",
+            chartViewModel: "=",
+          },
+          controller: BlueprintCanvasController,
+          controllerAs: 'vm',
+          bindToController: true,
+        };
+      });
 
   /** @ngInject */
-  function StateController($scope, $filter, DesignerState, $q, CollectionsApi, $log) {
+  function BlueprintCanvasController($scope, $filter, DesignerState, BlueprintsState, $q, CollectionsApi, $log) {
     var vm = this;
-
-    var chartDataModel = {};
     var newNodeCount = 0;
-    if ($scope.$parent.evm.blueprint.ui_properties && $scope.$parent.evm.blueprint.ui_properties.chart_data_model) {
-      chartDataModel = $scope.$parent.evm.blueprint.ui_properties.chart_data_model;
-    }
 
     // Create the view-model for the chart and attach to the scope.
-    vm.chartViewModel = new flowchart.ChartViewModel(chartDataModel);
-    $scope.$parent.evm.chartViewModel = vm.chartViewModel;
-
-    $scope.$watch("vm.chartViewModel.data", function(oldValue, newValue) {
-      if (!angular.equals(oldValue, newValue)) {
-        $scope.$emit('BlueprintCanvasChanged', {'chartDataModel': vm.chartViewModel.data});
-      }
-    }, true);
-
-    vm.startCallback = function(event, ui, item) {
-      vm.draggedItem = item;
-    };
+    vm.chartViewModel = new flowchart.ChartViewModel(vm.chartDataModel);
 
     vm.dropCallback = function(event, ui) {
-      var newNode = angular.copy(vm.draggedItem);
-      if (newNode.type && newNode.type === 'new-generic') {
-        newNode.name = 'New ' + newNode.name;
-      } else {
-        vm.draggedItem.disableInToolbox = true;
-      }
-      newNode.backgroundColor = '#fff';
+      var newNode = BlueprintsState.prepareNodeForCanvas(vm.draggedItem);
       newNode.x = event.clientX - 350;
       newNode.y = event.clientY - 200;
-      vm.addNewNode(newNode);
-      newNodeCount++;
+      addNodeToCanvas(newNode);
     };
 
-    vm.addNodeByClick = function(item) {
-      var newNode = angular.copy(item);
-      if (newNode.type && newNode.type === 'new-generic') {
-        newNode.name = 'New ' + newNode.name;
-      } else {
-        item.disableInToolbox = true;
-      }
-      newNodeCount++;
-      newNode.backgroundColor = '#fff';
+    $scope.$on('addNodeToCanvas', function(evt, args) {
+      var newNode = args.newNode;
       newNode.x = 250 + (newNodeCount * 4 + 160);
       newNode.y = 200 + (newNodeCount * 4 + 160);
-      vm.addNewNode(newNode);
-    };
-
-    vm.addNewNode = function(newNode) {
-      if (!newNode.type || newNode.type !== 'new-generic') {
-        getTags(newNode.id).then(function(tags) {
-          newNode.tags = tags;
-          vm.chartViewModel.addNode(newNode);
-        }, function() {
-          vm.chartViewModel.addNode(newNode);
-        });
-      } else {
-        newNode.tags = [];
-        vm.chartViewModel.addNode(newNode);
-      }
-    };
-
-    function getTags(id) {
-      var deferred = $q.defer();
-
-      var attributes = ['categorization', 'category.id', 'category.single_value'];
-      var options = {
-        expand: 'resources',
-        attributes: attributes,
-      };
-
-      var collection = 'service_templates/' + id + '/tags';
-
-      CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
-
-      function loadSuccess(response) {
-        var tags = [];
-        angular.forEach(response.resources, processTag);
-
-        function processTag(tag) {
-          tags.push(getSmTagObj(tag));
-        }
-
-        function getSmTagObj(tag) {
-          return {id: tag.id,
-            category: {id: tag.category.id},
-            categorization: {
-              displayName: tag.categorization.display_name,
-            },
-          };
-        }
-
-        deferred.resolve(tags);
-      }
-
-      function loadFailure() {
-        $log.error('There was an error service template tags');
-        deferred.reject();
-      }
-
-      return deferred.promise;
-    }
+      addNodeToCanvas(newNode);
+      newNodeCount++;
+    });
 
     $scope.$on('duplicateSelectedItem', function(evt, args) {
-      vm.duplicateSelected();
+      duplicateSelected();
     });
 
     $scope.$on('removeSelectedItems', function(evt, args) {
-      vm.deleteSelected();
+      deleteSelected();
     });
 
-    vm.duplicateSelected = function() {
+    function duplicateSelected() {
       var dupNode = angular.copy(vm.chartViewModel.getSelectedNodes()[0]);
 
       if (!dupNode) {
@@ -131,13 +62,14 @@
       var copyName = getCopyName(dupNode.data.name);
 
       dupNode.data.name = copyName.name;
+      dupNode.data.title = copyName.name;
       dupNode.data.x = dupNode.data.x + 15 * copyName.numDups;
       dupNode.data.y = dupNode.data.y + 15 * copyName.numDups;
 
-      vm.addNewNode(dupNode.data);
-    };
+      addNodeToCanvas(dupNode.data);
+    }
 
-    vm.deleteSelected = function() {
+    function deleteSelected() {
       var selectedNodes = vm.chartViewModel.getSelectedNodes();
 
       // Re-Enable selectedNodes in toolbox
@@ -149,7 +81,12 @@
       }
 
       vm.chartViewModel.deleteSelected();
-    };
+    }
+
+    function addNodeToCanvas(newNode) {
+      newNode.backgroundColor = '#fff';
+      vm.chartViewModel.addNode(newNode);
+    }
 
     function getNewId() {
       // random number between 1 and 600

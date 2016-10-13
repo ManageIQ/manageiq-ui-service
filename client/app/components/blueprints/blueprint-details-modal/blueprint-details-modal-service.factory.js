@@ -133,7 +133,7 @@
     vm.modalData = {
       'action': action,
       'resource': {
-        'name': vm.blueprint.name || __('Untitled Blueprint ') + BlueprintsState.getNextUniqueId(),
+        'name': vm.blueprint.name,
         'description': vm.blueprint.description,
         'visibility': vm.blueprint.ui_properties.visibility,
         'catalog': vm.blueprint.ui_properties.service_catalog,

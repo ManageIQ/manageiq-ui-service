@@ -1,0 +1,134 @@
+{
+  "name": "service_templates",
+  "count": 18,
+  "subcount": 7,
+  "resources": [
+    {
+      "href": "http://localhost:8001/api/service_templates/10000000000001",
+      "id": 10000000000001,
+      "name": "Create new AWS ELB",
+      "service_type": "atomic",
+      "prov_type": "generic_ansible_tower",
+      "picture": {
+        "id": 10000000000001,
+        "resource_id": 10000000000001,
+        "resource_type": "ServiceTemplate",
+        "image_href": "http://localhost:8001/pictures/10r1.png"
+      },
+      "service_template_catalog": {
+        "name": "Amazon Operations"
+      }
+    },
+    {
+      "href": "http://localhost:8001/api/service_templates/10000000000004",
+      "id": 10000000000004,
+      "name": "Deploy RHEL7 with PostgreSQL",
+      "service_type": "composite",
+      "picture": {
+        "id": 10000000000004,
+        "resource_id": 10000000000004,
+        "resource_type": "ServiceTemplate",
+        "image_href": "http://localhost:8001/pictures/10r4.jpg"
+      },
+      "service_template_catalog": {
+        "name": "Amazon Operations"
+      }
+    },
+    {
+      "href": "http://localhost:8001/api/service_templates/10000000000010",
+      "id": 10000000000010,
+      "name": "Hybrid Cloud Application",
+      "service_type": "composite",
+      "picture": {
+        "id": 10000000000010,
+        "resource_id": 10000000000010,
+        "resource_type": "ServiceTemplate",
+        "image_href": "http://localhost:8001/pictures/10r10.png"
+      },
+      "service_template_catalog": {
+        "name": "Hybrid Cloud Services"
+      }
+    },
+    {
+      "href": "http://localhost:8001/api/service_templates/10000000000015",
+      "id": 10000000000015,
+      "name": "RHEL7 on VMware",
+      "service_type": "atomic",
+      "prov_type": "vmware",
+      "picture": {
+        "id": 10000000000012,
+        "resource_id": 10000000000015,
+        "resource_type": "ServiceTemplate",
+        "image_href": "http://localhost:8001/pictures/10r12.png"
+      },
+      "service_template_catalog": {
+        "name": "VMware Operations"
+      }
+    },
+    {
+      "href": "http://localhost:8001/api/service_templates/10000000000016",
+      "id": 10000000000016,
+      "name": "RHEL7 on RHEV",
+      "service_type": "atomic",
+      "prov_type": "redhat",
+      "picture": {
+        "id": 10000000000013,
+        "resource_id": 10000000000016,
+        "resource_type": "ServiceTemplate",
+        "image_href": "http://localhost:8001/pictures/10r13.jpg"
+      },
+      "service_template_catalog": {
+        "name": "RHEV Operations"
+      }
+    },
+    {
+      "href": "http://localhost:8001/api/service_templates/10000000000018",
+      "id": 10000000000018,
+      "name": "RHEL7 on Amazon AWS",
+      "service_type": "atomic",
+      "prov_type": "amazon",
+      "picture": {
+        "id": 10000000000014,
+        "resource_id": 10000000000018,
+        "resource_type": "ServiceTemplate",
+        "image_href": "http://localhost:8001/pictures/10r14.png"
+      },
+      "service_template_catalog": {
+        "name": "Amazon Operations"
+      }
+    },
+    {
+      "href": "http://localhost:8001/api/service_templates/10000000000019",
+      "id": 10000000000019,
+      "name": "RHEL7 on OpenStack",
+      "service_type": "atomic",
+      "prov_type": "openstack",
+      "picture": {
+        "id": 10000000000015,
+        "resource_id": 10000000000019,
+        "resource_type": "ServiceTemplate",
+        "image_href": "http://localhost:8001/pictures/10r15.jpg"
+      },
+      "service_template_catalog": {
+        "name": "OpenStack Operations"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "name": "query",
+      "method": "post",
+      "href": "http://localhost:8001/api/service_templates"
+    },
+    {
+      "name": "edit",
+      "method": "post",
+      "href": "http://localhost:8001/api/service_templates"
+    },
+    {
+      "name": "delete",
+      "method": "post",
+      "href": "http://localhost:8001/api/service_templates"
+    }
+  ]
+}

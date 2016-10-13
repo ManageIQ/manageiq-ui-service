@@ -3,16 +3,17 @@
     <button type="button" class="close" ng-click="vm.cancel()" aria-hidden="true">
       <span class="pficon pficon-close"></span>
     </button>
-    <h3 class="modal-title" translate>Save Changes</h3>
+    <h3 ng-if="vm.okToSave" class="modal-title" translate>Save Changes</h3>
+    <h3 ng-if="!vm.okToSave" class="modal-title" translate>Discard Changes</h3>
   </div>
   <div class="modal-body">
-    <h4 translate>If you do not save, any changes will be lost.</h4>
+    <h4 ng-if="vm.okToSave" translate>If you do not save, any changes will be lost.</h4>
+    <h4 ng-if="!vm.okToSave" translate>Your current edits are invalid and cannot be saved. Continuing will discard your changes.</h4>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="vm.cancel()" translate>Cancel</button>
-    <button type="button" class="btn btn-default" ng-click="vm.doNotSave()" translate>Do Not Save</button>
-    <button type="button" class="btn btn-primary" ng-click="vm.save()" translate>
-      Save
-    </button>
+    <button type="button" class="btn btn-default" ng-if="!vm.okToSave" ng-click="vm.doNotSave()" translate>Continue</button>
+    <button type="button" class="btn btn-default" ng-if="vm.okToSave" ng-click="vm.doNotSave()" translate>Do Not Save</button>
+    <button type="button" class="btn btn-primary" ng-if="vm.okToSave" ng-click="vm.save()" translate>Save</button>
   </div>
 </div>

@@ -62,6 +62,16 @@
                   tooltip: N_('The total number of available blueprints'),
                 },
               ],
+            }, 
+            dialogs: {
+              title: N_('Dialogs'),
+              state: 'designer.dialogs',
+              badges: [
+                {
+                  count: 0,
+                  tooltip: N_('The total number of available dialogs'),
+                },
+              ],
             },
           },
         },
@@ -104,6 +114,7 @@
     NavCounts.add('requests', fetchRequests, refreshTimeMs);
     NavCounts.add('marketplace', fetchServiceTemplates, refreshTimeMs);
     NavCounts.add('blueprints', fetchBlueprints, refreshTimeMs);
+    NavCounts.add('dialogs', fetchDialogs, refreshTimeMs);
     NavCounts.add('profiles', fetchProfiles, refreshTimeMs);
     NavCounts.add('rules', fetchRules, refreshTimeMs);
 
@@ -149,6 +160,17 @@
 
       CollectionsApi.query('blueprints', options)
         .then(lodash.partial(updateDesignerSecondaryCount, 'blueprints'));
+    }
+
+    function fetchDialogs() {
+      var options = {
+        expand: false,
+        filter: ['id>0'],
+        auto_refresh: true,
+      };
+
+      CollectionsApi.query('service_dialogs', options)
+        .then(lodash.partial(updateDesignerSecondaryCount, 'dialogs'));
     }
 
     function fetchProfiles() {

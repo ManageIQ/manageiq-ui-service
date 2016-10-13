@@ -12,7 +12,7 @@
 
     return modalSaveRule;
 
-    function showModal(saveCallback, doNotSaveCallback, cancelCallback) {
+    function showModal(saveCallback, doNotSaveCallback, cancelCallback, okToSave) {
       var modalOptions = {
         templateUrl: 'app/states/administration/rules/save-rule-modal.html',
         controller: SaveRuleModalController,
@@ -21,6 +21,7 @@
           saveCallback: resolveSave,
           doNotSaveCallback: resolveDoNotSave,
           cancelCallback: resolveCancel,
+          okToSave: resolveOkToSave,
         },
       };
 
@@ -35,6 +36,9 @@
       function resolveCancel() {
         return cancelCallback;
       }
+      function resolveOkToSave() {
+        return okToSave;
+      }
       var modal = $modal.open(modalOptions);
 
       return modal.result;
@@ -42,11 +46,12 @@
   }
 
   /** @ngInject */
-  function SaveRuleModalController(saveCallback, doNotSaveCallback, cancelCallback, $modalInstance) {
+  function SaveRuleModalController(saveCallback, doNotSaveCallback, cancelCallback, okToSave, $modalInstance) {
     var vm = this;
     vm.save = save;
     vm.doNotSave = doNotSave;
     vm.cancel = cancel;
+    vm.okToSave = okToSave;
 
     function save() {
       saveCallback();

@@ -13,6 +13,7 @@
     '$scope',
     '$modal',
     '$state',
+    '$document',
     'EventNotifications',
     'ServerInfo',
     'ProductInfo',
@@ -28,6 +29,7 @@
                           $scope,
                           $modal,
                           $state,
+                          $document,
                           EventNotifications,
                           ServerInfo,
                           ProductInfo) {
@@ -107,6 +109,7 @@
 
     vm.notificationsDrawerShown = false;
     vm.toggleNotificationsList = toggleNotificationsList;
+    vm.closeOtherDropdowns = closeOtherDropdowns;
     vm.newNotifications = false;
     vm.getNotficationStatusIconClass = getNotficationStatusIconClass;
     vm.markNotificationRead = markNotificationRead;
@@ -234,6 +237,12 @@
 
     function toggleNotificationsList() {
       vm.notificationsDrawerShown = !vm.notificationsDrawerShown;
+    }
+
+    function closeOtherDropdowns() {
+      var userDropdown = angular.element( $document[0].getElementById('userDropdown') );
+      userDropdown.removeClass('open');
+      userDropdown.children().attr('aria-expanded', false);
     }
 
     function getNotficationStatusIconClass(notification) {

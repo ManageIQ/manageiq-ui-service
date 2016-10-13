@@ -63,15 +63,17 @@
   }
 
   /** @ngInject */
-  function StateController($log, blueprint, blueprintTags, serviceTemplates) {
+  function StateController($log, BlueprintsState, blueprint, blueprintTags, serviceTemplates) {
     var vm = this;
     vm.title = 'Blueprint Designer';
     if (blueprint) {
       if (blueprintTags && blueprintTags.resources) {
         blueprint.tags = blueprintTags.resources;
-        angular.forEach(blueprint.tags, processTag);   // <--- Add this line
+        angular.forEach(blueprint.tags, processTag);
       }
       vm.blueprint = blueprint;
+    } else {
+      vm.blueprint = BlueprintsState.getNewBlueprintObj();
     }
 
     function processTag(tag) {

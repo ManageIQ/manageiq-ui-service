@@ -17,6 +17,7 @@ module.exports = function(gulp, options) {
     return gulp.src(config.index)
       .pipe(wiredep(config.options))
       .pipe(inject(config.files, '', config.order))
-      .pipe(gulp.dest(config.build));
+      .pipe(gulp.dest(config.build))
+      .pipe(gulp.dest(config.temp));
   }
 };

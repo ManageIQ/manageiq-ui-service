@@ -17,8 +17,8 @@ gulp.task('default', ['help']);
  * Check the code for errors
  */
 gulp.task('eslint', task('eslint'));
-gulp.task('plato', task('plato'));
-gulp.task('vet', ['eslint']);
+gulp.task('sasslint', task('sasslint'));
+gulp.task('vet', ['eslint', 'sasslint']);
 
 /**
  * Cleans the build output
@@ -34,10 +34,8 @@ gulp.task('clean-code', task('clean', {key: 'cleanCode'}));
  */
 gulp.task('templatecache', task('templatecache'));
 gulp.task('sass', task('sass'));
+gulp.task('ejs', task('ejs'));
 gulp.task('wiredep', task('wiredep'));
-gulp.task('buildTemplatecache', task('templatecache', {key: 'buildTemplatecache'}));
-gulp.task('buildSass', task('sass', {key: 'buildSass'}));
-gulp.task('buildWiredep', task('wiredep', {key: 'buildWiredep'}));
 gulp.task('fonts', task('fonts'));
 gulp.task('images', task('images'));
 gulp.task('skin-images', ['images'], task('images', {key: 'skinImages'}));
@@ -55,9 +53,9 @@ gulp.task('available-languages', task('available-languages'));
 /**
  * Build tasks
  */
-gulp.task('devInject', ['wiredep', 'sass', 'templatecache'], task('inject'));
-gulp.task('buildInject', ['buildWiredep', 'buildSass', 'buildTemplatecache'], task('inject', {key: 'buildInject'}));
-gulp.task('optimize', ['buildInject', 'devInject'], task('optimize'));
+gulp.task('inject', ['wiredep', 'sass', 'templatecache'], task('inject'));
+gulp.task('compileEjs', ['inject'], task('ejs'));
+gulp.task('optimize', ['compileEjs'], task('optimize'));
 gulp.task('build', ['optimize', 'images', 'imgs', 'skin-images', 'fonts', 'gettext-copy', 'console-copy', 'available-languages'], task('build'));
 gulp.task('build-specs', ['templatecache'], task('buildSpecs'));
 
@@ -71,16 +69,10 @@ gulp.task('autotest', task('test', {singleRun: false}));
 /**
  * Serves up injected html for dev, builds for everything else.
  */
-gulp.task('serve-dev', ['dev-fonts', 'dev-images', 'dev-skin-images', 'dev-imgs', 'devInject', 'available-languages'], task('serve', {
-  isDev: true,
-  specRunner: false
-}));
-gulp.task('serve-build', ['build'], task('serve', {
-  isDev: false,
+gulp.task('serve', ['dev-fonts', 'dev-images', 'dev-skin-images', 'dev-imgs', 'inject', 'available-languages'], task('serve', {
   specRunner: false
 }));
 gulp.task('serve-specs', ['build-specs'], task('serve', {
-  isDev: true,
   specRunner: true
 }));
 

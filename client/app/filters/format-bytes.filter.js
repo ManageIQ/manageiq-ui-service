@@ -15,4 +15,10 @@
       return (val.match(/\.0*$/) ? val.substr(0, val.indexOf('.')) : val) + ' ' + availableUnits[unit];
     };
   });
+
+  angular.module('app.services').filter('megaBytes', function() {
+    return function(bytes) {
+      return bytes * 1024 * 1024;
+    };
+  });
 })();
