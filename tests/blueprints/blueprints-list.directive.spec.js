@@ -101,5 +101,21 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       disabledPublishButton = angular.element(rows[2]).find('.btn.btn-default.disabled');
       expect(disabledPublishButton.length).to.eq(0);
     });
+
+    it('should goto the blueprint editor when a blueprint is clicked', function () {
+      var stateGoSpy = sinon.spy($state, 'go');
+      var rows = element.find('.list-view-pf > .list-group-item');
+      expect(rows.length).to.eq($scope.blueprints.length);
+
+      var rowElement = angular.element(rows[0]);
+
+      var rowInfo = rowElement.find('.list-view-pf-main-info');
+      expect(rowInfo.length).to.eq(1);
+
+      eventFire(angular.element(rowInfo[0]), 'click');
+      $scope.$digest();
+
+      expect(stateGoSpy).to.have.been.calledWith('designer.blueprints.editor', { blueprintId: 10000000000023 });
+    });
   });
 });

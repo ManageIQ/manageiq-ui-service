@@ -1,4 +1,8 @@
-[
+{
+  "name": "service_templates",
+  "count": 18,
+  "subcount": 7,
+  "resources": [
     {
       "href": "http://localhost:8001/api/service_templates/10000000000001",
       "id": 10000000000001,
@@ -20,7 +24,6 @@
       "id": 10000000000004,
       "name": "Deploy RHEL7 with PostgreSQL",
       "service_type": "composite",
-      "disableInToolbox": true,
       "picture": {
         "id": 10000000000004,
         "resource_id": 10000000000004,
@@ -36,7 +39,6 @@
       "id": 10000000000010,
       "name": "Hybrid Cloud Application",
       "service_type": "composite",
-      "disableInToolbox": true,
       "picture": {
         "id": 10000000000010,
         "resource_id": 10000000000010,
@@ -85,7 +87,6 @@
       "name": "RHEL7 on Amazon AWS",
       "service_type": "atomic",
       "prov_type": "amazon",
-      "disableInToolbox": true,
       "picture": {
         "id": 10000000000014,
         "resource_id": 10000000000018,
@@ -112,5 +113,22 @@
         "name": "OpenStack Operations"
       }
     }
-]
-
+  ],
+  "actions": [
+    {
+      "name": "query",
+      "method": "post",
+      "href": "http://localhost:8001/api/service_templates"
+    },
+    {
+      "name": "edit",
+      "method": "post",
+      "href": "http://localhost:8001/api/service_templates"
+    },
+    {
+      "name": "delete",
+      "method": "post",
+      "href": "http://localhost:8001/api/service_templates"
+    }
+  ]
+}
