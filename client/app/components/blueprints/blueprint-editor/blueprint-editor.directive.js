@@ -26,7 +26,7 @@
       if (toState.name === 'login') {
         return;
       }
-      if (fromState.name === "designer.blueprints.editor" && toState.name !== "designer.blueprints.editor") {
+      if ((fromState.name === "designer.blueprints.editor" || fromState.name === "") && toState.name !== "designer.blueprints.editor") {
         var origBlueprint = BlueprintsState.getOriginalBlueprint();
         if (!BlueprintsState.doNotSave() && !angular.equals(origBlueprint, vm.blueprint) && !event.defaultPrevented) {
           SaveBlueprintModal.showModal(vm.blueprint, toState, toParams, fromState, fromParams);

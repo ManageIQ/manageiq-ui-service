@@ -1,1 +1,8 @@
-<blueprint-editor blueprint="vm.blueprint" service-templates="vm.serviceTemplates"/>
+<ui-view>
+  <ol class="breadcrumb inline-breadcrumb">
+    <li>
+      <a ui-sref="^"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to Blueprints'|translate}}</a>
+    </li>
+  </ol>
+  <blueprint-editor blueprint="vm.blueprint" service-templates="vm.serviceTemplates"/>
+</ui-view>

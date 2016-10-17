@@ -1,9 +1,6 @@
 <span ng-class="{'wait-cursor': vm.loading}">
   <span class="blueprint-designer-header">
-    <ol class="breadcrumb">
-        <li>
-            <a ui-sref="^"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to Blueprints'|translate}}</a>
-        </li>
+    <ol class="breadcrumb inline-breadcrumb">
         <li class="active"><strong translate>Blueprint Editor: </strong>
             <input id="blueprintName" type="text" class="blueprint-name-input" ng-model="vm.blueprint.name"
                    placeholder="{{'Untitled Blueprint'|translate}}">
