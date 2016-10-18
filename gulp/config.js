@@ -8,7 +8,7 @@ module.exports = (function() {
   var client = src + 'client/';
   var server = src + 'server/';
   var tests = src + 'tests/';
-  var build = '../manageiq/public/self_service/';
+  var build = '../manageiq/public/ui/service/';
   var temp = './.tmp/';
   var reports = './reports/';
   var bower = './bower_components/';
@@ -352,7 +352,7 @@ module.exports = (function() {
         ws: true,
       },
       port: 3001,
-      startPath: '/self_service/',
+      startPath: '/ui/service/',
       files: [],
       ghostMode: {
         clicks: true,
