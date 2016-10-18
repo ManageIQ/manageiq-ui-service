@@ -1,0 +1,79 @@
+{
+  "name": "service_dialogs",
+  "count": 10,
+  "subcount": 10,
+  "resources": [
+    {
+      "href": "http://localhost:8001/api/service_dialogs/10000000000005",
+      "id": 10000000000005,
+      "description": "Create RHEL7 instance with PostgreSQL",
+      "label": "RHEL7 with PostgreSQL"
+    },
+    {
+      "href": "http://localhost:8001/api/service_dialogs/10000000000008",
+      "id": 10000000000008,
+      "description": "Create VM",
+      "label": "Create VM (RHEV)"
+    },
+    {
+      "href": "http://localhost:8001/api/service_dialogs/10000000000007",
+      "id": 10000000000007,
+      "description": "Create VM",
+      "label": "Create VM (VMware)"
+    },
+    {
+      "href": "http://localhost:8001/api/service_dialogs/10000000000006",
+      "id": 10000000000006,
+      "description": "Hybrid Cloud Application",
+      "label": "Hybrid Cloud Application"
+    },
+    {
+      "href": "http://localhost:8001/api/service_dialogs/10000000000002",
+      "id": 10000000000002,
+      "description": "OSE Installer",
+      "label": "OSE Installer"
+    },
+    {
+      "href": "http://localhost:8001/api/service_dialogs/10000000000010",
+      "id": 10000000000010,
+      "label": "Create VM (OpenStack)"
+    },
+    {
+      "href": "http://localhost:8001/api/service_dialogs/10000000000003",
+      "id": 10000000000003,
+      "label": "Simple AWS ELB Dialog"
+    },
+    {
+      "href": "http://localhost:8001/api/service_dialogs/10000000000004",
+      "id": 10000000000004,
+      "label": "PostgreSQL Deployment Dialog"
+    },
+    {
+      "href": "http://localhost:8001/api/service_dialogs/10000000000009",
+      "id": 10000000000009,
+      "label": "Create VM (EC2)"
+    },
+    {
+      "href": "http://localhost:8001/api/service_dialogs/10000000000001",
+      "id": 10000000000001,
+      "label": "azure-single-vm-from-user-image"
+    }
+  ],
+  "actions": [
+    {
+      "name": "query",
+      "method": "post",
+      "href": "http://localhost:8001/api/service_dialogs"
+    },
+    {
+      "name": "refresh_dialog_fields",
+      "method": "post",
+      "href": "http://localhost:8001/api/service_dialogs"
+    },
+    {
+      "name": "delete",
+      "method": "post",
+      "href": "http://localhost:8001/api/service_dialogs"
+    }
+  ]
+}
