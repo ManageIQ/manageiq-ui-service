@@ -1,12 +1,12 @@
 # ManageIQ Self Service UI
 
-[![Build Status](https://travis-ci.org/ManageIQ/manageiq-ui-service.svg)](https://travis-ci.org/ManageIQ/manageiq-ui-self_service)
-[![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/gpa.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-self_service)
+[![Build Status](https://travis-ci.org/ManageIQ/manageiq-ui-service.svg)](https://travis-ci.org/ManageIQ/manageiq-ui-service)
+[![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/gpa.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service)
 [![Dependency Status](https://gemnasium.com/ManageIQ/manageiq-ui-service.svg)](https://gemnasium.com/ManageIQ/manageiq-ui-self_service)
-[![Test Coverage](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/coverage.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-self_service/coverage)
+[![Test Coverage](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/coverage.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/coverage)
 
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-ui-service?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Translate](https://img.shields.io/badge/translate-zanata-blue.svg)](https://translate.zanata.org/zanata/project/view/manageiq-ui-self_service)
+[![Translate](https://img.shields.io/badge/translate-zanata-blue.svg)](https://translate.zanata.org/zanata/project/view/manageiq-ui-service)
 [![License](http://img.shields.io/badge/license-APACHE2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 The Service UI (SUI) previously Self Service UI (SSUI), for the [ManageIQ](http://github.com/ManageIQ/manageiq) project.
@@ -48,7 +48,7 @@ http://localhost:3000 order and serve up the REST API.
   - `bundle exec rails server`
   - `bundle exec rake evm:start`
  
-- From the `manageiq-ui-self_service` directory, start the development version of
+- From the `manageiq-ui-service` directory, start the development version of
   the self service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
   _http://[::1]:3000_.  This command will also open a browser page to  _http://localhost:3001/self_service/login_.
   - `gulp serve`
