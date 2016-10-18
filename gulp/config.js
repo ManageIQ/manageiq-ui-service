@@ -9,6 +9,7 @@ module.exports = (function() {
   var server = src + 'server/';
   var tests = src + 'tests/';
   var build = '../manageiq/public/ui/service/';
+  var manageiq_dir = '../manageiq/';
   var temp = './.tmp/';
   var reports = './reports/';
   var bower = './bower_components/';
@@ -119,7 +120,8 @@ module.exports = (function() {
   config.sasslint = {
     src: sassFiles
   };
-
+  //configures which directory manage iq server code is located 
+  config.manageiq_dir=manageiq_dir;
   // task clean: Directories to clean
   config.clean = {
     src: [
