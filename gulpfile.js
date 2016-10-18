@@ -69,7 +69,8 @@ gulp.task('autotest', task('test', {singleRun: false}));
 /**
  * Serves up injected html for dev, builds for everything else.
  */
-gulp.task('serve', ['dev-fonts', 'dev-images', 'dev-skin-images', 'dev-imgs', 'inject', 'available-languages'], task('serve', {
+gulp.task('manageiq-server', task('manageiq-server'));
+gulp.task('serve', ['dev-fonts', 'dev-images', 'dev-skin-images', 'dev-imgs', 'inject', 'available-languages','manageiq-server'], task('serve', {
   specRunner: false
 }));
 gulp.task('serve-specs', ['build-specs'], task('serve', {
