@@ -45,8 +45,7 @@ to manage node and npm versions).
 - From the `manageiq` directory, start the ManageIQ application to initiate the server listening on 
 http://localhost:3000 order and serve up the REST API.
   Either one of the following commands can be used.
-  - `bundle exec rails server`
-  - `bundle exec rake evm:start`
+  - `MIQ_SPARTAN=minimal rake evm:start`
  
 - From the `manageiq-ui-service` directory, start the development version of
   the self service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
