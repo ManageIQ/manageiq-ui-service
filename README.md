@@ -6,9 +6,8 @@
 
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-ui-service?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Translate](https://img.shields.io/badge/translate-zanata-blue.svg)](https://translate.zanata.org/zanata/project/view/manageiq-ui-service)
-[![License](http://img.shields.io/badge/license-APACHE2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-The Service UI (SUI) previously Self Service UI (SSUI), for the [ManageIQ](http://github.com/ManageIQ/manageiq) project.
+The Service UI (SUI), previously Self Service UI, for the [ManageIQ](http://github.com/ManageIQ/manageiq) project.
 
 ## Developer Setup
 Logging in to the SUI requires a running instance of ManageIQ. Instructions on how to install ManageIQ can be found 
@@ -21,9 +20,8 @@ Logging in to the SUI requires a running instance of ManageIQ. Instructions on h
   for the steps reqiured to setup ManageIQ.
 - Have this repo as a sibling to the `manageiq` directory:
 `git clone git@github.com:ManageIQ/manageiq-ui-service.git`.
-- Have nodejs **v6.7.0** and npm **3.10.3** installed ([NVM](https://github.com/creationix/nvm) is a popular solution 
-to manage node and npm versions).
-- Have yarn bower and gulp globally installed.
+- Have nodejs **v6.7.0** and npm **3.10.3** installed (npm should be installed with NodeJS)
+- Have yarn, bower, and gulp globally installed.
   - `npm install -g yarn bower gulp`
 
 ### Install Dependencies
