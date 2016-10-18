@@ -67,6 +67,15 @@
                       ng-options="fieldValue[0] as fieldValue[1] for fieldValue in dialogField.values">
                     </select>
 
+                    <select
+                      ng-switch-when="DialogFieldTagControl"
+                      ng-model="dialogField.default_value"
+                      ng-disabled="dialogField.read_only || vm.inputDisabled"
+                      ng-change="dialogField.triggerAutoRefresh(dialogField)"
+                      class="form-control"
+                      ng-options="fieldValue.id as fieldValue.description for fieldValue in dialogField.values">
+                    </select>
+
                     <span
                       ng-switch-when="DialogFieldRadioButton"
                       class="btn-group">
