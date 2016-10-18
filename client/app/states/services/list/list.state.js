@@ -46,6 +46,10 @@
     }
 
     angular.forEach(services.resources, function(item) {
+      item.powerState = angular.isDefined(item.options.power_state) ? item.options.power_state : "";
+    });
+
+    angular.forEach(services.resources, function(item) {
       if (angular.isUndefined(item.service_id)) {
         vm.services.push(item);
       }
