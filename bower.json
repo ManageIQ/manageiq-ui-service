@@ -1,7 +1,7 @@
 {
-  "name": "manageiq-ui-self_service",
+  "name": "manageiq-ui-service",
   "version": "1.0.1",
-  "description": "ManageIQ Self Service",
+  "description": "ManageIQ Service",
   "authors": [
     "Red Hat"
   ],

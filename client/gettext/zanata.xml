@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <config xmlns="http://zanata.org/namespace/config/">
   <url>https://translate.zanata.org/zanata/</url>
-  <project>manageiq-ui-self_service</project>
+  <project>manageiq-ui-service</project>
   <project-version>master</project-version>
   <project-type>gettext</project-type>
   <rules>
