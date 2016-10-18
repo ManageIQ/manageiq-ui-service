@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ManageIQ/manageiq-ui-service.svg)](https://travis-ci.org/ManageIQ/manageiq-ui-service)
 [![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/gpa.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service)
-[![Dependency Status](https://gemnasium.com/ManageIQ/manageiq-ui-service.svg)](https://gemnasium.com/ManageIQ/manageiq-ui-self_service)
+[![Dependency Status](https://gemnasium.com/ManageIQ/manageiq-ui-service.svg)](https://gemnasium.com/ManageIQ/manageiq-ui-service)
 [![Test Coverage](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/coverage.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/coverage)
 
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-ui-service?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -49,7 +49,7 @@ http://localhost:3000 order and serve up the REST API.
   - `bundle exec rake evm:start`
  
 - From the `manageiq-ui-service` directory, start the development version of
-  the self service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
+  the service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
   _http://[::1]:3000_.  This command will also open a browser page to  _http://localhost:3001/self_service/login_.
   - `gulp serve`
 

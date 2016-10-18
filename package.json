@@ -1,14 +1,14 @@
 {
-  "name": "manageiq-ui-self_service",
+  "name": "manageiq-ui-service",
   "version": "1.0.0",
-  "description": "ManageIQ Self Service dependencies",
+  "description": "ManageIQ Service dependencies",
   "authors": [
     "Red Hat"
   ],
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ManageIQ/manageiq-ui-self_service.git"
+    "url": "https://github.com/ManageIQ/manageiq-ui-service.git"
   },
   "scripts": {
     "init": "yarn install",

@@ -73,9 +73,9 @@
     function getLocale(data) {
       return data
         && data.settings
-        && data.settings.ui_self_service
-        && data.settings.ui_self_service.display
-        && data.settings.ui_self_service.display.locale;
+        && data.settings.ui_service
+        && data.settings.ui_service.display
+        && data.settings.ui_service.display.locale;
     }
 
     function setUser(data) {
@@ -120,7 +120,7 @@
         action: 'edit',
         resource: {
           settings: {
-            ui_self_service: {
+            ui_service: {
               display: {
                 locale: code,
               },
