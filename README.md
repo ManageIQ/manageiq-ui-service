@@ -1,4 +1,4 @@
-# ManageIQ Self Service UI
+# ManageIQ Service UI
 
 [![Build Status](https://travis-ci.org/ManageIQ/manageiq-ui-service.svg)](https://travis-ci.org/ManageIQ/manageiq-ui-service)
 [![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/gpa.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service)
@@ -50,6 +50,9 @@ http://localhost:3000 order and serve up the REST API.
 - From the `manageiq-ui-service` directory, start the development version of
   the service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
   _http://[::1]:3000_.  This command will also open a browser page to  _http://localhost:3001/self_service/login_.
+- From the `manageiq-ui-service` directory, start the development version of
+  the self service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
+  _http://[::1]:3000_.  This command will also open a browser page to  _http://localhost:3001/ui/service/login_.
   - `gulp serve`
 
 ### Troubleshooting
