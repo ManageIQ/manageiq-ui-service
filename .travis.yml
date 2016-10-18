@@ -6,7 +6,11 @@ cache:
   directories:
   - node_modules
 before_install:
-- npm install -g gulp bower
+- npm install -g yarn gulp bower
+install:
+- yarn install
+- bower install -F
+- gulp build
 after_script:
 - codeclimate-test-reporter < reports/coverage/report-lcov/lcov.info
 notifications:
