@@ -82,6 +82,30 @@
       sortConfig: serviceSortConfig,
     };
 
+    vm.actionButtons = [
+      {
+        name: __('Start'),
+        title: __('Start this service'),
+        actionFn: startService,
+        isDisabled: false,
+      },
+    ];
+
+    vm.menuActions = [
+      {
+        name: __('Stop'),
+        title: __('Stop this service'),
+        actionFn: stopService,
+        isDisabled: false,
+      },
+      {
+        name: __('Suspend'),
+        title: __('Suspend this service'),
+        actionFn: suspendService,
+        isDisabled: false,
+      },
+    ];
+
     function getServiceFilterFields() {
       var retires = [__('Current'), __('Soon'), __('Retired')];
       var dollars = ['$', '$$', '$$$', '$$$$'];
@@ -116,6 +140,18 @@
 
       /* Make sure sorting direction is maintained */
       sortChange(ServicesState.getSort().currentField, ServicesState.getSort().isAscending);
+    }
+
+    function startService(action, item) {
+      console.log("startService");
+    }
+
+    function stopService(action, item) {
+      console.log("stopService");
+    }
+
+    function suspendService(action, item) {
+      console.log("suspendService");
     }
 
     function handleClick(item, e) {
