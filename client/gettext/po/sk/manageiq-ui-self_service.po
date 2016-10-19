@@ -5,45 +5,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-04-01 08:09-0400\n"
+"PO-Revision-Date: 2016-10-04 11:57-0400\n"
 "Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>\n"
 "Language-Team: Slovak\n"
 "Language: sk\n"
-"X-Generator: Zanata 3.8.3\n"
+"X-Generator: Zanata 3.9.5\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
 
-#: app/components/navigation/header-nav.html:42
+#: app/components/notifications/notification-body.html:22
+#: app/components/notifications/notification-body.html:46
+msgid "% Complete"
+msgstr "% Kompletných"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:321
+msgid "%s was created."
+msgstr "%s bol vytvorený."
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:330
+msgid "%s was published."
+msgstr "%s bol publikovaný."
+
+#: app/states/designer/blueprints/editor/editorCtrl.js:64
+msgid "'%s' was succesfully saved."
+msgstr "'%s' bol úspešne uložený."
+
+#: app/layouts/application.html:75
 msgid "(Current Group)"
 msgstr "(Aktuálna skupina)"
 
-#: app/components/retire-service-modal/retire-service-modal.html:12
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:59
 msgid "1 Week"
 msgstr "1 týždeň"
 
-#: app/components/retire-service-modal/retire-service-modal.html:13
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:60
 msgid "2 Weeks"
 msgstr "2 týždne"
 
-#: app/components/retire-service-modal/retire-service-modal.html:14
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:61
 msgid "3 Weeks"
 msgstr "3 týždne"
 
-#: app/components/retire-service-modal/retire-service-modal.html:15
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:62
 msgid "4 Weeks"
 msgstr "4 týždne"
 
+#: app/layouts/application.html:52
+msgid "About"
+msgstr "O aplikácii"
+
 #: app/states/about-me/about-me.html:1
 #: app/states/about-me/about-me.state.js:20
-#: app/states/about-me/about-me.state.js:29
 msgid "About Me"
 msgstr "O mne"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:85
+msgid "Action Order"
+msgstr "Poradie akcií"
 
 #: app/components/custom-button/custom-button.directive.js:120
 #: app/components/custom-button/custom-button.directive.js:132
 msgid "Action not able to submit."
 msgstr "Nepodarilo sa odoslať akciu."
 
-#: app/states/products/details/details.state.js:35
+#: app/states/products/details/details.state.js:33
 msgid "Activated Products Details View"
 msgstr "Detaily aktivovaných produktov"
 
@@ -52,8 +76,33 @@ msgstr "Detaily aktivovaných produktov"
 msgid "Active"
 msgstr "Aktívne"
 
+#: app/states/designer/blueprints/editor/editor.html:22
+msgid "Add Item"
+msgstr "Pridaj položku"
+
+#: app/states/administration/profiles/editor/editor.html:18
+#: app/states/administration/profiles/editor/editor.state.js:56
+msgid "Add Profile"
+msgstr "Pridaj profil"
+
+#: app/states/marketplace/details/details.html:36
+#: app/states/marketplace/details/details.html:41
+msgid "Add to Shopping Cart"
+msgstr "Pridaj to nákupného košíka"
+
+#: app/config/navigation.config.js:68
+#: app/states/administration/profiles/profiles.html:5
+#: app/states/administration/rules/rules.html:5
+msgid "Administration"
+msgstr "Administrácia"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:75
+msgid "Advanced Options"
+msgstr "Pokročilé voľby"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:346
 msgid "Approved"
 msgstr "Schválené"
 
@@ -63,17 +112,46 @@ msgid "Approved Requests"
 msgstr "Schválené požiadavky"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:73
+#: app/states/requests/details/details.html:72
 msgid "Approver"
 msgstr "Schválil"
 
+#: app/states/administration/profiles/profiles.html:16
+msgid "Are you sure you want to delete profile [[profile_name]]?"
+msgstr "Ste si istý, že chcete zmazať profil [[profile_name]]?"
+
+#: app/states/administration/rules/rules.html:131
+msgid "Are you sure you want to delete this rule?"
+msgstr "Ste si istý, že chcete zmazať toto pravidlo?"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:8
+msgid "Are you sure you want to delete {{vm.blueprintsList[0].name}}?"
+msgid_plural "Are you sure you want to delete {{$count}} blueprints?"
+msgstr[0] "Ste si istý, že chcete zmazať {{vm.blueprintsList[0].name}}?"
+msgstr[1] "Ste si istý, že chcete zmazať {{$count}} blueprinty?"
+msgstr[2] "Ste si istý, že chcete zmazať {{$count}} blueprintov?"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/confirmation/confirmation.directive.js:95
+#: app/components/confirmation/confirmation.directive.js:106
 msgid "Are you sure you wish to proceed?"
 msgstr "Skutočne chcete pokračovať?"
 
+#: app/components/notifications/notification-footer.html:14
+msgid "Are you sure you would like to clear all [[heading]]?"
+msgstr "Ste si istý, že chcete zmazať všetky [[heading]]?"
+
+#: app/states/administration/profiles/details/details.html:68
+#: app/states/administration/profiles/editor/editor.html:72
+msgid "Availability Zone"
+msgstr "Availability zóna"
+
+#: app/states/designer/blueprints/editor/editor.html:5
+msgid "Back to Blueprints"
+msgstr "Naspať k blueprintom"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/requests/details/details.html:3
+#: app/states/requests/order_details/order_details.html:3
 msgid "Back to My Requests"
 msgstr "Naspäť k mojím dotazom"
 
@@ -81,6 +159,11 @@ msgstr "Naspäť k mojím dotazom"
 #: app/states/services/details/details.html:3
 msgid "Back to My Services"
 msgstr "Späť k mojím službám"
+
+#: app/states/administration/profiles/details/details.html:3
+#: app/states/administration/profiles/editor/editor.html:3
+msgid "Back to Profiles"
+msgstr "Naspäť k profilom"
 
 #: app/states/services/custom_button_details/custom_button_details.html:7
 #: app/states/services/reconfigure/reconfigure.html:3
@@ -93,14 +176,36 @@ msgstr "Späť k službe"
 msgid "Back to Service Catalog"
 msgstr "Naspäť ku katalógom služieb"
 
-#: app/states/blueprints/list/list.state.js:19
-#: app/states/blueprints/list/list.state.js:29
+#: app/states/designer/blueprints/editor/editor.html:34
+msgid "Blueprint Details"
+msgstr "Detaily blueprintu"
+
+#: app/states/designer/blueprints/editor/editor.html:7
+msgid "Blueprint Editor:"
+msgstr "Blueprint Editor:"
+
+#: app/states/designer/blueprints/list/list.state.js:20
+#: app/states/designer/blueprints/list/list.state.js:71
 msgid "Blueprint List"
 msgstr "Zoznam náčrtov"
 
-#: app/config/navigation.config.js:37
+#: app/services/blueprints-state.service.js:404
+msgid "Blueprint(s) were succesfully deleted."
+msgstr "Blueprinty boli úspešne zmazané."
+
+#: app/config/navigation.config.js:56
 msgid "Blueprints"
 msgstr "Náčrty"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:100
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:111
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:88
+msgid "Browse"
+msgstr "Browse"
+
+#: app/components/language-switcher/language-switcher.directive.js:29
+msgid "Browser Default"
+msgstr "Browser Default"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/custom-button/custom-button.directive.js:100
@@ -108,52 +213,132 @@ msgid "Button action not supported."
 msgstr "Akcia tlačítka nie je podporovaná."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:116
+#: app/states/services/details/details.html:113
 msgid "CPU"
 msgstr "Procesor"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/confirmation/confirmation.directive.js:97
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:17
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:156
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:11
+#: app/components/confirmation/confirmation.directive.js:108
+#: app/components/create-catalog-modal/create-catalog-modal.html:12
 #: app/components/edit-service-modal/edit-service-modal.html:21
 #: app/components/ownership-service-modal/ownership-service-modal.html:32
-#: app/components/retire-service-modal/retire-service-modal.html:24
-#: app/states/services/reconfigure/reconfigure.html:24
+#: app/components/retire-service-modal/retire-service-modal.html:19
+#: app/states/administration/profiles/editor/editor.html:135
+#: app/states/administration/profiles/editor/save-profile-modal.html:11
+#: app/states/administration/rules/rules.html:107
+#: app/states/administration/rules/save-rule-modal.html:11
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:11
+#: app/states/services/reconfigure/reconfigure.html:22
 msgid "Cancel"
 msgstr "Zrušiť"
 
+#: app/states/designer/blueprints/list/list.state.js:235
+msgid "Cannot publish a blueprint with no service items."
+msgstr "Nie je možné publikovať blueprint bez servisných položiek."
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:43
+#: app/states/designer/blueprints/list/list.state.js:154
+#: app/states/designer/blueprints/list/list.state.js:195
+msgid "Catalog"
+msgstr "Katalóg"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/list/list.state.js:105
-#: app/states/marketplace/list/list.state.js:86
+#: app/states/marketplace/list/list.state.js:110
+#: app/states/marketplace/list/list.state.js:91
 msgid "Catalog Name"
 msgstr "Meno katalógu"
 
-#: app/components/navigation/header-nav.html:34
+#: app/layouts/application.html:67
 msgid "Change Group:"
 msgstr "Zmeň skupinu:"
 
-#: app/components/navigation/header-nav.html:46
+#: app/layouts/application.html:79
 msgid "Change to this Group"
 msgstr "Zmeň túto skupinu"
 
+#: app/components/shopping-cart/shopping-cart.html:46
+msgid "Clear"
+msgstr "Vymazať"
+
+#: app/components/notifications/notification-footer.html:15
+#: app/components/notifications/notification-footer.html:20
+msgid "Clear All"
+msgstr "Vyčistiť všetko."
+
+#: app/components/notifications/notification-footer.html:13
+msgid "Clear All [[heading]]"
+msgstr "Vyčisti všetky [[heading]]"
+
+#: app/components/shopping-cart/shopping-cart.html:38
+msgid "Close"
+msgstr "Zavrieť"
+
+#: app/states/administration/profiles/details/details.html:80
+#: app/states/administration/profiles/editor/editor.html:92
+msgid "Cloud Network"
+msgstr "Cloudová sieť"
+
+#: app/states/administration/profiles/details/details.html:86
+#: app/states/administration/profiles/editor/editor.html:103
+msgid "Cloud Subnet"
+msgstr "Cloudová podsieť"
+
+#: app/components/notifications/notification-body.html:52
+msgid "Completed:"
+msgstr "Kompletné:"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:42
+#: app/states/services/details/details.html:40
 msgid "Confirm, would you like to remove this service?"
 msgstr "Skutočne si prajete odstrániť túto službu?"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:57
+#: app/states/services/details/details.html:54
 msgid "Confirm, would you like to retire this service?"
 msgstr "Skutočne si prajete vyradiť túto službu?"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:90
+#: app/states/administration/profiles/profiles.state.js:279
+#: app/states/administration/rules/rules.html:18
+#: app/states/designer/blueprints/editor/editor.html:95
+#: app/states/designer/blueprints/list/list.state.js:206
+msgid "Create"
+msgstr "Vytvor"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:89
+msgid "Create Blueprint"
+msgstr "Vytvor blueprint"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:54
+#: app/components/create-catalog-modal/create-catalog-modal.html:5
+msgid "Create Catalog"
+msgstr "Vytvoriť katalóg"
+
+#: app/states/designer/blueprints/list/list.state.js:207
+msgid "Create a new Blueprint"
+msgstr "Vytvor nový blueprint"
+
+#: app/states/administration/profiles/profiles.state.js:280
+msgid "Create a new Profile"
+msgstr "Vytvor nový profil"
+
+#: app/states/administration/rules/rules.html:16
+msgid "Create a new rule"
+msgstr "Vytvor nové pravidlo"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:124
-#: app/states/services/list/list.state.js:91
+#: app/states/administration/profiles/details/details.html:29
+#: app/states/services/list/list.state.js:127
+#: app/states/services/list/list.state.js:94
 msgid "Created"
 msgstr "Vytvorený"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:106
-#: app/states/services/list/list.html:40
+#: app/states/services/details/details.html:103
+#: app/states/services/list/list.html:48
 msgid "Created On"
 msgstr "Vytvorený"
 
@@ -163,11 +348,11 @@ msgid "Creation Date"
 msgstr "Dátum vytvorenia"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:78
 msgid "Current"
 msgstr "Aktuálny"
 
-#: app/components/navigation/header-nav.html:53
+#: app/layouts/application.html:86
 msgid "Current Group"
 msgstr "Aktuálna skupina"
 
@@ -176,7 +361,7 @@ msgstr "Aktuálna skupina"
 msgid "Current Services"
 msgstr "Aktuálne služby"
 
-#: app/components/navigation/header-nav.html:40
+#: app/layouts/application.html:73
 msgid "Currently Selected Group"
 msgstr "Momentálne označená skupina"
 
@@ -194,14 +379,38 @@ msgid "Custom button action"
 msgstr "Užívateľská akcia tlačítka"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:14
-#: app/states/dashboard/dashboard.state.js:154
+#: app/config/navigation.config.js:13
 #: app/states/dashboard/dashboard.state.js:20
 msgid "Dashboard"
 msgstr "Riadiaci panel"
 
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:18
+#: app/states/administration/profiles/profiles.html:17
+#: app/states/administration/profiles/profiles.state.js:216
+#: app/states/administration/rules/rules.html:132
+#: app/states/designer/blueprints/list/list.state.js:130
+#: app/states/designer/blueprints/list/list.state.js:211
+msgid "Delete"
+msgstr "Zmaž"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:5
+#: app/states/designer/blueprints/list/list.state.js:131
+#: app/states/designer/blueprints/list/list.state.js:212
+msgid "Delete Blueprint"
+msgstr "Zmaž blueprint"
+
+#: app/states/administration/profiles/profiles.html:15
+#: app/states/administration/profiles/profiles.state.js:217
+msgid "Delete Profile"
+msgstr "Zmaž profil"
+
+#: app/states/administration/rules/rules.html:130
+msgid "Delete Rule"
+msgstr "Zmaž pravidlo"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:344
 msgid "Denied"
 msgstr "Zamietnuté"
 
@@ -211,112 +420,237 @@ msgid "Denied Requests"
 msgstr "Zamietnuté požiadavky"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:19
 #: app/components/edit-service-modal/edit-service-modal.html:13
-#: app/states/marketplace/list/list.state.js:80
-#: app/states/requests/list/list.state.js:60
-#: app/states/requests/list/list.state.js:92
+#: app/states/administration/profiles/editor/editor.html:35
+#: app/states/marketplace/list/list.state.js:85
+#: app/states/requests/list/list.state.js:115
+#: app/states/requests/list/list.state.js:77
 msgid "Description"
 msgstr "Popis"
 
+#: app/config/navigation.config.js:51
+msgid "Designer"
+msgstr "Dizajnér"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:61
+msgid "Dialog"
+msgstr "Dialóg"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:128
+#: app/states/services/details/details.html:125
 msgid "Disk Count"
 msgstr "Počet diskov"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:134
+#: app/states/services/details/details.html:131
 msgid "Disk Space Allocated"
 msgstr "Alokovaný diskový priestor"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:140
+#: app/states/services/details/details.html:137
 msgid "Disk Space Used"
 msgstr "Obsadený diskový priestor"
 
+#: app/states/administration/profiles/editor/save-profile-modal.html:12
+#: app/states/administration/rules/save-rule-modal.html:12
+msgid "Do Not Save"
+msgstr "Neukladaj"
+
+#: app/layouts/application.html:42
+msgid "Documentation"
+msgstr "Dokumentácia"
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:12
+msgid "Don't Save"
+msgstr "Neukladať"
+
+#: app/states/designer/blueprints/list/list.html:45
+msgid "Draft"
+msgstr "Draft"
+
+#: app/components/shopping-cart/shopping-cart.html:22
+#: app/states/designer/blueprints/editor/editor.html:25
+#: app/states/designer/blueprints/list/list.state.js:125
+msgid "Duplicate"
+msgstr "Duplikát"
+
+#: app/states/designer/blueprints/list/list.state.js:126
+msgid "Duplicate Blueprint"
+msgstr "Duplikuj blueprint"
+
+#: app/states/marketplace/details/details.html:34
+msgid "Duplicate Shopping Cart Item"
+msgstr "Duplikuj položku v nákupnom košíku"
+
+#: app/states/designer/blueprints/list/list.state.js:229
+msgid "Duplicate blueprint feature not available."
+msgstr "Duplikácia blueprintu nie je dostupná"
+
+#: app/states/administration/profiles/details/details.html:108
+#: app/states/administration/profiles/profiles.state.js:211
+#: app/states/designer/blueprints/list/list.state.js:120
+msgid "Edit"
+msgstr "Editácia"
+
+#: app/states/designer/blueprints/list/list.state.js:121
+msgid "Edit Blueprint"
+msgstr "Editácia blueprintu"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:97
+#: app/states/designer/blueprints/editor/editor.html:36
+msgid "Edit Blueprint Details"
+msgstr "Edituj detaily blueprintu"
+
+#: app/states/administration/profiles/editor/editor.html:17
+#: app/states/administration/profiles/profiles.state.js:212
+msgid "Edit Profile"
+msgstr "Edituj profil"
+
+#: app/states/administration/profiles/editor/editor.state.js:54
+msgid "Edit Profile: %s"
+msgstr "Edituj profil: %s"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/edit-service-modal/edit-service-modal.html:5
-#: app/states/services/details/details.html:65
+#: app/states/services/details/details.html:62
 msgid "Edit Service"
 msgstr "Editácia služby"
+
+#: app/states/administration/rules/rules.html:71
+msgid "Enter a value"
+msgstr "Vlož hodnotu"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/error/error.state.js:21
 msgid "Error"
 msgstr "Chyba"
 
-#: app/config/authorization.config.js:105
+#: app/config/authorization.config.js:111
 msgid "Error retrieving user info"
 msgstr "Chyba pri zisťovaní informácii o užívateľovi"
 
+#: app/states/designer/blueprints/editor/editorCtrl.js:80
+msgid "Failed to save '%s'."
+msgstr "Chyba pri ukladaní '%s'."
+
+#: app/states/designer/blueprints/list/list.state.js:155
+msgid "Filter by Catalog"
+msgstr "Filtruj podľa katalógu"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/list/list.state.js:87
+#: app/states/marketplace/list/list.state.js:92
 msgid "Filter by Catalog Name"
 msgstr "Filtruj podľa názvu katalógu"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:92
+#: app/states/services/list/list.state.js:95
 msgid "Filter by Created On"
 msgstr "Filter vytvorený"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/list/list.state.js:81
-#: app/states/requests/list/list.state.js:61
+#: app/states/marketplace/list/list.state.js:86
+#: app/states/requests/list/list.state.js:78
 msgid "Filter by Description"
 msgstr "Filtruj podľa popisu"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:67
+#: app/states/requests/list/list.state.js:157
+#: app/states/requests/list/list.state.js:84
 msgid "Filter by ID"
 msgstr "Filtruj podľa ID"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/list/list.state.js:75
-#: app/states/services/list/list.state.js:67
+#: app/states/administration/profiles/profiles.state.js:228
+#: app/states/designer/blueprints/list/list.state.js:142
+#: app/states/marketplace/list/list.state.js:80
+#: app/states/requests/list/list.state.js:151
+#: app/states/services/list/list.state.js:70
 msgid "Filter by Name"
 msgstr "Filtruj podľa názvu"
 
+#: app/states/requests/list/list.state.js:163
+msgid "Filter by Order Date"
+msgstr "Filtruj podľa dátumu objednávky"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:86
+#: app/states/services/list/list.state.js:89
 msgid "Filter by Owner"
 msgstr "Filtruj podľa vlastníka"
 
+#: app/states/administration/profiles/profiles.state.js:234
+msgid "Filter by Provider Name"
+msgstr "Filtruj podľa mena poskytovateľa"
+
+#: app/states/administration/profiles/profiles.state.js:240
+msgid "Filter by Provider Type"
+msgstr "Filtruj podľa typu poskytovateľa"
+
+#: app/states/designer/blueprints/list/list.state.js:162
+msgid "Filter by Publish State"
+msgstr "Filtruj podľa dátumu publikovania"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:73
+#: app/states/requests/list/list.state.js:96
 msgid "Filter by Request Date"
 msgstr "Filtruj podľa dátumu požiadavku"
 
+#: app/states/requests/list/list.state.js:90
+msgid "Filter by Requester"
+msgstr "Filtruj podľa zadávateľa"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:73
+#: app/states/services/list/list.state.js:76
 msgid "Filter by Retirement Date"
 msgstr "Filtruj podľa dátumu vyradenia"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:79
+#: app/states/requests/list/list.state.js:102
 msgid "Filter by Status"
 msgstr "Filtruj podľa statusu"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:80
+#: app/states/services/list/list.state.js:83
 msgid "Filter by VMs"
 msgstr "Filtruj podľa virtuálnych strojov"
 
+#: app/states/designer/blueprints/list/list.state.js:148
+msgid "Filter by Visibility"
+msgstr "Filtruj podľa viditeľnosti"
+
+#: app/states/designer/blueprints/editor/editor.html:100
+msgid "Filter by name"
+msgstr "Filtrovať podľa názvu"
+
+#: app/states/administration/profiles/details/details.html:74
+#: app/states/administration/profiles/editor/editor.html:82
+msgid "Flavor"
+msgstr "Flavor"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/confirmation/confirmation.directive.js:54
-#: app/components/confirmation/confirmation.directive.js:59
+#: app/components/confirmation/confirmation.directive.js:65
+#: app/components/confirmation/confirmation.directive.js:70
 msgid "For Sizing"
 msgstr "Pre veľkosť"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:82
+msgid "General"
+msgstr "Všeobecné"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:100
+#: app/states/services/details/details.html:97
 msgid "Group"
 msgstr "Skupina"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/help/help.html:1
 #: app/states/help/help.state.js:20
-#: app/states/help/help.state.js:29
 msgid "Help"
 msgstr "Pomoc"
+
+#: app/states/designer/blueprints/editor/editor.html:44
+msgid "Hide Connectors"
+msgstr "Skry konektory"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/products/details/details.html:56
@@ -324,12 +658,30 @@ msgid "Hourly"
 msgstr "Po hodinách"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.html:24
+#: app/components/request-list/request-list.html:15
+#: app/states/requests/list/list.html:26
 msgid "ID"
 msgstr "Identifikátor"
 
+#: app/states/administration/rules/rules.html:35
+#: app/states/administration/rules/rules.html:59
+msgid "IF"
+msgstr "IF"
+
+#: app/states/administration/rules/save-rule-modal.html:8
+msgid "If you do not save, any changes will be lost."
+msgstr "Bez uloženia budú všetky zmeny stratené."
+
+#: app/states/administration/profiles/editor/save-profile-modal.html:8
+msgid "If you do not save, your changes will be lost."
+msgstr "Bez uloženia budú vaše zmeny stratené."
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:8
+msgid "If you don't save, your changes will be lost."
+msgstr "Bez uloženia budú vaše zmeny stratené."
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:49
+#: app/states/services/details/details.html:47
 msgid "Inactivate the service"
 msgstr "Deaktivuj službu"
 
@@ -343,58 +695,93 @@ msgstr "Neaktívny"
 msgid "Incorrect username or password."
 msgstr "Nesprávne prihlasovacie meno alebo heslo"
 
+#: app/states/services/details/details.html:168
+msgid "Instance name"
+msgstr "Názov inštancie"
+
+#: app/states/marketplace/details/details.state.js:113
+msgid "Item added to shopping cart"
+msgstr "Položka pridaná do nákupného košíka"
+
+#: app/states/marketplace/details/details.state.js:111
+msgid "Item added to shopping cart, but it's a duplicate of an existing item"
+msgstr "Položka bola vložená do košíku, v košíku už ale existuje duplikát."
+
+#: app/states/designer/blueprints/list/list.html:23
+#: app/states/designer/blueprints/list/list.state.js:185
+msgid "Items"
+msgstr "Položky"
+
+#: app/states/administration/profiles/details/details.html:62
+#: app/states/administration/profiles/editor/editor.html:62
+msgid "Key Pair"
+msgstr "Kľúče"
+
+#: app/states/login/login.html:31
+msgid "Language"
+msgstr "Jazyk"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:83
+#: app/states/requests/details/details.html:82
 msgid "Last Message"
 msgstr "Posledná správa"
 
+#: app/states/administration/profiles/details/details.html:35
+#: app/states/administration/profiles/profiles.html:44
+#: app/states/administration/profiles/profiles.state.js:258
+#: app/states/designer/blueprints/list/list.html:17
+#: app/states/designer/blueprints/list/list.state.js:180
+msgid "Last Modified"
+msgstr "Posledná modifikácia"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:186
+#: app/states/services/details/details.html:183
 msgid "Last Scan"
 msgstr "Posledná kontrola"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/products/details/details.html:38
-#: app/states/requests/details/details.html:91
+#: app/states/requests/details/details.html:90
 msgid "Last Updated"
 msgstr "Posledná aktualizácia"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/login/login.html:39
+#: app/states/login/login.html:37
 msgid "Log In"
 msgstr "Prihlásiť sa"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/navigation/header-nav.html:19
+#: app/layouts/application.html:18
 msgid "Log into the full administrative UI"
 msgstr "Prihlásenie do administratívneho rozhrania"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/login/login.state.js:20
-#: app/states/login/login.state.js:32
 msgid "Login"
 msgstr "Prihlásenie"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/navigation/header-nav.html:61
+#: app/layouts/application.html:96
 #: app/states/logout/logout.state.js:18
-#: app/states/logout/logout.state.js:27
 msgid "Logout"
 msgstr "Odhlásenie"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/skin/skin.module.js:8
 #: app/states/error/error.html:3
 msgid "ManageIQ Self Service"
 msgstr "ManageIQ samoobsluha"
 
+#: app/components/notifications/notification-footer.html:6
+msgid "Mark All Read"
+msgstr "Označ všetko ako prečítané"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:122
+#: app/states/services/details/details.html:119
 msgid "Memory"
 msgstr "Pamäť"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:147
+#: app/states/services/details/details.html:144
 msgid "Memory on Disk"
 msgstr "Pamäť na disku"
 
@@ -408,23 +795,39 @@ msgstr "Mesačne"
 msgid "More"
 msgstr "Viac"
 
+#: app/states/requests/list/list.html:9
+msgid "My Orders"
+msgstr "Moje objednávky"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:25
+#: app/config/navigation.config.js:29
+#: app/states/requests/list/list.html:2
 msgid "My Requests"
 msgstr "Moje požiadavky"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:19
+#: app/config/navigation.config.js:18
 msgid "My Services"
 msgstr "Moje služby"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:13
 #: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/services/blueprints-state.service.js:14
+#: app/services/marketplace-state.service.js:13
+#: app/services/profiles-state.service.js:71
 #: app/services/services-state.service.js:14
-#: app/states/marketplace/list/list.state.js:100
-#: app/states/marketplace/list/list.state.js:74
-#: app/states/services/list/list.state.js:104
-#: app/states/services/list/list.state.js:66
+#: app/states/administration/profiles/editor/editor.html:29
+#: app/states/administration/profiles/profiles.state.js:227
+#: app/states/administration/profiles/profiles.state.js:253
+#: app/states/designer/blueprints/list/list.state.js:141
+#: app/states/designer/blueprints/list/list.state.js:175
+#: app/states/marketplace/list/list.state.js:105
+#: app/states/marketplace/list/list.state.js:79
+#: app/states/requests/list/list.state.js:150
+#: app/states/requests/list/list.state.js:175
+#: app/states/services/list/list.state.js:107
+#: app/states/services/list/list.state.js:69
 msgid "Name"
 msgstr "Meno"
 
@@ -433,37 +836,82 @@ msgstr "Meno"
 msgid "Never"
 msgstr "Nikdy"
 
+#: app/components/notifications/heading.html:2
+#: app/components/notifications/subheading.html:1
+msgid "New"
+msgstr "Nový"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/dialog-content/dialog-content.html:3
 msgid "No Provisioning Dialog Available."
 msgstr "Privisioning dialóg nie je dostupný"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal.html:11
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:58
 msgid "No Warning"
 msgstr "Žiadne varovania"
 
+#: app/components/flowchart/flowchart_template.html:15
+msgid "No available connections! Click on the canvas to cancel"
+msgstr "Žiadne dostupné pripojenia. Zrušte kliknutím na plátno."
+
+#: app/layouts/application.html:7
+msgid "Notifications"
+msgstr "Notifikácie"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:114
-#: app/states/services/list/list.state.js:79
+#: app/states/services/list/list.state.js:117
+#: app/states/services/list/list.state.js:82
 msgid "Number of VMs"
 msgstr "Počet virtuálnych strojov"
 
+#: app/states/services/details/details.html:199
+msgid "Open Cockpit console for this VM"
+msgstr "Otvor Cockpit konzolu pre tento virtuálny stroj"
+
+#: app/states/services/details/details.html:196
+msgid "Open a HTML5 console for this VM"
+msgstr "Otvor HTML5 konzolu pre tento virtuálny stroj"
+
+#: app/components/shopping-cart/shopping-cart.html:54
+msgid "Order"
+msgstr "Objednať"
+
+#: app/services/orders-state.service.js:13
+#: app/states/requests/list/list.state.js:162
+#: app/states/requests/list/list.state.js:185
+msgid "Order Date"
+msgstr "Dátum objednávky"
+
+#: app/states/requests/order_details/order_details.state.js:19
+msgid "Order Details"
+msgstr "Detaily objednávky"
+
+#: app/states/requests/list/list.state.js:156
+#: app/states/requests/list/list.state.js:180
+msgid "Order ID"
+msgstr "ID objednávky"
+
+#: app/states/requests/order_details/order_details.html:5
+msgid "Orders:"
+msgstr "Objednávky:"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:94
-#: app/states/services/list/list.html:35
-#: app/states/services/list/list.state.js:119
-#: app/states/services/list/list.state.js:85
+#: app/states/services/details/details.html:91
+#: app/states/services/list/list.html:40
+#: app/states/services/list/list.state.js:122
+#: app/states/services/list/list.state.js:88
 msgid "Owner"
 msgstr "Vlastník"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/login/login.html:20
+#: app/states/login/login.html:23
 msgid "Password"
 msgstr "Heslo"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:342
 msgid "Pending"
 msgstr "Zostávajúce"
 
@@ -473,14 +921,23 @@ msgid "Pending Requests"
 msgstr "Zostávajúce požiadavky"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:37
+#: app/states/services/details/details.html:36
 msgid "Permanently delete the service"
 msgstr "Trvalo zmaž túto službu"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:93
+msgid "Please enter a Provisioning Entry Point"
+msgstr "Zadajte prosím vstupný bod pre provisioning."
+
+#: app/components/create-catalog-modal/create-catalog-modal.html:8
+msgid "Please enter a name for the new Catalog"
+msgstr "Zadajte prosím názov nového katalógu"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
+#: app/states/services/details/details.html:188
+#: app/states/services/details/details.html:189
+#: app/states/services/details/details.html:190
 #: app/states/services/details/details.html:191
-#: app/states/services/details/details.html:192
-#: app/states/services/details/details.html:193
 msgid "Power State"
 msgstr "Stav napájania"
 
@@ -509,62 +966,154 @@ msgstr "Produktové štítky"
 msgid "Product Type"
 msgstr "Typ produktu"
 
+#: app/components/navigation/navigation-contoller.js:122
+msgid "Product logo"
+msgstr "Logo produktu"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/products/details/details.state.js:19
 msgid "Products Details"
 msgstr "Detaily produktu"
+
+#: app/services/profiles-state.service.js:159
+msgid "Profile %s was created."
+msgstr "Profil %s bol vytvorený."
+
+#: app/services/profiles-state.service.js:175
+msgid "Profile %s was successfully updated."
+msgstr "Profil %s bol úspešne aktualizovaný."
+
+#: app/states/administration/profiles/details/details.state.js:19
+msgid "Profile Details"
+msgstr "Detaily profilu"
+
+#: app/services/profiles-state.service.js:210
+msgid "Profile(s) were succesfully deleted."
+msgstr "Profily boli úspešne zmazané."
+
+#: app/config/navigation.config.js:73
+#: app/states/administration/profiles/profiles.state.js:20
+#: app/states/administration/profiles/profiles.state.js:37
+msgid "Profiles"
+msgstr "Profily"
+
+#: app/states/administration/profiles/details/details.html:56
+#: app/states/administration/profiles/editor/editor.html:51
+msgid "Provider"
+msgstr "Poskytovateľ"
+
+#: app/states/administration/profiles/profiles.state.js:233
+#: app/states/administration/profiles/profiles.state.js:263
+msgid "Provider Name"
+msgstr "Meno poskytovateľa"
+
+#: app/states/administration/profiles/details/details.html:50
+#: app/states/administration/profiles/editor/editor.html:41
+#: app/states/administration/profiles/profiles.state.js:239
+#: app/states/administration/profiles/profiles.state.js:268
+msgid "Provider Type"
+msgstr "Typ poskytovateľa"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:84
+msgid "Provision Order"
+msgstr "Poradie provisioningu"
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:43
+msgid "Provisioning"
+msgstr "Provisioning"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/products/details/details.html:43
 msgid "Provisioning Answers"
 msgstr "Provisioning odpovede"
 
-#: app/states/services/details/details.html:67
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:82
+msgid "Provisioning Entry Point"
+msgstr "Vstupný bod pre provisioning"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:83
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:92
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:93
+#: app/states/designer/blueprints/list/list.state.js:102
+#: app/states/designer/blueprints/list/list.state.js:109
+msgid "Publish"
+msgstr "Publikuj"
+
+#: app/states/designer/blueprints/list/list.state.js:103
+msgid "Publish Blueprint"
+msgstr "Publikuj blueprint"
+
+#: app/states/designer/blueprints/list/list.state.js:161
+msgid "Publish State"
+msgstr "Stav publikovania"
+
+#: app/states/designer/blueprints/list/list.html:42
+msgid "Published"
+msgstr "Publikované"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:135
+msgid "Rearrange Items to set Action Order"
+msgstr "Preskup položky pre nastavenie poradia akcií"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:123
+msgid "Rearrange Items to set Provision Order"
+msgstr "Preskup položky pre nastavanie poradia provisioningu"
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:45
+#: app/states/services/details/details.html:64
 msgid "Reconfigure"
 msgstr "Rekonfigurácia"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:97
+msgid "Reconfigure Entry Point"
+msgstr "Rekonfigurácia vstupného bodu"
 
 #: app/states/services/reconfigure/reconfigure.html:5
 msgid "Reconfigure Service:"
 msgstr "Rekonfigurácia služby:"
 
-#: app/states/services/reconfigure/reconfigure.state.js:117
+#: app/states/services/reconfigure/reconfigure.state.js:118
 msgid "Reconfigure this service has been cancelled"
 msgstr "Rekonfigurácia služby bola zrušená"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/dialog-content/dialog-content.html:114
+#: app/components/dialog-content/dialog-content.html:111
 msgid "Refresh"
 msgstr "Aktualizácia"
 
+#: app/components/shopping-cart/shopping-cart.html:17
+#: app/states/designer/blueprints/editor/editor.html:29
+msgid "Remove"
+msgstr "Odstránenie"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:37
-#: app/states/services/details/details.html:41
+#: app/states/services/details/details.html:36
+#: app/states/services/details/details.html:39
 msgid "Remove Service"
 msgstr "Odstrániť službu"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:67
+#: app/states/requests/details/details.html:61
 msgid "Request Approval State"
 msgstr "Stav schválenia požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/services/requests-state.service.js:13
-#: app/states/requests/details/details.html:55
-#: app/states/requests/list/list.state.js:102
-#: app/states/requests/list/list.state.js:72
+#: app/states/requests/details/details.html:49
+#: app/states/requests/list/list.state.js:130
+#: app/states/requests/list/list.state.js:95
 msgid "Request Date"
 msgstr "Dátum požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/requests/details/details.html:37
-#: app/states/requests/list/list.state.js:66
-#: app/states/requests/list/list.state.js:97
+#: app/states/requests/list/list.state.js:120
+#: app/states/requests/list/list.state.js:83
 msgid "Request ID"
 msgstr "ID požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/requests/list/list.state.js:19
-#: app/states/requests/list/list.state.js:40
 msgid "Request List"
 msgstr "Zoznam požiadavkov"
 
@@ -574,14 +1123,14 @@ msgid "Request State"
 msgstr "Stav požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.state.js:157
-#: app/states/requests/list/list.state.js:107
-#: app/states/requests/list/list.state.js:78
+#: app/states/dashboard/dashboard.state.js:179
+#: app/states/requests/list/list.state.js:101
+#: app/states/requests/list/list.state.js:135
 msgid "Request Status"
 msgstr "Stav požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:97
+#: app/states/requests/details/details.html:96
 msgid "Request Type"
 msgstr "Typ požiadavku"
 
@@ -591,14 +1140,20 @@ msgid "Request:"
 msgstr "Požiadavka:"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.html:29
+#: app/components/request-list/request-list.html:25
 msgid "Requested"
 msgstr "Vyžiadaný"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:61
+#: app/states/requests/details/details.html:55
 msgid "Requested By"
 msgstr "Vyžiadal"
+
+#: app/components/request-list/request-list.html:20
+#: app/states/requests/list/list.state.js:125
+#: app/states/requests/list/list.state.js:89
+msgid "Requester"
+msgstr "Zadávateľ"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/requests/details/details.state.js:19
@@ -606,22 +1161,22 @@ msgid "Requests Details"
 msgstr "Detaily požiadavky"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:50
+#: app/states/services/details/details.html:48
 msgid "Retire"
 msgstr "Vyraď"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:54
+#: app/states/services/details/details.html:52
 msgid "Retire Now"
 msgstr "Vyradiť teraz"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:56
+#: app/states/services/details/details.html:53
 msgid "Retire Service Now"
 msgstr "Vyradiť službu hneď"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:78
 msgid "Retired"
 msgstr "Vyradený"
 
@@ -630,15 +1185,23 @@ msgstr "Vyradený"
 msgid "Retired Services"
 msgstr "Vyradené služby"
 
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:47
+msgid "Retirement"
+msgstr "Vyradenie"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal.html:18
-#: app/states/dashboard/dashboard.state.js:162
-#: app/states/services/details/details.html:86
-#: app/states/services/list/list.html:22
-#: app/states/services/list/list.state.js:109
-#: app/states/services/list/list.state.js:72
+#: app/components/retire-service-modal/retire-service-modal.html:13
+#: app/states/dashboard/dashboard.state.js:185
+#: app/states/services/details/details.html:83
+#: app/states/services/list/list.html:20
+#: app/states/services/list/list.state.js:112
+#: app/states/services/list/list.state.js:75
 msgid "Retirement Date"
 msgstr "Dátum vyradenia"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:108
+msgid "Retirement Entry Point"
+msgstr "Vstupný bod pre vyradenie"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/retire-service-modal/retire-service-modal.html:9
@@ -650,15 +1213,52 @@ msgstr "Varovanie o vyradení"
 msgid "Retiring Soon"
 msgstr "K vyradeniu v blízkej dobe"
 
+#: app/services/rules-state.service.js:121
+msgid "Rule(s) were succesfully deleted."
+msgstr "Pravidlá boli úspešne zmazané"
+
+#: app/config/navigation.config.js:83
+#: app/states/administration/rules/rules.html:7
+#: app/states/administration/rules/rules.state.js:197
+#: app/states/administration/rules/rules.state.js:21
+msgid "Rules"
+msgstr "Pravidlá"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:141
+msgid "Same as Provision Order"
+msgstr "Podľa poradia provisioningu"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:98
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:12
+#: app/components/create-catalog-modal/create-catalog-modal.html:13
 #: app/components/edit-service-modal/edit-service-modal.html:22
 #: app/components/ownership-service-modal/ownership-service-modal.html:33
-#: app/components/retire-service-modal/retire-service-modal.html:25
+#: app/components/retire-service-modal/retire-service-modal.html:20
+#: app/states/administration/profiles/editor/editor.html:136
+#: app/states/administration/profiles/editor/save-profile-modal.html:13
+#: app/states/administration/rules/rules.html:104
+#: app/states/administration/rules/save-rule-modal.html:13
+#: app/states/designer/blueprints/editor/editor.html:11
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:13
 msgid "Save"
 msgstr "Uložiť"
 
+#: app/states/designer/blueprints/editor/editor.html:13
+msgid "Save Blueprint"
+msgstr "Ulož blueprint"
+
+#: app/states/administration/profiles/editor/save-profile-modal.html:5
+#: app/states/administration/rules/save-rule-modal.html:5
+msgid "Save Changes"
+msgstr "Ulož zmeny"
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:5
+msgid "Save Changes to {{vm.blueprint.name}}"
+msgstr "Ulož zmeny v {{vm.blueprint.name}}"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:62
+#: app/states/services/details/details.html:59
 msgid "Schedule Retirement"
 msgstr "Naplánovať vyradenie"
 
@@ -668,28 +1268,103 @@ msgid "Schedule Service Retirement"
 msgstr "Naplánuj vyradenie služby"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:67
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:75
 msgid "Scheduling retirement for"
 msgstr "Plánovanie vyradenia pre"
+
+#: app/states/administration/profiles/details/details.html:92
+#: app/states/administration/profiles/editor/editor.html:113
+msgid "Security Group"
+msgstr "Bezpečnostná skupina"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:68
+msgid "Select Dialog"
+msgstr "Zvoľ dialóg"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:52
+msgid "Select a Catalog"
+msgstr "Zvoľte katalóg"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:70
+msgid "Select a Dialog"
+msgstr "Zvoľte dialóg"
 
 #: app/components/ownership-service-modal/ownership-service-modal.html:19
 msgid "Select a Group"
 msgstr "Vyber skupinu"
 
+#: app/states/administration/profiles/editor/editor.html:97
+msgid "Select a cloud network"
+msgstr "Zvoľ cloudovú sieť"
+
+#: app/states/administration/profiles/editor/editor.html:108
+msgid "Select a cloud subnet"
+msgstr "Zvoľ cloudovú podsieť"
+
+#: app/states/administration/rules/rules.html:64
+msgid "Select a field"
+msgstr "Zvoľ položku"
+
+#: app/states/administration/profiles/editor/editor.html:87
+msgid "Select a flavor"
+msgstr "Zvoľ flavor"
+
+#: app/states/administration/profiles/editor/editor.html:67
+msgid "Select a key pair"
+msgstr "Zvoľ kľúče"
+
+#: app/states/administration/rules/rules.html:91
+msgid "Select a profile"
+msgstr "Zvoľ profil"
+
+#: app/states/administration/profiles/editor/editor.html:56
+msgid "Select a provider"
+msgstr "Zvoľ poskytovateľa"
+
+#: app/states/administration/profiles/editor/editor.html:46
+msgid "Select a provider type"
+msgstr "Zvoľ typ poskytovateľa"
+
+#: app/components/flowchart/flowchart_template.html:12
+msgid ""
+"Select a second item to complete the connection or click on the canvas to "
+"cancel"
+msgstr ""
+"Vyberte druhú položku pre dokončenie spojenia, alebo kliknite na plátno pre "
+"ukončenie"
+
+#: app/states/administration/profiles/editor/editor.html:118
+msgid "Select a security group"
+msgstr "Zvoľ bezpečnostnú skupinu"
+
 #: app/components/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
 msgstr " Vyber vlastníka"
 
+#: app/states/administration/profiles/editor/editor.html:77
+msgid "Select an availability zone"
+msgstr "Zvoľ zónu dostupnosti"
+
+#: app/states/administration/rules/rules.html:67
+msgid "Select an operator"
+msgstr "Zvoľ operátora"
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:5
+msgid "Select {{vm.entryPointTypeTitle}} Entry Point"
+msgstr "Zvoľ vstupný bod pre {{vm.entryPointTypeTitle}}"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/skin/skin.module.js:11
 #: index.html:4
 msgid "Self Service"
 msgstr "Samoobsluha"
 
+#: app/components/navigation/navigation-contoller.js:130
+msgid "Server Name:"
+msgstr "Meno servru:"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:31
-#: app/states/marketplace/list/list.state.js:19
-#: app/states/marketplace/list/list.state.js:51
+#: app/config/navigation.config.js:40
+#: app/states/marketplace/list/list.state.js:20
 msgid "Service Catalog"
 msgstr "Katalóg služieb"
 
@@ -698,28 +1373,24 @@ msgid "Service Custom Button Details"
 msgstr "Detaily užívateľskeho tlačítka pre službu"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.state.js:28
 #: app/states/services/details/details.state.js:19
-#: app/states/services/details/details.state.js:62
-#: app/states/services/reconfigure/reconfigure.state.js:19
-#: app/states/services/reconfigure/reconfigure.state.js:41
+#: app/states/services/reconfigure/reconfigure.state.js:20
+#: app/states/services/reconfigure/reconfigure.state.js:42
 msgid "Service Details"
 msgstr "Detaily služby"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:79
+#: app/states/services/details/details.html:76
 msgid "Service Id"
 msgstr "ID služby"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/services/list/list.state.js:19
-#: app/states/services/list/list.state.js:39
 msgid "Service List"
 msgstr "Zoznam služieb"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/marketplace/details/details.state.js:19
-#: app/states/marketplace/details/details.state.js:46
 msgid "Service Template Details"
 msgstr "Detaily šablóny pre službu"
 
@@ -729,7 +1400,7 @@ msgstr "Detaily šablóny pre službu"
 msgid "Service:"
 msgstr "Služba:"
 
-#: app/states/services/details/details.html:66
+#: app/states/services/details/details.html:63
 msgid "Set Ownership"
 msgstr "Nastav vlastníctvo"
 
@@ -742,32 +1413,68 @@ msgstr "Nastav vlastníctvo služby"
 msgid "Setup"
 msgstr "Nastavenie"
 
+#: app/components/shopping-cart/shopping-cart.html:5
+msgid "Shopping Cart"
+msgstr "Nákupný košík"
+
+#: app/layouts/application.html:24
+msgid "Shopping cart"
+msgstr "Nákupný košík"
+
+#: app/components/shopping-cart/shopping-cart.html:30
+msgid "Shopping cart is empty."
+msgstr "Nákupný košík je prázdny"
+
+#: app/components/shopping-cart/shopping-cart.directive.js:47
+msgid "Shopping cart successfully ordered"
+msgstr "Obsah nákupného košíku bol objednaný"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:10
+msgid "Show Blueprint Names"
+msgstr "Ukáž mená blueprintov"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:181
+#: app/states/services/details/details.html:178
 msgid "Size"
 msgstr "Veľkosť"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:78
 msgid "Soon"
 msgstr "Čoskoro"
 
+#: app/components/notifications/notification-body.html:40
+msgid "Started:"
+msgstr "Začiatok:"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/details/details.html:31
-#: app/states/services/custom_button_details/custom_button_details.html:21
-#: app/states/services/reconfigure/reconfigure.html:23
+#: app/states/services/custom_button_details/custom_button_details.html:19
+#: app/states/services/reconfigure/reconfigure.html:21
 msgid "Submit Request"
 msgstr "Odoslať požiadavku"
 
+#: app/components/language-switcher/language-switcher.html:2
+msgid "Switch Language:"
+msgstr "Zmena jazyka:"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:32
+#: app/components/flowchart/node-toolbar.html:11
+msgid "Tags"
+msgstr "Značky"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:337
+msgid "The Publish Blueprint feature is not yet implemented."
+msgstr "Publikácia blueprintu nie je implementovaná."
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.html:35
-#: app/states/requests/list/list.html:37
-#: app/states/requests/list/list.html:39
+#: app/components/request-list/request-list.html:30
+#: app/components/request-list/request-list.html:31
+#: app/components/request-list/request-list.html:32
 msgid "The current approval status of the request"
 msgstr "Aktuálny stav schválenia požiadavku"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:186
+#: app/states/services/details/details.html:183
 msgid "The last heartbeat received from the instances"
 msgstr "Posledná aktivita od inštancií"
 
@@ -777,7 +1484,7 @@ msgid "The number of active services"
 msgstr "Počet aktívnych služieb"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.html:29
+#: app/states/services/list/list.html:31
 msgid "The number of instances running this service"
 msgstr "Počet inštancií s danou službou"
 
@@ -808,67 +1515,130 @@ msgstr ""
 msgid "The page you requested cannot be found."
 msgstr "Stránka, ktorú hľadáte nebola nájdená."
 
-#: app/config/navigation.config.js:40
+#: app/config/navigation.config.js:78
+msgid "The total number of available arbitration profiles"
+msgstr "Celkový počet dostupných arbitration profilov"
+
+#: app/config/navigation.config.js:88
+msgid "The total number of available arbitration rules"
+msgstr "Celkový počet dostupných arbitration pravidiel"
+
+#: app/config/navigation.config.js:61
 msgid "The total number of available blueprints"
 msgstr "Celkový počet dostupných náčrtov"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:34
+#: app/config/navigation.config.js:46
 msgid "The total number of available catalog items"
 msgstr "Celkový počet katalógových položiek"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:28
+#: app/config/navigation.config.js:35
 msgid "The total number of requests that you have submitted"
 msgstr "Celkový počet odoslaných žiadostí"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:22
+#: app/config/navigation.config.js:24
 msgid ""
 "The total number of services that you have ordered, both active and retired"
 msgstr "Celkový počet objednaných  služieb, aktívnych aj vyradených."
+
+#: app/states/marketplace/details/details.html:35
+msgid ""
+"There already is an identical item in the cart. Do you want to add it "
+"anyway?"
+msgstr ""
+"V košíku sa už nachádza identická položka. Chcete ju napriek tomu vložiť do "
+"košíku?"
+
+#: app/components/tagging/tagging.html:15
+msgid "There are no tags for this item."
+msgstr "Pre danú položku neexistujú žiadne značky."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/error/error.html:10
 msgid "There was a problem loading the page."
 msgstr "Nastal problém pri načítaní stránky."
 
+#: app/states/marketplace/details/details.state.js:120
+msgid "There was an error adding to shopping cart:"
+msgstr "Pri pridávaní do nákupného košíka sa vyskytla chyba"
+
+#: app/services/profiles-state.service.js:164
+msgid "There was an error creating profile %s."
+msgstr "Chyba pri vytváraní profilu %s."
+
+#: app/services/rules-state.service.js:62
+msgid "There was an error creating this rule."
+msgstr "Chyba pri vytváraní pravidla."
+
+#: app/services/blueprints-state.service.js:409
+msgid "There was an error deleting the blueprint(s)."
+msgstr "Pri mazaní blueprintov nastala chyba."
+
+#: app/services/profiles-state.service.js:215
+msgid "There was an error deleting the profile(s)."
+msgstr "Pri mazaní profilov nastala chyba."
+
+#: app/services/rules-state.service.js:126
+msgid "There was an error deleting the rule(s)."
+msgstr "Pri mazaní pravidiel nastala chyba."
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
 msgstr "Pri editácii služby nastala chyba."
 
+#: app/services/consoles.service.js:37
+msgid "There was an error opening the console"
+msgstr "Pri otváraní konzole nastala chyba"
+
+#: app/services/consoles.service.js:38
+msgid "There was an error opening the console:"
+msgstr "Pri otváraní konzole nastala chyba:"
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:106
+#: app/states/services/details/details.state.js:118
 msgid "There was an error removing this service."
 msgstr "Pri odstraňovaní služby nastala chyba."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
-#: app/states/services/details/details.state.js:128
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:80
+#: app/states/services/details/details.state.js:157
 msgid "There was an error retiring this service."
 msgstr "Pri vyraďovaní služby nastala chyba."
 
-#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:93
+#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:94
 msgid "There was an error saving ownership of this service."
 msgstr "Pri nastavovaní vlastníctva služby nastala chyba"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:339
+msgid "There was an error saving this Blueprint's Details."
+msgstr "Pri ukladaní blueprint detailov nastala chyba."
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/details/details.state.js:101
+#: app/components/shopping-cart/shopping-cart.directive.js:51
 #: app/states/services/custom_button_details/custom_button_details.state.js:93
-#: app/states/services/reconfigure/reconfigure.state.js:112
+#: app/states/services/reconfigure/reconfigure.state.js:113
 msgid "There was an error submitting this request:"
 msgstr "Pri odosielaní požiadavku nastala chyba:"
 
+#: app/services/profiles-state.service.js:180
+msgid "There was an error updating profile %s."
+msgstr "Pri aktualizácii profilu nastala chyba %s."
+
+#: app/services/rules-state.service.js:77
+msgid "There was an error updating the rules."
+msgstr "Pri aktualizácii pravidiel nastala chyba."
+
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:164
+#: app/states/services/details/details.html:161
 msgid "This service has no associated VMs"
 msgstr "Táto služba nemá priradené žiadne virtuálne stroje."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/navigation/header-nav.html:4
-msgid "Toggle navigation"
-msgstr "Vypni / zapni navigáciu"
+#: app/layouts/application.html:30
+msgid "Toggle notifications list"
+msgstr "Prepni zoznam notifikácií"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/dashboard/dashboard.html:20
@@ -880,30 +1650,96 @@ msgstr "Celkový počet žiadostí"
 msgid "Total Services"
 msgstr "Celkový počet služieb"
 
-#: app/states/login/login.state.js:41
-#: app/states/login/login.state.js:61
+#: app/states/administration/rules/rules.html:47
+#: app/states/administration/rules/rules.html:87
+msgid "USE"
+msgstr "USE"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:50
+#: app/states/designer/blueprints/list/list.state.js:81
+#: app/states/designer/blueprints/list/list.state.js:82
+msgid "Unassigned"
+msgstr "Nepriradené"
+
+#: app/services/consoles.service.js:75
+msgid "Unsupported console protocol returned"
+msgstr "Nepodporovaný protokol konzoly"
+
+#: app/services/consoles.service.js:76
+msgid "Unsupported console protocol returned:"
+msgstr "Nepodporovaný protokol konzoly:"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:135
+#: app/services/blueprints-state.service.js:427
+#: app/states/designer/blueprints/editor/editor.html:10
+msgid "Untitled Blueprint"
+msgstr "Nepomenovaný blueprint"
+
+#: app/components/language-switcher/language-switcher.directive.js:28
+msgid "User Default"
+msgstr "Užívateľské nastavenia"
+
+#: app/components/navigation/navigation-contoller.js:131
+msgid "User Name:"
+msgstr "Užívateľské meno:"
+
+#: app/components/navigation/navigation-contoller.js:132
+msgid "User Role:"
+msgstr "Užívateľská rola:"
+
+#: app/states/login/login.state.js:40
+#: app/states/login/login.state.js:63
 msgid "User does not have privileges to login."
 msgstr "Užívateľ nemá oprávnenia na prihlásenie"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/login/login.html:12
+#: app/states/login/login.html:15
 msgid "Username"
 msgstr "Užívateľské meno"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.html:30
+#: app/states/services/list/list.html:34
 msgid "VMs"
 msgstr "Virtuálne stroje"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:176
+#: app/states/services/details/details.html:173
 msgid "Vendor"
 msgstr "Dodávateľ"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:163
-msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
-msgstr "Virtuálne stroje ({{ ::vm.service.vms.length }})"
+#: app/components/navigation/navigation-contoller.js:129
+msgid "Version:"
+msgstr "Verzia:"
+
+#: app/states/administration/profiles/profiles.state.js:206
+msgid "View"
+msgstr "Náhľad"
+
+#: app/states/administration/profiles/profiles.state.js:207
+msgid "View Profile"
+msgstr "Náhľad profilu"
+
+#: app/states/administration/profiles/details/details.state.js:41
+msgid "View Profile: %s"
+msgstr "Náhľad profilu: %s"
+
+#: app/states/services/details/details.html:160
+msgid "Virtual Machines ({{ ::vm.vms.length }})"
+msgstr "Virtuálne stroje ({{ ::vm.vms.length }})"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:24
+#: app/states/designer/blueprints/list/list.state.js:147
+#: app/states/designer/blueprints/list/list.state.js:190
+msgid "Visibility"
+msgstr "Viditeľnosť"
+
+#: app/services/consoles.service.js:30
+msgid "Waiting for the console to become ready"
+msgstr "Čaká sa na konzolu"
+
+#: app/services/consoles.service.js:31
+msgid "Waiting for the console to become ready:"
+msgstr "Čaká sa na konzolu:"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/404/404.html:7
@@ -912,19 +1748,31 @@ msgid "We apologize for the inconvenience."
 msgstr "Ospravedlňujeme sa za nepríjemnosti."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:43
+#: app/states/services/details/details.html:41
 msgid "Yes, Remove Service"
 msgstr "Áno, odstrániť službu"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:58
+#: app/states/services/details/details.html:55
 msgid "Yes, Retire Service Now"
 msgstr "Áno, vyraď službu hneď"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/authorization.config.js:47
+#: app/config/authorization.config.js:48
 msgid "Your session has timed out."
 msgstr "Platnosť vášho prihlásenia vypršala."
+
+#: app/states/services/list/list.html:32
+msgid "[[number]] VMs"
+msgstr "[[number]] virtuálnych strojov"
+
+#: app/config/gettext.config.js:33
+msgid "locale_name"
+msgstr "Slovensky"
+
+#: app/states/requests/list/list.html:31
+msgid "ordered"
+msgstr "objednaný"
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
@@ -932,11 +1780,18 @@ msgid "was edited."
 msgstr "bol zmenený."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:101
+#: app/states/services/details/details.state.js:113
 msgid "was removed."
 msgstr "bol odstránený."
 
 # auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:123
+#: app/states/services/details/details.state.js:152
 msgid "was retired."
 msgstr "bol vyradený."
+
+#: app/states/requests/list/list.html:35
+msgid "{{ $count }} item"
+msgid_plural "{{ $count }} items"
+msgstr[0] "{{ $count }} položka"
+msgstr[1] "{{ $count }} položky"
+msgstr[2] "{{ $count }} položiek"

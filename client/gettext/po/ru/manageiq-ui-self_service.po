@@ -1,58 +1,108 @@
 # Dmitry Shevrin <dmitry@redhat.com>, 2016. #zanata
+# Milan Zázrivec <mzazrivec@redhat.com>, 2016. #zanata
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-04-10 05:18-0400\n"
-"Last-Translator: Dmitry Shevrin <dmitry@redhat.com>\n"
+"PO-Revision-Date: 2016-09-19 10:09-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
-"X-Generator: Zanata 3.8.3\n"
+"X-Generator: Zanata 3.9.5\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
-#: app/components/navigation/header-nav.html:42
-msgid "(Current Group)"
-msgstr "Текущая группа"
+#: app/components/notifications/notification-body.html:22
+#: app/components/notifications/notification-body.html:46
+msgid "% Complete"
+msgstr ""
 
-#: app/components/retire-service-modal/retire-service-modal.html:12
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:321
+msgid "%s was created."
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:330
+msgid "%s was published."
+msgstr ""
+
+#: app/states/designer/blueprints/editor/editorCtrl.js:64
+msgid "'%s' was succesfully saved."
+msgstr ""
+
+#: app/layouts/application.html:75
+msgid "(Current Group)"
+msgstr "(Текущая группа)"
+
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:59
 msgid "1 Week"
 msgstr "1 неделя"
 
-#: app/components/retire-service-modal/retire-service-modal.html:13
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:60
 msgid "2 Weeks"
 msgstr "2 недели"
 
-#: app/components/retire-service-modal/retire-service-modal.html:14
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:61
 msgid "3 Weeks"
 msgstr "3 недели"
 
-#: app/components/retire-service-modal/retire-service-modal.html:15
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:62
 msgid "4 Weeks"
 msgstr "4 недели"
 
+#: app/layouts/application.html:52
+msgid "About"
+msgstr ""
+
 #: app/states/about-me/about-me.html:1
 #: app/states/about-me/about-me.state.js:20
-#: app/states/about-me/about-me.state.js:29
 msgid "About Me"
 msgstr "Информация"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:85
+msgid "Action Order"
+msgstr ""
 
 #: app/components/custom-button/custom-button.directive.js:120
 #: app/components/custom-button/custom-button.directive.js:132
 msgid "Action not able to submit."
-msgstr "Невозможно выполнить действие"
+msgstr "Невозможно выполнить действие."
 
-#: app/states/products/details/details.state.js:35
+#: app/states/products/details/details.state.js:33
 msgid "Activated Products Details View"
-msgstr "Вид активных продуктов"
+msgstr "Просмотр активированных продуктов"
 
 #: app/states/products/details/details.html:18
 msgid "Active"
 msgstr "Активен"
 
-#: app/states/requests/list/list.state.js:81
+#: app/states/designer/blueprints/editor/editor.html:22
+msgid "Add Item"
+msgstr ""
+
+#: app/states/administration/profiles/editor/editor.html:18
+#: app/states/administration/profiles/editor/editor.state.js:56
+msgid "Add Profile"
+msgstr ""
+
+#: app/states/marketplace/details/details.html:36
+#: app/states/marketplace/details/details.html:41
+msgid "Add to Shopping Cart"
+msgstr "Добавить в корзину"
+
+#: app/config/navigation.config.js:68
+#: app/states/administration/profiles/profiles.html:5
+#: app/states/administration/rules/rules.html:5
+msgid "Administration"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:75
+msgid "Advanced Options"
+msgstr ""
+
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:346
 msgid "Approved"
 msgstr "Одобрено"
 
@@ -60,21 +110,55 @@ msgstr "Одобрено"
 msgid "Approved Requests"
 msgstr "Одобренные запросы"
 
-#: app/states/requests/details/details.html:73
+#: app/states/requests/details/details.html:72
 msgid "Approver"
 msgstr "Одобряющий"
 
-#: app/components/confirmation/confirmation.directive.js:95
+#: app/states/administration/profiles/profiles.html:16
+msgid "Are you sure you want to delete profile [[profile_name]]?"
+msgstr ""
+
+#: app/states/administration/rules/rules.html:131
+msgid "Are you sure you want to delete this rule?"
+msgstr ""
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:8
+msgid "Are you sure you want to delete {{vm.blueprintsList[0].name}}?"
+msgid_plural "Are you sure you want to delete {{$count}} blueprints?"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: app/components/confirmation/confirmation.directive.js:106
 msgid "Are you sure you wish to proceed?"
 msgstr "Продолжить?"
 
+#: app/components/notifications/notification-footer.html:14
+msgid "Are you sure you would like to clear all [[heading]]?"
+msgstr ""
+
+#: app/states/administration/profiles/details/details.html:68
+#: app/states/administration/profiles/editor/editor.html:72
+msgid "Availability Zone"
+msgstr ""
+
+#: app/states/designer/blueprints/editor/editor.html:5
+msgid "Back to Blueprints"
+msgstr ""
+
 #: app/states/requests/details/details.html:3
+#: app/states/requests/order_details/order_details.html:3
 msgid "Back to My Requests"
 msgstr "Назад к моим запросам"
 
 #: app/states/services/details/details.html:3
 msgid "Back to My Services"
 msgstr "Назад к моим сервисам"
+
+#: app/states/administration/profiles/details/details.html:3
+#: app/states/administration/profiles/editor/editor.html:3
+msgid "Back to Profiles"
+msgstr ""
 
 #: app/states/services/custom_button_details/custom_button_details.html:7
 #: app/states/services/reconfigure/reconfigure.html:3
@@ -86,59 +170,161 @@ msgstr "Назад к сервису"
 msgid "Back to Service Catalog"
 msgstr "Назад к каталогу сервисов"
 
-#: app/states/blueprints/list/list.state.js:19
-#: app/states/blueprints/list/list.state.js:29
-msgid "Blueprint List"
-msgstr "Лист шаблонов"
+#: app/states/designer/blueprints/editor/editor.html:34
+msgid "Blueprint Details"
+msgstr ""
 
-#: app/config/navigation.config.js:37
+#: app/states/designer/blueprints/editor/editor.html:7
+msgid "Blueprint Editor:"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:20
+#: app/states/designer/blueprints/list/list.state.js:71
+msgid "Blueprint List"
+msgstr "Список шаблонов"
+
+#: app/services/blueprints-state.service.js:404
+msgid "Blueprint(s) were succesfully deleted."
+msgstr ""
+
+#: app/config/navigation.config.js:56
 msgid "Blueprints"
 msgstr "Шаблоны"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:100
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:111
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:88
+msgid "Browse"
+msgstr ""
+
+#: app/components/language-switcher/language-switcher.directive.js:29
+msgid "Browser Default"
+msgstr "Язык браузера по умолчанию"
+
 #: app/components/custom-button/custom-button.directive.js:100
 msgid "Button action not supported."
-msgstr "Действие не поддерживается"
+msgstr "Действие не поддерживается."
 
-#: app/states/services/details/details.html:116
+#: app/states/services/details/details.html:113
 msgid "CPU"
 msgstr "CPU"
 
-#: app/components/confirmation/confirmation.directive.js:97
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:17
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:156
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:11
+#: app/components/confirmation/confirmation.directive.js:108
+#: app/components/create-catalog-modal/create-catalog-modal.html:12
 #: app/components/edit-service-modal/edit-service-modal.html:21
 #: app/components/ownership-service-modal/ownership-service-modal.html:32
-#: app/components/retire-service-modal/retire-service-modal.html:24
-#: app/states/services/reconfigure/reconfigure.html:24
+#: app/components/retire-service-modal/retire-service-modal.html:19
+#: app/states/administration/profiles/editor/editor.html:135
+#: app/states/administration/profiles/editor/save-profile-modal.html:11
+#: app/states/administration/rules/rules.html:107
+#: app/states/administration/rules/save-rule-modal.html:11
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:11
+#: app/states/services/reconfigure/reconfigure.html:22
 msgid "Cancel"
 msgstr "Отменить"
 
-#: app/states/marketplace/list/list.state.js:105
-#: app/states/marketplace/list/list.state.js:86
+#: app/states/designer/blueprints/list/list.state.js:235
+msgid "Cannot publish a blueprint with no service items."
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:43
+#: app/states/designer/blueprints/list/list.state.js:154
+#: app/states/designer/blueprints/list/list.state.js:195
+msgid "Catalog"
+msgstr ""
+
+#: app/states/marketplace/list/list.state.js:110
+#: app/states/marketplace/list/list.state.js:91
 msgid "Catalog Name"
 msgstr "Название каталога"
 
-#: app/components/navigation/header-nav.html:34
+#: app/layouts/application.html:67
 msgid "Change Group:"
-msgstr "Изменить группу"
+msgstr "Изменить группу:"
 
-#: app/components/navigation/header-nav.html:46
+#: app/layouts/application.html:79
 msgid "Change to this Group"
 msgstr "Изменить на эту группу"
 
-#: app/states/services/details/details.html:42
+#: app/components/shopping-cart/shopping-cart.html:46
+msgid "Clear"
+msgstr "Очистить"
+
+#: app/components/notifications/notification-footer.html:15
+#: app/components/notifications/notification-footer.html:20
+msgid "Clear All"
+msgstr ""
+
+#: app/components/notifications/notification-footer.html:13
+msgid "Clear All [[heading]]"
+msgstr ""
+
+#: app/components/shopping-cart/shopping-cart.html:38
+msgid "Close"
+msgstr "Закрыть"
+
+#: app/states/administration/profiles/details/details.html:80
+#: app/states/administration/profiles/editor/editor.html:92
+msgid "Cloud Network"
+msgstr ""
+
+#: app/states/administration/profiles/details/details.html:86
+#: app/states/administration/profiles/editor/editor.html:103
+msgid "Cloud Subnet"
+msgstr ""
+
+#: app/components/notifications/notification-body.html:52
+msgid "Completed:"
+msgstr ""
+
+#: app/states/services/details/details.html:40
 msgid "Confirm, would you like to remove this service?"
-msgstr "Продолжить удаление сервиса?"
+msgstr "Подтвердите, что вы хотели бы удалить этот сервис?"
 
-#: app/states/services/details/details.html:57
+#: app/states/services/details/details.html:54
 msgid "Confirm, would you like to retire this service?"
-msgstr "Продолжить?"
+msgstr "Подтвердите, что вы хотели бы удалить этот сервис?"
 
-#: app/states/services/list/list.state.js:124
-#: app/states/services/list/list.state.js:91
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:90
+#: app/states/administration/profiles/profiles.state.js:279
+#: app/states/administration/rules/rules.html:18
+#: app/states/designer/blueprints/editor/editor.html:95
+#: app/states/designer/blueprints/list/list.state.js:206
+msgid "Create"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:89
+msgid "Create Blueprint"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:54
+#: app/components/create-catalog-modal/create-catalog-modal.html:5
+msgid "Create Catalog"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:207
+msgid "Create a new Blueprint"
+msgstr ""
+
+#: app/states/administration/profiles/profiles.state.js:280
+msgid "Create a new Profile"
+msgstr ""
+
+#: app/states/administration/rules/rules.html:16
+msgid "Create a new rule"
+msgstr ""
+
+#: app/states/administration/profiles/details/details.html:29
+#: app/states/services/list/list.state.js:127
+#: app/states/services/list/list.state.js:94
 msgid "Created"
 msgstr "Создан"
 
-#: app/states/services/details/details.html:106
-#: app/states/services/list/list.html:40
+#: app/states/services/details/details.html:103
+#: app/states/services/list/list.html:48
 msgid "Created On"
 msgstr "Создано"
 
@@ -146,42 +332,66 @@ msgstr "Создано"
 msgid "Creation Date"
 msgstr "Дата создания"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:78
 msgid "Current"
 msgstr "Текущий"
 
-#: app/components/navigation/header-nav.html:53
+#: app/layouts/application.html:86
 msgid "Current Group"
 msgstr "Текущая группа"
 
 #: app/states/dashboard/dashboard.html:45
 msgid "Current Services"
-msgstr "Выб"
+msgstr "Текущие сервисы"
 
-#: app/components/navigation/header-nav.html:40
+#: app/layouts/application.html:73
 msgid "Currently Selected Group"
-msgstr "Выбранная выбранная группа"
+msgstr "Выбранная группа"
 
 #: app/components/custom-button/custom-button.html:28
 #: app/components/custom-button/custom-button.html:30
 msgid "Custom Actions"
-msgstr "Выборочные действия"
+msgstr "Пользовательские действия"
 
 #: app/states/services/custom_button_details/custom_button_details.html:10
 msgid "Custom Button:"
-msgstr "Выборочная кнопка"
+msgstr "Пользовательская  кнопка:"
 
 #: app/states/services/custom_button_details/custom_button_details.state.js:46
 msgid "Custom button action"
-msgstr "Действия выборочной кнопки"
+msgstr "Действие пользовательской кнопки"
 
-#: app/config/navigation.config.js:14
-#: app/states/dashboard/dashboard.state.js:154
+#: app/config/navigation.config.js:13
 #: app/states/dashboard/dashboard.state.js:20
 msgid "Dashboard"
 msgstr "Обзор"
 
-#: app/states/requests/list/list.state.js:81
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:18
+#: app/states/administration/profiles/profiles.html:17
+#: app/states/administration/profiles/profiles.state.js:216
+#: app/states/administration/rules/rules.html:132
+#: app/states/designer/blueprints/list/list.state.js:130
+#: app/states/designer/blueprints/list/list.state.js:211
+msgid "Delete"
+msgstr ""
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:5
+#: app/states/designer/blueprints/list/list.state.js:131
+#: app/states/designer/blueprints/list/list.state.js:212
+msgid "Delete Blueprint"
+msgstr ""
+
+#: app/states/administration/profiles/profiles.html:15
+#: app/states/administration/profiles/profiles.state.js:217
+msgid "Delete Profile"
+msgstr ""
+
+#: app/states/administration/rules/rules.html:130
+msgid "Delete Rule"
+msgstr ""
+
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:344
 msgid "Denied"
 msgstr "Отклонено"
 
@@ -189,106 +399,249 @@ msgstr "Отклонено"
 msgid "Denied Requests"
 msgstr "Отклоненные запросы"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:19
 #: app/components/edit-service-modal/edit-service-modal.html:13
-#: app/states/marketplace/list/list.state.js:80
-#: app/states/requests/list/list.state.js:60
-#: app/states/requests/list/list.state.js:92
+#: app/states/administration/profiles/editor/editor.html:35
+#: app/states/marketplace/list/list.state.js:85
+#: app/states/requests/list/list.state.js:115
+#: app/states/requests/list/list.state.js:77
 msgid "Description"
 msgstr "Описание"
 
-#: app/states/services/details/details.html:128
+#: app/config/navigation.config.js:51
+msgid "Designer"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:61
+msgid "Dialog"
+msgstr ""
+
+#: app/states/services/details/details.html:125
 msgid "Disk Count"
 msgstr "Количество дисков"
 
-#: app/states/services/details/details.html:134
+#: app/states/services/details/details.html:131
 msgid "Disk Space Allocated"
 msgstr "Выделенное дисковое пространство"
 
-#: app/states/services/details/details.html:140
+#: app/states/services/details/details.html:137
 msgid "Disk Space Used"
 msgstr "Используемое дисковое пространство"
 
+#: app/states/administration/profiles/editor/save-profile-modal.html:12
+#: app/states/administration/rules/save-rule-modal.html:12
+msgid "Do Not Save"
+msgstr ""
+
+#: app/layouts/application.html:42
+msgid "Documentation"
+msgstr ""
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:12
+msgid "Don't Save"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.html:45
+msgid "Draft"
+msgstr ""
+
+#: app/components/shopping-cart/shopping-cart.html:22
+#: app/states/designer/blueprints/editor/editor.html:25
+#: app/states/designer/blueprints/list/list.state.js:125
+msgid "Duplicate"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:126
+msgid "Duplicate Blueprint"
+msgstr ""
+
+#: app/states/marketplace/details/details.html:34
+msgid "Duplicate Shopping Cart Item"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:229
+msgid "Duplicate blueprint feature not available."
+msgstr ""
+
+#: app/states/administration/profiles/details/details.html:108
+#: app/states/administration/profiles/profiles.state.js:211
+#: app/states/designer/blueprints/list/list.state.js:120
+msgid "Edit"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:121
+msgid "Edit Blueprint"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:97
+#: app/states/designer/blueprints/editor/editor.html:36
+msgid "Edit Blueprint Details"
+msgstr ""
+
+#: app/states/administration/profiles/editor/editor.html:17
+#: app/states/administration/profiles/profiles.state.js:212
+msgid "Edit Profile"
+msgstr ""
+
+#: app/states/administration/profiles/editor/editor.state.js:54
+msgid "Edit Profile: %s"
+msgstr ""
+
 #: app/components/edit-service-modal/edit-service-modal.html:5
-#: app/states/services/details/details.html:65
+#: app/states/services/details/details.html:62
 msgid "Edit Service"
 msgstr "Редактировать сервис"
+
+#: app/states/administration/rules/rules.html:71
+msgid "Enter a value"
+msgstr ""
 
 #: app/states/error/error.state.js:21
 msgid "Error"
 msgstr "Ошибка"
 
-#: app/config/authorization.config.js:105
+#: app/config/authorization.config.js:111
 msgid "Error retrieving user info"
 msgstr "Ошибка получения информации о пользователе"
 
-#: app/states/marketplace/list/list.state.js:87
+#: app/states/designer/blueprints/editor/editorCtrl.js:80
+msgid "Failed to save '%s'."
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:155
+msgid "Filter by Catalog"
+msgstr ""
+
+#: app/states/marketplace/list/list.state.js:92
 msgid "Filter by Catalog Name"
 msgstr "Отфильтровать по имени каталога"
 
-#: app/states/services/list/list.state.js:92
+#: app/states/services/list/list.state.js:95
 msgid "Filter by Created On"
 msgstr "Отфильтровать по дате создания"
 
-#: app/states/marketplace/list/list.state.js:81
-#: app/states/requests/list/list.state.js:61
+#: app/states/marketplace/list/list.state.js:86
+#: app/states/requests/list/list.state.js:78
 msgid "Filter by Description"
 msgstr "Отфильтровать по описанию"
 
-#: app/states/requests/list/list.state.js:67
+#: app/states/requests/list/list.state.js:157
+#: app/states/requests/list/list.state.js:84
 msgid "Filter by ID"
 msgstr "Отфильтровать по ID"
 
-#: app/states/marketplace/list/list.state.js:75
-#: app/states/services/list/list.state.js:67
+#: app/states/administration/profiles/profiles.state.js:228
+#: app/states/designer/blueprints/list/list.state.js:142
+#: app/states/marketplace/list/list.state.js:80
+#: app/states/requests/list/list.state.js:151
+#: app/states/services/list/list.state.js:70
 msgid "Filter by Name"
 msgstr "Отфильтровать по имени"
 
-#: app/states/services/list/list.state.js:86
+#: app/states/requests/list/list.state.js:163
+msgid "Filter by Order Date"
+msgstr ""
+
+#: app/states/services/list/list.state.js:89
 msgid "Filter by Owner"
 msgstr "Отфильтровать по владельцу"
 
-#: app/states/requests/list/list.state.js:73
+#: app/states/administration/profiles/profiles.state.js:234
+msgid "Filter by Provider Name"
+msgstr ""
+
+#: app/states/administration/profiles/profiles.state.js:240
+msgid "Filter by Provider Type"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:162
+msgid "Filter by Publish State"
+msgstr ""
+
+#: app/states/requests/list/list.state.js:96
 msgid "Filter by Request Date"
 msgstr "Отфильтровать по дате запроса"
 
-#: app/states/services/list/list.state.js:73
+#: app/states/requests/list/list.state.js:90
+msgid "Filter by Requester"
+msgstr ""
+
+#: app/states/services/list/list.state.js:76
 msgid "Filter by Retirement Date"
 msgstr "Отфильтровать по дате удаления"
 
-#: app/states/requests/list/list.state.js:79
+#: app/states/requests/list/list.state.js:102
 msgid "Filter by Status"
 msgstr "Отфильтровать по статусу"
 
-#: app/states/services/list/list.state.js:80
+#: app/states/services/list/list.state.js:83
 msgid "Filter by VMs"
 msgstr "Отфильтровать по ВМ"
 
-#: app/components/confirmation/confirmation.directive.js:54
-#: app/components/confirmation/confirmation.directive.js:59
+#: app/states/designer/blueprints/list/list.state.js:148
+msgid "Filter by Visibility"
+msgstr ""
+
+#: app/states/designer/blueprints/editor/editor.html:100
+msgid "Filter by name"
+msgstr ""
+
+#: app/states/administration/profiles/details/details.html:74
+#: app/states/administration/profiles/editor/editor.html:82
+msgid "Flavor"
+msgstr ""
+
+#: app/components/confirmation/confirmation.directive.js:65
+#: app/components/confirmation/confirmation.directive.js:70
 msgid "For Sizing"
 msgstr "Для размеров"
 
-#: app/states/services/details/details.html:100
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:82
+msgid "General"
+msgstr ""
+
+#: app/states/services/details/details.html:97
 msgid "Group"
 msgstr "Группа"
 
 #: app/states/help/help.html:1
 #: app/states/help/help.state.js:20
-#: app/states/help/help.state.js:29
 msgid "Help"
 msgstr "Помощь"
+
+#: app/states/designer/blueprints/editor/editor.html:44
+msgid "Hide Connectors"
+msgstr ""
 
 #: app/states/products/details/details.html:56
 msgid "Hourly"
 msgstr "По часам"
 
-#: app/states/requests/list/list.html:24
+#: app/components/request-list/request-list.html:15
+#: app/states/requests/list/list.html:26
 msgid "ID"
 msgstr "ID"
 
-#: app/states/services/details/details.html:49
+#: app/states/administration/rules/rules.html:35
+#: app/states/administration/rules/rules.html:59
+msgid "IF"
+msgstr ""
+
+#: app/states/administration/rules/save-rule-modal.html:8
+msgid "If you do not save, any changes will be lost."
+msgstr ""
+
+#: app/states/administration/profiles/editor/save-profile-modal.html:8
+msgid "If you do not save, your changes will be lost."
+msgstr ""
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:8
+msgid "If you don't save, your changes will be lost."
+msgstr ""
+
+#: app/states/services/details/details.html:47
 msgid "Inactivate the service"
-msgstr "Выключить сервис"
+msgstr "Отключить сервис"
 
 #: app/states/products/details/details.html:19
 msgid "Inactive"
@@ -296,50 +649,85 @@ msgstr "Неактивно"
 
 #: app/resources/authentication-api.factory.js:30
 msgid "Incorrect username or password."
-msgstr "Неправильное имя пользователя или пароль"
+msgstr "Неверное имя пользователя или пароль."
 
-#: app/states/requests/details/details.html:83
+#: app/states/services/details/details.html:168
+msgid "Instance name"
+msgstr ""
+
+#: app/states/marketplace/details/details.state.js:113
+msgid "Item added to shopping cart"
+msgstr "Добавлено в корзину"
+
+#: app/states/marketplace/details/details.state.js:111
+msgid "Item added to shopping cart, but it's a duplicate of an existing item"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.html:23
+#: app/states/designer/blueprints/list/list.state.js:185
+msgid "Items"
+msgstr ""
+
+#: app/states/administration/profiles/details/details.html:62
+#: app/states/administration/profiles/editor/editor.html:62
+msgid "Key Pair"
+msgstr ""
+
+#: app/states/login/login.html:31
+msgid "Language"
+msgstr "Язык"
+
+#: app/states/requests/details/details.html:82
 msgid "Last Message"
 msgstr "Последнее сообщение"
 
-#: app/states/services/details/details.html:186
+#: app/states/administration/profiles/details/details.html:35
+#: app/states/administration/profiles/profiles.html:44
+#: app/states/administration/profiles/profiles.state.js:258
+#: app/states/designer/blueprints/list/list.html:17
+#: app/states/designer/blueprints/list/list.state.js:180
+msgid "Last Modified"
+msgstr ""
+
+#: app/states/services/details/details.html:183
 msgid "Last Scan"
 msgstr "Время последнего сканирования"
 
 #: app/states/products/details/details.html:38
-#: app/states/requests/details/details.html:91
+#: app/states/requests/details/details.html:90
 msgid "Last Updated"
 msgstr "Время последнего обновления"
 
-#: app/states/login/login.html:39
+#: app/states/login/login.html:37
 msgid "Log In"
-msgstr "Аутентифицироваться"
+msgstr "Войти"
 
-#: app/components/navigation/header-nav.html:19
+#: app/layouts/application.html:18
 msgid "Log into the full administrative UI"
 msgstr "Перейти в полный административный интерфейс"
 
 #: app/states/login/login.state.js:20
-#: app/states/login/login.state.js:32
 msgid "Login"
-msgstr "Аутентифицироваться"
+msgstr "Войти"
 
-#: app/components/navigation/header-nav.html:61
+#: app/layouts/application.html:96
 #: app/states/logout/logout.state.js:18
-#: app/states/logout/logout.state.js:27
 msgid "Logout"
 msgstr "Выйти"
 
-#: app/skin/skin.module.js:8
 #: app/states/error/error.html:3
 msgid "ManageIQ Self Service"
 msgstr "Портал самообслуживания ManageIQ"
 
-#: app/states/services/details/details.html:122
+#: app/components/notifications/notification-footer.html:6
+msgid "Mark All Read"
+msgstr ""
+
+#: app/states/services/details/details.html:119
 msgid "Memory"
 msgstr "Память"
 
-#: app/states/services/details/details.html:147
+#: app/states/services/details/details.html:144
 msgid "Memory on Disk"
 msgstr "Память на диске"
 
@@ -351,20 +739,36 @@ msgstr "По месяцам"
 msgid "More"
 msgstr "Больше"
 
-#: app/config/navigation.config.js:25
+#: app/states/requests/list/list.html:9
+msgid "My Orders"
+msgstr "Мои заказы"
+
+#: app/config/navigation.config.js:29
+#: app/states/requests/list/list.html:2
 msgid "My Requests"
 msgstr "Мои запросы"
 
-#: app/config/navigation.config.js:19
+#: app/config/navigation.config.js:18
 msgid "My Services"
 msgstr "Мои сервисы"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:13
 #: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/services/blueprints-state.service.js:14
+#: app/services/marketplace-state.service.js:13
+#: app/services/profiles-state.service.js:71
 #: app/services/services-state.service.js:14
-#: app/states/marketplace/list/list.state.js:100
-#: app/states/marketplace/list/list.state.js:74
-#: app/states/services/list/list.state.js:104
-#: app/states/services/list/list.state.js:66
+#: app/states/administration/profiles/editor/editor.html:29
+#: app/states/administration/profiles/profiles.state.js:227
+#: app/states/administration/profiles/profiles.state.js:253
+#: app/states/designer/blueprints/list/list.state.js:141
+#: app/states/designer/blueprints/list/list.state.js:175
+#: app/states/marketplace/list/list.state.js:105
+#: app/states/marketplace/list/list.state.js:79
+#: app/states/requests/list/list.state.js:150
+#: app/states/requests/list/list.state.js:175
+#: app/states/services/list/list.state.js:107
+#: app/states/services/list/list.state.js:69
 msgid "Name"
 msgstr "Имя"
 
@@ -372,31 +776,76 @@ msgstr "Имя"
 msgid "Never"
 msgstr "Никогда"
 
+#: app/components/notifications/heading.html:2
+#: app/components/notifications/subheading.html:1
+msgid "New"
+msgstr ""
+
 #: app/components/dialog-content/dialog-content.html:3
 msgid "No Provisioning Dialog Available."
-msgstr "Диалог подготовки недоступен"
+msgstr "Диалог подготовки недоступен."
 
-#: app/components/retire-service-modal/retire-service-modal.html:11
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:58
 msgid "No Warning"
 msgstr "Без предупреждения"
 
-#: app/states/services/list/list.state.js:114
-#: app/states/services/list/list.state.js:79
+#: app/components/flowchart/flowchart_template.html:15
+msgid "No available connections! Click on the canvas to cancel"
+msgstr ""
+
+#: app/layouts/application.html:7
+msgid "Notifications"
+msgstr ""
+
+#: app/states/services/list/list.state.js:117
+#: app/states/services/list/list.state.js:82
 msgid "Number of VMs"
 msgstr "Количество ВМ"
 
-#: app/states/services/details/details.html:94
-#: app/states/services/list/list.html:35
-#: app/states/services/list/list.state.js:119
-#: app/states/services/list/list.state.js:85
+#: app/states/services/details/details.html:199
+msgid "Open Cockpit console for this VM"
+msgstr ""
+
+#: app/states/services/details/details.html:196
+msgid "Open a HTML5 console for this VM"
+msgstr "Открыть HTML5 консоль для этой ВМ"
+
+#: app/components/shopping-cart/shopping-cart.html:54
+msgid "Order"
+msgstr "Заказать"
+
+#: app/services/orders-state.service.js:13
+#: app/states/requests/list/list.state.js:162
+#: app/states/requests/list/list.state.js:185
+msgid "Order Date"
+msgstr ""
+
+#: app/states/requests/order_details/order_details.state.js:19
+msgid "Order Details"
+msgstr "Подробности заказа"
+
+#: app/states/requests/list/list.state.js:156
+#: app/states/requests/list/list.state.js:180
+msgid "Order ID"
+msgstr "ID заказа"
+
+#: app/states/requests/order_details/order_details.html:5
+msgid "Orders:"
+msgstr "Заказы:"
+
+#: app/states/services/details/details.html:91
+#: app/states/services/list/list.html:40
+#: app/states/services/list/list.state.js:122
+#: app/states/services/list/list.state.js:88
 msgid "Owner"
 msgstr "Владелец"
 
-#: app/states/login/login.html:20
+#: app/states/login/login.html:23
 msgid "Password"
 msgstr "Пароль"
 
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:342
 msgid "Pending"
 msgstr "Ожидание"
 
@@ -404,13 +853,22 @@ msgstr "Ожидание"
 msgid "Pending Requests"
 msgstr "Ожидающие запросы"
 
-#: app/states/services/details/details.html:37
+#: app/states/services/details/details.html:36
 msgid "Permanently delete the service"
 msgstr "Удалить сервис безвозвратно"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:93
+msgid "Please enter a Provisioning Entry Point"
+msgstr ""
+
+#: app/components/create-catalog-modal/create-catalog-modal.html:8
+msgid "Please enter a name for the new Catalog"
+msgstr ""
+
+#: app/states/services/details/details.html:188
+#: app/states/services/details/details.html:189
+#: app/states/services/details/details.html:190
 #: app/states/services/details/details.html:191
-#: app/states/services/details/details.html:192
-#: app/states/services/details/details.html:193
 msgid "Power State"
 msgstr "Управление питанием"
 
@@ -434,54 +892,146 @@ msgstr "Теги продукта"
 msgid "Product Type"
 msgstr "Тип продукта"
 
+#: app/components/navigation/navigation-contoller.js:122
+msgid "Product logo"
+msgstr ""
+
 #: app/states/products/details/details.state.js:19
 msgid "Products Details"
 msgstr "Детали продукта"
+
+#: app/services/profiles-state.service.js:159
+msgid "Profile %s was created."
+msgstr ""
+
+#: app/services/profiles-state.service.js:175
+msgid "Profile %s was successfully updated."
+msgstr ""
+
+#: app/states/administration/profiles/details/details.state.js:19
+msgid "Profile Details"
+msgstr ""
+
+#: app/services/profiles-state.service.js:210
+msgid "Profile(s) were succesfully deleted."
+msgstr ""
+
+#: app/config/navigation.config.js:73
+#: app/states/administration/profiles/profiles.state.js:20
+#: app/states/administration/profiles/profiles.state.js:37
+msgid "Profiles"
+msgstr ""
+
+#: app/states/administration/profiles/details/details.html:56
+#: app/states/administration/profiles/editor/editor.html:51
+msgid "Provider"
+msgstr ""
+
+#: app/states/administration/profiles/profiles.state.js:233
+#: app/states/administration/profiles/profiles.state.js:263
+msgid "Provider Name"
+msgstr ""
+
+#: app/states/administration/profiles/details/details.html:50
+#: app/states/administration/profiles/editor/editor.html:41
+#: app/states/administration/profiles/profiles.state.js:239
+#: app/states/administration/profiles/profiles.state.js:268
+msgid "Provider Type"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:84
+msgid "Provision Order"
+msgstr ""
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:43
+msgid "Provisioning"
+msgstr ""
 
 #: app/states/products/details/details.html:43
 msgid "Provisioning Answers"
 msgstr "Ответы для подготовки"
 
-#: app/states/services/details/details.html:67
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:82
+msgid "Provisioning Entry Point"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:83
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:92
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:93
+#: app/states/designer/blueprints/list/list.state.js:102
+#: app/states/designer/blueprints/list/list.state.js:109
+msgid "Publish"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:103
+msgid "Publish Blueprint"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:161
+msgid "Publish State"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.html:42
+msgid "Published"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:135
+msgid "Rearrange Items to set Action Order"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:123
+msgid "Rearrange Items to set Provision Order"
+msgstr ""
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:45
+#: app/states/services/details/details.html:64
 msgid "Reconfigure"
 msgstr "Переконфигурировать"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:97
+msgid "Reconfigure Entry Point"
+msgstr ""
+
 #: app/states/services/reconfigure/reconfigure.html:5
 msgid "Reconfigure Service:"
-msgstr "Переконфигурировать сервис"
+msgstr "Переконфигурировать сервис:"
 
-#: app/states/services/reconfigure/reconfigure.state.js:117
+#: app/states/services/reconfigure/reconfigure.state.js:118
 msgid "Reconfigure this service has been cancelled"
 msgstr "Переконфигурирование сервиса отменено"
 
-#: app/components/dialog-content/dialog-content.html:114
+#: app/components/dialog-content/dialog-content.html:111
 msgid "Refresh"
 msgstr "Обновить"
 
-#: app/states/services/details/details.html:37
-#: app/states/services/details/details.html:41
+#: app/components/shopping-cart/shopping-cart.html:17
+#: app/states/designer/blueprints/editor/editor.html:29
+msgid "Remove"
+msgstr "Удалить"
+
+#: app/states/services/details/details.html:36
+#: app/states/services/details/details.html:39
 msgid "Remove Service"
 msgstr "Удалить сервис"
 
-#: app/states/requests/details/details.html:67
+#: app/states/requests/details/details.html:61
 msgid "Request Approval State"
 msgstr "Статус одобрения запроса"
 
 #: app/services/requests-state.service.js:13
-#: app/states/requests/details/details.html:55
-#: app/states/requests/list/list.state.js:102
-#: app/states/requests/list/list.state.js:72
+#: app/states/requests/details/details.html:49
+#: app/states/requests/list/list.state.js:130
+#: app/states/requests/list/list.state.js:95
 msgid "Request Date"
 msgstr "Дата запроса"
 
 #: app/states/requests/details/details.html:37
-#: app/states/requests/list/list.state.js:66
-#: app/states/requests/list/list.state.js:97
+#: app/states/requests/list/list.state.js:120
+#: app/states/requests/list/list.state.js:83
 msgid "Request ID"
 msgstr "ID запроса"
 
 #: app/states/requests/list/list.state.js:19
-#: app/states/requests/list/list.state.js:40
 msgid "Request List"
 msgstr "Список запросов"
 
@@ -489,13 +1039,13 @@ msgstr "Список запросов"
 msgid "Request State"
 msgstr "Статус запроса"
 
-#: app/states/dashboard/dashboard.state.js:157
-#: app/states/requests/list/list.state.js:107
-#: app/states/requests/list/list.state.js:78
+#: app/states/dashboard/dashboard.state.js:179
+#: app/states/requests/list/list.state.js:101
+#: app/states/requests/list/list.state.js:135
 msgid "Request Status"
 msgstr "Статус запроса"
 
-#: app/states/requests/details/details.html:97
+#: app/states/requests/details/details.html:96
 msgid "Request Type"
 msgstr "Тип запроса"
 
@@ -503,31 +1053,37 @@ msgstr "Тип запроса"
 msgid "Request:"
 msgstr "Запрос:"
 
-#: app/states/requests/list/list.html:29
+#: app/components/request-list/request-list.html:25
 msgid "Requested"
 msgstr "Запрошено"
 
-#: app/states/requests/details/details.html:61
+#: app/states/requests/details/details.html:55
 msgid "Requested By"
 msgstr "Запрошено"
+
+#: app/components/request-list/request-list.html:20
+#: app/states/requests/list/list.state.js:125
+#: app/states/requests/list/list.state.js:89
+msgid "Requester"
+msgstr ""
 
 #: app/states/requests/details/details.state.js:19
 msgid "Requests Details"
 msgstr "Детали запросов"
 
-#: app/states/services/details/details.html:50
+#: app/states/services/details/details.html:48
 msgid "Retire"
 msgstr "Удалить"
 
-#: app/states/services/details/details.html:54
+#: app/states/services/details/details.html:52
 msgid "Retire Now"
 msgstr "Удалить немедленно"
 
-#: app/states/services/details/details.html:56
+#: app/states/services/details/details.html:53
 msgid "Retire Service Now"
 msgstr "Удалить сервис немедленно"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:78
 msgid "Retired"
 msgstr "Удалено"
 
@@ -535,14 +1091,22 @@ msgstr "Удалено"
 msgid "Retired Services"
 msgstr "Удаленные сервисы"
 
-#: app/components/retire-service-modal/retire-service-modal.html:18
-#: app/states/dashboard/dashboard.state.js:162
-#: app/states/services/details/details.html:86
-#: app/states/services/list/list.html:22
-#: app/states/services/list/list.state.js:109
-#: app/states/services/list/list.state.js:72
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:47
+msgid "Retirement"
+msgstr ""
+
+#: app/components/retire-service-modal/retire-service-modal.html:13
+#: app/states/dashboard/dashboard.state.js:185
+#: app/states/services/details/details.html:83
+#: app/states/services/list/list.html:20
+#: app/states/services/list/list.state.js:112
+#: app/states/services/list/list.state.js:75
 msgid "Retirement Date"
 msgstr "Дата удаления"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:108
+msgid "Retirement Entry Point"
+msgstr ""
 
 #: app/components/retire-service-modal/retire-service-modal.html:9
 msgid "Retirement Warning"
@@ -552,13 +1116,50 @@ msgstr "Предупреждение об удалении"
 msgid "Retiring Soon"
 msgstr "Скоро будет удален"
 
+#: app/services/rules-state.service.js:121
+msgid "Rule(s) were succesfully deleted."
+msgstr ""
+
+#: app/config/navigation.config.js:83
+#: app/states/administration/rules/rules.html:7
+#: app/states/administration/rules/rules.state.js:197
+#: app/states/administration/rules/rules.state.js:21
+msgid "Rules"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:141
+msgid "Same as Provision Order"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:98
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:12
+#: app/components/create-catalog-modal/create-catalog-modal.html:13
 #: app/components/edit-service-modal/edit-service-modal.html:22
 #: app/components/ownership-service-modal/ownership-service-modal.html:33
-#: app/components/retire-service-modal/retire-service-modal.html:25
+#: app/components/retire-service-modal/retire-service-modal.html:20
+#: app/states/administration/profiles/editor/editor.html:136
+#: app/states/administration/profiles/editor/save-profile-modal.html:13
+#: app/states/administration/rules/rules.html:104
+#: app/states/administration/rules/save-rule-modal.html:13
+#: app/states/designer/blueprints/editor/editor.html:11
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:13
 msgid "Save"
 msgstr "Сохранить"
 
-#: app/states/services/details/details.html:62
+#: app/states/designer/blueprints/editor/editor.html:13
+msgid "Save Blueprint"
+msgstr ""
+
+#: app/states/administration/profiles/editor/save-profile-modal.html:5
+#: app/states/administration/rules/save-rule-modal.html:5
+msgid "Save Changes"
+msgstr ""
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:5
+msgid "Save Changes to {{vm.blueprint.name}}"
+msgstr ""
+
+#: app/states/services/details/details.html:59
 msgid "Schedule Retirement"
 msgstr "Запланировать удаление"
 
@@ -566,93 +1167,198 @@ msgstr "Запланировать удаление"
 msgid "Schedule Service Retirement"
 msgstr "Запланировать удаление сервиса"
 
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:67
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:75
 msgid "Scheduling retirement for"
 msgstr "Запланировать удаление на"
+
+#: app/states/administration/profiles/details/details.html:92
+#: app/states/administration/profiles/editor/editor.html:113
+msgid "Security Group"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:68
+msgid "Select Dialog"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:52
+msgid "Select a Catalog"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:70
+msgid "Select a Dialog"
+msgstr ""
 
 #: app/components/ownership-service-modal/ownership-service-modal.html:19
 msgid "Select a Group"
 msgstr "Выбрать группу"
 
+#: app/states/administration/profiles/editor/editor.html:97
+msgid "Select a cloud network"
+msgstr ""
+
+#: app/states/administration/profiles/editor/editor.html:108
+msgid "Select a cloud subnet"
+msgstr ""
+
+#: app/states/administration/rules/rules.html:64
+msgid "Select a field"
+msgstr ""
+
+#: app/states/administration/profiles/editor/editor.html:87
+msgid "Select a flavor"
+msgstr ""
+
+#: app/states/administration/profiles/editor/editor.html:67
+msgid "Select a key pair"
+msgstr ""
+
+#: app/states/administration/rules/rules.html:91
+msgid "Select a profile"
+msgstr ""
+
+#: app/states/administration/profiles/editor/editor.html:56
+msgid "Select a provider"
+msgstr ""
+
+#: app/states/administration/profiles/editor/editor.html:46
+msgid "Select a provider type"
+msgstr ""
+
+#: app/components/flowchart/flowchart_template.html:12
+msgid ""
+"Select a second item to complete the connection or click on the canvas to "
+"cancel"
+msgstr ""
+
+#: app/states/administration/profiles/editor/editor.html:118
+msgid "Select a security group"
+msgstr ""
+
 #: app/components/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
 msgstr "Выбрать владельца"
 
-#: app/skin/skin.module.js:11
+#: app/states/administration/profiles/editor/editor.html:77
+msgid "Select an availability zone"
+msgstr ""
+
+#: app/states/administration/rules/rules.html:67
+msgid "Select an operator"
+msgstr ""
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:5
+msgid "Select {{vm.entryPointTypeTitle}} Entry Point"
+msgstr ""
+
 #: index.html:4
 msgid "Self Service"
 msgstr "Самообслуживание"
 
-#: app/config/navigation.config.js:31
-#: app/states/marketplace/list/list.state.js:19
-#: app/states/marketplace/list/list.state.js:51
+#: app/components/navigation/navigation-contoller.js:130
+msgid "Server Name:"
+msgstr ""
+
+#: app/config/navigation.config.js:40
+#: app/states/marketplace/list/list.state.js:20
 msgid "Service Catalog"
 msgstr "Каталог сервисов"
 
 #: app/states/services/custom_button_details/custom_button_details.state.js:19
 msgid "Service Custom Button Details"
-msgstr "Детали"
+msgstr "Подробности пользовательской кнопки сервиса"
 
-#: app/states/products/details/details.state.js:28
 #: app/states/services/details/details.state.js:19
-#: app/states/services/details/details.state.js:62
-#: app/states/services/reconfigure/reconfigure.state.js:19
-#: app/states/services/reconfigure/reconfigure.state.js:41
+#: app/states/services/reconfigure/reconfigure.state.js:20
+#: app/states/services/reconfigure/reconfigure.state.js:42
 msgid "Service Details"
-msgstr "Детали сервиса"
+msgstr "Подробности сервиса"
 
-#: app/states/services/details/details.html:79
+#: app/states/services/details/details.html:76
 msgid "Service Id"
 msgstr "Идентификатор сервиса"
 
 #: app/states/services/list/list.state.js:19
-#: app/states/services/list/list.state.js:39
 msgid "Service List"
 msgstr "Список сервисов"
 
 #: app/states/marketplace/details/details.state.js:19
-#: app/states/marketplace/details/details.state.js:46
 msgid "Service Template Details"
-msgstr "Детали шаблона сервиса"
+msgstr "Подробности шаблона сервиса"
 
 #: app/states/marketplace/details/details.html:5
 #: app/states/services/details/details.html:5
 msgid "Service:"
 msgstr "Сервис:"
 
-#: app/states/services/details/details.html:66
+#: app/states/services/details/details.html:63
 msgid "Set Ownership"
-msgstr "Установить принадлежность"
+msgstr "Установить владельца"
 
 #: app/components/ownership-service-modal/ownership-service-modal.html:5
 msgid "Set Service Ownership"
-msgstr "Установить принадлежность сервиса"
+msgstr "Установить владельца сервиса"
 
 #: app/states/products/details/details.html:55
 msgid "Setup"
 msgstr "Параметры"
 
-#: app/states/services/details/details.html:181
+#: app/components/shopping-cart/shopping-cart.html:5
+msgid "Shopping Cart"
+msgstr "Корзина"
+
+#: app/layouts/application.html:24
+msgid "Shopping cart"
+msgstr "Корзина"
+
+#: app/components/shopping-cart/shopping-cart.html:30
+msgid "Shopping cart is empty."
+msgstr "Корзина пуста."
+
+#: app/components/shopping-cart/shopping-cart.directive.js:47
+msgid "Shopping cart successfully ordered"
+msgstr "Заказ выполнен"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:10
+msgid "Show Blueprint Names"
+msgstr ""
+
+#: app/states/services/details/details.html:178
 msgid "Size"
 msgstr "Размер"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:78
 msgid "Soon"
 msgstr "Скоро"
 
-#: app/states/marketplace/details/details.html:31
-#: app/states/services/custom_button_details/custom_button_details.html:21
-#: app/states/services/reconfigure/reconfigure.html:23
+#: app/components/notifications/notification-body.html:40
+msgid "Started:"
+msgstr ""
+
+#: app/states/services/custom_button_details/custom_button_details.html:19
+#: app/states/services/reconfigure/reconfigure.html:21
 msgid "Submit Request"
 msgstr "Отправить запрос"
 
-#: app/states/requests/list/list.html:35
-#: app/states/requests/list/list.html:37
-#: app/states/requests/list/list.html:39
+#: app/components/language-switcher/language-switcher.html:2
+msgid "Switch Language:"
+msgstr "Переключить язык:"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:32
+#: app/components/flowchart/node-toolbar.html:11
+msgid "Tags"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:337
+msgid "The Publish Blueprint feature is not yet implemented."
+msgstr ""
+
+#: app/components/request-list/request-list.html:30
+#: app/components/request-list/request-list.html:31
+#: app/components/request-list/request-list.html:32
 msgid "The current approval status of the request"
 msgstr "Текущий статус одобрения запроса"
 
-#: app/states/services/details/details.html:186
+#: app/states/services/details/details.html:183
 msgid "The last heartbeat received from the instances"
 msgstr "Последнее сообщение, полученное от экземпляров"
 
@@ -660,9 +1366,9 @@ msgstr "Последнее сообщение, полученное от экз�
 msgid "The number of active services"
 msgstr "Количество активных сервисов"
 
-#: app/states/services/list/list.html:29
+#: app/states/services/list/list.html:31
 msgid "The number of instances running this service"
-msgstr "Количество экземпляров сервиса"
+msgstr "Количество запущенных экземпляров сервиса"
 
 #: app/states/dashboard/dashboard.html:37
 msgid "The number of services retiring within the next 30 days"
@@ -679,63 +1385,125 @@ msgstr ""
 msgid ""
 "The page you are looking for might have been removed, had its name changed, "
 "or is temporarily unavailable."
-msgstr "Страница была удалена, перемещена или временно недоступна"
+msgstr "Страница была удалена, перемещена или временно недоступна."
 
 #: app/states/404/404.html:5
 msgid "The page you requested cannot be found."
-msgstr "Запрашиваемая страница не найдена"
+msgstr "Запрашиваемая страница не найдена."
 
-#: app/config/navigation.config.js:40
+#: app/config/navigation.config.js:78
+msgid "The total number of available arbitration profiles"
+msgstr ""
+
+#: app/config/navigation.config.js:88
+msgid "The total number of available arbitration rules"
+msgstr ""
+
+#: app/config/navigation.config.js:61
 msgid "The total number of available blueprints"
-msgstr "Общее количество доступных отпечатков"
+msgstr "Общее количество доступных шаблонов"
 
-#: app/config/navigation.config.js:34
+#: app/config/navigation.config.js:46
 msgid "The total number of available catalog items"
 msgstr "Общее количество доступных предметов в каталоге"
 
-#: app/config/navigation.config.js:28
+#: app/config/navigation.config.js:35
 msgid "The total number of requests that you have submitted"
 msgstr "Общее количество отправленных запросов"
 
-#: app/config/navigation.config.js:22
+#: app/config/navigation.config.js:24
 msgid ""
 "The total number of services that you have ordered, both active and retired"
 msgstr "Общее количество заказанных сервисов, активных и удаленных"
 
+#: app/states/marketplace/details/details.html:35
+msgid ""
+"There already is an identical item in the cart. Do you want to add it "
+"anyway?"
+msgstr ""
+
+#: app/components/tagging/tagging.html:15
+msgid "There are no tags for this item."
+msgstr ""
+
 #: app/states/error/error.html:10
 msgid "There was a problem loading the page."
-msgstr "Проблема загрузки страницы"
+msgstr "Проблема загрузки страницы."
+
+#: app/states/marketplace/details/details.state.js:120
+msgid "There was an error adding to shopping cart:"
+msgstr "Ошибка при добавлении в корзину:"
+
+#: app/services/profiles-state.service.js:164
+msgid "There was an error creating profile %s."
+msgstr ""
+
+#: app/services/rules-state.service.js:62
+msgid "There was an error creating this rule."
+msgstr ""
+
+#: app/services/blueprints-state.service.js:409
+msgid "There was an error deleting the blueprint(s)."
+msgstr ""
+
+#: app/services/profiles-state.service.js:215
+msgid "There was an error deleting the profile(s)."
+msgstr ""
+
+#: app/services/rules-state.service.js:126
+msgid "There was an error deleting the rule(s)."
+msgstr ""
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
-msgstr "Ошибка редактирования сервиса"
+msgstr "Ошибка редактирования сервиса."
 
-#: app/states/services/details/details.state.js:106
+#: app/services/consoles.service.js:37
+msgid "There was an error opening the console"
+msgstr "Ошибка при открытии консоли"
+
+#: app/services/consoles.service.js:38
+msgid "There was an error opening the console:"
+msgstr "Ошибка при открытии консоли:"
+
+#: app/states/services/details/details.state.js:118
 msgid "There was an error removing this service."
-msgstr "Ошибка удаления сервиса"
+msgstr "Ошибка удаления сервиса."
 
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
-#: app/states/services/details/details.state.js:128
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:80
+#: app/states/services/details/details.state.js:157
 msgid "There was an error retiring this service."
-msgstr "Ошибка удаления сервиса"
+msgstr "Ошибка удаления сервиса."
 
-#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:93
+#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:94
 msgid "There was an error saving ownership of this service."
-msgstr "Ошибка сохранения принадлежности сервиса"
+msgstr "Ошибка смены владельца сервиса."
 
-#: app/states/marketplace/details/details.state.js:101
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:339
+msgid "There was an error saving this Blueprint's Details."
+msgstr ""
+
+#: app/components/shopping-cart/shopping-cart.directive.js:51
 #: app/states/services/custom_button_details/custom_button_details.state.js:93
-#: app/states/services/reconfigure/reconfigure.state.js:112
+#: app/states/services/reconfigure/reconfigure.state.js:113
 msgid "There was an error submitting this request:"
 msgstr "Ошибка отправления запроса"
 
-#: app/states/services/details/details.html:164
+#: app/services/profiles-state.service.js:180
+msgid "There was an error updating profile %s."
+msgstr ""
+
+#: app/services/rules-state.service.js:77
+msgid "There was an error updating the rules."
+msgstr ""
+
+#: app/states/services/details/details.html:161
 msgid "This service has no associated VMs"
 msgstr "Нет ассоциированных с сервисом виртуальных машин"
 
-#: app/components/navigation/header-nav.html:4
-msgid "Toggle navigation"
-msgstr "Переключить навигацию"
+#: app/layouts/application.html:30
+msgid "Toggle notifications list"
+msgstr ""
 
 #: app/states/dashboard/dashboard.html:20
 msgid "Total Requests"
@@ -745,52 +1513,138 @@ msgstr "Общее количество запросов"
 msgid "Total Services"
 msgstr "Общее количество сервисов"
 
-#: app/states/login/login.state.js:41
-#: app/states/login/login.state.js:61
-msgid "User does not have privileges to login."
-msgstr "У пользователя не хватает полномочий для аутентификации"
+#: app/states/administration/rules/rules.html:47
+#: app/states/administration/rules/rules.html:87
+msgid "USE"
+msgstr ""
 
-#: app/states/login/login.html:12
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:50
+#: app/states/designer/blueprints/list/list.state.js:81
+#: app/states/designer/blueprints/list/list.state.js:82
+msgid "Unassigned"
+msgstr ""
+
+#: app/services/consoles.service.js:75
+msgid "Unsupported console protocol returned"
+msgstr "Неподдерживаемый протокол консоли"
+
+#: app/services/consoles.service.js:76
+msgid "Unsupported console protocol returned:"
+msgstr "Неподдерживаемый протокол консоли:"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:135
+#: app/services/blueprints-state.service.js:427
+#: app/states/designer/blueprints/editor/editor.html:10
+msgid "Untitled Blueprint"
+msgstr ""
+
+#: app/components/language-switcher/language-switcher.directive.js:28
+msgid "User Default"
+msgstr "По умолчанию как у пользователя"
+
+#: app/components/navigation/navigation-contoller.js:131
+msgid "User Name:"
+msgstr ""
+
+#: app/components/navigation/navigation-contoller.js:132
+msgid "User Role:"
+msgstr ""
+
+#: app/states/login/login.state.js:40
+#: app/states/login/login.state.js:63
+msgid "User does not have privileges to login."
+msgstr "У пользователя не хватает полномочий для входа."
+
+#: app/states/login/login.html:15
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: app/states/services/list/list.html:30
+#: app/states/services/list/list.html:34
 msgid "VMs"
 msgstr "ВМ"
 
-#: app/states/services/details/details.html:176
+#: app/states/services/details/details.html:173
 msgid "Vendor"
 msgstr "Вендор"
 
-#: app/states/services/details/details.html:163
-msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
-msgstr "Виртуальные машины ({{ ::vm.service.vms.length }})"
+#: app/components/navigation/navigation-contoller.js:129
+msgid "Version:"
+msgstr ""
+
+#: app/states/administration/profiles/profiles.state.js:206
+msgid "View"
+msgstr ""
+
+#: app/states/administration/profiles/profiles.state.js:207
+msgid "View Profile"
+msgstr ""
+
+#: app/states/administration/profiles/details/details.state.js:41
+msgid "View Profile: %s"
+msgstr ""
+
+#: app/states/services/details/details.html:160
+msgid "Virtual Machines ({{ ::vm.vms.length }})"
+msgstr "Виртуальных машин ({{ ::vm.vms.length }})"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:24
+#: app/states/designer/blueprints/list/list.state.js:147
+#: app/states/designer/blueprints/list/list.state.js:190
+msgid "Visibility"
+msgstr ""
+
+#: app/services/consoles.service.js:30
+msgid "Waiting for the console to become ready"
+msgstr "Ожидание готовности консоли"
+
+#: app/services/consoles.service.js:31
+msgid "Waiting for the console to become ready:"
+msgstr "Ожидание готовности консоли:"
 
 #: app/states/404/404.html:7
 #: app/states/error/error.html:13
 msgid "We apologize for the inconvenience."
-msgstr "Приносим извинения за предоставленные неудобства"
+msgstr "Приносим извинения за доставленные неудобства."
 
-#: app/states/services/details/details.html:43
+#: app/states/services/details/details.html:41
 msgid "Yes, Remove Service"
-msgstr "Подтверждаю удаление сервиса"
+msgstr "Да, удалить сервис"
 
-#: app/states/services/details/details.html:58
+#: app/states/services/details/details.html:55
 msgid "Yes, Retire Service Now"
 msgstr "Да, удалить сервис немедленно"
 
-#: app/config/authorization.config.js:47
+#: app/config/authorization.config.js:48
 msgid "Your session has timed out."
-msgstr "Время сессии истекло"
+msgstr "Время сессии истекло."
+
+#: app/states/services/list/list.html:32
+msgid "[[number]] VMs"
+msgstr ""
+
+#: app/config/gettext.config.js:33
+msgid "locale_name"
+msgstr "локаль"
+
+#: app/states/requests/list/list.html:31
+msgid "ordered"
+msgstr "заказан"
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
 msgid "was edited."
-msgstr "был отредактирован"
+msgstr "был отредактирован."
 
-#: app/states/services/details/details.state.js:101
+#: app/states/services/details/details.state.js:113
 msgid "was removed."
-msgstr "был удален"
+msgstr "был удален."
 
-#: app/states/services/details/details.state.js:123
+#: app/states/services/details/details.state.js:152
 msgid "was retired."
 msgstr "был удален."
+
+#: app/states/requests/list/list.html:35
+msgid "{{ $count }} item"
+msgid_plural "{{ $count }} items"
+msgstr[0] "{{ $count }} элемент"
+msgstr[1] "{{ $count }} элемента"
+msgstr[2] "{{ $count }} элементов"
