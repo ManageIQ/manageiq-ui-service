@@ -20,7 +20,7 @@
           </span>
         </span>
       </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
         <span class="no-wrap">
           <strong translate>Retirement Date</strong>&nbsp;
           <span ng-if=(item.retires_on) tooltip="{{ item.retires_on | date }}" tooltip-placement="bottom">
@@ -61,6 +61,19 @@
           <span tooltip="{{ item.created_at | date }}" tooltip-placement="bottom">
             {{ item.created_at | date }}
           </span>
+        </span>
+      </div>
+      <div class="col-lg-2 hidden-md hidden-sm hidden-xs pull-right">
+        <span class="no-wrap">
+          <strong translate>Power State</strong>&nbsp;
+          <i class="fa fa-circle green fa-3x fa-fw" ng-if="item.powerState === 'on'" tooltip="{{'Power State: On'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-circle red fa-3x fa-fw" ng-if="item.powerState === 'off'" tooltip="{{'Power State: Off'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-circle orange fa-3x fa-fw" ng-if="item.powerState === 'suspended'" tooltip="{{'Power State: Suspended'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-adjust orange fa-3x fa-fw" ng-if="item.powerState === 'on_partial'" tooltip="{{'Power State: Partially processed'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-spinner fa-pulse green fa-3x fa-fw" ng-if="item.powerState === 'starting'" tooltip="{{'Power State: Starting...'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-spinner fa-pulse red fa-3x fa-fw" ng-if="item.powerState === 'stopping'" tooltip="{{'Power State: Stopping...'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-spinner fa-pulse orange fa-3x fa-fw" ng-if="item.powerState === 'suspending'" tooltip="{{'Power State: Suspending...'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-question-circle blue fa-3x fa-fw" ng-if="item.powerState === ''" tooltip="{{'Power State: Unknown'|translate}}" tooltip-placement="bottom"></i>
         </span>
       </div>
     </div>
