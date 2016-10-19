@@ -150,6 +150,13 @@
       sortChange(ServicesState.getSort().currentField, ServicesState.getSort().isAscending);
     }
 
+    vm.enableButtonForItemFn = function (action, item) {
+      return item.powerState !== "on"
+        && item.powerState !== "starting"
+        && item.powerState !== "stopping"
+        && item.powerState !== "suspending";
+    };
+
     function startService(action, item) {
       item.powerState = 'starting';
       CollectionsApi.post('services', item.id, {}, {action: 'start'}).then(startSuccess, startFailure);
