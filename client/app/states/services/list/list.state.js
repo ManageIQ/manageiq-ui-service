@@ -165,6 +165,12 @@
         || item.powerState === "suspending";
     };
 
+    vm.updateMenuActionForItemFn = function(action, item) {
+      if (item.powerState === 'suspended' && action.name === __('Suspend')) {
+        action.isDisabled = true;
+      }
+    };
+
     function startService(action, item) {
       item.powerState = 'starting';
       CollectionsApi.post('services', item.id, {}, {action: 'start'}).then(startSuccess, startFailure);
