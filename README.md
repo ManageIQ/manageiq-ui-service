@@ -43,6 +43,7 @@ Logging in to the SUI requires a running instance of ManageIQ. Instructions on h
 http://localhost:3000 order and serve up the REST API.
   Either one of the following commands can be used.
   - `MIQ_SPARTAN=minimal rake evm:start`
+  - `rails s`
  
 - From the `manageiq-ui-service` directory, start the development version of
   the service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
