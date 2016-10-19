@@ -1,3 +1,5 @@
+# Milan Zázrivec <mzazrivec@redhat.com>, 2016. #zanata
+# asasaki <asasaki@redhat.com>, 2016. #zanata
 # miey <myamamot@redhat.com>, 2016. #zanata
 # noriko <noriko@fedoraproject.org>, 2016. #zanata
 msgid ""
@@ -6,45 +8,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-04-06 09:11-0400\n"
-"Last-Translator: noriko <noriko@fedoraproject.org>\n"
+"PO-Revision-Date: 2016-10-17 06:53-0400\n"
+"Last-Translator: asasaki <asasaki@redhat.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"X-Generator: Zanata 3.8.3\n"
+"X-Generator: Zanata 3.9.5\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: app/components/navigation/header-nav.html:42
+#: app/components/notifications/notification-body.html:22
+#: app/components/notifications/notification-body.html:46
+msgid "% Complete"
+msgstr "% 完了"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:321
+msgid "%s was created."
+msgstr "%s が作成されました。"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:330
+msgid "%s was published."
+msgstr "%s が公開されました。"
+
+#: app/states/designer/blueprints/editor/editorCtrl.js:64
+msgid "'%s' was succesfully saved."
+msgstr "'%s' が正常に保存されました。"
+
+#: app/layouts/application.html:75
 msgid "(Current Group)"
 msgstr "(現在のグループ)"
 
-#: app/components/retire-service-modal/retire-service-modal.html:12
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:59
 msgid "1 Week"
 msgstr "1 週間"
 
-#: app/components/retire-service-modal/retire-service-modal.html:13
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:60
 msgid "2 Weeks"
 msgstr "2 週間"
 
-#: app/components/retire-service-modal/retire-service-modal.html:14
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:61
 msgid "3 Weeks"
 msgstr "3 週間"
 
-#: app/components/retire-service-modal/retire-service-modal.html:15
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:62
 msgid "4 Weeks"
 msgstr "4 週間"
 
+#: app/layouts/application.html:52
+msgid "About"
+msgstr "情報"
+
 #: app/states/about-me/about-me.html:1
 #: app/states/about-me/about-me.state.js:20
-#: app/states/about-me/about-me.state.js:29
 msgid "About Me"
 msgstr "ユーザー詳細"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:85
+msgid "Action Order"
+msgstr "アクション順序"
 
 #: app/components/custom-button/custom-button.directive.js:120
 #: app/components/custom-button/custom-button.directive.js:132
 msgid "Action not able to submit."
 msgstr "アクションを送信できません。"
 
-#: app/states/products/details/details.state.js:35
+#: app/states/products/details/details.state.js:33
 msgid "Activated Products Details View"
 msgstr "作動している製品の詳細表示"
 
@@ -52,7 +78,32 @@ msgstr "作動している製品の詳細表示"
 msgid "Active"
 msgstr "動作中"
 
-#: app/states/requests/list/list.state.js:81
+#: app/states/designer/blueprints/editor/editor.html:22
+msgid "Add Item"
+msgstr "項目の追加"
+
+#: app/states/administration/profiles/editor/editor.html:18
+#: app/states/administration/profiles/editor/editor.state.js:56
+msgid "Add Profile"
+msgstr "プロファイルの追加"
+
+#: app/states/marketplace/details/details.html:36
+#: app/states/marketplace/details/details.html:41
+msgid "Add to Shopping Cart"
+msgstr "ショッピングカートに追加"
+
+#: app/config/navigation.config.js:68
+#: app/states/administration/profiles/profiles.html:5
+#: app/states/administration/rules/rules.html:5
+msgid "Administration"
+msgstr "管理"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:75
+msgid "Advanced Options"
+msgstr "詳細オプション"
+
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:346
 msgid "Approved"
 msgstr "承認済み"
 
@@ -60,21 +111,54 @@ msgstr "承認済み"
 msgid "Approved Requests"
 msgstr "承認済みの要求"
 
-#: app/states/requests/details/details.html:73
+#: app/states/requests/details/details.html:72
 msgid "Approver"
 msgstr "承認者"
 
-#: app/components/confirmation/confirmation.directive.js:95
+#: app/states/administration/profiles/profiles.html:16
+msgid "Are you sure you want to delete profile [[profile_name]]?"
+msgstr "このプロファイル  [[profile_name]] を削除してもよいですか?"
+
+#: app/states/administration/rules/rules.html:131
+msgid "Are you sure you want to delete this rule?"
+msgstr "このルールを削除してもよいですか?"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:8
+#, fuzzy
+msgid "Are you sure you want to delete {{vm.blueprintsList[0].name}}?"
+msgid_plural "Are you sure you want to delete {{$count}} blueprints?"
+msgstr[0] "{{vm.blueprintsList[0].name}} を削除してもよいですか?"
+
+#: app/components/confirmation/confirmation.directive.js:106
 msgid "Are you sure you wish to proceed?"
-msgstr "本当に続行してもよいですか?"
+msgstr "続行してもよいですか?"
+
+#: app/components/notifications/notification-footer.html:14
+msgid "Are you sure you would like to clear all [[heading]]?"
+msgstr "すべての [[heading]] を消去してもよいですか?"
+
+#: app/states/administration/profiles/details/details.html:68
+#: app/states/administration/profiles/editor/editor.html:72
+msgid "Availability Zone"
+msgstr "アベイラビリティーゾーン"
+
+#: app/states/designer/blueprints/editor/editor.html:5
+msgid "Back to Blueprints"
+msgstr "ブループリントに戻る"
 
 #: app/states/requests/details/details.html:3
+#: app/states/requests/order_details/order_details.html:3
 msgid "Back to My Requests"
 msgstr "マイリクエストに戻る"
 
 #: app/states/services/details/details.html:3
 msgid "Back to My Services"
 msgstr "マイサービスに戻る"
+
+#: app/states/administration/profiles/details/details.html:3
+#: app/states/administration/profiles/editor/editor.html:3
+msgid "Back to Profiles"
+msgstr "プロファイルに戻る"
 
 #: app/states/services/custom_button_details/custom_button_details.html:7
 #: app/states/services/reconfigure/reconfigure.html:3
@@ -86,59 +170,161 @@ msgstr "サービスに戻る"
 msgid "Back to Service Catalog"
 msgstr "サービスカタログに戻る"
 
-#: app/states/blueprints/list/list.state.js:19
-#: app/states/blueprints/list/list.state.js:29
+#: app/states/designer/blueprints/editor/editor.html:34
+msgid "Blueprint Details"
+msgstr "ブループリントの詳細"
+
+#: app/states/designer/blueprints/editor/editor.html:7
+msgid "Blueprint Editor:"
+msgstr "ブループリントエディター:"
+
+#: app/states/designer/blueprints/list/list.state.js:20
+#: app/states/designer/blueprints/list/list.state.js:71
 msgid "Blueprint List"
 msgstr "ブループリント一覧"
 
-#: app/config/navigation.config.js:37
+#: app/services/blueprints-state.service.js:404
+msgid "Blueprint(s) were succesfully deleted."
+msgstr "ブループリントが正常に削除されました。"
+
+#: app/config/navigation.config.js:56
 msgid "Blueprints"
 msgstr "ブループリント"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:100
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:111
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:88
+msgid "Browse"
+msgstr "参照"
+
+#: app/components/language-switcher/language-switcher.directive.js:29
+msgid "Browser Default"
+msgstr "ブラウザーのデフォルト"
 
 #: app/components/custom-button/custom-button.directive.js:100
 msgid "Button action not supported."
 msgstr "ボタンアクションには対応していません。"
 
-#: app/states/services/details/details.html:116
+#: app/states/services/details/details.html:113
 msgid "CPU"
 msgstr "CPU"
 
-#: app/components/confirmation/confirmation.directive.js:97
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:17
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:156
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:11
+#: app/components/confirmation/confirmation.directive.js:108
+#: app/components/create-catalog-modal/create-catalog-modal.html:12
 #: app/components/edit-service-modal/edit-service-modal.html:21
 #: app/components/ownership-service-modal/ownership-service-modal.html:32
-#: app/components/retire-service-modal/retire-service-modal.html:24
-#: app/states/services/reconfigure/reconfigure.html:24
+#: app/components/retire-service-modal/retire-service-modal.html:19
+#: app/states/administration/profiles/editor/editor.html:135
+#: app/states/administration/profiles/editor/save-profile-modal.html:11
+#: app/states/administration/rules/rules.html:107
+#: app/states/administration/rules/save-rule-modal.html:11
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:11
+#: app/states/services/reconfigure/reconfigure.html:22
 msgid "Cancel"
 msgstr "取り消し"
 
-#: app/states/marketplace/list/list.state.js:105
-#: app/states/marketplace/list/list.state.js:86
+#: app/states/designer/blueprints/list/list.state.js:235
+msgid "Cannot publish a blueprint with no service items."
+msgstr "サービス項目のないブループリントを公開できません。"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:43
+#: app/states/designer/blueprints/list/list.state.js:154
+#: app/states/designer/blueprints/list/list.state.js:195
+msgid "Catalog"
+msgstr "カタログ"
+
+#: app/states/marketplace/list/list.state.js:110
+#: app/states/marketplace/list/list.state.js:91
 msgid "Catalog Name"
 msgstr "カタログ名"
 
-#: app/components/navigation/header-nav.html:34
+#: app/layouts/application.html:67
 msgid "Change Group:"
 msgstr "グループの変更:"
 
-#: app/components/navigation/header-nav.html:46
+#: app/layouts/application.html:79
 msgid "Change to this Group"
-msgstr "このグループに変更する"
+msgstr "このグループに変更"
 
-#: app/states/services/details/details.html:42
+#: app/components/shopping-cart/shopping-cart.html:46
+msgid "Clear"
+msgstr "消去"
+
+#: app/components/notifications/notification-footer.html:15
+#: app/components/notifications/notification-footer.html:20
+msgid "Clear All"
+msgstr "すべて消去"
+
+#: app/components/notifications/notification-footer.html:13
+msgid "Clear All [[heading]]"
+msgstr "すべての [[heading]] を消去"
+
+#: app/components/shopping-cart/shopping-cart.html:38
+msgid "Close"
+msgstr "閉じる"
+
+#: app/states/administration/profiles/details/details.html:80
+#: app/states/administration/profiles/editor/editor.html:92
+msgid "Cloud Network"
+msgstr "クラウドネットワーク"
+
+#: app/states/administration/profiles/details/details.html:86
+#: app/states/administration/profiles/editor/editor.html:103
+msgid "Cloud Subnet"
+msgstr "クラウドサブネット"
+
+#: app/components/notifications/notification-body.html:52
+msgid "Completed:"
+msgstr "完了:"
+
+#: app/states/services/details/details.html:40
 msgid "Confirm, would you like to remove this service?"
-msgstr "確認、このサービスを削除しますか？"
+msgstr "(確認) このサービスを削除しますか？"
 
-#: app/states/services/details/details.html:57
+#: app/states/services/details/details.html:54
 msgid "Confirm, would you like to retire this service?"
-msgstr "確認、このサービスをリタイアさせますか？"
+msgstr "(確認) このサービスをリタイアさせますか？"
 
-#: app/states/services/list/list.state.js:124
-#: app/states/services/list/list.state.js:91
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:90
+#: app/states/administration/profiles/profiles.state.js:279
+#: app/states/administration/rules/rules.html:18
+#: app/states/designer/blueprints/editor/editor.html:95
+#: app/states/designer/blueprints/list/list.state.js:206
+msgid "Create"
+msgstr "作成"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:89
+msgid "Create Blueprint"
+msgstr "ブループリントの作成"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:54
+#: app/components/create-catalog-modal/create-catalog-modal.html:5
+msgid "Create Catalog"
+msgstr "カタログの作成"
+
+#: app/states/designer/blueprints/list/list.state.js:207
+msgid "Create a new Blueprint"
+msgstr "新規ブループリントの作成"
+
+#: app/states/administration/profiles/profiles.state.js:280
+msgid "Create a new Profile"
+msgstr "新規プロファイルの作成"
+
+#: app/states/administration/rules/rules.html:16
+msgid "Create a new rule"
+msgstr "新規ルールの作成"
+
+#: app/states/administration/profiles/details/details.html:29
+#: app/states/services/list/list.state.js:127
+#: app/states/services/list/list.state.js:94
 msgid "Created"
 msgstr "作成"
 
-#: app/states/services/details/details.html:106
-#: app/states/services/list/list.html:40
+#: app/states/services/details/details.html:103
+#: app/states/services/list/list.html:48
 msgid "Created On"
 msgstr "作成日"
 
@@ -146,11 +332,11 @@ msgstr "作成日"
 msgid "Creation Date"
 msgstr "作成日"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:78
 msgid "Current"
 msgstr "現在"
 
-#: app/components/navigation/header-nav.html:53
+#: app/layouts/application.html:86
 msgid "Current Group"
 msgstr "現在のグループ"
 
@@ -158,7 +344,7 @@ msgstr "現在のグループ"
 msgid "Current Services"
 msgstr "現在のサービス"
 
-#: app/components/navigation/header-nav.html:40
+#: app/layouts/application.html:73
 msgid "Currently Selected Group"
 msgstr "現在選択されているグループ"
 
@@ -175,13 +361,37 @@ msgstr "カスタムのボタン:"
 msgid "Custom button action"
 msgstr "カスタムのボタンアクション"
 
-#: app/config/navigation.config.js:14
-#: app/states/dashboard/dashboard.state.js:154
+#: app/config/navigation.config.js:13
 #: app/states/dashboard/dashboard.state.js:20
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: app/states/requests/list/list.state.js:81
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:18
+#: app/states/administration/profiles/profiles.html:17
+#: app/states/administration/profiles/profiles.state.js:216
+#: app/states/administration/rules/rules.html:132
+#: app/states/designer/blueprints/list/list.state.js:130
+#: app/states/designer/blueprints/list/list.state.js:211
+msgid "Delete"
+msgstr "削除"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:5
+#: app/states/designer/blueprints/list/list.state.js:131
+#: app/states/designer/blueprints/list/list.state.js:212
+msgid "Delete Blueprint"
+msgstr "ブループリントの削除"
+
+#: app/states/administration/profiles/profiles.html:15
+#: app/states/administration/profiles/profiles.state.js:217
+msgid "Delete Profile"
+msgstr "プロファイルの削除"
+
+#: app/states/administration/rules/rules.html:130
+msgid "Delete Rule"
+msgstr "ルールの削除"
+
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:344
 msgid "Denied"
 msgstr "拒否"
 
@@ -189,104 +399,247 @@ msgstr "拒否"
 msgid "Denied Requests"
 msgstr "拒否された要求"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:19
 #: app/components/edit-service-modal/edit-service-modal.html:13
-#: app/states/marketplace/list/list.state.js:80
-#: app/states/requests/list/list.state.js:60
-#: app/states/requests/list/list.state.js:92
+#: app/states/administration/profiles/editor/editor.html:35
+#: app/states/marketplace/list/list.state.js:85
+#: app/states/requests/list/list.state.js:115
+#: app/states/requests/list/list.state.js:77
 msgid "Description"
 msgstr "説明"
 
-#: app/states/services/details/details.html:128
+#: app/config/navigation.config.js:51
+msgid "Designer"
+msgstr "デザイナー"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:61
+msgid "Dialog"
+msgstr "ダイアログ"
+
+#: app/states/services/details/details.html:125
 msgid "Disk Count"
 msgstr "ディスク数"
 
-#: app/states/services/details/details.html:134
+#: app/states/services/details/details.html:131
 msgid "Disk Space Allocated"
 msgstr "割り当てディスク領域"
 
-#: app/states/services/details/details.html:140
+#: app/states/services/details/details.html:137
 msgid "Disk Space Used"
 msgstr "使用ディスク領域"
 
+#: app/states/administration/profiles/editor/save-profile-modal.html:12
+#: app/states/administration/rules/save-rule-modal.html:12
+msgid "Do Not Save"
+msgstr "保存しない"
+
+#: app/layouts/application.html:42
+msgid "Documentation"
+msgstr "ドキュメント"
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:12
+msgid "Don't Save"
+msgstr "保存しない"
+
+#: app/states/designer/blueprints/list/list.html:45
+msgid "Draft"
+msgstr "ドラフト"
+
+#: app/components/shopping-cart/shopping-cart.html:22
+#: app/states/designer/blueprints/editor/editor.html:25
+#: app/states/designer/blueprints/list/list.state.js:125
+msgid "Duplicate"
+msgstr "複製"
+
+#: app/states/designer/blueprints/list/list.state.js:126
+msgid "Duplicate Blueprint"
+msgstr "ブループリントの複製"
+
+#: app/states/marketplace/details/details.html:34
+msgid "Duplicate Shopping Cart Item"
+msgstr "ショッピングカート項目の複製"
+
+#: app/states/designer/blueprints/list/list.state.js:229
+msgid "Duplicate blueprint feature not available."
+msgstr "ブループリント機能を複製することができません。"
+
+#: app/states/administration/profiles/details/details.html:108
+#: app/states/administration/profiles/profiles.state.js:211
+#: app/states/designer/blueprints/list/list.state.js:120
+msgid "Edit"
+msgstr "編集"
+
+#: app/states/designer/blueprints/list/list.state.js:121
+msgid "Edit Blueprint"
+msgstr "ブループリントの編集"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:97
+#: app/states/designer/blueprints/editor/editor.html:36
+msgid "Edit Blueprint Details"
+msgstr "ブループリントの詳細を編集"
+
+#: app/states/administration/profiles/editor/editor.html:17
+#: app/states/administration/profiles/profiles.state.js:212
+msgid "Edit Profile"
+msgstr "プロファイルの編集"
+
+#: app/states/administration/profiles/editor/editor.state.js:54
+msgid "Edit Profile: %s"
+msgstr "プロファイルの編集: %s"
+
 #: app/components/edit-service-modal/edit-service-modal.html:5
-#: app/states/services/details/details.html:65
+#: app/states/services/details/details.html:62
 msgid "Edit Service"
 msgstr "サービスの編集"
+
+#: app/states/administration/rules/rules.html:71
+msgid "Enter a value"
+msgstr "値の入力"
 
 #: app/states/error/error.state.js:21
 msgid "Error"
 msgstr "エラー"
 
-#: app/config/authorization.config.js:105
+#: app/config/authorization.config.js:111
 msgid "Error retrieving user info"
 msgstr "ユーザー情報の取得時にエラー"
 
-#: app/states/marketplace/list/list.state.js:87
+#: app/states/designer/blueprints/editor/editorCtrl.js:80
+msgid "Failed to save '%s'."
+msgstr "'%s' の保存に失敗しました。"
+
+#: app/states/designer/blueprints/list/list.state.js:155
+msgid "Filter by Catalog"
+msgstr "カタログでフィルター"
+
+#: app/states/marketplace/list/list.state.js:92
 msgid "Filter by Catalog Name"
 msgstr "カタログ名でフィルター"
 
-#: app/states/services/list/list.state.js:92
+#: app/states/services/list/list.state.js:95
 msgid "Filter by Created On"
 msgstr "作成日でフィルター"
 
-#: app/states/marketplace/list/list.state.js:81
-#: app/states/requests/list/list.state.js:61
+#: app/states/marketplace/list/list.state.js:86
+#: app/states/requests/list/list.state.js:78
 msgid "Filter by Description"
 msgstr "説明でフィルター"
 
-#: app/states/requests/list/list.state.js:67
+#: app/states/requests/list/list.state.js:157
+#: app/states/requests/list/list.state.js:84
 msgid "Filter by ID"
 msgstr "ID でフィルター"
 
-#: app/states/marketplace/list/list.state.js:75
-#: app/states/services/list/list.state.js:67
+#: app/states/administration/profiles/profiles.state.js:228
+#: app/states/designer/blueprints/list/list.state.js:142
+#: app/states/marketplace/list/list.state.js:80
+#: app/states/requests/list/list.state.js:151
+#: app/states/services/list/list.state.js:70
 msgid "Filter by Name"
 msgstr "名前でフィルター"
 
-#: app/states/services/list/list.state.js:86
+#: app/states/requests/list/list.state.js:163
+msgid "Filter by Order Date"
+msgstr "オーダー日付でフィルター"
+
+#: app/states/services/list/list.state.js:89
 msgid "Filter by Owner"
 msgstr "所有者でフィルター"
 
-#: app/states/requests/list/list.state.js:73
+#: app/states/administration/profiles/profiles.state.js:234
+msgid "Filter by Provider Name"
+msgstr "プロバイダー名でフィルター"
+
+#: app/states/administration/profiles/profiles.state.js:240
+msgid "Filter by Provider Type"
+msgstr "プロバイダータイプでフィルター"
+
+#: app/states/designer/blueprints/list/list.state.js:162
+msgid "Filter by Publish State"
+msgstr "公開状態でフィルター"
+
+#: app/states/requests/list/list.state.js:96
 msgid "Filter by Request Date"
 msgstr "要求日でフィルター"
 
-#: app/states/services/list/list.state.js:73
+#: app/states/requests/list/list.state.js:90
+msgid "Filter by Requester"
+msgstr "要求ユーザーでフィルター"
+
+#: app/states/services/list/list.state.js:76
 msgid "Filter by Retirement Date"
 msgstr "リタイア日でフィルター"
 
-#: app/states/requests/list/list.state.js:79
+#: app/states/requests/list/list.state.js:102
 msgid "Filter by Status"
 msgstr "ステータスでフィルター"
 
-#: app/states/services/list/list.state.js:80
+#: app/states/services/list/list.state.js:83
 msgid "Filter by VMs"
 msgstr "仮想マシンでフィルター"
 
-#: app/components/confirmation/confirmation.directive.js:54
-#: app/components/confirmation/confirmation.directive.js:59
-msgid "For Sizing"
-msgstr "サイズの拡大縮小"
+#: app/states/designer/blueprints/list/list.state.js:148
+msgid "Filter by Visibility"
+msgstr "可視性でフィルター"
 
-#: app/states/services/details/details.html:100
+#: app/states/designer/blueprints/editor/editor.html:100
+msgid "Filter by name"
+msgstr "名前でフィルター"
+
+#: app/states/administration/profiles/details/details.html:74
+#: app/states/administration/profiles/editor/editor.html:82
+msgid "Flavor"
+msgstr "フレーバー"
+
+#: app/components/confirmation/confirmation.directive.js:65
+#: app/components/confirmation/confirmation.directive.js:70
+msgid "For Sizing"
+msgstr "サイズの拡大/縮小"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:82
+msgid "General"
+msgstr "全般"
+
+#: app/states/services/details/details.html:97
 msgid "Group"
 msgstr "グループ"
 
 #: app/states/help/help.html:1
 #: app/states/help/help.state.js:20
-#: app/states/help/help.state.js:29
 msgid "Help"
 msgstr "ヘルプ"
+
+#: app/states/designer/blueprints/editor/editor.html:44
+msgid "Hide Connectors"
+msgstr "コネクターの非表示"
 
 #: app/states/products/details/details.html:56
 msgid "Hourly"
 msgstr "毎時"
 
-#: app/states/requests/list/list.html:24
+#: app/components/request-list/request-list.html:15
+#: app/states/requests/list/list.html:26
 msgid "ID"
 msgstr "ID"
 
-#: app/states/services/details/details.html:49
+#: app/states/administration/rules/rules.html:35
+#: app/states/administration/rules/rules.html:59
+msgid "IF"
+msgstr "IF"
+
+#: app/states/administration/rules/save-rule-modal.html:8
+msgid "If you do not save, any changes will be lost."
+msgstr "保存しないと、変更は失われます。"
+
+#: app/states/administration/profiles/editor/save-profile-modal.html:8
+msgid "If you do not save, your changes will be lost."
+msgstr "保存しないと、変更は失われます。"
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:8
+msgid "If you don't save, your changes will be lost."
+msgstr "保存しないと、変更は失われます。"
+
+#: app/states/services/details/details.html:47
 msgid "Inactivate the service"
 msgstr "サービスをリタイアさせる"
 
@@ -298,48 +651,83 @@ msgstr "休止中"
 msgid "Incorrect username or password."
 msgstr "ユーザー名またはパスワードが間違っています。"
 
-#: app/states/requests/details/details.html:83
+#: app/states/services/details/details.html:168
+msgid "Instance name"
+msgstr "インスタンス名"
+
+#: app/states/marketplace/details/details.state.js:113
+msgid "Item added to shopping cart"
+msgstr "ショッピングカートに追加された項目"
+
+#: app/states/marketplace/details/details.state.js:111
+msgid "Item added to shopping cart, but it's a duplicate of an existing item"
+msgstr "ショッピングカートに項目が追加されましたが、これは既存項目の複製です。"
+
+#: app/states/designer/blueprints/list/list.html:23
+#: app/states/designer/blueprints/list/list.state.js:185
+msgid "Items"
+msgstr "項目"
+
+#: app/states/administration/profiles/details/details.html:62
+#: app/states/administration/profiles/editor/editor.html:62
+msgid "Key Pair"
+msgstr "キーペア"
+
+#: app/states/login/login.html:31
+msgid "Language"
+msgstr "言語"
+
+#: app/states/requests/details/details.html:82
 msgid "Last Message"
 msgstr "最後のメッセージ"
 
-#: app/states/services/details/details.html:186
+#: app/states/administration/profiles/details/details.html:35
+#: app/states/administration/profiles/profiles.html:44
+#: app/states/administration/profiles/profiles.state.js:258
+#: app/states/designer/blueprints/list/list.html:17
+#: app/states/designer/blueprints/list/list.state.js:180
+msgid "Last Modified"
+msgstr "最終変更日"
+
+#: app/states/services/details/details.html:183
 msgid "Last Scan"
 msgstr "最後のスキャン"
 
 #: app/states/products/details/details.html:38
-#: app/states/requests/details/details.html:91
+#: app/states/requests/details/details.html:90
 msgid "Last Updated"
 msgstr "最終更新日"
 
-#: app/states/login/login.html:39
+#: app/states/login/login.html:37
 msgid "Log In"
 msgstr "ログイン"
 
-#: app/components/navigation/header-nav.html:19
+#: app/layouts/application.html:18
 msgid "Log into the full administrative UI"
-msgstr "管理詳細 UI にログインする"
+msgstr "管理詳細 UI にログイン"
 
 #: app/states/login/login.state.js:20
-#: app/states/login/login.state.js:32
 msgid "Login"
 msgstr "ログイン"
 
-#: app/components/navigation/header-nav.html:61
+#: app/layouts/application.html:96
 #: app/states/logout/logout.state.js:18
-#: app/states/logout/logout.state.js:27
 msgid "Logout"
 msgstr "ログアウト"
 
-#: app/skin/skin.module.js:8
 #: app/states/error/error.html:3
 msgid "ManageIQ Self Service"
 msgstr "ManageIQ セルフサービス"
 
-#: app/states/services/details/details.html:122
+#: app/components/notifications/notification-footer.html:6
+msgid "Mark All Read"
+msgstr "すべてを既読にする"
+
+#: app/states/services/details/details.html:119
 msgid "Memory"
 msgstr "メモリー"
 
-#: app/states/services/details/details.html:147
+#: app/states/services/details/details.html:144
 msgid "Memory on Disk"
 msgstr "ディスクのメモリー"
 
@@ -351,20 +739,36 @@ msgstr "毎月"
 msgid "More"
 msgstr "詳細"
 
-#: app/config/navigation.config.js:25
+#: app/states/requests/list/list.html:9
+msgid "My Orders"
+msgstr "マイオーダー"
+
+#: app/config/navigation.config.js:29
+#: app/states/requests/list/list.html:2
 msgid "My Requests"
 msgstr "マイリクエスト"
 
-#: app/config/navigation.config.js:19
+#: app/config/navigation.config.js:18
 msgid "My Services"
 msgstr "マイサービス"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:13
 #: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/services/blueprints-state.service.js:14
+#: app/services/marketplace-state.service.js:13
+#: app/services/profiles-state.service.js:71
 #: app/services/services-state.service.js:14
-#: app/states/marketplace/list/list.state.js:100
-#: app/states/marketplace/list/list.state.js:74
-#: app/states/services/list/list.state.js:104
-#: app/states/services/list/list.state.js:66
+#: app/states/administration/profiles/editor/editor.html:29
+#: app/states/administration/profiles/profiles.state.js:227
+#: app/states/administration/profiles/profiles.state.js:253
+#: app/states/designer/blueprints/list/list.state.js:141
+#: app/states/designer/blueprints/list/list.state.js:175
+#: app/states/marketplace/list/list.state.js:105
+#: app/states/marketplace/list/list.state.js:79
+#: app/states/requests/list/list.state.js:150
+#: app/states/requests/list/list.state.js:175
+#: app/states/services/list/list.state.js:107
+#: app/states/services/list/list.state.js:69
 msgid "Name"
 msgstr "名前"
 
@@ -372,31 +776,76 @@ msgstr "名前"
 msgid "Never"
 msgstr "なし"
 
+#: app/components/notifications/heading.html:2
+#: app/components/notifications/subheading.html:1
+msgid "New"
+msgstr "新規"
+
 #: app/components/dialog-content/dialog-content.html:3
 msgid "No Provisioning Dialog Available."
-msgstr "利用できるプロビジョニングダイアログがありません。"
+msgstr "利用できるプロビジョニングダイアログはありません。"
 
-#: app/components/retire-service-modal/retire-service-modal.html:11
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:58
 msgid "No Warning"
 msgstr "警告なし"
 
-#: app/states/services/list/list.state.js:114
-#: app/states/services/list/list.state.js:79
+#: app/components/flowchart/flowchart_template.html:15
+msgid "No available connections! Click on the canvas to cancel"
+msgstr "利用できる接続はありません! 取り消す Canvas をクリックします。"
+
+#: app/layouts/application.html:7
+msgid "Notifications"
+msgstr "通知設定"
+
+#: app/states/services/list/list.state.js:117
+#: app/states/services/list/list.state.js:82
 msgid "Number of VMs"
 msgstr "仮想マシン数"
 
-#: app/states/services/details/details.html:94
-#: app/states/services/list/list.html:35
-#: app/states/services/list/list.state.js:119
-#: app/states/services/list/list.state.js:85
+#: app/states/services/details/details.html:199
+msgid "Open Cockpit console for this VM"
+msgstr "この仮想マシンのコックピットコンソールを開く"
+
+#: app/states/services/details/details.html:196
+msgid "Open a HTML5 console for this VM"
+msgstr "この仮想マシンの HTML5 コンソールを開く"
+
+#: app/components/shopping-cart/shopping-cart.html:54
+msgid "Order"
+msgstr "オーダー"
+
+#: app/services/orders-state.service.js:13
+#: app/states/requests/list/list.state.js:162
+#: app/states/requests/list/list.state.js:185
+msgid "Order Date"
+msgstr "オーダー日付"
+
+#: app/states/requests/order_details/order_details.state.js:19
+msgid "Order Details"
+msgstr "オーダー詳細"
+
+#: app/states/requests/list/list.state.js:156
+#: app/states/requests/list/list.state.js:180
+msgid "Order ID"
+msgstr "オーダー ID"
+
+#: app/states/requests/order_details/order_details.html:5
+msgid "Orders:"
+msgstr "オーダー :"
+
+#: app/states/services/details/details.html:91
+#: app/states/services/list/list.html:40
+#: app/states/services/list/list.state.js:122
+#: app/states/services/list/list.state.js:88
 msgid "Owner"
 msgstr "所有者"
 
-#: app/states/login/login.html:20
+#: app/states/login/login.html:23
 msgid "Password"
 msgstr "パスワード"
 
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:342
 msgid "Pending"
 msgstr "保留"
 
@@ -404,13 +853,22 @@ msgstr "保留"
 msgid "Pending Requests"
 msgstr "保留の要求"
 
-#: app/states/services/details/details.html:37
+#: app/states/services/details/details.html:36
 msgid "Permanently delete the service"
-msgstr "サービスを永久に削除する"
+msgstr "サービスを完全に削除する"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:93
+msgid "Please enter a Provisioning Entry Point"
+msgstr "プロビジョニングエントリーポイントを入力してください"
+
+#: app/components/create-catalog-modal/create-catalog-modal.html:8
+msgid "Please enter a name for the new Catalog"
+msgstr "新規カタログの名前を入力してください"
+
+#: app/states/services/details/details.html:188
+#: app/states/services/details/details.html:189
+#: app/states/services/details/details.html:190
 #: app/states/services/details/details.html:191
-#: app/states/services/details/details.html:192
-#: app/states/services/details/details.html:193
 msgid "Power State"
 msgstr "電力の状態"
 
@@ -434,54 +892,146 @@ msgstr "製品のタグ"
 msgid "Product Type"
 msgstr "製品のタイプ"
 
+#: app/components/navigation/navigation-contoller.js:122
+msgid "Product logo"
+msgstr "製品ロゴ"
+
 #: app/states/products/details/details.state.js:19
 msgid "Products Details"
 msgstr "製品の詳細"
 
+#: app/services/profiles-state.service.js:159
+msgid "Profile %s was created."
+msgstr "プロファイル %s が作成されました。"
+
+#: app/services/profiles-state.service.js:175
+msgid "Profile %s was successfully updated."
+msgstr "プロファイル %s が正常に更新されました。"
+
+#: app/states/administration/profiles/details/details.state.js:19
+msgid "Profile Details"
+msgstr "プロファイルの詳細"
+
+#: app/services/profiles-state.service.js:210
+msgid "Profile(s) were succesfully deleted."
+msgstr "プロファイルが正常に削除されました。"
+
+#: app/config/navigation.config.js:73
+#: app/states/administration/profiles/profiles.state.js:20
+#: app/states/administration/profiles/profiles.state.js:37
+msgid "Profiles"
+msgstr "プロファイル"
+
+#: app/states/administration/profiles/details/details.html:56
+#: app/states/administration/profiles/editor/editor.html:51
+msgid "Provider"
+msgstr "プロバイダー"
+
+#: app/states/administration/profiles/profiles.state.js:233
+#: app/states/administration/profiles/profiles.state.js:263
+msgid "Provider Name"
+msgstr "プロバイダー名"
+
+#: app/states/administration/profiles/details/details.html:50
+#: app/states/administration/profiles/editor/editor.html:41
+#: app/states/administration/profiles/profiles.state.js:239
+#: app/states/administration/profiles/profiles.state.js:268
+msgid "Provider Type"
+msgstr "プロバイダータイプ"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:84
+msgid "Provision Order"
+msgstr "プロビジョニング順序"
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:43
+msgid "Provisioning"
+msgstr "プロビジョニング"
+
 #: app/states/products/details/details.html:43
 msgid "Provisioning Answers"
-msgstr "プロビジョニング用の答え"
+msgstr "プロビジョニングの回答"
 
-#: app/states/services/details/details.html:67
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:82
+msgid "Provisioning Entry Point"
+msgstr "プロビジョニングエントリーポイント"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:83
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:92
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:93
+#: app/states/designer/blueprints/list/list.state.js:102
+#: app/states/designer/blueprints/list/list.state.js:109
+msgid "Publish"
+msgstr "公開"
+
+#: app/states/designer/blueprints/list/list.state.js:103
+msgid "Publish Blueprint"
+msgstr "ブループリントの公開"
+
+#: app/states/designer/blueprints/list/list.state.js:161
+msgid "Publish State"
+msgstr "公開状態"
+
+#: app/states/designer/blueprints/list/list.html:42
+msgid "Published"
+msgstr "公開"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:135
+msgid "Rearrange Items to set Action Order"
+msgstr "アクション順序を設定するために項目の配置を変更"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:123
+msgid "Rearrange Items to set Provision Order"
+msgstr "プロビジョニング順序を設定するために項目の配置を変更"
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:45
+#: app/states/services/details/details.html:64
 msgid "Reconfigure"
 msgstr "再設定"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:97
+msgid "Reconfigure Entry Point"
+msgstr "エントリーポイントの再設定"
 
 #: app/states/services/reconfigure/reconfigure.html:5
 msgid "Reconfigure Service:"
 msgstr "サービスの再設定:"
 
-#: app/states/services/reconfigure/reconfigure.state.js:117
+#: app/states/services/reconfigure/reconfigure.state.js:118
 msgid "Reconfigure this service has been cancelled"
 msgstr "このサービスの再設定が取り消されました"
 
-#: app/components/dialog-content/dialog-content.html:114
+#: app/components/dialog-content/dialog-content.html:111
 msgid "Refresh"
 msgstr "更新"
 
-#: app/states/services/details/details.html:37
-#: app/states/services/details/details.html:41
+#: app/components/shopping-cart/shopping-cart.html:17
+#: app/states/designer/blueprints/editor/editor.html:29
+msgid "Remove"
+msgstr "削除"
+
+#: app/states/services/details/details.html:36
+#: app/states/services/details/details.html:39
 msgid "Remove Service"
 msgstr "サービスの削除"
 
-#: app/states/requests/details/details.html:67
+#: app/states/requests/details/details.html:61
 msgid "Request Approval State"
 msgstr "要求の承認状況"
 
 #: app/services/requests-state.service.js:13
-#: app/states/requests/details/details.html:55
-#: app/states/requests/list/list.state.js:102
-#: app/states/requests/list/list.state.js:72
+#: app/states/requests/details/details.html:49
+#: app/states/requests/list/list.state.js:130
+#: app/states/requests/list/list.state.js:95
 msgid "Request Date"
 msgstr "要求日"
 
 #: app/states/requests/details/details.html:37
-#: app/states/requests/list/list.state.js:66
-#: app/states/requests/list/list.state.js:97
+#: app/states/requests/list/list.state.js:120
+#: app/states/requests/list/list.state.js:83
 msgid "Request ID"
 msgstr "要求 ID"
 
 #: app/states/requests/list/list.state.js:19
-#: app/states/requests/list/list.state.js:40
 msgid "Request List"
 msgstr "要求一覧"
 
@@ -489,13 +1039,13 @@ msgstr "要求一覧"
 msgid "Request State"
 msgstr "要求の状態"
 
-#: app/states/dashboard/dashboard.state.js:157
-#: app/states/requests/list/list.state.js:107
-#: app/states/requests/list/list.state.js:78
+#: app/states/dashboard/dashboard.state.js:179
+#: app/states/requests/list/list.state.js:101
+#: app/states/requests/list/list.state.js:135
 msgid "Request Status"
 msgstr "要求の状態"
 
-#: app/states/requests/details/details.html:97
+#: app/states/requests/details/details.html:96
 msgid "Request Type"
 msgstr "要求のタイプ"
 
@@ -503,31 +1053,37 @@ msgstr "要求のタイプ"
 msgid "Request:"
 msgstr "要求:"
 
-#: app/states/requests/list/list.html:29
+#: app/components/request-list/request-list.html:25
 msgid "Requested"
 msgstr "要求済み"
 
-#: app/states/requests/details/details.html:61
+#: app/states/requests/details/details.html:55
 msgid "Requested By"
-msgstr "要求者"
+msgstr "要求ユーザー"
+
+#: app/components/request-list/request-list.html:20
+#: app/states/requests/list/list.state.js:125
+#: app/states/requests/list/list.state.js:89
+msgid "Requester"
+msgstr "要求ユーザー"
 
 #: app/states/requests/details/details.state.js:19
 msgid "Requests Details"
 msgstr "要求の詳細"
 
-#: app/states/services/details/details.html:50
+#: app/states/services/details/details.html:48
 msgid "Retire"
 msgstr "リタイア"
 
-#: app/states/services/details/details.html:54
+#: app/states/services/details/details.html:52
 msgid "Retire Now"
 msgstr "今すぐリタイアさせる"
 
-#: app/states/services/details/details.html:56
+#: app/states/services/details/details.html:53
 msgid "Retire Service Now"
 msgstr "サービスを今すぐリタイアさせます"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:78
 msgid "Retired"
 msgstr "リタイア済み"
 
@@ -535,14 +1091,22 @@ msgstr "リタイア済み"
 msgid "Retired Services"
 msgstr "リタイアさせたサービス"
 
-#: app/components/retire-service-modal/retire-service-modal.html:18
-#: app/states/dashboard/dashboard.state.js:162
-#: app/states/services/details/details.html:86
-#: app/states/services/list/list.html:22
-#: app/states/services/list/list.state.js:109
-#: app/states/services/list/list.state.js:72
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:47
+msgid "Retirement"
+msgstr "リタイア"
+
+#: app/components/retire-service-modal/retire-service-modal.html:13
+#: app/states/dashboard/dashboard.state.js:185
+#: app/states/services/details/details.html:83
+#: app/states/services/list/list.html:20
+#: app/states/services/list/list.state.js:112
+#: app/states/services/list/list.state.js:75
 msgid "Retirement Date"
 msgstr "リタイアの日付け"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:108
+msgid "Retirement Entry Point"
+msgstr "リタイアエントリーポイント"
 
 #: app/components/retire-service-modal/retire-service-modal.html:9
 msgid "Retirement Warning"
@@ -550,68 +1114,174 @@ msgstr "リタイア警告"
 
 #: app/states/dashboard/dashboard.html:32
 msgid "Retiring Soon"
-msgstr "もうすぐリタイア"
+msgstr "まもなくリタイアさせます"
 
+#: app/services/rules-state.service.js:121
+msgid "Rule(s) were succesfully deleted."
+msgstr "ルールが正常に削除されました。"
+
+#: app/config/navigation.config.js:83
+#: app/states/administration/rules/rules.html:7
+#: app/states/administration/rules/rules.state.js:197
+#: app/states/administration/rules/rules.state.js:21
+msgid "Rules"
+msgstr "ルール"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:141
+msgid "Same as Provision Order"
+msgstr "プロビジョニング順序と同じ"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:98
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:12
+#: app/components/create-catalog-modal/create-catalog-modal.html:13
 #: app/components/edit-service-modal/edit-service-modal.html:22
 #: app/components/ownership-service-modal/ownership-service-modal.html:33
-#: app/components/retire-service-modal/retire-service-modal.html:25
+#: app/components/retire-service-modal/retire-service-modal.html:20
+#: app/states/administration/profiles/editor/editor.html:136
+#: app/states/administration/profiles/editor/save-profile-modal.html:13
+#: app/states/administration/rules/rules.html:104
+#: app/states/administration/rules/save-rule-modal.html:13
+#: app/states/designer/blueprints/editor/editor.html:11
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:13
 msgid "Save"
 msgstr "保存"
 
-#: app/states/services/details/details.html:62
+#: app/states/designer/blueprints/editor/editor.html:13
+msgid "Save Blueprint"
+msgstr "ブループリントの保存"
+
+#: app/states/administration/profiles/editor/save-profile-modal.html:5
+#: app/states/administration/rules/save-rule-modal.html:5
+msgid "Save Changes"
+msgstr "変更の保存"
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:5
+msgid "Save Changes to {{vm.blueprint.name}}"
+msgstr "変更の {{vm.blueprint.name}} への保存"
+
+#: app/states/services/details/details.html:59
 msgid "Schedule Retirement"
-msgstr "リタイアをスケジュールする"
+msgstr "リタイアのスケジュール"
 
 #: app/components/retire-service-modal/retire-service-modal.html:5
 msgid "Schedule Service Retirement"
-msgstr "サービスのリタイアをスケジュールする"
+msgstr "サービスのリタイアをスケジュール"
 
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:67
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:75
 msgid "Scheduling retirement for"
 msgstr "リタイアのスケジュール"
+
+#: app/states/administration/profiles/details/details.html:92
+#: app/states/administration/profiles/editor/editor.html:113
+msgid "Security Group"
+msgstr "セキュリティーグループ"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:68
+msgid "Select Dialog"
+msgstr "ダイアログの選択"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:52
+msgid "Select a Catalog"
+msgstr "カタログの選択"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:70
+msgid "Select a Dialog"
+msgstr "ダイアログの選択"
 
 #: app/components/ownership-service-modal/ownership-service-modal.html:19
 msgid "Select a Group"
 msgstr "グループの選択"
 
+#: app/states/administration/profiles/editor/editor.html:97
+msgid "Select a cloud network"
+msgstr "クラウドネットワークの選択"
+
+#: app/states/administration/profiles/editor/editor.html:108
+msgid "Select a cloud subnet"
+msgstr "クラウドサブネットの選択"
+
+#: app/states/administration/rules/rules.html:64
+msgid "Select a field"
+msgstr "フィールドの選択"
+
+#: app/states/administration/profiles/editor/editor.html:87
+msgid "Select a flavor"
+msgstr "フレーバーの選択"
+
+#: app/states/administration/profiles/editor/editor.html:67
+msgid "Select a key pair"
+msgstr "キーペアの選択"
+
+#: app/states/administration/rules/rules.html:91
+msgid "Select a profile"
+msgstr "プロファイルの選択"
+
+#: app/states/administration/profiles/editor/editor.html:56
+msgid "Select a provider"
+msgstr "プロバイダーの選択"
+
+#: app/states/administration/profiles/editor/editor.html:46
+msgid "Select a provider type"
+msgstr "プリバイダータイプの選択"
+
+#: app/components/flowchart/flowchart_template.html:12
+msgid ""
+"Select a second item to complete the connection or click on the canvas to "
+"cancel"
+msgstr "2 つ目の項目を選択して接続を完了するか、または取り消す Canvas をクリック"
+
+#: app/states/administration/profiles/editor/editor.html:118
+msgid "Select a security group"
+msgstr "セキュリティーグループの選択"
+
 #: app/components/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
 msgstr "所有者の選択"
 
-#: app/skin/skin.module.js:11
+#: app/states/administration/profiles/editor/editor.html:77
+msgid "Select an availability zone"
+msgstr "アベイラビリティーゾーンの選択"
+
+#: app/states/administration/rules/rules.html:67
+msgid "Select an operator"
+msgstr "演算子の選択"
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:5
+msgid "Select {{vm.entryPointTypeTitle}} Entry Point"
+msgstr "{{vm.entryPointTypeTitle}} エントリーポイントの選択"
+
 #: index.html:4
 msgid "Self Service"
 msgstr "セルフサービス"
 
-#: app/config/navigation.config.js:31
-#: app/states/marketplace/list/list.state.js:19
-#: app/states/marketplace/list/list.state.js:51
+#: app/components/navigation/navigation-contoller.js:130
+msgid "Server Name:"
+msgstr "サーバー名:"
+
+#: app/config/navigation.config.js:40
+#: app/states/marketplace/list/list.state.js:20
 msgid "Service Catalog"
 msgstr "サービスカタログ"
 
 #: app/states/services/custom_button_details/custom_button_details.state.js:19
 msgid "Service Custom Button Details"
-msgstr "サービスのカスタムボタン詳細"
+msgstr "サービスのカスタムボタンの詳細"
 
-#: app/states/products/details/details.state.js:28
 #: app/states/services/details/details.state.js:19
-#: app/states/services/details/details.state.js:62
-#: app/states/services/reconfigure/reconfigure.state.js:19
-#: app/states/services/reconfigure/reconfigure.state.js:41
+#: app/states/services/reconfigure/reconfigure.state.js:20
+#: app/states/services/reconfigure/reconfigure.state.js:42
 msgid "Service Details"
 msgstr "サービスの詳細"
 
-#: app/states/services/details/details.html:79
+#: app/states/services/details/details.html:76
 msgid "Service Id"
-msgstr "サービスの ID"
+msgstr "サービス ID"
 
 #: app/states/services/list/list.state.js:19
-#: app/states/services/list/list.state.js:39
 msgid "Service List"
 msgstr "サービス一覧"
 
 #: app/states/marketplace/details/details.state.js:19
-#: app/states/marketplace/details/details.state.js:46
 msgid "Service Template Details"
 msgstr "サービスのテンプレート詳細"
 
@@ -620,7 +1290,7 @@ msgstr "サービスのテンプレート詳細"
 msgid "Service:"
 msgstr "サービス:"
 
-#: app/states/services/details/details.html:66
+#: app/states/services/details/details.html:63
 msgid "Set Ownership"
 msgstr "所有権の設定"
 
@@ -632,27 +1302,63 @@ msgstr "サービスの所有権の設定"
 msgid "Setup"
 msgstr "セットアップ"
 
-#: app/states/services/details/details.html:181
+#: app/components/shopping-cart/shopping-cart.html:5
+msgid "Shopping Cart"
+msgstr "ショッピングカート"
+
+#: app/layouts/application.html:24
+msgid "Shopping cart"
+msgstr "ショッピングカート"
+
+#: app/components/shopping-cart/shopping-cart.html:30
+msgid "Shopping cart is empty."
+msgstr "ショッピングカートが空です。"
+
+#: app/components/shopping-cart/shopping-cart.directive.js:47
+msgid "Shopping cart successfully ordered"
+msgstr "ショッピングカートのオーダーが正常に実行されました"
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:10
+msgid "Show Blueprint Names"
+msgstr "ブループリント名の表示"
+
+#: app/states/services/details/details.html:178
 msgid "Size"
 msgstr "サイズ"
 
-#: app/states/services/list/list.state.js:75
+#: app/states/services/list/list.state.js:78
 msgid "Soon"
 msgstr "すぐ"
 
-#: app/states/marketplace/details/details.html:31
-#: app/states/services/custom_button_details/custom_button_details.html:21
-#: app/states/services/reconfigure/reconfigure.html:23
+#: app/components/notifications/notification-body.html:40
+msgid "Started:"
+msgstr "開始:"
+
+#: app/states/services/custom_button_details/custom_button_details.html:19
+#: app/states/services/reconfigure/reconfigure.html:21
 msgid "Submit Request"
 msgstr "要求の送信"
 
-#: app/states/requests/list/list.html:35
-#: app/states/requests/list/list.html:37
-#: app/states/requests/list/list.html:39
+#: app/components/language-switcher/language-switcher.html:2
+msgid "Switch Language:"
+msgstr "言語の切り替え:"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:32
+#: app/components/flowchart/node-toolbar.html:11
+msgid "Tags"
+msgstr "タグ"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:337
+msgid "The Publish Blueprint feature is not yet implemented."
+msgstr "ブループリントの公開機能はまだ実装されていません。"
+
+#: app/components/request-list/request-list.html:30
+#: app/components/request-list/request-list.html:31
+#: app/components/request-list/request-list.html:32
 msgid "The current approval status of the request"
 msgstr "レポートの現在の承認状態です"
 
-#: app/states/services/details/details.html:186
+#: app/states/services/details/details.html:183
 msgid "The last heartbeat received from the instances"
 msgstr "インスタンスから最後に受信したハートビート"
 
@@ -660,7 +1366,7 @@ msgstr "インスタンスから最後に受信したハートビート"
 msgid "The number of active services"
 msgstr "動作中のサービス数"
 
-#: app/states/services/list/list.html:29
+#: app/states/services/list/list.html:31
 msgid "The number of instances running this service"
 msgstr "このサービスを実行するインスタンス数"
 
@@ -684,57 +1390,121 @@ msgstr "お探しのページは削除されたか、名前が変更されたか
 msgid "The page you requested cannot be found."
 msgstr "要求したページが見つかりません。"
 
-#: app/config/navigation.config.js:40
+#: app/config/navigation.config.js:78
+#, fuzzy
+msgid "The total number of available arbitration profiles"
+msgstr "利用可能な判別プロファイルの合計数"
+
+#: app/config/navigation.config.js:88
+#, fuzzy
+msgid "The total number of available arbitration rules"
+msgstr "利用可能な判別ルールの合計数"
+
+#: app/config/navigation.config.js:61
 msgid "The total number of available blueprints"
 msgstr "利用できるブループリントの合計数"
 
-#: app/config/navigation.config.js:34
+#: app/config/navigation.config.js:46
 msgid "The total number of available catalog items"
-msgstr "利用可能なカタログアイテムの合計数"
+msgstr "利用可能なカタログ項目の合計数"
 
-#: app/config/navigation.config.js:28
+#: app/config/navigation.config.js:35
 msgid "The total number of requests that you have submitted"
 msgstr "送信済みの要求の合計数"
 
-#: app/config/navigation.config.js:22
+#: app/config/navigation.config.js:24
 msgid ""
 "The total number of services that you have ordered, both active and retired"
 msgstr "動作中およびリタイアさせたサービスいずれも含めユーザーがオーダーしたサービスの合計数です"
 
+#: app/states/marketplace/details/details.html:35
+msgid ""
+"There already is an identical item in the cart. Do you want to add it "
+"anyway?"
+msgstr "同一の項目がカートにすでに存在します。これを追加しますか?"
+
+#: app/components/tagging/tagging.html:15
+msgid "There are no tags for this item."
+msgstr "この項目のタグはありません。"
+
 #: app/states/error/error.html:10
 msgid "There was a problem loading the page."
-msgstr "ページの読込中に問題が発生しました。"
+msgstr "ページの読み込み中に問題が発生しました。"
+
+#: app/states/marketplace/details/details.state.js:120
+msgid "There was an error adding to shopping cart:"
+msgstr "ショッピングカートに追加する際にエラーが発生しました。"
+
+#: app/services/profiles-state.service.js:164
+msgid "There was an error creating profile %s."
+msgstr "プロファイル %s の作成時にエラーが発生しました。"
+
+#: app/services/rules-state.service.js:62
+msgid "There was an error creating this rule."
+msgstr "このルールの作成時にエラーが発生しました。"
+
+#: app/services/blueprints-state.service.js:409
+msgid "There was an error deleting the blueprint(s)."
+msgstr "ブルーポイントの削除時にエラーが発生しました。"
+
+#: app/services/profiles-state.service.js:215
+msgid "There was an error deleting the profile(s)."
+msgstr "プロファイルの削除時にエラーが発生しました。"
+
+#: app/services/rules-state.service.js:126
+msgid "There was an error deleting the rule(s)."
+msgstr "ルールの削除時にエラーが発生しました。"
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
 msgstr "このサービスの編集中にエラーが発生しました。"
 
-#: app/states/services/details/details.state.js:106
+#: app/services/consoles.service.js:37
+msgid "There was an error opening the console"
+msgstr "コンソールを開く際にエラーが発生しました。"
+
+#: app/services/consoles.service.js:38
+msgid "There was an error opening the console:"
+msgstr "コンソールを開く際にエラーが発生しました。"
+
+#: app/states/services/details/details.state.js:118
 msgid "There was an error removing this service."
 msgstr "このサービスの削除中にエラーが発生しました。"
 
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
-#: app/states/services/details/details.state.js:128
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:80
+#: app/states/services/details/details.state.js:157
 msgid "There was an error retiring this service."
 msgstr "このサービスのリタイア中にエラーが発生しました。"
 
-#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:93
+#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:94
 msgid "There was an error saving ownership of this service."
 msgstr "このサービスの所有権を保存中にエラーがー発生しました。"
 
-#: app/states/marketplace/details/details.state.js:101
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:339
+msgid "There was an error saving this Blueprint's Details."
+msgstr "このブルーポイントの詳細の保存時にエラーが発生しました。"
+
+#: app/components/shopping-cart/shopping-cart.directive.js:51
 #: app/states/services/custom_button_details/custom_button_details.state.js:93
-#: app/states/services/reconfigure/reconfigure.state.js:112
+#: app/states/services/reconfigure/reconfigure.state.js:113
 msgid "There was an error submitting this request:"
 msgstr "この要求を送信する際にエラーが発生しました。"
 
-#: app/states/services/details/details.html:164
-msgid "This service has no associated VMs"
-msgstr "このサービスには関連付けられた仮想マシンがありません"
+#: app/services/profiles-state.service.js:180
+msgid "There was an error updating profile %s."
+msgstr "プロファイル %s の更新時にエラーが発生しました。"
 
-#: app/components/navigation/header-nav.html:4
-msgid "Toggle navigation"
-msgstr "ナビゲーションの切り替え"
+#: app/services/rules-state.service.js:77
+msgid "There was an error updating the rules."
+msgstr "ルールの更新時にエラーが発生しました。"
+
+#: app/states/services/details/details.html:161
+msgid "This service has no associated VMs"
+msgstr "このサービスには関連付けられた仮想マシンはありません"
+
+#: app/layouts/application.html:30
+msgid "Toggle notifications list"
+msgstr "通知一覧の切り替え"
 
 #: app/states/dashboard/dashboard.html:20
 msgid "Total Requests"
@@ -744,52 +1514,137 @@ msgstr "要求の合計数"
 msgid "Total Services"
 msgstr "サービス合計数"
 
-#: app/states/login/login.state.js:41
-#: app/states/login/login.state.js:61
-msgid "User does not have privileges to login."
-msgstr "ユーザーにはログインの特権がありません"
+#: app/states/administration/rules/rules.html:47
+#: app/states/administration/rules/rules.html:87
+msgid "USE"
+msgstr "USE"
 
-#: app/states/login/login.html:12
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:50
+#: app/states/designer/blueprints/list/list.state.js:81
+#: app/states/designer/blueprints/list/list.state.js:82
+msgid "Unassigned"
+msgstr "未割り当て"
+
+#: app/services/consoles.service.js:75
+msgid "Unsupported console protocol returned"
+msgstr "非対応のコンソールプロトコルが返されました。"
+
+#: app/services/consoles.service.js:76
+msgid "Unsupported console protocol returned:"
+msgstr "非対応のコンソールプロトコルが返されました。"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:135
+#: app/services/blueprints-state.service.js:427
+#: app/states/designer/blueprints/editor/editor.html:10
+msgid "Untitled Blueprint"
+msgstr "名称未設定のブループリント"
+
+#: app/components/language-switcher/language-switcher.directive.js:28
+msgid "User Default"
+msgstr "ユーザーデフォルト"
+
+#: app/components/navigation/navigation-contoller.js:131
+msgid "User Name:"
+msgstr "ユーザー名:"
+
+#: app/components/navigation/navigation-contoller.js:132
+msgid "User Role:"
+msgstr "ユーザーロール:"
+
+#: app/states/login/login.state.js:40
+#: app/states/login/login.state.js:63
+msgid "User does not have privileges to login."
+msgstr "ユーザーにはログインの特権はありません"
+
+#: app/states/login/login.html:15
 msgid "Username"
 msgstr "ユーザー名"
 
-#: app/states/services/list/list.html:30
+#: app/states/services/list/list.html:34
 msgid "VMs"
 msgstr "仮想マシン"
 
-#: app/states/services/details/details.html:176
+#: app/states/services/details/details.html:173
 msgid "Vendor"
 msgstr "ベンダー"
 
-#: app/states/services/details/details.html:163
-msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
-msgstr "仮想マシン ({{ ::vm.service.vms.length }})"
+#: app/components/navigation/navigation-contoller.js:129
+msgid "Version:"
+msgstr "バージョン:"
+
+#: app/states/administration/profiles/profiles.state.js:206
+msgid "View"
+msgstr "表示"
+
+#: app/states/administration/profiles/profiles.state.js:207
+msgid "View Profile"
+msgstr "プロファイルの表示"
+
+#: app/states/administration/profiles/details/details.state.js:41
+msgid "View Profile: %s"
+msgstr "プロファイルの表示: %s"
+
+#: app/states/services/details/details.html:160
+msgid "Virtual Machines ({{ ::vm.vms.length }})"
+msgstr "仮想マシン ({{ ::vm.vms.length }})"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:24
+#: app/states/designer/blueprints/list/list.state.js:147
+#: app/states/designer/blueprints/list/list.state.js:190
+msgid "Visibility"
+msgstr "可視性"
+
+#: app/services/consoles.service.js:30
+msgid "Waiting for the console to become ready"
+msgstr "コンソールの準備を待機中"
+
+#: app/services/consoles.service.js:31
+msgid "Waiting for the console to become ready:"
+msgstr "コンソールの準備を待機中。"
 
 #: app/states/404/404.html:7
 #: app/states/error/error.html:13
 msgid "We apologize for the inconvenience."
 msgstr "ご不便をおかけして申し訳ありません。"
 
-#: app/states/services/details/details.html:43
+#: app/states/services/details/details.html:41
 msgid "Yes, Remove Service"
 msgstr "はい。サービスを削除します。"
 
-#: app/states/services/details/details.html:58
+#: app/states/services/details/details.html:55
 msgid "Yes, Retire Service Now"
 msgstr "はい。今すぐサービスをリタイアします。"
 
-#: app/config/authorization.config.js:47
+#: app/config/authorization.config.js:48
 msgid "Your session has timed out."
 msgstr "セッションがタイムアウトしました。"
+
+#: app/states/services/list/list.html:32
+#, fuzzy
+msgid "[[number]] VMs"
+msgstr "仮想マシン数: [[number]] "
+
+#: app/config/gettext.config.js:33
+msgid "locale_name"
+msgstr "日本語"
+
+#: app/states/requests/list/list.html:31
+msgid "ordered"
+msgstr "オーダー"
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
 msgid "was edited."
 msgstr ": 編集しました。"
 
-#: app/states/services/details/details.state.js:101
+#: app/states/services/details/details.state.js:113
 msgid "was removed."
 msgstr ": 削除しました。"
 
-#: app/states/services/details/details.state.js:123
+#: app/states/services/details/details.state.js:152
 msgid "was retired."
 msgstr ": リタイアしました。"
+
+#: app/states/requests/list/list.html:35
+msgid "{{ $count }} item"
+msgid_plural "{{ $count }} items"
+msgstr[0] "{{ $count }} 項目"
