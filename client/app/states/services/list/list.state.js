@@ -157,6 +157,14 @@
         && item.powerState !== "suspending";
     };
 
+    vm.hideMenuForItemFn = function (item) {
+      return item.powerState === ""
+        || item.powerState === "off"
+        || item.powerState === "starting"
+        || item.powerState === "stopping"
+        || item.powerState === "suspending";
+    };
+
     function startService(action, item) {
       item.powerState = 'starting';
       CollectionsApi.post('services', item.id, {}, {action: 'start'}).then(startSuccess, startFailure);
