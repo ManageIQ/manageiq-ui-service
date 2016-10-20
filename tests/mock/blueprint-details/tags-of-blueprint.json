@@ -1,0 +1,62 @@
+[
+  {
+    "href": "http://localhost:8001/api/blueprints/10000000000023/tags/10000000000005",
+    "id": 10000000000005,
+    "name": "/managed/location/chicago",
+    "categorization": {
+      "name": "chicago",
+      "description": "Chicago",
+      "category": {
+        "name": "location",
+        "description": "Location"
+      },
+      "displayName": "Location: Chicago"
+    },
+    "category": {
+      "id": 10000000000001,
+      "single_value": true
+    },
+    "actions": [
+      {
+        "name": "assign",
+        "method": "post",
+        "href": "http://localhost:8001/api/blueprints/10000000000023/tags/10000000000005"
+      },
+      {
+        "name": "unassign",
+        "method": "post",
+        "href": "http://localhost:8001/api/blueprints/10000000000023/tags/10000000000005"
+      }
+    ]
+  },
+  {
+    "href": "http://localhost:8001/api/blueprints/10000000000023/tags/10000000000038",
+    "id": 10000000000038,
+    "name": "/managed/service_level/gold",
+    "categorization": {
+      "name": "gold",
+      "description": "Gold",
+      "category": {
+        "name": "service_level",
+        "description": "Service Level"
+      },
+      "displayName": "Service Level: Gold"
+    },
+    "category": {
+      "id": 10000000000034,
+      "single_value": true
+    },
+    "actions": [
+      {
+        "name": "assign",
+        "method": "post",
+        "href": "http://localhost:8001/api/blueprints/10000000000023/tags/10000000000038"
+      },
+      {
+        "name": "unassign",
+        "method": "post",
+        "href": "http://localhost:8001/api/blueprints/10000000000023/tags/10000000000038"
+      }
+    ]
+  }
+]

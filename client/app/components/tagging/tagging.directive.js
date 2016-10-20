@@ -25,13 +25,11 @@
 
       vm.tags = {};
 
-      loadAllTagInfo();
-
       function loadAllTagInfo() {
         var deferred = $q.defer();
 
-        loadAllTags().then(function() {
-          loadAllCategories().then(function() {
+        vm.loadAllTags().then(function() {
+          vm.loadAllCategories().then(function() {
             deferred.resolve();
           }, loadAllTagsfailure);
         }, loadAllCategoriesfailure);
@@ -46,7 +44,7 @@
         return deferred.promise;
       }
 
-      function loadAllTags() {
+      vm.loadAllTags = function() {
         var deferred = $q.defer();
 
         var attributes = ['categorization', 'category.id', 'category.single_value'];
@@ -68,9 +66,9 @@
         }
 
         return deferred.promise;
-      }
+      };
 
-      function loadAllCategories() {
+      vm.loadAllCategories = function() {
         var deferred = $q.defer();
 
         var options = {
@@ -91,7 +89,9 @@
         }
 
         return deferred.promise;
-      }
+      };
+
+      loadAllTagInfo();
 
       vm.showTagDropdowns = false;
       $scope.$watch('vm.tags.selectedCategory', function(value) {
@@ -110,7 +110,14 @@
         }
       }
 
-      $scope.addTag = function() {
+      vm.removeTag = function(tag) {
+        var index = vm.tagsOfItem.indexOf(tag);
+        if (index !== -1) {
+          vm.tagsOfItem.splice(index, 1);
+        }
+      };
+
+      vm.addTag = function() {
         // Handle single_value category/tags
         if (vm.tags.selectedTag.category && angular.isDefined(vm.tags.selectedTag.category.single_value)) {
           if (vm.tags.selectedTag.category.single_value) {
@@ -118,7 +125,7 @@
             for (var i = 0; i < vm.tagsOfItem.length; i++) {
               var tag = vm.tagsOfItem[i];
               if (tag.category.id === vm.tags.selectedTag.category.id) {
-                $scope.removeTag(tag);
+                vm.removeTag(tag);
                 break;
               }
             }
@@ -130,13 +137,6 @@
         // Add Selected Tag
         if (!matchingTag.length) {
           vm.tagsOfItem.push(getSmTagObj(vm.tags.selectedTag));
-        }
-      };
-
-      $scope.removeTag = function(tag) {
-        var index = vm.tagsOfItem.indexOf(tag);
-        if (index !== -1) {
-          vm.tagsOfItem.splice(index, 1);
         }
       };
 

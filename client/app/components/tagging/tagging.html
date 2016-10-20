@@ -9,7 +9,7 @@
             ng-options="item as item.categorization.description for item in vm.tags.filtered"
             ng-model="vm.tags.selectedTag">
     </select>
-    <a ng-click="addTag()"><span class="fa fa-plus tag-add"></span></a>
+    <a><span class="fa fa-plus tag-add" ng-click="vm.addTag()"></span></a>
 </div>
 
 <div ng-if="vm.tagsOfItem && !vm.tagsOfItem.length" class="no-tag-header" translate>There are no tags for this item.</div>
@@ -18,7 +18,7 @@
     <li ng-repeat="tag in vm.tagsOfItem">
         <span class="label label-info">
             {{tag.categorization.displayName}}
-            <a><span class="pficon pficon-close" ng-click="removeTag(tag)"></span></a>
+            <a><span class="pficon pficon-close" ng-click="vm.removeTag(tag)"></span></a>
         </span>
     </li>
 </ul>
