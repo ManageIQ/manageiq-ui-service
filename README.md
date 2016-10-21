@@ -48,8 +48,11 @@ http://localhost:3000 order and serve up the REST API.
 - From the `manageiq-ui-service` directory, start the development version of
   the service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
   _http://[::1]:3000_.  This command will also open a browser page to  _http://localhost:3001/ui/service/login_.
-  - `gulp serve`
-
+  - `gulp serve` 
+- If you have a local copy of Manage IQ Server installed and would like to start it up at the same time you bring up the service ui web server, run   
+	- ``` gulp start-manageiq-server ```  
+	
+If you would like to override the default port (3000) that ManageIQ runs on you can set an environmental variable ``` export MANAGEIQPORT=4000```.  If you are running manageiq in a folder other than _../manageiq/_ then you can override this path set in _gulp/config.js_ and update the _manageiqDir_ variable path. 
 ### Troubleshooting
 - When running ManageIQ with `bundle exec rake evm:start`, it may be necessary to override the REST API host via a 
 PROXY\_HOST environment variable.
