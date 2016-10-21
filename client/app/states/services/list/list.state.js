@@ -170,40 +170,40 @@
 
     function startService(action, item) {
       item.powerStatus = 'starting';
-      CollectionsApi.post('services', item.id, {}, {action: 'start'}).then(startSuccess, startFailure);
-
-      function startSuccess() {
-        EventNotifications.success(__(sprintf("%s was started", item.name)));
-      }
-
-      function startFailure() {
-        EventNotifications.error(__('There was an error stopping this service.'));
-      }
+      powerOperation('start', item);
     }
 
     function stopService(action, item) {
       item.powerStatus = 'stopping';
-      CollectionsApi.post('services', item.id, {}, {action: 'stop'}).then(stopSuccess, stopFailure);
-
-      function stopSuccess() {
-        EventNotifications.success(__(sprintf("%s was stopped", item.name)));
-      }
-
-      function stopFailure() {
-        EventNotifications.error(__('There was an error stopping this service.'));
-      }
+      powerOperation('stop', item);
     }
 
     function suspendService(action, item) {
       item.powerStatus = 'suspending';
-      CollectionsApi.post('services', item.id, {}, {action: 'suspend'}).then(suspendSuccess, suspendFailure);
+      powerOperation('suspend', item);
+    }
 
-      function suspendSuccess() {
-        EventNotifications.success(__(sprintf("%s was suspended", item.name)));
+    function powerOperation(powerAction, item) {
+      CollectionsApi.post('services', item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure);
+
+      function actionSuccess() {
+        if (powerAction === 'start') {
+          EventNotifications.success(__(sprintf("%s was started", item.name)));
+        } else if (powerAction === 'stop') {
+          EventNotifications.success(__(sprintf("%s was stopped", item.name)));
+        } else if (powerAction === 'suspend') {
+          EventNotifications.success(__(sprintf("%s was suspended", item.name)));
+        }
       }
 
-      function suspendFailure() {
-        EventNotifications.error(__('There was an error suspending this service.'));
+      function actionFailure() {
+        if (powerAction === 'start') {
+          EventNotifications.error(__('There was an error starting this service.'));
+        } else if (powerAction === 'stop') {
+          EventNotifications.error(__('There was an error stopping this service.'));
+        } else if (powerAction === 'suspend') {
+          EventNotifications.error(__('There was an error suspending this service.'));
+        }
       }
     }
 
