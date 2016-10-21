@@ -278,18 +278,25 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       // Single Node Selection should enable the Duplicate and Remove buttons
       selectNode(nodes[0]);
       $rootScope.$apply();
+
+      // Should now be one node selected
+      var selectedNodes = element.find('.selected-node-rect');
+      expect(selectedNodes.length).to.eq(1);
+
       expect(duplicateBtn.hasClass('disabled')).to.eq(false);
       expect(removeBtn.hasClass('disabled')).to.eq(false);
 
-      // Multiple Node Selection should disable the Duplicate button, but
-      /* enable the Remove button
-      $document.triggerHandler({type:"keydown", which:17, keyCode: 17});
-      $document.trigger({type:"keydown", which:17, keyCode: 17});
-      selectNode(nodes[1]);
+      selectAnotherNode(nodes[1]);
       $rootScope.$apply();
+
+      // Should now be two nodes selected
+      selectedNodes = element.find('.selected-node-rect');
+      expect(selectedNodes.length).to.eq(2);
+
+      // Multiple node selections should disable the Duplicate button, but
+      // the Remove button should remain enabled
       expect(duplicateBtn.hasClass('disabled')).to.eq(true);
       expect(removeBtn.hasClass('disabled')).to.eq(false);
-      */
     });
 
     it('should remove a selected node from the canvas', function () {
@@ -337,4 +344,10 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
     angular.element(node).parent().triggerHandler({type: 'mousedown', pageX: 0, pageY:0});
     angular.element(node).parent().trigger('mousedown');
   }
+
+  function selectAnotherNode(node) {
+    angular.element(node).parent().triggerHandler({type: 'mousedown', ctrlKey: true, pageX: 0, pageY:0});
+    angular.element(node).parent().trigger('mousedown');
+  }
+
 });
