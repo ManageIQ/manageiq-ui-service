@@ -224,7 +224,11 @@
     designer.getTabItemById = function(id) {
       var tabItems = $filter('filter')(designer.tabItems, {id: id});
 
-      return tabItems[0];
+      if (tabItems && tabItems.length === 1) {
+        return tabItems[0];
+      } else {
+        return null;
+      }
     };
 
     return designer;

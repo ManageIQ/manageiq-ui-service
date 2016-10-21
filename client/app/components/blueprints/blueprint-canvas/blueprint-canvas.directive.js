@@ -27,18 +27,23 @@
     // Create the view-model for the chart and attach to the scope.
     vm.chartViewModel = new flowchart.ChartViewModel(vm.chartDataModel);
 
+    vm.addNodeToCanvas = function(newNode) {
+      newNode.backgroundColor = '#fff';
+      vm.chartViewModel.addNode(newNode);
+    };
+
     vm.dropCallback = function(event, ui) {
       var newNode = BlueprintsState.prepareNodeForCanvas(vm.draggedItem);
       newNode.x = event.clientX - 350;
       newNode.y = event.clientY - 200;
-      addNodeToCanvas(newNode);
+      vm.addNodeToCanvas(newNode);
     };
 
     $scope.$on('addNodeToCanvas', function(evt, args) {
       var newNode = args.newNode;
       newNode.x = 250 + (newNodeCount * 4 + 160);
       newNode.y = 200 + (newNodeCount * 4 + 160);
-      addNodeToCanvas(newNode);
+      vm.addNodeToCanvas(newNode);
       newNodeCount++;
     });
 
@@ -47,7 +52,7 @@
     });
 
     $scope.$on('removeSelectedItems', function(evt, args) {
-      deleteSelected();
+      vm.deleteSelected();
     });
 
     function duplicateSelected() {
@@ -66,10 +71,10 @@
       dupNode.data.x = dupNode.data.x + 15 * copyName.numDups;
       dupNode.data.y = dupNode.data.y + 15 * copyName.numDups;
 
-      addNodeToCanvas(dupNode.data);
+      vm.addNodeToCanvas(dupNode.data);
     }
 
-    function deleteSelected() {
+    vm.deleteSelected = function() {
       var selectedNodes = vm.chartViewModel.getSelectedNodes();
 
       // Re-Enable selectedNodes in toolbox
@@ -81,12 +86,15 @@
       }
 
       vm.chartViewModel.deleteSelected();
-    }
+    };
 
-    function addNodeToCanvas(newNode) {
-      newNode.backgroundColor = '#fff';
-      vm.chartViewModel.addNode(newNode);
-    }
+    vm.selectAll = function() {
+      vm.chartViewModel.selectAll();
+    };
+
+    vm.deselectAll = function() {
+      vm.chartViewModel.deselectAll();
+    };
 
     function getNewId() {
       // random number between 1 and 600
@@ -158,7 +166,7 @@
         //
         // Ctrl + A
         //
-        vm.chartViewModel.selectAll();
+        vm.selectAll();
         args.origEvent.stopPropagation();
         args.origEvent.preventDefault();
       }
@@ -189,7 +197,7 @@
 
       if (args.origEvent.keyCode === escKeyCode) {
         // Escape.
-        vm.chartViewModel.deselectAll();
+        vm.deselectAll();
       }
 
       if (args.origEvent.keyCode === ctrlKeyCode) {

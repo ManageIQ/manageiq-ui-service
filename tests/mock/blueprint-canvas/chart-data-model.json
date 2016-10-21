@@ -1,0 +1,102 @@
+{
+  "nodes": [
+    {
+      "x": 270,
+      "y": 208,
+      "id": 10000000000004,
+      "icon": "pf pficon-bundle",
+      "name": "Deploy RHEL7 with PostgreSQL",
+      "tags": [
+        {
+          "id": 10000000000004,
+          "category": {
+            "id": 10000000000001
+          },
+          "categorization": {
+            "displayName": "Location: New York"
+          }
+        }
+      ],
+      "image": "http://localhost:8001/pictures/10r4.jpg",
+      "width": 150,
+      "bundle": true,
+      "invalid": false,
+      "fontFamily": "PatternFlyIcons-webfont",
+      "fontContent": "",
+      "backgroundColor": "#fff",
+      "disableInToolbox": false,
+      "outputConnectors": []
+    },
+    {
+      "x": 468,
+      "y": 215,
+      "id": 10000000000010,
+      "icon": "pf pficon-bundle",
+      "name": "Hybrid Cloud Application",
+      "tags": [
+        {
+          "id": 10000000000006,
+          "category": {
+            "id": 10000000000001
+          },
+          "categorization": {
+            "displayName": "Location: London"
+          }
+        },
+        {
+          "id": 10000000000043,
+          "category": {
+            "id": 10000000000040
+          },
+          "categorization": {
+            "displayName": "Department: Accounting"
+          }
+        },
+        {
+          "id": 10000000000044,
+          "category": {
+            "id": 10000000000040
+          },
+          "categorization": {
+            "displayName": "Department: Automotive"
+          }
+        },
+        {
+          "id": 10000000000048,
+          "category": {
+            "id": 10000000000040
+          },
+          "categorization": {
+            "displayName": "Department: Financial Services"
+          }
+        },
+        {
+          "id": 10000000000141,
+          "category": {
+            "id": 10000000000136
+          },
+          "categorization": {
+            "displayName": "Service Catalog: hybridclouddemo"
+          }
+        },
+        {
+          "id": 10000000000171,
+          "category": {
+            "id": 10000000000136
+          },
+          "categorization": {
+            "displayName": "Service Catalog: clouddemo"
+          }
+        }
+      ],
+      "image": "http://localhost:8001/pictures/10r10.png",
+      "width": 150,
+      "bundle": true,
+      "invalid": false,
+      "fontFamily": "PatternFlyIcons-webfont",
+      "fontContent": "",
+      "backgroundColor": "#fff"
+    }
+  ],
+  "connections": []
+}
