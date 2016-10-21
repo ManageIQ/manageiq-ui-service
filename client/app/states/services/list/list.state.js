@@ -36,11 +36,7 @@
   }
 
   /** @ngInject */
-<<<<<<< ff484ab23f7cdf6f72829c04136daf04d03e32be
-  function StateController($state, services, ServicesState, $filter, $rootScope, Language, ListView, Chargeback) {
-=======
-  function StateController($state, services, ServicesState, $filter, $rootScope, Language, ListView, CollectionsApi, EventNotifications) {
->>>>>>> Add methods for start, stop and suspend
+  function StateController($state, services, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, CollectionsApi, EventNotifications, sprintf) {
     var vm = this;
 
     vm.services = [];
@@ -176,7 +172,7 @@
       CollectionsApi.post('services', item.id, {}, {action: 'start'}).then(startSuccess, startFailure);
 
       function startSuccess() {
-        EventNotifications.success(item.name + __(' was started.'));
+        EventNotifications.success(__(sprintf("%s was started", item.name)));
       }
 
       function startFailure() {
@@ -189,7 +185,7 @@
       CollectionsApi.post('services', item.id, {}, {action: 'stop'}).then(stopSuccess, stopFailure);
 
       function stopSuccess() {
-        EventNotifications.success(item.name + __(' was stopped.'));
+        EventNotifications.success(__(sprintf("%s was stopped", item.name)));
       }
 
       function stopFailure() {
@@ -202,7 +198,7 @@
       CollectionsApi.post('services', item.id, {}, {action: 'suspend'}).then(suspendSuccess, suspendFailure);
 
       function suspendSuccess() {
-        EventNotifications.success(item.name + __(' was suspended.'));
+        EventNotifications.success(__(sprintf("%s was suspended", item.name)));
       }
 
       function suspendFailure() {
