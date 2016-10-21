@@ -10,6 +10,7 @@
   function BlueprintDetailsFactory($modal) {
     var modalBlueprint = {
       showModal: showModal,
+      BlueprintDetailsModalController: BlueprintDetailsModalController,
     };
 
     return modalBlueprint;

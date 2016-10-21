@@ -1,0 +1,893 @@
+{
+  "name": "categories",
+  "count": 28,
+  "subcount": 28,
+  "resources": [
+    {
+      "href": "http://localhost:8001/api/categories/10000000000001",
+      "id": 10000000000001,
+      "description": "Location",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "The geographic location of the resource, such as New York, Chicago, or London.",
+      "tag_id": 10000000000003,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "location",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000001"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000001"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000001"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000006",
+      "id": 10000000000006,
+      "description": "Workload",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": false,
+      "example_text": "The workloads a resource provides, such as Web Server, Database, or Firewall.",
+      "tag_id": 10000000000008,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "function",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000006"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000006"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000006"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000016",
+      "id": 10000000000016,
+      "description": "Owner",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "The individual or group that owns the resource.",
+      "tag_id": 10000000000018,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "owner",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000016"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000016"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000016"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000020",
+      "id": 10000000000020,
+      "description": "Environment",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "The resource environment, such as Development, QA, Test, or Production",
+      "tag_id": 10000000000022,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "environment",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000020"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000020"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000020"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000026",
+      "id": 10000000000026,
+      "description": "User roles",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "tag_id": 10000000000028,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "role",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000026"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000026"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000026"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000034",
+      "id": 10000000000034,
+      "description": "Service Level",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "The level of service associated with this resource.",
+      "tag_id": 10000000000036,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "service_level",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000034"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000034"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000034"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000038",
+      "id": 10000000000038,
+      "description": "Customer",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "The name of the customer associated with this resource.",
+      "tag_id": 10000000000040,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "customer",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000038"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000038"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000038"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000039",
+      "id": 10000000000039,
+      "description": "Line of Business",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": false,
+      "example_text": "The Line of Business the resource is assigned to, such as Retail, Trading, or Manufacturing.",
+      "tag_id": 10000000000041,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "lob",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000039"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000039"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000039"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000040",
+      "id": 10000000000040,
+      "description": "Department",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": false,
+      "example_text": "The department the resource is assigned to, such as HR, Accounting, or Sales.",
+      "tag_id": 10000000000042,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "department",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000040"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000040"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000040"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000057",
+      "id": 10000000000057,
+      "description": "Cost Center",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "Cost Center",
+      "tag_id": 10000000000059,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "cc",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000057"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000057"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000057"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000060",
+      "id": 10000000000060,
+      "description": "Network Location",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "The network location the resource is to be used, such as DMZ, Internal network or Cloud",
+      "tag_id": 10000000000062,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "network_location",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000060"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000060"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000060"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000064",
+      "id": 10000000000064,
+      "description": "Exclusions",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": false,
+      "example_text": "Operations that the resource may be excluded from, such as Analysis or Cloning.",
+      "tag_id": 10000000000066,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "exclusions",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000064"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000064"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000064"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000067",
+      "id": 10000000000067,
+      "description": "Provisioning Scope",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": false,
+      "example_text": "Provisioning Scope",
+      "tag_id": 10000000000069,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "prov_scope",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000067"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000067"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000067"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000070",
+      "id": 10000000000070,
+      "description": "EVM Operations",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "Operations",
+      "tag_id": 10000000000072,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "operations",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000070"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000070"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000070"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000074",
+      "id": 10000000000074,
+      "description": "Quota - Max CPUs",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "Maximum number of CPUs allowed by Quota",
+      "tag_id": 10000000000076,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "quota_max_cpu",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000074"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000074"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000074"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000085",
+      "id": 10000000000085,
+      "description": "Auto Approve - Max CPU",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "Maximum number of CPUs allowed by Auto Approval",
+      "tag_id": 10000000000087,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "prov_max_cpu",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000085"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000085"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000085"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000091",
+      "id": 10000000000091,
+      "description": "Auto Approve - Max VM",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "Maximum number of VMs allowed by Auto Approval",
+      "tag_id": 10000000000093,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "prov_max_vm",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000091"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000091"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000091"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000097",
+      "id": 10000000000097,
+      "description": "Quota - Max  Memory",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "Maximum Memory allowed by Quota (GB)",
+      "tag_id": 10000000000099,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "quota_max_memory",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000097"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000097"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000097"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000106",
+      "id": 10000000000106,
+      "description": "Auto Approve - Max Memory",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "Maximum Memory allowed by Auto Approval (GB)",
+      "tag_id": 10000000000108,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "prov_max_memory",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000106"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000106"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000106"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000111",
+      "id": 10000000000111,
+      "description": "Quota - Max  Storage",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "Maximum Storage allowed by Quota (GB)",
+      "tag_id": 10000000000113,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "quota_max_storage",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000111"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000111"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000111"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000119",
+      "id": 10000000000119,
+      "description": "Auto Approve - Max Retirement Days",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "Maximum Days for Retirement allowed by Auto Approval",
+      "tag_id": 10000000000121,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "prov_max_retirement_days",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000119"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000119"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000119"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000124",
+      "id": 10000000000124,
+      "description": "Parent Folder Path (VMs & Templates)",
+      "read_only": true,
+      "syntax": "string",
+      "single_value": true,
+      "tag_id": 10000000000128,
+      "parent_id": 0,
+      "show": true,
+      "name": "folder_path_blue",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000124"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000124"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000124"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000127",
+      "id": 10000000000127,
+      "description": "hybridcloud",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": false,
+      "example_text": "hybridcloud",
+      "tag_id": 10000000000131,
+      "parent_id": 0,
+      "show": true,
+      "perf_by_tag": false,
+      "name": "hybridcloud",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000127"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000127"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000127"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000130",
+      "id": 10000000000130,
+      "description": "Parent Folder Path (Hosts & Clusters)",
+      "read_only": true,
+      "syntax": "string",
+      "single_value": true,
+      "tag_id": 10000000000134,
+      "parent_id": 0,
+      "show": true,
+      "name": "folder_path_yellow",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000130"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000130"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000130"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000136",
+      "id": 10000000000136,
+      "description": "Service Catalog",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": false,
+      "example_text": "Service Catalog",
+      "tag_id": 10000000000140,
+      "parent_id": 0,
+      "show": true,
+      "perf_by_tag": false,
+      "name": "service_catalog",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000136"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000136"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000136"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000141",
+      "id": 10000000000141,
+      "description": "Demo",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": false,
+      "example_text": "Demo",
+      "tag_id": 10000000000161,
+      "parent_id": 0,
+      "show": true,
+      "perf_by_tag": true,
+      "name": "demo",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000141"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000141"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000141"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000145",
+      "id": 10000000000145,
+      "description": "Days of the Week",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": false,
+      "example_text": "Days of the Week",
+      "tag_id": 10000000000165,
+      "parent_id": 0,
+      "show": true,
+      "perf_by_tag": false,
+      "name": "days",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000145"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000145"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000145"
+        }
+      ]
+    },
+    {
+      "href": "http://localhost:8001/api/categories/10000000000152",
+      "id": 10000000000152,
+      "description": "LifeCycle",
+      "read_only": false,
+      "syntax": "string",
+      "single_value": true,
+      "example_text": "LifeCycle Options",
+      "tag_id": 10000000000183,
+      "parent_id": 0,
+      "show": true,
+      "default": true,
+      "name": "lifecycle",
+      "actions": [
+        {
+          "name": "edit",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000152"
+        },
+        {
+          "name": "delete",
+          "method": "post",
+          "href": "http://localhost:8001/api/categories/10000000000152"
+        },
+        {
+          "name": "delete",
+          "method": "delete",
+          "href": "http://localhost:8001/api/categories/10000000000152"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "name": "query",
+      "method": "post",
+      "href": "http://localhost:8001/api/categories"
+    },
+    {
+      "name": "edit",
+      "method": "post",
+      "href": "http://localhost:8001/api/categories"
+    },
+    {
+      "name": "create",
+      "method": "post",
+      "href": "http://localhost:8001/api/categories"
+    },
+    {
+      "name": "delete",
+      "method": "post",
+      "href": "http://localhost:8001/api/categories"
+    }
+  ]
+}
+

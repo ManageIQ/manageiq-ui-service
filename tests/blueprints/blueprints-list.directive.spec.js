@@ -8,7 +8,7 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
 
   beforeEach(function () {
     module('app.services', 'app.config', 'app.states', 'gettext');
-    bard.inject('BlueprintsState', '$state', 'Session', '$httpBackend');
+    bard.inject('BlueprintsState', 'BlueprintDetailsModal', '$state', 'Session', '$httpBackend');
   });
 
   beforeEach(inject(function (_$compile_, _$rootScope_, _$document_) {
@@ -116,6 +116,45 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       $scope.$digest();
 
       expect(stateGoSpy).to.have.been.calledWith('designer.blueprints.editor', { blueprintId: 10000000000023 });
+    });
+
+    it('should goto the blueprint editor when Create button clicked', function () {
+      var stateGoSpy = sinon.spy($state, 'go');
+      var btns = element.find('.primary-action');
+      expect(btns.length).to.eq(2);
+      var createBtn = btns[0];
+      createBtn.click();
+      expect(stateGoSpy).to.have.been.calledWith('designer.blueprints.editor');
+    });
+
+    it('should disable Publish when there are no items on canvas ', function () {
+      var rows = element.find('.list-view-pf > .list-group-item');
+      expect(rows.length).to.eq($scope.blueprints.length);
+
+      // 2nd row/blueprint doesn't have any nodes on canvas
+      var rowElement = angular.element(rows[1]);
+
+      var publishBtn = rowElement.find('.disabled');
+      expect(publishBtn.length).to.eq(1);
+    });
+
+    it('should launch the publish dlg when Publish button clicked', function () {
+      var BlueprintDetailsModalSpy = sinon.stub(BlueprintDetailsModal, 'showModal').returns(Promise.resolve());
+      var rows = element.find('.list-view-pf > .list-group-item');
+      expect(rows.length).to.eq($scope.blueprints.length);
+
+      var rowElement = angular.element(rows[0]);
+
+      var publishBtn = rowElement.find('.btn-default');
+      expect(publishBtn.length).to.eq(1);
+
+      publishBtn[0].click();
+
+      $scope.$digest();
+
+      expect(BlueprintDetailsModalSpy).to.have.been.calledWith(
+          'publish', $scope.blueprints[0]
+      );
     });
   });
 });
