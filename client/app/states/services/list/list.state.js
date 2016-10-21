@@ -47,6 +47,7 @@
 
     angular.forEach(services.resources, function(item) {
       item.powerState = angular.isDefined(item.options.power_state) ? item.options.power_state : "";
+      item.powerStatus = angular.isDefined(item.options.power_status) ? item.options.power_status : "";
     });
 
     angular.forEach(services.resources, function(item) {
@@ -147,28 +148,28 @@
     }
 
     vm.enableButtonForItemFn = function (action, item) {
-      return item.powerState !== "on"
-        && item.powerState !== "starting"
-        && item.powerState !== "stopping"
-        && item.powerState !== "suspending";
+      return item.powerStatus !== "start_complete"
+        && item.powerStatus !== "starting"
+        && item.powerStatus !== "stopping"
+        && item.powerStatus !== "suspending";
     };
 
     vm.hideMenuForItemFn = function (item) {
-      return item.powerState === ""
-        || item.powerState === "off"
-        || item.powerState === "starting"
-        || item.powerState === "stopping"
-        || item.powerState === "suspending";
+      return item.powerStatus === ""
+        || (item.powerState === "off" && item.powerStatus === "stop_complete")
+        || item.powerStatus === "starting"
+        || item.powerStatus === "stopping"
+        || item.powerStatus === "suspending";
     };
 
     vm.updateMenuActionForItemFn = function(action, item) {
-      if (item.powerState === 'suspended' && action.name === __('Suspend')) {
+      if (item.powerState === "off" && item.powerStatus === "suspend_complete" && action.name === __("Suspend")) {
         action.isDisabled = true;
       }
     };
 
     function startService(action, item) {
-      item.powerState = 'starting';
+      item.powerStatus = 'starting';
       CollectionsApi.post('services', item.id, {}, {action: 'start'}).then(startSuccess, startFailure);
 
       function startSuccess() {
@@ -181,7 +182,7 @@
     }
 
     function stopService(action, item) {
-      item.powerState = 'stopping';
+      item.powerStatus = 'stopping';
       CollectionsApi.post('services', item.id, {}, {action: 'stop'}).then(stopSuccess, stopFailure);
 
       function stopSuccess() {
@@ -194,7 +195,7 @@
     }
 
     function suspendService(action, item) {
-      item.powerState = 'suspending';
+      item.powerStatus = 'suspending';
       CollectionsApi.post('services', item.id, {}, {action: 'suspend'}).then(suspendSuccess, suspendFailure);
 
       function suspendSuccess() {
