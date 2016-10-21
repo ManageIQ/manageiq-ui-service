@@ -8,118 +8,113 @@
 
   /** @ngInject */
   function navigation(NavigationProvider) {
+    var dashboard = createItem(
+      'Dashboard',
+      'dashboard',
+      'fa fa-dashboard'
+    );
+    var services = createItem(
+      'My Services',
+      'services',
+      'fa fa-file-o',
+      'The total number of services that you have ordered, both active and retired'
+    );
+    var requests = createItem(
+      'My Requests',
+      'requests',
+      'fa fa-file-text-o'
+    );
+    var marketplace = createItem(
+      'Service Catalog',
+      'marketplace',
+      'fa fa-copy',
+      'The total number of available catalog items'
+    );
+    var designer = createItem(
+      'Designer',
+      'designer',
+      'pficon pficon-blueprint'
+    );
+    var administration = createItem(
+      'Administration',
+      'administration',
+      'fa fa-cog'
+    );
+
+    requests.secondary = {
+      requests: createItem(
+        'Requests',
+        'requests.requests',
+        undefined,
+        'The total number of requests that you have submitted'
+      ),
+      orders: createItem(
+        'Order History',
+        'requests.orders',
+        undefined,
+        'The total number of orders that you have submitted'
+      ),
+    };
+
+    designer.secondary = {
+      blueprints: createItem(
+        'Blueprints',
+        'designer.blueprints',
+        undefined,
+        'The total number of available blueprints'
+      ),
+      dialogs: createItem(
+        'Dialogs',
+        'designer.dialogs',
+        undefined,
+        'The total number of available dialogs'
+      ),
+    };
+
+    administration.secondary = {
+      profiles: createItem(
+        'Profiles',
+        'administration.profiles',
+        undefined,
+        'The total number of available arbitration profiles'
+      ),
+      rules: createItem(
+        'Rules',
+        'administration.rules',
+        undefined,
+        'The total number of available arbitration rules'
+      ),
+    };
+
     NavigationProvider.configure({
       items: {
-        dashboard: {
-          title: N_('Dashboard'),
-          state: 'dashboard',
-          iconClass: 'fa fa-dashboard',
-        },
-        services: {
-          title: N_('My Services'),
-          state: 'services',
-          iconClass: 'fa fa-file-o',
-          badges: [
-            {
-              count: 287,
-              tooltip: N_('The total number of services that you have ordered, both active and retired'),
-            },
-          ],
-        },
-        requests: {
-          title: N_('My Requests'),
-          state: 'requests',
-          iconClass: 'fa fa-file-text-o',
-          secondary: {
-            requests: {
-              title: N_('Requests'),
-              state: 'requests.requests',
-              badges: [
-                {
-                  count: 0,
-                  tooltip: N_('The total number of requests that you have submitted'),
-                },
-              ],
-            },
-            orders: {
-              title: N_('Order History'),
-              state: 'requests.orders',
-              badges: [
-                {
-                  count: 0,
-                  tooltip: N_('The total number of orders that you have submitted'),
-                },
-              ],
-            },
-          },
-        },
-        marketplace: {
-          title: N_('Service Catalog'),
-          state: 'marketplace',
-          iconClass: 'fa fa-copy',
-          badges: [
-            {
-              count: 0,
-              tooltip: N_('The total number of available catalog items'),
-            },
-          ],
-        },
-        designer: {
-          title: N_('Designer'),
-          state: 'designer',
-          iconClass: 'pficon pficon-blueprint',
-          secondary: {
-            blueprints: {
-              title: N_('Blueprints'),
-              state: 'designer.blueprints',
-              badges: [
-                {
-                  count: 0,
-                  tooltip: N_('The total number of available blueprints'),
-                },
-              ],
-            }, 
-            dialogs: {
-              title: N_('Dialogs'),
-              state: 'designer.dialogs',
-              badges: [
-                {
-                  count: 0,
-                  tooltip: N_('The total number of available dialogs'),
-                },
-              ],
-            },
-          },
-        },
-        administration: {
-          title: N_('Administration'),
-          state: 'administration',
-          iconClass: 'fa fa-cog',
-          secondary: {
-            profiles: {
-              title: N_('Profiles'),
-              state: 'administration.profiles',
-              badges: [
-                {
-                  count: 0,
-                  tooltip: N_('The total number of available arbitration profiles'),
-                },
-              ],
-            },
-            rules: {
-              title: N_('Rules'),
-              state: 'administration.rules',
-              badges: [
-                {
-                  count: 0,
-                  tooltip: N_('The total number of available arbitration rules'),
-                },
-              ],
-            },
-          },
-        },
+        dashboard: dashboard,
+        services: services,
+        requests: requests,
+        marketplace: marketplace,
+        designer: designer,
+        administration: administration,
       },
     });
+
+    function createItem(title, state, iconClass, badgeTooltip) {
+      var item = {
+        title: N_(title),
+        state: state,
+        iconClass: iconClass,
+      };
+
+      if (angular.isString(badgeTooltip)) {
+        item.badges =  [
+          {
+            count: 0,
+            tooltip: N_(badgeTooltip),
+          },
+        ];
+      }
+
+      return item;
+    }
   }
 
   /** @ngInject */

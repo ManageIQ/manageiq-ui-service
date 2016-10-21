@@ -98,35 +98,7 @@
 
     vm.toolbarConfig = {
       filterConfig: {
-        fields: [
-          {
-            id: 'name',
-            title: __('Name'),
-            placeholder: __('Filter by Name'),
-            filterType: 'text',
-          },
-          {
-            id: 'visibility',
-            title: __('Visibility'),
-            placeholder: __('Filter by Visibility'),
-            filterType: 'select',
-            filterValues: visibilityNames,
-          },
-          {
-            id: 'catalog',
-            title: __('Catalog'),
-            placeholder: __('Filter by Catalog'),
-            filterType: 'select',
-            filterValues: categoryNames,
-          },
-          {
-            id: 'publishState',
-            title: __('Publish State'),
-            placeholder: __('Filter by Publish State'),
-            filterType: 'select',
-            filterValues: publishStateNames,
-          },
-        ],
+        fields: getFilterConfigFields(),
         resultsCount: vm.blueprintsList.length,
         appliedFilters: BlueprintsState.getFilters(),
         onFilterChange: filterChange,
@@ -154,33 +126,41 @@
       },
     };
 
+    function getFilterConfigFields() {
+      return [
+        ListView.createFilterField(
+          'name',
+          'Name',
+          'Filter by Name',
+          'text'),
+        ListView.createFilterField(
+          'visibility',
+          'Visibility',
+          'Filter by Visibility',
+          'select',
+          visibilityNames),
+        ListView.createFilterField(
+          'catalog',
+          'Catalog',
+          'Filter by Catalog',
+          'select',
+          categoryNames),
+        ListView.createFilterField(
+          'publishState',
+          'Publish State',
+          'Filter by Publish State',
+          'select',
+          publishStateNames),
+      ];
+    }
+
     function getSortConfigFields() {
       return [
-        {
-          id: 'name',
-          title: __('Name'),
-          sortType: 'alpha',
-        },
-        {
-          id: 'last_modified',
-          title: __('Last Modified'),
-          sortType: 'numeric',
-        },
-        {
-          id: 'num_items',
-          title: __('Items'),
-          sortType: 'numeric',
-        },
-        {
-          id: 'visibility',
-          title: __('Visibility'),
-          sortType: 'alpha',
-        },
-        {
-          id: 'catalog',
-          title: __('Catalog'),
-          sortType: 'alpha',
-        },
+        ListView.createSortField('name',          'Name',          'alpha'),
+        ListView.createSortField('last_modified', 'Last Modified', 'numeric'),
+        ListView.createSortField('num_items',     'Items',         'numeric'),
+        ListView.createSortField('visibility',    'Visibility',    'alpha'),
+        ListView.createSortField('catalog',       'Catalog',       'alpha'),
       ];
     }
 

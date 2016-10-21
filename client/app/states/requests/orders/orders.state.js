@@ -47,55 +47,40 @@
       onClick: handleOrderClick,
     };
 
-    vm.orderToolbarConfig = {
-      filterConfig: {
-        fields: [
-          {
-            id: 'name',
-            title: __('Name'),
-            placeholder: __('Filter by Name'),
-            filterType: 'text',
-          },
-          {
-            id: 'id',
-            title: __('Order ID'),
-            placeholder: __('Filter by ID'),
-            filterType: 'text',
-          },
-          {
-            id: 'placed_at',
-            title: __('Order Date'),
-            placeholder: __('Filter by Order Date'),
-            filterType: 'text',
-          },
-        ],
-        resultsCount: vm.ordersList.length,
-        appliedFilters: OrdersState.filterApplied ? OrdersState.getFilters() : [],
-        onFilterChange: orderFilterChange,
-      },
-      sortConfig: {
-        fields: [
-          {
-            id: 'name',
-            title: __('Name'),
-            sortType: 'alpha',
-          },
-          {
-            id: 'id',
-            title: __('Order ID'),
-            sortType: 'numeric',
-          },
-          {
-            id: 'placed_at',
-            title: __('Order Date'),
-            sortType: 'numeric',
-          },
-        ],
-        onSortChange: orderSortChange,
-        isAscending: OrdersState.getSort().isAscending,
-        currentField: OrdersState.getSort().currentField,
-      },
+    var orderFilterConfig = {
+      fields: getOrderFilterFields(),
+      resultsCount: vm.ordersList.length,
+      appliedFilters: OrdersState.filterApplied ? OrdersState.getFilters() : [],
+      onFilterChange: orderFilterChange,
     };
+
+    var orderSortConfig = {
+      fields: getOrderSortFields(),
+      onSortChange: orderSortChange,
+      isAscending: OrdersState.getSort().isAscending,
+      currentField: OrdersState.getSort().currentField,
+    };
+
+    vm.orderToolbarConfig = {
+      filterConfig: orderFilterConfig,
+      sortConfig: orderSortConfig,
+    };
+
+    function getOrderFilterFields() {
+      return [
+        ListView.createFilterField('name',      'Name',       'Filter by Name',       'text'),
+        ListView.createFilterField('id',        'Order ID',   'Filter by ID',         'text'),
+        ListView.createFilterField('placed_at', 'Order Date', 'Filter by Order Date', 'text'),
+      ];
+    }
+
+    function getOrderSortFields() {
+      return [
+        ListView.createSortField('name',      'Name',       'alpha'),
+        ListView.createSortField('id',        'Order ID',   'numeric'),
+        ListView.createSortField('placed_at', 'Order Date', 'numeric'),
+      ];
+    }
 
     if (OrdersState.filterApplied) {
       orderFilterChange(OrdersState.getFilters());
