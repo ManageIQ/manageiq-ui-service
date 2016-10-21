@@ -44,7 +44,7 @@
         if (vm.options) {
           angular.forEach(vm.options, parseOptions);
         }
-        if (angular.isDefined(vm.dialog)) {
+        if (angular.isDefined(vm.dialog) && angular.isArray(vm.dialog.dialog_tabs)) {
           vm.dialog.dialog_tabs.forEach(iterateBGroups);
         }
       }

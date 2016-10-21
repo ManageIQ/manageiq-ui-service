@@ -29,12 +29,28 @@
           title: N_('My Requests'),
           state: 'requests',
           iconClass: 'fa fa-file-text-o',
-          badges: [
-            {
-              count: 0,
-              tooltip: N_('The total number of requests that you have submitted'),
+          secondary: {
+            requests: {
+              title: N_('Requests'),
+              state: 'requests.requests',
+              badges: [
+                {
+                  count: 0,
+                  tooltip: N_('The total number of requests that you have submitted'),
+                },
+              ],
             },
-          ],
+            orders: {
+              title: N_('Order History'),
+              state: 'requests.orders',
+              badges: [
+                {
+                  count: 0,
+                  tooltip: N_('The total number of orders that you have submitted'),
+                },
+              ],
+            },
+          },
         },
         marketplace: {
           title: N_('Service Catalog'),
@@ -101,6 +117,7 @@
 
     NavCounts.add('services', fetchServices, refreshTimeMs);
     NavCounts.add('requests', fetchRequests, refreshTimeMs);
+    NavCounts.add('orders', fetchOrders, refreshTimeMs);
     NavCounts.add('marketplace', fetchServiceTemplates, refreshTimeMs);
     NavCounts.add('blueprints', fetchBlueprints, refreshTimeMs);
     NavCounts.add('profiles', fetchProfiles, refreshTimeMs);
@@ -114,7 +131,18 @@
       };
 
       CollectionsApi.query('requests', options)
-        .then(lodash.partial(updateCount, 'requests'));
+        .then(lodash.partial(updateSecondaryCount, 'requests', 'requests'));
+    }
+
+    function fetchOrders() {
+      var filterValues = ['state=ordered'];
+      var options = {
+        auto_refresh: true,
+        filter: filterValues,
+      };
+
+      CollectionsApi.query('service_orders', options)
+        .then(lodash.partial(updateSecondaryCount, 'requests', 'orders'));
     }
 
     function fetchServices() {
@@ -125,7 +153,7 @@
       };
 
       CollectionsApi.query('services', options)
-        .then(lodash.partial(updateServicesCount, 'services'));
+        .then(lodash.partial(updateCount, 'services'));
     }
 
     function fetchServiceTemplates() {
@@ -136,7 +164,7 @@
       };
 
       CollectionsApi.query('service_templates', options)
-        .then(lodash.partial(updateServiceTemplatesCount, 'marketplace'));
+        .then(lodash.partial(updateCount, 'marketplace'));
     }
 
     function fetchBlueprints() {
@@ -147,7 +175,7 @@
       };
 
       CollectionsApi.query('blueprints', options)
-        .then(lodash.partial(updateDesignerSecondaryCount, 'blueprints'));
+        .then(lodash.partial(updateSecondaryCount, 'designer', 'blueprints'));
     }
 
     function fetchProfiles() {
@@ -158,7 +186,7 @@
       };
 
       CollectionsApi.query('arbitration_profiles', options)
-        .then(lodash.partial(updateAdministrationSecondaryCount, 'profiles'));
+        .then(lodash.partial(updateSecondaryCount, 'administration', 'profiles'));
     }
 
     function fetchRules() {
@@ -169,27 +197,15 @@
       };
 
       CollectionsApi.query('arbitration_rules', options)
-          .then(lodash.partial(updateAdministrationSecondaryCount, 'rules'));
+          .then(lodash.partial(updateSecondaryCount, 'administration', 'rules'));
     }
 
     function updateCount(item, data) {
       Navigation.items[item].badges[0].count = data.subcount;
     }
 
-    function updateServicesCount(item, data) {
-      Navigation.items[item].badges[0].count = data.subcount;
-    }
-
-    function updateServiceTemplatesCount(item, data) {
-      Navigation.items[item].badges[0].count = data.subcount;
-    }
-
-    function updateDesignerSecondaryCount(item, data) {
-      Navigation.items.designer.secondary[item].badges[0].count = data.subcount;
-    }
-
-    function updateAdministrationSecondaryCount(item, data) {
-      Navigation.items.administration.secondary[item].badges[0].count = data.subcount;
+    function updateSecondaryCount(primary, secondary, data) {
+      Navigation.items[primary].secondary[secondary].badges[0].count = data.subcount;
     }
   }
 })();

@@ -1,4 +1,3 @@
-/* jshint -W117, -W030 */
 describe('Dashboard', function() {
   beforeEach(function() {
     module('app.states', 'app.config', 'gettext', bard.fakeToastr);
@@ -15,17 +14,17 @@ describe('Dashboard', function() {
     });
 
     it('should work with $state.go', function() {
-      $state.go('requests.requests');
+      $state.go('requests.orders');
       $rootScope.$apply();
-      expect($state.is('requests.requests'));
+      expect($state.is('requests.orders'));
     });
   });
 
   describe('controller', function() {
     var controller;
 
-    var requests = {
-      name: 'requests',
+    var orders = {
+      name: 'orders',
       count: 1,
       subcount: 1,
       resources: []
@@ -34,7 +33,7 @@ describe('Dashboard', function() {
     beforeEach(function() {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'Notifications');
 
-      controller = $controller($state.get('requests.requests').controller, {requests: requests});
+      controller = $controller($state.get('requests.orders').controller, {orders: orders});
       $rootScope.$apply();
     });
 
