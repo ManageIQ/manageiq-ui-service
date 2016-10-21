@@ -8,102 +8,113 @@
 
   /** @ngInject */
   function navigation(NavigationProvider) {
+    var dashboard = createItem(
+      'Dashboard',
+      'dashboard',
+      'fa fa-dashboard'
+    );
+    var services = createItem(
+      'My Services',
+      'services',
+      'fa fa-file-o',
+      'The total number of services that you have ordered, both active and retired'
+    );
+    var requests = createItem(
+      'My Requests',
+      'requests',
+      'fa fa-file-text-o'
+    );
+    var marketplace = createItem(
+      'Service Catalog',
+      'marketplace',
+      'fa fa-copy',
+      'The total number of available catalog items'
+    );
+    var designer = createItem(
+      'Designer',
+      'designer',
+      'pficon pficon-blueprint'
+    );
+    var administration = createItem(
+      'Administration',
+      'administration',
+      'fa fa-cog'
+    );
+
+    requests.secondary = {
+      requests: createItem(
+        'Requests',
+        'requests.requests',
+        undefined,
+        'The total number of requests that you have submitted'
+      ),
+      orders: createItem(
+        'Order History',
+        'requests.orders',
+        undefined,
+        'The total number of orders that you have submitted'
+      ),
+    };
+
+    designer.secondary = {
+      blueprints: createItem(
+        'Blueprints',
+        'designer.blueprints',
+        undefined,
+        'The total number of available blueprints'
+      ),
+      dialogs: createItem(
+        'Dialogs',
+        'designer.dialogs',
+        undefined,
+        'The total number of available dialogs'
+      ),
+    };
+
+    administration.secondary = {
+      profiles: createItem(
+        'Profiles',
+        'administration.profiles',
+        undefined,
+        'The total number of available arbitration profiles'
+      ),
+      rules: createItem(
+        'Rules',
+        'administration.rules',
+        undefined,
+        'The total number of available arbitration rules'
+      ),
+    };
+
     NavigationProvider.configure({
       items: {
-        dashboard: {
-          title: N_('Dashboard'),
-          state: 'dashboard',
-          iconClass: 'fa fa-dashboard',
-        },
-        services: {
-          title: N_('My Services'),
-          state: 'services',
-          iconClass: 'fa fa-file-o',
-          badges: [
-            {
-              count: 287,
-              tooltip: N_('The total number of services that you have ordered, both active and retired'),
-            },
-          ],
-        },
-        requests: {
-          title: N_('My Requests'),
-          state: 'requests',
-          iconClass: 'fa fa-file-text-o',
-          badges: [
-            {
-              count: 0,
-              tooltip: N_('The total number of requests that you have submitted'),
-            },
-          ],
-        },
-        marketplace: {
-          title: N_('Service Catalog'),
-          state: 'marketplace',
-          iconClass: 'fa fa-copy',
-          badges: [
-            {
-              count: 0,
-              tooltip: N_('The total number of available catalog items'),
-            },
-          ],
-        },
-        designer: {
-          title: N_('Designer'),
-          state: 'designer',
-          iconClass: 'pficon pficon-blueprint',
-          secondary: {
-            blueprints: {
-              title: N_('Blueprints'),
-              state: 'designer.blueprints',
-              badges: [
-                {
-                  count: 0,
-                  tooltip: N_('The total number of available blueprints'),
-                },
-              ],
-            }, 
-            dialogs: {
-              title: N_('Dialogs'),
-              state: 'designer.dialogs',
-              badges: [
-                {
-                  count: 0,
-                  tooltip: N_('The total number of available dialogs'),
-                },
-              ],
-            },
-          },
-        },
-        administration: {
-          title: N_('Administration'),
-          state: 'administration',
-          iconClass: 'fa fa-cog',
-          secondary: {
-            profiles: {
-              title: N_('Profiles'),
-              state: 'administration.profiles',
-              badges: [
-                {
-                  count: 0,
-                  tooltip: N_('The total number of available arbitration profiles'),
-                },
-              ],
-            },
-            rules: {
-              title: N_('Rules'),
-              state: 'administration.rules',
-              badges: [
-                {
-                  count: 0,
-                  tooltip: N_('The total number of available arbitration rules'),
-                },
-              ],
-            },
-          },
-        },
+        dashboard: dashboard,
+        services: services,
+        requests: requests,
+        marketplace: marketplace,
+        designer: designer,
+        administration: administration,
       },
     });
+
+    function createItem(title, state, iconClass, badgeTooltip) {
+      var item = {
+        title: N_(title),
+        state: state,
+        iconClass: iconClass,
+      };
+
+      if (angular.isString(badgeTooltip)) {
+        item.badges =  [
+          {
+            count: 0,
+            tooltip: N_(badgeTooltip),
+          },
+        ];
+      }
+
+      return item;
+    }
   }
 
   /** @ngInject */
@@ -112,6 +123,7 @@
 
     NavCounts.add('services', fetchServices, refreshTimeMs);
     NavCounts.add('requests', fetchRequests, refreshTimeMs);
+    NavCounts.add('orders', fetchOrders, refreshTimeMs);
     NavCounts.add('marketplace', fetchServiceTemplates, refreshTimeMs);
     NavCounts.add('blueprints', fetchBlueprints, refreshTimeMs);
     NavCounts.add('dialogs', fetchDialogs, refreshTimeMs);
@@ -126,7 +138,18 @@
       };
 
       CollectionsApi.query('requests', options)
-        .then(lodash.partial(updateCount, 'requests'));
+        .then(lodash.partial(updateSecondaryCount, 'requests', 'requests'));
+    }
+
+    function fetchOrders() {
+      var filterValues = ['state=ordered'];
+      var options = {
+        auto_refresh: true,
+        filter: filterValues,
+      };
+
+      CollectionsApi.query('service_orders', options)
+        .then(lodash.partial(updateSecondaryCount, 'requests', 'orders'));
     }
 
     function fetchServices() {
@@ -137,7 +160,7 @@
       };
 
       CollectionsApi.query('services', options)
-        .then(lodash.partial(updateServicesCount, 'services'));
+        .then(lodash.partial(updateCount, 'services'));
     }
 
     function fetchServiceTemplates() {
@@ -148,7 +171,7 @@
       };
 
       CollectionsApi.query('service_templates', options)
-        .then(lodash.partial(updateServiceTemplatesCount, 'marketplace'));
+        .then(lodash.partial(updateCount, 'marketplace'));
     }
 
     function fetchBlueprints() {
@@ -159,7 +182,7 @@
       };
 
       CollectionsApi.query('blueprints', options)
-        .then(lodash.partial(updateDesignerSecondaryCount, 'blueprints'));
+        .then(lodash.partial(updateSecondaryCount, 'designer', 'blueprints'));
     }
 
     function fetchDialogs() {
@@ -170,7 +193,7 @@
       };
 
       CollectionsApi.query('service_dialogs', options)
-        .then(lodash.partial(updateDesignerSecondaryCount, 'dialogs'));
+        .then(lodash.partial(updateSecondaryCount, 'designer', 'dialogs'));
     }
 
     function fetchProfiles() {
@@ -181,7 +204,7 @@
       };
 
       CollectionsApi.query('arbitration_profiles', options)
-        .then(lodash.partial(updateAdministrationSecondaryCount, 'profiles'));
+        .then(lodash.partial(updateSecondaryCount, 'administration', 'profiles'));
     }
 
     function fetchRules() {
@@ -192,27 +215,15 @@
       };
 
       CollectionsApi.query('arbitration_rules', options)
-          .then(lodash.partial(updateAdministrationSecondaryCount, 'rules'));
+          .then(lodash.partial(updateSecondaryCount, 'administration', 'rules'));
     }
 
     function updateCount(item, data) {
       Navigation.items[item].badges[0].count = data.subcount;
     }
 
-    function updateServicesCount(item, data) {
-      Navigation.items[item].badges[0].count = data.subcount;
-    }
-
-    function updateServiceTemplatesCount(item, data) {
-      Navigation.items[item].badges[0].count = data.subcount;
-    }
-
-    function updateDesignerSecondaryCount(item, data) {
-      Navigation.items.designer.secondary[item].badges[0].count = data.subcount;
-    }
-
-    function updateAdministrationSecondaryCount(item, data) {
-      Navigation.items.administration.secondary[item].badges[0].count = data.subcount;
+    function updateSecondaryCount(primary, secondary, data) {
+      Navigation.items[primary].secondary[secondary].badges[0].count = data.subcount;
     }
   }
 })();

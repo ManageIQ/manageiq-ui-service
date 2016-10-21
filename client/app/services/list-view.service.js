@@ -45,6 +45,25 @@
       }
     };
 
+    listView.createFilterField = function(id, title, placeholder, type, values) {
+      return {
+        id: id,
+        title: __(title),
+        placeholder: __(placeholder),
+        filterType: type,
+        filterValues: values,
+      };
+    };
+
+    listView.createSortField = function (id, title, sortType) {
+      return {
+        id: id,
+        title: __(title),
+        sortType: sortType,
+      };
+    };
+
+
     return listView;
   }
 })();
