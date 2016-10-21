@@ -44,7 +44,7 @@
     };
 
     function handleRequestClick(item, _e) {
-      $state.go('requests.details', { requestId: item.id });
+      $state.go('requests.requests.details', { requestId: item.id });
     }
   }
 })();

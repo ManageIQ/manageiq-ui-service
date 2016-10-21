@@ -48,32 +48,23 @@
       onClick: handleRequestClick,
     };
 
-    var statuses = [__('Pending'), __('Denied'), __('Approved')];
+    var requestFilterConfig = {
+      fields: getRequestFilterFields(),
+      resultsCount: vm.requestsList.length,
+      appliedFilters: RequestsState.filterApplied ? RequestsState.getFilters() : [],
+      onFilterChange: filterChange,
+    };
+
+    var requestSortConfig = {
+      fields: getRequestSortFields(),
+      onSortChange: sortChange,
+      isAscending: RequestsState.getSort().isAscending,
+      currentField: RequestsState.getSort().currentField,
+    };
+
     vm.toolbarConfig = {
-      filterConfig: {
-        fields: [
-          ListView.createFilterField('description',    'Description',    'Filter by Description',  'text'),
-          ListView.createFilterField('request_id',     'Request ID',     'Filter by Request ID',   'text'),
-          ListView.createFilterField('requester_name', 'Requester',      'Filter by Requester',    'text'),
-          ListView.createFilterField('request_date',   'Request Date',   'Filter by Request Date', 'text'),
-          ListView.createFilterField('approval_state', 'Request Status', 'Filter by Status',       'select', statuses),
-        ],
-        resultsCount: vm.requestsList.length,
-        appliedFilters: RequestsState.filterApplied ? RequestsState.getFilters() : [],
-        onFilterChange: filterChange,
-      },
-      sortConfig: {
-        fields: [
-          ListView.createSortField('description',    'Description',    'alpha'),
-          ListView.createSortField('id',             'Request ID',     'numeric'),
-          ListView.createSortField('requester_name', 'Requester',      'alpha'),
-          ListView.createSortField('requested',      'Request Date',   'numeric'),
-          ListView.createSortField('status',         'Request Status', 'alpha'),
-        ],
-        onSortChange: sortChange,
-        isAscending: RequestsState.getSort().isAscending,
-        currentField: RequestsState.getSort().currentField,
-      },
+      filterConfig: requestFilterConfig,
+      sortConfig: requestSortConfig,
     };
 
     if (RequestsState.filterApplied) {
@@ -84,22 +75,26 @@
       applyFilters();
     }
 
-    function createFilterField (id, title, placeholder, type, values) {
-      return           {
-        id: id,
-        title: __(title),
-        placeholder: __(placeholder),
-        filterType: type,
-        filterValues: values,
-      }
+    function getRequestFilterFields() {
+      var statuses = [__('Pending'), __('Denied'), __('Approved')];
+
+      return [
+        ListView.createFilterField('description',    'Description',    'Filter by Description',  'text'),
+        ListView.createFilterField('request_id',     'Request ID',     'Filter by Request ID',   'text'),
+        ListView.createFilterField('requester_name', 'Requester',      'Filter by Requester',    'text'),
+        ListView.createFilterField('request_date',   'Request Date',   'Filter by Request Date', 'text'),
+        ListView.createFilterField('approval_state', 'Request Status', 'Filter by Status',       'select', statuses),
+      ];
     }
 
-    function createSortField (id, title, sortType) {
-      return {
-        id: id,
-        title: __(title),
-        sortType: sortType,
-      };
+    function getRequestSortFields() {
+      return [
+        ListView.createSortField('description',    'Description',    'alpha'),
+        ListView.createSortField('id',             'Request ID',     'numeric'),
+        ListView.createSortField('requester_name', 'Requester',      'alpha'),
+        ListView.createSortField('requested',      'Request Date',   'numeric'),
+        ListView.createSortField('status',         'Request Status', 'alpha'),
+      ];
     }
 
     function handleRequestClick(item, _e) {
