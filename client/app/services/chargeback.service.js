@@ -7,27 +7,11 @@
   /** @ngInject */
   function ChargebackFactory(lodash) {
     var service = {
-      addListData: addListData,
       adjustRelativeCost: adjustRelativeCost,
+      currentReport: currentReport,
+      processReports: processReports,
       reportUsedCost: reportUsedCost,
     };
-
-    function addListData(item) {
-      var data = item.chargeback_report.results[0] || {};
-      var sum = reportUsedCost(data);
-
-      item.chargeback = {
-        data: data,
-        sum: sum,
-      };
-      item.chargeback_relative_cost = '?';
-    }
-
-    function reportUsedCost(report) {
-      return lodash.reduce(report, function(sum, v, k) {
-        return sum + k.match(/_used_cost$/) ? v : 0;
-      }, 0);
-    }
 
     // recomputes items[*].chargeback_relative_cost
     function adjustRelativeCost(items) {
@@ -57,6 +41,32 @@
           item.chargeback_relative_cost = '$$$$';
         }
       });
+    }
+
+    function currentReport(item) {
+      var latest = lodash(item.chargeback_report.results || [])
+        .sortBy('start_date')
+        .reverse()
+        .value();
+
+      return latest[0];
+    }
+
+    function processReports(item) {
+      var data = currentReport(item);
+      var sum = reportUsedCost(data);
+
+      item.chargeback = {
+        data: data,
+        sum: sum,
+      };
+    }
+
+    // sum all *_used_cost fields in the report
+    function reportUsedCost(report) {
+      return lodash.reduce(report, function(sum, v, k) {
+        return sum + k.match(/_used_cost$/) ? v : 0;
+      }, 0);
     }
 
     return service;

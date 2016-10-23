@@ -51,7 +51,7 @@
       }
     });
 
-    vm.services.forEach(Chargeback.addListData);
+    vm.services.forEach(Chargeback.processReports);
     Chargeback.adjustRelativeCost(vm.services);
 
     vm.servicesList = angular.copy(vm.services);
