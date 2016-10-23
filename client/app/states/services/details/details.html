@@ -105,6 +105,12 @@
                     <input class="form-control" disabled value="{{ ::vm.service.created_at | date:'medium' }}"/>
                   </div>
                 </div>
+                <div class="form-group" ng-show="vm.service.chargeback.sum">
+                  <label class="control-label col-sm-4" translate>Monthly Charge</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" disabled value="{{ ::vm.service.chargeback.sum }}"/>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
