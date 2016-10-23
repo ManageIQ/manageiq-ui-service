@@ -80,8 +80,88 @@
     };
 
     vm.toolbarConfig = {
-      filterConfig: serviceFilterConfig,
-      sortConfig: serviceSortConfig,
+      filterConfig: {
+        fields: [
+          {
+            id: 'name',
+            title: __('Name'),
+            placeholder: __('Filter by Name'),
+            filterType: 'text',
+          },
+          {
+            id: 'retirement',
+            title: __('Retirement Date'),
+            placeholder: __('Filter by Retirement Date'),
+            filterType: 'select',
+            filterValues: [__('Current'), __('Soon'), __('Retired')],
+          },
+          {
+            id: 'vms',
+            title: __('Number of VMs'),
+            placeholder: __('Filter by VMs'),
+            filterType: 'text',
+          },
+          {
+            id: 'owner',
+            title: __('Owner'),
+            placeholder: __('Filter by Owner'),
+            filterType: 'text',
+          },
+          {
+            id: 'created',
+            title: __('Created'),
+            placeholder: __('Filter by Created On'),
+            filterType: 'text',
+          },
+          {
+            id: 'chargeback_relative_cost',
+            title: __('Relative Cost'),
+            placeholder: __('Filter by Relative Cost'),
+            filterType: 'select',
+            filterValues: ['$', '$$', '$$$', '$$$$'],
+          },
+        ],
+        resultsCount: vm.servicesList.length,
+        appliedFilters: ServicesState.filterApplied ? ServicesState.getFilters() : [],
+        onFilterChange: filterChange,
+      },
+      sortConfig: {
+        fields: [
+          {
+            id: 'name',
+            title: __('Name'),
+            sortType: 'alpha',
+          },
+          {
+            id: 'retires',
+            title: __('Retirement Date'),
+            sortType: 'numeric',
+          },
+          {
+            id: 'vms',
+            title: __('Number of VMs'),
+            sortType: 'numeric',
+          },
+          {
+            id: 'owner',
+            title: __('Owner'),
+            sortType: 'alpha',
+          },
+          {
+            id: 'created',
+            title: __('Created'),
+            sortType: 'numeric',
+          },
+          {
+            id: 'chargeback_relative_cost',
+            title: __('Relative Cost'),
+            sortType: 'alpha',
+          },
+        ],
+        onSortChange: sortChange,
+        isAscending: ServicesState.getSort().isAscending,
+        currentField: ServicesState.getSort().currentField,
+      },
     };
 
     vm.actionButtons = [
@@ -273,6 +353,8 @@
         compValue = new Date(item1.created_at) - new Date(item2.created_at);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'retires') {
         compValue = getRetirementDate(item1.retires_on) - getRetirementDate(item2.retires_on);
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'chargeback_relative_cost') {
+        compValue = item1.chargeback_relative_cost.length - item2.chargeback_relative_cost.length;
       }
 
       if (!vm.toolbarConfig.sortConfig.isAscending) {
@@ -346,6 +428,8 @@
         return checkRetirementDate(item, filter.value.toLowerCase());
       } else if (filter.id === 'created') {
         return $filter('date')(item.created_at).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else if (filter.id === 'chargeback_relative_cost') {
+        return item.chargeback_relative_cost === filter.value;
       }
 
       return false;
