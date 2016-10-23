@@ -28,7 +28,7 @@
   function resolveServices(CollectionsApi) {
     var options = {
       expand: 'resources',
-      attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms'],
+      attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms', 'chargeback_report'],
       filter: ['service_id=nil'],
     };
 
@@ -36,7 +36,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, services, ServicesState, $filter, $rootScope, Language, ListView) {
+  function StateController($state, services, ServicesState, $filter, $rootScope, Language, ListView, Chargeback) {
     var vm = this;
 
     vm.services = [];
@@ -50,6 +50,9 @@
         vm.services.push(item);
       }
     });
+
+    vm.services.forEach(Chargeback.addListData);
+    Chargeback.adjustRelativeCost(vm.services);
 
     vm.servicesList = angular.copy(vm.services);
 
