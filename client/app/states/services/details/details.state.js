@@ -41,6 +41,7 @@
       'custom_actions',
       'provision_dialog',
       'service_template',
+      'chargeback_report',
     ];
     var options = {
       attributes: requestAttributes,
@@ -52,7 +53,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, EventNotifications, Consoles) {
+  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, EventNotifications, Consoles, Chargeback) {
     var vm = this;
     setInitialVars(vm);
 
@@ -84,6 +85,7 @@
     activate();
 
     function activate() {
+      Chargeback.processReports(vm.service);
     }
 
     function setInitialVars(vm) {
