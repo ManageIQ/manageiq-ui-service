@@ -84,23 +84,26 @@
 
     function getServiceFilterFields() {
       var retires = [__('Current'), __('Soon'), __('Retired')];
+      var dollars = ['$', '$$', '$$$', '$$$$'];
 
       return [
-        ListView.createFilterField('name',       __('Name'),            __('Filter by Name'),            'text'),
+        ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
         ListView.createFilterField('retirement', __('Retirement Date'), __('Filter by Retirement Date'), 'select', retires),
-        ListView.createFilterField('vms',        __('Number of VMs'),   __('Filter by VMs'),             'text'),
-        ListView.createFilterField('owner',      __('Owner'),           __('Filter by Owner'),           'text'),
-        ListView.createFilterField('owner',      __('Created'),         __('Filter by Created On'),      'text'),
+        ListView.createFilterField('vms', __('Number of VMs'), __('Filter by VMs'), 'text'),
+        ListView.createFilterField('owner', __('Owner'), __('Filter by Owner'), 'text'),
+        ListView.createFilterField('owner', __('Created'), __('Filter by Created On'), 'text'),
+        ListView.createFilterField('chargeback_relative_cost', __('Relative Cost'), __('Filter by Relative Cost'), 'select', dollars),
       ];
     }
 
     function getServiceSortFields() {
       return [
-        ListView.createSortField('name',    __('Name'),            'alpha'),
+        ListView.createSortField('name', __('Name'), 'alpha'),
         ListView.createSortField('retires', __('Retirement Date'), 'numeric'),
-        ListView.createSortField('vms',     __('Number of VMs'),   'numeric'),
-        ListView.createSortField('owner',   __('Owner'),           'alpha'),
-        ListView.createSortField('created', __('Created'),         'numeric'),
+        ListView.createSortField('vms', __('Number of VMs'), 'numeric'),
+        ListView.createSortField('owner', __('Owner'), 'alpha'),
+        ListView.createSortField('created', __('Created'), 'numeric'),
+        ListView.createSortField('chargeback_relative_cost', __('Relative Cost'), 'alpha'),
       ];
     }
 
@@ -149,6 +152,8 @@
         compValue = new Date(item1.created_at) - new Date(item2.created_at);
       } else if (vm.toolbarConfig.sortConfig.currentField.id === 'retires') {
         compValue = getRetirementDate(item1.retires_on) - getRetirementDate(item2.retires_on);
+      } else if (vm.toolbarConfig.sortConfig.currentField.id === 'chargeback_relative_cost') {
+        compValue = item1.chargeback_relative_cost.length - item2.chargeback_relative_cost.length;
       }
 
       if (!vm.toolbarConfig.sortConfig.isAscending) {
@@ -190,6 +195,8 @@
         return checkRetirementDate(item, filter.value.toLowerCase());
       } else if (filter.id === 'created') {
         return $filter('date')(item.created_at).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else if (filter.id === 'chargeback_relative_cost') {
+        return item.chargeback_relative_cost === filter.value;
       }
 
       return false;
