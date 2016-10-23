@@ -28,8 +28,8 @@
   function resolveServices(CollectionsApi) {
     var options = {
       expand: 'resources',
-      attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms'],
-      filter: ['service_id=nil']
+      attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms', 'chargeback_report'],
+      filter: ['service_id=nil'],
     };
 
     return CollectionsApi.query('services', options);
@@ -52,6 +52,9 @@
         vm.services.push(item);
       }
     });
+
+    vm.services.forEach(Chargeback.addListData);
+    Chargeback.adjustRelativeCost(vm.services);
 
     vm.servicesList = angular.copy(vm.services);
 

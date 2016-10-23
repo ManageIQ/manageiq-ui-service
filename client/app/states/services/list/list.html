@@ -31,13 +31,20 @@
           </span>
         </span>
       </div>
-       <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
+       <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
         <span class="no-wrap">
            <i class="pficon pficon-screen" tooltip="{{'The number of instances running this service'|translate}}" tooltip-placement="bottom"></i>
           <span tooltip="{{ '[[number]] VMs'|translate|substitute:{number: item.v_total_vms} }}" tooltip-placement="bottom">
             <strong>{{ item.v_total_vms}}</strong>
             {{'VMs'|translate}}
           </span>
+        </span>
+      </div>
+       <div class="col-lg-1 hidden-md hidden-sm hidden-xs">
+        <span class="no-wrap">
+          <b tooltip="{{ 'Relative cost' | translate }}" tooltip-placement="bottom">
+            {{ item.chargeback_relative_cost }}
+          </b>
         </span>
       </div>
       <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
