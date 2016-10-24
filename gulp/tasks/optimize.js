@@ -37,19 +37,20 @@ module.exports = function(gulp, options) {
       // Get the css
       .pipe(cssFilter)
       .pipe(csso())
+      .pipe(rev())
       .pipe(cssFilter.restore)
       // Get the custom javascript
       .pipe(jsAppFilter)
       .pipe(ngAnnotate(config.ngAnnotateOptions))
       .pipe(uglify())
       .pipe(getHeader())
+      .pipe(rev())
       .pipe(jsAppFilter.restore)
       // Get the vendor javascript
       .pipe(jslibFilter)
       .pipe(uglify()) // another option is to override wiredep to use min files
-      .pipe(jslibFilter.restore)
-      // Take inventory of the file names for future rev numbers
       .pipe(rev())
+      .pipe(jslibFilter.restore)
       // Replace the file names in the html with rev numbers
       .pipe(revReplace())
       .pipe(gulp.dest(config.build));
