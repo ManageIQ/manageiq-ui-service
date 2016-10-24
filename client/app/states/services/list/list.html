@@ -22,7 +22,7 @@
       </div>
       <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
         <span class="no-wrap">
-          <strong translate>Retirement Date</strong>&nbsp;
+          <strong translate>Retires</strong>&nbsp;
           <span ng-if=(item.retires_on) tooltip="{{ item.retires_on | date }}" tooltip-placement="bottom">
             {{ item.retires_on | date }}
           </span>
@@ -55,9 +55,9 @@
           </span>
         </span>
       </div>
-      <div class="col-lg-2 hidden-md hidden-sm hidden-xs">
+      <div class="col-lg-1 hidden-md hidden-sm hidden-xs">
         <span class="no-wrap">
-          <strong translate>Created On</strong>&nbsp;
+          <strong translate>Created</strong>&nbsp;
           <span tooltip="{{ item.created_at | date }}" tooltip-placement="bottom">
             {{ item.created_at | date }}
           </span>
