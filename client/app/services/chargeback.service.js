@@ -47,24 +47,24 @@
     }
 
     function currentReport(item) {
-      var latest_date = lodash(item.chargeback_report.results || [])
+      var latestDate = lodash(item.chargeback_report.results || [])
         .pluck('start_date')
         .sort()
         .reverse()
         .first();
 
-      var latest_reports = lodash(item.chargeback_report.results || [])
-        .filter({ start_date: latest_date })
+      var latestReports = lodash(item.chargeback_report.results || [])
+        .filter({ start_date: latestDate })
         .value();
 
-      latest_reports.forEach(function(report) {
+      latestReports.forEach(function(report) {
         report.used_cost_sum = reportUsedCost(report);
       });
 
       return {
-        start_date: latest_date,
-        used_cost_sum: lodash.sum(latest_reports, 'used_cost_sum'), // sumBy in lodash4
-        vms: latest_reports,
+        start_date: latestDate,
+        used_cost_sum: lodash.sum(latestReports, 'used_cost_sum'), // sumBy in lodash4
+        vms: latestReports,
       };
     }
 
