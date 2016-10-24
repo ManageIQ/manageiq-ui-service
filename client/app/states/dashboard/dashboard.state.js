@@ -153,7 +153,7 @@
         services.forEach(Chargeback.processReports);
 
         vm.chargeback = {
-          used_cost_sum: lodash(services).pluck(['chargeback', 'used_cost_sum']).sum(),
+          'used_cost_sum': lodash(services).pluck(['chargeback', 'used_cost_sum']).sum(),
         };
       }
 
