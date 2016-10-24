@@ -31,7 +31,9 @@
           return;
         }
 
-        var idx = lodash.findIndex(sums, item.chargeback.used_cost_sum);
+        var idx = sums.findIndex(function(v) {
+          return v === item.chargeback.used_cost_sum;
+        });
         if (idx < bounds[0]) {
           item.chargeback_relative_cost = '$';
         } else if (idx < bounds[1]) {
