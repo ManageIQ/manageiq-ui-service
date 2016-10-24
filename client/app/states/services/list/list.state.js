@@ -151,29 +151,63 @@
     }
 
     vm.enableButtonForItemFn = function (action, item) {
-      return item.powerStatus !== "start_complete"
-        && item.powerStatus !== "starting"
-        && item.powerStatus !== "stopping"
-        && item.powerStatus !== "suspending";
+      return powerOperationUnknownState(item)
+        || powerOperationOffState(item)
+        || powerOperationSuspendState(item)
+        || powerOperationTimeoutState(item);
     };
 
     vm.hideMenuForItemFn = function (item) {
-      return item.powerStatus === ""
-        || (item.powerState === "off" && item.powerStatus === "stop_complete")
-        || item.powerStatus === "starting"
-        || item.powerStatus === "stopping"
-        || item.powerStatus === "suspending";
+      return powerOperationUnknownState(item) || powerOperationInProgressState(item);
     };
 
     vm.updateMenuActionForItemFn = function(action, item) {
-      if (item.powerState === "off" && item.powerStatus === "suspend_complete" && action.actionName === "suspend") {
+      if (powerOperationSuspendState(item) && action.actionName === "suspend") {
         action.isDisabled = true;
-      } else if (item.powerState === "off" && item.powerStatus === "stop_complete" && action.actionName === "stop") {
+      } else if (powerOperationOffState(item) && action.actionName === "stop") {
         action.isDisabled = true;
       } else {
         action.isDisabled = false;
       }
     };
+
+    function powerOperationUnknownState(item) {
+      return item.powerState === "" && item.powerStatus === "";
+    }
+
+    function powerOperationInProgressState(item) {
+      return (item.powerState !== "timeout" && item.powerStatus === "starting")
+        || (item.powerState !== "timeout" && item.powerStatus === "stopping")
+        || (item.powerState !== "timeout" && item.powerStatus === "suspending");
+    }
+
+    function powerOperationOnState(item) {
+      return item.powerState === "on" && item.powerStatus === "start_complete";
+    }
+
+    function powerOperationOffState(item) {
+      return item.powerState === "off" && item.powerStatus === "stop_complete";
+    }
+
+    function powerOperationSuspendState(item) {
+      return item.powerState === "off" && item.powerStatus === "suspend_complete";
+    }
+
+    function powerOperationTimeoutState(item) {
+      return item.powerState === "timeout";
+    }
+
+    function powerOperationStartTimeoutState(item) {
+      return item.powerState === "timeout" && item.powerStatus === "starting";
+    }
+
+    function powerOperationStopTimeoutState(item) {
+      return item.powerState === "timeout" && item.powerStatus === "stopping";
+    }
+
+    function powerOperationSuspendTimeoutState(item) {
+      return item.powerState === "timeout" && item.powerStatus === "suspending";
+    }
 
     function startService(action, item) {
       item.powerStatus = 'starting';

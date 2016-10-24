@@ -69,13 +69,13 @@
           <i class="fa fa-circle green fa-3x fa-fw" ng-if="item.powerState === 'on' && item.powerStatus === 'start_complete'" tooltip="{{'Power State: On'|translate}}" tooltip-placement="bottom"></i>
           <i class="fa fa-circle red fa-3x fa-fw" ng-if="item.powerState === 'off' && item.powerStatus === 'stop_complete'" tooltip="{{'Power State: Off'|translate}}" tooltip-placement="bottom"></i>
           <i class="fa fa-circle orange fa-3x fa-fw" ng-if="item.powerState === 'off' && item.powerStatus === 'suspend_complete'" tooltip="{{'Power State: Suspended'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-spinner fa-pulse green fa-3x fa-fw" ng-if="item.powerStatus === 'starting'" tooltip="{{'Power State: Starting...'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-spinner fa-pulse red fa-3x fa-fw" ng-if="item.powerStatus === 'stopping'" tooltip="{{'Power State: Stopping...'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-spinner fa-pulse orange fa-3x fa-fw" ng-if="item.powerStatus === 'suspending'" tooltip="{{'Power State: Suspending...'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-spinner fa-pulse green fa-3x fa-fw" ng-if="item.powerState !== 'timeout' && item.powerStatus === 'starting'" tooltip="{{'Power State: Starting...'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-spinner fa-pulse red fa-3x fa-fw" ng-if="item.powerState !== 'timeout' && item.powerStatus === 'stopping'" tooltip="{{'Power State: Stopping...'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-spinner fa-pulse orange fa-3x fa-fw" ng-if="item.powerState !== 'timeout' && item.powerStatus === 'suspending'" tooltip="{{'Power State: Suspending...'|translate}}" tooltip-placement="bottom"></i>
           <i class="fa fa-question-circle blue fa-3x fa-fw" ng-if="item.powerState === '' && item.powerStatus === ''" tooltip="{{'Power State: Unknown'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-adjust-circle green fa-3x fa-fw" ng-if="item.powerState === 'timeout' && item.powerStatus === 'starting'" tooltip="{{'Power State: Partially started and timed out'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-adjust-circle red fa-3x fa-fw" ng-if="item.powerState === 'timeout' && item.powerStatus === 'stopping'" tooltip="{{'Power State: Partially stopped and timed out'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-adjust-circle orange fa-3x fa-fw" ng-if="item.powerState === 'timeout' && item.powerStatus === 'suspending'" tooltip="{{'Power State: Partially suspended and timed out'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-adjust green fa-3x fa-fw" ng-if="item.powerState === 'timeout' && item.powerStatus === 'starting'" tooltip="{{'Power State: Start operation timed out'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-adjust red fa-3x fa-fw" ng-if="item.powerState === 'timeout' && item.powerStatus === 'stopping'" tooltip="{{'Power State: Stop operation timed out'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-adjust orange fa-3x fa-fw" ng-if="item.powerState === 'timeout' && item.powerStatus === 'suspending'" tooltip="{{'Power State: Suspend operation timed out'|translate}}" tooltip-placement="bottom"></i>
         </span>
       </div>
     </div>
