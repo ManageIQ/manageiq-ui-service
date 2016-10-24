@@ -90,6 +90,7 @@
     vm.actionButtons = [
       {
         name: __('Start'),
+        actionName: 'start',
         title: __('Start this service'),
         actionFn: startService,
         isDisabled: false,
@@ -99,12 +100,14 @@
     vm.menuActions = [
       {
         name: __('Stop'),
+        actionName: 'stop',
         title: __('Stop this service'),
         actionFn: stopService,
         isDisabled: false,
       },
       {
         name: __('Suspend'),
+        actionName: 'suspend',
         title: __('Suspend this service'),
         actionFn: suspendService,
         isDisabled: false,
@@ -163,8 +166,12 @@
     };
 
     vm.updateMenuActionForItemFn = function(action, item) {
-      if (item.powerState === "off" && item.powerStatus === "suspend_complete" && action.name === __("Suspend")) {
+      if (item.powerState === "off" && item.powerStatus === "suspend_complete" && action.actionName === "suspend") {
         action.isDisabled = true;
+      } else if (item.powerState === "off" && item.powerStatus === "stop_complete" && action.actionName === "stop") {
+        action.isDisabled = true;
+      } else {
+        action.isDisabled = false;
       }
     };
 
