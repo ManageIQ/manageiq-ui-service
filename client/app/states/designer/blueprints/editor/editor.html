@@ -2,9 +2,12 @@
   <span class="blueprint-designer-header">
     <ol class="breadcrumb">
         <li>
-            <a ui-sref="^"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to Blueprints'|translate}}</a>
+            {{'Designer'|translate}}
         </li>
-        <li class="active"><strong translate>Blueprint Editor: </strong>
+        <li>
+            <a ui-sref="designer.blueprints">{{'Blueprints'|translate}}</a>
+        </li>
+        <li class="active">
             <input type="text" class="blueprint-name-input" ng-model="blueprint.name"
                    ng-change="blueprintNameChange()"
                    placeholder="{{'Untitled Blueprint'|translate}}">
@@ -18,7 +21,7 @@
 
   <div class="blueprint-designer-container">
 
-      <div class="toolbar">
+      <div class="section-toolbar">
           <button id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': inConnectingMode}" type="button" ng-click="showToolbox()"
                   data-toggle="tooltip" data-placement="bottom" title="Add Service Item To Canvas" translate>Add Item
           </button>

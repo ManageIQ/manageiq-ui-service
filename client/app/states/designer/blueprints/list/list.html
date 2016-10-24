@@ -1,6 +1,12 @@
-<div pf-toolbar id="blueprintToolbar" config="vm.toolbarConfig"></div>
+<span>
+  <ol class="breadcrumb">
+    <li>{{'Designer'|translate}}</li>
+    <li class="active">{{'Blueprints' | translate}}</li>
+  </ol>
+</span>
+<div pf-toolbar class="section-toolbar" id="blueprintToolbar" config="vm.toolbarConfig"></div>
 
-<div class="list-view-container">
+<div class="list-view-container section-container">
   <div pf-list-view id="blueprintList" class="blueprints-list" config="vm.listConfig" items="vm.blueprintsList"
        action-buttons="vm.actionButtons"
        enable-button-for-item-fn="vm.enableButtonForItemFn"
