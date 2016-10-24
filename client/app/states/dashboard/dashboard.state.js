@@ -122,14 +122,18 @@
     if (!$state.navFeatures.services.show) {
       return undefined;
     }
-    var options = {expand: false, filter: ['service_id=nil'] };
+
+    var options = {
+      expand: 'resources',
+      filter: ['service_id=nil'],
+      attributes: ['chargeback_report'],
+    };
 
     return CollectionsApi.query('services', options);
   }
 
   /** @ngInject */
-  function StateController($state, RequestsState, ServicesState, definedServiceIdsServices, retiredServices,
-    expiringServices, allRequests, lodash, $q) {
+  function StateController($state, RequestsState, ServicesState, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback) {
     var vm = this;
     if (angular.isDefined(definedServiceIdsServices)) {
       vm.servicesCount = {};
@@ -141,12 +145,16 @@
 
       if (definedServiceIdsServices.subcount > 0) {
         vm.servicesCount.total = definedServiceIdsServices.subcount;
-
         vm.servicesCount.retired = retiredServices.subcount;
-
         vm.servicesCount.soon = expiringServices.subcount;
-        
         vm.servicesCount.current = vm.servicesCount.total - vm.servicesCount.retired - vm.servicesCount.soon;
+
+        var services = definedServiceIdsServices.resources;
+        services.forEach(Chargeback.processReports);
+
+        vm.chargeback = {
+          used_cost_sum: lodash(services).pluck(['chargeback', 'used_cost_sum']).sum(),
+        };
       }
 
       vm.servicesFeature = true;
