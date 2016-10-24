@@ -8,11 +8,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-10-17 06:53-0400\n"
+"PO-Revision-Date: 2016-10-20 08:35-0400\n"
 "Last-Translator: asasaki <asasaki@redhat.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"X-Generator: Zanata 3.9.5\n"
+"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 #: app/components/notifications/notification-body.html:22
@@ -124,10 +124,9 @@ msgid "Are you sure you want to delete this rule?"
 msgstr "このルールを削除してもよいですか?"
 
 #: app/components/blueprint-delete-modal/blueprint-delete-modal.html:8
-#, fuzzy
 msgid "Are you sure you want to delete {{vm.blueprintsList[0].name}}?"
 msgid_plural "Are you sure you want to delete {{$count}} blueprints?"
-msgstr[0] "{{vm.blueprintsList[0].name}} を削除してもよいですか?"
+msgstr[0] "{{$count}}  ブループリントを削除してもよいですか?"
 
 #: app/components/confirmation/confirmation.directive.js:106
 msgid "Are you sure you wish to proceed?"
@@ -286,7 +285,7 @@ msgstr "(確認) このサービスを削除しますか？"
 
 #: app/states/services/details/details.html:54
 msgid "Confirm, would you like to retire this service?"
-msgstr "(確認) このサービスをリタイアさせますか？"
+msgstr "(確認) このサービスをリタイアしますか？"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:90
 #: app/states/administration/profiles/profiles.state.js:279
@@ -641,7 +640,7 @@ msgstr "保存しないと、変更は失われます。"
 
 #: app/states/services/details/details.html:47
 msgid "Inactivate the service"
-msgstr "サービスをリタイアさせる"
+msgstr "サービスをリタイア"
 
 #: app/states/products/details/details.html:19
 msgid "Inactive"
@@ -791,7 +790,7 @@ msgstr "警告なし"
 
 #: app/components/flowchart/flowchart_template.html:15
 msgid "No available connections! Click on the canvas to cancel"
-msgstr "利用できる接続はありません! 取り消す Canvas をクリックします。"
+msgstr "利用できる接続はありません! 取り消すキャンバスをクリックします。"
 
 #: app/layouts/application.html:7
 msgid "Notifications"
@@ -1077,11 +1076,11 @@ msgstr "リタイア"
 
 #: app/states/services/details/details.html:52
 msgid "Retire Now"
-msgstr "今すぐリタイアさせる"
+msgstr "今すぐリタイア"
 
 #: app/states/services/details/details.html:53
 msgid "Retire Service Now"
-msgstr "サービスを今すぐリタイアさせます"
+msgstr "サービスを今すぐリタイア"
 
 #: app/states/services/list/list.state.js:78
 msgid "Retired"
@@ -1089,7 +1088,7 @@ msgstr "リタイア済み"
 
 #: app/states/dashboard/dashboard.html:58
 msgid "Retired Services"
-msgstr "リタイアさせたサービス"
+msgstr "リタイアしたサービス"
 
 #: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:47
 msgid "Retirement"
@@ -1114,7 +1113,7 @@ msgstr "リタイア警告"
 
 #: app/states/dashboard/dashboard.html:32
 msgid "Retiring Soon"
-msgstr "まもなくリタイアさせます"
+msgstr "まもなくリタイアします"
 
 #: app/services/rules-state.service.js:121
 msgid "Rule(s) were succesfully deleted."
@@ -1222,13 +1221,13 @@ msgstr "プロバイダーの選択"
 
 #: app/states/administration/profiles/editor/editor.html:46
 msgid "Select a provider type"
-msgstr "プリバイダータイプの選択"
+msgstr "プロバイダータイプの選択"
 
 #: app/components/flowchart/flowchart_template.html:12
 msgid ""
 "Select a second item to complete the connection or click on the canvas to "
 "cancel"
-msgstr "2 つ目の項目を選択して接続を完了するか、または取り消す Canvas をクリック"
+msgstr "2 つ目の項目を選択して接続を完了するか、または取り消すキャンバスをクリック"
 
 #: app/states/administration/profiles/editor/editor.html:118
 msgid "Select a security group"
@@ -1391,14 +1390,12 @@ msgid "The page you requested cannot be found."
 msgstr "要求したページが見つかりません。"
 
 #: app/config/navigation.config.js:78
-#, fuzzy
 msgid "The total number of available arbitration profiles"
-msgstr "利用可能な判別プロファイルの合計数"
+msgstr "利用可能なアービトレーションプロファイルの合計数"
 
 #: app/config/navigation.config.js:88
-#, fuzzy
 msgid "The total number of available arbitration rules"
-msgstr "利用可能な判別ルールの合計数"
+msgstr "利用可能なアービトレーションルールの合計数"
 
 #: app/config/navigation.config.js:61
 msgid "The total number of available blueprints"
@@ -1415,7 +1412,7 @@ msgstr "送信済みの要求の合計数"
 #: app/config/navigation.config.js:24
 msgid ""
 "The total number of services that you have ordered, both active and retired"
-msgstr "動作中およびリタイアさせたサービスいずれも含めユーザーがオーダーしたサービスの合計数です"
+msgstr "動作中およびリタイアしたサービスいずれも含めユーザーがオーダーしたサービスの合計数です"
 
 #: app/states/marketplace/details/details.html:35
 msgid ""
@@ -1620,7 +1617,6 @@ msgid "Your session has timed out."
 msgstr "セッションがタイムアウトしました。"
 
 #: app/states/services/list/list.html:32
-#, fuzzy
 msgid "[[number]] VMs"
 msgstr "仮想マシン数: [[number]] "
 
