@@ -12,9 +12,16 @@
 
       <button type="button"
               class="btn btn-default pull-right"
-              ng-click="vm.remove(item)"
               ng-disabled="! vm.modalInstance"
-              alt="{{ 'Remove' | translate }}">
+              alt="{{ 'Remove' | translate }}"
+              confirmation
+              confirmation-id="confirmDeleteCartItem"
+              confirmation-title="{{'Remove Item'|translate}}"
+              confirmation-message="{{'Are you sure you want to remove this item from your shopping cart?'|translate}}"
+              confirmation-ok-text="{{'Remove'|translate}}"
+              confirmation-on-ok="vm.remove(item)"
+              confirmation-ok-style="primary"
+              confirmation-show-cancel="true">
         <i class="pficon pficon-delete"></i>
       </button>
 
@@ -45,9 +52,16 @@
 
   <button type="button"
           class="btn btn-default"
-          ng-click="vm.clear()"
           ng-disabled="! vm.state.items.length"
-          translate>
+          translate
+          confirmation
+          confirmation-id="confirmClearCart"
+          confirmation-title="{{'Clear Shopping Cart'|translate}}"
+          confirmation-message="{{'Are you sure you want to clear all items from your shopping cart?'|translate}}"
+          confirmation-ok-text="{{'Clear'|translate}}"
+          confirmation-on-ok="vm.clear()"
+          confirmation-ok-style="primary"
+          confirmation-show-cancel="true">
     Clear
   </button>
 
