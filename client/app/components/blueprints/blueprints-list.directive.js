@@ -130,25 +130,25 @@
       return [
         ListView.createFilterField(
           'name',
-          'Name',
-          'Filter by Name',
+          __('Name'),
+            __('Filter by Name'),
           'text'),
         ListView.createFilterField(
           'visibility',
-          'Visibility',
-          'Filter by Visibility',
+          __('Visibility'),
+          __('Filter by Visibility'),
           'select',
           visibilityNames),
         ListView.createFilterField(
           'catalog',
-          'Catalog',
-          'Filter by Catalog',
+          __('Catalog'),
+          __('Filter by Catalog'),
           'select',
           categoryNames),
         ListView.createFilterField(
           'publishState',
-          'Publish State',
-          'Filter by Publish State',
+          __('Publish State'),
+          __('Filter by Publish State'),
           'select',
           publishStateNames),
       ];
@@ -156,11 +156,11 @@
 
     function getSortConfigFields() {
       return [
-        ListView.createSortField('name',          'Name',          'alpha'),
-        ListView.createSortField('last_modified', 'Last Modified', 'numeric'),
-        ListView.createSortField('num_items',     'Items',         'numeric'),
-        ListView.createSortField('visibility',    'Visibility',    'alpha'),
-        ListView.createSortField('catalog',       'Catalog',       'alpha'),
+        ListView.createSortField('name',          __('Name'),          'alpha'),
+        ListView.createSortField('last_modified', __('Last Modified'), 'numeric'),
+        ListView.createSortField('num_items',     __('Items'),         'numeric'),
+        ListView.createSortField('visibility',    __('Visibility'),    'alpha'),
+        ListView.createSortField('catalog',       __('Catalog'),       'alpha'),
       ];
     }
 

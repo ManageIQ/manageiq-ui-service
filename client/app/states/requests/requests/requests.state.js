@@ -79,21 +79,21 @@
       var statuses = [__('Pending'), __('Denied'), __('Approved')];
 
       return [
-        ListView.createFilterField('description',    'Description',    'Filter by Description',  'text'),
-        ListView.createFilterField('request_id',     'Request ID',     'Filter by Request ID',   'text'),
-        ListView.createFilterField('requester_name', 'Requester',      'Filter by Requester',    'text'),
-        ListView.createFilterField('request_date',   'Request Date',   'Filter by Request Date', 'text'),
-        ListView.createFilterField('approval_state', 'Request Status', 'Filter by Status',       'select', statuses),
+        ListView.createFilterField('description',    __('Description'),    __('Filter by Description'),  'text'),
+        ListView.createFilterField('request_id',     __('Request ID'),     __('Filter by Request ID'),   'text'),
+        ListView.createFilterField('requester_name', __('Requester'),      __('Filter by Requester'),    'text'),
+        ListView.createFilterField('request_date',   __('Request Date'),   __('Filter by Request Date'), 'text'),
+        ListView.createFilterField('approval_state', __('Request Status'), __('Filter by Status'),       'select', statuses),
       ];
     }
 
     function getRequestSortFields() {
       return [
-        ListView.createSortField('description',    'Description',    'alpha'),
-        ListView.createSortField('id',             'Request ID',     'numeric'),
-        ListView.createSortField('requester_name', 'Requester',      'alpha'),
-        ListView.createSortField('requested',      'Request Date',   'numeric'),
-        ListView.createSortField('status',         'Request Status', 'alpha'),
+        ListView.createSortField('description',    __('Description'),    'alpha'),
+        ListView.createSortField('id',             __('Request ID'),     'numeric'),
+        ListView.createSortField('requester_name', __('Requester'),      'alpha'),
+        ListView.createSortField('requested',      __('Request Date'),   'numeric'),
+        ListView.createSortField('status',         __('Request Status'), 'alpha'),
       ];
     }
 

@@ -83,21 +83,21 @@
       var retires = [__('Current'), __('Soon'), __('Retired')];
 
       return [
-        ListView.createFilterField('name',       'Name',            'Filter by Name',            'text'),
-        ListView.createFilterField('retirement', 'Retirement Date', 'Filter by Retirement Date', 'select', retires),
-        ListView.createFilterField('vms',        'Number of VMs',   'Filter by VMs',             'text'),
-        ListView.createFilterField('owner',      'Owner',           'Filter by Owner',           'text'),
-        ListView.createFilterField('owner',      'Created',         'Filter by Created On',      'text'),
+        ListView.createFilterField('name',       __('Name'),            __('Filter by Name'),            'text'),
+        ListView.createFilterField('retirement', __('Retirement Date'), __('Filter by Retirement Date'), 'select', retires),
+        ListView.createFilterField('vms',        __('Number of VMs'),   __('Filter by VMs'),             'text'),
+        ListView.createFilterField('owner',      __('Owner'),           __('Filter by Owner'),           'text'),
+        ListView.createFilterField('owner',      __('Created'),         __('Filter by Created On'),      'text'),
       ];
     }
 
     function getServiceSortFields() {
       return [
-        ListView.createSortField('name',    'Name',            'alpha'),
-        ListView.createSortField('retires', 'Retirement Date', 'numeric'),
-        ListView.createSortField('vms',     'Number of VMs',   'numeric'),
-        ListView.createSortField('owner',   'Owner',           'alpha'),
-        ListView.createSortField('created', 'Created',         'numeric'),
+        ListView.createSortField('name',    __('Name'),            'alpha'),
+        ListView.createSortField('retires', __('Retirement Date'), 'numeric'),
+        ListView.createSortField('vms',     __('Number of VMs'),   'numeric'),
+        ListView.createSortField('owner',   __('Owner'),           'alpha'),
+        ListView.createSortField('created', __('Created'),         'numeric'),
       ];
     }
 
