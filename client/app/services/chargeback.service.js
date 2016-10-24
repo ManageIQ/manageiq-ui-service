@@ -69,14 +69,22 @@
     }
 
     function processReports(item) {
-      item.chargeback = currentReport(item);
+      item.chargeback = service.currentReport(item);
     }
 
     // sum all *_used_cost fields in the report
     function reportUsedCost(report) {
-      return lodash.reduce(report, function(sum, v, k) {
-        return sum + k.match(/_used_cost$/) ? v : 0;
-      }, 0);
+      var sum = 0;
+
+      lodash.each(report, function(v, k) {
+        if (!k.match(/_used_cost$/)) {
+          return;
+        }
+
+        sum += v;
+      });
+
+      return sum;
     }
 
     return service;
