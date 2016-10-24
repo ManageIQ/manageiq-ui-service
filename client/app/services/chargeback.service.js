@@ -16,7 +16,7 @@
     // recomputes items[*].chargeback_relative_cost
     function adjustRelativeCost(items) {
       var sums = lodash(items)
-        .pluck(['chargeback', 'sum'])
+        .pluck(['chargeback', 'used_cost_sum'])
         .sort()
         .filter(angular.identity) // nonzero
         .value();
@@ -25,12 +25,13 @@
       var bounds = [ len * 0.25, len * 0.5, len * 0.75 ];
 
       items.forEach(function(item) {
-        if (!item.chargeback.sum) {
+        if (!item.chargeback.used_cost_sum) {
           item.chargeback_relative_cost = '';
+
           return;
         }
 
-        var idx = lodash.findIndex(sums, item.chargeback.sum);
+        var idx = lodash.findIndex(sums, item.chargeback.used_cost_sum);
         if (idx < bounds[0]) {
           item.chargeback_relative_cost = '$';
         } else if (idx < bounds[1]) {
@@ -44,22 +45,29 @@
     }
 
     function currentReport(item) {
-      var latest = lodash(item.chargeback_report.results || [])
-        .sortBy('start_date')
+      var latest_date = lodash(item.chargeback_report.results || [])
+        .pluck('start_date')
+        .sort()
         .reverse()
+        .first();
+
+      var latest_reports = lodash(item.chargeback_report.results || [])
+        .filter({ start_date: latest_date })
         .value();
 
-      return latest[0];
+      latest_reports.forEach(function(report) {
+        report.used_cost_sum = reportUsedCost(report);
+      });
+
+      return {
+        start_date: latest_date,
+        used_cost_sum: lodash.sum(latest_reports, 'used_cost_sum'), // sumBy in lodash4
+        vms: latest_reports,
+      };
     }
 
     function processReports(item) {
-      var data = currentReport(item);
-      var sum = reportUsedCost(data);
-
-      item.chargeback = {
-        data: data,
-        sum: sum,
-      };
+      item.chargeback = currentReport(item);
     }
 
     // sum all *_used_cost fields in the report
