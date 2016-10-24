@@ -46,12 +46,9 @@
     }
 
     angular.forEach(services.resources, function(item) {
-      item.powerState = angular.isDefined(item.options.power_state) ? item.options.power_state : "";
-      item.powerStatus = angular.isDefined(item.options.power_status) ? item.options.power_status : "";
-    });
-
-    angular.forEach(services.resources, function(item) {
       if (angular.isUndefined(item.service_id)) {
+        item.powerState = angular.isDefined(item.options.power_state) ? item.options.power_state : "";
+        item.powerStatus = angular.isDefined(item.options.power_status) ? item.options.power_status : "";
         vm.services.push(item);
       }
     });
