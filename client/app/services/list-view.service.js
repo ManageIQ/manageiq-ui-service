@@ -48,8 +48,8 @@
     listView.createFilterField = function(id, title, placeholder, type, values) {
       return {
         id: id,
-        title: N_(title),
-        placeholder: N_(placeholder),
+        title: title,
+        placeholder: placeholder,
         filterType: type,
         filterValues: values,
       };
@@ -58,7 +58,7 @@
     listView.createSortField = function (id, title, sortType) {
       return {
         id: id,
-        title: N_(title),
+        title: title,
         sortType: sortType,
       };
     };

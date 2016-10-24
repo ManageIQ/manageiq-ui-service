@@ -68,17 +68,17 @@
 
     function getOrderFilterFields() {
       return [
-        ListView.createFilterField('name',      'Name',       'Filter by Name',       'text'),
-        ListView.createFilterField('id',        'Order ID',   'Filter by ID',         'text'),
-        ListView.createFilterField('placed_at', 'Order Date', 'Filter by Order Date', 'text'),
+        ListView.createFilterField('name',      __('Name'),       __('Filter by Name'),       'text'),
+        ListView.createFilterField('id',        __('Order ID'),   __('Filter by ID'),         'text'),
+        ListView.createFilterField('placed_at', __('Order Date'), __('Filter by Order Date'), 'text'),
       ];
     }
 
     function getOrderSortFields() {
       return [
-        ListView.createSortField('name',      'Name',       'alpha'),
-        ListView.createSortField('id',        'Order ID',   'numeric'),
-        ListView.createSortField('placed_at', 'Order Date', 'numeric'),
+        ListView.createSortField('name',      __('Name'),       'alpha'),
+        ListView.createSortField('id',        __('Order ID'),   'numeric'),
+        ListView.createSortField('placed_at', __('Order Date'), 'numeric'),
       ];
     }
 
