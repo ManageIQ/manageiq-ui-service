@@ -8,74 +8,74 @@
   /** @ngInject */
   function navigation(NavigationProvider) {
     var dashboard = createItem(
-      'Dashboard',
+      N_('Dashboard'),
       'dashboard',
       'fa fa-dashboard'
     );
     var services = createItem(
-      'My Services',
+      N_('My Services'),
       'services',
       'fa fa-file-o',
-      'The total number of services that you have ordered, both active and retired'
+      N_('The total number of services that you have ordered, both active and retired')
     );
     var requests = createItem(
-      'My Requests',
+      N_('My Requests'),
       'requests',
       'fa fa-file-text-o'
     );
     var marketplace = createItem(
-      'Service Catalog',
+      N_('Service Catalog'),
       'marketplace',
       'fa fa-copy',
-      'The total number of available catalog items'
+      N_('The total number of available catalog items')
     );
     var designer = createItem(
-      'Designer',
+      N_('Designer'),
       'designer',
       'pficon pficon-blueprint'
     );
     var administration = createItem(
-      'Administration',
+      N_('Administration'),
       'administration',
       'fa fa-cog'
     );
 
     requests.secondary = {
       requests: createItem(
-        'Requests',
+        N_('Requests'),
         'requests.requests',
         undefined,
-        'The total number of requests that you have submitted'
+        N_('The total number of requests that you have submitted')
       ),
       orders: createItem(
-        'Order History',
+        N_('Order History'),
         'requests.orders',
         undefined,
-        'The total number of orders that you have submitted'
+        N_('The total number of orders that you have submitted')
       ),
     };
 
     designer.secondary = {
       blueprints: createItem(
-        'Blueprints',
+        N_('Blueprints'),
         'designer.blueprints',
         undefined,
-        'The total number of available blueprints'
+        N_('The total number of available blueprints')
       ),
     };
 
     administration.secondary = {
       profiles: createItem(
-        'Profiles',
+        N_('Profiles'),
         'administration.profiles',
         undefined,
-        'The total number of available arbitration profiles'
+        N_('The total number of available arbitration profiles')
       ),
       rules: createItem(
-        'Rules',
+        N_('Rules'),
         'administration.rules',
         undefined,
-        'The total number of available arbitration rules'
+        N_('The total number of available arbitration rules')
       ),
     };
 
@@ -92,7 +92,7 @@
 
     function createItem(title, state, iconClass, badgeTooltip) {
       var item = {
-        title: N_(title),
+        title: title,
         state: state,
         iconClass: iconClass,
       };
@@ -101,7 +101,7 @@
         item.badges =  [
           {
             count: 0,
-            tooltip: N_(badgeTooltip),
+            tooltip: badgeTooltip,
           },
         ];
       }
