@@ -1,11 +1,8 @@
 <ui-view>
   <span>
     <ol class="breadcrumb">
-      <li>
-        {{'Administration'|translate}}
-      </li>
-      <li class="active"><strong>{{vm.title}}</strong>
-      </li>
+      <li>{{'Administration'|translate}}</li>
+      <li class="active">{{vm.title}}</li>
     </ol>
   </span>
   <div profiles-list arbitration-profiles="vm.arbitrationProfiles" refresh-fn="vm.refreshProfiles"></div>

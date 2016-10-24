@@ -1,20 +1,22 @@
 <span ng-class="{'wait-cursor': vm.loading}">
-  <span class="blueprint-designer-header">
-    <ol class="breadcrumb inline-breadcrumb">
-        <li class="active"><strong translate>Blueprint Editor: </strong>
-            <input id="blueprintName" type="text" class="blueprint-name-input" ng-model="vm.blueprint.name"
-                   placeholder="{{'Untitled Blueprint'|translate}}">
-            <button class="btn btn-primary btb-sm" type="button" ng-click="vm.saveBlueprint()" id="saveBtm"
-                    ng-class="{'disabled': !vm.canSave()}" data-toggle="tooltip" data-placement="bottom"
-                    title="{{'Save Blueprint'|translate}}" translate>Save
-            </button>
-        </li>
-    </ol>
-  </span>
+  <ol class="breadcrumb blueprint-designer-header">
+      <li>{{'Designer'|translate}}</li>
+      <li>
+          <a ui-sref="^">{{'Blueprints'|translate}}</a>
+      </li>
+      <li class="active">
+          <input id="blueprintName" type="text" class="blueprint-name-input" ng-model="vm.blueprint.name"
+                 placeholder="{{'Untitled Blueprint'|translate}}">
+          <button class="btn btn-primary btb-sm" type="button" ng-click="vm.saveBlueprint()" id="saveBtm"
+                  ng-class="{'disabled': !vm.canSave()}" data-toggle="tooltip" data-placement="bottom"
+                  title="{{'Save Blueprint'|translate}}" translate>Save
+          </button>
+      </li>
+  </ol>
 
   <div class="blueprint-designer-container">
 
-      <div class="toolbar">
+      <div class="section-toolbar">
           <button id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': vm.inConnectingMode}" type="button" ng-click="vm.showToolbox()"
                   data-toggle="tooltip" data-placement="bottom" title="{{'Add Service Item To Canvas'|translate}}" translate>Add Item
           </button>

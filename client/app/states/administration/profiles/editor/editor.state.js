@@ -50,7 +50,7 @@
     var vm = this;
 
     if (profile) {
-      vm.title = sprintf(__("Edit Profile: %s"), profile.name);
+      vm.title = profile.name;
     } else {
       vm.title = __("Add Profile");
     }

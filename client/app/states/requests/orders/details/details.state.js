@@ -35,6 +35,7 @@
   function StateController(order, $state) {
     var vm = this;
 
+    vm.title = order.name;
     vm.order = order;
 
     vm.requestListConfig = {
@@ -44,7 +45,7 @@
     };
 
     function handleRequestClick(item, _e) {
-      $state.go('requests.details', { requestId: item.id });
+      $state.go('requests.requests.details', { requestId: item.id });
     }
   }
 })();
