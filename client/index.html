@@ -63,6 +63,7 @@
   <script src="/bower_components/jquery/dist/jquery.js"></script>
   <script src="/bower_components/angular/angular.js"></script>
   <script src="/bower_components/angular-animate/angular-animate.js"></script>
+  <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="/bower_components/angular-resource/angular-resource.js"></script>
   <script src="/bower_components/angular-messages/angular-messages.js"></script>
   <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
@@ -100,6 +101,7 @@
   <script src="/bower_components/ngstorage/ngStorage.js"></script>
   <script src="/bower_components/sprintf/src/sprintf.js"></script>
   <script src="/bower_components/toastr/toastr.js"></script>
+  <script src="/bower_components/action-cable/dist/action_cable.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -170,17 +172,20 @@
   <script src="/client/app/resources/authentication-api.factory.js"></script>
   <script src="/client/app/resources/collections-api.factory.js"></script>
   <script src="/client/app/services/blueprints-state.service.js"></script>
+  <script src="/client/app/services/chargeback.service.js"></script>
   <script src="/client/app/services/consoles.service.js"></script>
   <script src="/client/app/services/designer-state.service.js"></script>
   <script src="/client/app/services/dialog-field-refresh.service.js"></script>
   <script src="/client/app/services/event-notifications.service.js"></script>
   <script src="/client/app/services/language.service.js"></script>
+  <script src="/client/app/services/list-view.service.js"></script>
   <script src="/client/app/services/marketplace-state.service.js"></script>
   <script src="/client/app/services/messages.service.js"></script>
   <script src="/client/app/services/navcounts.service.js"></script>
   <script src="/client/app/services/navigation.provider.js"></script>
   <script src="/client/app/services/orders-state.service.js"></script>
   <script src="/client/app/services/polling.service.js"></script>
+  <script src="/client/app/services/product-info.service.js"></script>
   <script src="/client/app/services/profiles-state.service.js"></script>
   <script src="/client/app/services/rbac.service.js"></script>
   <script src="/client/app/services/requests-state.service.js"></script>
@@ -216,10 +221,11 @@
   <script src="/client/app/states/marketplace/marketplace.state.js"></script>
   <script src="/client/app/states/products/details/details.state.js"></script>
   <script src="/client/app/states/products/products.state.js"></script>
-  <script src="/client/app/states/requests/details/details.state.js"></script>
-  <script src="/client/app/states/requests/list/list.state.js"></script>
-  <script src="/client/app/states/requests/order_details/order_details.state.js"></script>
+  <script src="/client/app/states/requests/orders/details/details.state.js"></script>
+  <script src="/client/app/states/requests/orders/orders.state.js"></script>
   <script src="/client/app/states/requests/requests.state.js"></script>
+  <script src="/client/app/states/requests/requests/details/details.state.js"></script>
+  <script src="/client/app/states/requests/requests/requests.state.js"></script>
   <script src="/client/app/states/services/custom_button_details/custom_button_details.state.js"></script>
   <script src="/client/app/states/services/details/details.state.js"></script>
   <script src="/client/app/states/services/list/list.state.js"></script>
