@@ -11,12 +11,12 @@
 
   function getStates() {
     return {
-      'requests.details': {
+      'requests.requests.details': {
         url: '/:requestId',
-        templateUrl: 'app/states/requests/details/details.html',
-        controller: StateController,
+        templateUrl: 'app/states/requests/requests/details/details.html',
+        controller: RequestDetailsController,
         controllerAs: 'vm',
-        title: N_('Requests Details'),
+        title: N_('Request Details'),
         resolve: {
           request: resolveRequest,
         },
@@ -32,7 +32,7 @@
   }
 
   /** @ngInject */
-  function StateController(request) {
+  function RequestDetailsController(request) {
     var vm = this;
 
     vm.request = request;

@@ -36,7 +36,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, services, ServicesState, $filter, $rootScope, Language) {
+  function StateController($state, services, ServicesState, $filter, $rootScope, Language, ListView) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -61,78 +61,46 @@
       onClick: handleClick,
     };
 
-    vm.toolbarConfig = {
-      filterConfig: {
-        fields: [
-          {
-            id: 'name',
-            title: __('Name'),
-            placeholder: __('Filter by Name'),
-            filterType: 'text',
-          },
-          {
-            id: 'retirement',
-            title: __('Retirement Date'),
-            placeholder: __('Filter by Retirement Date'),
-            filterType: 'select',
-            filterValues: [__('Current'), __('Soon'), __('Retired')],
-          },
-          {
-            id: 'vms',
-            title: __('Number of VMs'),
-            placeholder: __('Filter by VMs'),
-            filterType: 'text',
-          },
-          {
-            id: 'owner',
-            title: __('Owner'),
-            placeholder: __('Filter by Owner'),
-            filterType: 'text',
-          },
-          {
-            id: 'created',
-            title: __('Created'),
-            placeholder: __('Filter by Created On'),
-            filterType: 'text',
-          },
-        ],
-        resultsCount: vm.servicesList.length,
-        appliedFilters: ServicesState.filterApplied ? ServicesState.getFilters() : [],
-        onFilterChange: filterChange,
-      },
-      sortConfig: {
-        fields: [
-          {
-            id: 'name',
-            title: __('Name'),
-            sortType: 'alpha',
-          },
-          {
-            id: 'retires',
-            title: __('Retirement Date'),
-            sortType: 'numeric',
-          },
-          {
-            id: 'vms',
-            title: __('Number of VMs'),
-            sortType: 'numeric',
-          },
-          {
-            id: 'owner',
-            title: __('Owner'),
-            sortType: 'alpha',
-          },
-          {
-            id: 'created',
-            title: __('Created'),
-            sortType: 'numeric',
-          },
-        ],
-        onSortChange: sortChange,
-        isAscending: ServicesState.getSort().isAscending,
-        currentField: ServicesState.getSort().currentField,
-      },
+    var serviceFilterConfig = {
+      fields: getServiceFilterFields(),
+      resultsCount: vm.servicesList.length,
+      appliedFilters: ServicesState.filterApplied ? ServicesState.getFilters() : [],
+      onFilterChange: filterChange,
     };
+
+    var serviceSortConfig = {
+      fields: getServiceSortFields(),
+      onSortChange: sortChange,
+      isAscending: ServicesState.getSort().isAscending,
+      currentField: ServicesState.getSort().currentField,
+    };
+
+    vm.toolbarConfig = {
+      filterConfig: serviceFilterConfig,
+      sortConfig: serviceSortConfig,
+    };
+
+    function getServiceFilterFields() {
+      var retires = [__('Current'), __('Soon'), __('Retired')];
+
+      return [
+        ListView.createFilterField('name',       __('Name'),            __('Filter by Name'),            'text'),
+        ListView.createFilterField('retirement', __('Retirement Date'), __('Filter by Retirement Date'), 'select', retires),
+        ListView.createFilterField('vms',        __('Number of VMs'),   __('Filter by VMs'),             'text'),
+        ListView.createFilterField('owner',      __('Owner'),           __('Filter by Owner'),           'text'),
+        ListView.createFilterField('owner',      __('Created'),         __('Filter by Created On'),      'text'),
+      ];
+    }
+
+    function getServiceSortFields() {
+      return [
+        ListView.createSortField('name',    __('Name'),            'alpha'),
+        ListView.createSortField('retires', __('Retirement Date'), 'numeric'),
+        ListView.createSortField('vms',     __('Number of VMs'),   'numeric'),
+        ListView.createSortField('owner',   __('Owner'),           'alpha'),
+        ListView.createSortField('created', __('Created'),         'numeric'),
+      ];
+    }
 
     if (ServicesState.filterApplied) {
       /* Apply the filtering to the data list */

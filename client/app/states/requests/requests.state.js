@@ -13,9 +13,8 @@
     return {
       'requests': {
         parent: 'application',
-        url: '/requests',
-        redirectTo: 'requests.list',
-        template: '<ui-view></ui-view>',
+        url: '',
+        redirectTo: 'requests.requests',
       },
     };
   }
