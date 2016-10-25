@@ -52,11 +52,11 @@
     if (angular.isArray(vm.dialogs)) {
       angular.forEach(vm.dialogs, function(dialog) {
         if (angular.isArray(dialog.dialog_tabs)) {
-          angular.forEach(dialog.dialog_tabs, function (dialogTab) {
+          angular.forEach(dialog.dialog_tabs, function(dialogTab) {
             if (angular.isArray(dialogTab.dialog_groups)) {
-              angular.forEach(dialogTab.dialog_groups, function (dialogGroup) {
+              angular.forEach(dialogTab.dialog_groups, function(dialogGroup) {
                 if (angular.isArray(dialogGroup.dialog_fields)) {
-                  angular.forEach(dialogGroup.dialog_fields, function (dialogField) {
+                  angular.forEach(dialogGroup.dialog_fields, function(dialogField) {
                     allDialogFields.push(dialogField);
                     if (dialogField.default_value === '' && dialogField.values !== '') {
                       dialogField.default_value = dialogField.values;
@@ -66,7 +66,7 @@
                       dialogField.default_value = String(dialogField.values[0][0]);
                     }
 
-                    dialogField.triggerAutoRefresh = function () {
+                    dialogField.triggerAutoRefresh = function() {
                       DialogFieldRefresh.triggerAutoRefresh(dialogField);
                     };
 
