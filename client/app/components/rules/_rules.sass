@@ -70,10 +70,16 @@
     width: calc(100% - 35px)
 
     .operation-select
-      width: 33% !important
+      &:not([class*='col-'])
+        &:not([class*='form-control'])
+          &:not(.input-group-btn)
+            width: 33%
 
     .profile-select
-      width: 100% !important
+      &:not([class*='col-'])
+        &:not([class*='form-control'])
+          &:not(.input-group-btn)
+            width: 100%
 
     .rule-edit-value
       height: 27px

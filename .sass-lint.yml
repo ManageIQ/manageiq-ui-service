@@ -29,7 +29,7 @@ rules:
   no-empty-rulesets: 2
   no-extends: 0
   no-ids: 2
-  no-important: 0
+  no-important: 2
   no-invalid-hex: 2
   no-mergeable-selectors: 2
   no-misspelled-properties: 2
@@ -53,7 +53,7 @@ rules:
   # Name Formats
   class-name-format:
     - 2
-    - ignore: dndDragging, dndDraggingSource, dndPlaceholder
+    - ignore: dndDragging, dndDraggingSource, dndPlaceholder, splash__message
   function-name-format: 2
   id-name-format: 0
   mixin-name-format: 2
