@@ -15,76 +15,78 @@
 
   input
     background-color: inherit
-    border-style: none
+    border: 0
     font-size: 14px
+    padding-left: 6px
     text-decoration: underline
     width: 240px
-    padding-left: 6px
 
-  /* do not group these rules as any one invalid rule will invalidate them all */
-  input::-webkit-input-placeholder
-    text-decoration: underline
-  input:-moz-placeholder
-    text-decoration: underline
-  input::-moz-placeholder
-    text-decoration: underline
-  input:-ms-input-placeholder
-    text-decoration: underline
+    &::-webkit-input-placeholder
+      text-decoration: underline
+
+    &::-moz-placeholder
+      text-decoration: underline
+
+    &:-moz-placeholder
+      text-decoration: underline
+
+    &:-ms-input-placeholder
+      text-decoration: underline
 
 .blueprint-designer-container
-  background-color: #fff
-  width: 100%
+  background-color: $color-white
   height: 100%
+  width: 100%
 
   .section-toolbar
-    padding: 15px 15px
+    padding: 15px
 
     button
       margin-right: 6px
 
     .more-actions
+      border-left: solid 2px $color-light-gray-approx
       margin-left: 6px
-      border-left: solid 2px #d2d2d2
 
-    #blueprintDetails
+    .blueprint-details-btn
       margin-left: 16px
 
-    .showHideConnectors
+    .show-hide-connectors
       display: block
+      float: right
       font-size: 12px
       font-weight: 600
-      float: right
-      padding-top: 2px
       padding-right: 80px
+      padding-top: 2px
       vertical-align: middle
 
-    .showHideConnectorsLabel
+    .show-hide-connectors-cabel
       vertical-align: text-bottom
 
   .toolbox-canvas-container
     //border: 4px solid green
-    position: relative
     height: 100%
+    position: relative
     width: 100%
 
     .toolbox-container
-      position: absolute
-      width: 100%
-      top: -1px
-      background-color: rgba(255,255,255,.94)
+      background-color: $color-white-94
       //border: 2px solid blue
-      border: 1.5px solid #d0d0d0
-      box-shadow: 0 2px 6px rgba(0,0,0,.3)
-      padding-top: 26px
+      border: 1.5px solid $color-light-gray-approx
+      box-shadow: 0 2px 6px $color-black-30
+      padding-bottom: 10px
       padding-left: 26px
       padding-right: 26px
-      padding-bottom: 10px
+      padding-top: 26px
+      position: absolute
+      top: -1px
+      width: 100%
 
       .draggable-item-icon
         font-size: 28px
-        vertical-align: middle
-        padding-top: 6px
         padding-right: 6px
+        padding-top: 6px
+        vertical-align: middle
 
       .tab-pre-title
         font-size: 12px
@@ -99,28 +101,26 @@
 
       .catalog-items-list
         list-style: none
-        padding-left: 0px
         max-height: 300px
-        padding-bottom: 4px
         overflow-y: auto
+        padding-bottom: 4px
+        padding-left: 0
 
       .catalog-item
-        border: 1px solid transparent
-        background-color: rgba(255,255,255,.94)
-        border-color: #b1b1b1
-        border-width: 1px
-        box-shadow: 0 2px 6px rgba(0,0,0,.2)
-        margin-top: 16px
-        margin-right: 16px
-        padding: 6px 28px
-        cursor: pointer
+        background-color: $color-white-94
+        border: 1px solid $color-gray-1
         border-radius: 1px
+        box-shadow: 0 2px 6px $color-black-20
+        cursor: pointer
         float: left
-        min-width: 325px
-        min-height: 52px
         height: 36px
-        vertical-align: middle
+        margin-right: 16px
+        margin-top: 16px
+        min-height: 52px
+        min-width: 325px
+        padding: 6px 28px
         position: relative
+        vertical-align: middle
 
         .fa
           font-size: 26px
@@ -134,49 +134,48 @@
 
         img
           height: 100%
-          object-fit: contain
           margin-right: 8px
+          object-fit: contain
 
         &::before
-          border-color: #0d6f9a
-          background-image: linear-gradient(to bottom, #0088ce 60%, #fff 0%)
+          background-image: linear-gradient(to bottom, $color-lochmara-approx 60%, $color-white 0%)
           background-position: left
           background-repeat: repeat-y
           background-size: 2px 5px
-          border: 4px solid #0088ce
-          position: absolute
-          content: ''
-          top: 3px
-          left: 4px
+          border: 4px solid $color-lochmara-approx
           bottom: 4px
+          content: ''
+          left: 4px
+          position: absolute
+          top: 3px
           width: 10px
 
       .not-draggable
-        opacity: 0.4
-        background-color: #ededed
+        background-color: $color-cararra-approx
         cursor: auto
+        opacity: .4
 
       .toolbox-footer
-        width: 90%
-        margin-top: 10px
         margin-bottom: 10px
         margin-left: 2px
         margin-right: 184px
+        margin-top: 10px
+        width: 90%
 
         .new-catalog-item
-          border: 2px dashed #bbb
-          padding: 13px 18px
+          border: 2px dashed $color-gray-1
           cursor: pointer
-          width: 306px
-          min-width: 325px
-          min-height: 52px
           height: 36px
+          min-height: 52px
+          min-width: 325px
+          padding: 13px 18px
           vertical-align: middle
+          width: 306px
 
           span
-            color: #00a8e1
-            padding-right: 4px
+            color: $color-blue-de-france-approx
             font-size: 18px
+            padding-right: 4px
             vertical-align: middle
 
           .new-catalog-item-icon
@@ -184,68 +183,71 @@
             font-size: 22px
 
           .new-catalog-item-label
-            color: #363636
+            color: $color-mine-shaft-approx
             font-size: 12px
 
         .search-text
-          position: relative
-          border: 1px solid #bbb
+          border: 1px solid $color-gray-1
           float: right
-          width: 14%
+          position: relative
           text-decoration: none
+          width: 14%
 
         .clear-search-text
-          position: relative
-          float: right
           bottom: -6px
-          right: -197px
-          color: #bbb
+          color: $color-gray-1
           cursor: pointer
+          float: right
+          position: relative
+          right: -197px
 
           span
             font-size: 20px
-            vertical-align: middle
             padding-right: 14px
+            vertical-align: middle
 
       .close-toolbox
-        text-align: center
         padding-top: 36px
+        text-align: center
 
     .canvas-container
-      width: 99%
       height: 88%
-      overflow: auto
       margin-left: 15px
+      overflow: auto
+      width: 99%
     //border: 3px solid yellow
 
     .canvas
       //border: 2px solid brown
-      width: 1396px
-      height: 756px
       background-image: url('/client/assets/images/blueprint-designer/canvas-dot-grid.png')
       background-repeat: repeat
+      height: 756px
+      width: 1396px
 
     .canvas-in-connection-mode
       background-image: url('/client/assets/images/blueprint-designer/canvas-dot-grid-disabled.png')
       background-repeat: repeat
 
     a
-      color: #0a0a0a
+      color: $color-black
 
     ::-webkit-input-placeholder
       font-style: italic
       padding-left: 10px
+
     :-moz-placeholder
       font-style: italic
       padding-left: 10px
+
     ::-moz-placeholder
       font-style: italic
       padding-left: 10px
+
     :-ms-input-placeholder
       font-style: italic
       padding-left: 10px
 
-#subtabs
+.subtabs
   .nav-tabs-pf
     padding-left: 18px
 

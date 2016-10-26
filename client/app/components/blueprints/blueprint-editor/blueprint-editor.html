@@ -29,17 +29,17 @@
                   title="{{'Remove Items From Canvas'|translate}}" translate>Remove
           </button>
           <span class="more-actions">
-              <button id="blueprintDetails" class="btn" type="button" ng-click="vm.editDetails()" data-toggle="tooltip"
+              <button class="btn blueprint-details-btn" type="button" ng-click="vm.editDetails()" data-toggle="tooltip"
                       ng-class="{'disabled': vm.inConnectingMode, 'wait-cursor': vm.loading}"
                       data-placement="bottom" title="{{'Edit Blueprint Details' | translate}}" translate>Blueprint Details
               </button>
-              <span class="showHideConnectors">
+              <span class="show-hide-connectors">
                   <input  ng-class="{'disabled': vm.inConnectingMode}"
                           ng-model="vm.hideConnectors"
                           ng-change="vm.toggleshowHideConnectors()"
                           type="checkbox"
                           ng-checked="vm.hideConnectors">
-                  <span class="showHideConnectorsLabel" translate>Hide Connectors</span>
+                  <span class="show-hide-connectors-cabel" translate>Hide Connectors</span>
               </span>
           </span>
       </div>

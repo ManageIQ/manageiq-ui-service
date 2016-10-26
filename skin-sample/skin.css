@@ -1,5 +1,5 @@
 // splash screen
-.splash__message:before {
+.splash-message:before {
   content: 'Magic UI';
 }
 

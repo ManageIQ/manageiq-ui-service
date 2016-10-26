@@ -1,38 +1,41 @@
 .navbar-pf-vertical
   background-color: $app-color-dark-blue-gray
-  background-image: url(../images/bg-navbar.png)
+  background-image: url('../images/bg-navbar.png')
   background-repeat: no-repeat
   background-size: auto 100%
 
-  .navbar-brand .navbar-brand-icon
-    height: 20px
-    margin-top: 10px
+  .navbar-brand
+    .navbar-brand-icon
+      height: 20px
+      margin-top: 10px
 
-  .nav .nav-item-iconic.indicator
-    width: 40px
+  .nav
+    .nav-item-iconic
+      &.indicator
+        width: 40px
 
-  .nav .nav-item-iconic .badge
-    position: relative
-    top: -23px
-    right : -10px
-    margin: 0px
-    min-width: 13px
-    background-color: #0088ce
+      .badge
+        background-color: $color-lochmara-approx
+        margin: 0
+        min-width: 13px
+        position: relative
+        right: -10px
+        top: -23px
 
-.navbar__user-name
-  display: inline-block
+.navbar-user-name
   color: $color-white
+  display: inline-block
   margin-left: 1ex
 
 .secondary-collapse-toggle-pf
-  &:before
+  &::before
     content: '\f08d'
-  &.collapsed:before
-    -ms-transform: rotate(45deg)
-    -webkit-transform: rotate(45deg)
-    transform: rotate(45deg)
-    content: '\f08d'
-    display: inline-block
+
+  &.collapsed
+    &::before
+      content: '\f08d'
+      display: inline-block
+      transform: rotate(45deg)
 
 .toast-notifications-list-pf
   top: 65px

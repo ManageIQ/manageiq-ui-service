@@ -1,210 +1,171 @@
 .modal-body
-  #blueprint-detail-tabs
+  .blueprint-detail-tabs
     .tab-content
       padding-top: 24px
-    h4
-      margin-top: 0px
-      padding-bottom: 14px
-    input[type="checkbox"]
-      margin-left: 124px
-      vertical-align: text-top
 
-.actionOrderCheckboxTitle
+    h4
+      margin-top: 0
+      padding-bottom: 14px
+
+    input
+      &[type='checkbox']
+        margin-left: 124px
+        vertical-align: text-top
+
+.action-order-checkbox-title
   font-size: 12px
 
 .no-top
   margin-top: -4px
 
-#advOpsHref
-  text-decoration: none
-  font-size: 18px
+.adv-ops-href
   cursor: pointer
+  font-size: 18px
+  text-decoration: none
 
-  &:before
+  &::before
+    color: $color-gray
+    content: '\f107'
     font-family: 'FontAwesome'
-    content: "\f107"
     padding-right: 10px
-    color: grey
 
-  &.collapsed:before
-    content: "\f105"
+  &.collapsed
+    &::before
+      content: '\f105'
 
   &.disabled
-    color: grey
-    pointer-events: none
+    color: $color-gray
     font-size: 18px
+    pointer-events: none
 
 .clear-entry-point
+  color: $color-black
+  cursor: pointer
   float: right
   position: absolute
-  top: 8px
   right: 137px
-  color: black
-  cursor: pointer
+  top: 8px
 
 .entry-point-input
   display: inline
-  width: 75%
   padding-right: 24px
-
+  width: 75%
 
 .entry-point-btn
   margin-bottom: 5px
   margin-left: 5px
   margin-right: 5px
 
-#genDetailsForm
-  .bootstrap-select.form-control:not([class*="col-"])
-    width: 95%
-  .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn)
-    width: 95%
+.gen-details-form
   input
     width: 100%
 
 .base-info-select
-  width: 100%
+  background-color: $color-white
+  padding-bottom: 3px
+  padding-left: 3px
   padding-right: 25px
   padding-top: 3px
-  padding-left: 3px
-  padding-bottom: 3px
   vertical-align: middle
-  background-color: white
-
-  .btn.disabled, .btn[disabled], fieldset[disabled] .btn
-    background-color: #f8f8f8 !important
-    background-image: none !important
-    border-color: #d1d1d1 !important
-    color: #969696 !important
-    opacity: 1
+  width: 100%
 
 .base-info-select-lg
   width: 103%
 
 .base-info-btn
-  position: absolute
-  top: 0px
   left: 352px
+  position: absolute
+  top: 0
 
-.dnd-ordered-lists .row
+.dnd-ordered-lists-row
 
   .container-heading
     font-size: 27px
     font-weight: 100
 
+  .item-image
+    margin-top: -4px
+    padding-right: 10px
+    width: 18%
+
+  .item-icon
+    padding-left: 4px
+    padding-right: 16px
+    vertical-align: middle
+
   ul
     width: 99%
 
-  .item-image
-    width: 18%
-    padding-right: 10px
-    margin-top: -4px
+    // For the correct positioning of the placeholder element, the dnd-list and it's children must have position: relative
+    &[dnd-list]
+      margin: 0
+      margin-bottom: 12px
+      min-height: 42px   // The dnd-list should always have a min-height, otherwise you can't drop to it once it's empty
+      padding-left: 0
+      position: relative
 
-  .item-icon
-    vertical-align: middle
-    padding-right: 16px
-    padding-left: 4px
+      li
+        margin-bottom: 12px
+        position: relative
 
-  /**
-   * For the correct positioning of the placeholder element, the dnd-list and
-   * it's children must have position: relative
-   */
-  ul[dnd-list], ul[dnd-list] > li
-    position: relative
-    margin-bottom: 12px
-
-  /**
-   * The dnd-list should always have a min-height,
-   * otherwise you can't drop to it once it's empty
-   */
-  ul[dnd-list]
-    min-height: 42px
-    margin: 0px
-    padding-left: 0px
-
-  /**
-   * The dnd-lists's child elements currently MUST have
-   * position: relative. Otherwise we can not determine
-   * whether the mouse pointer is in the upper or lower
-   * half of the element we are dragging over. In other
-   * browsers we can use event.offsetY for this.
-   */
   li
-    background-color: #fff
+    background-color: $color-white
     display: block
-    padding: 0px
+    padding: 0
 
-
-
-  /**
-   * Reduce opacity of elements during the drag operation. This allows the user
-   * to see where he is dropping his element, even if the element is huge. The
-   * .dndDragging class is automatically set during the drag operation.
-   */
+  // Reduce opacity of elements during the drag operation.
   .dndDragging
-    opacity: 0.7
+    opacity: .7
 
-  /**
-   * The dndDraggingSource class will be applied to the source element of a drag
-   * operation. It makes sense to hide it to give the user the feeling that he's
-   * actually moving it. Note that the source element has also .dndDragging class.
-   */
+  // The dndDraggingSource class will be applied to the source element of a drag operation.
   .dndDraggingSource
     display: none
 
-  /**
-   * An element with .dndPlaceholder class will be added as child of the dnd-list
-   * while the user is dragging over it.
-   */
+  // An element with .dndPlaceholder class will be added as child of the dnd-list while the user is dragging over it.
   .dndPlaceholder
-    //background-color: #ddd;
-    border: 2px dashed #bbb
-    min-height: 42px
+    //background-color: $color-off-white;
+    border: 2px dashed $color-gray-1
     display: block
+    min-height: 42px
     position: relative
 
-  /***************************** Element Selection *****************************/
-
-  .selected .item
-    color: #3c763d
-    background-color: #dff0d8
-
-  /***************************** Element type specific styles *****************************/
+  .selected
+    .item
+      background-color: $color-cararra-approx
+      color: $color-dark-green-1
 
   .item
-    padding: 10px 15px
-    border: 1px solid #ddd
-    padding-left: 25px
+    border: 1px solid $color-off-white
     cursor: pointer
     max-height: 47px
+    padding: 10px 15px 10px 25px
 
-  .item::before
-    border-color: #0d6f9a
-    background-image: -webkit-linear-gradient(top, #0088ce 60%, #fff 0%)
-    background-image: linear-gradient(to bottom, #0088ce 60%, #fff 0%)
-    background-position: left
-    background-repeat: repeat-y
-    background-size: 2px 5px
-    border: 4px solid #0088ce
-    position: absolute
-    content: ""
-    top: 3px
-    left: 4px
-    bottom: 4px
-    width: 10px
+    &::before
+      background-image: linear-gradient(to bottom, $color-lochmara-approx 60%, $color-white 0%)
+      background-position: left
+      background-repeat: repeat-y
+      background-size: 2px 5px
+      border: 4px solid $color-lochmara-approx
+      bottom: 4px
+      content: ''
+      left: 4px
+      position: absolute
+      top: 3px
+      width: 10px
 
   .notdraggable
-    opacity: 0.4
-    background-color: #ededed
+    background-color: $color-cararra-approx
+    opacity: .4
 
     .item
       cursor: auto
 
   .container-element
     margin: 10px
-    margin-top: -45px
     margin-left: 50px
+    margin-top: -45px
 
-  .container-element .column
-    float: left
-    width: 50%
-    padding-right: 30px
+    .column
+      float: left
+      padding-right: 30px
+      width: 50%

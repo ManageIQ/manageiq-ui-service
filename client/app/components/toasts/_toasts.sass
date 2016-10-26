@@ -1,29 +1,20 @@
-#toasts__container
+.toasts--top-center
+  position: fixed
+  right: 50%
+  top: 46px
+  transform: translateX(50%)
   width: 350px
   z-index: 999999
-  position: fixed
-  top: 46px
-  right: 50%
-  transform: translateX(50%)
 
 +block(toasts)
-  position: relative
-  overflow: hidden
-  margin: 0 auto 6px
-  padding: 30px
-  width: 350px
-  border-radius: 10px
-  background: no-repeat 15px center
-  color: $app-color-white
-  box-shadow: 0 0 30px rgba($app-color-dark-gray, 0.75)
 
   &:hover
     box-shadow: 0 0 30px $app-color-dark-gray
 
   +modifier(default)
-    color: $app-color-dark-gray
     background-color: $app-color-light-gray
     border: 2px solid $app-color-gray
+    color: $app-color-dark-gray
 
   +modifier(info)
     background-color: lighten($app-color-blue, 10%)
@@ -47,3 +38,13 @@
     font-size: 15px
     font-weight: bold
     text-align: center
+
+  background: no-repeat 15px center
+  border-radius: 10px
+  box-shadow: 0 0 30px $app-color-dark-gray-3
+  color: $app-color-white
+  margin: 0 auto 6px
+  overflow: hidden
+  padding: 30px
+  position: relative
+  width: 350px

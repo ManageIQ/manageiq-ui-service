@@ -1,45 +1,47 @@
 +block(product-details-heading)
 
   +element(aside)
-    text-align: right
     height: 90px
     position: absolute
     right: 0
+    text-align: right
     top: 0
 
   +element(icon)
-    display: inline-block
-    width: 80px
-    height: 80px
-    position: static
     background-color: $app-color-white
     border: 2px solid $app-color-gray
     border-radius: 3px
-    top: 10px
+    display: inline-block
+    height: 80px
     left: 0
     margin-bottom: 4px
+    position: static
+    top: 10px
+    width: 80px
 
 +block(product-pricing)
-  @extend .table-striped
-  width: 100%
-  background-color: $app-color-white
+  @extend %table-striped
 
   +element(heading)
-    height: 44px
-    font-weight: bold
-    text-transform: uppercase
     color: $app-color-gray
+    font-weight: bold
+    height: 44px
+    text-transform: uppercase
 
   +element(cell)
-    height: 44px
-    font-size: 14px
-    border: none
-    padding: 10px 10px 10px 0
-    vertical-align: top
-    position: relative
 
     +modifier(padding)
       width: 20px
+
+    border: 0
+    font-size: 14px
+    height: 44px
+    padding: 10px 10px 10px 0
+    position: relative
+    vertical-align: top
+
+  background-color: $app-color-white
+  width: 100%
 
 +block(details-table)
 

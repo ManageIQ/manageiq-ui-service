@@ -8,165 +8,167 @@
     vertical-align: middle
 
 .invalid-node-header
-  fill: #bababa
+  fill: $color-bombay-approx
 
 .node-center-icon
   font-size: 72px
 
 .node-rect
-  stroke: #b1b1b1
+  fill: $color-white
+  stroke: $color-gray-1
   stroke-width: 2
-  fill: white
 
 .invalid-node-rect
-  fill: #cdcdcd
+  fill: $color-light-gray-approx
 
 .invalid-node-img
   opacity: .2
 
 .node-toolbar
-  border-left: solid 1px #b1b1b1
-  border-right: solid 1px #b1b1b1
-  border-bottom: solid 1px #b1b1b1
+  background-color: $color-white-smoke
+  border-bottom: solid 1px $color-gray-1
+  border-left: solid 1px $color-gray-1
   border-radius: 5px
-  background-color: #F7F1D7
+  border-right: solid 1px $color-gray-1
   height: 28px
   padding-left: 8px
 
 .node-toolbar-icons
+  color: $color-light-blue
+  cursor: pointer
+  font-size: 16px
   padding-right: 16px
   padding-top: 4px
-  color: #0099d3
-  font-size: 16px
-  cursor: pointer
 
-.svg-triangle polyline
-  fill: #F7F1D7
-  stroke: #b1b1b1
-  stroke-width: 2
+.svg-triangle
+  polyline
+    fill: $color-white-smoke
+    stroke: $color-gray-1
+    stroke-width: 2
 
 .connecting-mode-rec
-  fill: #8a8a8a
+  fill: $color-gray-2
 
 .connecting-mode-label
-  fill: white
+  fill: $color-white
   font-size: 16px
 
 .connecting-mode-label-warning
-  fill: red
+  fill: $color-red
   font-size: 16px
 
 .connector-icons
-  fill: #0099d3
-  font-size: 16px
   cursor: pointer
+  fill: $color-light-blue
+  font-size: 16px
+
   &:hover
-    fill: #00384d
+    fill: $color-tarawera-approx
 
 .mouseover-node-rect
-  stroke: #b1b1b1
+  stroke: $color-gray-1
   stroke-width: 3
 
 .selected-node-rect
-  stroke: #0099d3
+  stroke: $color-light-blue
   stroke-width: 3
 
 .connector-tooltip
-  fill: #F1F1F1
-  stroke: black
+  fill: $color-white-smoke
+  stroke: $color-black
   stroke-width: 1
 
 .connector-tooltip-text
   font-size: 10px
 
 .connector-circle
-  fill: white
-  stroke: black
+  fill: $color-white
+  stroke: $color-black
   stroke-width: 2
 
 .mouseover-connector-circle
-  fill: white
-  stroke: black
+  fill: $color-white
+  stroke: $color-black
   stroke-width: 3
 
 .unconnected-circle
-  fill: green
-  stroke: black
+  fill: $color-green-1
+  stroke: $color-black
+  stroke-opacity: '0.8'
   stroke-width: 2
-  stroke-opacity: "0.8"
 
 .mouseover-unconnected-circle
-  fill: green
-  stroke: black
+  fill: $color-green-1
+  stroke: $color-black
+  stroke-opacity: '0.8'
   stroke-width: 3
-  stroke-opacity: "0.8"
 
 .connection-line
-  stroke: gray
-  stroke-width: 4
   fill: transparent
+  stroke: $color-gray
+  stroke-width: 4
 
-.mouseover-connection-line 
-  stroke: gray
+.mouseover-connection-line
+  fill: transparent
+  stroke: $color-gray
   stroke-width: 6
-  fill: transparent
 
-.selected-connection-line 
-  stroke: red
+.selected-connection-line
+  fill: transparent
+  stroke: $color-red
   stroke-width: 4
-  fill: transparent
 
-.connection-endpoint 
-  fill: gray
+.connection-endpoint
+  fill: $color-gray
 
-.selected-connection-endpoint 
-  fill: red
+.selected-connection-endpoint
+  fill: $color-red
 
-.mouseover-connection-endpoint 
-  fill: gray
+.mouseover-connection-endpoint
+  fill: $color-gray
 
 .connection-name
-  fill: black
+  fill: $color-black
 
 .selected-connection-name
-  fill: red
+  fill: $color-red
 
 .mouseover-connection-name
-  fill: black
+  fill: $color-black
 
 .dragging-connection
   pointer-events: none
 
-.dragging-connection-line 
-  stroke: gray
+.dragging-connection-line
+  fill: transparent
+  stroke: $color-gray
   stroke-width: 3
+
+.dragging-connection-endpoint
+  fill: $color-gray
+
+.draggable-container
+  border: solid 1px $color-light-gray-approx
+
+.drag-selection-rect
   fill: transparent
-
-.dragging-connection-endpoint 
-  fill: gray
-
-.draggable-container 
-  border: solid 1px #d1d1d1
-
-.drag-selection-rect 
-  stroke: blue
+  stroke: $color-blue
   stroke-width: 2
-  fill: transparent
 
 .node-dialog-close
   font-size: 12px
   padding-top: 7px
 
 .nodetoolbar-dialog
-  position: fixed
-  top: 19px
   left: -19px
-  width: 300px
   margin-top: 4px
   padding: 8px
+  position: fixed
+  top: 19px
+  width: 300px
 
-  .tag-list .label a
-    color: #fff
+  .tag-list-action
+    color: $color-white
     cursor: pointer
 
 .tag-dialog
@@ -175,39 +177,43 @@
 
 .node-tag-title
   font-weight: 600
-  padding-top: 12px
   padding-bottom: 12px
+  padding-top: 12px
 
 .edit-dialog
   left: 5px
 
-.arrow_box
-  position: relative
-  background: #ffffff
-  border: 1px solid #514d52
+$arrow-box-border: rgba(81, 77, 82, 0)
+
+.arrow-box
+  background: $color-white
+  border: 1px solid $color-abbey-approx
   border-radius: 5px
+  padding-bottom: 10px
   padding-left: 10px
   padding-right: 10px
-  padding-bottom: 10px
+  position: relative
 
-.arrow_box:after, .arrow_box:before
-  bottom: 100%
-  left: 50%
-  border: solid transparent
-  content: " "
-  height: 0
-  width: 0
-  position: absolute
-  pointer-events: none
+  &::after,
+  &::before
+    border: solid transparent
+    bottom: 100%
+    content: ' '
+    height: 0
+    left: 50%
+    pointer-events: none
+    position: absolute
+    width: 0
 
-.arrow_box:after
-  border-color: rgba(255, 255, 255, 0)
-  border-bottom-color: #ffffff
-  border-width: 8px
-  margin-left: -41%
 
-.arrow_box:before
-  border-color: rgba(81, 77, 82, 0)
-  border-bottom-color: #514d52
-  border-width: 10px
-  margin-left: -41.5%
+  &::after
+    border-bottom-color: $color-white
+    border-color: $color-mine-shaft-approx
+    border-width: 8px
+    margin-left: -41%
+
+  &::before
+    border-bottom-color: $color-abbey-approx
+    border-color: $arrow-box-border
+    border-width: 10px
+    margin-left: -41.5%

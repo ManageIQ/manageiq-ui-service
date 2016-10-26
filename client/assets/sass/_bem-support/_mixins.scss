@@ -40,14 +40,14 @@ Elements can be used as children of Blocks or Modifiers on a Block
     $block: getBlock($selector);
     @at-root {
       #{$selector} {
-        #{$block+$elementSeparator+$element} {
+        #{$block+$element-separator+$element} {
           @content;
         }
       }
     }
   } @else {
     @at-root {
-      #{$selector+$elementSeparator+$element} {
+      #{$selector+$element-separator+$element} {
         @content;
       }
     }
@@ -73,7 +73,7 @@ Modifiers can be used as children of Blocks or Elements
 */
 @mixin modifier($modifier) {
   @at-root {
-    #{&}#{$modifierSeparator+$modifier} {
+    #{&}#{$modifier-separator+$modifier} {
       @content;
     }
   }

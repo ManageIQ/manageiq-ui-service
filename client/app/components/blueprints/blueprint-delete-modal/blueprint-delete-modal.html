@@ -7,9 +7,9 @@
 <div class="modal-body">
   <h3 translate translate-n="vm.blueprintsList.length" translate-plural="Are you sure you want to delete {{$count}} blueprints?">Are you sure you want to delete {{vm.blueprintsList[0].name}}?</h3>
   <span ng-if="vm.blueprintsList.length > 1">
-    <a href="#blueprintsList" id="blueprintsListHref" data-toggle="collapse" class="collapsed" translate>Show Blueprint Names</a>
+    <a href="#blueprintsList" id="blueprintsListHref" data-toggle="collapse" class="blueprints-list-toggle collapsed" translate>Show Blueprint Names</a>
     <div id="blueprintsList" class="collapse">
-       <div ng-repeat="blueprint in vm.blueprintsList" class="deleteBlueprintsList">{{blueprint.name}}</div>
+       <div ng-repeat="blueprint in vm.blueprintsList" class="delete-blueprints-list">{{blueprint.name}}</div>
     </div>
   </span>
 </div>
