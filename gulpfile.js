@@ -62,7 +62,7 @@ gulp.task('build-specs', ['templatecache'], task('buildSpecs'));
 /**
  * Testing tasks
  */
-gulp.task('test', ['vet', 'templatecache'], task('test', {singleRun: true}));
+gulp.task('test', ['templatecache'], task('test', {singleRun: true}));
 gulp.task('testonly', ['templatecache'], task('test', {singleRun: true}));
 gulp.task('autotest', task('test', {singleRun: false}));
 
