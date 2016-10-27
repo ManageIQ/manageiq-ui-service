@@ -12,10 +12,10 @@ $modal-about-pf-bg-color:  #083c5a // sets background color of 'About' modal
 
 @font-face
   font-family: 'FontAwesome'
-  src: url('../fonts/fontawesome-webfont.eot?v=4.4.0')
-  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.4.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.4.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.4.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular') format('svg')
-  font-weight: normal
   font-style: normal
+  font-weight: normal
+  src: url('../fonts/fontawesome-webfont.eot?v=4.4.0'), url('../fonts/fontawesome-webfont.eot?#iefix&v=4.4.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.4.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.4.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular') format('svg')
+
 
 body
   overflow: hidden // Adding so tooltips don't cause a scrollbar to appear
@@ -24,28 +24,34 @@ body
   height: 100%
 
 .breadcrumb
-  padding-left: 15px
   margin-bottom: 0
+  padding-left: 15px
 
 .section-toolbar
-  border-bottom: 1px solid #d0d0d0
-  border-top: 1px solid #d0d0d0
+  border-bottom: 1px solid $color-light-gray-approx
+  border-top: 1px solid $color-light-gray-approx
 
-.toolbar-pf .sort-pf .form-group
-  border-right: 0
+.toolbar-pf
+  .sort-pf
+    .form-group
+      border-right: 0
 
-.toolbar-pf .label
-  margin-left: 2px
+  .label
+    margin-left: 2px
 
-.filter-pf.filter-fields .form-group
-  width: 325px
+.filter-pf
+  &.filter-fields
+    .form-group
+      width: 325px
 
 .main-content
   overflow-x: hidden
 
-.layout-pf.layout-pf-fixed .container-pf-nav-pf-vertical
-  position: fixed
-  top: 60px
-  left: 0
-  right: 0
-  bottom: 0
+.layout-pf
+  &.layout-pf-fixed
+    .container-pf-nav-pf-vertical
+      bottom: 0
+      left: 0
+      position: fixed
+      right: 0
+      top: 60px

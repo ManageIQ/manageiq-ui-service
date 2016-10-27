@@ -18,7 +18,7 @@
     <li ng-repeat="tag in vm.tagsOfItem">
         <span class="label label-info">
             {{tag.categorization.displayName}}
-            <a><span class="pficon pficon-close" ng-click="vm.removeTag(tag)"></span></a>
+            <a class="tag-list-action"><span class="pficon pficon-close" ng-click="vm.removeTag(tag)"></span></a>
         </span>
     </li>
 </ul>

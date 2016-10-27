@@ -201,8 +201,8 @@
     }
 
     function toggleAdvOps() {
-      angular.element( "#advOpsHref" ).toggleClass("collapsed");
-      angular.element( "#advOps" ).toggleClass("in");
+      angular.element( ".adv-ops-href" ).toggleClass("collapsed");
+      angular.element( ".adv-ops" ).toggleClass("in");
     }
 
     function disableOrderListTabs() {

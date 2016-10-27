@@ -1,8 +1,8 @@
 .arbitration-rules-list
   height: 100%
+  margin-bottom: 0
   overflow-x: hidden
   overflow-y: auto
-  margin-bottom: 0
   padding-left: 0
 
   .arbitration-rule
@@ -13,68 +13,77 @@
     cursor: default
 
     .priority-button
-      visibility: hidden
       pointer-events: none
+      visibility: hidden
 
     &:hover
       .priority-button
-        visibility: visible
         pointer-events: all
+        visibility: visible
+
         &.invisible
           opacity: 0
           pointer-events: none
-      .priority-button[disabled]
-        visibility: hidden
+
+        &[disabled]
+          visibility: hidden
 
     &::before
-      border-color: #0d6f9a
-      background-image: -webkit-linear-gradient(top, #0088ce 60%, #fff 0%)
-      background-image: linear-gradient(to bottom, #0088ce 60%, #fff 0%)
+      background-image: linear-gradient(to bottom, $color-lochmara-approx 60%, $color-white 0%)
       background-position: left
       background-repeat: repeat-y
       background-size: 2px 5px
-      border: 4px solid #0088ce
-      position: absolute
-      content: ""
-      top: 3px
-      left: 4px
+      border: 4px solid $color-lochmara-approx
+      border-color: $color-medium-blue-3
+      content: ''
       height: 55px
+      left: 4px
+      position: absolute
+      top: 3px
       width: 10px
 
-  .btn[disabled]
-    .fa, .pficon
-      color: #8b8d8f !important
-      opacity: 1
+  .btn
+    &[disabled]
+      .fa,
+      .pficon
+        color: $color-gray-2
+        opacity: 1
 
   .content-container
+    margin: 0 15px
     padding: 0
     width: 100%
-    margin: 0 15px
 
   .rule-view-container
     display: inline-block
-    position: static
     left: 0
-    width: calc(100% - 35px)
     margin-left: 35px
+    position: static
+    width: calc(100% - 35px)
 
   .rule-edit-container
     display: inline-block
+    left: 0
+    margin-left: 35px
     position: static
     top: -2px
-    left: 0
     width: calc(100% - 35px)
-    margin-left: 35px
 
     .operation-select
-      width: 33% !important
+      &:not([class*='col-'])
+        &:not([class*='form-control'])
+          &:not(.input-group-btn)
+            width: 33%
 
     .profile-select
-      width: 100% !important
+      &:not([class*='col-'])
+        &:not([class*='form-control'])
+          &:not(.input-group-btn)
+            width: 100%
 
     .rule-edit-value
       height: 27px
-      margin-top: 0px
+      margin-top: 0
       position: relative
       top: 2px
       width: 30%
@@ -82,9 +91,9 @@
   .rule-item-heading
     font-size: 16px
     font-weight: 500
+    left: 0
     padding-right: 15px
     position: absolute
-    left: 0
 
   .rule-item-field
     padding: 0 5px
@@ -107,33 +116,36 @@
   .btn-container
     display: inline-block
 
-  .btn-link .pficon, .btn-link .fa
-    color: #72767b
-    width: inherit
+  .btn-link
+    .pficon,
+    .fa
+      color: $color-gray
+      width: inherit
 
-    &:hover
-      color: #0088ce
+      &:hover
+        color: $color-lochmara-approx
 
   .dndPlaceholder
-    background-color: #ededed
+    background-color: $color-cararra-approx
     padding: 20px 0
 
-  .dndDragging .item-contents
-    display: none
+  .dndDragging
+    .item-contents
+      display: none
 
-  .dndDragging.drag-original .item-contents
-    display: block
+    &.drag-original
+      display: none
+
+      .item-contents
+        display: block
+
+    .drag-contents
+      display: inline-block
+
+      .rule-item-heading
+        margin: 0 20px
+        position: inherit
 
   .drag-contents
-    display: none
-
-  .dndDragging .drag-contents
-    display: inline-block
-    .rule-item-heading
-      position: inherit
-      margin: 0 20px
-
-
-  .dndDragging.drag-original
     display: none
 

@@ -6,9 +6,9 @@
 </div>
 <div class="modal-body">
 
-    <tabset id="blueprint-detail-tabs">
+    <tabset class="blueprint-detail-tabs">
         <tab active="vm.tabs[0].active" heading="{{vm.tabs[0].title}}">
-            <form name="genDetailsForm" id="genDetailsForm" class="form-horizontal">
+            <form name="genDetailsForm" id="genDetailsForm" class="gen-details-form form-horizontal">
                 <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6"
                      pf-label="{{'Name'|translate}}"
                      required>
@@ -72,9 +72,9 @@
                     </div>
                 </div>
             </form>
-            <a id="advOpsHref" ng-click="vm.toggleAdvOps()" data-toggle="collapse" class="collapsed" translate>Advanced Options</a>
+            <a class="adv-ops-href" ng-click="vm.toggleAdvOps()" data-toggle="collapse" class="collapsed" translate>Advanced Options</a>
 
-            <div id="advOps" class="collapse">
+            <div class="advOps" class="collapse">
                 <form novalidate name="advOptsForm" id="advOptsForm" class="form-horizontal">
                     <!-- could not use pf-form-group due to it's requirement that errors only display after fields are 'dirty' -->
                     <div class="form-group"
@@ -125,7 +125,7 @@
             <div class="dnd-ordered-lists row">
                 <!-- Main Order List -->
                 <div class="col-md-12">
-                    <div class="row">
+                    <div class="row dnd-ordered-lists-row">
                         <order-list list="vm.dndModels.provOrder.list"/>
                     </div>
                 </div>
@@ -138,13 +138,13 @@
                        ng-change="vm.toggleActionEqualsProvOrder()"
                        type="checkbox"
                        ng-checked="vm.actionOrderEqualsProvOrder">
-                <span class="actionOrderCheckboxTitle" translate>Same as Provision Order</span>
+                <span class="action-order-checkbox-title" translate>Same as Provision Order</span>
             </h4>
 
             <div class="dnd-ordered-lists row">
                 <!-- Main Order List -->
                 <div class="col-md-12">
-                    <div class="row">
+                    <div class="row dnd-ordered-lists-row">
                         <order-list list="vm.dndModels.actionOrder.list"/>
                     </div>
                 </div>

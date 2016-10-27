@@ -211,7 +211,7 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
 
     it('should launch details dlg. when details button pressed', function () {
       var BlueprintDetailsModalSpy = sinon.stub(BlueprintDetailsModal, 'showModal').returns(Promise.resolve());
-      var detailsButton = element.find('#blueprintDetails');
+      var detailsButton = element.find('.blueprint-details-btn');
       detailsButton.click();
       $rootScope.$apply();
       expect(BlueprintDetailsModalSpy).to.have.been.called;

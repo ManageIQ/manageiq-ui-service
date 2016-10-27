@@ -24,7 +24,7 @@
     </div>
   </span>
   <span ng-if="vm.collapseCustomButtons">
-    <div class="btn-group dropdown custom_actions_menu">
+    <div class="btn-group dropdown custom-actions-menu">
       <button class="btn btn-default dropdown-toggle custom-button" title="{{'Custom Actions'|translate}}"
             type="button" id="button_custom_actions" data-toggle="dropdown">
         {{'Custom Actions'|translate}}
@@ -32,14 +32,14 @@
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="button_custom_actions">
         <li ng-repeat="button in vm.customActions.buttons" role="presentation">
-          <a role="menuitem" tabindex="-1" ng-click="vm.customButtonAction(button, vm.serviceId, vm.serviceTemplateCatalogId)">
+          <a role="menuitem" class="custom-button-action" tabindex="-1" ng-click="vm.customButtonAction(button, vm.serviceId, vm.serviceTemplateCatalogId)">
             {{ button.name }}
           </a>
         </li>
         <div ng-repeat="buttonGroup in vm.customActions.button_groups">
           <li class="dropdown-header">{{ buttonGroup.name.split('|')[0] }}</li>
           <li ng-repeat="button in buttonGroup.buttons" role="presentation">
-            <a role="menuitem" tabindex="-1" ng-click="vm.customButtonAction(button, vm.serviceId, vm.serviceTemplateCatalogId)">
+            <a role="menuitem" tabindex="-1" class="custom-button-action" ng-click="vm.customButtonAction(button, vm.serviceId, vm.serviceTemplateCatalogId)">
               {{ button.name }}
             </a>
           </li>

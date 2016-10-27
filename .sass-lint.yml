@@ -18,7 +18,7 @@ rules:
 
   # Disallows
   no-attribute-selectors: 0
-  no-color-hex: 2
+  no-color-hex: 0
   no-color-keywords: 2
   no-color-literals: 2
   no-combinators: 0
@@ -39,8 +39,10 @@ rules:
   no-transition-all: 2
   no-universal-selectors: 0
   no-url-protocols: 2
-  no-vendor-prefixes: 2
-  no-warn: 2
+  no-vendor-prefixes:
+    - 2
+    - ignore-non-standard: true
+  no-warn: 0
   property-units: 0
 
   # Nesting
@@ -49,7 +51,9 @@ rules:
   force-pseudo-nesting: 2
 
   # Name Formats
-  class-name-format: 2
+  class-name-format:
+    - 2
+    - ignore: dndDragging, dndDraggingSource, dndPlaceholder, splash__message
   function-name-format: 2
   id-name-format: 0
   mixin-name-format: 2
@@ -67,7 +71,7 @@ rules:
   hex-notation: 2
   indentation: 2
   leading-zero: 2
-  nesting-depth: 2
+  nesting-depth: 3
   property-sort-order: 2
   pseudo-element: 2
   quotes: 2

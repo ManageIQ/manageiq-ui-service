@@ -1,31 +1,33 @@
 +block(splash)
+
+  +element(overlay)
+    backface-visibility: hidden
+    background-color: $app-color-dark-navy-blue
+    bottom: 0
+    left: 0
+    opacity: .9
+    pointer-events: none
+    position: fixed
+    right: 0
+    top: 0
+    transition: opacity .3s linear
+    z-index: 9999
+
+  +element(message)
+    color: $app-color-gray
+    font-family: Lato, Helvetica Neue, Helvetica, Arial, sans-serif
+    font-size: 400%
+    font-weight: normal
+    margin: 20% auto 0
+    text-align: center
+    text-decoration: none
+    text-shadow: 2px 2px $app-color-dark-gray
+    text-transform: uppercase
+
   display: none
   opacity: 0
 
-  +element(overlay)
-    position: fixed
-    z-index: 9999
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    background-color: $app-color-dark-navy-blue
-    opacity: 0.9
-    pointer-events: none
-    backface-visibility: hidden
-    transition: opacity 0.3s linear
-
-  +element(message)
-    text-align: center
-    margin: 20% auto 0 auto
-    font-size: 400%
-    font-family: Lato, Helvetica Neue, Helvetica, Arial, sans-serif
-    font-weight: normal
-    text-shadow: 2px 2px $app-color-dark-gray
-    text-transform: uppercase
-    text-decoration: none
-    color: $app-color-gray
-
-.ng-cloak.splash
-  display: block !important
-  opacity: 1 !important
+.ng-cloak
+  &.splash
+    display: block
+    opacity: 1
