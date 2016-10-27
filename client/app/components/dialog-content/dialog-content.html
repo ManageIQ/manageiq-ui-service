@@ -67,13 +67,24 @@
                       ng-options="fieldValue[0] as fieldValue[1] for fieldValue in dialogField.values">
                     </select>
 
-                    <select
+                    <select ng-if="dialogField.options.force_single_value"
                       ng-switch-when="DialogFieldTagControl"
                       ng-model="dialogField.default_value"
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
                       ng-change="dialogField.triggerAutoRefresh(dialogField)"
                       class="form-control"
                       ng-options="fieldValue.id as fieldValue.description for fieldValue in dialogField.values">
+                    </select>
+
+                    <!-- Somewhat of a hack, but open angular issue using ng-att-multiple, so this is the workaround -->
+                    <select ng-if="!dialogField.options.force_single_value"
+                            multiple
+                            ng-switch-when="DialogFieldTagControl"
+                            ng-model="dialogField.default_value"
+                            ng-disabled="dialogField.read_only || vm.inputDisabled"
+                            ng-change="dialogField.triggerAutoRefresh(dialogField)"
+                            class="form-control"
+                            ng-options="fieldValue.id as fieldValue.description for fieldValue in dialogField.values">
                     </select>
 
                     <span
