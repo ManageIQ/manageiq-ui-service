@@ -55,10 +55,8 @@ gulp.task('available-languages', task('available-languages'));
  */
 gulp.task('compile', ['inject', 'sass', 'templatecache'], task('compile'));
 gulp.task('compileEjs', ['compile'], task('ejs', {key: 'ejs'}));
-gulp.task('compileEjsSpec', ['compile'], task('ejs', {key: 'ejsSpec'}));
 gulp.task('optimize', ['compileEjs'], task('optimize'));
 gulp.task('build', ['optimize', 'images', 'imgs', 'skin-images', 'fonts', 'gettext-copy', 'console-copy', 'available-languages'], task('build'));
-gulp.task('build-specs', ['compileEjsSpec', 'templatecache'], task('buildSpecs'));
 
 /**
  * Testing tasks
@@ -73,9 +71,6 @@ gulp.task('autotest', task('test', {singleRun: false}));
 gulp.task('start-manageiq-server', ['serve'], task('manageiq-server'));
 gulp.task('serve', ['dev-fonts', 'dev-images', 'dev-skin-images', 'dev-imgs', 'compile', 'available-languages'], task('serve', {
   specRunner: false
-}));
-gulp.task('serve-specs', ['build-specs'], task('serve', {
-  specRunner: true
 }));
 
 /**

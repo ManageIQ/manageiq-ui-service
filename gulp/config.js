@@ -340,25 +340,6 @@ module.exports = (function() {
     clean: temp
   };
 
-  // task build-specs: Builds a specs index file
-  config.buildSpecs = {
-    index: tests + specsFile,
-    build: tests,
-    templateCache: config.templatecache.build + config.templatecache.output,
-    options: merge({}, {devDependencies: true}),
-    specs: [tests + '*.spec.js'],
-    serverIntegrationSpecs: serverIntegrationSpecs,
-    files: getClientJsFiles(true, false),
-    order: clientJsOrder,
-    testLibraries: [
-      nodeModules + 'mocha/mocha.js',
-      nodeModules + 'chai/chai.js',
-      nodeModules + 'mocha-clean/index.js',
-      nodeModules + 'sinon-chai/lib/sinon-chai.js'
-    ],
-    specHelpers: [specHelperFiles]
-  };
-
   config.test = {
     confFile: __dirname + '/../karma.conf.js',
     serverEnv: 'dev',
