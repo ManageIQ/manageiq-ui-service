@@ -1,6 +1,5 @@
 'use strict';
 
-var wiredep = require('wiredep').stream;
 var inject = require('../utils/inject');
 var log = require('../utils/log');
 
@@ -21,7 +20,6 @@ module.exports = function(gulp, options) {
     }
 
     return gulp.src(config.index)
-      .pipe(wiredep(config.options))
       .pipe(inject(config.files, '', config.order))
       .pipe(inject(config.testLibraries, 'testlibraries'))
       .pipe(inject(config.specHelpers, 'spechelpers'))

@@ -9,6 +9,6 @@ var router = express.Router();
 
 router.use(express.static('./client'));
 router.use(express.static('./.tmp'));
-router.use(express.static('./bower_components'));
+router.use(express.static('./node_modules'));
 
 module.exports = router;

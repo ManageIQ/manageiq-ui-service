@@ -1,6 +1,5 @@
 'use strict';
 
-var wiredep = require('wiredep');
 var merge = require('merge');
 
 module.exports = (function() {
@@ -12,7 +11,6 @@ module.exports = (function() {
   var manageiqDir = '../manageiq/';
   var temp = './.tmp/';
   var reports = './reports/';
-  var bower = './bower_components/';
   var nodeModules = './node_modules/';
   var styles = 'partials/styles.html';
   var javascripts = 'partials/javascripts.html';
@@ -30,7 +28,7 @@ module.exports = (function() {
     client + 'app/**/*.sass'
   ];
   var templateFiles = client + 'app/**/*.html';
-   var serverIntegrationSpecs = [tests + 'server-integration/**/*.spec.js'];
+  var serverIntegrationSpecs = [tests + 'server-integration/**/*.spec.js'];
   var specHelperFiles = tests + 'test-helpers/*.js';
 
   var imageFiles = [
@@ -39,8 +37,8 @@ module.exports = (function() {
 
   var fontFiles = [
     src + 'client/assets/fonts/**/*.*',
-    bower + 'font-awesome/fonts/**/*.*',
-    bower + 'patternfly/dist/fonts/**/*.*'
+    nodeModules + 'font-awesome/fonts/**/*.*',
+    nodeModules + 'patternfly/dist/fonts/**/*.*'
   ];
 
   var clientJsOrder = [
@@ -49,17 +47,6 @@ module.exports = (function() {
     '**/*.module.js',
     '**/*.js'
   ];
-
-  var wiredepOptions = {
-    json: require('../bower.json'),
-    directory: bower,
-    ignorePath: '../..',
-    // Ignore CSS and JavaScript this is not needed or is undesired
-    exclude: [
-      // Exclude the bootstrap CSS, the Sass version will be @imported instead
-      /bootstrap\.css/
-    ]
-  };
 
   var serverApp = server + 'app.js';
 
@@ -71,8 +58,7 @@ module.exports = (function() {
     }
 
     if (includeSpecs) {
-      files = [].concat(files,  tests + '**/*.spec.js');
-      files = [].concat(files,  bower + 'karma-read-json/karma-read-json.js');
+      files = [].concat(files, tests + '**/*.spec.js');
       files = [].concat(files, {pattern: tests + 'mock/**/*.json', included: false});
     }
 
@@ -120,8 +106,8 @@ module.exports = (function() {
   config.sasslint = {
     src: sassFiles
   };
-  //configures which directory manage iq server code is located 
-  config.manageiqDir=manageiqDir;
+  //configures which directory manage iq server code is located
+  config.manageiqDir = manageiqDir;
   // task clean: Directories to clean
   config.clean = {
     src: [
@@ -196,7 +182,7 @@ module.exports = (function() {
 
   config.imgs = {
     src: [
-      bower + 'patternfly/dist/img/**/*'
+      nodeModules + 'patternfly/dist/img/**/*'
     ],
     build: build + 'img',
     minify: true,
@@ -209,7 +195,7 @@ module.exports = (function() {
 
   config.devImgs = {
     src: [
-      bower + 'patternfly/dist/img/**/*'
+      nodeModules + 'patternfly/dist/img/**/*'
     ],
     build: temp + 'img',
     minify: false
@@ -260,20 +246,19 @@ module.exports = (function() {
     }
   };
 
-  // task wiredep: Inject Bower CSS and JS into index.html
+  // task inject: Inject CSS and JS into index.html
   // This task will also inject the application JavaScript
   // The inject task will inject the application CSS
-  config.wiredep = {
+  config.inject = {
     index: [client + javascripts, client + styles],
     build: client,
     temp: temp,
-    options: wiredepOptions,
     files: getClientJsFiles(true, false),
     order: clientJsOrder
   };
 
-  // task inject: Injects the application CSS (compiled from Sass) into index.html
-  config.inject = {
+  // task compile: Injects the application CSS (compiled from Sass) into index.html
+  config.compile = {
     index: client + 'styles.html',
     build: client,
     css: [
@@ -283,7 +268,7 @@ module.exports = (function() {
   };
 
   config.optimize = {
-    index: temp + indexFile,
+    index: temp + indexFileEjs,
     build: build,
     cssFilter: '.tmp/styles/*.css',
     appJsFilter: '.tmp/js/app.js',
@@ -310,7 +295,7 @@ module.exports = (function() {
     index: tests + specsFile,
     build: tests,
     templateCache: config.templatecache.build + config.templatecache.output,
-    options: merge({}, wiredepOptions, {devDependencies: true}),
+    options: merge({}, {devDependencies: true}),
     specs: [tests + '*.spec.js'],
     serverIntegrationSpecs: serverIntegrationSpecs,
     files: getClientJsFiles(true, false),
@@ -403,20 +388,19 @@ module.exports = (function() {
 
   config.consoleCopy = [
     {
-      input: 'bower_components/no-vnc/**/*',
-      output: build + 'bower_components/no-vnc',
+      input: nodeModules+ 'no-vnc/**/*',
+      output: build + 'vendor/no-vnc',
     },
     {
-      input: 'bower_components/spice-html5-bower/**/*',
-      output: build + 'bower_components/spice-html5-bower',
+      input: nodeModules + 'spice-html5-bower/**/*',
+      output: build + 'vendor/spice-html5-bower',
     },
   ];
 
-  // task bump: Revs the package and bower files
+  // task bump: Revs the package files
   config.bump = {
     packages: [
       './package.json',
-      './bower.json'
     ],
     root: './'
   };

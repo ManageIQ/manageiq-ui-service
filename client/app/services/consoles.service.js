@@ -78,7 +78,7 @@
     }
 
     function openSpice(results) {
-      var url = '/ui/service/bower_components/spice-html5-bower/spiceHTML5/spice_auto.html'
+      var url = '/ui/service/vendor/spice-html5-bower/spiceHTML5/spice_auto.html'
         + '?host=' + $location.host()
         + '&port=' + $location.port()
         + '&path=' + results.url
@@ -90,7 +90,7 @@
     }
 
     function openVnc(results) {
-      var url = '/ui/service/bower_components/no-vnc/vnc_auto.html'
+      var url = '/ui/service/vendor/no-vnc/vnc_auto.html'
         + '?host=' + $location.host()
         + '&port=' + $location.port()
         + '&path=' + results.url

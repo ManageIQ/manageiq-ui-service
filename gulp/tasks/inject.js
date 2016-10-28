@@ -1,7 +1,7 @@
 'use strict';
 
-var inject = require('../utils/inject');
 var log = require('../utils/log');
+var inject = require('../utils/inject');
 
 module.exports = function(gulp, options) {
   var config = require('../config')[options.key || 'inject'];
@@ -10,11 +10,12 @@ module.exports = function(gulp, options) {
 
   function task() {
     if (options.verbose) {
-      log('Wire up css into the html, after files are ready');
+      log('Injecting dependencies into the html');
     }
 
     return gulp.src(config.index)
-      .pipe(inject(config.css))
-      .pipe(gulp.dest(config.build));
+      .pipe(inject(config.files, '', config.order))
+      .pipe(gulp.dest(config.build))
+      .pipe(gulp.dest(config.temp));
   }
 };

@@ -35,7 +35,7 @@ gulp.task('clean-code', task('clean', {key: 'cleanCode'}));
 gulp.task('templatecache', task('templatecache'));
 gulp.task('sass', task('sass'));
 gulp.task('ejs', task('ejs'));
-gulp.task('wiredep', task('wiredep'));
+gulp.task('inject', task('inject'));
 gulp.task('fonts', task('fonts'));
 gulp.task('images', task('images'));
 gulp.task('skin-images', ['images'], task('images', {key: 'skinImages'}));
@@ -53,11 +53,12 @@ gulp.task('available-languages', task('available-languages'));
 /**
  * Build tasks
  */
-gulp.task('inject', ['wiredep', 'sass', 'templatecache'], task('inject'));
-gulp.task('compileEjs', ['inject'], task('ejs'));
+gulp.task('compile', ['inject', 'sass', 'templatecache'], task('compile'));
+gulp.task('compileEjs', ['compile'], task('ejs', {key: 'ejs'}));
+gulp.task('compileEjsSpec', ['compile'], task('ejs', {key: 'ejsSpec'}));
 gulp.task('optimize', ['compileEjs'], task('optimize'));
 gulp.task('build', ['optimize', 'images', 'imgs', 'skin-images', 'fonts', 'gettext-copy', 'console-copy', 'available-languages'], task('build'));
-gulp.task('build-specs', ['templatecache'], task('buildSpecs'));
+gulp.task('build-specs', ['compileEjsSpec', 'templatecache'], task('buildSpecs'));
 
 /**
  * Testing tasks
@@ -70,7 +71,7 @@ gulp.task('autotest', task('test', {singleRun: false}));
  * Serves up injected html for dev, builds for everything else.
  */
 gulp.task('start-manageiq-server', ['serve'], task('manageiq-server'));
-gulp.task('serve', ['dev-fonts', 'dev-images', 'dev-skin-images', 'dev-imgs', 'inject', 'available-languages'], task('serve', {
+gulp.task('serve', ['dev-fonts', 'dev-images', 'dev-skin-images', 'dev-imgs', 'compile', 'available-languages'], task('serve', {
   specRunner: false
 }));
 gulp.task('serve-specs', ['build-specs'], task('serve', {

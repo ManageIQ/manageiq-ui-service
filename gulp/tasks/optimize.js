@@ -31,6 +31,7 @@ module.exports = function(gulp, options) {
     var jslibFilter = filter(config.libJsFilter, {restore: true});
 
     return gulp.src(config.index)
+      .pipe(rename("index.html"))
       .pipe(plumber())
       .pipe(inject(config.templateCache, 'templates'))
       .pipe(assets) // Gather all assets from the html with useref
@@ -48,7 +49,7 @@ module.exports = function(gulp, options) {
       .pipe(jsAppFilter.restore)
       // Get the vendor javascript
       .pipe(jslibFilter)
-      .pipe(uglify()) // another option is to override wiredep to use min files
+      .pipe(uglify()) // another option is to override to use min files
       .pipe(rev())
       .pipe(jslibFilter.restore)
       // Replace the file names in the html with rev numbers
