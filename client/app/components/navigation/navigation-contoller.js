@@ -154,6 +154,14 @@
     function getNavigationItems(items) {
       vm.items.splice(0, vm.items.length);
       angular.forEach(items, function(nextPrimary) {
+        if (angular.isDefined(nextPrimary.title)) {
+          nextPrimary.title = __(nextPrimary.title);
+        }
+        if (angular.isDefined(nextPrimary.badges)) {
+          angular.forEach(nextPrimary.badges, function(badge) {
+            badge.tooltip = __(badge.tooltip);
+          });
+        }
         vm.items.push(nextPrimary);
         if (nextPrimary.children) {
           nextPrimary.children.splice(0, nextPrimary.children.length);
@@ -163,6 +171,14 @@
             nextPrimary.children = [];
           }
           angular.forEach(nextPrimary.secondary, function(nextSecondary) {
+            if (angular.isDefined(nextSecondary.title)) {
+              nextSecondary.title = __(nextSecondary.title);
+            }
+            if (angular.isDefined(nextSecondary.badges)) {
+              angular.forEach(nextSecondary.badges, function(badge) {
+                badge.tooltip = __(badge.tooltip);
+              });
+            }
             nextPrimary.children.push(nextSecondary);
           });
         }
