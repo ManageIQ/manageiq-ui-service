@@ -1,21 +1,16 @@
 {
   "name": "manageiq-ui-service",
-  "version": "1.0.0",
   "description": "ManageIQ Service dependencies",
-  "authors": [
-    "Red Hat"
-  ],
+  "homepage": "https://manageiq.org/",
+  "author": "Red Hat",
   "license": "Apache-2.0",
+  "keywords": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/ManageIQ/manageiq-ui-service.git"
   },
-  "scripts": {
-    "install": "yarn install",
-    "postinstall": "gulp build",
-    "start": "node src/server/app.js",
-    "test": "gulp test"
-  },
+  "version": "1.0.1",
+  "scripts": {},
   "devDependencies": {
     "actioncable": "^5.0.0",
     "angular": "~1.5.8",
@@ -119,7 +114,7 @@
     "ng-midway-tester": "^2.0.5",
     "ngprogress": "~1.1.1",
     "ngstorage": "~0.3.10",
-    "no-vnc": "kanaka/noVNC#v0.6.1",
+    "no-vnc": "kanaka/noVNC#0.6.1",
     "node-notifier": "^4.6.1",
     "phantomjs-polyfill": "0.0.2",
     "phantomjs-prebuilt": "^2.1.12",
