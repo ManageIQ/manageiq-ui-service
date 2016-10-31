@@ -5,7 +5,7 @@
     'app.core',
     'ui.bootstrap',
     'patternfly',
-    'ngSVGAttributes',
+    'svgBaseFix',
     'dndLists',
     'flowChart',
     'ngDragDrop',

@@ -18,7 +18,6 @@ module.exports = function(gulp, options) {
     return gulp.src(config.index)
       .pipe(plumber({errorHandler: options.onError}))
       .pipe(ejs({}).on('error', options.onError))
-      .pipe(rename("index.html"))
       .pipe(gulp.dest(config.build));
   }
 };

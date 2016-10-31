@@ -21,5 +21,4 @@ exclude_paths:
 - tests/**/*
 - node_modules/**
 - gulp/**
-- bower_components/**
 - reports/**

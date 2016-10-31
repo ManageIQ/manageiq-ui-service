@@ -1,6 +1,5 @@
 'use strict';
 
-var wiredep = require('wiredep');
 var merge = require('merge');
 
 module.exports = (function() {
@@ -12,7 +11,6 @@ module.exports = (function() {
   var manageiqDir = '../manageiq/';
   var temp = './.tmp/';
   var reports = './reports/';
-  var bower = './bower_components/';
   var nodeModules = './node_modules/';
   var styles = 'partials/styles.html';
   var javascripts = 'partials/javascripts.html';
@@ -30,7 +28,7 @@ module.exports = (function() {
     client + 'app/**/*.sass'
   ];
   var templateFiles = client + 'app/**/*.html';
-   var serverIntegrationSpecs = [tests + 'server-integration/**/*.spec.js'];
+  var serverIntegrationSpecs = [tests + 'server-integration/**/*.spec.js'];
   var specHelperFiles = tests + 'test-helpers/*.js';
 
   var imageFiles = [
@@ -39,8 +37,8 @@ module.exports = (function() {
 
   var fontFiles = [
     src + 'client/assets/fonts/**/*.*',
-    bower + 'font-awesome/fonts/**/*.*',
-    bower + 'patternfly/dist/fonts/**/*.*'
+    nodeModules + 'font-awesome/fonts/**/*.*',
+    nodeModules + 'patternfly/dist/fonts/**/*.*'
   ];
 
   var clientJsOrder = [
@@ -49,17 +47,6 @@ module.exports = (function() {
     '**/*.module.js',
     '**/*.js'
   ];
-
-  var wiredepOptions = {
-    json: require('../bower.json'),
-    directory: bower,
-    ignorePath: '../..',
-    // Ignore CSS and JavaScript this is not needed or is undesired
-    exclude: [
-      // Exclude the bootstrap CSS, the Sass version will be @imported instead
-      /bootstrap\.css/
-    ]
-  };
 
   var serverApp = server + 'app.js';
 
@@ -71,8 +58,7 @@ module.exports = (function() {
     }
 
     if (includeSpecs) {
-      files = [].concat(files,  tests + '**/*.spec.js');
-      files = [].concat(files,  bower + 'karma-read-json/karma-read-json.js');
+      files = [].concat(files, tests + '**/*.spec.js');
       files = [].concat(files, {pattern: tests + 'mock/**/*.json', included: false});
     }
 
@@ -83,7 +69,57 @@ module.exports = (function() {
     var options = {
       files: [].concat(
         './node_modules/phantomjs-polyfill/bind-polyfill.js',
-        wiredep({devDependencies: true}).js,
+        './node_modules/jquery/dist/jquery.js',
+        './node_modules/components-jqueryui/jquery-ui.min.js',
+        './node_modules/jquery-match-height/dist/jquery.matchHeight.js',
+        './node_modules/lodash/index.js',
+        './node_modules/sprintf-js/src/sprintf.js',
+        './node_modules/actioncable/lib/assets/compiled/action_cable.js',
+        './node_modules/google-code-prettify/bin/prettify.min.js',
+        './node_modules/toastr/toastr.js',
+
+        './node_modules/d3/d3.js',
+        './node_modules/c3/c3.js',
+
+        './node_modules/datatables/media/js/jquery.dataTables.js',
+        './node_modules/datatables-colreorder/js/dataTables.colReorder.js',
+        './node_modules/datatables/media/js/jquery.dataTables.js',
+
+        './node_modules/moment/moment.js',
+        './node_modules/moment-timezone/builds/moment-timezone-with-data-2010-2020.js',
+        './node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+
+        './node_modules/es6-shim/es6-shim.js',
+        './node_modules/angular/angular.js',
+        './node_modules/angular-animate/angular-animate.js',
+        './node_modules/angular-cookies/angular-cookies.js',
+        './node_modules/angular-resource/angular-resource.js',
+        './node_modules/angular-messages/angular-messages.js',
+        './node_modules/angular-mocks/angular-mocks.js',
+        './node_modules/angular-sanitize/angular-sanitize.js',
+        './node_modules/angular-base64/angular-base64.js',
+        './node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.js',
+        './node_modules/angular-dragdrop/src/angular-dragdrop.js',
+        './node_modules/angular-gettext/dist/angular-gettext.js',
+        './node_modules/angular-gettext/dist/angular-gettext.js',
+        './node_modules/bootstrap/dist/js/bootstrap.js',
+        './node_modules/bootstrap-combobox/js/bootstrap-combobox.min.js',
+        './node_modulesz/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
+        './node_modules/bootstrap-select/dist/js/bootstrap-select.js',
+        './node_modules/bootstrap-switch/dist/js/bootstrap-switch.js',
+        './node_modules/bootstrap-touchspin/src/jquery.bootstrap-touchspin.js',
+        './node_modules/angular-svg-base-fix/src/svgBaseFix.js',
+        './node_modules/angular-ui-router/release/angular-ui-router.js',
+        './node_modules/patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js',
+        './node_modules/patternfly/dist/js/patternfly.js',
+        './node_modules/angular-patternfly/dist/angular-patternfly.js',
+        './node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js',
+        './node_modules/ngprogress/build/ngProgress.js',
+        './node_modules/ngstorage/ngStorage.js',
+
+        './node_modules/bardjs/bard.js',
+        './node_modules/sinon/pkg/sinon.js',
+        './node_modules/karma-read-json/karma-read-json.js',
         specHelperFiles,
         getClientJsFiles(true, true),
         config.templatecache.build + config.templatecache.output,
@@ -120,8 +156,8 @@ module.exports = (function() {
   config.sasslint = {
     src: sassFiles
   };
-  //configures which directory manage iq server code is located 
-  config.manageiqDir=manageiqDir;
+  //configures which directory manage iq server code is located
+  config.manageiqDir = manageiqDir;
   // task clean: Directories to clean
   config.clean = {
     src: [
@@ -196,7 +232,7 @@ module.exports = (function() {
 
   config.imgs = {
     src: [
-      bower + 'patternfly/dist/img/**/*'
+      nodeModules + 'patternfly/dist/img/**/*'
     ],
     build: build + 'img',
     minify: true,
@@ -209,7 +245,7 @@ module.exports = (function() {
 
   config.devImgs = {
     src: [
-      bower + 'patternfly/dist/img/**/*'
+      nodeModules + 'patternfly/dist/img/**/*'
     ],
     build: temp + 'img',
     minify: false
@@ -260,20 +296,19 @@ module.exports = (function() {
     }
   };
 
-  // task wiredep: Inject Bower CSS and JS into index.html
+  // task inject: Inject CSS and JS into index.html
   // This task will also inject the application JavaScript
   // The inject task will inject the application CSS
-  config.wiredep = {
+  config.inject = {
     index: [client + javascripts, client + styles],
     build: client,
     temp: temp,
-    options: wiredepOptions,
     files: getClientJsFiles(true, false),
     order: clientJsOrder
   };
 
-  // task inject: Injects the application CSS (compiled from Sass) into index.html
-  config.inject = {
+  // task compile: Injects the application CSS (compiled from Sass) into index.html
+  config.compile = {
     index: client + 'styles.html',
     build: client,
     css: [
@@ -283,7 +318,7 @@ module.exports = (function() {
   };
 
   config.optimize = {
-    index: temp + indexFile,
+    index: temp + indexFileEjs,
     build: build,
     cssFilter: '.tmp/styles/*.css',
     appJsFilter: '.tmp/js/app.js',
@@ -303,25 +338,6 @@ module.exports = (function() {
 
   config.build = {
     clean: temp
-  };
-
-  // task build-specs: Builds a specs index file
-  config.buildSpecs = {
-    index: tests + specsFile,
-    build: tests,
-    templateCache: config.templatecache.build + config.templatecache.output,
-    options: merge({}, wiredepOptions, {devDependencies: true}),
-    specs: [tests + '*.spec.js'],
-    serverIntegrationSpecs: serverIntegrationSpecs,
-    files: getClientJsFiles(true, false),
-    order: clientJsOrder,
-    testLibraries: [
-      nodeModules + 'mocha/mocha.js',
-      nodeModules + 'chai/chai.js',
-      nodeModules + 'mocha-clean/index.js',
-      nodeModules + 'sinon-chai/lib/sinon-chai.js'
-    ],
-    specHelpers: [specHelperFiles]
   };
 
   config.test = {
@@ -403,20 +419,19 @@ module.exports = (function() {
 
   config.consoleCopy = [
     {
-      input: 'bower_components/no-vnc/**/*',
-      output: build + 'bower_components/no-vnc',
+      input: nodeModules+ 'no-vnc/**/*',
+      output: build + 'vendor/no-vnc',
     },
     {
-      input: 'bower_components/spice-html5-bower/**/*',
-      output: build + 'bower_components/spice-html5-bower',
+      input: nodeModules + 'spice-html5-bower/**/*',
+      output: build + 'vendor/spice-html5-bower',
     },
   ];
 
-  // task bump: Revs the package and bower files
+  // task bump: Revs the package files
   config.bump = {
     packages: [
       './package.json',
-      './bower.json'
     ],
     root: './'
   };
