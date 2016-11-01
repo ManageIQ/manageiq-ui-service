@@ -154,6 +154,7 @@
     function getNavigationItems(items) {
       vm.items.splice(0, vm.items.length);
       angular.forEach(items, function(nextPrimary) {
+        getTextForNavigationItems(nextPrimary);
         vm.items.push(nextPrimary);
         if (nextPrimary.children) {
           nextPrimary.children.splice(0, nextPrimary.children.length);
@@ -163,10 +164,22 @@
             nextPrimary.children = [];
           }
           angular.forEach(nextPrimary.secondary, function(nextSecondary) {
+            getTextForNavigationItems(nextSecondary);
             nextPrimary.children.push(nextSecondary);
           });
         }
       });
+    }
+
+    function getTextForNavigationItems(navItem) {
+      if (angular.isDefined(navItem.title)) {
+        navItem.title = __(navItem.title);
+      }
+      if (angular.isDefined(navItem.badges)) {
+        angular.forEach(navItem.badges, function(badge) {
+          badge.tooltip = __(badge.tooltip);
+        });
+      }
     }
 
     function activate() {
