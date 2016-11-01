@@ -1,15 +1,10 @@
 <ui-view>
-  <span>
-    <ol class="breadcrumb">
-      <li>
-        {{'My Requests'|translate}}
-      </li>
-      <li class="active"><strong>{{vm.title}}</strong>
-      </li>
-    </ol>
-  </span>
-  <div pf-toolbar config="vm.orderToolbarConfig"></div>
-  <div class="list-view-container">
+  <ol class="breadcrumb">
+    <li>{{'My Requests'|translate}}</li>
+    <li class="active">{{vm.title}}</li>
+  </ol>
+  <div pf-toolbar class="section-toolbar" config="vm.orderToolbarConfig"></div>
+  <div class="list-view-container section-container">
     <div pf-list-view id="orderList" config="vm.orderListConfig" items="vm.ordersList">
       <div class="row">
         <div class="col-lg-5 col-md-5 col-sm-8 col-xs-8">

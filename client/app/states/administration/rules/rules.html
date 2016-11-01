@@ -1,14 +1,11 @@
 <ui-view>
   <span>
     <ol class="breadcrumb">
-      <li>
-        {{'Administration'|translate}}
-      </li>
-      <li class="active"><strong>{{'Rules' | translate}}</strong>
-      </li>
+      <li>{{'Administration'|translate}}</li>
+      <li class="active">{{'Rules' | translate}}</li>
     </ol>
   </span>
-  <div pf-toolbar class="arbitration-rules-toolbar" id="arbitrationRulesToolbar" config="vm.toolbarConfig">
+  <div pf-toolbar class="section-toolbar" id="arbitrationRulesToolbar" config="vm.toolbarConfig">
     <actions>
       <button class="btn btn-primary" type="button"
               ng-click="vm.addRule()"

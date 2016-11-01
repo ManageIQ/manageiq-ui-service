@@ -44,34 +44,43 @@
     vm.dialogs = [service.provision_dialog];
     vm.submitDialog = submitDialog;
     vm.cancelDialog = cancelDialog;
+    vm.backToService = backToService;
 
     var autoRefreshableDialogFields = [];
     var allDialogFields = [];
 
-    angular.forEach(vm.dialogs, function(dialog) {
-      angular.forEach(dialog.dialog_tabs, function(dialogTab) {
-        angular.forEach(dialogTab.dialog_groups, function(dialogGroup) {
-          angular.forEach(dialogGroup.dialog_fields, function(dialogField) {
-            allDialogFields.push(dialogField);
-            if (dialogField.default_value === '' && dialogField.values !== '') {
-              dialogField.default_value = dialogField.values;
-            }
+    if (angular.isArray(vm.dialogs)) {
+      angular.forEach(vm.dialogs, function(dialog) {
+        if (angular.isArray(dialog.dialog_tabs)) {
+          angular.forEach(dialog.dialog_tabs, function(dialogTab) {
+            if (angular.isArray(dialogTab.dialog_groups)) {
+              angular.forEach(dialogTab.dialog_groups, function(dialogGroup) {
+                if (angular.isArray(dialogGroup.dialog_fields)) {
+                  angular.forEach(dialogGroup.dialog_fields, function(dialogField) {
+                    allDialogFields.push(dialogField);
+                    if (dialogField.default_value === '' && dialogField.values !== '') {
+                      dialogField.default_value = dialogField.values;
+                    }
 
-            if (angular.isObject(dialogField.values) && angular.isUndefined(dialogField.default_value)) {
-              dialogField.default_value = String(dialogField.values[0][0]);
-            }
+                    if (angular.isObject(dialogField.values) && angular.isUndefined(dialogField.default_value)) {
+                      dialogField.default_value = String(dialogField.values[0][0]);
+                    }
 
-            dialogField.triggerAutoRefresh = function() {
-              DialogFieldRefresh.triggerAutoRefresh(dialogField);
-            };
+                    dialogField.triggerAutoRefresh = function() {
+                      DialogFieldRefresh.triggerAutoRefresh(dialogField);
+                    };
 
-            if (dialogField.auto_refresh === true) {
-              autoRefreshableDialogFields.push(dialogField.name);
+                    if (dialogField.auto_refresh === true) {
+                      autoRefreshableDialogFields.push(dialogField.name);
+                    }
+                  });
+                }
+              });
             }
           });
-        });
+        }
       });
-    });
+    }
 
     var dialogUrl = 'services/' + vm.service.service_template_catalog_id + '/service_templates';
 
@@ -117,6 +126,10 @@
     function cancelDialog() {
       EventNotifications.success(__('Reconfigure this service has been cancelled'));
       $state.go('services.details', {serviceId: $stateParams.serviceId});
+    }
+
+    function backToService() {
+      $state.go('services.details', {serviceId: service.id});
     }
   }
 })();

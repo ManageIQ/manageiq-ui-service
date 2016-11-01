@@ -17,14 +17,22 @@
     text-decoration: underline
     width: 240px
 
+  /* do not group these rules as any one invalid rule will invalidate them all */
+  input::-webkit-input-placeholder
+    text-decoration: underline
+  input:-moz-placeholder
+    text-decoration: underline
+  input::-moz-placeholder
+    text-decoration: underline
+  input:-ms-input-placeholder
+    text-decoration: underline
+
 .blueprint-designer-container
   background-color: #fff
   width: 100%
   height: 100%
 
-  .toolbar
-    border-bottom: 1px solid #d0d0d0
-    border-top: 1px solid #d0d0d0
+  .section-toolbar
     padding: 15px 15px
 
     button

@@ -35,6 +35,7 @@
   function RequestDetailsController(request) {
     var vm = this;
 
+    vm.title = request.description;
     vm.request = request;
   }
 })();

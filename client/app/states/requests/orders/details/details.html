@@ -1,11 +1,10 @@
 <ol class="breadcrumb">
+  <li>{{'My Requests'|translate}}</li>
   <li>
-    <a ui-sref="^"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to Order History'|translate}}</a>
+    <a ui-sref="^">{{'Order History'|translate}}</a>
   </li>
-  <li class="active"> <strong translate>Orders:</strong> {{ ::vm.order.name }}
-  </li>
+  <li class="active"><strong>{{vm.title}}</strong></li>
 </ol>
-
 <div class="ss-details-wrapper">
   <div class="panel panel-default ss-details-panel">
     <div class="panel-body">

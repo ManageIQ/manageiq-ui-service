@@ -35,6 +35,7 @@
   function StateController(order, $state) {
     var vm = this;
 
+    vm.title = order.name;
     vm.order = order;
 
     vm.requestListConfig = {
