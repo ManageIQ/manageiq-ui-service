@@ -3,12 +3,12 @@ This document is intended to provide a development guideline for new and existin
 Keep in mind this application undergoes constant development so be sure to check back occasionally as best practices are sure to evolve.
 
 ## Linting
-This project uses **ESLint** and **Sass Lint**.  Both can be run with the command `gulp vet`.
+This project uses **ESLint**, `gulp eslint`, and **Sass Lint**, `gulp sasslint`. Both can be run with the gulp task `gulp vet`.
 
 ## Style and Convention
 For additional information regarding coding style and convention employed in this project checkout:
 * [Coding Style and Standards](https://github.com/ManageIQ/manageiq/issues/8781)
-* [Internationalization Guidelines](i18n.md) 
+* [Internationalization Guidelines](https://github.com/ManageIQ/guides/blob/master/i18n.md) 
 * [Angular 1 Style Guide](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md)
 * [BEM Quick Start](https://en.bem.info/methodology/quick-start/)
 

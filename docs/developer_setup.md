@@ -8,10 +8,10 @@ Logging in to the SUI requires a running instance of ManageIQ. Instructions on h
 - Have the [ManageIQ](http://github.com/ManageIQ/manageiq) repo cloned into a
   directory named `manageiq`, and ready to be started. See [here](https://github.com/ManageIQ/guides/blob/master/developer_setup.md)
   for the steps required to setup ManageIQ.
-- Have this repo as a sibling to the `manageiq` directory:
-`git clone git@github.com:ManageIQ/manageiq-ui-service.git`.
-- Have nodejs **v6.7.0** and npm **3.10.3** installed (npm should be installed with NodeJS)
-- Have yarn and gulp globally installed.
+- Have the SUI repo at the same level as `manageiq/`, this ensures the SUI builds, `gulp build`, into the correct manageiq folder.
+  - `git clone git@github.com:ManageIQ/manageiq-ui-service.git`.
+- Have nodejs **v6.x** and npm **3.x.x** installed (npm should be installed with NodeJS)
+- Have yarn (^v0.16.1) and gulp globally installed.
   - `npm install -g yarn gulp`
 
 ### Install Dependencies
@@ -41,15 +41,5 @@ http://localhost:3000 order and serve up the REST API.
 - If you have a local copy of Manage IQ Server installed and would like to start it up at the same time you bring up the service ui web server, run
 	- ``` gulp start-manageiq-server ```
 
-If you would like to override the default port (3000) that ManageIQ runs on you can set an environmental variable ``` export MANAGEIQPORT=4000```.  If you are running manageiq in a folder other than _../manageiq/_ then you can override this path set in _gulp/config.js_ and update the _manageiqDir_ variable path.
-### Troubleshooting
-- When running ManageIQ with `bundle exec rake evm:start`, it may be necessary to override the REST API host via a
-PROXY\_HOST environment variable.
-  - `PROXY_HOST=127.0.0.1:3000 gulp serve`
-
-- `ActiveRecord::ConnectionTimeoutError: could not obtain a connection from the pool within 5.000 seconds; all pooled
-connections were in use` or `Error: socket hang up` or ` Error: connect ECONNREFUSED`
-might be caused to by lower than expected connection pool size this is remedied by navigating to
-`manageiq/config/database.yml` and increasing the `pool: xx` value.
-- For a full list of gulp tasks available to the SUI.
-  - `gulp help`
+If you would like to override the default port (3000) that ManageIQ runs on you can set an environmental variable ``` export MANAGEIQPORT=4000```.  
+If you are running manageiq in a folder other than _../manageiq/_ then you can override this path set in _gulp/config.js_ and update the _manageiqDir_ variable path.
