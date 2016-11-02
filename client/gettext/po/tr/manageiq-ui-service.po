@@ -1,53 +1,74 @@
 # Akın Ömeroğlu <akinomeroglu@gmail.com>, 2016. #zanata
+# Milan Zázrivec <mzazrivec@redhat.com>, 2016. #zanata
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-07-01 08:59-0400\n"
+"PO-Revision-Date: 2016-08-23 09:37-0400\n"
 "Last-Translator: Akın Ömeroğlu <akinomeroglu@gmail.com>\n"
 "Language-Team: Turkish\n"
 "Language: tr\n"
-"X-Generator: Zanata 3.8.4\n"
+"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=2; plural=(n>1)\n"
 
-#: app/components/navigation/header-nav.html:48
+#: app/components/notifications/notification-body.html:22
+#: app/components/notifications/notification-body.html:46
+msgid "% Complete"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:308
+msgid "%s was created."
+msgstr "%s oluşturuldu."
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:317
+msgid "%s was published."
+msgstr "%s yayınlandı."
+
+#: app/states/designer/blueprints/editor/editorCtrl.js:67
+msgid "'%s' was succesfully saved."
+msgstr ""
+
+#: app/layouts/application.html:75
 msgid "(Current Group)"
 msgstr "(Şimdiki Grup)"
 
-#: app/components/retire-service-modal/retire-service-modal.html:12
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:59
 msgid "1 Week"
 msgstr "1 Hafta"
 
-#: app/components/retire-service-modal/retire-service-modal.html:13
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:60
 msgid "2 Weeks"
 msgstr "2 Hafta"
 
-#: app/components/retire-service-modal/retire-service-modal.html:14
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:61
 msgid "3 Weeks"
 msgstr "3 Hafta"
 
-#: app/components/retire-service-modal/retire-service-modal.html:15
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:62
 msgid "4 Weeks"
 msgstr "4 Hafta"
 
-#: app/components/blueprint-delete-modal/blueprint-delete-modal-service.factory.js:41
-msgid "?"
-msgstr "?"
+#: app/layouts/application.html:52
+msgid "About"
+msgstr ""
 
 #: app/states/about-me/about-me.html:1
 #: app/states/about-me/about-me.state.js:20
-#: app/states/about-me/about-me.state.js:29
 msgid "About Me"
 msgstr "Hakkında"
 
-#: app/components/custom-button/custom-button.directive.js:120
-#: app/components/custom-button/custom-button.directive.js:132
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:86
+msgid "Action Order"
+msgstr ""
+
+#: app/components/custom-button/custom-button.directive.js:121
+#: app/components/custom-button/custom-button.directive.js:133
 msgid "Action not able to submit."
 msgstr "Aksiyon gönderilmeye uygun değil"
 
-#: app/states/products/details/details.state.js:35
+#: app/states/products/details/details.state.js:33
 msgid "Activated Products Details View"
 msgstr "Aktive Edilmiş Ürün Detayları Gösterimi"
 
@@ -55,24 +76,32 @@ msgstr "Aktive Edilmiş Ürün Detayları Gösterimi"
 msgid "Active"
 msgstr "Aktif"
 
-#: app/states/blueprints/designer/designer.html:71
-msgid "Add New Catalog Item..."
-msgstr "Yeni Katalog Öğesi Ekle..."
+#: app/states/designer/blueprints/editor/editor.html:21
+msgid "Add Item"
+msgstr "Öge ekle"
 
-#: app/states/blueprints/designer/designer.html:27
-msgid "Add Service Item"
-msgstr "Servis Öğesi Ekle"
+#: app/components/profiles/profile-editor.html:9
+#: app/states/administration/profiles/editor/editor.state.js:55
+msgid "Add Profile"
+msgstr ""
 
-#: app/states/marketplace/details/details.html:31
+#: app/states/marketplace/details/details.html:36
+#: app/states/marketplace/details/details.html:41
 msgid "Add to Shopping Cart"
 msgstr "Sepete Ekle"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:35
+#: app/config/navigation.config.js:69
+#: app/states/administration/profiles/profiles.html:5
+#: app/states/administration/rules/rules.html:5
+msgid "Administration"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:75
 msgid "Advanced Options"
 msgstr "Gelişmiş Özellikler"
 
-#: app/states/requests/list/list.state.js:212
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:346
 msgid "Approved"
 msgstr "Onaylandı"
 
@@ -84,26 +113,50 @@ msgstr "Onaylanan İstekler"
 msgid "Approver"
 msgstr "Onaylayan"
 
-#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:8
-msgid "Are you sure you want to delete {{vm.delBlueprintsLabel}}"
+#: app/components/profiles/profiles-list.html:8
+msgid "Are you sure you want to delete profile [[profile_name]]?"
 msgstr ""
-"{{vm.delBlueprintsLabel}} isimli planı silmek istediğinizden emin misiniz?"
 
-#: app/components/confirmation/confirmation.directive.js:95
+#: app/components/rules/rules-list.html:123
+msgid "Are you sure you want to delete this rule?"
+msgstr ""
+
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:8
+msgid "Are you sure you want to delete {{vm.blueprintsList[0].name}}?"
+msgid_plural "Are you sure you want to delete {{$count}} blueprints?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/components/confirmation/confirmation.directive.js:107
 msgid "Are you sure you wish to proceed?"
 msgstr "Devam etmek istediğinize emin misiniz?"
 
-#: app/states/blueprints/designer/designer.html:4
+#: app/components/notifications/notification-footer.html:14
+msgid "Are you sure you would like to clear all [[heading]]?"
+msgstr ""
+
+#: app/components/profiles/profile-details.html:59
+#: app/components/profiles/profile-editor.html:63
+msgid "Availability Zone"
+msgstr ""
+
+#: app/states/designer/blueprints/editor/editor.html:5
 msgid "Back to Blueprints"
 msgstr "Planlara Dön"
 
 #: app/states/requests/details/details.html:3
+#: app/states/requests/order_details/order_details.html:3
 msgid "Back to My Requests"
 msgstr "İsteklerime Dön"
 
 #: app/states/services/details/details.html:3
 msgid "Back to My Services"
 msgstr "Servislerime Dön"
+
+#: app/states/administration/profiles/details/details.html:4
+#: app/states/administration/profiles/editor/editor.html:4
+msgid "Back to Profiles"
+msgstr ""
 
 #: app/states/services/custom_button_details/custom_button_details.html:7
 #: app/states/services/reconfigure/reconfigure.html:3
@@ -115,108 +168,165 @@ msgstr "Servise Dön"
 msgid "Back to Service Catalog"
 msgstr "Servis Kataloğuna Dön"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:8
-msgid "Basic Info."
-msgstr "Temel Bilgi"
+#: app/states/designer/blueprints/editor/editor.html:33
+msgid "Blueprint Details"
+msgstr ""
 
-#: app/states/blueprints/designer/designer.html:6
+#: app/states/designer/blueprints/editor/editor.html:7
 msgid "Blueprint Editor:"
 msgstr "Plan Editörü"
 
-#: app/states/blueprints/list/list.state.js:19
-#: app/states/blueprints/list/list.state.js:39
+#: app/states/designer/blueprints/list/list.state.js:20
+#: app/states/designer/blueprints/list/list.state.js:70
 msgid "Blueprint List"
 msgstr "Plan Listesi"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:10
-msgid "Blueprint Name"
-msgstr "Plan İsmi"
+#: app/services/blueprints-state.service.js:255
+msgid "Blueprint(s) were succesfully deleted."
+msgstr ""
 
-#: app/components/blueprint-delete-modal/blueprint-delete-modal-service.factory.js:73
-msgid "Blueprint(s) deleted."
-msgstr "Planlar Silindi"
-
-#: app/config/navigation.config.js:37
+#: app/config/navigation.config.js:57
 msgid "Blueprints"
 msgstr "Planlar"
 
-#: app/components/custom-button/custom-button.directive.js:100
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:100
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:111
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:88
+msgid "Browse"
+msgstr "Gözat"
+
+#: app/components/language-switcher/language-switcher.directive.js:29
+msgid "Browser Default"
+msgstr "Tarayıcı Varsayılanı"
+
+#: app/components/custom-button/custom-button.directive.js:101
 msgid "Button action not supported."
 msgstr "Buton aksiyonu desteklenmiyor"
 
-#: app/states/services/details/details.html:116
+#: app/states/services/details/details.html:113
 msgid "CPU"
 msgstr "CPU"
 
 #: app/components/blueprint-delete-modal/blueprint-delete-modal.html:17
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:54
-#: app/components/confirmation/confirmation.directive.js:97
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:156
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:11
+#: app/components/confirmation/confirmation.directive.js:109
+#: app/components/create-catalog-modal/create-catalog-modal.html:12
 #: app/components/edit-service-modal/edit-service-modal.html:21
 #: app/components/ownership-service-modal/ownership-service-modal.html:32
-#: app/components/retire-service-modal/retire-service-modal.html:24
-#: app/states/services/reconfigure/reconfigure.html:24
+#: app/components/profiles/profile-editor.html:126
+#: app/components/retire-service-modal/retire-service-modal.html:19
+#: app/components/rules/rules-list.html:98
+#: app/states/administration/profiles/editor/save-profile-modal.html:12
+#: app/states/administration/rules/save-rule-modal.html:12
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:11
+#: app/states/services/reconfigure/reconfigure.html:22
 msgid "Cancel"
 msgstr "İptal"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:20
-#: app/states/blueprints/list/list.state.js:121
-#: app/states/blueprints/list/list.state.js:88
+#: app/states/designer/blueprints/list/list.state.js:242
+msgid "Cannot publish a blueprint with no service items."
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:43
+#: app/states/designer/blueprints/list/list.state.js:161
+#: app/states/designer/blueprints/list/list.state.js:202
 msgid "Catalog"
 msgstr "Katalog"
 
-#: app/states/marketplace/list/list.state.js:105
-#: app/states/marketplace/list/list.state.js:86
+#: app/states/marketplace/list/list.state.js:110
+#: app/states/marketplace/list/list.state.js:91
 msgid "Catalog Name"
 msgstr "Katalog İsmi"
 
-#: app/components/navigation/header-nav.html:40
+#: app/layouts/application.html:67
 msgid "Change Group:"
 msgstr "Grubu Değiştir"
 
-#: app/components/navigation/header-nav.html:52
+#: app/layouts/application.html:79
 msgid "Change to this Group"
 msgstr "Bu Gruba değiştir"
 
-#: app/components/shopping-cart/shopping-cart.html:42
+#: app/components/shopping-cart/shopping-cart.html:46
 msgid "Clear"
 msgstr "Temizle"
 
-#: app/components/shopping-cart/shopping-cart.html:34
+#: app/components/notifications/notification-footer.html:15
+#: app/components/notifications/notification-footer.html:20
+msgid "Clear All"
+msgstr ""
+
+#: app/components/notifications/notification-footer.html:13
+msgid "Clear All [[heading]]"
+msgstr ""
+
+#: app/components/shopping-cart/shopping-cart.html:38
 msgid "Close"
 msgstr "Kapat"
 
-#: app/states/blueprints/designer/designer.html:13
-msgid "Confirm, would you like to delete this blueprint?"
-msgstr "Bu planı silmek mi istiyorsunuz? Onaylayın"
+#: app/components/profiles/profile-details.html:71
+#: app/components/profiles/profile-editor.html:83
+msgid "Cloud Network"
+msgstr ""
 
-#: app/states/services/details/details.html:42
+#: app/components/profiles/profile-details.html:77
+#: app/components/profiles/profile-editor.html:94
+msgid "Cloud Subnet"
+msgstr ""
+
+#: app/components/notifications/notification-body.html:52
+msgid "Completed:"
+msgstr ""
+
+#: app/states/services/details/details.html:40
 msgid "Confirm, would you like to remove this service?"
 msgstr "Bu servisi silmek mi istiyorsunuz? Onaylayın"
 
-#: app/states/services/details/details.html:57
+#: app/states/services/details/details.html:54
 msgid "Confirm, would you like to retire this service?"
 msgstr "Bu servisi emekli mi etmek istiyorsunuz? Onaylayın"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:84
-#: app/states/blueprints/list/list.state.js:132
+#: app/components/navigation/navigation-contoller.js:124
+msgid "Copyright (c) 2016 ManageIQ. Sponsored by Red Hat Inc."
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:91
+#: app/components/profiles/profiles-list.directive.js:266
+#: app/components/rules/rules-list.html:9
+#: app/states/designer/blueprints/editor/editor.html:97
+#: app/states/designer/blueprints/list/list.state.js:213
 msgid "Create"
 msgstr "Oluştur"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:83
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:90
 msgid "Create Blueprint"
 msgstr "Plan Oluştur"
 
-#: app/states/blueprints/list/list.state.js:133
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:54
+#: app/components/create-catalog-modal/create-catalog-modal.html:5
+msgid "Create Catalog"
+msgstr "Katalog Oluştur"
+
+#: app/states/designer/blueprints/list/list.state.js:214
 msgid "Create a new Blueprint"
 msgstr "Yeni bir Plan Oluştur"
 
+#: app/components/profiles/profiles-list.directive.js:267
+msgid "Create a new Profile"
+msgstr ""
+
+#: app/components/rules/rules-list.html:7
+msgid "Create a new rule"
+msgstr ""
+
+#: app/components/profiles/profile-details.html:20
 #: app/states/services/list/list.state.js:126
 #: app/states/services/list/list.state.js:93
 msgid "Created"
 msgstr "Oluşturuldu"
 
-#: app/states/services/details/details.html:106
-#: app/states/services/list/list.html:40
+#: app/states/services/details/details.html:103
+#: app/states/services/list/list.html:48
 msgid "Created On"
 msgstr "Oluşturuldu"
 
@@ -228,7 +338,7 @@ msgstr "Oluşturulma Tarihi"
 msgid "Current"
 msgstr "Şimdiki"
 
-#: app/components/navigation/header-nav.html:59
+#: app/layouts/application.html:86
 msgid "Current Group"
 msgstr "Şimdiki Grup"
 
@@ -236,7 +346,7 @@ msgstr "Şimdiki Grup"
 msgid "Current Services"
 msgstr "Şimdiki Servisler"
 
-#: app/components/navigation/header-nav.html:46
+#: app/layouts/application.html:73
 msgid "Currently Selected Group"
 msgstr "Şu an Seçili Gruplar"
 
@@ -254,25 +364,36 @@ msgid "Custom button action"
 msgstr "Özel Düğme Aksiyonu"
 
 #: app/config/navigation.config.js:14
-#: app/states/dashboard/dashboard.state.js:178
 #: app/states/dashboard/dashboard.state.js:20
 msgid "Dashboard"
 msgstr "Gösterge Paneli"
 
-#: app/states/blueprints/designer/designer.html:9
-#: app/states/blueprints/list/list.state.js:137
-#: app/states/blueprints/list/list.state.js:65
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:18
+#: app/components/profiles/profiles-list.directive.js:197
+#: app/components/profiles/profiles-list.html:9
+#: app/components/rules/rules-list.html:124
+#: app/states/designer/blueprints/list/list.state.js:137
+#: app/states/designer/blueprints/list/list.state.js:218
 msgid "Delete"
 msgstr "Sil"
 
-#: app/states/blueprints/designer/designer.html:12
-#: app/states/blueprints/list/list.state.js:138
-#: app/states/blueprints/list/list.state.js:66
+#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:5
+#: app/states/designer/blueprints/list/list.state.js:138
+#: app/states/designer/blueprints/list/list.state.js:219
 msgid "Delete Blueprint"
 msgstr "Planı Sil"
 
-#: app/states/requests/list/list.state.js:210
-#: app/states/requests/list/list.state.js:81
+#: app/components/profiles/profiles-list.directive.js:198
+#: app/components/profiles/profiles-list.html:7
+msgid "Delete Profile"
+msgstr ""
+
+#: app/components/rules/rules-list.html:122
+msgid "Delete Rule"
+msgstr ""
+
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:344
 msgid "Denied"
 msgstr "Reddedildi"
 
@@ -280,63 +401,121 @@ msgstr "Reddedildi"
 msgid "Denied Requests"
 msgstr "Reddedilen İstekler"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:19
 #: app/components/edit-service-modal/edit-service-modal.html:13
-#: app/states/marketplace/list/list.state.js:80
-#: app/states/requests/list/list.state.js:60
-#: app/states/requests/list/list.state.js:92
+#: app/components/profiles/profile-editor.html:26
+#: app/components/profiles/profiles-list.directive.js:227
+#: app/states/marketplace/list/list.state.js:85
+#: app/states/requests/list/list.state.js:115
+#: app/states/requests/list/list.state.js:77
 msgid "Description"
 msgstr "Tanım"
 
-#: app/states/blueprints/designer/designer.html:8
-msgid "Details"
-msgstr "Detaylar"
+#: app/config/navigation.config.js:52
+msgid "Designer"
+msgstr ""
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:27
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:61
 msgid "Dialog"
 msgstr "Diyalog"
 
-#: app/states/services/details/details.html:128
+#: app/states/services/details/details.html:125
 msgid "Disk Count"
 msgstr "Disk Adedi"
 
-#: app/states/services/details/details.html:134
+#: app/states/services/details/details.html:131
 msgid "Disk Space Allocated"
 msgstr "Ayrılan Disk Alanı"
 
-#: app/states/services/details/details.html:140
+#: app/states/services/details/details.html:137
 msgid "Disk Space Used"
 msgstr "Kullanılan Disk Alanı"
 
-#: app/states/blueprints/list/list.state.js:60
+#: app/states/administration/profiles/editor/save-profile-modal.html:13
+#: app/states/administration/rules/save-rule-modal.html:13
+msgid "Do Not Save"
+msgstr ""
+
+#: app/layouts/application.html:42
+msgid "Documentation"
+msgstr ""
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:12
+msgid "Don't Save"
+msgstr "Kaydetme"
+
+#: app/states/designer/blueprints/list/list.html:45
+msgid "Draft"
+msgstr ""
+
+#: app/components/shopping-cart/shopping-cart.html:22
+#: app/states/designer/blueprints/editor/editor.html:24
+#: app/states/designer/blueprints/list/list.state.js:132
+msgid "Duplicate"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:133
+msgid "Duplicate Blueprint"
+msgstr ""
+
+#: app/states/marketplace/details/details.html:34
+msgid "Duplicate Shopping Cart Item"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:236
+msgid "Duplicate blueprint feature not available."
+msgstr ""
+
+#: app/components/profiles/profile-details.html:99
+#: app/components/profiles/profiles-list.directive.js:192
+#: app/states/designer/blueprints/list/list.state.js:127
 msgid "Edit"
 msgstr "Düzenle"
 
-#: app/states/blueprints/list/list.state.js:61
+#: app/states/designer/blueprints/list/list.state.js:128
 msgid "Edit Blueprint"
 msgstr "Planı Düzenle"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:86
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:98
+#: app/states/designer/blueprints/editor/editor.html:35
 msgid "Edit Blueprint Details"
 msgstr "Plan Ayrıntılarını Düzenle"
 
+#: app/components/profiles/profile-editor.html:8
+#: app/components/profiles/profiles-list.directive.js:193
+msgid "Edit Profile"
+msgstr ""
+
+#: app/states/administration/profiles/editor/editor.state.js:53
+msgid "Edit Profile: %s"
+msgstr ""
+
 #: app/components/edit-service-modal/edit-service-modal.html:5
-#: app/states/services/details/details.html:65
+#: app/states/services/details/details.html:62
 msgid "Edit Service"
 msgstr "Servisi Düzenle"
+
+#: app/components/rules/rules-list.html:62
+msgid "Enter a value"
+msgstr ""
 
 #: app/states/error/error.state.js:21
 msgid "Error"
 msgstr "Hata"
 
-#: app/config/authorization.config.js:107
+#: app/config/authorization.config.js:110
 msgid "Error retrieving user info"
 msgstr "Kullanıcı bilgisini alırken hata"
 
-#: app/states/blueprints/list/list.state.js:89
+#: app/states/designer/blueprints/editor/editorCtrl.js:74
+msgid "Failed to save '%s'."
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:162
 msgid "Filter by Catalog"
 msgstr "Kataloga göre filtrele"
 
-#: app/states/marketplace/list/list.state.js:87
+#: app/states/marketplace/list/list.state.js:92
 msgid "Filter by Catalog Name"
 msgstr "Katalog ismine göre filtrele"
 
@@ -344,34 +523,58 @@ msgstr "Katalog ismine göre filtrele"
 msgid "Filter by Created On"
 msgstr "Oluşturulmaya göre filtrele"
 
-#: app/states/marketplace/list/list.state.js:81
-#: app/states/requests/list/list.state.js:61
+#: app/components/profiles/profiles-list.directive.js:228
+#: app/states/marketplace/list/list.state.js:86
+#: app/states/requests/list/list.state.js:78
 msgid "Filter by Description"
 msgstr "Tanıma göre filtrele"
 
-#: app/states/requests/list/list.state.js:67
+#: app/states/requests/list/list.state.js:157
+#: app/states/requests/list/list.state.js:84
 msgid "Filter by ID"
 msgstr "ID'ye göre filtrele"
 
-#: app/states/blueprints/list/list.state.js:77
-#: app/states/marketplace/list/list.state.js:75
+#: app/components/profiles/profiles-list.directive.js:209
+#: app/states/designer/blueprints/list/list.state.js:149
+#: app/states/marketplace/list/list.state.js:80
+#: app/states/requests/list/list.state.js:151
 #: app/states/services/list/list.state.js:69
 msgid "Filter by Name"
 msgstr "İsme göre filtrele"
+
+#: app/states/requests/list/list.state.js:163
+msgid "Filter by Order Date"
+msgstr ""
 
 #: app/states/services/list/list.state.js:88
 msgid "Filter by Owner"
 msgstr "Sahibine göre filtrele"
 
-#: app/states/requests/list/list.state.js:73
+#: app/components/profiles/profiles-list.directive.js:215
+msgid "Filter by Provider Name"
+msgstr ""
+
+#: app/components/profiles/profiles-list.directive.js:221
+msgid "Filter by Provider Type"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.state.js:169
+msgid "Filter by Publish State"
+msgstr ""
+
+#: app/states/requests/list/list.state.js:96
 msgid "Filter by Request Date"
 msgstr "İstek tarihine göre filtrele"
+
+#: app/states/requests/list/list.state.js:90
+msgid "Filter by Requester"
+msgstr ""
 
 #: app/states/services/list/list.state.js:75
 msgid "Filter by Retirement Date"
 msgstr "Emeklilik tarihine göre filtrele"
 
-#: app/states/requests/list/list.state.js:79
+#: app/states/requests/list/list.state.js:102
 msgid "Filter by Status"
 msgstr "Duruma göre filtrele"
 
@@ -379,34 +582,68 @@ msgstr "Duruma göre filtrele"
 msgid "Filter by VMs"
 msgstr "VM'lere göre filtrele"
 
-#: app/states/blueprints/list/list.state.js:83
+#: app/states/designer/blueprints/list/list.state.js:155
 msgid "Filter by Visibility"
 msgstr "Görünürlülüğe göre filtrele"
 
-#: app/components/confirmation/confirmation.directive.js:54
-#: app/components/confirmation/confirmation.directive.js:59
+#: app/states/designer/blueprints/editor/editor.html:102
+msgid "Filter by name"
+msgstr "İsme göre filtrele"
+
+#: app/components/profiles/profile-details.html:65
+#: app/components/profiles/profile-editor.html:73
+msgid "Flavor"
+msgstr ""
+
+#: app/components/confirmation/confirmation.directive.js:66
+#: app/components/confirmation/confirmation.directive.js:71
 msgid "For Sizing"
 msgstr "Boyutlandırma İçin"
 
-#: app/states/services/details/details.html:100
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:83
+msgid "General"
+msgstr "Genel"
+
+#: app/states/services/details/details.html:97
 msgid "Group"
 msgstr "Grup"
 
 #: app/states/help/help.html:1
 #: app/states/help/help.state.js:20
-#: app/states/help/help.state.js:29
 msgid "Help"
 msgstr "Yardım"
+
+#: app/states/designer/blueprints/editor/editor.html:43
+msgid "Hide Connectors"
+msgstr ""
 
 #: app/states/products/details/details.html:56
 msgid "Hourly"
 msgstr "Saatlik"
 
-#: app/states/requests/list/list.html:24
+#: app/components/request-list/request-list.html:15
+#: app/states/requests/list/list.html:26
 msgid "ID"
 msgstr "ID"
 
-#: app/states/services/details/details.html:49
+#: app/components/rules/rules-list.html:26
+#: app/components/rules/rules-list.html:50
+msgid "IF"
+msgstr ""
+
+#: app/states/administration/rules/save-rule-modal.html:9
+msgid "If you do not save, any changes will be lost."
+msgstr ""
+
+#: app/states/administration/profiles/editor/save-profile-modal.html:9
+msgid "If you do not save, your changes will be lost."
+msgstr ""
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:8
+msgid "If you don't save, your changes will be lost."
+msgstr ""
+
+#: app/states/services/details/details.html:47
 msgid "Inactivate the service"
 msgstr "Servisi deaktifleştir"
 
@@ -418,25 +655,45 @@ msgstr "İnaktif"
 msgid "Incorrect username or password."
 msgstr "Kullanıcı adı ya da parola hatalı"
 
-#: app/states/marketplace/details/details.state.js:101
+#: app/states/services/details/details.html:168
+msgid "Instance name"
+msgstr ""
+
+#: app/states/marketplace/details/details.state.js:114
 msgid "Item added to shopping cart"
 msgstr "Öge sepete eklendi"
 
-#: app/states/blueprints/list/list.html:24
-#: app/states/blueprints/list/list.state.js:111
+#: app/states/marketplace/details/details.state.js:112
+msgid "Item added to shopping cart, but it's a duplicate of an existing item"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.html:23
+#: app/states/designer/blueprints/list/list.state.js:192
 msgid "Items"
 msgstr "Ögeler"
+
+#: app/components/profiles/profile-details.html:53
+#: app/components/profiles/profile-editor.html:53
+msgid "Key Pair"
+msgstr ""
+
+#: app/states/login/login.html:31
+msgid "Language"
+msgstr "Dil"
 
 #: app/states/requests/details/details.html:82
 msgid "Last Message"
 msgstr "Son Mesaj"
 
-#: app/states/blueprints/list/list.html:18
-#: app/states/blueprints/list/list.state.js:106
+#: app/components/profiles/profile-details.html:26
+#: app/components/profiles/profiles-list.directive.js:245
+#: app/components/profiles/profiles-list.html:36
+#: app/states/designer/blueprints/list/list.html:17
+#: app/states/designer/blueprints/list/list.state.js:187
 msgid "Last Modified"
 msgstr "Son Düzenlenme"
 
-#: app/states/services/details/details.html:186
+#: app/states/services/details/details.html:183
 msgid "Last Scan"
 msgstr "Son Tarama"
 
@@ -445,35 +702,36 @@ msgstr "Son Tarama"
 msgid "Last Updated"
 msgstr "Son Güncelleme"
 
-#: app/states/login/login.html:39
+#: app/states/login/login.html:37
 msgid "Log In"
 msgstr "Giriş"
 
-#: app/components/navigation/header-nav.html:19
+#: app/layouts/application.html:18
 msgid "Log into the full administrative UI"
 msgstr "Tam yetkili arayüze giriş yap"
 
 #: app/states/login/login.state.js:20
-#: app/states/login/login.state.js:32
 msgid "Login"
 msgstr "Giriş"
 
-#: app/components/navigation/header-nav.html:67
+#: app/layouts/application.html:96
 #: app/states/logout/logout.state.js:18
-#: app/states/logout/logout.state.js:27
 msgid "Logout"
 msgstr "Çıkış"
 
-#: app/skin/skin.module.js:8
 #: app/states/error/error.html:3
 msgid "ManageIQ Self Service"
 msgstr "ManageIQ Self Servis"
 
-#: app/states/services/details/details.html:122
+#: app/components/notifications/notification-footer.html:6
+msgid "Mark All Read"
+msgstr ""
+
+#: app/states/services/details/details.html:119
 msgid "Memory"
 msgstr "Bellek"
 
-#: app/states/services/details/details.html:147
+#: app/states/services/details/details.html:144
 msgid "Memory on Disk"
 msgstr "Diskteki bellek"
 
@@ -485,7 +743,12 @@ msgstr "Aylık"
 msgid "More"
 msgstr "Daha Fazla"
 
-#: app/config/navigation.config.js:25
+#: app/states/requests/list/list.html:9
+msgid "My Orders"
+msgstr "Siparişlerim"
+
+#: app/config/navigation.config.js:30
+#: app/states/requests/list/list.html:2
 msgid "My Requests"
 msgstr "İsteklerim"
 
@@ -493,13 +756,21 @@ msgstr "İsteklerim"
 msgid "My Services"
 msgstr "Servislerim"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:13
 #: app/components/edit-service-modal/edit-service-modal.html:9
-#: app/services/blueprints-state.service.js:13
+#: app/components/profiles/profile-editor.html:20
+#: app/components/profiles/profiles-list.directive.js:208
+#: app/components/profiles/profiles-list.directive.js:240
+#: app/services/blueprints-state.service.js:15
+#: app/services/marketplace-state.service.js:13
+#: app/services/profiles-state.service.js:66
 #: app/services/services-state.service.js:14
-#: app/states/blueprints/list/list.state.js:101
-#: app/states/blueprints/list/list.state.js:76
-#: app/states/marketplace/list/list.state.js:100
-#: app/states/marketplace/list/list.state.js:74
+#: app/states/designer/blueprints/list/list.state.js:148
+#: app/states/designer/blueprints/list/list.state.js:182
+#: app/states/marketplace/list/list.state.js:105
+#: app/states/marketplace/list/list.state.js:79
+#: app/states/requests/list/list.state.js:150
+#: app/states/requests/list/list.state.js:175
 #: app/states/services/list/list.state.js:106
 #: app/states/services/list/list.state.js:68
 msgid "Name"
@@ -509,13 +780,26 @@ msgstr "Ad"
 msgid "Never"
 msgstr "Asla"
 
+#: app/components/notifications/heading.html:2
+#: app/components/notifications/subheading.html:1
+msgid "New"
+msgstr ""
+
 #: app/components/dialog-content/dialog-content.html:3
 msgid "No Provisioning Dialog Available."
 msgstr "Devreye Alma Diyalogu Yok"
 
-#: app/components/retire-service-modal/retire-service-modal.html:11
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:58
 msgid "No Warning"
 msgstr "Uyarı Yok"
+
+#: app/components/flowchart/flowchart_template.html:15
+msgid "No available connections! Click on the canvas to cancel"
+msgstr ""
+
+#: app/layouts/application.html:7
+msgid "Notifications"
+msgstr ""
 
 #: app/states/services/list/list.state.js:116
 #: app/states/services/list/list.state.js:81
@@ -523,26 +807,49 @@ msgid "Number of VMs"
 msgstr "VM Sayısı"
 
 #: app/states/services/details/details.html:199
+msgid "Open Cockpit console for this VM"
+msgstr ""
+
+#: app/states/services/details/details.html:196
 msgid "Open a HTML5 console for this VM"
 msgstr "Bu VM'e HTML5 konsol aç"
 
-#: app/components/shopping-cart/shopping-cart.html:50
+#: app/components/shopping-cart/shopping-cart.html:54
 msgid "Order"
 msgstr "Talep et"
 
-#: app/states/services/details/details.html:94
-#: app/states/services/list/list.html:35
+#: app/services/orders-state.service.js:13
+#: app/states/requests/list/list.state.js:162
+#: app/states/requests/list/list.state.js:185
+msgid "Order Date"
+msgstr ""
+
+#: app/states/requests/order_details/order_details.state.js:19
+msgid "Order Details"
+msgstr "Sipariş Detayları"
+
+#: app/states/requests/list/list.state.js:156
+#: app/states/requests/list/list.state.js:180
+msgid "Order ID"
+msgstr "Sipariş Numarası"
+
+#: app/states/requests/order_details/order_details.html:5
+msgid "Orders:"
+msgstr "Siparişler:"
+
+#: app/states/services/details/details.html:91
+#: app/states/services/list/list.html:40
 #: app/states/services/list/list.state.js:121
 #: app/states/services/list/list.state.js:87
 msgid "Owner"
 msgstr "Sahip"
 
-#: app/states/login/login.html:20
+#: app/states/login/login.html:23
 msgid "Password"
 msgstr "Parola"
 
-#: app/states/requests/list/list.state.js:208
-#: app/states/requests/list/list.state.js:81
+#: app/states/requests/list/list.state.js:104
+#: app/states/requests/list/list.state.js:342
 msgid "Pending"
 msgstr "Bekliyor"
 
@@ -550,17 +857,22 @@ msgstr "Bekliyor"
 msgid "Pending Requests"
 msgstr "Bekleyen İsteklerim"
 
-#: app/states/blueprints/designer/designer.html:9
-msgid "Permanently delete the blueprint"
-msgstr "Planı kalıcı olarak sil"
-
-#: app/states/services/details/details.html:37
+#: app/states/services/details/details.html:36
 msgid "Permanently delete the service"
 msgstr "Servisi kalıcı olarak sil"
 
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:93
+msgid "Please enter a Provisioning Entry Point"
+msgstr ""
+
+#: app/components/create-catalog-modal/create-catalog-modal.html:8
+msgid "Please enter a name for the new Catalog"
+msgstr ""
+
+#: app/states/services/details/details.html:188
+#: app/states/services/details/details.html:189
+#: app/states/services/details/details.html:190
 #: app/states/services/details/details.html:191
-#: app/states/services/details/details.html:192
-#: app/states/services/details/details.html:193
 msgid "Power State"
 msgstr "Güç Durumu"
 
@@ -584,23 +896,104 @@ msgstr "Ürün Etiketleri"
 msgid "Product Type"
 msgstr "Ürün Tipi"
 
+#: app/components/navigation/navigation-contoller.js:125
+msgid "Product logo"
+msgstr ""
+
 #: app/states/products/details/details.state.js:19
 msgid "Products Details"
 msgstr "Ürün Detayları"
+
+#: app/services/profiles-state.service.js:150
+msgid "Profile %s was created."
+msgstr ""
+
+#: app/services/profiles-state.service.js:162
+msgid "Profile %s was successfully updated."
+msgstr ""
+
+#: app/states/administration/profiles/details/details.state.js:19
+msgid "Profile Details"
+msgstr ""
+
+#: app/services/profiles-state.service.js:190
+msgid "Profile(s) were succesfully deleted."
+msgstr ""
+
+#: app/components/profiles/profiles-list.directive.js:23
+#: app/config/navigation.config.js:74
+#: app/states/administration/profiles/profiles.state.js:20
+#: app/states/administration/profiles/profiles.state.js:36
+msgid "Profiles"
+msgstr ""
+
+#: app/components/profiles/profile-details.html:47
+#: app/components/profiles/profile-editor.html:42
+msgid "Provider"
+msgstr ""
+
+#: app/components/profiles/profiles-list.directive.js:214
+#: app/components/profiles/profiles-list.directive.js:250
+msgid "Provider Name"
+msgstr ""
+
+#: app/components/profiles/profile-details.html:41
+#: app/components/profiles/profile-editor.html:32
+#: app/components/profiles/profiles-list.directive.js:220
+#: app/components/profiles/profiles-list.directive.js:255
+msgid "Provider Type"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:85
+msgid "Provision Order"
+msgstr ""
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:43
+msgid "Provisioning"
+msgstr "Devreye alınıyor"
 
 #: app/states/products/details/details.html:43
 msgid "Provisioning Answers"
 msgstr "Devreye Alma Cevapları"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:38
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:82
 msgid "Provisioning Entry Point"
 msgstr "Devreye Alma Giriş Nokası"
 
-#: app/states/services/details/details.html:67
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:84
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:93
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:94
+#: app/states/designer/blueprints/list/list.state.js:109
+#: app/states/designer/blueprints/list/list.state.js:116
+msgid "Publish"
+msgstr "Yayınla"
+
+#: app/states/designer/blueprints/list/list.state.js:110
+msgid "Publish Blueprint"
+msgstr "Planı Yayınla"
+
+#: app/states/designer/blueprints/list/list.state.js:168
+msgid "Publish State"
+msgstr ""
+
+#: app/states/designer/blueprints/list/list.html:42
+msgid "Published"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:135
+msgid "Rearrange Items to set Action Order"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:123
+msgid "Rearrange Items to set Provision Order"
+msgstr ""
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:45
+#: app/states/services/details/details.html:64
 msgid "Reconfigure"
 msgstr "Tekrar ayarla"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:42
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:97
 msgid "Reconfigure Entry Point"
 msgstr "Yeniden Ayarlama Giriş Noktası"
 
@@ -608,20 +1001,21 @@ msgstr "Yeniden Ayarlama Giriş Noktası"
 msgid "Reconfigure Service:"
 msgstr "Servisi Yeniden Ayarla:"
 
-#: app/states/services/reconfigure/reconfigure.state.js:117
+#: app/states/services/reconfigure/reconfigure.state.js:118
 msgid "Reconfigure this service has been cancelled"
 msgstr "Servisin yeniden ayarlanması iptal edildi"
 
-#: app/components/dialog-content/dialog-content.html:114
+#: app/components/dialog-content/dialog-content.html:111
 msgid "Refresh"
 msgstr "Yenile"
 
 #: app/components/shopping-cart/shopping-cart.html:17
+#: app/states/designer/blueprints/editor/editor.html:28
 msgid "Remove"
 msgstr "Kaldır"
 
-#: app/states/services/details/details.html:37
-#: app/states/services/details/details.html:41
+#: app/states/services/details/details.html:36
+#: app/states/services/details/details.html:39
 msgid "Remove Service"
 msgstr "Servisi Kaldır"
 
@@ -631,19 +1025,18 @@ msgstr "Onay Durumunu İste"
 
 #: app/services/requests-state.service.js:13
 #: app/states/requests/details/details.html:49
-#: app/states/requests/list/list.state.js:102
-#: app/states/requests/list/list.state.js:72
+#: app/states/requests/list/list.state.js:130
+#: app/states/requests/list/list.state.js:95
 msgid "Request Date"
 msgstr "İstek Tarihi"
 
 #: app/states/requests/details/details.html:37
-#: app/states/requests/list/list.state.js:66
-#: app/states/requests/list/list.state.js:97
+#: app/states/requests/list/list.state.js:120
+#: app/states/requests/list/list.state.js:83
 msgid "Request ID"
 msgstr "İstek ID"
 
 #: app/states/requests/list/list.state.js:19
-#: app/states/requests/list/list.state.js:40
 msgid "Request List"
 msgstr "İstek Listesi"
 
@@ -651,9 +1044,9 @@ msgstr "İstek Listesi"
 msgid "Request State"
 msgstr "İstek Durumu"
 
-#: app/states/dashboard/dashboard.state.js:181
-#: app/states/requests/list/list.state.js:107
-#: app/states/requests/list/list.state.js:78
+#: app/states/dashboard/dashboard.state.js:171
+#: app/states/requests/list/list.state.js:101
+#: app/states/requests/list/list.state.js:135
 msgid "Request Status"
 msgstr "İstek Durumu"
 
@@ -665,7 +1058,7 @@ msgstr "İstek Tipi"
 msgid "Request:"
 msgstr "İstek:"
 
-#: app/states/requests/list/list.html:29
+#: app/components/request-list/request-list.html:25
 msgid "Requested"
 msgstr "İstendi"
 
@@ -673,19 +1066,25 @@ msgstr "İstendi"
 msgid "Requested By"
 msgstr "İsteyen"
 
+#: app/components/request-list/request-list.html:20
+#: app/states/requests/list/list.state.js:125
+#: app/states/requests/list/list.state.js:89
+msgid "Requester"
+msgstr ""
+
 #: app/states/requests/details/details.state.js:19
 msgid "Requests Details"
 msgstr "İstek Detayları"
 
-#: app/states/services/details/details.html:50
+#: app/states/services/details/details.html:48
 msgid "Retire"
 msgstr "Devreden Çıkar"
 
-#: app/states/services/details/details.html:54
+#: app/states/services/details/details.html:52
 msgid "Retire Now"
 msgstr "Şimdi Devreden Çıkar"
 
-#: app/states/services/details/details.html:56
+#: app/states/services/details/details.html:53
 msgid "Retire Service Now"
 msgstr "Servisi Devreden Çıkar"
 
@@ -697,16 +1096,20 @@ msgstr "Devreden Çıkarıldı"
 msgid "Retired Services"
 msgstr "Devreden Çıkarılan Servisler"
 
-#: app/components/retire-service-modal/retire-service-modal.html:18
-#: app/states/dashboard/dashboard.state.js:187
-#: app/states/services/details/details.html:86
-#: app/states/services/list/list.html:22
+#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:47
+msgid "Retirement"
+msgstr ""
+
+#: app/components/retire-service-modal/retire-service-modal.html:13
+#: app/states/dashboard/dashboard.state.js:177
+#: app/states/services/details/details.html:83
+#: app/states/services/list/list.html:20
 #: app/states/services/list/list.state.js:111
 #: app/states/services/list/list.state.js:74
 msgid "Retirement Date"
 msgstr "Devreden Çıkarma Tarihi"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:46
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:108
 msgid "Retirement Entry Point"
 msgstr "Devreden Çıkarma Giriş Noktası"
 
@@ -718,14 +1121,51 @@ msgstr "Devreden Çıkarma Uyarısı"
 msgid "Retiring Soon"
 msgstr "Yakında Devre Dışı"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:87
+#: app/services/rules-state.service.js:77
+msgid "Rule(s) were succesfully deleted."
+msgstr ""
+
+#: app/components/rules/rules-list.directive.js:177
+#: app/config/navigation.config.js:84
+#: app/states/administration/rules/rules.html:7
+#: app/states/administration/rules/rules.state.js:21
+#: app/states/administration/rules/rules.state.js:50
+msgid "Rules"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:141
+msgid "Same as Provision Order"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:99
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:12
+#: app/components/create-catalog-modal/create-catalog-modal.html:13
 #: app/components/edit-service-modal/edit-service-modal.html:22
 #: app/components/ownership-service-modal/ownership-service-modal.html:33
-#: app/components/retire-service-modal/retire-service-modal.html:25
+#: app/components/profiles/profile-editor.html:127
+#: app/components/retire-service-modal/retire-service-modal.html:20
+#: app/components/rules/rules-list.html:95
+#: app/states/administration/profiles/editor/save-profile-modal.html:14
+#: app/states/administration/rules/save-rule-modal.html:14
+#: app/states/designer/blueprints/editor/editor.html:10
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:13
 msgid "Save"
 msgstr "Kaydet"
 
-#: app/states/services/details/details.html:62
+#: app/states/designer/blueprints/editor/editor.html:12
+msgid "Save Blueprint"
+msgstr "Planı Kaydet"
+
+#: app/states/administration/profiles/editor/save-profile-modal.html:6
+#: app/states/administration/rules/save-rule-modal.html:6
+msgid "Save Changes"
+msgstr ""
+
+#: app/states/designer/blueprints/editor/save-blueprint-modal.html:5
+msgid "Save Changes to {{vm.blueprint.name}}"
+msgstr ""
+
+#: app/states/services/details/details.html:59
 msgid "Schedule Retirement"
 msgstr "Devreden Çıkarmayı Takvimlendir"
 
@@ -733,30 +1173,95 @@ msgstr "Devreden Çıkarmayı Takvimlendir"
 msgid "Schedule Service Retirement"
 msgstr "Servis Devreden Çıkarılmasını Takvimlendir"
 
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:67
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:75
 msgid "Scheduling retirement for"
 msgstr "Devreden çıkarma takvimleniyor"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:96
+#: app/components/profiles/profile-details.html:83
+#: app/components/profiles/profile-editor.html:104
+msgid "Security Group"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:68
 msgid "Select Dialog"
 msgstr "Diyalogu Seç"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:52
+msgid "Select a Catalog"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:70
+msgid "Select a Dialog"
+msgstr ""
 
 #: app/components/ownership-service-modal/ownership-service-modal.html:19
 msgid "Select a Group"
 msgstr "Grubu Seç"
 
+#: app/components/profiles/profile-editor.html:88
+msgid "Select a cloud network"
+msgstr ""
+
+#: app/components/profiles/profile-editor.html:99
+msgid "Select a cloud subnet"
+msgstr ""
+
+#: app/components/rules/rules-list.html:55
+msgid "Select a field"
+msgstr ""
+
+#: app/components/profiles/profile-editor.html:78
+msgid "Select a flavor"
+msgstr ""
+
+#: app/components/profiles/profile-editor.html:58
+msgid "Select a key pair"
+msgstr ""
+
+#: app/components/rules/rules-list.html:82
+msgid "Select a profile"
+msgstr ""
+
+#: app/components/profiles/profile-editor.html:47
+msgid "Select a provider"
+msgstr ""
+
+#: app/components/profiles/profile-editor.html:37
+msgid "Select a provider type"
+msgstr ""
+
+#: app/components/flowchart/flowchart_template.html:12
+msgid ""
+"Select a second item to complete the connection or click on the canvas to "
+"cancel"
+msgstr ""
+
+#: app/components/profiles/profile-editor.html:109
+msgid "Select a security group"
+msgstr ""
+
 #: app/components/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
 msgstr "Sahibi Seç"
 
-#: app/skin/skin.module.js:11
-#: index.html:4
-msgid "Self Service"
-msgstr "Self Servis"
+#: app/components/profiles/profile-editor.html:68
+msgid "Select an availability zone"
+msgstr ""
 
-#: app/config/navigation.config.js:31
-#: app/states/marketplace/list/list.state.js:19
-#: app/states/marketplace/list/list.state.js:51
+#: app/components/rules/rules-list.html:58
+msgid "Select an operator"
+msgstr ""
+
+#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:5
+msgid "Select {{vm.entryPointTypeTitle}} Entry Point"
+msgstr ""
+
+#: app/components/navigation/navigation-contoller.js:133
+msgid "Server Name:"
+msgstr ""
+
+#: app/config/navigation.config.js:41
+#: app/states/marketplace/list/list.state.js:20
 msgid "Service Catalog"
 msgstr "Servis Katalogu"
 
@@ -764,25 +1269,21 @@ msgstr "Servis Katalogu"
 msgid "Service Custom Button Details"
 msgstr "Servis Özel Butonu Ayrıntıları"
 
-#: app/states/products/details/details.state.js:28
 #: app/states/services/details/details.state.js:19
-#: app/states/services/details/details.state.js:65
-#: app/states/services/reconfigure/reconfigure.state.js:19
-#: app/states/services/reconfigure/reconfigure.state.js:41
+#: app/states/services/reconfigure/reconfigure.state.js:20
+#: app/states/services/reconfigure/reconfigure.state.js:42
 msgid "Service Details"
 msgstr "Servis Detayları"
 
-#: app/states/services/details/details.html:79
+#: app/states/services/details/details.html:76
 msgid "Service Id"
 msgstr "Servis ID"
 
 #: app/states/services/list/list.state.js:19
-#: app/states/services/list/list.state.js:41
 msgid "Service List"
 msgstr "Servis Listesi"
 
 #: app/states/marketplace/details/details.state.js:19
-#: app/states/marketplace/details/details.state.js:46
 msgid "Service Template Details"
 msgstr "Servis Şablonu Detayları"
 
@@ -791,7 +1292,7 @@ msgstr "Servis Şablonu Detayları"
 msgid "Service:"
 msgstr "Servis:"
 
-#: app/states/services/details/details.html:66
+#: app/states/services/details/details.html:63
 msgid "Set Ownership"
 msgstr "Sahipliği Ayarla"
 
@@ -807,11 +1308,11 @@ msgstr "Kurulum"
 msgid "Shopping Cart"
 msgstr "Sepet"
 
-#: app/components/navigation/header-nav.html:25
+#: app/layouts/application.html:24
 msgid "Shopping cart"
 msgstr "Sepet"
 
-#: app/components/shopping-cart/shopping-cart.html:26
+#: app/components/shopping-cart/shopping-cart.html:30
 msgid "Shopping cart is empty."
 msgstr "Sepetiniz boş"
 
@@ -823,7 +1324,7 @@ msgstr "Sepet başarıyla sipariş edildi"
 msgid "Show Blueprint Names"
 msgstr "Plan isimlerini göster"
 
-#: app/states/services/details/details.html:181
+#: app/states/services/details/details.html:178
 msgid "Size"
 msgstr "Boyut"
 
@@ -831,18 +1332,35 @@ msgstr "Boyut"
 msgid "Soon"
 msgstr "Yakında"
 
-#: app/states/services/custom_button_details/custom_button_details.html:21
-#: app/states/services/reconfigure/reconfigure.html:23
+#: app/components/notifications/notification-body.html:40
+msgid "Started:"
+msgstr ""
+
+#: app/states/services/custom_button_details/custom_button_details.html:19
+#: app/states/services/reconfigure/reconfigure.html:21
 msgid "Submit Request"
 msgstr "İsteği Gönder"
 
-#: app/states/requests/list/list.html:34
-#: app/states/requests/list/list.html:35
-#: app/states/requests/list/list.html:36
+#: app/components/language-switcher/language-switcher.html:2
+msgid "Switch Language:"
+msgstr "Dili değiştir"
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:32
+#: app/components/flowchart/node-toolbar.html:11
+msgid "Tags"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:324
+msgid "The Publish Blueprint feature is not yet implemented."
+msgstr ""
+
+#: app/components/request-list/request-list.html:30
+#: app/components/request-list/request-list.html:31
+#: app/components/request-list/request-list.html:32
 msgid "The current approval status of the request"
 msgstr "İsteğin şu andaki onay durumu"
 
-#: app/states/services/details/details.html:186
+#: app/states/services/details/details.html:183
 msgid "The last heartbeat received from the instances"
 msgstr "Bu birimlerden alınan son sağlık durumu bilgisi"
 
@@ -850,7 +1368,7 @@ msgstr "Bu birimlerden alınan son sağlık durumu bilgisi"
 msgid "The number of active services"
 msgstr "Aktif servislerin sayısı"
 
-#: app/states/services/list/list.html:29
+#: app/states/services/list/list.html:31
 msgid "The number of instances running this service"
 msgstr "Bu servisi çalıştıran toplam birim"
 
@@ -876,34 +1394,72 @@ msgstr ""
 msgid "The page you requested cannot be found."
 msgstr "İstediğiniz sayfa bulunamadı."
 
-#: app/config/navigation.config.js:40
+#: app/services/rules-state.service.js:37
+msgid "The rule was created."
+msgstr ""
+
+#: app/config/navigation.config.js:79
+msgid "The total number of available arbitration profiles"
+msgstr ""
+
+#: app/config/navigation.config.js:89
+msgid "The total number of available arbitration rules"
+msgstr ""
+
+#: app/config/navigation.config.js:62
 msgid "The total number of available blueprints"
 msgstr "Kullanılabilir planların toplam sayısı"
 
-#: app/config/navigation.config.js:34
+#: app/config/navigation.config.js:47
 msgid "The total number of available catalog items"
 msgstr "Katalog ögelerinin toplam sayısı"
 
-#: app/config/navigation.config.js:28
+#: app/config/navigation.config.js:36
 msgid "The total number of requests that you have submitted"
 msgstr "Gönderdiğiniz toplam talep sayısı"
 
-#: app/config/navigation.config.js:22
+#: app/config/navigation.config.js:25
 msgid ""
 "The total number of services that you have ordered, both active and retired"
 msgstr "Talep ettiğiniz aktif ve devre dışı bırakılmış servisler toplamı"
+
+#: app/states/marketplace/details/details.html:35
+msgid ""
+"There already is an identical item in the cart. Do you want to add it "
+"anyway?"
+msgstr ""
+
+#: app/components/tagging/tagging.html:15
+msgid "There are no tags for this item."
+msgstr ""
 
 #: app/states/error/error.html:10
 msgid "There was a problem loading the page."
 msgstr "Sayfa yüklenirken bir problem oluştu."
 
-#: app/states/marketplace/details/details.state.js:107
+#: app/states/marketplace/details/details.state.js:121
 msgid "There was an error adding to shopping cart:"
 msgstr "Sepete eklerken bir hata oluştu:"
 
-#: app/components/blueprint-delete-modal/blueprint-delete-modal-service.factory.js:78
-msgid "There was an error deleting Blueprints."
-msgstr "Planı silerken bir hata oluştu."
+#: app/services/profiles-state.service.js:154
+msgid "There was an error creating profile %s."
+msgstr ""
+
+#: app/services/rules-state.service.js:41
+msgid "There was an error creating this rule."
+msgstr ""
+
+#: app/services/blueprints-state.service.js:260
+msgid "There was an error deleting the blueprint(s)."
+msgstr ""
+
+#: app/services/profiles-state.service.js:194
+msgid "There was an error deleting the profile(s)."
+msgstr ""
+
+#: app/services/rules-state.service.js:81
+msgid "There was an error deleting the rule(s)."
+msgstr ""
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
@@ -917,36 +1473,44 @@ msgstr "Konsolu açarken bir hata oluştu"
 msgid "There was an error opening the console:"
 msgstr "Konsolu açarken bir hata oluştu:"
 
-#: app/states/services/details/details.state.js:110
+#: app/states/services/details/details.state.js:118
 msgid "There was an error removing this service."
 msgstr "Servisi kaldırırken bir hata oluştu:"
 
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:72
-#: app/states/services/details/details.state.js:149
+#: app/components/retire-service-modal/retire-service-modal-service.factory.js:80
+#: app/states/services/details/details.state.js:157
 msgid "There was an error retiring this service."
 msgstr "Servisi devre dışı bırakırken bir hata oluştu."
 
-#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:93
+#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:94
 msgid "There was an error saving ownership of this service."
 msgstr "Servis sahibini kaydederken bir hata oluştu:"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:203
-msgid "There was an error saving this Blueprint."
-msgstr "Planı kaydederken bir hata oluştu."
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:326
+msgid "There was an error saving this Blueprint's Details."
+msgstr ""
 
 #: app/components/shopping-cart/shopping-cart.directive.js:51
 #: app/states/services/custom_button_details/custom_button_details.state.js:93
-#: app/states/services/reconfigure/reconfigure.state.js:112
+#: app/states/services/reconfigure/reconfigure.state.js:113
 msgid "There was an error submitting this request:"
 msgstr "Talebi gönderirken bir hata oluştu:"
 
-#: app/states/services/details/details.html:164
+#: app/services/profiles-state.service.js:166
+msgid "There was an error updating profile %s."
+msgstr ""
+
+#: app/services/rules-state.service.js:52
+msgid "There was an error updating the rules."
+msgstr ""
+
+#: app/states/services/details/details.html:161
 msgid "This service has no associated VMs"
 msgstr "Servisle ilişkilendirilmiş VM yok."
 
-#: app/components/navigation/header-nav.html:4
-msgid "Toggle navigation"
-msgstr "Navigasyonu değiştir"
+#: app/layouts/application.html:30
+msgid "Toggle notifications list"
+msgstr ""
 
 #: app/states/dashboard/dashboard.html:20
 msgid "Total Requests"
@@ -956,7 +1520,14 @@ msgstr "Toplam İstekler"
 msgid "Total Services"
 msgstr "Toplam Servisler"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:93
+#: app/components/rules/rules-list.html:38
+#: app/components/rules/rules-list.html:78
+msgid "USE"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:50
+#: app/states/designer/blueprints/list/list.state.js:81
+#: app/states/designer/blueprints/list/list.state.js:82
 msgid "Unassigned"
 msgstr "Atanmamış"
 
@@ -968,38 +1539,64 @@ msgstr "Desteklenmeyen konsol protokolü döndü"
 msgid "Unsupported console protocol returned:"
 msgstr "Desteklenmeyen konsol protokolü döndü:"
 
-#: app/states/blueprints/designer/designer.html:7
+#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:136
+#: app/services/blueprints-state.service.js:269
+#: app/states/designer/blueprints/editor/editor.html:9
 msgid "Untitled Blueprint"
 msgstr "İsimsiz plan"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:115
-msgid "Untitled Catalog"
-msgstr "İsimsiz Katalog"
+#: app/components/language-switcher/language-switcher.directive.js:28
+msgid "User Default"
+msgstr "Kullanıcı varsayılanı"
 
-#: app/states/login/login.state.js:41
-#: app/states/login/login.state.js:61
+#: app/components/navigation/navigation-contoller.js:134
+msgid "User Name:"
+msgstr ""
+
+#: app/components/navigation/navigation-contoller.js:135
+msgid "User Role:"
+msgstr ""
+
+#: app/states/login/login.state.js:40
+#: app/states/login/login.state.js:63
 msgid "User does not have privileges to login."
 msgstr "Kullanıcı giriş haklarına sahip değil"
 
-#: app/states/login/login.html:12
+#: app/states/login/login.html:15
 msgid "Username"
 msgstr "Kullanıcı Adı"
 
-#: app/states/services/list/list.html:30
+#: app/states/services/list/list.html:34
 msgid "VMs"
 msgstr "VM'ler"
 
-#: app/states/services/details/details.html:176
+#: app/states/services/details/details.html:173
 msgid "Vendor"
 msgstr "Üretici"
 
-#: app/states/services/details/details.html:163
-msgid "Virtual Machines ({{ ::vm.service.vms.length }})"
-msgstr "Sanal Makineler ({{ ::vm.service.vms.length }})"
+#: app/components/navigation/navigation-contoller.js:132
+msgid "Version:"
+msgstr ""
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:14
-#: app/states/blueprints/list/list.state.js:116
-#: app/states/blueprints/list/list.state.js:82
+#: app/components/profiles/profiles-list.directive.js:187
+msgid "View"
+msgstr ""
+
+#: app/components/profiles/profiles-list.directive.js:188
+msgid "View Profile"
+msgstr ""
+
+#: app/components/profiles/profile-details.directive.js:24
+msgid "View Profile: %s"
+msgstr ""
+
+#: app/states/services/details/details.html:160
+msgid "Virtual Machines ({{ ::vm.vms.length }})"
+msgstr ""
+
+#: app/components/blueprint-details-modal/blueprint-details-modal.html:24
+#: app/states/designer/blueprints/list/list.state.js:154
+#: app/states/designer/blueprints/list/list.state.js:197
 msgid "Visibility"
 msgstr "Görünürlük"
 
@@ -1016,38 +1613,44 @@ msgstr "Konsolun hazır olması bekleniyor:"
 msgid "We apologize for the inconvenience."
 msgstr "Rahatsızlık için özür dileriz."
 
-#: app/states/blueprints/designer/designer.html:14
-msgid "Yes, Delete Blueprint"
-msgstr "Evet, Planı sil"
-
-#: app/states/services/details/details.html:43
+#: app/states/services/details/details.html:41
 msgid "Yes, Remove Service"
 msgstr "Evet, Servisi Kaldır"
 
-#: app/states/services/details/details.html:58
+#: app/states/services/details/details.html:55
 msgid "Yes, Retire Service Now"
 msgstr "Evet, Servisi devre dışı bırak"
 
-#: app/config/authorization.config.js:47
+#: app/config/authorization.config.js:48
 msgid "Your session has timed out."
 msgstr "Oturumunuz zaman aşımına uğradı"
 
-#: app/components/blueprint-delete-modal/blueprint-delete-modal-service.factory.js:43
-msgid "blueprints?"
-msgstr "planlar?"
+#: app/states/services/list/list.html:32
+msgid "[[number]] VMs"
+msgstr ""
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:194
-msgid "was ed."
-msgstr "düzenlendi."
+#: app/config/gettext.config.js:34
+msgid "locale_name"
+msgstr "Türkçe"
+
+#: app/states/requests/list/list.html:31
+msgid "ordered"
+msgstr "sipariş edildi"
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
 msgid "was edited."
 msgstr "düzenlendi."
 
-#: app/states/services/details/details.state.js:105
+#: app/states/services/details/details.state.js:113
 msgid "was removed."
 msgstr "kaldırıldı."
 
-#: app/states/services/details/details.state.js:144
+#: app/states/services/details/details.state.js:152
 msgid "was retired."
 msgstr "devre dışı bırakıldı."
+
+#: app/states/requests/list/list.html:35
+msgid "{{ $count }} item"
+msgid_plural "{{ $count }} items"
+msgstr[0] ""
+msgstr[1] ""
