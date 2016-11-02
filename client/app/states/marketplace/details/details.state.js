@@ -79,7 +79,12 @@
       dialogFieldData[href] = '/api/service_templates/' + serviceTemplate.id;
 
       angular.forEach(allDialogFields, function(dialogField) {
-        dialogFieldData[dialogField.name] = dialogField.default_value;
+        if ((dialogField.type === "DialogFieldTagControl" || dialogField.type === "DialogFieldDropDownList")
+            && dialogField.default_value instanceof Array) {
+          dialogFieldData[dialogField.name] = dialogField.default_value.join();
+        } else {
+          dialogFieldData[dialogField.name] = dialogField.default_value;
+        }
       });
 
       return dialogFieldData;
