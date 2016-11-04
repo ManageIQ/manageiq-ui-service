@@ -26,7 +26,7 @@
               </div>
             </div>
             <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6 ss-details-header__actions">
-              <div class="ss-details-header__actions__inner">
+              <div class="ss-details-header__actions__inner dropdown dropdown-kebab-pf">
               <custom-button
                 service-template-catalog-id="vm.service.service_template.service_template_catalog_id"
                 service-id="vm.service.id"
@@ -62,6 +62,17 @@
               <button class="btn btn-primary" type="button" ng-click="vm.editServiceModal()" ng-show="vm.showEditService" translate>Edit Service</button>
               <button class="btn btn-primary" type="button" ng-click="vm.ownershipServiceModal()" ng-show="vm.showSetOwnership" translate>Set Ownership</button>
               <button class="btn btn-primary" type="button" ng-if="vm.service.reconfigure" ng-click="vm.reconfigureService(vm.service.id)" ng-show="vm.showReconfigureService" translate>Reconfigure</button>
+              <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="fa fa-ellipsis-v"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right 2" aria-labelledby="dropdownKebabRight">
+                <li>
+                  <a href="#" title="Stop this service">{{'Stop'|translate}}</a>
+                </li>
+                <li>
+                  <a href="#" title="Suspend this service">{{'Suspend'|translate}}</a>
+                </li>
+              </ul>
             </div>
             </div>
           </div>
