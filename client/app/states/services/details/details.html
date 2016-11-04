@@ -59,7 +59,7 @@
                   <li role="menuitem"><a href="#" ng-click="vm.retireServiceLater()" ng-show="vm.showScheduleRetirementService" translate>Schedule Retirement</a></li>
                 </ul>
               </div>
-              <button class="btn btn-primary" type="button" translate>Start</button>
+                <button class="btn btn-primary" type="button" ng-click="vm.startService(vm.service)" ng-disabled="!vm.enableStartButton(vm.service)" translate>Start</button>
               <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="fa fa-ellipsis-v"></span>
               </button>
