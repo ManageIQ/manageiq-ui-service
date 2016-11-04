@@ -17,12 +17,12 @@
       unknown: 'Unknown',
     };
     var providerImages = {
-      amazon: 'assets/images/providers/vendor-amazon.svg',
-      azure: 'assets/images/providers/vendor-azure.svg',
-      google: 'assets/images/providers/vendor-google.svg',
-      openstack: 'assets/images/providers/vendor-openstack_infra.svg',
-      vmware: 'assets/images/providers/vendor-vmware_cloud.svg',
-      unknown: 'assets/images/providers/vendor-unknown.svg',
+      amazon: 'images/providers/vendor-amazon.svg',
+      azure: 'images/providers/vendor-azure.svg',
+      google: 'images/providers/vendor-google.svg',
+      openstack: 'images/providers/vendor-openstack_infra.svg',
+      vmware: 'images/providers/vendor-vmware_cloud.svg',
+      unknown: 'images/providers/vendor-unknown.svg',
     };
 
     var providerTypeKeys = ['amazon', 'azure', 'google', 'openstack', 'vmware'];
