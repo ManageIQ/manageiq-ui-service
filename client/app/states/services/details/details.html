@@ -59,9 +59,7 @@
                   <li role="menuitem"><a href="#" ng-click="vm.retireServiceLater()" ng-show="vm.showScheduleRetirementService" translate>Schedule Retirement</a></li>
                 </ul>
               </div>
-              <button class="btn btn-primary" type="button" ng-click="vm.editServiceModal()" ng-show="vm.showEditService" translate>Edit Service</button>
-              <button class="btn btn-primary" type="button" ng-click="vm.ownershipServiceModal()" ng-show="vm.showSetOwnership" translate>Set Ownership</button>
-              <button class="btn btn-primary" type="button" ng-if="vm.service.reconfigure" ng-click="vm.reconfigureService(vm.service.id)" ng-show="vm.showReconfigureService" translate>Reconfigure</button>
+              <button class="btn btn-primary" type="button" translate>Start</button>
               <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="fa fa-ellipsis-v"></span>
               </button>
@@ -72,6 +70,9 @@
                 <li>
                   <a href="#" title="Suspend this service">{{'Suspend'|translate}}</a>
                 </li>
+                <li><a href="#" title="Edit this service" ng-click="vm.editServiceModal()" ng-show="vm.showEditService">{{'Edit'|translate}}</a></li>
+                <li><a href="#" title="Set Ownership" ng-click="vm.ownershipServiceModal()" ng-show="vm.showSetOwnership">{{'Set Ownership'|translate}}</a></li>
+                <li><a href="#" ng-if="vm.service.reconfigure" ng-click="vm.reconfigureService(vm.service.id)" ng-show="vm.showReconfigureService" translate>Reconfigure</a></li>
               </ul>
             </div>
             </div>
