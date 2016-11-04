@@ -36,8 +36,21 @@
   }
 
   /** @ngInject */
-  function StateController($state, services, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, CollectionsApi, EventNotifications, sprintf) {
+  function StateController($state, services, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, PowerOperations) {
     var vm = this;
+
+    vm.startService = PowerOperations.startService;
+    vm.stopService = PowerOperations.stopService;
+    vm.suspendService = PowerOperations.suspendService;
+    vm.powerOperationUnknownState = PowerOperations.powerOperationUnknownState;
+    vm.powerOperationInProgressState = PowerOperations.powerOperationInProgressState;
+    vm.powerOperationOnState = PowerOperations.powerOperationOnState;
+    vm.powerOperationOffState = PowerOperations.powerOperationOffState;
+    vm.powerOperationSuspendState = PowerOperations.powerOperationSuspendState;
+    vm.powerOperationTimeoutState = PowerOperations.powerOperationTimeoutState;
+    vm.powerOperationStartTimeoutState = PowerOperations.powerOperationStartTimeoutState;
+    vm.powerOperationStopTimeoutState = PowerOperations.powerOperationStopTimeoutState;
+    vm.powerOperationSuspendTimeoutState = PowerOperations.powerOperationSuspendTimeoutState;
 
     vm.services = [];
 
@@ -221,102 +234,37 @@
       applyFilters();
     }
 
-    vm.enableButtonForItemFn = function(action, item) {
-      return powerOperationUnknownState(item)
-        || powerOperationOffState(item)
-        || powerOperationSuspendState(item)
-        || powerOperationTimeoutState(item);
+    vm.enableButtonForItemFn = function (action, item) {
+      return vm.powerOperationUnknownState(item)
+        || vm.powerOperationOffState(item)
+        || vm.powerOperationSuspendState(item)
+        || vm.powerOperationTimeoutState(item);
     };
 
-    vm.hideMenuForItemFn = function(item) {
-      return powerOperationUnknownState(item) || powerOperationInProgressState(item);
+    vm.hideMenuForItemFn = function (item) {
+      return vm.powerOperationUnknownState(item) || vm.powerOperationInProgressState(item);
     };
 
     vm.updateMenuActionForItemFn = function(action, item) {
-      if (powerOperationSuspendState(item) && action.actionName === "suspend") {
+      if (vm.powerOperationSuspendState(item) && action.actionName === "suspend") {
         action.isDisabled = true;
-      } else if (powerOperationOffState(item) && action.actionName === "stop") {
+      } else if (vm.powerOperationOffState(item) && action.actionName === "stop") {
         action.isDisabled = true;
       } else {
         action.isDisabled = false;
       }
     };
-
-    function powerOperationUnknownState(item) {
-      return item.powerState === "" && item.powerStatus === "";
-    }
-
-    function powerOperationInProgressState(item) {
-      return (item.powerState !== "timeout" && item.powerStatus === "starting")
-        || (item.powerState !== "timeout" && item.powerStatus === "stopping")
-        || (item.powerState !== "timeout" && item.powerStatus === "suspending");
-    }
-
-    function powerOperationOnState(item) {
-      return item.powerState === "on" && item.powerStatus === "start_complete";
-    }
-
-    function powerOperationOffState(item) {
-      return item.powerState === "off" && item.powerStatus === "stop_complete";
-    }
-
-    function powerOperationSuspendState(item) {
-      return item.powerState === "off" && item.powerStatus === "suspend_complete";
-    }
-
-    function powerOperationTimeoutState(item) {
-      return item.powerState === "timeout";
-    }
-
-    function powerOperationStartTimeoutState(item) {
-      return item.powerState === "timeout" && item.powerStatus === "starting";
-    }
-
-    function powerOperationStopTimeoutState(item) {
-      return item.powerState === "timeout" && item.powerStatus === "stopping";
-    }
-
-    function powerOperationSuspendTimeoutState(item) {
-      return item.powerState === "timeout" && item.powerStatus === "suspending";
-    }
-
+    
     function startService(action, item) {
-      item.powerStatus = 'starting';
-      powerOperation('start', item);
+      vm.startService(item);
     }
 
     function stopService(action, item) {
-      item.powerStatus = 'stopping';
-      powerOperation('stop', item);
+      vm.stopService(item);
     }
 
     function suspendService(action, item) {
-      item.powerStatus = 'suspending';
-      powerOperation('suspend', item);
-    }
-
-    function powerOperation(powerAction, item) {
-      CollectionsApi.post('services', item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure);
-
-      function actionSuccess() {
-        if (powerAction === 'start') {
-          EventNotifications.success(__(sprintf("%s was started", item.name)));
-        } else if (powerAction === 'stop') {
-          EventNotifications.success(__(sprintf("%s was stopped", item.name)));
-        } else if (powerAction === 'suspend') {
-          EventNotifications.success(__(sprintf("%s was suspended", item.name)));
-        }
-      }
-
-      function actionFailure() {
-        if (powerAction === 'start') {
-          EventNotifications.error(__('There was an error starting this service.'));
-        } else if (powerAction === 'stop') {
-          EventNotifications.error(__('There was an error stopping this service.'));
-        } else if (powerAction === 'suspend') {
-          EventNotifications.error(__('There was an error suspending this service.'));
-        }
-      }
+      vm.suspendService(item);
     }
 
     function handleClick(item, e) {
