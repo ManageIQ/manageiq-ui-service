@@ -69,7 +69,7 @@ describe('app.components.ProfilesDetailsDirective', function() {
       var title = element.find('.ss-details-header__title-img__logo');
       expect(title.length).to.eq(1);
 
-      expect(angular.element(title[0]).attr('src')).to.eq('assets/images/providers/vendor-amazon.svg');
+      expect(angular.element(title[0]).attr('src')).to.eq('images/providers/vendor-amazon.svg');
     });
 
     it('should have the correct title', function () {
