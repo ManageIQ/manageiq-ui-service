@@ -110,6 +110,8 @@
       vm.service.powerStatus = angular.isDefined(vm.service.options.power_status) ? vm.service.options.power_status : "";
 
       vm.startService = PowerOperations.startService;
+      vm.stopService = PowerOperations.stopService;
+      vm.suspendService = PowerOperations.suspendService;
       vm.powerOperationOffState = PowerOperations.powerOperationOffState;
       vm.powerOperationUnknownState = PowerOperations.powerOperationUnknownState;
       vm.powerOperationInProgressState = PowerOperations.powerOperationInProgressState;
@@ -172,6 +174,20 @@
 
     function retireServiceLater() {
       RetireServiceModal.showModal(vm.service);
+    }
+
+    function disableStopButton(item) {
+      return (vm.powerOperationOffState(item)
+        || vm.powerOperationUnknownState(item)
+        || vm.powerOperationInProgressState(item))
+        && !vm.powerOperationTimeoutState(item);
+    }
+
+    function disableSuspendButton(item) {
+      return (vm.powerOperationSuspendState(item)
+        || vm.powerOperationUnknownState(item)
+        || vm.powerOperationInProgressState(item))
+        && !vm.powerOperationTimeoutState(item);
     }
 
     vm.enableStartButton = function(item) {
