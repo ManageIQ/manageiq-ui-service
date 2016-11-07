@@ -35,6 +35,7 @@
               </custom-button>
               <button class="btn btn-default" type="button" tooltip="{{'Permanently delete the service'|translate}}" tooltip-placement="bottom"
                     ng-show="vm.showRemoveService"
+                    ng-disabled="vm.powerOperationInProgressState(vm.service)"
                     confirmation
                     confirmation-title="{{'Remove Service'|translate}}"
                     confirmation-message="{{'Confirm, would you like to remove this service?'|translate}}"
@@ -44,7 +45,11 @@
                     confirmation-show-cancel="true" translate>Remove Service
               </button>
               <div class="btn-group" dropdown>
-                <button id="single-button" type="button" class="btn btn-default" dropdown-toggle tooltip="{{'Inactivate the service'|translate}}" tooltip-placement="bottom" ng-show="vm.showRetireService">
+                <button id="single-button" type="button" class="btn btn-default"
+                  ng-disabled="vm.powerOperationInProgressState(vm.service)"
+                  dropdown-toggle tooltip="{{'Inactivate the service'|translate}}"
+                  tooltip-placement="bottom"
+                  ng-show="vm.showRetireService || vm.showScheduleRetirementService">
                   {{'Retire'|translate}} <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
