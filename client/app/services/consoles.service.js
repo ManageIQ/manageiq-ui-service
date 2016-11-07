@@ -5,7 +5,7 @@
     .factory('Consoles', ConsolesFactory);
 
   /** @ngInject */
-  function ConsolesFactory($window, CollectionsApi, $http, $timeout, logger, $location, EventNotifications) {
+  function ConsolesFactory($window, CollectionsApi, $timeout, logger, $location, EventNotifications) {
     var service = {
       open: openConsole,
     };
@@ -15,10 +15,10 @@
     function openConsole(vmId) {
       CollectionsApi.post('vms', vmId, {}, {
         action: 'request_console',
-        resource: { protocol: "html5" },
+        resource: {protocol: "html5"},
       })
-      .then(consoleResponse)
-      .catch(consoleError);
+        .then(consoleResponse)
+        .catch(consoleError);
     }
 
     function consoleResponse(response) {
@@ -30,34 +30,34 @@
       EventNotifications.info(__("Waiting for the console to become ready"));
       logger.info(__("Waiting for the console to become ready:"), response.message);
 
-      consoleWatch(response.task_href + '?attributes=task_results');
+      consoleWatch(response.task_id);
+    }
+
+    // try to get the task results every second, until Finished (or error)
+    function consoleWatch(id) {
+      $timeout(function() {
+        CollectionsApi.get('tasks', id, {attributes: 'task_results'})
+          .then(consoleSuccess)
+          .catch(consoleError);
+      }, 1000);
+    }
+
+    function consoleSuccess(task) {
+      if ((task.state === 'Finished') && (task.status === 'Ok')) {
+        // success
+        consoleOpen(task.task_results);
+      } else if ((task.state === 'Queued') && (task.status === 'Ok')) {
+        // waiting
+        consoleWatch(task.id);
+      } else {
+        // failure
+        throw task.message;
+      }
     }
 
     function consoleError(error) {
       EventNotifications.error(__("There was an error opening the console"));
       logger.error(__("There was an error opening the console:"), error);
-    }
-
-    // try to get the task results every second, until Finished (or error)
-    function consoleWatch(url) {
-      $timeout(function() {
-        $http.get(url)
-        .then(function(response) {
-          var task = response.data;
-
-          if ((task.state === 'Finished') && (task.status === 'Ok')) {
-            // success
-            consoleOpen(task.task_results);
-          } else if ((task.state === 'Queued') && (task.status === 'Ok')) {
-            // waiting
-            consoleWatch(url);
-          } else {
-            // failure
-            throw task.message;
-          }
-        })
-        .catch(consoleError);
-      }, 1000);
     }
 
     function consoleOpen(results) {
