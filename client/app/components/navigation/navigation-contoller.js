@@ -154,19 +154,23 @@
     function getNavigationItems(items) {
       vm.items.splice(0, vm.items.length);
       angular.forEach(items, function(nextPrimary) {
-        getTextForNavigationItems(nextPrimary);
-        vm.items.push(nextPrimary);
-        if (nextPrimary.children) {
-          nextPrimary.children.splice(0, nextPrimary.children.length);
-        }
-        if (nextPrimary.secondary) {
-          if (angular.isUndefined(nextPrimary.children)) {
-            nextPrimary.children = [];
+        if (nextPrimary.show !== false) {
+          getTextForNavigationItems(nextPrimary);
+          vm.items.push(nextPrimary);
+          if (nextPrimary.children) {
+            nextPrimary.children.splice(0, nextPrimary.children.length);
           }
-          angular.forEach(nextPrimary.secondary, function(nextSecondary) {
-            getTextForNavigationItems(nextSecondary);
-            nextPrimary.children.push(nextSecondary);
-          });
+          if (nextPrimary.secondary) {
+            if (angular.isUndefined(nextPrimary.children)) {
+              nextPrimary.children = [];
+            }
+            angular.forEach(nextPrimary.secondary, function(nextSecondary) {
+              if (nextSecondary.show !== false) {
+                getTextForNavigationItems(nextSecondary);
+                nextPrimary.children.push(nextSecondary);
+              }
+            });
+          }
         }
       });
     }
