@@ -220,7 +220,7 @@
         if (resources.length > 0) {
           CollectionsApi.post('notifications', undefined, {}, {action: 'mark_as_seen', resources: resources});
         }
-        group.unreadCount = 0;
+        updateUnreadCount(group);
       }
     }
 
@@ -229,7 +229,7 @@
         group.notifications.forEach(function(notification) {
           notification.unread = true;
         });
-        group.unreadCount = group.notifications.length;
+        updateUnreadCount(group);
       }
     }
 
