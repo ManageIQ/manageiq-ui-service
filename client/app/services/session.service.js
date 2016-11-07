@@ -34,7 +34,7 @@
       $http.defaults.headers.common['X-Miq-Group'] = data.miqGroup || undefined;
       $sessionStorage.token = model.token;
       $sessionStorage.miqGroup = data.miqGroup || null;
-      fetchProductSetting("blueprints_flag", "blueprints");
+      fetchProductSetting("preview_flag", "service_ui_preview");
     }
 
     function destroy() {
@@ -113,7 +113,8 @@
         services: {show: entitledForServices(productFeatures)},
         requests: {show: entitledForRequests(productFeatures)},
         marketplace: {show: entitledForServiceCatalogs(productFeatures)},
-        blueprints: {show: entitledForCatalogItems(productFeatures) && $state.blueprints_flag},
+        designer: {show: angular.isDefined($state.preview_flag) ? $state.preview_flag : false},
+        administration: {show: angular.isDefined($state.preview_flag) ? $state.preview_flag : false},
       };
       model.navFeatures = features;
 

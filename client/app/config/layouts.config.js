@@ -28,11 +28,11 @@
   function enterApplication(Polling, lodash, $state, NavCounts, Navigation) {
     // Application layout displays the navigation which might have items that require polling to update the counts
     angular.forEach(NavCounts.counts, updateCount);
-    angular.forEach(Navigation.items.primary, function(value, key) {
+    angular.forEach(Navigation.items, function(value, key) {
       lodash.merge(value, $state.navFeatures[key]);
-    });
-    angular.forEach(Navigation.items.secondary, function(value, key) {
-      lodash.merge(value, $state.actionFeatures[key]);
+      angular.forEach(value.secondary, function(secondaryValue, secondaryKey) {
+        lodash.merge(secondaryValue, $state.actionFeatures[secondaryKey]);
+      });
     });
 
     function updateCount(count, key) {
