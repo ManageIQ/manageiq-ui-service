@@ -19,6 +19,7 @@ gulp.task('default', ['help']);
 gulp.task('eslint', task('eslint'));
 gulp.task('sasslint', task('sasslint'));
 gulp.task('vet', ['eslint', 'sasslint']);
+gulp.task('accessibility', [], task('accessibility'));
 
 /**
  * Cleans the build output
