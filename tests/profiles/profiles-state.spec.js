@@ -19,7 +19,6 @@ describe('app.states.ProfilesState', function() {
 
     it('should work with $state.go', function() {
       $state.go('administration.rules');
-      $rootScope.$apply();
       expect($state.is('administration.rules'));
     });
 
@@ -52,7 +51,6 @@ describe('app.states.ProfilesState', function() {
       var getProfilesSpy = sinon.stub(ProfilesState, 'getProfiles').returns(Promise.resolve(arbitrationProfiles));
 
       $state.go('administration.profiles');
-      $rootScope.$apply();
 
       expect(getProfilesSpy).to.have.been.called;
     });
@@ -61,7 +59,6 @@ describe('app.states.ProfilesState', function() {
       var getProfilesSpy = sinon.stub(ProfilesState, 'getProfileDetails').returns(Promise.resolve(arbitrationProfiles.resources[0]));
 
       $state.go('administration.profiles.details');
-      $rootScope.$apply();
 
       expect(getProfilesSpy).to.have.been.called;
     });
@@ -72,7 +69,6 @@ describe('app.states.ProfilesState', function() {
       var getCloudNetworksSpy = sinon.stub(ProfilesState, 'getCloudNetworks').returns(Promise.resolve({}));
 
       $state.go('administration.profiles.editor', {profileId: '1'});
-      $rootScope.$apply();
 
       expect(getProfilesSpy).to.have.been.called;
       expect(getProvidersSpy).to.have.been.called;

@@ -18,7 +18,6 @@ describe('error', function() {
 
     it('should work with $state.go', function() {
       $state.go('error');
-      $rootScope.$apply();
       expect($state.is('error'));
     });
   });

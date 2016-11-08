@@ -55,7 +55,6 @@ describe('Marketplace.details', function() {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications');
 
       controller = $controller($state.get('marketplace.details').controller, controllerResolves);
-      $rootScope.$apply();
     });
 
     describe('controller initialization', function() {

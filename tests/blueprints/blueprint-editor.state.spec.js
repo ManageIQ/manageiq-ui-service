@@ -19,7 +19,6 @@ describe('blueprint.editor', function() {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications');
 
       controller = $controller($state.get('designer.blueprints.editor').controller, controllerResolves);
-      $rootScope.$apply();
     });
 
     it('is created successfully', function() {
@@ -59,7 +58,6 @@ describe('blueprint.editor', function() {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications');
 
       controller = $controller($state.get('designer.blueprints.editor').controller, controllerResolves);
-      $rootScope.$apply();
     });
 
     it('is created successfully', function() {

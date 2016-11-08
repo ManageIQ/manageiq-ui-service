@@ -55,7 +55,6 @@ describe('app.services.ProfilesState', function() {
         );
         done();
       });
-      $rootScope.$digest();
     });
 
     it('should query the arbitration_profiles API for profile details ', function(done) {
@@ -83,7 +82,6 @@ describe('app.services.ProfilesState', function() {
         );
         done();
       });
-      $rootScope.$digest();
     });
 
     it('should query the API for providers', function(done) {
@@ -109,7 +107,6 @@ describe('app.services.ProfilesState', function() {
         );
         done();
       });
-      $rootScope.$digest();
     });
 
     it('should query the API for cloud_networks', function(done) {
@@ -128,7 +125,6 @@ describe('app.services.ProfilesState', function() {
         );
         done();
       });
-      $rootScope.$digest();
     });
 
     it('should make a notification success call when successfully adding a profile', function (done) {
@@ -142,7 +138,6 @@ describe('app.services.ProfilesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
 
     it('should make a notification error call when an error occurs adding a profile', function (done) {
@@ -157,7 +152,6 @@ describe('app.services.ProfilesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
 
     it('should make a notification success call when successfully editing a profile', function (done) {
@@ -171,7 +165,6 @@ describe('app.services.ProfilesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
 
     it('should make a notification error call when an error occurs editing a profile', function (done) {
@@ -185,7 +178,6 @@ describe('app.services.ProfilesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
 
     it('should make a notification success call when successfully deleting a profile', function (done) {
@@ -199,7 +191,6 @@ describe('app.services.ProfilesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
 
     it('should a notification error call when an error occurs deleting a profile', function (done) {
@@ -213,7 +204,6 @@ describe('app.services.ProfilesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
   });
 });

@@ -39,7 +39,6 @@ describe('services.custom_button_details', function() {
           serviceTemplateCatalogId: 321
         }
       });
-      $rootScope.$apply();
     });
 
     describe('controller initialization', function() {
