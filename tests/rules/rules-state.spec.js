@@ -19,7 +19,6 @@ describe('app.states.RulesState', function() {
 
     it('should work with $state.go', function() {
       $state.go('administration.rules');
-      $rootScope.$apply();
       expect($state.is('administration.rules'));
     });
 
@@ -104,7 +103,6 @@ describe('app.states.RulesState', function() {
         profiles: profiles,
       };
       controller = $controller($state.get('administration.rules').controller, controllerResolves);
-      $rootScope.$apply();
 
       expect(controller).to.be.defined;
     });
@@ -115,7 +113,6 @@ describe('app.states.RulesState', function() {
       getProfilesSpy = sinon.stub(ProfilesState, 'getProfiles').returns(Promise.resolve(profiles));
 
       $state.go('administration.rules');
-      $rootScope.$apply();
 
       expect(getRulesSpy).to.have.been.called;
       expect(getFieldsSpy).to.have.been.called;

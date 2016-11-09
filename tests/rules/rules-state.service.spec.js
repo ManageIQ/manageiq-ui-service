@@ -37,7 +37,6 @@ describe('app.services.RulesState', function() {
         );
         done();
       });
-      $rootScope.$digest();
     });
 
     it('should make a notification success call when successfully adding a rule', function (done) {
@@ -51,7 +50,6 @@ describe('app.services.RulesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
 
     it('should make a notification error call when an error occurs adding a rule', function (done) {
@@ -66,7 +64,6 @@ describe('app.services.RulesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
 
     it('should not make notification calls when successfully editing a rule', function (done) {
@@ -80,7 +77,6 @@ describe('app.services.RulesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
 
     it('should make a notification error call when an error occurs editing a rule', function (done) {
@@ -94,7 +90,6 @@ describe('app.services.RulesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
 
     it('should make a notification success call when successfully deleting a rule', function (done) {
@@ -108,7 +103,6 @@ describe('app.services.RulesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
 
     it('should a notification error call when an error occurs deleting a rule', function (done) {
@@ -122,7 +116,6 @@ describe('app.services.RulesState', function() {
         done();
       });
 
-      $rootScope.$digest();
     });
   });
 });

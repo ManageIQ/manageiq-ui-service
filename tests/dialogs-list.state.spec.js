@@ -11,7 +11,6 @@ describe('Dialogs', function() {
 
     it('should work with $state.go', function() {
       $state.go('designer.dialogs.list');
-      $rootScope.$apply();
       expect($state.is('designer.dialogs.list'));
     });
   });
@@ -29,7 +28,6 @@ describe('Dialogs', function() {
       bard.inject('$controller', '$log', '$state', '$rootScope');
 
       controller = $controller($state.get('designer.dialogs.list').controller, {dialogs: dialogs});
-      $rootScope.$apply();
     });
 
     it('should be created successfully', function() {

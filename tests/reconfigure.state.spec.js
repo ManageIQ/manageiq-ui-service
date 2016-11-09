@@ -32,7 +32,6 @@ describe('services.reconfigure', function() {
         service: {provision_dialog: dialog, id: 123}
       });
 
-      $rootScope.$apply();
     });
 
     describe('controller initialization', function() {

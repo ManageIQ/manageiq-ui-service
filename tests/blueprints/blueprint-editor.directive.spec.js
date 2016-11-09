@@ -43,7 +43,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
 
       // Save Btn becomes enabled when blueprint name changed
       blueprintName.val("Updated Blueprint Name").trigger('input');
-      $rootScope.$apply();
       expect(saveButton.hasClass('disabled')).to.eq(false);
     });
 
@@ -57,7 +56,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
 
       // Toolbox shown when button clicked
       addItemBtn.click();
-      $rootScope.$apply();
       toolbox = element.find('#toolbox');
       expect(toolbox.length).to.eq(1);
     });
@@ -71,7 +69,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
 
       // Toolbox shown when button clicked
       addItemBtn.click();
-      $rootScope.$apply();
       toolbox = element.find('#toolbox');
       expect(toolbox.length).to.eq(1);
 
@@ -93,7 +90,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
 
       // Toolbox shown when button clicked
       addItemBtn.click();
-      $rootScope.$apply();
       toolbox = element.find('#toolbox');
       expect(toolbox.length).to.eq(1);
 
@@ -108,10 +104,8 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       // select and remove a node
       var removeBtn = element.find('#removeItems');
       selectNode(nodes[0]);
-      $rootScope.$apply();
       expect(removeBtn.hasClass('disabled')).to.eq(false);
       removeBtn.click();
-      $rootScope.$apply();
 
       // Should now be only two nodes on canvas
       nodes = element.find('.node-rect');
@@ -131,7 +125,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
 
       // Toolbox shown when button clicked
       addItemBtn.click();
-      $rootScope.$apply();
       toolbox = element.find('#toolbox');
       expect(toolbox.length).to.eq(1);
 
@@ -142,7 +135,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       // After filter is applied there should only be one toolbox item
       var filterFld = element.find('#filterFld');
       filterFld.val("RHEL7 on VMware").trigger('input');
-      $rootScope.$apply();
       toolboxItems = element.find('.catalog-item');
       expect(toolboxItems.length).to.eq(1);
     });
@@ -167,7 +159,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
 
       // Save Btn becomes enabled when blueprint name entered
       blueprintName.val("Blueprint Four").trigger('input');
-      $rootScope.$apply();
       expect(saveButton.hasClass('disabled')).to.eq(false);
     });
 
@@ -180,7 +171,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
 
       // Toolbox shown when button clicked
       addItemBtn.click();
-      $rootScope.$apply();
       toolbox = element.find('#toolbox');
       expect(toolbox.length).to.eq(1);
 
@@ -191,7 +181,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       // Click on toolbox item to add it to canvas
       var toolboxItems = element.find('.catalog-item');
       toolboxItems[1].click();
-      $rootScope.$apply();
       nodes = element.find('.node-rect');
       expect(nodes.length).to.eq(1);
 
@@ -205,7 +194,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       var saveButton = element.find('#saveBtm');
       blueprintName.val("Blueprint Four").trigger('input');
       saveButton.click();
-      $rootScope.$apply();
       expect(BlueprintsStateSpy).to.have.been.called;
     });
 
@@ -213,7 +201,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       var BlueprintDetailsModalSpy = sinon.stub(BlueprintDetailsModal, 'showModal').returns(Promise.resolve());
       var detailsButton = element.find('.blueprint-details-btn');
       detailsButton.click();
-      $rootScope.$apply();
       expect(BlueprintDetailsModalSpy).to.have.been.called;
     });
 
@@ -224,7 +211,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       // edit blueprint name
       var blueprintName = element.find('#blueprintName');
       blueprintName.val("Blueprint Four").trigger('input');
-      $rootScope.$apply();
 
       // attempt to nav away
       $state.go('designer.blueprints.list');
@@ -253,7 +239,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
 
       // Toolbox shown when button clicked
       addItemBtn.click();
-      $rootScope.$apply();
       toolbox = element.find('#toolbox');
       expect(toolbox.length).to.eq(1);
 
@@ -265,7 +250,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       var toolboxItems = element.find('.catalog-item');
       toolboxItems[1].click();
       toolboxItems[2].click();
-      $rootScope.$apply();
       nodes = element.find('.node-rect');
       expect(nodes.length).to.eq(2);
 
@@ -277,7 +261,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
 
       // Single Node Selection should enable the Duplicate and Remove buttons
       selectNode(nodes[0]);
-      $rootScope.$apply();
 
       // Should now be one node selected
       var selectedNodes = element.find('.selected-node-rect');
@@ -287,7 +270,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       expect(removeBtn.hasClass('disabled')).to.eq(false);
 
       selectAnotherNode(nodes[1]);
-      $rootScope.$apply();
 
       // Should now be two nodes selected
       selectedNodes = element.find('.selected-node-rect');
@@ -308,7 +290,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
 
       // Toolbox shown when button clicked
       addItemBtn.click();
-      $rootScope.$apply();
       toolbox = element.find('#toolbox');
       expect(toolbox.length).to.eq(1);
 
@@ -320,7 +301,6 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       var toolboxItems = element.find('.catalog-item');
       toolboxItems[1].click();
       toolboxItems[2].click();
-      $rootScope.$apply();
 
       // Should be two nodes on canvas
       nodes = element.find('.node-rect');
@@ -329,10 +309,8 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       // select and click on the remove button
       var removeBtn = element.find('#removeItems');
       selectNode(nodes[0]);
-      $rootScope.$apply();
       expect(removeBtn.hasClass('disabled')).to.eq(false);
       removeBtn.click();
-      $rootScope.$apply();
 
       // Should now be only one node on canvas
       nodes = element.find('.node-rect');

@@ -27,7 +27,6 @@ describe('Dashboard', function() {
 
     it('should work with $state.go', function() {
       $state.go('dashboard');
-      $rootScope.$apply();
       expect($state.is('dashboard'));
     });
   });
@@ -52,7 +51,6 @@ describe('Dashboard', function() {
       };
 
       controller = $controller($state.get('dashboard').controller, controllerResolves);
-      $rootScope.$apply();
     });
 
     it('should be created successfully', function() {

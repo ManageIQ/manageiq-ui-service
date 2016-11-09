@@ -15,7 +15,6 @@ describe('Dashboard', function() {
 
     it('should work with $state.go', function() {
       $state.go('services.list');
-      $rootScope.$apply();
       expect($state.is('services.list'));
     });
   });
@@ -33,7 +32,6 @@ describe('Dashboard', function() {
       bard.inject('$controller', '$log', '$state', '$rootScope');
 
       controller = $controller($state.get('services.list').controller, {services: services});
-      $rootScope.$apply();
     });
 
     it('should be created successfully', function() {
@@ -66,7 +64,6 @@ describe('Dashboard', function() {
       bard.inject('$controller', '$log', '$state', '$rootScope');
 
       controller = $controller($state.get('services.list').controller, {services: services, Chargeback: Chargeback});
-      $rootScope.$apply();
     });
 
     it('sets the powerState value on the Service', function() {
@@ -123,7 +120,6 @@ describe('Dashboard', function() {
       bard.inject('$controller', '$log', '$state', '$rootScope');
 
       controller = $controller($state.get('services.list').controller, {services: services, Chargeback: Chargeback});
-      $rootScope.$apply();
     });
 
     it('sets the powerState value on the Service', function() {

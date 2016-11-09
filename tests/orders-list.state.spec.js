@@ -15,7 +15,6 @@ describe('Dashboard', function() {
 
     it('should work with $state.go', function() {
       $state.go('requests.orders');
-      $rootScope.$apply();
       expect($state.is('requests.orders'));
     });
   });
@@ -34,7 +33,6 @@ describe('Dashboard', function() {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'Notifications');
 
       controller = $controller($state.get('requests.orders').controller, {orders: orders});
-      $rootScope.$apply();
     });
 
     it('should be created successfully', function() {
