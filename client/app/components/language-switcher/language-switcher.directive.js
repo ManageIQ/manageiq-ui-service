@@ -52,7 +52,9 @@
       vm.switch = function(code) {
         Language.setLocale(code);
         Language.save(code);
-        $state.reload();
+
+        // FIXME(#328) this should be $state.reload(), once we refactor Navigation.items so that we can work with a translated copy and still get badge count updates
+        window.document.location.href = window.document.location.href;
       };
     }
   }
