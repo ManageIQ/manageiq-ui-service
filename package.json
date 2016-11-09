@@ -50,6 +50,7 @@
     "font-awesome": "^4.5.0",
     "glob": "^7.0.6",
     "gulp": "^3.9.1",
+    "gulp-accessibility": "^3.0.1",
     "gulp-angular-gettext": "^2.1.0",
     "gulp-angular-templatecache": "^2.0.0",
     "gulp-autoprefixer": "^3.0.1",
