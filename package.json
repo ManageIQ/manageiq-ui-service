@@ -10,7 +10,9 @@
     "url": "https://github.com/ManageIQ/manageiq-ui-service.git"
   },
   "version": "1.0.1",
-  "scripts": {},
+  "scripts": {
+    "test": "gulp test"
+  },
   "devDependencies": {
     "actioncable": "^5.0.0",
     "angular": "~1.5.8",
