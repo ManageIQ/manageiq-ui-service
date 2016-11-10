@@ -20,7 +20,7 @@
     return directive;
 
     /** @ngInject */
-    function LanguageSwitcherController($scope, gettextCatalog, Language, lodash, $state) {
+    function LanguageSwitcherController($scope, gettextCatalog, Language, lodash, $state, $window) {
       var vm = this;
       vm.mode = vm.mode || 'menu';
 
@@ -54,7 +54,7 @@
         Language.save(code);
 
         // FIXME(#328) this should be $state.reload(), once we refactor Navigation.items so that we can work with a translated copy and still get badge count updates
-        window.document.location.href = window.document.location.href;
+        $window.document.location.href = $window.document.location.href;
       };
     }
   }

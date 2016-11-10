@@ -26,7 +26,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, Text, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ServerInfo, ProductInfo) {
+  function StateController($state, Text, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ServerInfo, ProductInfo, $window) {
     var vm = this;
 
     vm.text = Text.login;
@@ -61,7 +61,7 @@
 
             // FIXME(#328) this should be $state.go('dashboard')
             var url = $state.href('dashboard');
-            window.document.location.href = url;
+            $window.document.location.href = url;
           } else {
             Session.privilegesError = true;
             Notifications.error(__('User does not have privileges to login.'));
