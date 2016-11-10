@@ -2,23 +2,24 @@
 # Reartes Guillermo <greartes@redhat.com>, 2016. #zanata
 # Sergio Ocón <sergio.ocon@redhat.com>, 2016. #zanata
 # Victor Estival <victor.estival@gmail.com>, 2016. #zanata
+# miey <myamamot@redhat.com>, 2016. #zanata
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-10-13 05:39-0400\n"
-"Last-Translator: Sergio Ocón <sergio.ocon@redhat.com>\n"
+"PO-Revision-Date: 2016-11-09 07:08-0500\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
-"X-Generator: Zanata 3.9.5\n"
+"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: app/components/notifications/notification-body.html:22
 #: app/components/notifications/notification-body.html:46
 msgid "% Complete"
-msgstr "% Completo"
+msgstr "% completo"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:321
 msgid "%s was created."
@@ -30,7 +31,7 @@ msgstr "%s fue publicado."
 
 #: app/states/designer/blueprints/editor/editorCtrl.js:64
 msgid "'%s' was succesfully saved."
-msgstr ""
+msgstr "'%s' se guardó correctamente."
 
 #: app/layouts/application.html:75
 msgid "(Current Group)"
@@ -54,7 +55,7 @@ msgstr "4 Semanas"
 
 #: app/layouts/application.html:52
 msgid "About"
-msgstr ""
+msgstr "Acerca de"
 
 #: app/states/about-me/about-me.html:1
 #: app/states/about-me/about-me.state.js:20
@@ -63,7 +64,7 @@ msgstr "Acerca de mi"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:85
 msgid "Action Order"
-msgstr ""
+msgstr "Orden de acción"
 
 #: app/components/custom-button/custom-button.directive.js:120
 #: app/components/custom-button/custom-button.directive.js:132
@@ -85,7 +86,7 @@ msgstr "Agregar Ítem "
 #: app/states/administration/profiles/editor/editor.html:18
 #: app/states/administration/profiles/editor/editor.state.js:56
 msgid "Add Profile"
-msgstr ""
+msgstr "Agregar perfil"
 
 #: app/states/marketplace/details/details.html:36
 #: app/states/marketplace/details/details.html:41
@@ -96,7 +97,7 @@ msgstr "Añadir a la cesta"
 #: app/states/administration/profiles/profiles.html:5
 #: app/states/administration/rules/rules.html:5
 msgid "Administration"
-msgstr ""
+msgstr "Administración"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:75
 msgid "Advanced Options"
@@ -117,14 +118,13 @@ msgstr "Aprobador"
 
 #: app/states/administration/profiles/profiles.html:16
 msgid "Are you sure you want to delete profile [[profile_name]]?"
-msgstr ""
+msgstr "¿Está seguro de que desea eliminar el perfil [[profile_name]]?"
 
 #: app/states/administration/rules/rules.html:131
 msgid "Are you sure you want to delete this rule?"
-msgstr ""
+msgstr "¿Está seguro de que desea eliminar esta regla?"
 
 #: app/components/blueprint-delete-modal/blueprint-delete-modal.html:8
-#, fuzzy
 msgid "Are you sure you want to delete {{vm.blueprintsList[0].name}}?"
 msgid_plural "Are you sure you want to delete {{$count}} blueprints?"
 msgstr[0] "Esta seguro que desea borrar {{vm.blueprintsList[0].name}}?"
@@ -136,15 +136,14 @@ msgstr "¿Seguro que quiere continuar?"
 
 #: app/components/notifications/notification-footer.html:14
 msgid "Are you sure you would like to clear all [[heading]]?"
-msgstr ""
+msgstr "¿Está seguro de que desea borrar todo [[heading]]?"
 
 #: app/states/administration/profiles/details/details.html:68
 #: app/states/administration/profiles/editor/editor.html:72
 msgid "Availability Zone"
-msgstr ""
+msgstr "Zona de disponibilidad"
 
 #: app/states/designer/blueprints/editor/editor.html:5
-#, fuzzy
 msgid "Back to Blueprints"
 msgstr "Volver a Blueprints"
 
@@ -160,7 +159,7 @@ msgstr "Volver a Mis Servicios"
 #: app/states/administration/profiles/details/details.html:3
 #: app/states/administration/profiles/editor/editor.html:3
 msgid "Back to Profiles"
-msgstr ""
+msgstr "Volver a Perfiles"
 
 #: app/states/services/custom_button_details/custom_button_details.html:7
 #: app/states/services/reconfigure/reconfigure.html:3
@@ -174,10 +173,9 @@ msgstr "Volver al Catálogo de Servicios"
 
 #: app/states/designer/blueprints/editor/editor.html:34
 msgid "Blueprint Details"
-msgstr ""
+msgstr "Detalles del plano"
 
 #: app/states/designer/blueprints/editor/editor.html:7
-#, fuzzy
 msgid "Blueprint Editor:"
 msgstr "Editor de Blueprint:"
 
@@ -188,7 +186,7 @@ msgstr "Listado de Blueprints"
 
 #: app/services/blueprints-state.service.js:404
 msgid "Blueprint(s) were succesfully deleted."
-msgstr ""
+msgstr "Los planos se eliminaron correctamente."
 
 #: app/config/navigation.config.js:56
 msgid "Blueprints"
@@ -231,7 +229,7 @@ msgstr "Cancelar"
 
 #: app/states/designer/blueprints/list/list.state.js:235
 msgid "Cannot publish a blueprint with no service items."
-msgstr ""
+msgstr "No se puede publicar un plano sin elementos de servicio."
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:43
 #: app/states/designer/blueprints/list/list.state.js:154
@@ -259,11 +257,11 @@ msgstr "Vaciar"
 #: app/components/notifications/notification-footer.html:15
 #: app/components/notifications/notification-footer.html:20
 msgid "Clear All"
-msgstr ""
+msgstr "Borrar todo"
 
 #: app/components/notifications/notification-footer.html:13
 msgid "Clear All [[heading]]"
-msgstr ""
+msgstr "Borrar todo [[heading]]"
 
 #: app/components/shopping-cart/shopping-cart.html:38
 msgid "Close"
@@ -272,16 +270,16 @@ msgstr "Cerrar"
 #: app/states/administration/profiles/details/details.html:80
 #: app/states/administration/profiles/editor/editor.html:92
 msgid "Cloud Network"
-msgstr ""
+msgstr "Red de nube"
 
 #: app/states/administration/profiles/details/details.html:86
 #: app/states/administration/profiles/editor/editor.html:103
 msgid "Cloud Subnet"
-msgstr ""
+msgstr "Subred de nube"
 
 #: app/components/notifications/notification-body.html:52
 msgid "Completed:"
-msgstr ""
+msgstr "Completo:"
 
 #: app/states/services/details/details.html:40
 msgid "Confirm, would you like to remove this service?"
@@ -309,17 +307,16 @@ msgid "Create Catalog"
 msgstr "Crear Catalogo"
 
 #: app/states/designer/blueprints/list/list.state.js:207
-#, fuzzy
 msgid "Create a new Blueprint"
 msgstr "Crear un nuevo Blueprint"
 
 #: app/states/administration/profiles/profiles.state.js:280
 msgid "Create a new Profile"
-msgstr ""
+msgstr "Crear un nuevo perfil"
 
 #: app/states/administration/rules/rules.html:16
 msgid "Create a new rule"
-msgstr ""
+msgstr "Crear una nueva regla"
 
 #: app/states/administration/profiles/details/details.html:29
 #: app/states/services/list/list.state.js:127
@@ -382,18 +379,17 @@ msgstr "Eliminar"
 #: app/components/blueprint-delete-modal/blueprint-delete-modal.html:5
 #: app/states/designer/blueprints/list/list.state.js:131
 #: app/states/designer/blueprints/list/list.state.js:212
-#, fuzzy
 msgid "Delete Blueprint"
 msgstr "Borrar Blueprint"
 
 #: app/states/administration/profiles/profiles.html:15
 #: app/states/administration/profiles/profiles.state.js:217
 msgid "Delete Profile"
-msgstr ""
+msgstr "Eliminar perfil"
 
 #: app/states/administration/rules/rules.html:130
 msgid "Delete Rule"
-msgstr ""
+msgstr "Eliminar regla"
 
 #: app/states/requests/list/list.state.js:104
 #: app/states/requests/list/list.state.js:344
@@ -415,7 +411,7 @@ msgstr "Descripción"
 
 #: app/config/navigation.config.js:51
 msgid "Designer"
-msgstr ""
+msgstr "Diseñador"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:61
 msgid "Dialog"
@@ -436,11 +432,11 @@ msgstr "Espacio de disco usado"
 #: app/states/administration/profiles/editor/save-profile-modal.html:12
 #: app/states/administration/rules/save-rule-modal.html:12
 msgid "Do Not Save"
-msgstr ""
+msgstr "No guardar"
 
 #: app/layouts/application.html:42
 msgid "Documentation"
-msgstr ""
+msgstr "Documentación"
 
 #: app/states/designer/blueprints/editor/save-blueprint-modal.html:12
 msgid "Don't Save"
@@ -448,25 +444,25 @@ msgstr "No Guardar"
 
 #: app/states/designer/blueprints/list/list.html:45
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #: app/components/shopping-cart/shopping-cart.html:22
 #: app/states/designer/blueprints/editor/editor.html:25
 #: app/states/designer/blueprints/list/list.state.js:125
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicado"
 
 #: app/states/designer/blueprints/list/list.state.js:126
 msgid "Duplicate Blueprint"
-msgstr ""
+msgstr "Plano duplicado"
 
 #: app/states/marketplace/details/details.html:34
 msgid "Duplicate Shopping Cart Item"
-msgstr ""
+msgstr "Elemento del carro de compras duplicado"
 
 #: app/states/designer/blueprints/list/list.state.js:229
 msgid "Duplicate blueprint feature not available."
-msgstr ""
+msgstr "La función de plano duplicado no está disponible."
 
 #: app/states/administration/profiles/details/details.html:108
 #: app/states/administration/profiles/profiles.state.js:211
@@ -475,24 +471,22 @@ msgid "Edit"
 msgstr "Editar"
 
 #: app/states/designer/blueprints/list/list.state.js:121
-#, fuzzy
 msgid "Edit Blueprint"
 msgstr "Editar Blueprint"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:97
 #: app/states/designer/blueprints/editor/editor.html:36
-#, fuzzy
 msgid "Edit Blueprint Details"
 msgstr "Editar detalles de Blueprint"
 
 #: app/states/administration/profiles/editor/editor.html:17
 #: app/states/administration/profiles/profiles.state.js:212
 msgid "Edit Profile"
-msgstr ""
+msgstr "Editar perfil"
 
 #: app/states/administration/profiles/editor/editor.state.js:54
 msgid "Edit Profile: %s"
-msgstr ""
+msgstr "Editar perfil: %s"
 
 #: app/components/edit-service-modal/edit-service-modal.html:5
 #: app/states/services/details/details.html:62
@@ -501,7 +495,7 @@ msgstr "Editar servicio"
 
 #: app/states/administration/rules/rules.html:71
 msgid "Enter a value"
-msgstr ""
+msgstr "Ingresar un valor"
 
 #: app/states/error/error.state.js:21
 msgid "Error"
@@ -513,7 +507,7 @@ msgstr "Error al obtener la información del usuario"
 
 #: app/states/designer/blueprints/editor/editorCtrl.js:80
 msgid "Failed to save '%s'."
-msgstr ""
+msgstr "No se pudo guardar '%s'."
 
 #: app/states/designer/blueprints/list/list.state.js:155
 msgid "Filter by Catalog"
@@ -547,7 +541,7 @@ msgstr "Filtrar por Nombre"
 
 #: app/states/requests/list/list.state.js:163
 msgid "Filter by Order Date"
-msgstr ""
+msgstr "Filtrar por fecha de orden"
 
 #: app/states/services/list/list.state.js:89
 msgid "Filter by Owner"
@@ -555,15 +549,15 @@ msgstr "Filtrar por Propietario"
 
 #: app/states/administration/profiles/profiles.state.js:234
 msgid "Filter by Provider Name"
-msgstr ""
+msgstr "Filtrar por nombre del proveedor"
 
 #: app/states/administration/profiles/profiles.state.js:240
 msgid "Filter by Provider Type"
-msgstr ""
+msgstr "Filtrar por tipo de proveedor"
 
 #: app/states/designer/blueprints/list/list.state.js:162
 msgid "Filter by Publish State"
-msgstr ""
+msgstr "Filtrar por estado de publicación"
 
 #: app/states/requests/list/list.state.js:96
 msgid "Filter by Request Date"
@@ -571,7 +565,7 @@ msgstr "Filtrar por Fecha de petición"
 
 #: app/states/requests/list/list.state.js:90
 msgid "Filter by Requester"
-msgstr ""
+msgstr "Filtrar por solicitante"
 
 #: app/states/services/list/list.state.js:76
 msgid "Filter by Retirement Date"
@@ -596,7 +590,7 @@ msgstr "Filtrar por nombre"
 #: app/states/administration/profiles/details/details.html:74
 #: app/states/administration/profiles/editor/editor.html:82
 msgid "Flavor"
-msgstr ""
+msgstr "Clase"
 
 #: app/components/confirmation/confirmation.directive.js:65
 #: app/components/confirmation/confirmation.directive.js:70
@@ -618,7 +612,7 @@ msgstr "Ayuda"
 
 #: app/states/designer/blueprints/editor/editor.html:44
 msgid "Hide Connectors"
-msgstr ""
+msgstr "Ocultar conectores"
 
 #: app/states/products/details/details.html:56
 msgid "Hourly"
@@ -632,18 +626,17 @@ msgstr "ID"
 #: app/states/administration/rules/rules.html:35
 #: app/states/administration/rules/rules.html:59
 msgid "IF"
-msgstr ""
+msgstr "SI"
 
 #: app/states/administration/rules/save-rule-modal.html:8
 msgid "If you do not save, any changes will be lost."
-msgstr ""
+msgstr "Si no guarda los cambios, se perderán."
 
 #: app/states/administration/profiles/editor/save-profile-modal.html:8
 msgid "If you do not save, your changes will be lost."
-msgstr ""
+msgstr "Si no guarda sus cambios, se perderán."
 
 #: app/states/designer/blueprints/editor/save-blueprint-modal.html:8
-#, fuzzy
 msgid "If you don't save, your changes will be lost."
 msgstr "Si no guarda, sus cambios se perderán."
 
@@ -670,6 +663,8 @@ msgstr "Se añadió el elemento a la cesta de la compra"
 #: app/states/marketplace/details/details.state.js:111
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
 msgstr ""
+"Se agregó el elemento al carro de compras, pero es un duplicado de un "
+"elemento existente."
 
 #: app/states/designer/blueprints/list/list.html:23
 #: app/states/designer/blueprints/list/list.state.js:185
@@ -679,7 +674,7 @@ msgstr "Items"
 #: app/states/administration/profiles/details/details.html:62
 #: app/states/administration/profiles/editor/editor.html:62
 msgid "Key Pair"
-msgstr ""
+msgstr "Par de claves"
 
 #: app/states/login/login.html:31
 msgid "Language"
@@ -729,7 +724,7 @@ msgstr "Autoservicio de ManageIQ"
 
 #: app/components/notifications/notification-footer.html:6
 msgid "Mark All Read"
-msgstr ""
+msgstr "Marcar todos como leídos"
 
 #: app/states/services/details/details.html:119
 msgid "Memory"
@@ -787,7 +782,7 @@ msgstr "Nunca"
 #: app/components/notifications/heading.html:2
 #: app/components/notifications/subheading.html:1
 msgid "New"
-msgstr ""
+msgstr "Nuevo"
 
 #: app/components/dialog-content/dialog-content.html:3
 msgid "No Provisioning Dialog Available."
@@ -799,11 +794,11 @@ msgstr "Sin avisos"
 
 #: app/components/flowchart/flowchart_template.html:15
 msgid "No available connections! Click on the canvas to cancel"
-msgstr ""
+msgstr "No hay conexiones disponibles. Haga clic en canvas para cancelar."
 
 #: app/layouts/application.html:7
 msgid "Notifications"
-msgstr ""
+msgstr "Notificaciones"
 
 #: app/states/services/list/list.state.js:117
 #: app/states/services/list/list.state.js:82
@@ -812,7 +807,7 @@ msgstr "Número de MV"
 
 #: app/states/services/details/details.html:199
 msgid "Open Cockpit console for this VM"
-msgstr ""
+msgstr "Abrir la consola de Cockpit para esta máquina virtual"
 
 #: app/states/services/details/details.html:196
 msgid "Open a HTML5 console for this VM"
@@ -826,7 +821,7 @@ msgstr "Pedido"
 #: app/states/requests/list/list.state.js:162
 #: app/states/requests/list/list.state.js:185
 msgid "Order Date"
-msgstr ""
+msgstr "Fecha de la orden"
 
 #: app/states/requests/order_details/order_details.state.js:19
 msgid "Order Details"
@@ -867,7 +862,7 @@ msgstr "Borrar el servicio permanentemente"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:93
 msgid "Please enter a Provisioning Entry Point"
-msgstr ""
+msgstr "Ingrese un punto de entrada de aprovisionamiento."
 
 #: app/components/create-catalog-modal/create-catalog-modal.html:8
 msgid "Please enter a name for the new Catalog"
@@ -902,7 +897,7 @@ msgstr "Tipo de producto"
 
 #: app/components/navigation/navigation-contoller.js:122
 msgid "Product logo"
-msgstr ""
+msgstr "Logotipo del producto"
 
 #: app/states/products/details/details.state.js:19
 msgid "Products Details"
@@ -910,46 +905,46 @@ msgstr "Detalles de productos"
 
 #: app/services/profiles-state.service.js:159
 msgid "Profile %s was created."
-msgstr ""
+msgstr "Se creó el perfil %s."
 
 #: app/services/profiles-state.service.js:175
 msgid "Profile %s was successfully updated."
-msgstr ""
+msgstr "El perfil %s se actualizó correctamente."
 
 #: app/states/administration/profiles/details/details.state.js:19
 msgid "Profile Details"
-msgstr ""
+msgstr "Ddetalles del perfil"
 
 #: app/services/profiles-state.service.js:210
 msgid "Profile(s) were succesfully deleted."
-msgstr ""
+msgstr "Los perfiles se eliminaron correctamente."
 
 #: app/config/navigation.config.js:73
 #: app/states/administration/profiles/profiles.state.js:20
 #: app/states/administration/profiles/profiles.state.js:37
 msgid "Profiles"
-msgstr ""
+msgstr "Perfiles"
 
 #: app/states/administration/profiles/details/details.html:56
 #: app/states/administration/profiles/editor/editor.html:51
 msgid "Provider"
-msgstr ""
+msgstr "Proveedor"
 
 #: app/states/administration/profiles/profiles.state.js:233
 #: app/states/administration/profiles/profiles.state.js:263
 msgid "Provider Name"
-msgstr ""
+msgstr "Nombre del proveedor"
 
 #: app/states/administration/profiles/details/details.html:50
 #: app/states/administration/profiles/editor/editor.html:41
 #: app/states/administration/profiles/profiles.state.js:239
 #: app/states/administration/profiles/profiles.state.js:268
 msgid "Provider Type"
-msgstr ""
+msgstr "Tipo de proveedor"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:84
 msgid "Provision Order"
-msgstr ""
+msgstr "Orden de aprovisionamiento"
 
 #: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:43
 msgid "Provisioning"
@@ -960,7 +955,6 @@ msgid "Provisioning Answers"
 msgstr "Respuestas de Provisión"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:82
-#, fuzzy
 msgid "Provisioning Entry Point"
 msgstr "Puto de entrada de Aprovisionamiento"
 
@@ -973,25 +967,24 @@ msgid "Publish"
 msgstr "Publicar"
 
 #: app/states/designer/blueprints/list/list.state.js:103
-#, fuzzy
 msgid "Publish Blueprint"
 msgstr "Publicar Blueprint"
 
 #: app/states/designer/blueprints/list/list.state.js:161
 msgid "Publish State"
-msgstr ""
+msgstr "Estado de publicación"
 
 #: app/states/designer/blueprints/list/list.html:42
 msgid "Published"
-msgstr ""
+msgstr "Publicado"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:135
 msgid "Rearrange Items to set Action Order"
-msgstr ""
+msgstr "Reordenar elementos para establecer el orden de acción"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:123
 msgid "Rearrange Items to set Provision Order"
-msgstr ""
+msgstr "Reordenar elementos para establecer la orden de aprovisionamiento"
 
 #: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:45
 #: app/states/services/details/details.html:64
@@ -1075,7 +1068,7 @@ msgstr "Pedido por"
 #: app/states/requests/list/list.state.js:125
 #: app/states/requests/list/list.state.js:89
 msgid "Requester"
-msgstr ""
+msgstr "Solicitante"
 
 #: app/states/requests/details/details.state.js:19
 msgid "Requests Details"
@@ -1128,18 +1121,18 @@ msgstr "Se retirará en breve"
 
 #: app/services/rules-state.service.js:121
 msgid "Rule(s) were succesfully deleted."
-msgstr ""
+msgstr "Las reglas se eliminaron correctamente."
 
 #: app/config/navigation.config.js:83
 #: app/states/administration/rules/rules.html:7
 #: app/states/administration/rules/rules.state.js:197
 #: app/states/administration/rules/rules.state.js:21
 msgid "Rules"
-msgstr ""
+msgstr "Reglas"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:141
 msgid "Same as Provision Order"
-msgstr ""
+msgstr "Igual que la orden de aprovisionamiento"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:98
 #: app/components/browse-entry-point-modal/browse-entry-point-modal.html:12
@@ -1157,14 +1150,13 @@ msgid "Save"
 msgstr "Guardar"
 
 #: app/states/designer/blueprints/editor/editor.html:13
-#, fuzzy
 msgid "Save Blueprint"
 msgstr "Guardar Blueprint"
 
 #: app/states/administration/profiles/editor/save-profile-modal.html:5
 #: app/states/administration/rules/save-rule-modal.html:5
 msgid "Save Changes"
-msgstr ""
+msgstr "Guardar cambios"
 
 #: app/states/designer/blueprints/editor/save-blueprint-modal.html:5
 msgid "Save Changes to {{vm.blueprint.name}}"
@@ -1185,7 +1177,7 @@ msgstr "Programando retiro para"
 #: app/states/administration/profiles/details/details.html:92
 #: app/states/administration/profiles/editor/editor.html:113
 msgid "Security Group"
-msgstr ""
+msgstr "Grupo de seguridad"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:68
 msgid "Select Dialog"
@@ -1205,45 +1197,47 @@ msgstr "Seleccione un grupo"
 
 #: app/states/administration/profiles/editor/editor.html:97
 msgid "Select a cloud network"
-msgstr ""
+msgstr "Seleccionar una red de nube"
 
 #: app/states/administration/profiles/editor/editor.html:108
 msgid "Select a cloud subnet"
-msgstr ""
+msgstr "Seleccionar una subred de nube"
 
 #: app/states/administration/rules/rules.html:64
 msgid "Select a field"
-msgstr ""
+msgstr "Seleccionar un campo"
 
 #: app/states/administration/profiles/editor/editor.html:87
 msgid "Select a flavor"
-msgstr ""
+msgstr "Seleccionar una clase"
 
 #: app/states/administration/profiles/editor/editor.html:67
 msgid "Select a key pair"
-msgstr ""
+msgstr "Seleccionar un par de claves"
 
 #: app/states/administration/rules/rules.html:91
 msgid "Select a profile"
-msgstr ""
+msgstr "Seleccionar un perfil"
 
 #: app/states/administration/profiles/editor/editor.html:56
 msgid "Select a provider"
-msgstr ""
+msgstr "Seleccionar un proveedor"
 
 #: app/states/administration/profiles/editor/editor.html:46
 msgid "Select a provider type"
-msgstr ""
+msgstr "Seleccionar un tipo de proveedor"
 
 #: app/components/flowchart/flowchart_template.html:12
 msgid ""
 "Select a second item to complete the connection or click on the canvas to "
 "cancel"
 msgstr ""
+"Seleccionar un segundo elemento para completar la conexión o hacer clic en "
+"canvas para cancelar"
 
 #: app/states/administration/profiles/editor/editor.html:118
 msgid "Select a security group"
-msgstr ""
+msgstr "Seleccionar un grupo de seguridad"
 
 #: app/components/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
@@ -1251,15 +1245,15 @@ msgstr "Seleccione un propietario"
 
 #: app/states/administration/profiles/editor/editor.html:77
 msgid "Select an availability zone"
-msgstr ""
+msgstr "Seleccionar una zona de disponibilidad"
 
 #: app/states/administration/rules/rules.html:67
 msgid "Select an operator"
-msgstr ""
+msgstr "Seleccionar operador"
 
 #: app/components/browse-entry-point-modal/browse-entry-point-modal.html:5
 msgid "Select {{vm.entryPointTypeTitle}} Entry Point"
-msgstr ""
+msgstr "Seleccionar punto de entrada {{vm.entryPointTypeTitle}}"
 
 #: index.html:4
 msgid "Self Service"
@@ -1267,7 +1261,7 @@ msgstr "Autoservicio"
 
 #: app/components/navigation/navigation-contoller.js:130
 msgid "Server Name:"
-msgstr ""
+msgstr "Nombre del servidor:"
 
 #: app/config/navigation.config.js:40
 #: app/states/marketplace/list/list.state.js:20
@@ -1330,7 +1324,6 @@ msgid "Shopping cart successfully ordered"
 msgstr "Se pidió la cesta de la compra con éxito"
 
 #: app/components/blueprint-delete-modal/blueprint-delete-modal.html:10
-#, fuzzy
 msgid "Show Blueprint Names"
 msgstr "Mostrar Nombres del Blueprint"
 
@@ -1344,7 +1337,7 @@ msgstr "En breve"
 
 #: app/components/notifications/notification-body.html:40
 msgid "Started:"
-msgstr ""
+msgstr "Inicio:"
 
 #: app/states/services/custom_button_details/custom_button_details.html:19
 #: app/states/services/reconfigure/reconfigure.html:21
@@ -1358,11 +1351,11 @@ msgstr "Cambiar idioma:"
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:32
 #: app/components/flowchart/node-toolbar.html:11
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetas"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:337
 msgid "The Publish Blueprint feature is not yet implemented."
-msgstr ""
+msgstr "Aún no se implementó la función Publicar plano."
 
 #: app/components/request-list/request-list.html:30
 #: app/components/request-list/request-list.html:31
@@ -1408,11 +1401,11 @@ msgstr "La página que pidió no ha sido encontrada"
 
 #: app/config/navigation.config.js:78
 msgid "The total number of available arbitration profiles"
-msgstr ""
+msgstr "La cantidad total de perfiles de arbitraje disponibles"
 
 #: app/config/navigation.config.js:88
 msgid "The total number of available arbitration rules"
-msgstr ""
+msgstr "La cantidad total de reglas de arbitraje disponibles"
 
 #: app/config/navigation.config.js:61
 msgid "The total number of available blueprints"
@@ -1437,10 +1430,11 @@ msgid ""
 "There already is an identical item in the cart. Do you want to add it "
 "anyway?"
 msgstr ""
+"Ya hay un elemento idéntico en el carro. ¿Desea agregarlo de todos modos?"
 
 #: app/components/tagging/tagging.html:15
 msgid "There are no tags for this item."
-msgstr ""
+msgstr "No hay etiquetas para este elemento."
 
 #: app/states/error/error.html:10
 msgid "There was a problem loading the page."
@@ -1452,23 +1446,23 @@ msgstr "Hubo un error al añadir a la cesta de la compra:"
 
 #: app/services/profiles-state.service.js:164
 msgid "There was an error creating profile %s."
-msgstr ""
+msgstr "Se produjo un error al crear el perfil %s."
 
 #: app/services/rules-state.service.js:62
 msgid "There was an error creating this rule."
-msgstr ""
+msgstr "Se produjo un error al crear esta regla."
 
 #: app/services/blueprints-state.service.js:409
 msgid "There was an error deleting the blueprint(s)."
-msgstr ""
+msgstr "Se produjo un error al eliminar los planos."
 
 #: app/services/profiles-state.service.js:215
 msgid "There was an error deleting the profile(s)."
-msgstr ""
+msgstr "Se produjo un error al eliminar los perfiles."
 
 #: app/services/rules-state.service.js:126
 msgid "There was an error deleting the rule(s)."
-msgstr ""
+msgstr "Se produjo un error al eliminar las reglas."
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
@@ -1497,7 +1491,7 @@ msgstr "Hubo un error al guardar el dueño del servicio."
 
 #: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:339
 msgid "There was an error saving this Blueprint's Details."
-msgstr ""
+msgstr "Se produjo un error al guardar los detalles de este plano."
 
 #: app/components/shopping-cart/shopping-cart.directive.js:51
 #: app/states/services/custom_button_details/custom_button_details.state.js:93
@@ -1507,11 +1501,11 @@ msgstr "Hubo un error al enviar esta petición:"
 
 #: app/services/profiles-state.service.js:180
 msgid "There was an error updating profile %s."
-msgstr ""
+msgstr "Se produjo un error al actualizar el perfil %s."
 
 #: app/services/rules-state.service.js:77
 msgid "There was an error updating the rules."
-msgstr ""
+msgstr "Se produjo un error al actualizar las reglas."
 
 #: app/states/services/details/details.html:161
 msgid "This service has no associated VMs"
@@ -1519,7 +1513,7 @@ msgstr "Este servicio no tiene MV asociadas"
 
 #: app/layouts/application.html:30
 msgid "Toggle notifications list"
-msgstr ""
+msgstr "Alternar lista de notificaciones"
 
 #: app/states/dashboard/dashboard.html:20
 msgid "Total Requests"
@@ -1532,7 +1526,7 @@ msgstr "Servicios Totales"
 #: app/states/administration/rules/rules.html:47
 #: app/states/administration/rules/rules.html:87
 msgid "USE"
-msgstr ""
+msgstr "USAR"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:50
 #: app/states/designer/blueprints/list/list.state.js:81
@@ -1551,7 +1545,6 @@ msgstr "Protocolo de consola devuelto no está soportado:"
 #: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:135
 #: app/services/blueprints-state.service.js:427
 #: app/states/designer/blueprints/editor/editor.html:10
-#, fuzzy
 msgid "Untitled Blueprint"
 msgstr "Blueprint sin titulo"
 
@@ -1561,11 +1554,11 @@ msgstr "Predeterminados para el usuario"
 
 #: app/components/navigation/navigation-contoller.js:131
 msgid "User Name:"
-msgstr ""
+msgstr "Nombre de usuario:"
 
 #: app/components/navigation/navigation-contoller.js:132
 msgid "User Role:"
-msgstr ""
+msgstr "Rol de usuario:"
 
 #: app/states/login/login.state.js:40
 #: app/states/login/login.state.js:63
@@ -1586,19 +1579,19 @@ msgstr "Proveedor"
 
 #: app/components/navigation/navigation-contoller.js:129
 msgid "Version:"
-msgstr ""
+msgstr "Versión:"
 
 #: app/states/administration/profiles/profiles.state.js:206
 msgid "View"
-msgstr ""
+msgstr "Ver"
 
 #: app/states/administration/profiles/profiles.state.js:207
 msgid "View Profile"
-msgstr ""
+msgstr "Ver perfil"
 
 #: app/states/administration/profiles/details/details.state.js:41
 msgid "View Profile: %s"
-msgstr ""
+msgstr "Ver perfil: %s"
 
 #: app/states/services/details/details.html:160
 msgid "Virtual Machines ({{ ::vm.vms.length }})"
@@ -1637,7 +1630,7 @@ msgstr "Su sesión a expirado."
 
 #: app/states/services/list/list.html:32
 msgid "[[number]] VMs"
-msgstr ""
+msgstr "[[number]] máquinas virtuales"
 
 #: app/config/gettext.config.js:33
 msgid "locale_name"
@@ -1664,3 +1657,4 @@ msgid "{{ $count }} item"
 msgid_plural "{{ $count }} items"
 msgstr[0] "{{ $count }} elemento"
 msgstr[1] "{{ $count }} elementos"
+
