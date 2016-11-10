@@ -20,7 +20,7 @@
       powerOperationTimeoutState: powerOperationTimeoutState,
       powerOperationStartTimeoutState: powerOperationStartTimeoutState,
       powerOperationStopTimeoutState: powerOperationStopTimeoutState,
-      powerOperationSuspendTimeoutState: powerOperationSuspendTimeoutState
+      powerOperationSuspendTimeoutState: powerOperationSuspendTimeoutState,
     };
 
     function powerOperationUnknownState(item) {

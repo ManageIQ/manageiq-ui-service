@@ -53,7 +53,8 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, EventNotifications, Consoles, Chargeback, PowerOperations) {
+  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal,
+                           EventNotifications, Consoles, Chargeback, PowerOperations) {
     var vm = this;
     setInitialVars();
 
@@ -200,9 +201,9 @@
     vm.checkDisabled = function (action, item) {
       if (action === 'stop') {
         return disableStopButton(item);
-        } else if (action === 'suspend') {
+      } else if (action === 'suspend') {
         return disableSuspendButton(item);
-        }
+      }
     };
 
     vm.handlePowerOperation = function (action, item) {
@@ -210,7 +211,7 @@
         vm.stopService(item);
       } else if (action === 'suspend' && !vm.checkDisabled(action, item)) {
         vm.suspendService(item);
-        }
+      }
     };
   }
 })();
