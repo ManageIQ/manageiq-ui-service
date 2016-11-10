@@ -58,7 +58,10 @@
             if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
               $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
             }
-            $state.go('dashboard');
+
+            // FIXME(#328) this should be $state.go('dashboard')
+            var url = $state.href('dashboard');
+            window.document.location.href = url;
           } else {
             Session.privilegesError = true;
             Notifications.error(__('User does not have privileges to login.'));
