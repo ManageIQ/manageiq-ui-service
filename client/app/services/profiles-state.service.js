@@ -12,27 +12,27 @@
       {
         keyword: 'amazon',
         title: 'Amazon EC2',
-        image: 'assets/images/providers/vendor-amazon.svg',
+        image: 'images/providers/vendor-amazon.svg',
       },
       {
         keyword: 'azure',
         title: 'Azure',
-        image: 'assets/images/providers/vendor-azure.svg',
+        image: 'images/providers/vendor-azure.svg',
       },
       {
         keyword: 'google',
         title: 'Google Compute Engine',
-        image: 'assets/images/providers/vendor-google.svg',
+        image: 'images/providers/vendor-google.svg',
       },
       {
         keyword: 'openstack',
         title: 'OpenStack',
-        image: 'assets/images/providers/vendor-openstack_infra.svg',
+        image: 'images/providers/vendor-openstack_infra.svg',
       },
       {
         keyword: 'vmware',
         title: 'VMware vCloud',
-        image: 'assets/images/providers/vendor-vmware_cloud.svg',
+        image: 'images/providers/vendor-vmware_cloud.svg',
       },
     ];
 
@@ -52,7 +52,7 @@
     };
 
     profileState.getProviderTypeImage = function(provider) {
-      var providerImage = 'assets/images/providers/vendor-unknown.svg';
+      var providerImage = 'images/providers/vendor-unknown.svg';
 
       if (provider) {
         var info = profileState.providersInfo.find(function(providerInfo) {
