@@ -3,32 +3,25 @@
   'use strict';
 
   angular.module('app.components')
-      .directive('dialogsList', function() {
-        return {
-          restrict: 'AE',
-          templateUrl: "app/components/dialogs/dialogs-list.html",
-          scope: {
-            dialogs: "=",
-          },
-          controller: DialogListController,
-          controllerAs: 'vm',
-          bindToController: true,
-        };
-      });
+    .component('dialogsList', {
+      templateUrl: "app/components/dialogs/dialogs-list.html",
+      bindings: {
+        dialogs: "=",
+      },
+      controller: DialogListController,
+      controllerAs: 'vm',
+    });
 
   /** @ngInject */
-  function DialogListController($state, DialogsState, EventNotifications, $rootScope, $filter, Language, ListView) {
+  function DialogListController(DialogsState, $filter, Language, ListView) {
     var vm = this;
 
     vm.title = __('Dialogs List');
-
     vm.dialogList = angular.copy(vm.dialogs);
-
     vm.listConfig = {
       selectItems: false,
       showSelectBox: false,
     };
-
     vm.toolbarConfig = {
       filterConfig: {
         fields: [
@@ -56,7 +49,7 @@
         currentField: DialogsState.getSort().currentField,
       },
       actionsConfig: {
-        primaryActions: [ ],
+        primaryActions: [],
       },
     };
 
@@ -109,7 +102,7 @@
       vm.toolbarConfig.filterConfig.resultsCount = vm.dialogList.length;
     }
 
-    var matchesFilter = function (item, filter) {
+    var matchesFilter = function(item, filter) {
       if (filter.id === 'label') {
         return item.label.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'updated_at') {

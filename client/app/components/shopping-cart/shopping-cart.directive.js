@@ -2,15 +2,14 @@
   'use strict';
 
   angular.module('app.components')
-    .component('shoppingCart',
-      {
-        controller: ComponentController,
-        controllerAs: 'vm',
-        bindings: {
-          modalInstance: '<?',
-        },
-        templateUrl: 'app/components/shopping-cart/shopping-cart.html',
-      });
+    .component('shoppingCart', {
+      controller: ComponentController,
+      controllerAs: 'vm',
+      bindings: {
+        modalInstance: '<?',
+      },
+      templateUrl: 'app/components/shopping-cart/shopping-cart.html',
+    });
 
   /** @ngInject */
   function ComponentController(ShoppingCart, EventNotifications) {
@@ -22,7 +21,6 @@
     vm.close = close;
     vm.clear = ShoppingCart.reset;
     vm.remove = ShoppingCart.removeItem;
-
     vm.state = null;
 
     function refresh() {

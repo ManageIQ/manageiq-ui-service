@@ -1,4 +1,4 @@
-describe('app.components.taggingWidget directive', function() {
+describe('app.components.taggingWidget component', function() {
   var $scope;
   var $compile;
   var element;

@@ -2,8 +2,7 @@
   'use strict';
 
   angular.module('app.components')
-    .component('ssCard',
-      {
+    .component('ssCard', {
       controller: ComponentController,
       controllerAs: 'vm',
       bindings: {
