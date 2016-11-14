@@ -3,24 +3,20 @@
   'use strict';
 
   angular.module('app.components')
-    .directive('profileEditor', function() {
-      return {
-        restrict: 'AE',
-        templateUrl: 'app/components/profiles/profile-editor.html',
-        scope: {
-          profile: "=",
-          providers: "=",
-          cloudNetworks: "=",
-          stateName: "@",
-        },
-        controller: ProfileEditorController,
-        controllerAs: 'vm',
-        bindToController: true,
-      };
+    .component('profileEditor',  {
+      templateUrl: 'app/components/profiles/profile-editor.html',
+      bindings: {
+        profile: "=",
+        providers: "=",
+        cloudNetworks: "=",
+        stateName: "@",
+      },
+      controller: ComponentController,
+      controllerAs: 'vm',
     });
 
   /** @ngInject */
-  function ProfileEditorController(ProfilesState, $scope, $state, lodash, SaveProfileModal) {
+  function ComponentController(ProfilesState, $scope, $state, lodash, SaveProfileModal) {
     var vm = this;
     var listState = 'administration.profiles';
     var detailsState = listState + '.details';

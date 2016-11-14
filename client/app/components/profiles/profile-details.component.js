@@ -3,21 +3,17 @@
   'use strict';
 
   angular.module('app.components')
-    .directive('profileDetails', function() {
-      return {
-        restrict: 'AE',
-        templateUrl: 'app/components/profiles/profile-details.html',
-        scope: {
-          profile: "=",
-        },
-        controller: ProfileDetailsController,
-        controllerAs: 'vm',
-        bindToController: true,
-      };
+    .component('profileDetails', {
+      templateUrl: 'app/components/profiles/profile-details.html',
+      bindings: {
+        profile: "=",
+      },
+      controller: ComponentController,
+      controllerAs: 'vm',
     });
 
   /** @ngInject */
-  function ProfileDetailsController(ProfilesState, $state, sprintf) {
+  function ComponentController(ProfilesState, $state, sprintf) {
     var vm = this;
 
     function setTitle() {

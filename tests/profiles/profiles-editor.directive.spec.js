@@ -3,25 +3,25 @@ describe('app.components.ProfileEditorDirective', function() {
   var $compile;
   var element;
 
-  beforeEach(function () {
+  beforeEach(function() {
     module('app.services', 'app.config', 'app.states', 'app.components', 'gettext');
     bard.inject('$state', 'Session', '$httpBackend', 'ProfilesState', 'SaveProfileModal', '$timeout');
   });
 
-  beforeEach(inject(function (_$compile_, _$rootScope_, _$document_) {
+  beforeEach(inject(function(_$compile_, _$rootScope_, _$document_) {
     $compile = _$compile_;
     $scope = _$rootScope_;
     $document = _$document_
   }));
 
-  var compileHTML = function (markup, scope) {
+  var compileHTML = function(markup, scope) {
     element = angular.element(markup);
     $compile(element)(scope);
 
     scope.$digest();
   };
 
-  beforeEach(function () {
+  beforeEach(function() {
     Session.create({
       auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
     });
@@ -81,7 +81,7 @@ describe('app.components.ProfileEditorDirective', function() {
           {
             id: '3',
             name: 'Test Key Pair 3',
-          },       ],
+          },],
         availability_zones: [
           {
             id: '1',
@@ -141,7 +141,7 @@ describe('app.components.ProfileEditorDirective', function() {
           {
             id: '3',
             name: 'Test Key Pair 3',
-          },       ],
+          },],
         availability_zones: [
           {
             id: '1',
@@ -201,7 +201,7 @@ describe('app.components.ProfileEditorDirective', function() {
           {
             id: '3',
             name: 'Test Key Pair 3',
-          },       ],
+          },],
         availability_zones: [
           {
             id: '1',
@@ -346,14 +346,14 @@ describe('app.components.ProfileEditorDirective', function() {
       }
     ];
 
-    var htmlTmp = '<div profile-editor profile="profile" providers="providers" cloud-networks="cloudNetworks">';
+    var htmlTmp = '<profile-editor profile="profile" providers="providers" cloud-networks="cloudNetworks">';
     compileHTML(htmlTmp, $scope);
     $scope.$digest();
   });
 
   describe('profileEditor', function() {
 
-    it('should have the correct initial values', function () {
+    it('should have the correct initial values', function() {
       var values = element.find('.ss-form .form-group .form-control');
       expect(values.length).to.eq(2);
 
@@ -373,7 +373,7 @@ describe('app.components.ProfileEditorDirective', function() {
 
     });
 
-    it('should have the correct option values', function () {
+    it('should have the correct option values', function() {
       var options = element.find('.ss-form .form-group .bootstrap-select .dropdown-menu.inner');
       expect(options.length).to.eq(8);
 
@@ -403,7 +403,7 @@ describe('app.components.ProfileEditorDirective', function() {
       validateNameChoices(options[7], $scope.cloudNetworks[0].security_groups);
     });
 
-    it('should disable the save button when there are no changes, enable when changes are made', function () {
+    it('should disable the save button when there are no changes, enable when changes are made', function() {
       var saveButton = element.find('.ss-details-panel .ss-details-section .btn-primary');
       expect(saveButton.length).to.eq(1);
 
@@ -423,7 +423,7 @@ describe('app.components.ProfileEditorDirective', function() {
       expect(saveButton.attr('disabled')).to.eq(undefined);
     });
 
-    it('should go back to details when cancelled', function () {
+    it('should go back to details when cancelled', function() {
       var stateGoSpy = sinon.spy($state, 'go');
 
       var cancelButton = element.find('.ss-details-panel .ss-details-section .btn-default');
@@ -432,10 +432,10 @@ describe('app.components.ProfileEditorDirective', function() {
       eventFire(angular.element(cancelButton[0]), 'click');
       $scope.$digest();
 
-      expect(stateGoSpy).to.have.been.calledWith('administration.profiles.details', { profileId: "1" });
+      expect(stateGoSpy).to.have.been.calledWith('administration.profiles.details', {profileId: "1"});
     });
 
-    it('should ask for confirmation when cancelling after edits are made', function () {
+    it('should ask for confirmation when cancelling after edits are made', function() {
       $state.go('administration.profiles.editor');
       var stateGoSpy = sinon.spy($state, 'go');
       var saveModalSpy = sinon.stub(SaveProfileModal, 'showModal').returns(Promise.resolve());
@@ -458,7 +458,7 @@ describe('app.components.ProfileEditorDirective', function() {
       eventFire(angular.element(cancelButton[0]), 'click');
       $scope.$digest();
 
-      expect(stateGoSpy).to.have.been.calledWith('administration.profiles.details', { profileId: "1" });
+      expect(stateGoSpy).to.have.been.calledWith('administration.profiles.details', {profileId: "1"});
       expect(saveModalSpy).to.have.been.called;
     });
 

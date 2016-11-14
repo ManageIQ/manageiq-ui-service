@@ -3,22 +3,19 @@
   'use strict';
 
   angular.module('app.components')
-    .directive('profilesList', function() {
-      return {
-        restrict: 'AE',
-        templateUrl: "app/components/profiles/profiles-list.html",
-        scope: {
-          arbitrationProfiles: "=",
-          refreshFn: '=',
-        },
-        controller: ProfilesListController,
-        controllerAs: 'vm',
-        bindToController: true,
-      };
+    .component('profilesList', {
+      templateUrl: "app/components/profiles/profiles-list.html",
+      bindings: {
+        arbitrationProfiles: "=",
+        refreshFn: '=',
+      },
+      controller: ComponentController,
+      controllerAs: 'vm',
+      bindToController: true,
     });
 
   /** @ngInject */
-  function ProfilesListController(ProfilesState, $state, $scope, lodash) {
+  function ComponentController(ProfilesState, $state, $scope, lodash) {
     var vm = this;
     vm.title = __('Profiles');
     vm.arbitrationProfilesList = [];
