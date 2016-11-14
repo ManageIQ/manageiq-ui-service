@@ -44,7 +44,10 @@
                     confirmation-show-cancel="true" translate>Remove Service
               </button>
               <div class="btn-group" dropdown>
-                <button id="single-button" type="button" class="btn btn-default" dropdown-toggle tooltip="{{'Inactivate the service'|translate}}" tooltip-placement="bottom" ng-show="vm.showRetireService">
+                <button id="single-button" type="button" class="btn btn-default"
+                  dropdown-toggle tooltip="{{'Inactivate the service'|translate}}"
+                  tooltip-placement="bottom"
+                  ng-show="vm.showRetireService || vm.showScheduleRetirementService">
                   {{'Retire'|translate}} <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
@@ -55,7 +58,9 @@
                       confirmation-ok-text="{{'Yes, Retire Service Now'|translate}}"
                       confirmation-on-ok="vm.retireServiceNow()"
                       confirmation-ok-style="primary"
-                      confirmation-show-cancel="true" translate>Retire Now</a></li>
+                      confirmation-show-cancel="true"
+                      ng-show="vm.showRetireService"
+                      translate>Retire Now</a></li>
                   <li role="menuitem"><a href="#" ng-click="vm.retireServiceLater()" ng-show="vm.showScheduleRetirementService" translate>Schedule Retirement</a></li>
                 </ul>
               </div>
