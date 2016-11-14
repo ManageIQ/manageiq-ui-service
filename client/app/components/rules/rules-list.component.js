@@ -3,24 +3,19 @@
   'use strict';
 
   angular.module('app.components')
-    .directive('rulesList', function() {
-      return {
-        restrict: 'AE',
-        templateUrl: "app/components/rules/rules-list.html",
-        scope: {
-          arbitrationRules: "=",
-          fields: "=",
-          profiles: "=",
-        },
-        controller: RulesListController,
-        controllerAs: 'vm',
-        bindToController: true,
-      };
+    .component('rulesList', {
+      templateUrl: "app/components/rules/rules-list.html",
+      bindings: {
+        arbitrationRules: "=",
+        fields: "=",
+        profiles: "=",
+      },
+      controller: ComponentController,
+      controllerAs: 'vm',
     });
 
   /** @ngInject */
-  function RulesListController(RulesState, SaveRuleModal, $state, lodash, $timeout, $log, $scope) {
-    /* jshint validthis: true */
+  function ComponentController(RulesState, SaveRuleModal, $state, lodash, $timeout, $log, $scope) {
     var vm = this;
     vm.operators = [
       {
