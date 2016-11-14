@@ -16,5 +16,4 @@
   /** @ngInject */
   function ComponentController() {
   }
-
 })();

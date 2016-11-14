@@ -8,7 +8,7 @@ cache:
 before_install:
 - npm install -g yarn gulp
 install:
-- yarn install --force
+- yarn install
 - gulp build
 after_script:
 - codeclimate-test-reporter < reports/coverage/report-lcov/lcov.info
