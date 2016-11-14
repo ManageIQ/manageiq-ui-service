@@ -20,3 +20,16 @@ When adding a new dependency for use in the SUI there are three locations to pay
 3. [config.js](gulp/config.js) - identifies dependencies required for running tests, the function titled `function getKarmaOptions()` manages  `var options` which must identically mirror any action taken step two.
    For example, if you were to add `<script src="/node_modules/jquery/dist/jquery.js"></script>` as the first dependency in [javascripts.html](client/partials/javascripts.html), you would add `'./node_modules/jquery/dist/jquery.js',` in [config.js](gulp/config.js)
    in an identical position (relative but identical).
+   
+## Adding Components
+In efforts to build towards the future [Angular 2.0](https://angular.io/docs/ts/latest/guide/style-guide.html), 
+employing [components](https://docs.angularjs.org/guide/component) is now preferred over [directives](https://docs.angularjs.org/guide/directive).
+Much of the existing code base has already been refactored to take advantage of components, these elements are denoted:
+with the `.component.js` postfix. Find below a few examples for the benefit of extensibility:
+* [service catalog card](../client/app/components/ss-card/ss-card.component.js)
+* [cart](../client/app/components/shopping-cart/shopping-cart.component.js)
+* [profiles list](../client/app/components/profiles/profiles-list.component.js)
+
+In addition, a few choice supporting resources include:
+* [Understanding Components](https://docs.angularjs.org/guide/component)
+* [Understanding Lifestyle Hooks](https://toddmotto.com/angular-1-5-lifecycle-hooks)
