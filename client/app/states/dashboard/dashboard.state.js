@@ -22,9 +22,7 @@
           requireUser: true,
         },
         resolve: {
-          definedServiceIdsServices: resolveServicesWithDefinedServiceIds,
-          retiredServices: resolveRetiredServices,
-          expiringServices: resolveExpiringServices,
+          allServices: resolveAllServices,
           allRequests: resolveAllRequests,
         },
       },
@@ -93,49 +91,23 @@
   }
 
   /** @ngInject */
-  function resolveExpiringServices(CollectionsApi, $filter, $state) {
-    if (!$state.navFeatures.services.show) {
-      return undefined;
-    }
-    var currentDate = new Date();
-    var date1 = 'retires_on>=' + $filter('date')(currentDate, 'yyyy-MM-dd');
-
-    var days30 = currentDate.setDate(currentDate.getDate() + 30);
-    var date2 = 'retires_on<=' + $filter('date')(days30, 'yyyy-MM-dd');
-    var options = {expand: false, filter: ['service_id=nil', date1, date2]};
-
-    return CollectionsApi.query('services', options);
-  }
-
-  /** @ngInject */
-  function resolveRetiredServices(CollectionsApi, $state) {
-    if (!$state.navFeatures.services.show) {
-      return undefined;
-    }
-    var options = {expand: false, filter: ['service_id=nil', 'retired=true'] };
-
-    return CollectionsApi.query('services', options);
-  }
-
-  /** @ngInject */
-  function resolveServicesWithDefinedServiceIds(CollectionsApi, $state) {
+  function resolveAllServices(CollectionsApi, $state) {
     if (!$state.navFeatures.services.show) {
       return undefined;
     }
 
     var options = {
       expand: 'resources',
-      filter: ['service_id=nil'],
-      attributes: ['chargeback_report'],
+      attributes: ['chargeback_report', 'retired', 'retires_on'],
     };
 
     return CollectionsApi.query('services', options);
   }
 
   /** @ngInject */
-  function StateController($state, RequestsState, ServicesState, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback) {
+  function StateController($state, RequestsState, ServicesState, allServices, allRequests, lodash, $q, Chargeback) {
     var vm = this;
-    if (angular.isDefined(definedServiceIdsServices)) {
+    if (angular.isDefined(allServices)) {
       vm.servicesCount = {};
       vm.servicesFeature = false;
       vm.servicesCount.total = 0;
@@ -143,13 +115,13 @@
       vm.servicesCount.retired = 0;
       vm.servicesCount.soon = 0;
 
-      if (definedServiceIdsServices.subcount > 0) {
-        vm.servicesCount.total = definedServiceIdsServices.subcount;
-        vm.servicesCount.retired = retiredServices.subcount;
-        vm.servicesCount.soon = expiringServices.subcount;
+      if (allServices.subcount > 0) {
+        vm.servicesCount.total = allServices.subcount;
+        vm.servicesCount.retired = countServicesRetired();
+        vm.servicesCount.soon = countServicesRetiringSoon();
         vm.servicesCount.current = vm.servicesCount.total - vm.servicesCount.retired - vm.servicesCount.soon;
 
-        var services = definedServiceIdsServices.resources;
+        var services = allServices.resources;
         services.forEach(Chargeback.processReports);
 
         vm.chargeback = {
@@ -193,6 +165,29 @@
         vm.requestsCount[type] = count;
         vm.requestsCount.total += count;
       });
+    }
+
+    // Private
+
+    function countServicesRetired() {
+      return allServices.resources.reduce(function(total, service) {
+        return service.retired ? total += 1 : total;
+      }, 0);
+    }
+
+    function countServicesRetiringSoon() {
+      var today = new Date();
+      var after30days = new Date().setDate(today.getDate() + 30);
+
+      return allServices.resources.reduce(function(total, service) {
+        var retirementDate = new Date(service.retires_on);
+
+        if (retirementDate >= today && retirementDate <= after30days) {
+          return total += 1;
+        } else {
+          return total;
+        }
+      }, 0);
     }
   }
 })();
