@@ -116,18 +116,40 @@ describe('Dashboard', function() {
       adjustRelativeCost: function(){}
     };
 
+    var PowerOperations = {
+      powerOperationOnState: function (item) {
+        return item.powerState === "on" && item.powerStatus === "start_complete";
+      },
+      powerOperationUnknownState: function (item) {
+        return item.powerState === "" && item.powerStatus === "";
+      },
+      powerOperationInProgressState: function (item) {
+        return (item.powerState !== "timeout" && item.powerStatus === "starting")
+          || (item.powerState !== "timeout" && item.powerStatus === "stopping")
+          || (item.powerState !== "timeout" && item.powerStatus === "suspending");
+      },
+      powerOperationOffState: function (item) {
+        return item.powerState === "off" && item.powerStatus === "stop_complete";
+      },
+      powerOperationSuspendState: function (item) {
+        return item.powerState === "off" && item.powerStatus === "suspend_complete";
+      },
+      powerOperationTimeoutState: function (item) {
+        return item.powerState === "timeout";
+      },
+    };
+
     beforeEach(function() {
       bard.inject('$controller', '$log', '$state', '$rootScope');
 
-      controller = $controller($state.get('services.list').controller, {services: services, Chargeback: Chargeback});
+      controller = $controller($state.get('services.list').controller,
+        {services: services,
+         Chargeback: Chargeback,
+         PowerOperations: PowerOperations});
     });
 
     it('sets the powerState value on the Service', function() {
-      expect(serviceItem.powerState).to.eq('on');
-    });
-
-    it('sets the powerStatus value on the Service', function() {
-      expect(serviceItem.powerStatus).to.eq('start_complete');
+      expect(controller.powerOperationOnState(serviceItem)).to.eq(true);
     });
 
     it('does not hide the kebab menu when "Start" operation leads to an "ON" power state', function() {
