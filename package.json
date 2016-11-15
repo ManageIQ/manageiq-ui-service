@@ -127,7 +127,7 @@
     "request": "^2.75.0",
     "sinon": "^1.15.4",
     "sinon-chai": "^2.7.0",
-    "spice-html5-bower": "himdel/spice-html5-bower#1.6.2",
+    "spice-html5-bower": "~1.6.2",
     "sprintf-js": "~1.0.3",
     "toastr": "^2.1.2",
     "yargs": "^5.0.0"
