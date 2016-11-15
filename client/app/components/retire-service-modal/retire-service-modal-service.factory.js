@@ -8,6 +8,7 @@
   function RetireServiceFactory($modal) {
     var modalService = {
       showModal: showModal,
+      FactoryController: RetireServiceModalController,
     };
 
     return modalService;
@@ -33,7 +34,7 @@
   }
 
   /** @ngInject */
-  function RetireServiceModalController(serviceDetails, $state, $modalInstance, CollectionsApi, EventNotifications) {
+  function RetireServiceModalController($scope, serviceDetails, $state, $modalInstance, CollectionsApi, EventNotifications, moment) {
     var vm = this;
 
     vm.service = serviceDetails;
@@ -62,10 +63,18 @@
       { value: 21, label: __('3 Weeks') },
       { value: 28, label: __('4 Weeks') },
     ];
+    vm.visibleOptions = [];
 
     activate();
 
     function activate() {
+      $scope.$watch('vm.modalData.resource.date', function(date) {
+        var daysBetween = moment(date).diff(moment(), 'days');
+
+        vm.visibleOptions = vm.warningOptions.filter(function(option) {
+          return option.value <= daysBetween;
+        });
+      });
     }
 
     function retireService() {
