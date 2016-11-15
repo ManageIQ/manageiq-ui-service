@@ -14,10 +14,9 @@
       'fa fa-dashboard'
     );
     var services = createItem(
-      N_('My Services'),
+      N_('Services'),
       'services',
-      'fa fa-file-o',
-      N_('The total number of services that you have ordered, both active and retired')
+      'fa fa-file-o'
     );
     var requests = createItem(
       N_('My Requests'),
@@ -40,6 +39,15 @@
       'administration',
       'fa fa-cog'
     );
+
+    services.secondary = {
+      explorer: createItem(
+        N_('Service Explorer'),
+        'services.explorer',
+        undefined,
+        N_('The total number of services that you have ordered, both active and retired')
+      ),
+    };
 
     requests.secondary = {
       requests: createItem(
@@ -160,7 +168,7 @@
       };
 
       CollectionsApi.query('services', options)
-        .then(lodash.partial(updateCount, 'services'));
+        .then(lodash.partial(updateSecondaryCount, 'services', 'explorer'));
     }
 
     function fetchServiceTemplates() {

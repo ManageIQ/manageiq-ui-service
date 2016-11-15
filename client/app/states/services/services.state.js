@@ -14,7 +14,7 @@
       'services': {
         parent: 'application',
         url: '/services',
-        redirectTo: 'services.list',
+        redirectTo: 'services.explorer',
         template: '<ui-view></ui-view>',
       },
     };
