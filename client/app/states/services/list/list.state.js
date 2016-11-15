@@ -335,7 +335,7 @@
       if (filterValue === 'retired' && angular.isDefined(item.retires_on)) {
         return angular.isDefined(item.retired) && item.retired === true;
       } else if (filterValue === 'current') {
-        return angular.isUndefined(item.retired) || item.retired === false;
+        return angular.isUndefined(item.retired);
       } else if (filterValue === 'soon' && angular.isDefined(item.retires_on)) {
         return new Date(item.retires_on) >= currentDate
           && new Date(item.retires_on) <= currentDate.setDate(currentDate.getDate() + 30);

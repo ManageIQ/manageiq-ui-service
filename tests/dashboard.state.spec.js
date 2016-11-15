@@ -33,6 +33,7 @@ describe('Dashboard', function() {
 
   describe('controller', function() {
     var controller;
+    var state;
     var resolveServicesWithDefinedServiceIds = {};
     var retiredServices = {};
     var resolveNonRetiredServices = {};
@@ -40,7 +41,7 @@ describe('Dashboard', function() {
     var resolveAllRequests = [];
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope');
+      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi');
 
       var controllerResolves = {
         definedServiceIdsServices: resolveServicesWithDefinedServiceIds,
@@ -50,11 +51,34 @@ describe('Dashboard', function() {
         allRequests: resolveAllRequests
       };
 
-      controller = $controller($state.get('dashboard').controller, controllerResolves);
+      dashboardState = $state.get('dashboard');
+
+      state = $state;
+      state.navFeatures = {services: {show: true}};
+      controller = $controller(dashboardState.controller, controllerResolves);
     });
 
     it('should be created successfully', function() {
       expect(controller).to.be.defined;
+    });
+
+    describe('resolveExpiringServices', function() {
+      it('makes a query request using the CollectionApi', function() {
+        var clock = sinon.useFakeTimers(new Date('2016-01-01').getTime());
+        collectionsApiSpy = sinon.stub(CollectionsApi);
+        dashboardState.resolve.expiringServices(collectionsApiSpy, state);
+
+        expect(collectionsApiSpy.query).to.have.been.calledWith('services', {
+          expand: false,
+          filter: [
+            'retired=false',
+            'retires_on>=2016-01-01T00:00:00.000Z',
+            'retires_on<=2016-01-31T00:00:00.000Z'
+          ]
+        });
+
+        clock.restore();
+      });
     });
   });
 });

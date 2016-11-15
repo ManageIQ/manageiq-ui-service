@@ -93,16 +93,16 @@
   }
 
   /** @ngInject */
-  function resolveExpiringServices(CollectionsApi, $filter, $state) {
+  function resolveExpiringServices(CollectionsApi, $state) {
     if (!$state.navFeatures.services.show) {
       return undefined;
     }
     var currentDate = new Date();
-    var date1 = 'retires_on>=' + $filter('date')(currentDate, 'yyyy-MM-dd');
+    var date1 = 'retires_on>=' + currentDate.toISOString();
 
     var days30 = currentDate.setDate(currentDate.getDate() + 30);
-    var date2 = 'retires_on<=' + $filter('date')(days30, 'yyyy-MM-dd');
-    var options = {expand: false, filter: ['service_id=nil', date1, date2]};
+    var date2 = 'retires_on<=' + new Date(days30).toISOString();
+    var options = {expand: false, filter: ['retired=false', date1, date2]};
 
     return CollectionsApi.query('services', options);
   }
