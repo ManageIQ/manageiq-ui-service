@@ -52,6 +52,7 @@
       autoclose: true,
       todayBtn: 'linked',
       todayHighlight: true,
+      startDate: new Date(),
     };
 
     vm.warningOptions = [
