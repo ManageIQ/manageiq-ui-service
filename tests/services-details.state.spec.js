@@ -62,6 +62,8 @@ describe('Dashboard', function() {
     var controller;
 
     var service = {
+      id: 123,
+      name: 'foo',
       options: {
         power_state: "timeout",
         power_status: "starting"
@@ -72,13 +74,39 @@ describe('Dashboard', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$state');
+      bard.inject('$controller', '$state', 'CollectionsApi', 'EventNotifications');
 
       controller = $controller($state.get('services.details').controller, {service: service, $state: state});
     });
 
     it('should be created successfully', function() {
       expect(controller).to.be.defined;
+    });
+
+    describe('removeService', function() {
+      it('DELETEs to the services API', function() {
+        collectionsApiSpy = sinon.stub(CollectionsApi, 'delete').returns(Promise.resolve());
+
+        controller.removeService();
+
+        expect(collectionsApiSpy).to.have.been.calledWith('services', 123);
+      });
+
+      it('sends a success message to the notification center', function(done) {
+        notificationSpy = sinon.stub(EventNotifications, 'success');
+
+        controller.removeService();
+        done();
+
+        expect(notificationSpy).to.have.been.calledWith('foo was removed.');
+      });
+
+      it('goes to the service list state', function(done) {
+        controller.removeService();
+        done();
+
+        expect($state.is('services.list')).to.be.true;
+      });
     });
   });
 

@@ -121,8 +121,7 @@
     }
 
     function removeService() {
-      var removeAction = {action: 'retire'};
-      CollectionsApi.post('services', vm.service.id, {}, removeAction).then(removeSuccess, removeFailure);
+      CollectionsApi.delete('services', vm.service.id).then(removeSuccess, removeFailure);
 
       function removeSuccess() {
         EventNotifications.success(vm.service.name + __(' was removed.'));
