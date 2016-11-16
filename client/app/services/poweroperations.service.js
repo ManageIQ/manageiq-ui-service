@@ -84,11 +84,11 @@
 
       function actionSuccess() {
         if (powerAction === 'start') {
-          EventNotifications.success(__(sprintf("%s was started", item.name)));
+          EventNotifications.success(sprintf(__("%s was started"), item.name));
         } else if (powerAction === 'stop') {
-          EventNotifications.success(__(sprintf("%s was stopped", item.name)));
+          EventNotifications.success(sprintf(__("%s was stopped"), item.name));
         } else if (powerAction === 'suspend') {
-          EventNotifications.success(__(sprintf("%s was suspended", item.name)));
+          EventNotifications.success(sprintf(__("%s was suspended"), item.name));
         }
       }
 
