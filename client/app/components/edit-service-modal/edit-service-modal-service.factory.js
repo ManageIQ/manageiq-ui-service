@@ -33,37 +33,22 @@
   }
 
   /** @ngInject */
-  function EditServiceModalController(serviceDetails, $state, $modalInstance, CollectionsApi, EventNotifications) {
+  function EditServiceModalController(serviceDetails, $controller, $modalInstance, sprintf) {
     var vm = this;
-
-    vm.service = serviceDetails;
-    vm.saveServiceDetails = saveServiceDetails;
+    var base = $controller('BaseModalController', {
+      $modalInstance: $modalInstance,
+    });
+    angular.extend(vm, base);
 
     vm.modalData = {
-      'action': 'edit',
-      'resource': {
-        'name': vm.service.name || '',
-        'description': vm.service.description || '',
-      },
+      id: serviceDetails.id,
+      name: serviceDetails.name,
+      description: serviceDetails.description,
     };
 
-    activate();
-
-    function activate() {
-    }
-
-    function saveServiceDetails() {
-      CollectionsApi.post('services', vm.service.id, {}, vm.modalData).then(saveSuccess, saveFailure);
-
-      function saveSuccess() {
-        $modalInstance.close();
-        EventNotifications.success(vm.service.name + __(' was edited.'));
-        $state.go($state.current, {}, {reload: true});
-      }
-
-      function saveFailure() {
-        EventNotifications.error(__('There was an error editing this service.'));
-      }
-    }
+    vm.action = 'edit';
+    vm.collection = 'services';
+    vm.onSuccessMessage = sprintf(__("%s was edited."), serviceDetails.name);
+    vm.onFailureMessage = __('There was an error editing this service.');
   }
 })();
