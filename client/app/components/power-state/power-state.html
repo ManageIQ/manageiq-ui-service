@@ -1,0 +1,32 @@
+<span class="no-wrap power-state">
+<strong translate>Power State</strong>&nbsp;
+<i class="fa fa-circle green fa-fw"
+   ng-if="vm.item.powerState === 'on' && vm.item.powerStatus === 'start_complete'"
+   tooltip="{{'Power State: On'|translate}}" tooltip-placement="bottom"></i>
+<i class="fa fa-circle red fa-fw"
+   ng-if="vm.item.powerState === 'off' && vm.item.powerStatus === 'stop_complete'"
+   tooltip="{{'Power State: Off'|translate}}" tooltip-placement="bottom"></i>
+<i class="fa fa-circle orange fa-fw"
+   ng-if="vm.item.powerState === 'off' && vm.item.powerStatus === 'suspend_complete'"
+   tooltip="{{'Power State: Suspended'|translate}}" tooltip-placement="bottom"></i>
+<i class="fa fa-spinner fa-pulse green fa-fw"
+   ng-if="vm.item.powerState !== 'timeout' && vm.item.powerStatus === 'starting'"
+   tooltip="{{'Power State: Starting...'|translate}}" tooltip-placement="bottom"></i>
+<i class="fa fa-spinner fa-pulse red fa-fw"
+   ng-if="vm.item.powerState !== 'timeout' && vm.item.powerStatus === 'stopping'"
+   tooltip="{{'Power State: Stopping...'|translate}}" tooltip-placement="bottom"></i>
+<i class="fa fa-spinner fa-pulse orange fa-fw"
+   ng-if="vm.item.powerState !== 'timeout' && vm.item.powerStatus === 'suspending'"
+   tooltip="{{'Power State: Suspending...'|translate}}" tooltip-placement="bottom"></i>
+<i class="fa fa-question-circle blue fa-fw" ng-if="vm.item.powerState === '' && vm.item.powerStatus === ''"
+   tooltip="{{'Power State: Unknown'|translate}}" tooltip-placement="bottom"></i>
+<i class="fa fa-adjust green fa-fw"
+   ng-if="vm.item.powerState === 'timeout' && vm.item.powerStatus === 'starting'"
+   tooltip="{{'Power State: Start operation timed out'|translate}}" tooltip-placement="bottom"></i>
+<i class="fa fa-adjust red fa-fw"
+   ng-if="vm.item.powerState === 'timeout' && vm.item.powerStatus === 'stopping'"
+   tooltip="{{'Power State: Stop operation timed out'|translate}}" tooltip-placement="bottom"></i>
+<i class="fa fa-adjust orange fa-fw"
+   ng-if="vm.item.powerState === 'timeout' && vm.item.powerStatus === 'suspending'"
+   tooltip="{{'Power State: Suspend operation timed out'|translate}}" tooltip-placement="bottom"></i>
+</span>
