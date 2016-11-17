@@ -27,8 +27,8 @@
   /** @ngInject */
   function resolveServices(CollectionsApi) {
     var options = {
-      expand: false,
-      filter: ['service_id=nil'],
+      hide: 'resources',
+      filter: ['ancestry=null'],
     };
 
     return CollectionsApi.query('services', options);

@@ -109,6 +109,10 @@
         params.push('offset=' + encodeURIComponent(options.offset));
       }
 
+      if (options.hide) {
+        params.push('hide=' + encodeURIComponent(options.hide));
+      }
+
       if (options.sort_by) {
         params.push('sort_by=' + encodeURIComponent(options.sort_by));
       }

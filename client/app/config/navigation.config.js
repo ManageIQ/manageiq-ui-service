@@ -163,7 +163,8 @@
     function fetchServices() {
       var options = {
         expand: false,
-        filter: ['service_id=nil'],
+        filter: ['ancestry=null'],
+        hide: 'resources',
         auto_refresh: true,
       };
 
