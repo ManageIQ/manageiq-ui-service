@@ -35,8 +35,8 @@
   }
 
   /** @ngInject */
-  function StateController() {
+  function StateController(services) {
     var vm = this;
-
+    vm.services = services;
   }
 })();
