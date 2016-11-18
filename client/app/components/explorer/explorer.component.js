@@ -145,7 +145,6 @@
         ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
         ListView.createFilterField('retirement', __('Retirement Date'), __('Filter by Retirement Date'), 'select', retires),
         ListView.createFilterField('vms', __('Number of VMs'), __('Filter by VMs'), 'text'),
-        ListView.createFilterField('owner', __('Owner'), __('Filter by Owner'), 'text'),
         ListView.createFilterField('owner', __('Created'), __('Filter by Created On'), 'text'),
         ListView.createFilterField('chargeback_relative_cost', __('Relative Cost'), __('Filter by Relative Cost'), 'select', dollars),
       ];
@@ -156,7 +155,6 @@
         ListView.createSortField('name', __('Name'), 'alpha'),
         ListView.createSortField('retires', __('Retirement Date'), 'numeric'),
         ListView.createSortField('vms', __('Number of VMs'), 'numeric'),
-        ListView.createSortField('owner', __('Owner'), 'alpha'),
         ListView.createSortField('created', __('Created'), 'numeric'),
         ListView.createSortField('chargeback_relative_cost', __('Relative Cost'), 'alpha'),
       ];
@@ -218,19 +216,6 @@
         compValue = item1.name.localeCompare(item2.name);
       } else if (vm.headerConfig.sortConfig.currentField.id === 'vms') {
         compValue = item1.v_total_vms - item2.v_total_vms;
-      } else if (vm.headerConfig.sortConfig.currentField.id === 'owner') {
-        if (angular.isUndefined(item1.evm_owner)
-          && angular.isDefined(item2.evm_owner)) {
-          compValue = 1;
-        } else if (angular.isDefined(item1.evm_owner)
-          && angular.isUndefined(item2.evm_owner)) {
-          compValue = -1;
-        } else if (angular.isUndefined(item1.evm_owner)
-          && angular.isUndefined(item2.evm_owner)) {
-          compValue = 0;
-        } else {
-          compValue = item1.evm_owner.name.localeCompare(item2.evm_owner.name);
-        }
       } else if (vm.headerConfig.sortConfig.currentField.id === 'created') {
         compValue = new Date(item1.created_at) - new Date(item2.created_at);
       } else if (vm.headerConfig.sortConfig.currentField.id === 'retires') {
@@ -260,8 +245,6 @@
         return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'vms') {
         return String(item.v_total_vms).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else if (filter.id === 'owner' && angular.isDefined(item.evm_owner)) {
-        return item.evm_owner.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'retirement') {
         return checkRetirementDate(item, filter.value.toLowerCase());
       } else if (filter.id === 'created') {
