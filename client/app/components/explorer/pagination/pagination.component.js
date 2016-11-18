@@ -30,8 +30,8 @@
     };
 
     vm.$onChanges = function(changes) {
-      vm.limit = changes.limit.currentValue || vm.limit;
-      vm.count = changes.count.currentValue || vm.count;
+      angular.isDefined(changes.limit) ? vm.limit = changes.limit.currentValue : null;
+      angular.isDefined(changes.count) ? vm.count = changes.count.currentValue : null;
       vm.lastOffset = Math.floor(vm.count / vm.limit);
       establishBoundaries();
     };
