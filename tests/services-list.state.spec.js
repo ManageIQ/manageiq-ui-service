@@ -1,6 +1,6 @@
 describe('Dashboard', function() {
   beforeEach(function() {
-    module('app.states', 'app.config', 'gettext', bard.fakeToastr);
+    module('app.states', 'app.components', 'app.config', 'gettext', bard.fakeToastr);
     bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session');
   });
 
@@ -14,8 +14,8 @@ describe('Dashboard', function() {
     });
 
     it('should work with $state.go', function() {
-      $state.go('services.list');
-      expect($state.is('services.list'));
+      $state.go('services.explorer');
+      expect($state.is('services.explorer'));
     });
   });
 
@@ -29,9 +29,9 @@ describe('Dashboard', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope');
+      bard.inject('$componentController', '$log', '$state', '$rootScope');
 
-      controller = $controller($state.get('services.list').controller, {services: services});
+      controller = $componentController('serviceExplorer'), {services: services};
     });
 
     it('should be created successfully', function() {
@@ -47,13 +47,13 @@ describe('Dashboard', function() {
       subcount: 1,
       resources: [
         {options: {
-        power_state: "timeout",
-        power_status: "starting"
+        powerState: "timeout",
+        powerStatus: "starting"
       }}
       ]
     };
 
-    var serviceItem = services.resources[0];
+    var serviceItem = services.resources[0].options;
 
     var Chargeback = {
       processReports: function(){},
@@ -61,9 +61,9 @@ describe('Dashboard', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope');
+      bard.inject('$componentController', '$log', '$state', '$rootScope');
 
-      controller = $controller($state.get('services.list').controller, {services: services, Chargeback: Chargeback});
+      controller = $componentController('serviceExplorer', {services: services, Chargeback: Chargeback});
     });
 
     it('sets the powerState value on the Service', function() {
@@ -103,13 +103,13 @@ describe('Dashboard', function() {
       subcount: 1,
       resources: [
         {options: {
-          power_state: "on",
-          power_status: "start_complete"
+          powerState: "on",
+          powerStatus: "start_complete"
         }}
       ]
     };
 
-    var serviceItem = services.resources[0];
+    var serviceItem = services.resources[0].options;
 
     var Chargeback = {
       processReports: function(){},
@@ -140,9 +140,9 @@ describe('Dashboard', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope');
+      bard.inject('$componentController', '$log', '$state', '$rootScope');
 
-      controller = $controller($state.get('services.list').controller,
+      controller = $componentController('serviceExplorer',
         {services: services,
          Chargeback: Chargeback,
          PowerOperations: PowerOperations});

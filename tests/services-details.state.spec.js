@@ -105,7 +105,7 @@ describe('Dashboard', function() {
         controller.removeService();
         done();
 
-        expect($state.is('services.list')).to.be.true;
+        expect($state.is('services.explorer')).to.be.true;
       });
     });
   });

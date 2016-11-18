@@ -6,7 +6,7 @@
       controller: ComponentController,
       controllerAs: 'vm',
       bindings: {
-        ancestorServiceCount: '='
+        ancestorServiceCount: '=',
       },
       templateUrl: 'app/components/explorer/explorer.html',
     });
@@ -57,7 +57,7 @@
       selectionMatchProp: 'name',
       selectedItems: [],
       showSelectBox: true,
-      onClick: vm.viewService
+      onClick: vm.viewService,
     };
 
     vm.listConfig = {
@@ -83,13 +83,13 @@
     };
 
     var viewSelected = function(viewId) {
-      vm.viewType = viewId
+      vm.viewType = viewId;
     };
 
 
     var viewsConfig = {
       views: [pfViewUtils.getListView(), pfViewUtils.getCardView()],
-      onViewSelect: viewSelected
+      onViewSelect: viewSelected,
     };
 
     viewsConfig.currentView = viewsConfig.views[0].id;
@@ -105,8 +105,8 @@
     vm.footerConfig = {
       sortConfig: serviceSortConfig,
       actionsConfig: {
-        actionsInclude: true
-      }
+        actionsInclude: true,
+      },
     };
 
 
@@ -350,5 +350,4 @@
 
     Language.fixState(ServicesState, vm.footerConfig);
   }
-
 })();
