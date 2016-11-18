@@ -9,6 +9,5 @@
     'dndLists',
     'flowChart',
     'ngDragDrop',
-    'datatables',
   ]);
 })();

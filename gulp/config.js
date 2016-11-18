@@ -93,7 +93,6 @@ module.exports = (function() {
         './node_modules/angular/angular.js',
         './node_modules/angular-animate/angular-animate.js',
         './node_modules/angular-cookies/angular-cookies.js',
-        './node_modules/angular-datatables/dist/angular-datatables.min.js',
 
         './node_modules/angular-resource/angular-resource.js',
         './node_modules/angular-messages/angular-messages.js',
