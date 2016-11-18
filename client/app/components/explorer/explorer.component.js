@@ -99,11 +99,11 @@
     vm.headerConfig = {
       viewsConfig: viewsConfig,
       filterConfig: serviceFilterConfig,
-      sortConfig: serviceSortConfig,
     };
 
 
     vm.footerConfig = {
+      sortConfig: serviceSortConfig,
       actionsConfig: {
         actionsInclude: true
       }
@@ -209,16 +209,16 @@
       vm.servicesList.sort(compareFn);
 
       /* Keep track of the current sorting state */
-      ServicesState.setSort(sortId, vm.headerConfig.sortConfig.isAscending);
+      ServicesState.setSort(sortId, vm.footerConfig.sortConfig.isAscending);
     }
 
     function compareFn(item1, item2) {
       var compValue = 0;
-      if (vm.headerConfig.sortConfig.currentField.id === 'name') {
+      if (vm.footerConfig.sortConfig.currentField.id === 'name') {
         compValue = item1.name.localeCompare(item2.name);
-      } else if (vm.headerConfig.sortConfig.currentField.id === 'vms') {
+      } else if (vm.footerConfig.sortConfig.currentField.id === 'vms') {
         compValue = item1.v_total_vms - item2.v_total_vms;
-      } else if (vm.headerConfig.sortConfig.currentField.id === 'owner') {
+      } else if (vm.footerConfig.sortConfig.currentField.id === 'owner') {
         if (angular.isUndefined(item1.evm_owner)
           && angular.isDefined(item2.evm_owner)) {
           compValue = 1;
@@ -231,15 +231,15 @@
         } else {
           compValue = item1.evm_owner.name.localeCompare(item2.evm_owner.name);
         }
-      } else if (vm.headerConfig.sortConfig.currentField.id === 'created') {
+      } else if (vm.footerConfig.sortConfig.currentField.id === 'created') {
         compValue = new Date(item1.created_at) - new Date(item2.created_at);
-      } else if (vm.headerConfig.sortConfig.currentField.id === 'retires') {
+      } else if (vm.footerConfig.sortConfig.currentField.id === 'retires') {
         compValue = getRetirementDate(item1.retires_on) - getRetirementDate(item2.retires_on);
-      } else if (vm.headerConfig.sortConfig.currentField.id === 'chargeback_relative_cost') {
+      } else if (vm.footerConfig.sortConfig.currentField.id === 'chargeback_relative_cost') {
         compValue = item1.chargeback_relative_cost.length - item2.chargeback_relative_cost.length;
       }
 
-      if (!vm.headerConfig.sortConfig.isAscending) {
+      if (!vm.footerConfig.sortConfig.isAscending) {
         compValue = compValue * -1;
       }
 
@@ -348,7 +348,7 @@
       EventNotifications.error(__('There was an error loading the services.'));
     }
 
-    Language.fixState(ServicesState, vm.headerConfig);
+    Language.fixState(ServicesState, vm.footerConfig);
   }
 
 })();
