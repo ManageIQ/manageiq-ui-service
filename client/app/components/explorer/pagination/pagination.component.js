@@ -21,7 +21,7 @@
       angular.extend(vm, {
         leftBoundary: 0,
         rightBoundary: 0,
-        lastOffset: Math.floor(vm.count / vm.limit),
+        lastOffset: Math.floor(vm.count / vm.limit) * vm.limit,
         disabled: disabled,
         previous: previous,
         next: next,
@@ -32,7 +32,7 @@
     vm.$onChanges = function(changes) {
       angular.isDefined(changes.limit) ? vm.limit = changes.limit.currentValue : null;
       angular.isDefined(changes.count) ? vm.count = changes.count.currentValue : null;
-      vm.lastOffset = Math.floor(vm.count / vm.limit);
+      vm.lastOffset = Math.floor(vm.count / vm.limit) * vm.limit;
       establishBoundaries();
     };
 
@@ -55,7 +55,7 @@
         if (first) {
           vm.offset = 0;
         } else {
-          --vm.offset;
+          vm.offset = vm.offset - vm.limit;
         }
         establishBoundaries();
         vm.onUpdate({offset: vm.offset});
@@ -67,7 +67,7 @@
         if (last) {
           vm.offset = vm.lastOffset;
         } else {
-          ++vm.offset;
+          vm.offset = vm.offset + vm.limit;
         }
         establishBoundaries();
         vm.onUpdate({offset: vm.offset});
@@ -84,7 +84,7 @@
       if (vm.offset === 0) {
         vm.leftBoundary = 1;
       } else {
-        vm.leftBoundary = vm.limit * vm.offset;
+        vm.leftBoundary = vm.offset;
       }
     }
 
@@ -92,7 +92,7 @@
       if (vm.offset === 0) {
         vm.rightBoundary = vm.limit;
       } else {
-        vm.rightBoundary = vm.limit * vm.offset + vm.limit;
+        vm.rightBoundary = vm.offset + vm.limit;
         if (vm.rightBoundary > vm.count) {
           vm.rightBoundary = vm.count;
         }
