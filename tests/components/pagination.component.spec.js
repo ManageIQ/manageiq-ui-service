@@ -1,5 +1,5 @@
 describe('pagination component', function() {
-  beforeEach(module('app.components'));
+  beforeEach(module('app.components', 'gettext'));
 
   describe('controller', function() {
     var controller;
@@ -11,7 +11,7 @@ describe('pagination component', function() {
       ctrl = $componentController('explorerPagination', null, bindings);
 
     }));
-    
+
     it('is defined, accepts bindings limit/count/offset', function() {
       expect(ctrl).to.be.defined;
       expect(ctrl.limit).to.equal(5);
