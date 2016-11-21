@@ -4,7 +4,7 @@ describe('pagination component', function() {
   describe('controller', function() {
     var controller;
     var $componentController;
-    var bindings = {limit: 5, count: 11, offset: 0};
+    var bindings = {limit: 5, count: 11, offset: 0, onUpdate: angular.noop};
 
     beforeEach(inject(function(_$componentController_) {
       $componentController = _$componentController_;
@@ -17,6 +17,21 @@ describe('pagination component', function() {
       expect(ctrl.limit).to.equal(5);
       expect(ctrl.count).to.equal(11);
       expect(ctrl.offset).to.equal(0);
+    });
+
+    it('next increments offset by limit', function() {
+      ctrl.next();
+      expect(ctrl.offset).to.equal(5);
+      expect(ctrl.rightBoundary).to.equal(10);
+      expect(ctrl.leftBoundary).to.equal(5);
+    });
+
+    it('previous decrements offset by limit', function() {
+      ctrl.next();
+      ctrl.previous();
+      expect(ctrl.offset).to.equal(0);
+      expect(ctrl.rightBoundary).to.equal(5);
+      expect(ctrl.leftBoundary).to.equal(1);
     });
   });
 });
