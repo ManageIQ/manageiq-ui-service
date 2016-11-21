@@ -9,6 +9,10 @@
   display: inline-block
 
 .blueprint-designer-header
+  .actions
+    float: right
+    padding-right: 5px
+
   button
     margin-left: 10px
     vertical-align: top
@@ -41,22 +45,32 @@
   .section-toolbar
     padding: 15px
 
+    a
+      color: $color-mine-shaft-approx
+
     button
       margin-right: 6px
 
     .more-actions
       border-left: solid 2px $color-light-gray-approx
       margin-left: 6px
+      vertical-align: middle
 
     .blueprint-details-btn
       margin-left: 16px
+
+    .pficon
+      font-size: 20px
+      margin-left: 15px
+      margin-top: -4px
+      vertical-align: middle
 
     .show-hide-connectors
       display: block
       float: right
       font-size: 12px
       font-weight: 600
-      padding-right: 80px
+      padding-right: 5px
       padding-top: 2px
       vertical-align: middle
 
@@ -157,10 +171,8 @@
 
       .toolbox-footer
         margin-bottom: 10px
-        margin-left: 2px
-        margin-right: 184px
         margin-top: 10px
-        width: 90%
+        width: 100%
 
         .new-catalog-item
           border: 2px dashed $color-gray-1
@@ -191,7 +203,7 @@
           float: right
           position: relative
           text-decoration: none
-          width: 14%
+          width: 250px
 
         .clear-search-text
           bottom: -6px
@@ -199,7 +211,7 @@
           cursor: pointer
           float: right
           position: relative
-          right: -197px
+          right: -242px
 
           span
             font-size: 20px

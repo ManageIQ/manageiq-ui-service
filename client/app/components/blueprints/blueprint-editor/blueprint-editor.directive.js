@@ -122,6 +122,14 @@
       vm.toolboxVisible = false;
     };
 
+    vm.toggleToolbox = function() {
+      if (vm.toolboxVisible === true) {
+        vm.hideToolbox();
+      } else {
+        vm.showToolbox();
+      }
+    };
+
     $scope.$on('clickOnChart', function(evt) {
       vm.hideToolbox();
     });
