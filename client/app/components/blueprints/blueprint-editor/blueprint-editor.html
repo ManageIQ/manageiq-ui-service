@@ -7,32 +7,39 @@
       <li class="active">
           <input id="blueprintName" type="text" class="blueprint-name-input" ng-model="vm.blueprint.name"
                  placeholder="{{'Untitled Blueprint'|translate}}">
-          <button class="btn btn-primary btb-sm" type="button" ng-click="vm.saveBlueprint()" id="saveBtm"
-                  ng-class="{'disabled': !vm.canSave()}" data-toggle="tooltip" data-placement="bottom"
-                  title="{{'Save Blueprint'|translate}}" translate>Save
-          </button>
       </li>
+      <span class="actions">
+        <button class="btn btn-primary btb-sm" type="button" ng-click="vm.saveBlueprint()" id="saveBtm"
+                ng-class="{'disabled': !vm.canSave()}" data-toggle="tooltip" data-placement="bottom"
+                title="{{'Save Blueprint'|translate}}" translate>Save
+        </button>
+        <button class="btn btn-default blueprint-details-btn" type="button" ng-click="vm.editDetails()" data-toggle="tooltip"
+                ng-class="{'disabled': vm.inConnectingMode, 'wait-cursor': vm.loading}"
+                data-placement="bottom" title="{{'Edit Blueprint Details' | translate}}" translate>Blueprint Details
+        </button>
+      </span>
   </ol>
 
   <div class="blueprint-designer-container">
 
       <div class="section-toolbar">
-          <button id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': vm.inConnectingMode}" type="button" ng-click="vm.showToolbox()"
+          <button id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': vm.inConnectingMode}" type="button" ng-click="vm.toggleToolbox()"
                   data-toggle="tooltip" data-placement="bottom" title="{{'Add Service Item To Canvas'|translate}}" translate>Add Item
-          </button>
-          <button id="duplicateItem" class="btn" type="button" ng-class="{'disabled': !vm.onlyOneTtemSelected() || vm.inConnectingMode}"
-                  ng-click="vm.duplicateSelectedItem()" data-toggle="tooltip" data-placement="bottom"
-                  title="{{'Duplicate Item (Ctrl-D)'|translate}}" translate>Duplicate
-          </button>
-          <button id="removeItems" class="btn" type="button" ng-class="{'disabled': !vm.itemsSelected() || vm.inConnectingMode}"
-                  ng-click="vm.removeSelectedItemsFromCanvas()" data-toggle="tooltip" data-placement="bottom"
-                  title="{{'Remove Items From Canvas'|translate}}" translate>Remove
+            <span class="fa" ng-class="{'fa-angle-double-up': vm.toolboxVisible, 'fa-angle-double-down': !vm.toolboxVisible}"></span>
           </button>
           <span class="more-actions">
-              <button class="btn blueprint-details-btn" type="button" ng-click="vm.editDetails()" data-toggle="tooltip"
-                      ng-class="{'disabled': vm.inConnectingMode, 'wait-cursor': vm.loading}"
-                      data-placement="bottom" title="{{'Edit Blueprint Details' | translate}}" translate>Blueprint Details
-              </button>
+              <a ng-click="vm.duplicateSelectedItem()">
+                <span id="duplicateItem" class="pficon fa fa-copy" ng-class="{'disabled': !vm.onlyOneTtemSelected() || vm.inConnectingMode}"
+                      tooltip-append-to-body="true" tooltip-placement="bottom"
+                      tooltip="{{'Duplicate Item (Ctrl-D)'|translate}}">
+                </span>
+              </a>
+              <a ng-click="vm.removeSelectedItemsFromCanvas()">
+                <span id="removeItems" class="pficon pficon-delete" ng-class="{'disabled': !vm.itemsSelected() || vm.inConnectingMode}"
+                      tooltip-append-to-body="true" tooltip-placement="bottom"
+                      tooltip="{{'Remove Items From Canvas'|translate}}">
+                </span>
+              </a>
               <span class="show-hide-connectors">
                   <input  ng-class="{'disabled': vm.inConnectingMode}"
                           ng-model="vm.hideConnectors"
@@ -100,8 +107,6 @@
                   <a ng-click="vm.searchText = ''"><span class="pficon pficon-close clear-search-text"></span></a>
               </div>
               <div class="close-toolbox">
-                  <a ng-if="vm.toolboxVisible" ng-click="vm.hideToolbox()" style="cursor: pointer"><span
-                          class="fa fa-angle-double-up fa-2x"></span></a>
               </div>
           </div>
 
