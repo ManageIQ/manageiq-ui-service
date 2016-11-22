@@ -49,7 +49,6 @@
       $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
     }
 
-
     vm.cardConfig = {
       selectItems: false,
       multiSelect: true,
@@ -63,6 +62,7 @@
     vm.listConfig = {
       selectItems: false,
       showSelectBox: true,
+      useExpandingRows: true,
       selectionMatchProp: 'service_status',
       selectedItems: [],
       onClick: vm.viewService,
@@ -96,7 +96,7 @@
 
     vm.viewType = viewsConfig.currentView;
 
-    vm.headerConfig = {      
+    vm.headerConfig = {
       sortConfig: serviceSortConfig,
       viewsConfig: viewsConfig,
       filterConfig: serviceFilterConfig,
@@ -109,17 +109,6 @@
       },
     };
 
-
-    vm.actionButtons = [
-      {
-        name: __('Start'),
-        actionName: 'start',
-        title: __('Start this service'),
-        actionFn: startService,
-        isDisabled: false,
-      },
-    ];
-
     vm.menuActions = [
       {
         name: __('Stop'),
@@ -127,8 +116,13 @@
         title: __('Stop this service'),
         actionFn: stopService,
         isDisabled: false,
-      },
-      {
+      }, {
+        name: __('Start'),
+        actionName: 'Start',
+        title: __('Start this service'),
+        actionFn: startService,
+        isDisabled: false,
+      }, {
         name: __('Suspend'),
         actionName: 'suspend',
         title: __('Suspend this service'),
@@ -136,29 +130,6 @@
         isDisabled: false,
       },
     ];
-
-    function getServiceFilterFields() {
-      var retires = [__('Current'), __('Soon'), __('Retired')];
-      var dollars = ['$', '$$', '$$$', '$$$$'];
-
-      return [
-        ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
-        ListView.createFilterField('retirement', __('Retirement Date'), __('Filter by Retirement Date'), 'select', retires),
-        ListView.createFilterField('vms', __('Number of VMs'), __('Filter by VMs'), 'text'),
-        ListView.createFilterField('owner', __('Created'), __('Filter by Created On'), 'text'),
-        ListView.createFilterField('chargeback_relative_cost', __('Relative Cost'), __('Filter by Relative Cost'), 'select', dollars),
-      ];
-    }
-
-    function getServiceSortFields() {
-      return [
-        ListView.createSortField('name', __('Name'), 'alpha'),
-        ListView.createSortField('retires', __('Retirement Date'), 'numeric'),
-        ListView.createSortField('vms', __('Number of VMs'), 'numeric'),
-        ListView.createSortField('created', __('Created'), 'numeric'),
-        ListView.createSortField('chargeback_relative_cost', __('Relative Cost'), 'alpha'),
-      ];
-    }
 
     if (ServicesState.filterApplied) {
       /* Apply the filtering to the data list */
@@ -210,26 +181,16 @@
       ServicesState.setSort(sortId, vm.headerConfig.sortConfig.isAscending);
     }
 
-    function compareFn(item1, item2) {
-      var compValue = 0;
-      if (vm.headerConfig.sortConfig.currentField.id === 'name') {
-        compValue = item1.name.localeCompare(item2.name);
-      } else if (vm.headerConfig.sortConfig.currentField.id === 'vms') {
-        compValue = item1.v_total_vms - item2.v_total_vms;
-      } else if (vm.headerConfig.sortConfig.currentField.id === 'created') {
-        compValue = new Date(item1.created_at) - new Date(item2.created_at);
-      } else if (vm.headerConfig.sortConfig.currentField.id === 'retires') {
-        compValue = getRetirementDate(item1.retires_on) - getRetirementDate(item2.retires_on);
-      } else if (vm.headerConfig.sortConfig.currentField.id === 'chargeback_relative_cost') {
-        compValue = item1.chargeback_relative_cost.length - item2.chargeback_relative_cost.length;
-      }
-
-      if (!vm.headerConfig.sortConfig.isAscending) {
-        compValue = compValue * -1;
-      }
-
-      return compValue;
+    function updateLimit(limit) {
+      vm.serviceLimit = limit;
+      vm.resolveServices(limit, vm.serviceOffset);
     }
+
+    function viewService(item, e) {
+      $state.go('services.details', {serviceId: item.id});
+    }
+
+    // Private
 
     function filterChange(filters) {
       vm.servicesList = ListView.applyFilters(filters, vm.servicesList, vm.services, ServicesState, matchesFilter);
@@ -240,11 +201,27 @@
       vm.headerConfig.filterConfig.resultsCount = vm.servicesList.length;
     }
 
+    function getServiceFilterFields() {
+      var retires = [__('Current'), __('Soon'), __('Retired')];
+      var dollars = ['$', '$$', '$$$', '$$$$'];
+
+      return [
+        ListView.createFilterField('chargeback_relative_cost', __('Relative Cost'), __('Filter by Relative Cost'), 'select', dollars),
+        ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
+        ListView.createFilterField('owner', __('Created'), __('Filter by Created On'), 'text'),
+        ListView.createFilterField('retirement', __('Retirement Date'), __('Filter by Retirement Date'), 'select', retires),
+        ListView.createFilterField('region_number', __('Region'), __('Filter by Region'), 'text'),
+        ListView.createFilterField('vms', __('Number of VMs'), __('Filter by VMs'), 'text'),
+      ];
+    }
+
     function matchesFilter(item, filter) {
       if (filter.id === 'name') {
         return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'vms') {
         return String(item.v_total_vms).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else if (filter.id === 'region_number') {
+        return String(item.region_number).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'retirement') {
         return checkRetirementDate(item, filter.value.toLowerCase());
       } else if (filter.id === 'created') {
@@ -256,19 +233,70 @@
       return false;
     }
 
+    function getServiceSortFields() {
+      return [
+        ListView.createSortField('chargeback_relative_cost', __('Relative Cost'), 'alpha'),
+        ListView.createSortField('created', __('Created'), 'numeric'),
+        ListView.createSortField('name', __('Name'), 'alpha'),
+        ListView.createSortField('retires', __('Retirement Date'), 'numeric'),
+        ListView.createSortField('region_number', __('Region'), 'numeric'),
+        ListView.createSortField('aggregate_all_vm_cpus', __('Total CPUs'), 'numeric'),
+        ListView.createSortField('aggregate_all_vm_memory', __('Total Memory'), 'numeric'),
+        ListView.createSortField('aggregate_all_vm_disk_count', __('Total VM Disk Count'), 'numeric'),
+        ListView.createSortField('aggregate_all_vm_disk_space_allocated', __('VM Disk Space Allocated '), 'numeric'),
+        ListView.createSortField('aggregate_all_vm_disk_space_used', __('Disk Space Used'), 'numeric'),
+        ListView.createSortField('aggregate_all_vm_memory_on_disk', __('VM Memory on Disk'), 'numeric'),
 
-    // Public
-
-    function updateLimit(limit) {
-      vm.serviceLimit = limit;
-      vm.resolveServices(limit, vm.serviceOffset);
+      ];
     }
 
-    function viewService(item, e) {
-      $state.go('services.details', {serviceId: item.id});
-    }
+    function compareFn(item1, item2) {
+      var compValue = 0;
+      switch (vm.headerConfig.sortConfig.currentField.id) {
+        case 'name':
+          compValue = item1.name.localeCompare(item2.name);
+          break;
+        case 'vms':
+          compValue = item1.v_total_vms - item2.v_total_vms;
+          break;
+        case 'region':
+          compValue = item1.region_number - item2.region_number;
+          break;
+        case 'created':
+          compValue = new Date(item1.created_at) - new Date(item2.created_at);
+          break;
+        case 'retires':
+          compValue = getRetirementDate(item1.retires_on) - getRetirementDate(item2.retires_on);
+          break;
+        case 'chargeback_relative_cost':
+          compValue = item1.chargeback_relative_cost.length - item2.chargeback_relative_cost.length;
+          break;
+        case 'aggregate_all_vm_cpus':
+          compValue = item1.aggregate_all_vm_cpus - item2.aggregate_all_vm_cpus;
+          break;
+        case 'aggregate_all_vm_memory':
+          compValue = item1.aggregate_all_vm_memory - item2.aggregate_all_vm_memory;
+          break;
+        case 'aggregate_all_vm_disk_count':
+          compValue = item1.aggregate_all_vm_disk_count - item2.aggregate_all_vm_disk_count;
+          break;
+        case 'aggregate_all_vm_disk_space_allocated':
+          compValue = item1.aggregate_all_vm_disk_space_allocated - item2.aggregate_all_vm_disk_space_allocated;
+          break;
+        case 'aggregate_all_vm_disk_space_used':
+          compValue = item1.aggregate_all_vm_disk_space_used - item2.aggregate_all_vm_disk_space_used;
+          break;
+        case 'aggregate_all_vm_memory_on_disk':
+          compValue = item1.aggregate_all_vm_memory_on_disk - item2.aggregate_all_vm_memory_on_disk;
+          break;
+      }
 
-    // Private
+      if (!vm.headerConfig.sortConfig.isAscending) {
+        compValue = compValue * -1;
+      }
+
+      return compValue;
+    }
 
     function getRetirementDate(value) {
       /* Date 10 years into the future */
@@ -302,7 +330,9 @@
         expand: 'resources',
         limit: limit,
         offset: String(offset),
-        attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms', 'chargeback_report'],
+        attributes: ['picture', 'picture.image_href', 'chargeback_report',
+          'v_total_vms', 'aggregate_all_vm_cpus', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count', 'aggregate_all_vm_disk_space_allocated',
+          'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'region_number', 'region_description'],
         filter: ['ancestry=null'],
       };
       vm.loading = true;
@@ -324,6 +354,7 @@
       vm.services.forEach(Chargeback.processReports);
       Chargeback.adjustRelativeCost(vm.services);
       vm.servicesList = angular.copy(vm.services);
+      vm.headerConfig.filterConfig.resultsCount = vm.servicesList.length;
     }
 
     function queryFailure(error) {
