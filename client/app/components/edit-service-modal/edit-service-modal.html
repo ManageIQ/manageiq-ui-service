@@ -7,22 +7,18 @@
 <div class="modal-body">
   <form class="form-horizontal">
     <div pf-form-group pf-label="{{'Name'|translate}}" required>
-      <input id="name" name="name"
-             ng-model="vm.modalData.resource.name" type="text" required/>
+      <input id="name" name="name" ng-model="vm.modalData.name" type="text" required/>
     </div>
     <div pf-form-group pf-input-class="col-sm-9" pf-label="{{'Description'|translate}}">
-        <textarea id="description" name="description" ng-model="vm.modalData.resource.description">
-          {{ vm.modalData.resource.description }}
+        <textarea id="description" name="description" ng-model="vm.modalData.description">
+          {{ vm.modalData.description }}
         </textarea>
     </div>
+    <modal-actions
+      modal-data="vm.modalData"
+      on-cancel="vm.cancel()"
+      on-reset="vm.reset($event)"
+      on-save="vm.save()">
+    </modal-actions>
   </form>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-default" ng-click="$dismiss()" translate>Cancel</button>
-  <button type="button"
-          class="btn btn-primary"
-          ng-click="vm.saveServiceDetails()"
-          ng-disabled="vm.modalData.resource.name == vm.service.name &&
-          vm.modalData.resource.description == vm.service.description" translate>Save
-  </button>
 </div>
