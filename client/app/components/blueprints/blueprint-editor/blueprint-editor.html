@@ -28,16 +28,16 @@
             <span class="fa" ng-class="{'fa-angle-double-up': vm.toolboxVisible, 'fa-angle-double-down': !vm.toolboxVisible}"></span>
           </button>
           <span class="more-actions">
-              <a id="duplicateItem" ng-click="vm.duplicateSelectedItem()">
-                <span class="pficon fa fa-copy" ng-class="{'disabled': !vm.onlyOneTtemSelected() || vm.inConnectingMode}"
+              <a ng-click="vm.duplicateSelectedItem()">
+                <span id="duplicateItem" class="pficon fa fa-copy" ng-class="{'disabled': !vm.onlyOneTtemSelected() || vm.inConnectingMode}"
                       tooltip-append-to-body="true" tooltip-placement="bottom"
-                      tooltip="{{'Duplicate Item (Ctrl-D)'|translate}}" translate>
+                      tooltip="{{'Duplicate Item (Ctrl-D)'|translate}}">
                 </span>
               </a>
-              <a id="removeItems" ng-click="vm.removeSelectedItemsFromCanvas()">
-                <span class="pficon pficon-delete" ng-class="{'disabled': !vm.itemsSelected() || vm.inConnectingMode}"
+              <a ng-click="vm.removeSelectedItemsFromCanvas()">
+                <span id="removeItems" class="pficon pficon-delete" ng-class="{'disabled': !vm.itemsSelected() || vm.inConnectingMode}"
                       tooltip-append-to-body="true" tooltip-placement="bottom"
-                      tooltip="{{'Remove Items From Canvas'|translate}}" translate>
+                      tooltip="{{'Remove Items From Canvas'|translate}}">
                 </span>
               </a>
               <span class="show-hide-connectors">
@@ -107,10 +107,6 @@
                   <a ng-click="vm.searchText = ''"><span class="pficon pficon-close clear-search-text"></span></a>
               </div>
               <div class="close-toolbox">
-                  <!--
-                  <a ng-if="vm.toolboxVisible" ng-click="vm.hideToolbox()" style="cursor: pointer"><span
-                          class="fa fa-angle-double-up fa-2x"></span></a>
-                    -->
               </div>
           </div>
 
