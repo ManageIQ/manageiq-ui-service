@@ -1,4 +1,4 @@
-/* global toastr:false, _:false, ActionCable:false, $:false, sprintf: false */
+/* global toastr:false, _:false, ActionCable:false, $:false, sprintf: false, moment: false */
 (function() {
   'use strict';
 
@@ -6,5 +6,6 @@
     .constant('lodash', _)
     .constant('ActionCable', ActionCable)
     .constant('toastr', toastr)
-    .constant('sprintf', sprintf);
+    .constant('sprintf', sprintf)
+    .constant('moment', moment);
 })();
