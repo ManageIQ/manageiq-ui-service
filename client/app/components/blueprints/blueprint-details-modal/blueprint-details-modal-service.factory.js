@@ -127,7 +127,7 @@
     vm.selectEntryPoint = selectEntryPoint;
     vm.createCatalog = createCatalog;
     vm.toggleAdvOps = toggleAdvOps;
-    vm.disableOrderListTabs = disableOrderListTabs;
+    vm.showOrderListTabs = showOrderListTabs;
     vm.dndServiceItemMoved = dndServiceItemMoved;
     vm.toggleActionEqualsProvOrder = toggleActionEqualsProvOrder;
 
@@ -205,8 +205,8 @@
       angular.element( ".adv-ops" ).toggleClass("in");
     }
 
-    function disableOrderListTabs() {
-      return vm.blueprint.ui_properties.chart_data_model.nodes.length <= 1;
+    function showOrderListTabs() {
+      return vm.blueprint.ui_properties.chart_data_model.nodes.length > 1;
     }
 
     function toggleActionEqualsProvOrder() {

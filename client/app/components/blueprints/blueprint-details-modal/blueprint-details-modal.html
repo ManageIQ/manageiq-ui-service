@@ -119,7 +119,7 @@
             </div>
         </tab>
 
-        <tab active="vm.tabs[2].active" heading="{{vm.tabs[2].title}}" disable="vm.disableOrderListTabs()">
+        <tab active="vm.tabs[2].active" heading="{{vm.tabs[2].title}}" ng-if="vm.showOrderListTabs()">
             <h4 translate>Rearrange Items to set Provision Order</h4>
 
             <div class="dnd-ordered-lists row">
@@ -131,7 +131,7 @@
                 </div>
             </div>
         </tab>
-        <tab active="vm.tabs[3].active" heading="{{vm.tabs[3].title}}"  disable="vm.disableOrderListTabs()">
+        <tab active="vm.tabs[3].active" heading="{{vm.tabs[3].title}}"  ng-if="vm.showOrderListTabs()">
             <h4>{{ 'Rearrange Items to set Action Order' | translate}}
                 <input class="actionOrderCheckbox"
                        ng-model="vm.actionOrderEqualsProvOrder"
