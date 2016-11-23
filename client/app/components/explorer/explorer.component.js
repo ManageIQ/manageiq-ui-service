@@ -150,12 +150,15 @@
     function updateMenuActionForItemFn(action, item) {
       switch (action.actionName) {
         case "start":
-          return vm.powerOperationUnknownState(item) || vm.powerOperationOffState(item) || vm.powerOperationSuspendState(item)
-            || vm.powerOperationTimeoutState(item);
+          vm.powerOperationUnknownState(item) || vm.powerOperationOffState(item) || vm.powerOperationSuspendState(item)
+          || vm.powerOperationTimeoutState(item) ? action.isDisabled = false : action.isDisabled = true;
+          break;
         case "stop":
-          return vm.powerOperationOffState(item);
+          vm.powerOperationUnknownState(item) || vm.powerOperationOffState(item) ? action.isDisabled = true : action.isDisabled = false;
+          break;
         case "suspend":
-          return vm.powerOperationSuspendState(item);
+          vm.powerOperationUnknownState(item) || vm.powerOperationSuspendState(item) ? action.isDisabled = true : action.isDisabled = false;
+          break;
       }
     }
 
