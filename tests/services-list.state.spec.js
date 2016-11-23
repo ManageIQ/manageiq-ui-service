@@ -79,19 +79,18 @@ describe('Dashboard', function() {
     });
 
     it('Shows the "Start" button when "Start" operation times out', function() {
-      expect(controller.enableButtonForItemFn({}, serviceItem)).to.eq(true);
+      var action = {actionName: 'start'};
+      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(true);
     });
 
     it('displays "Stop" button when action is "stop"', function() {
       var action = {actionName: 'stop'};
-      controller.updateMenuActionForItemFn(action, serviceItem);
-      expect(action.isDisabled).to.eq(false);
+      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(false);
     });
 
     it('displays "Suspend" button when action is "suspend"', function() {
       var action = {actionName: 'suspend'};
-      controller.updateMenuActionForItemFn(action, serviceItem);
-      expect(action.isDisabled).to.eq(false);
+      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(false);
     });
   });
 
@@ -157,19 +156,18 @@ describe('Dashboard', function() {
     });
 
     it('hides the "Start" button when power state is "ON"', function() {
-      expect(controller.enableButtonForItemFn(undefined, serviceItem)).to.eq(false);
+      var action = {actionName: 'start'};
+      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(false);
     });
 
     it('displays "Stop" button when action is "stop"', function() {
       var action = {actionName: 'stop'};
-      controller.updateMenuActionForItemFn(action, serviceItem);
-      expect(action.isDisabled).to.eq(false);
+      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(false);
     });
 
     it('displays "Suspend" button when action is "suspend"', function() {
       var action = {actionName: 'suspend'};
-      controller.updateMenuActionForItemFn(action, serviceItem);
-      expect(action.isDisabled).to.eq(false);
+      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(false);
     });
   });
 });
