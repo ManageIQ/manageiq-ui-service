@@ -46,18 +46,22 @@ describe('Dashboard', function() {
       count: 1,
       subcount: 1,
       resources: [
-        {options: {
-        powerState: "timeout",
-        powerStatus: "starting"
-      }}
+        {
+          options: {
+            powerState: "timeout",
+            powerStatus: "starting"
+          }
+        }
       ]
     };
 
     var serviceItem = services.resources[0].options;
 
     var Chargeback = {
-      processReports: function(){},
-      adjustRelativeCost: function(){}
+      processReports: function() {
+      },
+      adjustRelativeCost: function() {
+      }
     };
 
     beforeEach(function() {
@@ -80,17 +84,20 @@ describe('Dashboard', function() {
 
     it('Shows the "Start" button when "Start" operation times out', function() {
       var action = {actionName: 'start'};
-      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(true);
+      expect(controller.updateMenuActionForItemFn(action, serviceItem));
+      expect(action.isDisabled).to.eq(false);
     });
 
     it('displays "Stop" button when action is "stop"', function() {
       var action = {actionName: 'stop'};
-      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(false);
+      controller.updateMenuActionForItemFn(action, serviceItem);
+      expect(action.isDisabled).to.eq(false);
     });
 
     it('displays "Suspend" button when action is "suspend"', function() {
       var action = {actionName: 'suspend'};
-      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(false);
+      controller.updateMenuActionForItemFn(action, serviceItem);
+      expect(action.isDisabled).to.eq(false);
     });
   });
 
@@ -101,39 +108,43 @@ describe('Dashboard', function() {
       count: 1,
       subcount: 1,
       resources: [
-        {options: {
-          powerState: "on",
-          powerStatus: "start_complete"
-        }}
+        {
+          options: {
+            powerState: "on",
+            powerStatus: "start_complete"
+          }
+        }
       ]
     };
 
     var serviceItem = services.resources[0].options;
 
     var Chargeback = {
-      processReports: function(){},
-      adjustRelativeCost: function(){}
+      processReports: function() {
+      },
+      adjustRelativeCost: function() {
+      }
     };
 
     var PowerOperations = {
-      powerOperationOnState: function (item) {
+      powerOperationOnState: function(item) {
         return item.powerState === "on" && item.powerStatus === "start_complete";
       },
-      powerOperationUnknownState: function (item) {
+      powerOperationUnknownState: function(item) {
         return item.powerState === "" && item.powerStatus === "";
       },
-      powerOperationInProgressState: function (item) {
+      powerOperationInProgressState: function(item) {
         return (item.powerState !== "timeout" && item.powerStatus === "starting")
           || (item.powerState !== "timeout" && item.powerStatus === "stopping")
           || (item.powerState !== "timeout" && item.powerStatus === "suspending");
       },
-      powerOperationOffState: function (item) {
+      powerOperationOffState: function(item) {
         return item.powerState === "off" && item.powerStatus === "stop_complete";
       },
-      powerOperationSuspendState: function (item) {
+      powerOperationSuspendState: function(item) {
         return item.powerState === "off" && item.powerStatus === "suspend_complete";
       },
-      powerOperationTimeoutState: function (item) {
+      powerOperationTimeoutState: function(item) {
         return item.powerState === "timeout";
       },
     };
@@ -142,9 +153,11 @@ describe('Dashboard', function() {
       bard.inject('$componentController', '$log', '$state', '$rootScope');
 
       controller = $componentController('serviceExplorer',
-        {services: services,
-         Chargeback: Chargeback,
-         PowerOperations: PowerOperations});
+        {
+          services: services,
+          Chargeback: Chargeback,
+          PowerOperations: PowerOperations
+        });
     });
 
     it('sets the powerState value on the Service', function() {
@@ -157,17 +170,20 @@ describe('Dashboard', function() {
 
     it('hides the "Start" button when power state is "ON"', function() {
       var action = {actionName: 'start'};
-      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(false);
+      expect(controller.updateMenuActionForItemFn(action, serviceItem));
+      expect(action.isDisabled).to.eq(true);
     });
 
     it('displays "Stop" button when action is "stop"', function() {
       var action = {actionName: 'stop'};
-      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(false);
+      controller.updateMenuActionForItemFn(action, serviceItem);
+      expect(action.isDisabled).to.eq(false);
     });
 
     it('displays "Suspend" button when action is "suspend"', function() {
       var action = {actionName: 'suspend'};
-      expect(controller.updateMenuActionForItemFn(action, serviceItem)).to.eq(false);
+      controller.updateMenuActionForItemFn(action, serviceItem);
+      expect(action.isDisabled).to.eq(false);
     });
   });
 });
