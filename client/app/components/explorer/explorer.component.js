@@ -41,6 +41,7 @@
         updateLimit: updateLimit,
         viewService: viewService,
         resolveServices: resolveServices,
+        updateMenuActionForItemFn: updateMenuActionForItemFn,
       });
       vm.resolveServices(vm.serviceLimit, vm.serviceOffset);
     }
@@ -111,16 +112,16 @@
 
     vm.menuActions = [
       {
+        name: __('Start'),
+        actionName: 'start',
+        title: __('Start this service'),
+        actionFn: startService,
+        isDisabled: false,
+      }, {
         name: __('Stop'),
         actionName: 'stop',
         title: __('Stop this service'),
         actionFn: stopService,
-        isDisabled: false,
-      }, {
-        name: __('Start'),
-        actionName: 'Start',
-        title: __('Start this service'),
-        actionFn: startService,
         isDisabled: false,
       }, {
         name: __('Suspend'),
@@ -142,24 +143,21 @@
       sortChange(ServicesState.getSort().currentField, ServicesState.getSort().isAscending);
     }
 
-    vm.enableButtonForItemFn = function(action, item) {
-      return vm.powerOperationUnknownState(item)
-        || vm.powerOperationOffState(item)
-        || vm.powerOperationSuspendState(item)
-        || vm.powerOperationTimeoutState(item);
-    };
-
     vm.hideMenuForItemFn = function(item) {
       return vm.powerOperationUnknownState(item) || vm.powerOperationInProgressState(item);
     };
 
-    vm.updateMenuActionForItemFn = function(action, item) {
-      if (vm.powerOperationSuspendState(item) && action.actionName === "suspend") {
-        action.isDisabled = true;
-      } else {
-        vm.powerOperationOffState(item) && action.actionName === "stop" ? action.isDisabled = true : action.isDisabled = false;
+    function updateMenuActionForItemFn(action, item) {
+      switch (action.actionName) {
+        case "start":
+          return vm.powerOperationUnknownState(item) || vm.powerOperationOffState(item) || vm.powerOperationSuspendState(item)
+            || vm.powerOperationTimeoutState(item);
+        case "stop":
+          return vm.powerOperationOffState(item);
+        case "suspend":
+          return vm.powerOperationSuspendState(item);
       }
-    };
+    }
 
     function startService(action, item) {
       vm.startService(item);
@@ -191,7 +189,6 @@
     }
 
     // Private
-
     function filterChange(filters) {
       vm.servicesList = ListView.applyFilters(filters, vm.servicesList, vm.services, ServicesState, matchesFilter);
 
