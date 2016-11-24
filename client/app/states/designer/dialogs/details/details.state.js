@@ -11,9 +11,9 @@
 
   function getStates() {
     return {
-      'dialogs.details': {
+      'designer.dialogs.details': {
         url: '/:dialogId',
-        templateUrl: 'app/states/dialogs/details/details.html',
+        templateUrl: 'app/states/designer/dialogs/details/details.html',
         controller: StateController,
         controllerAs: 'vm',
         title: N_('Dialog Detail'),
@@ -40,7 +40,7 @@
     vm.dialog.removeDialog = removeDialog;
 
     function performAction(item) {
-      $state.go('dialogs.edit', {dialogId: dialog.id});
+      $state.go('designer.dialogs.edit', {dialogId: dialog.id});
     }
 
     function removeDialog() {
@@ -49,7 +49,7 @@
 
       function removeSuccess() {
         Notifications.success(vm.dialog.name + __(' was removed.'));
-        $state.go('dialogs.list');
+        $state.go('designer.dialogs.list');
       }
 
       function removeFailure(data) {

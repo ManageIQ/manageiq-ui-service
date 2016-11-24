@@ -9,7 +9,7 @@
   </li>
 </ol>
 
-<div class="col-md-12 list-view-container">
+<div class="col-md-12 ss-details-wrapper">
   <div class="row">
     <div class="col-md-6">
       <h2 translate>Dialog Content</h2>
@@ -44,12 +44,12 @@
       </div>
     </div>
   </div>
-</div>
-<div class="pull-right">
-  <button type="button" class="btn btn-default" ng-click="vm.dismissChanges()" translate>Cancel</button>
-  <button type="button"
-          class="btn btn-primary"
-          ng-click="vm.saveDialogDetails()"
-          ng-disabled="vm.dialogUnchanged()" translate>Save
-  </button>
+  <div class="pull-right">
+    <button type="button" class="btn btn-default" ng-click="vm.dismissChanges()" translate>Cancel</button>
+    <button type="button"
+            class="btn btn-primary"
+            ng-click="vm.saveDialogDetails()"
+            ng-disabled="vm.dialogUnchanged()" translate>Save
+    </button>
+  </div>
 </div>
