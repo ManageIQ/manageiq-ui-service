@@ -1,3 +1,5 @@
+/* eslint camelcase: ["error", {properties: "never"}] */
+
 (function() {
   'use strict';
 
@@ -41,7 +43,7 @@
             label: __('New tab ') + nextIndex,
             position: nextIndex,
             active: true,
-            dialog_groups: []
+            dialog_groups: [],
           });
 
           // set activity for a new tab
@@ -60,8 +62,8 @@
         this.deleteTab = function(id) {
           // if active, deactivate first
           if (this.tabList[id].active) {
-            if ((this.tabList.length - 1) === this.tabList[id].position &&
-                (this.tabList.length - 1) !== 0) {
+            if ((this.tabList.length - 1) === this.tabList[id].position
+             && (this.tabList.length - 1) !== 0) {
               // active was last -> new active is on previous index
               this.tabList[id - 1].active = true;
             } else if (this.tabList[id].position < (this.tabList.length - 1)) {
@@ -77,7 +79,7 @@
 
           DialogEditor.updatePositions(this.tabList);
           var activeTabData = lodash.find(this.tabList, {active: true});
-          if (activeTabData !== undefined) {
+          if (angular.isUndefined(activeTabData)) {
             DialogEditor.activeTab = activeTabData.position;
           }
         };

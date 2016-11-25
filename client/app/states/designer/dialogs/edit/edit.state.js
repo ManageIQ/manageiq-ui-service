@@ -1,3 +1,5 @@
+/* eslint camelcase: ["error", {properties: "never"}] */
+
 (function() {
   'use strict';
 

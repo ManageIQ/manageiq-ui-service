@@ -7,7 +7,7 @@
   /** @ngInject */
   function EditDialogFactory($modal) {
     var modalDialog = {
-      showModal: showModal
+      showModal: showModal,
     };
 
     return modalDialog;
@@ -19,8 +19,8 @@
         controllerAs: 'vm',
         size: 'lg',
         resolve: {
-          dialogDetails: resolveDialogDetails
-        }
+          dialogDetails: resolveDialogDetails,
+        },
       };
       var modal = $modal.open(modalOptions);
 
@@ -50,17 +50,17 @@
     vm.modalTab = 'element_information';
 
     // recognize edited element type
-    if (vm.dialog.fieldId === undefined &&
-        vm.dialog.boxId === undefined &&
-        vm.dialog.tabId !== undefined) {
+    if (angular.isUndefined(vm.dialog.fieldId)
+     && angular.isUndefined(vm.dialog.boxId)
+     && angular.isDefined(vm.dialog.tabId)) {
       vm.element = 'tab';
-    } else if (vm.dialog.fieldId === undefined &&
-             vm.dialog.boxId !== undefined &&
-             vm.dialog.tabId !== undefined) {
+    } else if (angular.isUndefined(vm.dialog.fieldId)
+            && angular.isDefined(vm.dialog.boxId)
+            && angular.isDefined(vm.dialog.tabId)) {
       vm.element = 'box';
-    } else if (vm.dialog.fieldId !== undefined &&
-             vm.dialog.boxId !== undefined &&
-             vm.dialog.tabId !== undefined) {
+    } else if (angular.isDefined(vm.dialog.fieldId)
+            && angular.isDefined(vm.dialog.boxId)
+            && angular.isDefined(vm.dialog.tabId)) {
       vm.element = 'field';
     }
 

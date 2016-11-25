@@ -1,5 +1,4 @@
 /* eslint camelcase: "off" */
-
 export const DialogsListComponent = {
   templateUrl: "app/components/dialogs/dialogs-list.html",
   bindings: {

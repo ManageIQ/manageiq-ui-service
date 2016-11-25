@@ -1,3 +1,5 @@
+/* eslint camelcase: ["error", {properties: "never"}] */
+
 (function() {
   'use strict';
 
@@ -87,6 +89,6 @@
         };
       },
       controllerAs: 'dialogEditorBoxes',
-      templateUrl: 'app/components/dialog-editor-boxes/dialog-editor-boxes.html'
+      templateUrl: 'app/components/dialog-editor-boxes/dialog-editor-boxes.html',
     });
 })();
