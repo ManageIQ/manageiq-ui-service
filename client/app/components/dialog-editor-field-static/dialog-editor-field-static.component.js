@@ -1,176 +1,95 @@
 (function() {
   'use strict';
 
-  // works as placeholders for drag&drop dialog components
+  class DialogField {
+    constructor(type, icon, label, options = {}) {
+      this.icon = icon;
+      this.label = label;
+      this.placeholders = Object.assign({
+        name: "",
+        description: "",
+        type: type,
+        display: "edit",
+        display_method_options: {},
+        read_only: false,
+        required: false,
+        required_method_options: {},
+        default_value: "",
+        values_method_options: {},
+        label: "",
+        position: 0,
+        dynamic: false,
+        show_refresh_button: false,
+        load_values_on_init: false,
+        auto_refresh: false,
+        trigger_auto_refresh: false,
+        reconfigurable: false,
+        visible: true,
+        options: {
+          protected: false,
+        },
+        resource_action: {resource_type: "DialogField", ae_attributes: {}},
+      }, options);
+    }
+  }
 
+  // works as placeholders for drag&drop dialog components
   angular.module('app.components')
     .component('dialogEditorFieldStatic', {
       controller: function() {
         this.fields = {
-          dialogFieldTextBox: {
-            icon: "fa fa-font",
-            label: __("Text Box"),
-            placeholders: {
-              name: "name",
-              description: __("Description"),
-              type: "DialogFieldTextBox",
-              display: "edit",
-              display_method_options: {},
-              required: true,
-              required_method_options: {},
-              default_value: "",
-              values_method_options: {},
-              options: {
-                protected: false,
-              },
-              label: __("Label"),
-              position: 0,
-              resource_action: {
-                resource_type: "DialogField",
-                ae_attributes: {},
-              },
-            },
-          },
-          dialogFieldTextAreaBox: {
-            icon: "fa fa-file-text-o",
-            label: __("Text Area"),
-            placeholders: {
-              name: "name",
-              description: __("Description"),
-              type: "DialogFieldTextAreaBox",
-              display: "edit",
-              display_method_options: {},
-              required: false,
-              required_method_options: {},
-              default_value: "",
-              values_method_options: {},
-              options: {},
-              label: __("Label"),
-              position: 0,
-              resource_action: {
-                resource_type: "DialogField",
-                ae_attributes: {},
-              },
-            },
-          },
-          dialogFieldCheckBox: {
-            icon: "fa fa-check-square-o",
-            label: __("Check Box"),
-            placeholders: {
-              name: "name",
-              description: __("Description"),
-              type: "DialogFieldCheckBox",
-              display: "edit",
-              display_method_options: {},
-              required: true,
-              required_method_options: {},
-              default_value: "f",
-              values_method_options: {},
-              options: {},
-              label: __("Label"),
-              position: 0,
-              resource_action: {
-                resource_type: "DialogField",
-                ae_attributes: {},
-              },
-            },
-          },
-          dialogFieldDropDownList: {
-            icon: "fa fa-caret-square-o-down",
-            label: __("Dropdown List"),
-            placeholders: {
-              name: "name",
-              description: __("Description"),
-              label: __("Label"),
-              type: "DialogFieldDropDownList",
-              data_type: "string",
-              display: "edit",
-              display_method_options: {},
-              required: true,
-              required_method_options: {},
-              default_value: "",
-              values: [
-              ],
-              values_method_options: {},
-              options: {
-                sort_by: "description",
-                sort_order: "ascending",
-              },
-            },
-          },
-          dialogFieldRadioButton: {
-            icon: "fa fa-circle-o",
-            label: __("Radio Button"),
-            placeholders: {
-              name: "name",
-              description: __("Description"),
-              type: "DialogFieldRadioButton",
-              data_type: "string",
-              display: "edit",
-              display_method_options: {},
-              required: false,
-              required_method_options: {},
-              values: [
-              ],
-              values_method_options: {},
-              options: {
-                sort_by: "description",
-                sort_order: "ascending",
-              },
-              label: __("Label"),
-              position: 3,
-              resource_action: {
-                resource_type: "DialogField",
-                ae_attributes: {},
-              },
-            },
-          },
-          dialogFieldDateControl: {
-            icon: "fa fa-calendar",
-            label: __("Date Control"),
-            placeholders: {
-              name: "name",
-              description: __("Description"),
-              type: "DialogFieldDateControl",
-              display: "edit",
-              display_method_options: {},
-              required: false,
-              required_method_options: {},
-              values_method_options: {},
-              options: {
-                show_past_dates: false,
-              },
-              label: __("Label"),
-              position: 0,
-              resource_action: {
-                resource_type: "DialogField",
-                ae_attributes: {},
-              },
-            },
-          },
-          dialogFieldDateTimeControl: {
-            icon: "fa fa-clock-o",
-            label: __("Date Time Control"),
-            placeholders: {
-              name: "name",
-              description: __("Description"),
-              type: "DialogFieldDateTimeControl",
-              display: "edit",
-              display_method_options: {},
-              required: false,
-              required_method_options: {},
-              values_method_options: {},
-              options: {
-                show_past_dates: false,
-              },
-              label: __("Label"),
-              position: 0,
-              resource_action: {
-                resource_type: "DialogField",
-                ae_attributes: {},
-              },
-            },
-          },
+          dialogFieldTextBox:
+            new DialogField(
+              "DialogFieldTextBox",
+              "fa fa-font",
+              __("Text Box")
+            ),
+          dialogFieldTextAreaBox:
+            new DialogField(
+              "DialogFieldTextAreaBox",
+              "fa fa-file-text-o",
+              __("Text Area")
+            ),
+          dialogFieldCheckBox:
+            new DialogField(
+              "DialogFieldCheckBox",
+              "fa fa-check-square-o",
+              __("Check Box")
+            ),
+          dialogFieldDropDownList:
+            new DialogField(
+              "DialogFieldDropDownList",
+              "fa fa-caret-square-o-down",
+              __("Dropdown List"),
+              {
+                data_type: "string",
+                values: [],
+                options: {sort_by: "description", sort_order: "ascending"},
+              }
+            ),
+          dialogFieldRadioButton:
+            new DialogField(
+              "DialogFieldRadioButton",
+              "fa fa-circle-o",
+              __("Radio Button"),
+              {
+                data_type: "string",
+                values: [],
+                options: {sort_by: "description", sort_order: "ascending"},
+              }
+            ),
+          dialogFieldDateControl:
+            new DialogField(
+              "DialogFieldDateControl",
+              "fa fa-calendar",
+              __("Date Control")
+            ),
+          dialogFieldDateTimeControl:
+            new DialogField(
+              "DialogFieldDateTimeControl",
+              "fa fa-clock-o",
+              __("Date Time Control")
+            ),
         };
       },
       controllerAs: 'dialogEditorFieldStatic',
