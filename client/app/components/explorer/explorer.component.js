@@ -69,6 +69,77 @@
       onClick: vm.viewService,
     };
 
+    vm.listActions = [
+      {
+        name: __('Configuration'),
+        actionName: 'configuration',
+        icon: 'fa fa-cog',
+        actions: [
+          {
+            icon: 'pf pficon-edit',
+            name: __('Edit Selected'),
+            actionName: 'edit',
+            title: __('Edit Selected'),
+            actionFn: editService,
+            isDisabled: false,
+          }, {
+            icon: 'pf pficon-delete',
+            name: __('Remove Selected'),
+            actionName: 'remove',
+            title: __('Remove Selected'),
+            actionFn: removeServices,
+            isDisabled: false,
+          }, {
+            icon: 'pf pficon-user',
+            name: __('Set Ownership'),
+            actionName: 'ownership',
+            title: __('Set Ownership'),
+            actionFn: setOwnership,
+            isDisabled: false,
+          },
+        ],
+        isDisabled: false,
+      }, {
+        name: __('Policy'),
+        actionName: 'policy',
+        icon: 'fa fa-shield',
+        actions: [
+          {
+            icon: 'pf pficon-edit',
+            name: __('Edit Tags'),
+            actionName: 'editTags',
+            title: __('Edit Tags'),
+            actionFn: editService,
+            isDisabled: false,
+          },
+        ],
+        isDisabled: false,
+      }, {
+        name: __('Lifecycle'),
+        actionName: 'lifecycle',
+        icon: 'fa fa-recycle',
+        actions: [
+          {
+            icon: 'fa fa-clock-o',
+            name: __('Set Retirement Dates'),
+            actionName: 'setServiceRetirement',
+            title: __('Set Retirement Dates'),
+            actionFn: setServiceRetirement,
+            isDisabled: false,
+          }, {
+            icon: 'fa fa-clock-o',
+            name: __('Retire Selected'),
+            actionName: 'retireService',
+            title: __('Retire Selected'),
+            actionFn: retireService,
+            isDisabled: false,
+          },
+        ],
+        isDisabled: false,
+      },
+    ];
+
+
     var serviceFilterConfig = {
       fields: getServiceFilterFields(),
       resultsCount: vm.servicesList.length,
@@ -101,6 +172,9 @@
       sortConfig: serviceSortConfig,
       viewsConfig: viewsConfig,
       filterConfig: serviceFilterConfig,
+      actionsConfig: {
+        actionsInclude: true,
+      },
     };
 
 
@@ -360,6 +434,19 @@
     function queryFailure(error) {
       vm.loading = false;
       EventNotifications.error(__('There was an error loading the services.'));
+    }
+
+
+    function editService(option) {
+      console.log(option)
+    }
+
+    function removeServices(option) {
+      console.log(option)
+    }
+
+    function setOwnership(option) {
+      console.log(option)
     }
 
     Language.fixState(ServicesState, vm.headerConfig);
