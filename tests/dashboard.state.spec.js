@@ -72,8 +72,8 @@ describe('Dashboard', function() {
           expand: false,
           filter: [
             'retired=false',
-            'retires_on>2016-01-01T00:00:00.000Z',
-            'retires_on<2016-01-31T00:00:00.000Z'
+            'retires_on>=2016-01-01T00:00:00.000Z',
+            'retires_on<=2016-01-31T00:00:00.000Z'
           ]
         });
 
