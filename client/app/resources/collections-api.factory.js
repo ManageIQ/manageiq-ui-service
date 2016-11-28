@@ -101,8 +101,24 @@
         });
       }
 
+      if (options.limit) {
+        params.push('limit=' + encodeURIComponent(options.limit));
+      }
+
+      if (options.offset) {
+        params.push('offset=' + encodeURIComponent(options.offset));
+      }
+
+      if (options.hide) {
+        params.push('hide=' + encodeURIComponent(options.hide));
+      }
+
       if (options.sort_by) {
         params.push('sort_by=' + encodeURIComponent(options.sort_by));
+      }
+
+      if (options.sort_order) {
+        params.push('sort_order=' + encodeURIComponent(options.sort_order));
       }
 
       if (options.sort_options) {
@@ -112,8 +128,6 @@
       if (params.length) {
         return '?' + params.join('&');
       }
-
-      return '';
     }
 
     function buildConfig(options) {

@@ -93,6 +93,7 @@ module.exports = (function() {
         './node_modules/angular/angular.js',
         './node_modules/angular-animate/angular-animate.js',
         './node_modules/angular-cookies/angular-cookies.js',
+
         './node_modules/angular-resource/angular-resource.js',
         './node_modules/angular-messages/angular-messages.js',
         './node_modules/angular-mocks/angular-mocks.js',
@@ -419,7 +420,7 @@ module.exports = (function() {
 
   config.consoleCopy = [
     {
-      input: nodeModules+ 'no-vnc/**/*',
+      input: nodeModules + 'no-vnc/**/*',
       output: build + 'vendor/no-vnc',
     },
     {

@@ -105,7 +105,7 @@ msgstr ""
 msgid "Add to Shopping Cart"
 msgstr ""
 
-#: app/config/navigation.config.js:39
+#: app/config/navigation.config.js:38
 #: app/states/administration/profiles/details/details.html:3
 #: app/states/administration/profiles/editor/editor.html:3
 #: app/states/administration/profiles/profiles.html:4
@@ -179,7 +179,7 @@ msgid "Blueprint(s) were succesfully deleted."
 msgstr ""
 
 #: app/components/blueprints/blueprint-editor/blueprint-editor.html:5
-#: app/config/navigation.config.js:61
+#: app/config/navigation.config.js:69
 #: app/states/designer/blueprints/list/list.html:4
 msgid "Blueprints"
 msgstr ""
@@ -240,6 +240,10 @@ msgstr ""
 
 #: app/layouts/application.html:81
 msgid "Change to this Group"
+msgstr ""
+
+#: app/components/explorer/explorer.html:73
+msgid "Chargeback: Relative Cost"
 msgstr ""
 
 #: app/components/shopping-cart/shopping-cart.html:53
@@ -319,10 +323,10 @@ msgstr ""
 msgid "Create a new rule"
 msgstr ""
 
+#: app/components/explorer/explorer.component.js:211
+#: app/components/explorer/explorer.component.js:239
+#: app/components/explorer/explorer.html:55
 #: app/components/profiles/profile-details.html:20
-#: app/states/services/list/list.html:60
-#: app/states/services/list/list.state.js:136
-#: app/states/services/list/list.state.js:147
 msgid "Created"
 msgstr ""
 
@@ -334,7 +338,7 @@ msgstr ""
 msgid "Creation Date"
 msgstr ""
 
-#: app/states/services/list/list.state.js:128
+#: app/components/explorer/explorer.component.js:205
 msgid "Current"
 msgstr ""
 
@@ -403,6 +407,7 @@ msgstr ""
 
 #: app/components/blueprints/blueprint-details-modal/blueprint-details-modal.html:19
 #: app/components/edit-service-modal/edit-service-modal.html:13
+#: app/components/explorer/explorer.html:13
 #: app/components/profiles/profile-editor.html:26
 #: app/components/profiles/profiles-list.component.js:224
 #: app/states/marketplace/list/list.state.js:85
@@ -412,7 +417,7 @@ msgid "Description"
 msgstr ""
 
 #: app/components/blueprints/blueprint-editor/blueprint-editor.html:3
-#: app/config/navigation.config.js:34
+#: app/config/navigation.config.js:33
 #: app/states/designer/blueprints/list/list.html:3
 #: app/states/designer/dialogs/list/list.html:2
 msgid "Designer"
@@ -431,7 +436,7 @@ msgstr ""
 msgid "Dialog Name"
 msgstr ""
 
-#: app/config/navigation.config.js:67
+#: app/config/navigation.config.js:75
 #: app/states/designer/dialogs/list/list.html:3
 msgid "Dialogs"
 msgstr ""
@@ -452,6 +457,7 @@ msgstr ""
 msgid "Disk Space Allocated"
 msgstr ""
 
+#: app/components/explorer/explorer.component.js:247
 #: app/states/services/details/details.html:177
 msgid "Disk Space Used"
 msgstr ""
@@ -544,7 +550,7 @@ msgstr ""
 msgid "Filter by Catalog Name"
 msgstr ""
 
-#: app/states/services/list/list.state.js:136
+#: app/components/explorer/explorer.component.js:211
 msgid "Filter by Created On"
 msgstr ""
 
@@ -564,19 +570,15 @@ msgstr ""
 
 #: app/components/blueprints/blueprints-list.directive.js:134
 #: app/components/dialogs/dialogs-list.component.js:31
+#: app/components/explorer/explorer.component.js:210
 #: app/components/profiles/profiles-list.component.js:206
 #: app/states/marketplace/list/list.state.js:80
 #: app/states/requests/orders/orders.state.js:71
-#: app/states/services/list/list.state.js:132
 msgid "Filter by Name"
 msgstr ""
 
 #: app/states/requests/orders/orders.state.js:73
 msgid "Filter by Order Date"
-msgstr ""
-
-#: app/states/services/list/list.state.js:135
-msgid "Filter by Owner"
 msgstr ""
 
 #: app/components/profiles/profiles-list.component.js:212
@@ -591,7 +593,11 @@ msgstr ""
 msgid "Filter by Publish State"
 msgstr ""
 
-#: app/states/services/list/list.state.js:137
+#: app/components/explorer/explorer.component.js:213
+msgid "Filter by Region"
+msgstr ""
+
+#: app/components/explorer/explorer.component.js:209
 msgid "Filter by Relative Cost"
 msgstr ""
 
@@ -607,7 +613,7 @@ msgstr ""
 msgid "Filter by Requester"
 msgstr ""
 
-#: app/states/services/list/list.state.js:133
+#: app/components/explorer/explorer.component.js:212
 msgid "Filter by Retirement Date"
 msgstr ""
 
@@ -615,7 +621,7 @@ msgstr ""
 msgid "Filter by Status"
 msgstr ""
 
-#: app/states/services/list/list.state.js:134
+#: app/components/explorer/explorer.component.js:214
 msgid "Filter by VMs"
 msgstr ""
 
@@ -791,7 +797,7 @@ msgstr ""
 msgid "More"
 msgstr ""
 
-#: app/config/navigation.config.js:23
+#: app/config/navigation.config.js:22
 #: app/states/requests/orders/details/details.html:2
 #: app/states/requests/orders/orders.html:3
 #: app/states/requests/requests/details/details.html:2
@@ -799,7 +805,6 @@ msgstr ""
 msgid "My Requests"
 msgstr ""
 
-#: app/config/navigation.config.js:17
 #: app/states/services/details/details.html:3
 #: app/states/services/reconfigure/reconfigure.html:3
 msgid "My Services"
@@ -809,6 +814,8 @@ msgstr ""
 #: app/components/blueprints/blueprints-list.directive.js:133
 #: app/components/blueprints/blueprints-list.directive.js:159
 #: app/components/edit-service-modal/edit-service-modal.html:9
+#: app/components/explorer/explorer.component.js:210
+#: app/components/explorer/explorer.component.js:240
 #: app/components/profiles/profile-editor.html:20
 #: app/components/profiles/profiles-list.component.js:205
 #: app/components/profiles/profiles-list.component.js:237
@@ -821,12 +828,10 @@ msgstr ""
 #: app/states/marketplace/list/list.state.js:79
 #: app/states/requests/orders/orders.state.js:71
 #: app/states/requests/orders/orders.state.js:79
-#: app/states/services/list/list.state.js:132
-#: app/states/services/list/list.state.js:143
 msgid "Name"
 msgstr ""
 
-#: app/states/services/list/list.html:29
+#: app/components/explorer/explorer.html:49
 msgid "Never"
 msgstr ""
 
@@ -851,8 +856,7 @@ msgstr ""
 msgid "Notifications"
 msgstr ""
 
-#: app/states/services/list/list.state.js:134
-#: app/states/services/list/list.state.js:145
+#: app/components/explorer/explorer.component.js:214
 msgid "Number of VMs"
 msgstr ""
 
@@ -878,7 +882,7 @@ msgstr ""
 msgid "Order Details"
 msgstr ""
 
-#: app/config/navigation.config.js:52
+#: app/config/navigation.config.js:60
 #: app/states/requests/orders/details/details.html:4
 #: app/states/requests/orders/orders.state.js:40
 msgid "Order History"
@@ -894,9 +898,6 @@ msgid "Orders"
 msgstr ""
 
 #: app/states/services/details/details.html:110
-#: app/states/services/list/list.html:52
-#: app/states/services/list/list.state.js:135
-#: app/states/services/list/list.state.js:146
 msgid "Owner"
 msgstr ""
 
@@ -930,57 +931,56 @@ msgstr ""
 #: app/states/services/details/details.html:229
 #: app/states/services/details/details.html:230
 #: app/states/services/details/details.html:231
-#: app/states/services/list/list.html:68
 msgid "Power State"
 msgstr ""
 
+#: app/components/power-state/power-state.html:8
 #: app/states/services/details/details.html:137
-#: app/states/services/list/list.html:70
 msgid "Power State: Off"
 msgstr ""
 
+#: app/components/power-state/power-state.html:5
 #: app/states/services/details/details.html:136
-#: app/states/services/list/list.html:69
 msgid "Power State: On"
 msgstr ""
 
+#: app/components/power-state/power-state.html:25
 #: app/states/services/details/details.html:142
-#: app/states/services/list/list.html:76
 msgid "Power State: Start operation timed out"
 msgstr ""
 
+#: app/components/power-state/power-state.html:14
 #: app/states/services/details/details.html:139
-#: app/states/services/list/list.html:72
 msgid "Power State: Starting..."
 msgstr ""
 
+#: app/components/power-state/power-state.html:28
 #: app/states/services/details/details.html:143
-#: app/states/services/list/list.html:77
 msgid "Power State: Stop operation timed out"
 msgstr ""
 
+#: app/components/power-state/power-state.html:17
 #: app/states/services/details/details.html:140
-#: app/states/services/list/list.html:73
 msgid "Power State: Stopping..."
 msgstr ""
 
+#: app/components/power-state/power-state.html:31
 #: app/states/services/details/details.html:144
-#: app/states/services/list/list.html:78
 msgid "Power State: Suspend operation timed out"
 msgstr ""
 
+#: app/components/power-state/power-state.html:11
 #: app/states/services/details/details.html:138
-#: app/states/services/list/list.html:71
 msgid "Power State: Suspended"
 msgstr ""
 
+#: app/components/power-state/power-state.html:20
 #: app/states/services/details/details.html:141
-#: app/states/services/list/list.html:74
 msgid "Power State: Suspending..."
 msgstr ""
 
+#: app/components/power-state/power-state.html:22
 #: app/states/services/details/details.html:145
-#: app/states/services/list/list.html:75
 msgid "Power State: Unknown"
 msgstr ""
 
@@ -1029,7 +1029,7 @@ msgid "Profile(s) were succesfully deleted."
 msgstr ""
 
 #: app/components/profiles/profiles-list.component.js:20
-#: app/config/navigation.config.js:76
+#: app/config/navigation.config.js:84
 #: app/states/administration/profiles/details/details.html:5
 #: app/states/administration/profiles/editor/editor.html:5
 #: app/states/administration/profiles/profiles.state.js:20
@@ -1116,8 +1116,13 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: app/states/services/list/list.state.js:137
-#: app/states/services/list/list.state.js:148
+#: app/components/explorer/explorer.component.js:213
+#: app/components/explorer/explorer.component.js:242
+msgid "Region"
+msgstr ""
+
+#: app/components/explorer/explorer.component.js:209
+#: app/components/explorer/explorer.component.js:238
 msgid "Relative Cost"
 msgstr ""
 
@@ -1189,7 +1194,7 @@ msgstr ""
 msgid "Requester"
 msgstr ""
 
-#: app/config/navigation.config.js:46
+#: app/config/navigation.config.js:54
 #: app/states/requests/requests/details/details.html:4
 #: app/states/requests/requests/requests.state.js:20
 #: app/states/requests/requests/requests.state.js:40
@@ -1208,7 +1213,7 @@ msgstr ""
 msgid "Retire Service Now"
 msgstr ""
 
-#: app/states/services/list/list.state.js:128
+#: app/components/explorer/explorer.component.js:205
 msgid "Retired"
 msgstr ""
 
@@ -1220,11 +1225,11 @@ msgstr ""
 msgid "Retirement"
 msgstr ""
 
+#: app/components/explorer/explorer.component.js:212
+#: app/components/explorer/explorer.component.js:241
 #: app/components/retire-service-modal/retire-service-modal.html:13
 #: app/states/dashboard/dashboard.state.js:185
 #: app/states/services/details/details.html:102
-#: app/states/services/list/list.state.js:133
-#: app/states/services/list/list.state.js:144
 msgid "Retirement Date"
 msgstr ""
 
@@ -1236,7 +1241,7 @@ msgstr ""
 msgid "Retirement Warning"
 msgstr ""
 
-#: app/states/services/list/list.html:25
+#: app/components/explorer/explorer.html:45
 msgid "Retires"
 msgstr ""
 
@@ -1249,7 +1254,7 @@ msgid "Rule(s) were succesfully deleted."
 msgstr ""
 
 #: app/components/rules/rules-list.component.js:172
-#: app/config/navigation.config.js:82
+#: app/config/navigation.config.js:90
 #: app/states/administration/rules/rules.html:5
 #: app/states/administration/rules/rules.state.js:21
 #: app/states/administration/rules/rules.state.js:50
@@ -1385,7 +1390,7 @@ msgstr ""
 msgid "Service"
 msgstr ""
 
-#: app/config/navigation.config.js:28
+#: app/config/navigation.config.js:27
 #: app/states/marketplace/details/details.html:3
 #: app/states/marketplace/list/list.state.js:20
 #: app/states/services/custom_button_details/custom_button_details.html:3
@@ -1402,16 +1407,28 @@ msgstr ""
 msgid "Service Details"
 msgstr ""
 
+#: app/config/navigation.config.js:45
+msgid "Service Explorer"
+msgstr ""
+
 #: app/states/services/details/details.html:95
 msgid "Service Id"
 msgstr ""
 
-#: app/states/services/list/list.state.js:19
-msgid "Service List"
+#: app/components/explorer/explorer.html:82
+msgid "Service Region"
 msgstr ""
 
 #: app/states/marketplace/details/details.state.js:19
 msgid "Service Template Details"
+msgstr ""
+
+#: app/config/navigation.config.js:17
+msgid "Services"
+msgstr ""
+
+#: app/states/services/explorer/explorer.state.js:19
+msgid "Services Explorer"
 msgstr ""
 
 #: app/states/services/details/details.html:81
@@ -1450,16 +1467,16 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: app/states/services/list/list.state.js:128
+#: app/components/explorer/explorer.component.js:205
 msgid "Soon"
 msgstr ""
 
+#: app/components/explorer/explorer.component.js:120
 #: app/states/services/details/details.html:69
-#: app/states/services/list/list.state.js:102
 msgid "Start"
 msgstr ""
 
-#: app/states/services/list/list.state.js:104
+#: app/components/explorer/explorer.component.js:122
 msgid "Start this service"
 msgstr ""
 
@@ -1467,12 +1484,12 @@ msgstr ""
 msgid "Started:"
 msgstr ""
 
+#: app/components/explorer/explorer.component.js:114
 #: app/states/services/details/details.html:75
-#: app/states/services/list/list.state.js:112
 msgid "Stop"
 msgstr ""
 
-#: app/states/services/list/list.state.js:114
+#: app/components/explorer/explorer.component.js:116
 msgid "Stop this service"
 msgstr ""
 
@@ -1481,12 +1498,12 @@ msgstr ""
 msgid "Submit Request"
 msgstr ""
 
+#: app/components/explorer/explorer.component.js:126
 #: app/states/services/details/details.html:78
-#: app/states/services/list/list.state.js:119
 msgid "Suspend"
 msgstr ""
 
-#: app/states/services/list/list.state.js:121
+#: app/components/explorer/explorer.component.js:128
 msgid "Suspend this service"
 msgstr ""
 
@@ -1517,7 +1534,7 @@ msgstr ""
 msgid "The number of active services"
 msgstr ""
 
-#: app/states/services/list/list.html:36
+#: app/components/explorer/explorer.html:63
 msgid "The number of instances running this service"
 msgstr ""
 
@@ -1541,35 +1558,35 @@ msgstr ""
 msgid "The rule was created."
 msgstr ""
 
-#: app/config/navigation.config.js:79
+#: app/config/navigation.config.js:87
 msgid "The total number of available arbitration profiles"
 msgstr ""
 
-#: app/config/navigation.config.js:85
+#: app/config/navigation.config.js:93
 msgid "The total number of available arbitration rules"
 msgstr ""
 
-#: app/config/navigation.config.js:64
+#: app/config/navigation.config.js:72
 msgid "The total number of available blueprints"
 msgstr ""
 
-#: app/config/navigation.config.js:31
+#: app/config/navigation.config.js:30
 msgid "The total number of available catalog items"
 msgstr ""
 
-#: app/config/navigation.config.js:70
+#: app/config/navigation.config.js:78
 msgid "The total number of available dialogs"
 msgstr ""
 
-#: app/config/navigation.config.js:55
+#: app/config/navigation.config.js:63
 msgid "The total number of orders that you have submitted"
 msgstr ""
 
-#: app/config/navigation.config.js:49
+#: app/config/navigation.config.js:57
 msgid "The total number of requests that you have submitted"
 msgstr ""
 
-#: app/config/navigation.config.js:20
+#: app/config/navigation.config.js:48
 msgid "The total number of services that you have ordered, both active and retired"
 msgstr ""
 
@@ -1611,6 +1628,10 @@ msgstr ""
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
+msgstr ""
+
+#: app/components/explorer/explorer.component.js:362
+msgid "There was an error loading the services."
 msgstr ""
 
 #: app/services/consoles.service.js:59
@@ -1668,12 +1689,39 @@ msgstr ""
 msgid "This service has no associated VMs"
 msgstr ""
 
+#: app/components/explorer/explorer.component.js:243
+#: app/components/explorer/explorer.html:94
+msgid "Total CPUs"
+msgstr ""
+
+#: app/components/explorer/explorer.component.js:244
+#: app/components/explorer/explorer.html:99
+msgid "Total Memory"
+msgstr ""
+
 #: app/states/dashboard/dashboard.html:20
 msgid "Total Requests"
 msgstr ""
 
 #: app/states/dashboard/dashboard.html:9
 msgid "Total Services"
+msgstr ""
+
+#: app/components/explorer/explorer.component.js:245
+#: app/components/explorer/explorer.html:104
+msgid "Total VM Disk Count"
+msgstr ""
+
+#: app/components/explorer/explorer.html:109
+msgid "Total VM Disk Space Allocated"
+msgstr ""
+
+#: app/components/explorer/explorer.html:115
+msgid "Total VM Disk Space Used"
+msgstr ""
+
+#: app/components/explorer/explorer.html:121
+msgid "Total VM Memory on Disk"
 msgstr ""
 
 #: app/components/rules/rules-list.html:38
@@ -1687,6 +1735,10 @@ msgstr ""
 #: app/components/blueprints/blueprints-list.html:35
 #: app/components/blueprints/blueprints-list.html:44
 msgid "Unassigned"
+msgstr ""
+
+#: app/components/explorer/explorer.html:77
+msgid "Unknown"
 msgstr ""
 
 #: app/services/consoles.service.js:75
@@ -1722,8 +1774,12 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: app/states/services/list/list.html:39
-msgid "VMs"
+#: app/components/explorer/explorer.component.js:246
+msgid "VM Disk Space Allocated"
+msgstr ""
+
+#: app/components/explorer/explorer.component.js:248
+msgid "VM Memory on Disk"
 msgstr ""
 
 #: app/states/services/details/details.html:213
@@ -1785,12 +1841,22 @@ msgstr ""
 msgid "Your session has timed out."
 msgstr ""
 
-#: app/states/services/list/list.html:37
+#: app/components/explorer/explorer.html:65
 msgid "[[number]] VMs"
+msgstr ""
+
+#: app/components/explorer/explorer.html:137
+#: app/components/explorer/explorer.html:144
+msgid "items"
 msgstr ""
 
 #: app/config/gettext.config.js:34
 msgid "locale_name"
+msgstr ""
+
+#: app/components/explorer/pagination/pagination.html:13
+#: app/components/explorer/pagination/pagination.html:16
+msgid "of"
 msgstr ""
 
 #: app/states/requests/orders/orders.html:26

@@ -1,0 +1,151 @@
+<div pf-toolbar class="service-explorer-header" config="vm.headerConfig"></div>
+
+<div ng-if="vm.viewType == 'cardView'" class="col-md-12 list-view-container">
+  <loading status="vm.loading"></loading>
+  <div ng-if="!vm.loading" pf-card-view id="cardView" config="vm.cardConfig" items="vm.servicesList">
+    <h3>{{ item.name }}</h3>
+    <div class="ss-card__logo_wrapper">
+      <img ng-if="item.picture.image_href" class="ss-card__logo" alt="{{ item.name }}"
+           ng-src="{{ item.picture.image_href }}"/>
+      <img ng-if="!item.picture.image_href" class="ss-card__logo" alt="{{ item.name }}" src="./images/service.png"/>
+    </div>
+    <span tooltip=" {{item.description}} " tooltip-placement="right"></i>
+      <strong translate>Description</strong>
+      <i class="fa fa-info-circle blue"></i>
+    </span>
+    <div>
+      <power-state item="item"></power-state>
+    </div>
+  </div>
+</div>
+
+<div ng-if="vm.viewType == 'listView'" class="col-md-12 list-view-container">
+  <loading status="vm.loading"></loading>
+  <div ng-if="!vm.loading" pf-list-view id="serviceList" class="arbitration-profiles-list" config="vm.listConfig"
+       items="vm.servicesList"
+       menu-actions="vm.menuActions"
+       update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-8">
+        <span class="no-wrap" tooltip=" {{item.description}} " tooltip-placement="bottom">
+          <span class="ss-list-view__title-img">
+            <span class="ss-list-view__title-img__center"></span>
+            <img class="ss-list-view__title-img__logo" ng-src="{{ item.picture.image_href }}"
+                 ng-if=" item.picture.image_href"/>
+            <img class="ss-list-view__title-img__logo" src="images/service.png" ng-if=" !item.picture.image_href"/>
+          </span>
+          <span t>
+            {{ item.name }}
+          </span>
+        </span>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-3 hidden-xs">
+        <span class="no-wrap">
+          <strong translate>Retires</strong>&nbsp;
+          <span ng-if=(item.retires_on) tooltip="{{item.retires_on | date : 'medium'}}" tooltip-placement="bottom">
+            {{ item.retires_on | date : 'shortDate' }}
+          </span>
+          <i ng-if=!(item.retires_on) class="fa fa-ban" tooltip="{{'Never'|translate}}"
+             tooltip-placement="bottom"></i>
+        </span>
+      </div>
+      <div class="col-lg-2 col-md-3 hidden-sm hidden-xs">
+        <span class="no-wrap">
+          <strong translate>Created</strong>&nbsp;
+          <span tooltip="{{ item.created_at | date : 'medium' }}" tooltip-placement="bottom">
+            {{ item.created_at | date : 'shortDate' }}
+          </span>
+        </span>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-2 hidden-xs">
+        <span class="no-wrap">
+           <i class="pficon pficon-screen" tooltip="{{'The number of instances running this service'|translate}}"
+              tooltip-placement="bottom"></i>
+          <span tooltip="{{ '[[number]] VMs'|translate|substitute:{number: item.v_total_vms} }}"
+                tooltip-placement="bottom">
+            <strong>{{ item.v_total_vms }}</strong>
+          </span>
+        </span>
+      </div>
+      <div class="col-lg-1 hidden-md hidden-sm hidden-xs">
+        <span class="no-wrap">
+          <i class="fa fa-money" tooltip="{{'Chargeback: Relative Cost'|translate}}"
+             tooltip-placement="bottom"></i>
+          <strong ng-if="item.chargeback_relative_cost">{{ item.chargeback_relative_cost }}</strong>
+          <i ng-if="!item.chargeback_relative_cost" class="fa fa-question-circle blue fa-fw"
+             tooltip="{{'Unknown'|translate}}" tooltip-placement="bottom"></i>
+        </span>
+      </div>
+      <div class="col-lg-1 hidden-md hidden-sm hidden-xs">
+        <span class="no-wrap">
+          <i class="fa fa-globe" tooltip="{{'Service Region'|translate}}"
+             tooltip-placement="bottom"></i>
+          <strong tooltip="{{item.region_description}}" tooltip-placement="bottom"></i>{{ item.region_number }}</strong>
+        </span>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-3 col-xs-4">
+        <power-state item="item"></power-state>
+      </div>
+    </div>
+    <list-expanded-content>
+      <row>
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" tooltip="{{ 'Total CPUs' | translate }}"
+             tooltip-placement="bottom">
+          <i class="pficon pficon-cpu"></i>
+          <strong>{{ $parent.item.aggregate_all_vm_cpus}}</strong>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" tooltip="{{ 'Total Memory' | translate }}"
+             tooltip-placement="bottom">
+          <i class="pficon pficon-memory"></i>
+          <strong>{{ $parent.item.aggregate_all_vm_memory | formatBytes }}</strong>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" tooltip="{{ 'Total VM Disk Count' | translate }}"
+             tooltip-placement="bottom">
+          <i class="pficon pficon-volume"></i>
+          <strong> {{ $parent.item.aggregate_all_vm_disk_count }}</strong>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" tooltip="{{ 'Total VM Disk Space Allocated' | translate }}"
+             tooltip-placement="bottom">
+          <i class="pficon pficon-volume"></i><strong> {{ $parent.item.aggregate_all_vm_disk_space_allocated |
+          formatBytes }}
+        </strong>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" tooltip="{{ 'Total VM Disk Space Used' | translate }}"
+             tooltip-placement="bottom">
+          <i class="pficon pficon-volume"></i>
+          <strong> {{ $parent.item.aggregate_all_vm_disk_space_used | formatBytes }}
+          </strong>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" tooltip="{{ 'Total VM Memory on Disk' | translate }}"
+             tooltip-placement="bottom">
+          <i class="pficon pficon-volume"></i>
+          <strong> {{ $parent.item.aggregate_all_vm_memory_on_disk | formatBytes }}
+          </strong>
+        </div>
+      </row>
+    </list-expanded-content>
+  </div>
+</div>
+
+<div pf-toolbar class="service-explorer-footer" config="vm.footerConfig">
+  <actions>
+    <span class="dropup primary-action pull-left" dropdown>
+      <button type="button" class="btn dropdown-toggle btn-default" dropdown-toggle type="button">
+        {{vm.serviceLimit}}
+        <span translate>items</span>
+        <span class="caret"></span>
+      </button>
+        <ul class="dropdown-menu">
+          <li role="menuitem" ng-repeat="item in vm.serviceLimitOptions" ng-click="vm.updateLimit(item)">
+            <a>
+              {{ ::item }}
+              <span translate>items</span>
+            </a>
+          </li>
+        </ul>
+    </span>
+    <explorer-pagination limit="vm.serviceLimit" offset="vm.serviceOffset" count="vm.serviceCount"
+                         on-update="vm.resolveServices(vm.serviceLimit, offset)"></explorer-pagination>
+  </actions>
+</div>

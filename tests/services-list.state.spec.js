@@ -1,6 +1,6 @@
 describe('Dashboard', function() {
   beforeEach(function() {
-    module('app.states', 'app.config', 'gettext', bard.fakeToastr);
+    module('app.states', 'app.components', 'app.config', 'gettext', bard.fakeToastr);
     bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session');
   });
 
@@ -14,8 +14,8 @@ describe('Dashboard', function() {
     });
 
     it('should work with $state.go', function() {
-      $state.go('services.list');
-      expect($state.is('services.list'));
+      $state.go('services.explorer');
+      expect($state.is('services.explorer'));
     });
   });
 
@@ -29,9 +29,9 @@ describe('Dashboard', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope');
+      bard.inject('$componentController', '$log', '$state', '$rootScope');
 
-      controller = $controller($state.get('services.list').controller, {services: services});
+      controller = $componentController('serviceExplorer'), {services: services};
     });
 
     it('should be created successfully', function() {
@@ -46,24 +46,28 @@ describe('Dashboard', function() {
       count: 1,
       subcount: 1,
       resources: [
-        {options: {
-        power_state: "timeout",
-        power_status: "starting"
-      }}
+        {
+          options: {
+            powerState: "timeout",
+            powerStatus: "starting"
+          }
+        }
       ]
     };
 
-    var serviceItem = services.resources[0];
+    var serviceItem = services.resources[0].options;
 
     var Chargeback = {
-      processReports: function(){},
-      adjustRelativeCost: function(){}
+      processReports: function() {
+      },
+      adjustRelativeCost: function() {
+      }
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope');
+      bard.inject('$componentController', '$log', '$state', '$rootScope');
 
-      controller = $controller($state.get('services.list').controller, {services: services, Chargeback: Chargeback});
+      controller = $componentController('serviceExplorer', {services: services, Chargeback: Chargeback});
     });
 
     it('sets the powerState value on the Service', function() {
@@ -79,7 +83,9 @@ describe('Dashboard', function() {
     });
 
     it('Shows the "Start" button when "Start" operation times out', function() {
-      expect(controller.enableButtonForItemFn({}, serviceItem)).to.eq(true);
+      var action = {actionName: 'start'};
+      expect(controller.updateMenuActionForItemFn(action, serviceItem));
+      expect(action.isDisabled).to.eq(false);
     });
 
     it('displays "Stop" button when action is "stop"', function() {
@@ -102,50 +108,56 @@ describe('Dashboard', function() {
       count: 1,
       subcount: 1,
       resources: [
-        {options: {
-          power_state: "on",
-          power_status: "start_complete"
-        }}
+        {
+          options: {
+            powerState: "on",
+            powerStatus: "start_complete"
+          }
+        }
       ]
     };
 
-    var serviceItem = services.resources[0];
+    var serviceItem = services.resources[0].options;
 
     var Chargeback = {
-      processReports: function(){},
-      adjustRelativeCost: function(){}
+      processReports: function() {
+      },
+      adjustRelativeCost: function() {
+      }
     };
 
     var PowerOperations = {
-      powerOperationOnState: function (item) {
+      powerOperationOnState: function(item) {
         return item.powerState === "on" && item.powerStatus === "start_complete";
       },
-      powerOperationUnknownState: function (item) {
+      powerOperationUnknownState: function(item) {
         return item.powerState === "" && item.powerStatus === "";
       },
-      powerOperationInProgressState: function (item) {
+      powerOperationInProgressState: function(item) {
         return (item.powerState !== "timeout" && item.powerStatus === "starting")
           || (item.powerState !== "timeout" && item.powerStatus === "stopping")
           || (item.powerState !== "timeout" && item.powerStatus === "suspending");
       },
-      powerOperationOffState: function (item) {
+      powerOperationOffState: function(item) {
         return item.powerState === "off" && item.powerStatus === "stop_complete";
       },
-      powerOperationSuspendState: function (item) {
+      powerOperationSuspendState: function(item) {
         return item.powerState === "off" && item.powerStatus === "suspend_complete";
       },
-      powerOperationTimeoutState: function (item) {
+      powerOperationTimeoutState: function(item) {
         return item.powerState === "timeout";
       },
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope');
+      bard.inject('$componentController', '$log', '$state', '$rootScope');
 
-      controller = $controller($state.get('services.list').controller,
-        {services: services,
-         Chargeback: Chargeback,
-         PowerOperations: PowerOperations});
+      controller = $componentController('serviceExplorer',
+        {
+          services: services,
+          Chargeback: Chargeback,
+          PowerOperations: PowerOperations
+        });
     });
 
     it('sets the powerState value on the Service', function() {
@@ -157,7 +169,9 @@ describe('Dashboard', function() {
     });
 
     it('hides the "Start" button when power state is "ON"', function() {
-      expect(controller.enableButtonForItemFn(undefined, serviceItem)).to.eq(false);
+      var action = {actionName: 'start'};
+      expect(controller.updateMenuActionForItemFn(action, serviceItem));
+      expect(action.isDisabled).to.eq(true);
     });
 
     it('displays "Stop" button when action is "stop"', function() {
