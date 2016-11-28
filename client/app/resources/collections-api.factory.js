@@ -125,9 +125,7 @@
         params.push('sort_options=' + encodeURIComponent(options.sort_options));
       }
 
-      if (params.length) {
-        return '?' + params.join('&');
-      }
+      return params.length ? '?' + params.join('&') : '';
     }
 
     function buildConfig(options) {
