@@ -61,10 +61,10 @@
           // construct full path to parent
           var curNode = selectedNodes[0];
           var pathToNode = "/" + curNode.text;
-          curNode = angular.element('#entryPointsTree').treeview('getParent', curNode);
-          while (curNode.text.indexOf) {
+          curNode = angular.element('#entryPointsTree').treeview('getParents', curNode)[0];
+          while (curNode && curNode.text.indexOf) {
             pathToNode = "/" + curNode.text + pathToNode;
-            curNode = angular.element('#entryPointsTree').treeview('getParent', curNode);
+            curNode = angular.element('#entryPointsTree').treeview('getParents', curNode)[0];
           }
           $modalInstance.close({entryPointType: vm.entryPointType, entryPointData: pathToNode});
         } else {
@@ -77,7 +77,7 @@
       if (node.nodes) {
         var nodeToExpand = onlyOneExpandableChild(node.nodes);
         if (nodeToExpand) {
-          ('#entryPointsTree').treeview('expandNode', [nodeToExpand.nodeId]);
+          angular.element('#entryPointsTree').treeview('expandNode', [nodeToExpand]);
         }
       }
     }

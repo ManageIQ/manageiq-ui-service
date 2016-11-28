@@ -34,7 +34,7 @@
       angular.element('#entryPointsTree').treeview('collapseAll');
       // Auto-magically expand the root nodes
       for (i = 0; i < rootNode.length; i++) {
-        angular.element('#entryPointsTree').treeview('expandNode', [rootNode[i].nodeId]);
+        angular.element('#entryPointsTree').treeview('expandNode', [rootNode[i]]);
       }
     }
   }
