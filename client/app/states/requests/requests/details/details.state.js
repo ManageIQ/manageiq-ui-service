@@ -32,10 +32,37 @@
   }
 
   /** @ngInject */
-  function RequestDetailsController(request) {
+  function RequestDetailsController(request, $state, $stateParams, CollectionsApi, EventNotifications, RBAC) {
     var vm = this;
 
-    vm.title = request.description;
     vm.request = request;
+    vm.title = request.description;
+
+    vm.updateApprovalState = updateApprovalState;
+    vm.pendingApproval = pendingApproval;
+
+    function updateApprovalState(action) {
+      var data = {
+        "action": action,
+        "resource": {
+          "reason": vm.approvalReason,
+        },
+      };
+
+      CollectionsApi.post('service_requests', $stateParams.requestId, {}, data).then(success, failure);
+
+      function success() {
+        EventNotifications.success(__('Request approval state updated.'));
+        $state.go($state.current, {}, {reload: true});
+      }
+
+      function failure() {
+        EventNotifications.error(__('There was an error updating the request approval state.'));
+      }
+    }
+
+    function pendingApproval() {
+      return vm.request.approval_state === 'pending_approval' && RBAC.has('miq_request_approval');
+    }
   }
 })();
