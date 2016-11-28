@@ -77,7 +77,7 @@
       if (node.nodes) {
         var nodeToExpand = onlyOneExpandableChild(node.nodes);
         if (nodeToExpand) {
-          ('#entryPointsTree').treeview('expandNode', [nodeToExpand.nodeId]);
+          angular.element('#entryPointsTree').treeview('expandNode', [nodeToExpand.nodeId]);
         }
       }
     }
