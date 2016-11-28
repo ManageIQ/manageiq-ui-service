@@ -98,10 +98,10 @@
       return undefined;
     }
     var currentDate = new Date();
-    var date1 = 'retires_on>=' + currentDate.toISOString();
+    var date1 = 'retires_on>' + currentDate.toISOString();
 
     var days30 = currentDate.setDate(currentDate.getDate() + 30);
-    var date2 = 'retires_on<=' + new Date(days30).toISOString();
+    var date2 = 'retires_on<' + new Date(days30).toISOString();
     var options = {expand: false, filter: ['retired=false', date1, date2]};
 
     return CollectionsApi.query('services', options);
