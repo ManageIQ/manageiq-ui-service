@@ -52,7 +52,9 @@
     return CollectionsApi.get('services', $stateParams.serviceId, options);
   }  
   /** @ngInject */
+  /* eslint-disable max-len */
   function StateController($state, $filter, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, EventNotifications, Consoles, Chargeback, PowerOperations) {
+  /* eslint-enable max-len */
     var vm = this;
     var $translate = $filter('translate');
     setInitialVars();
@@ -117,22 +119,21 @@
       vm.powerOperationTimeoutState = PowerOperations.powerOperationTimeoutState;
       vm.powerOperationSuspendState = PowerOperations.powerOperationSuspendState;
       vm.vmMenuButtons = setupVmMenuButtons();
-
     }
-    function vmButtonEnabled(action, item){
+    function vmButtonEnabled(action, item) {
       var buttonEnabled = true;
 
       switch (action.actionName) {
         case 'htmlConsole':
-          if (item['supports_console?'] && item.power_state == 'on') {
+          if (item['supports_console?'] && item.power_state === 'on') {
             buttonEnabled = true;
           }
           break;
         case 'cockpitConsole':
-           if (item['supports_cockpit?'] && item.power_state == 'on'){
-          buttonEnabled = true;
-        }
-        break;
+          if (item['supports_cockpit?'] && item.power_state === 'on') {
+            buttonEnabled = true;
+          }
+          break;
       }
 
       return buttonEnabled;
@@ -150,26 +151,25 @@
       }
     }
 
-    function setupVmMenuButtons(){
-      
-      var vmMenuButtons={actionButtons:[],buttonEnabledFn:{}};
-      vmMenuButtons.buttonEnabledFn=vmButtonEnabled;
-      var viewVirtualMachineAction= function(action, item) {
+    function setupVmMenuButtons() { 
+      var vmMenuButtons = { actionButtons: [], buttonEnabledFn: {}};
+      vmMenuButtons.buttonEnabledFn = vmButtonEnabled;
+      var viewVirtualMachineAction = function(action, item) {
         $state.go('vms.details', {vmId: item.id});
-      }
+      };
 
-      vmMenuButtons.actionButtons= [
+      vmMenuButtons.actionButtons = [
         {
-          actionName:'htmlConsole',
+          actionName: 'htmlConsole',
           class: 'fa fa-html5 btn btn-default',
           title: $translate('Open a HTML5 console for this VM'),
-          actionFn: openConsole
+          actionFn: openConsole,
         },
         {
-          actionName:'cockpitConsole',
+          actionName: 'cockpitConsole',
           title: $translate('Open Cockpit console for this VM'),
           class: 'fa fa-plane btn btn-default',
-          actionFn: openConsole
+          actionFn: openConsole,
         },
  /*        {
           actionName:'viewVm',
@@ -182,8 +182,8 @@
       return vmMenuButtons;
     }
    
-    function openConsole(action,item) {
-        Consoles.open(item.id);
+    function openConsole(action, item) {
+      Consoles.open(item.id);
     }
 
     function editServiceModal() {
