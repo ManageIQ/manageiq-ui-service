@@ -16,7 +16,7 @@
 
   /** @ngInject */
   function ComponentController() {
-    const vm = this;
+    var vm = this;
 
     angular.extend(vm, {
       handleAction: handleAction,
