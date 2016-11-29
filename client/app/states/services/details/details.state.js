@@ -52,9 +52,8 @@
     return CollectionsApi.get('services', $stateParams.serviceId, options);
   }  
   /** @ngInject */
-  /* eslint-disable max-len */
-  function StateController($state, $filter, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, EventNotifications, Consoles, Chargeback, PowerOperations) {
-  /* eslint-enable max-len */
+  function StateController($state, $filter, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, 
+                           EventNotifications, Consoles, Chargeback, PowerOperations) {
     var vm = this;
     var $translate = $filter('translate');
     setInitialVars();
