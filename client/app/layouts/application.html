@@ -29,7 +29,7 @@
         <li>
           <a title="{{vm.notificationsIndicatorTooltip}}" class="nav-item-iconic indicator" ng-click="vm.toggleNotificationsList()">
             <i class="fa" ng-class="{'fa-bell': vm.newNotifications, 'fa-bell-o': !vm.newNotifications}"></i>
-            <span class="badge" ng-show="vm.newNotifications" ng-bind="vm.unreadNotificationCount"></span>
+            <span class="badge" ng-show="vm.newNotifications">&#8226</span>
           </a>
         </li>
         <li class="dropdown">
