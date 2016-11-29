@@ -6,35 +6,36 @@
       controller: ComponentController,
       controllerAs: 'vm',
       bindings: {
-        config: '<'
+        config: '<',
+        items: '<',
+        itemsCount: '<',
+        onUpdate: '&',
       },
       templateUrl: 'app/components/custom-dropdown/custom-dropdown.html',
     });
 
   /** @ngInject */
   function ComponentController() {
-    var vm = this;
+    let vm = this;
+
     angular.extend(vm, {
       handleAction: handleAction,
     });
 
-    vm.$onInit = function() {
-
+    vm.$onChanges = function() {
+      updateDisabled();
     };
-
-    vm.$onChanges = function(changes) {
-
-    };
-
-
     // Public
 
     // Private
-    function handleAction(option) {
-      if (!option.isDisabled) {
-        option.actionFn();
-      }
+    function updateDisabled() {
+      vm.onUpdate({$config:vm.config, $changes:vm.items});
     }
 
+    function handleAction(option) {
+      if (!option.isDisabled) {
+        option.actionFn(option);
+      }
+    }
   }
 })();
