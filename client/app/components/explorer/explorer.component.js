@@ -441,7 +441,7 @@
     function listActionDisable(config, items) {
       items.length <= 0 ? config.isDisabled = true : config.isDisabled = false;
       if (items.length > 1 && config.actionName === "configuration") {
-        lodash.forEach(config.actions, disableItems)
+        lodash.forEach(config.actions, disableItems);
       } else if (items.length <= 1 && config.actionName === "configuration") {
         lodash.forEach(config.actions, enableItems);
       }

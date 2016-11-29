@@ -16,7 +16,7 @@
 
   /** @ngInject */
   function ComponentController() {
-    let vm = this;
+    const vm = this;
 
     angular.extend(vm, {
       handleAction: handleAction,
@@ -29,7 +29,7 @@
 
     // Private
     function updateDisabled() {
-      vm.onUpdate({$config:vm.config, $changes:vm.items});
+      vm.onUpdate({$config: vm.config, $changes: vm.items});
     }
 
     function handleAction(option) {
