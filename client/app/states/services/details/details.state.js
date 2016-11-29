@@ -50,12 +50,11 @@
     };
 
     return CollectionsApi.get('services', $stateParams.serviceId, options);
-  }
-
+  }  
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal,
-                           EventNotifications, Consoles, Chargeback, PowerOperations) {
+  function StateController($state, $filter, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, EventNotifications, Consoles, Chargeback, PowerOperations) {
     var vm = this;
+    var $translate = $filter('translate');
     setInitialVars();
 
     if (angular.isUndefined(vm.service.vms)) {
@@ -80,7 +79,6 @@
     vm.listConfig = {
       selectItems: false,
       showSelectBox: false,
-      onClick: maybeOpenConsole,
     };
 
     activate();
@@ -118,8 +116,27 @@
       vm.powerOperationInProgressState = PowerOperations.powerOperationInProgressState;
       vm.powerOperationTimeoutState = PowerOperations.powerOperationTimeoutState;
       vm.powerOperationSuspendState = PowerOperations.powerOperationSuspendState;
-    }
+      vm.vmMenuButtons = setupVmMenuButtons();
 
+    }
+    function vmButtonEnabled(action, item){
+      var buttonEnabled = true;
+
+      switch (action.actionName) {
+        case 'htmlConsole':
+          if (item['supports_console?'] && item.power_state == 'on') {
+            buttonEnabled = true;
+          }
+          break;
+        case 'cockpitConsole':
+           if (item['supports_cockpit?'] && item.power_state == 'on'){
+          buttonEnabled = true;
+        }
+        break;
+      }
+
+      return buttonEnabled;
+    }
     function removeService() {
       CollectionsApi.delete('services', vm.service.id).then(removeSuccess, removeFailure);
 
@@ -133,21 +150,40 @@
       }
     }
 
-    /*
-      FIXME
-      this is a hack because it's impossible to access the current scope inside of
-      pf-list-view, and pf-list-view's actionButtons doesn't support hiding buttons
-      based on a condition
-      so the button gets .open-console-button instead of ng-click="vm.openConsole(item)"
-      and we're abusing onClick to verify the event came from that button and call
-      openConsole if so
-     */
-    function maybeOpenConsole(item, event) {
-      var $target = angular.element(event.target);
-
-      if ($target.is('.open-console-button') || $target.is('.open-console-button *')) {
-        Consoles.open(item.id);
+    function setupVmMenuButtons(){
+      
+      var vmMenuButtons={actionButtons:[],buttonEnabledFn:{}};
+      vmMenuButtons.buttonEnabledFn=vmButtonEnabled;
+      var viewVirtualMachineAction= function(action, item) {
+        $state.go('vms.details', {vmId: item.id});
       }
+
+      vmMenuButtons.actionButtons= [
+        {
+          actionName:'htmlConsole',
+          class: 'fa fa-html5 btn btn-default',
+          title: $translate('Open a HTML5 console for this VM'),
+          actionFn: openConsole
+        },
+        {
+          actionName:'cockpitConsole',
+          title: $translate('Open Cockpit console for this VM'),
+          class: 'fa fa-plane btn btn-default',
+          actionFn: openConsole
+        },
+ /*        {
+          actionName:'viewVm',
+          class: 'fa pficon pficon-virtual-machine btn btn-default vm-action-button',
+          title: $translate('View this virtual machine details'),
+          actionFn: viewVirtualMachineAction
+        } */
+      ];
+
+      return vmMenuButtons;
+    }
+   
+    function openConsole(action,item) {
+        Consoles.open(item.id);
     }
 
     function editServiceModal() {

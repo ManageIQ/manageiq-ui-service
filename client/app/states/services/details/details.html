@@ -201,7 +201,7 @@
         <p ng-if="vm.vms.length === 0" translate>
           This service has no associated VMs
         </p>
-        <div pf-list-view id="serviceList" config="vm.listConfig" items="vm.vms" ng-if="vm.vms.length > 0">
+        <div pf-list-view id="serviceList" config="vm.listConfig" enable-button-for-item-fn="vm.vmMenuButtons.buttonEnabledFn" action-buttons="vm.vmMenuButtons.actionButtons" items="vm.vms" ng-if="vm.vms.length > 0">
           <div class="row">
             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
               <span class="no-wrap">
@@ -230,14 +230,6 @@
                 <i class="fa pficon fa-pause" ng-if="item.power_state == 'suspended'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
                 <strong ng-if="item.power_state == 'never' || item.power_state == 'unknown'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom" translate>Power State</strong>&nbsp;{{ item.power_state }}
               </span>
-            </div>
-            <div class="col-lg-1 col-md-1 hidden-sm hidden-xs ">
-                <button class="btn btn-default open-console-button" ng-if="item['supports_console?'] && item.power_state == 'on'" tooltip="{{'Open a HTML5 console for this VM'|translate}}" tooltip-placement="left">
-                  <i class="fa fa-html5 fa-lg"></i>
-                </button>
-                <button class="btn btn-default open-console-button" ng-if="item['supports_cockpit?'] && item.power_state == 'on'" tooltip="{{'Open Cockpit console for this VM'|translate}}" tooltip-placement="left">
-                  <img src="images/cockpit.png">
-                </button>
             </div>
           </div>
         </div>
