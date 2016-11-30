@@ -47,7 +47,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, dialog, DialogEditor, CollectionsApi, Notifications) {
+  function StateController($state, dialog, DialogEditor, CollectionsApi, EventNotifications) {
     var vm = this;
 
     DialogEditor.setData(dialog);
@@ -91,12 +91,12 @@
     }
 
     function saveSuccess() {
-      Notifications.success(vm.dialog.content[0].label + __(' was saved'));
+      EventNotifications.success(vm.dialog.content[0].label + __(' was saved'));
       $state.go('designer.dialogs.list');
     }
 
     function saveFailure() {
-      Notifications.error(__('There was an error editing this dialog.'));
+      EventNotifications.error(__('There was an error editing this dialog.'));
     }
   }
 })();

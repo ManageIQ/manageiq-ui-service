@@ -32,7 +32,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, dialog, CollectionsApi, Notifications) {
+  function StateController($state, dialog, CollectionsApi, EventNotifications) {
     var vm = this;
 
     vm.dialog = dialog;
@@ -48,12 +48,12 @@
       CollectionsApi.post('service_dialogs', vm.dialog.id, {}, removeAction).then(removeSuccess, removeFailure);
 
       function removeSuccess() {
-        Notifications.success(vm.dialog.name + __(' was removed.'));
+        EventNotifications.success(vm.dialog.label + __(' was removed.'));
         $state.go('designer.dialogs.list');
       }
 
       function removeFailure(data) {
-        Notifications.error(__('There was an error removing this dialog.'));
+        EventNotifications.error(__('There was an error removing this dialog.'));
       }
     }
   }
