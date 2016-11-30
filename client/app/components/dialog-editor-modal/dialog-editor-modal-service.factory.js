@@ -68,14 +68,14 @@
     switch (vm.element) {
       case 'tab':
         vm.modalData = lodash.cloneDeep(
-          DialogEditor.getData().content[0].dialog_tabs[
+          DialogEditor.getDialogTabs()[
             DialogEditor.activeTab
           ]
         );
         break;
       case 'box':
         vm.modalData = lodash.cloneDeep(
-          DialogEditor.getData().content[0].dialog_tabs[
+          DialogEditor.getDialogTabs()[
             DialogEditor.activeTab
           ].dialog_groups[
             vm.dialog.boxId
@@ -84,7 +84,7 @@
         break;
       case 'field':
         vm.modalData = lodash.cloneDeep(
-          DialogEditor.getData().content[0].dialog_tabs[
+          DialogEditor.getDialogTabs()[
             DialogEditor.activeTab
           ].dialog_groups[
             vm.dialog.boxId
@@ -116,14 +116,14 @@
       switch (vm.element) {
         case 'tab':
           return lodash.isMatch(
-            DialogEditor.getData().content[0].dialog_tabs[
+            DialogEditor.getDialogTabs()[
               DialogEditor.activeTab
             ],
             vm.modalData
           );
         case 'box':
           return lodash.isMatch(
-            DialogEditor.getData().content[0].dialog_tabs[
+            DialogEditor.getDialogTabs()[
               DialogEditor.activeTab
             ].dialog_groups[
               vm.dialog.boxId
@@ -132,7 +132,7 @@
           );
         case 'field':
           return lodash.isMatch(
-            DialogEditor.getData().content[0].dialog_tabs[
+            DialogEditor.getDialogTabs()[
               DialogEditor.activeTab
             ].dialog_groups[
               vm.dialog.boxId
@@ -154,30 +154,30 @@
       // store data to service
       switch (vm.element) {
         case 'tab':
-          DialogEditor.getData().content[0].dialog_tabs[
+          DialogEditor.getDialogTabs()[
             DialogEditor.activeTab
           ].label = vm.modalData.label;
           // description
-          DialogEditor.getData().content[0].dialog_tabs[
+          DialogEditor.getDialogTabs()[
             DialogEditor.activeTab
           ].description = vm.modalData.description;
           break;
         case 'box':
           // label
-          DialogEditor.getData().content[0].dialog_tabs[
+          DialogEditor.getDialogTabs()[
             DialogEditor.activeTab
           ].dialog_groups[
             vm.dialog.boxId
           ].label = vm.modalData.label;
           // description
-          DialogEditor.getData().content[0].dialog_tabs[
+          DialogEditor.getDialogTabs()[
             DialogEditor.activeTab
           ].dialog_groups[
             vm.dialog.boxId
           ].description = vm.modalData.description;
           break;
         case 'field':
-          DialogEditor.getData().content[0].dialog_tabs[
+          DialogEditor.getDialogTabs()[
             DialogEditor.activeTab
           ].dialog_groups[
             vm.dialog.boxId
@@ -198,7 +198,7 @@
      */
     function deleteField() {
       lodash.remove(
-        DialogEditor.getData().content[0].dialog_tabs[
+        DialogEditor.getDialogTabs()[
           DialogEditor.activeTab
         ].dialog_groups[
           vm.dialog.boxId

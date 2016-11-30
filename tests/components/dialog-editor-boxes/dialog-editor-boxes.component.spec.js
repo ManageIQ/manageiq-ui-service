@@ -29,13 +29,13 @@ describe('component: dialogEditorTabs', function() {
     it('should add new box to first tab', function() {
       DialogEditor.activeTab = 0;
       controller.addBox();
-      expect(DialogEditor.getData().content[0].dialog_tabs[0].dialog_groups.length).to.equal(2);
+      expect(DialogEditor.getDialogTabs()[0].dialog_groups.length).to.equal(2);
     });
 
     it('removes the first box', function() {
       DialogEditor.activeTab = 1;
       controller.removeBox(0);
-      expect(DialogEditor.getData().content[0].dialog_tabs[1].dialog_groups.length).to.equal(0);
+      expect(DialogEditor.getDialogTabs()[1].dialog_groups.length).to.equal(0);
     });
   });
 });

@@ -32,9 +32,9 @@ describe('component: dialogEditorTabs', function() {
     });
 
     it('add new tab at the end of array', function() {
-      expect(DialogEditor.getData().content[0].dialog_tabs.length).to.equal(2);
+      expect(DialogEditor.getDialogTabs().length).to.equal(2);
       controller.addTab();
-      expect(DialogEditor.getData().content[0].dialog_tabs.length).to.equal(3);
+      expect(DialogEditor.getDialogTabs().length).to.equal(3);
     });
 
     it('new active tab is set on new tab', function() {
@@ -46,9 +46,9 @@ describe('component: dialogEditorTabs', function() {
 
     it('correct tab is removed', function() {
       DialogEditor.activeTab = 0;
-      expect(DialogEditor.getData().content[0].dialog_tabs[0].label).to.equal("Tab 1");
+      expect(DialogEditor.getDialogTabs()[0].label).to.equal("Tab 1");
       controller.deleteTab(0);
-      expect(DialogEditor.getData().content[0].dialog_tabs[0].label).to.equal("Tab 2");
+      expect(DialogEditor.getDialogTabs()[0].label).to.equal("Tab 2");
     });
 
     it('activity is switched after removing active tab', function() {

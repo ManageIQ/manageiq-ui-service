@@ -12,7 +12,7 @@
         this.$onInit = function() {
           this.service = DialogEditor;
           // load data from service
-          this.dialogTabs = DialogEditor.getData().content[0].dialog_tabs;
+          this.dialogTabs = DialogEditor.getDialogTabs();
         };
 
         /**

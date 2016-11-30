@@ -11,7 +11,7 @@
          */
         this.$onInit = function() {
           // load data from service
-          this.tabList = DialogEditor.getData().content[0].dialog_tabs;
+          this.tabList = DialogEditor.getDialogTabs();
 
           // set active tab
           if (this.tabList.length !== 0) {
