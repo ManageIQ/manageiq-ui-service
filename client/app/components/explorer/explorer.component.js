@@ -13,7 +13,7 @@
 
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
-                               CollectionsApi, EventNotifications, sprintf, PowerOperations, lodash) {
+                               CollectionsApi, EventNotifications, EditServiceModal, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
     function activate() {
@@ -123,7 +123,7 @@
             icon: 'fa fa-clock-o',
             name: __('Set Retirement Dates'),
             actionName: 'setServiceRetirement',
-            title: __('Set Retirement Dates'),
+            title: __('Set Retirement'),
             actionFn: setServiceRetirement,
             isDisabled: false,
           }, {
@@ -464,7 +464,8 @@
       vm.selectedItemsListCount = vm.selectedItemsList.length;
     }
 
-    function editService(option) {
+    function editService() {
+      EditServiceModal.showModal(vm.selectedItemsList[0]);
     }
 
     function removeServices(option) {
