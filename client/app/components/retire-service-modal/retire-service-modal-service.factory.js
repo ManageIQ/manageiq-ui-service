@@ -5,7 +5,7 @@
     .factory('RetireServiceModal', RetireServiceFactory);
 
   /** @ngInject */
-  function RetireServiceFactory($modal) {
+  function RetireServiceFactory($uibModal) {
     var modalService = {
       showModal: showModal,
       FactoryController: RetireServiceModalController,
@@ -23,7 +23,7 @@
           services: resolveServices,
         },
       };
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
 
@@ -34,7 +34,7 @@
   }
 
   /** @ngInject */
-  function RetireServiceModalController($scope, $state, $modalInstance, CollectionsApi, EventNotifications, moment, services, lodash) {
+  function RetireServiceModalController($scope, $state, $uibModalInstance, CollectionsApi, EventNotifications, moment, services, lodash) {
     var vm = this;
 
     angular.extend(vm, {
@@ -106,7 +106,7 @@
       CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure);
 
       function saveSuccess() {
-        $modalInstance.close();
+        $uibModalInstance.close();
         EventNotifications.success(__('Scheduling retirement.'));
         $state.go($state.current, {}, {reload: true});
       }

@@ -12,7 +12,7 @@ describe('BaseModalController', function() {
     EventNotifications = $injector.get('EventNotifications');
 
     base = $controller('BaseModalController', {
-      $modalInstance: mockModalInstance,
+      $uibModalInstance: mockModalInstance,
     });
 
     controller = angular.extend(angular.copy(base), base);
@@ -23,7 +23,7 @@ describe('BaseModalController', function() {
     }
   }));
 
-  it('delegates dismiss to the local $modalInstance when cancel called', function() {
+  it('delegates dismiss to the local $uibModalInstance when cancel called', function() {
     var spy = sinon.spy(mockModalInstance, 'dismiss');
 
     controller.cancel();

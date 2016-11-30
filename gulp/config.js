@@ -99,7 +99,7 @@ module.exports = (function() {
         './node_modules/angular-mocks/angular-mocks.js',
         './node_modules/angular-sanitize/angular-sanitize.js',
         './node_modules/angular-base64/angular-base64.js',
-        './node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.js',
+        './node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
         './node_modules/angular-dragdrop/src/angular-dragdrop.js',
         './node_modules/angular-gettext/dist/angular-gettext.js',
         './node_modules/angular-gettext/dist/angular-gettext.js',

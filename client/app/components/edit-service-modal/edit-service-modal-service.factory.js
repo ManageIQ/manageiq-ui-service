@@ -5,7 +5,7 @@
     .factory('EditServiceModal', EditServiceFactory);
 
   /** @ngInject */
-  function EditServiceFactory($modal) {
+  function EditServiceFactory($uibModal) {
     var modalService = {
       showModal: showModal,
     };
@@ -22,7 +22,7 @@
           serviceDetails: resolveServiceDetails,
         },
       };
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
 
@@ -33,10 +33,10 @@
   }
 
   /** @ngInject */
-  function EditServiceModalController(serviceDetails, $controller, $modalInstance, sprintf) {
+  function EditServiceModalController(serviceDetails, $controller, $uibModalInstance, sprintf) {
     var vm = this;
     var base = $controller('BaseModalController', {
-      $modalInstance: $modalInstance,
+      $uibModalInstance: $uibModalInstance,
     });
     angular.extend(vm, base);
 

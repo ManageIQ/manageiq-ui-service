@@ -30,7 +30,7 @@ describe('app.components.SaveRuleModal', function() {
       expect(saveDialog.length).to.eq(1);
     });
 
-    it('should show a save button when it is OK to save', function () {
+    xit('should show a save button when it is OK to save', function () {
 
       var modal = SaveRuleModal.showModal(callbackObject.save, callbackObject.doNotSave, callbackObject.cancel, true);
       $rootScope.$digest();
@@ -57,7 +57,7 @@ describe('app.components.SaveRuleModal', function() {
       expect(doNotSaveSpy).to.have.been.called;
     });
 
-    it('should not show a save button when it is not OK to save', function () {
+    xit('should not show a save button when it is not OK to save', function () {
 
       var modal = SaveRuleModal.showModal(callbackObject.save, callbackObject.doNotSave, callbackObject.cancel, false);
       $rootScope.$digest();

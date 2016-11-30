@@ -26,14 +26,14 @@
               </div>
             </div>
             <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6 ss-details-header__actions">
-              <div class="ss-details-header__actions__inner dropdown dropdown-kebab-pf">
+              <div uib-dropdown class="ss-details-header__actions__inner dropdown-kebab-pf">
               <custom-button
                 service-template-catalog-id="vm.service.service_template.service_template_catalog_id"
                 service-id="vm.service.id"
                 custom-actions="vm.service.custom_actions"
                 actions="vm.service.actions">
               </custom-button>
-              <button class="btn btn-default" type="button" tooltip="{{'Permanently delete the service'|translate}}" tooltip-placement="bottom"
+              <button class="btn btn-default" type="button" uib-tooltip="{{'Permanently delete the service'|translate}}" tooltip-placement="bottom"
                     ng-show="vm.showRemoveService"
                     ng-disabled="vm.powerOperationInProgressState(vm.service)"
                     confirmation
@@ -44,15 +44,15 @@
                     confirmation-ok-style="primary"
                     confirmation-show-cancel="true" translate>Remove Service
               </button>
-              <div class="btn-group" dropdown>
+              <div class="btn-group" uib-dropdown>
                 <button id="single-button" type="button" class="btn btn-default"
                   ng-disabled="vm.powerOperationInProgressState(vm.service)"
-                  dropdown-toggle tooltip="{{'Inactivate the service'|translate}}"
+                  uib-dropdown-toggle uib-tooltip="{{'Inactivate the service'|translate}}"
                   tooltip-placement="bottom"
                   ng-show="vm.showRetireService || vm.showScheduleRetirementService">
                   {{'Retire'|translate}} <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu" role="menu">
+                <ul uib-dropdown-menu role="menu">
                   <li role="menuitem">
                     <a href="#" confirmation
                       confirmation-title="{{'Retire Service Now'|translate}}"
@@ -67,10 +67,10 @@
                 </ul>
               </div>
                 <button class="btn btn-primary" type="button" ng-click="vm.startService(vm.service)" ng-disabled="!vm.enableStartButton(vm.service)" translate>Start</button>
-              <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button uib-dropdown-toggle class="btn btn-link" type="button" id="dropdownKebabRight" aria-haspopup="true" aria-expanded="false">
                 <span class="fa fa-ellipsis-v"></span>
               </button>
-              <ul class="dropdown-menu dropdown-menu-right 2" aria-labelledby="dropdownKebabRight">
+              <ul uib-dropdown-menu class="dropdown-menu-right 2" aria-labelledby="dropdownKebabRight">
                 <li ng-class="{'disabled': vm.checkDisabled('stop', vm.service)}">
                   <a href="#" title="Stop this service" ng-click="vm.handlePowerOperation('stop', vm.service)">{{'Stop'|translate}}</a>
                 </li>
@@ -134,13 +134,13 @@
                 <div class="form-group">
                   <label class="control-label col-sm-4" translate>Power State</label>
                   <div class="col-sm-8">
-                    <i class="fa fa-circle" style="font-size:15px;color:#1dc58e;" ng-if="vm.service.power_state === 'on' && vm.service.options.power_status === 'start_complete'" tooltip="{{'Power State: On'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-circle" style="font-size:15px;color:#cc151d;" ng-if="vm.service.power_state === 'off' && vm.service.options.power_status === 'stop_complete'" tooltip="{{'Power State: Off'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-circle" style="font-size:15px;color:orangered;" ng-if="vm.service.power_state === 'off' && vm.service.options.power_status === 'suspend_complete'" tooltip="{{'Power State: Suspended'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-question-circle" style="font-size:15px;color:#3397db;" ng-if="vm.service.power_state === '' && vm.service.options.power_status === ''" tooltip="{{'Power State: Unknown'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:#1dc58e;" ng-if="vm.service.power_state !== 'timeout' && vm.service.options.power_status === 'starting'" tooltip="{{'Power State: Starting...'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:#cc151d;" ng-if="vm.service.power_state !== 'timeout' && vm.service.options.power_status === 'stopping'" tooltip="{{'Power State: Stopping...'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:orangered;" ng-if="vm.service.power_state !== 'timeout' && vm.service.options.power_status === 'suspending'" tooltip="{{'Power State: Suspending...'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-circle" style="font-size:15px;color:#1dc58e;" ng-if="vm.service.power_state === 'on' && vm.service.options.power_status === 'start_complete'" uib-tooltip="{{'Power State: On'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-circle" style="font-size:15px;color:#cc151d;" ng-if="vm.service.power_state === 'off' && vm.service.options.power_status === 'stop_complete'" uib-tooltip="{{'Power State: Off'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-circle" style="font-size:15px;color:orangered;" ng-if="vm.service.power_state === 'off' && vm.service.options.power_status === 'suspend_complete'" uib-tooltip="{{'Power State: Suspended'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-question-circle" style="font-size:15px;color:#3397db;" ng-if="vm.service.power_state === '' && vm.service.options.power_status === ''" uib-tooltip="{{'Power State: Unknown'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:#1dc58e;" ng-if="vm.service.power_state !== 'timeout' && vm.service.options.power_status === 'starting'" uib-tooltip="{{'Power State: Starting...'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:#cc151d;" ng-if="vm.service.power_state !== 'timeout' && vm.service.options.power_status === 'stopping'" uib-tooltip="{{'Power State: Stopping...'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:orangered;" ng-if="vm.service.power_state !== 'timeout' && vm.service.options.power_status === 'suspending'" uib-tooltip="{{'Power State: Suspending...'|translate}}" tooltip-placement="bottom"></i>
                   </div>
                 </div>
                 <div class="form-group">
@@ -243,7 +243,7 @@
           <div class="row">
             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
               <span class="no-wrap">
-                <i class="pficon pficon-screen" tooltip="{{'Instance name'|translate}}" tooltip-placement="right"></i>&nbsp;{{ item.name }}
+                <i class="pficon pficon-screen" uib-tooltip="{{'Instance name'|translate}}" tooltip-placement="right"></i>&nbsp;{{ item.name }}
               </span>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
@@ -258,15 +258,15 @@
             </div>
             <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
               <span class="no-wrap">
-                <strong tooltip="{{'The last heartbeat received from the instances'|translate}}" tooltip-placement="bottom" translate>Last Scan</strong>&nbsp;{{ item.last_scan_on | date:'medium' }}
+                <strong uib-tooltip="{{'The last heartbeat received from the instances'|translate}}" tooltip-placement="bottom" translate>Last Scan</strong>&nbsp;{{ item.last_scan_on | date:'medium' }}
               </span>
             </div>
             <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
               <span class="no-wrap">
-                <i class="fa pficon fa-power-off" ng-if="item.power_state == 'off'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
-                <i class="pficon pficon-ok" ng-if="item.power_state == 'on'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
-                <i class="fa pficon fa-pause" ng-if="item.power_state == 'suspended'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
-                <strong ng-if="item.power_state == 'never' || item.power_state == 'unknown'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom" translate>Power State</strong>&nbsp;{{ item.power_state }}
+                <i class="fa pficon fa-power-off" ng-if="item.power_state == 'off'" uib-tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
+                <i class="pficon pficon-ok" ng-if="item.power_state == 'on'" uib-tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
+                <i class="fa pficon fa-pause" ng-if="item.power_state == 'suspended'" uib-tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
+                <strong ng-if="item.power_state == 'never' || item.power_state == 'unknown'" uib-tooltip="{{'Power State'|translate}}" tooltip-placement="bottom" translate>Power State</strong>&nbsp;{{ item.power_state }}
               </span>
             </div>
           </div>

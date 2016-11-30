@@ -1,11 +1,11 @@
 <span class="form-group">
    <ul class="pagination">
       <li ng-class="{'disabled': vm.disabled('left')}">
-         <span class="i fa fa-angle-double-left" title="First" alt="First" type="button"
+         <span class="i fa fa-angle-double-left" uib-tooltip="First" alt="First" type="button"
                ng-click="vm.previous(true)"></span>
       </li>
       <li ng-class="{'disabled':  vm.disabled('left')}">
-         <span class="i fa fa-angle-left" title="Previous" title="Previous" alt="Previous" type="button"
+         <span class="i fa fa-angle-left" uib-tooltip="Previous" uib-tooltip="Previous" alt="Previous" type="button"
                ng-click="vm.previous()" ></span>
       </li>
       <li>
@@ -17,10 +17,10 @@
          </span>
       </li>
       <li ng-class="{'disabled': vm.disabled('right')}">
-         <span class="i fa fa-angle-right" title="Next" alt="Next" type="button" ng-click="vm.next()"></span>
+         <span class="i fa fa-angle-right" uib-tooltip="Next" alt="Next" type="button" ng-click="vm.next()"></span>
       </li>
       <li ng-class="{'disabled': vm.disabled('right')}">
-         <span class="i fa fa-angle-double-right" title="Last" alt="Last"
+         <span class="i fa fa-angle-double-right" uib-tooltip="Last" alt="Last"
                type="button" ng-click="vm.next(true)"></span>
       </li>
    </ul>

@@ -10,12 +10,14 @@
       </li>
       <span class="actions">
         <button class="btn btn-primary btb-sm" type="button" ng-click="vm.saveBlueprint()" id="saveBtm"
-                ng-class="{'disabled': !vm.canSave()}" data-toggle="tooltip" data-placement="bottom"
-                title="{{'Save Blueprint'|translate}}" translate>Save
+                ng-class="{'disabled': !vm.canSave()}"
+                uib-tooltip="{{'Save Blueprint'|translate}}" tooltip-placement="bottom"
+                translate>Save
         </button>
-        <button class="btn btn-default blueprint-details-btn" type="button" ng-click="vm.editDetails()" data-toggle="tooltip"
+        <button class="btn btn-default blueprint-details-btn" type="button" ng-click="vm.editDetails()"
                 ng-class="{'disabled': vm.inConnectingMode, 'wait-cursor': vm.loading}"
-                data-placement="bottom" title="{{'Edit Blueprint Details' | translate}}" translate>Blueprint Details
+                tooltip-placement="bottom" uib-tooltip="{{'Edit Blueprint Details' | translate}}"
+                translate>Blueprint Details
         </button>
       </span>
   </ol>
@@ -24,20 +26,20 @@
 
       <div class="section-toolbar">
           <button id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': vm.inConnectingMode}" type="button" ng-click="vm.toggleToolbox()"
-                  data-toggle="tooltip" data-placement="bottom" title="{{'Add Service Item To Canvas'|translate}}" translate>Add Item
+                  tooltip-placement="bottom" uib-tooltip="{{'Add Service Item To Canvas'|translate}}" translate>Add Item
             <span class="fa" ng-class="{'fa-angle-double-up': vm.toolboxVisible, 'fa-angle-double-down': !vm.toolboxVisible}"></span>
           </button>
           <span class="more-actions">
               <a ng-click="vm.duplicateSelectedItem()">
                 <span id="duplicateItem" class="pficon fa fa-copy" ng-class="{'disabled': !vm.onlyOneTtemSelected() || vm.inConnectingMode}"
                       tooltip-append-to-body="true" tooltip-placement="bottom"
-                      tooltip="{{'Duplicate Item (Ctrl-D)'|translate}}">
+                      uib-tooltip="{{'Duplicate Item (Ctrl-D)'|translate}}">
                 </span>
               </a>
               <a ng-click="vm.removeSelectedItemsFromCanvas()">
                 <span id="removeItems" class="pficon pficon-delete" ng-class="{'disabled': !vm.itemsSelected() || vm.inConnectingMode}"
                       tooltip-append-to-body="true" tooltip-placement="bottom"
-                      tooltip="{{'Remove Items From Canvas'|translate}}">
+                      uib-tooltip="{{'Remove Items From Canvas'|translate}}">
                 </span>
               </a>
               <span class="show-hide-connectors">
@@ -55,24 +57,24 @@
 
           <div class="toolbox-container" id="toolbox" ng-if="vm.toolboxVisible">
 
-              <tabset>
-                  <tab ng-repeat="tab in vm.tabs" heading="" active="tab.active">
-                      <tab-heading ng-click="vm.tabClicked()">
+              <uib-tabset>
+                  <uib-tab ng-repeat="tab in vm.tabs" heading="" active="tab.active">
+                      <uib-tab-heading ng-click="vm.tabClicked()">
                           <div class="tab-pre-title">{{tab.preTitle}}</div>
                           <div class="tab-title" ng-class="{'tab-single-line':tab.preTitle == null}">{{tab.title}}</div>
-                      </tab-heading>
+                      </uib-tab-heading>
 
-                      <tabset class="subtabs" ng-if="tab.subtabs">
-                          <tab ng-repeat="subtab in tab.subtabs" heading="{{subtab.title}}" active="subtab.active" ng-click="vm.tabClicked()">
+                      <uib-tabset class="subtabs" ng-if="tab.subtabs">
+                          <uib-tab ng-repeat="subtab in tab.subtabs" heading="{{subtab.title}}" active="subtab.active" ng-click="vm.tabClicked()">
 
-                              <tabset class="subtabs" ng-if="subtab.subtabs">
-                                  <tab ng-repeat="subsubtab in subtab.subtabs" heading="{{subsubtab.title}}" active="subsubtab.active" ng-click="vm.tabClicked()">
+                              <uib-tabset class="subtabs" ng-if="subtab.subtabs">
+                                  <uib-tab ng-repeat="subsubtab in subtab.subtabs" heading="{{subsubtab.title}}" active="subsubtab.active" ng-click="vm.tabClicked()">
                                       <draggable-items items="subsubtab.items"
                                                        start-drag-callback="vm.startCallback"
                                                        click-callback="vm.addNodeByClick"
                                                        search-text="vm.searchText"/>
-                                  </tab>
-                              </tabset>
+                                  </uib-tab>
+                              </uib-tabset>
 
                             <!-- SubTabs without Sub-Sub Tabs -->
                               <draggable-items ng-if="!subtab.subtabs"
@@ -80,16 +82,16 @@
                                                start-drag-callback="vm.startCallback"
                                                click-callback="vm.addNodeByClick"
                                                search-text="vm.searchText"/>
-                          </tab>
-                      </tabset>
+                          </uib-tab>
+                      </uib-tabset>
 
                     <!-- Primary Tabs without SubTabs (Bundles) -->
                       <draggable-items ng-if="!tab.subtabs" items="tab.items"
                                        start-drag-callback="vm.startCallback"
                                        click-callback="vm.addNodeByClick"
                                        search-text="vm.searchText"/>
-                  </tab>
-              </tabset>
+                  </uib-tab>
+              </uib-tabset>
 
               <div class="toolbox-footer">
                   <!-- Create New Item -->

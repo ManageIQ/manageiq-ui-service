@@ -5,7 +5,7 @@
     .factory('RetireRemoveServiceModal', Factory);
 
   /** @ngInject */
-  function Factory($modal) {
+  function Factory($uibModal) {
     return {showModal: showModal};
 
     function showModal(services, modalType) {
@@ -19,7 +19,7 @@
           modalType: resolveModalType,
         },
       };
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
 
@@ -36,7 +36,7 @@
   }
 
   /** @ngInject */
-  function ModalController($state, $modalInstance, modalType, CollectionsApi, EventNotifications, services) {
+  function ModalController($state, $uibModalInstance, lodash, CollectionsApi, EventNotifications, services) {
     var vm = this;
 
     angular.extend(vm, {
@@ -48,7 +48,7 @@
     });
 
     function cancel() {
-      $modalInstance.dismiss();
+      $uibModalInstance.dismiss();
     }
 
     function confirm() {
@@ -59,7 +59,7 @@
       CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure);
 
       function saveSuccess() {
-        $modalInstance.close();
+        $uibModalInstance.close();
         switch (modalType) {
           case "retire":
             EventNotifications.success(__("Services Retired"));

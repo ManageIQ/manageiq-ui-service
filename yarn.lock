@@ -178,7 +178,11 @@ angular-svg-base-fix@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/angular-svg-base-fix/-/angular-svg-base-fix-2.0.0.tgz#f3d5f85b87a10d21310f47da8455038b90cfb000"
 
-angular-ui-bootstrap@0.13.x, angular-ui-bootstrap@^0.13.3:
+angular-ui-bootstrap:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-2.3.0.tgz#4d27483acf42f8a02b7f19802427a1998171ed06"
+
+angular-ui-bootstrap@0.13.x:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-0.13.4.tgz#d9981523b12ecb5f911cb0b4829fa3e5f20ed9ec"
 
@@ -7445,13 +7449,7 @@ yargs-parser@^2.4.1:
     camelcase "^3.0.0"
     lodash.assign "^4.0.6"
 
-yargs-parser@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-4.0.2.tgz#7f7173a8c7cca1d81dc7c18692fc07c2c2e2b1e0"
-  dependencies:
-    camelcase "^3.0.0"
-
-yargs-parser@^4.1.0:
+yargs-parser@^4.0.2, yargs-parser@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-4.1.0.tgz#313df030f20124124aeae8fbab2da53ec28c56d7"
   dependencies:

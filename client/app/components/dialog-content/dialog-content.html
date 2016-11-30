@@ -7,8 +7,8 @@
       <h2 class="text-capitalize no-wrap">{{ ::vm.dialog.label }}</h2>
       <p ng-if="vm.dialog.label != vm.dialog.description">{{ ::vm.dialog.description }}</p>
     </div>
-    <tabset>
-      <tab ng-repeat="dialogTab in ::vm.dialog.dialog_tabs " heading="{{ ::dialogTab.label }}">
+    <uib-tabset>
+      <uib-tab ng-repeat="dialogTab in ::vm.dialog.dialog_tabs " heading="{{ ::dialogTab.label }}">
         <div ng-repeat="dialogGroup in ::dialogTab.dialog_groups ">
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -33,7 +33,7 @@
                       ng-model-options="{debounce: {'default': 500}}"
                       class="form-control"
                       type="{{ dialogField.options.protected ? 'password' : 'text' }}"
-                      title="{{ ::inputTitle }}"
+                      uib-tooltip="{{ ::inputTitle }}"
                       value="{{ dialogField.default_value }}">
 
                     <textarea
@@ -43,7 +43,7 @@
                       ng-change="dialogField.triggerAutoRefresh(dialogField)"
                       ng-model-options="{debounce: {'default': 500}}"
                       class="form-control"
-                      title="{{ ::inputTitle }}"
+                      uib-tooltip="{{ ::inputTitle }}"
                       rows="4">{{ dialogField.default_value }}
                     </textarea>
 
@@ -55,7 +55,7 @@
                       ng-change="dialogField.triggerAutoRefresh(dialogField)"
                       class="form-control"
                       type="checkbox"
-                      title="{{ ::inputTitle }}"
+                      uib-tooltip="{{ ::inputTitle }}"
                       ng-checked="dialogField.default_value == 't'">
 
                     <select
@@ -120,7 +120,7 @@
                           date="dialogField.default_value">
                       </div>
                       <div class="col-sm-6">
-                        <timepicker ng-model="dialogField.default_value"></timepicker>
+                        <uib-timepicker ng-model="dialogField.default_value"></uib-timepicker>
                       </div>
                     </div>
 
@@ -156,14 +156,14 @@
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
                       class="form-control"
                       type="{{ dialogField.options.protected ? 'password' : 'text' }}"
-                      title="{{ ::inputTitle }}"
+                      uib-tooltip="{{ ::inputTitle }}"
                       value="{{ vm.parsedOptions[dialogField.name] }}">
 
                     <textarea
                       ng-switch-when="DialogFieldTextAreaBox"
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
                       class="form-control"
-                      title="{{ ::inputTitle }}"
+                      uib-tooltip="{{ ::inputTitle }}"
                       rows="4">{{ vm.parsedOptions[dialogField.name] }}
                     </textarea>
 
@@ -173,7 +173,7 @@
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
                       class="form-control"
                       type="checkbox"
-                      title="{{ ::inputTitle }}"
+                      uib-tooltip="{{ ::inputTitle }}"
                       ng-checked="vm.parsedOptions[dialogField.name] == 't' ">
 
                     <select
@@ -210,7 +210,7 @@
             </div>
           </div>
         </div>
-      </tab>
-    </tabset>
+      </uib-tab>
+    </uib-tabset>
   </div>
 </div>

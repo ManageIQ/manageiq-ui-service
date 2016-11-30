@@ -41,7 +41,7 @@ describe('BlueprintDetailsModal', function() {
         $state: $state,
         BrowseEntryPointModal: BrowseEntryPointModal,
         CreateCatalogModal: CreateCatalogModal,
-        $modalInstance: modalInstance,
+        $uibModalInstance: modalInstance,
         EventNotifications: EventNotifications,
         sprintf: sprintf,
         $scope: $rootScope
@@ -138,7 +138,7 @@ describe('BlueprintDetailsModal', function() {
         $state: $state,
         BrowseEntryPointModal: BrowseEntryPointModal,
         CreateCatalogModal: CreateCatalogModal,
-        $modalInstance: modalInstance,
+        $uibModalInstance: modalInstance,
         EventNotifications: EventNotifications,
         sprintf: sprintf,
         $scope: $rootScope

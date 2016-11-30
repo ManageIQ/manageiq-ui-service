@@ -11,7 +11,7 @@
     'API_BASE',
     'ShoppingCart',
     '$scope',
-    '$modal',
+    '$uibModal',
     '$state',
     '$document',
     'EventNotifications',
@@ -27,7 +27,7 @@
                           API_BASE,
                           ShoppingCart,
                           $scope,
-                          $modal,
+                          $uibModal,
                           $state,
                           $document,
                           EventNotifications,
@@ -92,12 +92,12 @@
     vm.shoppingCart = {
       count: 0,
       open: function() {
-        return $modal.open({
+        return $uibModal.open({
           template: '<shopping-cart modal-instance="vm.modalInstance"></shopping-cart>',
           size: 'lg',
-          controller: function($modalInstance) {
+          controller: function($uibModalInstance) {
             var vm = this;
-            vm.modalInstance = $modalInstance;
+            vm.modalInstance = $uibModalInstance;
           },
           controllerAs: 'vm',
           bindToController: true,

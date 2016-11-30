@@ -7,7 +7,7 @@
     .factory('BlueprintDetailsModal', BlueprintDetailsFactory);
 
   /** @ngInject */
-  function BlueprintDetailsFactory($modal) {
+  function BlueprintDetailsFactory($uibModal) {
     var modalBlueprint = {
       showModal: showModal,
       BlueprintDetailsModalController: BlueprintDetailsModalController,
@@ -29,7 +29,7 @@
         },
       };
 
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
 
@@ -75,7 +75,7 @@
 
   /** @ngInject */
   function BlueprintDetailsModalController(action, blueprint, BlueprintsState, BlueprintOrderListService, serviceCatalogs,
-                                           serviceDialogs, tenants, $state, BrowseEntryPointModal, CreateCatalogModal, $modalInstance,
+                                           serviceDialogs, tenants, $state, BrowseEntryPointModal, CreateCatalogModal, $uibModalInstance,
                                            EventNotifications, sprintf, $scope) {
     var vm = this;
     vm.blueprint = blueprint;
@@ -232,7 +232,7 @@
     }
 
     function cancelBlueprintDetails() {
-      $modalInstance.close();
+      $uibModalInstance.close();
     }
 
     function saveBlueprintDetails() {
@@ -260,7 +260,7 @@
       }
 
       if (action === 'publish') {
-        $modalInstance.close();
+        $uibModalInstance.close();
         saveFailure();
 
         return;
@@ -294,14 +294,14 @@
           // This is not actually used anymore, flow has changed
           // keeping it in case flow changes back again.
           EventNotifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
-          $modalInstance.close();
+          $uibModalInstance.close();
           BlueprintsState.saveBlueprint(vm.blueprint);
           $state.go('designer/blueprints.editor', {blueprintId: vm.blueprint.id});
         } else if (action === 'edit') {
-          $modalInstance.close({editedblueprint: vm.blueprint});
+          $uibModalInstance.close({editedblueprint: vm.blueprint});
           // EventNotifications.success(sprintf(__('%s details were updated.'), vm.blueprint.name));
         } else if (action === 'publish') {
-          $modalInstance.close();
+          $uibModalInstance.close();
           EventNotifications.success(sprintf(__('%s was published.'), vm.blueprint.name));
           $state.go($state.current, {}, {reload: true});
         }

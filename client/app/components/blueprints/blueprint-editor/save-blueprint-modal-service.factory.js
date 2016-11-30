@@ -5,7 +5,7 @@
     .factory('SaveBlueprintModal', SaveBlueprintFactory);
 
   /** @ngInject */
-  function SaveBlueprintFactory($modal) {
+  function SaveBlueprintFactory($uibModal) {
     var modalSaveBlueprint = {
       showModal: showModal,
     };
@@ -25,14 +25,14 @@
           fromParams: fromParams,
         },
       };
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
     }
   }
 
   /** @ngInject */
-  function SaveBlueprintModalController(blueprint, toState, toParams, fromState, fromParams, $state, $modalInstance, $log,
+  function SaveBlueprintModalController(blueprint, toState, toParams, fromState, fromParams, $state, $uibModalInstance, $log,
                                         BlueprintsState) {
     var vm = this;
     vm.blueprint = blueprint;
@@ -43,7 +43,7 @@
       BlueprintsState.saveBlueprint(blueprint).then(saveSuccess, saveFailure);
 
       function saveSuccess() {
-        $modalInstance.close();
+        $uibModalInstance.close();
         BlueprintsState.setDoNotSave(false);
         BlueprintsState.saveOriginalBlueprint(angular.copy(blueprint));
         $state.go(toState, toParams);
@@ -51,12 +51,12 @@
 
       function saveFailure() {
         $log.error("Failed to nav away and save blueprint.");
-        $modalInstance.close();
+        $uibModalInstance.close();
       }
     }
 
     function doNotSave() {
-      $modalInstance.close();
+      $uibModalInstance.close();
       BlueprintsState.setDoNotSave(true);
       $state.go(toState, toParams);
     }

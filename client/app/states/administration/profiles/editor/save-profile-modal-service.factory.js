@@ -5,7 +5,7 @@
     .factory('SaveProfileModal', SaveProfileFactory);
 
   /** @ngInject */
-  function SaveProfileFactory($modal) {
+  function SaveProfileFactory($uibModal) {
     var modalSaveProfile = {
       showModal: showModal,
     };
@@ -35,14 +35,14 @@
       function resolveCancel() {
         return cancelCallback;
       }
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
     }
   }
 
   /** @ngInject */
-  function SaveProfileModalController(saveCallback, doNotSaveCallback, cancelCallback, $modalInstance) {
+  function SaveProfileModalController(saveCallback, doNotSaveCallback, cancelCallback, $uibModalInstance) {
     var vm = this;
     vm.save = save;
     vm.doNotSave = doNotSave;
@@ -50,17 +50,17 @@
 
     function save() {
       saveCallback();
-      $modalInstance.close();
+      $uibModalInstance.close();
     }
 
     function doNotSave() {
       doNotSaveCallback();
-      $modalInstance.close();
+      $uibModalInstance.close();
     }
 
     function cancel() {
       cancelCallback();
-      $modalInstance.close();
+      $uibModalInstance.close();
     }
   }
 })();
