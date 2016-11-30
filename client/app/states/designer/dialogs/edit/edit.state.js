@@ -67,22 +67,38 @@
 
     function saveDialogDetails() {
       // load dialog data
-      var dialogData = {
-        description: DialogEditor.getData().content[0].description,
-        label: DialogEditor.getData().content[0].label,
-        dialog_tabs: [],
-      };
-      DialogEditor.getData().content[0].dialog_tabs.forEach(function(tab) {
-        delete tab.active;
-        dialogData.dialog_tabs.push(tab);
-      });
+      if (angular.isUndefined(DialogEditor.getData().id)) {
+        var action = 'create';
+        var dialogData = {
+          description: DialogEditor.getData().content[0].description,
+          label: DialogEditor.getData().content[0].label,
+          dialog_tabs: [],
+        };
+        DialogEditor.getData().content[0].dialog_tabs.forEach(function(tab) {
+          delete tab.active;
+          dialogData.dialog_tabs.push(tab);
+        });
+      } else {
+        var action = 'edit';
+        var dialogData = {
+          description: DialogEditor.getData().content[0].description,
+          label: DialogEditor.getData().content[0].label,
+          content: {
+            dialog_tabs: [],
+          }
+        };
+        DialogEditor.getData().content[0].dialog_tabs.forEach(function(tab) {
+          delete tab.active;
+          dialogData.content.dialog_tabs.push(tab);
+        });
+      }
 
       // save the dialog
       CollectionsApi.post(
         'service_dialogs',
         DialogEditor.getData().id,
         {},
-        angular.toJson({action: 'create', resource: dialogData})
+        angular.toJson({action: action, resource: dialogData})
       ).then(saveSuccess, saveFailure);
     }
 
