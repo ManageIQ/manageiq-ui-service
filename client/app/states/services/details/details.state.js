@@ -125,7 +125,7 @@
 
       function removeSuccess() {
         EventNotifications.success(vm.service.name + __(' was removed.'));
-        $state.go('services.list');
+        $state.go('services');
       }
 
       function removeFailure(data) {
@@ -164,7 +164,7 @@
 
       function retireSuccess() {
         EventNotifications.success(vm.service.name + __(' was retired.'));
-        $state.go('services.list');
+        $state.go('services');
       }
 
       function retireFailure() {
