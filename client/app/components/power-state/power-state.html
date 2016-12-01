@@ -1,4 +1,6 @@
-<span class="no-wrap power-state">
+<!-- TODO: The Power State field would be hidden
+     TODO: while we wait on a robust backend solution on how to retrieve Power Status for Services in the List View-->
+<span class="no-wrap power-state" ng-hide="true">
 <span class="fa fa-plug"></span>&nbsp;
 <i class="fa fa-circle green fa-fw"
    ng-if="vm.item.powerState === 'on' && vm.item.powerStatus === 'start_complete'"
