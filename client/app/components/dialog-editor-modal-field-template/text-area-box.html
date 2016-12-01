@@ -19,9 +19,9 @@
          switch-on-text="{{'Yes'|translate}}"
          switch-off-text="{{'No'|translate}}">
 </div>
-<div pf-form-group pf-label="{{'Auto refresh on change'|translate}}">
+<div pf-form-group pf-label="{{'Visible'|translate}}">
   <input bs-switch
-         ng-model="vm.modalData.trigger_auto_refresh"
+         ng-model="vm.modalData.visible"
          type="checkbox"
          switch-on-text="{{'Yes'|translate}}"
          switch-off-text="{{'No'|translate}}">
@@ -35,5 +35,5 @@
 </div>
 <div pf-form-group pf-label="{{'Validation'|translate}}">
   <input id="validator_rule" name="validator_rule"
-          ng-model="vm.modalData.validator_rule"/>
+         ng-model="vm.modalData.validator_rule"/>
 </div>

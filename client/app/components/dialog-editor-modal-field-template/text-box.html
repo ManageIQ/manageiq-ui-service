@@ -25,6 +25,13 @@
          switch-on-text="{{'Yes'|translate}}"
          switch-off-text="{{'No'|translate}}"/>
 </div>
+<div pf-form-group pf-label="{{'Visible'|translate}}">
+  <input bs-switch
+         ng-model="vm.modalData.visible"
+         type="checkbox"
+         switch-on-text="{{'Yes'|translate}}"
+         switch-off-text="{{'No'|translate}}">
+</div>
 <div pf-form-group pf-label="{{'Auto refresh on change'|translate}}">
   <input bs-switch
          ng-model="vm.modalData.trigger_auto_refresh"
