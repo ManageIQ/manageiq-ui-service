@@ -6,7 +6,7 @@
       controller: ComponentController,
       controllerAs: 'vm',
       bindings: {
-        modalData: '<',
+        modalData: '<?',
         onCancel: '&',
         onReset: '&',
         onSave: '&',

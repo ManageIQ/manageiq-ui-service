@@ -13,7 +13,7 @@
 
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
-                               CollectionsApi, EventNotifications, EditServiceModal, PowerOperations, lodash) {
+                               CollectionsApi, EventNotifications, OwnershipServiceModal, EditServiceModal, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
     function activate() {
@@ -405,9 +405,21 @@
         expand: 'resources',
         limit: limit,
         offset: String(offset),
-        attributes: ['picture', 'picture.image_href', 'chargeback_report',
-          'v_total_vms', 'aggregate_all_vm_cpus', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count', 'aggregate_all_vm_disk_space_allocated',
-          'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'region_number', 'region_description'],
+        attributes: [
+          'picture',
+          'picture.image_href',
+          'chargeback_report',
+          'evm_owner.userid',
+          'miq_group.description',
+          'v_total_vms',
+          'aggregate_all_vm_cpus',
+          'aggregate_all_vm_memory',
+          'aggregate_all_vm_disk_count',
+          'aggregate_all_vm_disk_space_allocated',
+          'aggregate_all_vm_disk_space_used',
+          'aggregate_all_vm_memory_on_disk',
+          'region_number',
+          'region_description'],
         filter: ['ancestry=null'],
       };
       vm.loading = true;
@@ -468,17 +480,18 @@
       EditServiceModal.showModal(vm.selectedItemsList[0]);
     }
 
-    function removeServices(option) {
+    function removeServices() {
 
     }
 
-    function setOwnership(option) {
+    function setOwnership() {
+      OwnershipServiceModal.showModal(vm.selectedItemsList);
     }
 
-    function setServiceRetirement(option) {
+    function setServiceRetirement() {
     }
 
-    function retireService(option) {
+    function retireService() {
     }
 
     Language.fixState(ServicesState, vm.headerConfig);
