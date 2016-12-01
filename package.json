@@ -102,6 +102,7 @@
     "karma-chai": "^0.1.0",
     "karma-chai-sinon": "^0.1.4",
     "karma-chrome-launcher": "0.1.4",
+    "karma-clear-screen-reporter": "^1.0.0",
     "karma-coverage": "^1.1.1",
     "karma-growl-reporter": "^1.0.0",
     "karma-mocha": "^1.1.1",
