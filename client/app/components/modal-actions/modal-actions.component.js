@@ -7,9 +7,11 @@
       controllerAs: 'vm',
       bindings: {
         modalData: '<?',
+        confirmationModal: '<?',
         onCancel: '&',
         onReset: '&',
         onSave: '&',
+        onOk: '&',
       },
       templateUrl: 'app/components/modal-actions/modal-actions.html',
     });
@@ -17,10 +19,15 @@
   /** @ngInject */
   function ComponentController() {
     var vm = this;
-    vm.isPristine = isPristine;
-    vm.cancelAction = cancelAction;
-    vm.emitOriginal = emitOriginal;
-    vm.saveResource = saveResource;
+
+    angular.extend(vm, {
+      isPristine: isPristine,
+      cancelAction: cancelAction,
+      emitOriginal: emitOriginal,
+      saveResource: saveResource,
+      affirmConfirmation: affirmConfirmation,
+    });
+
 
     vm.$onInit = function() {
       vm.original = angular.copy(vm.modalData);
@@ -44,6 +51,10 @@
 
     function saveResource() {
       vm.onSave();
+    }
+
+    function affirmConfirmation() {
+      vm.onOk();
     }
   }
 })();

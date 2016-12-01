@@ -13,7 +13,7 @@
 
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
-                               CollectionsApi, EventNotifications, OwnershipServiceModal, EditServiceModal, PowerOperations, lodash) {
+                               CollectionsApi, EventNotifications, RemoveServiceModal, OwnershipServiceModal, EditServiceModal, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
     function activate() {
@@ -481,7 +481,7 @@
     }
 
     function removeServices() {
-
+      RemoveServiceModal.showModal(vm.selectedItemsList);
     }
 
     function setOwnership() {

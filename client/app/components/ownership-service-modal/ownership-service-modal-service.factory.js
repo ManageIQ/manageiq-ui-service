@@ -57,6 +57,14 @@
     var isService = services.length === 1;
 
     angular.extend(vm, {
+      modalData: {
+        'owner': {
+          'userid': '',
+        },
+        'group': {
+          'description': '',
+        },
+      },
       services: services,
       users: users,
       groups: groups,
@@ -111,15 +119,9 @@
     // Private
     function activate() {
       if (isService) {
-        vm.modalData = {
-          'id': vm.services[0].id,
-          'owner': {
-            'userid': vm.services[0].evm_owner && vm.services[0].evm_owner.userid || '',
-          },
-          'group': {
-            'description': vm.services[0].miq_group && vm.services[0].miq_group.description || '',
-          },
-        };
+        vm.modalData.id = vm.services[0].id;
+        vm.modalData.owner.userid = vm.services[0].evm_owner && vm.services[0].evm_owner.userid || '';
+        vm.modalData.group.description = vm.services[0].miq_group && vm.services[0].miq_group.description || '';
       }
     }
   }
