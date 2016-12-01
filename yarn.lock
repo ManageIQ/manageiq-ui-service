@@ -4176,6 +4176,10 @@ karma-chrome-launcher@0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/karma-chrome-launcher/-/karma-chrome-launcher-0.1.4.tgz#492f6b8ceed3dacb829b147514c9106660f1b185"
 
+karma-clear-screen-reporter:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/karma-clear-screen-reporter/-/karma-clear-screen-reporter-1.0.0.tgz#97e270ab1715e2d8a194b86b9d11845f8a6186e1"
+
 karma-coverage@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/karma-coverage/-/karma-coverage-1.1.1.tgz#5aff8b39cf6994dc22de4c84362c76001b637cf6"
