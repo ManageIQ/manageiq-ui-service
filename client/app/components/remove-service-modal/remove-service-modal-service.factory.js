@@ -6,11 +6,11 @@
 
   /** @ngInject */
   function Factory($modal) {
-    var modalService = {
+    var removeServiceModal = {
       showModal: showModal,
     };
 
-    return modalService;
+    return removeServiceModal;
 
     function showModal(services) {
       var modalOptions = {
