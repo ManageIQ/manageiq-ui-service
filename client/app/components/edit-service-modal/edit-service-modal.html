@@ -14,11 +14,13 @@
           {{ vm.modalData.description }}
         </textarea>
     </div>
-    <modal-actions
-      modal-data="vm.modalData"
-      on-cancel="vm.cancel()"
-      on-reset="vm.reset($event)"
-      on-save="vm.save()">
-    </modal-actions>
   </form>
+</div>
+<div class="modal-footer">
+  <modal-actions
+    modal-data="vm.modalData"
+    on-cancel="vm.cancel()"
+    on-reset="vm.reset($event)"
+    on-save="vm.save()">
+  </modal-actions>
 </div>

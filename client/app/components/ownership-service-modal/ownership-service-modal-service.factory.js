@@ -1,4 +1,5 @@
 /* eslint camelcase: "off" */
+
 (function() {
   'use strict';
 
@@ -13,14 +14,14 @@
 
     return modalService;
 
-    function showModal(serviceDetails) {
+    function showModal(services) {
       var modalOptions = {
         templateUrl: 'app/components/ownership-service-modal/ownership-service-modal.html',
         controller: OwnershipServiceModalController,
         controllerAs: 'vm',
         size: 'lg',
         resolve: {
-          serviceDetails: resolveServiceDetails,
+          services: resolveServiceDetails,
           users: resolveUsers,
           groups: resolveGroups,
         },
@@ -30,14 +31,8 @@
       return modal.result;
 
       /** @ngInject */
-      function resolveServiceDetails(CollectionsApi) {
-        var requestAttributes = [
-          'evm_owner.userid',
-          'miq_group.description',
-        ];
-        var options = {attributes: requestAttributes};
-
-        return CollectionsApi.get('services', serviceDetails.id, options);
+      function resolveServiceDetails() {
+        return services;
       }
     }
   }
@@ -57,41 +52,76 @@
   }
 
   /** @ngInject */
-  function OwnershipServiceModalController(serviceDetails, $state, $modalInstance, CollectionsApi, EventNotifications, users, groups, sprintf) {
+  function OwnershipServiceModalController($state, $modalInstance, lodash, CollectionsApi, EventNotifications, users, groups, services) {
     var vm = this;
+    var isService = services.length === 1;
 
-    vm.service = serviceDetails;
-    vm.saveOwnership = saveOwnership;
-    vm.users = users;
-    vm.groups = groups;
-
-    vm.modalData = {
-      'action': 'set_ownership',
-      'resource': {
+    angular.extend(vm, {
+      modalData: {
         'owner': {
-          'userid': vm.service.evm_owner && vm.service.evm_owner.userid || '',
+          'userid': '',
         },
         'group': {
-          'description': vm.service.miq_group && vm.service.miq_group.description || '',
+          'description': '',
         },
       },
-    };
+      services: services,
+      users: users,
+      groups: groups,
+      save: save,
+      cancel: cancel,
+      reset: reset,
+    });
     activate();
 
-    function activate() {
+
+    function cancel() {
+      $modalInstance.dismiss();
     }
 
-    function saveOwnership() {
-      CollectionsApi.post('services', vm.service.id, {}, vm.modalData).then(saveSuccess, saveFailure);
+    function reset(event) {
+      angular.copy(event.original, this.modalData); // eslint-disable-line angular/controller-as-vm
+    }
+
+    function save() {
+      var data = {
+        action: 'set_ownership',
+        resources: null,
+      };
+
+      if (isService) {
+        data.resources = [vm.modalData];
+      } else {
+        var resources = [];
+        angular.copy(vm.services, resources);
+        lodash.forEach(resources, setOwnership);
+        data.resources = resources;
+      }
+
+      CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure);
 
       function saveSuccess() {
         $modalInstance.close();
-        EventNotifications.success(sprintf(__("%s ownership was saved."), vm.service.name));
+        EventNotifications.success(__("Ownership was saved."));
         $state.go($state.current, {}, {reload: true});
       }
 
       function saveFailure() {
         EventNotifications.error(__('There was an error saving ownership of this service.'));
+      }
+
+      function setOwnership(service) {
+        service.owner = {userid: vm.modalData.owner.userid};
+        service.group = {description: vm.modalData.group.description};
+      }
+    }
+
+    // Private
+    function activate() {
+      if (isService) {
+        vm.modalData.id = vm.services[0].id;
+        vm.modalData.owner.userid = vm.services[0].evm_owner && vm.services[0].evm_owner.userid || '';
+        vm.modalData.group.description = vm.services[0].miq_group && vm.services[0].miq_group.description || '';
       }
     }
   }

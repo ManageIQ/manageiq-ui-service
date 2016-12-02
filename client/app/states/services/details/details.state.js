@@ -30,6 +30,7 @@
       'picture',
       'picture.image_href',
       'evm_owner.name',
+      'evm_owner.userid',
       'miq_group.description',
       'aggregate_all_vm_cpus',
       'aggregate_all_vm_memory',
@@ -187,7 +188,7 @@
     }
 
     function ownershipServiceModal() {
-      OwnershipServiceModal.showModal(vm.service);
+      OwnershipServiceModal.showModal([vm.service]);
     }
 
     function retireServiceNow() {

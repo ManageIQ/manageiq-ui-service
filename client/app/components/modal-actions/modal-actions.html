@@ -1,19 +1,25 @@
-<div class="modal-footer">
   <button type="button"
           class="btn btn-default"
           ng-click="vm.cancelAction()"
           translate>Cancel
   </button>
-  <button type="button"
+  <button ng-if="vm.modalData"
+          type="button"
           class="btn btn-default"
           ng-click="vm.emitOriginal()"
           ng-disabled="vm.isPristine()"
           translate>Reset
   </button>
-  <button type="button"
+  <button ng-if="!vm.confirmationModal"
+          type="button"
           class="btn btn-primary"
           ng-click="vm.saveResource()"
           ng-disabled="vm.isPristine()"
           translate>Save
   </button>
-</div>
+  <button ng-if="vm.confirmationModal"
+          type="button"
+          class="btn btn-primary"
+          ng-click="vm.affirmConfirmation()"
+          translate>OK
+  </button>

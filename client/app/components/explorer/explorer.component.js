@@ -13,7 +13,7 @@
 
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
-                               CollectionsApi, EventNotifications, sprintf, PowerOperations) {
+                               CollectionsApi, EventNotifications, RemoveServiceModal, OwnershipServiceModal, EditServiceModal, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
     function activate() {
@@ -22,8 +22,10 @@
         services: [],
         serviceLimit: 25,
         servicesList: [],
+        selectedItemsList: [],
         serviceLimitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
         serviceOffset: 0,
+        selectedItemsListCount: 0,
         serviceCount: vm.ancestorServiceCount,
         startService: PowerOperations.startService,
         stopService: PowerOperations.stopService,
@@ -42,6 +44,8 @@
         viewService: viewService,
         resolveServices: resolveServices,
         updateMenuActionForItemFn: updateMenuActionForItemFn,
+        selectItem: selectItem,
+        listActionDisable: listActionDisable,
       });
       vm.resolveServices(vm.serviceLimit, vm.serviceOffset);
     }
@@ -51,23 +55,90 @@
     }
 
     vm.cardConfig = {
-      selectItems: false,
       multiSelect: true,
-      dblClick: false,
-      selectionMatchProp: 'name',
-      selectedItems: [],
-      showSelectBox: true,
+      selectionMatchProp: 'id',
+      onCheckBoxChange: vm.selectItem,
       onClick: vm.viewService,
     };
 
     vm.listConfig = {
-      selectItems: false,
-      showSelectBox: true,
+      multiSelect: true,
       useExpandingRows: true,
-      selectionMatchProp: 'service_status',
-      selectedItems: [],
+      selectionMatchProp: 'id',
+      onCheckBoxChange: vm.selectItem,
       onClick: vm.viewService,
     };
+
+    vm.listActions = [
+      {
+        name: __('Configuration'),
+        actionName: 'configuration',
+        icon: 'fa fa-cog',
+        actions: [
+          {
+            icon: 'pf pficon-edit',
+            name: __('Edit Selected'),
+            actionName: 'edit',
+            title: __('Edit Selected'),
+            actionFn: editService,
+            isDisabled: false,
+          }, {
+            icon: 'pf pficon-delete',
+            name: __('Remove Selected'),
+            actionName: 'remove',
+            title: __('Remove Selected'),
+            actionFn: removeServices,
+            isDisabled: false,
+          }, {
+            icon: 'pf pficon-user',
+            name: __('Set Ownership'),
+            actionName: 'ownership',
+            title: __('Set Ownership'),
+            actionFn: setOwnership,
+            isDisabled: false,
+          },
+        ],
+        isDisabled: false,
+      }, {
+        name: __('Policy'),
+        actionName: 'policy',
+        icon: 'fa fa-shield',
+        actions: [
+          {
+            icon: 'pf pficon-edit',
+            name: __('Edit Tags'),
+            actionName: 'editTags',
+            title: __('Edit Tags'),
+            actionFn: editService,
+            isDisabled: false,
+          },
+        ],
+        isDisabled: false,
+      }, {
+        name: __('Lifecycle'),
+        actionName: 'lifecycle',
+        icon: 'fa fa-recycle',
+        actions: [
+          {
+            icon: 'fa fa-clock-o',
+            name: __('Set Retirement Dates'),
+            actionName: 'setServiceRetirement',
+            title: __('Set Retirement'),
+            actionFn: setServiceRetirement,
+            isDisabled: false,
+          }, {
+            icon: 'fa fa-clock-o',
+            name: __('Retire Selected'),
+            actionName: 'retireService',
+            title: __('Retire Selected'),
+            actionFn: retireService,
+            isDisabled: false,
+          },
+        ],
+        isDisabled: false,
+      },
+    ];
+
 
     var serviceFilterConfig = {
       fields: getServiceFilterFields(),
@@ -101,6 +172,9 @@
       sortConfig: serviceSortConfig,
       viewsConfig: viewsConfig,
       filterConfig: serviceFilterConfig,
+      actionsConfig: {
+        actionsInclude: true,
+      },
     };
 
 
@@ -193,6 +267,7 @@
 
     // Private
     function filterChange(filters) {
+      vm.selectedItemsList = [];
       vm.servicesList = ListView.applyFilters(filters, vm.servicesList, vm.services, ServicesState, matchesFilter);
 
       /* Make sure sorting direction is maintained */
@@ -330,36 +405,93 @@
         expand: 'resources',
         limit: limit,
         offset: String(offset),
-        attributes: ['picture', 'picture.image_href', 'chargeback_report',
-          'v_total_vms', 'aggregate_all_vm_cpus', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count', 'aggregate_all_vm_disk_space_allocated',
-          'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'region_number', 'region_description'],
+        attributes: [
+          'picture',
+          'picture.image_href',
+          'chargeback_report',
+          'evm_owner.userid',
+          'miq_group.description',
+          'v_total_vms',
+          'aggregate_all_vm_cpus',
+          'aggregate_all_vm_memory',
+          'aggregate_all_vm_disk_count',
+          'aggregate_all_vm_disk_space_allocated',
+          'aggregate_all_vm_disk_space_used',
+          'aggregate_all_vm_memory_on_disk',
+          'region_number',
+          'region_description'],
         filter: ['ancestry=null'],
       };
       vm.loading = true;
 
       CollectionsApi.query('services', options).then(querySuccess, queryFailure);
-    }
 
-    function querySuccess(result) {
-      vm.loading = false;
-      vm.services = [];
+      function querySuccess(result) {
+        vm.loading = false;
+        vm.services = [];
+        vm.selectedItemsList = [];
 
-      angular.forEach(result.resources, function(item) {
-        if (angular.isUndefined(item.service_id)) {
-          item.powerState = angular.isDefined(item.options.power_state) ? item.options.power_state : "";
-          item.powerStatus = angular.isDefined(item.options.power_status) ? item.options.power_status : "";
-          vm.services.push(item);
-        }
-      });
-      vm.services.forEach(Chargeback.processReports);
-      Chargeback.adjustRelativeCost(vm.services);
-      vm.servicesList = angular.copy(vm.services);
-      vm.headerConfig.filterConfig.resultsCount = vm.servicesList.length;
+        angular.forEach(result.resources, function(item) {
+          if (angular.isUndefined(item.service_id)) {
+            item.powerState = angular.isDefined(item.options.power_state) ? item.options.power_state : "";
+            item.powerStatus = angular.isDefined(item.options.power_status) ? item.options.power_status : "";
+            vm.services.push(item);
+          }
+        });
+        vm.services.forEach(Chargeback.processReports);
+        Chargeback.adjustRelativeCost(vm.services);
+        vm.servicesList = angular.copy(vm.services);
+        vm.headerConfig.filterConfig.resultsCount = vm.servicesList.length;
+      }
     }
 
     function queryFailure(error) {
       vm.loading = false;
       EventNotifications.error(__('There was an error loading the services.'));
+    }
+
+    function listActionDisable(config, items) {
+      items.length <= 0 ? config.isDisabled = true : config.isDisabled = false;
+      if (items.length > 1 && config.actionName === "configuration") {
+        lodash.forEach(config.actions, disableItems);
+      } else if (items.length <= 1 && config.actionName === "configuration") {
+        lodash.forEach(config.actions, enableItems);
+      }
+
+      function disableItems(item) {
+        if (item.actionName === "edit") {
+          item.isDisabled = true;
+        }
+      }
+
+      function enableItems(item) {
+        if (item.actionName === "edit") {
+          item.isDisabled = false;
+        }
+      }
+    }
+
+    function selectItem(item) {
+      lodash.indexOf(vm.selectedItemsList, item) === -1 ? vm.selectedItemsList.push(item) : lodash.pull(vm.selectedItemsList, item);
+      vm.selectedItemsListCount = vm.selectedItemsList.length;
+    }
+
+    function editService() {
+      EditServiceModal.showModal(vm.selectedItemsList[0]);
+    }
+
+    function removeServices() {
+      RemoveServiceModal.showModal(vm.selectedItemsList);
+    }
+
+    function setOwnership() {
+      OwnershipServiceModal.showModal(vm.selectedItemsList);
+    }
+
+    function setServiceRetirement() {
+    }
+
+    function retireService() {
     }
 
     Language.fixState(ServicesState, vm.headerConfig);
