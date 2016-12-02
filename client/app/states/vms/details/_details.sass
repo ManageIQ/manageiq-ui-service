@@ -1,0 +1,25 @@
+.list-view-container
+  &.order-details
+    height: calc(100vh - 272px)
+
+.ss-details-wrapper
+  .order-details
+    .list-view-pf
+      margin-top: 0
+
+$vm-detail-border-color: #d1d1d1;
+.vm-details-table 
+  border: 1px solid $vm-detail-border-color
+  margin: 9px auto
+  width: 87%
+  tr:nth-child(odd)
+    background-color: #f5f5f5
+  tr td:first-child
+    width: 40%
+  td, th
+    padding: 4px
+    border: 1px solid $vm-detail-border-color
+  .fa-lg
+    margin-right: 4px
+  .pficon-service
+    margin-right: 9px;
