@@ -131,6 +131,8 @@
             return true;
           }
           break;
+        case 'viewVm':
+          return true;
       }
 
       return false;
@@ -168,12 +170,12 @@
           class: 'fa fa-plane btn btn-default',
           actionFn: openConsole,
         },
- /*        {
+        {
           actionName:'viewVm',
           class: 'fa pficon pficon-virtual-machine btn btn-default vm-action-button',
           title: __('View this virtual machine details'),
           actionFn: viewVirtualMachineAction
-        } */
+        } 
       ];
 
       return vmMenuButtons;
