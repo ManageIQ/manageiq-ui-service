@@ -234,14 +234,14 @@
       applyFilters();
     }
 
-    vm.enableButtonForItemFn = function (action, item) {
+    vm.enableButtonForItemFn = function(action, item) {
       return vm.powerOperationUnknownState(item)
         || vm.powerOperationOffState(item)
         || vm.powerOperationSuspendState(item)
         || vm.powerOperationTimeoutState(item);
     };
 
-    vm.hideMenuForItemFn = function (item) {
+    vm.hideMenuForItemFn = function(item) {
       return vm.powerOperationUnknownState(item) || vm.powerOperationInProgressState(item);
     };
 

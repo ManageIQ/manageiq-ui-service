@@ -198,7 +198,7 @@
         || vm.powerOperationTimeoutState(item);
     };
 
-    vm.checkDisabled = function (action, item) {
+    vm.checkDisabled = function(action, item) {
       if (action === 'stop') {
         return disableStopButton(item);
       } else if (action === 'suspend') {
@@ -206,7 +206,7 @@
       }
     };
 
-    vm.handlePowerOperation = function (action, item) {
+    vm.handlePowerOperation = function(action, item) {
       if (action === 'stop' && !vm.checkDisabled(action, item)) {
         vm.stopService(item);
       } else if (action === 'suspend' && !vm.checkDisabled(action, item)) {
