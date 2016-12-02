@@ -171,11 +171,11 @@
           actionFn: openConsole,
         },
         {
-          actionName:'viewVm',
+          actionName: 'viewVm',
           class: 'fa pficon pficon-virtual-machine btn btn-default vm-action-button',
           title: __('View this virtual machine details'),
-          actionFn: viewVirtualMachineAction
-        } 
+          actionFn: viewVirtualMachineAction,
+        }, 
       ];
 
       return vmMenuButtons;
