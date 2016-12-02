@@ -112,8 +112,11 @@
       };
       CollectionsApi.get('services', vmDetails.service.id, options).then(serviceSuccess, {});
     }
-    function defaultText(inputCount, defaultText = 'None') {
+    function defaultText(inputCount, defaultText) {
       var inputArrSize = inputCount.length;
+      if (defaultText === null) {
+        defaultText = 'None';
+      }
       if (inputArrSize === 0) {
         return __(defaultText);
       } else {

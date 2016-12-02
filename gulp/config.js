@@ -105,7 +105,7 @@ module.exports = (function() {
         './node_modules/angular-gettext/dist/angular-gettext.js',
         './node_modules/bootstrap/dist/js/bootstrap.js',
         './node_modules/bootstrap-combobox/js/bootstrap-combobox.min.js',
-        './node_modulesz/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
+        './node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
         './node_modules/bootstrap-select/dist/js/bootstrap-select.js',
         './node_modules/bootstrap-switch/dist/js/bootstrap-switch.js',
         './node_modules/bootstrap-touchspin/src/jquery.bootstrap-touchspin.js',
