@@ -1,113 +1,114 @@
 (function() {
-  'use strict';
+'use strict';
 
-  angular.module('app.states')
-    .run(appRun);
+angular.module('app.states')
+  .run(appRun);
 
-  /** @ngInject */
-  function appRun(routerHelper) {
-    routerHelper.configureStates(getStates());
-  }
+/** @ngInject */
+function appRun(routerHelper) {
+  routerHelper.configureStates(getStates());
+}
 
-  function getStates() {
-    return {
-      'services.details': {
-        url: '/:serviceId',
-        templateUrl: 'app/states/services/details/details.html',
-        controller: StateController,
-        controllerAs: 'vm',
-        title: N_('Service Details'),
-        resolve: {
-          service: resolveService,
-        },
+function getStates() {
+  return {
+    'services.details': {
+      url: '/:serviceId',
+      templateUrl: 'app/states/services/details/details.html',
+      controller: StateController,
+      controllerAs: 'vm',
+      title: N_('Service Details'),
+      resolve: {
+        service: resolveService,
       },
-    };
+    },
+  };
+}
+
+/** @ngInject */
+function resolveService($stateParams, CollectionsApi) {
+  var requestAttributes = [
+    'picture',
+    'picture.image_href',
+    'evm_owner.name',
+    'evm_owner.userid',
+    'miq_group.description',
+    'aggregate_all_vm_cpus',
+    'aggregate_all_vm_memory',
+    'aggregate_all_vm_disk_count',
+    'aggregate_all_vm_disk_space_allocated',
+    'aggregate_all_vm_disk_space_used',
+    'aggregate_all_vm_memory_on_disk',
+    'actions',
+    'custom_actions',
+    'provision_dialog',
+    'service_template',
+    'chargeback_report',
+    'power_state',
+  ];
+  var options = {
+    attributes: requestAttributes,
+    decorators: [ 'vms.supports_console?', 'vms.supports_cockpit?' ],
+    expand: 'vms',
+  };
+
+  return CollectionsApi.get('services', $stateParams.serviceId, options);
+}  
+/** @ngInject */
+function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, 
+                         EventNotifications, Consoles, Chargeback, PowerOperations) {
+  var vm = this;
+  setInitialVars();
+
+  if (angular.isUndefined(vm.service.vms)) {
+    vm.vms = [];
+  } else {
+    vm.vms = vm.service.vms;
   }
 
-  /** @ngInject */
-  function resolveService($stateParams, CollectionsApi) {
-    var requestAttributes = [
-      'picture',
-      'picture.image_href',
-      'evm_owner.name',
-      'evm_owner.userid',
-      'miq_group.description',
-      'aggregate_all_vm_cpus',
-      'aggregate_all_vm_memory',
-      'aggregate_all_vm_disk_count',
-      'aggregate_all_vm_disk_space_allocated',
-      'aggregate_all_vm_disk_space_used',
-      'aggregate_all_vm_memory_on_disk',
-      'actions',
-      'custom_actions',
-      'provision_dialog',
-      'service_template',
-      'chargeback_report',
-    ];
-    var options = {
-      attributes: requestAttributes,
-      decorators: [ 'vms.supports_console?', 'vms.supports_cockpit?' ],
-      expand: 'vms',
-    };
-
-    return CollectionsApi.get('services', $stateParams.serviceId, options);
-  }  
-  /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, 
-                           EventNotifications, Consoles, Chargeback, PowerOperations) {
-    var vm = this;
-    setInitialVars();
-
-    if (angular.isUndefined(vm.service.vms)) {
-      vm.vms = [];
-    } else {
-      vm.vms = vm.service.vms;
-    }
-
-    var actions = vm.service.actions;
-    if (angular.isDefined(actions)) {
-      for (var i = 0; i < actions.length; i++) {
-        if (actions[i].name === "reconfigure") {
-          vm.service.reconfigure = true;
-        }
+  var actions = vm.service.actions;
+  if (angular.isDefined(actions)) {
+    for (var i = 0; i < actions.length; i++) {
+      if (actions[i].name === "reconfigure") {
+        vm.service.reconfigure = true;
       }
     }
+  }
 
-    function reconfigureService(service) {
-      $state.go('services.reconfigure', {serviceId: service});
-    }
+  function reconfigureService(service) {
+    $state.go('services.reconfigure', {serviceId: service});
+  }
 
-    vm.listConfig = {
-      selectItems: false,
-      showSelectBox: false,
-    };
+  vm.listConfig = {
+    selectItems: false,
+    showSelectBox: false,
+  };
 
-    activate();
+  activate();
 
-    function activate() {
-      Chargeback.processReports(vm.service);
-    }
+  function activate() {
+    Chargeback.processReports(vm.service);
+  }
 
-    function setInitialVars() {
-      vm.showRemoveService = $state.actionFeatures.serviceDelete.show;
-      vm.showRetireService = $state.actionFeatures.serviceRetireNow.show;
-      vm.showScheduleRetirementService = $state.actionFeatures.serviceRetire.show;
-      vm.showEditService = $state.actionFeatures.serviceEdit.show;
-      vm.showReconfigureService = $state.actionFeatures.serviceReconfigure.show;
-      vm.showSetOwnership = $state.actionFeatures.serviceOwnership.show;
+  function setInitialVars() {
+    vm.showRemoveService = $state.actionFeatures.serviceDelete.show;
+    vm.showRetireService = $state.actionFeatures.serviceRetireNow.show;
+    vm.showScheduleRetirementService = $state.actionFeatures.serviceRetire.show;
+    vm.showEditService = $state.actionFeatures.serviceEdit.show;
+    vm.showReconfigureService = $state.actionFeatures.serviceReconfigure.show;
+    vm.showSetOwnership = $state.actionFeatures.serviceOwnership.show;
 
-      vm.service = service;
+    vm.service = service;
 
-      vm.activate = activate;
-      vm.removeService = removeService;
-      vm.editServiceModal = editServiceModal;
-      vm.retireServiceNow = retireServiceNow;
-      vm.retireServiceLater = retireServiceLater;
-      vm.ownershipServiceModal = ownershipServiceModal;
-      vm.reconfigureService = reconfigureService;
+    vm.activate = activate;
+    vm.removeService = removeService;
+    vm.editServiceModal = editServiceModal;
+    vm.retireServiceNow = retireServiceNow;
+    vm.retireServiceLater = retireServiceLater;
+    vm.ownershipServiceModal = ownershipServiceModal;
+    vm.reconfigureService = reconfigureService;
 
-      vm.service.powerState = angular.isDefined(vm.service.options.power_state) ? vm.service.options.power_state : "";
-      vm.service.powerStatus = angular.isDefined(vm.service.options.power_status) ? vm.service.options.power_status : "";
+    vm.service.powerState = angular.isDefined(vm.service.power_state) ? vm.service.power_state : "";
+    vm.service.powerStatus = angular.isDefined(vm.service.options.power_status) ? vm.service.options.power_status : "";
 
       vm.startService = PowerOperations.startService;
       vm.stopService = PowerOperations.stopService;
