@@ -21,10 +21,12 @@
 
 <div ng-if="vm.viewType == 'listView'" class="col-md-12 list-view-container">
   <loading status="vm.loading"></loading>
+  <!-- TODO: The Power Operation buttons would be hidden
+       TODO: while we wait on a robust backend solution on how to retrieve Power Status for Services in the List View-->
   <div ng-if="!vm.loading" pf-list-view id="serviceList" class="arbitration-profiles-list" config="vm.listConfig"
        items="vm.servicesList"
-       menu-actions="vm.menuActions"
-       update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
+       menu-actions_hide="vm.menuActions"
+       update-menu-action-for-item-fn_hide="vm.updateMenuActionForItemFn">
     <div class="row">
       <div class="col-lg-3 col-md-3 col-sm-4 col-xs-8">
         <span class="no-wrap" tooltip=" {{item.description}} " tooltip-placement="bottom">
