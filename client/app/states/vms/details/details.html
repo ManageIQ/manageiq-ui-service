@@ -18,68 +18,68 @@
 		</tr>
 		<tr>
 			<td>{{'Name'|translate}}</td>
-			<td>{{vm.vmDetails.name}}</td>
+			<td>{{::vm.vmDetails.name}}</td>
 		</tr>
 		<tr>
 			<td>{{'Hostnames'|translate}}</td>
-			<td>{{vm.vmDetails.hostnames.join(",")}}</td>
+			<td>{{::vm.vmDetails.hostnames.join(",")}}</td>
 		</tr>
 		<tr>
 			<td>{{'IP Addresses'|translate}}</td>
-			<td>{{vm.vmDetails.ipaddresses.join(",")}}</td>
+			<td>{{::vm.vmDetails.ipaddresses.join(",")}}</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>{{'MAC Address'|translate}}</td>
-			<td>{{vm.vmDetails.instance.mac_addresses.join(",")}}</td>
+			<td>{{::vm.vmDetails.instance.mac_addresses.join(",")}}</td>
 		</tr>
 		<tr>
 			<td>
 				{{'Container'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.vendor+ ': '+vm.vmDetails.hardware.cpu_total_cores+ ' CPUs ('+vm.vmDetails.hardware.cpu_sockets+' sockets
-				x ' + vm.vmDetails.hardware.cpu_cores_per_socket +' core), '+vm.vmDetails.hardware.memory_mb + ' MB'}}
+				{{vm.vmDetails.vendor+ ': '+ vm.vmDetails.hardware.cpu_total_cores+ ' CPUs ('+ vm.vmDetails.hardware.cpu_sockets+' sockets
+				x ' + vm.vmDetails.hardware.cpu_cores_per_socket +' core), '+ vm.vmDetails.hardware.memory_mb + ' MB'}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.host">
+		<tr ng-if="vm.vmDetails.host">
 			<td>{{'Parent Host'|translate}} / {{'Node Platform'|translate}}</td>
-			<td>{{vm.vmDetails.host.vmm_product}}</td>
+			<td>{{::vm.vmDetails.host.vmm_product}}</td>
 		</tr>
 		<tr>
 			<td>{{'Platform Tools'|translate}}</td>
-			<td>{{vm.vmDetails.tools_status}}</td>
+			<td>{{::vm.vmDetails.tools_status}}</td>
 		</tr>
 		<tr>
 			<td>
 				{{'Operating System'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.hardware.guest_os_full_name}}
+				{{::vm.vmDetails.hardware.guest_os_full_name}}
 			</td>
 		</tr>
 
-		<tr ng-show="vm.vmDetails.hardware.bitness">
+		<tr ng-if="vm.vmDetails.hardware.bitness">
 			<td>
 				{{'Architecture'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.hardware.bitness}} bit
+				{{::vm.vmDetails.hardware.bitness}} bit
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.cloud===false">
+		<tr ng-if="vm.vmDetails.cloud===false">
 			<td>
 				{{'Devices'|translate}}
 			</td>
 			<td>
-				<i class="fa fa-hdd-o fa-lg" aria-hidden="true"></i>{{3 + vm.vmDetails.num_disks}}
+				<i class="fa fa-hdd-o fa-lg"></i>{{3 + vm.vmDetails.num_disks}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.cloud===false">
+		<tr ng-if="vm.vmDetails.cloud===false">
 			<td>
 				{{'CPU Affinity'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.cpu_affinity}}
+				{{::vm.vmDetails.cpu_affinity}}
 			</td>
 		</tr>
 		<tr>
@@ -87,7 +87,7 @@
 				{{'Snapshots'|translate}}
 			</td>
 			<td>
-				<i class="fa fa-camera fa-lg" aria-hidden="true"></i>{{vm.vmDetails.snapshotCount}}
+				<i class="fa fa-camera fa-lg"></i>{{::vm.vmDetails.snapshotCount}}
 			</td>
 		</tr>
 		<tr>
@@ -95,7 +95,7 @@
 				{{'Advanced Settings'|translate}}
 			</td>
 			<td>
-				<i class="fa fa-wrench fa-lg" aria-hidden="true"></i>{{vm.vmDetails.advanced_settings.length}}
+				<i class="fa fa-wrench fa-lg"></i>{{::vm.vmDetails.advanced_settings.length}}
 			</td>
 		</tr>
 		<tr>
@@ -103,7 +103,7 @@
 				{{'Resources'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.resourceAvailability}}
+				{{::vm.vmDetails.resourceAvailability}}
 			</td>
 		</tr>
 		<tr>
@@ -111,31 +111,31 @@
 				{{'Management Engine GUID'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.guid}}
+				{{::vm.vmDetails.guid}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.hardware.virtualization_type">
+		<tr ng-if="vm.vmDetails.hardware.virtualization_type">
 			<td>
 				{{'Virtualization Type'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.hardware.virtualization_type}}
+				{{::vm.vmDetails.hardware.virtualization_type}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.hardware.root_device_type">
+		<tr ng-if="vm.vmDetails.hardware.root_device_type">
 			<td>
 				{{'Root Device Type'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.hardware.root_device_type}}
+				{{::vm.vmDetails.hardware.root_device_type}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.uid_ems">
+		<tr ng-if="vm.vmDetails.uid_ems">
 			<td>
 				{{'ID within Provider'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.uid_ems}}
+				{{::vm.vmDetails.uid_ems}}
 			</td>
 		</tr>
 	</table>
@@ -158,7 +158,7 @@
 				{{'Last Analyzed'|translate}}
 			</td>
 			<td>
-				<i class="fa fa-search fa-lg" aria-hidden="true"></i>{{ ::vm.vmDetails.lastSyncOn | date:'medium' }}
+				<i class="fa fa-search fa-lg"></i>{{ ::vm.vmDetails.lastSyncOn | date:'medium' }}
 			</td>
 		</tr>
 		<tr>
@@ -166,7 +166,7 @@
 				{{'Retirement Date'|translate}}
 			</td>
 			<td>
-				<i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>{{ ::vm.vmDetails.retiresOn | date:'medium' }}
+				<i class="fa fa-clock-o fa-lg"></i>{{ ::vm.vmDetails.retiresOn | date:'medium' }}
 			</td>
 		</tr>
 		<tr>
@@ -182,7 +182,7 @@
 				{{'Owner'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.evm_owner.name}}
+				{{::vm.vmDetails.evm_owner.name}}
 			</td>
 		</tr>
 		<tr>
@@ -190,7 +190,7 @@
 				{{'Group'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.miq_group.description}}
+				{{::vm.vmDetails.miq_group.description}}
 			</td>
 		</tr>
 	</table>
@@ -201,74 +201,74 @@
 				{{'Relationships'|translate}}
 			</th>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Availability Zone'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.availabilityZone}}
+				{{::vm.vmDetails.instance.availabilityZone}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Cloud Tenants'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.cloudTenant}}
+				{{::vm.vmDetails.instance.cloudTenant}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Flavor'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.flavor.name}}
+				{{::vm.vmDetails.instance.flavor.name}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'VM Template'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.miq_provision_template.name}}
+				{{::vm.vmDetails.instance.miq_provision_template.name}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.ext_management_system.name">
+		<tr ng-if="vm.vmDetails.ext_management_system.name">
 			<td>
 				{{'Infrastructure provider'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.ext_management_system.name}}
+				{{::vm.vmDetails.ext_management_system.name}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.ems_cluster.name">
+		<tr ng-if="vm.vmDetails.ems_cluster.name">
 			<td>{{'Cluster'|translate}} / {{'Deployment Role'|translate}}</td>
 			<td>
-				<i class="fa fa-lg pficon pficon-cluster"></i>{{vm.vmDetails.ems_cluster.name}}
+				<i class="fa fa-lg pficon pficon-cluster"></i>{{::vm.vmDetails.ems_cluster.name}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.host.name">
+		<tr ng-if="vm.vmDetails.host.name">
 			<td>
 				Host / Node
 			</td>
 			<td>
-				<i class="fa fa-lg pficon pficon-screen"></i>{{vm.vmDetails.host.name}}
+				<i class="fa fa-lg pficon pficon-screen"></i>{{::vm.vmDetails.host.name}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.parent_resource_pool">
+		<tr ng-if="vm.vmDetails.parent_resource_pool">
 			<td>
 				{{'Resource Pool'|translate}}
 			</td>
 			<td>
-				<i class="fa fa-lg pficon pficon-resource-pool"></i>{{ vm.vmDetails.parent_resource_pool.name }}
+				<i class="fa fa-lg pficon pficon-resource-pool"></i>{{ ::vm.vmDetails.parent_resource_pool.name }}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.storages.length > 0">
+		<tr ng-if="vm.vmDetails.storages.length > 0">
 			<td>
 				{{'Datastores'|translate}}
 			</td>
 			<td>
-				<span ng-repeat="storage in vm.vmDetails.storages"><i class="fa fa-lg fa-database"></i>{{storage.name}}</span>
+				<span ng-repeat="storage in ::vm.vmDetails.storages"><i class="fa fa-lg fa-database"></i>{{storage.name}}</span>
 			</td>
 		</tr>
 		<tr>
@@ -276,98 +276,98 @@
 				{{'Service'|translate}}
 			</td>
 			<td>
-				<i class="fa fa-lg pficon pficon-service"></i>{{vm.vmDetails.service.name}}
+				<i class="fa fa-lg pficon pficon-service"></i>{{::vm.vmDetails.service.name}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance.cloud_networks.length > 0">
+		<tr ng-if="vm.vmDetails.instance.cloud_networks.length > 0">
 			<td>
 				{{'Virtual Private Cloud'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.cloud_networks[0].name}}
+				{{::vm.vmDetails.instance.cloud_networks[0].name}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance.cloud_subnets.length > 0">
+		<tr ng-if="vm.vmDetails.instance.cloud_subnets.length > 0">
 			<td>
 				{{'Cloud Subnet'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.cloud_subnets[0].name}}
+				{{::vm.vmDetails.instance.cloud_subnets[0].name}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Stack'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.orchestrationStack}}
+				{{::vm.vmDetails.instance.orchestrationStack}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Cloud Networks'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.cloud_networks.length}}
+				{{::vm.vmDetails.instance.cloud_networks.length}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Cloud Subnets'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.cloud_subnets.length}}
+				{{::vm.vmDetails.instance.cloud_subnets.length}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Network Routers'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.network_routers.length}}
+				{{::vm.vmDetails.instance.network_routers.length}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Security Groups'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.security_groups.length}}
+				{{::vm.vmDetails.instance.security_groups.length}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Floating IPs'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.floating_ip_addresses.length}}
+				{{::vm.vmDetails.instance.floating_ip_addresses.length}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Network Ports'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.network_ports.length}}
+				{{::vm.vmDetails.instance.network_ports.length}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Load Balancers'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.load_balancers.length}}
+				{{::vm.vmDetails.instance.load_balancers.length}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.instance">
+		<tr ng-if="vm.vmDetails.instance">
 			<td>
 				{{'Cloud Volumes'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.instance.cloud_volumes.length}}
+				{{::vm.vmDetails.instance.cloud_volumes.length}}
 			</td>
 		</tr>
-		<tr ng-show="vm.vmDetails.cloud===false">
+		<tr ng-if="vm.vmDetails.cloud===false">
 			<td>
 				{{'Genealogy'|translate}}
 			</td>
@@ -380,7 +380,7 @@
 				{{'Drift History'|translate}}
 			</td>
 			<td>
-				{{ vm.vmDetails.driftHistory }}
+				{{ ::vm.vmDetails.driftHistory }}
 			</td>
 		</tr>
 		<tr>
@@ -388,7 +388,7 @@
 				{{'Analysis History'|translate}}
 			</td>
 			<td>
-				{{ vm.vmDetails.scanHistoryCount }}
+				{{ ::vm.vmDetails.scanHistoryCount }}
 			</td>
 		</tr>
 	</table>
@@ -427,7 +427,7 @@
 				{{'Power State'|translate}}
 			</td>
 			<td>
-				{{vm.vmDetails.power_state}}
+				{{::vm.vmDetails.power_state}}
 			</td>
 		</tr>
 		<tr>
@@ -459,7 +459,7 @@
 				{{'Users'|translate}}
 			</td>
 			<td>
-				<i class="fa fa-lg pficon pficon-user"></i>{{ vm.vmDetails.users.length }}
+				<i class="fa fa-lg pficon pficon-user"></i>{{ ::vm.vmDetails.users.length }}
 			</td>
 		</tr>
 		<tr>
@@ -467,7 +467,7 @@
 				{{'Groups'|translate}}
 			</td>
 			<td>
-				<i class="fa fa-lg pficon pficon-users"></i>{{ vm.vmDetails.groups.length }}
+				<i class="fa fa-lg pficon pficon-users"></i>{{ ::vm.vmDetails.groups.length }}
 			</td>
 		</tr>
 		<tr ng-show="vm.vmDetails.instance">
@@ -475,7 +475,7 @@
 				{{'Key Pairs'|translate}}
 			</td>
 			<td>
-				{{ vm.vmDetails.instance.keyPairLabels.join(',') }}
+				{{ ::vm.vmDetails.instance.keyPairLabels.join(',') }}
 			</td>
 		</tr>
 	</table>
@@ -490,7 +490,7 @@
 				{{'Packages'|translate}}
 			</td>
 			<td>
-				{{ vm.vmDetails.guest_applications.length }}
+				{{ ::vm.vmDetails.guest_applications.length }}
 			</td>
 		</tr>
 		<tr>
@@ -498,7 +498,7 @@
 				{{'Init Processes'|translate}}
 			</td>
 			<td>
-				{{ vm.vmDetails.linux_initprocesses.length }}
+				{{ ::vm.vmDetails.linux_initprocesses.length }}
 			</td>
 		</tr>
 		<tr>
@@ -506,7 +506,7 @@
 				{{'Files'|translate}}
 			</td>
 			<td>
-				{{ vm.vmDetails.files.length }}
+				{{ ::vm.vmDetails.files.length }}
 			</td>
 		</tr>
 	</table>

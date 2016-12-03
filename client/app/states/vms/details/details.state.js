@@ -19,6 +19,8 @@
         title: N_('VM Details'),
         resolve: {
           vmDetails: resolveVM,
+          service: resolveService,
+          instance: resolveInstance,
         },
       },
     };
@@ -84,17 +86,48 @@
     return CollectionsApi.get('vms', $stateParams.vmId, options);
   }
   /** @ngInject */
-  function StateController($state, vmDetails, CollectionsApi, EventNotifications, Consoles) {
+  function resolveService(CollectionsApi, vmDetails) {
+    var options = {
+      attributes: ['miq_request'],
+    };
+
+    return CollectionsApi.get('services', vmDetails.service.id, options);
+  }
+  /** @ngInject */
+  function resolveInstance(CollectionsApi, vmDetails) {
+    var requestAttributes = [
+      'availability_zone',
+      'cloud_networks',
+      'cloud_subnets',
+      'cloud_tenant',
+      'cloud_volumes',
+      'flavor',
+      'floating_ip_addresses',
+      'key_pairs',
+      'load_balancers',
+      'mac_addresses',
+      'network_ports',
+      'network_routers',
+      'miq_provision_template',
+      'orchestration_stack',
+      'security_groups',
+    ];
+    var options = {
+      attributes: requestAttributes,
+    };
+    if (vmDetails.cloud === true) {
+      return CollectionsApi.get('instances', vmDetails.id, options);
+    } else {
+      return false;
+    }
+  }
+  /** @ngInject */
+  function StateController($state, service, vmDetails, instance, CollectionsApi, EventNotifications, Consoles) {
     var vm = this;
-  
+    
     vm.vmDetails = vmDetails;
-    setInitialVars();
-
-    function setInitialVars() {
-      if (vm.vmDetails.cloud === true) {
-        resolveInstance(vm.vmDetails.id);
-      }
-
+    activate();
+    function activate() {
       var neverText = __('Never');
       var noneText = __('None');
       var availableText = __('Available');
@@ -107,48 +140,20 @@
       vm.vmDetails.scanHistoryCount = defaultText(vm.vmDetails.scan_histories);
       vm.vmDetails.lastComplianceStatus = (angular.isUndefined(vm.vmDetails.last_compliance_status) ? __('Never Verified') : vm.vmDetails.last_compliance_status);
       vm.vmDetails.complianceHistory = (vm.vmDetails.compliances.length > 0 ? availableText : notAvailable);
-      var options = {
-        attributes: ['miq_request'],
-      };
-      CollectionsApi.get('services', vmDetails.service.id, options).then(serviceSuccess, {});
+      vm.vmDetails.provisionDate = service.miq_request.fulfilled_on;
+      
+      if (instance !== false) {
+        processInstanceVariables(instance);
+      }
     }
     function defaultText(inputCount, defaultText) {
       var inputArrSize = inputCount.length;
-      if (defaultText === null) {
-        defaultText = 'None';
-      }
+      defaultText = (defaultText === null ? 'None' : defaultText);
       if (inputArrSize === 0) {
         return __(defaultText);
       } else {
         return inputArrSize;
       }
-    }
-    function serviceSuccess(data) {
-      vm.vmDetails.provisionDate = data.miq_request.fulfilled_on;
-    }
-    function resolveInstance(instanceId) {
-      var requestAttributes = [
-        'availability_zone',
-        'cloud_networks',
-        'cloud_subnets',
-        'cloud_tenant',
-        'cloud_volumes',
-        'flavor',
-        'floating_ip_addresses',
-        'key_pairs',
-        'load_balancers',
-        'mac_addresses',
-        'network_ports',
-        'network_routers',
-        'miq_provision_template',
-        'orchestration_stack',
-        'security_groups',
-      ];
-      var options = {
-        attributes: requestAttributes,
-      };
-
-      CollectionsApi.get('instances', instanceId, options).then(processInstanceVariables, {});
     }
     function processInstanceVariables(data) {
       var noneText = __('None');
