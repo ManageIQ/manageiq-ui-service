@@ -14,6 +14,7 @@
       'vms': {
         parent: 'application',
         url: '/vms',
+        redirectTo: 'services.explorer',
         template: '<ui-view></ui-view>',
       },
     };
