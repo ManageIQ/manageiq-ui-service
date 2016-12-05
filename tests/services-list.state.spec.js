@@ -39,7 +39,7 @@ describe('Dashboard', function() {
     });
   });
 
-  describe('service list contains power state in "timeout" and power status in "starting', function() {
+  describe('service list contains power state in "" and power status in "starting', function() {
     var controller;
     var services = {
       name: 'services',
@@ -47,15 +47,15 @@ describe('Dashboard', function() {
       subcount: 1,
       resources: [
         {
+          power_state: "",
           options: {
-            powerState: "timeout",
-            powerStatus: "starting"
+            power_status: "starting"
           }
         }
       ]
     };
 
-    var serviceItem = services.resources[0].options;
+    var serviceItem = services.resources[0];
 
     var Chargeback = {
       processReports: function() {
@@ -71,21 +71,21 @@ describe('Dashboard', function() {
     });
 
     it('sets the powerState value on the Service', function() {
-      expect(serviceItem.powerState).to.eq('timeout');
+      expect(serviceItem.power_state).to.eq('');
     });
 
     it('sets the powerStatus value on the Service', function() {
-      expect(serviceItem.powerStatus).to.eq('starting');
+      expect(serviceItem.options.power_status).to.eq('starting');
     });
 
-    it('does not hide the kebab menu when "Start" operation times out', function() {
-      expect(controller.hideMenuForItemFn(serviceItem)).to.eq(false);
+    it('does hide the kebab menu when "Start" operation is unknown', function() {
+      expect(controller.hideMenuForItemFn(serviceItem)).to.eq(true);
     });
 
-    it('Shows the "Start" button when "Start" operation times out', function() {
+    it('Disables the "Start" button when "Start" operation is "starting"', function() {
       var action = {actionName: 'start'};
       expect(controller.updateMenuActionForItemFn(action, serviceItem));
-      expect(action.isDisabled).to.eq(false);
+      expect(action.isDisabled).to.eq(true);
     });
 
     it('displays "Stop" button when action is "stop"', function() {
@@ -109,15 +109,15 @@ describe('Dashboard', function() {
       subcount: 1,
       resources: [
         {
+          power_state: "on",
           options: {
-            powerState: "on",
-            powerStatus: "start_complete"
+            power_status: "start_complete"
           }
         }
       ]
     };
 
-    var serviceItem = services.resources[0].options;
+    var serviceItem = services.resources[0];
 
     var Chargeback = {
       processReports: function() {
@@ -128,24 +128,24 @@ describe('Dashboard', function() {
 
     var PowerOperations = {
       powerOperationOnState: function(item) {
-        return item.powerState === "on" && item.powerStatus === "start_complete";
+        return item.power_state === "on" && item.options.power_status === "start_complete";
       },
       powerOperationUnknownState: function(item) {
-        return item.powerState === "" && item.powerStatus === "";
+        return item.power_state === "" && item.options.power_status === "";
       },
       powerOperationInProgressState: function(item) {
-        return (item.powerState !== "timeout" && item.powerStatus === "starting")
-          || (item.powerState !== "timeout" && item.powerStatus === "stopping")
-          || (item.powerState !== "timeout" && item.powerStatus === "suspending");
+        return (item.power_state !== "timeout" && item.options.power_status === "starting")
+          || (item.power_state !== "timeout" && item.options.power_status === "stopping")
+          || (item.power_state !== "timeout" && item.options.power_status === "suspending");
       },
       powerOperationOffState: function(item) {
-        return item.powerState === "off" && item.powerStatus === "stop_complete";
+        return item.power_state === "off" && item.options.power_status === "stop_complete";
       },
       powerOperationSuspendState: function(item) {
-        return item.powerState === "off" && item.powerStatus === "suspend_complete";
+        return item.power_state === "off" && item.options.power_status === "suspend_complete";
       },
       powerOperationTimeoutState: function(item) {
-        return item.powerState === "timeout";
+        return item.power_state === "timeout";
       },
     };
 

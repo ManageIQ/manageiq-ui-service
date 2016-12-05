@@ -44,6 +44,7 @@
       'provision_dialog',
       'service_template',
       'chargeback_report',
+      'power_state',
       'created_at',
       'options',
       'name',
@@ -68,11 +69,11 @@
       expand: 'resources',
     };
     var serviceUrl = $stateParams.serviceId + '/tags/';
-    
+
     return CollectionsApi.get('services', serviceUrl, options);
-  }  
+  }
   /** @ngInject */
-  function StateController($state, service, tags, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, 
+  function StateController($state, service, tags, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal,
                            EventNotifications, Consoles, Chargeback, PowerOperations) {
     var vm = this;
     setInitialVars();
@@ -125,9 +126,6 @@
       vm.ownershipServiceModal = ownershipServiceModal;
       vm.reconfigureService = reconfigureService;
       vm.gotoCatalogItem = gotoCatalogItem;
-
-      vm.service.powerState = angular.isDefined(vm.service.options.power_state) ? vm.service.options.power_state : "";
-      vm.service.powerStatus = angular.isDefined(vm.service.options.power_status) ? vm.service.options.power_status : "";
 
       vm.startService = PowerOperations.startService;
       vm.stopService = PowerOperations.stopService;
