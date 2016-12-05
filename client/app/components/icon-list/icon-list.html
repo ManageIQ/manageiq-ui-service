@@ -1,0 +1,11 @@
+<div class="icon-list" ng-repeat="item in vm.items">
+  <div class="icon-list__container">
+    <div class="icon-list__container__background">
+      <img ng-if="item.picture.image_href" class="icon-list__container__icon" alt="{{ item.name }}"
+           ng-src="{{ item.picture.image_href }}"/>
+      <img ng-if="!item.picture.image_href" class="icon-list__container__icon" alt="{{ item.name }}"
+           src="./images/service.png"/>
+    </div>
+    <div class="icon-list__container__name" tooltip=" {{item.name}} " tooltip-placement="bottom">{{item.name}}</div>
+  </div>
+</div>
