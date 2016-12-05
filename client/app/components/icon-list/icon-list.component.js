@@ -14,21 +14,5 @@
   /** @ngInject */
   function ComponentController() {
     var vm = this;
-
-    angular.extend(vm, {
-
-    });
-
-    vm.$onInit = function() {
-    };
-
-    vm.$onChanges = function(changes) {
-    };
-
-
-    // Public
-
-    // Private
-
   }
 })();
