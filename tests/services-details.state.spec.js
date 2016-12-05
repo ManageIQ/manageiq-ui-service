@@ -110,37 +110,37 @@ describe('Dashboard', function() {
     });
   });
 
-  describe('service detail contains power state in "timeout" and power status in "starting', function() {
-    var controller;
+  //describe('service detail contains power state in "timeout" and power status in "starting', function() {
+  //  var controller;
 
-    var service = {
-        options: {
-          power_state: "timeout",
-          power_status: "starting"
-        },
-      chargeback_report: {
-        results: []
-      }
-    };
+  //  var service = {
+  //      options: {
+  //        power_state: "timeout",
+  //        power_status: "starting"
+  //      },
+  //    chargeback_report: {
+  //      results: []
+  //    }
+  //  };
 
-    beforeEach(function() {
-      bard.inject('$controller', '$state');
+  //  beforeEach(function() {
+  //    bard.inject('$controller', '$state');
 
-      controller = $controller($state.get('services.details').controller, {service: service, $state: state, Chargeback: Chargeback});
-    });
+  //    controller = $controller($state.get('services.details').controller, {service: service, $state: state, Chargeback: Chargeback});
+  //  });
 
-    it('enables the "Start" button when power state is "timeout" and power status is "starting', function() {
-      expect(controller.enableStartButton(controller.service)).to.eq(true);
-    });
+  //  it('enables the "Start" button when power state is "timeout" and power status is "starting', function() {
+  //    expect(controller.enableStartButton(controller.service)).to.eq(true);
+  //  });
 
-    it('disables the "Stop" button when power state is "timeout" and power status is "starting', function() {
-      expect(controller.checkDisabled('stop', controller.service)).to.eq(false);
-    });
+  //  it('disables the "Stop" button when power state is "timeout" and power status is "starting', function() {
+  //    expect(controller.checkDisabled('stop', controller.service)).to.eq(false);
+  //  });
 
-    it('disables the "Suspend" button when power state is "timeout" and power status is "starting', function() {
-      expect(controller.checkDisabled('suspend', controller.service)).to.eq(false);
-    });
-  });
+  //  it('disables the "Suspend" button when power state is "timeout" and power status is "starting', function() {
+  //    expect(controller.checkDisabled('suspend', controller.service)).to.eq(false);
+  //  });
+  //});
 
   describe('service detail contains power state in "on" and power status in "start_complete', function() {
     var controller;
