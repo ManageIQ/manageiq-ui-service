@@ -65,6 +65,16 @@
       </label>
     </span>
 
+    <!-- tag control -->
+    <select ng-switch-when="DialogFieldTagControl"
+            class="form-control">
+      <option ng-repeat="option in dialogEditorField.fieldData.values"
+              value="{{ option[0] }}">
+        {{ option[1] }}
+      </option>
+    </select>
+
+
   </div>
   <div class="col-sm-5">
     <button type="button" class="close"

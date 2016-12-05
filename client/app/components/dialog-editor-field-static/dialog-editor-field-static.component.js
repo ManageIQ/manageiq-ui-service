@@ -92,6 +92,21 @@
               "fa fa-clock-o",
               __("Date Time Control")
             ),
+          dialogFieldTagControl:
+            new DialogField(
+              "DialogFieldTagControl",
+              "fa fa-tags",
+              __("Tag Control"),
+              {
+                data_type: "string",
+                values: [],
+                options: {
+                  force_single_value: false,
+                  sort_by: "description",
+                  sort_order: "ascending",
+                },
+              }
+            ),
         };
       },
       controllerAs: 'dialogEditorFieldStatic',

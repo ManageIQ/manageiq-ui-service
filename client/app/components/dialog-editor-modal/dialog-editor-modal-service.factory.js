@@ -92,6 +92,12 @@
             vm.dialog.fieldId
           ]
         );
+        // load categories from API, if the field is Tag Control
+        if (vm.modalData.type === "DialogFieldTagControl") {
+          resolveCategories(CollectionsApi).then(function(categories) {
+            vm.categories = categories;
+          });
+        }
         break;
       default:
         break;
@@ -210,6 +216,15 @@
 
       // close modal
       $modalInstance.close();
+    }
+
+    function resolveCategories() {
+      var options = {
+        expand: 'resources',
+        attributes: ['description', 'single_value'],
+      };
+
+      return CollectionsApi.query('categories', options);
     }
 
     /**

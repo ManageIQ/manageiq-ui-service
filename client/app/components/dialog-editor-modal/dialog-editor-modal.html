@@ -35,7 +35,7 @@
           {{ vm.modalData.description }}
         </textarea>
       </div>
-      <div ng-if="vm.element === 'field'"
+      <div ng-if="vm.element === 'field' && vm.modalData.type !== 'DialogFieldTagControl'"
            pf-form-group
            pf-label="{{'Dynamic'|translate}}">
         <input bs-switch
@@ -70,6 +70,9 @@
         </dialog-editor-modal-field-template>
         <dialog-editor-modal-field-template ng-switch-when="DialogFieldDropDownList"
                                template="radio-button-drop-down-list.html">
+        </dialog-editor-modal-field-template>
+        <dialog-editor-modal-field-template ng-switch-when="DialogFieldTagControl"
+                               template="tag-control.html">
         </dialog-editor-modal-field-template>
       </div>
       <div ng-if="vm.modalData.dynamic">
