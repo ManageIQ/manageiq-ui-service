@@ -73,14 +73,32 @@ describe('Dashboard', function() {
       }
     };
 
+    var tags ={
+      resources: [
+        {
+          category:{
+            description: "sample tag description"
+          },
+          classification: {
+            description: "Tag"
+          }
+        }
+      ]
+    };
+
     beforeEach(function() {
       bard.inject('$controller', '$state', 'CollectionsApi', 'EventNotifications');
 
-      controller = $controller($state.get('services.details').controller, {service: service, $state: state});
+      controller = $controller($state.get('services.details').controller, {service: service, $state: state, tags: tags});
     });
 
     it('should be created successfully', function() {
       expect(controller).to.be.defined;
+    });
+
+    it('Tags should be part of controller object', function (done) {
+        expect(controller.tags).to.eq(tags);
+        done();
     });
 
     describe('removeService', function() {
@@ -123,10 +141,23 @@ describe('Dashboard', function() {
       }
     };
 
+    var tags = {
+      resources: [
+        {
+          category: {
+            description: "sample tag description"
+          },
+          classification: {
+            description: "Tag"
+          }
+        }
+      ]
+    };
+
     beforeEach(function() {
       bard.inject('$controller', '$state');
 
-      controller = $controller($state.get('services.details').controller, {service: service, $state: state, Chargeback: Chargeback});
+      controller = $controller($state.get('services.details').controller, {service: service, $state: state, Chargeback: Chargeback, tags: tags});
     });
 
     it('enables the "Start" button when power state is "timeout" and power status is "starting', function() {
@@ -134,11 +165,11 @@ describe('Dashboard', function() {
     });
 
     it('disables the "Stop" button when power state is "timeout" and power status is "starting', function() {
-      expect(controller.checkDisabled('stop', controller.service)).to.eq(false);
+      expect(controller.checkDisabled('stop', controller.service, controller.tags)).to.eq(false);
     });
 
     it('disables the "Suspend" button when power state is "timeout" and power status is "starting', function() {
-      expect(controller.checkDisabled('suspend', controller.service)).to.eq(false);
+      expect(controller.checkDisabled('suspend', controller.service, controller.tags)).to.eq(false);
     });
   });
 
@@ -153,6 +184,18 @@ describe('Dashboard', function() {
         results: []
       },
     };
+    var tags ={
+      resources: [
+        {
+          category:{
+            description: "sample tag description"
+          },
+          classification: {
+            description: "Tag"
+          }
+        }
+      ]
+    };
 
     beforeEach(function() {
       bard.inject('$controller', '$state');
@@ -161,7 +204,8 @@ describe('Dashboard', function() {
         {service: service,
          $state: state,
          Chargeback: Chargeback,
-         PowerOperations: PowerOperations});
+         PowerOperations: PowerOperations,
+         tags: tags});
     });
 
     it('disables the "Start" button when power state is "ON"', function() {
