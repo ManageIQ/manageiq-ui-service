@@ -43,6 +43,7 @@
       'provision_dialog',
       'service_template',
       'chargeback_report',
+      'power_state',
     ];
     var options = {
       attributes: requestAttributes,
@@ -106,7 +107,7 @@
       vm.ownershipServiceModal = ownershipServiceModal;
       vm.reconfigureService = reconfigureService;
 
-      vm.service.powerState = angular.isDefined(vm.service.options.power_state) ? vm.service.options.power_state : "";
+      vm.service.powerState = angular.isDefined(vm.service.power_state) ? vm.service.power_state : "";
       vm.service.powerStatus = angular.isDefined(vm.service.options.power_status) ? vm.service.options.power_status : "";
 
       vm.startService = PowerOperations.startService;
