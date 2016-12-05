@@ -133,16 +133,13 @@
                 <div class="form-group">
                   <label class="control-label col-sm-4" translate>Power State</label>
                   <div class="col-sm-8">
-                    <i class="fa fa-circle" style="font-size:15px;color:#1dc58e;" ng-if="vm.service.powerState === 'on' && vm.service.powerStatus === 'start_complete'" tooltip="{{'Power State: On'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-circle" style="font-size:15px;color:#cc151d;" ng-if="vm.service.powerState === 'off' && vm.service.powerStatus === 'stop_complete'" tooltip="{{'Power State: Off'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-circle" style="font-size:15px;color:orangered;" ng-if="vm.service.powerState === 'off' && vm.service.powerStatus === 'suspend_complete'" tooltip="{{'Power State: Suspended'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:#1dc58e;" ng-if="vm.service.powerState !== 'timeout' && vm.service.powerStatus === 'starting'" tooltip="{{'Power State: Starting...'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:#cc151d;" ng-if="vm.service.powerState !== 'timeout' && vm.service.powerStatus === 'stopping'" tooltip="{{'Power State: Stopping...'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:orangered;" ng-if="vm.service.powerState !== 'timeout' && vm.service.powerStatus === 'suspending'" tooltip="{{'Power State: Suspending...'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-adjust" style="font-size:15px;color:#1dc58e;" ng-if="vm.service.powerState === 'timeout' && vm.service.powerStatus === 'starting'" tooltip="{{'Power State: Start operation timed out'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-adjust" style="font-size:15px;color:#cc151d;" ng-if="vm.service.powerState === 'timeout' && vm.service.powerStatus === 'stopping'" tooltip="{{'Power State: Stop operation timed out'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-adjust" style="font-size:15px;color:orangered;" ng-if="vm.service.powerState === 'timeout' && vm.service.powerStatus === 'suspending'" tooltip="{{'Power State: Suspend operation timed out'|translate}}" tooltip-placement="bottom"></i>
-                    <i class="fa fa-question-circle" style="font-size:15px;color:#3397db;" ng-if="vm.service.powerState === '' && vm.service.powerStatus === ''" tooltip="{{'Power State: Unknown'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-circle" style="font-size:15px;color:#1dc58e;" ng-if="vm.service.power_state === 'on' && vm.service.options.power_status === 'start_complete'" tooltip="{{'Power State: On'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-circle" style="font-size:15px;color:#cc151d;" ng-if="vm.service.power_state === 'off' && vm.service.options.power_status === 'stop_complete'" tooltip="{{'Power State: Off'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-circle" style="font-size:15px;color:orangered;" ng-if="vm.service.power_state === 'off' && vm.service.options.power_status === 'suspend_complete'" tooltip="{{'Power State: Suspended'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-question-circle" style="font-size:15px;color:#3397db;" ng-if="vm.service.power_state === '' && vm.service.options.power_status === ''" tooltip="{{'Power State: Unknown'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:#1dc58e;" ng-if="vm.service.power_state !== 'timeout' && vm.service.options.power_status === 'starting'" tooltip="{{'Power State: Starting...'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:#cc151d;" ng-if="vm.service.power_state !== 'timeout' && vm.service.options.power_status === 'stopping'" tooltip="{{'Power State: Stopping...'|translate}}" tooltip-placement="bottom"></i>
+                    <i class="fa fa-spinner fa-pulse" style="font-size:15px;color:orangered;" ng-if="vm.service.power_state !== 'timeout' && vm.service.options.power_status === 'suspending'" tooltip="{{'Power State: Suspending...'|translate}}" tooltip-placement="bottom"></i>
                   </div>
                 </div>
               </div>

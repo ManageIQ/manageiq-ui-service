@@ -21,24 +21,24 @@ describe('Dashboard', function() {
 
     PowerOperations = {
       powerOperationOnState: function (item) {
-        return item.powerState === "on" && item.powerStatus === "start_complete";
+        return item.power_state === "on" && item.options.power_status === "start_complete";
       },
       powerOperationUnknownState: function (item) {
-        return item.powerState === "" && item.powerStatus === "";
+        return item.power_state === "" && item.options.power_status === "";
       },
       powerOperationInProgressState: function (item) {
-        return (item.powerState !== "timeout" && item.powerStatus === "starting")
-          || (item.powerState !== "timeout" && item.powerStatus === "stopping")
-          || (item.powerState !== "timeout" && item.powerStatus === "suspending");
+        return (item.power_state !== "timeout" && item.options.power_status === "starting")
+          || (item.power_state !== "timeout" && item.options.power_status === "stopping")
+          || (item.power_state !== "timeout" && item.options.power_status === "suspending");
       },
       powerOperationOffState: function (item) {
-        return item.powerState === "off" && item.powerStatus === "stop_complete";
+        return item.power_state === "off" && item.options.power_status === "stop_complete";
       },
       powerOperationSuspendState: function (item) {
-        return item.powerState === "off" && item.powerStatus === "suspend_complete";
+        return item.power_state === "off" && item.options.power_status === "suspend_complete";
       },
       powerOperationTimeoutState: function (item) {
-        return item.powerState === "timeout";
+        return item.power_state === "timeout";
       },
     };
   });
@@ -64,8 +64,8 @@ describe('Dashboard', function() {
     var service = {
       id: 123,
       name: 'foo',
+      power_state: "",
       options: {
-        power_state: "timeout",
         power_status: "starting"
       },
       chargeback_report: {
@@ -110,13 +110,13 @@ describe('Dashboard', function() {
     });
   });
 
-  describe('service detail contains power state in "timeout" and power status in "starting', function() {
+  describe('service detail contains power state in "off" and power status in "stop_complete"', function() {
     var controller;
 
     var service = {
+        power_state: "off",
         options: {
-          power_state: "timeout",
-          power_status: "starting"
+          power_status: "stop_complete"
         },
       chargeback_report: {
         results: []
@@ -126,18 +126,23 @@ describe('Dashboard', function() {
     beforeEach(function() {
       bard.inject('$controller', '$state');
 
-      controller = $controller($state.get('services.details').controller, {service: service, $state: state, Chargeback: Chargeback});
+      controller = $controller($state.get('services.details').controller, 
+          {service: service, 
+           $state: state, 
+           Chargeback: Chargeback,
+           PowerOperations: PowerOperations});
     });
 
-    it('enables the "Start" button when power state is "timeout" and power status is "starting', function() {
+    it('disables the "Stop" button when power state is "OFF"', function() {
+      expect(controller.checkDisabled('stop', controller.service)).to.eq(true);
+      //expect(controller.enableStopButton(controller.service)).to.eq(false);
+    });
+
+    it('enables the "Start" button when power state is "OFF"', function() {
       expect(controller.enableStartButton(controller.service)).to.eq(true);
     });
 
-    it('disables the "Stop" button when power state is "timeout" and power status is "starting', function() {
-      expect(controller.checkDisabled('stop', controller.service)).to.eq(false);
-    });
-
-    it('disables the "Suspend" button when power state is "timeout" and power status is "starting', function() {
+    it('enables the "Suspend" button when power state is "OFF"', function() {
       expect(controller.checkDisabled('suspend', controller.service)).to.eq(false);
     });
   });
@@ -145,8 +150,8 @@ describe('Dashboard', function() {
   describe('service detail contains power state in "on" and power status in "start_complete', function() {
     var controller;
     var service = {
+      power_state: "on",
       options: {
-        power_state: "on",
         power_status: "start_complete"
       },
       chargeback_report: {
