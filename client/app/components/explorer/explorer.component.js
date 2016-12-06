@@ -14,7 +14,7 @@
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
                                CollectionsApi, EventNotifications, RemoveServiceModal, OwnershipServiceModal, EditServiceModal,
-                               RetireServiceModal, PowerOperations, lodash) {
+                               RetireServiceModal, RetireNowServiceModal, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
     function activate() {
@@ -494,6 +494,7 @@
     }
 
     function retireService() {
+      RetireNowServiceModal.showModal(vm.selectedItemsList)
     }
 
     Language.fixState(ServicesState, vm.headerConfig);
