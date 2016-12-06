@@ -33,11 +33,10 @@
   function ModalController($state, $modalInstance, CollectionsApi, EventNotifications, services) {
     var vm = this;
 
+    vm.servicers = services;
     angular.extend(vm, {
       confirm: confirm,
       cancel: cancel,
-      services: services,
-
     });
 
     function cancel() {
