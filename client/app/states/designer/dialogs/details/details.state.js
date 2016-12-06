@@ -38,6 +38,7 @@
     vm.dialog = dialog;
     vm.dialog.performAction = performAction;
     vm.dialog.removeDialog = removeDialog;
+    vm.dialog.copyDialog = copyDialog;
 
     function performAction(item) {
       $state.go('designer.dialogs.edit', {dialogId: dialog.id});
@@ -54,6 +55,20 @@
 
       function removeFailure(data) {
         EventNotifications.error(__('There was an error removing this dialog.'));
+      }
+    }
+
+    function copyDialog() {
+      var copyAction = {action: 'copy'};
+      CollectionsApi.post('service_dialogs', vm.dialog.id, {}, copyAction).then(copySuccess, copyFailure);
+
+      function copySuccess() {
+        EventNotifications.success(vm.dialog.label + __(' was copied.'));
+        $state.go('designer.dialogs.list');
+      }
+
+      function copyFailure(data) {
+        EventNotifications.error(__('There was an error copying this dialog.'));
       }
     }
   }
