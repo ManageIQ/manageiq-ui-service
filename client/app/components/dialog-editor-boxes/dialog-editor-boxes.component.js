@@ -42,6 +42,9 @@
               return box.position === id;
             }
           );
+          DialogEditor.updatePositions(
+            this.dialogTabs[DialogEditor.activeTab].dialog_groups
+          );
         };
 
         this.editDialogModal = function(tab, box) {

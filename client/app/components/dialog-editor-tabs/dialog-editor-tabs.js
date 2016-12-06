@@ -60,14 +60,14 @@
          * Parameter: id -- index of tab to remove
          */
         this.deleteTab = function(id) {
-          // if active, deactivate first
+          // if the deleted tab is active, pass the activity first
           if (this.tabList[id].active) {
             if ((this.tabList.length - 1) === this.tabList[id].position
              && (this.tabList.length - 1) !== 0) {
-              // active was last -> new active is on previous index
+              // active was at the end -> new active is on previous index
               this.tabList[id - 1].active = true;
-            } else if (this.tabList[id].position < (this.tabList.length - 1)) {
-              // active was has following tab -> new active is on next index
+            } else if ((this.tabList.length - 1) > this.tabList[id].position) {
+              // active tab has a following tab -> new active is on next index
               this.tabList[id + 1].active = true;
             }
           }
@@ -77,9 +77,15 @@
             return tab.position === id;
           });
 
-          DialogEditor.updatePositions(this.tabList);
+          if (this.tabList.length === 0) {
+            return;
+          } else {
+            // reload indexes for tabs
+            DialogEditor.updatePositions(this.tabList);
+          }
+
           var activeTabData = lodash.find(this.tabList, {active: true});
-          if (angular.isUndefined(activeTabData)) {
+          if (angular.isDefined(activeTabData)) {
             DialogEditor.activeTab = activeTabData.position;
           }
         };
