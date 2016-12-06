@@ -7,20 +7,23 @@
 <div class="modal-body">
   <form class="form-horizontal">
       <div pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Retirement Warning'|translate}}">
-        <select pf-select ng-model="vm.modalData.resource.warn" ng-options="opt.value as opt.label for opt in vm.visibleOptions">
+        <select pf-select ng-model="vm.modalData.warn" class="form-control" ng-options="opt.value as opt.label for opt in vm.visibleOptions">
         </select>
       </div>
     <div pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Retirement Date'|translate}}">
-      <div pf-datepicker options="vm.dateOptions" date="vm.modalData.resource.date"></div>
+      <div pf-datepicker options="vm.dateOptions" date="vm.modalData.date"></div>
     </div>
   </form>
+  <hr>
+  <h4 translate>Affected Services</h4>
+  <icon-list items="vm.services"></icon-list>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" ng-click="$dismiss()" translate>Cancel</button>
-  <button type="button"
-          class="btn btn-primary"
-          ng-click="vm.retireService()"
-          ng-disabled="vm.modalData.resource.name == vm.service.name &&
-          vm.modalData.resource.description == vm.service.description" translate>Save
-  </button>
+  <modal-actions
+    modal-data="vm.modalData"
+    reset-modal="vm.resetModal"
+    on-reset="vm.reset($event)"
+    on-cancel="vm.cancel()"
+    on-save="vm.save()">
+  </modal-actions>
 </div>

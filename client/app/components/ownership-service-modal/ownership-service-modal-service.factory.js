@@ -64,7 +64,7 @@
           'description': '',
         },
       },
-      isService:  services.length === 1,
+      isService: services.length === 1,
       resetModal: false,
       services: services,
       users: users,

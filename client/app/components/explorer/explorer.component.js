@@ -491,7 +491,6 @@
 
     function setServiceRetirement() {
       RetireServiceModal.showModal(vm.selectedItemsList);
-
     }
 
     function retireService() {

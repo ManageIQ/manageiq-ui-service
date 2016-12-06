@@ -8,7 +8,7 @@
       bindings: {
         modalData: '<?',
         confirmationModal: '<?',
-        resetModal:'<?',
+        resetModal: '<?',
         onCancel: '&',
         onReset: '&',
         onSave: '&',

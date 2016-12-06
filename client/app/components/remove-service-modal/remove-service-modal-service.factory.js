@@ -7,7 +7,7 @@
   /** @ngInject */
   function Factory($modal) {
     return {showModal: showModal};
-    
+
     function showModal(services) {
       var modalOptions = {
         templateUrl: 'app/components/remove-service-modal/remove-service-modal.html',
