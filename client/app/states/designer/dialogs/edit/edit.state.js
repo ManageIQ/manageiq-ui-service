@@ -47,7 +47,8 @@
   }
 
   /** @ngInject */
-  function StateController($state, dialog, DialogEditor, CollectionsApi, EventNotifications) {
+  function StateController($state, dialog, DialogEditor, CollectionsApi,
+           EventNotifications, lodash) {
     var vm = this;
 
     DialogEditor.setData(dialog);
@@ -74,7 +75,7 @@
           label: DialogEditor.getDialogLabel(),
           dialog_tabs: [],
         };
-        DialogEditor.getDialogTabs().forEach(function(tab) {
+        lodash.cloneDeep(DialogEditor.getDialogTabs()).forEach(function(tab) {
           delete tab.active;
           dialogData.dialog_tabs.push(tab);
         });
@@ -87,7 +88,7 @@
             dialog_tabs: [],
           }
         };
-        DialogEditor.getDialogTabs().forEach(function(tab) {
+        lodash.cloneDeep(DialogEditor.getDialogTabs()).forEach(function(tab) {
           delete tab.active;
           dialogData.content.dialog_tabs.push(tab);
         });
