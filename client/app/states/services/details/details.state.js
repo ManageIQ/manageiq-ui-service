@@ -19,6 +19,7 @@
         title: N_('Service Details'),
         resolve: {
           service: resolveService,
+          tags: resolveTags,
         },
       },
     };
@@ -43,6 +44,10 @@
       'provision_dialog',
       'service_template',
       'chargeback_report',
+      'created_at',
+      'options',
+      'name',
+      'guid',
     ];
     var options = {
       attributes: requestAttributes,
@@ -51,9 +56,23 @@
     };
 
     return CollectionsApi.get('services', $stateParams.serviceId, options);
+  }
+  function resolveTags($stateParams, CollectionsApi) {
+    var requestAttributes = [
+      'classification',
+      'category',
+    ];
+    var options = {
+      attributes: requestAttributes,
+      decorators: [],
+      expand: 'resources',
+    };
+    var serviceUrl = $stateParams.serviceId + '/tags/';
+    
+    return CollectionsApi.get('services', serviceUrl, options);
   }  
   /** @ngInject */
-  function StateController($state, service, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, 
+  function StateController($state, service, tags, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal, 
                            EventNotifications, Consoles, Chargeback, PowerOperations) {
     var vm = this;
     setInitialVars();
@@ -97,7 +116,7 @@
       vm.showSetOwnership = $state.actionFeatures.serviceOwnership.show;
 
       vm.service = service;
-
+      vm.tags = tags;
       vm.activate = activate;
       vm.removeService = removeService;
       vm.editServiceModal = editServiceModal;
@@ -105,6 +124,7 @@
       vm.retireServiceLater = retireServiceLater;
       vm.ownershipServiceModal = ownershipServiceModal;
       vm.reconfigureService = reconfigureService;
+      vm.gotoCatalogItem = gotoCatalogItem;
 
       vm.service.powerState = angular.isDefined(vm.service.options.power_state) ? vm.service.options.power_state : "";
       vm.service.powerStatus = angular.isDefined(vm.service.options.power_status) ? vm.service.options.power_status : "";
@@ -187,6 +207,10 @@
 
     function editServiceModal() {
       EditServiceModal.showModal(vm.service);
+    }
+
+    function gotoCatalogItem() {
+      $state.go('marketplace.details', {serviceTemplateId: service.service_template.id});
     }
 
     function ownershipServiceModal() {
