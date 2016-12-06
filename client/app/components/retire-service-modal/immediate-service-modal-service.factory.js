@@ -34,9 +34,10 @@
     var vm = this;
 
     angular.extend(vm, {
-      services: services,
       confirm: confirm,
       cancel: cancel,
+      services: services,
+
     });
 
     function cancel() {

@@ -494,7 +494,7 @@
     }
 
     function retireService() {
-      RetireNowServiceModal.showModal(vm.selectedItemsList)
+      RetireNowServiceModal.showModal(vm.selectedItemsList);
     }
 
     Language.fixState(ServicesState, vm.headerConfig);
