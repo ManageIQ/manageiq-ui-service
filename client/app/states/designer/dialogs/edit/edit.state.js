@@ -67,10 +67,12 @@
     }
 
     function saveDialogDetails() {
+      var action, dialogData;
+
       // load dialog data
       if (angular.isUndefined(DialogEditor.getDialogId())) {
-        var action = 'create';
-        var dialogData = {
+        action = 'create';
+        dialogData = {
           description: DialogEditor.getDialogDescription(),
           label: DialogEditor.getDialogLabel(),
           dialog_tabs: [],
@@ -80,13 +82,13 @@
           dialogData.dialog_tabs.push(tab);
         });
       } else {
-        var action = 'edit';
-        var dialogData = {
+        action = 'edit';
+        dialogData = {
           description: DialogEditor.getDialogDescription(),
           label: DialogEditor.getDialogLabel(),
           content: {
             dialog_tabs: [],
-          }
+          },
         };
         lodash.cloneDeep(DialogEditor.getDialogTabs()).forEach(function(tab) {
           delete tab.active;
