@@ -8,7 +8,7 @@
   <form class="form-horizontal">
     <div pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Select an Owner'|translate}}">
       <select ng-model="vm.modalData.owner.userid" class="form-control">
-        <option ng-if="vm.services.length > 1" value="" translate>Don't Change</option>
+        <option ng-if="!vm.isService" value="" translate>Don't Change</option>
         <option ng-repeat="user in vm.users.resources"
                 ng-selected="user.userid == vm.modalData.owner.userid ? 'selected' : ''"
                 value="{{user.userid}}">
@@ -20,7 +20,7 @@
     <div pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Select a Group'|translate}}">
       <select ng-model="vm.modalData.group.description"
               class="form-control">
-        <option ng-if="vm.services.length > 1" value="" translate>Don't Change</option>
+        <option ng-if="!vm.isService" value="" translate>Don't Change</option>
         <option ng-repeat="group in vm.groups.resources | orderBy:'description'"
                 ng-selected="group.description == vm.modalData.group ? 'selected' : ''"
                 value="{{group.description}}">
@@ -36,6 +36,7 @@
 <div class="modal-footer">
   <modal-actions
     modal-data="vm.modalData"
+    reset-modal="vm.resetModal"
     on-cancel="vm.cancel()"
     on-reset="vm.reset($event)"
     on-save="vm.save()">
