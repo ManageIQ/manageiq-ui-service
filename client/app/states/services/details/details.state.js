@@ -39,6 +39,10 @@
       'aggregate_all_vm_disk_space_allocated',
       'aggregate_all_vm_disk_space_used',
       'aggregate_all_vm_memory_on_disk',
+      "retired",
+      "retirement_state",
+      "retirement_warn",
+      "retires_on",
       'actions',
       'custom_actions',
       'provision_dialog',
@@ -232,7 +236,7 @@
     }
 
     function retireServiceLater() {
-      RetireServiceModal.showModal(vm.service);
+      RetireServiceModal.showModal([vm.service]);
     }
 
     function disableStopButton(item) {

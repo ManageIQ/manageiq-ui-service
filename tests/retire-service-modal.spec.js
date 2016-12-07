@@ -11,7 +11,7 @@ describe('Retire Service Modal', function() {
 
       controller = $controller(state.FactoryController, {
         $scope: $scope,
-        serviceDetails: angular.noop,
+        services: angular.noop,
         $modalInstance: angular.noop,
         CollectionsApi: angular.noop,
         EventNotifications: angular.noop,

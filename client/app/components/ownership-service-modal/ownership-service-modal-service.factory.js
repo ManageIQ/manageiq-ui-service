@@ -54,7 +54,6 @@
   /** @ngInject */
   function OwnershipServiceModalController($state, $modalInstance, lodash, CollectionsApi, EventNotifications, users, groups, services) {
     var vm = this;
-    var isService = services.length === 1;
 
     angular.extend(vm, {
       modalData: {
@@ -65,6 +64,8 @@
           'description': '',
         },
       },
+      isService: services.length === 1,
+      resetModal: false,
       services: services,
       users: users,
       groups: groups,
@@ -89,7 +90,7 @@
         resources: null,
       };
 
-      if (isService) {
+      if (vm.isService) {
         data.resources = [vm.modalData];
       } else {
         var resources = [];
@@ -118,7 +119,8 @@
 
     // Private
     function activate() {
-      if (isService) {
+      if (vm.isService) {
+        vm.resetModal = true;
         vm.modalData.id = vm.services[0].id;
         vm.modalData.owner.userid = vm.services[0].evm_owner && vm.services[0].evm_owner.userid || '';
         vm.modalData.group.description = vm.services[0].miq_group && vm.services[0].miq_group.description || '';

@@ -13,41 +13,44 @@
 
     return modalService;
 
-    function showModal(serviceDetails) {
+    function showModal(services) {
       var modalOptions = {
         templateUrl: 'app/components/retire-service-modal/retire-service-modal.html',
         controller: RetireServiceModalController,
         controllerAs: 'vm',
         size: 'lg',
         resolve: {
-          serviceDetails: resolveServiceDetails,
+          services: resolveServices,
         },
       };
       var modal = $modal.open(modalOptions);
 
       return modal.result;
 
-      function resolveServiceDetails() {
-        return serviceDetails;
+      function resolveServices() {
+        return services;
       }
     }
   }
 
   /** @ngInject */
-  function RetireServiceModalController($scope, serviceDetails, $state, $modalInstance, CollectionsApi, EventNotifications, moment) {
+  function RetireServiceModalController($scope, $state, $modalInstance, CollectionsApi, EventNotifications, moment, services, lodash) {
     var vm = this;
 
-    vm.service = serviceDetails;
-    vm.retireService = retireService;
-    var existingDate = new Date(vm.service.retires_on);
-    var existingUTCDate = new Date(existingDate.getTime() + existingDate.getTimezoneOffset() * 60000);
-    vm.modalData = {
-      action: 'retire',
-      resource: {
-        date: vm.service.retires_on ? existingUTCDate : new Date(),
-        warn: vm.service.retirement_warn || 0,
+    angular.extend(vm, {
+      visibleOptions: [],
+      modalData: {
+        date: new Date(),
+        warn: 0,
       },
-    };
+      isService: services.length === 1,
+      resetModal: false,
+      services: services,
+      save: save,
+      reset: reset,
+      cancel: cancel,
+    });
+
 
     vm.dateOptions = {
       autoclose: true,
@@ -57,18 +60,26 @@
     };
 
     vm.warningOptions = [
-      { value: 0, label: __('No Warning') },
-      { value: 7, label: __('1 Week') },
-      { value: 14, label: __('2 Weeks') },
-      { value: 21, label: __('3 Weeks') },
-      { value: 28, label: __('4 Weeks') },
+      {value: 0, label: __('No Warning')},
+      {value: 7, label: __('1 Week')},
+      {value: 14, label: __('2 Weeks')},
+      {value: 21, label: __('3 Weeks')},
+      {value: 28, label: __('4 Weeks')},
     ];
-    vm.visibleOptions = [];
 
     activate();
 
     function activate() {
-      $scope.$watch('vm.modalData.resource.date', function(date) {
+      if (vm.isService) {
+        vm.modalData.id = vm.services[0].id;
+        vm.resetModal = true;
+        var existingDate = new Date(vm.services[0].retires_on);
+        var existingUTCDate = new Date(existingDate.getTime() + existingDate.getTimezoneOffset() * 60000);
+        vm.modalData.date = vm.services[0].retires_on ? existingUTCDate : new Date();
+        vm.modalData.warn = vm.services[0].retirement_warn || 0;
+      }
+
+      $scope.$watch('vm.modalData.date', function(date) {
         var daysBetween = moment(date).diff(moment(), 'days');
 
         vm.visibleOptions = vm.warningOptions.filter(function(option) {
@@ -77,18 +88,45 @@
       });
     }
 
-    function retireService() {
-      CollectionsApi.post('services', vm.service.id, {}, vm.modalData).then(retireSuccess, retireFailure);
+    function save() {
+      var data = {
+        action: 'retire',
+        resources: null,
+      };
 
-      function retireSuccess() {
+      if (vm.isService) {
+        data.resources = [vm.modalData];
+      } else {
+        var resources = [];
+        angular.copy(vm.services, resources);
+        lodash.forEach(resources, setRetire);
+        data.resources = resources;
+      }
+
+      CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure);
+
+      function saveSuccess() {
         $modalInstance.close();
-        EventNotifications.success(__('Scheduling retirement for') + vm.service.name  + '.');
+        EventNotifications.success(__('Scheduling retirement.'));
         $state.go($state.current, {}, {reload: true});
       }
 
-      function retireFailure() {
+      function saveFailure() {
         EventNotifications.error(__('There was an error retiring this service.'));
       }
+
+      function setRetire(service) {
+        service.date = vm.modalData.date;
+        service.warn = vm.modalData.warn;
+      }
+    }
+
+    function cancel() {
+      $modalInstance.dismiss();
+    }
+
+    function reset(event) {
+      angular.copy(event.original, this.modalData); // eslint-disable-line angular/controller-as-vm
     }
   }
 })();

@@ -2,20 +2,21 @@
   'use strict';
 
   angular.module('app.components')
-    .factory('RemoveServiceModal', Factory);
+    .factory('RetireRemoveServiceModal', Factory);
 
   /** @ngInject */
   function Factory($modal) {
     return {showModal: showModal};
-    
-    function showModal(services) {
+
+    function showModal(services, modalType) {
       var modalOptions = {
-        templateUrl: 'app/components/remove-service-modal/remove-service-modal.html',
+        templateUrl: 'app/components/retire-remove-service-modal/retire-remove-service-modal.html',
         controller: ModalController,
         controllerAs: 'vm',
         size: 'md',
         resolve: {
           services: resolveServices,
+          modalType: resolveModalType,
         },
       };
       var modal = $modal.open(modalOptions);
@@ -26,15 +27,22 @@
       function resolveServices() {
         return services;
       }
+
+      /** @ngInject */
+      function resolveModalType() {
+        return modalType;
+      }
     }
   }
 
   /** @ngInject */
-  function ModalController($state, $modalInstance, lodash, CollectionsApi, EventNotifications, services) {
+  function ModalController($state, $modalInstance, modalType, CollectionsApi, EventNotifications, services) {
     var vm = this;
 
     angular.extend(vm, {
       services: services,
+      isRemove: modalType === "remove",
+      isRetireNow: modalType === "retire",
       confirm: confirm,
       cancel: cancel,
     });
@@ -45,14 +53,21 @@
 
     function confirm() {
       var data = {
-        action: 'delete',
+        action: vm.isRemove ? 'delete' : 'retire',
         resources: vm.services,
       };
       CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure);
 
       function saveSuccess() {
         $modalInstance.close();
-        EventNotifications.success(__("Services removed"));
+        switch (modalType) {
+          case "retire":
+            EventNotifications.success(__("Services Retired"));
+            break;
+          case "remove":
+            EventNotifications.success(__("Services Removed"));
+            break;
+        }
         $state.go($state.current, {}, {reload: true});
       }
 
