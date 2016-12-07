@@ -122,7 +122,7 @@
     }
 
     function cancel() {
-      $modalInstance.dismiss();
+      $uibModalInstance.dismiss();
     }
 
     function reset(event) {

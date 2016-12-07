@@ -36,7 +36,7 @@
   }
 
   /** @ngInject */
-  function ModalController($state, $uibModalInstance, lodash, CollectionsApi, EventNotifications, services) {
+  function ModalController($state, $uibModalInstance, lodash, CollectionsApi, EventNotifications, services, modalType) {
     var vm = this;
 
     angular.extend(vm, {
