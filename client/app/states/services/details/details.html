@@ -219,16 +219,7 @@
 <div class="panel panel-default ss-details-panel">
     <div class="panel-body">
       <section class="ss-details-section">
-        <h2 translate>Redhat Tags</h2>
-         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <div class="form-horizontal">
-                <div class="form-group">
-                  <div ng-repeat="tag in ::vm.tags.resources" class="redhat-tags">
-                    <i class="fa fa-tag pficon"></i>{{tag.category.description}}: {{tag.classification.description}}
-                  </div>
-                </div>
-              </div>
-         </div>
+        <tag-editor></tag-editor>
       </section>
     </div>
   </div>
