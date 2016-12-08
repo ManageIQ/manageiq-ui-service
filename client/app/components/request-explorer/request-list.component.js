@@ -7,7 +7,7 @@
         'items': '<',
         'config': '<?',
       },
-      templateUrl: 'app/components/request-list/request-list.html',
+      templateUrl: 'app/components/requests-explorer/requests-explorer.html',
       controller: ComponentController,
       controllerAs: 'vm',
     });

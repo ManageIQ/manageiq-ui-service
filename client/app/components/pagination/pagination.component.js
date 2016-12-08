@@ -11,7 +11,7 @@
         offset: '=',
         onUpdate: '&',
       },
-      templateUrl: 'app/components/explorer/pagination/pagination.html',
+      templateUrl: 'app/components/pagination/pagination.html',
     });
 
   /** @ngInject */
