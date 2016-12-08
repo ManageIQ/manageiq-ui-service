@@ -5,7 +5,7 @@
     .factory('CreateCatalogModal', CreateCatalogFactory);
 
   /** @ngInject */
-  function CreateCatalogFactory($modal) {
+  function CreateCatalogFactory($uibModal) {
     var modalCreateCatalog = {
       showModal: showModal,
     };
@@ -18,14 +18,14 @@
         controller: CreateCatalogModalController,
         controllerAs: 'vm',
       };
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
     }
   }
 
   /** @ngInject */
-  function CreateCatalogModalController($state, $modalInstance, $log) {
+  function CreateCatalogModalController($state, $uibModalInstance, $log) {
     var vm = this;
 
     vm.modalData = {
@@ -39,7 +39,7 @@
 
       function saveSuccess() {
         if (vm.modalData.catalogName && vm.modalData.catalogName.length > 0) {
-          $modalInstance.close({catalogName: vm.modalData.catalogName});
+          $uibModalInstance.close({catalogName: vm.modalData.catalogName});
         } else {
           $log.error("Catalog Name not provided.");
         }

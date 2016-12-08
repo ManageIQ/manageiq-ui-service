@@ -1,10 +1,10 @@
-<span class="dropdown primary-action pull-left" dropdown>
-  <button type="button" class="btn dropdown-toggle btn-default" dropdown-toggle type="button"
-          ng-disabled="vm.config.isDisabled" tooltip=" {{vm.config.name}} " tooltip-placement="left">
+<span class="primary-action pull-left" uib-dropdown>
+  <button type="button" class="btn btn-default" uib-dropdown-toggle type="button"
+          ng-disabled="vm.config.isDisabled" uib-tooltip=" {{vm.config.name}} " tooltip-placement="left">
     <i class="{{vm.config.icon}}"></i>
     <span class="caret"></span>
   </button>
-    <ul class="dropdown-menu">
+    <ul uib-dropdown-menu>
       <li role="menuitem" ng-repeat="option in vm.config.actions"
           ng-class="{'disabled': (option.isDisabled === true)}">
         <a ng-click="vm.handleAction(option)" >

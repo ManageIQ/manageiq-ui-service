@@ -1,13 +1,13 @@
 <div ng-if="!drawerExpanded" ng-click="customScope.markNotificationRead(notification, notificationGroup)">
-  <div class="dropdown pull-right dropdown-kebab-pf">
-    <button class="btn btn-link dropdown-toggle" type="button" ng-click="customScope.clearNotification(notification, notificationGroup)">
+  <div uib-dropdown class="pull-right dropdown-kebab-pf">
+    <button uib-dropdown-toggle class="btn btn-link" type="button" ng-click="customScope.clearNotification(notification, notificationGroup)">
       <span class="pficon pficon-close"></span>
     </button>
   </div>
   <span ng-if="notification.type" class="pull-left {{customScope.getNotficationStatusIconClass(notification)}}" ng-click="customScope.markRead(notification, notificationGroup)"></span>
   <span class="drawer-pf-notification-message notification-message"
         ng-click="customScope.markRead(notification, notificationGroup)"
-        tooltip-popup-delay="500" tooltip-placement="bottom" tooltip="{{notification.message | translate}}">
+        tooltip-popup-delay="500" tooltip-placement="bottom" uib-tooltip="{{notification.message | translate}}">
     {{notification.message | translate}}
   </span>
   <div ng-if="!notification.data.inProgress" class="drawer-pf-notification-info" ng-click="customScope.markRead(notification, notificationGroup)">
@@ -19,7 +19,7 @@
     <div class="mini-progress-area">
       <div class="progress">
         <span class="progress-bar progress-bar-info"
-              ng-style="{width: notification.data.percentComplete + '%'}" tooltip="{{notification.data.percentComplete}} + {{'% Complete' | translate}}">
+              ng-style="{width: notification.data.percentComplete + '%'}" uib-tooltip="{{notification.data.percentComplete}} + {{'% Complete' | translate}}">
         </span>
       </div>
     </div>
@@ -31,7 +31,8 @@
       <span ng-if="notification.type" class="pull-left {{customScope.getNotficationStatusIconClass(notification)}}" ng-click="customScope.markRead(notification, notificationGroup)"></span>
       <span class="drawer-pf-notification-message notification-message"
             ng-click="customScope.markRead(notification, notificationGroup)"
-            tooltip-append-to-body="true" tooltip-popup-delay="500" tooltip-placement="bottom" tooltip="{{notification.message | translate}}">
+            tooltip-append-to-body="true" tooltip-popup-delay="500"
+            tooltip-placement="bottom" uib-tooltip="{{notification.message | translate}}">
             {{notification.message | translate}}
       </span>
     </div>
@@ -43,7 +44,7 @@
       </div>
       <div ng-if="notification.inProgress" class="progress">
         <div class="progress-bar progress-bar-info"
-             ng-style="{width: notification.data.percentComplete + '%'}" tooltip="{{notification.data.percentComplete}} + {{'% Complete' | translate}}">
+             ng-style="{width: notification.data.percentComplete + '%'}" uib-tooltip="{{notification.data.percentComplete}} + {{'% Complete' | translate}}">
         </div>
       </div>
     </div>
@@ -61,7 +62,7 @@
       </div>
     </div>
     <div class="pull-right dropdown-kebab-pf">
-      <button class="btn btn-link dropdown-toggle" type="button" ng-click="customScope.clearNotification(notification, notificationGroup)">
+      <button uib-dropdown-toggle class="btn btn-link" type="button" ng-click="customScope.clearNotification(notification, notificationGroup)">
         <span class="pficon pficon-close"></span>
       </button>
     </div>

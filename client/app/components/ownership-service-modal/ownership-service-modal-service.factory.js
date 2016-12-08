@@ -7,7 +7,7 @@
     .factory('OwnershipServiceModal', OwnershipServiceFactory);
 
   /** @ngInject */
-  function OwnershipServiceFactory($modal) {
+  function OwnershipServiceFactory($uibModal) {
     var modalService = {
       showModal: showModal,
     };
@@ -26,7 +26,7 @@
           groups: resolveGroups,
         },
       };
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
 
@@ -52,7 +52,7 @@
   }
 
   /** @ngInject */
-  function OwnershipServiceModalController($state, $modalInstance, lodash, CollectionsApi, EventNotifications, users, groups, services) {
+  function OwnershipServiceModalController($state, $uibModalInstance, lodash, CollectionsApi, EventNotifications, users, groups, services) {
     var vm = this;
 
     angular.extend(vm, {
@@ -77,7 +77,7 @@
 
 
     function cancel() {
-      $modalInstance.dismiss();
+      $uibModalInstance.dismiss();
     }
 
     function reset(event) {
@@ -102,7 +102,7 @@
       CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure);
 
       function saveSuccess() {
-        $modalInstance.close();
+        $uibModalInstance.close();
         EventNotifications.success(__("Ownership was saved."));
         $state.go($state.current, {}, {reload: true});
       }

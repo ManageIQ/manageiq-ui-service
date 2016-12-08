@@ -5,7 +5,7 @@
     .directive('confirmation', ConfirmationDirective);
 
   /** @ngInject */
-  function ConfirmationDirective($position, $window) {
+  function ConfirmationDirective($uibPosition, $window) {
     var directive = {
       restrict: 'AE',
       scope: {
@@ -56,7 +56,7 @@
       }
 
       function getPosition() {
-        return $position.offset(element);
+        return $uibPosition.offset(element);
       }
 
       // Private
@@ -86,7 +86,7 @@
     }
 
     /** @ngInject */
-    function ConfirmationController($scope, $modal, lodash) {
+    function ConfirmationController($scope, $uibModal, lodash) {
       var vm = this;
 
       var modalOptions = {
@@ -121,7 +121,7 @@
           vm.left = position.left;
           vm.top = position.top - vm.getOffset();
 
-          modal = $modal.open(modalOptions);
+          modal = $uibModal.open(modalOptions);
           modal.result.then(onOk, onCancel);
         } else {
           vm.onOk();
@@ -136,7 +136,7 @@
         }
       }
 
-      // Grafted in from ui.bootstraps $position.positionElements()
+      // Grafted in from ui.bootstraps $uibPosition.positionElements()
       function getModalPosition() {
         var posParts = vm.position.split('-');
         var pos0 = posParts[0];

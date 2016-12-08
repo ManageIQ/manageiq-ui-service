@@ -6,8 +6,8 @@
 </div>
 <div class="modal-body">
 
-    <tabset class="blueprint-detail-tabs">
-        <tab active="vm.tabs[0].active" heading="{{vm.tabs[0].title}}">
+    <uib-tabset class="blueprint-detail-tabs">
+        <uib-tab active="vm.tabs[0].active" heading="{{vm.tabs[0].title}}">
             <form name="genDetailsForm" id="genDetailsForm" class="gen-details-form form-horizontal">
                 <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6"
                      pf-label="{{'Name'|translate}}"
@@ -33,9 +33,9 @@
                        <tagging-widget tags-of-item="vm.tagsOfItem"/>
                 </div>
             </form>
-        </tab>
+        </uib-tab>
 
-        <tab active="vm.tabs[1].active" heading="{{vm.tabs[1].title}}">
+        <uib-tab active="vm.tabs[1].active" heading="{{vm.tabs[1].title}}">
 
             <form name="pubDetailsForm" id="pubDetailsForm" class="form-horizontal">
                 <!-- could not use pf-form-group due to it's requirement that errors only display after fields are 'dirty' -->
@@ -117,9 +117,9 @@
                     </div>
                 </form>
             </div>
-        </tab>
+        </uib-tab>
 
-        <tab active="vm.tabs[2].active" heading="{{vm.tabs[2].title}}" ng-if="vm.showOrderListTabs()">
+        <uib-tab active="vm.tabs[2].active" heading="{{vm.tabs[2].title}}" ng-if="vm.showOrderListTabs()">
             <h4 translate>Rearrange Items to set Provision Order</h4>
 
             <div class="dnd-ordered-lists row">
@@ -130,8 +130,8 @@
                     </div>
                 </div>
             </div>
-        </tab>
-        <tab active="vm.tabs[3].active" heading="{{vm.tabs[3].title}}"  ng-if="vm.showOrderListTabs()">
+        </uib-tab>
+        <uib-tab active="vm.tabs[3].active" heading="{{vm.tabs[3].title}}"  ng-if="vm.showOrderListTabs()">
             <h4>{{ 'Rearrange Items to set Action Order' | translate}}
                 <input class="actionOrderCheckbox"
                        ng-model="vm.actionOrderEqualsProvOrder"
@@ -149,8 +149,8 @@
                     </div>
                 </div>
             </div>
-        </tab>
-     </tabset>
+        </uib-tab>
+     </uib-tabset>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="vm.cancelBlueprintDetails()" translate>Cancel</button>

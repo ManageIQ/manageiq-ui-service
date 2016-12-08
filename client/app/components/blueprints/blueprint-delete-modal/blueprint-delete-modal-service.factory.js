@@ -5,7 +5,7 @@
     .factory('BlueprintDeleteModal', BlueprintDeleteFactory);
 
   /** @ngInject */
-  function BlueprintDeleteFactory($modal) {
+  function BlueprintDeleteFactory($uibModal) {
     var modalBlueprint = {
       showModal: showModal,
     };
@@ -20,7 +20,7 @@
         resolve: { blueprints: resolveBlueprints },
       };
 
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
 
@@ -31,7 +31,7 @@
   }
 
   /** @ngInject */
-  function BlueprintDeleteModalController(blueprints, BlueprintsState, $state, $modalInstance, $log, CollectionsApi) {
+  function BlueprintDeleteModalController(blueprints, BlueprintsState, $state, $uibModalInstance, $log, CollectionsApi) {
     var vm = this;
 
     vm.blueprintsList = blueprints;
@@ -46,13 +46,13 @@
       BlueprintsState.deleteBlueprints(blueprints).then(deleteSuccess, deleteFailure);
 
       function deleteSuccess() {
-        $modalInstance.close();
+        $uibModalInstance.close();
         $state.go($state.current, {}, {reload: true});
       }
 
       function deleteFailure() {
         $log.error("Failed to delete blueprint(s).");
-        $modalInstance.close();
+        $uibModalInstance.close();
       }
     }
   }

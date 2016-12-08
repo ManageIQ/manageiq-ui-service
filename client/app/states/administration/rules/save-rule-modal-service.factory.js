@@ -5,7 +5,7 @@
     .factory('SaveRuleModal', SaveRuleFactory);
 
   /** @ngInject */
-  function SaveRuleFactory($modal) {
+  function SaveRuleFactory($uibModal) {
     var modalSaveRule = {
       showModal: showModal,
     };
@@ -39,14 +39,14 @@
       function resolveOkToSave() {
         return okToSave;
       }
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
     }
   }
 
   /** @ngInject */
-  function SaveRuleModalController(saveCallback, doNotSaveCallback, cancelCallback, okToSave, $modalInstance) {
+  function SaveRuleModalController(saveCallback, doNotSaveCallback, cancelCallback, okToSave, $uibModalInstance) {
     var vm = this;
     vm.save = save;
     vm.doNotSave = doNotSave;
@@ -55,17 +55,17 @@
 
     function save() {
       saveCallback();
-      $modalInstance.close();
+      $uibModalInstance.close();
     }
 
     function doNotSave() {
       doNotSaveCallback();
-      $modalInstance.close();
+      $uibModalInstance.close();
     }
 
     function cancel() {
       cancelCallback();
-      $modalInstance.close();
+      $uibModalInstance.close();
     }
   }
 })();

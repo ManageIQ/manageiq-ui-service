@@ -5,7 +5,7 @@
     .factory('BrowseEntryPointModal', BrowseEntryPointFactory);
 
   /** @ngInject */
-  function BrowseEntryPointFactory($modal) {
+  function BrowseEntryPointFactory($uibModal) {
     var modalEntryPoint = {
       showModal: showModal,
     };
@@ -20,7 +20,7 @@
         resolve: { entryPointType: resolveEntryPointType },
       };
 
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
 
@@ -31,7 +31,7 @@
   }
 
   /** @ngInject */
-  function BrowseEntryPointModalController(entryPointType, $state, $modalInstance, $log) {
+  function BrowseEntryPointModalController(entryPointType, $state, $uibModalInstance, $log) {
     var vm = this;
     vm.entryPointType = entryPointType;
 
@@ -66,7 +66,7 @@
             pathToNode = "/" + curNode.text + pathToNode;
             curNode = angular.element('#entryPointsTree').treeview('getParents', curNode)[0];
           }
-          $modalInstance.close({entryPointType: vm.entryPointType, entryPointData: pathToNode});
+          $uibModalInstance.close({entryPointType: vm.entryPointType, entryPointData: pathToNode});
         } else {
           $log.warn("No " + vm.entryPointTypeTitle + " Entry Point selected.");
         }

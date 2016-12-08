@@ -5,14 +5,14 @@
     .controller('BaseModalController', BaseModalController);
 
   /** @ngInject */
-  function BaseModalController($modalInstance, $state, CollectionsApi, EventNotifications) {
+  function BaseModalController($uibModalInstance, $state, CollectionsApi, EventNotifications) {
     var vm = this;
     vm.cancel = cancel;
     vm.reset = reset;
     vm.save = save;
 
     function cancel() {
-      $modalInstance.dismiss();
+      $uibModalInstance.dismiss();
     }
 
     function reset(event) {
@@ -29,7 +29,7 @@
       CollectionsApi.post(vm.collection, vm.modalData.id, {}, data).then(saveSuccess, saveFailure);
 
       function saveSuccess() {
-        $modalInstance.close();
+        $uibModalInstance.close();
         EventNotifications.success(vm.onSuccessMessage);
         $state.go($state.current, {}, {reload: true});
       }

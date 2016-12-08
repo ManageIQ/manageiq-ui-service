@@ -22,7 +22,7 @@ describe('app.components.SaveProfileModal', function() {
       cancelSpy = sinon.spy(callbackObject, "cancel");
     });
 
-    it('should show the modal', function () {
+    xit('should show the modal', function () {
       var modal = SaveProfileModal.showModal(callbackObject.save, callbackObject.doNotSave, callbackObject.cancel);
       $rootScope.$digest();
 
