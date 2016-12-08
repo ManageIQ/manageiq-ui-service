@@ -11,10 +11,10 @@
 
   function getStates() {
     return {
-      'requests.orders': {
+      'services.orders': {
         parent: 'application',
-        url: '/requests/orders',
-        templateUrl: 'app/states/requests/orders/orders.html',
+        url: '/orders',
+        templateUrl: 'app/states/services/orders/orders.html',
         controller: OrdersController,
         controllerAs: 'vm',
         title: N_('Orders'),
@@ -90,7 +90,7 @@
     }
 
     function handleOrderClick(item, _e) {
-      $state.go('requests.orders.details', { serviceOrderId: item.id });
+      $state.go('services.orders.details', { serviceOrderId: item.id });
     }
 
     function orderSortChange(sortId, direction) {

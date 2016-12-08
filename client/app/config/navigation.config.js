@@ -18,16 +18,11 @@
       'services',
       'fa fa-file-o'
     );
-    var requests = createItem(
-      N_('My Requests'),
-      'requests',
-      'fa fa-file-text-o'
-    );
     var marketplace = createItem(
       N_('Service Catalog'),
       'marketplace',
       'fa fa-copy',
-      N_('The total number of available catalog items')
+      N_('The total available catalog items')
     );
     var designer = createItem(
       N_('Designer'),
@@ -41,26 +36,23 @@
     );
 
     services.secondary = {
-      explorer: createItem(
+      'service-explorer': createItem(
         N_('Service Explorer'),
         'services.explorer',
         undefined,
-        N_('The total number of services that you have ordered, both active and retired')
+        N_('The total services ordered, both active and retired')
       ),
-    };
-
-    requests.secondary = {
-      requests: createItem(
-        N_('Requests'),
-        'requests.requests',
+      'request-explorer': createItem(
+        N_('Request Explorer'),
+        'services.requests',
         undefined,
-        N_('The total number of requests that you have submitted')
+        N_('The total pending requests')
       ),
       orders: createItem(
         N_('Order History'),
-        'requests.orders',
+        'services.orders',
         undefined,
-        N_('The total number of orders that you have submitted')
+        N_('The total orders submitted')
       ),
     };
 
@@ -104,7 +96,6 @@
       items: {
         dashboard: dashboard,
         services: services,
-        requests: requests,
         marketplace: marketplace,
         designer: designer,
         administration: administration,
@@ -146,25 +137,26 @@
     NavCounts.add('rules', fetchRules, refreshTimeMs);
 
     function fetchRequests() {
-      var filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest'];
       var options = {
+        expand: false,
         auto_refresh: true,
-        filter: filterValues,
+        filter: ["approval_state=pending_approval"],
       };
 
       CollectionsApi.query('requests', options)
-        .then(lodash.partial(updateSecondaryCount, 'requests', 'requests'));
+        .then(lodash.partial(updateSecondaryCount, 'services', 'request-explorer'));
     }
 
     function fetchOrders() {
       var filterValues = ['state=ordered'];
       var options = {
+        expand: false,
         auto_refresh: true,
         filter: filterValues,
       };
 
       CollectionsApi.query('service_orders', options)
-        .then(lodash.partial(updateSecondaryCount, 'requests', 'orders'));
+        .then(lodash.partial(updateSecondaryCount, 'services', 'orders'));
     }
 
     function fetchServices() {
@@ -176,7 +168,7 @@
       };
 
       CollectionsApi.query('services', options)
-        .then(lodash.partial(updateSecondaryCount, 'services', 'explorer'));
+        .then(lodash.partial(updateSecondaryCount, 'services', 'service-explorer'));
     }
 
     function fetchServiceTemplates() {
