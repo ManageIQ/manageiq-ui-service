@@ -22,7 +22,7 @@
       N_('Service Catalog'),
       'marketplace',
       'fa fa-copy',
-      N_('The total available catalog items')
+      N_('Total available catalog items')
     );
     var designer = createItem(
       N_('Designer'),
@@ -40,19 +40,19 @@
         N_('Service Explorer'),
         'services.explorer',
         undefined,
-        N_('The total services ordered, both active and retired')
+        N_('Total services ordered, both active and retired')
       ),
       'request-explorer': createItem(
         N_('Request Explorer'),
         'services.requests',
         undefined,
-        N_('The total pending requests')
+        N_('Total pending requests')
       ),
       orders: createItem(
         N_('Order History'),
         'services.orders',
         undefined,
-        N_('The total orders submitted')
+        N_('Total orders submitted')
       ),
     };
 
@@ -67,13 +67,13 @@
         N_('Blueprints'),
         'designer.blueprints',
         undefined,
-        N_('The total number of available blueprints')
+        N_('Total available blueprints')
       ),
       dialogs: createItem(
         N_('Dialogs'),
         'designer.dialogs',
         undefined,
-        N_('The total number of available dialogs')
+        N_('Total available dialogs')
       ),
     };
 
@@ -82,13 +82,13 @@
         N_('Profiles'),
         'administration.profiles',
         undefined,
-        N_('The total number of available arbitration profiles')
+        N_('Total available arbitration profiles')
       ),
       rules: createItem(
         N_('Rules'),
         'administration.rules',
         undefined,
-        N_('The total number of available arbitration rules')
+        N_('Total available arbitration rules')
       ),
     };
 
