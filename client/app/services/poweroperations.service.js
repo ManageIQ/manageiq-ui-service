@@ -24,58 +24,58 @@
     };
 
     function powerOperationUnknownState(item) {
-      return item.powerState === "" && item.powerStatus === "";
+      return item.power_state === "" && item.options.power_status === "";
     }
 
     function powerOperationInProgressState(item) {
-      return (item.powerState !== "timeout" && item.powerStatus === "starting")
-        || (item.powerState !== "timeout" && item.powerStatus === "stopping")
-        || (item.powerState !== "timeout" && item.powerStatus === "suspending");
+      return (item.power_state !== "timeout" && item.options.power_status === "starting")
+        || (item.power_state !== "timeout" && item.options.power_status === "stopping")
+        || (item.power_state !== "timeout" && item.options.power_status === "suspending");
     }
 
     function powerOperationOnState(item) {
-      return item.powerState === "on" && item.powerStatus === "start_complete";
+      return item.power_state === "on" && item.options.power_status === "start_complete";
     }
 
     function powerOperationOffState(item) {
-      return item.powerState === "off" && item.powerStatus === "stop_complete";
+      return item.power_state === "off" && item.options.power_status === "stop_complete";
     }
 
     function powerOperationSuspendState(item) {
-      return item.powerState === "off" && item.powerStatus === "suspend_complete";
+      return item.power_state === "off" && item.options.power_status === "suspend_complete";
     }
 
     function powerOperationTimeoutState(item) {
-      return item.powerState === "timeout";
+      return item.power_state === "timeout";
     }
 
     function powerOperationStartTimeoutState(item) {
-      return item.powerState === "timeout" && item.powerStatus === "starting";
+      return item.power_state === "timeout" && item.options.power_status === "starting";
     }
 
     function powerOperationStopTimeoutState(item) {
-      return item.powerState === "timeout" && item.powerStatus === "stopping";
+      return item.power_state === "timeout" && item.options.power_status === "stopping";
     }
 
     function powerOperationSuspendTimeoutState(item) {
-      return item.powerState === "timeout" && item.powerStatus === "suspending";
+      return item.power_state === "timeout" && item.options.power_status === "suspending";
     }
 
     function startService(item) {
-      item.powerState = '';
-      item.powerStatus = 'starting';
+      item.power_state = '';
+      item.options.power_status = 'starting';
       powerOperation('start', item);
     }
 
     function stopService(item) {
-      item.powerState = '';
-      item.powerStatus = 'stopping';
+      item.power_state = '';
+      item.options.power_status = 'stopping';
       powerOperation('stop', item);
     }
 
     function suspendService(item) {
-      item.powerState = '';
-      item.powerStatus = 'suspending';
+      item.power_state = '';
+      item.options.power_status = 'suspending';
       powerOperation('suspend', item);
     }
 
