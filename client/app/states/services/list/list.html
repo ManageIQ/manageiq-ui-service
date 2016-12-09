@@ -1,12 +1,14 @@
 <div pf-toolbar id="serviceToolbar" config="vm.toolbarConfig"></div>
 
 <div class="list-view-container">
+  <!-- TODO: The Power Operation buttons would be hidden
+       TODO: while we wait on a robust backend solution on how to retrieve Power Status for Services in the List View-->
   <div pf-list-view id="serviceList" class="arbitration-profiles-list" config="vm.listConfig" items="vm.servicesList"
-      action-buttons="vm.actionButtons"
-      enable-button-for-item-fn="vm.enableButtonForItemFn"
-      menu-actions="vm.menuActions"
-      update-menu-action-for-item-fn="vm.updateMenuActionForItemFn"
-      hide-menu-for-item-fn="vm.hideMenuForItemFn">
+      action-buttons_hide="vm.actionButtons"
+      enable-button-for-item-fn_hide="vm.enableButtonForItemFn"
+      menu-actions_hide="vm.menuActions"
+      update-menu-action-for-item-fn_hide="vm.updateMenuActionForItemFn"
+      hide-menu-for-item-fn_hide="vm.hideMenuForItemFn">
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
         <span class="no-wrap">
@@ -55,7 +57,7 @@
           </span>
         </span>
       </div>
-      <div class="col-lg-1 hidden-md hidden-sm hidden-xs">
+      <div class="col-lg-2 hidden-md hidden-sm hidden-xs">
         <span class="no-wrap">
           <strong translate>Created</strong>&nbsp;
           <span tooltip="{{ item.created_at | date }}" tooltip-placement="bottom">
@@ -63,7 +65,9 @@
           </span>
         </span>
       </div>
-      <div class="col-lg-2 hidden-md hidden-sm hidden-xs pull-right">
+      <!-- TODO: The Power State field would be hidden
+           TODO: while we wait on a robust backend solution on how to retrieve Power Status for Services in the List View-->
+      <div class="col-lg-2 hidden-md hidden-sm hidden-xs pull-right" ng-hide="true">
         <span class="no-wrap">
           <strong translate>Power State</strong>&nbsp;
           <i class="fa fa-circle green fa-3x fa-fw" ng-if="item.powerState === 'on' && item.powerStatus === 'start_complete'" tooltip="{{'Power State: On'|translate}}" tooltip-placement="bottom"></i>
