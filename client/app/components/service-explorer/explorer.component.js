@@ -140,7 +140,6 @@
       },
     ];
 
-
     var serviceFilterConfig = {
       fields: getServiceFilterFields(),
       resultsCount: vm.servicesList.length,
@@ -444,11 +443,11 @@
         vm.servicesList = angular.copy(vm.services);
         vm.headerConfig.filterConfig.resultsCount = vm.servicesList.length;
       }
-    }
 
-    function queryFailure(error) {
-      vm.loading = false;
-      EventNotifications.error(__('There was an error loading the services.'));
+      function queryFailure(error) {
+        vm.loading = false;
+        EventNotifications.error(__('There was an error loading the services.'));
+      }
     }
 
     function listActionDisable(config, items) {
