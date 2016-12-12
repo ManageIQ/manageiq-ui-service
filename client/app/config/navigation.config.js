@@ -65,6 +65,12 @@
     };
 
     designer.secondary = {
+      catalogs: createItem(
+        N_('Catalogs'),
+        'designer.catalogs',
+        undefined,
+        N_('The total number of available catalogs')
+      ),
       blueprints: createItem(
         N_('Blueprints'),
         'designer.blueprints',
@@ -133,6 +139,7 @@
     NavCounts.add('requests', fetchRequests, refreshTimeMs);
     NavCounts.add('orders', fetchOrders, refreshTimeMs);
     NavCounts.add('marketplace', fetchServiceTemplates, refreshTimeMs);
+    NavCounts.add('catalogs', fetchServiceCatalogs, refreshTimeMs);
     NavCounts.add('blueprints', fetchBlueprints, refreshTimeMs);
     NavCounts.add('dialogs', fetchDialogs, refreshTimeMs);
     NavCounts.add('profiles', fetchProfiles, refreshTimeMs);
@@ -181,6 +188,17 @@
 
       CollectionsApi.query('service_templates', options)
         .then(lodash.partial(updateCount, 'marketplace'));
+    }
+
+    function fetchServiceCatalogs() {
+      var options = {
+        expand: false,
+        filter: ['id>0'],
+        auto_refresh: true,
+      };
+
+      CollectionsApi.query('service_catalogs', options)
+        .then(lodash.partial(updateSecondaryCount, 'designer', 'catalogs'));
     }
 
     function fetchBlueprints() {

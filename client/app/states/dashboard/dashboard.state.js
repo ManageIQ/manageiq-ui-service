@@ -42,12 +42,20 @@
       return undefined;
     }
 
-    return [[pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi),
-             pendingRequestsForServiceReconfigureRequest(CollectionsApi)],
-            [approvedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
-             approvedRequestsForServiceReconfigureRequest(CollectionsApi)],
-            [deniedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
-             deniedRequestsForServiceReconfigureRequest(CollectionsApi)]];
+    return [
+      [
+        pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi),
+        pendingRequestsForServiceReconfigureRequest(CollectionsApi),
+      ],
+      [
+        approvedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
+        approvedRequestsForServiceReconfigureRequest(CollectionsApi),
+      ],
+      [
+        deniedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
+        deniedRequestsForServiceReconfigureRequest(CollectionsApi),
+      ],
+    ];
   }
 
   function pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi) {

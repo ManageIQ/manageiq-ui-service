@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Catalog 1",
+    "description": "1",
+    "service_templates": {
+      "resources": [
+        {
+          "href": "http://someurl/api/service_catalogs/1/service_templates/1"
+        },
+        {
+          "href": "http://someurl/api/service_catalogs/1/service_templates/11"
+        }
+      ]
+    },
+    "tenant_id": 1
+  },
+  {
+    "id": 2,
+    "name": "Catalog 2",
+    "description": "2",
+    "service_templates": {
+      "resources": [
+        {
+          "href": "http://someurl/api/service_catalogs/1/service_templates/2"
+        },
+        {
+          "href": "http://someurl/api/service_catalogs/1/service_templates/22"
+        }
+      ]
+    },
+    "tenant_id": 2
+  },
+  {
+    "id": 3,
+    "name": "Catalog 3",
+    "description": "3",
+    "service_templates": {
+      "resources": [
+        {
+          "href": "http://someurl/api/service_catalogs/1/service_templates/3"
+        },
+        {
+          "href": "http://someurl/api/service_catalogs/1/service_templates/33"
+        }
+      ]
+    },
+    "tenant_id": 3
+  }
+]
