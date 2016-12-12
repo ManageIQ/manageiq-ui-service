@@ -5,7 +5,7 @@
     .factory('DialogEditorModal', EditDialogFactory);
 
   /** @ngInject */
-  function EditDialogFactory($modal) {
+  function EditDialogFactory($uibModal) {
     var modalDialog = {
       showModal: showModal,
     };
@@ -22,7 +22,7 @@
           dialogDetails: resolveDialogDetails,
         },
       };
-      var modal = $modal.open(modalOptions);
+      var modal = $uibModal.open(modalOptions);
 
       return modal.result;
 
@@ -33,7 +33,7 @@
   }
 
   /** @ngInject */
-  function DialogEditorModalController(dialogDetails, $state, $modalInstance,
+  function DialogEditorModalController(dialogDetails, $state, $uibModalInstance,
                                        CollectionsApi, Notifications,
                                        DialogEditor, lodash) {
     var vm = this;
@@ -196,7 +196,7 @@
       }
 
       // close modal
-      $modalInstance.close();
+      $uibModalInstance.close();
     }
 
     /**
@@ -215,7 +215,7 @@
       );
 
       // close modal
-      $modalInstance.close();
+      $uibModalInstance.close();
     }
 
     function resolveCategories() {
