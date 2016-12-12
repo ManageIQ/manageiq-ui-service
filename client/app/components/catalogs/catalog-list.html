@@ -53,24 +53,24 @@
              class="designer-catalog-templates-list"
              config="vm.serviceTemplatesListConfig"
              items="$parent.item.serviceTemplates">
-          <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
+          <span class="list-view-expand-content-left ss-list-view__title-img">
+            <span class="ss-list-view__title-img__center"></span>
+            <img class="ss-list-view__title-img__logo" src="{{item.picture.image_href}}" ng-if="item.picture"/>
+            <span class="list-item-img service-template-img" ng-if="!item.picture"></span>
+          </span>
+          <div class="row designer-catalog-templates-content">
+            <div class="col-lg-2 col-md-3 col-sm-5 col-xs-12">
               <span class="no-wrap"
                     tooltip="{{item.name}}"
                     tooltip-placement="bottom"
                     tooltip-append-to-body="true"
                     tooltip-popup-delay="1000">
-                <span class="ss-list-view__title-img">
-                  <span class="ss-list-view__title-img__center"></span>
-                  <img class="ss-list-view__title-img__logo" src="{{item.picture.image_href}}" ng-if="item.picture"/>
-                  <span class="list-item-img service-template-img" ng-if="!item.picture"></span>
-                </span>
                 <span>
                   {{item.name}}
                 </span>
               </span>
             </div>
-            <div class="col-md-5 hidden-sm hidden-xs">
+            <div class="col-lg-6 col-md-5 hidden-sm hidden-xs">
               <span class="no-wrap"
                     tooltip="{{item.description}}"
                     tooltip-placement="bottom"
