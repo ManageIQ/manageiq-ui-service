@@ -78,6 +78,57 @@
       return blueprint.doNotSaveFlag;
     };
 
+    blueprint.publishBlueprint = function(tmpBlueprint) {
+      var deferred = $q.defer();
+      var origBlueprint = blueprint.getOriginalBlueprint();
+      if (!angular.equals(origBlueprint, tmpBlueprint)) {
+        // save the changed blueprint
+        blueprint.saveBlueprint(tmpBlueprint).then(function(id) {
+          blueprint.publishBlueprintOp(tmpBlueprint).then(function() {
+            deferred.resolve();
+          }, publishfailure);
+        }, savefailure);
+      } else {
+        // just publish the unchanged blueprint
+        blueprint.publishBlueprintOp(tmpBlueprint).then(function() {
+          deferred.resolve();
+        }, publishfailure);
+      }
+
+      function savefailure() {
+        $log.info("Failed to save '" + tmpBlueprint.name + "' before publication.");
+        deferred.reject();
+      }
+
+      function publishfailure(errorMsg) {
+        $log.info("Failed to publish '" + tmpBlueprint.name + "': " + errorMsg);
+        deferred.reject(errorMsg);
+      }
+
+      return deferred.promise;
+    };
+
+    blueprint.publishBlueprintOp = function(tmpBlueprint) {
+      var deferred = $q.defer();
+
+      var blueprintObj = {
+        "action": "publish"
+      };
+
+      CollectionsApi.post('blueprints', tmpBlueprint.id, {}, blueprintObj).then(publishSuccess, publishFailure);
+
+      function publishSuccess(response) {
+        deferred.resolve();
+      }
+
+      function publishFailure(error) {
+        var errorMsg = error.status + " : " + error.statusText;
+        deferred.reject(errorMsg);
+      }
+
+      return deferred.promise;
+    };
+
     blueprint.saveBlueprint = function(tmpBlueprint) {
       var deferred = $q.defer();
 
@@ -89,8 +140,8 @@
         }, saveTagsfailure);
       }, savePropsfailure);
 
-      function savePropsfailure() {
-        deferred.reject();
+      function savePropsfailure(errorMsg) {
+        deferred.reject(errorMsg);
       }
 
       function saveTagsfailure() {
@@ -105,8 +156,6 @@
 
       var blueprintObj = getBlueprintPostObj(tmpBlueprint);
 
-      // $log.debug("Saving Blueprint = " + angular.toJson(blueprintObj, true));
-
       if (tmpBlueprint.id) {
         CollectionsApi.post('blueprints', tmpBlueprint.id, {}, blueprintObj).then(updateSuccess, updateFailure);
       } else {
@@ -117,9 +166,9 @@
         deferred.resolve(response.id);
       }
 
-      function updateFailure() {
-        $log.error('There was an error saving this blueprints properties.');
-        deferred.reject();
+      function updateFailure(error) {
+        var errorMsg = error.status + " : " + error.statusText;
+        deferred.reject(errorMsg);
       }
 
       function createSuccess(response) {
@@ -133,10 +182,10 @@
 
       function getBlueprintPostObj(tmpBlueprint) {
         var blueprintObj = {
-          "name": tmpBlueprint.name,
-          "description": tmpBlueprint.description,
-          "ui_properties": tmpBlueprint.ui_properties,
-        };
+              "name": tmpBlueprint.name,
+              "description": tmpBlueprint.description,
+              "ui_properties": tmpBlueprint.ui_properties,
+            };
 
         blueprintObj.ui_properties.num_items = tmpBlueprint.ui_properties.chart_data_model.nodes.length;
 
@@ -289,7 +338,7 @@
         newNode.tags = [];
       } else {
         item.disableInToolbox = true;
-        getTagsForServiceItem(newNode.id).then(function(tags) {
+        blueprint.getTagsForItem('service_templates', newNode.id).then(function(tags) {
           newNode.tags = tags;
         });
       }
@@ -297,7 +346,7 @@
       return newNode;
     };
 
-    function getTagsForServiceItem(id) {
+    blueprint.getTagsForItem = function (collectionType, id) {
       var deferred = $q.defer();
 
       var attributes = ['categorization', 'category.id', 'category.single_value'];
@@ -306,7 +355,7 @@
         attributes: attributes,
       };
 
-      var collection = 'service_templates/' + id + '/tags';
+      var collection = collectionType+ '/' + id + '/tags';
 
       CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
 

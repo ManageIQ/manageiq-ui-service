@@ -28,6 +28,7 @@
       for (i = 0; i < items.length; i++) {
         item = items[i];
         item.type = "item";
+        item.disabled = obj.blueprint.read_only;
         if (!item.provision_order) {
           item.provision_order = 0;
         }
@@ -92,7 +93,7 @@
           for (var col = 0; col < actionOrderList[l].columns[cols].length; col++) {  // Number of items in a column
             var item = actionOrderList[l].columns[cols][col];
             item.parentListName = "actionOrder";
-            item.disabled = obj.actionOrderEqualsProvOrder;
+            item.disabled = !obj.blueprint.read_only ? obj.actionOrderEqualsProvOrder : true;
           }
         }
       }

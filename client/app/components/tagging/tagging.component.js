@@ -5,6 +5,7 @@
     .component('taggingWidget', {
       bindings: {
         tagsOfItem: '=',
+        readOnly: '='
       },
       controller: TaggingController,
       controllerAs: 'vm',
@@ -84,7 +85,9 @@
       return deferred.promise;
     };
 
-    loadAllTagInfo();
+    if (!vm.readOnly) {
+      loadAllTagInfo();
+    }
 
     vm.showTagDropdowns = false;
     $scope.$watch('vm.tags.selectedCategory', function(value) {

@@ -9,6 +9,7 @@
           templateUrl: "app/components/blueprints/blueprint-canvas/blueprint-canvas.html",
           scope: {
             draggedItem: '=',
+            readOnly: "=",
             inConnectingMode: "=",
             chartDataModel: "=",
             chartViewModel: "=",
