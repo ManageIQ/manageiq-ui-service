@@ -110,7 +110,7 @@
       };
 
       if (angular.isString(badgeTooltip)) {
-        item.badges =  [
+        item.badges = [
           {
             count: 0,
             tooltip: badgeTooltip,
@@ -125,6 +125,10 @@
   /** @ngInject */
   function init(lodash, CollectionsApi, Navigation, NavCounts) {
     var refreshTimeMs = 60 * 1000;
+    var options = {
+      hide: 'resources',
+      auto_refresh: true,
+    };
 
     NavCounts.add('services', fetchServices, refreshTimeMs);
     NavCounts.add('requests', fetchRequests, refreshTimeMs);
@@ -137,104 +141,83 @@
     NavCounts.add('rules', fetchRules, refreshTimeMs);
 
     function fetchRequests() {
-      var options = {
-        expand: false,
-        auto_refresh: true,
+      angular.extend(options, {
         filter: ["approval_state=pending_approval"],
-      };
+      });
 
       CollectionsApi.query('requests', options)
         .then(lodash.partial(updateSecondaryCount, 'services', 'request-explorer'));
     }
 
     function fetchOrders() {
-      var filterValues = ['state=ordered'];
-      var options = {
-        expand: false,
-        auto_refresh: true,
-        filter: filterValues,
-      };
+      angular.extend(options, {
+        filter: ['state=ordered'],
+      });
 
       CollectionsApi.query('service_orders', options)
         .then(lodash.partial(updateSecondaryCount, 'services', 'orders'));
     }
 
     function fetchServices() {
-      var options = {
-        expand: false,
+      angular.extend(options, {
         filter: ['ancestry=null'],
-        hide: 'resources',
-        auto_refresh: true,
-      };
+      });
 
       CollectionsApi.query('services', options)
         .then(lodash.partial(updateSecondaryCount, 'services', 'service-explorer'));
     }
 
     function fetchServiceTemplates() {
-      var options = {
-        expand: false,
+      angular.extend(options, {
         filter: ['service_template_catalog_id>0', 'display=true'],
-        auto_refresh: true,
-      };
+      });
 
       CollectionsApi.query('service_templates', options)
         .then(lodash.partial(updateCount, 'marketplace'));
     }
 
     function fetchServiceCatalogs() {
-      var options = {
-        expand: false,
+      angular.extend(options, {
         filter: ['id>0'],
-        auto_refresh: true,
-      };
+      });
 
       CollectionsApi.query('service_catalogs', options)
         .then(lodash.partial(updateSecondaryCount, 'designer', 'catalogs'));
     }
 
     function fetchBlueprints() {
-      var options = {
-        expand: false,
+      angular.extend(options, {
         filter: ['id>0'],
-        auto_refresh: true,
-      };
+      });
 
       CollectionsApi.query('blueprints', options)
         .then(lodash.partial(updateSecondaryCount, 'designer', 'blueprints'));
     }
 
     function fetchDialogs() {
-      var options = {
-        expand: false,
+      angular.extend(options, {
         filter: ['id>0'],
-        auto_refresh: true,
-      };
-
+      });
       CollectionsApi.query('service_dialogs', options)
         .then(lodash.partial(updateSecondaryCount, 'designer', 'dialogs'));
     }
 
     function fetchProfiles() {
-      var options = {
-        expand: false,
+      angular.extend(options, {
         filter: ['id>0'],
-        auto_refresh: true,
-      };
+      });
 
       CollectionsApi.query('arbitration_profiles', options)
         .then(lodash.partial(updateSecondaryCount, 'administration', 'profiles'));
     }
 
     function fetchRules() {
-      var options = {
-        expand: false,
+      angular.extend(options, {
         filter: ['id>0'],
-        auto_refresh: true,
-      };
+      });
 
       CollectionsApi.query('arbitration_rules', options)
-          .then(lodash.partial(updateSecondaryCount, 'administration', 'rules'));
+        .then(lodash.partial(updateSecondaryCount, 'administration', 'rules'));
     }
 
     function updateCount(item, data) {

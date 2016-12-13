@@ -60,42 +60,42 @@
 
   function pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
     var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=pending_approval'];
-    var options = {expand: false, filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues };
 
     return CollectionsApi.query('requests', options);
   }
 
   function pendingRequestsForServiceReconfigureRequest(CollectionsApi) {
     var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=pending_approval'];
-    var options = {expand: false, filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues };
 
     return CollectionsApi.query('requests', options);
   }
 
   function approvedRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
     var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=approved'];
-    var options = {expand: false, filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues };
 
     return CollectionsApi.query('requests', options);
   }
 
   function approvedRequestsForServiceReconfigureRequest(CollectionsApi) {
     var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=approved'];
-    var options = {expand: false, filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues };
 
     return CollectionsApi.query('requests', options);
   }
 
   function deniedRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
     var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=denied'];
-    var options = {expand: false, filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues };
 
     return CollectionsApi.query('requests', options);
   }
 
   function deniedRequestsForServiceReconfigureRequest(CollectionsApi) {
     var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=denied'];
-    var options = {expand: false, filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues };
 
     return CollectionsApi.query('requests', options);
   }
@@ -110,7 +110,7 @@
 
     var days30 = currentDate.setDate(currentDate.getDate() + 30);
     var date2 = 'retires_on<' + new Date(days30).toISOString();
-    var options = {expand: false, filter: ['retired=false', date1, date2]};
+    var options = {hide: 'resources', filter: ['retired=false', date1, date2]};
 
     return CollectionsApi.query('services', options);
   }
@@ -120,7 +120,7 @@
     if (!$state.navFeatures.services.show) {
       return undefined;
     }
-    var options = {expand: false, filter: ['service_id=nil', 'retired=true'] };
+    var options = {hide: 'resources', filter: ['service_id=nil', 'retired=true'] };
 
     return CollectionsApi.query('services', options);
   }
