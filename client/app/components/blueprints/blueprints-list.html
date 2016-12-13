@@ -8,7 +8,7 @@
        update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
     <div class="row">
       <div class="col-md-2">
-        <span class="no-wrap">
+        <span id="name_{{$index}}" class="no-wrap">
           {{ item.name }}
         </span>
       </div>
@@ -47,10 +47,10 @@
       </div>
       <div class="col-md-2">
         <span class="no-wrap" ng-if="item.status === 'published'">
-          <strong translate>Published</strong>
+          <strong id="status_{{$index}}" translate>Published</strong>
         </span>
         <span class="no-wrap" ng-if="!item.status || item.status !== 'published'">
-          <strong translate>Draft</strong>
+          <strong id="status_{{$index}}" translate>Draft</strong>
         </span>
       </div>
     </div>

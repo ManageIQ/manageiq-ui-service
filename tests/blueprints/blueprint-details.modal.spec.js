@@ -58,7 +58,7 @@ describe('BlueprintDetailsModal', function() {
 
     it('should show General tab as active in edit mode', function () {
       expect(controller.tabs[0].title).to.eq('General');
-      expect(controller.tabs[0].active).to.eq(true);
+      expect(controller.activeTab).to.eq(0);
     });
 
     it('should show the correct General tab field values', function () {
@@ -118,7 +118,7 @@ describe('BlueprintDetailsModal', function() {
 
       expect(automate_entrypoints.Provision).to.eq('Service/Provisioning/StateMachines/ServiceProvision_Template/default');
       expect(automate_entrypoints.Reconfigure).to.eq('/Grandchild 1');
-      expect(automate_entrypoints.Retirement).to.eq(null);
+      expect(automate_entrypoints.Retirement).to.eq(undefined);
     });
   });
 
@@ -155,7 +155,7 @@ describe('BlueprintDetailsModal', function() {
 
     it('should show Publish tab as active in publish mode', function () {
       expect(controller.tabs[1].title).to.eq('Publish');
-      expect(controller.tabs[1].active).to.eq(true);
+      expect(controller.activeTab).to.eq(1);
     });
 
     it('should show the Publish button and require catalog or dialog selected in publish mode', function () {
@@ -194,11 +194,29 @@ describe('BlueprintDetailsModal', function() {
       expect(ui_properties.service_dialog.id).to.eq(10000000000002);
     });
 
-    it('should throw an error when attempting to publish', function () {
-      // 'cause it's not ready yet
+    it('should publish the blueprint', function (done) {
+      var collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve());
+      var publishBlueprintSpy = sinon.spy(BlueprintsState, 'publishBlueprint');
+
       controller.saveBlueprintDetails();
-      expect(notificationsSuccessSpy).not.to.have.been.called;
-      expect(notificationsErrorSpy).to.have.been.called;
+      done();
+
+      expect(collectionsApiSpy).to.have.been.called;
+      expect(publishBlueprintSpy).to.have.been.called;
+    });
+
+    it('should save a modified blueprint, then publish it', function (done) {
+      var collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve());
+      var publishBlueprintSpy = sinon.spy(BlueprintsState, 'publishBlueprint');
+      var saveBlueprintSpy = sinon.spy(BlueprintsState, 'saveBlueprint');
+
+      BlueprintsState.saveOriginalBlueprint({});
+      controller.saveBlueprintDetails();
+      done();
+
+      expect(collectionsApiSpy).to.have.been.called;
+      expect(saveBlueprintSpy).to.have.been.called;
+      expect(publishBlueprintSpy).to.have.been.called;
     });
   });
 });

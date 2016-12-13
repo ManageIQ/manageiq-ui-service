@@ -48,6 +48,7 @@
     "id": 10000000000023,
     "name": "Blueprint One",
     "description": "desc",
+    "status": "published",
     "ui_properties": {
       "num_items": 2,
       "visibility": {
