@@ -59,13 +59,9 @@
     <option value="descending" translate>Descending</option>
   </select>
 </div>
-<!-- commented, as there is no way to load the data from API
 <div pf-form-group class="form-inline" pf-label="{{'Entries'|translate}}" required>
-  <div ng-repeat="entry in vm.modalData.values">
+  <div ng-repeat="entry in vm.currentCategoryEntries().children">
     <input id="label" name="label"
            ng-model="entry.description" type="text" placeholder="Key" readonly/>
-    <input id="label" name="label"
-           ng-model="entry.name" type="text" placeholder="Value" readonly/>
   </div>
 </div>
--->

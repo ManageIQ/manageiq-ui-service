@@ -46,6 +46,7 @@
       removeEntry: removeEntry,
       modalTabSet: modalTabSet,
       modalTabIsSet: modalTabIsSet,
+      currentCategoryEntries: currentCategoryEntries,
     });
 
     vm.modalTab = 'element_information';
@@ -222,10 +223,24 @@
     function resolveCategories() {
       var options = {
         expand: 'resources',
-        attributes: ['description', 'single_value'],
+        attributes: ['description', 'single_value', 'children'],
       };
 
       return CollectionsApi.query('categories', options);
+    }
+
+    /**
+     * Finds entries for the selected category
+     *
+     */
+    function currentCategoryEntries() {
+      if (angular.isDefined(vm.categories)) {
+        return lodash.find(
+          vm.categories.resources,
+          'id',
+          Number(vm.modalData.options.category_id)
+        );
+      }
     }
 
     /**
