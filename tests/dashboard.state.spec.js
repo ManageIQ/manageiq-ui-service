@@ -69,7 +69,7 @@ describe('Dashboard', function() {
         dashboardState.resolve.expiringServices(collectionsApiSpy, state);
 
         expect(collectionsApiSpy.query).to.have.been.calledWith('services', {
-          expand: false,
+          hide: 'resources',
           filter: [
             'retired=false',
             'retires_on>2016-01-01T00:00:00.000Z',
