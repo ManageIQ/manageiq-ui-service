@@ -17,17 +17,17 @@
   function ComponentController() {
     var vm = this;
 
-    angular.extend(vm, {
-      leftBoundary: 0,
-      rightBoundary: 0,
-      offset: 0,
-      lastOffset: Math.floor(vm.count / vm.limit) * vm.limit,
-      disabled: disabled,
-      previous: previous,
-      next: next,
-    });
-
     vm.$onInit = function() {
+      angular.extend(vm, {
+        leftBoundary: 0,
+        rightBoundary: 0,
+        offset: 0,
+        lastOffset: Math.floor(vm.count / vm.limit) * vm.limit,
+        disabled: disabled,
+        previous: previous,
+        next: next,
+      });
+
       establishBoundaries();
     };
 
