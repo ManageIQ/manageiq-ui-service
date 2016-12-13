@@ -136,12 +136,12 @@
   <actions>
     <span class="dropup primary-action pull-left" uib-dropdown>
       <button type="button" class="btn btn-default" uib-dropdown-toggle type="button">
-        {{vm.serviceLimit}}
+        {{vm.limit}}
         <span translate>items</span>
         <span class="caret"></span>
       </button>
         <ul uib-dropdown-menu>
-          <li role="menuitem" ng-repeat="item in vm.serviceLimitOptions" ng-click="vm.updateLimit(item)">
+          <li role="menuitem" ng-repeat="item in vm.limitOptions" ng-click="vm.limit = item">
             <a>
               {{ ::item }}
               <span translate>items</span>
@@ -149,7 +149,7 @@
           </li>
         </ul>
     </span>
-    <explorer-pagination limit="vm.serviceLimit" offset="vm.serviceOffset" count="vm.serviceCount"
-                         on-update="vm.resolveServices(vm.serviceLimit, offset)"></explorer-pagination>
+    <explorer-pagination limit="vm.limit" count="vm.serviceCount"
+                         on-update="vm.resolveServices(vm.limit, $offset)"></explorer-pagination>
   </actions>
 </div>

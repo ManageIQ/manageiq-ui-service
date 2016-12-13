@@ -55,7 +55,7 @@
         <span class="caret"></span>
       </button>
         <ul uib-dropdown-menu>
-          <li role="menuitem" ng-repeat="item in vm.limitOptions" ng-click="vm.updateLimit(item)">
+          <li role="menuitem" ng-repeat="item in vm.limitOptions" ng-click="vm.limit = item">
             <a>
               {{ ::item }}
               <span translate>items</span>
@@ -63,7 +63,7 @@
           </li>
         </ul>
     </span>
-    <explorer-pagination limit="vm.limit" offset="vm.offset" count="vm.requestCount"
-                         on-update="vm.fetchData(vm.limit, vm.offset)"></explorer-pagination>
+    <explorer-pagination limit="vm.limit" count="vm.requestCount"
+                         on-update="vm.fetchData(vm.limit, $offset)"></explorer-pagination>
   </actions>
 </div>

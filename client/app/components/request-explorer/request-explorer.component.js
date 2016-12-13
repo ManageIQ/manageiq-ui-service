@@ -19,7 +19,6 @@
         loading: true,
         requestCount: 0,
         limit: 20,
-        offset: 0,
         selectedItemsList: [],
         limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
         listConfig: {
@@ -47,12 +46,11 @@
             actionsInclude: true,
           },
         },
-        updateLimit: updateLimit,
       });
 
       vm.fetchData = fetchData;
 
-      vm.fetchData(vm.limit, vm.offset);
+      vm.fetchData(vm.limit, 0);
 
       if (RequestsState.filterApplied) {
         /* Apply the filtering to the data list */
@@ -117,9 +115,9 @@
 
       return [
         ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text'),
-        ListView.createFilterField('request_id', __('Request ID'), __('Filter by Request ID'), 'text'),
+        ListView.createFilterField('id', __('Request ID'), __('Filter by Request ID'), 'text'),
         ListView.createFilterField('requester_name', __('Requester'), __('Filter by Requester'), 'text'),
-        ListView.createFilterField('request_date', __('Request Date'), __('Filter by Request Date'), 'text'),
+        ListView.createFilterField('created_on', __('Request Date'), __('Filter by Request Date'), 'text'),
         ListView.createFilterField('approval_state', __('Request Status'), __('Filter by Status'), 'select', statuses),
       ];
     }
@@ -173,7 +171,7 @@
 
     function applyFilters(filters) {
       vm.listDataCopy = ListView.applyFilters(filters, vm.listDataCopy, vm.listData, RequestsState, requestMatchesFilter);
-      vm.fetchData(vm.limit, vm.offset);
+      vm.fetchData(vm.limit);
 
       /* Make sure sorting direction is maintained */
       sortChange(RequestsState.getSort().currentField, RequestsState.getSort().isAscending);
@@ -197,16 +195,11 @@
         return String(item.id).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       } else if (filter.id === 'requester_name') {
         return String(item.requester_name).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else if (filter.id === 'request_date') {
+      } else if (filter.id === 'created_on') {
         return $filter('date')(item.created_on).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
       }
 
       return false;
-    }
-
-    function updateLimit(limit) {
-      vm.limit = limit;
-      vm.fetchData(limit, vm.offset);
     }
   }
 })();
