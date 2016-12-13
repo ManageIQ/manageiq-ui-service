@@ -26,7 +26,6 @@
     function activate() {
       vm.toggleDetails = false;
       vm.hasMoreDetails = $transclude().length > 0;
-      console.log(vm.hasMoreDetails);
     }
   }
 })();
