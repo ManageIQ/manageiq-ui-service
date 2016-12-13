@@ -1,5 +1,5 @@
 <div pf-toolbar class="section-toolbar" id="requestToolbar" config="vm.toolbarConfig"></div>
-<div class="list-view-container section-container">
+<div class="col-md-12 list-view-container section-container">
   <loading status="vm.loading"></loading>
   <div pf-list-view ng-if="!vm.loading" id="requestList" config="vm.listConfig" items="vm.listDataCopy">
     <div class="row">
@@ -45,4 +45,25 @@
       </div>
     </div>
   </div>
+</div>
+<div pf-toolbar class="explorer-footer" config="vm.footerConfig">
+  <actions>
+    <span class="dropup primary-action pull-left" uib-dropdown>
+      <button type="button" class="btn btn-default" uib-dropdown-toggle type="button">
+        {{vm.limit}}
+        <span translate>items</span>
+        <span class="caret"></span>
+      </button>
+        <ul uib-dropdown-menu>
+          <li role="menuitem" ng-repeat="item in vm.limitOptions" ng-click="vm.updateLimit(item)">
+            <a>
+              {{ ::item }}
+              <span translate>items</span>
+            </a>
+          </li>
+        </ul>
+    </span>
+    <explorer-pagination limit="vm.limit" offset="vm.offset" count="vm.requestCount"
+                         on-update="vm.fetchData(vm.limit, vm.offset)"></explorer-pagination>
+  </actions>
 </div>

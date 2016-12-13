@@ -1,10 +1,10 @@
-<div pf-toolbar class="service-explorer-header" config="vm.headerConfig">
+<div pf-toolbar class="section-toolbar" config="vm.headerConfig">
   <actions>
     <custom-dropdown config="item" items="vm.selectedItemsList" items-count="vm.selectedItemsListCount" ng-repeat="item in vm.listActions"
                      on-update="vm.listActionDisable($config, $changes)"></custom-dropdown>
   </actions>
 </div>
-<div ng-if="vm.viewType == 'cardView'" class="col-md-12 list-view-container">
+<div ng-if="vm.viewType == 'cardView'" class="col-md-12 list-view-container section-container">
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading" pf-card-view id="cardView" config="vm.cardConfig" items="vm.servicesList">
     <h3>{{ item.name }}</h3>
@@ -22,8 +22,7 @@
     </div>
   </div>
 </div>
-
-<div ng-if="vm.viewType == 'listView'" class="col-md-12 list-view-container">
+<div ng-if="vm.viewType == 'listView'" class="col-md-12 list-view-container section-container">
   <loading status="vm.loading"></loading>
   <!-- TODO: The Power Operation buttons would be hidden
        TODO: while we wait on a robust backend solution on how to retrieve Power Status for Services in the List View-->
@@ -133,8 +132,7 @@
     </list-expanded-content>
   </div>
 </div>
-
-<div pf-toolbar class="service-explorer-footer" config="vm.footerConfig">
+<div pf-toolbar class="explorer-footer" config="vm.footerConfig">
   <actions>
     <span class="dropup primary-action pull-left" uib-dropdown>
       <button type="button" class="btn btn-default" uib-dropdown-toggle type="button">

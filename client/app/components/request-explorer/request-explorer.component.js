@@ -13,13 +13,15 @@
     var vm = this;
 
     vm.$onInit = function() {
-      vm.listData = [];
-      vm.listDataCopy = [];
-      vm.loading = true;
-
-      fetchData();
-
       angular.extend(vm, {
+        listData: [],
+        listDataCopy: [],
+        loading: true,
+        requestCount: 0,
+        limit: 20,
+        offset: 0,
+        selectedItemsList: [],
+        limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
         listConfig: {
           selectItems: false,
           showSelectBox: false,
@@ -29,7 +31,7 @@
         toolbarConfig: {
           filterConfig: {
             fields: getRequestFilterFields(),
-            resultsCount: vm.listDataCopy.length,
+            resultsCount: vm.listDataCopy ? vm.listDataCopy.length : 0,
             appliedFilters: RequestsState.filterApplied ? RequestsState.getFilters() : [],
             onFilterChange: filterChange,
           },
@@ -40,8 +42,17 @@
             currentField: RequestsState.getSort().currentField,
           },
         },
-
+        footerConfig: {
+          actionsConfig: {
+            actionsInclude: true,
+          },
+        },
+        updateLimit: updateLimit,
       });
+
+      vm.fetchData = fetchData;
+
+      vm.fetchData(vm.limit, vm.offset);
 
       if (RequestsState.filterApplied) {
         /* Apply the filtering to the data list */
@@ -56,27 +67,55 @@
 
     // Private
 
-    function fetchData() {
+    function fetchData(limit, offset) {
+      var filter = [];
       var attributes = ['picture', 'picture.image_href', 'approval_state', 'created_on', 'description', 'requester_name'];
-      var filterValues = [];
-      var options = {expand: 'resources', attributes: attributes, filter: filterValues};
+      var options = {
+        expand: 'resources',
+        limit: limit,
+        offset: String(offset),
+        attributes: attributes,
+        filter: filter,
+      };
 
+      if (vm.toolbarConfig.filterConfig.appliedFilters) {
+        lodash.forEach(lodash.groupBy(vm.toolbarConfig.filterConfig.appliedFilters, 'id'), processFilters);
+      }
+
+      CollectionsApi.query('requests', {hide: 'resources', filter: filter}).then(handleSuccess, handleError);
       CollectionsApi.query('requests', options).then(handleSuccess, handleError);
 
       function handleSuccess(response) {
-        vm.listData = response.resources;
-        vm.listDataCopy = angular.copy(vm.listData);
-        vm.loading = false;
+        if (angular.isDefined(response.resources)) {
+          vm.listData = response.resources;
+          vm.listDataCopy = angular.copy(vm.listData);
+          vm.loading = false;
+        } else {
+          vm.requestCount = response.subcount;
+          vm.toolbarConfig.filterConfig.resultsCount = vm.requestCount;
+        }
       }
 
       function handleError() {
         vm.loading = false;
         EventNotifications.error(__('There was an error loading the requests.'));
       }
+
+      function processFilters(value) {
+        var count = 0;
+        lodash.forEach(value, pushFilterValue);
+
+        function pushFilterValue(item) {
+          count >= 1 ?
+            options.filter.push('or' + ' ' + item.id + '=' + item.value) :
+            options.filter.push(item.id + '=' + item.value);
+          count++;
+        }
+      }
     }
 
     function getRequestFilterFields() {
-      var statuses = [__('Pending'), __('Denied'), __('Approved')];
+      var statuses = [__('pending_approval'), __('denied'), __('approved')];
 
       return [
         ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text'),
@@ -136,6 +175,7 @@
 
     function applyFilters(filters) {
       vm.listDataCopy = ListView.applyFilters(filters, vm.listDataCopy, vm.listData, RequestsState, requestMatchesFilter);
+      vm.fetchData(vm.limit, vm.offset);
 
       /* Make sure sorting direction is maintained */
       sortChange(RequestsState.getSort().currentField, RequestsState.getSort().isAscending);
@@ -165,5 +205,11 @@
 
       return false;
     }
+
+    function updateLimit(limit) {
+      vm.limit = limit;
+      vm.fetchData(limit, vm.offset);
+    }
+
   }
 })();
