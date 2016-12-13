@@ -112,7 +112,7 @@
 
     vm.serviceDialogs = serviceDialogs.resources;
 
-    vm.tagsOfItem = vm.blueprint.tags;
+    vm.tagsOfItem = angular.copy(vm.blueprint.tags);
 
     vm.visibilityOptions = [{
       id: 800,
