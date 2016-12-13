@@ -113,8 +113,8 @@
         services: {show: entitledForServices(productFeatures)},
         requests: {show: entitledForRequests(productFeatures)},
         marketplace: {show: entitledForServiceCatalogs(productFeatures)},
-        designer: {show: angular.isDefined($state.preview_flag) ? $state.preview_flag : false},
-        administration: {show: angular.isDefined($state.preview_flag) ? $state.preview_flag : false},
+        designer: {show: entitledForServiceDesigner(productFeatures)},
+        administration: {show: entitledForServiceDesigner(productFeatures)},
       };
       model.navFeatures = features;
 
