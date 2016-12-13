@@ -143,7 +143,7 @@
     function fetchRequests() {
       angular.extend(options, {
         filter: ["approval_state=pending_approval"],
-      };
+      });
 
       CollectionsApi.query('requests', options)
         .then(lodash.partial(updateSecondaryCount, 'services', 'request-explorer'));
