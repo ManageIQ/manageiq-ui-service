@@ -1,15 +1,18 @@
-<ul ui-sortable='dialogEditorTabs.sortableOptions'
-    ng-model='dialogEditorTabs.tabList'
+<ul ui-sortable='vm.sortableOptions'
+    ng-model='vm.tabList'
     class='nav nav-tabs'
     data-tabs='tabs'>
-  <li ng-class='{active: tab.active}' ng-repeat='tab in dialogEditorTabs.tabList'>
-    <a class="select-tab" ng-click='dialogEditorTabs.selectTab(tab.position)' data-toggle='tab'>
-      <i class="pficon-edit" ng-click='dialogEditorTabs.editDialogModal(tab.position)'></i>
+  <li ng-class='{active: tab.active}' ng-repeat='tab in vm.tabList'>
+    <a class="select-tab" ng-click='vm.selectTab(tab.position)' data-toggle='tab'>
+      <i class="pficon-edit" ng-click='vm.editDialogModal(tab.position)'></i>
       {{ tab.label }}
-      <i class='delete-tab glyphicon glyphicon-remove' ng-click='dialogEditorTabs.deleteTab(tab.position)'></i>
+      <i class='delete-tab glyphicon glyphicon-remove' ng-click='vm.deleteTab(tab.position)'></i>
     </a>
   </li>
   <li class='nosort'>
-    <a ng-click='dialogEditorTabs.addTab()'><i class='pficon-add-circle-o'></i>&nbsp;Create Tab</a>
+    <a ng-click='vm.addTab()'>
+      <i class='pficon-add-circle-o'></i>
+      &nbsp; {{ 'Create Tab' | translate }}
+    </a>
   </li>
 </ul>

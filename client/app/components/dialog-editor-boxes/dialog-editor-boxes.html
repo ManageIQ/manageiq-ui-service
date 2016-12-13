@@ -1,35 +1,36 @@
 <div class='dialog'>
   <div style="background-color: #f1f1f1; padding: 20px;"
-       ng-model='dialogEditorBoxes.dialogTabs[dialogEditorBoxes.service.activeTab].dialog_groups'
-       ui-sortable='dialogEditorBoxes.sortableOptionsBox'
-       ng-repeat='tab in dialogEditorBoxes.dialogTabs'
-       ng-show='tab.position == dialogEditorBoxes.service.activeTab'>
+       ng-model='vm.dialogTabs[vm.service.activeTab].dialog_groups'
+       ui-sortable='vm.sortableOptionsBox'
+       ng-repeat='tab in vm.dialogTabs'
+       ng-if='tab.position === vm.service.activeTab'>
     <!-- tab content -->
     <div ng-repeat='box in tab.dialog_groups track by $index'>
       <div class="panel panel-default"
            data-drop='true'
-           jqyoui-droppable='{multiple: true, onDrop: "dialogEditorBoxes.droppableOptions"}'
+           jqyoui-droppable='{multiple: true, onDrop: "vm.droppableOptions"}'
            ng-model='box.dialog_fields'>
         <div class="panel-heading">
           <i class="pficon-edit"
-             ng-click='dialogEditorBoxes.editDialogModal(
-               dialogEditorBoxes.service.activeTab,
+             ng-click='vm.editDialogModal(
+               vm.service.activeTab,
                box.position
              )'></i>
           <strong>{{ box.label }}</strong>
           <button type="button" class="close"
-                  ng-click="dialogEditorBoxes.removeBox(box.position)">
+                  ng-click="vm.removeBox(box.position)">
             <span aria-hidden="true">
               <i class="fa fa-times"></i>
             </span>
           </button>
         </div>
         <div class="panel-body">
-          <div ui-sortable='dialogEditorBoxes.sortableOptionsFields'
+          <div ui-sortable='vm.sortableOptionsFields'
                ng-model='box.dialog_fields'>
             <div class="well well-lg nosort"
-                 ng-if='box.dialog_fields.length === 0' translate>
-              <i class="fa fa-object-group"></i>Drag your components here
+                 ng-if='box.dialog_fields.length === 0'>
+              <i class="fa fa-object-group"></i>
+              {{ 'Drag your components here' | translate }}
             </div>
             <div ng-repeat='field in box.dialog_fields'>
               <form class="form-horizontal">
@@ -42,14 +43,14 @@
     </div>
     <div class="blank-slate-pf nosort"
          ng-if='tab.dialog_groups.length === 0'
-         ng-click='dialogEditorBoxes.addBox()'>
+         ng-click='vm.addBox()'>
       <div class="blank-slate-pf-icon">
         <i class="fa fa-plus-circle"></i>
       </div>
       <h1 translate>Start with adding a box</h1>
     </div>
     <div class="panel panel-default nosort">
-      <a ng-click='dialogEditorBoxes.addBox()' translate>
+      <a ng-click='vm.addBox()' translate>
         <i class="pficon-add-circle-o"></i>&nbsp;Create Box
       </a>
     </div>

@@ -34,18 +34,19 @@
 
   /** @ngInject */
   function DialogEditorModalController(dialogDetails, $state, $uibModalInstance,
-                                       CollectionsApi, Notifications,
-                                       DialogEditor, lodash) {
+                                       CollectionsApi, DialogEditor, lodash) {
     var vm = this;
 
-    vm.dialog = dialogDetails;
-    vm.saveDialogFieldDetails = saveDialogFieldDetails;
-    vm.deleteField = deleteField;
-    vm.modalUnchanged = modalUnchanged;
-    vm.addEntry = addEntry;
-    vm.removeEntry = removeEntry;
-    vm.modalTabSet = modalTabSet;
-    vm.modalTabIsSet = modalTabIsSet;
+    angular.extend(vm, {
+      dialog: dialogDetails,
+      saveDialogFieldDetails: saveDialogFieldDetails,
+      deleteField: deleteField,
+      modalUnchanged: modalUnchanged,
+      addEntry: addEntry,
+      removeEntry: removeEntry,
+      modalTabSet: modalTabSet,
+      modalTabIsSet: modalTabIsSet,
+    });
 
     vm.modalTab = 'element_information';
 

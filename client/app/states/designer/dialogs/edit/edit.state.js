@@ -56,7 +56,6 @@
     vm.dialog = dialog;
     vm.saveDialogDetails = saveDialogDetails;
     vm.dismissChanges = dismissChanges;
-    vm.dialogUnchanged = dialogUnchanged;
 
     function dismissChanges() {
       if (angular.isUndefined(dialog.id)) {
@@ -103,10 +102,6 @@
         {},
         angular.toJson({action: action, resource: dialogData})
       ).then(saveSuccess, saveFailure);
-    }
-
-    function dialogUnchanged() {
-      // TODO:
     }
 
     function saveSuccess() {

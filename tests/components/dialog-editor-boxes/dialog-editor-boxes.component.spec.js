@@ -23,7 +23,7 @@ describe('component: dialogEditorTabs', function() {
 
       element = $compile('<dialog-editor-boxes></dialog-editor-boxes>')(scope);
       scope.$apply();
-      controller = element.controller('dialogEditorBoxes');
+      controller = element.controller('vm');
     }));
 
     it('should add new box to first tab', function() {

@@ -38,78 +38,82 @@
   // works as placeholders for drag&drop dialog components
   angular.module('app.components')
     .component('dialogEditorFieldStatic', {
-      controller: function() {
-        this.fields = {
-          dialogFieldTextBox:
-            new DialogField(
-              "DialogFieldTextBox",
-              "fa fa-font",
-              __("Text Box")
-            ),
-          dialogFieldTextAreaBox:
-            new DialogField(
-              "DialogFieldTextAreaBox",
-              "fa fa-file-text-o",
-              __("Text Area")
-            ),
-          dialogFieldCheckBox:
-            new DialogField(
-              "DialogFieldCheckBox",
-              "fa fa-check-square-o",
-              __("Check Box")
-            ),
-          dialogFieldDropDownList:
-            new DialogField(
-              "DialogFieldDropDownList",
-              "fa fa-caret-square-o-down",
-              __("Dropdown List"),
-              {
-                data_type: "string",
-                values: [],
-                options: {sort_by: "description", sort_order: "ascending"},
-              }
-            ),
-          dialogFieldRadioButton:
-            new DialogField(
-              "DialogFieldRadioButton",
-              "fa fa-circle-o",
-              __("Radio Button"),
-              {
-                data_type: "string",
-                values: [],
-                options: {sort_by: "description", sort_order: "ascending"},
-              }
-            ),
-          dialogFieldDateControl:
-            new DialogField(
-              "DialogFieldDateControl",
-              "fa fa-calendar",
-              __("Date Control")
-            ),
-          dialogFieldDateTimeControl:
-            new DialogField(
-              "DialogFieldDateTimeControl",
-              "fa fa-clock-o",
-              __("Date Time Control")
-            ),
-          dialogFieldTagControl:
-            new DialogField(
-              "DialogFieldTagControl",
-              "fa fa-tags",
-              __("Tag Control"),
-              {
-                data_type: "string",
-                values: [],
-                options: {
-                  force_single_value: false,
-                  sort_by: "description",
-                  sort_order: "ascending",
-                },
-              }
-            ),
-        };
-      },
-      controllerAs: 'dialogEditorFieldStatic',
+      controller: ComponentController,
+      controllerAs: 'vm',
       templateUrl: 'app/components/dialog-editor-field-static/dialog-editor-field-static.html',
     });
+
+  function ComponentController() {
+    var vm = this;
+
+    vm.fields = {
+      dialogFieldTextBox:
+        new DialogField(
+          "DialogFieldTextBox",
+          "fa fa-font",
+          __("Text Box")
+        ),
+      dialogFieldTextAreaBox:
+        new DialogField(
+          "DialogFieldTextAreaBox",
+          "fa fa-file-text-o",
+          __("Text Area")
+        ),
+      dialogFieldCheckBox:
+        new DialogField(
+          "DialogFieldCheckBox",
+          "fa fa-check-square-o",
+          __("Check Box")
+        ),
+      dialogFieldDropDownList:
+        new DialogField(
+          "DialogFieldDropDownList",
+          "fa fa-caret-square-o-down",
+          __("Dropdown List"),
+          {
+            data_type: "string",
+            values: [],
+            options: {sort_by: "description", sort_order: "ascending"},
+          }
+        ),
+      dialogFieldRadioButton:
+        new DialogField(
+          "DialogFieldRadioButton",
+          "fa fa-circle-o",
+          __("Radio Button"),
+          {
+            data_type: "string",
+            values: [],
+            options: {sort_by: "description", sort_order: "ascending"},
+          }
+        ),
+      dialogFieldDateControl:
+        new DialogField(
+          "DialogFieldDateControl",
+          "fa fa-calendar",
+          __("Date Control")
+        ),
+      dialogFieldDateTimeControl:
+        new DialogField(
+          "DialogFieldDateTimeControl",
+          "fa fa-clock-o",
+          __("Date Time Control")
+        ),
+      dialogFieldTagControl:
+        new DialogField(
+          "DialogFieldTagControl",
+          "fa fa-tags",
+          __("Tag Control"),
+          {
+            data_type: "string",
+            values: [],
+            options: {
+              force_single_value: false,
+              sort_by: "description",
+              sort_order: "ascending",
+            },
+          }
+        ),
+    };
+  }
 })();

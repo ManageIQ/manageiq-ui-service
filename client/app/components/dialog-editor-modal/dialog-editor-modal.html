@@ -6,15 +6,15 @@
 </div>
 
 <div class="modal-body">
-  <ul class="nav nav-tabs" style="margin-bottom: 20px;">
+  <ul class="nav nav-tabs">
     <li ng-class="{active:vm.modalTabIsSet('element_information')}">
-      <a ng-click="vm.modalTabSet('element_information')">Element Information</a>
+      <a ng-click="vm.modalTabSet('element_information')" translate>Element Information</a>
     </li>
     <li ng-if="vm.element === 'field'" ng-class="{active:vm.modalTabIsSet('options')}">
-      <a ng-click="vm.modalTabSet('options')">Options</a>
+      <a ng-click="vm.modalTabSet('options')" translate>Options</a>
     </li>
     <li ng-if="vm.element === 'field'" ng-class="{active:vm.modalTabIsSet('advanced')}">
-      <a ng-click="vm.modalTabSet('advanced')">Advanced</a>
+      <a ng-click="vm.modalTabSet('advanced')" translate>Advanced</a>
     </li>
   </ul>
   <!-- general details same for each component - element information -->
@@ -98,7 +98,7 @@
 <div class="modal-footer">
   <button class="btn btn-danger"
           type="button"
-          ng-click="vm.deleteField()">Delete</button>
+          ng-click="vm.deleteField()" translate>Delete</button>
   <button type="button" class="btn btn-default" ng-click="$dismiss()" translate>Cancel</button>
   <button type="button"
           class="btn btn-primary"
