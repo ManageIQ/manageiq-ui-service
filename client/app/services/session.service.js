@@ -34,7 +34,6 @@
       $http.defaults.headers.common['X-Miq-Group'] = data.miqGroup || undefined;
       $sessionStorage.token = model.token;
       $sessionStorage.miqGroup = data.miqGroup || null;
-      fetchProductSetting("preview_flag", "service_ui_preview");
     }
 
     function destroy() {
@@ -45,12 +44,6 @@
       delete $http.defaults.headers.common['X-Miq-Group'];
       delete $sessionStorage.miqGroup;
       delete $sessionStorage.token;
-    }
-
-    function fetchProductSetting(keyName, key) {
-      $http.get('/api/settings').then(function(response) {
-        $state[keyName] = response.data.product[key];
-      });
     }
 
     function loadUser() {
