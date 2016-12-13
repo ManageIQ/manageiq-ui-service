@@ -178,6 +178,10 @@
         || entitledForServiceCatalogs(productFeatures);
     }
 
+    function entitledForServiceDesigner(productFeatures) {
+      return angular.isDefined(productFeatures.service_create);
+    }
+
     function activeNavigationFeatures() {
       var activeNavFeatures = lodash.find(model.navFeatures, function(o) {
         return o.show === true;
