@@ -106,9 +106,7 @@
         lodash.forEach(value, pushFilterValue);
 
         function pushFilterValue(item) {
-          count >= 1 ?
-            options.filter.push('or' + ' ' + item.id + '=' + item.value) :
-            options.filter.push(item.id + '=' + item.value);
+          count >= 1 ? options.filter.push('or ' + item.id + '=' + item.value) : options.filter.push(item.id + '=' + item.value);
           count++;
         }
       }
@@ -210,6 +208,5 @@
       vm.limit = limit;
       vm.fetchData(limit, vm.offset);
     }
-
   }
 })();
