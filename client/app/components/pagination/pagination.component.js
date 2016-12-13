@@ -8,10 +8,9 @@
       bindings: {
         limit: '<',
         count: '<',
-        offset: '=',
         onUpdate: '&',
       },
-      templateUrl: 'app/components/explorer/pagination/pagination.html',
+      templateUrl: 'app/components/pagination/pagination.html',
     });
 
   /** @ngInject */
@@ -21,6 +20,7 @@
     angular.extend(vm, {
       leftBoundary: 0,
       rightBoundary: 0,
+      offset: 0,
       lastOffset: Math.floor(vm.count / vm.limit) * vm.limit,
       disabled: disabled,
       previous: previous,
@@ -32,8 +32,10 @@
     };
 
     vm.$onChanges = function(changes) {
-      angular.isDefined(changes.limit) ? vm.limit = changes.limit.currentValue : null;
-      angular.isDefined(changes.count) ? vm.count = changes.count.currentValue : null;
+      if (angular.isDefined(changes.limit) || angular.isDefined(changes.count)) {
+        vm.offset = 0;
+        vm.onUpdate({$offset: vm.offset});
+      }
       vm.lastOffset = Math.floor(vm.count / vm.limit) * vm.limit;
       establishBoundaries();
     };
@@ -53,26 +55,26 @@
     }
 
     function previous(first) {
-      if (vm.offset) {
-        if (first) {
+      if (vm.offset > 0) {
+        if (angular.isDefined(first)) {
           vm.offset = 0;
         } else {
           vm.offset = vm.offset - vm.limit;
         }
         establishBoundaries();
-        vm.onUpdate({offset: vm.offset});
+        vm.onUpdate({$offset: vm.offset});
       }
     }
 
     function next(last) {
       if (vm.offset < vm.lastOffset) {
-        if (last) {
+        if (angular.isDefined(last)) {
           vm.offset = vm.lastOffset;
         } else {
           vm.offset = vm.offset + vm.limit;
         }
         establishBoundaries();
-        vm.onUpdate({offset: vm.offset});
+        vm.onUpdate({$offset: vm.offset});
       }
     }
 

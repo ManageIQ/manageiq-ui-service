@@ -8,7 +8,7 @@
       bindings: {
         ancestorServiceCount: '=',
       },
-      templateUrl: 'app/components/explorer/explorer.html',
+      templateUrl: 'app/components/service-explorer/explorer.html',
     });
 
   /** @ngInject */
@@ -21,11 +21,10 @@
       angular.extend(vm, {
         loading: false,
         services: [],
-        serviceLimit: 25,
+        limit: 20,
         servicesList: [],
         selectedItemsList: [],
-        serviceLimitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
-        serviceOffset: 0,
+        limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
         selectedItemsListCount: 0,
         serviceCount: vm.ancestorServiceCount,
         startService: PowerOperations.startService,
@@ -41,14 +40,13 @@
         powerOperationStopTimeoutState: PowerOperations.powerOperationStopTimeoutState,
         powerOperationSuspendTimeoutState: PowerOperations.powerOperationSuspendTimeoutState,
         // Functions
-        updateLimit: updateLimit,
         viewService: viewService,
         resolveServices: resolveServices,
         updateMenuActionForItemFn: updateMenuActionForItemFn,
         selectItem: selectItem,
         listActionDisable: listActionDisable,
       });
-      vm.resolveServices(vm.serviceLimit, vm.serviceOffset);
+      vm.resolveServices(vm.limit, 0);
     }
 
     if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
@@ -139,7 +137,6 @@
         isDisabled: false,
       },
     ];
-
 
     var serviceFilterConfig = {
       fields: getServiceFilterFields(),
@@ -255,11 +252,6 @@
 
       /* Keep track of the current sorting state */
       ServicesState.setSort(sortId, vm.headerConfig.sortConfig.isAscending);
-    }
-
-    function updateLimit(limit) {
-      vm.serviceLimit = limit;
-      vm.resolveServices(limit, vm.serviceOffset);
     }
 
     function viewService(item, e) {
@@ -444,11 +436,11 @@
         vm.servicesList = angular.copy(vm.services);
         vm.headerConfig.filterConfig.resultsCount = vm.servicesList.length;
       }
-    }
 
-    function queryFailure(error) {
-      vm.loading = false;
-      EventNotifications.error(__('There was an error loading the services.'));
+      function queryFailure(error) {
+        vm.loading = false;
+        EventNotifications.error(__('There was an error loading the services.'));
+      }
     }
 
     function listActionDisable(config, items) {

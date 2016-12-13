@@ -5,17 +5,13 @@ describe('Dashboard', function() {
   });
 
   describe('route', function() {
-    var views = {
-      list: 'app/states/requests/list/list.html'
-    };
-
     beforeEach(function() {
       bard.inject('$location', '$rootScope', '$state', '$templateCache');
     });
 
     it('should work with $state.go', function() {
-      $state.go('requests.orders');
-      expect($state.is('requests.orders'));
+      $state.go('services.orders');
+      expect($state.is('services.orders'));
     });
   });
 
@@ -32,7 +28,7 @@ describe('Dashboard', function() {
     beforeEach(function() {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'Notifications');
 
-      controller = $controller($state.get('requests.orders').controller, {orders: orders});
+      controller = $controller($state.get('services.orders').controller, {orders: orders});
     });
 
     it('should be created successfully', function() {
