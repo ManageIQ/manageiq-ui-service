@@ -139,6 +139,7 @@
     function getSmTagObj(tag) {
       return {
         id: tag.id,
+        name: tag.name,
         category: {id: tag.category.id},
         categorization: {
           displayName: tag.categorization.display_name,

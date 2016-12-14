@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 class="modal-title" id="myModalLabel" translate>Edit Tags</h4>
+</div>
+<tagging-widget tags-of-item="vm.modalData.tags"></tagging-widget>
+<div class="modal-footer">
+  <modal-actions
+    modal-data="vm.modalData"
+    reset-modal="true"
+    on-cancel="vm.cancel()"
+    on-reset="vm.reset($event)"
+    on-save="vm.save()">
+  </modal-actions>
+</div>

@@ -8,6 +8,7 @@ describe('Dashboard', function() {
         serviceDelete: {show: true},
         serviceRetireNow: {show: true},
         serviceRetire: {show: true},
+        serviceTag: {show: true},
         serviceEdit: {show: true},
         serviceReconfigure: {show: true},
         serviceOwnership: {show: true},

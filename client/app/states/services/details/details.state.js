@@ -78,7 +78,7 @@
   }
   /** @ngInject */
   function StateController($state, service, tags, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal,
-                           EventNotifications, Consoles, Chargeback, PowerOperations) {
+                           TagEditorModal, EventNotifications, Consoles, Chargeback, PowerOperations) {
     var vm = this;
     setInitialVars();
 
@@ -117,6 +117,7 @@
       vm.showRetireService = $state.actionFeatures.serviceRetireNow.show;
       vm.showScheduleRetirementService = $state.actionFeatures.serviceRetire.show;
       vm.showEditService = $state.actionFeatures.serviceEdit.show;
+      vm.showTagEditor = $state.actionFeatures.serviceTag.show;
       vm.showReconfigureService = $state.actionFeatures.serviceReconfigure.show;
       vm.showSetOwnership = $state.actionFeatures.serviceOwnership.show;
 
@@ -125,6 +126,7 @@
       vm.activate = activate;
       vm.removeService = removeService;
       vm.editServiceModal = editServiceModal;
+      vm.tagEditorModal = tagEditorModal;
       vm.retireServiceNow = retireServiceNow;
       vm.retireServiceLater = retireServiceLater;
       vm.ownershipServiceModal = ownershipServiceModal;
@@ -172,7 +174,7 @@
       }
     }
 
-    function setupVmMenuButtons() { 
+    function setupVmMenuButtons() {
       var vmMenuButtons = { actionButtons: [], buttonEnabledFn: {}};
       vmMenuButtons.buttonEnabledFn = vmButtonEnabled;
       var viewVirtualMachineAction = function(action, item) {
@@ -197,18 +199,22 @@
           class: 'fa pficon pficon-virtual-machine btn btn-default vm-action-button',
           title: __('View this virtual machine details'),
           actionFn: viewVirtualMachineAction,
-        }, 
+        },
       ];
 
       return vmMenuButtons;
     }
-   
+
     function openConsole(action, item) {
       Consoles.open(item.id);
     }
 
     function editServiceModal() {
       EditServiceModal.showModal(vm.service);
+    }
+
+    function tagEditorModal() {
+      TagEditorModal.showModal(vm.service, vm.tags);
     }
 
     function gotoCatalogItem() {
