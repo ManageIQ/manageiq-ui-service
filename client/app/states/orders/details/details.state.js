@@ -11,9 +11,9 @@
 
   function getStates() {
     return {
-      'services.orders.details': {
+      'orders.details': {
         url: '/:serviceOrderId',
-        templateUrl: 'app/states/services/orders/details/details.html',
+        templateUrl: 'app/states/orders/details/details.html',
         controller: StateController,
         controllerAs: 'vm',
         title: N_('Order Details'),
@@ -45,7 +45,7 @@
     };
 
     function handleRequestClick(item, _e) {
-      $state.go('services.requests.details', { requestId: item.id });
+      $state.go('requests.details', { requestId: item.id });
     }
   }
 })();

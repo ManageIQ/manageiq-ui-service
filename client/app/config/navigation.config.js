@@ -38,19 +38,19 @@
     services.secondary = {
       'service-explorer': createItem(
         N_('Service Explorer'),
-        'services.explorer',
+        'services',
         undefined,
         N_('Total services ordered, both active and retired')
       ),
       'request-explorer': createItem(
         N_('Request Explorer'),
-        'services.requests',
+        'requests',
         undefined,
         N_('Total pending requests')
       ),
       orders: createItem(
         N_('Order History'),
-        'services.orders',
+        'orders',
         undefined,
         N_('Total orders submitted')
       ),

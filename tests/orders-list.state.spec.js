@@ -10,8 +10,8 @@ describe('Dashboard', function() {
     });
 
     it('should work with $state.go', function() {
-      $state.go('services.orders');
-      expect($state.is('services.orders'));
+      $state.go('orders');
+      expect($state.is('orders.explorer'));
     });
   });
 
@@ -28,7 +28,7 @@ describe('Dashboard', function() {
     beforeEach(function() {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'Notifications');
 
-      controller = $controller($state.get('services.orders').controller, {orders: orders});
+      controller = $controller($state.get('orders.explorer').controller, {orders: orders});
     });
 
     it('should be created successfully', function() {

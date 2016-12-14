@@ -12,7 +12,7 @@
   function getStates() {
     return {
       'services.explorer': {
-        url: '', // No url, this state is the index of projects
+        url: '',
         templateUrl: 'app/states/services/explorer/explorer.html',
         controller: StateController,
         controllerAs: 'vm',

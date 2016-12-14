@@ -11,9 +11,9 @@
 
   function getStates() {
     return {
-      'services.requests.details': {
+      'requests.details': {
         url: '/:requestId',
-        templateUrl: 'app/states/services/requests/details/details.html',
+        templateUrl: 'app/states/requests/details/details.html',
         controller: RequestDetailsController,
         controllerAs: 'vm',
         title: N_('Request Details'),
