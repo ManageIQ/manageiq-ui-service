@@ -9,7 +9,7 @@
         title: '@',
         detail: '@',
         icon: '@',
-        translateTitle: '=',
+        translateTitle: '<',
         rowClass: '@',
       },
       transclude: true,
