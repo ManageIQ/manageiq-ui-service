@@ -10,7 +10,7 @@
         detail: '@',
         icon: '@',
         translateTitle: '=',
-        rowClass: '@'
+        rowClass: '@',
       },
       transclude: true,
       templateUrl: 'app/components/detail-reveal/detail-reveal.html',
