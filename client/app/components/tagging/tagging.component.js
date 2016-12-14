@@ -5,7 +5,7 @@
     .component('taggingWidget', {
       bindings: {
         tagsOfItem: '=',
-        readOnly: '='
+        readOnly: '=',
       },
       controller: TaggingController,
       controllerAs: 'vm',

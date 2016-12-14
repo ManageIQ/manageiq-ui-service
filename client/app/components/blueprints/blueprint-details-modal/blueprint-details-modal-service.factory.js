@@ -302,8 +302,8 @@
       }
 
       function publicationFailure(errorMsg) {
-          $uibModalInstance.close();
-          EventNotifications.error(__('There was an error publishing blueprint ') + "'" + vm.blueprint.name + "': " + errorMsg);
+        $uibModalInstance.close();
+        EventNotifications.error(__('There was an error publishing blueprint ') + "'" + vm.blueprint.name + "': " + errorMsg);
       }
 
       /*

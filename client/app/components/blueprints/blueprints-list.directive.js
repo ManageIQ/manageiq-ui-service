@@ -51,7 +51,7 @@
       }
 
       blueprint.read_only = false;
-      if (blueprint.status !== undefined && blueprint.status === 'published'){
+      if (blueprint.status === 'published') {
         blueprint.read_only = true;
       }
     }

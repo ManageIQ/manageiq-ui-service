@@ -112,7 +112,7 @@
       var deferred = $q.defer();
 
       var blueprintObj = {
-        "action": "publish"
+        "action": "publish",
       };
 
       CollectionsApi.post('blueprints', tmpBlueprint.id, {}, blueprintObj).then(publishSuccess, publishFailure);
@@ -182,10 +182,10 @@
 
       function getBlueprintPostObj(tmpBlueprint) {
         var blueprintObj = {
-              "name": tmpBlueprint.name,
-              "description": tmpBlueprint.description,
-              "ui_properties": tmpBlueprint.ui_properties,
-            };
+          "name": tmpBlueprint.name,
+          "description": tmpBlueprint.description,
+          "ui_properties": tmpBlueprint.ui_properties,
+        };
 
         blueprintObj.ui_properties.num_items = tmpBlueprint.ui_properties.chart_data_model.nodes.length;
 
@@ -355,7 +355,7 @@
         attributes: attributes,
       };
 
-      var collection = collectionType+ '/' + id + '/tags';
+      var collection = collectionType + '/' + id + '/tags';
 
       CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
 
@@ -385,7 +385,7 @@
       }
 
       return deferred.promise;
-    }
+    };
 
     blueprint.difference = function(o1, o2) {
       var k, kDiff;

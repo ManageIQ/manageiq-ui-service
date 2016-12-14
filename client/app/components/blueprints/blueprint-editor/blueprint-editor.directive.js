@@ -38,7 +38,7 @@
     var blueprintDirty = false;
 
     vm.blueprint.read_only = false;
-    if (vm.blueprint.status !== undefined && vm.blueprint.status === 'published'){
+    if (vm.blueprint.status === 'published') {
       vm.blueprint.read_only = true;
     }
 
