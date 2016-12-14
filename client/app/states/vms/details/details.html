@@ -14,7 +14,7 @@
 		<div class="row title">
 			<div>{{'Properties'|translate}}</div>
 		</div>
-		<detail-reveal title="Name" detail="{{::vm.vmDetails.name}}">test</detail-reveal>
+		<detail-reveal title="Name" detail="{{::vm.vmDetails.name}}"></detail-reveal>
 		<detail-reveal title="Hostnames" detail="{{::vm.vmDetails.hostnames.join(',')}}"></detail-reveal>
 		<detail-reveal title="IP Addresses" detail="{{::vm.vmDetails.ipaddresses.join(',')}}"></detail-reveal>
 		<detail-reveal title="MAC Address" detail="{{::vm.vmDetails.mac_addresses.join(',')}}" ng-if="vm.vmDetails.instance"></detail-reveal>
