@@ -11,7 +11,7 @@
     $httpProvider.interceptors.push(interceptor);
 
     /** @ngInject */
-    function interceptor($injector, $q) {
+    function interceptor($injector, $q, $window) {
       return {
         response: response,
         responseError: responseError,
@@ -50,14 +50,14 @@
           }
 
           Session.destroy();
-          $state.go('login');
+          $window.location.href = $state.href('login');
         }
       }
     }
   }
 
   /** @ngInject */
-  function init($rootScope, $state, Session, $sessionStorage, logger, Language, ServerInfo, ProductInfo) {
+  function init($rootScope, $state, Session, $sessionStorage, logger, Language, ServerInfo, ProductInfo, $window) {
     var unregisterStart = $rootScope.$on('$stateChangeStart', changeStart);
     var unregisterError = $rootScope.$on('$stateChangeError', changeError);
     var unregisterSuccess = $rootScope.$on('$stateChangeSuccess', changeSuccess);
@@ -102,14 +102,14 @@
           $state.go(toState, toParams);
         } else {
           Session.privilegesError = true;
-          $state.go('login');
+          $window.location.href = $state.href('login');
         }
       };
     }
 
     function badUser(error) {
       logger.error(__('Error retrieving user info'), [error]);
-      $state.go('login');
+      $window.location.href = $state.href('login');
     }
 
     function changeError(event, toState, toParams, fromState, fromParams, error) {
