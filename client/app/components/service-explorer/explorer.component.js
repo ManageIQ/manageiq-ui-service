@@ -14,7 +14,7 @@
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
                                CollectionsApi, EventNotifications, OwnershipServiceModal, EditServiceModal,
-                               RetireServiceModal, RetireRemoveServiceModal, PowerOperations, lodash) {
+                               RetireServiceModal, TagEditorModal, RetireRemoveServiceModal, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
     function activate() {
@@ -108,7 +108,7 @@
             name: __('Edit Tags'),
             actionName: 'editTags',
             title: __('Edit Tags'),
-            actionFn: editService,
+            actionFn: editTags,
             isDisabled: false,
           },
         ],
@@ -412,7 +412,8 @@
           'aggregate_all_vm_disk_space_used',
           'aggregate_all_vm_memory_on_disk',
           'region_number',
-          'region_description'],
+          'region_description',
+          'tags'],
         filter: ['ancestry=null'],
       };
       vm.loading = true;
@@ -471,6 +472,43 @@
 
     function editService() {
       EditServiceModal.showModal(vm.selectedItemsList[0]);
+    }
+
+    function editTags() {
+      CollectionsApi.query('tags', { expand: 'resources', attributes: ['classification', 'category'] })
+        .then(function(response) {
+          return response.resources.filter(function(tag) {
+            return tag.classification &&
+              tag.classification.description &&
+              tag.category &&
+              tag.category.id &&
+              tag.category.description;
+          }).map(function(tag) {
+            return {
+              id: tag.id,
+              name: tag.name,
+              category: {
+                id: tag.category.id,
+                description: tag.category.description,
+              },
+              classification: {
+                description: tag.classification.description,
+              },
+            };
+          });
+        })
+        .then(function(allTags) {
+          return allTags.filter(function(tag) {
+            return vm.selectedItemsList.every(function(service) {
+              return service.tags.some(function(serviceTag) {
+                return tag.name === serviceTag.name;
+              });
+            });
+          });
+        })
+        .then(function(commonTags) {
+          TagEditorModal.showModal(vm.selectedItemsList, { resources: commonTags });
+        });
     }
 
     function removeServices() {
