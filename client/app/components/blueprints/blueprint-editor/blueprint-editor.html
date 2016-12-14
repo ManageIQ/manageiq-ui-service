@@ -16,7 +16,7 @@
                 uib-tooltip="{{'Save Blueprint'|translate}}" tooltip-placement="bottom"
                 translate>Save
         </button>
-        <span ng-if="vm.blueprint.read_only"><em>{{vm.blueprint.status}}</em></span>
+        <span ng-if="vm.blueprint.read_only" class="capitalize"><em>{{vm.blueprint.status}}</em></span>
         <button class="btn btn-default blueprint-details-btn" type="button" ng-click="vm.editDetails()"
                 ng-class="{'disabled': vm.inConnectingMode, 'wait-cursor': vm.loading}"
                 tooltip-placement="bottom" uib-tooltip="{{'Edit Blueprint Details' | translate}}"
