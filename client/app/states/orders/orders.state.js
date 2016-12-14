@@ -11,10 +11,10 @@
 
   function getStates() {
     return {
-      'services': {
+      'orders': {
         parent: 'application',
-        url: '/service-explorer',
-        redirectTo: 'services.explorer',
+        url: '/order-explorer',
+        redirectTo: 'orders.explorer',
         template: '<ui-view></ui-view>',
       },
     };

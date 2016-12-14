@@ -133,7 +133,7 @@
     }
 
     function handleRequestClick(item, _e) {
-      $state.go('services.requests.details', {requestId: item.id});
+      $state.go('requests.details', {requestId: item.id});
     }
 
     function sortChange(sortId, direction) {
