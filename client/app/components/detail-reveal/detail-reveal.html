@@ -1,10 +1,13 @@
-<div class="row detail-row">
+<div class="row detail-row" ng-click="vm.hasMoreDetails ? vm.toggleDetails = !vm.toggleDetails:''" ng-class="vm.hasMoreDetails ? 'details-exist' : '' ">
 	<div class="col-xs-6 col-md-3">
-		<div ng-if="vm.hasMoreDetails" class="fa fa-lg" ng-class="vm.toggleDetails===true ? 'fa-caret-down' : 'fa-caret-right'" ng-click="vm.toggleDetails = !vm.toggleDetails"></div>
-		{{::vm.title}}
+		<div class="detail-reveal-arrow-container">
+			<i class="fa fa-lg detail-reveal-arrow" ng-class="(vm.toggleDetails===true ? 'fa-angle-down' : 'fa-angle-right') + ' '+ (vm.hasMoreDetails === false ? 'no-details' : '')"></i>
+		</div>
+		<span>{{::vm.title}}</span>
 	</div>
 	<div class="col-xs-6 col-md-9">
-		<i ng-if="::vm.icon" class="{{::vm.icon}}"></i> <span>{{::vm.detail}}</span>
+		<i ng-if="::vm.icon" class="{{::vm.icon}}"></i> 
+		<span>{{::vm.detail}}</span>
 	</div>
 </div>
 <div class="row" ng-transclude ng-if="vm.hasMoreDetails" uib-collapse="vm.toggleDetails===false">

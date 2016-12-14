@@ -10,6 +10,7 @@
         detail: '@',
         icon: '@',
         translateTitle: '=',
+        rowClass: '@'
       },
       transclude: true,
       templateUrl: 'app/components/detail-reveal/detail-reveal.html',
@@ -20,7 +21,7 @@
     var vm = this;
     vm.translateTitle = (angular.isDefined(vm.translateTitle) ? true : vm.translateTitle);
     vm.title = (vm.translateTitle === true ? __(vm.title) : vm.title);
-
+    vm.rowClass = (angular.isDefined(vm.rowClass) ? vm.rowClass : 'row detail-row');
     vm.$onInit = activate();
 
     function activate() {
