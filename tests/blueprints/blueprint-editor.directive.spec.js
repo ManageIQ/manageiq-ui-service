@@ -318,6 +318,50 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
     });
   });
 
+  describe('Blueprints Editor: Published Blueprint', function() {
+    beforeEach(function () {
+      var mockDir = 'tests/mock/blueprint-editor/';
+      $rootScope.blueprint = readJSON(mockDir + 'published-blueprint.json');
+      $rootScope.serviceTemplates = readJSON(mockDir + 'service-templates.json');
+
+      var htmlTmp = '<blueprint-editor blueprint="blueprint" service-templates="serviceTemplates"/>';
+
+      compileHTML(htmlTmp, $rootScope);
+    });
+
+    it('should display the top controls as read-only', function () {
+      var label = element.find('#blueprintNameLabel');
+      expect(label.length).to.eq(1);
+
+      // no Save button
+      var saveButton = element.find('#saveBtm');
+      expect(saveButton.length).to.eq(0);
+
+      label = element.find('#blueprintStatusLabel');
+      expect(label.length).to.eq(1);
+
+      var toolbox = element.find('#toolbox');
+      var addItemBtn = element.find('#toggleToolbox');
+
+      // Toolbox and Add Item button hidden
+      expect(toolbox.length).to.eq(0);
+      expect(addItemBtn.length).to.eq(0);
+    });
+
+    it('should set canvas as read-only', function () {
+      // should be three nodes on published canvas
+      var nodes = element.find('.node-rect');
+      expect(nodes.length).to.eq(3);
+
+      // Node selection should be disabled
+      selectNode(nodes[0]);
+
+      // Shouldn't be any selected nodes
+      var selectedNodes = element.find('.selected-node-rect');
+      expect(selectedNodes.length).to.eq(0);
+    });
+  });
+
   function selectNode(node) {
     angular.element(node).parent().triggerHandler({type: 'mousedown', pageX: 0, pageY:0});
     angular.element(node).parent().trigger('mousedown');

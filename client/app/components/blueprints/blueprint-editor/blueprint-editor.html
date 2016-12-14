@@ -7,7 +7,7 @@
       <li class="active">
           <input ng-if="!vm.blueprint.read_only" id="blueprintName" type="text" class="blueprint-name-input" ng-model="vm.blueprint.name"
                  placeholder="{{'Untitled Blueprint'|translate}}">
-          <strong ng-if="vm.blueprint.read_only">{{vm.blueprint.name}}</strong>
+          <strong ng-if="vm.blueprint.read_only" id="blueprintNameLabel">{{vm.blueprint.name}}</strong>
       </li>
       <span class="actions">
         <button ng-if="!vm.blueprint.read_only"
@@ -16,7 +16,7 @@
                 uib-tooltip="{{'Save Blueprint'|translate}}" tooltip-placement="bottom"
                 translate>Save
         </button>
-        <span ng-if="vm.blueprint.read_only" class="capitalize"><em>{{vm.blueprint.status}}</em></span>
+        <span ng-if="vm.blueprint.read_only" id="blueprintStatusLabel" class="capitalize"><em>{{vm.blueprint.status}}</em></span>
         <button class="btn btn-default blueprint-details-btn" type="button" ng-click="vm.editDetails()"
                 ng-class="{'disabled': vm.inConnectingMode, 'wait-cursor': vm.loading}"
                 tooltip-placement="bottom" uib-tooltip="{{'Edit Blueprint Details' | translate}}"
