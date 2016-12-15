@@ -57,12 +57,6 @@
     };
 
     designer.secondary = {
-      catalogs: createItem(
-        N_('Catalogs'),
-        'designer.catalogs',
-        undefined,
-        N_('The total number of available catalogs')
-      ),
       blueprints: createItem(
         N_('Blueprints'),
         'designer.blueprints',
@@ -74,6 +68,12 @@
         'designer.dialogs',
         undefined,
         N_('Total available dialogs')
+      ),
+      catalogs: createItem(
+        N_('Catalogs'),
+        'designer.catalogs',
+        undefined,
+        N_('The total number of available catalogs')
       ),
     };
 
