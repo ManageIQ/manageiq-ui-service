@@ -4,6 +4,8 @@ engines:
     channel: "eslint-3"
     config:
       config: .eslintrc.json
+  scss-lint:
+    enabled: true
   duplication:
     enabled: true
     config:

@@ -155,7 +155,8 @@ module.exports = (function() {
 
   // task sasslint: Runs sass-lint on client code
   config.sasslint = {
-    src: sassFiles
+    src: sassFiles,
+    configFile: './.scss-lint.yml'
   };
   //configures which directory manage iq server code is located
   config.manageiqDir = manageiqDir;
