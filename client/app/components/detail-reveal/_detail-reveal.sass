@@ -1,36 +1,42 @@
 .detail-row
-    &.details-exist
-        cursor: pointer
-    border-bottom: solid 1px $color-concrete-solid
-    padding: 5px 0
-    &:hover
-        background-color: $color-cararra-approx
-    &.row-active
-        background-color: $color-cararra-approx
-        
+  border-bottom: solid 1px $color-concrete-solid
+  padding: 5px 0
+
+  &.details-exist
+    cursor: pointer
+
+  &:hover
+    background-color: $color-cararra-approx
+
+  &.row-active
+    background-color: $color-cararra-approx
+
 .detail-reveal-arrow-container
-    border-right: 1px solid $color-concrete-solid
-    display: inline-block
-    height: 21px
-    width: 25px
-    padding-right: 15px
-    margin-right: 13px
-    
-    &.no-details
-        visibility: hidden
+  border-right: 1px solid $color-concrete-solid
+  display: inline-block
+  height: 21px
+  margin-right: 13px
+  padding-right: 15px
+  width: 25px
+
+  &.no-details
+    visibility: hidden
 
 .detail-reveal-arrow
-    &.no-details
-        color: $color-light-gray-approx
-    vertical-align: 0
-    width: 10px
+  vertical-align: 0
+  width: 10px
+
+  &.no-details
+    color: $color-light-gray-approx
 
 .item-extra-details-container
-    .close-button-container
-        height: 16px
-        padding: 12px
-        i
-            float: right
-            cursor: pointer
-    .detail-content
-        padding-left: 48px
+  .close-button-container
+    height: 16px
+    padding: 12px
+
+    i
+      cursor: pointer
+      float: right
+
+  .detail-content
+    padding-left: 48px
