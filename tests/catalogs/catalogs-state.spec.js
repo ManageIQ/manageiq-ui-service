@@ -1,4 +1,7 @@
 describe('app.states.CatalogsState', function() {
+  var mockDir = 'tests/mock/catalogs/';
+  var catalogs, serviceTemplates, tenants;
+
   beforeEach(function () {
     module('app.services', 'app.config', 'app.states', 'gettext');
     bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session', '$httpBackend');
@@ -9,6 +12,10 @@ describe('app.states.CatalogsState', function() {
       auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
     });
     $httpBackend.whenGET('').respond(200);
+
+    catalogs = readJSON(mockDir + 'catalogs.json');
+    serviceTemplates = readJSON(mockDir + 'service-templates.json');
+    tenants = readJSON(mockDir + 'tenants.json');
   });
 
   describe('route', function() {
@@ -25,57 +32,6 @@ describe('app.states.CatalogsState', function() {
   });
 
   describe('controller', function() {
-
-    var catalogs = {
-      resources: [
-        {
-          id: '1',
-          name: '1',
-        },
-        {
-          id: '2',
-          name: '2',
-        },
-        {
-          id: '3',
-          name: '3',
-        }
-      ]
-    };
-
-    var serviceTemplates = {
-      resources: [
-        {
-          id: '1',
-          name: '1',
-        },
-        {
-          id: '2',
-          name: '2',
-        },
-        {
-          id: '3',
-          name: '3',
-        }
-      ]
-    };
-
-    var tenants = {
-      resources: [
-        {
-          id: '1',
-          name: '1',
-        },
-        {
-          id: '2',
-          name: '2',
-        },
-        {
-          id: '3',
-          name: '3',
-        }
-      ]
-    };
 
     beforeEach(function() {
       bard.inject('$controller', '$state', '$rootScope', '$document', 'CatalogsState');
