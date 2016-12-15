@@ -50,11 +50,23 @@
     vm.serviceTemplates = serviceTemplates.resources;
     vm.tenants = tenants.resources;
 
-    vm.refreshCatalogs = refreshCatalogs;
+    vm.refresh = refresh;
 
-    function loadSuccess(designerCatalogs) {
+    function loadCatalogsSuccess(designerCatalogs) {
       $timeout(function() {  // Done in a timeout since results are massaged outside of a $digest
         vm.designerCatalogs = designerCatalogs.resources;
+      });
+    }
+
+    function loadTemplatesSuccess(serviceTemplates) {
+      $timeout(function() {  // Done in a timeout since results are massaged outside of a $digest
+        vm.serviceTemplates = serviceTemplates.resources;
+      });
+    }
+
+    function loadTenantsSuccess(tenants) {
+      $timeout(function() {  // Done in a timeout since results are massaged outside of a $digest
+        vm.tenants = tenants.resources;
       });
     }
 
@@ -62,12 +74,25 @@
     }
 
     function refreshCatalogs() {
-      CatalogsState.getCatalogs().then(loadSuccess, loadFailure);
+      CatalogsState.getCatalogs().then(loadCatalogsSuccess, loadFailure);
     }
 
+    function refreshServiceTemplates() {
+      CatalogsState.getServiceTemplates().then(loadTemplatesSuccess, loadFailure);
+    }
+
+    function refreshTenants() {
+      CatalogsState.getTenants().then(loadTenantsSuccess, loadFailure);
+    }
+
+    function refresh() {
+      refreshCatalogs();
+      refreshServiceTemplates();
+      refreshTenants();
+    }
     var onDestroy = $rootScope.$on('$stateChangeSuccess', function(event, toState) {
       if (toState.name === 'designer.catalogs') {
-        vm.refreshCatalogs();
+        vm.refresh();
       }
     });
 

@@ -9,6 +9,7 @@
         designerCatalogs: "=",
         serviceTemplates: "=",
         tenants: "=",
+        refreshFn: "=",
       },
       controller: ComponentController,
       controllerAs: 'vm',
@@ -16,31 +17,65 @@
     });
 
   /** @ngInject */
-  function ComponentController(CatalogsState, $scope, lodash, sprintf, ListView) {
+  function ComponentController(CatalogsState, $scope, lodash, sprintf, ListView, $state) {
     var vm = this;
-    vm.title = __('Catalogs');
-    vm.designerCatalogsList = [];
-    vm.confirmDelete = false;
 
-    var updateCatalogInfo = function(catalog) {
+    vm.$onInit = function() {
+      angular.extend(vm,
+        {
+          title: __('Catalogs'),
+          designerCatalogsList: [],
+          selectedCatalogs: [],
+          menuActions: createMenuActions(),
+          listActions: createListActions(),
+          toolbarConfig: {
+            filterConfig: createFilterConfig(),
+            sortConfig: createSortConfig(),
+            actionsConfig: createActionsConfig(),
+          },
+          listConfig: createListConfig(),
+          serviceTemplatesListConfig: createServiceTemplatesConfig(),
+          listActionDisable: listActionDisable,
+        }
+      );
+
+      var catalogWatcher = $scope.$watch(function() {
+        return vm.designerCatalogs;
+      }, function() {
+        updateCatalogsInfo();
+      });
+
+      var templatesWatcher = $scope.$watch(function() {
+        return vm.serviceTemplates;
+      }, function() {
+        updateCatalogsInfo();
+      });
+
+      var tentantsWatcher = $scope.$watch(function() {
+        return vm.tenants;
+      }, function() {
+        updateCatalogsInfo();
+      });
+
+      function onDestroy() {
+        catalogWatcher();
+        templatesWatcher();
+        tentantsWatcher();
+      }
+
+      $scope.$on('destroy', onDestroy);
+
+      updateCatalogsInfo();
+    };
+
+    function updateCatalogInfo(catalog) {
       if (!catalog.serviceTemplates) {
         catalog.serviceTemplates = [];
       } else {
         catalog.serviceTemplates.splice(0, catalog.serviceTemplates.length);
       }
 
-      angular.forEach(catalog.service_templates.resources, function(nextTemplate) {
-        var splits = nextTemplate.href.split('/');
-        var templateId = parseInt(splits[splits.length - 1], 10);
-        var serviceTemplate = lodash.find(vm.serviceTemplates, {id: templateId});
-        if (serviceTemplate) {
-          catalog.serviceTemplates.push(serviceTemplate);
-        }
-      });
-
-      catalog.serviceTemplates.sort(function(item1, item2) {
-        return item1.name.localeCompare(item2.name);
-      });
+      CatalogsState.setCatalogServiceTemplates(catalog, vm.serviceTemplates);
 
       catalog.disableRowExpansion = catalog.serviceTemplates.length < 1;
 
@@ -53,9 +88,9 @@
       catalog.serviceTemplatesTooltip = sprintf(__("%d Service Templates"), catalog.serviceTemplates.length);
 
       catalog.tenant = lodash.find(vm.tenants, {id: catalog.tenant_id});
-    };
+    }
 
-    var updateCatalogsInfo = function() {
+    function updateCatalogsInfo() {
       if (vm.designerCatalogs) {
         angular.forEach(vm.designerCatalogs, function(catalog) {
           updateCatalogInfo(catalog);
@@ -64,15 +99,8 @@
         vm.designerCatalogs.sort(compareCatalogs);
         doFilter(CatalogsState.getFilters());
       }
-    };
+    }
 
-    var watcher = $scope.$watch(function() {
-      return vm.designerCatalogs;
-    }, function() {
-      updateCatalogsInfo();
-    });
-
-    $scope.$on('destroy', watcher);
 
     function sortChange(sortId, isAscending) {
       if (vm.designerCatalogsList) {
@@ -164,19 +192,87 @@
       return found;
     }
 
-    vm.toolbarConfig = {
-      filterConfig: {
+    function editCatalog(catalog) {
+      $state.go('designer.catalogs.editor', {catalogId: catalog.id});
+    }
+
+    function handleEdit(action, catalog) {
+      editCatalog(catalog);
+    }
+
+    function addCatalog() {
+      $state.go('designer.catalogs.editor');
+    }
+
+    function handleSelectionChange() {
+      vm.selectedCatalogs = vm.designerCatalogs.filter(function(catalog) {
+        return catalog.selected;
+      });
+    }
+
+    function editSelectedCatalog() {
+      if (vm.selectedCatalogs && vm.selectedCatalogs.length === 1) {
+        editCatalog(vm.selectedCatalogs[0]);
+      }
+    }
+
+    function createMenuActions() {
+      return [
+        {
+          name: __('Edit'),
+          title: __('Edit Catalog'),
+          actionFn: handleEdit,
+        },
+      ];
+    }
+
+    function createListActions() {
+      return [
+        {
+          name: __('Configuration'),
+          actionName: 'configuration',
+          icon: 'fa fa-cog',
+          isDisabled: false,
+          actions: [
+            {
+              name: __('Create'),
+              actionName: 'create',
+              title: __('Create new catalog'),
+              actionFn: addCatalog,
+              isDisabled: false,
+            },
+            {
+              name: __('Edit'),
+              actionName: 'edit',
+              title: __('Edit selected catalog'),
+              actionFn: editSelectedCatalog,
+              isDisabled: false,
+            },
+          ],
+        },
+      ];
+    }
+
+    function listActionDisable(config, items) {
+      config.actions[1].isDisabled = items.length !== 1;
+    }
+
+    function createFilterConfig() {
+      return {
         fields: [
           ListView.createFilterField('name',        __('Name'),        __('Filter by Name'),        'text'),
           ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text'),
           ListView.createFilterField('tenant',      __('Tenant'),      __('Filter by Tenant name'), 'text'),
           ListView.createFilterField('service',     __('Service'),     __('Filter by Service'),     'text'),
         ],
-        resultsCount: vm.designerCatalogsList.length,
+        resultsCount: 0,
         appliedFilters: CatalogsState.getFilters(),
         onFilterChange: filterChange,
-      },
-      sortConfig: {
+      };
+    }
+
+    function createSortConfig() {
+      return {
         fields: [
           ListView.createSortField('name',         __('Name'),          'alpha'),
           ListView.createSortField('tenant',       __('Tenant'),        'alpha'),
@@ -185,17 +281,26 @@
         onSortChange: sortChange,
         isAscending: CatalogsState.getSort().isAscending,
         currentField: CatalogsState.getSort().currentField,
-      },
-    };
+      };
+    }
 
-    vm.listConfig = {
-      useExpandingRows: true,
-    };
+    function createActionsConfig() {
+      return {
+        actionsInclude: true,
+      };
+    }
 
-    vm.serviceTemplatesListConfig = {
-      showSelectBox: false,
-    };
+    function createListConfig() {
+      return {
+        useExpandingRows: true,
+        onCheckBoxChange: handleSelectionChange,
+      };
+    }
 
-    updateCatalogsInfo();
+    function createServiceTemplatesConfig() {
+      return {
+        showSelectBox: false,
+      };
+    }
   }
 })();

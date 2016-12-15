@@ -1,16 +1,14 @@
 <div class="designer-catalogs-list">
-  <div pf-toolbar class="section-toolbar" id="designerCatalogsToolbar" config="vm.toolbarConfig"></div>
-  <div class="list-view-container section-container"
-       confirmation
-       confirmation-id="confirmDeleteCatalog"
-       confirmation-trigger-value="vm.confirmDelete"
-       confirmation-title="{{'Delete Catalog'|translate}}"
-       confirmation-message="{{'Are you sure you want to delete catalog [[catalog_name]]?'|translate|substitute:{catalog_name: vm.catalogToDelete ? vm.catalogToDelete.name : ''} }}"
-       confirmation-ok-text="{{'Delete'|translate}}"
-       confirmation-on-ok="vm.removeCatalog(item)"
-       confirmation-on-cancel="vm.cancelRemoveCatalog(item)"
-       confirmation-ok-style="primary"
-       confirmation-show-cancel="true">
+  <div pf-toolbar class="section-toolbar" id="designerCatalogsToolbar" config="vm.toolbarConfig">
+    <actions>
+      <custom-dropdown config="item" items="vm.selectedCatalogs"
+                       items-count="vm.selectedCatalogs.length"
+                       ng-repeat="item in vm.listActions"
+                       on-update="vm.listActionDisable($config, $changes)">
+      </custom-dropdown>
+    </actions>
+  </div>
+  <div class="list-view-container section-container">
     <div pf-list-view
          config="vm.listConfig"
          items="vm.designerCatalogsList"
