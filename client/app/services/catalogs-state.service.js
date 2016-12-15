@@ -69,7 +69,7 @@
     };
 
     catalogState.setCatalogServiceTemplates = function(catalog, serviceTemplates) {
-      if (!catalog.serviceTemplates) {
+      if (angular.isUndefined(catalog.serviceTemplates)) {
         catalog.serviceTemplates = [];
       } else {
         catalog.serviceTemplates.splice(0, catalog.serviceTemplates.length);

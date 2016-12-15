@@ -9,7 +9,7 @@
         designerCatalogs: "=",
         serviceTemplates: "=",
         tenants: "=",
-        refreshFn: "=",
+        refreshFn: "<",
       },
       controller: ComponentController,
       controllerAs: 'vm',
@@ -19,6 +19,7 @@
   /** @ngInject */
   function ComponentController(CatalogsState, $scope, lodash, sprintf, ListView, $state) {
     var vm = this;
+    var watchers = [];
 
     vm.$onInit = function() {
       angular.extend(vm,
@@ -39,33 +40,33 @@
         }
       );
 
-      var catalogWatcher = $scope.$watch(function() {
+      watchers.push($scope.$watch(function() {
         return vm.designerCatalogs;
       }, function() {
         updateCatalogsInfo();
-      });
+      }));
 
-      var templatesWatcher = $scope.$watch(function() {
+      watchers.push($scope.$watch(function() {
         return vm.serviceTemplates;
       }, function() {
         updateCatalogsInfo();
-      });
+      }));
 
-      var tentantsWatcher = $scope.$watch(function() {
+      watchers.push($scope.$watch(function() {
         return vm.tenants;
       }, function() {
         updateCatalogsInfo();
-      });
-
-      function onDestroy() {
-        catalogWatcher();
-        templatesWatcher();
-        tentantsWatcher();
-      }
-
-      $scope.$on('destroy', onDestroy);
+      }));
 
       updateCatalogsInfo();
+    };
+
+    vm.$onDestroy = function() {
+      angular.forEach(watchers, function(watcher) {
+        if (angular.isFunction(watcher)) {
+          watcher();
+        }
+      });
     };
 
     function updateCatalogInfo(catalog) {

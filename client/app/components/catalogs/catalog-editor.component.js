@@ -6,8 +6,8 @@
     .component('catalogEditor',  {
       templateUrl: 'app/components/catalogs/catalog-editor.html',
       bindings: {
-        catalog: "=",
-        serviceTemplates: "=",
+        catalog: "<",
+        serviceTemplates: "<",
         stateName: "@",
       },
       controller: ComponentController,
@@ -18,6 +18,7 @@
   function ComponentController(CatalogsState, $scope, $state, SaveModalDialog, lodash) {
     var vm = this;
     var listState = 'designer.catalogs';
+    var watchers = [];
 
     vm.$onInit = function() {
       var selectedServiceTemplates = [];
@@ -62,10 +63,17 @@
         }
       );
 
-      var onDestroy = $scope.$on('$stateChangeStart', onChangeState);
-      $scope.$on('destroy', onDestroy);
+      watchers.push($scope.$on('$stateChangeStart', onChangeState));
 
       updateSelections();
+    };
+
+    vm.$onDestroy = function() {
+      angular.forEach(watchers, function(watcher) {
+        if (angular.isFunction(watcher)) {
+          watcher();
+        }
+      });
     };
 
     function arrayCompare(array1, array2) {
