@@ -24,8 +24,8 @@ module.exports = (function() {
   var specsFile = 'specs.html';
   var cssFile = 'styles.css';
   var sassFiles = [
-    client + 'assets/sass/**/*.sass',
-    client + 'app/**/*.sass'
+    client + 'assets/sass/**/*.s+(a|c)ss',
+    client + 'app/**/*.s+(a|c)ss'
   ];
   var templateFiles = client + 'app/**/*.html';
   var serverIntegrationSpecs = [tests + 'server-integration/**/*.spec.js'];
