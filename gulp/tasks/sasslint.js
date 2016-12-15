@@ -14,7 +14,9 @@ module.exports = function(gulp, options) {
     }
 
     return gulp.src(config.src)
-      .pipe(sassLint())
+      .pipe(sassLint({
+        configFile: config.configFile
+      }))
       .pipe(sassLint.format())
       .pipe(sassLint.failOnError());
   }
