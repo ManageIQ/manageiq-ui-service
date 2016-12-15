@@ -43,14 +43,8 @@
         var Session = $injector.get('Session');
 
         if ('login' !== $state.current.name) {
-          // prevent multiple instances of the same notification - cleared on login submit
-          if (!Session.timeoutNotified) {
-            Notifications.message('danger', '', __('Your session has timed out.'), true);
-            Session.timeoutNotified = true;
-          }
-
           Session.destroy();
-          $window.location.href = $state.href('login');
+          $window.location.href = $state.href('login') + "?timeout";
         }
       }
     }
