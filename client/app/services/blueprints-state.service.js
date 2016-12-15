@@ -85,12 +85,14 @@
         // save the changed blueprint
         blueprint.saveBlueprint(tmpBlueprint).then(function(id) {
           blueprint.publishBlueprintOp(tmpBlueprint).then(function() {
+            $log.info("Blueprint '" + tmpBlueprint.name + "' was published.");
             deferred.resolve();
           }, publishfailure);
         }, savefailure);
       } else {
         // just publish the unchanged blueprint
         blueprint.publishBlueprintOp(tmpBlueprint).then(function() {
+          $log.info("Blueprint '" + tmpBlueprint.name + "' was published.");
           deferred.resolve();
         }, publishfailure);
       }

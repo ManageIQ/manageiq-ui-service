@@ -256,18 +256,10 @@
           vm.blueprint.ui_properties.service_dialog);
 
       vm.blueprint.ui_properties.automate_entrypoints.Provision = vm.modalData.resource.provEP;
-
-      if (vm.modalData.resource.reConfigEP) {
-        vm.blueprint.ui_properties.automate_entrypoints.Reconfigure = vm.modalData.resource.reConfigEP;
-      } else if (vm.blueprint.ui_properties.automate_entrypoints && vm.blueprint.ui_properties.automate_entrypoints.Reconfigure) {
-        vm.blueprint.ui_properties.automate_entrypoints.Reconfigure = null;
-      }
-
-      if (vm.modalData.resource.retireEP) {
-        vm.blueprint.ui_properties.automate_entrypoints.Retirement = vm.modalData.resource.retireEP;
-      } else if (vm.blueprint.ui_properties.automate_entrypoints && vm.blueprint.ui_properties.automate_entrypoints.Retirement) {
-        vm.blueprint.ui_properties.automate_entrypoints.Retirement = null;
-      }
+      vm.blueprint.ui_properties.automate_entrypoints.Reconfigure = setEntryPointFromModel(vm.modalData.resource.reConfigEP,
+        vm.blueprint.ui_properties.automate_entrypoints.Reconfigure);
+      vm.blueprint.ui_properties.automate_entrypoints.Retirement = setEntryPointFromModel(vm.modalData.resource.retireEP,
+        vm.blueprint.ui_properties.automate_entrypoints.Retirement);
 
       if (vm.provOrderChanged) {
         BlueprintOrderListService.saveOrder("provisionOrder", vm);
@@ -325,6 +317,16 @@
         }
 
         return blueprintData;
+      }
+
+      function setEntryPointFromModel(modelEP, blueprintEP) {
+        if (modelEP) {
+          blueprintEP = modelEP;
+        } else if (vm.blueprint.ui_properties.automate_entrypoints && blueprintEP) {
+          blueprintEP = null;
+        }
+
+        return blueprintEP;
       }
     }  // end of saveBlueprintDetails
 
