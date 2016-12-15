@@ -36,6 +36,10 @@
       password: API_PASSWORD,
     };
 
+    if ($window.location.href.includes("?timeout")) {
+      Notifications.message('danger', '', __('Your session has timed out.'), true);
+    }
+
     if (Session.privilegesError) {
       Notifications.error(__('User does not have privileges to login.'));
     }
