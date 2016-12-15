@@ -6,36 +6,39 @@
 </div>
 <div class="modal-body">
 
-    <uib-tabset class="blueprint-detail-tabs">
-        <uib-tab active="vm.tabs[0].active" heading="{{vm.tabs[0].title}}">
+    <uib-tabset class="blueprint-detail-tabs" active="vm.activeTab">
+        <uib-tab index="0" heading="{{vm.tabs[0].title}}">
             <form name="genDetailsForm" id="genDetailsForm" class="gen-details-form form-horizontal">
                 <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6"
                      pf-label="{{'Name'|translate}}"
                      required>
                     <input id="name" name="name"
+                           ng-disabled="vm.blueprint.read_only"
                            ng-model="vm.modalData.resource.name" type="text" required/>
                 </div>
                 <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6"
                      pf-label="{{'Description'|translate}}">
                     <input id="desc" name="desc"
+                           ng-disabled="vm.blueprint.read_only"
                            ng-model="vm.modalData.resource.description" type="text"/>
                 </div>
                 <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-6"
                      pf-label="{{'Visibility'|translate}}"
                      required>
                     <select class="base-info-select"
+                            ng-disabled="vm.blueprint.read_only"
                             ng-options="item as item.name for item in vm.visibilityOptions"
                             ng-model="vm.modalData.resource.visibility" required>
                     </select>
                 </div>
                 <div pf-form-group pf-label-class="col-sm-4 no-top" pf-input-class="col-sm-6"
                      pf-label="{{'Tags'|translate}}">
-                       <tagging-widget tags-of-item="vm.tagsOfItem"/>
+                       <tagging-widget tags-of-item="vm.tagsOfItem" read_only="vm.blueprint.read_only"/>
                 </div>
             </form>
         </uib-tab>
 
-        <uib-tab active="vm.tabs[1].active" heading="{{vm.tabs[1].title}}">
+        <uib-tab index="1" heading="{{vm.tabs[1].title}}">
 
             <form name="pubDetailsForm" id="pubDetailsForm" class="form-horizontal">
                 <!-- could not use pf-form-group due to it's requirement that errors only display after fields are 'dirty' -->
@@ -43,7 +46,9 @@
                     <label for="catalog" class="control-label col-sm-4" translate>Catalog</label>
 
                     <div class="col-sm-6">
-                        <select name="catalog" id="catalog" class="base-info-select base-info-select-lg form-control"
+                        <select name="catalog" id="catalog"
+                                ng-disabled="vm.blueprint.read_only"
+                                class="base-info-select base-info-select-lg form-control"
                                 ng-options="item as item.name for item in vm.serviceCatalogs"
                                 ng-model="vm.modalData.resource.catalog"
                                 ng-required="vm.isCatalogRequired()">
@@ -53,6 +58,7 @@
                                 translate>Select a Catalog</span>
                         <button type="button" id="createCatalog" class="btn btn-default base-info-btn"
                                 ng-click="vm.createCatalog()"
+                                ng-if="!vm.blueprint.read_only"
                                 translate>Create Catalog
                         </button>
                     </div>
@@ -62,6 +68,7 @@
 
                     <div class="col-sm-6">
                         <select name="dialog" id="dialog" class="base-info-select base-info-select-lg form-control"
+                                ng-disabled="vm.blueprint.read_only"
                                 ng-options="item as item.label for item in vm.serviceDialogs"
                                 ng-model="vm.modalData.resource.dialog"
                                 ng-required="vm.isDialogRequired()">
@@ -74,7 +81,7 @@
             </form>
             <a class="adv-ops-href" ng-click="vm.toggleAdvOps()" data-toggle="collapse" class="collapsed" translate>Advanced Options</a>
 
-            <div class="advOps" class="collapse">
+            <div class="adv-ops" class="collapse">
                 <form novalidate name="advOptsForm" id="advOptsForm" class="form-horizontal">
                     <!-- could not use pf-form-group due to it's requirement that errors only display after fields are 'dirty' -->
                     <div class="form-group"
@@ -83,44 +90,54 @@
 
                         <div class="col-sm-8">
                             <input name="provEP" id="provEP" class="entry-point-input form-control" name="provEP"
+                                   ng-disabled="vm.blueprint.read_only"
                                    type="text"
                                    ng-model="vm.modalData.resource.provEP" required/>
                             <button type="button" class="btn btn-default entry-point-btn"
-                                    ng-click="vm.selectEntryPoint('provisioning')" translate>Browse
+                                    ng-if="!vm.blueprint.read_only"
+                                    ng-click="vm.selectEntryPoint('provisioning')" translate>
+                                Browse
                             </button>
-                            <a ng-click="vm.modalData.resource.provEP = ''"><span
-                                    class="pficon pficon-close clear-entry-point"></span></a>
+                            <a ng-click="vm.modalData.resource.provEP = ''" ng-if="!vm.blueprint.read_only">
+                                <span class="pficon pficon-close clear-entry-point"></span>
+                            </a>
                             <span ng-show="advOptsForm.provEP.$error.required" class="help-block" translate>Please enter a Provisioning Entry Point</span>
                         </div>
                     </div>
                     <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-8"
                          pf-label="{{'Reconfigure Entry Point'|translate}}">
                         <input id="reConfigEP" class="entry-point-input" name="reConfigEP" type="text"
+                               ng-disabled="vm.blueprint.read_only"
                                ng-model="vm.modalData.resource.reConfigEP"/>
                         <button type="button" class="btn btn-default entry-point-btn"
+                                ng-if="!vm.blueprint.read_only"
                                 ng-click="vm.selectEntryPoint('reconfigure')"
                                 translate>Browse
                         </button>
-                        <a ng-click="vm.modalData.resource.reConfigEP = ''"><span
-                                class="pficon pficon-close clear-entry-point"></span></a>
+                        <a ng-click="vm.modalData.resource.reConfigEP = ''" ng-if="!vm.blueprint.read_only">
+                            <span class="pficon pficon-close clear-entry-point"></span>
+                        </a>
                     </div>
                     <div pf-form-group pf-label-class="col-sm-4" pf-input-class="col-sm-8"
                          pf-label="{{'Retirement Entry Point'|translate}}">
                         <input id="retireEP" class="entry-point-input" name="retireEP" type="text"
+                               ng-disabled="vm.blueprint.read_only"
                                ng-model="vm.modalData.resource.retireEP"/>
                         <button type="button" class="btn btn-default entry-point-btn"
+                                ng-if="!vm.blueprint.read_only"
                                 ng-click="vm.selectEntryPoint('retirement')"
                                 translate>Browse
                         </button>
-                        <a ng-click="vm.modalData.resource.retireEP = ''"><span
-                                class="pficon pficon-close clear-entry-point"></span></a>
+                        <a ng-click="vm.modalData.resource.retireEP = ''" ng-if="!vm.blueprint.read_only">
+                            <span class="pficon pficon-close clear-entry-point"></span>
+                        </a>
                     </div>
                 </form>
             </div>
         </uib-tab>
 
-        <uib-tab active="vm.tabs[2].active" heading="{{vm.tabs[2].title}}" ng-if="vm.showOrderListTabs()">
-            <h4 translate>Rearrange Items to set Provision Order</h4>
+        <uib-tab index="2" heading="{{vm.tabs[2].title}}" ng-if="vm.showOrderListTabs()">
+            <h4 ng-if="!vm.blueprint.read_only" translate>Rearrange Items to set Provision Order</h4>
 
             <div class="dnd-ordered-lists row">
                 <!-- Main Order List -->
@@ -131,8 +148,8 @@
                 </div>
             </div>
         </uib-tab>
-        <uib-tab active="vm.tabs[3].active" heading="{{vm.tabs[3].title}}"  ng-if="vm.showOrderListTabs()">
-            <h4>{{ 'Rearrange Items to set Action Order' | translate}}
+        <uib-tab index="3" heading="{{vm.tabs[3].title}}"  ng-if="vm.showOrderListTabs()">
+            <h4 ng-if="!vm.blueprint.read_only">{{ 'Rearrange Items to set Action Order' | translate}}
                 <input class="actionOrderCheckbox"
                        ng-model="vm.actionOrderEqualsProvOrder"
                        ng-change="vm.toggleActionEqualsProvOrder()"
@@ -153,9 +170,12 @@
      </uib-tabset>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="vm.cancelBlueprintDetails()" translate>Cancel</button>
+    <button type="button" class="btn btn-default" ng-class="{'btn-primary': vm.blueprint.read_only}" ng-click="vm.cancelBlueprintDetails()" translate>
+        {{vm.blueprint.read_only ? 'Close' : 'Cancel'}}
+    </button>
     <button type="button"
             class="btn btn-primary"
+            ng-if="!vm.blueprint.read_only"
             ng-click="vm.saveBlueprintDetails()"
             ng-disabled="!vm.modalData.resource.name || (vm.isCatalogRequired() && !vm.modalData.resource.catalog) ||
                          (vm.isDialogRequired() && !vm.modalData.resource.dialog) || !vm.modalData.resource.provEP">

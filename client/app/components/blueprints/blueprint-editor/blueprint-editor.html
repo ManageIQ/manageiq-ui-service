@@ -5,15 +5,18 @@
           <a ui-sref="designer.blueprints">{{'Blueprints'|translate}}</a>
       </li>
       <li class="active">
-          <input id="blueprintName" type="text" class="blueprint-name-input" ng-model="vm.blueprint.name"
+          <input ng-if="!vm.blueprint.read_only" id="blueprintName" type="text" class="blueprint-name-input" ng-model="vm.blueprint.name"
                  placeholder="{{'Untitled Blueprint'|translate}}">
+          <strong ng-if="vm.blueprint.read_only" id="blueprintNameLabel">{{vm.blueprint.name}}</strong>
       </li>
       <span class="actions">
-        <button class="btn btn-primary btb-sm" type="button" ng-click="vm.saveBlueprint()" id="saveBtm"
+        <button ng-if="!vm.blueprint.read_only"
+                class="btn btn-primary btb-sm" type="button" ng-click="vm.saveBlueprint()" id="saveBtm"
                 ng-class="{'disabled': !vm.canSave()}"
                 uib-tooltip="{{'Save Blueprint'|translate}}" tooltip-placement="bottom"
                 translate>Save
         </button>
+        <span ng-if="vm.blueprint.read_only" id="blueprintStatusLabel" class="capitalize"><em>{{vm.blueprint.status}}</em></span>
         <button class="btn btn-default blueprint-details-btn" type="button" ng-click="vm.editDetails()"
                 ng-class="{'disabled': vm.inConnectingMode, 'wait-cursor': vm.loading}"
                 tooltip-placement="bottom" uib-tooltip="{{'Edit Blueprint Details' | translate}}"
@@ -25,11 +28,11 @@
   <div class="blueprint-designer-container">
 
       <div class="section-toolbar">
-          <button id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': vm.inConnectingMode}" type="button" ng-click="vm.toggleToolbox()"
+          <button ng-if="!vm.blueprint.read_only" id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': vm.inConnectingMode}" type="button" ng-click="vm.toggleToolbox()"
                   tooltip-placement="bottom" uib-tooltip="{{'Add Service Item To Canvas'|translate}}" translate>Add Item
             <span class="fa" ng-class="{'fa-angle-double-up': vm.toolboxVisible, 'fa-angle-double-down': !vm.toolboxVisible}"></span>
           </button>
-          <span class="more-actions">
+          <span ng-if="!vm.blueprint.read_only" class="more-actions">
               <a ng-click="vm.duplicateSelectedItem()">
                 <span id="duplicateItem" class="pficon fa fa-copy" ng-class="{'disabled': !vm.onlyOneTtemSelected() || vm.inConnectingMode}"
                       tooltip-append-to-body="true" tooltip-placement="bottom"
@@ -51,6 +54,16 @@
                   <span class="show-hide-connectors-cabel" translate>Hide Connectors</span>
               </span>
           </span>
+          <div ng-if="vm.blueprint.read_only">
+              <div class="show-hide-connectors-alone">
+                  <input  ng-class="{'disabled': vm.inConnectingMode}"
+                          ng-model="vm.hideConnectors"
+                          ng-change="vm.toggleshowHideConnectors()"
+                          type="checkbox"
+                          ng-checked="vm.hideConnectors">
+                  <span class="show-hide-connectors-cabel" translate>Hide Connectors</span>
+              </div>
+          </div>
       </div>
 
       <div class="toolbox-canvas-container">
@@ -114,6 +127,7 @@
 
           <blueprint-canvas dragged-item="vm.draggedItem"
                             in-connecting-mode="vm.inConnectingMode"
+                            read-only = "vm.blueprint.read_only"
                             chart_data_model="vm.blueprint.ui_properties.chart_data_model"
                             chart_view_model="vm.chartViewModel"/>
 

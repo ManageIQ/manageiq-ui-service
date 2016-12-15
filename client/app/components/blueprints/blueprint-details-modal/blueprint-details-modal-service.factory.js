@@ -81,11 +81,14 @@
     vm.blueprint = blueprint;
 
     vm.tabs = [
-      {"title": __('General'), "active": true},
+      {"title": __('General'), "active": false},
       {"title": __('Publish'), "active": false},
       {"title": __('Provision Order'), "active": false},
       {"title": __('Action Order'), "active": false},
     ];
+
+    // when read_only, default to Publish tab
+    vm.activeTab = vm.blueprint.read_only ? 1 : 0;
 
     if (action === 'create') {
       vm.modalTitle = __('Create Blueprint');
@@ -93,8 +96,9 @@
     } else if (action === 'publish') {
       vm.modalTitle = __('Publish ') + vm.blueprint.name;
       vm.modalBtnPrimaryLabel  = __('Publish');
-      vm.tabs[0].active = false;
-      vm.tabs[1].active = true;
+      vm.activeTab = 1;
+    } else if (vm.blueprint.read_only) {
+      vm.modalTitle = __('Blueprint Details');
     } else {
       vm.modalTitle = __('Edit Blueprint Details');
       vm.modalBtnPrimaryLabel  = __('Save');
@@ -104,7 +108,7 @@
 
     vm.serviceDialogs = serviceDialogs.resources;
 
-    vm.tagsOfItem = vm.blueprint.tags;
+    vm.tagsOfItem = angular.copy(vm.blueprint.tags);
 
     vm.visibilityOptions = [{
       id: 800,
@@ -202,7 +206,7 @@
 
     function toggleAdvOps() {
       angular.element( ".adv-ops-href" ).toggleClass("collapsed");
-      angular.element( ".adv-ops" ).toggleClass("in");
+      angular.element( ".adv-ops" ).toggleClass("collapse");
     }
 
     function showOrderListTabs() {
@@ -248,8 +252,10 @@
           vm.blueprint.ui_properties.service_dialog);
 
       vm.blueprint.ui_properties.automate_entrypoints.Provision = vm.modalData.resource.provEP;
-      vm.blueprint.ui_properties.automate_entrypoints.Reconfigure = vm.modalData.resource.reConfigEP;
-      vm.blueprint.ui_properties.automate_entrypoints.Retirement = vm.modalData.resource.retireEP;
+      vm.blueprint.ui_properties.automate_entrypoints.Reconfigure = setEntryPointFromModel(vm.modalData.resource.reConfigEP,
+        vm.blueprint.ui_properties.automate_entrypoints.Reconfigure);
+      vm.blueprint.ui_properties.automate_entrypoints.Retirement = setEntryPointFromModel(vm.modalData.resource.retireEP,
+        vm.blueprint.ui_properties.automate_entrypoints.Retirement);
 
       if (vm.provOrderChanged) {
         BlueprintOrderListService.saveOrder("provisionOrder", vm);
@@ -260,18 +266,40 @@
       }
 
       if (action === 'publish') {
-        $uibModalInstance.close();
-        saveFailure();
+        BlueprintsState.publishBlueprint(vm.blueprint).then(saveSuccess, publicationFailure);
+      } else {
+        saveSuccess();
+      }
 
-        return;
+      function saveSuccess() {
+        if (action === 'create') {
+          // This is not actually used anymore, flow has changed
+          // keeping it in case flow changes back again.
+          EventNotifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
+          $uibModalInstance.close();
+          BlueprintsState.saveBlueprint(vm.blueprint);
+          $state.go('designer/blueprints.editor', {blueprintId: vm.blueprint.id});
+        } else if (action === 'edit') {
+          $uibModalInstance.close({editedblueprint: vm.blueprint});
+          // EventNotifications.success(sprintf(__('%s details were updated.'), vm.blueprint.name));
+        } else if (action === 'publish') {
+          $state.go($state.current, {}, {reload: true});
+          EventNotifications.success(sprintf(__('%s was published.'), vm.blueprint.name));
+          $uibModalInstance.close();
+        }
+      }
+
+      function publicationFailure(errorMsg) {
+        $uibModalInstance.close();
+        EventNotifications.error(__('There was an error publishing blueprint ') + "'" + vm.blueprint.name + "': " + errorMsg);
       }
 
       /*
        $log.debug("Orig Blueprint = " + angular.toJson(BlueprintsState.getOriginalBlueprint().ui_properties, true));
        $log.debug("Updated Blueprint = " + angular.toJson(vm.blueprint.ui_properties, true));
        $log.debug("Diff = " + angular.toJson(BlueprintsState.difference(vm.blueprint,
-                  BlueprintsState.getOriginalBlueprint()), true));
-      */
+       BlueprintsState.getOriginalBlueprint()), true));
+       */
 
       function setBlueprintFromModel(modelData, blueprintData) {
         if (modelData) {
@@ -287,32 +315,14 @@
         return blueprintData;
       }
 
-      saveSuccess();
-
-      function saveSuccess() {
-        if (action === 'create') {
-          // This is not actually used anymore, flow has changed
-          // keeping it in case flow changes back again.
-          EventNotifications.success(sprintf(__('%s was created.'), vm.blueprint.name));
-          $uibModalInstance.close();
-          BlueprintsState.saveBlueprint(vm.blueprint);
-          $state.go('designer/blueprints.editor', {blueprintId: vm.blueprint.id});
-        } else if (action === 'edit') {
-          $uibModalInstance.close({editedblueprint: vm.blueprint});
-          // EventNotifications.success(sprintf(__('%s details were updated.'), vm.blueprint.name));
-        } else if (action === 'publish') {
-          $uibModalInstance.close();
-          EventNotifications.success(sprintf(__('%s was published.'), vm.blueprint.name));
-          $state.go($state.current, {}, {reload: true});
+      function setEntryPointFromModel(modelEP, blueprintEP) {
+        if (modelEP) {
+          blueprintEP = modelEP;
+        } else if (vm.blueprint.ui_properties.automate_entrypoints && blueprintEP) {
+          blueprintEP = null;
         }
-      }
 
-      function saveFailure() {
-        if (action === 'publish') {
-          EventNotifications.error(__('The Publish Blueprint feature is not yet implemented.'));
-        } else {
-          EventNotifications.error(__("There was an error saving this Blueprint's Details."));
-        }
+        return blueprintEP;
       }
     }  // end of saveBlueprintDetails
 

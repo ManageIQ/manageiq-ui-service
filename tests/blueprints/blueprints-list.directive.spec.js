@@ -8,7 +8,7 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
 
   beforeEach(function () {
     module('app.services', 'app.config', 'app.states', 'gettext');
-    bard.inject('BlueprintsState', 'BlueprintDetailsModal', '$state', 'Session', '$httpBackend');
+    bard.inject('BlueprintsState', 'CollectionsApi', 'BlueprintDetailsModal', '$state', 'Session', '$httpBackend');
   });
 
   beforeEach(inject(function (_$compile_, _$rootScope_, _$document_) {
@@ -85,6 +85,10 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
 
     it('should enable/disable inline publish buttons', function () {
 
+      // row 0 = 'Blueprint One' - published
+      // row 1 = 'Blueprint Three' - no items on canvas
+      // row 2 = 'Blueprint Two' - 3 item on canvas
+
       var rows = element.find('.list-view-pf > .list-group-item');
       expect(rows.length).to.eq($scope.blueprints.length);
 
@@ -93,13 +97,41 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       var secondRowNumItemsStr = angular.element(secondRowNumItems[0]).html();
       secondRowNumItemsStr = secondRowNumItemsStr.substr(0,secondRowNumItemsStr.indexOf(' '));
       expect(secondRowNumItemsStr).to.eq('0');
-
       var disabledPublishButton = angular.element(rows[1]).find('.btn.btn-default.disabled');
       expect(disabledPublishButton.length).to.eq(1);
 
       // Third row has 3 Items on Canvas, so publish button should be enabled
       disabledPublishButton = angular.element(rows[2]).find('.btn.btn-default.disabled');
       expect(disabledPublishButton.length).to.eq(0);
+    });
+
+    it('should list unpublished and published blueprints correctly', function () {
+
+      // row 0 = 'Blueprint One' - published
+      // row 1 = 'Blueprint Three' - no items on canvas
+      // row 2 = 'Blueprint Two' - 3 item on canvas
+
+      var rows = element.find('.list-view-pf > .list-group-item');
+      expect(rows.length).to.eq($scope.blueprints.length);
+
+      // 1st row is 'published'
+      var rowStatus = element.find('#status_0');
+      var rowStatusStr = angular.element(rowStatus[0]).text();
+      expect(rowStatusStr).to.eq('Published');
+      var disabledPublishButton = angular.element(rows[0]).find('.btn.btn-default.disabled');
+      expect(disabledPublishButton.length).to.eq(1);
+      expect($scope.blueprints[0].read_only).to.eq(true);
+
+      // 2nd row is unpublished, and shouldn't be read-only
+      expect($scope.blueprints[1].read_only).to.eq(false);
+
+      // 3rd row is 'draft' and valid for publication
+      rowStatus = element.find('#status_2');
+      rowStatusStr = angular.element(rowStatus[0]).text();
+      expect(rowStatusStr).to.eq('Draft');
+      disabledPublishButton = angular.element(rows[2]).find('.btn.btn-default.disabled');
+      expect(disabledPublishButton.length).to.eq(0);
+      expect($scope.blueprints[2].read_only).to.eq(false);
     });
 
     it('should goto the blueprint editor when a blueprint is clicked', function () {
@@ -138,8 +170,10 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       expect(publishBtn.length).to.eq(1);
     });
 
-    it('should launch the publish dlg when Publish button clicked', function () {
+    it('should launch the publish dlg when Publish button clicked', function (done) {
+      var collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
       var BlueprintDetailsModalSpy = sinon.stub(BlueprintDetailsModal, 'showModal').returns(Promise.resolve());
+
       var rows = element.find('.list-view-pf > .list-group-item');
       expect(rows.length).to.eq($scope.blueprints.length);
 
@@ -149,12 +183,11 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       expect(publishBtn.length).to.eq(1);
 
       publishBtn[0].click();
-
       $scope.$digest();
+      done();
 
-      expect(BlueprintDetailsModalSpy).to.have.been.calledWith(
-          'publish', $scope.blueprints[0]
-      );
+      expect(collectionsApiSpy).to.have.been.called;
+      expect(BlueprintDetailsModalSpy).to.have.been.called;
     });
   });
 });
