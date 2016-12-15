@@ -62,7 +62,7 @@ gulp.task('build', ['optimize', 'images', 'imgs', 'skin-images', 'fonts', 'gette
 /**
  * Testing tasks
  */
-gulp.task('test', ['templatecache'], task('test', {singleRun: true}));
+gulp.task('test', ['templatecache','vet'], task('test', {singleRun: true}));
 gulp.task('testonly', ['templatecache'], task('test', {singleRun: true}));
 gulp.task('autotest', task('test', {singleRun: false}));
 
