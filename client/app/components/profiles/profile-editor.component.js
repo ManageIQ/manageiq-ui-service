@@ -16,7 +16,7 @@
     });
 
   /** @ngInject */
-  function ComponentController(ProfilesState, $scope, $state, lodash, SaveProfileModal) {
+  function ComponentController(ProfilesState, $scope, $state, lodash, SaveModalDialog) {
     var vm = this;
     var listState = 'administration.profiles';
     var detailsState = listState + '.details';
@@ -253,7 +253,7 @@
 
       if (toState.name !== vm.stateName && vm.dirty) {
         vm.saveModalShown = true;
-        SaveProfileModal.showModal(save, doNotSave, cancel);
+        SaveModalDialog.showModal(save, doNotSave, cancel, vm.formValid);
         event.preventDefault();
       }
 

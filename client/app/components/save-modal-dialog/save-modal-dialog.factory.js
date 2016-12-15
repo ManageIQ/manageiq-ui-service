@@ -2,20 +2,20 @@
   'use strict';
 
   angular.module('app.components')
-    .factory('SaveRuleModal', SaveRuleFactory);
+    .factory('SaveModalDialog', SaveModalDialogFactory);
 
   /** @ngInject */
-  function SaveRuleFactory($uibModal) {
-    var modalSaveRule = {
+  function SaveModalDialogFactory($uibModal) {
+    var modalSaveDialog = {
       showModal: showModal,
     };
 
-    return modalSaveRule;
+    return modalSaveDialog;
 
     function showModal(saveCallback, doNotSaveCallback, cancelCallback, okToSave) {
       var modalOptions = {
-        templateUrl: 'app/states/administration/rules/save-rule-modal.html',
-        controller: SaveRuleModalController,
+        templateUrl: 'app/components/save-modal-dialog/save-modal-dialog.html',
+        controller: SaveModalDialogController,
         controllerAs: 'vm',
         resolve: {
           saveCallback: resolveSave,
@@ -46,7 +46,7 @@
   }
 
   /** @ngInject */
-  function SaveRuleModalController(saveCallback, doNotSaveCallback, cancelCallback, okToSave, $uibModalInstance) {
+  function SaveModalDialogController(saveCallback, doNotSaveCallback, cancelCallback, okToSave, $uibModalInstance) {
     var vm = this;
     vm.save = save;
     vm.doNotSave = doNotSave;
