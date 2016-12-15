@@ -37,10 +37,7 @@
 
     var blueprintDirty = false;
 
-    vm.blueprint.read_only = false;
-    if (vm.blueprint.status === 'published') {
-      vm.blueprint.read_only = true;
-    }
+    vm.blueprint.read_only = vm.blueprint.status === 'published';
 
     BlueprintsState.saveOriginalBlueprint(angular.copy(vm.blueprint));
 

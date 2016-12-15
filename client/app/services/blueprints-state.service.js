@@ -359,9 +359,9 @@
 
       var collection = collectionType + '/' + id + '/tags';
 
-      CollectionsApi.query(collection, options).then(loadSuccess, loadFailure);
+      CollectionsApi.query(collection, options).then(success, failure);
 
-      function loadSuccess(response) {
+      function success(response) {
         var tags = [];
         angular.forEach(response.resources, processTag);
 
@@ -381,8 +381,8 @@
         deferred.resolve(tags);
       }
 
-      function loadFailure() {
-        $log.error('There was an error service template tags');
+      function failure() {
+        $log.error('There was an error getting ' + collectionType + ' tags');
         deferred.reject();
       }
 

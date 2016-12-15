@@ -50,10 +50,7 @@
         blueprint.ui_properties.service_catalog.name = categoryName[0].name;
       }
 
-      blueprint.read_only = false;
-      if (blueprint.status === 'published') {
-        blueprint.read_only = true;
-      }
+      blueprint.read_only = blueprint.status === 'published';
     }
 
     vm.blueprintsList = angular.copy(vm.blueprints);

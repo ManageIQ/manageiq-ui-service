@@ -87,12 +87,8 @@
       {"title": __('Action Order'), "active": false},
     ];
 
-    if (vm.blueprint.read_only) {
-      // must be published, switch to Publish tab
-      vm.activeTab = 1;
-    } else {
-      vm.activeTab = 0;
-    }
+    // when read_only, default to Publish tab
+    vm.activeTab = vm.blueprint.read_only ? 1 : 0;
 
     if (action === 'create') {
       vm.modalTitle = __('Create Blueprint');
