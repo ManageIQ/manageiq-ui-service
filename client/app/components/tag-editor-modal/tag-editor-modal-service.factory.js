@@ -17,7 +17,7 @@
         templateUrl: 'app/components/tag-editor-modal/tag-editor-modal.html',
         controller: TagEditorModalController,
         controllerAs: 'vm',
-        size: 'lg',
+        size: 'md',
         resolve: {
           services: resolveServices,
           tags: resolveTags,
