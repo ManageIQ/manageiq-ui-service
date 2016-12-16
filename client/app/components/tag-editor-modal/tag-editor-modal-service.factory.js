@@ -12,14 +12,14 @@
 
     return modalService;
 
-    function showModal(service, tags) {
+    function showModal(services, tags) {
       var modalOptions = {
         templateUrl: 'app/components/tag-editor-modal/tag-editor-modal.html',
         controller: TagEditorModalController,
         controllerAs: 'vm',
         size: 'lg',
         resolve: {
-          service: resolveService,
+          services: resolveServices,
           tags: resolveTags,
         },
       };
@@ -27,8 +27,8 @@
 
       return modal.result;
 
-      function resolveService() {
-        return service;
+      function resolveServices() {
+        return services;
       }
 
       function resolveTags() {
@@ -48,7 +48,7 @@
   }
 
   /** @ngInject */
-  function TagEditorModalController(service, tags, $controller, $uibModalInstance,
+  function TagEditorModalController(services, tags, $controller, $uibModalInstance,
                                     $state, CollectionsApi, EventNotifications) {
     var vm = this;
     var base = $controller('BaseModalController', {
@@ -57,6 +57,7 @@
     angular.extend(vm, base);
 
     vm.save = save;
+    vm.services = Array.isArray(services) ? services : [services];
     vm.modalData = { tags: angular.copy(tags) };
 
     // Override
@@ -65,14 +66,14 @@
         return tag.name;
       });
 
-      var assignData = {
+      var assignPayload = {
         action: 'assign',
         resources: tagNames.map(function(name) {
           return { name: name };
         }),
       };
 
-      var unassignData = {
+      var unassignPayload = {
         action: 'unassign',
         resources: tags.filter(function(tag) {
           return tagNames.indexOf(tag.name) < 0;
@@ -81,16 +82,24 @@
         }),
       };
 
-      return CollectionsApi.post('services', service.id + '/tags', {}, assignData)
-        .then(function(data) {
-          if (unassignData.resources.length > 0) {
-            return CollectionsApi.post('services', service.id + '/tags', {}, unassignData);
-          } else {
-            return data;
-          }
-        })
-        .then(saveSuccess)
-        .catch(saveFailure);
+      vm.services.reduce(function(sequence, service) {
+        return sequence.then(function(data) {
+            if (assignPayload.resources.length > 0) {
+              return CollectionsApi.post('services', service.id + '/tags', {}, assignPayload);
+            } else {
+              return data;
+            }
+          })
+          .then(function(data) {
+            if (unassignPayload.resources.length > 0) {
+              return CollectionsApi.post('services', service.id + '/tags', {}, unassignPayload);
+            } else {
+              return data;
+            }
+          })
+          .then(saveSuccess)
+          .catch(saveFailure);
+        }, Promise.resolve());
 
       function saveSuccess() {
         $uibModalInstance.close();
