@@ -6,6 +6,7 @@
       <img ng-if="!item.picture.image_href" class="icon-list__container__icon" alt="{{ item.name }}"
            src="./images/service.png"/>
     </div>
-    <div class="icon-list__container__name" uib-tooltip=" {{item.name}} " tooltip-placement="bottom">{{item.name}}</div>
+    <div ng-if="item.name" class="icon-list__container__name" uib-tooltip=" {{item.name}} " tooltip-placement="bottom">{{item.name}}</div>
+    <div ng-if="!item.name" class="icon-list__container__name" uib-tooltip=" {{item.description}} " tooltip-placement="bottom">{{item.description}}</div>
   </div>
 </div>
