@@ -1,5 +1,42 @@
 +block(confirmation)
 
+  +element(items-content)
+    position: relative
+
+    .items-content-title
+      color: $color-black
+      padding-left: 20px
+      padding-right: 5px
+      text-decoration: none
+      transition: 250ms
+
+      &.collapsable
+        color: $app-color-medium-blue-2
+        cursor: pointer
+        padding-left: 15px
+
+        &:hover
+          color: $color-medium-blue-3
+
+        &::before
+          content: '\f107'
+          display: block
+          font-family: FontAwesome
+          left: 0
+          position: absolute
+          top: 0
+
+        &.collapsed
+          &::before
+            content: '\f105'
+
+    .items-list
+      list-style: none
+      margin-top: 5px
+      max-height: 200px
+      overflow-y: auto
+      padding-left: 15px
+
   +element(dialog)
     margin: 0
     position: absolute
