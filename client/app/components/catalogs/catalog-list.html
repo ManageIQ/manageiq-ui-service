@@ -8,8 +8,21 @@
       </custom-dropdown>
     </actions>
   </div>
-  <div class="list-view-container section-container">
-    <div pf-list-view
+  <div class="list-view-container section-container"
+       confirmation
+       confirmation-id="confirmDeleteCatalog"
+       confirmation-trigger-value="vm.confirmDelete"
+       confirmation-title="{{'Delete Catalog'|translate}}"
+       confirmation-message="{{vm.deleteConfirmationMessage}}"
+       confirmation-ok-text="{{'Delete'|translate}}"
+       confirmation-on-ok="vm.removeCatalog()"
+       confirmation-on-cancel="vm.cancelRemoveCatalog()"
+       confirmation-ok-style="primary"
+       confirmation-show-cancel="true"
+       confirmation-items-title="{{'Catalogs'|translate}}"
+       confirmation-items="vm.catalogsToDelete"
+       confirmation-item-name-field="name">
+  <div pf-list-view id="my-list"
          config="vm.listConfig"
          items="vm.designerCatalogsList"
          action-buttons="vm.actionButtons"

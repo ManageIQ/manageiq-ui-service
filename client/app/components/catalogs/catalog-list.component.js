@@ -34,6 +34,11 @@
             sortConfig: createSortConfig(),
             actionsConfig: createActionsConfig(),
           },
+          confirmDelete: false,
+          catalogsToDelete: [],
+          deleteConfirmationMessage: '',
+          removeCatalog: removeCatalog,
+          cancelRemoveCatalog: cancelRemoveCatalog,
           listConfig: createListConfig(),
           serviceTemplatesListConfig: createServiceTemplatesConfig(),
           listActionDisable: listActionDisable,
@@ -217,6 +222,54 @@
       }
     }
 
+    function removeCatalog() {
+      var deleteCatalogs;
+
+      if (vm.catalogsToDelete.length > 0) {
+        deleteCatalogs = vm.catalogsToDelete;
+      } else if (vm.catalogToDelete) {
+        deleteCatalogs = [vm.catalogToDelete];
+      }
+
+      if (deleteCatalogs.length > 0) {
+        CatalogsState.deleteCatalogs(deleteCatalogs).then(removeSuccess, removeFailure);
+      }
+      vm.confirmDelete = false;
+      vm.catalogsToDelete.splice(0, vm.catalogsToDelete.length);
+
+      function removeSuccess() {
+        vm.refreshFn();
+      }
+
+      function removeFailure() {
+        vm.refreshFn();
+      }
+    }
+
+    function cancelRemoveCatalog() {
+      vm.catalogToDelete = undefined;
+      vm.catalogsToDelete.splice(0, vm.catalogsToDelete.length);
+      vm.confirmDelete = false;
+    }
+
+    function handleDelete(action, catalog) {
+      vm.catalogToDelete = catalog;
+      vm.confirmDelete = true;
+      vm.deleteConfirmationMessage = sprintf(__('Are you sure you want to delete catalog %s?'),
+        vm.catalogToDelete.name);
+    }
+
+    function deleteSelectedCatalogs() {
+      vm.catalogsToDelete.splice(0, vm.catalogsToDelete.length);
+      angular.forEach(vm.selectedCatalogs, function(selected) {
+        vm.catalogsToDelete.push(selected);
+      });
+
+      vm.confirmDelete = true;
+      vm.deleteConfirmationMessage = sprintf(__('Are you sure you want to delete %d catalogs?'),
+        vm.catalogsToDelete.length);
+    }
+
     function createMenuActions() {
       return [
         {
@@ -224,8 +277,37 @@
           title: __('Edit Catalog'),
           actionFn: handleEdit,
         },
+        {
+          name: __('Delete'),
+          title: __('Delete Catalog'),
+          actionFn: handleDelete,
+        },
       ];
     }
+
+    var createListAction = {
+      name: __('Create'),
+      actionName: 'create',
+      title: __('Create new catalog'),
+      actionFn: addCatalog,
+      isDisabled: false,
+    };
+
+    var editListAction = {
+      name: __('Edit'),
+      actionName: 'edit',
+      title: __('Edit selected catalog'),
+      actionFn: editSelectedCatalog,
+      isDisabled: false,
+    };
+
+    var deleteListAction = {
+      name: __('Delete'),
+      actionName: 'delete',
+      title: __('Delete selected catalogs'),
+      actionFn: deleteSelectedCatalogs,
+      isDisabled: false,
+    };
 
     function createListActions() {
       return [
@@ -234,28 +316,14 @@
           actionName: 'configuration',
           icon: 'fa fa-cog',
           isDisabled: false,
-          actions: [
-            {
-              name: __('Create'),
-              actionName: 'create',
-              title: __('Create new catalog'),
-              actionFn: addCatalog,
-              isDisabled: false,
-            },
-            {
-              name: __('Edit'),
-              actionName: 'edit',
-              title: __('Edit selected catalog'),
-              actionFn: editSelectedCatalog,
-              isDisabled: false,
-            },
-          ],
+          actions: [createListAction, editListAction, deleteListAction],
         },
       ];
     }
 
     function listActionDisable(config, items) {
-      config.actions[1].isDisabled = items.length !== 1;
+      editListAction.isDisabled = items.length !== 1;
+      deleteListAction.isDisabled = items.length < 1;
     }
 
     function createFilterConfig() {

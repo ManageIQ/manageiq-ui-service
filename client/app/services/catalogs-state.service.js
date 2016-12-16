@@ -196,6 +196,28 @@
       return CollectionsApi.post('service_catalogs/' + catalogId + '/service_templates', null, {}, editObj).then(editSuccess, editFailure);
     };
 
+    catalogState.deleteCatalogs = function(catalogs) {
+      var catalogIds = [];
+      for (var i = 0; i < catalogs.length; i++) {
+        catalogIds.push({id: catalogs[i].id});
+      }
+
+      var options = {
+        action: "delete",
+        resources: catalogIds,
+      };
+
+      function success() {
+        EventNotifications.success(__('Catalog(s) were succesfully deleted.'));
+      }
+
+      function failure() {
+        EventNotifications.error(__('There was an error deleting the catalog(s).'));
+      }
+
+      return CollectionsApi.post('service_catalogs', null, {}, options).then(success, failure);
+    };
+
     return catalogState;
   }
 })();

@@ -7,6 +7,19 @@
   </div>
   <div class="modal-body">
     <p class="confirmation__message">{{ ::vm.message }}</p>
+    <div class="confirmation__items-content" ng-if="vm.items && vm.items.length > 0">
+      <a class="items-content-title collapsable" ng-if="vm.useCollapse"
+         ng-class="{'collapsed': !vm.showItems}" ng-click="vm.toggleShowItems()">
+        {{vm.showItems ? 'Hide' : 'Show' | translate}} {{vm.itemsTitle}}
+      </a>
+      <div ng-class="{'collapse': !vm.showItems && vm.useCollapse}">
+        <ul class="items-list">
+          <li class="" ng-repeat="item in vm.items track by $index">
+            <span>{{item[vm.itemNameField]}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <div class="confirmation__buttons">

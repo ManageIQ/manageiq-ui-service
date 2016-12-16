@@ -22,6 +22,9 @@
         okStyle: '@?confirmationOkStyle',
         confirmIf: '&?confirmationIf',
         showCancel: '=?confirmationShowCancel',
+        itemsTitle: '@?confirmationItemsTitle',
+        items: '=?confirmationItems',
+        itemNameField: '@?confirmationItemNameField',
       },
       link: link,
       controller: ConfirmationController,
@@ -100,6 +103,11 @@
       vm.activate = activate;
       vm.onTrigger = onTrigger;
 
+      vm.collapseItemsThreshold = 5;
+      vm.toggleShowItems = function() {
+        vm.showItems = !vm.showItems;
+      };
+
       function activate(api) {
         angular.extend(vm, api);
         vm.position = angular.isDefined(vm.position) ? vm.position : 'top-center';
@@ -116,6 +124,9 @@
       function onTrigger() {
         var position = getModalPosition();
         var modal;
+
+        vm.showItems = false;
+        vm.useCollapse = angular.isArray(vm.items) && (vm.items.length > vm.collapseItemsThreshold);
 
         if (vm.confirmIf()) {
           vm.left = position.left;

@@ -197,6 +197,40 @@ describe('app.services.CatalogsState', function() {
         done();
       });
     });
+
+    it('should post to the API to delete  catalogs and add a success notification on success', function(done) {
+      collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
+
+      CatalogsState.deleteCatalogs([{id: 1}, {id: 2}]).then(function(response) {
+        expect(collectionsApiSpy).to.have.been.calledWith(
+          'service_catalogs', null, {},
+          {
+            action: 'delete',
+            resources: [{id: 1}, {id: 2}],
+          }
+        );
+        expect(notificationsSuccessSpy).to.have.been.called;
+        expect(notificationsErrorSpy).not.to.have.been.called;
+        done();
+      });
+    });
+
+    it('should post to the API to delete catalogs and add an error notification on failure', function(done) {
+      collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(errorResponse));
+
+      CatalogsState.deleteCatalogs([{id: 1}, {id: 2}]).then(function(response) {
+        expect(collectionsApiSpy).to.have.been.calledWith(
+          'service_catalogs', null, {},
+          {
+            action: 'delete',
+            resources: [{id: 1}, {id: 2}],
+          }
+        );
+        expect(notificationsSuccessSpy).not.to.have.been.called;
+        expect(notificationsErrorSpy).to.have.been.called;
+        done();
+      });
+    });
   });
 });
 
