@@ -16,7 +16,7 @@
         size: 'md',
         resolve: {
           requests: resolveRequests,
-          modalType: resolveModalType
+          modalType: resolveModalType,
         },
       };
       var modal = $uibModal.open(modalOptions);
@@ -55,10 +55,6 @@
         action: vm.modalType === 'approve' ? 'approve' : 'deny',
         resources: vm.requests,
       };
-
-      if (vm.modalType === 'deny') {
-
-      }
 
       CollectionsApi.post('requests', '', {}, data).then(saveSuccess, saveFailure);
 
