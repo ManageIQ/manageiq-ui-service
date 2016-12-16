@@ -70,7 +70,7 @@
 
     vm.listActions = [
       {
-        name: __('Configuration'),
+        title: __('Configuration'),
         actionName: 'configuration',
         icon: 'fa fa-cog',
         actions: [
@@ -99,7 +99,7 @@
         ],
         isDisabled: false,
       }, {
-        name: __('Policy'),
+        title: __('Policy'),
         actionName: 'policy',
         icon: 'fa fa-shield',
         actions: [
@@ -114,7 +114,7 @@
         ],
         isDisabled: false,
       }, {
-        name: __('Lifecycle'),
+        title: __('Lifecycle'),
         actionName: 'lifecycle',
         icon: 'fa fa-recycle',
         actions: [

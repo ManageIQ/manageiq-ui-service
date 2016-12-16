@@ -15,7 +15,7 @@
     });
 
   /** @ngInject */
-  function ComponentController(RulesState, SaveRuleModal, $state, lodash, $timeout, $log, $scope) {
+  function ComponentController(RulesState, SaveModalDialog, $state, lodash, $timeout, $log, $scope) {
     var vm = this;
     vm.operators = [
       {
@@ -190,7 +190,7 @@
           editedRule = vm.arbitrationRules[0];
         }
         vm.saveModalShown = true;
-        SaveRuleModal.showModal(save, doNotSave, cancel, vm.okToSave);
+        SaveModalDialog.showModal(save, doNotSave, cancel, vm.okToSave);
         event.preventDefault();
       }
 

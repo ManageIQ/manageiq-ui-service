@@ -23,6 +23,7 @@
     "id": 2,
     "name": "2",
     "description": "service template 2",
+    "service_template_catalog_id": "2",
     "picture": {
       "id": 2,
       "image_href": "http://somehost/pictures/2.png"
@@ -33,6 +34,7 @@
     "id": 22,
     "name": "22",
     "description": "service template 22",
+    "service_template_catalog_id": "2",
     "picture": {
       "id": 22,
       "image_href": "http://somehost/pictures/22.png"

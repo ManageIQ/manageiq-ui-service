@@ -5,7 +5,7 @@ describe('app.components.ProfileEditorDirective', function() {
 
   beforeEach(function() {
     module('app.services', 'app.config', 'app.states', 'app.components', 'gettext');
-    bard.inject('$state', 'Session', '$httpBackend', 'ProfilesState', 'SaveProfileModal', '$timeout');
+    bard.inject('$state', 'Session', '$httpBackend', 'ProfilesState', 'SaveModalDialog', '$timeout');
   });
 
   beforeEach(inject(function(_$compile_, _$rootScope_, _$document_) {
@@ -438,7 +438,7 @@ describe('app.components.ProfileEditorDirective', function() {
     it('should ask for confirmation when cancelling after edits are made', function() {
       $state.go('administration.profiles.editor');
       var stateGoSpy = sinon.spy($state, 'go');
-      var saveModalSpy = sinon.stub(SaveProfileModal, 'showModal').returns(Promise.resolve());
+      var saveModalSpy = sinon.stub(SaveModalDialog, 'showModal').returns(Promise.resolve());
       var options = element.find('.ss-form .form-group .bootstrap-select .dropdown-menu.inner');
       expect(options.length).to.eq(8);
 
