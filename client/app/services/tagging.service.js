@@ -32,11 +32,12 @@
       return Promise.all(selectedResources.reduce(function(allPromises, resource) {
         allPromises.push(postTagPayload(resource, assignPayload));
         allPromises.push(postTagPayload(resource, unassignPayload));
+
         return allPromises;
       }, []));
 
       function tagName(tag) {
-        return tag.name
+        return tag.name;
       }
 
       function toTagObject(tag) {
@@ -89,11 +90,11 @@
       }
 
       function isValidTag(tagResponse) {
-        return tagResponse.categorization &&
-          tagResponse.categorization.display_name &&
-          tagResponse.category &&
-          tagResponse.category.id &&
-          tagResponse.category.description;
+        return tagResponse.categorization
+          && tagResponse.categorization.display_name
+          && tagResponse.category
+          && tagResponse.category.id
+          && tagResponse.category.description;
       }
     }
   }

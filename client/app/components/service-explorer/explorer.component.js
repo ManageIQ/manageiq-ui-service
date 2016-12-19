@@ -475,11 +475,11 @@
     }
 
     function editTags() {
-      var extractSharedTagsFromSelectedServices =
-        lodash.partial(taggingService.findSharedTags, vm.selectedItemsList);
+      var extractSharedTagsFromSelectedServices
+        = lodash.partial(taggingService.findSharedTags, vm.selectedItemsList);
 
-      var launchTagEditorForSelectedServices =
-        lodash.partial(TagEditorModal.showModal, vm.selectedItemsList);
+      var launchTagEditorForSelectedServices
+        = lodash.partial(TagEditorModal.showModal, vm.selectedItemsList);
 
       return taggingService.queryAvailableTags()
         .then(extractSharedTagsFromSelectedServices)

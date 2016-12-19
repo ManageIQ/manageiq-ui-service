@@ -47,7 +47,7 @@
     angular.extend(vm, base);
 
     vm.save = save;
-    vm.services = Array.isArray(services) ? services : [services];
+    vm.services = angular.isArray(services) ? services : [services];
     vm.modalData = { tags: angular.copy(tags) };
 
     // Override
