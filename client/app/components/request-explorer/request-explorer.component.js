@@ -199,6 +199,7 @@
     }
 
     function applyFilters(filters) {
+      vm.selectedItemsList = [];
       vm.listDataCopy = ListView.applyFilters(filters, vm.listDataCopy, vm.listData, RequestsState, requestMatchesFilter);
       vm.fetchData(vm.limit);
 
