@@ -17,7 +17,7 @@
     "sinon": "http://sinonjs.org/releases/sinon-1.15.4.js"
   },
   "dependencies": {
-    "jquery": "^2.1.4",
+    "jquery": "^3.1.1",
     "angular": "~1.5.8",
     "angular-animate": "~1.5.8",
     "angular-cookies": "~1.5.8",
