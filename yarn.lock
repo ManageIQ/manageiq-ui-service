@@ -3998,13 +3998,17 @@ jquery-match-height@^0.7.0, jquery-match-height@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/jquery-match-height/-/jquery-match-height-0.7.0.tgz#351e51f161ccef7de08ae64ada8c8dc5c1890cca"
 
-"jquery@>= 2.1.x", jquery@>=1.10, jquery@>=1.7, jquery@>=1.7.0, jquery@>=1.7.1, jquery@>=1.8, jquery@>=1.9.0, "jquery@^1.8.3 || ^2.0", jquery@^2.1.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
+"jquery@>= 2.1.x", jquery@>=1.10, jquery@>=1.7, jquery@>=1.7.0, jquery@>=1.7.1, jquery@>=1.8, jquery@>=1.9.0, jquery@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
 
 "jquery@>=1.8.3 <2.2.0", jquery@~2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.1.4.tgz#228bde698a0c61431dc2630a6a154f15890d2317"
+
+"jquery@^1.8.3 || ^2.0":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
 
 js-base64@^2.1.9:
   version "2.1.9"
@@ -4605,7 +4609,11 @@ lodash@3.7.x:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.7.0.tgz#3678bd8ab995057c07ade836ed2ef087da811d45"
 
-lodash@3.x, lodash@^3.10.1, lodash@^3.2.0, lodash@^3.5.0, lodash@^3.7.0, lodash@^3.8.0, lodash@~3.10.0:
+lodash@3.x, lodash@~3.9.0:
+  version "3.9.3"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.9.3.tgz#0159e86832feffc6d61d852b12a953b99496bd32"
+
+lodash@^3.10.1, lodash@^3.2.0, lodash@^3.5.0, lodash@^3.7.0, lodash@^3.8.0, lodash@~3.10.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
@@ -4616,10 +4624,6 @@ lodash@^4.0.0, lodash@^4.0.1, lodash@^4.12.0, lodash@^4.13.1, lodash@^4.14.0, lo
 lodash@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-1.0.2.tgz#8f57560c83b59fc270bd3d561b690043430e2551"
-
-lodash@~3.9.0:
-  version "3.9.3"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.9.3.tgz#0159e86832feffc6d61d852b12a953b99496bd32"
 
 lodash@~4.13.1:
   version "4.13.1"
