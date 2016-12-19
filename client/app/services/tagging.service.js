@@ -74,13 +74,13 @@
       };
     }
 
-    function queryAvailableTags() {
+    function queryAvailableTags(resourceUrl) {
       var queryOptions = {
         expand: 'resources',
         attributes: ['categorization', 'category'],
       };
 
-      return CollectionsApi.query('tags', queryOptions)
+      return CollectionsApi.query(resourceUrl || 'tags', queryOptions)
         .then(filterValidTags);
 
       function filterValidTags(response) {

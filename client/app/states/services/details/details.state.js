@@ -62,21 +62,14 @@
 
     return CollectionsApi.get('services', $stateParams.serviceId, options);
   }
-  function resolveTags($stateParams, CollectionsApi) {
-    var requestAttributes = [
-      'categorization',
-      'classification',
-      'category',
-    ];
-    var options = {
-      attributes: requestAttributes,
-      decorators: [],
-      expand: 'resources',
-    };
-    var serviceUrl = $stateParams.serviceId + '/tags/';
 
-    return CollectionsApi.get('services', serviceUrl, options);
+  /** @ngInject */
+  function resolveTags($stateParams, taggingService) {
+    var serviceUrl = 'services/' + $stateParams.serviceId + '/tags/';
+
+    return taggingService.queryAvailableTags(serviceUrl);
   }
+
   /** @ngInject */
   function StateController($state, service, tags, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal,
                            TagEditorModal, EventNotifications, Consoles, Chargeback, PowerOperations) {
@@ -215,7 +208,7 @@
     }
 
     function tagEditorModal() {
-      TagEditorModal.showModal(vm.service, vm.tags.resources);
+      TagEditorModal.showModal(vm.service, vm.tags);
     }
 
     function gotoCatalogItem() {

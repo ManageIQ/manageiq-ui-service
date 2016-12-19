@@ -224,8 +224,8 @@
          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
               <div class="form-horizontal">
                 <div class="form-group">
-                  <div ng-repeat="tag in ::vm.tags.resources" class="redhat-tags">
-                    <i class="fa fa-tag pficon"></i>{{tag.category.description}}: {{tag.classification.description}}
+                  <div ng-repeat="tag in ::vm.tags" class="redhat-tags">
+                    <i class="fa fa-tag pficon"></i>{{tag.categorization.displayName}}
                   </div>
                 </div>
               </div>

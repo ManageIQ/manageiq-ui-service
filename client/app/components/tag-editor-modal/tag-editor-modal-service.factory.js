@@ -5,7 +5,7 @@
     .factory('TagEditorModal', TagEditorFactory);
 
   /** @ngInject */
-  function TagEditorFactory($uibModal, taggingService) {
+  function TagEditorFactory($uibModal) {
     var modalService = {
       showModal: showModal,
     };
@@ -32,7 +32,7 @@
       }
 
       function resolveTags() {
-        return tags.map(taggingService.parseTag);
+        return tags;
       }
     }
   }
