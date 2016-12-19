@@ -13,7 +13,7 @@
 
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
-                               CollectionsApi, EventNotifications, OwnershipServiceModal, EditServiceModal,
+                               CollectionsApi, taggingService, EventNotifications, OwnershipServiceModal, EditServiceModal,
                                RetireServiceModal, TagEditorModal, RetireRemoveServiceModal, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
@@ -475,40 +475,15 @@
     }
 
     function editTags() {
-      CollectionsApi.query('tags', { expand: 'resources', attributes: ['classification', 'category'] })
-        .then(function(response) {
-          return response.resources.filter(function(tag) {
-            return tag.classification &&
-              tag.classification.description &&
-              tag.category &&
-              tag.category.id &&
-              tag.category.description;
-          }).map(function(tag) {
-            return {
-              id: tag.id,
-              name: tag.name,
-              category: {
-                id: tag.category.id,
-                description: tag.category.description,
-              },
-              classification: {
-                description: tag.classification.description,
-              },
-            };
-          });
-        })
-        .then(function(allTags) {
-          return allTags.filter(function(tag) {
-            return vm.selectedItemsList.every(function(service) {
-              return service.tags.some(function(serviceTag) {
-                return tag.name === serviceTag.name;
-              });
-            });
-          });
-        })
-        .then(function(commonTags) {
-          TagEditorModal.showModal(vm.selectedItemsList, { resources: commonTags });
-        });
+      var extractSharedTagsFromSelectedServices =
+        lodash.partial(taggingService.findSharedTags, vm.selectedItemsList);
+
+      var launchTagEditorForSelectedServices =
+        lodash.partial(TagEditorModal.showModal, vm.selectedItemsList);
+
+      return taggingService.queryAvailableTags()
+        .then(extractSharedTagsFromSelectedServices)
+        .then(launchTagEditorForSelectedServices);
     }
 
     function removeServices() {

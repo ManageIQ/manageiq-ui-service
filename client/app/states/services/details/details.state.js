@@ -64,6 +64,7 @@
   }
   function resolveTags($stateParams, CollectionsApi) {
     var requestAttributes = [
+      'categorization',
       'classification',
       'category',
     ];
@@ -214,7 +215,7 @@
     }
 
     function tagEditorModal() {
-      TagEditorModal.showModal(vm.service, vm.tags);
+      TagEditorModal.showModal(vm.service, vm.tags.resources);
     }
 
     function gotoCatalogItem() {

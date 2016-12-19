@@ -5,7 +5,7 @@
     .factory('TagEditorModal', TagEditorFactory);
 
   /** @ngInject */
-  function TagEditorFactory($uibModal) {
+  function TagEditorFactory($uibModal, taggingService) {
     var modalService = {
       showModal: showModal,
     };
@@ -32,24 +32,14 @@
       }
 
       function resolveTags() {
-        // taggingWidget needs tagsOfItems to have this shape
-        return tags.resources.map(function(resource) {
-          return {
-            id: resource.id,
-            name: resource.name,
-            category: { id: resource.category.id },
-            categorization: {
-              displayName: resource.category.description + ': ' + resource.classification.description,
-            },
-          };
-        });
+        return tags.map(taggingService.parseTag);
       }
     }
   }
 
   /** @ngInject */
   function TagEditorModalController(services, tags, $controller, $uibModalInstance,
-                                    $state, CollectionsApi, EventNotifications) {
+                                    $state, taggingService, EventNotifications) {
     var vm = this;
     var base = $controller('BaseModalController', {
       $uibModalInstance: $uibModalInstance,
@@ -62,44 +52,9 @@
 
     // Override
     function save() {
-      var tagNames = vm.modalData.tags.map(function(tag) {
-        return tag.name;
-      });
-
-      var assignPayload = {
-        action: 'assign',
-        resources: tagNames.map(function(name) {
-          return { name: name };
-        }),
-      };
-
-      var unassignPayload = {
-        action: 'unassign',
-        resources: tags.filter(function(tag) {
-          return tagNames.indexOf(tag.name) < 0;
-        }).map(function(tag) {
-          return { name: tag.name };
-        }),
-      };
-
-      vm.services.reduce(function(sequence, service) {
-        return sequence.then(function(data) {
-            if (assignPayload.resources.length > 0) {
-              return CollectionsApi.post('services', service.id + '/tags', {}, assignPayload);
-            } else {
-              return data;
-            }
-          })
-          .then(function(data) {
-            if (unassignPayload.resources.length > 0) {
-              return CollectionsApi.post('services', service.id + '/tags', {}, unassignPayload);
-            } else {
-              return data;
-            }
-          })
-          .then(saveSuccess)
-          .catch(saveFailure);
-        }, Promise.resolve());
+      return taggingService.assignTags('services', vm.services, tags, vm.modalData.tags)
+        .then(saveSuccess)
+        .catch(saveFailure);
 
       function saveSuccess() {
         $uibModalInstance.close();
