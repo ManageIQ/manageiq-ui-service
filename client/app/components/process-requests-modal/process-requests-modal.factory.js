@@ -29,20 +29,25 @@
       }
 
       /** @ngInject */
-      function resolveModalType() {
-        return modalType;
+      function resolveModalType(lodash) {
+        return lodash.find(requests, isPending) ? 'invalid' : modalType;
+
+        function isPending(item) {
+          return item.approval_state === 'approved' || item.approval_state === 'denied';
+        }
       }
     }
   }
 
   /** @ngInject */
-  function ModalController($state, $uibModalInstance, CollectionsApi, EventNotifications, requests, modalType) {
+  function ModalController($state, $uibModalInstance, lodash, CollectionsApi, EventNotifications, requests, modalType) {
     var vm = this;
 
     angular.extend(vm, {
+      modalData: {},
       requests: requests,
       modalType: modalType,
-      save: save,
+      submit: submit,
       cancel: cancel,
     });
 
@@ -50,13 +55,18 @@
       $uibModalInstance.dismiss();
     }
 
-    function save() {
+    function submit() {
       var data = {
         action: vm.modalType === 'approve' ? 'approve' : 'deny',
         resources: vm.requests,
       };
 
+      lodash.forEach(data.resources, addReason);
       CollectionsApi.post('requests', '', {}, data).then(saveSuccess, saveFailure);
+
+      function addReason(item) {
+        item.reason = vm.modalData.reason;
+      }
 
       function saveSuccess() {
         $uibModalInstance.close();
