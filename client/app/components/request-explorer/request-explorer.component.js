@@ -51,9 +51,9 @@
         },
         configuration: [
           {
-            title: __('Configuration'),
-            actionName: 'configuration',
-            icon: 'fa fa-cog',
+            title: __('Lifecycle'),
+            actionName: 'lifecycle',
+            icon: 'fa fa-recycle',
             actions: [
               {
                 icon: 'fa fa-check',
