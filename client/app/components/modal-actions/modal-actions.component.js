@@ -24,7 +24,7 @@
     var vm = this;
 
     angular.extend(vm, {
-      customButtonTranslated:  sprintf(__("%s"), vm.customButton),
+      customButtonTranslated: sprintf(__("%s"), vm.customButton),
       isPristine: isPristine,
       cancelAction: cancelAction,
       emitOriginal: emitOriginal,

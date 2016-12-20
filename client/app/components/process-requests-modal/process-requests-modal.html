@@ -16,8 +16,8 @@
   </form>
   <div ng-if="vm.modalType === 'invalid'">
     <i class="pf pficon-warning-triangle-o"></i>
-    <span>{{ "Warning: One or more of the selected requests have already been approved or denied.
-      Please remove these requests from the selection and retry." | translate }}</span>
+    <span>{{ "Warning: One or more of the selected requests have already been processed.
+      Remove these requests and retry." | translate }}</span>
   </div>
   <hr>
   <h4 translate>Affected Requests</h4>
@@ -30,6 +30,10 @@
     confirmation-modal="true"
     on-cancel="vm.cancel()"
     on-ok="vm.submit()">
+  </modal-actions>
+  <modal-actions
+    ng-if="vm.modalType === 'invalid'"
+    on-cancel="vm.cancel()">
   </modal-actions>
 </div>
 

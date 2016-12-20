@@ -56,17 +56,17 @@
             icon: 'fa fa-cog',
             actions: [
               {
-                icon: 'pf pficon-ok',
-                name: __('Approve Selected'),
+                icon: 'fa fa-check',
+                name: __('Approve'),
                 actionName: 'approve',
-                title: __('Approve Selected'),
+                title: __('Approve'),
                 actionFn: approveRequests,
                 isDisabled: false,
               }, {
-                icon: 'pf pficon-error-circle-o',
-                name: __('Deny Selected'),
+                icon: 'fa fa-ban',
+                name: __('Deny'),
                 actionName: 'deny',
-                title: __('Deny Selected'),
+                title: __('Deny'),
                 actionFn: denyRequests,
                 isDisabled: false,
               },
@@ -74,6 +74,7 @@
             isDisabled: false,
           },
         ],
+        listActionDisable: listActionDisable,
       });
 
       vm.fetchData = fetchData;
@@ -242,6 +243,10 @@
 
     function denyRequests() {
       ProcessRequestsModal.showModal(vm.selectedItemsList, "deny");
+    }
+
+    function listActionDisable(config, items) {
+      items.length <= 0 ? config.isDisabled = true : config.isDisabled = false;
     }
   }
 })();
