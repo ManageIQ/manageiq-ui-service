@@ -1,4 +1,4 @@
-describe.only('app.services.taggingService', function() {
+describe('app.services.taggingService', function() {
   var service;
   var collectionsApiMock;
 

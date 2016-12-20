@@ -5,7 +5,7 @@
     .factory('taggingService', taggingService);
 
   /** @ngInject */
-  function taggingService(CollectionsApi, lodash) {
+  function taggingService(CollectionsApi, lodash, exception) {
     var service = {
       assignTags: assignTags,
       findSharedTags: findSharedTags,
@@ -94,7 +94,8 @@
       };
 
       return CollectionsApi.query(resourceUrl || 'tags', queryOptions)
-        .then(filterValidTags);
+        .then(filterValidTags)
+        .catch(exception.catcher('Request failed for #queryAvailableTags'));
 
       function filterValidTags(response) {
         return response.resources
