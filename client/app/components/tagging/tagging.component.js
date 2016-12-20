@@ -13,7 +13,7 @@
     });
 
   /** @ngInject */
-  function TaggingController($scope, $filter, $q, $log, CollectionsApi) {
+  function TaggingController($scope, $filter, $q, $log, CollectionsApi, taggingService) {
     var vm = this;
 
     vm.tags = {};
@@ -132,18 +132,9 @@
 
       // Add Selected Tag
       if (!matchingTag.length) {
-        vm.tagsOfItem.push(getSmTagObj(vm.tags.selectedTag));
+        var parsedTag = taggingService.parseTag(vm.tags.selectedTag);
+        vm.tagsOfItem.push(parsedTag);
       }
     };
-
-    function getSmTagObj(tag) {
-      return {
-        id: tag.id,
-        category: {id: tag.category.id},
-        categorization: {
-          displayName: tag.categorization.display_name,
-        },
-      };
-    }
   }
 })();

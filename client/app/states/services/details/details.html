@@ -79,6 +79,7 @@
                   <!--<a href="#" title="Suspend this service" ng-click="vm.handlePowerOperation('suspend', vm.service)">{{'Suspend'|translate}}</a>-->
                 <!--</li>-->
                 <li><a href="#" title="Edit this service" ng-click="vm.editServiceModal()" ng-show="vm.showEditService">{{'Edit'|translate}}</a></li>
+                <li><a href="#" title="Edit tags" ng-click="vm.tagEditorModal()" ng-show="vm.showTagEditor">{{'Edit Tags'|translate}}</a></li>
                 <li><a href="#" title="Set Ownership" ng-click="vm.ownershipServiceModal()" ng-show="vm.showSetOwnership">{{'Set Ownership'|translate}}</a></li>
                 <li><a href="#" ng-if="vm.service.reconfigure" ng-click="vm.reconfigureService(vm.service.id)" ng-show="vm.showReconfigureService" translate>Reconfigure</a></li>
               </ul>
@@ -223,8 +224,8 @@
          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
               <div class="form-horizontal">
                 <div class="form-group">
-                  <div ng-repeat="tag in ::vm.tags.resources" class="redhat-tags">
-                    <i class="fa fa-tag pficon"></i>{{tag.category.description}}: {{tag.classification.description}}
+                  <div ng-repeat="tag in ::vm.tags" class="redhat-tags">
+                    <i class="fa fa-tag pficon"></i>{{tag.categorization.displayName}}
                   </div>
                 </div>
               </div>

@@ -118,6 +118,7 @@
       var features = {
         serviceView: {show: angular.isDefined(productFeatures.service_view)},
         serviceEdit: {show: angular.isDefined(productFeatures.service_edit)},
+        serviceTag: {show: angular.isDefined(productFeatures.service_tag)},
         serviceDelete: {show: angular.isDefined(productFeatures.service_delete)},
         serviceReconfigure: {show: angular.isDefined(productFeatures.service_reconfigure)},
         serviceRetireNow: {show: angular.isDefined(productFeatures.service_retire_now)},
@@ -125,7 +126,7 @@
         serviceOwnership: {show: angular.isDefined(productFeatures.service_ownership)},
       };
       model.actionFeatures = features;
-      
+
       return model.actionFeatures;
     }
 

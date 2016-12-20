@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 class="modal-title" id="myModalLabel" translate>Edit Tags</h4>
+</div>
+
+<div class="modal-body">
+  <form name="tagEditorForm" class="form-horizontal">
+    <div
+      pf-form-group
+      pf-input-class="col-sm-10"
+      pf-label="{{'Tags'|translate}}">
+        <tagging-widget tags-of-item="vm.modalData.tags"></tagging-widget>
+    </div>
+  </form>
+
+  <hr>
+
+  <h4 translate>Affected Services</h4>
+  <icon-list items="vm.services"></icon-list>
+</div>
+
+<div class="modal-footer">
+  <modal-actions
+    modal-data="vm.modalData"
+    reset-modal="true"
+    on-cancel="vm.cancel()"
+    on-reset="vm.reset($event)"
+    on-save="vm.save()">
+  </modal-actions>
+</div>
