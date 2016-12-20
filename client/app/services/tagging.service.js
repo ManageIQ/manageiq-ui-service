@@ -15,6 +15,9 @@
 
     return service;
 
+    // High-level method to declaratively assign tags to resource(s). Current
+    // tagging APIs require separate requests for assignment of new tags and
+    // unassignment of existing tags.
     function assignTags(collection, selectedResources, originalTags, tagsToAssign) {
       var assignPayload = {
         action: 'assign',
@@ -28,6 +31,11 @@
         resources: tagsToUnassign.map(toTagObject),
       };
 
+      // Resolve when all assignment and unassignment requests resolve or reject
+      // if/when the first request rejects. This ensures that from the UI only a
+      // single notification is given for success/failure and keeps the
+      // assignment as an implementation detail.
+      //
       // TODO: Swap out with more efficient implementation after API update
       return Promise.all(selectedResources.reduce(function(allPromises, resource) {
         allPromises.push(postTagPayload(resource, assignPayload));
@@ -51,6 +59,7 @@
       }
     }
 
+    // Returns the common list of tags between all selected resources.
     function findSharedTags(selectedResources, availableTags) {
       return availableTags.filter(function(tag) {
         return selectedResources.every(function(resource) {
@@ -61,6 +70,7 @@
       });
     }
 
+    // Ensures that tags have the correct shape to be processed.
     function parseTag(tagResponse) {
       return {
         id: tagResponse.id,
@@ -74,6 +84,9 @@
       };
     }
 
+    // With no arguments query all available tags, with a single resource url
+    // queries all available tags for that resource. The result is filtered of
+    // invalid tags (missing required properties).
     function queryAvailableTags(resourceUrl) {
       var queryOptions = {
         expand: 'resources',
