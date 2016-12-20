@@ -1,32 +1,37 @@
-  <button type="button"
-          class="btn btn-default"
-          ng-click="vm.cancelAction()"
-          translate>Cancel
-  </button>
-  <button ng-if="vm.resetModal && vm.modalData"
-          type="button"
-          class="btn btn-default"
-          ng-click="vm.emitOriginal()"
-          ng-disabled="vm.isPristine()"
-          translate>Reset
-  </button>
-  <button ng-if="!vm.confirmationModal && vm.modalData"
-          type="button"
-          class="btn btn-primary"
-          ng-click="vm.saveResource()"
-          ng-disabled="vm.isPristine()"
-          translate>Save
-  </button>
-  <button ng-if="vm.confirmationModal && !vm.modalData"
-          type="button"
-          class="btn btn-primary"
-          ng-click="vm.affirmConfirmation()"
-          translate>OK
-  </button>
-  <button ng-if="vm.confirmationModal && vm.modalData"
-          type="button"
-          class="btn btn-primary"
-          ng-disabled="vm.isPristine()"
-          ng-click="vm.affirmConfirmation()"
-          translate>OK
-  </button>
+<button type="button"
+        class="btn btn-default"
+        ng-click="vm.cancelAction()"
+        translate>Cancel
+</button>
+<button ng-if="vm.resetModal && vm.modalData"
+        type="button"
+        class="btn btn-default"
+        ng-click="vm.emitOriginal()"
+        ng-disabled="vm.isPristine()"
+        translate>Reset
+</button>
+<button ng-if="!vm.confirmationModal && vm.modalData"
+        type="button"
+        class="btn btn-primary"
+        ng-click="vm.saveResource()"
+        ng-disabled="vm.isPristine()"
+        translate>Save
+</button>
+<button ng-if="vm.confirmationModal && !vm.modalData"
+        type="button"
+        class="btn btn-primary"
+        ng-click="vm.affirmConfirmation()"
+        translate>OK
+</button>
+<button ng-if="vm.confirmationModal && vm.modalData"
+        type="button"
+        class="btn btn-primary"
+        ng-disabled="vm.isPristine()"
+        ng-click="vm.affirmConfirmation()"
+        translate>OK
+</button>
+<button ng-if="vm.customButton"
+        type="button"
+        class="btn btn-primary"
+        ng-click="vm.customButtonAction()">{{ vm.customButtonTranslated }}
+</button>
