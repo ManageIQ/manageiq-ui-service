@@ -1,5 +1,5 @@
 (function() {
-  'use strict';
+'use strict';
 
   angular.module('app.states')
     .run(appRun);
@@ -43,6 +43,11 @@
       'service_template',
       'chargeback_report',
       'power_state',
+      'power_status',
+      'created_at',
+      'options',
+      'name',
+      'guid',
     ];
     var options = {
       attributes: requestAttributes,
