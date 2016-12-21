@@ -2,8 +2,10 @@ describe('Retire Service Modal', function() {
   beforeEach(module('app.components', 'gettext'));
 
   describe('controller', function() {
-    var $componentController;
-    var $scope;
+    let $componentController;
+    let $scope;
+    let state;
+    let ctrl;
 
     beforeEach(inject(function($rootScope, $injector, _$componentController_) {
       $scope = $rootScope.$new();

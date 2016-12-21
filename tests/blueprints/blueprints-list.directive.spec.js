@@ -1,8 +1,9 @@
 describe('app.components.blueprints.BlueprintsListDirective', function() {
-  var $scope;
-  var $compile;
-  var element;
-  var successResponse = {
+  let $scope;
+  let $compile;
+  let $document;
+  let element;
+  let successResponse = {
     message: 'Success!'
   };
 

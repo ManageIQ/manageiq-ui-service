@@ -1,10 +1,11 @@
 describe('app.components.ProfilesListDirective', function() {
-  var $scope;
-  var $compile;
-  var element;
-  var getProfilesSpy;
-  var removeProfilSpy;
-  var successResponse = {
+  let $scope;
+  let $compile;
+  let $document;
+  let element;
+  let getProfilesSpy;
+  let removeProfilSpy;
+  let successResponse = {
     message: 'Success!'
   };
 

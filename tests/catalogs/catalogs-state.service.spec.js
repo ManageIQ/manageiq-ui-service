@@ -11,7 +11,7 @@ describe('app.services.CatalogsState', function() {
       message: "Success"
     };
     var errorResponse = 'error';
-
+    var collectionsApiSpy;
 
     beforeEach(function () {
       bard.inject('CatalogsState', 'CollectionsApi', 'EventNotifications');

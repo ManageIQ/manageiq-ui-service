@@ -5,6 +5,7 @@ describe('pagination component', function() {
     var controller;
     var $componentController;
     var bindings = {limit: 5, count: 11, offset: 0, onUpdate: angular.noop};
+    var ctrl;
 
     beforeEach(inject(function(_$componentController_) {
       $componentController = _$componentController_;

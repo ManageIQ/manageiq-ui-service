@@ -1,10 +1,14 @@
 describe('app.states.RulesListDirective', function() {
-  var $scope;
-  var $compile;
-  var element;
-  var successResponse = {
+  let $scope;
+  let $compile;
+  let $document;
+  let element;
+  let successResponse = {
     message: 'Success!'
   };
+  let getRulesSpy;
+  let editRulesSpy;
+  let removeRuleSpy;
 
   beforeEach(function () {
     module('app.services', 'app.config', 'app.states', 'gettext');

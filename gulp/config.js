@@ -137,9 +137,11 @@ module.exports = (function() {
           {type: 'text-summary'}
         ]
       },
-      preprocessors: {}
+      preprocessors: {
+        'client/app/**/*.js': ['babel', 'coverage'],
+        'tests/**/*.js': ['babel'],
+      },
     };
-    options.preprocessors[client + 'app/**/*.js'] = ['coverage'];
 
     return options;
   }

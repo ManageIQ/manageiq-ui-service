@@ -4,8 +4,8 @@ describe('app.components.process-requests-modal', function() {
   });
 
   describe('controller', function () {
-
-    var $componentController;
+    let ctrl;
+    let $componentController;
 
     beforeEach(inject(function(_$componentController_) {
 
