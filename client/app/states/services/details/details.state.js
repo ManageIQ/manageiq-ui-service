@@ -72,7 +72,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, tags, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal,
+  function StateController($state, service, tags, CollectionsApi, EditServiceModal, RetireServiceModal, ModalService,
                            TagEditorModal, EventNotifications, Consoles, Chargeback, PowerOperations) {
     var vm = this;
     setInitialVars();
@@ -217,7 +217,30 @@
     }
 
     function ownershipServiceModal() {
-      OwnershipServiceModal.showModal([vm.service]);
+      var modalOptions = {
+        component: 'ownershipServiceModal',
+        resolve: {
+          services: function() {
+            return [vm.service];
+          },
+          users: resolveUsers,
+          groups: resolveGroups,
+        }
+      };
+
+      ModalService.open(modalOptions);
+
+      function resolveUsers(CollectionsApi) {
+        var options = {expand: 'resources', attributes: ['userid', 'name'], sort_by: 'name', sort_options: 'ignore_case'};
+
+        return CollectionsApi.query('users', options);
+      }
+
+      function resolveGroups(CollectionsApi) {
+        var options = {expand: 'resources', attributes: ['description'], sort_by: 'description', sort_options: 'ignore_case'};
+
+        return CollectionsApi.query('groups', options);
+      }
     }
 
     function retireServiceNow() {

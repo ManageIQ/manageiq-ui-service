@@ -4,55 +4,20 @@
   'use strict';
 
   angular.module('app.components')
-    .factory('OwnershipServiceModal', OwnershipServiceFactory);
+    .component('ownershipServiceModal', {
+      controller: ComponentController,
+      controllerAs: 'vm',
+      bindings: {
+        resolve: '<',
+        close: '&',
+        dismiss: '&',
+      },
+      templateUrl: 'app/components/ownership-service-modal/ownership-service-modal.html',
+    });
+
 
   /** @ngInject */
-  function OwnershipServiceFactory($uibModal) {
-    var modalService = {
-      showModal: showModal,
-    };
-
-    return modalService;
-
-    function showModal(services) {
-      var modalOptions = {
-        templateUrl: 'app/components/ownership-service-modal/ownership-service-modal.html',
-        controller: OwnershipServiceModalController,
-        controllerAs: 'vm',
-        size: 'lg',
-        resolve: {
-          services: resolveServiceDetails,
-          users: resolveUsers,
-          groups: resolveGroups,
-        },
-      };
-      var modal = $uibModal.open(modalOptions);
-
-      return modal.result;
-
-      /** @ngInject */
-      function resolveServiceDetails() {
-        return services;
-      }
-    }
-  }
-
-  /** @ngInject */
-  function resolveUsers(CollectionsApi) {
-    var options = {expand: 'resources', attributes: ['userid', 'name'], sort_by: 'name', sort_options: 'ignore_case'};
-
-    return CollectionsApi.query('users', options);
-  }
-
-  /** @ngInject */
-  function resolveGroups(CollectionsApi) {
-    var options = {expand: 'resources', attributes: ['description'], sort_by: 'description', sort_options: 'ignore_case'};
-
-    return CollectionsApi.query('groups', options);
-  }
-
-  /** @ngInject */
-  function OwnershipServiceModalController($state, $uibModalInstance, lodash, CollectionsApi, EventNotifications, users, groups, services) {
+  function ComponentController($state, lodash, CollectionsApi, EventNotifications) {
     var vm = this;
 
     angular.extend(vm, {
@@ -64,11 +29,11 @@
           'description': '',
         },
       },
-      isService: services.length === 1,
+      isService: vm.resolve.services.length === 1,
       resetModal: false,
-      services: services,
-      users: users,
-      groups: groups,
+      services: vm.resolve.services,
+      users: vm.resolve.users,
+      groups: vm.resolve.groups,
       save: save,
       cancel: cancel,
       reset: reset,
@@ -77,7 +42,7 @@
 
 
     function cancel() {
-      $uibModalInstance.dismiss();
+      vm.dismiss({$value: 'cancel'});
     }
 
     function reset(event) {
@@ -102,7 +67,7 @@
       CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure);
 
       function saveSuccess() {
-        $uibModalInstance.close();
+        vm.close();
         EventNotifications.success(__("Ownership was saved."));
         $state.go($state.current, {}, {reload: true});
       }

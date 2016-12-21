@@ -13,7 +13,7 @@
 
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
-                               CollectionsApi, taggingService, EventNotifications, OwnershipServiceModal, EditServiceModal,
+                               CollectionsApi, taggingService, EventNotifications, EditServiceModal,
                                RetireServiceModal, TagEditorModal, ModalService, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
@@ -502,7 +502,30 @@
     }
 
     function setOwnership() {
-      OwnershipServiceModal.showModal(vm.selectedItemsList);
+      var modalOptions = {
+        component: 'ownershipServiceModal',
+        resolve: {
+          services: function() {
+            return vm.selectedItemsList;
+          },
+          users: resolveUsers,
+          groups: resolveGroups,
+        }
+      };
+
+      ModalService.open(modalOptions);
+
+      function resolveUsers(CollectionsApi) {
+        var options = {expand: 'resources', attributes: ['userid', 'name'], sort_by: 'name', sort_options: 'ignore_case'};
+
+        return CollectionsApi.query('users', options);
+      }
+
+      function resolveGroups(CollectionsApi) {
+        var options = {expand: 'resources', attributes: ['description'], sort_by: 'description', sort_options: 'ignore_case'};
+
+        return CollectionsApi.query('groups', options);
+      }
     }
 
     function setServiceRetirement() {
