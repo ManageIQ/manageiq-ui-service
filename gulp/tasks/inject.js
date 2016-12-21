@@ -14,7 +14,7 @@ module.exports = function(gulp, options) {
     }
 
     return gulp.src(config.index)
-      .pipe(inject(config.files, '', config.order))
+      .pipe(inject(config.bundle))
       .pipe(gulp.dest(config.build))
       .pipe(gulp.dest(config.temp));
   }

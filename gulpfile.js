@@ -36,28 +36,22 @@ gulp.task('clean-code', task('clean', {key: 'cleanCode'}));
 gulp.task('templatecache', task('templatecache'));
 gulp.task('sass', task('sass'));
 gulp.task('ejs', task('ejs'));
-gulp.task('inject', task('inject'));
+gulp.task('bundle', task('bundle'));
+gulp.task('inject', ['bundle'], task('inject'));
 gulp.task('fonts', task('fonts'));
 gulp.task('images', task('images'));
-gulp.task('skin-images', ['images'], task('images', {key: 'skinImages'}));
-gulp.task('imgs', ['images'], task('images', {key: 'imgs'}));
-gulp.task('dev-fonts', task('fonts', {key: 'devFonts'}));
-gulp.task('dev-images', task('images', {key: 'devImages'}));
-gulp.task('dev-skin-images', ['dev-images'], task('images', {key: 'devSkinImages'}));
-gulp.task('dev-imgs', task('images', {key: 'devImgs'}));
+gulp.task('available-languages', task('available-languages'));
 gulp.task('gettext-extract', task('gettext-extract'));
 gulp.task('gettext-compile', task('gettext-compile'));
-gulp.task('gettext-copy', ['available-languages'], task('gettext-copy'));
-gulp.task('console-copy', task('console-copy'));
-gulp.task('available-languages', task('available-languages'));
+gulp.task('build-copy', task('build-copy'));
 
 /**
  * Build tasks
  */
-gulp.task('compile', ['inject', 'sass', 'templatecache'], task('compile'));
+gulp.task('compile', ['inject', 'sass', 'templatecache', 'fonts', 'images', 'available-languages'], task('compile'));
 gulp.task('compileEjs', ['compile'], task('ejs', {key: 'ejs'}));
 gulp.task('optimize', ['compileEjs'], task('optimize'));
-gulp.task('build', ['optimize', 'images', 'imgs', 'skin-images', 'fonts', 'gettext-copy', 'console-copy', 'available-languages'], task('build'));
+gulp.task('build', ['optimize', 'build-copy'], task('build'));
 
 /**
  * Testing tasks
@@ -70,7 +64,7 @@ gulp.task('autotest', task('test', {singleRun: false}));
  * Serves up injected html for dev, builds for everything else.
  */
 gulp.task('start-manageiq-server', ['serve'], task('manageiq-server'));
-gulp.task('serve', ['dev-fonts', 'dev-images', 'dev-skin-images', 'dev-imgs', 'compile', 'available-languages'], task('serve', {
+gulp.task('serve', ['compile', 'available-languages'], task('serve', {
   specRunner: false
 }));
 
