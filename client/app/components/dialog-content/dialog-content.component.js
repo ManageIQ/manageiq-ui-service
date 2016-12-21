@@ -1,3 +1,4 @@
+/* eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -44,11 +45,18 @@
       item.dialog_groups.forEach(iterateBFields);
     }
 
-    function iterateBFields(item) {
+    function iterateBFields(item) {   
       if (lodash.result(lodash.find(item.dialog_fields, {'dynamic': true}), 'name')
         || lodash.result(lodash.find(item.dialog_fields, {'type': 'DialogFieldTagControl'}), 'name')) {
         vm.supportedDialog = false;
       }
+      if (Object.keys(vm.parsedOptions).length > 0) {
+        item.dialog_fields.forEach(iterateDialogFields);
+      }
+    }
+
+    function iterateDialogFields(item) {
+      item.default_value = vm.parsedOptions[item.name];
     }
   }
 })();
