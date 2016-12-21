@@ -8,7 +8,7 @@
 </div>
 <div class="modal-body">
   <form ng-if="vm.modalType !== 'invalid'" class="form-horizontal">
-    <div pf-form-group pf-input-class="col-sm-10" pf-label="{{'Reason'|translate}}">
+    <div pf-form-group pf-input-class="col-sm-10" pf-label="* {{'Note'|translate}}">
         <textarea id="description" name="reason" ng-model="vm.modalData.reason" required>
           {{ vm.modalData.reason }}
         </textarea>
