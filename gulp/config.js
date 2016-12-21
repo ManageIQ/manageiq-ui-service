@@ -360,12 +360,28 @@ module.exports = (function() {
     outputDir: 'client/gettext/json/',
   };
 
-  config.gettextCopy = {
-    inputs: ['client/gettext/json/**/*.json', config.availableLanguages.availLangsFile],
-    outputDir: build + 'gettext/json/',
-  };
+  config.buildCopy = [
+    // Static assets
+    {
+      input: temp + 'images/**/*',
+      output: build + 'images',
+    },
+    {
+      input: temp + 'fonts/**/*',
+      output: build + 'fonts',
+    },
 
-  config.consoleCopy = [
+    // Translation files
+    {
+      input: 'client/gettext/json/**/*.json',
+      output: build + 'gettext/json',
+    },
+    {
+      input: config.availableLanguages.availLangsFile,
+      output: build + 'gettext/json',
+    },
+
+    // Console dependencies
     {
       input: nodeModules + 'no-vnc/**/*',
       output: build + 'vendor/no-vnc',

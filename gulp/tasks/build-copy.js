@@ -4,13 +4,13 @@ var log = require('../utils/log');
 var merge = require('merge-stream');
 
 module.exports = function(gulp, options) {
-  var config = require('../config')[options.key || 'consoleCopy'];
+  var config = require('../config')[options.key || 'buildCopy'];
 
   return task;
 
   function task() {
     if (options.verbose) {
-      log('Copying console dependencies to build dir');
+      log('Copying assets and dependencies to build dir');
     }
 
     var merged = merge();

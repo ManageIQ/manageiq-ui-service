@@ -39,19 +39,18 @@ gulp.task('ejs', task('ejs'));
 gulp.task('inject', task('inject'));
 gulp.task('fonts', task('fonts'));
 gulp.task('images', task('images'));
+gulp.task('available-languages', task('available-languages'));
 gulp.task('gettext-extract', task('gettext-extract'));
 gulp.task('gettext-compile', task('gettext-compile'));
-gulp.task('gettext-copy', ['available-languages'], task('gettext-copy'));
-gulp.task('console-copy', task('console-copy'));
-gulp.task('available-languages', task('available-languages'));
+gulp.task('build-copy', task('build-copy'));
 
 /**
  * Build tasks
  */
-gulp.task('compile', ['inject', 'sass', 'templatecache', 'fonts', 'images'], task('compile'));
+gulp.task('compile', ['inject', 'sass', 'templatecache', 'fonts', 'images', 'available-languages'], task('compile'));
 gulp.task('compileEjs', ['compile'], task('ejs', {key: 'ejs'}));
 gulp.task('optimize', ['compileEjs'], task('optimize'));
-gulp.task('build', ['optimize', 'gettext-copy', 'console-copy', 'available-languages'], task('build'));
+gulp.task('build', ['optimize', 'build-copy'], task('build'));
 
 /**
  * Testing tasks
