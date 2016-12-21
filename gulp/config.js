@@ -32,7 +32,8 @@ module.exports = (function() {
   var specHelperFiles = tests + 'test-helpers/*.js';
 
   var imageFiles = [
-    client + 'assets/images/**/*.*'
+    client + 'assets/images/**/*.*',
+    client + 'skin/images/**/*.*',
   ];
 
   var fontFiles = [
@@ -194,71 +195,17 @@ module.exports = (function() {
   // task images: Image build options
   config.images = {
     src: imageFiles,
-    build: build + 'images',
-    minify: true,
-    options: {
-      optimizationLevel: 5,
-      progressive: true,
-      interlaced: true
-    }
-  };
-
-  config.skinImages = {
-    src: [
-      client + 'skin/images/**/*.*'
-    ],
-    build: build + 'images',
-    minify: true,
-    options: {
-      optimizationLevel: 5,
-      progressive: true,
-      interlaced: true
-    }
-  };
-
-
-  config.devImages = {
-    src: imageFiles,
     build: temp + 'images',
-    minify: false
-  };
-
-  config.devSkinImages = {
-    src: [
-      client + 'skin/images/**/*.*'
-    ],
-    build: temp + 'images',
-    minify: false
-  };
-
-  config.imgs = {
-    src: [
-      nodeModules + 'patternfly/dist/img/**/*'
-    ],
-    build: build + 'img',
     minify: true,
     options: {
       optimizationLevel: 5,
       progressive: true,
       interlaced: true
     }
-  };
-
-  config.devImgs = {
-    src: [
-      nodeModules + 'patternfly/dist/img/**/*'
-    ],
-    build: temp + 'img',
-    minify: false
   };
 
   // task fonts: Copies fonts into build directory
   config.fonts = {
-    src: fontFiles,
-    build: build + 'fonts'
-  };
-
-  config.devFonts = {
     src: fontFiles,
     build: temp + 'fonts'
   };
