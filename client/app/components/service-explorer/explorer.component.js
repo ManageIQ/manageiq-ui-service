@@ -14,7 +14,7 @@
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
                                CollectionsApi, taggingService, EventNotifications, OwnershipServiceModal, EditServiceModal,
-                               RetireServiceModal, TagEditorModal, RetireRemoveServiceModal, PowerOperations, lodash) {
+                               RetireServiceModal, TagEditorModal, ModalService, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
     function activate() {
@@ -487,7 +487,18 @@
     }
 
     function removeServices() {
-      RetireRemoveServiceModal.showModal(vm.selectedItemsList, "remove");
+      var modalOptions = {
+        component: 'retireRemoveServiceModal',
+        resolve: {
+          services: function() {
+            return vm.selectedItemsList;
+          },
+          modalType: function() {
+            return "remove";
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function setOwnership() {
@@ -499,7 +510,18 @@
     }
 
     function retireService() {
-      RetireRemoveServiceModal.showModal(vm.selectedItemsList, "retire");
+      var modalOptions = {
+        component: 'retireRemoveServiceModal',
+        resolve: {
+          services: function() {
+            return vm.selectedItemsList;
+          },
+          modalType: function() {
+            return "retire";
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     Language.fixState(ServicesState, vm.headerConfig);
