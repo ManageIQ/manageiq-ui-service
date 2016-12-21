@@ -56,16 +56,17 @@
 
     function saveRequest() {
       var dialogData = dataForSubmit();
-      var data = { action: 'edit', dialogData };
+  
       CollectionsApi.post(
         'service_requests',
         request.id,
         {},
-        { action: 'edit', options: { dialog: dialogData } }
+        { action: 'edit', options: { "dialog": dialogData } }
       ).then(submitSuccess, submitFailure);
     }
     function dataForSubmit() {
       var dialogFieldData = {};
+     
       angular.forEach(allDialogFields, function(dialogField) {
         if ((dialogField.type === "DialogFieldTagControl" || dialogField.type === "DialogFieldDropDownList")
             && dialogField.default_value instanceof Array) {
