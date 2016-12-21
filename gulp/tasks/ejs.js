@@ -1,7 +1,6 @@
 'use strict';
 
 var plumber = require('gulp-plumber');
-var rename = require('gulp-rename');
 var ejs = require("gulp-ejs");
 
 

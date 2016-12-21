@@ -244,6 +244,13 @@ module.exports = (function() {
     }
   };
 
+  // task bundle: Concatenate ordered application JS and create sourcemaps
+  config.bundle = {
+    files: getClientJsFiles(true, false),
+    ordering: clientJsOrder,
+    temp: temp,
+  }
+
   // task inject: Inject CSS and JS into index.html
   // This task will also inject the application JavaScript
   // The inject task will inject the application CSS
@@ -251,8 +258,7 @@ module.exports = (function() {
     index: [client + javascripts, client + styles],
     build: client,
     temp: temp,
-    files: getClientJsFiles(true, false),
-    order: clientJsOrder
+    bundle: temp + 'bundle.js',
   };
 
   // task compile: Injects the application CSS (compiled from Sass) into index.html
@@ -275,7 +281,6 @@ module.exports = (function() {
     ngAnnotateOptions: {
       single_quotes: true
     },
-    devHost: 'http://localhost:3000'
   };
 
   // task compileEjs: Injects javascripts.html and styles.html into build index.html
