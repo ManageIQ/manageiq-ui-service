@@ -49,6 +49,7 @@
       'service_template',
       'chargeback_report',
       'power_state',
+      'power_status',
       'created_at',
       'options',
       'name',
