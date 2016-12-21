@@ -22,21 +22,21 @@ describe('Dashboard', function() {
 
     PowerOperations = {
       powerOperationOnState: function (item) {
-        return item.power_state === "on" && item.options.power_status === "start_complete";
+        return item.power_state === "on" && item.power_status === "start_complete";
       },
       powerOperationUnknownState: function (item) {
-        return item.power_state === "" && item.options.power_status === "";
+        return item.power_state === "" && item.power_status === "";
       },
       powerOperationInProgressState: function (item) {
-        return (item.power_state !== "timeout" && item.options.power_status === "starting")
-          || (item.power_state !== "timeout" && item.options.power_status === "stopping")
-          || (item.power_state !== "timeout" && item.options.power_status === "suspending");
+        return (item.power_state !== "timeout" && item.power_status === "starting")
+          || (item.power_state !== "timeout" && item.power_status === "stopping")
+          || (item.power_state !== "timeout" && item.power_status === "suspending");
       },
       powerOperationOffState: function (item) {
-        return item.power_state === "off" && item.options.power_status === "stop_complete";
+        return item.power_state === "off" && item.power_status === "stop_complete";
       },
       powerOperationSuspendState: function (item) {
-        return item.power_state === "off" && item.options.power_status === "suspend_complete";
+        return item.power_state === "off" && item.power_status === "suspend_complete";
       },
       powerOperationTimeoutState: function (item) {
         return item.power_state === "timeout";
@@ -66,8 +66,8 @@ describe('Dashboard', function() {
       id: 123,
       name: 'foo',
       power_state: "",
+      power_status: "starting",
       options: {
-        power_status: "starting"
       },
       chargeback_report: {
         results: []
@@ -134,8 +134,8 @@ describe('Dashboard', function() {
 
     var service = {
         power_state: "off",
+        power_status: "stop_complete",
         options: {
-          power_status: "stop_complete"
         },
       chargeback_report: {
         results: []
@@ -183,8 +183,8 @@ describe('Dashboard', function() {
     var controller;
     var service = {
       power_state: "on",
+      power_status: "start_complete",
       options: {
-        power_status: "start_complete"
       },
       chargeback_report: {
         results: []
