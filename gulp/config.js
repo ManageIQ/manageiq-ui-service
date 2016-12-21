@@ -315,7 +315,7 @@ module.exports = (function() {
     devFiles: [
       client + '**/*.js',
       client + '**/*.html',
-      temp + '**/*.css'
+      temp + '**/*.css',
     ],
     browserSyncOptions: {
       proxy: {
