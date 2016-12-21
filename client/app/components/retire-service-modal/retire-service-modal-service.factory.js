@@ -2,39 +2,18 @@
   'use strict';
 
   angular.module('app.components')
-    .factory('RetireServiceModal', RetireServiceFactory);
+    .component('retireServiceModal', {
+      controller: ComponentController,
+      controllerAs: 'vm',
+      bindings: {
+        resolve: '<',
+        close: '&',
+        dismiss: '&',
+      },
+      templateUrl: 'app/components/retire-service-modal/retire-service-modal.html',
+    });
 
-  /** @ngInject */
-  function RetireServiceFactory($uibModal) {
-    var modalService = {
-      showModal: showModal,
-      FactoryController: RetireServiceModalController,
-    };
-
-    return modalService;
-
-    function showModal(services) {
-      var modalOptions = {
-        templateUrl: 'app/components/retire-service-modal/retire-service-modal.html',
-        controller: RetireServiceModalController,
-        controllerAs: 'vm',
-        size: 'lg',
-        resolve: {
-          services: resolveServices,
-        },
-      };
-      var modal = $uibModal.open(modalOptions);
-
-      return modal.result;
-
-      function resolveServices() {
-        return services;
-      }
-    }
-  }
-
-  /** @ngInject */
-  function RetireServiceModalController($scope, $state, $uibModalInstance, CollectionsApi, EventNotifications, moment, services, lodash) {
+  function ComponentController($scope, $state, CollectionsApi, EventNotifications, moment, lodash) {
     var vm = this;
 
     angular.extend(vm, {
@@ -43,9 +22,9 @@
         date: new Date(),
         warn: 0,
       },
-      isService: services.length === 1,
+      isService: vm.resolve.services.length === 1,
       resetModal: false,
-      services: services,
+      services: vm.resolve.services,
       save: save,
       reset: reset,
       cancel: cancel,
@@ -106,7 +85,7 @@
       CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure);
 
       function saveSuccess() {
-        $uibModalInstance.close();
+        vm.close();
         EventNotifications.success(__('Scheduling retirement.'));
         $state.go($state.current, {}, {reload: true});
       }
@@ -122,7 +101,7 @@
     }
 
     function cancel() {
-      $uibModalInstance.dismiss();
+      vm.dismiss({$value: 'cancel'});
     }
 
     function reset(event) {

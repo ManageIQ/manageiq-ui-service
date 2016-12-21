@@ -1,3 +1,4 @@
+/* eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -72,7 +73,7 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, tags, CollectionsApi, EditServiceModal, RetireServiceModal, ModalService,
+  function StateController($state, service, tags, CollectionsApi, EditServiceModal, ModalService,
                            TagEditorModal, EventNotifications, Consoles, Chargeback, PowerOperations) {
     var vm = this;
     setInitialVars();
@@ -225,7 +226,7 @@
           },
           users: resolveUsers,
           groups: resolveGroups,
-        }
+        },
       };
 
       ModalService.open(modalOptions);
@@ -258,7 +259,15 @@
     }
 
     function retireServiceLater() {
-      RetireServiceModal.showModal([vm.service]);
+      var modalOptions = {
+        component: 'retireServiceModal',
+        resolve: {
+          services: function() {
+            return [vm.service];
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function disableStopButton(item) {

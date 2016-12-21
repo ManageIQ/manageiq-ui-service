@@ -1,3 +1,4 @@
+/* eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -14,7 +15,7 @@
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
                                CollectionsApi, taggingService, EventNotifications, EditServiceModal,
-                               RetireServiceModal, TagEditorModal, ModalService, PowerOperations, lodash) {
+                               TagEditorModal, ModalService, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
     function activate() {
@@ -510,7 +511,7 @@
           },
           users: resolveUsers,
           groups: resolveGroups,
-        }
+        },
       };
 
       ModalService.open(modalOptions);
@@ -529,7 +530,15 @@
     }
 
     function setServiceRetirement() {
-      RetireServiceModal.showModal(vm.selectedItemsList);
+      var modalOptions = {
+        component: 'retireServiceModal',
+        resolve: {
+          services: function() {
+            return vm.selectedItemsList;
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function retireService() {
