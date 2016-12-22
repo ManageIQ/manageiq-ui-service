@@ -8,25 +8,29 @@
       bindings: {
         modalData: '<?',
         confirmationModal: '<?',
+        customButton: '<?',
         resetModal: '<?',
         onCancel: '&',
         onReset: '&',
         onSave: '&',
         onOk: '&',
+        onCustomButton: '&',
       },
       templateUrl: 'app/components/modal-actions/modal-actions.html',
     });
 
   /** @ngInject */
-  function ComponentController() {
+  function ComponentController(sprintf) {
     var vm = this;
 
     angular.extend(vm, {
+      customButtonTranslated: sprintf(__("%s"), vm.customButton),
       isPristine: isPristine,
       cancelAction: cancelAction,
       emitOriginal: emitOriginal,
       saveResource: saveResource,
       affirmConfirmation: affirmConfirmation,
+      customButtonAction: customButtonAction,
     });
 
 
@@ -56,6 +60,10 @@
 
     function affirmConfirmation() {
       vm.onOk();
+    }
+
+    function customButtonAction() {
+      vm.onCustomButton();
     }
   }
 })();

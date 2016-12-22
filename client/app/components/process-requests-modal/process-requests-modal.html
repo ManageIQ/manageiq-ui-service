@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 ng-if="vm.modalType === 'deny'" class="modal-title" translate>Deny Requests</h4>
+  <h4 ng-if="vm.modalType === 'approve'" class="modal-title" translate>Approve Requests</h4>
+  <h4 ng-if="vm.modalType === 'invalid'" class="modal-title" translate>Invalid Requests</h4>
+</div>
+<div class="modal-body">
+  <form ng-if="vm.modalType !== 'invalid'" class="form-horizontal">
+    <div pf-form-group pf-input-class="col-sm-10" pf-label="* {{'Note'|translate}}">
+        <textarea id="description" name="reason" ng-model="vm.modalData.reason" required>
+          {{ vm.modalData.reason }}
+        </textarea>
+    </div>
+  </form>
+  <div ng-if="vm.modalType === 'invalid'">
+    <i class="pf pficon-warning-triangle-o"></i>
+    <span>{{ "Warning: One or more of the selected requests have already been processed.
+      Remove these requests and retry." | translate }}</span>
+  </div>
+  <hr>
+  <h4 translate>Affected Requests</h4>
+  <icon-list items="vm.requests"></icon-list>
+</div>
+<div class="modal-footer">
+  <modal-actions
+    ng-if="vm.modalType !== 'invalid'"
+    modal-data="vm.modalData"
+    confirmation-modal="true"
+    on-cancel="vm.cancel()"
+    on-ok="vm.submit()">
+  </modal-actions>
+  <modal-actions
+    ng-if="vm.modalType === 'invalid'"
+    on-cancel="vm.cancel()">
+  </modal-actions>
+</div>
+

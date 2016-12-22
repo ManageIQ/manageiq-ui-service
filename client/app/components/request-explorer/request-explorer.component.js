@@ -9,7 +9,8 @@
     });
 
   /** @ngInject */
-  function ComponentController($state, CollectionsApi, RequestsState, ListView, $filter, lodash, Language, EventNotifications) {
+  function ComponentController($state, CollectionsApi, RequestsState, ListView, $filter, lodash, Language, EventNotifications,
+                               ProcessRequestsModal) {
     var vm = this;
 
     vm.$onInit = function() {
@@ -22,12 +23,14 @@
         selectedItemsList: [],
         limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
         listConfig: {
-          selectItems: false,
-          showSelectBox: false,
           selectionMatchProp: 'id',
+          onCheckBoxChange: selectItem,
           onClick: handleRequestClick,
         },
         toolbarConfig: {
+          actionsConfig: {
+            actionsInclude: true,
+          },
           filterConfig: {
             fields: getRequestFilterFields(),
             resultsCount: vm.listDataCopy ? vm.listDataCopy.length : 0,
@@ -46,6 +49,32 @@
             actionsInclude: true,
           },
         },
+        configuration: [
+          {
+            title: __('Lifecycle'),
+            actionName: 'lifecycle',
+            icon: 'fa fa-recycle',
+            actions: [
+              {
+                icon: 'fa fa-check',
+                name: __('Approve'),
+                actionName: 'approve',
+                title: __('Approve'),
+                actionFn: approveRequests,
+                isDisabled: false,
+              }, {
+                icon: 'fa fa-ban',
+                name: __('Deny'),
+                actionName: 'deny',
+                title: __('Deny'),
+                actionFn: denyRequests,
+                isDisabled: false,
+              },
+            ],
+            isDisabled: false,
+          },
+        ],
+        listActionDisable: listActionDisable,
       });
 
       vm.fetchData = fetchData;
@@ -170,6 +199,7 @@
     }
 
     function applyFilters(filters) {
+      vm.selectedItemsList = [];
       vm.listDataCopy = ListView.applyFilters(filters, vm.listDataCopy, vm.listData, RequestsState, requestMatchesFilter);
       vm.fetchData(vm.limit);
 
@@ -200,6 +230,23 @@
       }
 
       return false;
+    }
+
+    function selectItem(item) {
+      lodash.indexOf(vm.selectedItemsList, item) === -1 ? vm.selectedItemsList.push(item) : lodash.pull(vm.selectedItemsList, item);
+      vm.selectedItemsListCount = vm.selectedItemsList.length;
+    }
+
+    function approveRequests() {
+      ProcessRequestsModal.showModal(vm.selectedItemsList, "approve");
+    }
+
+    function denyRequests() {
+      ProcessRequestsModal.showModal(vm.selectedItemsList, "deny");
+    }
+
+    function listActionDisable(config, items) {
+      items.length <= 0 ? config.isDisabled = true : config.isDisabled = false;
     }
   }
 })();

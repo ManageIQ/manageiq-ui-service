@@ -1,4 +1,14 @@
-<div pf-toolbar class="section-toolbar" id="requestToolbar" config="vm.toolbarConfig"></div>
+<div pf-toolbar class="section-toolbar" id="requestToolbar" config="vm.toolbarConfig">
+  <actions>
+    <custom-dropdown class="custom-dropdown pull-left"
+                     config="item"
+                     items="vm.selectedItemsList"
+                     items-count="vm.selectedItemsList.length"
+                     ng-repeat="item in vm.configuration"
+                     on-update="vm.listActionDisable($config, $changes)">
+    </custom-dropdown>
+  </actions>
+</div>
 <div class="col-md-12 list-view-container section-container">
   <loading status="vm.loading"></loading>
   <div pf-list-view ng-if="!vm.loading" id="requestList" config="vm.listConfig" items="vm.listDataCopy">
