@@ -54,28 +54,30 @@
             title: __('Lifecycle'),
             actionName: 'lifecycle',
             icon: 'fa fa-recycle',
-            actions: [
-              {
-                icon: 'fa fa-check',
-                name: __('Approve'),
-                actionName: 'approve',
-                title: __('Approve'),
-                actionFn: approveRequests,
-                isDisabled: false,
-              }, {
-                icon: 'fa fa-ban',
-                name: __('Deny'),
-                actionName: 'deny',
-                title: __('Deny'),
-                actionFn: denyRequests,
-                isDisabled: false,
-              },
-            ],
+            actions: [],
             isDisabled: false,
           },
         ],
         listActionDisable: listActionDisable,
       });
+
+      vm.configuration[0].actions = [
+        {
+          icon: 'fa fa-check',
+          name: __('Approve'),
+          actionName: 'approve',
+          title: __('Approve'),
+          actionFn: approveRequests,
+          isDisabled: false,
+        }, {
+          icon: 'fa fa-ban',
+          name: __('Deny'),
+          actionName: 'deny',
+          title: __('Deny'),
+          actionFn: denyRequests,
+          isDisabled: false,
+        },
+      ];
 
       vm.fetchData = fetchData;
 
@@ -246,10 +248,6 @@
           },
           modalType: function() {
             return lodash.find(vm.selectedItemsList, isPending) ? 'invalid' : "approve";
-
-            function isPending(item) {
-              return item.approval_state === 'approved' || item.approval_state === 'denied';
-            }
           },
         },
       };
@@ -265,14 +263,14 @@
           },
           modalType: function() {
             return lodash.find(vm.selectedItemsList, isPending) ? 'invalid' : "deny";
-
-            function isPending(item) {
-              return item.approval_state === 'approved' || item.approval_state === 'denied';
-            }
           },
         },
       };
       ModalService.open(modalOptions);
+    }
+
+    function isPending(item) {
+      return item.approval_state === 'approved' || item.approval_state === 'denied';
     }
 
     function listActionDisable(config, items) {

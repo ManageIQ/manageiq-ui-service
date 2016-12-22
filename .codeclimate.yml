@@ -9,7 +9,7 @@ engines:
     config:
       languages:
         javascript:
-          mass_threshold: 130
+          mass_threshold: 112
 ratings:
   paths:
   - client/app/**
