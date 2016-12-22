@@ -10,7 +10,7 @@
 
   /** @ngInject */
   function ComponentController($state, CollectionsApi, RequestsState, ListView, $filter, lodash, Language, EventNotifications,
-                               ProcessRequestsModal) {
+                               ModalService) {
     var vm = this;
 
     vm.$onInit = function() {
@@ -238,11 +238,41 @@
     }
 
     function approveRequests() {
-      ProcessRequestsModal.showModal(vm.selectedItemsList, "approve");
+      var modalOptions = {
+        component: 'processRequestsModal',
+        resolve: {
+          requests: function() {
+            return vm.selectedItemsList;
+          },
+          modalType: function() {
+            return lodash.find(vm.selectedItemsList, isPending) ? 'invalid' : "approve";
+
+            function isPending(item) {
+              return item.approval_state === 'approved' || item.approval_state === 'denied';
+            }
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function denyRequests() {
-      ProcessRequestsModal.showModal(vm.selectedItemsList, "deny");
+      var modalOptions = {
+        component: 'processRequestsModal',
+        resolve: {
+          requests: function() {
+            return vm.selectedItemsList;
+          },
+          modalType: function() {
+            return lodash.find(vm.selectedItemsList, isPending) ? 'invalid' : "deny";
+
+            function isPending(item) {
+              return item.approval_state === 'approved' || item.approval_state === 'denied';
+            }
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function listActionDisable(config, items) {
