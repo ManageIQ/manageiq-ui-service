@@ -58,7 +58,7 @@
     ];
     var options = {
       attributes: requestAttributes,
-      decorators: [ 'vms.supports_console?', 'vms.supports_cockpit?' ],
+      decorators: ['vms.supports_console?', 'vms.supports_cockpit?'],
       expand: 'vms',
     };
 
@@ -73,8 +73,8 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, tags, CollectionsApi, EditServiceModal, ModalService,
-                           TagEditorModal, EventNotifications, Consoles, Chargeback, PowerOperations) {
+  function StateController($state, service, tags, CollectionsApi, ModalService, TagEditorModal, EventNotifications, Consoles, Chargeback,
+                           PowerOperations) {
     var vm = this;
     setInitialVars();
 
@@ -139,6 +139,7 @@
       vm.powerOperationSuspendState = PowerOperations.powerOperationSuspendState;
       vm.vmMenuButtons = setupVmMenuButtons();
     }
+
     function vmButtonEnabled(action, item) {
       switch (action.actionName) {
         case 'htmlConsole':
@@ -157,6 +158,7 @@
 
       return false;
     }
+
     function removeService() {
       CollectionsApi.delete('services', vm.service.id).then(removeSuccess, removeFailure);
 
@@ -171,7 +173,7 @@
     }
 
     function setupVmMenuButtons() {
-      var vmMenuButtons = { actionButtons: [], buttonEnabledFn: {}};
+      var vmMenuButtons = {actionButtons: [], buttonEnabledFn: {}};
       vmMenuButtons.buttonEnabledFn = vmButtonEnabled;
       var viewVirtualMachineAction = function(action, item) {
         $state.go('vms.details', {vmId: item.id});
@@ -206,7 +208,15 @@
     }
 
     function editServiceModal() {
-      EditServiceModal.showModal(vm.service);
+      var modalOptions = {
+        component: 'editServiceModal',
+        resolve: {
+          service: function() {
+            return vm.service;
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function tagEditorModal() {
@@ -291,7 +301,7 @@
         || vm.powerOperationTimeoutState(item);
     };
 
-    vm.checkDisabled = function (action, item) {
+    vm.checkDisabled = function(action, item) {
       if (action === 'stop') {
         return disableStopButton(item);
       } else if (action === 'suspend') {
@@ -299,7 +309,7 @@
       }
     };
 
-    vm.handlePowerOperation = function (action, item) {
+    vm.handlePowerOperation = function(action, item) {
       if (action === 'stop' && !vm.checkDisabled(action, item)) {
         vm.stopService(item);
       } else if (action === 'suspend' && !vm.checkDisabled(action, item)) {

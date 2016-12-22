@@ -14,7 +14,7 @@
 
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
-                               CollectionsApi, taggingService, EventNotifications, EditServiceModal,
+                               CollectionsApi, taggingService, EventNotifications,
                                TagEditorModal, ModalService, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
@@ -472,7 +472,15 @@
     }
 
     function editService() {
-      EditServiceModal.showModal(vm.selectedItemsList[0]);
+      var modalOptions = {
+        component: 'editServiceModal',
+        resolve: {
+          service: function() {
+            return vm.selectedItemsList[0];
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function editTags() {
