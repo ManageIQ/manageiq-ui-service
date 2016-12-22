@@ -1,0 +1,14 @@
+<div>
+  <div ng-if="vm.workflow">
+    <h2 translate>Request Workflow Details</h2>
+      <uib-tabset>
+        <uib-tab ng-repeat="tab in vm.workflow.dialogs.dialog_order" heading="{{vm.workflow.dialogs.dialogs[tab].description}}">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body">
+            </div>
+          </div>
+      </uib-tabset>
+  </div>
+</div>
