@@ -4,7 +4,13 @@
       <uib-tabset>
         <uib-tab ng-repeat="tab in vm.workflow.dialogs.dialog_order" heading="{{vm.workflow.dialogs.dialogs[tab].description}}">
           <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading" ng-if="vm.customizedWorkflow['dialogs'][tab].panelTitle[0]">
+              <strong>{{vm.customizedWorkflow['dialogs'][tab].panelTitle[0]}}</strong>
+            </div>
+            <div class="panel-body">
+            </div>
+            <div class="panel-heading" ng-if="vm.customizedWorkflow['dialogs'][tab].panelTitle[1]">
+              <strong>{{vm.customizedWorkflow['dialogs'][tab].panelTitle[1]}}</strong>
             </div>
             <div class="panel-body">
             </div>
