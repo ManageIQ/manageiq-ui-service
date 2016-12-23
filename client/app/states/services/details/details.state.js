@@ -1,3 +1,4 @@
+/* eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -57,7 +58,7 @@
     ];
     var options = {
       attributes: requestAttributes,
-      decorators: [ 'vms.supports_console?', 'vms.supports_cockpit?' ],
+      decorators: ['vms.supports_console?', 'vms.supports_cockpit?'],
       expand: 'vms',
     };
 
@@ -72,8 +73,8 @@
   }
 
   /** @ngInject */
-  function StateController($state, service, tags, CollectionsApi, EditServiceModal, RetireServiceModal, OwnershipServiceModal,
-                           TagEditorModal, EventNotifications, Consoles, Chargeback, PowerOperations) {
+  function StateController($state, service, tags, CollectionsApi, ModalService, TagEditorModal, EventNotifications, Consoles, Chargeback,
+                           PowerOperations) {
     var vm = this;
     setInitialVars();
 
@@ -138,6 +139,7 @@
       vm.powerOperationSuspendState = PowerOperations.powerOperationSuspendState;
       vm.vmMenuButtons = setupVmMenuButtons();
     }
+
     function vmButtonEnabled(action, item) {
       switch (action.actionName) {
         case 'htmlConsole':
@@ -156,6 +158,7 @@
 
       return false;
     }
+
     function removeService() {
       CollectionsApi.delete('services', vm.service.id).then(removeSuccess, removeFailure);
 
@@ -170,7 +173,7 @@
     }
 
     function setupVmMenuButtons() {
-      var vmMenuButtons = { actionButtons: [], buttonEnabledFn: {}};
+      var vmMenuButtons = {actionButtons: [], buttonEnabledFn: {}};
       vmMenuButtons.buttonEnabledFn = vmButtonEnabled;
       var viewVirtualMachineAction = function(action, item) {
         $state.go('vms.details', {vmId: item.id});
@@ -205,7 +208,15 @@
     }
 
     function editServiceModal() {
-      EditServiceModal.showModal(vm.service);
+      var modalOptions = {
+        component: 'editServiceModal',
+        resolve: {
+          service: function() {
+            return vm.service;
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function tagEditorModal() {
@@ -217,7 +228,30 @@
     }
 
     function ownershipServiceModal() {
-      OwnershipServiceModal.showModal([vm.service]);
+      var modalOptions = {
+        component: 'ownershipServiceModal',
+        resolve: {
+          services: function() {
+            return [vm.service];
+          },
+          users: resolveUsers,
+          groups: resolveGroups,
+        },
+      };
+
+      ModalService.open(modalOptions);
+
+      function resolveUsers(CollectionsApi) {
+        var options = {expand: 'resources', attributes: ['userid', 'name'], sort_by: 'name', sort_options: 'ignore_case'};
+
+        return CollectionsApi.query('users', options);
+      }
+
+      function resolveGroups(CollectionsApi) {
+        var options = {expand: 'resources', attributes: ['description'], sort_by: 'description', sort_options: 'ignore_case'};
+
+        return CollectionsApi.query('groups', options);
+      }
     }
 
     function retireServiceNow() {
@@ -235,7 +269,15 @@
     }
 
     function retireServiceLater() {
-      RetireServiceModal.showModal([vm.service]);
+      var modalOptions = {
+        component: 'retireServiceModal',
+        resolve: {
+          services: function() {
+            return [vm.service];
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function disableStopButton(item) {
@@ -259,7 +301,7 @@
         || vm.powerOperationTimeoutState(item);
     };
 
-    vm.checkDisabled = function (action, item) {
+    vm.checkDisabled = function(action, item) {
       if (action === 'stop') {
         return disableStopButton(item);
       } else if (action === 'suspend') {
@@ -267,7 +309,7 @@
       }
     };
 
-    vm.handlePowerOperation = function (action, item) {
+    vm.handlePowerOperation = function(action, item) {
       if (action === 'stop' && !vm.checkDisabled(action, item)) {
         vm.stopService(item);
       } else if (action === 'suspend' && !vm.checkDisabled(action, item)) {

@@ -1,3 +1,4 @@
+/* eslint camelcase: "off" */
 (function() {
   'use strict';
 
@@ -13,8 +14,8 @@
 
   /** @ngInject */
   function ComponentController($state, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, pfViewUtils,
-                               CollectionsApi, taggingService, EventNotifications, OwnershipServiceModal, EditServiceModal,
-                               RetireServiceModal, TagEditorModal, RetireRemoveServiceModal, PowerOperations, lodash) {
+                               CollectionsApi, taggingService, EventNotifications,
+                               TagEditorModal, ModalService, PowerOperations, lodash) {
     var vm = this;
     vm.$onInit = activate();
     function activate() {
@@ -471,7 +472,15 @@
     }
 
     function editService() {
-      EditServiceModal.showModal(vm.selectedItemsList[0]);
+      var modalOptions = {
+        component: 'editServiceModal',
+        resolve: {
+          service: function() {
+            return vm.selectedItemsList[0];
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function editTags() {
@@ -487,19 +496,72 @@
     }
 
     function removeServices() {
-      RetireRemoveServiceModal.showModal(vm.selectedItemsList, "remove");
+      var modalOptions = {
+        component: 'retireRemoveServiceModal',
+        resolve: {
+          services: function() {
+            return vm.selectedItemsList;
+          },
+          modalType: function() {
+            return "remove";
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function setOwnership() {
-      OwnershipServiceModal.showModal(vm.selectedItemsList);
+      var modalOptions = {
+        component: 'ownershipServiceModal',
+        resolve: {
+          services: function() {
+            return vm.selectedItemsList;
+          },
+          users: resolveUsers,
+          groups: resolveGroups,
+        },
+      };
+
+      ModalService.open(modalOptions);
+
+      function resolveUsers(CollectionsApi) {
+        var options = {expand: 'resources', attributes: ['userid', 'name'], sort_by: 'name', sort_options: 'ignore_case'};
+
+        return CollectionsApi.query('users', options);
+      }
+
+      function resolveGroups(CollectionsApi) {
+        var options = {expand: 'resources', attributes: ['description'], sort_by: 'description', sort_options: 'ignore_case'};
+
+        return CollectionsApi.query('groups', options);
+      }
     }
 
     function setServiceRetirement() {
-      RetireServiceModal.showModal(vm.selectedItemsList);
+      var modalOptions = {
+        component: 'retireServiceModal',
+        resolve: {
+          services: function() {
+            return vm.selectedItemsList;
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function retireService() {
-      RetireRemoveServiceModal.showModal(vm.selectedItemsList, "retire");
+      var modalOptions = {
+        component: 'retireRemoveServiceModal',
+        resolve: {
+          services: function() {
+            return vm.selectedItemsList;
+          },
+          modalType: function() {
+            return "retire";
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     Language.fixState(ServicesState, vm.headerConfig);

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">
+  <button type="button" class="close" ng-click="vm.cancel()" aria-hidden="true">
     <span class="pficon pficon-close"></span>
   </button>
   <h4 ng-if="vm.modalType === 'deny'" class="modal-title" translate>Deny Requests</h4>
@@ -29,7 +29,7 @@
     modal-data="vm.modalData"
     confirmation-modal="true"
     on-cancel="vm.cancel()"
-    on-ok="vm.submit()">
+    on-ok="vm.save()">
   </modal-actions>
   <modal-actions
     ng-if="vm.modalType === 'invalid'"

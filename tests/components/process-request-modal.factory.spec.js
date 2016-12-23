@@ -3,17 +3,19 @@ describe('app.components.process-requests-modal', function() {
     module('app.components', 'app.services', 'app.config', 'gettext' );
   });
 
-  describe('factory', function () {
+  describe('controller', function () {
 
-    beforeEach(function () {
-      bard.inject('ProcessRequestsModal', 'CollectionsApi');
-    });
+    var $componentController;
+
+    beforeEach(inject(function(_$componentController_) {
+
+      var bindings = {resolve:{requests:[]}};
+      $componentController = _$componentController_;
+      ctrl = $componentController('processRequestsModal', null, bindings);
+    }));
 
     it('should be defined', function () {
-      var modalType = 'approve';
-      var requests = [{id:100, approval_state: 'pending_approval'},{id:200, approval_state: 'pending_approval'}];
-      var modal = ProcessRequestsModal.showModal(requests, modalType);
-      expect(modal).to.be.defined;
+      expect(ctrl).to.be.defined;
     });
   });
 });

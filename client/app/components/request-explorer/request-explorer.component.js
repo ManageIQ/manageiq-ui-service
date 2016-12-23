@@ -10,7 +10,7 @@
 
   /** @ngInject */
   function ComponentController($state, CollectionsApi, RequestsState, ListView, $filter, lodash, Language, EventNotifications,
-                               ProcessRequestsModal) {
+                               ModalService) {
     var vm = this;
 
     vm.$onInit = function() {
@@ -54,28 +54,30 @@
             title: __('Lifecycle'),
             actionName: 'lifecycle',
             icon: 'fa fa-recycle',
-            actions: [
-              {
-                icon: 'fa fa-check',
-                name: __('Approve'),
-                actionName: 'approve',
-                title: __('Approve'),
-                actionFn: approveRequests,
-                isDisabled: false,
-              }, {
-                icon: 'fa fa-ban',
-                name: __('Deny'),
-                actionName: 'deny',
-                title: __('Deny'),
-                actionFn: denyRequests,
-                isDisabled: false,
-              },
-            ],
+            actions: [],
             isDisabled: false,
           },
         ],
         listActionDisable: listActionDisable,
       });
+
+      vm.configuration[0].actions = [
+        {
+          icon: 'fa fa-check',
+          name: __('Approve'),
+          actionName: 'approve',
+          title: __('Approve'),
+          actionFn: approveRequests,
+          isDisabled: false,
+        }, {
+          icon: 'fa fa-ban',
+          name: __('Deny'),
+          actionName: 'deny',
+          title: __('Deny'),
+          actionFn: denyRequests,
+          isDisabled: false,
+        },
+      ];
 
       vm.fetchData = fetchData;
 
@@ -238,11 +240,37 @@
     }
 
     function approveRequests() {
-      ProcessRequestsModal.showModal(vm.selectedItemsList, "approve");
+      var modalOptions = {
+        component: 'processRequestsModal',
+        resolve: {
+          requests: function() {
+            return vm.selectedItemsList;
+          },
+          modalType: function() {
+            return lodash.find(vm.selectedItemsList, isPending) ? 'invalid' : "approve";
+          },
+        },
+      };
+      ModalService.open(modalOptions);
     }
 
     function denyRequests() {
-      ProcessRequestsModal.showModal(vm.selectedItemsList, "deny");
+      var modalOptions = {
+        component: 'processRequestsModal',
+        resolve: {
+          requests: function() {
+            return vm.selectedItemsList;
+          },
+          modalType: function() {
+            return lodash.find(vm.selectedItemsList, isPending) ? 'invalid' : "deny";
+          },
+        },
+      };
+      ModalService.open(modalOptions);
+    }
+
+    function isPending(item) {
+      return item.approval_state === 'approved' || item.approval_state === 'denied';
     }
 
     function listActionDisable(config, items) {
