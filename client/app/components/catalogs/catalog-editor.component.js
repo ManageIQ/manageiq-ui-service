@@ -118,7 +118,7 @@
       var newTemplates = [];
 
       angular.forEach(vm.editInfo.selectedServiceTemplates, function(nextItem) {
-        if (vm.catalog && vm.catalog.serviceTemplates.indexOf(nextItem) === -1) {
+        if (!vm.catalog || vm.catalog.serviceTemplates.indexOf(nextItem) === -1) {
           newTemplates.push(
             {
               href: nextItem.href,
@@ -149,7 +149,7 @@
     }
 
     function navigateAway(saveFirst, toState, toParams) {
-      var addTemplates, removeTemplates;
+      var addTemplates, catalogId, removeTemplates;
 
       // If toState is not passed, go to the default state (list)
       if (!toState) {
@@ -163,7 +163,7 @@
       function addSuccess(response) {
         if (!response || !response.error) {
           if (removeTemplates && removeTemplates.length > 0) {
-            CatalogsState.addCatalog(response.resources[0].id, removeTemplates).then(removeSuccess, removeFailure);
+            CatalogsState.removeServiceTemplates(catalogId, removeTemplates).then(removeSuccess, removeFailure);
           } else {
             vm.dirty = false;
             doNavigate();
@@ -188,8 +188,9 @@
 
       function saveSuccess(response) {
         if (!response || !response.error) {
-          var catalogId = vm.catalog ? vm.catalog.id : response.id;
-
+          if (!vm.catalog) {
+            catalogId = response.id;
+          }
           if (addTemplates && addTemplates.length > 0) {
             CatalogsState.addServiceTemplates(catalogId, addTemplates).then(addSuccess, addFailure);
           } else if (removeTemplates && removeTemplates.length > 0) {
@@ -210,6 +211,10 @@
         addTemplates = getNewServiceTemplates();
         removeTemplates = getRemovedServiceTemplates();
 
+        if (vm.catalog) {
+          catalogId = vm.catalog.id;
+        }
+
         if (catalogFieldsChanged()) {
           if (vm.catalog) {
             CatalogsState.editCatalog(catalogObject).then(saveSuccess, saveFailure);
@@ -217,9 +222,9 @@
             CatalogsState.addCatalog(catalogObject).then(saveSuccess, saveFailure);
           }
         } else if (addTemplates && addTemplates.length > 0) {
-          CatalogsState.addServiceTemplates(vm.catalog.id, addTemplates).then(addSuccess, addFailure);
+          CatalogsState.addServiceTemplates(catalogId, addTemplates).then(addSuccess, addFailure);
         } else if (removeTemplates && removeTemplates.length > 0) {
-          CatalogsState.removeServiceTemplates(vm.catalog.id, removeTemplates).then(removeSuccess, removeFailure);
+          CatalogsState.removeServiceTemplates(catalogId, removeTemplates).then(removeSuccess, removeFailure);
         } else {
           vm.dirty = false;
           doNavigate();
