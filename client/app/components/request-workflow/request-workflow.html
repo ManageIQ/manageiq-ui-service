@@ -7,7 +7,17 @@
             <div class="panel-heading" ng-if="vm.customizedWorkflow['dialogs'][tab].panelTitle[$index]">
               <strong>{{vm.customizedWorkflow['dialogs'][tab].panelTitle[$index]}}</strong>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-if="vm.customizedWorkflow['dialogs'][tab].panelTitle[$index]">
+              <div ng-repeat="field in vm.customizedWorkflow['dialogs'][tab].fieldsInPanel[$index] | orderBy : 'order' track by $index">
+                <form class="form-horizontal">
+                  <div ng-if="field.display != 'hide'">
+                    <div class="form-group">
+                      <label class="control-label col-sm-1">{{ field.description }}</label>
+                      {{ vm.workflow.values[field.label] }}
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
       </uib-tabset>

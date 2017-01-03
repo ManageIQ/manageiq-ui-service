@@ -38,6 +38,7 @@
         case 'requester':
           vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Request Information"));
           vm.customizedWorkflow['dialogs'][key].panelTitle[1] = (__("Manager"));
+          requesterFieldsLayout(vm.customizedWorkflow['dialogs'][key].panelTitle.length);
           break;
         case 'purpose':
           vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Select Tags to apply"));
@@ -69,6 +70,38 @@
           vm.customizedWorkflow['dialogs'][key].panelTitle[1] = (__("Lifespan"));
           break;
       }
+    }
+
+    function requesterFieldsLayout (nPanels) {
+      var fields = {
+        owner_email         : { label: 'owner_email', panel: 0, order : 0 },
+        owner_first_name    : { label: 'owner_first_name', panel: 0, order : 1 },
+        owner_last_name     : { label: 'owner_last_name', panel: 0, order : 2 },
+        owner_address       : { label: 'owner_address', panel: 0, order : 3 },
+        owner_city          : { label: 'owner_city', panel: 0, order : 4 },
+        owner_state         : { label: 'owner_state', panel: 0, order : 5 },
+        owner_zip           : { label: 'owner_zip', panel: 0, order : 6 },
+        owner_country       : { label: 'owner_country', panel: 0, order : 7 },
+        owner_title         : { label: 'owner_title', panel: 0, order : 8 },
+        owner_company       : { label: 'owner_company', panel: 0, order : 9 },
+        owner_department    : { label: 'owner_department', panel: 0, order : 10 },
+        owner_office        : { label: 'owner_office', panel: 0, order : 11 },
+        owner_phone         : { label: 'owner_phone', panel: 0, order : 12 },
+        owner_phone_mobile  : { label: 'owner_phone_mobile', panel: 0, order : 13 },
+        request_notes       : { label: 'request_notes', panel: 0, order : 14 },
+        owner_manager       : { label: 'owner_manager', panel: 1, order : 0 },
+        owner_manager_mail  : { label: 'owner_manager_mail', panel: 1, order : 1 },
+        owner_manager_phone : { label: 'owner_manager_phone', panel: 1, order : 2 },
+      };
+
+      lodash.merge(vm.customizedWorkflow['dialogs']['requester'].fields, fields);
+
+      vm.customizedWorkflow['dialogs']['requester'].fieldsInPanel = [];
+
+      lodash.times(nPanels, function(key, value) {
+        vm.customizedWorkflow['dialogs']['requester'].fieldsInPanel[key] =
+          Object.values(lodash.filter(vm.customizedWorkflow['dialogs']['requester'].fields, {'panel': key}));
+      });
     }
   }
 })();
