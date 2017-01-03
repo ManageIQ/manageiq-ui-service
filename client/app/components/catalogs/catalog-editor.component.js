@@ -149,7 +149,7 @@
     }
 
     function navigateAway(saveFirst, toState, toParams) {
-      var addTemplates, removeTemplates, catalogId;
+      var addTemplates, catalogId, removeTemplates;
 
       // If toState is not passed, go to the default state (list)
       if (!toState) {
