@@ -60,42 +60,42 @@
 
   function pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
     var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=pending_approval'];
-    var options = {hide: 'resources', filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues};
 
     return CollectionsApi.query('requests', options);
   }
 
   function pendingRequestsForServiceReconfigureRequest(CollectionsApi) {
     var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=pending_approval'];
-    var options = {hide: 'resources', filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues};
 
     return CollectionsApi.query('requests', options);
   }
 
   function approvedRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
     var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=approved'];
-    var options = {hide: 'resources', filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues};
 
     return CollectionsApi.query('requests', options);
   }
 
   function approvedRequestsForServiceReconfigureRequest(CollectionsApi) {
     var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=approved'];
-    var options = {hide: 'resources', filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues};
 
     return CollectionsApi.query('requests', options);
   }
 
   function deniedRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
     var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=denied'];
-    var options = {hide: 'resources', filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues};
 
     return CollectionsApi.query('requests', options);
   }
 
   function deniedRequestsForServiceReconfigureRequest(CollectionsApi) {
     var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=denied'];
-    var options = {hide: 'resources', filter: filterValues };
+    var options = {hide: 'resources', filter: filterValues};
 
     return CollectionsApi.query('requests', options);
   }
@@ -107,7 +107,6 @@
     }
     var currentDate = new Date();
     var date1 = 'retires_on>' + currentDate.toISOString();
-
     var days30 = currentDate.setDate(currentDate.getDate() + 30);
     var date2 = 'retires_on<' + new Date(days30).toISOString();
     var options = {hide: 'resources', filter: ['retired=false', date1, date2]};
@@ -120,7 +119,7 @@
     if (!$state.navFeatures.services.show) {
       return undefined;
     }
-    var options = {hide: 'resources', filter: ['service_id=nil', 'retired=true'] };
+    var options = {hide: 'resources', filter: ['service_id=nil', 'retired=true']};
 
     return CollectionsApi.query('services', options);
   }
@@ -143,6 +142,7 @@
   /** @ngInject */
   function StateController($state, RequestsState, ServicesState, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback) {
     var vm = this;
+
     if (angular.isDefined(definedServiceIdsServices)) {
       vm.servicesCount = {};
       vm.servicesFeature = false;
@@ -161,7 +161,7 @@
         services.forEach(Chargeback.processReports);
 
         vm.chargeback = {
-          'used_cost_sum': lodash(services).pluck(['chargeback', 'used_cost_sum']).sum(),
+          'used_cost_sum': lodash(services).map('chargeback').map('used_cost_sum').values().sum(),
         };
       }
 
@@ -175,7 +175,6 @@
       vm.requestsCount.total = 0;
 
       var allRequestTypes = ['pending', 'approved', 'denied'];
-
       allRequests.forEach(function(promise, n) {
         resolveRequestPromises(promise, allRequestTypes[n], lodash, $q);
       });
@@ -197,7 +196,7 @@
 
     function resolveRequestPromises(promiseArray, type, lodash, $q) {
       $q.all(promiseArray).then(function(data) {
-        var count = lodash.sum(data, 'subcount');
+        var count = lodash.sumBy(data, 'subcount');
         vm.requestsCount[type] = count;
         vm.requestsCount.total += count;
       });

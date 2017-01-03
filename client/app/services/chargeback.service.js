@@ -18,13 +18,15 @@
     // recomputes items[*].chargeback_relative_cost
     function adjustRelativeCost(items) {
       var sums = lodash(items)
-        .pluck(['chargeback', 'used_cost_sum'])
+        .map('chargeback')
+        .map('used_cost_sum')
+        .values()
         .sort()
         .filter(angular.identity) // nonzero
         .value();
 
       var len = sums.length;
-      var bounds = [ len * 0.25, len * 0.5, len * 0.75 ];
+      var bounds = [len * 0.25, len * 0.5, len * 0.75];
 
       items.forEach(function(item) {
         if (!item.chargeback.used_cost_sum) {
@@ -50,13 +52,14 @@
 
     function currentReport(item) {
       var latestDate = lodash(item.chargeback_report.results || [])
-        .pluck('start_date')
+        .map('start_date')
+        .values()
         .sort()
         .reverse()
         .first();
 
       var latestReports = lodash(item.chargeback_report.results || [])
-        .filter({ start_date: latestDate })
+        .filter({start_date: latestDate})
         .value();
 
       latestReports.forEach(function(report) {
@@ -65,7 +68,7 @@
 
       return {
         start_date: latestDate,
-        used_cost_sum: lodash.sum(latestReports, 'used_cost_sum'), // sumBy in lodash4
+        used_cost_sum: lodash.sumBy(latestReports, 'used_cost_sum'),
         vms: latestReports,
       };
     }
