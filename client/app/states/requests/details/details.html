@@ -9,9 +9,9 @@
   <div class="panel panel-default ss-details-panel">
     <div class="panel-body">
       <section>
-        <div class="col-md-12">
+        <div class="col-md-12 ss-details-header__actions" ng-if="::vm.request.request_state === 'pending'">
           <div class="row">
-            <button ng-click="vm.editingDisabled = false">Edit</button> <button ng-click="vm.saveRequest()">Save</button>
+            <button class="btn btn-default" ng-click="vm.editingDisabled = false" translate>Edit</button>
          </div>
          </div>
         <div class="col-md-12 ss-details-header">
@@ -116,4 +116,12 @@
       </section>
     </div>
   </div>
+    <div class="panel panel-default ss-details-panel ss-details-panel-bottom" ng-if="vm.editingDisabled === false">
+      <div class="panel-body">
+        <section class="ss-details-section">
+          <button class="btn btn-primary" type="button" ng-click="vm.saveRequest()" translate>Save</button>
+          <button class="btn btn-default" type="button" ng-click="vm.cancelRequest()" translate>Cancel</button>
+        </section>
+      </div>
+    </div>
 </div>

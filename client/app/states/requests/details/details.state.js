@@ -32,10 +32,9 @@
   }
 
   /** @ngInject */
-  function RequestDetailsController(request, CollectionsApi, DialogFieldRefresh, EventNotifications) {
+  function RequestDetailsController(request, CollectionsApi, DialogFieldRefresh, EventNotifications, $state) {
     var vm = this;
     vm.editingDisabled = true;
-
     vm.title = request.description;
     vm.request = request;
     vm.dialogs = [];
@@ -64,6 +63,10 @@
         { action: 'edit', options: { "dialog": dialogData } }
       ).then(submitSuccess, submitFailure);
     }
+
+    function cancelRequest() {
+      $state.reload();
+    }
     function dataForSubmit() {
       var dialogFieldData = {};
      
@@ -79,10 +82,9 @@
       return dialogFieldData;
     }
     vm.saveRequest = saveRequest;
-
+    vm.cancelRequest = cancelRequest;
     function submitSuccess(result) {
       EventNotifications.success(result.message);
-      // $state.go('services.details', {serviceId: $stateParams.serviceId});
     }
 
     function submitFailure(result) {
