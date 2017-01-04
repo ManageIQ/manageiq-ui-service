@@ -33,12 +33,13 @@
     }
 
     function setTabPanelTitle(key) {
+      var fields = {};
       vm.customizedWorkflow['dialogs'][key].panelTitle = [];
       switch (key) {
         case 'requester':
           vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Request Information"));
           vm.customizedWorkflow['dialogs'][key].panelTitle[1] = (__("Manager"));
-          requesterFieldsLayout(vm.customizedWorkflow['dialogs'][key].panelTitle.length);
+          fields = requesterFields();
           break;
         case 'purpose':
           vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Select Tags to apply"));
@@ -70,10 +71,11 @@
           vm.customizedWorkflow['dialogs'][key].panelTitle[1] = (__("Lifespan"));
           break;
       }
+      fieldsLayout(key, fields, vm.customizedWorkflow['dialogs'][key].panelTitle.length);
     }
 
-    function requesterFieldsLayout (nPanels) {
-      var fields = {
+    function requesterFields () {
+      return {
         owner_email         : { label: 'owner_email', panel: 0, order : 0 },
         owner_first_name    : { label: 'owner_first_name', panel: 0, order : 1 },
         owner_last_name     : { label: 'owner_last_name', panel: 0, order : 2 },
@@ -93,14 +95,15 @@
         owner_manager_mail  : { label: 'owner_manager_mail', panel: 1, order : 1 },
         owner_manager_phone : { label: 'owner_manager_phone', panel: 1, order : 2 },
       };
+    }
 
-      lodash.merge(vm.customizedWorkflow['dialogs']['requester'].fields, fields);
-
-      vm.customizedWorkflow['dialogs']['requester'].fieldsInPanel = [];
-
+    function fieldsLayout (tab, fields, nPanels) {
+      vm.customizedWorkflow['dialogs'][tab].fieldsInPanel = [];
+      
+      lodash.merge(vm.customizedWorkflow['dialogs'][tab].fields, fields);
       lodash.times(nPanels, function(key, value) {
-        vm.customizedWorkflow['dialogs']['requester'].fieldsInPanel[key] =
-          Object.values(lodash.filter(vm.customizedWorkflow['dialogs']['requester'].fields, {'panel': key}));
+        vm.customizedWorkflow['dialogs'][tab].fieldsInPanel[key] =
+          Object.values(lodash.filter(vm.customizedWorkflow['dialogs'][tab].fields, {'panel': key}));
       });
     }
   }
