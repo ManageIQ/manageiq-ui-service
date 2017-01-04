@@ -22,7 +22,7 @@
     function activate() {
       if (vm.workflow) {
         initCustomizedWorkflow();
-        angular.forEach(vm.customizedWorkflow['dialog_order'], setTabPanelTitle);
+        angular.forEach(vm.customizedWorkflow['dialog_order'], setTabPanelTitleForEnabledDialog);
       }
     }
 
@@ -30,11 +30,28 @@
     function initCustomizedWorkflow(key) {
       vm.customizedWorkflow['dialog_order'] = vm.workflow.dialogs.dialog_order;
       vm.customizedWorkflow['dialogs'] = vm.workflow.dialogs.dialogs;
+      vm.customizedWorkflow['values'] = vm.workflow.values;
+    }
+    
+    vm.bEnableDialog = function(dialog) {
+      if (!vm.customizedWorkflow['values'][dialog + '_enabled'] ||
+        vm.customizedWorkflow['values'][dialog + '_enabled'][0] === "enabled") {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    function setTabPanelTitleForEnabledDialog(dialog) {
+      if (vm.bEnableDialog(dialog)) {
+        setTabPanelTitle(dialog);
+      }
     }
 
     function setTabPanelTitle(key) {
       var fields = {};
       vm.customizedWorkflow['dialogs'][key].panelTitle = [];
+
       switch (key) {
         case 'requester':
           vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Request Information"));
