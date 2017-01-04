@@ -112,7 +112,7 @@
   <div class="panel panel-default ss-details-panel">
     <div class="panel-body">
       <section class="ss-details-section">
-        <dialog-content dialog="vm.request.provision_dialog" input-disabled="vm.editingDisabled" options="vm.request.options.dialog"></dialog-content>
+        <dialog-content ng-if="!vm.request.workflow" dialog="vm.request.provision_dialog" input-disabled="vm.editingDisabled" options="vm.request.options.dialog"></dialog-content>
         <request-workflow workflow="vm.request.workflow"></request-workflow>
       </section>
     </div>
