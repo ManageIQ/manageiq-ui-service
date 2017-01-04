@@ -33,26 +33,28 @@
 
   /** @ngInject */
   function RequestDetailsController(request, CollectionsApi, DialogFieldRefresh, EventNotifications, $state) {
-    var vm = this;
+    var vm = this;    
+    var autoRefreshableDialogFields = [];
+    var allDialogFields = [];
+
     vm.editingDisabled = true;
     vm.title = request.description;
     vm.request = request;
     vm.dialogs = [];
-    vm.dialogs.push(request.provision_dialog);
+    
+    if (angular.isDefined(request.provision_dialog)) {
+      vm.dialogs.push(request.provision_dialog);
+      DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
 
-    var autoRefreshableDialogFields = [];
-    var allDialogFields = [];
+      var dialogUrl = 'service_catalogs/' + vm.request.source_id + '/service_templates';
 
-    DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
-
-    var dialogUrl = 'service_catalogs/' + vm.request.source_id + '/service_templates';
-
-    angular.forEach(allDialogFields, function(dialogField) {
-      dialogField.refreshSingleDialogField = function() {
-        DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialogField, dialogUrl, vm.request.source_id);
-      };
-    });
-
+      angular.forEach(allDialogFields, function (dialogField) {
+        dialogField.refreshSingleDialogField = function () {
+          DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialogField, dialogUrl, vm.request.source_id);
+        };
+      });
+    }
+    
     function saveRequest() {
       var dialogData = dataForSubmit();
   
