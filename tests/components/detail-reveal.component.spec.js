@@ -1,4 +1,6 @@
 describe('detail-reveal component', function() {
+  let ctrl;
+
   beforeEach(function(){
       module('app.components', 'gettext');
   });
@@ -11,7 +13,7 @@ describe('detail-reveal component', function() {
     beforeEach(
         inject(function(_$componentController_,$injector) {
       $componentController = _$componentController_;
-      transclude= function(){
+      let transclude= function(){
           var returnObj={};
           returnObj.length=0;
           return returnObj
@@ -38,7 +40,7 @@ describe('detail-reveal component', function() {
     beforeEach(
         inject(function(_$componentController_,$injector) {
       $componentController = _$componentController_;
-      transclude= function(){
+      let transclude= function(){
           var returnObj={};
           returnObj.length=10;//This just is attempting to dummy some html content length > 0
           return returnObj

@@ -34,6 +34,7 @@ describe('Dashboard', function() {
   describe('controller', function() {
     var controller;
     var state;
+    let dashboardState;
     var resolveServicesWithDefinedServiceIds = {};
     var retiredServices = {};
     var resolveNonRetiredServices = {};
@@ -65,7 +66,7 @@ describe('Dashboard', function() {
     describe('resolveExpiringServices', function() {
       it('makes a query request using the CollectionApi', function() {
         var clock = sinon.useFakeTimers(new Date('2016-01-01').getTime());
-        collectionsApiSpy = sinon.stub(CollectionsApi);
+        let collectionsApiSpy = sinon.stub(CollectionsApi);
         dashboardState.resolve.expiringServices(collectionsApiSpy, state);
 
         expect(collectionsApiSpy.query).to.have.been.calledWith('services', {

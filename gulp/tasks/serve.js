@@ -99,8 +99,11 @@ module.exports = function(gulp, options) {
     }
 
     // Watches less, compiles it to css, browser-sync handles reload
-    gulp.watch([config.sass], ['sass'])
-      .on('change', changeEvent);
+    gulp.watch([config.sass], ['sass']).on('change', changeEvent);
+
+    // Watches source JS files and rebuilds bundle on changes
+    gulp.watch([config.js], ['compile']).on('change', changeEvent);
+
     browserSyncOptions.files = config.devFiles;
 
 

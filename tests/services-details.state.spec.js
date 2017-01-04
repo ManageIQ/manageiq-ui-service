@@ -1,4 +1,10 @@
 describe('Dashboard', function() {
+  let state;
+  let Chargeback;
+  let PowerOperations;
+  let collectionsApiSpy;
+  let notificationSpy;
+
   beforeEach(function() {
     module('app.states', 'app.config', 'gettext', bard.fakeToastr);
     bard.inject('$state', '$templateCache', 'Session');

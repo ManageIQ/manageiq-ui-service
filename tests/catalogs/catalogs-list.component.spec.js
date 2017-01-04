@@ -1,12 +1,13 @@
 describe('app.components.CatalogsList', function() {
-  var $scope;
-  var $compile;
-  var element;
-  var getCatalogsSpy;
-  var successResponse = {
+  let $scope;
+  let $compile;
+  let $document;
+  let element;
+  let getCatalogsSpy;
+  let successResponse = {
     message: 'Success!'
   };
-  var mockDir = 'tests/mock/catalogs/';
+  let mockDir = 'tests/mock/catalogs/';
 
   beforeEach(function () {
     module('app.services', 'app.config', 'app.states', 'app.components', 'gettext');
@@ -44,7 +45,7 @@ describe('app.components.CatalogsList', function() {
       '               tenants="tenants"' +
       '               service-dialogs="serviceDialogs">'+
       '</catalogs-list>' +
-      '';  
+      '';
 
       compileHTML(htmlTmp, $scope);
   });

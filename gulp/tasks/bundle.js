@@ -2,6 +2,7 @@
 
 var log = require('../utils/log');
 var order = require('gulp-order');
+var babel = require('gulp-babel');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 
@@ -18,6 +19,7 @@ module.exports = function(gulp, options) {
     return gulp.src(config.files)
       .pipe(order(config.ordering))
       .pipe(sourcemaps.init())
+        .pipe(babel())
         .pipe(concat('bundle.js'))
       .pipe(sourcemaps.write())
       .pipe(gulp.dest(config.temp));

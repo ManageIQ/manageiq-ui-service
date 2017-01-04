@@ -1,7 +1,8 @@
 describe('app.components.ProfileEditorDirective', function() {
-  var $scope;
-  var $compile;
-  var element;
+  let $scope;
+  let $compile;
+  let $document;
+  let element;
 
   beforeEach(function() {
     module('app.services', 'app.config', 'app.states', 'app.components', 'gettext');

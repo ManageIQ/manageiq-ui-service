@@ -137,9 +137,11 @@ module.exports = (function() {
           {type: 'text-summary'}
         ]
       },
-      preprocessors: {}
+      preprocessors: {
+        'client/app/**/*.js': ['babel', 'coverage'],
+        'tests/**/*.js': ['babel'],
+      },
     };
-    options.preprocessors[client + 'app/**/*.js'] = ['coverage'];
 
     return options;
   }
@@ -315,7 +317,7 @@ module.exports = (function() {
     devFiles: [
       client + '**/*.js',
       client + '**/*.html',
-      temp + '**/*.css'
+      temp + '**/*.css',
     ],
     browserSyncOptions: {
       proxy: {
