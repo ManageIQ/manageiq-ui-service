@@ -32,44 +32,44 @@
   }
 
   /** @ngInject */
-  function StateController($state, dialog, CollectionsApi, EventNotifications) {
+  function StateController($state, dialog, CollectionsApi, EventNotifications, sprintf) {
     var vm = this;
 
     vm.dialog = dialog;
-    vm.dialog.performAction = performAction;
-    vm.dialog.removeDialog = removeDialog;
-    vm.dialog.copyDialog = copyDialog;
+    vm.dialog.editDialog = editDialog;
+    vm.dialog.removeDialog = dialogAction('delete');
+    vm.dialog.copyDialog = dialogAction('copy');
 
-    function performAction(item) {
+    function editDialog(item) {
       $state.go('designer.dialogs.edit', {dialogId: dialog.id});
     }
 
-    function removeDialog() {
-      var removeAction = {action: 'delete'};
-      CollectionsApi.post('service_dialogs', vm.dialog.id, {}, removeAction).then(removeSuccess, removeFailure);
+    function dialogAction(action) {
+      return function() {
+        var actionData = {action: action};
+        CollectionsApi.post('service_dialogs', vm.dialog.id, {}, actionData)
+          .then(actionSuccess, actionFailure);
 
-      function removeSuccess() {
-        EventNotifications.success(vm.dialog.label + __(' was removed.'));
-        $state.go('designer.dialogs.list');
-      }
+        function actionSuccess() {
+          var actionString;
+          if (action === 'copy') {
+            actionString = sprintf(__('%s was copied.'), vm.dialog.label);
+          } else {
+            actionString = sprintf(__('%s was removed.'), vm.dialog.label);
+          }
+          EventNotifications.success(actionString);
+          $state.go('designer.dialogs.list');
+        }
 
-      function removeFailure(data) {
-        EventNotifications.error(__('There was an error removing this dialog.'));
-      }
-    }
-
-    function copyDialog() {
-      var copyAction = {action: 'copy'};
-      CollectionsApi.post('service_dialogs', vm.dialog.id, {}, copyAction).then(copySuccess, copyFailure);
-
-      function copySuccess() {
-        EventNotifications.success(vm.dialog.label + __(' was copied.'));
-        $state.go('designer.dialogs.list');
-      }
-
-      function copyFailure(data) {
-        EventNotifications.error(__('There was an error copying this dialog.'));
-      }
+        function actionFailure() {
+          var actionString;
+          if (action === 'copy') {
+            actionString = EventNotifications.error(__('There was an error copying this dialog.'));
+          } else {
+            actionString = EventNotifications.error(__('There was an error removing this dialog.'));
+          }
+        }
+      };
     }
   }
 })();
