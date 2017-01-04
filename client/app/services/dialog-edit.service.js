@@ -14,7 +14,7 @@
     /**
      * Store data passed in parameter
      *
-     * Parameter: data -- nested object containing data
+     * Parameter: data -- nested object containing data of the dialog
      */
     service.setData = function(data) {
       service.data = data;

@@ -231,7 +231,6 @@
 
     /**
      * Finds entries for the selected category
-     *
      */
     function currentCategoryEntries() {
       if (angular.isDefined(vm.categories)) {

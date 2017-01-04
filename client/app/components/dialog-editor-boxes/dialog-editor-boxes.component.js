@@ -14,16 +14,17 @@
     var vm = this;
 
     /**
-     * Load component data
+     * Load Dialog data
      */
     vm.$onInit = function() {
+      // to be able to access the service from the template
       vm.service = DialogEditor;
       // load data from service
       vm.dialogTabs = DialogEditor.getDialogTabs();
     };
 
     /**
-     * Add a new box to box list
+     * Add a new empty box to box list
      * New box automaticaly does have last position in list
      */
     vm.addBox = function() {
@@ -40,7 +41,9 @@
     };
 
     /**
-     * Delete box with all content
+     * Delete box with all its content
+     *
+     * Parameter: id -- id of the box to remove
      */
     vm.removeBox = function(id) {
       lodash.remove(
@@ -54,6 +57,12 @@
       );
     };
 
+    /**
+     * Show modal to edit label and description of the Box
+     *
+     * Parameter: tab -- id of the tab in the dialog
+     * Parameter: box -- id of the box in the tab
+     */
     vm.editDialogModal = function(tab, box) {
       DialogEditorModal.showModal(tab, box);
     };
