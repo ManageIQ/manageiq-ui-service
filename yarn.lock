@@ -117,13 +117,9 @@ amdefine@>=0.0.4:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.0.tgz#fd17474700cb5cc9c2b709f0be9d23ce3c198c33"
 
-"angular-animate@1.3.0 - 1.5.*":
+"angular-animate@1.3.0 - 1.5.*", angular-animate@^1.5.9:
   version "1.5.9"
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.5.9.tgz#c958d524f9333a48abdaefb32947c7e611f54453"
-
-angular-animate@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.1.tgz#19e3b82b7392e2bbdd83af33c0af0d85437f3a14"
 
 angular-base64@~2.0.5:
   version "2.0.5"
@@ -131,9 +127,9 @@ angular-base64@~2.0.5:
   dependencies:
     angular ">= 1.0.8"
 
-angular-cookies@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/angular-cookies/-/angular-cookies-1.6.1.tgz#d728a39361b47d3fe4b2a6fd769a5f0b34e43d0e"
+angular-cookies@^1.5.9:
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/angular-cookies/-/angular-cookies-1.5.9.tgz#c39d23c527c98f41f7305fdc158286ca1dce868e"
 
 angular-drag-and-drop-lists@^2.0.0:
   version "2.0.0"
@@ -157,13 +153,13 @@ angular-gettext@~2.3.7:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/angular-gettext/-/angular-gettext-2.3.8.tgz#f5aa77e3e12c8774d2996160d66e7592e149ea48"
 
-angular-messages@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.6.1.tgz#da9546d94b55eb152daaa9b9147059f7dec81435"
+angular-messages@^1.5.9:
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.5.9.tgz#c92064dfb57e32c0ab0c382e85666778ab6fdaa0"
 
-angular-mocks@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.1.tgz#2f44a1b3ac608e93751305bce176c274221d8abd"
+angular-mocks@^1.5.9:
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.5.9.tgz#5d6d6b37873d6c59e32e195f5de161f4a3f2f7e8"
 
 angular-patternfly@^3.17.0:
   version "3.17.0"
@@ -176,17 +172,13 @@ angular-patternfly@^3.17.0:
     lodash "3.x"
     patternfly "~3.17.0"
 
-angular-resource@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.6.1.tgz#9eeea8c59238439ba15ad31be0eb70f2442f77a1"
+angular-resource@^1.5.9:
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.5.9.tgz#b062c444725305c812961220f408e66fe01faaf3"
 
-"angular-sanitize@1.3.0 - 1.5.*":
+"angular-sanitize@1.3.0 - 1.5.*", angular-sanitize@^1.5.9:
   version "1.5.9"
   resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.5.9.tgz#e2d7dd8e8587f1342b6d2efdfa67311fcf1f65ed"
-
-angular-sanitize@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.6.1.tgz#cacffec3199ed66297afbb1ef366ec66616b3b3f"
 
 angular-svg-base-fix@^2.0.0:
   version "2.0.0"
@@ -206,13 +198,9 @@ angular-ui-router@^0.3.2:
   dependencies:
     angular "^1.0.8"
 
-"angular@1.3.0 - 1.5.*":
+"angular@1.3.0 - 1.5.*", "angular@>= 1.0.8", angular@^1.0.8, angular@^1.5.9:
   version "1.5.9"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.5.9.tgz#b7aeff42dad87881e06be16b6690fe766d868b51"
-
-"angular@>= 1.0.8", angular@^1.0.8, angular@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.1.tgz#a7b6d763a74c157325692619e97257e69d9b6a27"
 
 ansi-cyan@^0.1.1:
   version "0.1.1"
@@ -2496,9 +2484,9 @@ eslint-config-angular@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/eslint-config-angular/-/eslint-config-angular-0.5.0.tgz#e0aae0132e39e7467df3f7547fec81a44d3685c4"
 
-eslint-plugin-angular@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-angular/-/eslint-plugin-angular-1.6.1.tgz#5d108533da6497d7899ae9be626aabbb4e4879b2"
+eslint-plugin-angular@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-angular/-/eslint-plugin-angular-1.4.1.tgz#7a4279e722d45e0e419bd3629373ef5d066aa0e3"
 
 eslint@^2.7.0:
   version "2.13.1"
