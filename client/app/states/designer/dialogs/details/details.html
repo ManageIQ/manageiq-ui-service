@@ -28,7 +28,12 @@
 
             <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6 ss-details-header__actions">
               <div class="ss-details-header__actions__inner">
-                <button class="btn btn-danger" type="button" ng-click="vm.dialog.removeDialog()" translate>Remove</button>
+                <button class="btn btn-danger" type="button"
+                  confirmation
+                  confirmation-id="confirmDeleteDialog"
+                  confirmation-on-ok="vm.dialog.deleteDialog()"
+                  confirmation-message="{{'Are you sure you wish to delete the Dialog?'|translate}}"
+                  translate>Delete</button>
                 <button class="btn btn-default" type="button" ng-click="vm.dialog.copyDialog()" translate>Copy</button>
                 <button class="btn btn-default" type="button" ng-click="vm.dialog.editDialog()" translate>Edit</button>
               </div>

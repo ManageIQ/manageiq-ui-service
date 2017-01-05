@@ -37,7 +37,7 @@
 
     vm.dialog = dialog;
     vm.dialog.editDialog = editDialog;
-    vm.dialog.removeDialog = dialogAction('delete');
+    vm.dialog.deleteDialog = dialogAction('delete');
     vm.dialog.copyDialog = dialogAction('copy');
 
     function editDialog(item) {
@@ -55,7 +55,7 @@
           if (action === 'copy') {
             actionString = sprintf(__('%s was copied.'), vm.dialog.label);
           } else {
-            actionString = sprintf(__('%s was removed.'), vm.dialog.label);
+            actionString = sprintf(__('%s was deleted.'), vm.dialog.label);
           }
           EventNotifications.success(actionString);
           $state.go('designer.dialogs.list');
@@ -66,7 +66,7 @@
           if (action === 'copy') {
             actionString = EventNotifications.error(__('There was an error copying this dialog.'));
           } else {
-            actionString = EventNotifications.error(__('There was an error removing this dialog.'));
+            actionString = EventNotifications.error(__('There was an error deleting this dialog.'));
           }
         }
       };
