@@ -22,20 +22,20 @@
     function activate() {
       if (vm.workflow) {
         initCustomizedWorkflow();
-        angular.forEach(vm.customizedWorkflow['dialog_order'], setTabPanelTitleForEnabledDialog);
+        angular.forEach(vm.customizedWorkflow.dialogOrder, setTabPanelTitleForEnabledDialog);
       }
     }
 
     // Private functions
     function initCustomizedWorkflow(key) {
-      vm.customizedWorkflow['dialog_order'] = vm.workflow.dialogs.dialog_order;
-      vm.customizedWorkflow['dialogs'] = vm.workflow.dialogs.dialogs;
-      vm.customizedWorkflow['values'] = vm.workflow.values;
+      vm.customizedWorkflow.dialogOrder = vm.workflow.dialogs.dialog_order;
+      vm.customizedWorkflow.dialogs = vm.workflow.dialogs.dialogs;
+      vm.customizedWorkflow.values = vm.workflow.values;
     }
     
     vm.bEnableDialog = function(dialog) {
-      if (!vm.customizedWorkflow['values'][dialog + '_enabled'] ||
-        vm.customizedWorkflow['values'][dialog + '_enabled'][0] === "enabled") {
+      if (!vm.customizedWorkflow.values[dialog + '_enabled']
+          || vm.customizedWorkflow.values[dialog + '_enabled'][0] === "enabled") {
         return true;
       } else {
         return false;
@@ -50,77 +50,78 @@
 
     function setTabPanelTitle(key) {
       var fields = {};
-      vm.customizedWorkflow['dialogs'][key].panelTitle = [];
+      vm.customizedWorkflow.dialogs[key].panelTitle = [];
 
       switch (key) {
         case 'requester':
-          vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Request Information"));
-          vm.customizedWorkflow['dialogs'][key].panelTitle[1] = (__("Manager"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Request Information"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Manager"));
           fields = requesterFields();
           break;
         case 'purpose':
-          vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Select Tags to apply"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select Tags to apply"));
           break;
         case 'service':
-          vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Selected VM"));
-          vm.customizedWorkflow['dialogs'][key].panelTitle[1] = (__("Number of VMs"));
-          vm.customizedWorkflow['dialogs'][key].panelTitle[2] = (__("Naming"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Selected VM"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Number of VMs"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[2] = (__("Naming"));
           break;
         case 'environment':
-          vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Placement"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Placement"));
           break;
         case 'hardware':
-          vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Hardware"));
-          vm.customizedWorkflow['dialogs'][key].panelTitle[1] = (__("VM Reservations"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Hardware"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("VM Reservations"));
           break;
         case 'network':
-          vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Network Adapter Information"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Network Adapter Information"));
           break;
         case 'customize':
-          vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Credentials"));
-          vm.customizedWorkflow['dialogs'][key].panelTitle[1] = (__("IP Address Information"));
-          vm.customizedWorkflow['dialogs'][key].panelTitle[2] = (__("DNS"));
-          vm.customizedWorkflow['dialogs'][key].panelTitle[3] = (__("Customize Template"));
-          vm.customizedWorkflow['dialogs'][key].panelTitle[4] = (__("Selected Template Contents"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Credentials"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("IP Address Information"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[2] = (__("DNS"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[3] = (__("Customize Template"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[4] = (__("Selected Template Contents"));
           break;
         case 'schedule':
-          vm.customizedWorkflow['dialogs'][key].panelTitle[0] = (__("Schedule Info"));
-          vm.customizedWorkflow['dialogs'][key].panelTitle[1] = (__("Lifespan"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Schedule Info"));
+          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Lifespan"));
           break;
       }
-      fieldsLayout(key, fields, vm.customizedWorkflow['dialogs'][key].panelTitle.length);
+      fieldsLayout(key, fields, vm.customizedWorkflow.dialogs[key].panelTitle.length);
     }
 
-    function requesterFields () {
+    function requesterFields() {
       return {
-        owner_email         : { label: 'owner_email', panel: 0, order : 0 },
-        owner_first_name    : { label: 'owner_first_name', panel: 0, order : 1 },
-        owner_last_name     : { label: 'owner_last_name', panel: 0, order : 2 },
-        owner_address       : { label: 'owner_address', panel: 0, order : 3 },
-        owner_city          : { label: 'owner_city', panel: 0, order : 4 },
-        owner_state         : { label: 'owner_state', panel: 0, order : 5 },
-        owner_zip           : { label: 'owner_zip', panel: 0, order : 6 },
-        owner_country       : { label: 'owner_country', panel: 0, order : 7 },
-        owner_title         : { label: 'owner_title', panel: 0, order : 8 },
-        owner_company       : { label: 'owner_company', panel: 0, order : 9 },
-        owner_department    : { label: 'owner_department', panel: 0, order : 10 },
-        owner_office        : { label: 'owner_office', panel: 0, order : 11 },
-        owner_phone         : { label: 'owner_phone', panel: 0, order : 12 },
-        owner_phone_mobile  : { label: 'owner_phone_mobile', panel: 0, order : 13 },
-        request_notes       : { label: 'request_notes', panel: 0, order : 14 },
-        owner_manager       : { label: 'owner_manager', panel: 1, order : 0 },
-        owner_manager_mail  : { label: 'owner_manager_mail', panel: 1, order : 1 },
-        owner_manager_phone : { label: 'owner_manager_phone', panel: 1, order : 2 },
+        ownerEmail: { label: 'owner_email', panel: 0, order: 0 },
+        ownerFirstName: { label: 'owner_first_name', panel: 0, order: 1 },
+        ownerLastName: { label: 'owner_last_name', panel: 0, order: 2 },
+        ownerAddress: { label: 'owner_address', panel: 0, order: 3 },
+        ownerCity: { label: 'owner_city', panel: 0, order: 4 },
+        ownerState: { label: 'owner_state', panel: 0, order: 5 },
+        ownerZip: { label: 'owner_zip', panel: 0, order: 6 },
+        ownerCountry: { label: 'owner_country', panel: 0, order: 7 },
+        ownerTitle: { label: 'owner_title', panel: 0, order: 8 },
+        ownerCompany: { label: 'owner_company', panel: 0, order: 9 },
+        ownerDepartment: { label: 'owner_department', panel: 0, order: 10 },
+        ownerOffice: { label: 'owner_office', panel: 0, order: 11 },
+        ownerPhone: { label: 'owner_phone', panel: 0, order: 12 },
+        ownerPhoneMobile: { label: 'owner_phone_mobile', panel: 0, order: 13 },
+        requestNotes: { label: 'request_notes', panel: 0, order: 14 },
+        ownerManager: { label: 'owner_manager', panel: 1, order: 0 },
+        ownerManagerMail: { label: 'owner_manager_mail', panel: 1, order: 1 },
+        ownerManagerPhone: { label: 'owner_manager_phone', panel: 1, order: 2 },
       };
     }
 
-    function fieldsLayout (tab, fields, nPanels) {
-      vm.customizedWorkflow['dialogs'][tab].fieldsInPanel = [];
+    function fieldsLayout(tab, fields, nPanels) {
+      vm.customizedWorkflow.dialogs[tab].fieldsInPanel = [];
       
-      lodash.merge(vm.customizedWorkflow['dialogs'][tab].fields, fields);
+      lodash.merge(vm.customizedWorkflow.dialogs[tab].fields,
+        lodash.mapKeys(fields, function (v, k) { return lodash.snakeCase(k); }));
       lodash.times(nPanels, function(key, value) {
-        vm.customizedWorkflow['dialogs'][tab].fieldsInPanel[key] =
-          Object.values(lodash.filter(vm.customizedWorkflow['dialogs'][tab].fields, {'panel': key}));
+        vm.customizedWorkflow.dialogs[tab].fieldsInPanel[key]
+          = Object.values(lodash.filter(vm.customizedWorkflow.dialogs[tab].fields, {'panel': key}));
       });
     }
   }
