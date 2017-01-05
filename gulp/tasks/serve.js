@@ -10,7 +10,7 @@ module.exports = function(gulp, options) {
   return task;
 
   function task() {
-    serve(options.specRunner);
+    console.warn('This task is now deprecated, use `yarn start` instead');
   }
 
   function getNodeOptions() {

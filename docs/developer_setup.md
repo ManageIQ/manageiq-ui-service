@@ -27,18 +27,18 @@ Logging in to the SUI requires a running instance of ManageIQ. Instructions on h
   - `gulp build`
 
 
-### Deployment
+### Development
 
 - From the `manageiq` directory, start the ManageIQ application to initiate the server listening on
 http://localhost:3000 order and serve up the REST API.
   Either one of the following commands can be used.
   - `MIQ_SPARTAN=minimal rake evm:start`
-  - `rails s`
+  - `bin/rails s`
 
 - From the `manageiq-ui-service` directory, start the development version of
   the service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
   _http://[::1]:3000_.  This command will also open a browser page to  _http://localhost:3001/ui/service/login_.
-  - `gulp serve`
+  - `yarn start`
 - If you have a local copy of Manage IQ Server installed and would like to start it up at the same time you bring up the service ui web server, run
 	- ``` gulp start-manageiq-server ```
 

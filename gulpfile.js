@@ -64,7 +64,7 @@ gulp.task('autotest', task('test', {singleRun: false}));
  * Serves up injected html for dev, builds for everything else.
  */
 gulp.task('start-manageiq-server', ['serve'], task('manageiq-server'));
-gulp.task('serve', ['compile', 'available-languages'], task('serve', {
+gulp.task('serve', task('serve', {
   specRunner: false
 }));
 

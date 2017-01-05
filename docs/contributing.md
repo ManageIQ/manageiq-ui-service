@@ -1,6 +1,7 @@
 # Contributing
 Any contribution should observe the convention set fourth in the [Code Tour](code_tour.md).
 The following must complete without error prior to making a pull request:
+
 1. `gulp vet`
 2. `gulp test`
 
