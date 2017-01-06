@@ -38,7 +38,7 @@
   // TODO One API call would now be split into two - one for ServiceTemplateProvisionRequest and other for ServiceReconfigureRequest
 
   function resolveAllRequests(CollectionsApi, $state) {
-    if (!$state.navFeatures.requests.show) {
+    if (angular.isDefined($state.navFeatures) && !$state.navFeatures.requests.show) {
       return undefined;
     }
 
@@ -102,7 +102,7 @@
 
   /** @ngInject */
   function resolveExpiringServices(CollectionsApi, $state) {
-    if (!$state.navFeatures.services.show) {
+    if (angular.isDefined($state.navFeatures) && !$state.navFeatures.services.show) {
       return undefined;
     }
     var currentDate = new Date();
@@ -116,7 +116,7 @@
 
   /** @ngInject */
   function resolveRetiredServices(CollectionsApi, $state) {
-    if (!$state.navFeatures.services.show) {
+    if (angular.isDefined($state.navFeatures) && !$state.navFeatures.services.show) {
       return undefined;
     }
     var options = {hide: 'resources', filter: ['service_id=nil', 'retired=true']};
@@ -126,7 +126,7 @@
 
   /** @ngInject */
   function resolveServicesWithDefinedServiceIds(CollectionsApi, $state) {
-    if (!$state.navFeatures.services.show) {
+    if (angular.isDefined($state.navFeatures) && !$state.navFeatures.services.show) {
       return undefined;
     }
 

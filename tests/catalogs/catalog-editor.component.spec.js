@@ -1,105 +1,90 @@
-describe('app.components.CatalogEditor', function() {
-  var $scope;
-  var $compile;
-  var $document;
-  var element;
-  var getCatalogsSpy;
-  var mockDir = 'tests/mock/catalogs/';
+describe('Component: catalogEditor', function() {
 
-  beforeEach(function () {
-    module('app.services', 'app.config', 'app.states', 'app.components', 'gettext');
-    bard.inject('CatalogsState', '$state', 'Session', '$httpBackend', '$timeout');
+  beforeEach(function() {
+    module('app.core', 'app.config', 'app.states', 'gettext');
+    bard.inject('CatalogsState', '$state', 'Session', '$httpBackend');
   });
 
-  beforeEach(inject(function (_$compile_, _$rootScope_, _$document_) {
-    $compile = _$compile_;
-    $scope = _$rootScope_;
-    $document = _$document_;
-  }));
+  describe('with $compile', function() {
+    let scope;
+    let element;
+    let getCatalogsSpy;
+    let compileHTML;
+    let mockDir = 'tests/mock/catalogs/';
 
-  var compileHTML = function (markup, scope) {
-    element = angular.element(markup);
-    $compile(element)(scope);
+    beforeEach(inject(function($compile, $rootScope) {
 
-    scope.$digest();
-  };
+      compileHTML = function(markup, scope) {
+        element = angular.element(markup);
+        $compile(element)(scope);
 
-  beforeEach(function () {
-    Session.create({
-      auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
-    });
-    $httpBackend.whenGET('').respond(200);
+        scope.$apply();
+      };
 
-    $scope.catalog = readJSON(mockDir + 'editCatalog.json');
-    $scope.designerCatalogs = readJSON(mockDir + 'catalogs.json');
-    $scope.serviceTemplates = readJSON(mockDir + 'service-templates.json');
+      scope = $rootScope.$new();
 
-    getCatalogsSpy = sinon.stub(CatalogsState, 'getCatalogs').returns(Promise.resolve({resources: $scope.designerCatalogs}));
+      Session.create({
+        auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
+      });
+      $httpBackend.whenGET('').respond(200);
 
-    var htmlTmp = '' +
-      '<catalog-editor state-name="designer.catalogs.editor"' +
-      '                catalog="catalog"' +
-      '                service-templates="serviceTemplates"' +
-      '</catalog-editor>' +
-      '';
+      scope.catalog = readJSON(mockDir + 'editCatalog.json');
+      scope.designerCatalogs = readJSON(mockDir + 'catalogs.json');
+      scope.serviceTemplates = readJSON(mockDir + 'service-templates.json');
 
-      compileHTML(htmlTmp, $scope);
-  });
+      getCatalogsSpy = sinon.stub(CatalogsState, 'getCatalogs').returns(Promise.resolve({resources: scope.designerCatalogs}));
 
-  describe('catalogEditor', function() {
-    it('should set the name and description correctly', function () {
-      var nameInput = element.find('#catalog-editor-name');
-      expect(nameInput.val()).to.eq($scope.catalog.name);
+      let htmlTmp = '<catalog-editor state-name="designer.catalogs.editor" catalog="catalog" service-templates="serviceTemplates" />';
+      compileHTML(htmlTmp, scope);
+    }));
 
-      var nameInput = element.find('#catalog-editor-description');
-      expect(nameInput.val()).to.eq($scope.catalog.description);
+    it('should set the name and description correctly', function() {
+      let nameInput = element.find('#catalog-editor-name');
+      expect(nameInput.val()).to.eq(scope.catalog.name);
+
+      let descriptionInput = element.find('#catalog-editor-description');
+      expect(descriptionInput.val()).to.eq(scope.catalog.description);
     });
 
-    it('should set the dual pane lists correctly', function () {
-      var selectedList = element.find('.dual-pane-selector-list.dual-pane-selector-list-right');
+    it('should set the dual pane lists correctly', function() {
+      let selectedList = element.find('.dual-pane-selector-list.dual-pane-selector-list-right');
       expect(selectedList.length).to.eq(1);
 
-      var selectedItems = angular.element(selectedList).find('.dual-pane-selector-item');
-      expect(selectedItems.length).to.eq($scope.catalog.serviceTemplates.length);
+      let selectedItems = angular.element(selectedList).find('.dual-pane-selector-item');
+      expect(selectedItems.length).to.eq(scope.catalog.serviceTemplates.length);
 
-      var unassignedList = element.find('.dual-pane-selector-list.dual-pane-selector-list-left');
+      let unassignedList = element.find('.dual-pane-selector-list.dual-pane-selector-list-left');
       expect(unassignedList.length).to.eq(1);
 
-      var unassignedItems = angular.element(unassignedList).find('.dual-pane-selector-item');
-      expect(unassignedItems.length).to.eq($scope.serviceTemplates.length - $scope.catalog.serviceTemplates.length);
+      let unassignedItems = angular.element(unassignedList).find('.dual-pane-selector-item');
+      expect(unassignedItems.length).to.eq(scope.serviceTemplates.length - scope.catalog.serviceTemplates.length);
     });
 
-    it('should recognize add mode and setup correctly', function () {
-      $scope.catalog = undefined;
-      var htmlTmp = '' +
-        '<catalog-editor state-name="designer.catalogs.editor"' +
-        '                catalog=""' +
-        '                service-templates="serviceTemplates"' +
-        '</catalog-editor>' +
-        '';
+    it('should recognize add mode and setup correctly', function() {
+      scope.catalog = undefined;
+      let htmlTmp = '<catalog-editor state-name="designer.catalogs.editor" catalog="" service-templates="serviceTemplates" />';
+      compileHTML(htmlTmp, scope);
 
-      compileHTML(htmlTmp, $scope);
-
-      var header = element.find('.ss-details-header h2 > span');
+      let header = element.find('.ss-details-header h2 ');
       expect(header.length).to.eq(1);
       expect(header[0].innerHTML).to.eq('Add Catalog');
 
-      var nameInput = element.find('#catalog-editor-name');
+      let nameInput = element.find('#catalog-editor-name');
       expect(nameInput.val()).to.eq('');
 
-      var nameInput = element.find('#catalog-editor-description');
-      expect(nameInput.val()).to.eq('');
+      let descriptionInput = element.find('#catalog-editor-description');
+      expect(descriptionInput.val()).to.eq('');
 
-      var selectedList = element.find('.dual-pane-selector-list.dual-pane-selector-list-right');
+      let selectedList = element.find('.dual-pane-selector-list.dual-pane-selector-list-right');
       expect(selectedList.length).to.eq(1);
 
-      var selectedItems = angular.element(selectedList).find('.dual-pane-selector-item');
+      let selectedItems = angular.element(selectedList).find('.dual-pane-selector-item');
       expect(selectedItems.length).to.eq(0);
 
-      var unassignedList = element.find('.dual-pane-selector-list.dual-pane-selector-list-left');
+      let unassignedList = element.find('.dual-pane-selector-list.dual-pane-selector-list-left');
       expect(unassignedList.length).to.eq(1);
 
-      var unassignedItems = angular.element(unassignedList).find('.dual-pane-selector-item');
+      let unassignedItems = angular.element(unassignedList).find('.dual-pane-selector-item');
       expect(unassignedItems.length).to.eq(4);
     });
   });
