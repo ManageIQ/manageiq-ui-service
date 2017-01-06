@@ -11,7 +11,7 @@
   },
   "version": "1.0.1",
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --open --progress",
     "test": "gulp test"
   },
   "devDependencies": {

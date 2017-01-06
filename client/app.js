@@ -7,44 +7,44 @@ function requireAll(context) {
 window.$ = window.jQuery = require('jquery');
 window._ = require('lodash');
 window.moment = require('moment');
-window.sprintf = require('sprintf-js');
+window.sprintf = require('sprintf-js').sprintf;
 window.toastr = require('toastr');
 
-// Vendor libraries
+// Vendor libraries, order matters
+require('components-jqueryui');
+require('jquery-match-height');
+require('google-code-prettify/bin/prettify.min.js');
+require('d3');
+require('c3');
+require('datatables');
+require('datatables-colreorder');
+require('moment-timezone');
+require('eonasdan-bootstrap-datetimepicker');
+require('es6-shim');
 require('angular');
 require('angular-animate');
-require('angular-base64');
 require('angular-cookies');
-require('angular-drag-and-drop-lists');
-require('angular-dragdrop');
-require('angular-gettext');
+require('angular-resource');
 require('angular-messages');
 require('angular-mocks');
-require('angular-resource');
 require('angular-sanitize');
-require('angular-svg-base-fix');
+require('angular-base64');
 require('angular-ui-bootstrap');
-require('angular-ui-router');
+require('angular-dragdrop');
+require('angular-gettext');
 require('bootstrap');
 require('bootstrap-combobox');
 require('bootstrap-datepicker');
 require('bootstrap-select');
 require('bootstrap-switch');
 require('bootstrap-touchspin');
-require('c3');
-require('components-jqueryui');
-require('d3');
-require('datatables');
-require('datatables-colreorder');
-require('eonasdan-bootstrap-datetimepicker');
-require('es6-shim');
-require('google-code-prettify/bin/prettify.min.js');
-require('jquery-match-height');
-require('moment-timezone');
-require('ngprogress/build/ngProgress');
-require('ngstorage');
+require('angular-svg-base-fix');
+require('angular-ui-router');
 require('patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js');
 require('patternfly/dist/js/patternfly.js');
+require('angular-drag-and-drop-lists');
+require('ngprogress/build/ngProgress');
+require('ngstorage');
 
 // Needs imports loader because it expects `this` to be `window`
 require('imports-loader?this=>window!actioncable');

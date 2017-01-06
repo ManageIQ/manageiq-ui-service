@@ -20,13 +20,13 @@ module.exports = {
     port: 3001,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://[::1]:3000',
       },
       '/pictures': {
-        target: 'http://localhost:3000',
+        target: 'http://[::1]:3000',
       },
       '/ws': {
-        target: 'ws://localhost:3000',
+        target: 'ws://[::1]:3000',
         ws: true,
       },
     },
