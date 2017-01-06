@@ -31,6 +31,7 @@ module.exports = {
       },
     },
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -52,7 +53,7 @@ module.exports = {
         // 'loader' must be used instead of 'use' until fixed in `extract-text-webpack-plugin`
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: ['css-loader?importLoaders=2', 'postcss-loader', 'sass-loader'],
+          loader: ['css-loader?importLoaders=2&sourceMap', 'postcss-loader?sourceMap=inline', 'sass-loader?sourceMap'],
         }),
       },
     ],
