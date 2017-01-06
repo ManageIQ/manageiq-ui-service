@@ -55,8 +55,8 @@ require('angular-patternfly/dist/angular-patternfly');
 // Application files with strict ordering requirements
 require('./app/globals.js');
 require('./app/app.module.js');
-requireAll(require.context('.', true, /\.module\.js$/));
-requireAll(require.context('.', true, /^((?!module).)*\.js$/));
+requireAll(require.context('./app', true, /\.module\.js$/));
+requireAll(require.context('./app', true, /^((?!module).)*\.js$/));
 
 // Vendor styles
 require('angular-patternfly/dist/styles/angular-patternfly.css');
@@ -74,3 +74,6 @@ require('patternfly/dist/css/patternfly.css');
 
 // Application styles
 require('./assets/sass/styles.sass');
+
+// Angular templates
+requireAll(require.context('./app', true, /\.html$/));

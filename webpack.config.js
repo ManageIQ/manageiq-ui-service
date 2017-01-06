@@ -34,6 +34,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html$/,
+        use: ['ngtemplate-loader?module=app.core', 'html-loader?attrs=false'],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ['babel-loader?presets[]=env'],
