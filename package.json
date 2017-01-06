@@ -96,7 +96,7 @@
     "gulp-uglify": "2.0.0",
     "gulp-useref": "3.1.2",
     "gulp-util": "3.0.8",
-    "html-loader": "^0.4.4",
+    "html-loader": "0.4.4",
     "imagemin": "5.2.2",
     "imagemin-gifsicle": "5.1.0",
     "imagemin-jpegtran": "5.0.2",
