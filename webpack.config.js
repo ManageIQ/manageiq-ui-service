@@ -34,6 +34,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader?presets[]=env'],
+      },
+      {
         test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
         use: ['url-loader?limit=20480'],
       },
