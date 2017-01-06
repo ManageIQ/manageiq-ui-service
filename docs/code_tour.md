@@ -15,6 +15,7 @@ For additional information regarding coding style and convention employed in thi
 ## Adding Dependencies
 All dependencies are managed using [Yarn](https://github.com/yarnpkg/yarn).
 When adding a new dependency for use in the SUI there are three locations to pay attention to:
+
 1. [package.json](package.json) - identifies resourcing and desired versions of app dependencies, confirm the correct version of the app you require is saved as a **Developer Dependency**, (`devDependencies`)
 2. [javascripts.html](client/partials/javascripts.html) and/or [styles.html](client/partials/styles.html) - makes dependencies available app wide, here you'll reference the `node_modules/` file path of those files you wish to include add **Note: Order matters, don't be reckless** :+1:
 3. [config.js](gulp/config.js) - identifies dependencies required for running tests, the function titled `function getKarmaOptions()` manages  `var options` which must identically mirror any action taken step two.

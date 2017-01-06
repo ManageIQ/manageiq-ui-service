@@ -1,8 +1,3 @@
-//
-// Global accessor.
-//
-var flowchart = {};
-
 // Module.
 (function() {
   //
