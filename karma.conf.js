@@ -8,8 +8,6 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
 
-    // urlRoot: '/__karma__/',
-
     // frameworks to use
     // some available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
@@ -21,8 +19,7 @@ module.exports = function(config) {
     exclude: gulpConfig.karma.exclude,
 
     proxies: {
-      '/': 'http://127.0.0.1:3000'
-      // '/': 'http://localhost:8888/'
+      '/images/': '/base/client/assets/images/',
     },
 
     // preprocess matching files before serving them to the browser
