@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const root = path.resolve(__dirname, '../client');
 const dist = path.resolve(__dirname, '../../manageiq/public/ui/service');
+const nodeModules = path.resolve(__dirname, '../node_modules');
 
 module.exports = {
   context: root,
@@ -66,7 +67,7 @@ module.exports = {
       // font/images loaders: if smaller than limit embed as data uri
       {
         test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
-        use: ['url-loader?limit=20480&name=[path]/data/[hash].[ext]'],
+        use: ['url-loader?limit=20480&name=data/[hash].[ext]'],
       },
 
       // css loaders: extract styles to a separate bundle
@@ -93,6 +94,8 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: `${root}/assets` },
       { from: `${root}/gettext`, to: 'gettext' },
+      { from: `${nodeModules}/no-vnc`, to: 'vendor/no-vnc' },
+      { from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower' },
     ]),
 
     new HtmlWebpackPlugin({
