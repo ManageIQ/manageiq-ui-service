@@ -219,7 +219,7 @@
                 <strong tooltip="{{'The last heartbeat received from the instances'|translate}}" tooltip-placement="bottom" translate>Last Scan</strong>&nbsp;{{ item.last_scan_on | date:'medium' }}
               </span>
             </div>
-            <div class="col-1 col-md-2 hidden-sm hidden-xs">
+            <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
               <span class="no-wrap">
                 <i class="fa pficon fa-power-off" ng-if="item.power_state == 'off'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
                 <i class="pficon pficon-ok" ng-if="item.power_state == 'on'" tooltip="{{'Power State'|translate}}" tooltip-placement="bottom"></i>
@@ -228,14 +228,12 @@
               </span>
             </div>
             <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
-              <span class="no-wrap">
-                <button class="btn btn-default open-console-button" ng-if="item['supports_console?'] && item.power_state == 'on'" tooltip="{{'Open a HTML5 console for this VM'|translate}}" tooltip-placement="left">
-                  <i class="fa fa-html5 fa-lg"></i>
-                </button>
-                <button class="btn btn-default open-console-button" ng-if="item['supports_cockpit?'] && item.power_state == 'on'" tooltip="{{'Open Cockpit console for this VM'|translate}}" tooltip-placement="left">
-                  <img src="images/cockpit.png">
-                </button>
-              </span>
+              <button class="btn btn-default open-console-button" ng-if="item['supports_console?'] && item.power_state == 'on'" tooltip="{{'Open a HTML5 console for this VM'|translate}}" tooltip-placement="left">
+                <i class="fa fa-html5 fa-lg"></i>
+              </button>
+              <button class="btn btn-default open-console-button" ng-if="item['supports_cockpit?'] && item.power_state == 'on'" tooltip="{{'Open Cockpit console for this VM'|translate}}" tooltip-placement="left">
+                <img src="/client/assets/images/cockpit.png">
+              </button>
             </div>
           </div>
         </div>
