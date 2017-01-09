@@ -1,9 +1,10 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const root = path.resolve(__dirname, './client');
-const dist = path.resolve(__dirname, './dist');
+const root = path.resolve(__dirname, '../client');
+const dist = path.resolve(__dirname, '../../manageiq/public/ui/service');
 
 module.exports = {
   context: root,
@@ -12,6 +13,7 @@ module.exports = {
   },
 
   output: {
+    chunkFilename: '[name].bundle.js',
     filename: '[name].bundle.js',
     path: dist,
   },
@@ -49,7 +51,7 @@ module.exports = {
       {
         test: /\.html$/,
         use: [
-          'ngtemplate-loader?module=app.core',
+          `ngtemplate-loader?module=app.core&relativeTo=${root}/`,
           'html-loader?attrs=false',
         ],
       },
@@ -64,7 +66,7 @@ module.exports = {
       // font/images loaders: if smaller than limit embed as data uri
       {
         test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
-        use: ['url-loader?limit=20480'],
+        use: ['url-loader?limit=20480&name=[path]/data/[hash].[ext]'],
       },
 
       // css loaders: extract styles to a separate bundle
@@ -85,12 +87,18 @@ module.exports = {
   plugins: [
 
     // Extract 'styles.css' after being processed by loaders into a single bundle
-    new ExtractTextWebpackPlugin('styles.css'),
+    new ExtractTextWebpackPlugin('[name].[hash].css'),
 
     // Copy all public assets to webpack's processing context
     new CopyWebpackPlugin([
       { from: `${root}/assets` },
+      { from: `${root}/gettext`, to: 'gettext' },
     ]),
+
+    new HtmlWebpackPlugin({
+      base: '/',
+      template: '../client/index.ejs',
+    }),
   ],
 
   // Disables noisy performance warnings. While the warnings are important, it

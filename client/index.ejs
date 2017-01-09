@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="app" class="layout-pf layout-pf-fixed layout-pf-fixed-inner-scroll transitions">
-<head lang="en">
+  <head lang="en">
     <title ng-bind="title" translate>Service UI</title>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
@@ -8,37 +8,33 @@
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
     <link rel="shortcut icon" href="/favicon.ico"/>
     <link rel="icon" href="/favicon.ico"/>
-    <base href="/ui/service/">
+    <base href="<%= htmlWebpackPlugin.options.base %>">
     <style>
-        [ng-cloak] {
-            display: none;
-        }
+      [ng-cloak] {
+        display: none;
+      }
 
-        [ng-cloak].splash {
-            display: block !important;
-        }
+      [ng-cloak].splash {
+        display: block !important;
+      }
 
-        .splash {
-            display: none;
-            background-color: #428bca;
-        }
+      .splash {
+        display: none;
+        background-color: #428bca;
+      }
     </style>
 
-    <%- include styles.html %>
-
-</head>
-<body ng-controller="AppController as vm"
-      ng-keydown="vm.keyDown($event)"
-      ng-keyup="vm.keyUp($event)">
-<div class="ng-cloak splash">
-    <div class="splash__overlay">
+  </head>
+  <body ng-controller="AppController as vm"
+        ng-keydown="vm.keyDown($event)"
+        ng-keyup="vm.keyUp($event)">
+    <div class="ng-cloak splash">
+      <div class="splash__overlay">
         <div class="splash__message"></div>
+      </div>
     </div>
-</div>
 
-<ui-view></ui-view>
+    <ui-view></ui-view>
 
-<%- include javascripts.html %>
-
-</body>
+  </body>
 </html>
