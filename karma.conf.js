@@ -19,7 +19,7 @@ module.exports = function(config) {
     exclude: gulpConfig.karma.exclude,
 
     proxies: {
-      '/images/': '/base/client/assets/images/',
+      '/images/': '/base/client/assets/images/'
     },
 
     // preprocess matching files before serving them to the browser

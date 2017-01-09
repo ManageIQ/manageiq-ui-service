@@ -2,7 +2,7 @@
   class="draggable-container"
   xmlns="http://www.w3.org/2000/svg"
   ng-mousedown="mouseDown($event)"
-  ng-mousemove="mouseMove($event)"  
+  ng-mousemove="mouseMove($event)"
   >
 
   <!-- Connection Mode Notification -->
@@ -30,9 +30,9 @@
       ng-class="{'invalid-node-rect': node.invalid(), 'selected-node-rect': node.selected(), 'mouseover-node-rect': node == mouseOverNode, 'node-rect': node != mouseOverNode}"
       ry="0"
       rx="0"
-      x="0" 
-      y="0" 
-      ng-attr-width="{{node.width()}}" 
+      x="0"
+      y="0"
+      ng-attr-width="{{node.width()}}"
       ng-attr-height="{{node.height()}}"
       fill="{{node.backgroundColor()}}"
       fill-opacity="1.0"
@@ -67,7 +67,8 @@
     <!-- Node Image -->
     <image ng-if="node.image()"
            ng-class="{'invalid-node-img': node.invalid()}"
-           xlink:href="{{node.image() | trustAsResourceUrl}}"
+           ng-href="{{node.image() | trustAsResourceUrl}}"
+           xlink:href=""
            ng-attr-x="{{(node.width()/2) - 40}}"
            ng-attr-y="{{20}}"
            height="80px"
@@ -123,7 +124,7 @@
       <circle ng-if="!inConnectingMode || isConnectedTo(connector, connectingModeSourceNode)"
         ng-class="{'mouseover-connector-circle': connector == mouseOverConnector,
                    'connector-circle': connector != mouseOverConnector}"
-        ng-attr-r="{{connectorSize}}" 
+        ng-attr-r="{{connectorSize}}"
         ng-attr-cx="{{connector.x()}}"
         ng-attr-cy="{{connector.y()}}"
         />
@@ -187,7 +188,7 @@
         ng-class="{'connector-circle': connector != mouseOverConnector,
                    'mouseover-connector-circle': connector == mouseOverConnector}"
         ng-attr-r="{{connectorSize}}"
-        ng-attr-r="{{connectorSize}}" 
+        ng-attr-r="{{connectorSize}}"
         ng-attr-cx="{{connector.x()}}"
         ng-attr-cy="{{connector.y()}}"
         />
