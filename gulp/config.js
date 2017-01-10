@@ -1,52 +1,25 @@
 'use strict';
 
-var merge = require('merge');
-
 module.exports = (function() {
   var src = './';
   var client = src + 'client/';
   var server = src + 'server/';
   var tests = src + 'tests/';
-  var build = '../manageiq/public/ui/service/';
   var manageiqDir = '../manageiq/';
   var temp = './.tmp/';
   var reports = './reports/';
   var nodeModules = './node_modules/';
-  var styles = 'partials/styles.html';
-  var javascripts = 'partials/javascripts.html';
   var config = {};
 
   /**
    * Files
    */
-  var indexFileEjs = 'index.ejs';
-  var indexFile = 'index.html';
-  var specsFile = 'specs.html';
-  var cssFile = 'styles.css';
   var sassFiles = [
     client + 'assets/sass/**/*.s+(a|c)ss',
     client + 'app/**/*.s+(a|c)ss'
   ];
   var templateFiles = client + 'app/**/*.html';
   var specHelperFiles = tests + 'test-helpers/*.js';
-
-  var imageFiles = [
-    client + 'assets/images/**/*.*',
-    client + 'skin/images/**/*.*',
-  ];
-
-  var fontFiles = [
-    src + 'client/assets/fonts/**/*.*',
-    nodeModules + 'font-awesome/fonts/**/*.*',
-    nodeModules + 'patternfly/dist/fonts/**/*.*'
-  ];
-
-  var clientJsOrder = [
-    '**/globals.js',
-    '**/app.module.js',
-    '**/*.module.js',
-    '**/*.js'
-  ];
 
   var serverApp = server + 'app.js';
 
@@ -146,11 +119,6 @@ module.exports = (function() {
     return options;
   }
 
-  // gulp-load-plugins options
-  config.plugins = {
-    lazy: true
-  };
-
   // task ESLint: Runs ESLint on client code
   config.eslint = {
     src: getClientJsFiles(true, false)
@@ -162,73 +130,6 @@ module.exports = (function() {
   };
   //configures which directory manage iq server code is located
   config.manageiqDir = manageiqDir;
-  // task clean: Directories to clean
-  config.clean = {
-    src: [
-      build + '*',
-      // report + '*',
-      temp + '*'
-    ]
-  };
-
-  config.cleanStyles = {
-    src: [
-      temp + '**/*.css',
-      build + 'styles/**/*.css'
-    ]
-  };
-
-  config.cleanFonts = {
-    src: [build + 'fonts/**/*.*']
-  };
-
-  config.cleanImages = {
-    src: [build + 'images/**/*.*']
-  };
-
-  config.cleanCode = {
-    src: [
-      temp + '**/*.js',
-      build + 'js/**/*.js',
-      build + '**/*.html'
-    ]
-  };
-
-  // task images: Image build options
-  config.images = {
-    src: imageFiles,
-    build: temp + 'images',
-    minify: true,
-    options: {
-      optimizationLevel: 5,
-      progressive: true,
-      interlaced: true
-    }
-  };
-
-  // task fonts: Copies fonts into build directory
-  config.fonts = {
-    src: fontFiles,
-    build: temp + 'fonts'
-  };
-
-  // task sass: Sass build options
-  config.sass = {
-    src: client + 'assets/sass/styles.sass',
-    build: temp + 'styles/',
-    output: cssFile,
-    options: {
-      outputStyle: 'compressed',
-      precision: 8
-    },
-    autoprefixer: {
-      browsers: [
-        'last 2 versions',
-        '> 5%'
-      ],
-      cascade: true
-    }
-  };
 
   // task templatecache: Optimize templates
   config.templatecache = {
@@ -246,55 +147,6 @@ module.exports = (function() {
     }
   };
 
-  // task bundle: Concatenate ordered application JS and create sourcemaps
-  config.bundle = {
-    files: getClientJsFiles(true, false),
-    ordering: clientJsOrder,
-    temp: temp,
-  }
-
-  // task inject: Inject CSS and JS into index.html
-  // This task will also inject the application JavaScript
-  // The inject task will inject the application CSS
-  config.inject = {
-    index: [client + javascripts, client + styles],
-    build: client,
-    temp: temp,
-    bundle: temp + 'bundle.js',
-  };
-
-  // task compile: Injects the application CSS (compiled from Sass) into index.html
-  config.compile = {
-    index: client + 'styles.html',
-    build: client,
-    css: [
-      temp + 'styles/' + cssFile,
-      client + '/skin/**/*.css'
-    ]
-  };
-
-  config.optimize = {
-    index: temp + indexFileEjs,
-    build: build,
-    cssFilter: '.tmp/styles/*.css',
-    appJsFilter: '.tmp/js/app.js',
-    libJsFilter: '.tmp/js/lib.js',
-    templateCache: config.templatecache.build + config.templatecache.output,
-    ngAnnotateOptions: {
-      single_quotes: true
-    },
-  };
-
-  // task compileEjs: Injects javascripts.html and styles.html into build index.html
-  config.ejs = {
-    index: client + indexFileEjs,
-    build: temp
-  };
-
-  config.build = {
-    clean: temp
-  };
-
   config.test = {
     confFile: __dirname + '/../karma.conf.js',
     serverEnv: 'dev',
@@ -303,43 +155,6 @@ module.exports = (function() {
   };
 
   config.karma = getKarmaOptions();
-
-  config.serve = {
-    serverApp: serverApp,
-    serverPort: process.env.PORT || '8001',
-    watch: [server],
-    browserReloadDelay: 1000,
-    specsFile: specsFile,
-    sass: sassFiles,
-    js: getClientJsFiles(true, false),
-    html: [].concat(client + indexFileEjs, templateFiles),
-    devFiles: [
-      client + '**/*.js',
-      client + '**/*.html',
-      temp + '**/*.css',
-    ],
-    browserSyncOptions: {
-      proxy: {
-        target: 'localhost:' + (process.env.PORT || '8001'),
-        ws: true,
-      },
-      port: 3001,
-      startPath: '/ui/service/',
-      files: [],
-      ghostMode: {
-        clicks: true,
-        location: false,
-        forms: true,
-        scroll: true
-      },
-      injectChanges: true,
-      logFileChanges: true,
-      logLevel: 'debug',
-      logPrefix: 'angular-gulp-sass-inject',
-      notify: true,
-      reloadDelay: 0
-    }
-  };
 
   config.availableLanguages = {
     catalogs: 'client/gettext/json/*/*.json',
@@ -365,38 +180,6 @@ module.exports = (function() {
     },
     outputDir: 'client/gettext/json/',
   };
-
-  config.buildCopy = [
-    // Static assets
-    {
-      input: temp + 'images/**/*',
-      output: build + 'images',
-    },
-    {
-      input: temp + 'fonts/**/*',
-      output: build + 'fonts',
-    },
-
-    // Translation files
-    {
-      input: 'client/gettext/json/**/*.json',
-      output: build + 'gettext/json',
-    },
-    {
-      input: config.availableLanguages.availLangsFile,
-      output: build + 'gettext/json',
-    },
-
-    // Console dependencies
-    {
-      input: nodeModules + 'no-vnc/**/*',
-      output: build + 'vendor/no-vnc',
-    },
-    {
-      input: nodeModules + 'spice-html5-bower/**/*',
-      output: build + 'vendor/spice-html5-bower',
-    },
-  ];
 
   // task bump: Revs the package files
   config.bump = {
