@@ -64,6 +64,7 @@ module.exports = {
         use: [
           'ng-annotate-loader',
           'babel-loader?presets[]=env',
+          'eslint-loader',
         ],
       },
 

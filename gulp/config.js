@@ -14,10 +14,6 @@ module.exports = (function() {
   /**
    * Files
    */
-  var sassFiles = [
-    client + 'assets/sass/**/*.s+(a|c)ss',
-    client + 'app/**/*.s+(a|c)ss'
-  ];
   var templateFiles = client + 'app/**/*.html';
   var specHelperFiles = tests + 'test-helpers/*.js';
 
@@ -119,15 +115,6 @@ module.exports = (function() {
     return options;
   }
 
-  // task ESLint: Runs ESLint on client code
-  config.eslint = {
-    src: getClientJsFiles(true, false)
-  };
-
-  // task sasslint: Runs sass-lint on client code
-  config.sasslint = {
-    src: sassFiles
-  };
   //configures which directory manage iq server code is located
   config.manageiqDir = manageiqDir;
 

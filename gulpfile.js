@@ -15,9 +15,6 @@ gulp.task('default', ['help']);
 /**
  * Check the code for errors
  */
-gulp.task('eslint', task('eslint'));
-gulp.task('sasslint', task('sasslint'));
-gulp.task('vet', ['eslint', 'sasslint']);
 gulp.task('accessibility', [], task('accessibility'));
 
 /**
@@ -31,7 +28,7 @@ gulp.task('gettext-compile', task('gettext-compile'));
 /**
  * Testing tasks
  */
-gulp.task('test', ['templatecache','vet'], task('test', {singleRun: true}));
+gulp.task('test', ['templatecache'], task('test', {singleRun: true}));
 gulp.task('testonly', ['templatecache'], task('test', {singleRun: true}));
 gulp.task('autotest', task('test', {singleRun: false}));
 
