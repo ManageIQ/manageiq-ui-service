@@ -98,6 +98,7 @@ module.exports = {
       { from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower' },
     ]),
 
+    // Generate index.html from template with script/link tags for bundles
     new HtmlWebpackPlugin({
       base: '/',
       template: '../client/index.ejs',
