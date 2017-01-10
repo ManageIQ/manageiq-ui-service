@@ -28,7 +28,6 @@ module.exports = (function() {
     client + 'app/**/*.s+(a|c)ss'
   ];
   var templateFiles = client + 'app/**/*.html';
-  var serverIntegrationSpecs = [tests + 'server-integration/**/*.spec.js'];
   var specHelperFiles = tests + 'test-helpers/*.js';
 
   var imageFiles = [
@@ -125,7 +124,7 @@ module.exports = (function() {
         specHelperFiles,
         getClientJsFiles(true, true),
         config.templatecache.build + config.templatecache.output,
-        config.test.serverIntegrationSpecs
+        {pattern: './client/assets/images/**/*.*', watched: false, included: false, served: true, nocache: false}
       ),
       exclude: [],
       coverage: {
@@ -300,7 +299,6 @@ module.exports = (function() {
     serverEnv: 'dev',
     serverPort: 8888,
     serverApp: serverApp,
-    serverIntegrationSpecs: serverIntegrationSpecs
   };
 
   config.karma = getKarmaOptions();
