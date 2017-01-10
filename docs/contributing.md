@@ -2,7 +2,7 @@
 Any contribution should observe the convention set fourth in the [Code Tour](code_tour.md).
 The following must complete without error prior to making a pull request:
 
-1. `yarn run vet`
+1. `yarn vet`
 2. `yarn test`
 
 ## Testing

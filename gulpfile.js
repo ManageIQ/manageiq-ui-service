@@ -37,17 +37,6 @@ gulp.task('autotest', task('test', {singleRun: false}));
  */
 gulp.task('start-manageiq-server', ['serve'], task('manageiq-server'));
 
-/**
- * Bump the version
- * --type=pre will bump the prerelease version *.*.*-x
- * --type=patch or no flag will bump the patch version *.*.x
- * --type=minor will bump the minor version *.x.*
- * --type=major will bump the major version x.*.*
- * --version=1.2.3 will bump to a specific version and ignore other flags
- */
-
-gulp.task('bump', task('bump'));
-
 function errorHandler(error) {
   log('[Error!] ' + error.toString());
   if (process.argv.indexOf('--fail') !== -1) {

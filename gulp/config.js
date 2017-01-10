@@ -168,13 +168,5 @@ module.exports = (function() {
     outputDir: 'client/gettext/json/',
   };
 
-  // task bump: Revs the package files
-  config.bump = {
-    packages: [
-      './package.json',
-    ],
-    root: './'
-  };
-
   return config;
 })();

@@ -3,7 +3,7 @@ This document is intended to provide a development guideline for new and existin
 Keep in mind this application undergoes constant development so be sure to check back occasionally as best practices are sure to evolve.
 
 ## Linting
-This project uses **ESLint** and **Sass Lint**. Both can be run with the script `yarn run vet`.
+This project uses **ESLint** and **Sass Lint**. Both can be run with the script `yarn vet`.
 
 ## Style and Convention
 For additional information regarding coding style and convention employed in this project checkout:

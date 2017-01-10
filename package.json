@@ -66,7 +66,6 @@
     "gulp-accessibility": "3.0.1",
     "gulp-angular-gettext": "2.2.0",
     "gulp-angular-templatecache": "2.0.0",
-    "gulp-bump": "2.5.1",
     "gulp-bytediff": "1.0.0",
     "gulp-minify-html": "1.0.6",
     "gulp-task-listing": "1.0.1",

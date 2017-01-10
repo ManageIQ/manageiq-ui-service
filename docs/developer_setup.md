@@ -8,7 +8,7 @@ Logging in to the SUI requires a running instance of ManageIQ. Instructions on h
 - Have the [ManageIQ](http://github.com/ManageIQ/manageiq) repo cloned into a
   directory named `manageiq`, and ready to be started. See [here](https://github.com/ManageIQ/guides/blob/master/developer_setup.md)
   for the steps required to setup ManageIQ.
-- Have the SUI repo at the same level as `manageiq/`, this ensures the SUI builds, `yarn run build`, into the correct manageiq folder.
+- Have the SUI repo at the same level as `manageiq/`, this ensures the SUI builds, `yarn build`, into the correct manageiq folder.
   - `git clone git@github.com:ManageIQ/manageiq-ui-service.git`.
 - Have nodejs **v6.x** and npm **3.x.x** installed (npm should be installed with NodeJS)
 - If using [nvm](https://github.com/creationix/nvm) you can ensure you are using the correct node version with `nvm use`
@@ -25,7 +25,7 @@ Logging in to the SUI requires a running instance of ManageIQ. Instructions on h
 
 - From the `manageiq-ui-service` directory, build the production version of
   the SUI. This task  will compile the assets and drop them into the `manageiq/public/ui/service` directory.
-  - `yarn run build`
+  - `yarn build`
 - If you already have `manageiq` core running on port `:3000` you can verify that the build worked correctly by visiting:
 	-  [http://localhost:3000/ui/service/login](http://localhost:3000/ui/service/)
 
