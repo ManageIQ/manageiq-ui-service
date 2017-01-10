@@ -26,7 +26,6 @@ require('angular-animate');
 require('angular-cookies');
 require('angular-resource');
 require('angular-messages');
-require('angular-mocks');
 require('angular-sanitize');
 require('angular-base64');
 require('angular-ui-bootstrap');
