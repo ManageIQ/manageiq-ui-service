@@ -19,6 +19,7 @@ export default angular
     'app.config',
     'app.states',
     'ngProgress',
+    'miqStaticAssets',
   ])
   .controller('AppController', AppController)
   .name;

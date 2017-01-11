@@ -48,6 +48,7 @@ require('manageiq-ui-components/dist/js/ui-components.js');
 require('angular-drag-and-drop-lists');
 require('ngprogress/build/ngprogress.min.js');
 require('ngstorage');
+require('manageiq-ui-components/dist/js/ui-components.js');
 
 // Needs imports loader because it expects `this` to be `window`
 require('imports-loader?this=>window!actioncable');
