@@ -124,7 +124,7 @@
     "karma-phantomjs-launcher": "1.0.2",
     "karma-read-json": "1.1.0",
     "karma-sinon": "1.0.5",
-    "lodash": "4.17.4",
+    "lodash": "3.10.1",
     "merge": "1.2.0",
     "merge-stream": "1.0.1",
     "minimist": "1.2.0",
