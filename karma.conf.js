@@ -15,10 +15,10 @@ module.exports = function(config) {
     webpack: webpackConfig,
     webpackMiddleware: {
       // webpack-dev-middleware configuration
-      noInfo: false,
+      noInfo: true,
       // and use stats to turn off verbose output
       stats: {
-        chunks: true
+        chunks: false
       }
     },
 
@@ -42,7 +42,7 @@ module.exports = function(config) {
     ],
 
     proxies: {
-      '/images/': '/base/client/assets/images/'
+      '/images/': 'http://localhost:9876/client/assets/images/',
     },
 
     // preprocess matching files before serving them to the browser
