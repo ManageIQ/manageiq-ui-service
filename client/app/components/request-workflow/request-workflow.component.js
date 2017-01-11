@@ -28,9 +28,18 @@
 
     // Private functions
     function initCustomizedWorkflow(key) {
-      vm.customizedWorkflow.dialogOrder = vm.workflow.dialogs.dialog_order;
-      vm.customizedWorkflow.dialogs = vm.workflow.dialogs.dialogs;
-      vm.customizedWorkflow.values = vm.workflow.values;
+      vm.customizedWorkflow.dialogOrder = lodash.cloneDeep(vm.workflow.dialogs.dialog_order);
+      vm.customizedWorkflow.dialogs = lodash.cloneDeep(vm.workflow.dialogs.dialogs);
+      vm.customizedWorkflow.values = lodash.cloneDeep(vm.workflow.values);
+      processWorkflowValues();
+    }
+
+    function processWorkflowValues() {
+      angular.forEach(vm.customizedWorkflow.values, function (value, key) {
+        if (angular.isArray(value)) {
+          vm.customizedWorkflow.values[key] = value[1];
+        }
+      });
     }
     
     vm.bEnableDialog = function(dialog) {
@@ -62,9 +71,20 @@
           vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select Tags to apply"));
           break;
         case 'service':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Selected VM"));
+          // revisit this after https://github.com/ManageIQ/manageiq/pull/13441 is merged
+          if (lodash.includes(vm.customizedWorkflow.values.miq_request_dialog_name, "redhat")) {
+            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Selected VM"));
+          } else {
+            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select"));
+          }
+          if (lodash.includes(vm.customizedWorkflow.values.provision_type, "pxe")) {
+            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("PXE"));
+          } else if (lodash.includes(vm.customizedWorkflow.values.provision_type, "iso")) {
+            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("ISO"));
+          }
           vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Number of VMs"));
           vm.customizedWorkflow.dialogs[key].panelTitle[2] = (__("Naming"));
+          fields = serviceFields();
           break;
         case 'environment':
           vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Placement"));
@@ -112,6 +132,34 @@
         ownerManagerMail: { label: 'owner_manager_mail', panel: 1, order: 1 },
         ownerManagerPhone: { label: 'owner_manager_phone', panel: 1, order: 2 },
       };
+    }
+
+    function serviceFields() {
+      var serviceFields = {};
+      // revisit this after https://github.com/ManageIQ/manageiq/pull/13441 is merged
+      if (lodash.includes(vm.customizedWorkflow.values.miq_request_dialog_name, "redhat")) {
+        serviceFields =  {
+          srcVmId: {label: 'src_vm_id', panel: 0, order: 0},
+          provisionType: {label: 'provision_type', panel: 0, order: 1},
+          linkedClone: {label: 'linked_clone', panel: 0, order: 2},
+        };
+      } else {
+        serviceFields =  {
+          vmFilter: {label: 'vm_filter', panel: 0, order: 0},
+          srcVmId: {label: 'src_vm_id', panel: 0, order: 1},
+          provisionType: {label: 'provision_type', panel: 0, order: 2},
+          linkedClone: {label: 'linked_clone', panel: 0, order: 4},
+          snapshot: {label: 'snapshot', panel: 0, order: 5},
+        };
+        var serviceFieldsCommon = {
+          numberOfVms: {label: 'number_of_vms', panel: 1, order: 0},
+          vmName: {label: 'vm_name', panel: 2, order: 0},
+          vmDescription: {label: 'vm_description', panel: 2, order: 1},
+          vmPrefix: {label: 'vm_prefix', panel: 2, order: 2},
+        };
+      }
+
+      return lodash.extend(serviceFields, serviceFieldsCommon);
     }
 
     function fieldsLayout(tab, fields, nPanels) {

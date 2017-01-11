@@ -13,7 +13,15 @@
                   <div ng-if="field.display != 'hide'">
                     <div class="form-group">
                       <label class="control-label col-sm-1">{{ field.description }}</label>
-                      {{ vm.workflow.values[field.label] }}
+                      <div ng-if="field.data_type !== 'boolean'">
+                        {{ vm.customizedWorkflow.values[field.label] }}
+                      </div>
+                      <div ng-if="field.data_type === 'boolean'">
+                        <input  ng-disabled="true"
+                                type="checkbox"
+                                ng-checked="vm.customizedWorkflow.values[field.label] === 'null' ? field.default : vm.customizedWorkflow.values[field.label]">
+                        {{ field.notes }}
+                      </div>
                     </div>
                   </div>
                 </form>
