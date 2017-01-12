@@ -7,25 +7,25 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
     message: 'Success!'
   };
 
-  beforeEach(function () {
+  beforeEach(function() {
     module('app.services', 'app.config', 'app.states', 'gettext');
     bard.inject('BlueprintsState', 'CollectionsApi', 'BlueprintDetailsModal', '$state', 'Session', '$httpBackend');
   });
 
-  beforeEach(inject(function (_$compile_, _$rootScope_, _$document_) {
+  beforeEach(inject(function(_$compile_, _$rootScope_, _$document_) {
     $compile = _$compile_;
     $scope = _$rootScope_;
     $document = _$document_
   }));
 
-  var compileHTML = function (markup, scope) {
+  var compileHTML = function(markup, scope) {
     element = angular.element(markup);
     $compile(element)(scope);
 
     scope.$digest();
   };
 
-  beforeEach(function () {
+  beforeEach(function() {
     Session.create({
       auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
     });
@@ -42,22 +42,22 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
   });
 
   describe('Blueprints List', function() {
-    it('should have correct number of rows', function () {
+    it('should have correct number of rows', function() {
       var rows = element.find('.list-view-pf > .list-group-item');
       expect(rows.length).to.eq($scope.blueprints.length);
     });
 
-    it('should have gotten catalog names from catalog ids', function () {
+    it('should have gotten catalog names from catalog ids', function() {
       var catName0 = element.find('#catalogName_0');
       var catName1 = element.find('#catalogName_1');
       var catName2 = element.find('#catalogName_2');
 
-      expect(catName0.html()).to.eq("Amazon Operations");
-      expect(catName1.html()).to.eq("OpenStack Operations");
-      expect(catName2.text()).to.eq("Unassigned");
+      expect(catName0.html().trim()).to.eq("Amazon Operations");
+      expect(catName1.html().trim()).to.eq("OpenStack Operations");
+      expect(catName2.text().trim()).to.eq("Unassigned");
     });
 
-    it('should display the correct Visibility icons', function () {
+    it('should display the correct Visibility icons', function() {
       var publicIcon = element.find('.fa.fa-globe');
       var privateIcon = element.find('.pficon.pficon-private');
       var tenantIcon = element.find('.pficon.pficon-tenant');
@@ -67,7 +67,7 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       expect(tenantIcon.length).to.eq(1);
     });
 
-    it('should enable/disable delete blueprint button', function () {
+    it('should enable/disable delete blueprint button', function() {
       var rows = element.find('.list-view-pf > .list-group-item');
       expect(rows.length).to.eq($scope.blueprints.length);
 
@@ -84,7 +84,7 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       expect(disabledDeleteButton.length).to.eq(0);
     });
 
-    it('should enable/disable inline publish buttons', function () {
+    it('should enable/disable inline publish buttons', function() {
 
       // row 0 = 'Blueprint One' - published
       // row 1 = 'Blueprint Three' - no items on canvas
@@ -95,8 +95,8 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
 
       // When 0 Items on Canvas, Publish button is disabled
       var secondRowNumItems = element.find('#numItems_1');
-      var secondRowNumItemsStr = angular.element(secondRowNumItems[0]).html();
-      secondRowNumItemsStr = secondRowNumItemsStr.substr(0,secondRowNumItemsStr.indexOf(' '));
+      var secondRowNumItemsStr = angular.element(secondRowNumItems[0]).html().trim();
+      secondRowNumItemsStr = secondRowNumItemsStr.substr(0, secondRowNumItemsStr.indexOf(' '));
       expect(secondRowNumItemsStr).to.eq('0');
       var disabledPublishButton = angular.element(rows[1]).find('.btn.btn-default.disabled');
       expect(disabledPublishButton.length).to.eq(1);
@@ -106,7 +106,7 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       expect(disabledPublishButton.length).to.eq(0);
     });
 
-    it('should list unpublished and published blueprints correctly', function () {
+    it('should list unpublished and published blueprints correctly', function() {
 
       // row 0 = 'Blueprint One' - published
       // row 1 = 'Blueprint Three' - no items on canvas
@@ -135,7 +135,7 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       expect($scope.blueprints[2].read_only).to.eq(false);
     });
 
-    it('should goto the blueprint editor when a blueprint is clicked', function () {
+    it('should goto the blueprint editor when a blueprint is clicked', function() {
       var stateGoSpy = sinon.spy($state, 'go');
       var rows = element.find('.list-view-pf > .list-group-item');
       expect(rows.length).to.eq($scope.blueprints.length);
@@ -148,10 +148,10 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       eventFire(angular.element(rowInfo[0]), 'click');
       $scope.$digest();
 
-      expect(stateGoSpy).to.have.been.calledWith('designer.blueprints.editor', { blueprintId: 10000000000023 });
+      expect(stateGoSpy).to.have.been.calledWith('designer.blueprints.editor', {blueprintId: 10000000000023});
     });
 
-    it('should goto the blueprint editor when Create button clicked', function () {
+    it('should goto the blueprint editor when Create button clicked', function() {
       var stateGoSpy = sinon.spy($state, 'go');
       var btns = element.find('.primary-action');
       expect(btns.length).to.eq(2);
@@ -160,7 +160,7 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       expect(stateGoSpy).to.have.been.calledWith('designer.blueprints.editor');
     });
 
-    it('should disable Publish when there are no items on canvas ', function () {
+    it('should disable Publish when there are no items on canvas ', function() {
       var rows = element.find('.list-view-pf > .list-group-item');
       expect(rows.length).to.eq($scope.blueprints.length);
 
@@ -171,7 +171,7 @@ describe('app.components.blueprints.BlueprintsListDirective', function() {
       expect(publishBtn.length).to.eq(1);
     });
 
-    it('should launch the publish dlg when Publish button clicked', function (done) {
+    it('should launch the publish dlg when Publish button clicked', function(done) {
       var collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
       var BlueprintDetailsModalSpy = sinon.stub(BlueprintDetailsModal, 'showModal').returns(Promise.resolve());
 

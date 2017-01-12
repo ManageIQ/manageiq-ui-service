@@ -129,7 +129,7 @@ describe('Component: taggingWidget', function() {
         // There is an existing 'single-value' tag
         let tagsOfItem = element.find(".pficon-close");
         expect(tagsOfItem.length).to.be.eq(2);
-        expect(angular.element(tagsOfItem[1]).parent().parent().text()).to.be.eq("Service Level: Gold ");
+        expect(angular.element(tagsOfItem[1]).parent().parent().text().trim()).to.be.eq("Service Level: Gold");
 
         // Select tag category 'Service Level' and tag 'Platinum'
         isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[5];
@@ -159,7 +159,7 @@ describe('Component: taggingWidget', function() {
         // Second Tag should now be Service Level: Platinum
         tagsOfItem = element.find(".pficon-close");
         expect(tagsOfItem.length).to.be.eq(2);
-        expect(angular.element(tagsOfItem[1]).parent().parent().text()).to.be.eq("Service Level: Platinum ");
+        expect(angular.element(tagsOfItem[1]).parent().parent().text().trim()).to.be.eq("Service Level: Platinum");
 
         done();
       }, 500);

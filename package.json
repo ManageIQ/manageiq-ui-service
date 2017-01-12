@@ -13,7 +13,7 @@
   "scripts": {
     "build": "webpack --bail --progress --profile --config config/webpack.prod.js",
     "start": "webpack-dev-server --open --progress --config config/webpack.dev.js",
-    "test": "gulp test"
+    "test": "karma start karma.conf.js --single-run"
   },
   "devDependencies": {
     "actioncable": "5.0.1",
@@ -107,6 +107,7 @@
     "imagemin-optipng": "5.2.1",
     "imagemin-svgo": "5.2.0",
     "imports-loader": "0.7.0",
+    "istanbul-instrumenter-loader": "1.2.0",
     "jquery": "3.1.1",
     "jquery-match-height": "0.7.0",
     "jscs": "3.0.7",
@@ -124,6 +125,7 @@
     "karma-phantomjs-launcher": "1.0.2",
     "karma-read-json": "1.1.0",
     "karma-sinon": "1.0.5",
+    "karma-webpack": "1.8.1",
     "lodash": "3.10.1",
     "merge": "1.2.0",
     "merge-stream": "1.0.1",

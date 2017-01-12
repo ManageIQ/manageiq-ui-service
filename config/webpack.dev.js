@@ -53,7 +53,7 @@ module.exports = {
         test: /\.html$/,
         use: [
           `ngtemplate-loader?module=app.core&relativeTo=${root}/`,
-          'html-loader?attrs=false',
+          `html-loader?attrs=false&minimize=true`,
         ],
       },
 
@@ -92,10 +92,10 @@ module.exports = {
 
     // Copy all public assets to webpack's processing context
     new CopyWebpackPlugin([
-      { from: `${root}/assets` },
-      { from: `${root}/gettext`, to: 'gettext' },
-      { from: `${nodeModules}/no-vnc`, to: 'vendor/no-vnc' },
-      { from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower' },
+      {from: `${root}/assets`},
+      {from: `${root}/gettext`, to: 'gettext'},
+      {from: `${nodeModules}/no-vnc`, to: 'vendor/no-vnc'},
+      {from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower'},
     ]),
 
     // Generate index.html from template with script/link tags for bundles

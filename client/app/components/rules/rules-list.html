@@ -55,8 +55,9 @@
                   <option value="">{{'Select a field' | translate}}</option>
                 </select>
                 <select pf-select class="operation-select" ng-model="item.operator" ng-change="vm.validateEditRow()">
-                  <option value="">{{"Select an operator"  | translate}}</option>
-                  <option ng-repeat="operatorName in vm.operatorNames track by $index">{{operatorName | translate}}</option>
+                  <option value="">{{"Select an operator" | translate}}</option>
+                  <option ng-repeat="operatorName in vm.operatorNames track by $index">{{operatorName | translate}}
+                  </option>
                 </select>
                 <input ng-model="item.value" class="rule-edit-value" type="text"
                        placeholder="{{'Enter a value' | translate}}" ng-change="vm.validateEditRow()"/>
@@ -65,10 +66,10 @@
               <span class="rule-item-field">
                 {{item.field ? item.field : "Select a field"  | translate}}
               </span>
-              <span class="rule-item-field rule-item-operation">
+                <span class="rule-item-field rule-item-operation">
                 {{item.operator ? item.operator : "Select an operator"  | translate}}
               </span>
-              <span class="rule-item-field">
+                <span class="rule-item-field">
                 {{item.value ? item.value : "Enter a value" | translate}}
               </span>
               </div>
@@ -79,7 +80,7 @@
             </span>
               <div ng-if="item.editMode" class="rule-edit-container">
                 <select pf-select class="profile-select" ng-model="item.profileName" ng-change="vm.validateEditRow()">
-                  <option value="">{{"Select a profile"  | translate}}</option>
+                  <option value="">{{"Select a profile" | translate}}</option>
                   <option ng-repeat="profile in vm.profileNames track by $index">{{profile}}</option>
                 </select>
               </div>
@@ -91,31 +92,31 @@
             </div>
             <div class="col-md-2 col-sm-12 arbitration-buttons">
               <div ng-if="item.editMode" class="pull-right">
-                <button class="btn btn-primary" type=button" ng-disabled="!vm.okToSave" ng-click="vm.saveRule(item)">
+                <button class="btn btn-primary" type="button" ng-disabled="!vm.okToSave" ng-click="vm.saveRule(item)">
                   {{'Save' | translate}}
                 </button>
-                <button class="btn btn-default" type=button" ng-click="vm.cancelEditRule(item)">
+                <button class="btn btn-default" type="button" ng-click="vm.cancelEditRule(item)">
                   {{'Cancel' | translate}}
                 </button>
               </div>
               <div ng-if="!item.editMode" class="pull-right">
                 <div class="btn-container">
-                  <button class="btn btn-link priority-button" type=button"
+                  <button class="btn btn-link priority-button" type="button"
                           ng-click="vm.downPriority(item)"
                           ng-disabled="vm.editMode" ng-class="{invisible: $index >= vm.arbitrationRules.length - 1}">
                     <span class="fa fa-arrow-down"></span>
                   </button>
-                  <button class="btn btn-link priority-button" type=button"
+                  <button class="btn btn-link priority-button" type="button"
                           ng-click="vm.upPriority(item)"
                           ng-disabled="vm.editMode" ng-class="{invisible: $index <= 0}">
                     <span class="fa fa-arrow-up"></span>
                   </button>
                 </div>
                 <div class="btn-container">
-                  <button class="btn btn-link" type=button" ng-click="vm.editRule(item)" ng-disabled="vm.editMode">
+                  <button class="btn btn-link" type="button" ng-click="vm.editRule(item)" ng-disabled="vm.editMode">
                     <span class="pficon pficon-edit"></span>
                   </button>
-                  <button class="btn btn-link" type=button"
+                  <button class="btn btn-link" type="button"
                           ng-disabled="vm.editMode"
                           confirmation
                           confirmation-id="confirmDeleteRule"

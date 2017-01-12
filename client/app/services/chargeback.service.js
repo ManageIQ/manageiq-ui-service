@@ -18,9 +18,7 @@
     // recomputes items[*].chargeback_relative_cost
     function adjustRelativeCost(items) {
       var sums = lodash(items)
-        .map('chargeback')
-        .map('used_cost_sum')
-        .values()
+        .pluck(['chargeback', 'used_cost_sum'])
         .sort()
         .filter(angular.identity) // nonzero
         .value();
@@ -52,8 +50,7 @@
 
     function currentReport(item) {
       var latestDate = lodash(item.chargeback_report.results || [])
-        .map('start_date')
-        .values()
+        .pluck('start_date')
         .sort()
         .reverse()
         .first();

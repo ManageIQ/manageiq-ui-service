@@ -53,7 +53,7 @@ describe('Component: dialogsList', function() {
       // Default sort is by name
       var nameSpans = element.find('.list-view-pf-main-info > .row > .col-md-4 > span');
       expect(nameSpans.length).to.eq(6);
-      expect(nameSpans[0].innerHTML).to.eq("azure-single-vm-from-user-image");
+      expect(nameSpans[0].innerHTML.trim()).to.eq("azure-single-vm-from-user-image");
 
       var sortItems = element.find('.sort-pf .sort-field');
       expect(sortItems.length).to.eq(2);
@@ -64,7 +64,7 @@ describe('Component: dialogsList', function() {
 
       nameSpans = element.find('.list-view-pf-main-info > .row > .col-md-4 > span');
       expect(nameSpans.length).to.eq(6);
-      expect(nameSpans[0].innerHTML).to.eq('RHEL7 with PostgreSQL');
+      expect(nameSpans[0].innerHTML.trim()).to.eq('RHEL7 with PostgreSQL');
     });
   });
 

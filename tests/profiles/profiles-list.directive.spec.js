@@ -253,7 +253,7 @@ describe('app.components.ProfilesListDirective', function() {
       // Default sort is by name
       var nameSpans = element.find('.list-view-pf-main-info > .row > .col-md-2 > span');
       expect(nameSpans.length).to.eq(3);
-      expect(nameSpans[0].innerHTML).to.eq('Profile 1');
+      expect(nameSpans[0].innerHTML.trim()).to.eq('Profile 1');
 
       var sortItems = element.find('.sort-pf .sort-field');
       expect(sortItems.length).to.eq(4);
@@ -264,7 +264,7 @@ describe('app.components.ProfilesListDirective', function() {
 
       nameSpans = element.find('.list-view-pf-main-info > .row > .col-md-2 > span');
       expect(nameSpans.length).to.eq(3);
-      expect(nameSpans[0].innerHTML).to.eq('Profile 2');
+      expect(nameSpans[0].innerHTML.trim()).to.eq('Profile 2');
 
       // Sort by provider type
       eventFire(angular.element(sortItems[3]), 'click');
@@ -272,7 +272,7 @@ describe('app.components.ProfilesListDirective', function() {
 
       nameSpans = element.find('.list-view-pf-main-info > .row > .col-md-2 > span');
       expect(nameSpans.length).to.eq(3);
-      expect(nameSpans[0].innerHTML).to.eq('Profile 3');
+      expect(nameSpans[0].innerHTML.trim()).to.eq('Profile 3');
 
       // Sort by last modified
       eventFire(angular.element(sortItems[1]), 'click');
@@ -280,7 +280,7 @@ describe('app.components.ProfilesListDirective', function() {
 
       nameSpans = element.find('.list-view-pf-main-info > .row > .col-md-2 > span');
       expect(nameSpans.length).to.eq(3);
-      expect(nameSpans[0].innerHTML).to.eq('Profile 1');
+      expect(nameSpans[0].innerHTML.trim()).to.eq('Profile 1');
     });
   });
 });
