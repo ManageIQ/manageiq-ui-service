@@ -14,6 +14,8 @@ config.devtool = 'source-map';
 config.plugins.push(
   new webpack.NoErrorsPlugin(),
 
+  new webpack.optimize.UglifyJsPlugin(),
+
   // Cleans previous build
   new CleanWebpackPlugin([config.output.path], {
     allowExternal: true,
