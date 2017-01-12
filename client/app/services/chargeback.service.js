@@ -68,7 +68,7 @@
 
       return {
         start_date: latestDate,
-        used_cost_sum: lodash.sumBy(latestReports, 'used_cost_sum'),
+        used_cost_sum: lodash.sum(latestReports, 'used_cost_sum'),
         vms: latestReports,
       };
     }

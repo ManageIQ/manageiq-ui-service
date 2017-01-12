@@ -196,7 +196,7 @@
 
     function resolveRequestPromises(promiseArray, type, lodash, $q) {
       $q.all(promiseArray).then(function(data) {
-        var count = lodash.sumBy(data, 'subcount');
+        var count = lodash.sum(data, 'subcount');
         vm.requestsCount[type] = count;
         vm.requestsCount.total += count;
       });

@@ -72,7 +72,7 @@ module.exports = (function() {
         './node_modules/jquery/dist/jquery.js',
         './node_modules/components-jqueryui/jquery-ui.min.js',
         './node_modules/jquery-match-height/dist/jquery.matchHeight.js',
-        './node_modules/lodash/lodash.js',
+        './node_modules/lodash/index.js',
         './node_modules/sprintf-js/src/sprintf.js',
         './node_modules/actioncable/lib/assets/compiled/action_cable.js',
         './node_modules/google-code-prettify/bin/prettify.min.js',
