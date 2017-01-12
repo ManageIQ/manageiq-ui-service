@@ -316,6 +316,42 @@ describe('app.components.blueprints.blueprint-editor.blueprint-editor-directive'
       nodes = element.find('.node-rect');
       expect(nodes.length).to.eq(1);
     });
+
+    it('should zoom canvas in and out', function () {
+      // Initial button state
+      var transform = element.find('svg g');
+      var zoomOutBtn = element.find('#zoomOut');
+      var zoomInBtn = element.find('#zoomIn');
+
+      // Initial button state
+      expect(zoomOutBtn.hasClass('disabled')).to.eq(false);
+      expect(zoomInBtn.hasClass('disabled')).to.eq(true);
+      expect(transform[0].transform.baseVal.getItem(0).matrix.a).to.eq(1);
+
+      // Zoom out at 75%
+      zoomOutBtn.click();
+      expect(zoomOutBtn.hasClass('disabled')).to.eq(false);
+      expect(zoomInBtn.hasClass('disabled')).to.eq(false);
+      expect(transform[0].transform.baseVal.getItem(0).matrix.a).to.eq(0.75);
+
+      // Zoom out at 50%
+      zoomOutBtn.click();
+      expect(zoomOutBtn.hasClass('disabled')).to.eq(true);
+      expect(zoomInBtn.hasClass('disabled')).to.eq(false);
+      expect(transform[0].transform.baseVal.getItem(0).matrix.a).to.eq(0.5);
+
+      // Zoom in at 75%
+      zoomInBtn.click();
+      expect(zoomOutBtn.hasClass('disabled')).to.eq(false);
+      expect(zoomInBtn.hasClass('disabled')).to.eq(false);
+      expect(transform[0].transform.baseVal.getItem(0).matrix.a).to.eq(0.75);
+
+      // Zoom in at 100%
+      zoomInBtn.click();
+      expect(zoomOutBtn.hasClass('disabled')).to.eq(false);
+      expect(zoomInBtn.hasClass('disabled')).to.eq(true);
+      expect(transform[0].transform.baseVal.getItem(0).matrix.a).to.eq(1);
+    });
   });
 
   describe('Blueprints Editor: Published Blueprint', function() {

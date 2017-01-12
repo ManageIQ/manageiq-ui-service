@@ -29,41 +29,43 @@
 
       <div class="section-toolbar">
           <button ng-if="!vm.blueprint.read_only" id="toggleToolbox" class="btn btn-primary" ng-class="{'disabled': vm.inConnectingMode}" type="button" ng-click="vm.toggleToolbox()"
-                  tooltip-placement="bottom" uib-tooltip="{{'Add Service Item To Canvas'|translate}}" translate>Add Item
+                  tooltip-placement="bottom-left" uib-tooltip="{{'Add Service Item To Canvas'|translate}}" translate>Add Item
             <span class="fa" ng-class="{'fa-angle-double-up': vm.toolboxVisible, 'fa-angle-double-down': !vm.toolboxVisible}"></span>
           </button>
           <span ng-if="!vm.blueprint.read_only" class="more-actions">
-              <a ng-click="vm.duplicateSelectedItem()">
-                <span id="duplicateItem" class="pficon fa fa-copy" ng-class="{'disabled': !vm.onlyOneTtemSelected() || vm.inConnectingMode}"
+              <a id="duplicateItem" ng-click="vm.duplicateSelectedItem()" ng-class="{'disabled': !vm.onlyOneTtemSelected() || vm.inConnectingMode}">
+                <span class="pficon fa fa-copy"
                       tooltip-append-to-body="true" tooltip-placement="bottom"
                       uib-tooltip="{{'Duplicate Item (Ctrl-D)'|translate}}">
                 </span>
               </a>
-              <a ng-click="vm.removeSelectedItemsFromCanvas()">
-                <span id="removeItems" class="pficon pficon-delete" ng-class="{'disabled': !vm.itemsSelected() || vm.inConnectingMode}"
+              <a id="removeItems" ng-click="vm.removeSelectedItemsFromCanvas()" ng-class="{'disabled': !vm.itemsSelected() || vm.inConnectingMode}">
+                <span class="pficon pficon-delete"
                       tooltip-append-to-body="true" tooltip-placement="bottom"
                       uib-tooltip="{{'Remove Items From Canvas'|translate}}">
                 </span>
               </a>
-              <span class="show-hide-connectors">
-                  <input  ng-class="{'disabled': vm.inConnectingMode}"
-                          ng-model="vm.hideConnectors"
-                          ng-change="vm.toggleshowHideConnectors()"
-                          type="checkbox"
-                          ng-checked="vm.hideConnectors">
-                  <span class="show-hide-connectors-cabel" translate>Hide Connectors</span>
-              </span>
           </span>
-          <div ng-if="vm.blueprint.read_only">
-              <div class="show-hide-connectors-alone">
-                  <input  ng-class="{'disabled': vm.inConnectingMode}"
-                          ng-model="vm.hideConnectors"
-                          ng-change="vm.toggleshowHideConnectors()"
-                          type="checkbox"
-                          ng-checked="vm.hideConnectors">
-                  <span class="show-hide-connectors-cabel" translate>Hide Connectors</span>
-              </div>
-          </div>
+          <span class="show-hide-connectors">
+            <input ng-class="{'disabled': vm.inConnectingMode}"
+                   ng-model="vm.hideConnectors"
+                   ng-change="vm.toggleshowHideConnectors()"
+                   type="checkbox"
+                   ng-checked="vm.hideConnectors">
+            <span class="show-hide-connectors-cabel" translate>Hide Connectors</span>
+            <a id="zoomOut" ng-click="vm.zoomOut()" ng-class="{'disabled': vm.minZoom()}">
+              <span class="pficon fa fa-minus"
+                    tooltip-append-to-body="true" tooltip-placement="bottom"
+                    uib-tooltip="{{'Zoom Out'|translate}}">
+              </span>
+            </a>
+            <a id="zoomIn" ng-click="vm.zoomIn()" ng-class="{'disabled': vm.maxZoom()}">
+              <span class="pficon fa fa-plus"
+                    tooltip-append-to-body="true" tooltip-placement="bottom-right"
+                    uib-tooltip="{{'Zoom In'|translate}}">
+              </span>
+            </a>
+          </span>
       </div>
 
       <div class="toolbox-canvas-container">

@@ -207,5 +207,17 @@
         args.origEvent.preventDefault();
       }
     });
+
+    //
+    // Event handler for zoom.
+    //
+
+    $scope.$on('zoomIn', function(evt, args) {
+      vm.chartViewModel.zoom.in();
+    });
+
+    $scope.$on('zoomOut', function(evt, args) {
+      vm.chartViewModel.zoom.out();
+    });
   }
 })();

@@ -1,6 +1,18 @@
 // Module.
 (function() {
   //
+  // Height of flow chart.
+  //
+  flowchart.defaultHeight = 756;
+
+  //
+  // Width of flow chart.
+  //
+  flowchart.defaultWidth = 1396;
+
+  flowchart.defaultBgImageSize = 24;
+
+  //
   // Width of a node.
   //
   flowchart.defaultNodeWidth = 150;
@@ -658,6 +670,9 @@
     // Are there any valid connections (used in connection mode) ?
     this.validConnections = true;
 
+    // Create a view-model for zoom.
+    this.zoom = new flowchart.ZoomViewModel();
+
     //
     // Create a view model for a new connection.
     //
@@ -1006,6 +1021,82 @@
       }
 
       return selectedConnections;
+    };
+  };
+
+  //
+  // Zoom view model
+  //
+  flowchart.ZoomViewModel = function() {
+    this.max = 1; // Max zoom level
+    this.min = parseFloat(".5"); // Min zoom level
+    this.inc = parseFloat(".25"); // Zoom level increment
+    this.level = this.max; // Zoom level
+
+    //
+    // Is max zoom
+    //
+    this.isMax = function() {
+      return (this.level === this.max);
+    };
+
+    //
+    // Is min zoom
+    //
+    this.isMin = function() {
+      return (this.level === this.min);
+    };
+
+    //
+    // Get background image size
+    //
+    this.getBackgroundSize = function() {
+      var size = flowchart.defaultBgImageSize * this.getLevel();
+
+      return size;
+    };
+
+    //
+    // Get height to accomodate flow chart
+    //
+    this.getChartHeight = function() {
+      var height = (flowchart.defaultHeight / this.min) * this.getLevel();
+
+      return height;
+    };
+
+    //
+    // Get width to accomodate flow chart
+    //
+    this.getChartWidth = function() {
+      var width = (flowchart.defaultWidth / this.min) * this.getLevel();
+
+      return width;
+    };
+
+    //
+    // Zoom level
+    //
+    this.getLevel = function() {
+      return this.level;
+    };
+
+    //
+    // Zoom in
+    //
+    this.in = function() {
+      if (!this.isMax()) {
+        this.level = (this.level * 10 + this.inc * 10) / 10;
+      }
+    };
+
+    //
+    // Zoom out
+    //
+    this.out = function() {
+      if (!this.isMin()) {
+        this.level = (this.level * 10 - this.inc * 10) / 10;
+      }
     };
   };
 })();
