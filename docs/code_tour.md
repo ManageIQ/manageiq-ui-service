@@ -15,7 +15,7 @@ For additional information regarding coding style and convention employed in thi
 
 ## Adding Dependencies
 All dependencies are managed using [Yarn](https://github.com/yarnpkg/yarn).
-When adding a new dependency for use in the SUI there are three locations to pay attention to:
+When adding a new dependency for use in the SUI there are two locations to pay attention to:
 
 1. [package.json](package.json) - identifies resourcing and desired versions of app dependencies, confirm the correct version of the app you require is saved as a **Developer Dependency**, (`devDependencies`). When installing new dependencies be sure to install with an absolute version number:
 
@@ -23,10 +23,8 @@ When adding a new dependency for use in the SUI there are three locations to pay
 
 2. [app.js](client/app.js) - is the entrypoint for webpack and makes dependencies available app wide, here you'll reference the `node_modules/` file path of those files you wish to include.
 
- **Note: Order matters, don't be reckless** :+1:
- 
-3. [config.js](gulp/config.js) - identifies dependencies required for running tests, the function titled `function getKarmaOptions()` manages  `var options` which must identically mirror any action taken step two.
-   
+ **Note: Order matters, don't be reckless** :+1: :taco:
+    
 ## Adding Components
 In efforts to build towards the future [Angular 2.0](https://angular.io/docs/ts/latest/guide/style-guide.html), 
 employing [components](https://docs.angularjs.org/guide/component) is now preferred over [directives](https://docs.angularjs.org/guide/directive).
