@@ -9,7 +9,7 @@
       bindings: {
         ancestorServiceCount: '=',
       },
-      templateUrl: 'app/components/service-explorer/explorer.html',
+      templateUrl: 'app/components/service-explorer/service-explorer.html',
     });
 
   /** @ngInject */
