@@ -1,11 +1,12 @@
 # Martin Welk <mwelk@redhat.com>, 2016. #zanata
+# Martin Welk <mwelk@redhat.com>, 2017. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-12-05 08:08-0500\n"
+"PO-Revision-Date: 2017-01-08 04:07-0500\n"
 "Last-Translator: Martin Welk <mwelk@redhat.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -1053,10 +1054,13 @@ msgstr "Veröffentlicht"
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:135
 msgid "Rearrange Items to set Action Order"
 msgstr ""
+"Verschieben Sie die Elemente, um die Reihenfolge der Aktionen zu setzen"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:123
 msgid "Rearrange Items to set Provision Order"
 msgstr ""
+"Verschieben Sie die Elemente, um die Reihenfolge beim Provisionieren zu "
+"setzen"
 
 #: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:45
 #: app/states/services/details/details.html:64
@@ -1066,7 +1070,7 @@ msgstr "Umkonfigurieren "
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:97
 msgid "Reconfigure Entry Point"
-msgstr ""
+msgstr "Eintrittspunkt für Änderung (Reconfigure)"
 
 #: app/states/services/reconfigure/reconfigure.state.js:127
 msgid "Reconfigure this service has been cancelled"
@@ -1079,7 +1083,7 @@ msgstr "Erneuern"
 #: app/states/services/list/list.state.js:118
 #: app/states/services/list/list.state.js:157
 msgid "Relative Cost"
-msgstr ""
+msgstr "Relative Kosten"
 
 #: app/components/shopping-cart/shopping-cart.html:16
 #: app/components/shopping-cart/shopping-cart.html:21
@@ -1089,7 +1093,7 @@ msgstr "Entfernen"
 
 #: app/components/shopping-cart/shopping-cart.html:19
 msgid "Remove Item"
-msgstr ""
+msgstr "Element entfernen"
 
 #: app/states/services/details/details.html:36
 #: app/states/services/details/details.html:39
@@ -1109,7 +1113,7 @@ msgstr "Auftragsdatum"
 
 #: app/states/requests/requests/details/details.state.js:19
 msgid "Request Details"
-msgstr ""
+msgstr "Auftragsdetails"
 
 #: app/states/requests/requests/details/details.html:37
 #: app/states/requests/requests/requests.state.js:83
@@ -1143,14 +1147,14 @@ msgstr "Beauftragt durch"
 #: app/states/requests/requests/requests.state.js:84
 #: app/states/requests/requests/requests.state.js:94
 msgid "Requester"
-msgstr ""
+msgstr "Auftraggeber"
 
 #: app/config/navigation.config.js:45
 #: app/states/requests/requests/details/details.html:4
 #: app/states/requests/requests/requests.state.js:20
 #: app/states/requests/requests/requests.state.js:40
 msgid "Requests"
-msgstr ""
+msgstr "Aufträge"
 
 #: app/states/services/details/details.html:48
 msgid "Retire"
@@ -1261,7 +1265,7 @@ msgstr "Planen der Außerbetriebnahme für"
 #: app/states/administration/profiles/details/details.html:91
 #: app/states/administration/profiles/editor/editor.html:112
 msgid "Security Group"
-msgstr ""
+msgstr "Sicherheitsgruppe"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:68
 msgid "Select Dialog"
@@ -1316,10 +1320,12 @@ msgid ""
 "Select a second item to complete the connection or click on the canvas to "
 "cancel"
 msgstr ""
+"Wählen Sie ein zweites Element, um die Verbindung herzustellen, oder klicken "
+"Sie zum Abbruch auf den Hintergrund"
 
 #: app/states/administration/profiles/editor/editor.html:117
 msgid "Select a security group"
-msgstr ""
+msgstr "Wählen Sie eine Sicherheitsgruppe"
 
 #: app/components/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
@@ -1327,15 +1333,15 @@ msgstr "Eigentümer auswählen"
 
 #: app/states/administration/profiles/editor/editor.html:76
 msgid "Select an availability zone"
-msgstr ""
+msgstr "Wählen Sie eine Verfügbarkeitszone"
 
 #: app/states/administration/rules/rules.html:64
 msgid "Select an operator"
-msgstr ""
+msgstr "Wählen Sie einen Operator"
 
 #: app/components/browse-entry-point-modal/browse-entry-point-modal.html:5
 msgid "Select {{vm.entryPointTypeTitle}} Entry Point"
-msgstr ""
+msgstr "Wählen Sie den {{vm.entryPointTypeTitle}} Eintrittspunkt"
 
 #: index.html:4
 msgid "Self Service"
@@ -1343,11 +1349,11 @@ msgstr "Selbstbedienung"
 
 #: app/components/navigation/navigation-contoller.js:131
 msgid "Server Name:"
-msgstr ""
+msgstr "Servername:"
 
 #: app/states/services/custom_button_details/custom_button_details.html:7
 msgid "Service"
-msgstr ""
+msgstr "Dienst"
 
 #: app/config/navigation.config.js:27
 #: app/states/marketplace/details/details.html:3
@@ -1408,7 +1414,7 @@ msgstr "Warenkorb erfolgreich bestellt"
 
 #: app/components/blueprint-delete-modal/blueprint-delete-modal.html:10
 msgid "Show Blueprint Names"
-msgstr ""
+msgstr "Zeige Vorlagenamen"
 
 #: app/states/services/details/details.html:184
 msgid "Size"
@@ -1421,23 +1427,23 @@ msgstr "In Kürze"
 
 #: app/states/services/list/list.state.js:169
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: app/states/services/list/list.state.js:171
 msgid "Start this service"
-msgstr ""
+msgstr "Starte diesen Dienst"
 
 #: app/components/notifications/notification-body.html:40
 msgid "Started:"
-msgstr ""
+msgstr "Gestarted:"
 
 #: app/states/services/list/list.state.js:179
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 #: app/states/services/list/list.state.js:181
 msgid "Stop this service"
-msgstr ""
+msgstr "Beende diesen Service"
 
 #: app/states/services/custom_button_details/custom_button_details.html:19
 #: app/states/services/reconfigure/reconfigure.html:23
@@ -1446,11 +1452,11 @@ msgstr "Auftrag absenden"
 
 #: app/states/services/list/list.state.js:186
 msgid "Suspend"
-msgstr ""
+msgstr "Anhalten"
 
 #: app/states/services/list/list.state.js:188
 msgid "Suspend this service"
-msgstr ""
+msgstr "Service vorübergehend anhalten"
 
 #: app/components/language-switcher/language-switcher.html:2
 msgid "Switch Language:"
@@ -1459,11 +1465,11 @@ msgstr "Sprache wechseln:"
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:32
 #: app/components/flowchart/node-toolbar.html:11
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:337
 msgid "The Publish Blueprint feature is not yet implemented."
-msgstr ""
+msgstr "Die Funktion \"Vorlage Veröffentlichen\" ist noch nicht implementiert."
 
 #: app/components/request-list/request-list.html:30
 #: app/components/request-list/request-list.html:31
@@ -1510,11 +1516,11 @@ msgstr "Die angefragte Seite kann nicht gefunden werden."
 
 #: app/config/navigation.config.js:72
 msgid "The total number of available arbitration profiles"
-msgstr ""
+msgstr "Gesamtzahl der verfügbaren Entscheidungsprofile"
 
 #: app/config/navigation.config.js:78
 msgid "The total number of available arbitration rules"
-msgstr ""
+msgstr "Gesamtzahl der verfügbaren Entscheidungsregeln"
 
 #: app/config/navigation.config.js:63
 msgid "The total number of available blueprints"
@@ -1526,7 +1532,7 @@ msgstr "Gesamtzahl verfügbarer Katalogelement"
 
 #: app/config/navigation.config.js:54
 msgid "The total number of orders that you have submitted"
-msgstr ""
+msgstr "Gesamtzahl der von ihnen beauftragen Bestellungen"
 
 #: app/config/navigation.config.js:48
 msgid "The total number of requests that you have submitted"
@@ -1543,10 +1549,12 @@ msgid ""
 "There already is an identical item in the cart. Do you want to add it "
 "anyway?"
 msgstr ""
+"Es ist bereits ein identisches Element im Einkaufswagen. Möchten sie es "
+"trotzdem hinzufügen?"
 
 #: app/components/tagging/tagging.html:15
 msgid "There are no tags for this item."
-msgstr ""
+msgstr "Dieses Element hat noch keine Tags."
 
 #: app/states/error/error.html:10
 msgid "There was a problem loading the page."
@@ -1558,23 +1566,24 @@ msgstr "Es ist ein Fehler beim Hinzufügen zum Warenkorb aufgetreten:"
 
 #: app/services/profiles-state.service.js:164
 msgid "There was an error creating profile %s."
-msgstr ""
+msgstr "Es ist ein Fehler beim Erstellen des Profil %s aufgetreten."
 
 #: app/services/rules-state.service.js:62
 msgid "There was an error creating this rule."
-msgstr ""
+msgstr "Es ist ein Fehler beim Anlegen dieser Regel aufgetreten."
 
 #: app/services/blueprints-state.service.js:409
 msgid "There was an error deleting the blueprint(s)."
-msgstr ""
+msgstr "Es ist ein Fehler beim Löschen dieser Vorlage(n) aufgetreten."
 
 #: app/services/profiles-state.service.js:215
 msgid "There was an error deleting the profile(s)."
 msgstr ""
+"Es ist ein Fehler beim Löschen dieses Profils/dieser Profile aufgetreten."
 
 #: app/services/rules-state.service.js:126
 msgid "There was an error deleting the rule(s)."
-msgstr ""
+msgstr "Es ist ein Fehler beim Löschen dieser Regel(n) aufgetreten."
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
 msgid "There was an error editing this service."
@@ -1603,15 +1612,15 @@ msgstr "Es ist ein Fehler beim Speichern des Eigentümers aufgetreten."
 
 #: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:339
 msgid "There was an error saving this Blueprint's Details."
-msgstr ""
+msgstr "Es ist ein Fehler beim Speichern der Vorlagendetails aufgetreten."
 
 #: app/states/services/list/list.state.js:313
 msgid "There was an error starting this service."
-msgstr ""
+msgstr "Es ist ein Fehler beim Start dieses Dienstes aufgetreten."
 
 #: app/states/services/list/list.state.js:315
 msgid "There was an error stopping this service."
-msgstr ""
+msgstr "Es ist ein Fehler beim Löschen dieses Dienstes aufgetreten."
 
 #: app/components/shopping-cart/shopping-cart.directive.js:51
 #: app/states/services/custom_button_details/custom_button_details.state.js:93
@@ -1621,15 +1630,15 @@ msgstr "Es ist ein Fehler beim Absenden des Auftrags aufgetreten:"
 
 #: app/states/services/list/list.state.js:317
 msgid "There was an error suspending this service."
-msgstr ""
+msgstr "Es ist ein Fehler beim Anhalten dieses Dienstes aufgetreten."
 
 #: app/services/profiles-state.service.js:180
 msgid "There was an error updating profile %s."
-msgstr ""
+msgstr "Es ist ein Fehler beim Aktualisieren des Profils %s aufgetreten."
 
 #: app/services/rules-state.service.js:77
 msgid "There was an error updating the rules."
-msgstr ""
+msgstr "Es ist ein Fehler beim Aktualisieren der Regeln aufgetreten."
 
 #: app/states/services/details/details.html:167
 msgid "This service has no associated VMs"
@@ -1646,7 +1655,7 @@ msgstr "Gesamtzahl Services"
 #: app/states/administration/rules/rules.html:44
 #: app/states/administration/rules/rules.html:84
 msgid "USE"
-msgstr ""
+msgstr "BENUTZE"
 
 #: app/components/blueprint-details-modal/blueprint-details-modal.html:50
 #: app/states/designer/blueprints/list/list.html:39
@@ -1654,7 +1663,7 @@ msgstr ""
 #: app/states/designer/blueprints/list/list.state.js:81
 #: app/states/designer/blueprints/list/list.state.js:82
 msgid "Unassigned"
-msgstr ""
+msgstr "Nicht zugewiesen"
 
 #: app/services/consoles.service.js:75
 msgid "Unsupported console protocol returned"
@@ -1668,7 +1677,7 @@ msgstr "Nicht unterstütztes Konsolenprotokoll empfangen:"
 #: app/services/blueprints-state.service.js:427
 #: app/states/designer/blueprints/editor/editor.html:13
 msgid "Untitled Blueprint"
-msgstr ""
+msgstr "Nicht benannte Vorlage"
 
 #: app/components/language-switcher/language-switcher.directive.js:28
 msgid "User Default"
@@ -1676,11 +1685,11 @@ msgstr "Benutzerstandard"
 
 #: app/components/navigation/navigation-contoller.js:132
 msgid "User Name:"
-msgstr ""
+msgstr "Benutzername:"
 
 #: app/components/navigation/navigation-contoller.js:133
 msgid "User Role:"
-msgstr ""
+msgstr "Benutzerrolle:"
 
 #: app/states/login/login.state.js:41
 #: app/states/login/login.state.js:68
@@ -1701,19 +1710,19 @@ msgstr "Anbieter"
 
 #: app/components/navigation/navigation-contoller.js:130
 msgid "Version:"
-msgstr ""
+msgstr "Version:"
 
 #: app/states/administration/profiles/profiles.state.js:206
 msgid "View"
-msgstr ""
+msgstr "Anzeigen"
 
 #: app/states/administration/profiles/profiles.state.js:207
 msgid "View Profile"
-msgstr ""
+msgstr "Profil anzeigen"
 
 #: app/states/administration/profiles/details/details.state.js:41
 msgid "View Profile: %s"
-msgstr ""
+msgstr "Profil anzeigen: %s"
 
 #: app/states/services/details/details.html:166
 msgid "Virtual Machines ({{ ::vm.vms.length }})"
@@ -1723,7 +1732,7 @@ msgstr "Virtuelle Maschinen ({{ ::vm.vms.length }})"
 #: app/states/designer/blueprints/list/list.state.js:147
 #: app/states/designer/blueprints/list/list.state.js:190
 msgid "Visibility"
-msgstr ""
+msgstr "Sichtbarkeit"
 
 #: app/services/consoles.service.js:30
 msgid "Waiting for the console to become ready"
@@ -1752,7 +1761,7 @@ msgstr "Ihre Sitzung ist abgelaufen."
 
 #: app/states/services/list/list.html:37
 msgid "[[number]] VMs"
-msgstr ""
+msgstr "[[number]] VMs"
 
 #: app/config/gettext.config.js:33
 msgid "locale_name"
@@ -1764,7 +1773,7 @@ msgstr "bestellt"
 
 #: app/components/navigation/navigation-contoller.js:208
 msgid "unread notifications"
-msgstr ""
+msgstr "nicht gelesene Benachrichtigungen"
 
 #: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
 msgid "was edited."
