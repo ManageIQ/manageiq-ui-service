@@ -147,7 +147,7 @@
     function fetchServices() {
       var options = {
         expand: false,
-        filter: ['service_id=nil'],
+        filter: ['ancestry=null'],
         auto_refresh: true,
       };
 

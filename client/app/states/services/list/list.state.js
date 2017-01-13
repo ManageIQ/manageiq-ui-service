@@ -29,7 +29,7 @@
     var options = {
       expand: 'resources',
       attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms', 'chargeback_report'],
-      filter: ['service_id=nil'],
+      filter: ['ancestry=null'],
     };
 
     return CollectionsApi.query('services', options);

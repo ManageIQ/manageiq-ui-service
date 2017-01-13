@@ -102,7 +102,7 @@
 
     var days30 = currentDate.setDate(currentDate.getDate() + 30);
     var date2 = 'retires_on<' + $filter('date')(days30, 'yyyy-MM-dd');
-    var options = {expand: false, filter: ['service_id=nil', date1, date2]};
+    var options = {expand: false, filter: ['ancestry=null', date1, date2]};
 
     return CollectionsApi.query('services', options);
   }
@@ -112,7 +112,7 @@
     if (!$state.navFeatures.services.show) {
       return undefined;
     }
-    var options = {expand: false, filter: ['service_id=nil', 'retired=true'] };
+    var options = {expand: false, filter: ['ancestry=null', 'retired=true'] };
 
     return CollectionsApi.query('services', options);
   }
@@ -125,7 +125,7 @@
 
     var options = {
       expand: 'resources',
-      filter: ['service_id=nil'],
+      filter: ['ancestry=null'],
       attributes: ['chargeback_report'],
     };
 
