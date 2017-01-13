@@ -42,7 +42,7 @@ require('angular-ui-router');
 require('patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js');
 require('patternfly/dist/js/patternfly.js');
 require('angular-drag-and-drop-lists');
-require('ngprogress/build/ngProgress');
+require('ngprogress/build/ngprogress.min.js');
 require('ngstorage');
 
 // Needs imports loader because it expects `this` to be `window`

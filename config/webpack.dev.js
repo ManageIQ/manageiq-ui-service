@@ -61,7 +61,10 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader?presets[]=env'],
+        use: [
+          'ng-annotate-loader',
+          'babel-loader?presets[]=env',
+        ],
       },
 
       // font/images loaders: if smaller than limit embed as data uri
