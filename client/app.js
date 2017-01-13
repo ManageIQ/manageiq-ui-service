@@ -41,6 +41,7 @@ require('angular-svg-base-fix');
 require('angular-ui-router');
 require('patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js');
 require('patternfly/dist/js/patternfly.js');
+require('manageiq-ui-components/dist/js/ui-components.js');
 require('angular-drag-and-drop-lists');
 require('ngprogress/build/ngprogress.min.js');
 require('ngstorage');
@@ -69,6 +70,7 @@ require('patternfly/dist/css/patternfly.css');
 require('patternfly/dist/css/patternfly-additions.css');
 require('patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.css');
 require('angular-patternfly/dist/styles/angular-patternfly.css');
+require('manageiq-ui-components/dist/css/ui-components.css');
 require('ngprogress/ngProgress.css');
 
 // Application styles

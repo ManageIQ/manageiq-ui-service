@@ -9,5 +9,6 @@
     'dndLists',
     'flowChart',
     'ngDragDrop',
+    'miqStaticAssets',
   ]);
 })();
