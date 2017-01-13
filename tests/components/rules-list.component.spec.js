@@ -20,7 +20,7 @@ describe('Component: rulesList', function() {
 
       element = angular.element('<rules-list arbitration-rules="arbitrationRules" fields="fields" profiles="profiles"/>');
       $compile(element)(scope);
-      
+
       Session.create({
         auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
       });
@@ -83,9 +83,9 @@ describe('Component: rulesList', function() {
           id: '4'
         }
       ];
-      
+
       editRulesSpy = sinon.stub(RulesState, 'editRules').returns(Promise.resolve(successResponse));
-      
+
       scope.$apply();
     }));
 
