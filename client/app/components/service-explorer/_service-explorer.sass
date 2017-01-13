@@ -1,24 +1,41 @@
-.pagination
-  margin-top: 0
+.service-explorer-list
+  .list-group-item
+    &.list-view-pf-expand-active
+      padding-bottom: 0
 
-.list-view-pf-checkbox,
-.list-view-pf-expand
-  margin-bottom: 2px
-  margin-top: 2px
+  [class*='col-']
+    padding-left: 10px
+    padding-right: 10px
 
-.explorer-footer
-  .toolbar-pf
-    padding-top: 0
+  .name-column
+    .pficon
+      display: inline
+      margin-left: 5px
 
-  .toolbar-actions
-    border: 0
-    margin-top: 5px
+  .list-view-stacked-item
+    line-height: 24px
 
-  .toolbar-pf-actions
-    border-top: 1px solid $app-color-light-gray-5
-    margin-left: -26px
-    width: 105%
-//
-//.toolbar-pf-include-actions
-//  margin: 0
-//
+    .fa,
+    .pficon
+      text-align: center
+
+.service-explorer-children-list
+
+  .list-group-item-header
+    cursor: default
+    margin-left: 9px
+    width: calc(100% - 46px)
+
+  .list-view-pf
+    padding-bottom: 0
+
+  .list-group
+    border-top: 0
+    margin-bottom: 0
+
+  .dropdown-kebab-pf
+    position: absolute
+    right: 10px
+
+    .btn-link
+      padding: 4px 0
