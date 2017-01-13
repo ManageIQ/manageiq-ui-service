@@ -13,7 +13,8 @@
   "scripts": {
     "build": "webpack --bail --progress --profile --config config/webpack.prod.js",
     "start": "webpack-dev-server --open --progress --config config/webpack.dev.js",
-    "test": "karma start karma.conf.js --single-run"
+    "test": "karma start karma.conf.js --single-run",
+    "test:watch": "karma start --auto-watch --no-single-run"
   },
   "devDependencies": {
     "actioncable": "5.0.1",

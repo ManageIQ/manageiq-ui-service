@@ -1,7 +1,8 @@
-var webpackConfig = require('./config/webpack.test.js');
+'use strict';
+
+const webpackConfig = require('./config/webpack.test.js');
 
 module.exports = function(config) {
-  'use strict';
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
@@ -29,20 +30,21 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: './client/app.js', watched: false},
-      {pattern: './node_modules/phantomjs-polyfill/bind-polyfill.js', watched: false},
-      {pattern: './node_modules/angular-mocks/angular-mocks.js', watched: false},
-      {pattern: './node_modules/bardjs/bard.js', watched: false},
-      {pattern: './node_modules/sinon/pkg/sinon.js', watched: false},
-      {pattern: './node_modules/karma-read-json/karma-read-json.js', watched: false},
-      {pattern: './node_modules/bardjs/bard.js', watched: false},
-      {pattern: './tests/test-helpers/*.js', watched: false},
-      {pattern: './tests/**/*.js', watched: false},
-      {pattern: './tests/**/*.json', watched: false, included: false, served: true, nocache: false}
+      {pattern: './client/app.js'},
+      {pattern: './node_modules/phantomjs-polyfill/bind-polyfill.js'},
+      {pattern: './node_modules/angular-mocks/angular-mocks.js'},
+      {pattern: './node_modules/bardjs/bard.js'},
+      {pattern: './node_modules/sinon/pkg/sinon.js'},
+      {pattern: './node_modules/karma-read-json/karma-read-json.js'},
+      {pattern: './node_modules/bardjs/bard.js'},
+      {pattern: './tests/test-helpers/*.js'},
+      {pattern: './tests/**/*.js'},
+      {pattern: './tests/**/*.json', included: false, served: true, nocache: false},
+      {pattern: './client/assets/images/providers/*.svg', included: false, served: true, nocache: false},
     ],
 
     proxies: {
-      '/images/': 'http://localhost:9876/client/assets/images/',
+      '/images/': '/images/',
     },
 
     // preprocess matching files before serving them to the browser
