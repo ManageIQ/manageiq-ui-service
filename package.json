@@ -65,9 +65,6 @@
     "gulp": "3.9.1",
     "gulp-accessibility": "3.0.1",
     "gulp-angular-gettext": "2.2.0",
-    "gulp-angular-templatecache": "2.0.0",
-    "gulp-bytediff": "1.0.0",
-    "gulp-minify-html": "1.0.6",
     "gulp-task-listing": "1.0.1",
     "gulp-util": "3.0.8",
     "html-loader": "0.4.4",
@@ -131,7 +128,6 @@
   "dependencies": {
     "body-parser": "1.15.2",
     "express": "4.14.0",
-    "gulp-if": "2.0.2",
     "http-proxy": "1.16.2",
     "jshint-json": "1.0.0",
     "manageiq-ui-components": "^0.0.11",

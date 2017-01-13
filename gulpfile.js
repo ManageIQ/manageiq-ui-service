@@ -20,17 +20,9 @@ gulp.task('accessibility', [], task('accessibility'));
 /**
  * Individual component build tasks
  */
-gulp.task('templatecache', task('templatecache'));
 gulp.task('available-languages', task('available-languages'));
 gulp.task('gettext-extract', task('gettext-extract'));
 gulp.task('gettext-compile', task('gettext-compile'));
-
-/**
- * Testing tasks
- */
-gulp.task('test', ['templatecache'], task('test', {singleRun: true}));
-gulp.task('testonly', ['templatecache'], task('test', {singleRun: true}));
-gulp.task('autotest', task('test', {singleRun: false}));
 
 /**
  * Serves up injected html for dev, builds for everything else.
