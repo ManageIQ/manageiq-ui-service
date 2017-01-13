@@ -131,6 +131,13 @@
       title: Text.app.name,
     };
 
+    vm.sites = [{
+      title: __('Administration UI'),
+      tooltip: __('Log into the full administrative UI'),
+      iconClass: 'fa-cogs',
+      url: vm.API_BASE,
+    }];
+
     ServerInfo.promise.then( function() {
       vm.about.productInfo = [
         { name: __('Version: '), value: ServerInfo.data.version },

@@ -121,6 +121,7 @@ module.exports = (function() {
         './node_modules/bardjs/bard.js',
         './node_modules/sinon/pkg/sinon.js',
         './node_modules/karma-read-json/karma-read-json.js',
+        './node_modules/manageiq-ui-components/dist/js/ui-components.js',
         specHelperFiles,
         getClientJsFiles(true, true),
         config.templatecache.build + config.templatecache.output,
