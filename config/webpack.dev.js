@@ -38,7 +38,7 @@ module.exports = {
   },
 
   // Output source maps suitable for development
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-inline-source-map',
 
   module: {
 
@@ -80,8 +80,8 @@ module.exports = {
         loader: ExtractTextWebpackPlugin.extract({
           fallbackLoader: 'style-loader',
           loader: [
-            'css-loader?importLoaders=2&sourceMap',
-            'postcss-loader?sourceMap=inline',
+            'css-loader?importLoaders=2&sourceMap=true',
+            'postcss-loader',
             'sass-loader?sourceMap'
           ],
         }),
