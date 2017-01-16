@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const root = path.resolve(__dirname, '../client');
 const dist = path.resolve(__dirname, '../../manageiq/public/ui/service');
 const nodeModules = path.resolve(__dirname, '../node_modules');
+const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000'
+console.log("Backend proxied on "+host);
 
 module.exports = {
   context: root,
@@ -25,13 +27,13 @@ module.exports = {
     port: 3001,
     proxy: {
       '/api': {
-        target: 'http://[::1]:3000',
+        target: `http://${host}`,
       },
       '/pictures': {
-        target: 'http://[::1]:3000',
+        target: `http://${host}`,
       },
       '/ws': {
-        target: 'ws://[::1]:3000',
+        target: `ws://${host}`,
         ws: true,
       },
     },
