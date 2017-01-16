@@ -74,7 +74,7 @@
           fields = purposeFields();
           break;
         case 'service':
-          if(lodash.every(["Redhat", "InfraManager"], function(value, key) {
+          if (lodash.every(["Redhat", "InfraManager"], function(value, key) {
             return lodash.includes(vm.workflowClass, value);
           })) {
             vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Selected VM"));
@@ -144,9 +144,9 @@
 
     function serviceFields() {
       var serviceFields = {};
-      if(lodash.every(["Redhat", "InfraManager"], function(value, key) {
-          return lodash.includes(vm.workflowClass, value);
-        })) {
+      if (lodash.every(["Redhat", "InfraManager"], function(value, key) {
+        return lodash.includes(vm.workflowClass, value);
+      })) {
         serviceFields =  {
           srcVmId: {label: 'src_vm_id', panel: 0, order: 0},
           provisionType: {label: 'provision_type', panel: 0, order: 1},

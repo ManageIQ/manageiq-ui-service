@@ -39,8 +39,8 @@
         lodash.forEach(obj.children, function(child, key) {
           var id = child[0];
           child = lodash.reduce(child, function(collection, current) {
-              return lodash.extend(collection, current)
-            },  {});
+            return lodash.extend(collection, current);
+          }, {});
 
           child.id = id;
           child.text = child.description;
@@ -63,7 +63,7 @@
       var commonNode = lodash.intersection(childIds, vmTags);
 
       if (commonNode.length === 0) {
-       object.markedForDeletion = true;
+        object.markedForDeletion = true;
       } else {
         object.nodes = [lodash.find(object.nodes, {id: commonNode[0]})];
       }
