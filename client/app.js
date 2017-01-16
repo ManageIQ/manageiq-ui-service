@@ -1,3 +1,5 @@
+/* eslint-disable angular/window-service */
+
 // The webpack entrypoint
 function requireAll(context) {
   context.keys().forEach(context);
