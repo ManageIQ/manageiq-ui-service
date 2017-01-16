@@ -214,20 +214,11 @@
     // Zoom
     //
     vm.maxZoom = function() {
-      if (vm.chartViewModel && vm.chartViewModel.zoom) {
-        return vm.chartViewModel.zoom.isMax();
-      } else {
-        return false;
-      }
-    };
-
+      return (vm.chartViewModel && vm.chartViewModel.zoom) ? vm.chartViewModel.zoom.isMax() : false;
+    }
     vm.minZoom = function() {
-      if (vm.chartViewModel && vm.chartViewModel.zoom) {
-        return vm.chartViewModel.zoom.isMin();
-      } else {
-        return false;
-      }
-    };
+      return (vm.chartViewModel && vm.chartViewModel.zoom) ? vm.chartViewModel.zoom.isMin() : false;
+    }
 
     vm.zoomIn = function() {
       $scope.$broadcast('zoomIn');
