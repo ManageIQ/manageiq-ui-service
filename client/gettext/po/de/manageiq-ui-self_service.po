@@ -6,7 +6,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2017-01-08 04:07-0500\n"
+"PO-Revision-Date: 2017-01-16 05:39-0500\n"
 "Last-Translator: Martin Welk <mwelk@redhat.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -1137,7 +1137,7 @@ msgstr "Auftragstyp"
 
 #: app/components/request-list/request-list.html:25
 msgid "Requested"
-msgstr "Beauftrag"
+msgstr "Beauftragt"
 
 #: app/states/requests/requests/details/details.html:55
 msgid "Requested By"
