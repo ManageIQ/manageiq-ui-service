@@ -1,6 +1,3 @@
-/* eslint angular/log: 0 */
-/* eslint no-console: 0 */
-/* eslint no-undef: 0 */
 describe('dashboard', function() {
   beforeEach(function () {
     browser.sleep(10000);
@@ -13,7 +10,6 @@ describe('dashboard', function() {
 
   it('should have counters have a very specific non zero numnber', function() {
     var counters = element.all(by.css('.ss-dashboard__card-primary__count h2'));
-     // var text = counters.get(1).getText()
     expect(counters.get(0).getText()).toBeGreaterThan(0);
     expect(counters.get(1).getText()).toBeGreaterThan(0);
   });

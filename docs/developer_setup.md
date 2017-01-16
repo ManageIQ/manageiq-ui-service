@@ -41,17 +41,3 @@ http://localhost:3000 order and serve up the REST API.
   the service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
   _http://[::1]:3000_.  This command will also open a browser page to  _http://localhost:3001/login_.
   - `yarn start`
-
-### Testing
-
-If you would like to run unit tests for the project, you can run   
-```yarn test ```  
-
-If you would like to run the integration tests for the project please ensure you have selenium server installed and running  
-
-- ``` yarn global add protractor ```
-- ``` webdriver-manager update ```  
-- ``` webdriver-manager start```
-
-Now that your selenium server is running and listening open another terminal window and from the projects root directory, run   
-```yarn test-e2e ```
