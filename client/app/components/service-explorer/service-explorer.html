@@ -78,7 +78,6 @@
         <a uib-tooltip="{{item.name}}"
            tooltip-placement="bottom"
            tooltip-append-to-body="true"
-           tooltip-append-to-body="true"
            tooltip-popup-delay="1000"
            ng-click="customScope.viewService(item, $event)">
           <span class="ss-list-view__title-img">
@@ -130,10 +129,9 @@
              tooltip-popup-delay="1000"
              tooltip-placement="bottom">
           <strong translate>Retires</strong>&nbsp;
-          <div ng-if=(item.retires_on)>
-            {{ item.retires_on | date : 'shortDate' }}
+          <div>
+            {{item.retires_on ? (item.retires_on | date : 'shortDate') : ('Never' | translate)}}
           </div>
-          <div translate>Never</div>
         </div>
       </div>
       <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
@@ -217,10 +215,9 @@
                  tooltip-popup-delay="1000"
                  tooltip-placement="bottom">
               <strong translate>Retires</strong>&nbsp;
-              <div ng-if=(item.retires_on)>
-                {{ item.retires_on | date : 'shortDate' }}
+              <div>
+                {{item.retires_on ? (item.retires_on | date : 'shortDate') : ('Never' | translate)}}
               </div>
-              <div translate>Never</div>
             </div>
           </div>
           <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
