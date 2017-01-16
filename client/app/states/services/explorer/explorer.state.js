@@ -17,26 +17,12 @@
         controller: StateController,
         controllerAs: 'vm',
         title: N_('Services Explorer'),
-        resolve: {
-          services: resolveServices,
-        },
       },
     };
   }
 
   /** @ngInject */
-  function resolveServices(CollectionsApi) {
-    var options = {
-      hide: 'resources',
-      filter: ['ancestry=null'],
-    };
-
-    return CollectionsApi.query('services', options);
-  }
-
-  /** @ngInject */
-  function StateController(services) {
+  function StateController() {
     var vm = this;
-    vm.services = services;
   }
 })();

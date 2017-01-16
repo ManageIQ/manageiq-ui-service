@@ -12,6 +12,7 @@
       startService: startService,
       stopService: stopService,
       suspendService: suspendService,
+      getPowerState: getPowerState,
       powerOperationUnknownState: powerOperationUnknownState,
       powerOperationInProgressState: powerOperationInProgressState,
       powerOperationOnState: powerOperationOnState,
@@ -23,42 +24,70 @@
       powerOperationSuspendTimeoutState: powerOperationSuspendTimeoutState,
     };
 
+    function powerStatesMatch(powerStates, match) {
+      var matches = angular.isArray(powerStates) && powerStates.length > 0;
+
+      angular.forEach(powerStates, function(powerState) {
+        matches = matches && (powerState === match);
+      });
+
+      return matches;
+    }
+
+    function getPowerState(item) {
+      var powerState = "";
+
+      if (angular.isDefined(item.power_state)) {
+        powerState = item.power_state;
+      } else if (angular.isArray(item.power_states)) {
+        if (powerStatesMatch(item.power_states, 'on')) {
+          powerState = 'on';
+        } else if (powerStatesMatch(item.power_states, 'off')) {
+          powerState = 'off';
+        } else if (powerStatesMatch(item.power_states, 'timeout')) {
+          powerState = 'timeout';
+        }
+      }
+
+      return powerState;
+    }
     function powerOperationUnknownState(item) {
-      return item.power_state === "" && item.power_status === "";
+      return getPowerState(item) === "";
     }
 
     function powerOperationInProgressState(item) {
-      return (item.power_state !== "timeout" && item.power_status === "starting")
-        || (item.power_state !== "timeout" && item.power_status === "stopping")
-        || (item.power_state !== "timeout" && item.power_status === "suspending");
+      return !powerOperationTimeoutState(item)
+        && ((item.power_status === "starting")
+        || (item.power_status === "stopping")
+        || (item.power_status === "suspending"));
     }
 
     function powerOperationOnState(item) {
-      return item.power_state === "on" && item.power_status === "start_complete";
+      return getPowerState(item) === 'on';
     }
 
     function powerOperationOffState(item) {
-      return item.power_state === "off" && item.power_status === "stop_complete";
+      return getPowerState(item) === 'off';
     }
 
     function powerOperationSuspendState(item) {
-      return item.power_state === "off" && item.power_status === "suspend_complete";
+      return getPowerState(item) === 'off';
     }
 
     function powerOperationTimeoutState(item) {
-      return item.power_state === "timeout";
+      return getPowerState(item) === 'timeout';
     }
 
     function powerOperationStartTimeoutState(item) {
-      return item.power_state === "timeout" && item.power_status === "starting";
+      return powerOperationTimeoutState(item) && item.power_status === "starting";
     }
 
     function powerOperationStopTimeoutState(item) {
-      return item.power_state === "timeout" && item.power_status === "stopping";
+      return powerOperationTimeoutState(item) && item.power_status === "stopping";
     }
 
     function powerOperationSuspendTimeoutState(item) {
-      return item.power_state === "timeout" && item.power_status === "suspending";
+      return powerOperationTimeoutState(item) && item.power_status === "suspending";
     }
 
     function startService(item) {
@@ -82,7 +111,7 @@
     function powerOperation(powerAction, item) {
       CollectionsApi.post('services', item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure);
 
-      function actionSuccess() {
+      function actionSuccess(response) {
         if (powerAction === 'start') {
           EventNotifications.success(sprintf(__("%s was started"), item.name));
         } else if (powerAction === 'stop') {

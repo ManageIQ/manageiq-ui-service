@@ -1,0 +1,247 @@
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li>{{'Services'|translate}}</li>
+        <li class="active">{{vm.title}}</li>
+      </ol>
+  </span>
+  <div class="view-selector-bar">
+    <div class="form-group toolbar-pf-view-selector">
+      <button class="btn btn-link"
+              ng-click="vm.viewSelected('listView')"
+              ng-class="{active: vm.viewType === 'listView'}">
+        <i class="fa fa-th-list"></i>
+      </button>
+      <button class="btn btn-link"
+              ng-click="vm.viewSelected('cardView')"
+              ng-class="{active: vm.viewType === 'cardView'}">
+        <i class="fa fa-th"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig">
+  <actions>
+    <custom-dropdown class="custom-dropdown pull-left"
+                     config="item"
+                     items="vm.selectedItemsList"
+                     items-count="vm.selectedItemsListCount"
+                     ng-repeat="item in vm.listActions"
+                     on-update="vm.listActionDisable($config, $changes)"
+                     menu-right="true">
+    </custom-dropdown>
+  </actions>
+</div>
+<div ng-if="vm.viewType == 'cardView'" class="list-view-container section-container paged-container">
+  <loading status="vm.loading"></loading>
+  <div ng-if="!vm.loading" pf-card-view id="cardView" config="vm.cardConfig" items="vm.servicesList">
+    <h3>{{ item.name }}</h3>
+    <div class="ss-card__logo_wrapper">
+      <img ng-if="item.picture.image_href" class="ss-card__logo" alt="{{ item.name }}"
+           ng-src="{{ item.picture.image_href }}"/>
+      <img ng-if="!item.picture.image_href" class="ss-card__logo" alt="{{ item.name }}" src="./images/service.png"/>
+    </div>
+    <span uib-tooltip=" {{item.description}} " tooltip-placement="right"></i>
+      <strong translate>Description</strong>
+      <i class="fa fa-info-circle blue"></i>
+    </span>
+    <div>
+      <power-state item="item"></power-state>
+    </div>
+  </div>
+</div>
+<div ng-if="vm.viewType == 'listView'" class="list-view-container section-container paged-container service-explorer-list">
+  <loading status="vm.loading"></loading>
+  <div ng-if="!vm.loading" pf-list-view id="serviceList" config="vm.listConfig"
+       items="vm.servicesList"
+       menu-actions="vm.menuActions"
+       update-menu-action-for-item-fn="vm.updateMenuActionForItemFn"
+       custom-scope="vm">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-5 col-xs-8 name-column">
+        <span class="no-wrap">
+        <i class="pficon fa fa-power-off" ng-if="item.power_state === 'off'"
+           uib-tooltip="{{'Power State: Off'|translate}}"
+           tooltip-append-to-body="true"
+           tooltip-popup-delay="1000"
+           tooltip-placement="bottom"></i>
+        <i class="pficon pficon-ok" ng-if="item.power_state === 'on'"
+           uib-tooltip="{{'Power State: On'|translate}}"
+           tooltip-append-to-body="true"
+           tooltip-popup-delay="1000"
+           tooltip-placement="bottom"></i>
+        <i class="pficon fa fa-question-circle" ng-if="item.power_state !== 'on' && item.power_state !== 'off'"
+           uib-tooltip="{{'Power State: Unknown'|translate}}"
+           tooltip-append-to-body="true"
+           tooltip-popup-delay="1000"
+           tooltip-placement="bottom"></i>
+        <a uib-tooltip="{{item.name}}"
+           tooltip-placement="bottom"
+           tooltip-append-to-body="true"
+           tooltip-popup-delay="1000"
+           ng-click="customScope.viewService(item, $event)">
+          <span class="ss-list-view__title-img">
+            <span class="ss-list-view__title-img__center"></span>
+            <img class="ss-list-view__title-img__logo" ng-src="{{ item.picture.image_href }}"
+                 ng-if=" item.picture.image_href"/>
+            <img class="ss-list-view__title-img__logo" src="images/service.png" ng-if=" !item.picture.image_href"/>
+          </span>
+          <span>
+            {{ item.name }}
+          </span>
+        </a>
+        </span>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" ng-if="!customScope.isAnsibleService(item)">
+        <span class="no-wrap" uib-tooltip="{{ '[[number]] VMs'|translate|substitute:{number: item.v_total_vms} }}"
+              tooltip-append-to-body="true"
+              tooltip-popup-delay="1000"
+              tooltip-placement="bottom">
+           <i class="pficon pficon-screen"></i>
+          <span>
+            {{ item.v_total_vms }}
+          </span>
+        </span>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" ng-if="customScope.isAnsibleService(item)">
+        <span class="no-wrap" uib-tooltip="{{ 'Playbook: [[playbook]]'|translate|substitute:{playbook: item.playbookN} }}"
+              tooltip-append-to-body="true"
+              tooltip-popup-delay="1000"
+              tooltip-placement="bottom">
+          {{item.playbook}}
+        </span>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+          <div class="list-view-stacked-item" uib-tooltip="Created: {{item.created_at | date : 'MMM dd, yyyy H:mm:ss'}}"
+                tooltip-append-to-body="true"
+                tooltip-popup-delay="1000"
+                tooltip-placement="bottom">
+            <strong>Created</strong>&nbsp;
+            <div>
+              {{ item.created_at | date : 'shortDate' }}
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+        <div class="list-view-stacked-item"
+             uib-tooltip="{{item.retires_on ? (item.retires_on | date : 'medium') : ('Never' | translate)}}"
+             tooltip-append-to-body="true"
+             tooltip-popup-delay="1000"
+             tooltip-placement="bottom">
+          <strong translate>Retires</strong>&nbsp;
+          <div>
+            {{item.retires_on ? (item.retires_on | date : 'shortDate') : ('Never' | translate)}}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
+        <span class="no-wrap">
+          <strong ng-if="item.chargeback_relative_cost"
+                  uib-tooltip="{{'Relative current cost'|translate}}"
+                  tooltip-append-to-body="true"
+                  tooltip-popup-delay="1000"
+                  tooltip-placement="bottom">
+            {{ item.chargeback_relative_cost }}
+          </strong>
+          <i ng-if="!item.chargeback_relative_cost"
+             class="fa fa-question-circle-o fa-fw"
+             uib-tooltip="{{'Cost not available'|translate}}"
+             tooltip-append-to-body="true"
+             tooltip-popup-delay="1000"
+             tooltip-placement="bottom">
+          </i>
+        </span>
+      </div>
+    </div>
+    <list-expanded-content>
+      <div pf-list-view
+           class="service-explorer-children-list"
+           config="vm.serviceChildrenListConfig"
+           items="$parent.item.all_service_children"
+           custom-scope="vm"
+           update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-5 col-xs-8 name-column">
+            <span class="no-wrap">
+              <i class="fa pficon fa-power-off" ng-if="item.power_state === 'off'"
+                 uib-tooltip="{{'Power State: Off'|translate}}"
+                 tooltip-append-to-body="true"
+                 tooltip-popup-delay="1000"
+                 tooltip-placement="bottom"></i>
+              <i class="pficon pficon-ok" ng-if="item.power_state === 'on'"
+                 uib-tooltip="{{'Power State: On'|translate}}"
+                 tooltip-append-to-body="true"
+                 tooltip-popup-delay="1000"
+                 tooltip-placement="bottom"></i>
+              <i class="pficon fa fa-question-circle" ng-if="item.power_state !== 'on' && item.power_state !== 'off'"
+                 uib-tooltip="{{'Power State: Unknown'|translate}}"
+                 tooltip-append-to-body="true"
+                 tooltip-popup-delay="1000"
+                 tooltip-placement="bottom"></i>
+              <a uib-tooltip="{{item.name}}"
+                 tooltip-placement="bottom"
+                 tooltip-append-to-body="true"
+                 tooltip-popup-delay="1000"
+                 ng-click="customScope.viewService(item, $event)">
+              <span class="ss-list-view__title-img">
+                <span class="ss-list-view__title-img__center"></span>
+                <img class="ss-list-view__title-img__logo" ng-src="{{ item.picture.image_href }}"
+                     ng-if=" item.picture.image_href"/>
+                <img class="ss-list-view__title-img__logo" src="images/service.png" ng-if=" !item.picture.image_href"/>
+              </span>
+              <span>
+                {{ item.name }}
+              </span>
+              </a>
+            </span>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+            <div class="list-view-stacked-item" uib-tooltip="Created: {{item.created_at | date : 'MMM dd, yyyy H:mm:ss'}}"
+                 tooltip-append-to-body="true"
+                 tooltip-popup-delay="1000"
+                 tooltip-placement="bottom">
+              <strong>Created</strong>&nbsp;
+              <div>
+                {{ item.created_at | date : 'shortDate' }}
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+            <div class="list-view-stacked-item"
+                 uib-tooltip="{{item.retires_on ? (item.retires_on | date : 'medium') : ('Never' | translate)}}"
+                 tooltip-append-to-body="true"
+                 tooltip-popup-delay="1000"
+                 tooltip-placement="bottom">
+              <strong translate>Retires</strong>&nbsp;
+              <div>
+                {{item.retires_on ? (item.retires_on | date : 'shortDate') : ('Never' | translate)}}
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
+          </div>
+        </div>
+        <div uib-dropdown="" dropdown-append-to-body class="dropdown dropdown-kebab-pf" ng-if="!customScope.isAnsibleService(item)">
+          <button uib-dropdown-toggle="" class="btn btn-link dropdown-toggle" type="button"ng-class="{'disabled': checkDisabled(item)}">
+            <span class="fa fa-ellipsis-v"></span>
+          </button>
+          <ul uib-dropdown-menu="" class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body">
+            <li role="menuitem" ng-class="{'disabled': !customScope.actionEnabled('start', item)}">
+              <a title="{{'Start this service' | translate}}" ng-click="customScope.startService(null, item)" translate>Start</a>
+            </li>
+            <li role="menuitem" ng-class="{'disabled': !customScope.actionEnabled('stop', item)}">
+              <a title="{{'Stop this service' | translate}}" ng-click="customScope.stopService(null, item)" translate>Stop</a>
+            </li>
+            <li role="menuitem" ng-class="{'disabled': !customScope.actionEnabled('suspend', item)}">
+              <a title="{{'suspend this service' | translate}}" ng-click="customScope.suspendService(null, item)" translate>Suspend</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </list-expanded-content>
+  </div>
+</div>
+<explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions" on-update="vm.resolveServices($limit, $offset)">
+</explorer-pagination>

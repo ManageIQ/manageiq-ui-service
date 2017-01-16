@@ -24,7 +24,7 @@ describe('pagination component', function() {
       ctrl.next();
       expect(ctrl.offset).to.equal(5);
       expect(ctrl.rightBoundary).to.equal(10);
-      expect(ctrl.leftBoundary).to.equal(5);
+      expect(ctrl.leftBoundary).to.equal(6);
     });
 
     it('previous decrements offset by limit', function() {

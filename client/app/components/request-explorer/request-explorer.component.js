@@ -15,6 +15,7 @@
 
     vm.$onInit = function() {
       angular.extend(vm, {
+        title: __('Request Explorer'),
         listData: [],
         listDataCopy: [],
         loading: true,

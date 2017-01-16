@@ -7,6 +7,7 @@
       controllerAs: 'vm',
       bindings: {
         limit: '<',
+        limitOptions: '<?',
         count: '<',
         onUpdate: '&',
       },
@@ -23,6 +24,7 @@
       offset: 0,
       lastOffset: Math.floor(vm.count / vm.limit) * vm.limit,
       disabled: disabled,
+      updateLimit: updateLimit,
       previous: previous,
       next: next,
     });
@@ -34,7 +36,6 @@
     vm.$onChanges = function(changes) {
       if (angular.isDefined(changes.limit) || angular.isDefined(changes.count)) {
         vm.offset = 0;
-        vm.onUpdate({$offset: vm.offset});
       }
       vm.lastOffset = Math.floor(vm.count / vm.limit) * vm.limit;
       establishBoundaries();
@@ -54,6 +55,13 @@
       }
     }
 
+    function updateLimit(newLimit) {
+      vm.offset = 0;
+      vm.limit = newLimit;
+      establishBoundaries();
+      vm.onUpdate({$limit: vm.limit, $offset: vm.offset});
+    }
+
     function previous(first) {
       if (vm.offset > 0) {
         if (angular.isDefined(first)) {
@@ -62,7 +70,7 @@
           vm.offset = vm.offset - vm.limit;
         }
         establishBoundaries();
-        vm.onUpdate({$offset: vm.offset});
+        vm.onUpdate({limit: vm.limit, $offset: vm.offset});
       }
     }
 
@@ -74,7 +82,7 @@
           vm.offset = vm.offset + vm.limit;
         }
         establishBoundaries();
-        vm.onUpdate({$offset: vm.offset});
+        vm.onUpdate({$limit: vm.limit, $offset: vm.offset});
       }
     }
 
@@ -85,21 +93,13 @@
     }
 
     function leftBoundary() {
-      if (vm.offset === 0) {
-        vm.leftBoundary = 1;
-      } else {
-        vm.leftBoundary = vm.offset;
-      }
+      vm.leftBoundary = vm.offset + 1;
     }
 
     function rightBoundary() {
-      if (vm.offset === 0) {
-        vm.rightBoundary = vm.limit;
-      } else {
-        vm.rightBoundary = vm.offset + vm.limit;
-        if (vm.rightBoundary > vm.count) {
-          vm.rightBoundary = vm.count;
-        }
+      vm.rightBoundary = vm.offset + vm.limit;
+      if (vm.rightBoundary > vm.count) {
+        vm.rightBoundary = vm.count;
       }
     }
   }

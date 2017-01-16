@@ -10,6 +10,7 @@
         items: '<',
         itemsCount: '<',
         onUpdate: '&',
+        menuRight: '@',
       },
       templateUrl: 'app/components/custom-dropdown/custom-dropdown.html',
     });
@@ -18,9 +19,13 @@
   function ComponentController() {
     var vm = this;
 
-    angular.extend(vm, {
-      handleAction: handleAction,
-    });
+    vm.$onInit = function() {
+      vm.menuRight = vm.menuRight && (vm.menuRight === 'true' || vm.menuRight === true);
+
+      angular.extend(vm, {
+        handleAction: handleAction,
+      });
+    };
 
     vm.$onChanges = function() {
       updateDisabled();

@@ -5,7 +5,7 @@
     <sapn ng-if="vm.config.name">{{vm.config.name}}</sapn>
     <span class="caret"></span>
   </button>
-    <ul uib-dropdown-menu>
+    <ul uib-dropdown-menu ng-class="{'dropdown-menu-right': vm.menuRight}">
       <li role="menuitem" ng-repeat="option in vm.config.actions"
           ng-class="{'disabled': (option.isDisabled === true)}">
         <a ng-click="vm.handleAction(option)" >
