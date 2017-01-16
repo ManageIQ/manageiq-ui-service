@@ -12,14 +12,13 @@ Logging in to the SUI requires a running instance of ManageIQ. Instructions on h
   - `git clone git@github.com:ManageIQ/manageiq-ui-service.git`.
 - Have nodejs **v6.x** and npm **3.x.x** installed (npm should be installed with NodeJS)
 - If using [nvm](https://github.com/creationix/nvm) you can ensure you are using the correct node version with `nvm use`
-- Have yarn (^v0.16.1) and gulp globally installed.
+- Have yarn (^v0.18.1) and gulp globally installed.
   - `npm install -g yarn gulp`
-  - Be sure to periodically update with `yarn self-update`
 
 ### Install Dependencies
 
 - `cd manageiq-ui-service`
-- `yarn install`
+- `yarn`
 
 ### Setup
 
@@ -42,8 +41,3 @@ http://localhost:3000 order and serve up the REST API.
   the service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
   _http://[::1]:3000_.  This command will also open a browser page to  _http://localhost:3001/login_.
   - `yarn start`
-- If you have a local copy of Manage IQ Server installed and would like to start it up at the same time you bring up the service ui web server, run
-	- ``` gulp start-manageiq-server ```
-
-If you would like to override the default port (3000) that ManageIQ runs on you can set an environmental variable ``` export MANAGEIQPORT=4000```.
-If you are running manageiq in a folder other than _../manageiq/_ then you can override this path set in _gulp/config.js_ and update the _manageiqDir_ variable path.

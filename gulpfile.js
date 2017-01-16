@@ -13,21 +13,11 @@ gulp.task('help', taskListing);
 gulp.task('default', ['help']);
 
 /**
- * Check the code for errors
- */
-gulp.task('accessibility', [], task('accessibility'));
-
-/**
  * Individual component build tasks
  */
 gulp.task('available-languages', task('available-languages'));
 gulp.task('gettext-extract', task('gettext-extract'));
 gulp.task('gettext-compile', task('gettext-compile'));
-
-/**
- * Serves up injected html for dev, builds for everything else.
- */
-gulp.task('start-manageiq-server', ['serve'], task('manageiq-server'));
 
 function errorHandler(error) {
   log('[Error!] ' + error.toString());

@@ -23,7 +23,7 @@ To undo this, run `./unlink.sh`.
 
 What these scripts do, is to create a symlink from `client/skin` to this skin's directory.
 
-All you need to do after is `gulp build`, or restart the development server.
+All you need to do after is `yarn build`, or restart the development server.
 
 
 ## How to override an image

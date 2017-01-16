@@ -31,7 +31,6 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       {pattern: './client/app.js'},
-      {pattern: './node_modules/phantomjs-polyfill/bind-polyfill.js'},
       {pattern: './node_modules/angular-mocks/angular-mocks.js'},
       {pattern: './node_modules/bardjs/bard.js'},
       {pattern: './node_modules/sinon/pkg/sinon.js'},

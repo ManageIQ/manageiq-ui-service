@@ -2,18 +2,14 @@
 
 module.exports = (function() {
   var client = './client/';
+  var poDir = 'client/gettext/po/';
   var config = {};
-
-  //configures which directory manage iq server code is located
-  config.manageiqDir = '../manageiq/';
 
   config.availableLanguages = {
     catalogs: 'client/gettext/json/*/*.json',
     availLangsFile: 'client/gettext/json/available_languages.json',
     supportedLangsFile: 'client/gettext/json/supported_languages.json'
   };
-
-  var poDir = 'client/gettext/po/';
 
   config.gettextExtract = {
     inputs: ['client/**/*.js', 'client/**/*.html'],
