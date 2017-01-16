@@ -209,5 +209,23 @@
         })[0];
       }
     };
+
+    //
+    // Zoom
+    //
+    vm.maxZoom = function() {
+      return (vm.chartViewModel && vm.chartViewModel.zoom) ? vm.chartViewModel.zoom.isMax() : false;
+    }
+    vm.minZoom = function() {
+      return (vm.chartViewModel && vm.chartViewModel.zoom) ? vm.chartViewModel.zoom.isMin() : false;
+    }
+
+    vm.zoomIn = function() {
+      $scope.$broadcast('zoomIn');
+    };
+
+    vm.zoomOut = function() {
+      $scope.$broadcast('zoomOut');
+    };
   }
 })();

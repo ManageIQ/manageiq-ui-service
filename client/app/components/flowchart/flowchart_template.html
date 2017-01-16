@@ -5,6 +5,9 @@
   ng-mousemove="mouseMove($event)"
   >
 
+  <!-- Zoom -->
+  <g ng-attr-transform="scale({{zoomLevel()}})">
+
   <!-- Connection Mode Notification -->
   <g ng-if="inConnectingMode">
     <rect class="connecting-mode-rec" ry="1" rx="1" x="0" y="0" width="640" height="32" />
@@ -287,4 +290,6 @@
       ng-attr-height="{{dragSelectionRect.height}}"
     >
   </rect>
+
+  </g>
 </svg>

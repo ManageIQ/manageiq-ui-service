@@ -126,8 +126,8 @@ angular.module('flowChart', ['dragging'] )
     var svgElem =  $element.get(0);
     var matrix = svgElem.getScreenCTM();
     var point = svgElem.createSVGPoint();
-    point.x = x - evt.view.pageXOffset;
-    point.y = y - evt.view.pageYOffset;
+    point.x = (x - evt.view.pageXOffset) / $scope.zoomLevel();
+    point.y = (y - evt.view.pageYOffset) / $scope.zoomLevel();
 
     return point.matrixTransform(matrix.inverse());
   };
@@ -457,6 +457,13 @@ angular.module('flowChart', ['dragging'] )
       }
     });
     */
+  };
+
+  //
+  // Zoom level
+  //
+  $scope.zoomLevel = function() {
+    return $scope.chart.zoom.getLevel();
   };
 }])
 ;
