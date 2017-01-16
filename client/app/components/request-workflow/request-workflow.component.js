@@ -5,6 +5,7 @@
     .component('requestWorkflow', {
       bindings: {
         workflow: '=?',
+        workflowClass: '=?',
       },
       controller: requestWorkflowController,
       controllerAs: 'vm',
@@ -71,8 +72,9 @@
           vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select Tags to apply"));
           break;
         case 'service':
-          // revisit this after https://github.com/ManageIQ/manageiq/pull/13441 is merged
-          if (lodash.includes(vm.customizedWorkflow.values.miq_request_dialog_name, "redhat")) {
+          if(lodash.every(["Redhat", "InfraManager"], function(value, key) {
+            return lodash.includes(vm.workflowClass, value);
+          })) {
             vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Selected VM"));
           } else {
             vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select"));
@@ -82,7 +84,11 @@
           } else if (lodash.includes(vm.customizedWorkflow.values.provision_type, "iso")) {
             vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("ISO"));
           }
-          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Number of VMs"));
+          if (lodash.includes(vm.workflowClass, "CloudManager")) {
+            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Number of Instances"));
+          } else {
+            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Number of VMs"));
+          }
           vm.customizedWorkflow.dialogs[key].panelTitle[2] = (__("Naming"));
           fields = serviceFields();
           break;
@@ -136,8 +142,9 @@
 
     function serviceFields() {
       var serviceFields = {};
-      // revisit this after https://github.com/ManageIQ/manageiq/pull/13441 is merged
-      if (lodash.includes(vm.customizedWorkflow.values.miq_request_dialog_name, "redhat")) {
+      if(lodash.every(["Redhat", "InfraManager"], function(value, key) {
+          return lodash.includes(vm.workflowClass, value);
+        })) {
         serviceFields =  {
           srcVmId: {label: 'src_vm_id', panel: 0, order: 0},
           provisionType: {label: 'provision_type', panel: 0, order: 1},
