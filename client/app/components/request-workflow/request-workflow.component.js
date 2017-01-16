@@ -6,6 +6,7 @@
       bindings: {
         workflow: '=?',
         workflowClass: '=?',
+        allowedTags: '=?',
       },
       controller: requestWorkflowController,
       controllerAs: 'vm',
@@ -70,6 +71,7 @@
           break;
         case 'purpose':
           vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select Tags to apply"));
+          fields = purposeFields();
           break;
         case 'service':
           if(lodash.every(["Redhat", "InfraManager"], function(value, key) {
@@ -167,6 +169,12 @@
       }
 
       return lodash.extend(serviceFields, serviceFieldsCommon);
+    }
+
+    function purposeFields() {
+      return {
+        vmTags: { label: 'vm_tags', panel: 0, order: 0 },
+      };
     }
 
     function fieldsLayout(tab, fields, nPanels) {

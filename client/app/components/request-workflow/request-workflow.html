@@ -13,7 +13,11 @@
                   <div ng-if="field.display != 'hide'">
                     <div class="form-group">
                       <label class="control-label col-sm-1">{{ field.description }}</label>
-                      <div ng-if="field.data_type !== 'boolean'">
+                      <div ng-if="field.label === 'vm_tags'">
+                        <tags-tree class="col-md-8" allowed-tags="vm.allowedTags" vm-tags="vm.workflow.values.vm_tags"></tags-tree>
+                        <div class="col-md-8" translate>* Only a single value can be assigned from these Tag Categories</div>
+                      </div>
+                      <div ng-if="field.data_type !== 'boolean' && field.label !== 'vm_tags'">
                         {{ vm.customizedWorkflow.values[field.label] }}
                       </div>
                       <div ng-if="field.data_type === 'boolean'">

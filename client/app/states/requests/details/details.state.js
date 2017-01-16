@@ -20,7 +20,7 @@ function getStates() {
 
 /** @ngInject */
 function resolveRequest($stateParams, CollectionsApi) {
-  var options = {attributes: ['provision_dialog', 'picture', 'picture.image_href', 'workflow', 'v_workflow_class']};
+  var options = {attributes: ['provision_dialog', 'picture', 'picture.image_href', 'workflow', 'v_workflow_class', 'v_allowed_tags']};
 
   return CollectionsApi.get('requests', $stateParams.requestId, options);
 }
