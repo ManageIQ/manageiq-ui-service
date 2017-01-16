@@ -43,7 +43,7 @@ var config = {
     browser.sleep(5000);
     browser.driver.findElement(by.id('inputUsername')).sendKeys('admin');
     browser.driver.findElement(by.id('inputPassword')).sendKeys('smartvm');
-    browser.driver.findElement(by.id("loginButton")).click();
+    browser.driver.findElement(by.css('button[type=submit]')).click();
 
     // Login takes some time, so wait until it's done.
     // For the test app's login, we know it's done when it redirects to
