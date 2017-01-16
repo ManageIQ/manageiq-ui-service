@@ -3,7 +3,9 @@
     "browser": true,
     "amd": true,
     "jquery": true,
-    "es6": true
+    "es6": true, 
+    "protractor": true,
+    "jasmine": true
   },
   "extends": [
     "eslint:recommended",
