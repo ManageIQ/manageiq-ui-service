@@ -41,6 +41,7 @@
         return action;
       }
 
+      /** @ngInject */
       function resolveServiceCatalogs(CollectionsApi) {
         var options = {
           expand: 'resources',
@@ -50,6 +51,7 @@
         return CollectionsApi.query('service_catalogs', options);
       }
 
+      /** @ngInject */
       function resolveServiceDialogs(CollectionsApi) {
         var options = {
           expand: 'resources',
@@ -60,6 +62,7 @@
         return CollectionsApi.query('service_dialogs', options);
       }
 
+      /** @ngInject */
       function resolveTenants(CollectionsApi) {
         var options = {
           expand: 'resources',

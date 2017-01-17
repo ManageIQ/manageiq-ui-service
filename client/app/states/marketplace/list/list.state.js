@@ -38,6 +38,7 @@
     return CollectionsApi.query('service_templates', options);
   }
 
+  /** @ngInject */
   function resolveServiceCatalogs(CollectionsApi) {
     var options = {
       expand: 'resources',

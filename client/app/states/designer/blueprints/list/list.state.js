@@ -37,6 +37,7 @@
     return CollectionsApi.query('blueprints', options);
   }
 
+  /** @ngInject */
   function resolveServiceCatalogs(CollectionsApi) {
     var options = {
       expand: 'resources',
@@ -47,6 +48,7 @@
     return CollectionsApi.query('service_catalogs', options);
   }
 
+  /** @ngInject */
   function resolveTenants(CollectionsApi) {
     var options = {
       expand: 'resources',
