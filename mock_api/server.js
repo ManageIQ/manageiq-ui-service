@@ -23,13 +23,8 @@ console.log("Found "+ files.length + " endpoint files");
       urlPath = '/api';
     }
     else {
-      urlPath = '/api/' + dataFile.endpoint;
+      urlPath = '/api/' + dataFile.endpoint+'*';
     }
-    server.all(urlPath, function (req, res) {
-     var jsonResponse = generateResponse(req,dataFile);
-     res.json(jsonResponse);
-    });
-    
     if (dataFile.querystrings) {
       server.all(urlPath, function (req, res) {
         var url_parts = url.parse(req.url, false);
@@ -45,6 +40,12 @@ console.log("Found "+ files.length + " endpoint files");
         else {
           res.json(dataFile.data);
         }
+      });
+    }
+    else{
+       server.all(urlPath, function (req, res) {
+        var jsonResponse = generateResponse(req, dataFile);
+        res.json(jsonResponse);
       });
     }
   });
@@ -69,10 +70,10 @@ function generateResponse(request, data){
       }
       else {
         if (requestMethodExists) {
-         return data[reqMethod];
+         return data[reqMethod].data;
         }
         else{
-          return {"status":"Data was received and the http method was "+reqMethod,"data": req.body} ;
+          return {"status":"Data was received and the http method was "+reqMethod,"data": request.body} ;
         }
       }
 }
