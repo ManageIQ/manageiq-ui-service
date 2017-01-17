@@ -20,12 +20,14 @@ notifications:
     on_start: never
 env:
   global:
-  - MOCK_API_HOST=localhost:3004
+  # - MOCK_API_HOST=localhost:3004
   - SAUCE_USERNAME=Fryguy
 addons:
+  sauce_connect: true
   jwt:
     secure: LUQmTLw7fApyoPItwF48Y2GVEquyjgmE7ywkbEz/T26DAvMQTteoirZFeoH0xTjtIWG0QBzR0Ft0km+Wu4DdyuEKTSsmp6rDDWXSTdb/tSifgi1tjwasayungrhOy60JPUE7n9hw4/pRINpKLXdL7N9BugPVT8Wzp3/r3DUxWLX462NCTb2v2i0XEbKfDsS7jzwyIVnLZAkBm95AOaU5fvvyBzBc5J4x6ysDYDA6PKKjrkVFo32tHBz9PTdRsz55GB1/EN6h2hLlJUVYYaD1enM1vYEbvkUmFfmrFm1MxQyIFgRWqeAmL8dS3x7c5f7MwzzHspnVeaX2btPfANqiyDZslfc3chHoQWIlL8fpJjZ0TfBilhgWs/xScZmFmOCp8Ch7HBTul/8NeM2xGOo4i7PQ0UlSN2JlNv650BeiPQCVD7rJY6sCnFoUxjejKdeZ6uvKyLxktZHt+7pqwRPZPbBlowC181idcsBxS0ra2r1+SYNLwbnxWUs1UHAIC0+htxvV+XQlfMJXUbfStjqhe887T/MkgaQ8yHw0vDLZschiBnd2tutQDICsbZnoMBlFzDYlt9jhZt/0eWMUE1OFSd5O0d2rpqqxJfQEeprF4EUCrZ7C44feeAE44m0QcVWcL60wZChioTzWQvyrRgam7bvC5JFquzJwk/XQ/fcGMyI=
 script:
-- yarn start:mock-api &
-- yarn start &
-- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && yarn test:e2e || true'
+- echo $_SC_PID
+# - yarn start:mock-api &
+# - yarn start &
+# - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && yarn test:e2e || true'
