@@ -1,0 +1,10 @@
+{
+    "endpoint":"service_templates",
+    "data":{"test":"test"},
+    "querystrings":[
+        {
+            "endpoint":"filter[]=service_template_catalog_id%3E0&filter[]=display%3Dtrue&hide=resources",
+            "data":{"name":"service_templates","count":27,"subcount":16,"actions":[{"name":"query","method":"post","href":"http://localhost:3001/api/service_templates"},{"name":"edit","method":"post","href":"http://localhost:3001/api/service_templates"},{"name":"delete","method":"post","href":"http://localhost:3001/api/service_templates"}]}
+        }
+    ]
+}

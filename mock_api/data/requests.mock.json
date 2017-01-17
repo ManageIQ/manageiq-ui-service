@@ -1,0 +1,34 @@
+{
+    "endpoint":"requests",
+    "data":{"sample":"test"},
+"querystrings":[
+{
+    "endpoint":"filter[]=type%3DServiceTemplateProvisionRequest&filter[]=approval_state%3Dpending_approval&hide=resources",
+    "data":{"name":"requests","count":157,"subcount":1,"actions":[{"name":"query","method":"post","href":"http://localhost:3001/api/requests"},{"name":"create","method":"post","href":"http://localhost:3001/api/requests"},{"name":"edit","method":"post","href":"http://localhost:3001/api/requests"},{"name":"approve","method":"post","href":"http://localhost:3001/api/requests"},{"name":"deny","method":"post","href":"http://localhost:3001/api/requests"}]}
+},
+{
+    "endpoint":"filter[]=type%3DServiceReconfigureRequest&filter[]=approval_state%3Dpending_approval&hide=resources",
+    "data":{"name":"requests","count":157,"subcount":0,"actions":[{"name":"query","method":"post","href":"http://localhost:3001/api/requests"},{"name":"create","method":"post","href":"http://localhost:3001/api/requests"},{"name":"edit","method":"post","href":"http://localhost:3001/api/requests"},{"name":"approve","method":"post","href":"http://localhost:3001/api/requests"},{"name":"deny","method":"post","href":"http://localhost:3001/api/requests"}]}
+},
+{
+    "endpoint":"filter[]=type%3DServiceTemplateProvisionRequest&filter[]=approval_state%3Dapproved&hide=resources",
+    "data":{"name":"requests","count":157,"subcount":99,"actions":[{"name":"query","method":"post","href":"http://localhost:3001/api/requests"},{"name":"create","method":"post","href":"http://localhost:3001/api/requests"},{"name":"edit","method":"post","href":"http://localhost:3001/api/requests"},{"name":"approve","method":"post","href":"http://localhost:3001/api/requests"},{"name":"deny","method":"post","href":"http://localhost:3001/api/requests"}]}
+},
+{
+    "endpoint":"filter[]=approval_state%3Dpending_approval&hide=resources",
+    "data":{"name":"requests","count":157,"subcount":12,"actions":[{"name":"query","method":"post","href":"http://localhost:3001/api/requests"},{"name":"create","method":"post","href":"http://localhost:3001/api/requests"},{"name":"edit","method":"post","href":"http://localhost:3001/api/requests"},{"name":"approve","method":"post","href":"http://localhost:3001/api/requests"},{"name":"deny","method":"post","href":"http://localhost:3001/api/requests"}]}
+},
+{
+    "endpoint":"filter[]=type%3DServiceReconfigureRequest&filter[]=approval_state%3Dapproved&hide=resources",
+    "data":{"name":"requests","count":157,"subcount":0,"actions":[{"name":"query","method":"post","href":"http://localhost:3001/api/requests"},{"name":"create","method":"post","href":"http://localhost:3001/api/requests"},{"name":"edit","method":"post","href":"http://localhost:3001/api/requests"},{"name":"approve","method":"post","href":"http://localhost:3001/api/requests"},{"name":"deny","method":"post","href":"http://localhost:3001/api/requests"}]}
+},
+{
+"endpoint":"filter[]=type%3DServiceTemplateProvisionRequest&filter[]=approval_state%3Ddenied&hide=resources",
+"data":{"name":"requests","count":157,"subcount":1,"actions":[{"name":"query","method":"post","href":"http://localhost:3001/api/requests"},{"name":"create","method":"post","href":"http://localhost:3001/api/requests"},{"name":"edit","method":"post","href":"http://localhost:3001/api/requests"},{"name":"approve","method":"post","href":"http://localhost:3001/api/requests"},{"name":"deny","method":"post","href":"http://localhost:3001/api/requests"}]}
+},
+{
+    "endpoint":"filter[]=type%3DServiceReconfigureRequest&filter[]=approval_state%3Ddenied&hide=resources",
+    "data":{"name":"requests","count":157,"subcount":0,"actions":[{"name":"query","method":"post","href":"http://localhost:3001/api/requests"},{"name":"create","method":"post","href":"http://localhost:3001/api/requests"},{"name":"edit","method":"post","href":"http://localhost:3001/api/requests"},{"name":"approve","method":"post","href":"http://localhost:3001/api/requests"},{"name":"deny","method":"post","href":"http://localhost:3001/api/requests"}]}
+}
+]
+}
