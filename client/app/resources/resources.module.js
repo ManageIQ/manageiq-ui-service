@@ -1,5 +1,3 @@
-(function() {
-  'use strict';
+import 'angular-resource';
 
-  angular.module('app.resources', ['ngResource']);
-})();
+angular.module('app.resources', ['ngResource']);
