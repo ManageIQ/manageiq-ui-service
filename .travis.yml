@@ -30,4 +30,4 @@ addons:
 script:
 - yarn start:mock-api &
 - yarn start &
-- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && yarn test:e2e || true'
+- yarn test:e2e
