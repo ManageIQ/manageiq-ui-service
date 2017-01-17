@@ -1,11 +1,8 @@
-import toastr from 'toastr';
 import 'toastr/build/toastr.css';
-
-angular.module('blocks.logger')
-  .factory('logger', logger);
+import toastr from 'toastr';
 
 /** @ngInject */
-function logger($log) {
+export default function logger($log) {
   var service = {
     showToasts: true,
 

@@ -31,7 +31,6 @@
     "angular-messages": "1.6.1",
     "angular-mocks": "1.6.1",
     "angular-patternfly": "3.17.0",
-    "angular-resource": "1.6.1",
     "angular-sanitize": "1.6.1",
     "angular-svg-base-fix": "2.0.0",
     "angular-ui-bootstrap": "2.4.0",
