@@ -16,8 +16,8 @@ module.exports = {
   },
 
   output: {
-    chunkFilename: '[name].bundle.js',
-    filename: '[name].bundle.js',
+    chunkFilename: 'js/[name]-[hash].chunk.js',
+    filename: 'js/[name]-[hash].js',
     path: dist,
   },
 
@@ -73,7 +73,22 @@ module.exports = {
       // font/images loaders: if smaller than limit embed as data uri
       {
         test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
-        use: ['url-loader?limit=20480&name=data/[hash].[ext]'],
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 20480,
+              name: 'styles/[hash].[ext]',
+
+              // Determine publicPath dynamically because in production, assets
+              // must be relative to `/ui/service/`
+              publicPath: url => {
+                const path = process.env.NODE_ENV === 'production' ? '/ui/service/' : '/';
+                return path + url;
+              },
+            },
+          },
+        ],
       },
 
       // css loaders: extract styles to a separate bundle
@@ -94,7 +109,7 @@ module.exports = {
   plugins: [
 
     // Extract 'styles.css' after being processed by loaders into a single bundle
-    new ExtractTextWebpackPlugin('[name].[hash].css'),
+    new ExtractTextWebpackPlugin('styles/[name]-[hash].css'),
 
     // Copy all public assets to webpack's processing context
     new CopyWebpackPlugin([

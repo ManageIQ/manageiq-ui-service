@@ -5,10 +5,6 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 
 const config = require('./webpack.dev.js');
 
-// Use hashes in filenames for cache busting
-config.output.chunkFilename = '[name].[hash].js';
-config.output.filename = '[name].[hash].js';
-
 // Source maps suitable for production use
 config.devtool = 'cheap-module-source-map';
 

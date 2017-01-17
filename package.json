@@ -11,7 +11,7 @@
   },
   "version": "1.0.1",
   "scripts": {
-    "build": "webpack --bail --progress --profile --config config/webpack.prod.js",
+    "build": "NODE_ENV=\"production\" webpack --bail --progress --profile --config config/webpack.prod.js",
     "start": "webpack-dev-server --open --progress --config config/webpack.dev.js",
     "start:mock-api": "cd mock_api;node server.js",
     "test": "yarn vet && karma start karma.conf.js --single-run",
