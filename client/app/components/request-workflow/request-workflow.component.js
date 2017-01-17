@@ -95,7 +95,29 @@
           fields = serviceFields();
           break;
         case 'environment':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Placement"));
+          var i = 0;
+          vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Placement"));
+          if (vm.customizedWorkflow.values.placement_auto === 0
+              && !lodash.includes(vm.workflowClass, "CloudManager")) {
+            vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Datacenter"));
+            // Revisit Cluster title logic once we have the right API
+            vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Cluster"));
+            if (lodash.every(["Vmware", "InfraManager"], function(value, key) {
+              return lodash.includes(vm.workflowClass, value);
+            })) {
+              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Resource Pool"));
+              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Folder"));
+            }
+
+            // Revisit Host title logic once we have the right API
+            vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Host"));
+            if (!lodash.includes(vm.workflowClass, "CloudManager")) {
+              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Datastore"));
+            } else {
+              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Placement - Options"));
+            }
+          }
+          fields = environmentFields();
           break;
         case 'hardware':
           vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Hardware"));
@@ -174,6 +196,33 @@
     function purposeFields() {
       return {
         vmTags: { label: 'vm_tags', panel: 0, order: 0 },
+      };
+    }
+
+    function environmentFields() {
+      var i = 0;
+
+      return {
+        placementAuto: { label: 'placement_auto', panel: i++, order: 0 },
+        placementDcName: { label: 'placement_dc_name', panel: i++, order: 0 },
+        clusterFilter: { label: 'cluster_filter', panel: i, order: 0 },
+        placementClusterName: { label: 'placement_cluster_name', panel: i++, order: 1 },
+        rpFilter: { label: 'rp_filter', panel: i, order: 0 },
+        placementRpName: { label: 'placement_rp_name', panel: i++, order: 1 },
+        placementFolderName: { label: 'placement_folder_name', panel: i++, order: 0 },
+        hostFilter: { label: 'host_filter', panel: i, order: 0 },
+        placementHostName: { label: 'placement_host_name', panel: i++, order: 1 },
+        dsFilter: { label: 'ds_filter', panel: i, order: 0 },
+        placementStorageProfile: { label: 'placement_storage_profile', panel: i, order: 1 },
+        placementDsName: { label: 'placement_ds_name', panel: i++, order: 2 },
+        cloudTenant: { label: 'cloud_tenant', panel: i, order: 0 },
+        availabilityZoneFilter: { label: 'availability_zone_filter', panel: i, order: 1 },
+        placementAvailabilityZone: { label: 'placement_availability_zone', panel: i, order: 2 },
+        cloudNetwork: { label: 'cloud_network', panel: i, order: 3 },
+        cloudSubnet: { label: 'cloud_subnet', panel: i, order: 4 },
+        securityGroups: { label: 'security_groups', panel: i, order: 5 },
+        floatingIpAddress: { label: 'floating_ip_address', panel: i, order: 6 },
+        resourceGroup: { label: 'resource_group', panel: i, order: 7 },
       };
     }
 
