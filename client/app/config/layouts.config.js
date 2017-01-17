@@ -36,11 +36,25 @@
     });
 
     function updateCount(count, key) {
+      switch (key) {
+        case 'rules':
+        case 'blueprints':
+        case 'dialogs':
+          if ($state.navFeatures.designer.show === false) {
+            return false;
+          }
+          break;
+        case 'profiles':
+          if ($state.navFeatures.administration.show === false) {
+            return false;
+          }
+          break;
+      }
       count.func();
       if (count.interval) {
         Polling.start(key, count.func, count.interval);
       }
-    }
+    }  
   }
 
   /** @ngInject */
