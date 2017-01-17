@@ -13,13 +13,10 @@ window.sprintf = require('sprintf-js').sprintf;
 window.toastr = require('toastr');
 
 // Vendor libraries, order matters
-require('components-jqueryui');
 require('jquery-match-height');
 require('google-code-prettify/bin/prettify.min.js');
 require('d3');
 require('c3');
-require('datatables');
-require('datatables-colreorder');
 require('moment-timezone');
 require('eonasdan-bootstrap-datetimepicker');
 require('es6-shim');
@@ -65,7 +62,6 @@ require('bootstrap-select/dist/css/bootstrap-select.css');
 require('bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css');
 require('bootstrap-touchspin/src/jquery.bootstrap-touchspin.css');
 require('c3/c3.css');
-require('datatables/media/css/jquery.dataTables.css');
 require('google-code-prettify/bin/prettify.min.css');
 require('eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css');
 require('patternfly/dist/css/patternfly.css');

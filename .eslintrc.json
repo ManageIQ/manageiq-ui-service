@@ -3,7 +3,7 @@
     "browser": true,
     "amd": true,
     "jquery": true,
-    "es6": true, 
+    "es6": true,
     "protractor": true,
     "jasmine": true
   },
@@ -17,6 +17,9 @@
     "flowchart": true, // Blueprints support lib
     "__": true, // Zanata parsing cue
     "N_": true // Zanata parsing cue
+  },
+  "parserOptions": {
+    "sourceType": "module"
   },
   "rules": {
     "accessor-pairs": "error",
