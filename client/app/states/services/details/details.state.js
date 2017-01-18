@@ -241,12 +241,14 @@
 
       ModalService.open(modalOptions);
 
+      /** @ngInject */
       function resolveUsers(CollectionsApi) {
         var options = {expand: 'resources', attributes: ['userid', 'name'], sort_by: 'name', sort_options: 'ignore_case'};
 
         return CollectionsApi.query('users', options);
       }
 
+      /** @ngInject */
       function resolveGroups(CollectionsApi) {
         var options = {expand: 'resources', attributes: ['description'], sort_by: 'description', sort_options: 'ignore_case'};
 
