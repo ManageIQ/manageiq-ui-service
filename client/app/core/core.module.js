@@ -11,11 +11,6 @@
     'blocks.exception',
     'blocks.logger',
     'blocks.router',
-    'blocks.multi-transclude',
-    'blocks.pub-sub',
-    'blocks.bind-attrs',
-    'blocks.directive-options',
-    'blocks.recursion',
 
     'app.skin',
     'app.resources',
