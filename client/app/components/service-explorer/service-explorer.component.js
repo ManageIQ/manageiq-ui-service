@@ -7,9 +7,8 @@ export const ServiceExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, ServicesState, $rootScope, Language, ListView, Chargeback,
-                              CollectionsApi, taggingService, EventNotifications,
-                              TagEditorModal, ModalService, PowerOperations, lodash, $log) {
+function ComponentController($state, ServicesState, Language, ListView, Chargeback, taggingService, TagEditorModal,
+                             EventNotifications, ModalService, PowerOperations, lodash) {
   var vm = this;
   vm.$onInit = activate();
   function activate() {
@@ -44,14 +43,9 @@ function ComponentController($state, ServicesState, $rootScope, Language, ListVi
       serviceChildrenListConfig: createServiceChildrenListConfig(),
     });
 
-
     Language.fixState(ServicesState, vm.headerConfig);
 
     resolveServices(vm.limit, 0);
-  }
-
-  if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
-    $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
   }
 
   function getCardConfig() {
@@ -85,12 +79,19 @@ function ComponentController($state, ServicesState, $rootScope, Language, ListVi
   }
 
   function getListActions() {
-    return [
-      {
+    var configActions, lifeCycleActions;
+    var listActions = [];
+
+    if ($state.actionFeatures.serviceRetireNow.show || $state.actionFeatures.serviceRetire.show) {
+      lifeCycleActions = {
         title: __('Lifecycle'),
         actionName: 'lifecycle',
         icon: 'fa fa-recycle',
-        actions: [
+        actions: [],
+        isDisabled: false,
+      };
+      if ($state.actionFeatures.serviceRetire.show) {
+        lifeCycleActions.actions.push(
           {
             icon: 'fa fa-clock-o',
             name: __('Set Retirement Dates'),
@@ -98,38 +99,65 @@ function ComponentController($state, ServicesState, $rootScope, Language, ListVi
             title: __('Set Retirement'),
             actionFn: setServiceRetirement,
             isDisabled: false,
-          }, {
+          }
+        );
+      }
+      if ($state.actionFeatures.serviceRetireNow.show) {
+        lifeCycleActions.actions.push(
+          {
             icon: 'fa fa-clock-o',
             name: __('Retire'),
             actionName: 'retireService',
             title: __('Retire'),
             actionFn: retireService,
             isDisabled: false,
-          },
-        ],
-        isDisabled: false,
-      },
-      {
-        title: __('Policy'),
-        actionName: 'policy',
-        icon: 'fa fa-shield',
-        actions: [
-          {
-            icon: 'pf pficon-edit',
-            name: __('Edit Tags'),
-            actionName: 'editTags',
-            title: __('Edit Tags'),
-            actionFn: editTags,
-            isDisabled: false,
-          },
-        ],
-        isDisabled: false,
-      },
-      {
+            showConfirmation: true,
+            confirmationId: 'retireServiceConfirmId',
+            confirmationTitle: __('Retire Service Now'),
+            confirmationMessage: __('Confirm, would you like to retire this service?'),
+            confirmationOkText: __('Yes, Retire Service Now'),
+            confirmationOkStyle: 'primary',
+            confirmationShowCancel: true,
+          }
+        );
+      }
+      listActions.push(lifeCycleActions);
+    }
+
+    if ($state.actionFeatures.serviceTag.show) {
+      listActions.push(
+        {
+          title: __('Policy'),
+          actionName: 'policy',
+          icon: 'fa fa-shield',
+          actions: [
+            {
+              icon: 'pf pficon-edit',
+              name: __('Edit Tags'),
+              actionName: 'editTags',
+              title: __('Edit Tags'),
+              actionFn: editTags,
+              isDisabled: false,
+            },
+          ],
+          isDisabled: false,
+        }
+      );
+    }
+
+    if ($state.actionFeatures.serviceDelete.show
+      || $state.actionFeatures.serviceEdit.show
+      || $state.actionFeatures.serviceOwnership.show) {
+      configActions = {
         title: __('Configuration'),
         actionName: 'configuration',
         icon: 'fa fa-cog',
-        actions: [
+        actions: [],
+        isDisabled: false,
+      };
+
+      if ($state.actionFeatures.serviceEdit.show) {
+        configActions.actions.push(
           {
             icon: 'pf pficon-edit',
             name: __('Edit'),
@@ -137,25 +165,47 @@ function ComponentController($state, ServicesState, $rootScope, Language, ListVi
             title: __('Edit'),
             actionFn: editService,
             isDisabled: false,
-          }, {
+          }
+        );
+      }
+
+      if ($state.actionFeatures.serviceDelete.show) {
+        configActions.actions.push(
+          {
             icon: 'pf pficon-delete',
             name: __('Remove'),
             actionName: 'remove',
             title: __('Remove'),
             actionFn: removeServices,
             isDisabled: false,
-          }, {
+            showConfirmation: true,
+            confirmationId: 'removeServiceConfirmId',
+            confirmationTitle: __('Remove Service'),
+            confirmationMessage: __('Confirm, would you like to remove this service?'),
+            confirmationOkText: __('Yes, Remove Service'),
+            confirmationOkStyle: 'primary',
+            confirmationShowCancel: true,
+          }
+        );
+      }
+
+      if ($state.actionFeatures.serviceOwnership.show) {
+        configActions.actions.push(
+          {
             icon: 'pf pficon-user',
             name: __('Set Ownership'),
             actionName: 'ownership',
             title: __('Set Ownership'),
             actionFn: setOwnership,
             isDisabled: false,
-          },
-        ],
-        isDisabled: false,
-      },
-    ];
+          }
+        );
+      }
+
+      listActions.push(configActions);
+    }
+
+    return listActions;
   }
 
   function actionEnabled(actionName, item) {
@@ -190,8 +240,6 @@ function ComponentController($state, ServicesState, $rootScope, Language, ListVi
         break;
       case "suspend":
         action.isVisible = !isAnsibleService(item);
-        action.isDisabled = PowerOperations.powerOperationUnknownState(item)
-          || PowerOperations.powerOperationSuspendState(item);
         break;
       case "powerOperationsDivider":
         action.isVisible = !isAnsibleService(item);
@@ -212,11 +260,9 @@ function ComponentController($state, ServicesState, $rootScope, Language, ListVi
     PowerOperations.suspendService(item);
   }
 
-
   function viewSelected(viewId) {
     vm.viewType = viewId;
   }
-
 
   function getHeaderConfig() {
     var serviceFilterConfig = {
