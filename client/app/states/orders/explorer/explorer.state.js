@@ -14,7 +14,7 @@
       'orders.explorer': {
         url: '',
         templateUrl: 'app/states/orders/explorer/explorer.html',
-        controller: Controller,
+        controller: StateController,
         controllerAs: 'vm',
         title: N_('My Orders'),
       },
@@ -22,7 +22,7 @@
   }
 
   /** @ngInject */
-  function Controller() {
-    var vm = this;
+  function StateController() {
+    const vm = this;
   }
 })();
