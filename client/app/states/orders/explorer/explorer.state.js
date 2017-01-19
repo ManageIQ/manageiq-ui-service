@@ -13,16 +13,9 @@
     return {
       'orders.explorer': {
         url: '',
-        templateUrl: 'app/states/orders/explorer/explorer.html',
-        controller: StateController,
-        controllerAs: 'vm',
+        template: '<order-explorer></order-explorer>',
         title: N_('My Orders'),
       },
     };
-  }
-
-  /** @ngInject */
-  function StateController() {
-    const vm = this;
   }
 })();
