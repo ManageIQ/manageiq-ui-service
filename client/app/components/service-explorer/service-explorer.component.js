@@ -212,18 +212,13 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     var enabled = true;
     switch (actionName) {
       case "start":
-        enabled = PowerOperations.powerOperationUnknownState(item)
-          || PowerOperations.powerOperationOffState(item)
-          || PowerOperations.powerOperationSuspendState(item)
-          || PowerOperations.powerOperationTimeoutState(item);
+        enabled = PowerOperations.allowStartService(item);
         break;
       case "stop":
-        enabled = !PowerOperations.powerOperationUnknownState(item)
-          && !PowerOperations.powerOperationOffState(item);
+        enabled = PowerOperations.allowStopService(item);
         break;
       case "suspend":
-        enabled = !PowerOperations.powerOperationUnknownState(item)
-          && !PowerOperations.powerOperationSuspendState(item);
+        enabled = PowerOperations.allowSuspendService(item);
         break;
     }
 

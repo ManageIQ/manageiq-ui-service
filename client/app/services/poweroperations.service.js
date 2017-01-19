@@ -6,6 +6,15 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
     startService: startService,
     stopService: stopService,
     suspendService: suspendService,
+    allowStartService: allowStart,
+    allowStopService: allowStop,
+    allowSuspendService: allowSuspend,
+    startVm: startVm,
+    stopVm: stopVm,
+    suspendVm: suspendVm,
+    allowStartVm: allowStart,
+    allowStopVm: allowStop,
+    allowSuspendVm: allowSuspend,
     getPowerState: getPowerState,
     powerOperationUnknownState: powerOperationUnknownState,
     powerOperationInProgressState: powerOperationInProgressState,
@@ -28,6 +37,23 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
     return matches;
   }
 
+  function allowStart(item) {
+    return powerOperationUnknownState(item)
+      || powerOperationOffState(item)
+      || powerOperationSuspendState(item)
+      || powerOperationTimeoutState(item);
+  }
+
+  function allowStop(item) {
+    return !powerOperationUnknownState(item)
+    && !powerOperationOffState(item);
+  }
+
+  function allowSuspend(item) {
+    return !powerOperationUnknownState(item)
+      && !powerOperationSuspendState(item);
+  }
+
   function getPowerState(item) {
     var powerState = "";
 
@@ -45,6 +71,7 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
 
     return powerState;
   }
+
   function powerOperationUnknownState(item) {
     return getPowerState(item) === "";
   }
@@ -102,6 +129,24 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
     powerOperation('suspend', item);
   }
 
+  function startVm(item) {
+    item.power_state = '';
+    item.power_status = 'starting';
+    vmPowerOperation('start', item);
+  }
+
+  function stopVm(item) {
+    item.power_state = '';
+    item.power_status = 'stopping';
+    vmPowerOperation('stop', item);
+  }
+
+  function suspendVm(item) {
+    item.power_state = '';
+    item.power_status = 'suspending';
+    vmPowerOperation('suspend', item);
+  }
+
   function powerOperation(powerAction, item) {
     CollectionsApi.post('services', item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure);
 
@@ -122,6 +167,30 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
         EventNotifications.error(__('There was an error stopping this service.'));
       } else if (powerAction === 'suspend') {
         EventNotifications.error(__('There was an error suspending this service.'));
+      }
+    }
+  }
+
+  function vmPowerOperation(powerAction, item) {
+    CollectionsApi.post('vms', item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure);
+
+    function actionSuccess(response) {
+      if (powerAction === 'start') {
+        EventNotifications.success(sprintf(__("%s was started"), item.name));
+      } else if (powerAction === 'stop') {
+        EventNotifications.success(sprintf(__("%s was stopped"), item.name));
+      } else if (powerAction === 'suspend') {
+        EventNotifications.success(sprintf(__("%s was suspended"), item.name));
+      }
+    }
+
+    function actionFailure() {
+      if (powerAction === 'start') {
+        EventNotifications.error(__('There was an error starting this VM.'));
+      } else if (powerAction === 'stop') {
+        EventNotifications.error(__('There was an error stopping this VM.'));
+      } else if (powerAction === 'suspend') {
+        EventNotifications.error(__('There was an error suspending this VM.'));
       }
     }
   }
