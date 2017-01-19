@@ -1,8 +1,9 @@
-(function() {
-  'use strict';
+import { routerHelperProvider } from './router-helper.provider.js';
 
-  angular.module('blocks.router', [
+export default angular
+  .module('blocks.router', [
     'ui.router',
     'blocks.logger',
-  ]);
-})();
+  ])
+  .provider('routerHelper', routerHelperProvider)
+  .name;

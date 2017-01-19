@@ -1,40 +1,33 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function draggableItemsDirective($document) {
+  var directive = {
+    restrict: 'E',
+    scope: {
+      items: '=',
+      startDragCallback: '=',
+      clickCallback: '=',
+      searchText: '=',
+    },
+    controller: draggableItemsController,
+    templateUrl: 'app/components/blueprints/blueprint-editor/draggable-items.html',
+    controllerAs: 'vm',
+    bindToController: true,
+  };
 
-  angular.module('app.components')
-    .directive('draggableItems', draggableItemsDirective);
+  return directive;
 
   /** @ngInject */
-  function draggableItemsDirective($document) {
-    var directive = {
-      restrict: 'E',
-      scope: {
-        items: '=',
-        startDragCallback: '=',
-        clickCallback: '=',
-        searchText: '=',
-      },
-      controller: draggableItemsController,
-      templateUrl: 'app/components/blueprints/blueprint-editor/draggable-items.html',
-      controllerAs: 'vm',
-      bindToController: true,
+  function draggableItemsController($scope, $filter, $log) {
+    var vm = this;
+
+    vm.clickCallbackfmDir = function(item) {
+      if (!item.disableInToolbox) {
+        vm.clickCallback(item);
+      }
     };
 
-    return directive;
-
-    /** @ngInject */
-    function draggableItemsController($scope, $filter, $log) {
-      var vm = this;
-
-      vm.clickCallbackfmDir = function(item) {
-        if (!item.disableInToolbox) {
-          vm.clickCallback(item);
-        }
-      };
-
-      vm.startDragCallbackfmDir = function(event, ui, item) {
-        vm.startDragCallback(event, ui, item);
-      };
-    }
+    vm.startDragCallbackfmDir = function(event, ui, item) {
+      vm.startDragCallback(event, ui, item);
+    };
   }
-})();
+}

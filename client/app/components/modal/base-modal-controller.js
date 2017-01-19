@@ -1,42 +1,35 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function BaseModalController($uibModalInstance, $state, CollectionsApi, EventNotifications) {
+  var vm = this;
+  vm.cancel = cancel;
+  vm.reset = reset;
+  vm.save = save;
 
-  angular.module('app.components')
-    .controller('BaseModalController', BaseModalController);
+  function cancel() {
+    $uibModalInstance.dismiss();
+  }
 
-  /** @ngInject */
-  function BaseModalController($uibModalInstance, $state, CollectionsApi, EventNotifications) {
+  function reset(event) {
+    angular.copy(event.original, this.modalData); // eslint-disable-line angular/controller-as-vm
+  }
+
+  function save() {
     var vm = this;
-    vm.cancel = cancel;
-    vm.reset = reset;
-    vm.save = save;
+    var data = {
+      action: vm.action,
+      resource: vm.modalData,
+    };
 
-    function cancel() {
-      $uibModalInstance.dismiss();
+    CollectionsApi.post(vm.collection, vm.modalData.id, {}, data).then(saveSuccess, saveFailure);
+
+    function saveSuccess() {
+      $uibModalInstance.close();
+      EventNotifications.success(vm.onSuccessMessage);
+      $state.go($state.current, {}, {reload: true});
     }
 
-    function reset(event) {
-      angular.copy(event.original, this.modalData); // eslint-disable-line angular/controller-as-vm
-    }
-
-    function save() {
-      var vm = this;
-      var data = {
-        action: vm.action,
-        resource: vm.modalData,
-      };
-
-      CollectionsApi.post(vm.collection, vm.modalData.id, {}, data).then(saveSuccess, saveFailure);
-
-      function saveSuccess() {
-        $uibModalInstance.close();
-        EventNotifications.success(vm.onSuccessMessage);
-        $state.go($state.current, {}, {reload: true});
-      }
-
-      function saveFailure() {
-        EventNotifications.error(vm.onFailureMessage);
-      }
+    function saveFailure() {
+      EventNotifications.error(vm.onFailureMessage);
     }
   }
-})();
+}

@@ -1,35 +1,28 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function RequestsExplorerState(routerHelper) {
+  routerHelper.configureStates(getStates());
+}
 
-  angular.module('app.states')
-    .run(appRun);
+function getStates() {
+  return {
+    'requests.explorer': {
+      url: '',
+      templateUrl: 'app/states/requests/explorer/explorer.html',
+      controller: StateController,
+      controllerAs: 'vm',
+      title: N_('Requests'),
+    },
+  };
+}
 
-  /** @ngInject */
-  function appRun(routerHelper) {
-    routerHelper.configureStates(getStates());
+/** @ngInject */
+function StateController(RequestsState) {
+  var vm = this;
+
+  activate();
+
+  function activate() {
+    RequestsState.setFilters([{'id': 'approval_state', 'title': __('Request Status'), 'value': __('pending_approval')}]);
+    RequestsState.filterApplied = true;
   }
-
-  function getStates() {
-    return {
-      'requests.explorer': {
-        url: '',
-        templateUrl: 'app/states/requests/explorer/explorer.html',
-        controller: StateController,
-        controllerAs: 'vm',
-        title: N_('Requests'),
-      },
-    };
-  }
-
-  /** @ngInject */
-  function StateController(RequestsState) {
-    var vm = this;
-
-    activate();
-
-    function activate() {
-      RequestsState.setFilters([{'id': 'approval_state', 'title': __('Request Status'), 'value': __('pending_approval')}]);
-      RequestsState.filterApplied = true;
-    }
-  }
-})();
+}

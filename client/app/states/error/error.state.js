@@ -1,38 +1,31 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function ErrorState(routerHelper) {
+  var otherwise = '/error';
+  routerHelper.configureStates(getStates(), otherwise);
+}
 
-  angular.module('app.states')
-    .run(appRun);
-
-  /** @ngInject */
-  function appRun(routerHelper) {
-    var otherwise = '/error';
-    routerHelper.configureStates(getStates(), otherwise);
-  }
-
-  function getStates() {
-    return {
-      'error': {
-        parent: 'blank',
-        url: '/error',
-        templateUrl: 'app/states/error/error.html',
-        controller: StateController,
-        controllerAs: 'vm',
-        title: N_('Error'),
-        data: {
-          layout: 'blank',
-        },
-        params: {
-          error: null,
-        },
+function getStates() {
+  return {
+    'error': {
+      parent: 'blank',
+      url: '/error',
+      templateUrl: 'app/states/error/error.html',
+      controller: StateController,
+      controllerAs: 'vm',
+      title: N_('Error'),
+      data: {
+        layout: 'blank',
       },
-    };
-  }
+      params: {
+        error: null,
+      },
+    },
+  };
+}
 
-  /** @ngInject */
-  function StateController($stateParams) {
-    var vm = this;
+/** @ngInject */
+function StateController($stateParams) {
+  var vm = this;
 
-    vm.error = $stateParams.error;
-  }
-})();
+  vm.error = $stateParams.error;
+}

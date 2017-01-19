@@ -1,59 +1,52 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function BlueprintDeleteFactory($uibModal) {
+  var modalBlueprint = {
+    showModal: showModal,
+  };
 
-  angular.module('app.components')
-    .factory('BlueprintDeleteModal', BlueprintDeleteFactory);
+  return modalBlueprint;
 
-  /** @ngInject */
-  function BlueprintDeleteFactory($uibModal) {
-    var modalBlueprint = {
-      showModal: showModal,
+  function showModal(blueprints) {
+    var modalOptions = {
+      templateUrl: 'app/components/blueprints/blueprint-delete-modal/blueprint-delete-modal.html',
+      controller: BlueprintDeleteModalController,
+      controllerAs: 'vm',
+      resolve: { blueprints: resolveBlueprints },
     };
 
-    return modalBlueprint;
+    var modal = $uibModal.open(modalOptions);
 
-    function showModal(blueprints) {
-      var modalOptions = {
-        templateUrl: 'app/components/blueprints/blueprint-delete-modal/blueprint-delete-modal.html',
-        controller: BlueprintDeleteModalController,
-        controllerAs: 'vm',
-        resolve: { blueprints: resolveBlueprints },
-      };
+    return modal.result;
 
-      var modal = $uibModal.open(modalOptions);
-
-      return modal.result;
-
-      function resolveBlueprints() {
-        return blueprints;
-      }
+    function resolveBlueprints() {
+      return blueprints;
     }
   }
+}
 
-  /** @ngInject */
-  function BlueprintDeleteModalController(blueprints, BlueprintsState, $state, $uibModalInstance, $log, CollectionsApi) {
-    var vm = this;
+/** @ngInject */
+function BlueprintDeleteModalController(blueprints, BlueprintsState, $state, $uibModalInstance, $log, CollectionsApi) {
+  var vm = this;
 
-    vm.blueprintsList = blueprints;
-    vm.deleteBlueprints = deleteBlueprints;
+  vm.blueprintsList = blueprints;
+  vm.deleteBlueprints = deleteBlueprints;
 
-    activate();
+  activate();
 
-    function activate() {
+  function activate() {
+  }
+
+  function deleteBlueprints() {
+    BlueprintsState.deleteBlueprints(blueprints).then(deleteSuccess, deleteFailure);
+
+    function deleteSuccess() {
+      $uibModalInstance.close();
+      $state.go($state.current, {}, {reload: true});
     }
 
-    function deleteBlueprints() {
-      BlueprintsState.deleteBlueprints(blueprints).then(deleteSuccess, deleteFailure);
-
-      function deleteSuccess() {
-        $uibModalInstance.close();
-        $state.go($state.current, {}, {reload: true});
-      }
-
-      function deleteFailure() {
-        $log.error("Failed to delete blueprint(s).");
-        $uibModalInstance.close();
-      }
+    function deleteFailure() {
+      $log.error("Failed to delete blueprint(s).");
+      $uibModalInstance.close();
     }
   }
-})();
+}

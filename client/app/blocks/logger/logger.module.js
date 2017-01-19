@@ -1,5 +1,6 @@
-(function() {
-  'use strict';
+import { logger } from './logger.js';
 
-  angular.module('blocks.logger', []);
-})();
+export default angular
+  .module('blocks.logger', [])
+  .factory('logger', logger)
+  .name;

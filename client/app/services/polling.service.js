@@ -1,39 +1,32 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function PollingFactory($interval, lodash) {
+  var service = {
+    start: start,
+    stop: stop,
+    stopAll: stopAll,
+  };
 
-  angular.module('app.services')
-    .factory('Polling', PollingFactory);
+  var polls = {};
 
-  /** @ngInject */
-  function PollingFactory($interval, lodash) {
-    var service = {
-      start: start,
-      stop: stop,
-      stopAll: stopAll,
-    };
+  return service;
 
-    var polls = {};
+  function start(key, func, interval, limit) {
+    var poll;
 
-    return service;
-
-    function start(key, func, interval, limit) {
-      var poll;
-
-      if (!polls[key]) {
-        poll = $interval(func, interval, limit);
-        polls[key] = poll;
-      }
-    }
-
-    function stop(key) {
-      if (polls[key]) {
-        $interval.cancel(polls[key]);
-        delete polls[key];
-      }
-    }
-
-    function stopAll() {
-      angular.forEach(lodash.keys(polls), stop);
+    if (!polls[key]) {
+      poll = $interval(func, interval, limit);
+      polls[key] = poll;
     }
   }
-})();
+
+  function stop(key) {
+    if (polls[key]) {
+      $interval.cancel(polls[key]);
+      delete polls[key];
+    }
+  }
+
+  function stopAll() {
+    angular.forEach(lodash.keys(polls), stop);
+  }
+}

@@ -1,45 +1,24 @@
-(function() {
-  'use strict';
+import './globals.js';
+import './blocks/exception/exception.module.js';
+import './blocks/logger/logger.module.js';
+import './blocks/router/router.module.js';
+import './components/components.module.js';
+import './config/config.module.js';
+import './core/core.module.js';
+import './resources/resources.module.js';
+import './services/services.module.js';
+import './skin/skin.module.js';
+import './states/states.module.js';
 
-  class AppController {
-    constructor($scope, ngProgressFactory) {
-      'ngInject';
+import { AppController } from './app.controller.js';
 
-      this.progressbar = ngProgressFactory.createInstance();
-      this.progressbar.setColor('#0088ce');
-      this.progressbar.setHeight('3px');
-
-      this.$scope = $scope;
-    }
-
-    $onInit() {
-      this.$scope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-        if (toState.resolve) {
-          this.progressbar.start();
-        }
-      });
-
-      this.$scope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
-        if (toState.resolve) {
-          this.progressbar.complete();
-        }
-      });
-    }
-
-    keyDown(evt) {
-      this.$scope.$broadcast('bodyKeyDown', {origEvent: evt});
-    }
-
-    keyUp(evt) {
-      this.$scope.$broadcast('bodyKeyUp', {origEvent: evt});
-    }
-  }
-
-  angular.module('app', [
+export default angular
+  .module('app', [
+    'gettext',
     'app.core',
     'app.config',
     'app.states',
     'ngProgress',
-    'gettext',
-  ]).controller('AppController', AppController);
-})();
+  ])
+  .controller('AppController', AppController)
+  .name;

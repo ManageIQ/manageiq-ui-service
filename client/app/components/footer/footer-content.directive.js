@@ -1,37 +1,30 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function FooterContentDirective() {
+  var directive = {
+    restrict: 'AE',
+    replace: true,
+    scope: {},
+    link: link,
+    templateUrl: 'app/components/footer/footer-content.html',
+    controller: FooterController,
+    controllerAs: 'vm',
+    bindToController: true,
+  };
 
-  angular.module('app.components')
-    .directive('footerContent', FooterContentDirective);
+  return directive;
+
+  function link(scope, element, attrs, controller, transclude) {
+    controller.activate();
+  }
 
   /** @ngInject */
-  function FooterContentDirective() {
-    var directive = {
-      restrict: 'AE',
-      replace: true,
-      scope: {},
-      link: link,
-      templateUrl: 'app/components/footer/footer-content.html',
-      controller: FooterController,
-      controllerAs: 'vm',
-      bindToController: true,
-    };
+  function FooterController(Navigation) {
+    var vm = this;
 
-    return directive;
+    vm.activate = activate;
+    vm.dateTime = new Date();
 
-    function link(scope, element, attrs, controller, transclude) {
-      controller.activate();
-    }
-
-    /** @ngInject */
-    function FooterController(Navigation) {
-      var vm = this;
-
-      vm.activate = activate;
-      vm.dateTime = new Date();
-
-      function activate() {
-      }
+    function activate() {
     }
   }
-})();
+}
