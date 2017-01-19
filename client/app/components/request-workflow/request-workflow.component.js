@@ -14,7 +14,7 @@
     });
 
   /** @ngInject */
-  function requestWorkflowController(API_BASE, lodash) {
+  function requestWorkflowController(API_BASE, lodash, CollectionsApi, $q) {
     var vm = this;
     vm.$onInit = activate;
     vm.customizedWorkflow = {};
@@ -61,84 +61,92 @@
 
     function setTabPanelTitle(key) {
       var fields = {};
+      var titlePromiseArray = [];
+
       vm.customizedWorkflow.dialogs[key].panelTitle = [];
 
-      switch (key) {
-        case 'requester':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Request Information"));
-          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Manager"));
-          fields = requesterFields();
-          break;
-        case 'purpose':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select Tags to apply"));
-          fields = purposeFields();
-          break;
-        case 'service':
-          if (lodash.every(["Redhat", "InfraManager"], function(value, key) {
-            return lodash.includes(vm.workflowClass, value);
-          })) {
-            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Selected VM"));
-          } else {
-            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select"));
-          }
-          if (lodash.includes(vm.customizedWorkflow.values.provision_type, "pxe")) {
-            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("PXE"));
-          } else if (lodash.includes(vm.customizedWorkflow.values.provision_type, "iso")) {
-            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("ISO"));
-          }
-          if (lodash.includes(vm.workflowClass, "CloudManager")) {
-            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Number of Instances"));
-          } else {
-            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Number of VMs"));
-          }
-          vm.customizedWorkflow.dialogs[key].panelTitle[2] = (__("Naming"));
-          fields = serviceFields();
-          break;
-        case 'environment':
-          var i = 0;
-          vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Placement"));
-          if (vm.customizedWorkflow.values.placement_auto === 0
-              && !lodash.includes(vm.workflowClass, "CloudManager")) {
-            vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Datacenter"));
-            // Revisit Cluster title logic once we have the right API
-            vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Cluster"));
-            if (lodash.every(["Vmware", "InfraManager"], function(value, key) {
+      nodeTypeTitle('clusters', titlePromiseArray);
+      nodeTypeTitle('hosts', titlePromiseArray);
+      $q.all(titlePromiseArray).then(function(data) {
+        populateTabs(key, getClusterTitle(data[0]), getHostTitle(data[1]));
+      });
+
+      function populateTabs(key, clusterTitle, hostTitle) {
+        switch (key) {
+          case 'requester':
+            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Request Information"));
+            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Manager"));
+            fields = requesterFields();
+            break;
+          case 'purpose':
+            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select Tags to apply"));
+            fields = purposeFields();
+            break;
+          case 'service':
+            if (lodash.every(["Redhat", "InfraManager"], function (value, key) {
               return lodash.includes(vm.workflowClass, value);
             })) {
-              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Resource Pool"));
-              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Folder"));
-            }
-
-            // Revisit Host title logic once we have the right API
-            vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Host"));
-            if (!lodash.includes(vm.workflowClass, "CloudManager")) {
-              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Datastore"));
+              vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Selected VM"));
             } else {
-              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Placement - Options"));
+              vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select"));
             }
-          }
-          fields = environmentFields();
-          break;
-        case 'hardware':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Hardware"));
-          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("VM Reservations"));
-          break;
-        case 'network':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Network Adapter Information"));
-          break;
-        case 'customize':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Credentials"));
-          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("IP Address Information"));
-          vm.customizedWorkflow.dialogs[key].panelTitle[2] = (__("DNS"));
-          vm.customizedWorkflow.dialogs[key].panelTitle[3] = (__("Customize Template"));
-          vm.customizedWorkflow.dialogs[key].panelTitle[4] = (__("Selected Template Contents"));
-          break;
-        case 'schedule':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Schedule Info"));
-          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Lifespan"));
-          break;
+            if (lodash.includes(vm.customizedWorkflow.values.provision_type, "pxe")) {
+              vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("PXE"));
+            } else if (lodash.includes(vm.customizedWorkflow.values.provision_type, "iso")) {
+              vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("ISO"));
+            }
+            if (lodash.includes(vm.workflowClass, "CloudManager")) {
+              vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Number of Instances"));
+            } else {
+              vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Number of VMs"));
+            }
+            vm.customizedWorkflow.dialogs[key].panelTitle[2] = (__("Naming"));
+            fields = serviceFields();
+            break;
+          case 'environment':
+            var i = 0;
+            vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Placement"));
+            if (vm.customizedWorkflow.values.placement_auto === 0
+              && !lodash.includes(vm.workflowClass, "CloudManager")) {
+              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Datacenter"));
+              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = clusterTitle;
+              if (lodash.every(["Vmware", "InfraManager"], function(value, key) {
+                return lodash.includes(vm.workflowClass, value);
+              })) {
+                vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Resource Pool"));
+                vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Folder"));
+              }
+
+              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = hostTitle;
+              if (!lodash.includes(vm.workflowClass, "CloudManager")) {
+                vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Datastore"));
+              } else {
+                vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Placement - Options"));
+              }
+            }
+            fields = environmentFields();
+            break;
+          case 'hardware':
+            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Hardware"));
+            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("VM Reservations"));
+            break;
+          case 'network':
+            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Network Adapter Information"));
+            break;
+          case 'customize':
+            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Credentials"));
+            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("IP Address Information"));
+            vm.customizedWorkflow.dialogs[key].panelTitle[2] = (__("DNS"));
+            vm.customizedWorkflow.dialogs[key].panelTitle[3] = (__("Customize Template"));
+            vm.customizedWorkflow.dialogs[key].panelTitle[4] = (__("Selected Template Contents"));
+            break;
+          case 'schedule':
+            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Schedule Info"));
+            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Lifespan"));
+            break;
+        }
+        fieldsLayout(key, fields, vm.customizedWorkflow.dialogs[key].panelTitle.length);
       }
-      fieldsLayout(key, fields, vm.customizedWorkflow.dialogs[key].panelTitle.length);
     }
 
     function requesterFields() {
@@ -235,6 +243,51 @@
         vm.customizedWorkflow.dialogs[tab].fieldsInPanel[key]
           = Object.values(lodash.filter(vm.customizedWorkflow.dialogs[tab].fields, {'panel': key}));
       });
+    }
+
+    function nodeTypeTitle(collection, titlePromiseArray) {
+      titlePromiseArray.push(CollectionsApi.options(collection)
+        .then(successNodeTypeTitle));
+
+      function successNodeTypeTitle(response) {
+        return response.data.node_types;
+      }
+    }
+
+    function getClusterTitle(nodeType) {
+      var title;
+
+      switch (nodeType) {
+        case 'non_openstack':
+          title = __("Cluster");
+          break;
+        case 'openstack':
+          title = __("Deployment Role");
+          break;
+        default:
+          title = __("Cluster / Deployment Role");
+          break;
+      }
+
+      return title;
+    }
+
+    function getHostTitle(nodeType) {
+      var title;
+
+      switch (nodeType) {
+        case 'non_openstack':
+          title = __("Host");
+          break;
+        case 'openstack':
+          title = __("Node");
+          break;
+        default:
+          title = __("Host / Node");
+          break;
+      }
+
+      return title;
     }
   }
 })();

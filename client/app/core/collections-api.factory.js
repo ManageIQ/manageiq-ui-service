@@ -5,6 +5,7 @@ export function CollectionsApiFactory($http, API_BASE) {
     get: get,
     post: post,
     delete: remove,
+    options: options,
   };
 
   return service;
@@ -55,6 +56,21 @@ export function CollectionsApiFactory($http, API_BASE) {
     // $log.debug("post = " + url + buildQuery(options));
 
     return $http.delete(url, buildConfig(options))
+      .then(handleSuccess);
+
+    function handleSuccess(response) {
+      return response.data;
+    }
+  }
+
+  function options(collection) {
+    var url = API_BASE + '/api/' + collection;
+
+    return $http(
+      {
+        method: 'OPTIONS',
+        url: url,
+      })
       .then(handleSuccess);
 
     function handleSuccess(response) {
