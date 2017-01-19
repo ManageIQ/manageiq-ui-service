@@ -5,10 +5,23 @@
     <sapn ng-if="vm.config.name">{{vm.config.name}}</sapn>
     <span class="caret"></span>
   </button>
-    <ul uib-dropdown-menu ng-class="{'dropdown-menu-right': vm.menuRight}">
+    <ul uib-dropdown-menu role="menu" ng-class="{'dropdown-menu-right': vm.menuRight}">
       <li role="menuitem" ng-repeat="option in vm.config.actions"
           ng-class="{'disabled': (option.isDisabled === true)}">
-        <a ng-click="vm.handleAction(option)" >
+        <a ng-if="option.showConfirmation"
+           confirmation
+           confirmation-id="{{option.confirmationId}}"
+           confirmation-title="{{option.confirmationTitle}}"
+           confirmation-message="{{option.confirmationMessage}}"
+           confirmation-ok-text="{{option.confirmationOkText}}"
+           confirmation-on-ok="vm.handleAction(option)"
+           confirmation-on-cancel="option.onConfirmationCancel"
+           confirmation-ok-style="{{option.confirmationOkStyle}}"
+           confirmation-show-cancel="option.confirmationShowCancel">
+          <i class="{{option.icon}}"></i>
+          {{ option.name }}
+        </a>
+        <a ng-if="!option.showConfirmation" ng-click="vm.handleAction(option)" >
           <i class="{{option.icon}}"></i>
           {{ option.name }}
         </a>
