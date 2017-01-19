@@ -19,3 +19,9 @@ if (!window.N_) {
 if (!window.flowchart) {
   window.flowchart = {};
 }
+
+// Globals that are expected in application code and some libraries
+window.$ = window.jQuery = require('jquery');
+window._ = require('lodash');
+window.moment = require('moment');
+window.sprintf = require('sprintf-js').sprintf;

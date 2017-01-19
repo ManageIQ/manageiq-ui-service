@@ -1,8 +1,11 @@
-(function() {
-  'use strict';
+import logger from '../logger/logger.module.js';
+import routerHelperProvider from './router-helper.provider.js';
+import uiRouter from 'angular-ui-router';
 
-  angular.module('blocks.router', [
-    'ui.router',
-    'blocks.logger',
-  ]);
-})();
+export default angular
+  .module('blocks.router', [
+    uiRouter,
+    logger,
+  ])
+  .provider('routerHelper', routerHelperProvider)
+  .name;

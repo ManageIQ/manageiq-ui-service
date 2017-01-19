@@ -1,8 +1,12 @@
-(function() {
-  'use strict';
+import 'angular-cookies';
+import 'ngstorage';
 
-  angular.module('app.services', [
+// Needs imports loader because it expects `this` to be `window`
+import 'imports-loader?this=>window!actioncable';
+
+export default angular
+  .module('app.services', [
     'ngStorage',
     'ngCookies',
-  ]);
-})();
+  ])
+  .name;

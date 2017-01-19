@@ -1,36 +1,29 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export default function AuthenticationApiFactory($http, $base64, API_BASE, Session, Notifications) {
+  var service = {
+    login: login,
+  };
 
-  angular.module('app.resources')
-    .factory('AuthenticationApi', AuthenticationApiFactory);
+  return service;
 
-  /** @ngInject */
-  function AuthenticationApiFactory($http, $base64, API_BASE, Session, Notifications) {
-    var service = {
-      login: login,
-    };
+  function login(userLogin, password) {
+    return $http.get(API_BASE + '/api/auth?requester_type=ui', {
+      headers: {
+        'Authorization': 'Basic ' + $base64.encode([userLogin, password].join(':')),
+        'X-Auth-Token': undefined,
+        'X-Miq-Group': undefined,
+      },
+    }).then(loginSuccess, loginFailure);
 
-    return service;
+    function loginSuccess(response) {
+      Session.create(response.data);
+    }
 
-    function login(userLogin, password) {
-      return $http.get(API_BASE + '/api/auth?requester_type=ui', {
-        headers: {
-          'Authorization': 'Basic ' + $base64.encode([userLogin, password].join(':')),
-          'X-Auth-Token': undefined,
-          'X-Miq-Group': undefined,
-        },
-      }).then(loginSuccess, loginFailure);
+    function loginFailure(response) {
+      Session.destroy();
+      Notifications.message('danger', '', __('Incorrect username or password.'), false);
 
-      function loginSuccess(response) {
-        Session.create(response.data);
-      }
-
-      function loginFailure(response) {
-        Session.destroy();
-        Notifications.message('danger', '', __('Incorrect username or password.'), false);
-
-        return response;
-      }
+      return response;
     }
   }
-})();
+}

@@ -1,27 +1,20 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export default function exception(logger) {
+  var service = {
+    catcher: catcher,
+  };
 
-  angular.module('blocks.exception')
-    .factory('exception', exception);
+  return service;
 
-  /** @ngInject */
-  function exception(logger) {
-    var service = {
-      catcher: catcher,
+  function catcher(message) {
+    return function(error) {
+      if (error.data && error.data.description) {
+        message += '\n' + error.data.description;
+        error.data.description = message;
+      }
+      logger.error(message, error);
+
+      return Promise.reject(error);
     };
-
-    return service;
-
-    function catcher(message) {
-      return function(error) {
-        if (error.data && error.data.description) {
-          message += '\n' + error.data.description;
-          error.data.description = message;
-        }
-        logger.error(message, error);
-
-        return Promise.reject(error);
-      };
-    }
   }
-})();
+}

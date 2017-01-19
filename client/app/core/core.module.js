@@ -1,23 +1,27 @@
-(function() {
-  'use strict';
+import 'angular-animate';
+import 'angular-messages';
+import 'angular-sanitize';
 
-  angular.module('app.core', [
+import exception from '../blocks/exception/exception.module.js';
+import logger from '../blocks/logger/logger.module.js';
+import resources from '../resources/resources.module.js';
+import router from '../blocks/router/router.module.js';
+import services from '../services/services.module.js';
+import skin from '../skin/skin.module.js';
+
+export default angular
+  .module('app.core', [
     // Angular modules
     'ngAnimate',
-    'ngSanitize',
     'ngMessages',
+    'ngSanitize',
 
     // Blocks modules
-    'blocks.exception',
-    'blocks.logger',
-    'blocks.router',
+    exception,
+    logger,
+    router,
 
-    'app.skin',
-    'app.resources',
-    'app.services',
-
-    // Third party modules
-    'ui.router',
-    'base64',
+    skin,
+    resources,
+    services,
   ]);
-})();

@@ -7,7 +7,6 @@ const root = path.resolve(__dirname, '../client');
 const dist = path.resolve(__dirname, '../../manageiq/public/ui/service');
 const nodeModules = path.resolve(__dirname, '../node_modules');
 const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000'
-console.log("Backend proxied on "+host);
 
 module.exports = {
   context: root,
