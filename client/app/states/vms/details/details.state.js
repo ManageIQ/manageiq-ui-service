@@ -116,10 +116,11 @@ function resolveInstance(CollectionsApi, vmDetails) {
   }
 }
 /** @ngInject */
-function StateController($state, service, vmDetails, instance, CollectionsApi, EventNotifications, Consoles) {
+function StateController(service, vmDetails, instance) {
   var vm = this;
 
   vm.vmDetails = vmDetails;
+
   activate();
   function activate() {
     var neverText = __('Never');
@@ -134,9 +135,9 @@ function StateController($state, service, vmDetails, instance, CollectionsApi, E
     vm.vmDetails.scanHistoryCount = defaultText(vm.vmDetails.scan_histories);
     vm.vmDetails.lastComplianceStatus = (angular.isUndefined(vm.vmDetails.last_compliance_status) ? __('Never Verified') : vm.vmDetails.last_compliance_status);
     vm.vmDetails.complianceHistory = (vm.vmDetails.compliances.length > 0 ? availableText : notAvailable);
-    vm.vmDetails.provisionDate = service.miq_request.fulfilled_on;
+    vm.vmDetails.provisionDate = angular.isDefined(service.miq_request) ? service.miq_request.fulfilled_on : __('Unknown');
     vm.vmDetails.containerSpecsText = vm.vmDetails.vendor + ': ' + vm.vmDetails.hardware.cpu_total_cores + ' CPUs (' + vm.vmDetails.hardware.cpu_sockets
-    + ' sockets x ' + vm.vmDetails.hardware.cpu_cores_per_socket + ' core), ' + vm.vmDetails.hardware.memory_mb + ' MB';
+      + ' sockets x ' + vm.vmDetails.hardware.cpu_cores_per_socket + ' core), ' + vm.vmDetails.hardware.memory_mb + ' MB';
 
     if (instance !== false) {
       processInstanceVariables(instance);

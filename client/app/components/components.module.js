@@ -53,6 +53,7 @@ import { RetireServiceModalComponent } from './retire-service-modal/retire-servi
 import { RulesListComponent } from './rules/rules-list.component.js';
 import { SaveModalDialogFactory } from './save-modal-dialog/save-modal-dialog.factory.js';
 import { ServiceExplorerComponent } from './service-explorer/service-explorer.component.js';
+import { ServiceDetailsComponent } from './services/service-details/service-details.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component.js';
 import { SSCardComponent } from './ss-card/ss-card.component.js';
 import { TagEditorFactory } from './tag-editor-modal/tag-editor-modal-service.factory.js';
@@ -115,6 +116,7 @@ export default angular
   .component('rulesList', RulesListComponent)
   .factory('SaveModalDialog', SaveModalDialogFactory)
   .component('serviceExplorer', ServiceExplorerComponent)
+  .component('serviceDetails', ServiceDetailsComponent)
   .component('shoppingCart', ShoppingCartComponent)
   .component('ssCard', SSCardComponent)
   .factory('TagEditorModal', TagEditorFactory)
