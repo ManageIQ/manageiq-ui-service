@@ -114,19 +114,19 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
   function startService(item) {
     item.power_state = '';
     item.power_status = 'starting';
-    powerOperation('start', item);
+    servicePowerOperation('start', item);
   }
 
   function stopService(item) {
     item.power_state = '';
     item.power_status = 'stopping';
-    powerOperation('stop', item);
+    servicePowerOperation('stop', item);
   }
 
   function suspendService(item) {
     item.power_state = '';
     item.power_status = 'suspending';
-    powerOperation('suspend', item);
+    servicePowerOperation('suspend', item);
   }
 
   function startVm(item) {
@@ -147,8 +147,8 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
     vmPowerOperation('suspend', item);
   }
 
-  function powerOperation(powerAction, item) {
-    CollectionsApi.post('services', item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure);
+  function powerOperation(apiType, powerAction, item, itemType) {
+    CollectionsApi.post(apiType, item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure);
 
     function actionSuccess(response) {
       if (powerAction === 'start') {
@@ -162,37 +162,21 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
 
     function actionFailure() {
       if (powerAction === 'start') {
-        EventNotifications.error(__('There was an error starting this service.'));
+        EventNotifications.error(sprintf(__('There was an error starting this %s.'), itemType));
       } else if (powerAction === 'stop') {
-        EventNotifications.error(__('There was an error stopping this service.'));
+        EventNotifications.error(sprintf(__('There was an error stopping this %s.'), itemType));
       } else if (powerAction === 'suspend') {
-        EventNotifications.error(__('There was an error suspending this service.'));
+        EventNotifications.error(sprintf(__('There was an error suspending this %s.'), itemType));
       }
     }
   }
 
+  function servicePowerOperation(powerAction, item) {
+    powerOperation('services', powerAction, item, 'service');
+  }
+
   function vmPowerOperation(powerAction, item) {
-    CollectionsApi.post('vms', item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure);
-
-    function actionSuccess(response) {
-      if (powerAction === 'start') {
-        EventNotifications.success(sprintf(__("%s was started"), item.name));
-      } else if (powerAction === 'stop') {
-        EventNotifications.success(sprintf(__("%s was stopped"), item.name));
-      } else if (powerAction === 'suspend') {
-        EventNotifications.success(sprintf(__("%s was suspended"), item.name));
-      }
-    }
-
-    function actionFailure() {
-      if (powerAction === 'start') {
-        EventNotifications.error(__('There was an error starting this VM.'));
-      } else if (powerAction === 'stop') {
-        EventNotifications.error(__('There was an error stopping this VM.'));
-      } else if (powerAction === 'suspend') {
-        EventNotifications.error(__('There was an error suspending this VM.'));
-      }
-    }
+    powerOperation('vms', powerAction, item, 'virtual machine');
   }
 
   return service;
