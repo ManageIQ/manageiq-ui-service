@@ -16,6 +16,8 @@ import { CatalogsEditorState } from './designer/catalogs/editor/editor.state.js'
 import { DesignerState } from './designer/designer.state.js';
 import { DialogsState } from './designer/dialogs/dialogs.state.js';
 import { DialogsListState } from './designer/dialogs/list/list.state.js';
+import { DialogsDetailState } from './designer/dialogs/details/details.state.js';
+import { DialogsEditState } from './designer/dialogs/edit/edit.state.js';
 import { ErrorState } from './error/error.state.js';
 import { HelpState } from './help/help.state.js';
 import { LoginState } from './login/login.state.js';
@@ -59,6 +61,8 @@ export default angular
   .run(CatalogsEditorState)
   .run(DesignerState)
   .run(DialogsState)
+  .run(DialogsDetailState)
+  .run(DialogsEditState)
   .run(DialogsListState)
   .run(ErrorState)
   .run(HelpState)

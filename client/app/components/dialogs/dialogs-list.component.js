@@ -17,7 +17,7 @@ function DialogListController($state, DialogsState, $filter, Language, ListView)
   vm.listConfig = {
     selectItems: false,
     showSelectBox: false,
-    onClick: handleClick
+    onClick: handleClick,
   };
   vm.toolbarConfig = {
     filterConfig: {
@@ -51,7 +51,7 @@ function DialogListController($state, DialogsState, $filter, Language, ListView)
           name: __('Create'),
           title: __('Create a new Service Dialog'),
           actionFn: createDialog,
-        }
+        },
       ],
     },
   };
