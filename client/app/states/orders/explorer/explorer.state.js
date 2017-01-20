@@ -4,11 +4,11 @@ export function OrdersExplorerState(routerHelper) {
 }
 
 function getStates() {
-    return {
-      'orders.explorer': {
-        url: '',
-        template: '<order-explorer></order-explorer>',
-        title: N_('My Orders'),
-      },
-    };
-  }
+  return {
+    'orders.explorer': {
+      url: '',
+      template: '<order-explorer></order-explorer>',
+      title: N_('My Orders'),
+    },
+  };
+}

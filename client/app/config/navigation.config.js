@@ -29,7 +29,7 @@ export function navConfig(NavigationProvider) {
     'fa fa-cog'
   );
   var orders = createItem(
-    N_('Order History'),
+    N_('My Orders'),
     'orders',
     'fa fa-file-o',
   N_('Total orders submitted')

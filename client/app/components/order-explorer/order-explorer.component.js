@@ -22,6 +22,7 @@ function ComponentController(OrdersState, $filter, ListView, Language, lodash, E
       actionConfig: actionConfig(),
       // Functions
       resolveOrders: resolveOrders,
+      listActionDisable: listActionDisable,
       // Config setup
       toolbarConfig: getToolbarConfig(),
       listConfig: getListConfig(),
@@ -55,7 +56,6 @@ function ComponentController(OrdersState, $filter, ListView, Language, lodash, E
             isDisabled: false,
           },
         ],
-        isDisabled: false,
       },
     ];
   }
@@ -167,15 +167,14 @@ function ComponentController(OrdersState, $filter, ListView, Language, lodash, E
   function selectionChange(item) {
     if (angular.isDefined(item.service_requests)) {
       angular.forEach(item.service_requests, checkAll);
+      vm.selectedItemsList = item.service_requests.filter(function(service) {
+        return service.selected;
+      });
     }
 
     function checkAll(item) {
       item.selected = !item.selected;
     }
-
-    vm.selectedItemsList = item.service_requests.filter(function(service) {
-      return service.selected;
-    });
 
     vm.selectedItemsListCount = vm.selectedItemsList.length;
   }
@@ -275,6 +274,10 @@ function ComponentController(OrdersState, $filter, ListView, Language, lodash, E
   function selectItem(item) {
     item.selected = !item.selected;
     extendedSelectionChange(item);
+  }
+
+  function listActionDisable(config, items) {
+    items.length <= 0 ? config.isDisabled = true : config.isDisabled = false;
   }
 
   Language.fixState(OrdersState, vm.toolbarConfig);
