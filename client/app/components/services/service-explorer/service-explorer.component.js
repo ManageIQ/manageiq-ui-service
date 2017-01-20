@@ -1,9 +1,8 @@
 /* eslint camelcase: "off" */
-
 export const ServiceExplorerComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
-  templateUrl: 'app/components/service-explorer/service-explorer.html',
+  templateUrl: 'app/components/services/service-explorer/service-explorer.html',
 };
 
 /** @ngInject */
@@ -43,6 +42,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       serviceChildrenListConfig: createServiceChildrenListConfig(),
     });
 
+
     Language.fixState(ServicesState, vm.headerConfig);
 
     resolveServices(vm.limit, 0);
@@ -77,7 +77,6 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
 
     return compareValue.toLowerCase().indexOf('ansible') !== -1;
   }
-
   function getListActions() {
     var configActions, lifeCycleActions;
     var listActions = [];
@@ -255,9 +254,11 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     PowerOperations.suspendService(item);
   }
 
+
   function viewSelected(viewId) {
     vm.viewType = viewId;
   }
+
 
   function getHeaderConfig() {
     var serviceFilterConfig = {
