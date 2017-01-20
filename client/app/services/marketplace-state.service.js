@@ -1,15 +1,8 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function MarketplaceStateFactory(ListConfiguration) {
+  var service = {};
 
-  angular.module('app.services')
-    .factory('MarketplaceState', MarketplaceStateFactory);
+  ListConfiguration.setupListFunctions(service, { id: 'name', title: __('Name'), sortType: 'alpha' });
 
-  /** @ngInject */
-  function MarketplaceStateFactory(ListConfiguration) {
-    var service = {};
-
-    ListConfiguration.setupListFunctions(service, { id: 'name', title: __('Name'), sortType: 'alpha' });
-
-    return service;
-  }
-})();
+  return service;
+}

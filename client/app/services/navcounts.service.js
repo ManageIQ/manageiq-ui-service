@@ -1,27 +1,20 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function NavCountsFactory() {
+  var counts = {};
 
-  angular.module('app.services')
-    .factory('NavCounts', NavCountsFactory);
+  var service = {
+    add: add,
+    counts: counts,
+  };
 
-  /** @ngInject */
-  function NavCountsFactory() {
-    var counts = {};
+  return service;
 
-    var service = {
-      add: add,
-      counts: counts,
-    };
-
-    return service;
-
-    function add(key, func, interval) {
-      if (!counts[key]) {
-        counts[key] = {
-          func: func,
-          interval: interval,
-        };
-      }
+  function add(key, func, interval) {
+    if (!counts[key]) {
+      counts[key] = {
+        func: func,
+        interval: interval,
+      };
     }
   }
-})();
+}

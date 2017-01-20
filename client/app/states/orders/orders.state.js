@@ -1,22 +1,15 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function OrdersState(routerHelper) {
+  routerHelper.configureStates(getStates());
+}
 
-  angular.module('app.states')
-    .run(appRun);
-
-  /** @ngInject */
-  function appRun(routerHelper) {
-    routerHelper.configureStates(getStates());
-  }
-
-  function getStates() {
-    return {
-      'orders': {
-        parent: 'application',
-        url: '/order-explorer',
-        redirectTo: 'orders.explorer',
-        template: '<ui-view></ui-view>',
-      },
-    };
-  }
-})();
+function getStates() {
+  return {
+    'orders': {
+      parent: 'application',
+      url: '/order-explorer',
+      redirectTo: 'orders.explorer',
+      template: '<ui-view></ui-view>',
+    },
+  };
+}

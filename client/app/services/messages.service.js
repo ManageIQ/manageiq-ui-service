@@ -1,32 +1,25 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function MessagesFactory() {
+  var model = {
+    messages: [],
+  };
 
-  angular.module('app.services')
-    .factory('Messages', MessagesFactory);
+  var service = {
+    items: model.messages,
+    clear: clear,
+  };
 
-  /** @ngInject */
-  function MessagesFactory() {
-    var model = {
-      messages: [],
-    };
+  init();
 
-    var service = {
-      items: model.messages,
-      clear: clear,
-    };
+  return service;
 
-    init();
-
-    return service;
-
-    function clear() {
-      model.messages.length = 0;
-    }
-
-    // Private
-
-    function init() {
-      // TODO perhaps use $timeout to fetch new notifications from the server
-    }
+  function clear() {
+    model.messages.length = 0;
   }
-})();
+
+  // Private
+
+  function init() {
+    // TODO perhaps use $timeout to fetch new notifications from the server
+  }
+}

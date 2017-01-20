@@ -54,10 +54,7 @@ require('imports-loader?this=>window!actioncable');
 require('angular-patternfly/dist/angular-patternfly');
 
 // Application scripts, order matters
-require('./app/globals.js');
 require('./app/app.module.js');
-requireAll(require.context('./app', true, /\.module\.js$/));
-requireAll(require.context('./app', true, /^((?!module|e2e).)*\.js$/));
 
 // Vendor styles, order matters
 require('bootstrap-select/dist/css/bootstrap-select.css');

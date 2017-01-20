@@ -1,22 +1,15 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function MarketplaceState(routerHelper) {
+  routerHelper.configureStates(getStates());
+}
 
-  angular.module('app.states')
-    .run(appRun);
-
-  /** @ngInject */
-  function appRun(routerHelper) {
-    routerHelper.configureStates(getStates());
-  }
-
-  function getStates() {
-    return {
-      'marketplace': {
-        parent: 'application',
-        url: '/marketplace',
-        redirectTo: 'marketplace.list',
-        template: '<ui-view></ui-view>',
-      },
-    };
-  }
-})();
+function getStates() {
+  return {
+    'marketplace': {
+      parent: 'application',
+      url: '/marketplace',
+      redirectTo: 'marketplace.list',
+      template: '<ui-view></ui-view>',
+    },
+  };
+}

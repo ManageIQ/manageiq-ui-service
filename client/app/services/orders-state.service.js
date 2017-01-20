@@ -1,15 +1,8 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function OrdersStateFactory(ListConfiguration) {
+  var service = {};
 
-  angular.module('app.services')
-    .factory('OrdersState', OrdersStateFactory);
+  ListConfiguration.setupListFunctions(service, { id: 'placed_at', title: __('Order Date'), sortType: 'numeric' });
 
-  /** @ngInject */
-  function OrdersStateFactory(ListConfiguration) {
-    var service = {};
-
-    ListConfiguration.setupListFunctions(service, { id: 'placed_at', title: __('Order Date'), sortType: 'numeric' });
-
-    return service;
-  }
-})();
+  return service;
+}

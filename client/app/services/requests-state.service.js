@@ -1,15 +1,8 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function RequestsStateFactory(ListConfiguration) {
+  var service = {};
 
-  angular.module('app.services')
-    .factory('RequestsState', RequestsStateFactory);
+  ListConfiguration.setupListFunctions(service, { id: 'requested', title: __('Request Date'), sortType: 'numeric' });
 
-  /** @ngInject */
-  function RequestsStateFactory(ListConfiguration) {
-    var service = {};
-
-    ListConfiguration.setupListFunctions(service, { id: 'requested', title: __('Request Date'), sortType: 'numeric' });
-
-    return service;
-  }
-})();
+  return service;
+}
