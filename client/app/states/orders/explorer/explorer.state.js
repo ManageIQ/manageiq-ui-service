@@ -1,15 +1,9 @@
-(function() {
-  'use strict';
+/** @ngInject */
+export function OrdersExplorerState(routerHelper) {
+  routerHelper.configureStates(getStates());
+}
 
-  angular.module('app.states')
-    .run(appRun);
-
-  /** @ngInject */
-  function appRun(routerHelper) {
-    routerHelper.configureStates(getStates());
-  }
-
-  function getStates() {
+function getStates() {
     return {
       'orders.explorer': {
         url: '',
@@ -18,4 +12,3 @@
       },
     };
   }
-})();

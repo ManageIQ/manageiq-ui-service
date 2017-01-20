@@ -1,12 +1,7 @@
 /* eslint camelcase: "off" */
-(function() {
-  'use strict';
 
-  angular.module('app.services')
-    .factory('OrdersState', Factory);
-
-  /** @ngInject */
-  function Factory(ListConfiguration, CollectionsApi) {
+/** @ngInject */
+export function OrdersStateFactory(ListConfiguration, CollectionsApi) {
     const collection = 'service_orders';
     const service = {
       getMinimal: getMinimal,
@@ -60,4 +55,3 @@
       return queryFilters;
     }
   }
-})();
