@@ -3,7 +3,7 @@
       <ol class="breadcrumb">
         <li>{{'Services'|translate}}</li>
         <li>
-          <a ui-sref="^">{{'Service Explorer'|translate}}</a>
+          <a href="#" ng-click="vm.gotoServices()">{{'Service Explorer'|translate}}</a>
         </li>
         <li class="active">{{vm.title}}</li>
       </ol>
@@ -82,7 +82,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-sm-4" translate>Retiremet State</label>
+                  <label class="control-label col-sm-4" translate>Retirement State</label>
                   <div class="col-sm-8">
                     <input class="form-control" readonly value="{{vm.service.retirement_state || ('Unknown' | translate)}}"/>
                   </div>
@@ -90,9 +90,9 @@
                 <div class="form-group">
                   <label class="control-label col-sm-4" translate>Retires On</label>
                   <div class="col-sm-8">
-                    <input ng-if=(vm.service.retires_on) class="form-control" readonly
+                    <input ng-if="vm.service.retires_on" class="form-control" readonly
                            value="{{vm.service.retires_on | date}}"/>
-                    <input ng-if=!(vm.service.retires_on) class="form-control" readonly value="Never"/>
+                    <input ng-if="!vm.service.retires_on" class="form-control" readonly value="Never"/>
                   </div>
                 </div>
               </div>
@@ -229,7 +229,7 @@
       </section>
     </div>
   </div>
-  <div class="panel panel-default ss-details-panel">
+  <div class="panel panel-default ss-details-panel relationships-panel">
     <div class="panel-body">
       <section>
         <h2 translate>Relationships</h2>
