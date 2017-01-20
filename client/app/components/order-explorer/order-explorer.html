@@ -10,18 +10,18 @@
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading" pf-list-view id="orderList" config="vm.listConfig" items="vm.ordersList" custom-scope="vm">
     <div class="row">
-      <div class="col-lg-2 col-md-3 col-sm-6 col-xs-8">
+      <div class="col-lg-2 col-md-3 col-sm-5 col-xs-8">
         <span class="no-wrap">
           <strong translate>Order #</strong>
           <a ui-sref="orders.details({serviceOrderId: item.id})">{{ item.id }}</a>
         </span>
       </div>
-      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4">
         <span class="no-wrap">
           <strong translate>Requester</strong>&nbsp;{{ item.user_name }}
         </span>
       </div>
-      <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+      <div class="col-lg-3 col-md-3 col-sm-2 hidden-xs">
         <span class="no-wrap">
           <strong translate>Ordered </strong>&nbsp;{{ (item.placed_at || item.updated_at) | date }}</h4>
         </span>
@@ -32,7 +32,7 @@
           {{ $count }} item
         </span>
       </div>
-      <div class="col-lg-2 col-md-4 hidden-sm hidden-xs">
+      <div class="col-lg-2 col-md-1 hidden-sm hidden-xs">
         <span class="no-wrap">
           <!--<strong translate>ordered </strong>&nbsp;{{ (item.placed_at || item.updated_at) | date }}</h4>-->
         </span>
@@ -45,33 +45,33 @@
            items="$parent.item.service_requests"
            custom-scope="vm">
         <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
-            <span class="no-wrap">
-              <span>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-append-to-body="true" tooltip-placement="bottom-left">
+              <a ui-sref="requests.details({requestId: item.id})">
                 {{ item.description }}
-              </span>
+              </a>
               </a>
             </span>
           </div>
 
-          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
-             <span class="no-wrap">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+             <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-append-to-body="true" tooltip-placement="bottom-left">
               <strong>Request ID</strong>&nbsp;
                 {{ item.id }}
               </span>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
-            <span class="no-wrap">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <span class="no-wrap text-capitalize">
               <i class="pficon" ng-class="{
               'pficon-ok': item.approval_state === 'approved',
               ' pficon-error-circle-o': item.approval_state === 'denied',
               ' pficon-history': item.approval_state === 'pending_approval'}"></i>
-              {{ item.approval_state }}
+              {{ item.approval_state === "pending_approval"? "Pending Approval" : item.approval_state }}
             </span>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
-            <span class="no-wrap">
-              <strong translate>State</strong>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <span class="no-wrap text-capitalize">
+              <strong translate>Request State</strong>
               {{ item.request_state }}
             </span>
           </div>

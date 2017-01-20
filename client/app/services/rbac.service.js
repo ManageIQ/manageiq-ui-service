@@ -1,19 +1,31 @@
-/** @ngInject */
-export function RBACFactory() {
-  var features = {};
+(function() {
+  'use strict';
 
-  var service = {
-    set: set,
-    has: has,
-  };
+  angular.module('app.services')
+  .factory('RBAC', RBACFactory);
 
-  return service;
+  /** @ngInject */
+  function RBACFactory() {
+    var features = {};
 
-  function set(productFeatures) {
-    features = productFeatures || {};
+    var service = {
+      set: set,
+      has: has,
+      all: all,
+    };
+
+    return service;
+
+    function set(productFeatures) {
+      features = productFeatures || {};
+    }
+
+    function has(feature) {
+      return feature in features;
+    }
+
+    function all() {
+      return features;
+    }
   }
-
-  function has(feature) {
-    return feature in features;
-  }
-}
+})();

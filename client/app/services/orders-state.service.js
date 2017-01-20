@@ -26,7 +26,6 @@
       return CollectionsApi.query(collection, options);
     }
 
-
     function getOrders(limit, offset, filters, sortField, sortAscending) {
       const options = {
         expand: ['resources', 'service_requests'],

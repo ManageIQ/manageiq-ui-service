@@ -10,17 +10,20 @@
 
 
   /** @ngInject */
-  function ComponentController($state, OrdersState, $filter, ListView, Language, EventNotifications) {
+  function ComponentController($state, OrdersState, $filter, ListView, Language, lodash, EventNotifications, Session, RBAC) {
     const vm = this;
     vm.$onInit = activate();
     function activate() {
       angular.extend(vm, {
+        currentUser: Session.currentUser(),
+        canApprove: lodash.reduce(lodash.map(['miq_request_approval', 'miq_request_admin'], RBAC.has)),
         loading: false,
         orders: [],
         limit: 20,
         filterCount: 0,
         ordersList: [],
         selectedItemsList: [],
+        extendedSelectedItemsList: [],
         limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
         selectedItemsListCount: 0,
         // Functions
@@ -28,9 +31,8 @@
         // Config setup
         toolbarConfig: getToolbarConfig(),
         listConfig: getListConfig(),
-        expandedListConfig: {showSelectBox: false},
+        expandedListConfig: getExpandedListConfig(),
       });
-
       resolveOrders(vm.limit, 0);
     }
 
@@ -40,7 +42,16 @@
         useExpandingRows: true,
         selectionMatchProp: 'id',
         onClick: expandRow,
-        onCheckBoxChange: handleSelectionChange,
+        onCheckBoxChange: selectionChange,
+      };
+    }
+
+    function getExpandedListConfig() {
+      return {
+        showSelectBox: true,
+        selectionMatchProp: 'id',
+        onClick: expandRow,
+        onCheckBoxChange: extendedSelectionChange,
       };
     }
 
@@ -129,13 +140,28 @@
       return false;
     }
 
-    function handleSelectionChange() {
-      vm.selectedItemsList = vm.ordersList.filter(function(service) {
+    function selectionChange(item) {
+      if (angular.isDefined(item.service_requests)) {
+        angular.forEach(item.service_requests, checkAll);
+      }
+
+      function checkAll(item) {
+        item.selected = !item.selected;
+      }
+
+      vm.extendedSelectedItemsList = item.service_requests.filter(function(service) {
         return service.selected;
       });
+
       vm.selectedItemsListCount = vm.selectedItemsList.length;
     }
 
+    function extendedSelectionChange() {
+      vm.extendedSelectedItemsList = vm.ordersList.filter(function(service) {
+        return service.selected;
+      });
+      vm.extendedSelectedItemsList = vm.extendedSelectedItemsList.length;
+    }
 
     function resolveOrders(limit, offset) {
       vm.loading = true;
