@@ -5,7 +5,18 @@
       </ol>
   </span>
 </div>
-<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig"></div>
+<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
+  <actions>
+    <custom-dropdown class="custom-dropdown pull-left"
+                     config="item"
+                     items="vm.selectedItemsList"
+                     items-count="vm.selectedItemsList.length"
+                     ng-repeat="item in vm.actionConfig"
+                     on-update="vm.listActionDisable($config, $changes)"
+                     menu-right="true">
+    </custom-dropdown>
+  </actions>
+</div>
 <div class="list-view-container section-container paged-container service-explorer-list">
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading" pf-list-view id="orderList" config="vm.listConfig" items="vm.ordersList" custom-scope="vm">
@@ -46,7 +57,8 @@
            custom-scope="vm">
         <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-            <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-append-to-body="true" tooltip-placement="bottom-left">
+            <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-append-to-body="true"
+                  tooltip-placement="bottom-left">
               <a ui-sref="requests.details({requestId: item.id})">
                 {{ item.description }}
               </a>
@@ -55,7 +67,8 @@
           </div>
 
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-             <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-append-to-body="true" tooltip-placement="bottom-left">
+             <span class="no-wrap" uib-tooltip="{{item.id}}" tooltip-append-to-body="true"
+                   tooltip-placement="bottom-left">
               <strong>Request ID</strong>&nbsp;
                 {{ item.id }}
               </span>

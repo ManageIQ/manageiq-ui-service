@@ -10,22 +10,21 @@
 
 
   /** @ngInject */
-  function ComponentController($state, OrdersState, $filter, ListView, Language, lodash, EventNotifications, Session, RBAC) {
+  function ComponentController(OrdersState, $filter, ListView, Language, lodash, EventNotifications, Session, RBAC, ModalService) {
     const vm = this;
     vm.$onInit = activate();
     function activate() {
       angular.extend(vm, {
         currentUser: Session.currentUser(),
-        canApprove: lodash.reduce(lodash.map(['miq_request_approval', 'miq_request_admin'], RBAC.has)),
         loading: false,
         orders: [],
         limit: 20,
         filterCount: 0,
         ordersList: [],
         selectedItemsList: [],
-        extendedSelectedItemsList: [],
         limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
         selectedItemsListCount: 0,
+        actionConfig: actionConfig(),
         // Functions
         resolveOrders: resolveOrders,
         // Config setup
@@ -33,12 +32,42 @@
         listConfig: getListConfig(),
         expandedListConfig: getExpandedListConfig(),
       });
+
       resolveOrders(vm.limit, 0);
+    }
+
+    function actionConfig() {
+      return [
+        {
+          title: __('Lifecycle'),
+          actionName: 'lifecycle',
+          name: __('Lifecycle'),
+          icon: 'fa fa-recycle',
+          actions: [
+            {
+              icon: 'fa fa-check',
+              name: __('Approve'),
+              actionName: 'approve',
+              title: __('Approve'),
+              actionFn: approveRequests,
+              isDisabled: false,
+            }, {
+              icon: 'fa fa-ban',
+              name: __('Deny'),
+              actionName: 'deny',
+              title: __('Deny'),
+              actionFn: denyRequests,
+              isDisabled: false,
+            },
+          ],
+          isDisabled: false,
+        },
+      ];
     }
 
     function getListConfig() {
       return {
-        showSelectBox: true,
+        showSelectBox: checkApproval(),
         useExpandingRows: true,
         selectionMatchProp: 'id',
         onClick: expandRow,
@@ -48,9 +77,9 @@
 
     function getExpandedListConfig() {
       return {
-        showSelectBox: true,
+        showSelectBox: checkApproval(),
         selectionMatchProp: 'id',
-        onClick: expandRow,
+        onClick: selectItem,
         onCheckBoxChange: extendedSelectionChange,
       };
     }
@@ -74,7 +103,7 @@
         sortConfig: sortConfig,
         filterConfig: filterConfig,
         actionsConfig: {
-          actionsInclude: true,
+          actionsInclude: checkApproval(),
         },
       };
     }
@@ -149,18 +178,17 @@
         item.selected = !item.selected;
       }
 
-      vm.extendedSelectedItemsList = item.service_requests.filter(function(service) {
+      vm.selectedItemsList = item.service_requests.filter(function(service) {
         return service.selected;
       });
 
       vm.selectedItemsListCount = vm.selectedItemsList.length;
     }
 
-    function extendedSelectionChange() {
-      vm.extendedSelectedItemsList = vm.ordersList.filter(function(service) {
-        return service.selected;
-      });
-      vm.extendedSelectedItemsList = vm.extendedSelectedItemsList.length;
+    function extendedSelectionChange(item) {
+      lodash.indexOf(vm.selectedItemsList, item) === -1 ? vm.selectedItemsList.push(item) : lodash.pull(vm.selectedItemsList, item);
+
+      vm.selectedItemsListCount = vm.selectedItemsList.length;
     }
 
     function resolveOrders(limit, offset) {
@@ -211,6 +239,48 @@
       }
     }
 
+    function approveRequests() {
+      const modalOptions = {
+        component: 'processRequestsModal',
+        resolve: {
+          requests: function() {
+            return vm.selectedItemsList;
+          },
+          modalType: function() {
+            return lodash.find(vm.selectedItemsList, isPending) ? 'invalid' : "approve";
+          },
+        },
+      };
+      ModalService.open(modalOptions);
+    }
+
+    function denyRequests() {
+      const modalOptions = {
+        component: 'processRequestsModal',
+        resolve: {
+          requests: function() {
+            return vm.selectedItemsList;
+          },
+          modalType: function() {
+            return lodash.find(vm.selectedItemsList, isPending) ? 'invalid' : "deny";
+          },
+        },
+      };
+      ModalService.open(modalOptions);
+    }
+
+    function checkApproval() {
+      return lodash.reduce(lodash.map(['miq_request_approval', 'miq_request_admin'], RBAC.has));
+    }
+
+    function isPending(item) {
+      return item.approval_state === 'approved' || item.approval_state === 'denied';
+    }
+
+    function selectItem(item) {
+      item.selected = !item.selected;
+      extendedSelectionChange(item);
+    }
 
     Language.fixState(OrdersState, vm.toolbarConfig);
   }
