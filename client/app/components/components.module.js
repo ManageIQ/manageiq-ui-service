@@ -30,6 +30,7 @@ import { ProfileEditorComponent } from './profiles/profile-editor.component.js';
 import { ProfilesListComponent } from './profiles/profiles-list.component.js';
 import { RequestExplorerComponent } from './request-explorer/request-explorer.component.js';
 import { RequestListComponent } from './request-list/request-list.component.js';
+import { RequestWorkflowComponent } from './request-workflow/request-workflow.component.js';
 import { RetireRemoveServiceModalComponent } from './retire-remove-service-modal/retire-remove-service-modal.component.js';
 import { RetireServiceModalComponent } from './retire-service-modal/retire-service-modal-service.factory.js';
 import { RulesListComponent } from './rules/rules-list.component.js';
@@ -40,6 +41,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component.j
 import { SSCardComponent } from './ss-card/ss-card.component.js';
 import { TagEditorFactory } from './tag-editor-modal/tag-editor-modal-service.factory.js';
 import { TaggingComponent } from './tagging/tagging.component.js';
+import { TagsTreeComponent } from './request-workflow/tags-tree.component.js';
 
 export default angular
   .module('app.components', [
@@ -79,6 +81,7 @@ export default angular
   .component('profilesList', ProfilesListComponent)
   .component('requestExplorer', RequestExplorerComponent)
   .component('requestList', RequestListComponent)
+  .component('requestWorkflow', RequestWorkflowComponent)
   .component('retireRemoveServiceModal', RetireRemoveServiceModalComponent)
   .component('retireServiceModal', RetireServiceModalComponent)
   .component('rulesList', RulesListComponent)
@@ -89,4 +92,5 @@ export default angular
   .component('ssCard', SSCardComponent)
   .factory('TagEditorModal', TagEditorFactory)
   .component('taggingWidget', TaggingComponent)
+  .component('tagsTree', TagsTreeComponent)
   .name;
