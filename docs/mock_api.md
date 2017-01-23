@@ -6,7 +6,10 @@ This project ships with a mock REST API backend meant to help simulate the Manag
 
 ####Configuration
 If you would like to get this to run on a different port , please set the following environmental variable
-```export MOCK_API_HOST=localhost:3005``` or whatever port you would like.
+```export MOCK_API_HOST=localhost:3005``` or whatever port you would like.  
+
+If you would like to debug incoming http requests please set the following environmental variable
+```export LOG_LEVEL=debug```
 
 ####How to add data and RESTful endpoint data
 
@@ -27,14 +30,16 @@ Below you will see a sample of what one of the files looks like
         }
     ]
 }
-```
+```  
 Key Elements in configuration    
 
 - **endpoint** - At the high level of the json object an endpoint is the restful endpoint you are defining.  So in this example "blueprints" would actually be for the url http://localhost:3000/api/blueprints
 - **data** - This is a object with the data you would like the server to respond with 
 - **querystring** - This is optional.  This is an array of objects that represents a possible querystring url for this endpoint.  In this example "filter[]=id%3E0&hide=resources" would actually end up being the url *http://localhost:3000/api/blueprints?filter[]=id%3E0&hide=resources*.  
 *** Please note that if a url has a nested path, please treat the rest of the path just like you would a querystring and add it to the query string array.  
-For example ```  
+For example  
+
+```
 {  
 	"querystrings":[
         {
@@ -43,7 +48,5 @@ For example ```
         }
     ]
 }
-```  
+```
 This example url would really be *http://localhost:3000/api/blueprints/test/path/123*
-
-****
