@@ -30,6 +30,7 @@ function ComponentController($scope, $state, CollectionsApi, EventNotifications,
 
   vm.dateOptions = {
     autoclose: true,
+    clearBtn: true,
     todayBtn: 'linked',
     todayHighlight: true,
     startDate: new Date(),
@@ -67,17 +68,8 @@ function ComponentController($scope, $state, CollectionsApi, EventNotifications,
   function save() {
     var data = {
       action: 'retire',
-      resources: null,
+      resources: vm.services.map(setRetire),
     };
-
-    if (vm.isService) {
-      data.resources = [vm.modalData];
-    } else {
-      var resources = [];
-      angular.copy(vm.services, resources);
-      lodash.forEach(resources, setRetire);
-      data.resources = resources;
-    }
 
     CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure);
 
@@ -92,8 +84,11 @@ function ComponentController($scope, $state, CollectionsApi, EventNotifications,
     }
 
     function setRetire(service) {
-      service.date = vm.modalData.date;
-      service.warn = vm.modalData.warn;
+      const copy = angular.copy(service);
+      copy.date = vm.modalData.date || '';
+      copy.warn = vm.modalData.warn;
+
+      return copy;
     }
   }
 
