@@ -11,7 +11,7 @@ export const ServiceDetailsComponent = {
 
 /** @ngInject */
 function ComponentController($state, CollectionsApi, EventNotifications, Chargeback, Consoles,
-                             TagEditorModal, ModalService, PowerOperations) {
+                             TagEditorModal, ModalService, PowerOperations, ServicesState) {
   var vm = this;
 
   vm.$onInit = activate();
@@ -70,7 +70,7 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
   }
 
   function getListActions() {
-    var configActions, lifeCycleActions;
+    var configActions, lifeCycleActions, policyActions;
     var listActions = [];
 
     if (!isAnsibleService()) {
@@ -105,126 +105,18 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
       );
     }
 
-    if ($state.actionFeatures.serviceRetireNow.show || $state.actionFeatures.serviceRetire.show) {
-      lifeCycleActions = {
-        title: __('Lifecycle'),
-        actionName: 'lifecycle',
-        icon: 'fa fa-recycle',
-        actions: [],
-        isDisabled: false,
-      };
-      if ($state.actionFeatures.serviceRetire.show) {
-        lifeCycleActions.actions.push(
-          {
-            icon: 'fa fa-clock-o',
-            name: __('Set Retirement Dates'),
-            actionName: 'setServiceRetirement',
-            title: __('Set Retirement'),
-            actionFn: setServiceRetirement,
-            isDisabled: false,
-          }
-        );
-      }
-      if ($state.actionFeatures.serviceRetireNow.show) {
-        lifeCycleActions.actions.push(
-          {
-            icon: 'fa fa-clock-o',
-            name: __('Retire'),
-            actionName: 'retireService',
-            title: __('Retire'),
-            actionFn: retireService,
-            isDisabled: false,
-            showConfirmation: true,
-            confirmationId: 'retireServiceConfirmId',
-            confirmationTitle: __('Retire Service Now'),
-            confirmationMessage: __('Confirm, would you like to retire this service?'),
-            confirmationOkText: __('Yes, Retire Service Now'),
-            confirmationOkStyle: 'primary',
-            confirmationShowCancel: true,
-          }
-        );
-      }
+    lifeCycleActions = ServicesState.getLifeCycleCustomDropdown(setServiceRetirement, retireService);
+    if (lifeCycleActions) {
       listActions.push(lifeCycleActions);
     }
 
-    if ($state.actionFeatures.serviceTag.show) {
-      listActions.push(
-        {
-          title: __('Policy'),
-          actionName: 'policy',
-          icon: 'fa fa-shield',
-          actions: [
-            {
-              icon: 'pf pficon-edit',
-              name: __('Edit Tags'),
-              actionName: 'editTags',
-              title: __('Edit Tags'),
-              actionFn: editTags,
-              isDisabled: false,
-            },
-          ],
-          isDisabled: false,
-        }
-      );
+    policyActions = ServicesState.getPolicyCustomDropdown(editTags);
+    if (policyActions) {
+      listActions.push(policyActions);
     }
 
-    if ($state.actionFeatures.serviceDelete.show
-        || $state.actionFeatures.serviceEdit.show
-        || $state.actionFeatures.serviceOwnership.show) {
-      configActions = {
-        title: __('Configuration'),
-        actionName: 'configuration',
-        icon: 'fa fa-cog',
-        actions: [],
-        isDisabled: false,
-      };
-
-      if ($state.actionFeatures.serviceEdit.show) {
-        configActions.actions.push(
-          {
-            icon: 'pf pficon-edit',
-            name: __('Edit'),
-            actionName: 'edit',
-            title: __('Edit'),
-            actionFn: editService,
-            isDisabled: false,
-          }
-        );
-      }
-
-      if ($state.actionFeatures.serviceDelete.show) {
-        configActions.actions.push(
-          {
-            icon: 'pf pficon-delete',
-            name: __('Remove'),
-            actionName: 'remove',
-            title: __('Remove'),
-            actionFn: removeService,
-            isDisabled: false,
-            showConfirmation: true,
-            confirmationId: 'removeServiceConfirmId',
-            confirmationTitle: __('Remove Service'),
-            confirmationMessage: __('Confirm, would you like to remove this service?'),
-            confirmationOkText: __('Yes, Remove Service'),
-            confirmationOkStyle: 'primary',
-            confirmationShowCancel: true,
-          }
-        );
-      }
-
-      if ($state.actionFeatures.serviceOwnership.show) {
-        configActions.actions.push(
-          {
-            icon: 'pf pficon-user',
-            name: __('Set Ownership'),
-            actionName: 'ownership',
-            title: __('Set Ownership'),
-            actionFn: setOwnership,
-            isDisabled: false,
-          }
-        );
-      }
-
+    configActions = ServicesState.getConfigurationCustomDropdown(editService, removeService, setOwnership);
+    if (configActions) {
       if (vm.service.reconfigure && $state.actionFeatures.serviceReconfigure.show) {
         configActions.actions.push(
           {
@@ -237,7 +129,6 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
           }
         );
       }
-
       listActions.push(configActions);
     }
 
