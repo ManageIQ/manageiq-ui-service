@@ -37,6 +37,10 @@ export function config($provide) {
   */
 function extendExceptionHandler($delegate, exceptionHandler, logger) {
   return function(exception, cause) {
+    if (angular.isString(exception)) {
+      exception = Error(exception);
+    }
+
     var appErrorPrefix = exceptionHandler.config.appErrorPrefix || '';
     var errorData = {exception: exception, cause: cause};
     exception.message = appErrorPrefix + exception.message;

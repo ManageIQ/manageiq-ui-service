@@ -20,7 +20,7 @@ function getStates() {
 }
 
 /** @ngInject */
-function StateController($state, Text, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ServerInfo, ProductInfo, $window) {
+function StateController(exception, $state, Text, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ServerInfo, ProductInfo, $window) {
   var vm = this;
 
   vm.text = Text.login;
@@ -64,6 +64,7 @@ function StateController($state, Text, API_LOGIN, API_PASSWORD, AuthenticationAp
           Session.privilegesError = true;
           Notifications.error(__('User does not have privileges to login.'));
         }
-      });
+      })
+      .catch(exception.catch('Login failed, possibly invalid credentials'));
   }
 }

@@ -1,5 +1,5 @@
 import { config, exceptionHandlerProvider } from './exception-handler.provider.js';
-import { exception } from './exception.js';
+import { exception } from './exception.service.js';
 
 export default angular
   .module('blocks.exception', [
