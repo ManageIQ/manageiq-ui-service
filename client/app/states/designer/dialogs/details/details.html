@@ -1,10 +1,14 @@
-<ol class="breadcrumb">
-  <li>
-    <a ui-sref="^"> <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to My Dialogs'|translate}}</a>
-  </li>
-  <li class="active"> <strong translate>Dialog:</strong> {{ ::vm.dialog.label }}
-  </li>
-</ol>
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li>{{'Designer'|translate}}</li>
+        <li>
+          <a href="#" ui-sref="designer.dialogs.list">{{'Dialogs'|translate}}</a>
+        </li>
+        <li class="active">{{ ::vm.dialog.label }}</li>
+      </ol>
+  </span>
+</div>
 
 <div class="ss-details-wrapper">
   <div class="panel panel-default ss-details-panel">
@@ -32,7 +36,7 @@
                   confirmation
                   confirmation-id="confirmDeleteDialog"
                   confirmation-on-ok="vm.dialog.deleteDialog()"
-                  confirmation-message="{{'Are you sure you wish to delete the Dialog?'|translate}}"
+                  confirmation-message="{{'Are you sure you want to delete the Dialog?'|translate}}"
                   translate>Delete</button>
                 <button class="btn btn-default" type="button" ng-click="vm.dialog.copyDialog()" translate>Copy</button>
                 <button class="btn btn-default" type="button" ng-click="vm.dialog.editDialog()" translate>Edit</button>
