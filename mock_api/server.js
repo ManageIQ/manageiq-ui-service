@@ -93,7 +93,7 @@ function startServer() {
   server.use(router);
 
 
-  var port = 3004;
+  var port = 3000;
   if (process.env.MOCK_API_HOST) {
     var urlParts = url.parse(process.env.MOCK_API_HOST, false);
     port = urlParts.host;
