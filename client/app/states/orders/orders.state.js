@@ -7,7 +7,7 @@ function getStates() {
   return {
     'orders': {
       parent: 'application',
-      url: '/order-explorer',
+      url: '/orders',
       redirectTo: 'orders.explorer',
       template: '<ui-view></ui-view>',
     },

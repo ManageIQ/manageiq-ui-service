@@ -288,10 +288,9 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
   }
 
   function duplicateOrder(action, item) {
-    CollectionsApi.post('service_orders', null, null, {action: "copy", resources: [{id: item.id}],}).then(success, failure);
+    CollectionsApi.post('service_orders', null, null, {action: "copy", resources: [{id: item.id}]}).then(success, failure);
 
     function success(response) {
-      console.log(response.results[0]);
       EventNotifications.success(sprintf(__('%s was duplicated, id # %d.'), item.name, response.results[0].id));
       resolveOrders(vm.limit, 0);
     }
@@ -299,7 +298,6 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
     function failure(error) {
       EventNotifications.error(sprintf(__('There was an error duplicating %s.'), item.name));
     }
-
   }
 
   function removeOrder(action, item) {
