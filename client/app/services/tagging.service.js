@@ -89,7 +89,7 @@ export function taggingService(CollectionsApi, lodash, exception) {
 
     return CollectionsApi.query(resourceUrl || 'tags', queryOptions)
       .then(filterValidTags)
-      .catch(exception.catcher('Request failed for #queryAvailableTags'));
+      .catch(exception.log('Request failed for #queryAvailableTags'));
 
     function filterValidTags(response) {
       return response.resources
