@@ -50,6 +50,7 @@
 
     vm.dateOptions = {
       autoclose: true,
+      clearBtn: true,
       todayBtn: 'linked',
       todayHighlight: true,
       startDate: new Date(),
@@ -69,7 +70,10 @@
     }
 
     function retireService() {
-      CollectionsApi.post('services', vm.service.id, {}, vm.modalData).then(retireSuccess, retireFailure);
+      var data = angular.copy(vm.modalData);
+      data.resource.date = data.resource.date ? data.resource.date : '';
+
+      CollectionsApi.post('services', vm.service.id, {}, data).then(retireSuccess, retireFailure);
 
       function retireSuccess() {
         $modalInstance.close();
