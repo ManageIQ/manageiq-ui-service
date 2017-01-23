@@ -11,6 +11,13 @@ var glob = require("glob")
 var restData = {};
 
 server.use(jsonServer.bodyParser);
+server.use(function (req, res, next) {
+  if (process.env.LOG_LEVEL && process.env.LOG_LEVEL === 'debug') {
+    console.log(req.body);
+  }
+  next()
+});
+
 glob("./data/*.mock.json", function (er, files) {
   // files is an array of filenames.
 console.log("Found "+ files.length + " endpoint files");
@@ -84,6 +91,7 @@ function startServer() {
   }));
   server.use(middlewares);
   server.use(router);
+
 
   var port = 3004;
   if (process.env.MOCK_API_HOST) {
