@@ -1,0 +1,259 @@
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li>{{'Services'|translate}}</li>
+        <li>
+          <a href="#" ng-click="vm.gotoServices()">{{'Service Explorer'|translate}}</a>
+        </li>
+        <li class="active">{{vm.title}}</li>
+      </ol>
+  </span>
+</div>
+<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig">
+  <actions>
+    <div class="ss-details-header__actions">
+      <div uib-dropdown class="ss-details-header__actions__inner dropdown-kebab-pf">
+        <custom-button ng-if="vm.hasCustomButtons()"
+          service-template-catalog-id="vm.service.service_template.service_template_catalog_id"
+          service-id="vm.service.id"
+          custom-actions="vm.service.custom_actions"
+          actions="vm.service.actions">
+        </custom-button>
+        <custom-dropdown class="custom-dropdown pull-left"
+                         config="item"
+                         items="vm.selectedItemsList"
+                         items-count="vm.selectedItemsListCount"
+                         ng-repeat="item in vm.listActions"
+                         on-update="vm.listActionDisable($config, $changes)"
+                         menu-right="true">
+        </custom-dropdown>
+      </div>
+    </div>
+  </actions>
+</div>
+<div class="ss-details-wrapper ss-details-wrapper-with-toolbar">
+  <div class="panel panel-default ss-details-panel">
+    <div class="panel-body">
+      <section>
+        <h2 translate>Properties</h2>
+      </section>
+      <section class="ss-form-readonly">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="control-label col-sm-2" translate>Description</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" readonly value="{{vm.service.description}}"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="control-label col-sm-4" translate>Service Id</label>
+
+                  <div class="col-sm-8">
+                    <input class="form-control" readonly value="{{vm.service.id}}"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" translate>Owner</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" readonly value="{{vm.service.evm_owner.name}}"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" translate>Monthly Cost</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" readonly value="${{vm.service.chargeback.used_cost_sum | number:3}}"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="control-label col-sm-4" translate>Created On</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" readonly value="{{vm.service.created_at | date:'medium'}}"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" translate>Retirement State</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" readonly value="{{vm.service.retirement_state || ('Unknown' | translate)}}"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" translate>Retires On</label>
+                  <div class="col-sm-8">
+                    <input ng-if="vm.service.retires_on" class="form-control" readonly
+                           value="{{vm.service.retires_on | date}}"/>
+                    <input ng-if="!vm.service.retires_on" class="form-control" readonly value="Never"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="control-label col-sm-2" translate>Tags</label>
+                  <div class="col-sm-10">
+                    <div class="service-details-tag-control">
+                      <tagging-widget tags-of-item="vm.tags" read-only="true"></tagging-widget>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+  <div class="panel panel-default ss-details-panel">
+    <div class="panel-body">
+      <section>
+        <h2 translate>Resources</h2>
+        <ul class="list-group service-details-resources">
+          <li class="list-group-item service-details-resource-group-item">
+            <a class="service-details-resource-group-title"
+               ng-class="{'collapsed': !vm.computeGroup.open}"
+               ng-click="vm.toggleOpenResourceGroup(vm.computeGroup)">
+              {{vm.computeGroup.title}} ({{vm.computeGroup.resources.length}})
+            </a>
+            <div class="service-details-resource-list-container" ng-class="{'collapse': !vm.computeGroup.open}">
+              <div ng-if="vm.computeGroup.resources.length < 1">
+                <span class="service-details-resource-empty-message">
+                  {{vm.computeGroup.emptyMessage}}
+                </span>
+              </div>
+              <div ng-if="vm.computeGroup.resources.length > 0" pf-list-view config="vm.resourceListConfig"
+                   items="vm.computeGroup.resources"
+                   menu-actions="vm.resourceMenuActions"
+                   update-menu-action-for-item-fn="vm.updateResourceMenuActionForItemFn"
+                   custom-scope="vm">
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-5 col-xs-8 name-column">
+                    <span class="no-wrap">
+                      <i class="pficon fa fa-power-off" ng-if="item.power_state === 'off'"
+                         uib-tooltip="{{'Power State: Off'|translate}}"
+                         tooltip-append-to-body="true"
+                         tooltip-popup-delay="1000"
+                         tooltip-placement="bottom"></i>
+                      <i class="pficon pficon-ok" ng-if="item.power_state === 'on'"
+                         uib-tooltip="{{'Power State: On'|translate}}"
+                         tooltip-append-to-body="true"
+                         tooltip-popup-delay="1000"
+                         tooltip-placement="bottom"></i>
+                      <i class="pficon fa fa-question-circle" ng-if="item.power_state !== 'on' && item.power_state !== 'off'"
+                         uib-tooltip="{{'Power State: Unknown'|translate}}"
+                         tooltip-append-to-body="true"
+                         tooltip-popup-delay="1000"
+                         tooltip-placement="bottom"></i>
+                      <a uib-tooltip="{{item.name}}"
+                         tooltip-placement="bottom"
+                         tooltip-append-to-body="true"
+                         tooltip-popup-delay="1000"
+                         ng-click="customScope.gotoComputeResource(item)"
+                         href="#">
+                        <i class="pficon pficon-screen"></i>
+                        <span>
+                          {{ item.name }}
+                        </span>
+                      </a>
+                    </span>
+                  </div>
+                  <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
+                    <div uib-tooltip="{{'Last Boot Time' | translate}} : {{item.boot_time | date : 'MMM dd, yyyy H:mm:ss'}}"
+                         tooltip-append-to-body="true"
+                         tooltip-popup-delay="1000"
+                         tooltip-placement="bottom">
+                      <span class="no-wrap">
+                        <strong translate>Last Boot Time</strong>&nbsp;
+                        <span>
+                          {{item.boot_time | date : 'MMM dd, yyyy H:mm:ss'}}
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="list-view-pf-actions">
+                    <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body>
+                      <button type="button" class="btn btn-default" uib-dropdown-toggle type="button">
+                        <span translate>Access</span>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                        <li role="menuitem"
+                            ng-class="{'disabled': !item['supports_console?'] || item.power_state !== 'on'}"
+                            ng-click="customScope.openConsole(item)">
+                          <a href="#" translate>Open HTML5 Console</a>
+                        </li>
+                        <li role="menuitem"
+                            ng-class="{'disabled': !item['supports_cockpit?'] || item.power_state !== 'on'}"
+                            ng-click="customScope.openConsole(item)">
+                          <a href="#" translate>Open Cockpit Console</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div uib-dropdown="" dropdown-append-to-body class="dropdown pull-right dropdown-kebab-pf">
+                      <button uib-dropdown-toggle="" class="btn btn-link dropdown-toggle" type="button">
+                        <span class="fa fa-ellipsis-v"></span>
+                      </button>
+                      <ul uib-dropdown-menu="" class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body">
+                        <li role="menuitem" ng-class="{'disabled': customScope.disableStartButton(item)}">
+                          <a ng-click="customScope.startVM(item)" translate>Start</a>
+                        </li>
+                        <li role="menuitem" ng-class="{'disabled': customScope.disableStopButton(item)}">
+                          <a ng-click="customScope.stopVM(item)" translate>Stop</a>
+                        </li>
+                        <li role="menuitem" ng-class="{'disabled': customScope.disableSuspendButton(item)}">
+                          <a ng-click="customScope.suspendVM(item)" translate>Suspend</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li role="menuitem">
+                          <a ng-click="customScope.gotoComputeResource(item)" translate>View Details</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <div class="panel panel-default ss-details-panel relationships-panel">
+    <div class="panel-body">
+      <section>
+        <h2 translate>Relationships</h2>
+        <div class="container-fluid">
+          <div class="row" ng-if="vm.service.parent_service">
+            <div class="col-sm-4">
+              <a href="#" ng-click="vm.gotoService(vm.service.parent_service)">{{vm.service.parent_service.name}}</a>
+            </div>
+            <label class="control-label col-lg-2 col-md-3 col-sm-4" translate>Parent Service</label>
+            <div class="col-sm-4">
+              <span>{{vm.service.parent_service.description}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <a href="#" ng-click="vm.gotoCatalogItem()">{{vm.service.service_template.name}}</a>
+            </div>
+            <label class="control-label col-lg-2 col-md-3 col-sm-4" translate>Parent Catalog Item</label>
+            <div class="col-sm-4">
+              <span>{{vm.service.service_template.description}}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+[
+  {
+    "id": 10000000000023,
+    "name": "/managed/environment/dev",
+    "category": {
+      "id": 10000000000020
+    },
+    "categorization": {
+      "displayName": "Environment: Development"
+    }
+  },
+  {
+    "id": 10000000000185,
+    "name": "/managed/function/app",
+    "category": {
+      "id": 10000000000006
+    },
+    "categorization": {
+      "displayName": "Workload: app"
+    }
+  }
+]

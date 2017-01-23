@@ -14,8 +14,8 @@ describe('Dashboard', function() {
     });
 
     it('should work with $state.go', function() {
-      $state.go('services.explorer');
-      expect($state.is('services.explorer'));
+      $state.go('services.details');
+      expect($state.is('services.details'));
     });
   });
 
@@ -25,6 +25,15 @@ describe('Dashboard', function() {
     beforeEach(function() {
       bard.inject('$componentController', '$log', '$state', '$rootScope');
 
+      $state.actionFeatures = {
+        serviceDelete: {show: true},
+        serviceRetireNow: {show: true},
+        serviceRetire: {show: true},
+        serviceTag: {show: true},
+        serviceEdit: {show: true},
+        serviceReconfigure: {show: true},
+        serviceOwnership: {show: true},
+      };
       controller = $componentController('serviceExplorer'), {};
     });
 

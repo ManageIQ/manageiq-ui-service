@@ -1,15 +1,13 @@
 /* eslint camelcase: "off" */
-
 export const ServiceExplorerComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
-  templateUrl: 'app/components/service-explorer/service-explorer.html',
+  templateUrl: 'app/components/services/service-explorer/service-explorer.html',
 };
 
 /** @ngInject */
-function ComponentController($state, ServicesState, $rootScope, Language, ListView, Chargeback,
-                              CollectionsApi, taggingService, EventNotifications,
-                              TagEditorModal, ModalService, PowerOperations, lodash, $log) {
+function ComponentController($state, ServicesState, Language, ListView, Chargeback, taggingService, TagEditorModal,
+                             EventNotifications, ModalService, PowerOperations, lodash) {
   var vm = this;
   vm.$onInit = activate();
   function activate() {
@@ -50,10 +48,6 @@ function ComponentController($state, ServicesState, $rootScope, Language, ListVi
     resolveServices(vm.limit, 0);
   }
 
-  if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
-    $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
-  }
-
   function getCardConfig() {
     return {
       multiSelect: true,
@@ -83,97 +77,39 @@ function ComponentController($state, ServicesState, $rootScope, Language, ListVi
 
     return compareValue.toLowerCase().indexOf('ansible') !== -1;
   }
-
   function getListActions() {
-    return [
-      {
-        title: __('Lifecycle'),
-        actionName: 'lifecycle',
-        icon: 'fa fa-recycle',
-        actions: [
-          {
-            icon: 'fa fa-clock-o',
-            name: __('Set Retirement Dates'),
-            actionName: 'setServiceRetirement',
-            title: __('Set Retirement'),
-            actionFn: setServiceRetirement,
-            isDisabled: false,
-          }, {
-            icon: 'fa fa-clock-o',
-            name: __('Retire'),
-            actionName: 'retireService',
-            title: __('Retire'),
-            actionFn: retireService,
-            isDisabled: false,
-          },
-        ],
-        isDisabled: false,
-      },
-      {
-        title: __('Policy'),
-        actionName: 'policy',
-        icon: 'fa fa-shield',
-        actions: [
-          {
-            icon: 'pf pficon-edit',
-            name: __('Edit Tags'),
-            actionName: 'editTags',
-            title: __('Edit Tags'),
-            actionFn: editTags,
-            isDisabled: false,
-          },
-        ],
-        isDisabled: false,
-      },
-      {
-        title: __('Configuration'),
-        actionName: 'configuration',
-        icon: 'fa fa-cog',
-        actions: [
-          {
-            icon: 'pf pficon-edit',
-            name: __('Edit'),
-            actionName: 'edit',
-            title: __('Edit'),
-            actionFn: editService,
-            isDisabled: false,
-          }, {
-            icon: 'pf pficon-delete',
-            name: __('Remove'),
-            actionName: 'remove',
-            title: __('Remove'),
-            actionFn: removeServices,
-            isDisabled: false,
-          }, {
-            icon: 'pf pficon-user',
-            name: __('Set Ownership'),
-            actionName: 'ownership',
-            title: __('Set Ownership'),
-            actionFn: setOwnership,
-            isDisabled: false,
-          },
-        ],
-        isDisabled: false,
-      },
-    ];
+    var configActions, lifeCycleActions, policyActions;
+    var listActions = [];
+
+    lifeCycleActions = ServicesState.getLifeCycleCustomDropdown(setServiceRetirement, retireService);
+    if (lifeCycleActions) {
+      listActions.push(lifeCycleActions);
+    }
+
+    policyActions = ServicesState.getPolicyCustomDropdown(editTags);
+    if (policyActions) {
+      listActions.push(policyActions);
+    }
+
+    configActions = ServicesState.getConfigurationCustomDropdown(editService, removeServices, setOwnership);
+    if (configActions) {
+      listActions.push(configActions);
+    }
+
+    return listActions;
   }
 
   function actionEnabled(actionName, item) {
     var enabled = true;
     switch (actionName) {
       case "start":
-        enabled = PowerOperations.powerOperationUnknownState(item)
-          || PowerOperations.powerOperationOffState(item)
-          || PowerOperations.powerOperationSuspendState(item)
-          || PowerOperations.powerOperationTimeoutState(item);
+        enabled = PowerOperations.allowStartService(item);
         break;
       case "stop":
-        enabled = !PowerOperations.powerOperationUnknownState(item)
-          && !PowerOperations.powerOperationOffState(item);
+        enabled = PowerOperations.allowStopService(item);
         break;
       case "suspend":
-        enabled = !PowerOperations.powerOperationUnknownState(item)
-          && !PowerOperations.powerOperationSuspendState(item);
+        enabled = PowerOperations.allowSuspendService(item);
         break;
     }
 
@@ -190,8 +126,6 @@ function ComponentController($state, ServicesState, $rootScope, Language, ListVi
         break;
       case "suspend":
         action.isVisible = !isAnsibleService(item);
-        action.isDisabled = PowerOperations.powerOperationUnknownState(item)
-          || PowerOperations.powerOperationSuspendState(item);
         break;
       case "powerOperationsDivider":
         action.isVisible = !isAnsibleService(item);
