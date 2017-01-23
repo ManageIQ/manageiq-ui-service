@@ -79,7 +79,7 @@ function ComponentController(RulesState, SaveModalDialog, $state, lodash, $timeo
       value: rule.value,
     };
 
-    var operator = lodash.find(vm.operators, {name: rule.operator});
+    var operator = lodash.find(vm.operators, {name: rule.operator.trim()});
 
     if (operator.value === "EQUAL") {
       ruleObj.expression = {
@@ -90,7 +90,7 @@ function ComponentController(RulesState, SaveModalDialog, $state, lodash, $timeo
         NOT: fieldObj,
       };
     }
-    var profile = lodash.find(vm.profiles, {name: rule.profileName});
+    var profile = lodash.find(vm.profiles, {name: rule.profileName.trim()});
     if (profile) {
       ruleObj.arbitration_profile_id =  profile.id;
     }
@@ -226,7 +226,6 @@ function ComponentController(RulesState, SaveModalDialog, $state, lodash, $timeo
   vm.addRule = function() {
     var newRule = {
       operation: 'inject',
-      operator: vm.operators[0].name,
       editMode: true,
     };
 
