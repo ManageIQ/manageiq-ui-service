@@ -44,6 +44,7 @@ import { OwnershipServiceModalComponent } from './ownership-service-modal/owners
 import { PaginationComponent } from './pagination/pagination.component.js';
 import { PowerStateComponent } from './power-state/power-state.component.js';
 import { ProcessRequestsModalComponent } from './process-requests-modal/process-requests-modal.component.js';
+import { ProcessOrderModalComponent } from './process-order-modal/process-order-modal.component.js';
 import { ProfileDetailsComponent } from './profiles/profile-details.component.js';
 import { ProfileEditorComponent } from './profiles/profile-editor.component.js';
 import { ProfilesListComponent } from './profiles/profiles-list.component.js';
@@ -108,6 +109,7 @@ export default angular
   .component('explorerPagination', PaginationComponent)
   .component('powerState', PowerStateComponent)
   .component('processRequestsModal', ProcessRequestsModalComponent)
+  .component('processOrderModal', ProcessOrderModalComponent)
   .component('profileDetails', ProfileDetailsComponent)
   .component('profileEditor', ProfileEditorComponent)
   .component('profilesList', ProfilesListComponent)

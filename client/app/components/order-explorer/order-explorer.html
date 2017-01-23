@@ -20,33 +20,34 @@
 </div>
 <div class="list-view-container section-container paged-container service-explorer-list">
   <loading status="vm.loading"></loading>
-  <div ng-if="!vm.loading" pf-list-view id="orderList" config="vm.listConfig" items="vm.ordersList" custom-scope="vm">
+  <div ng-if="!vm.loading"
+       pf-list-view id="orderList"
+       config="vm.listConfig"
+       items="vm.ordersList"
+       custom-scope="vm"
+       menu-actions="vm.menuActions"
+       update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
     <div class="row">
-      <div class="col-lg-2 col-md-3 col-sm-5 col-xs-8">
+      <div class="col-lg-3 col-md-3 col-sm-5 col-xs-8">
         <span class="no-wrap">
           <strong translate>Order #</strong>
           <a ui-sref="orders.details({serviceOrderId: item.id})">{{ item.id }}</a>
         </span>
       </div>
-      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4">
+      <div class="col-lg-3 col-md-3 col-sm-5 col-xs-4">
         <span class="no-wrap">
           <strong translate>Requester</strong>&nbsp;{{ item.user_name }}
         </span>
       </div>
-      <div class="col-lg-3 col-md-3 col-sm-2 hidden-xs">
+      <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
         <span class="no-wrap">
           <strong translate>Ordered </strong>&nbsp;{{ (item.placed_at || item.updated_at) | date }}</h4>
         </span>
       </div>
-      <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+      <div class="col-lg-3 col-md-3 col-sm-2 hidden-xs">
         <span class="no-wrap" translate-plural="{{ $count }} items" translate
               translate-n="item.service_requests.length || 0">
           {{ $count }} item
-        </span>
-      </div>
-      <div class="col-lg-2 col-md-1 hidden-sm hidden-xs">
-        <span class="no-wrap">
-          <!--<strong translate>ordered </strong>&nbsp;{{ (item.placed_at || item.updated_at) | date }}</h4>-->
         </span>
       </div>
     </div>

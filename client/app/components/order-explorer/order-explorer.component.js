@@ -5,7 +5,8 @@ export const OrderExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController(OrdersState, $filter, ListView, Language, lodash, EventNotifications, Session, RBAC, ModalService) {
+function ComponentController($filter, lodash, ListView, Language, OrdersState, EventNotifications, Session, RBAC, ModalService,
+                             CollectionsApi, sprintf) {
   const vm = this;
   vm.$onInit = activate();
   function activate() {
@@ -19,11 +20,12 @@ function ComponentController(OrdersState, $filter, ListView, Language, lodash, E
       selectedItemsList: [],
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
       selectedItemsListCount: 0,
-      actionConfig: actionConfig(),
       // Functions
       resolveOrders: resolveOrders,
       listActionDisable: listActionDisable,
       // Config setup
+      actionConfig: getActionConfig(),
+      menuActions: getMenuActions(),
       toolbarConfig: getToolbarConfig(),
       listConfig: getListConfig(),
       expandedListConfig: getExpandedListConfig(),
@@ -32,7 +34,7 @@ function ComponentController(OrdersState, $filter, ListView, Language, lodash, E
     resolveOrders(vm.limit, 0);
   }
 
-  function actionConfig() {
+  function getActionConfig() {
     return [
       {
         title: __('Lifecycle'),
@@ -119,6 +121,25 @@ function ComponentController(OrdersState, $filter, ListView, Language, lodash, E
     ];
   }
 
+  function getMenuActions() {
+    return [
+      {
+        name: __('Duplicate'),
+        actionName: 'duplicate',
+        title: __('Duplicate Order'),
+        actionFn: duplicateOrder,
+        isDisabled: false,
+      },
+      {
+        name: __('Remove'),
+        actionName: 'remove',
+        title: __('Remove Order'),
+        actionFn: removeOrder,
+        isDisabled: false,
+      },
+    ];
+  }
+
   function expandRow(item) {
     if (!item.disableRowExpansion) {
       item.isExpanded = !item.isExpanded;
@@ -128,23 +149,6 @@ function ComponentController(OrdersState, $filter, ListView, Language, lodash, E
   function sortChange(sortId, direction) {
     OrdersState.setSort(sortId, direction);
     resolveOrders(vm.limit, 0);
-  }
-
-  function orderCompareFn(item1, item2) {
-    let compValue = 0;
-    if (vm.toolbarConfig.sortConfig.currentField.id === 'name') {
-      compValue = item1.name.localeCompare(item2.name);
-    } else if (vm.toolbarConfig.sortConfig.currentField.id === 'id') {
-      compValue = item1.id - item2.id;
-    } else if (vm.toolbarConfig.sortConfig.currentField.id === 'placed_at') {
-      compValue = new Date(item1.placed_at || item1.updated_at) - new Date(item2.placed_at || item2.updated_at);
-    }
-
-    if (!vm.toolbarConfig.sortConfig.isAscending) {
-      compValue = compValue * -1;
-    }
-
-    return compValue;
   }
 
   function orderFilterChange(filters) {
@@ -277,6 +281,33 @@ function ComponentController(OrdersState, $filter, ListView, Language, lodash, E
         },
         modalType: function() {
           return lodash.find(vm.selectedItemsList, isPending) ? 'invalid' : "deny";
+        },
+      },
+    };
+    ModalService.open(modalOptions);
+  }
+
+  function duplicateOrder(action, item) {
+    CollectionsApi.post('service_orders', null, null, {action: "copy", resources: [{id: item.id}],}).then(success, failure);
+
+    function success(response) {
+      console.log(response.results[0]);
+      EventNotifications.success(sprintf(__('%s was duplicated, id # %d.'), item.name, response.results[0].id));
+      resolveOrders(vm.limit, 0);
+    }
+
+    function failure(error) {
+      EventNotifications.error(sprintf(__('There was an error duplicating %s.'), item.name));
+    }
+
+  }
+
+  function removeOrder(action, item) {
+    const modalOptions = {
+      component: 'processOrderModal',
+      resolve: {
+        order: function() {
+          return item;
         },
       },
     };
