@@ -10,7 +10,7 @@ export function navConfig(NavigationProvider) {
   var services = createItem(
     N_('Services'),
     'services',
-    'fa fa-file-o'
+    'pficon pficon-service'
   );
   var marketplace = createItem(
     N_('Service Catalog'),
@@ -28,6 +28,12 @@ export function navConfig(NavigationProvider) {
     'administration',
     'fa fa-cog'
   );
+  var orders = createItem(
+    N_('My Orders'),
+    'orders',
+    'fa fa-file-o',
+  N_('Total orders submitted')
+  );
 
   services.secondary = {
     'service-explorer': createItem(
@@ -41,12 +47,6 @@ export function navConfig(NavigationProvider) {
       'requests',
       undefined,
       N_('Total pending requests')
-    ),
-    orders: createItem(
-      N_('Order History'),
-      'orders',
-      undefined,
-      N_('Total orders submitted')
     ),
   };
 
@@ -90,6 +90,7 @@ export function navConfig(NavigationProvider) {
     items: {
       dashboard: dashboard,
       services: services,
+      orders: orders,
       marketplace: marketplace,
       designer: designer,
       administration: administration,
@@ -149,7 +150,7 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
     });
 
     CollectionsApi.query('service_orders', options)
-      .then(lodash.partial(updateSecondaryCount, 'services', 'orders'));
+      .then(lodash.partial(updateCount, 'orders'));
   }
 
   function fetchServices() {

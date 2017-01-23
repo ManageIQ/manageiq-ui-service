@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="vm.cancel()" aria-hidden="true">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 class="modal-title" translate>Remove Order</h4>
+</div>
+<div class="modal-body">
+  <i class="pf pficon-warning-triangle-o"></i>
+  <span>{{ vm.order.name }}{{ " and all of its service requests will be permanently removed!" | translate }}</span>
+  <hr>
+  <h4 translate>Affected Order</h4>
+  <icon-list items="[vm.order]"></icon-list>
+</div>
+<div class="modal-footer">
+  <modal-actions
+    confirmation-modal="true"
+    on-cancel="vm.cancel()"
+    on-ok="vm.confirm()">
+  </modal-actions>
+</div>
+

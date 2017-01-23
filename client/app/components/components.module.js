@@ -39,10 +39,12 @@ import { ModalActionsComponent } from './modal-actions/modal-actions.component.j
 import { BaseModalController } from './modal/base-modal-controller.js';
 import { BaseModalFactory } from './modal/base-modal.factory.js';
 import { NavigationController } from './navigation/navigation-contoller.js';
+import { OrderExplorerComponent } from './order-explorer/order-explorer.component.js';
 import { OwnershipServiceModalComponent } from './ownership-service-modal/ownership-service-modal.component.js';
 import { PaginationComponent } from './pagination/pagination.component.js';
 import { PowerStateComponent } from './power-state/power-state.component.js';
 import { ProcessRequestsModalComponent } from './process-requests-modal/process-requests-modal.component.js';
+import { ProcessOrderModalComponent } from './process-order-modal/process-order-modal.component.js';
 import { ProfileDetailsComponent } from './profiles/profile-details.component.js';
 import { ProfileEditorComponent } from './profiles/profile-editor.component.js';
 import { ProfilesListComponent } from './profiles/profiles-list.component.js';
@@ -103,9 +105,11 @@ export default angular
   .factory('ModalService', BaseModalFactory)
   .controller('NavigationController', NavigationController)
   .component('ownershipServiceModal', OwnershipServiceModalComponent)
+  .component('orderExplorer', OrderExplorerComponent)
   .component('explorerPagination', PaginationComponent)
   .component('powerState', PowerStateComponent)
   .component('processRequestsModal', ProcessRequestsModalComponent)
+  .component('processOrderModal', ProcessOrderModalComponent)
   .component('profileDetails', ProfileDetailsComponent)
   .component('profileEditor', ProfileEditorComponent)
   .component('profilesList', ProfilesListComponent)

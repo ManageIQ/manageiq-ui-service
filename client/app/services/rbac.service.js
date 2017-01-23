@@ -5,6 +5,7 @@ export function RBACFactory() {
   var service = {
     set: set,
     has: has,
+    all: all,
   };
 
   return service;
@@ -15,5 +16,9 @@ export function RBACFactory() {
 
   function has(feature) {
     return feature in features;
+  }
+
+  function all() {
+    return features;
   }
 }
