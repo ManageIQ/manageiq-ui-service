@@ -6,7 +6,7 @@ export const RequestExplorerComponent = {
 
 /** @ngInject */
 function ComponentController($state, CollectionsApi, RequestsState, ListView, $filter, lodash, Language, EventNotifications,
-                              ModalService) {
+                              ModalService, Polling) {
   var vm = this;
 
   vm.$onInit = function() {
@@ -56,6 +56,7 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
         },
       ],
       listActionDisable: listActionDisable,
+      pollingInterval: 10000,
     });
 
     vm.configuration[0].actions = [
@@ -77,7 +78,7 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
     ];
 
     vm.fetchData = fetchData;
-
+    vm.offest = 0;
     vm.fetchData(vm.limit, 0);
 
     if (RequestsState.filterApplied) {
@@ -89,11 +90,15 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
     }
 
     Language.fixState(RequestsState, vm.toolbarConfig);
+    Polling.start('requestsListPolling', pollUpdateRequestsList, vm.pollingInterval);
+    vm.$onDestroy = function() {
+      Polling.stop('requestsListPolling');
+    };
   };
 
   // Private
 
-  function fetchData(limit, offset) {
+  function fetchData(limit, offset, refresh) {
     var filter = [];
     var attributes = ['picture', 'picture.image_href', 'approval_state', 'created_on', 'description', 'requester_name'];
     var options = {
@@ -113,7 +118,16 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
 
     function handleSuccess(response) {
       if (angular.isDefined(response.resources)) {
-        vm.listData = response.resources;
+        var responseData = response.resources; // vm.selectedItemsList
+        if (vm.selectedItemsList.length > 0) {
+          responseData.forEach(function (item) {
+            var selectedItem = lodash.find(vm.selectedItemsList, { id: item.id });
+            if (angular.isDefined(selectedItem)) {
+              item.selected = true;
+            }
+          });
+        }
+        vm.listData = responseData;
         vm.listDataCopy = angular.copy(vm.listData);
         vm.loading = false;
       } else {
@@ -273,4 +287,7 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
   function listActionDisable(config, items) {
     items.length <= 0 ? config.isDisabled = true : config.isDisabled = false;
   }
+  function pollUpdateRequestsList() {
+    vm.fetchData(vm.limit, vm.offset, true);
+  } 
 }

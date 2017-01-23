@@ -7,9 +7,12 @@ export const ServiceExplorerComponent = {
 
 /** @ngInject */
 function ComponentController($state, ServicesState, Language, ListView, Chargeback, taggingService, TagEditorModal,
-                             EventNotifications, ModalService, PowerOperations, lodash) {
+                             EventNotifications, ModalService, PowerOperations, lodash, Polling) {
   var vm = this;
   vm.$onInit = activate();
+  vm.$onDestroy = function() {
+    Polling.stop('serviceListPolling');
+  };
   function activate() {
     angular.extend(vm, {
       loading: false,
@@ -40,12 +43,14 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       headerConfig: getHeaderConfig(),
       menuActions: getMenuActions(),
       serviceChildrenListConfig: createServiceChildrenListConfig(),
+      pollingInterval: 10000,
     });
-
+    vm.offset = 0;
 
     Language.fixState(ServicesState, vm.headerConfig);
 
     resolveServices(vm.limit, 0);
+    Polling.start('serviceListPolling', pollUpdateServicesList, vm.pollingInterval);
   }
 
   function getCardConfig() {
@@ -145,8 +150,9 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   function suspendService(action, item) {
     PowerOperations.suspendService(item);
   }
-
-
+  function pollUpdateServicesList() {
+    resolveServices(vm.limit, vm.offset, true);
+  }
   function viewSelected(viewId) {
     vm.viewType = viewId;
   }
@@ -325,8 +331,14 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     }
   }
 
-  function resolveServices(limit, offset) {
-    vm.loading = true;
+  function resolveServices(limit, offset, refresh) {
+    if (!refresh) {
+      vm.loading = true;
+    } else {
+      vm.loading = false;
+    }
+    vm.offset = offset;
+        
     ServicesState.getServices(
       limit,
       offset,
@@ -337,6 +349,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     function querySuccess(result) {
       vm.loading = false;
       vm.services = [];
+      var existingServices = (angular.isDefined(vm.servicesList) && refresh ? angular.copy(vm.servicesList) : []);
       vm.selectedItemsList = [];
 
       angular.forEach(result.resources, function(item) {
@@ -346,6 +359,21 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
           angular.forEach(item.all_service_children, function(childService) {
             childService.power_state = PowerOperations.getPowerState(item);
           });
+        
+          if (refresh) {
+            for (var i = 0; i < existingServices.length; i++) {
+              var currentService = existingServices[i];
+              if (currentService.id === item.id) {
+                item.selected = (angular.isDefined(currentService.selected) ? currentService.selected : false);
+                item.isExpanded = (angular.isDefined(currentService.isExpanded) ? currentService.isExpanded : false);
+                if (item.selected) {
+                  vm.selectedItemsList.push(item);
+                }
+                existingServices.splice(i, 1);
+                break;
+              }
+            }
+          }
           vm.services.push(item);
         }
       });
