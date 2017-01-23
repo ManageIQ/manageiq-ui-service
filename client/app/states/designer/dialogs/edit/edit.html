@@ -1,13 +1,15 @@
-<ol class="breadcrumb">
-  <li>
-    <a ui-sref="^">
-      <span class="fa fa-angle-double-left"/>&nbsp;{{'Back to Dialog Detail'|translate}}
-    </a>
-  </li>
-  <li class="active">
-    <strong translate>Dialog:</strong> {{ vm.dialog.label }}
-  </li>
-</ol>
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li>{{'Designer'|translate}}</li>
+        <li>
+          <a href="#" ui-sref="designer.dialogs.list">{{'Dialogs'|translate}}</a>
+        </li>
+        <li href="#" ui-sref="^">{{ ::vm.dialog.label }}</li>
+        <li class="active"><strong translate>Edit:</strong> {{ ::vm.dialog.label }}</li>
+      </ol>
+  </span>
+</div>
 
 <div class="col-md-12 ss-details-wrapper">
   <div class="row">
