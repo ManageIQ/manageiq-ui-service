@@ -1,4 +1,3 @@
-/* jshint -W117, -W030 */
 describe('Dashboard', function() {
   beforeEach(function() {
     module('app.states', 'app.config', 'gettext', bard.fakeToastr);
@@ -15,9 +14,8 @@ describe('Dashboard', function() {
     });
 
     it('should work with $state.go', function() {
-      $state.go('dialogs.list');
-      $rootScope.$apply();
-      expect($state.is('dialogs.list'));
+      $state.go('designer.dialogs.list');
+      expect($state.is('designer.dialogs.list'));
     });
   });
 
@@ -33,18 +31,11 @@ describe('Dashboard', function() {
     beforeEach(function() {
       bard.inject('$controller', '$log', '$state', '$rootScope');
 
-      controller = $controller($state.get('dialogs.list').controller, {dialogs: dialogs});
-      $rootScope.$apply();
+      controller = $controller($state.get('designer.dialogs.list').controller, {dialogs: dialogs});
     });
 
     it('should be created successfully', function() {
       expect(controller).to.be.defined;
-    });
-
-    describe('after activate', function() {
-      it('should have title of Service List', function() {
-        expect(controller.title).to.equal('Dialogs List');
-      });
     });
   });
 });
