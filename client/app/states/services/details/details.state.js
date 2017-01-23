@@ -73,9 +73,21 @@ function resolveTags($stateParams, taggingService) {
 }
 
 /** @ngInject */
-function StateController(service, tags) {
+function StateController($scope, $stateParams, service, tags, CollectionsApi, Polling) {
   var vm = this;
 
   vm.service = service;
   vm.tags = tags;
+  vm.pollingInterval = 10000;
+
+  Polling.start('servicesPolling', startPollingService, vm.pollingInterval);
+  $scope.$on('$destroy', function () {
+    Polling.stop('servicesPolling');
+  });
+  
+  function startPollingService() {
+    resolveService($stateParams, CollectionsApi).then(function (data) {
+      vm.service = data;
+    });
+  }
 }
