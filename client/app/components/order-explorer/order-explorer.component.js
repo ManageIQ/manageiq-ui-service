@@ -166,23 +166,43 @@ function ComponentController(OrdersState, $filter, ListView, Language, lodash, E
 
   function selectionChange(item) {
     if (angular.isDefined(item.service_requests)) {
-      angular.forEach(item.service_requests, checkAll);
-      vm.selectedItemsList = item.service_requests.filter(function(service) {
-        return service.selected;
+      // if any child requests are unchecked, check them otherwise uncheck all
+      if (item.service_requests.length === lodash.filter(item.service_requests, returnSelected).length) {
+        item.service_requests.forEach((request) => {
+          request.selected = false;
+        });
+      } else {
+        item.service_requests.forEach((request) => {
+          request.selected = true;
+        });
+      }
+      vm.selectedItemsList = item.service_requests.filter(function(item) {
+        return item.selected;
       });
     }
-
-    function checkAll(item) {
-      item.selected = !item.selected;
-    }
-
     vm.selectedItemsListCount = vm.selectedItemsList.length;
   }
 
   function extendedSelectionChange(item) {
+    const parent = lodash.find(vm.ordersList, findItem);
+
+    if (parent.service_requests.length === lodash.filter(parent.service_requests, returnSelected).length) {
+      parent.selected = !parent.selected;
+    } else {
+      parent.selected = false;
+    }
+
     lodash.indexOf(vm.selectedItemsList, item) === -1 ? vm.selectedItemsList.push(item) : lodash.pull(vm.selectedItemsList, item);
 
     vm.selectedItemsListCount = vm.selectedItemsList.length;
+
+    function findItem(order) {
+      return lodash.find(order.service_requests, item);
+    }
+  }
+
+  function returnSelected(item) {
+    return item.selected;
   }
 
   function resolveOrders(limit, offset) {
