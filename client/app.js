@@ -24,12 +24,14 @@ require('eonasdan-bootstrap-datetimepicker');
 require('es6-shim');
 require('angular');
 require('angular-animate');
+require('angular-bootstrap-switch');
 require('angular-cookies');
 require('angular-resource');
 require('angular-messages');
 require('angular-sanitize');
 require('angular-base64');
 require('angular-ui-bootstrap');
+require('angular-ui-sortable');
 require('angular-dragdrop');
 require('angular-gettext');
 require('bootstrap');
@@ -46,6 +48,7 @@ require('manageiq-ui-components/dist/js/ui-components.js');
 require('angular-drag-and-drop-lists');
 require('ngprogress/build/ngprogress.min.js');
 require('ngstorage');
+require('manageiq-ui-components/dist/js/ui-components.js');
 
 // Needs imports loader because it expects `this` to be `window`
 require('imports-loader?this=>window!actioncable');

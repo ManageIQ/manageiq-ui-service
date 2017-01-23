@@ -1,5 +1,4 @@
 /* eslint camelcase: "off" */
-
 export const DialogsListComponent = {
   templateUrl: "app/components/dialogs/dialogs-list.html",
   bindings: {
@@ -10,7 +9,7 @@ export const DialogsListComponent = {
 };
 
 /** @ngInject */
-function DialogListController(DialogsState, $filter, Language, ListView) {
+function DialogListController($state, DialogsState, $filter, Language, ListView) {
   var vm = this;
 
   vm.title = __('Dialogs List');
@@ -18,6 +17,7 @@ function DialogListController(DialogsState, $filter, Language, ListView) {
   vm.listConfig = {
     selectItems: false,
     showSelectBox: false,
+    onClick: handleClick,
   };
   vm.toolbarConfig = {
     filterConfig: {
@@ -46,9 +46,23 @@ function DialogListController(DialogsState, $filter, Language, ListView) {
       currentField: DialogsState.getSort().currentField,
     },
     actionsConfig: {
-      primaryActions: [],
+      primaryActions: [
+        {
+          name: __('Create'),
+          title: __('Create a new Service Dialog'),
+          actionFn: createDialog,
+        },
+      ],
     },
   };
+
+  function createDialog() {
+    $state.go('designer.dialogs.edit', {dialogId: 'new'});
+  }
+
+  function handleClick(item, e) {
+    $state.go('designer.dialogs.details', {dialogId: item.id});
+  }
 
   function getSortConfigFields() {
     return [
