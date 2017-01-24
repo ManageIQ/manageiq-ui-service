@@ -1,18 +1,6 @@
 /* eslint-disable sort-imports */
 
 import { AutofocusDirective } from './autofocus/autofocus.directive.js';
-import { BlueprintCanvasDirective } from './blueprints/blueprint-canvas/blueprint-canvas.directive.js';
-import { BlueprintDeleteFactory } from './blueprints/blueprint-delete-modal/blueprint-delete-modal-service.factory.js';
-import { BlueprintDetailsFactory } from './blueprints/blueprint-details-modal/blueprint-details-modal-service.factory.js';
-import { BlueprintOrderListFactory } from './blueprints/blueprint-details-modal/blueprint-order-list.service.js';
-import { BrowseEntryPointFactory } from './blueprints/blueprint-details-modal/browse-entry-point-modal/browse-entry-point-modal-service.factory.js';
-import { browseEntryPointDirective } from './blueprints/blueprint-details-modal/browse-entry-point-modal/browse-entry-point.directive.js';
-import { CreateCatalogFactory } from './blueprints/blueprint-details-modal/create-catalog-modal/create-catalog-modal-service.factory.js';
-import { OrderListDirective } from './blueprints/blueprint-details-modal/order-list.directive.js';
-import { BlueprintEditorDirective } from './blueprints/blueprint-editor/blueprint-editor.directive.js';
-import { draggableItemsDirective } from './blueprints/blueprint-editor/draggable-items.directive.js';
-import { SaveBlueprintFactory } from './blueprints/blueprint-editor/save-blueprint-modal-service.factory.js';
-import { BlueprintsListDirective } from './blueprints/blueprints-list.directive.js';
 import { CatalogEditorComponent } from './catalogs/catalog-editor.component.js';
 import { CatalogsListComponent } from './catalogs/catalog-list.component.js';
 import { ConfirmationDirective } from './confirmation/confirmation.directive.js';
@@ -23,14 +11,6 @@ import { DialogContentComponent } from './dialog-content/dialog-content.componen
 import { DialogsListComponent } from './dialogs/dialogs-list.component.js';
 import { DualPaneSelectorComponent } from './dual-pane-selector/dual-pane-selector.component.js';
 import { EditServiceModalComponent } from './edit-service-modal/edit-service-modal.component.js';
-
- // TODO: Refactor and move, these aren't currently part of the components module although they likely must be loaded in this order
-import './flowchart/dragging_service.js';
-import './flowchart/flowchart_directive.js';
-import './flowchart/flowchart_viewmodel.js';
-import './flowchart/mouse_capture_service.js';
-
-import { nodeToolbarDirective } from './flowchart/node-toolbar.directive.js';
 import { FooterContentDirective } from './footer/footer-content.directive.js';
 import { IconListComponent } from './icon-list/icon-list.component.js';
 import { LanguageSwitcherDirective } from './language-switcher/language-switcher.directive.js';
@@ -67,24 +47,9 @@ export default angular
     'ui.bootstrap',
     'patternfly',
     'svgBaseFix',
-    'dndLists',
-    'flowChart',
-    'ngDragDrop',
     'miqStaticAssets',
   ])
   .directive('autofocus', AutofocusDirective)
-  .directive('blueprintCanvas', BlueprintCanvasDirective)
-  .factory('BlueprintDeleteModal', BlueprintDeleteFactory)
-  .factory('BlueprintDetailsModal', BlueprintDetailsFactory)
-  .factory('BlueprintOrderListService', BlueprintOrderListFactory)
-  .factory('BrowseEntryPointModal', BrowseEntryPointFactory)
-  .directive('browseEntryPoint', browseEntryPointDirective)
-  .factory('CreateCatalogModal', CreateCatalogFactory)
-  .directive('orderList', OrderListDirective)
-  .directive('blueprintEditor', BlueprintEditorDirective)
-  .directive('draggableItems', draggableItemsDirective)
-  .factory('SaveBlueprintModal', SaveBlueprintFactory)
-  .directive('blueprintsList', BlueprintsListDirective)
   .component('catalogEditor', CatalogEditorComponent)
   .component('catalogsList', CatalogsListComponent)
   .directive('confirmation', ConfirmationDirective)
@@ -95,7 +60,6 @@ export default angular
   .component('dialogsList', DialogsListComponent)
   .component('dualPaneSelector', DualPaneSelectorComponent)
   .component('editServiceModal', EditServiceModalComponent)
-  .directive('nodeToolbar', nodeToolbarDirective)
   .directive('footerContent', FooterContentDirective)
   .component('iconList', IconListComponent)
   .directive('languageSwitcher', LanguageSwitcherDirective)

@@ -15,7 +15,3 @@ if (!window.N_) {
     return str;
   };
 }
-
-if (!window.flowchart) {
-  window.flowchart = {};
-}

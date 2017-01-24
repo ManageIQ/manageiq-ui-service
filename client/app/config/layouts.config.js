@@ -32,7 +32,6 @@ function enterApplication(Polling, lodash, $state, NavCounts, Navigation) {
   function updateCount(count, key) {
     switch (key) {
       case 'rules':
-      case 'blueprints':
       case 'dialogs':
         if ($state.navFeatures.designer.show === false) {
           return false;
