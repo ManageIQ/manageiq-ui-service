@@ -20,7 +20,7 @@ export function navConfig(NavigationProvider) {
     N_('Total orders submitted')
   );
   const requests = createItem(
-    N_('Request'),
+    N_('Requests'),
     'requests',
     'fa fa-files-o',
     N_('Total pending requests')
