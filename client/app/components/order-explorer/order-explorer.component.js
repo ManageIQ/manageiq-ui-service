@@ -6,9 +6,13 @@ export const OrderExplorerComponent = {
 
 /** @ngInject */
 function ComponentController($filter, lodash, ListView, Language, OrdersState, EventNotifications, Session, RBAC, ModalService,
-                             CollectionsApi, sprintf) {
+                             CollectionsApi, sprintf, Polling) {
   const vm = this;
   vm.$onInit = activate();
+  vm.$onDestroy = function() {
+    Polling.stop('orderListPolling');
+  };
+
   function activate() {
     angular.extend(vm, {
       currentUser: Session.currentUser(),
@@ -29,9 +33,12 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
       toolbarConfig: getToolbarConfig(),
       listConfig: getListConfig(),
       expandedListConfig: getExpandedListConfig(),
+      offset: 0,
+      pollingInterval: 10000,
     });
 
     resolveOrders(vm.limit, 0);
+    Polling.start('orderListPolling', pollUpdateOrderList, vm.pollingInterval);
   }
 
   function getActionConfig() {
@@ -71,7 +78,9 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
       onCheckBoxChange: selectionChange,
     };
   }
-
+  function pollUpdateOrderList() {
+    resolveOrders(vm.limit, vm.offset, true);
+  }
   function getExpandedListConfig() {
     return {
       showSelectBox: checkApproval(),
@@ -209,8 +218,13 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
     return item.selected;
   }
 
-  function resolveOrders(limit, offset) {
-    vm.loading = true;
+  function resolveOrders(limit, offset, refresh) {
+    if (!refresh) {
+      vm.loading = true;
+    }
+    var existingOrders = (angular.isDefined(vm.ordersList) && refresh ? angular.copy(vm.ordersList) : []);
+
+    vm.offset = offset;
     OrdersState.getOrders(
       limit,
       offset,
@@ -230,8 +244,29 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
         if (angular.isDefined(item.id)) {
           item.disableRowExpansion = angular.isUndefined(item.service_requests)
             || (angular.isDefined(item.service_requests) && item.service_requests.length < 1);
-          vm.orders.push(item);
+          var dataRow = item;
+          if (refresh) {
+            dataRow = refreshRow(item);
+          }
+          vm.orders.push(dataRow);
         }
+      }
+    
+      function refreshRow(item) {
+        for (var i = 0; i < existingOrders.length; i++) {
+          var currentOrder = existingOrders[i];
+          if (currentOrder.id === item.id) {
+            item.selected = (angular.isDefined(currentOrder.selected) ? currentOrder.selected : false);
+            item.isExpanded = (angular.isDefined(currentOrder.isExpanded) ? currentOrder.isExpanded : false);
+            if (item.selected) {
+              vm.selectedItemsList.push(item);
+            }
+            existingOrders.splice(i, 1);
+            break;
+          }
+        }
+        
+        return item;
       }
 
       vm.ordersList = angular.copy(vm.orders);
