@@ -58,6 +58,10 @@ var config = {
 };
 
 if (process.env.TRAVIS) {
+  if (typeof process.env.SAUCE_USERNAME === 'undefined') {
+    console.log("E2E Testing was not run because Sauce credentials are not set.  Please set in order to test");
+    process.exit();
+  }
   config.sauceUser = process.env.SAUCE_USERNAME;
   config.sauceKey = process.env.SAUCE_ACCESS_KEY;
   config.capabilities = {
@@ -66,7 +70,7 @@ if (process.env.TRAVIS) {
     'build': process.env.TRAVIS_BUILD_NUMBER
   };
 }
-else{
+else {
   config.seleniumAddress = env.seleniumAddress;
 }
 
