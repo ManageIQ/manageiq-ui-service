@@ -8,9 +8,6 @@ import { ProfilesEditorState } from './administration/profiles/editor/editor.sta
 import { ProfilesState } from './administration/profiles/profiles.state.js';
 import { RulesState } from './administration/rules/rules.state.js';
 import { DashboardState } from './dashboard/dashboard.state.js';
-import { BlueprintsState } from './designer/blueprints/blueprints.state.js';
-import { BlueprintsEditorState } from './designer/blueprints/editor/editor.state.js';
-import { BlueprintsListState } from './designer/blueprints/list/list.state.js';
 import { CatalogsState } from './designer/catalogs/catalogs.state.js';
 import { CatalogsEditorState } from './designer/catalogs/editor/editor.state.js';
 import { DesignerState } from './designer/designer.state.js';
@@ -54,9 +51,6 @@ export default angular
   .run(ProfilesState)
   .run(RulesState)
   .run(DashboardState)
-  .run(BlueprintsState)
-  .run(BlueprintsEditorState)
-  .run(BlueprintsListState)
   .run(CatalogsState)
   .run(CatalogsEditorState)
   .run(DesignerState)

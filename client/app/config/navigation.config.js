@@ -51,12 +51,6 @@ export function navConfig(NavigationProvider) {
   };
 
   designer.secondary = {
-    blueprints: createItem(
-      N_('Blueprints'),
-      'designer.blueprints',
-      undefined,
-      N_('Total available blueprints')
-    ),
     dialogs: createItem(
       N_('Dialogs'),
       'designer.dialogs',
@@ -130,7 +124,6 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
   NavCounts.add('orders', fetchOrders, refreshTimeMs);
   NavCounts.add('marketplace', fetchServiceTemplates, refreshTimeMs);
   NavCounts.add('catalogs', fetchServiceCatalogs, refreshTimeMs);
-  NavCounts.add('blueprints', fetchBlueprints, refreshTimeMs);
   NavCounts.add('dialogs', fetchDialogs, refreshTimeMs);
   NavCounts.add('profiles', fetchProfiles, refreshTimeMs);
   NavCounts.add('rules', fetchRules, refreshTimeMs);
@@ -178,15 +171,6 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
 
     CollectionsApi.query('service_catalogs', options)
       .then(lodash.partial(updateSecondaryCount, 'designer', 'catalogs'));
-  }
-
-  function fetchBlueprints() {
-    angular.extend(options, {
-      filter: ['id>0'],
-    });
-
-    CollectionsApi.query('blueprints', options)
-      .then(lodash.partial(updateSecondaryCount, 'designer', 'blueprints'));
   }
 
   function fetchDialogs() {

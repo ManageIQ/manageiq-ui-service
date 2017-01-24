@@ -1,4 +1,3 @@
-import { BlueprintsStateFactory } from './blueprints-state.service.js';
 import { CatalogsStateFactory } from './catalogs-state.service.js';
 import { ChargebackFactory } from './chargeback.service.js';
 import { ConsolesFactory } from './consoles.service.js';
@@ -32,7 +31,6 @@ export default angular
     'ngStorage',
     'ngCookies',
   ])
-  .factory('BlueprintsState', BlueprintsStateFactory)
   .factory('CatalogsState', CatalogsStateFactory)
   .factory('Chargeback', ChargebackFactory)
   .factory('Consoles', ConsolesFactory)
