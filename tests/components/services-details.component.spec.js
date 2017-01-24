@@ -47,7 +47,7 @@ describe('Component: ServiceDetails', function() {
       expect(readonlyInputs[1].value).to.eq('10000000000542');
       expect(readonlyInputs[2].value).to.eq('Administrator');
       expect(readonlyInputs[3].value).to.eq('$0.000');
-      expect(readonlyInputs[4].value).to.eq('Nov 18, 2016 5:22:57 PM');
+      expect(readonlyInputs[4].value).to.eq('Nov 18, 2016 12:00:00 AM');
       expect(readonlyInputs[5].value).to.eq('Unknown');
       expect(readonlyInputs[6].value).to.eq('Oct 21, 2017');
 
