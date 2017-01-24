@@ -2,97 +2,61 @@
 
 /** @ngInject */
 export function navConfig(NavigationProvider) {
-  var dashboard = createItem(
+  const dashboard = createItem(
     N_('Dashboard'),
     'dashboard',
     'fa fa-dashboard'
   );
-  var services = createItem(
+  const services = createItem(
     N_('Services'),
     'services',
-    'pficon pficon-service'
+    'pficon pficon-service',
+    N_('Total services ordered, both active and retired')
   );
-  var marketplace = createItem(
-    N_('Service Catalog'),
-    'marketplace',
-    'fa fa-copy',
-    N_('Total available catalog items')
+  const orders = createItem(
+    N_('Orders'),
+    'orders',
+    'fa fa-file-o',
+    N_('Total orders submitted')
   );
-  var designer = createItem(
-    N_('Designer'),
-    'designer',
-    'pficon pficon-blueprint'
+  const requests = createItem(
+    N_('Request'),
+    'requests',
+    'fa fa-files-o',
+    N_('Total pending requests')
   );
-  var administration = createItem(
-    N_('Administration'),
+  const catalogs = createItem(
+    N_('Catalogs'),
+    'designer.catalogs',
+    'fa fa-folder-open-o',
+    N_('The total number of available catalogs')
+  );
+  const dialogs = createItem(
+    N_('Dialogs'),
+    'designer.dialogs',
+    'pficon pficon-build',
+    N_('Total available dialogs')
+  );
+  const admin = createItem(
+    N_('Admin'),
     'administration',
     'fa fa-cog'
   );
-  var orders = createItem(
-    N_('My Orders'),
-    'orders',
-    'fa fa-file-o',
-  N_('Total orders submitted')
-  );
-
-  services.secondary = {
-    'service-explorer': createItem(
-      N_('Service Explorer'),
-      'services',
-      undefined,
-      N_('Total services ordered, both active and retired')
-    ),
-    'request-explorer': createItem(
-      N_('Request Explorer'),
-      'requests',
-      undefined,
-      N_('Total pending requests')
-    ),
-  };
-
-  designer.secondary = {
-    dialogs: createItem(
-      N_('Dialogs'),
-      'designer.dialogs',
-      undefined,
-      N_('Total available dialogs')
-    ),
-    catalogs: createItem(
-      N_('Catalogs'),
-      'designer.catalogs',
-      undefined,
-      N_('The total number of available catalogs')
-    ),
-  };
-
-  administration.secondary = {
-    profiles: createItem(
-      N_('Profiles'),
-      'administration.profiles',
-      undefined,
-      N_('Total available arbitration profiles')
-    ),
-    rules: createItem(
-      N_('Rules'),
-      'administration.rules',
-      undefined,
-      N_('Total available arbitration rules')
-    ),
-  };
 
   NavigationProvider.configure({
     items: {
       dashboard: dashboard,
       services: services,
       orders: orders,
-      marketplace: marketplace,
-      designer: designer,
-      administration: administration,
+      requests: requests,
+      catalogs: catalogs,
+      dialogs: dialogs,
+      admin: admin,
     },
   });
 
   function createItem(title, state, iconClass, badgeTooltip) {
-    var item = {
+    const item = {
       title: title,
       state: state,
       iconClass: iconClass,
@@ -113,20 +77,17 @@ export function navConfig(NavigationProvider) {
 
 /** @ngInject */
 export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
-  var refreshTimeMs = 60 * 1000;
-  var options = {
+  const refreshTimeMs = 60 * 1000;
+  const options = {
     hide: 'resources',
     auto_refresh: true,
   };
 
-  NavCounts.add('services', fetchServices, refreshTimeMs);
   NavCounts.add('requests', fetchRequests, refreshTimeMs);
+  NavCounts.add('services', fetchServices, refreshTimeMs);
   NavCounts.add('orders', fetchOrders, refreshTimeMs);
-  NavCounts.add('marketplace', fetchServiceTemplates, refreshTimeMs);
   NavCounts.add('catalogs', fetchServiceCatalogs, refreshTimeMs);
   NavCounts.add('dialogs', fetchDialogs, refreshTimeMs);
-  NavCounts.add('profiles', fetchProfiles, refreshTimeMs);
-  NavCounts.add('rules', fetchRules, refreshTimeMs);
 
   function fetchRequests() {
     angular.extend(options, {
@@ -134,7 +95,7 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
     });
 
     CollectionsApi.query('requests', options)
-      .then(lodash.partial(updateSecondaryCount, 'services', 'request-explorer'));
+      .then(lodash.partial(updateCount, 'requests'));
   }
 
   function fetchOrders() {
@@ -152,16 +113,7 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
     });
 
     CollectionsApi.query('services', options)
-      .then(lodash.partial(updateSecondaryCount, 'services', 'service-explorer'));
-  }
-
-  function fetchServiceTemplates() {
-    angular.extend(options, {
-      filter: ['service_template_catalog_id>0', 'display=true'],
-    });
-
-    CollectionsApi.query('service_templates', options)
-      .then(lodash.partial(updateCount, 'marketplace'));
+      .then(lodash.partial(updateCount, 'services'));
   }
 
   function fetchServiceCatalogs() {
@@ -170,7 +122,7 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
     });
 
     CollectionsApi.query('service_catalogs', options)
-      .then(lodash.partial(updateSecondaryCount, 'designer', 'catalogs'));
+      .then(lodash.partial(updateCount, 'catalogs'));
   }
 
   function fetchDialogs() {
@@ -178,32 +130,10 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
       filter: ['id>0'],
     });
     CollectionsApi.query('service_dialogs', options)
-      .then(lodash.partial(updateSecondaryCount, 'designer', 'dialogs'));
-  }
-
-  function fetchProfiles() {
-    angular.extend(options, {
-      filter: ['id>0'],
-    });
-
-    CollectionsApi.query('arbitration_profiles', options)
-      .then(lodash.partial(updateSecondaryCount, 'administration', 'profiles'));
-  }
-
-  function fetchRules() {
-    angular.extend(options, {
-      filter: ['id>0'],
-    });
-
-    CollectionsApi.query('arbitration_rules', options)
-      .then(lodash.partial(updateSecondaryCount, 'administration', 'rules'));
+      .then(lodash.partial(updateCount, 'dialogs'));
   }
 
   function updateCount(item, data) {
     Navigation.items[item].badges[0].count = data.subcount;
-  }
-
-  function updateSecondaryCount(primary, secondary, data) {
-    Navigation.items[primary].secondary[secondary].badges[0].count = data.subcount;
   }
 }
