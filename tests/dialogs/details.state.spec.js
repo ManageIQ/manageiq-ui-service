@@ -1,4 +1,3 @@
-/* jshint -W117, -W030 */
 describe('Dialogs.details', function() {
   beforeEach(function() {
     module('app.states', 'app.config', 'gettext', bard.fakeToastr);
@@ -16,7 +15,7 @@ describe('Dialogs.details', function() {
 
     it('should query the API with the correct dialog id and options', function() {
       var options = {};
-      $state.get('dialogs.details').resolve.dialog($stateParams, CollectionsApi);
+      $state.get('designer.dialogs.details').resolve.dialog($stateParams, CollectionsApi);
       expect(collectionsApiSpy).to.have.been.calledWith('service_dialogs', 123, options);
     });
   });
