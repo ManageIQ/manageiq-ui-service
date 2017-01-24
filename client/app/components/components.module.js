@@ -47,8 +47,6 @@ export default angular
     'ui.bootstrap',
     'patternfly',
     'svgBaseFix',
-    'dndLists',
-    'ngDragDrop',
     'miqStaticAssets',
   ])
   .directive('autofocus', AutofocusDirective)
