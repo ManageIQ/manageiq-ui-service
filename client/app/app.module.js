@@ -1,6 +1,5 @@
 import './globals.js';
 import './components/components.module.js';
-import './resources/resources.module.js';
 import './services/services.module.js';
 import './skin/skin.module.js';
 import './states/states.module.js';

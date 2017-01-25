@@ -5,6 +5,8 @@ import { configure, init } from './config.js';
 import { formatBytes, megaBytes } from '../filters/format-bytes.filter.js';
 import { navConfig, navInit } from './navigation.config.js';
 
+import { AuthenticationApiFactory } from './authentication-api.factory.js';
+import { CollectionsApiFactory } from './collections-api.factory.js';
 import { ExceptionModule } from './exception/exception.module.js';
 import { LoggerService } from './logger.service.js';
 import { RouterModule } from './router/router.module.js';
@@ -25,7 +27,6 @@ export const CoreModule = angular
     RouterModule,
 
     'app.skin',
-    'app.resources',
     'app.services',
   ])
   .constant('lodash', _)
@@ -39,6 +40,8 @@ export const CoreModule = angular
   .filter('megaBytes', megaBytes)
   .filter('substitute', substitute)
   .factory('logger', LoggerService)
+  .factory('AuthenticationApi', AuthenticationApiFactory)
+  .factory('CollectionsApi', CollectionsApiFactory)
   .config(configure)
   .config(authConfig)
   .config(navConfig)
