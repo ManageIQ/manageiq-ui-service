@@ -1,6 +1,4 @@
 import './globals.js';
-import './blocks/exception/exception.module.js';
-import './blocks/router/router.module.js';
 import './components/components.module.js';
 import './config/config.module.js';
 import './resources/resources.module.js';

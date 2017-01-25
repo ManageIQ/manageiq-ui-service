@@ -3,27 +3,25 @@
 import { configure, init } from './config.js';
 import { formatBytes, megaBytes } from '../filters/format-bytes.filter.js';
 
-import { substitute } from '../filters/substitute.js';
+import { ExceptionModule } from './exception/exception.module.js';
 import { LoggerService } from './logger.service.js';
+import { RouterModule } from './router/router.module.js';
+import { substitute } from '../filters/substitute.js';
 
 export const CoreModule = angular
   .module('app.core', [
-    // Angular modules
     'ngAnimate',
     'ngSanitize',
     'ngMessages',
+    'ui.router',
+    'base64',
 
-    // Blocks modules
-    'blocks.exception',
-    'blocks.router',
+    ExceptionModule,
+    RouterModule,
 
     'app.skin',
     'app.resources',
     'app.services',
-
-    // Third party modules
-    'ui.router',
-    'base64',
   ])
   .constant('lodash', _)
   .constant('ActionCable', ActionCable)
