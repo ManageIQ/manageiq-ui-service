@@ -8,13 +8,13 @@ export function navConfig(NavigationProvider) {
     'fa fa-dashboard'
   );
   const services = createItem(
-    N_('Services'),
+    N_('My Services'),
     'services',
     'pficon pficon-service',
     N_('Total services ordered, both active and retired')
   );
   const orders = createItem(
-    N_('Orders'),
+    N_('My Orders'),
     'orders',
     'fa fa-file-o',
     N_('Total orders submitted')
