@@ -1,7 +1,7 @@
 describe('Component: catalogsList', function() {
 
   beforeEach(function() {
-    module('app.services', 'app.config', 'app.components', 'gettext');
+    module('app.components');
     bard.inject('CatalogsState', '$state', 'Session', '$httpBackend', '$timeout');
   });
 

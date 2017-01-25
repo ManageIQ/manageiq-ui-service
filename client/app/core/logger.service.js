@@ -2,7 +2,7 @@ import 'toastr/build/toastr.css';
 import toastr from 'toastr';
 
 /** @ngInject */
-export function logger($log) {
+export function LoggerService($log) {
   var service = {
     showToasts: true,
 

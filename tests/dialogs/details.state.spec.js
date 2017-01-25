@@ -1,7 +1,7 @@
 /* jshint -W117, -W030 */
 describe('Dialogs.details', function() {
   beforeEach(function() {
-    module('app.states', 'app.config', 'gettext', bard.fakeToastr);
+    module('app.states', bard.fakeToastr);
   });
 
   describe('#resolveDialog', function() {

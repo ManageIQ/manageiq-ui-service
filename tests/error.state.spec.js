@@ -1,6 +1,6 @@
 describe('error', function() {
   beforeEach(function() {
-    module('app.states', 'app.config', 'gettext');
+    module('app.states');
   });
 
   describe('route', function() {

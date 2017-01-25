@@ -5,7 +5,7 @@ describe('app.components.ProfileEditorDirective', function() {
   let element;
 
   beforeEach(function() {
-    module('app.services', 'app.config', 'app.states', 'app.components', 'gettext');
+    module('app.states', 'app.components');
     bard.inject('$state', 'Session', '$httpBackend', 'ProfilesState', 'SaveModalDialog', '$timeout');
   });
 

@@ -1,6 +1,6 @@
-describe('app.services.ProfilesState', function() {
+describe('ProfilesState', function() {
   beforeEach(function () {
-    module('app.services', 'app.config', 'app.states', 'gettext');
+    module('app.states');
   });
 
   describe('service', function () {

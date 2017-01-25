@@ -1,6 +1,6 @@
 describe('app.components.SaveProfileModal', function() {
   beforeEach(function () {
-    module('app.components', 'ui.bootstrap', 'gettext');
+    module('app.components', 'ui.bootstrap');
   });
 
   describe('service', function () {

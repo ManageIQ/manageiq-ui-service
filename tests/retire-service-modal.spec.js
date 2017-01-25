@@ -1,5 +1,5 @@
 describe('Retire Service Modal', function() {
-  beforeEach(module('app.components', 'gettext'));
+  beforeEach(module('app.components'));
 
   describe('controller', function() {
     let $componentController;
