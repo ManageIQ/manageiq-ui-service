@@ -1,6 +1,6 @@
 describe('Chargeback', function() {
   beforeEach(function() {
-    module('app.core', 'gettext');
+    module('app.core');
     bard.inject('Chargeback');
   });
 

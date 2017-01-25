@@ -1,5 +1,5 @@
 describe('BaseModalController', function() {
-  beforeEach(module('app.components', 'app.config', 'gettext'));
+  beforeEach(module('app.components'));
 
   var base;
   var controller;

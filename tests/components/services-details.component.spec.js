@@ -1,7 +1,7 @@
 describe('Component: ServiceDetails', function() {
 
   beforeEach(function() {
-    module('app.components', 'app.config', 'gettext');
+    module('app.components');
     bard.inject('ServicesState', 'Session', '$httpBackend', '$state', '$timeout');
   });
 

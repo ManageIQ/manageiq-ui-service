@@ -1,6 +1,6 @@
 describe('app.services.Language', function() {
   beforeEach(function() {
-    module('app.states', 'app.services', 'gettext', bard.fakeToastr);
+    module('app.states', 'app.services', bard.fakeToastr);
     bard.inject('Language');
   });
 

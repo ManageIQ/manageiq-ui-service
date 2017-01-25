@@ -1,7 +1,5 @@
 describe('404', function() {
-  beforeEach(function() {
-    module('app.states', 'app.config', 'gettext');
-  });
+  beforeEach(module('app.states'));
 
   describe('route', function() {
     var views = {

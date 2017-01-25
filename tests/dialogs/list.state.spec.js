@@ -1,7 +1,7 @@
 /* jshint -W117, -W030 */
 describe('Dashboard', function() {
   beforeEach(function() {
-    module('app.states', 'app.config', 'gettext', bard.fakeToastr);
+    module('app.states', bard.fakeToastr);
     bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session');
   });
 

@@ -1,6 +1,6 @@
 describe('Component: processOrderModal', function() {
   beforeEach(function () {
-    module('app.components', 'app.services', 'app.config', 'gettext');
+    module('app.components', 'app.services');
   });
 
   describe('controller', function () {

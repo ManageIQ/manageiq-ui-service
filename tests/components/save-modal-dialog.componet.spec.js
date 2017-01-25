@@ -1,6 +1,6 @@
 describe('app.components.SaveModalDialog', function() {
   beforeEach(function () {
-    module('app.components', 'ui.bootstrap', 'gettext');
+    module('app.components');
   });
 
   describe('service', function () {

@@ -10,7 +10,7 @@ describe('app.components.ProfilesListDirective', function() {
   };
 
   beforeEach(function () {
-    module('app.services', 'app.config', 'app.states', 'app.components', 'gettext');
+    module('app.services', 'app.states', 'app.components');
     bard.inject('ProfilesState', '$state', 'Session', '$httpBackend', '$timeout');
 
     removeProfilSpy = sinon.stub(ProfilesState, 'deleteProfiles').returns(Promise.resolve(successResponse));

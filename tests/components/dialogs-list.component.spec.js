@@ -28,7 +28,7 @@ describe('Component: dialogsList', function() {
   ];
 
   beforeEach(function() {
-    module('app.components', 'gettext');
+    module('app.components');
   });
 
   describe('with $compile', function() {

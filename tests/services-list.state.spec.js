@@ -1,6 +1,6 @@
 describe('Dashboard', function() {
   beforeEach(function() {
-    module('app.states', 'app.components', 'app.config', 'gettext', bard.fakeToastr);
+    module('app.states', 'app.components', bard.fakeToastr);
     bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session');
   });
 

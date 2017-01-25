@@ -1,5 +1,5 @@
 describe('pagination component', function() {
-  beforeEach(module('app.components', 'gettext'));
+  beforeEach(module('app.components'));
 
   describe('controller', function() {
     var controller;
