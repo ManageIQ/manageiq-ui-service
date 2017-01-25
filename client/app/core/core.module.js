@@ -2,9 +2,11 @@
 
 import { configure, init } from './config.js';
 import { formatBytes, megaBytes } from '../filters/format-bytes.filter.js';
-import { substitute } from '../filters/substitute.js';
 
-export default angular
+import { substitute } from '../filters/substitute.js';
+import { LoggerService } from './logger.service.js';
+
+export const CoreModule = angular
   .module('app.core', [
     // Angular modules
     'ngAnimate',
@@ -13,7 +15,6 @@ export default angular
 
     // Blocks modules
     'blocks.exception',
-    'blocks.logger',
     'blocks.router',
 
     'app.skin',
@@ -24,8 +25,6 @@ export default angular
     'ui.router',
     'base64',
   ])
-  .config(configure)
-  .run(init)
   .constant('lodash', _)
   .constant('ActionCable', ActionCable)
   .constant('sprintf', sprintf)
@@ -33,4 +32,7 @@ export default angular
   .filter('formatBytes', formatBytes)
   .filter('megaBytes', megaBytes)
   .filter('substitute', substitute)
+  .factory('logger', LoggerService)
+  .config(configure)
+  .run(init)
   .name;

@@ -3,7 +3,6 @@ import { exception } from './exception.service.js';
 
 export default angular
   .module('blocks.exception', [
-    'blocks.logger',
   ])
   .factory('exception', exception)
   .provider('exceptionHandler', exceptionHandlerProvider)
