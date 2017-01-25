@@ -1,0 +1,472 @@
+{
+    "url": "services?expand=resources&attributes=picture%2Cpicture.image_href%2Cchargeback_report%2Cevm_owner.userid%2Cmiq_group.description%2Cv_total_vms%2Cpower_state%2Cpower_states%2Cpower_status%2Call_service_children%2Call_vms%2Ccustom_actions%2Cservice_resources%2Ctags&filter[]=ancestry%3Dnull&limit=20&offset=0&sort_by=name&sort_order=asc&sort_options=ignore_case",
+    "get": {
+        "name": "services",
+        "count": 72,
+        "subcount": 20,
+        "resources": [
+            {
+                "href": "http://localhost:3001/api/services/10000000000405",
+                "id": 10000000000405,
+                "name": "alaurent23",
+                "description": "RHEL7 on RHEV",
+                "guid": "6984da18-8fbb-11e6-8334-005056b142d5",
+                "service_template_id": 10000000000016,
+                "options": {
+                    "dialog": {
+                        "dialog_service_name": "alaurent23",
+                        "dialog_tag_0_environment": "dev",
+                        "dialog_option_1_vm_name": "laurent23",
+                        "dialog_option_1_cores_per_socket": "1",
+                        "dialog_option_1_vm_memory": "2048",
+                        "dialog_tag_1_function": "app",
+                        "dialog_vm_name": "laurent23",
+                        "dialog_cores_per_socket": "1",
+                        "dialog_vm_memory": "2048"
+                    }
+                },
+                "display": true,
+                "created_at": "2016-10-11T14:02:57Z",
+                "updated_at": "2016-10-11T14:03:10Z",
+                "evm_owner_id": 10000000000007,
+                "miq_group_id": 10000000000021,
+                "tenant_id": 10000000000001,
+                "picture": {
+                    "id": 10000000000013,
+                    "resource_id": 10000000000016,
+                    "resource_type": "ServiceTemplate",
+                    "image_href": "http://localhost:3001/pictures/10r13.jpg"
+                },
+                "chargeback_report": {
+                    "results": []
+                },
+                "evm_owner": {
+                    "userid": "cloudops"
+                },
+                "miq_group": {
+                    "description": "cloud-operators"
+                },
+                "v_total_vms": 1,
+                "power_states": [
+                    "on"
+                ],
+                "all_service_children": [],
+                "all_vms": [
+                    {
+                        "id": 10000000001050,
+                        "vendor": "redhat",
+                        "name": "laurent23",
+                        "location": "1ed3d180-ed29-43db-9a60-fee5a41573d8.ovf",
+                        "host_id": 10000000000008,
+                        "created_on": "2016-10-11T14:05:03Z",
+                        "updated_on": "2016-11-06T01:36:11Z",
+                        "storage_id": 10000000000012,
+                        "guid": "b4e45718-8fbb-11e6-be0e-005056b1c9de",
+                        "ems_id": 10000000000012,
+                        "uid_ems": "1ed3d180-ed29-43db-9a60-fee5a41573d8",
+                        "retires_on": "2016-11-10T00:00:00Z",
+                        "retired": false,
+                        "boot_time": "2016-10-11T08:07:22Z",
+                        "power_state": "on",
+                        "state_changed_on": "2016-10-11T14:05:36Z",
+                        "previous_state": "down",
+                        "connection_state": "connected",
+                        "last_perf_capture_on": "2016-11-06T01:36:30Z",
+                        "memory_reserve": 1024,
+                        "template": false,
+                        "evm_owner_id": 10000000000007,
+                        "ems_ref_obj": "--- \"/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8\"\n",
+                        "miq_group_id": 10000000000021,
+                        "type": "ManageIQ::Providers::Redhat::InfraManager::Vm",
+                        "ems_ref": "/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8",
+                        "ems_cluster_id": 10000000000001,
+                        "retirement_warn": 7,
+                        "retirement_last_warn": "2016-11-03T00:11:55Z",
+                        "cloud": false,
+                        "raw_power_state": "up",
+                        "tenant_id": 10000000000001
+                    }
+                ],
+                "custom_actions": {
+                    "buttons": [],
+                    "button_groups": []
+                },
+                "service_resources": [
+                    {
+                        "id": 10000000001144,
+                        "resource_id": 10000000000104,
+                        "resource_type": "MiqRequest",
+                        "group_idx": 0,
+                        "scaling_min": 1,
+                        "scaling_max": -1,
+                        "created_at": "2016-10-11T14:02:57Z",
+                        "updated_at": "2016-10-11T14:02:57Z",
+                        "service_id": 10000000000405,
+                        "provision_index": 0
+                    },
+                    {
+                        "id": 10000000001145,
+                        "resource_id": 10000000001050,
+                        "resource_type": "VmOrTemplate",
+                        "group_idx": 0,
+                        "scaling_min": 1,
+                        "scaling_max": -1,
+                        "created_at": "2016-10-11T14:05:13Z",
+                        "updated_at": "2016-10-11T14:05:13Z",
+                        "service_id": 10000000000405,
+                        "provision_index": 0
+                    }
+                ],
+                "tags": [
+                    {
+                        "id": 10000000000023,
+                        "name": "/managed/environment/dev"
+                    },
+                    {
+                        "id": 10000000000185,
+                        "name": "/managed/function/app"
+                    }
+                ],
+                "actions": [
+                    {
+                        "name": "edit",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000405"
+                    },
+                    {
+                        "name": "retire",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000405"
+                    },
+                    {
+                        "name": "set_ownership",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000405"
+                    },
+                    {
+                        "name": "start",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000405"
+                    },
+                    {
+                        "name": "stop",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000405"
+                    },
+                    {
+                        "name": "suspend",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000405"
+                    },
+                    {
+                        "name": "delete",
+                        "method": "delete",
+                        "href": "http://localhost:3001/api/services/10000000000405"
+                    }
+                ]
+            },
+            {
+                "href": "http://localhost:3001/api/services/10000000000245",
+                "id": 10000000000245,
+                "name": "app",
+                "description": "RHEL7 on Amazon AWS",
+                "guid": "50bc6cc0-81c5-11e6-b98c-005056b1e4d4",
+                "service_template_id": 10000000000018,
+                "options": {
+                    "dialog": {
+                        "dialog_service_name": "app",
+                        "dialog_tag_0_environment": "dev",
+                        "dialog_option_1_vm_name": "mywebserver",
+                        "dialog_tag_1_function": "web",
+                        "dialog_option_1_keypair": "",
+                        "dialog_vm_name": "mywebserver"
+                    }
+                },
+                "display": true,
+                "created_at": "2016-09-23T19:38:34Z",
+                "updated_at": "2016-09-23T19:38:46Z",
+                "evm_owner_id": 10000000000007,
+                "miq_group_id": 10000000000021,
+                "tenant_id": 10000000000001,
+                "picture": {
+                    "id": 10000000000014,
+                    "resource_id": 10000000000018,
+                    "resource_type": "ServiceTemplate",
+                    "image_href": "http://localhost:3001/pictures/10r14.png"
+                },
+                "chargeback_report": {
+                    "results": []
+                },
+                "evm_owner": {
+                    "userid": "cloudops"
+                },
+                "miq_group": {
+                    "description": "cloud-operators"
+                },
+                "v_total_vms": 1,
+                "power_states": [
+                    "terminated"
+                ],
+                "all_service_children": [],
+                "all_vms": [
+                    {
+                        "id": 10000000000987,
+                        "vendor": "amazon",
+                        "name": "mywebserver",
+                        "location": "ec2-52-36-211-107.us-west-2.compute.amazonaws.com",
+                        "created_on": "2016-09-23T19:40:55Z",
+                        "updated_on": "2016-09-28T17:28:18Z",
+                        "guid": "a49de6ca-81c5-11e6-983c-005056b171b4",
+                        "uid_ems": "i-079799a3eadf1ab55",
+                        "retires_on": "2016-10-23T00:00:00Z",
+                        "retired": false,
+                        "boot_time": "2016-09-23T19:40:03Z",
+                        "power_state": "terminated",
+                        "state_changed_on": "2016-09-28T17:28:18Z",
+                        "previous_state": "stopped",
+                        "last_perf_capture_on": "2016-09-23T23:31:00Z",
+                        "template": false,
+                        "evm_owner_id": 10000000000007,
+                        "miq_group_id": 10000000000021,
+                        "type": "ManageIQ::Providers::Amazon::CloudManager::Vm",
+                        "ems_ref": "i-079799a3eadf1ab55",
+                        "retirement_warn": 7,
+                        "flavor_id": 10000000000010,
+                        "cloud": true,
+                        "raw_power_state": "unknown",
+                        "tenant_id": 10000000000001
+                    }
+                ],
+                "custom_actions": {
+                    "buttons": [],
+                    "button_groups": []
+                },
+                "service_resources": [
+                    {
+                        "id": 10000000000655,
+                        "resource_id": 10000000000106,
+                        "resource_type": "MiqRequest",
+                        "group_idx": 0,
+                        "scaling_min": 1,
+                        "scaling_max": -1,
+                        "created_at": "2016-09-23T19:38:34Z",
+                        "updated_at": "2016-09-23T19:38:34Z",
+                        "service_id": 10000000000245,
+                        "provision_index": 0
+                    },
+                    {
+                        "id": 10000000000656,
+                        "resource_id": 10000000000987,
+                        "resource_type": "VmOrTemplate",
+                        "group_idx": 0,
+                        "scaling_min": 1,
+                        "scaling_max": -1,
+                        "created_at": "2016-09-23T19:41:00Z",
+                        "updated_at": "2016-09-23T19:41:00Z",
+                        "service_id": 10000000000245,
+                        "provision_index": 0
+                    }
+                ],
+                "tags": [
+                    {
+                        "id": 10000000000023,
+                        "name": "/managed/environment/dev"
+                    },
+                    {
+                        "id": 10000000000192,
+                        "name": "/managed/function/web"
+                    }
+                ],
+                "actions": [
+                    {
+                        "name": "edit",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000245"
+                    },
+                    {
+                        "name": "retire",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000245"
+                    },
+                    {
+                        "name": "set_ownership",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000245"
+                    },
+                    {
+                        "name": "start",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000245"
+                    },
+                    {
+                        "name": "stop",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000245"
+                    },
+                    {
+                        "name": "suspend",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000245"
+                    },
+                    {
+                        "name": "delete",
+                        "method": "delete",
+                        "href": "http://localhost:3001/api/services/10000000000245"
+                    }
+                ]
+            },
+            {
+                "href": "http://localhost:3001/api/services/10000000000230",
+                "id": 10000000000230,
+                "name": "bz1375639",
+                "description": "RHEL7 on Amazon AWS",
+                "guid": "49013e02-7c3e-11e6-897d-005056b1c057",
+                "service_template_id": 10000000000018,
+                "options": {
+                    "dialog": {
+                        "dialog_service_name": "bz1375639",
+                        "dialog_tag_0_environment": "dev",
+                        "dialog_option_1_vm_name": "bz1375639",
+                        "dialog_tag_1_function": "app",
+                        "dialog_option_1_keypair": "",
+                        "dialog_vm_name": "bz1375639"
+                    }
+                },
+                "display": true,
+                "created_at": "2016-09-16T18:49:23Z",
+                "updated_at": "2016-09-16T18:49:30Z",
+                "evm_owner_id": 10000000000001,
+                "miq_group_id": 10000000000002,
+                "tenant_id": 10000000000001,
+                "picture": {
+                    "id": 10000000000014,
+                    "resource_id": 10000000000018,
+                    "resource_type": "ServiceTemplate",
+                    "image_href": "http://localhost:3001/pictures/10r14.png"
+                },
+                "chargeback_report": {
+                    "results": []
+                },
+                "evm_owner": {
+                    "userid": "admin"
+                },
+                "miq_group": {
+                    "description": "EvmGroup-super_administrator"
+                },
+                "v_total_vms": 1,
+                "power_states": [
+                    "terminated"
+                ],
+                "all_service_children": [],
+                "all_vms": [
+                    {
+                        "id": 10000000000950,
+                        "vendor": "amazon",
+                        "name": "bz1375639",
+                        "location": "ec2-54-71-96-5.us-west-2.compute.amazonaws.com",
+                        "created_on": "2016-09-16T18:51:50Z",
+                        "updated_on": "2016-09-28T17:28:18Z",
+                        "guid": "a043ab28-7c3e-11e6-872f-005056b1e4d4",
+                        "uid_ems": "i-05091373001555722",
+                        "retires_on": "2016-10-16T00:00:00Z",
+                        "retired": false,
+                        "boot_time": "2016-09-22T19:21:59Z",
+                        "power_state": "terminated",
+                        "state_changed_on": "2016-09-28T17:28:18Z",
+                        "previous_state": "stopped",
+                        "last_perf_capture_on": "2016-09-23T14:07:00Z",
+                        "template": false,
+                        "evm_owner_id": 10000000000001,
+                        "miq_group_id": 10000000000002,
+                        "type": "ManageIQ::Providers::Amazon::CloudManager::Vm",
+                        "ems_ref": "i-05091373001555722",
+                        "retirement_warn": 7,
+                        "flavor_id": 10000000000010,
+                        "cloud": true,
+                        "raw_power_state": "unknown",
+                        "tenant_id": 10000000000001
+                    }
+                ],
+                "custom_actions": {
+                    "buttons": [],
+                    "button_groups": []
+                },
+                "service_resources": [
+                    {
+                        "id": 10000000000612,
+                        "resource_id": 10000000000106,
+                        "resource_type": "MiqRequest",
+                        "group_idx": 0,
+                        "scaling_min": 1,
+                        "scaling_max": -1,
+                        "created_at": "2016-09-16T18:49:23Z",
+                        "updated_at": "2016-09-16T18:49:23Z",
+                        "service_id": 10000000000230,
+                        "provision_index": 0
+                    },
+                    {
+                        "id": 10000000000613,
+                        "resource_id": 10000000000950,
+                        "resource_type": "VmOrTemplate",
+                        "group_idx": 0,
+                        "scaling_min": 1,
+                        "scaling_max": -1,
+                        "created_at": "2016-09-16T18:52:01Z",
+                        "updated_at": "2016-09-16T18:52:01Z",
+                        "service_id": 10000000000230,
+                        "provision_index": 0
+                    }
+                ],
+                "tags": [
+                    {
+                        "id": 10000000000023,
+                        "name": "/managed/environment/dev"
+                    },
+                    {
+                        "id": 10000000000185,
+                        "name": "/managed/function/app"
+                    }
+                ],
+                "actions": [
+                    {
+                        "name": "edit",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000230"
+                    },
+                    {
+                        "name": "retire",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000230"
+                    },
+                    {
+                        "name": "set_ownership",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000230"
+                    },
+                    {
+                        "name": "start",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000230"
+                    },
+                    {
+                        "name": "stop",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000230"
+                    },
+                    {
+                        "name": "suspend",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000230"
+                    },
+                    {
+                        "name": "delete",
+                        "method": "delete",
+                        "href": "http://localhost:3001/api/services/10000000000230"
+                    }
+                ]
+            }
+        ]
+    },
+    "post": {},
+    "delete": {}
+}
