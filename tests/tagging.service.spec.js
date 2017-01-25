@@ -1,8 +1,8 @@
-describe('app.services.taggingService', function() {
+describe('taggingService', function() {
   var service;
   var collectionsApiMock;
 
-  beforeEach(module('app.states', 'app.services'));
+  beforeEach(module('app.states'));
 
   beforeEach(inject(function(taggingService, CollectionsApi) {
     service = taggingService;

@@ -5,7 +5,7 @@ describe('app.components.ProfilesDetailsDirective', function() {
   let element;
 
   beforeEach(function () {
-    module('app.services', 'app.states', 'app.components');
+    module('app.states', 'app.components');
     bard.inject('$state', 'Session', '$httpBackend', 'ProfilesState');
   });
 

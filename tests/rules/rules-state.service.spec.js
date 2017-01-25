@@ -1,6 +1,6 @@
-describe('app.services.RulesState', function() {
+describe('RulesState', function() {
   beforeEach(function () {
-    module('app.services', 'app.states');
+    module('app.states');
   });
 
   describe('service', function () {

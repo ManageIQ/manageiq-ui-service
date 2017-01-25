@@ -1,6 +1,6 @@
 describe('app.states.ProfilesState', function() {
   beforeEach(function () {
-    module('app.services', 'app.states');
+    module('app.states');
     bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session', '$httpBackend');
   });
 
