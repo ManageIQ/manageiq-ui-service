@@ -1,0 +1,32 @@
+{
+    "url": "arbitration_profiles?filter[]=id%3E0&hide=resources",
+    "get": {
+        "name": "arbitration_profiles",
+        "count": 0,
+        "subcount": 0,
+        "actions": [
+            {
+                "name": "query",
+                "method": "post",
+                "href": "http://localhost:3001/api/arbitration_profiles"
+            },
+            {
+                "name": "create",
+                "method": "post",
+                "href": "http://localhost:3001/api/arbitration_profiles"
+            },
+            {
+                "name": "edit",
+                "method": "post",
+                "href": "http://localhost:3001/api/arbitration_profiles"
+            },
+            {
+                "name": "delete",
+                "method": "post",
+                "href": "http://localhost:3001/api/arbitration_profiles"
+            }
+        ]
+    },
+    "post": {},
+    "delete": {}
+}
