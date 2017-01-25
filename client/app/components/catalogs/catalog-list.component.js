@@ -2,117 +2,49 @@
 
 export const CatalogsListComponent = {
   templateUrl: "app/components/catalogs/catalog-list.html",
-  bindings: {
-    designerCatalogs: "=",
-    serviceTemplates: "=",
-    tenants: "=",
-    refreshFn: "<",
-  },
   controller: ComponentController,
   controllerAs: 'vm',
   bindToController: true,
 };
 
 /** @ngInject */
-function ComponentController(CatalogsState, $scope, lodash, sprintf, ListView, $state) {
+function ComponentController($state, Session, CatalogsState, lodash, sprintf, ListView, EventNotifications) {
   var vm = this;
-  var watchers = [];
 
   vm.$onInit = function() {
-    angular.extend(vm,
-      {
-        title: __('Catalogs'),
-        designerCatalogsList: [],
-        selectedCatalogs: [],
-        menuActions: createMenuActions(),
-        listActions: createListActions(),
-        toolbarConfig: {
-          filterConfig: createFilterConfig(),
-          sortConfig: createSortConfig(),
-          actionsConfig: createActionsConfig(),
-        },
-        confirmDelete: false,
-        catalogsToDelete: [],
-        deleteConfirmationMessage: '',
-        removeCatalog: removeCatalog,
-        cancelRemoveCatalog: cancelRemoveCatalog,
-        listConfig: createListConfig(),
-        serviceTemplatesListConfig: createServiceTemplatesConfig(),
-        listActionDisable: listActionDisable,
-      }
-    );
+    angular.extend(vm, {
+      title: __('Catalogs'),
+      currentUser: Session.currentUser(),
+      loading: false,
+      confirmDelete: false,
+      catalogsToDelete: [],
+      deleteConfirmationMessage: '',
 
-    watchers.push($scope.$watch(function() {
-      return vm.designerCatalogs;
-    }, function() {
-      updateCatalogsInfo();
-    }));
+      limit: 20,
+      filterCount: 0,
+      catalogs: [],
+      catalogsList: [],
+      selectedItemsList: [],
+      limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
 
-    watchers.push($scope.$watch(function() {
-      return vm.serviceTemplates;
-    }, function() {
-      updateCatalogsInfo();
-    }));
+      // Functions
+      resolveCatalogs: resolveCatalogs,
+      removeCatalog: removeCatalog,
+      cancelRemoveCatalog: cancelRemoveCatalog,
+      listActionDisable: listActionDisable,
 
-    watchers.push($scope.$watch(function() {
-      return vm.tenants;
-    }, function() {
-      updateCatalogsInfo();
-    }));
+      // Config
+      listConfig: getListConfig(),
+      menuActions: getMenuActions(),
+      listActions: getListActions(),
+      toolbarConfig: getToolbarConfig(),
+      expandedListConfig: getExpandedListConfig(),
 
-    updateCatalogsInfo();
-  };
-
-  vm.$onDestroy = function() {
-    angular.forEach(watchers, function(watcher) {
-      if (angular.isFunction(watcher)) {
-        watcher();
-      }
-    });
-  };
-
-  function updateCatalogInfo(catalog) {
-    if (!catalog.serviceTemplates) {
-      catalog.serviceTemplates = [];
-    } else {
-      catalog.serviceTemplates.splice(0, catalog.serviceTemplates.length);
-    }
-
-    CatalogsState.setCatalogServiceTemplates(catalog, vm.serviceTemplates);
-
-    catalog.disableRowExpansion = catalog.serviceTemplates.length < 1;
-
-    angular.forEach(catalog.serviceTemplates, function(nextServiceTemplate) {
-      CatalogsState.getServiceTemplateDialogs(nextServiceTemplate.id).then(function(response) {
-        nextServiceTemplate.dialog = response.resources[0];
-      });
     });
 
-    catalog.serviceTemplatesTooltip = sprintf(__("%d Service Templates"), catalog.serviceTemplates.length);
+    resolveCatalogs(vm.limit, 0);
 
-    catalog.tenant = lodash.find(vm.tenants, {id: catalog.tenant_id});
-  }
-
-  function updateCatalogsInfo() {
-    if (vm.designerCatalogs) {
-      angular.forEach(vm.designerCatalogs, function(catalog) {
-        updateCatalogInfo(catalog);
-      });
-
-      vm.designerCatalogs.sort(compareCatalogs);
-      doFilter(CatalogsState.getFilters());
-    }
-  }
-
-
-  function sortChange(sortId, isAscending) {
-    if (vm.designerCatalogsList) {
-      vm.designerCatalogsList.sort(compareCatalogs);
-
-      /* Keep track of the current sorting state */
-      CatalogsState.setSort(sortId, vm.toolbarConfig.sortConfig.isAscending);
-    }
-  }
+  };
 
   function compareCatalogs(item1, item2) {
     var sortField = vm.toolbarConfig.sortConfig.currentField;
@@ -150,49 +82,38 @@ function ComponentController(CatalogsState, $scope, lodash, sprintf, ListView, $
   }
 
   function filterChange(filters) {
-    doFilter(filters);
-  }
+    vm.catalogsList = ListView.applyFilters(filters, vm.catalogsList, vm.catalogs, CatalogsState, matchesFilter);
+    resolveCatalogs(vm.limit, 0);
 
-  function doFilter(filters) {
-    vm.designerCatalogsList = ListView.applyFilters(filters,
-      vm.designerCatalogsList,
-      vm.designerCatalogs,
-      CatalogsState,
-      matchesFilter);
-    vm.toolbarConfig.filterConfig.resultsCount = vm.designerCatalogsList.length;
+    function matchesFilter(item, filter) {
+      var found = false;
 
-    /* Make sure sorting direction is maintained */
-    sortChange(CatalogsState.getSort().currentField, CatalogsState.getSort().isAscending);
-  }
-
-  function nameCompare(object, value) {
-    var match = false;
-
-    if (angular.isString(object.name) && angular.isString(value)) {
-      match = object.name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
-    }
-
-    return match;
-  }
-
-  function matchesFilter(item, filter) {
-    var found = false;
-
-    if (filter.id === 'name') {
-      found = nameCompare(item, filter.value);
-    } else if (filter.id === 'description') {
-      found = item.description.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-    } else if (filter.id === 'tenant') {
-      found = item.tenant && item.tenant.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-    } else if (filter.id === 'service') {
-      if (item.serviceTemplates) {
-        found = lodash.find(item.serviceTemplates, function(nextService) {
-          return nextService.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-        });
+      if (filter.id === 'name') {
+        found = nameCompare(item, filter.value);
+      } else if (filter.id === 'description') {
+        found = item.description.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else if (filter.id === 'tenant') {
+        found = item.tenant && item.tenant.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      } else if (filter.id === 'service') {
+        if (item.serviceTemplates) {
+          found = lodash.find(item.serviceTemplates, function(nextService) {
+            return nextService.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+          });
+        }
       }
+
+      return found;
     }
 
-    return found;
+    function nameCompare(object, value) {
+      var match = false;
+
+      if (angular.isString(object.name) && angular.isString(value)) {
+        match = object.name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
+      }
+
+      return match;
+    }
   }
 
   function editCatalog(catalog) {
@@ -208,14 +129,14 @@ function ComponentController(CatalogsState, $scope, lodash, sprintf, ListView, $
   }
 
   function handleSelectionChange() {
-    vm.selectedCatalogs = vm.designerCatalogs.filter(function(catalog) {
+    vm.selectedItemsList = vm.designerCatalogs.filter(function(catalog) {
       return catalog.selected;
     });
   }
 
   function editSelectedCatalog() {
-    if (vm.selectedCatalogs && vm.selectedCatalogs.length === 1) {
-      editCatalog(vm.selectedCatalogs[0]);
+    if (vm.selectedItemsList && vm.selectedItemsList.length === 1) {
+      editCatalog(vm.selectedItemsList[0]);
     }
   }
 
@@ -258,7 +179,7 @@ function ComponentController(CatalogsState, $scope, lodash, sprintf, ListView, $
 
   function deleteSelectedCatalogs() {
     vm.catalogsToDelete.splice(0, vm.catalogsToDelete.length);
-    angular.forEach(vm.selectedCatalogs, function(selected) {
+    angular.forEach(vm.selectedItemsList, function(selected) {
       vm.catalogsToDelete.push(selected);
     });
 
@@ -267,7 +188,24 @@ function ComponentController(CatalogsState, $scope, lodash, sprintf, ListView, $
       vm.catalogsToDelete.length);
   }
 
-  function createMenuActions() {
+  function listActionDisable(config, items) {
+    // editListAction.isDisabled = items.length !== 1;
+    // deleteListAction.isDisabled = items.length < 1;
+  }
+
+  // Config
+
+  function getListConfig() {
+    return {
+      // showSelectBox: checkApproval(),
+      useExpandingRows: true,
+      selectionMatchProp: 'id',
+      // onClick: expandRow,
+      onCheckBoxChange: handleSelectionChange,
+    };
+  }
+
+  function getMenuActions() {
     return [
       {
         name: __('Edit'),
@@ -282,54 +220,53 @@ function ComponentController(CatalogsState, $scope, lodash, sprintf, ListView, $
     ];
   }
 
-  var createListAction = {
-    name: __('Create'),
-    actionName: 'create',
-    title: __('Create new catalog'),
-    actionFn: addCatalog,
-    isDisabled: false,
-  };
-
-  var editListAction = {
-    name: __('Edit'),
-    actionName: 'edit',
-    title: __('Edit selected catalog'),
-    actionFn: editSelectedCatalog,
-    isDisabled: false,
-  };
-
-  var deleteListAction = {
-    name: __('Delete'),
-    actionName: 'delete',
-    title: __('Delete selected catalogs'),
-    actionFn: deleteSelectedCatalogs,
-    isDisabled: false,
-  };
-
-  function createListActions() {
+  function getListActions() {
     return [
       {
         name: __('Configuration'),
         actionName: 'configuration',
         icon: 'fa fa-cog',
         isDisabled: false,
-        actions: [createListAction, editListAction, deleteListAction],
+        actions: [{
+          name: __('Create'),
+          actionName: 'create',
+          title: __('Create new catalog'),
+          actionFn: addCatalog,
+          isDisabled: false,
+        }, {
+          name: __('Edit'),
+          actionName: 'edit',
+          title: __('Edit selected catalog'),
+          actionFn: editSelectedCatalog,
+          isDisabled: false,
+        }, {
+          name: __('Delete'),
+          actionName: 'delete',
+          title: __('Delete selected catalogs'),
+          actionFn: deleteSelectedCatalogs,
+          isDisabled: false,
+        }],
       },
     ];
   }
 
-  function listActionDisable(config, items) {
-    editListAction.isDisabled = items.length !== 1;
-    deleteListAction.isDisabled = items.length < 1;
+  function getToolbarConfig() {
+    return {
+      filterConfig: getFilterConfig(),
+      sortConfig: getSortConfig(),
+      actionsConfig: {
+        actionsInclude: true,
+      },
+    };
   }
 
-  function createFilterConfig() {
+  function getFilterConfig() {
     return {
       fields: [
-        ListView.createFilterField('name',        __('Name'),        __('Filter by Name'),        'text'),
+        ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
         ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text'),
-        ListView.createFilterField('tenant',      __('Tenant'),      __('Filter by Tenant name'), 'text'),
-        ListView.createFilterField('service',     __('Service'),     __('Filter by Service'),     'text'),
+        ListView.createFilterField('tenant', __('Tenant'), __('Filter by Tenant name'), 'text'),
+        ListView.createFilterField('service', __('Service'), __('Filter by Service'), 'text'),
       ],
       resultsCount: 0,
       appliedFilters: CatalogsState.getFilters(),
@@ -337,11 +274,11 @@ function ComponentController(CatalogsState, $scope, lodash, sprintf, ListView, $
     };
   }
 
-  function createSortConfig() {
+  function getSortConfig() {
     return {
       fields: [
-        ListView.createSortField('name',         __('Name'),          'alpha'),
-        ListView.createSortField('tenant',       __('Tenant'),        'alpha'),
+        ListView.createSortField('name', __('Name'), 'alpha'),
+        ListView.createSortField('tenant', __('Tenant'), 'alpha'),
         ListView.createSortField('catalogItems', __('Catalog Items'), 'numeric'),
       ],
       onSortChange: sortChange,
@@ -350,22 +287,71 @@ function ComponentController(CatalogsState, $scope, lodash, sprintf, ListView, $
     };
   }
 
-  function createActionsConfig() {
-    return {
-      actionsInclude: true,
-    };
-  }
-
-  function createListConfig() {
-    return {
-      useExpandingRows: true,
-      onCheckBoxChange: handleSelectionChange,
-    };
-  }
-
-  function createServiceTemplatesConfig() {
+  function getExpandedListConfig(){
     return {
       showSelectBox: false,
+      selectionMatchProp: 'id',
+      onClick: viewDetails,
     };
   }
+
+  // Private
+
+  function resolveCatalogs(limit, offset, refresh) {
+    if (!refresh) {
+      vm.loading = true;
+    }
+
+    vm.offset = offset;
+    CatalogsState.getCatalogs(
+      limit,
+      offset,
+      CatalogsState.getFilters(),
+      CatalogsState.getSort().currentField,
+      CatalogsState.getSort().isAscending).then(success, failure);
+
+    function success(response) {
+      vm.loading = false;
+      vm.catalogs = [];
+      vm.selectedItemsList = [];
+      vm.toolbarConfig.filterConfig.resultsCount = vm.filterCount;
+
+      angular.forEach(response.resources, checkExpansion);
+
+      function checkExpansion(item) {
+        if (angular.isDefined(item.id)) {
+          item.disableRowExpansion = angular.isUndefined(item.service_templates) || item.service_templates.length;
+          vm.catalogs.push(item);
+        }
+      }
+
+
+      vm.catalogsList = angular.copy(vm.catalogs);
+
+      getFilterCount();
+
+      function getFilterCount() {
+        CatalogsState.getMinimal(CatalogsState.getFilters()).then(querySuccess, failure);
+
+        function querySuccess(result) {
+          vm.filterCount = result.subcount;
+        }
+      }
+    }
+
+    function failure(error) {
+      vm.loading = false;
+      EventNotifications.error(__('There was an error loading catalogs.'));
+    }
+  }
+
+  function sortChange(sortId, direction) {
+    CatalogsState.setSort(sortId, direction);
+    resolveCatalogs(vm.limit, 0)
+  }
+
+  function viewDetails(template) {
+    $state.go('marketplace.details', {serviceTemplateId: template.id});
+  }
+
 }

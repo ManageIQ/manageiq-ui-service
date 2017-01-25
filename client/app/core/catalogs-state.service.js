@@ -1,88 +1,63 @@
 /** @ngInject */
-export function CatalogsStateFactory(CollectionsApi, EventNotifications, lodash, sprintf) {
-  var catalogState = {};
-
-  catalogState.sort = {
+export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf) {
+  const collection = 'service_catalogs';
+  let sort = {
     isAscending: true,
     currentField: {id: 'name', title: __('Name'), sortType: 'alpha'},
   };
+  let filters = [];
 
-  catalogState.filters = [];
-
-  catalogState.setSort = function(currentField, isAscending) {
-    catalogState.sort.isAscending = isAscending;
-    catalogState.sort.currentField = currentField;
+  return {
+    getSort: getSort,
+    getMinimal: getMinimal,
+    getCatalogs: getCatalogs,
+    setSort: setSort,
+    getFilters: getFilters,
+    setFilters: setFilters,
+    addCatalog: addCatalog,
+    editCatalog: editCatalog,
+    addServiceTemplates: addServiceTemplates,
+    removeServiceTemplates: removeServiceTemplates,
+    deleteCatalogs: deleteCatalogs,
   };
 
-  catalogState.getSort = function() {
-    return catalogState.sort;
-  };
 
-  catalogState.setFilters = function(filterArray) {
-    catalogState.filters = filterArray;
-  };
+  function setSort(currentField, isAscending) {
+    sort.isAscending = isAscending;
+    sort.currentField = currentField;
+  }
 
-  catalogState.getFilters = function() {
-    return catalogState.filters;
-  };
+  function getSort() {
+    return sort;
+  }
 
-  catalogState.getCatalogs = function() {
-    var options = {
-      expand: 'resources',
+  function setFilters(filterArray) {
+    filters = filterArray;
+  }
+
+  function getFilters() {
+    return filters;
+  }
+
+  function getCatalogs() {
+    const options = {
+      expand: ['resources', 'service_templates'],
+      attributes: ['tenant', 'picture', 'picture.image_href', 'service_template_catalog.name', 'dialogs'],
     };
 
-    return CollectionsApi.query('service_catalogs', options);
-  };
+    return CollectionsApi.query(collection, options);
+  }
 
-  catalogState.getServiceTemplates = function() {
-    var attributes = ['picture', 'picture.image_href', 'service_template_catalog.name'];
-    var options = {
-      expand: 'resources',
-      filter: ['display=true'],
-      attributes: attributes,
+  function getMinimal(filters) {
+    const options = {
+      filter: getQueryFilters(filters),
+      hide: 'resources',
     };
 
-    return CollectionsApi.query('service_templates', options);
-  };
+    return CollectionsApi.query(collection, options);
+  }
 
-  catalogState.getTenants = function() {
-    var options = {
-      expand: 'resources',
-    };
-
-    return CollectionsApi.query('tenants', options);
-  };
-
-  catalogState.getServiceTemplateDialogs = function(serviceTemplateId) {
-    var options = {
-      expand: 'resources',
-      attributes: ['id', 'label'],
-    };
-
-    return CollectionsApi.query('service_templates/' + serviceTemplateId + '/service_dialogs', options);
-  };
-
-  catalogState.setCatalogServiceTemplates = function(catalog, serviceTemplates) {
-    if (angular.isUndefined(catalog.serviceTemplates)) {
-      catalog.serviceTemplates = [];
-    } else {
-      catalog.serviceTemplates.splice(0, catalog.serviceTemplates.length);
-    }
-
-    angular.forEach(catalog.service_templates.resources, function(nextTemplate) {
-      var splits = nextTemplate.href.split('/');
-      var templateId = parseInt(splits[splits.length - 1], 10);
-      var serviceTemplate = lodash.find(serviceTemplates, {id: templateId});
-      if (serviceTemplate) {
-        catalog.serviceTemplates.push(serviceTemplate);
-      }
-    });
-    catalog.serviceTemplates.sort(function(item1, item2) {
-      return item1.name.localeCompare(item2.name);
-    });
-  };
-
-  catalogState.addCatalog = function(catalogObj, skipResults) {
+  function addCatalog(catalogObj, skipResults) {
     var addObj = {
       "action": "create",
       "resource": catalogObj,
@@ -105,9 +80,23 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, lodash,
     }
 
     return CollectionsApi.post('service_catalogs', null, {}, catalogObj).then(createSuccess, createFailure);
-  };
+  }
 
-  catalogState.editCatalog = function(catalog, skipResults) {
+  function getQueryFilters(filters) {
+    const queryFilters = [];
+
+    angular.forEach(filters, function(nextFilter) {
+      if (nextFilter.id === 'name') {
+        queryFilters.push("name='%" + nextFilter.value + "%'");
+      } else {
+        queryFilters.push(nextFilter.id + '=' + nextFilter.value);
+      }
+    });
+
+    return queryFilters;
+  }
+
+  function editCatalog(catalog, skipResults) {
     var editSuccess = function(response) {
       EventNotifications.success(sprintf(__('Designer catalog %s was successfully updated.'), catalog.name));
 
@@ -130,9 +119,9 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, lodash,
     };
 
     return CollectionsApi.post('service_catalogs', catalog.id, {}, editObj).then(editSuccess, editFailure);
-  };
+  }
 
-  catalogState.addServiceTemplates = function(catalogId, serviceTemplates, skipResults) {
+  function addServiceTemplates(catalogId, serviceTemplates, skipResults) {
     var editSuccess = function(response) {
       if (response && response.results && response.results[0] && response.results[0].success === false) {
         EventNotifications.error(__('There was an error updating catalog items for the designer catalog.'));
@@ -163,9 +152,9 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, lodash,
     };
 
     return CollectionsApi.post('service_catalogs/' + catalogId + '/service_templates', null, {}, editObj).then(editSuccess, editFailure);
-  };
+  }
 
-  catalogState.removeServiceTemplates = function(catalogId, serviceTemplates, skipResults) {
+  function removeServiceTemplates(catalogId, serviceTemplates, skipResults) {
     var editSuccess = function(response) {
       EventNotifications.success(__('Designer catalog %s was successfully updated.'));
 
@@ -188,9 +177,9 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, lodash,
     };
 
     return CollectionsApi.post('service_catalogs/' + catalogId + '/service_templates', null, {}, editObj).then(editSuccess, editFailure);
-  };
+  }
 
-  catalogState.deleteCatalogs = function(catalogs) {
+  function deleteCatalogs(catalogs) {
     var catalogIds = [];
     for (var i = 0; i < catalogs.length; i++) {
       catalogIds.push({id: catalogs[i].id});
@@ -210,7 +199,5 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, lodash,
     }
 
     return CollectionsApi.post('service_catalogs', null, {}, options).then(success, failure);
-  };
-
-  return catalogState;
+  }
 }

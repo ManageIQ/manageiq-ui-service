@@ -51,7 +51,7 @@ export default angular
   ])
   .directive('autofocus', AutofocusDirective)
   .component('catalogEditor', CatalogEditorComponent)
-  .component('catalogsList', CatalogsListComponent)
+  .component('catalogExplorer', CatalogsListComponent)
   .directive('confirmation', ConfirmationDirective)
   .directive('customButton', CustomButtonDirective)
   .component('customDropdown', CustomDropdownComponent)

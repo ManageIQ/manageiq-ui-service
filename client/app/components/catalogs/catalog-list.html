@@ -1,13 +1,36 @@
-<div class="designer-catalogs-list">
-  <div pf-toolbar class="section-toolbar" id="designerCatalogsToolbar" config="vm.toolbarConfig">
-    <actions>
-      <custom-dropdown config="item" items="vm.selectedCatalogs"
-                       items-count="vm.selectedCatalogs.length"
-                       ng-repeat="item in vm.listActions"
-                       on-update="vm.listActionDisable($config, $changes)">
-      </custom-dropdown>
-    </actions>
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li>{{'Catalogs'|translate}}</li>
+        <li class="active">{{vm.title}}</li>
+      </ol>
+  </span>
+  <div class="view-selector-bar">
+    <div class="form-group toolbar-pf-view-selector">
+      <button class="btn btn-link"
+              ng-click="vm.viewSelected('listView')"
+              ng-class="{active: vm.viewType === 'listView'}">
+        <i class="fa fa-th-list"></i>
+      </button>
+      <button class="btn btn-link"
+              ng-click="vm.viewSelected('cardView')"
+              ng-class="{active: vm.viewType === 'cardView'}">
+        <i class="fa fa-th"></i>
+      </button>
+    </div>
   </div>
+</div>
+<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
+  <actions>
+    <custom-dropdown config="item" items="vm.selectedCatalogs"
+                     items-count="vm.selectedCatalogs.length"
+                     ng-repeat="item in vm.listActions"
+                     on-update="vm.listActionDisable($config, $changes)"
+                     menu-right="true">
+    </custom-dropdown>
+  </actions>
+</div>
+<div class="list-view-container section-container paged-container service-explorer-list">
   <div class="list-view-container section-container"
        confirmation
        confirmation-id="confirmDeleteCatalog"
@@ -22,48 +45,48 @@
        confirmation-items-title="{{'Catalogs'|translate}}"
        confirmation-items="vm.catalogsToDelete"
        confirmation-item-name-field="name">
-  <div pf-list-view id="my-list"
+    <div pf-list-view id="my-list"
          config="vm.listConfig"
-         items="vm.designerCatalogsList"
+         items="vm.catalogsList"
          action-buttons="vm.actionButtons"
          menu-actions="vm.menuActions">
-        <div class="row">
-          <div class="col-lg-2 col-md-3 col-sm-5 col-xs-12">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-5 col-xs-12">
             <span class="no-wrap"
                   tooltip="{{item.name}}"
                   tooltip-placement="bottom"
                   tooltip-popup-delay="1000">
               <strong>{{item.name}}</strong>
             </span>
-          </div>
-          <div class="col-lg-5 col-md-4 hidden-sm hidden-xs">
+        </div>
+        <div class="col-lg-5 col-md-4 hidden-sm hidden-xs">
             <span class="no-wrap" tooltip="{{item.description}}" tooltip-placement="bottom" tooltip-popup-delay="1000">
               {{item.description}}
             </span>
-          </div>
-          <div class="col-md-3 col-sm-4 col-xs-6">
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-6">
             <span class="no-wrap" ng-if="item.tenant">
               <span class="list-item-img tenant-img"></span>
               <span tooltip="{{item.tenant.name}}" tooltip-placement="bottom" tooltip-popup-delay="1000">
                 {{item.tenant.name}}
               </span>
             </span>
-          </div>
-          <div class="col-md-2 col-sm-3 col-xs-6"
-               tooltip="{{item.serviceTemplatesTooltip}}"
-               tooltip-placement="bottom"
-               tooltip-popup-delay="1000">
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-6"
+             tooltip="{{item.serviceTemplatesTooltip}}"
+             tooltip-placement="bottom"
+             tooltip-popup-delay="1000">
             <span class="no-wrap">
               <span class="fa pficon-service"></span>
               <span>{{item.serviceTemplates.length}}</span>
             </span>
-          </div>
+        </div>
       </div>
       <list-expanded-content>
         <div pf-list-view
-             class="designer-catalog-templates-list"
-             config="vm.serviceTemplatesListConfig"
-             items="$parent.item.serviceTemplates">
+             class="service-explorer-children-list"
+             config="vm.expandedListConfig"
+             items="$parent.item.service_templates.resources">
           <span class="list-view-expand-content-left ss-list-view__title-img">
             <span class="ss-list-view__title-img__center"></span>
             <img class="ss-list-view__title-img__logo" ng-src="{{item.picture.image_href}}" ng-if="item.picture"/>
@@ -92,14 +115,14 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
               <span class="list-item-title" translate>Dialog</span>
-              <span ng-if="item.dialog"
-                    tooltip="{{item.dialog.label}}"
+              <span ng-if="item.dialogs.length"
+                    tooltip="{{itekm.dialogs[0].label}}"
                     tooltip-placement="bottom"
                     tooltip-append-to-body="true"
                     tooltip-popup-delay="1000">
-                {{item.dialog.label}}
+                {{item.dialogs[0].label}}
               </span>
-              <span ng-if="!item.dialog" translate>No Dialog</span>
+              <!--<span ng-if="item.dialogs.length > 0" translate>No Dialog</span>-->
             </div>
           </div>
         </div>
@@ -107,3 +130,6 @@
     </div>
   </div>
 </div>
+<explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions"
+                     on-update="vm.resolveCatalogs($limit, $offset)">
+</explorer-pagination>
