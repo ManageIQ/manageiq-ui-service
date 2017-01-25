@@ -48,6 +48,7 @@ function loadDataFiles() {
       });
     });
 }
+<<<<<<< HEAD
 
 function loadLocalOverrideFiles(allEndpoints) {
   return new Promise(
@@ -110,6 +111,65 @@ function buildRESTRoute(data, endpointName) {
     if (endpoint === endpointName && data.hasOwnProperty(endpoint)) { //this happens when no querystring is passed
       match = data[endpoint];
     }
+=======
+
+function loadLocalOverrideFiles(allEndpoints) {
+  return new Promise(
+    function (resolve, reject) {
+      glob("./local/**/*.json", function (er, files) {
+        files.forEach(function (file) {
+          allEndpoints = processFile(file, allEndpoints);
+        });
+        resolve(allEndpoints);
+      });
+    });
+}
+
+function processFile(file,allEndpoints) {
+  var dataFile = require(file);
+
+  var urlParts = url.parse(dataFile.url);
+  var endpoint = urlParts.pathname;
+
+  if (!allEndpoints.hasOwnProperty(endpoint)) {
+    allEndpoints[endpoint] = {};
+  }
+  //if it is a subpath deal with stripping out endpoint and create a
+  if (endpoint.includes('/')) {
+    var urlArray = endpoint.split('/');
+    var actualEndpoint = urlArray.shift();
+    var remainingUrl = urlArray.join('/');
+    if (!allEndpoints.hasOwnProperty(actualEndpoint)) {
+      allEndpoints[actualEndpoint] = {};
+    }
+    allEndpoints[actualEndpoint][remainingUrl] = dataFile;
+  }
+  if (urlParts.query != null) {
+    allEndpoints[endpoint][urlParts.query] = dataFile;
+  }
+  else {
+    allEndpoints[endpoint][endpoint] = dataFile;
+  }
+  return allEndpoints;
+}
+function buildRESTRoute(data, endpointName) {
+  var urlPath = '';
+  if (endpointName === 'api') {
+    urlPath = '/api';
+  }
+  else {
+    urlPath = '/api/' + endpointName + '*';
+  }
+
+  server.all(urlPath, function (req, res) {
+    var url_parts = url.parse(req.url, false);
+    var query = req.url;
+    var endpoint = query.replace(/\/api\//,"");
+    var match = '';
+    if (endpoint === endpointName && data.hasOwnProperty(endpoint)) { //this happens when no querystring is passed
+      match = data[endpoint];
+    }
+>>>>>>> 5a32a24... Updated Mock api to support new file format
     else {
       var querystrings = Object.keys(data).map(key => data[key]);
 
