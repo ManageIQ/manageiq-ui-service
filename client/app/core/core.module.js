@@ -36,6 +36,7 @@ import { ServerInfo } from './server-info.service.js';
 import { ServicesStateFactory } from './services-state.service.js';
 import { SessionFactory } from './session.service.js';
 import { ShoppingCartFactory } from './shopping-cart.service.js';
+import { SkinModule } from '../skin/skin.module.js';
 import { gettextInit } from './gettext.config.js';
 import { layoutInit } from  './layouts.config.js';
 import { substitute } from '../filters/substitute.js';
@@ -43,18 +44,19 @@ import { taggingService } from './tagging.service.js';
 
 export const CoreModule = angular
   .module('app.core', [
-    'gettext',
-    'ngAnimate',
-    'ngSanitize',
-    'ngMessages',
-    'ui.router',
     'base64',
-    'ngStorage',
+    'gettext',
+    'miqStaticAssets',
+    'ngAnimate',
     'ngCookies',
+    'ngMessages',
+    'ngSanitize',
+    'ngStorage',
+    'ui.router',
 
     ExceptionModule,
     RouterModule,
-    'app.skin',
+    SkinModule,
   ])
   .constant('lodash', _)
   .constant('ActionCable', ActionCable)
