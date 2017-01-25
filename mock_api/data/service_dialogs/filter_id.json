@@ -1,0 +1,42 @@
+{
+    "url": "service_dialogs?filter[]=id%3E0&hide=resources",
+    "get": {
+        "name": "service_dialogs",
+        "count": 26,
+        "subcount": 26,
+        "actions": [
+            {
+                "name": "query",
+                "method": "post",
+                "href": "http://localhost:3001/api/service_dialogs"
+            },
+            {
+                "name": "refresh_dialog_fields",
+                "method": "post",
+                "href": "http://localhost:3001/api/service_dialogs"
+            },
+            {
+                "name": "delete",
+                "method": "post",
+                "href": "http://localhost:3001/api/service_dialogs"
+            },
+            {
+                "name": "create",
+                "method": "post",
+                "href": "http://localhost:3001/api/service_dialogs"
+            },
+            {
+                "name": "edit",
+                "method": "post",
+                "href": "http://localhost:3001/api/service_dialogs"
+            },
+            {
+                "name": "copy",
+                "method": "post",
+                "href": "http://localhost:3001/api/service_dialogs"
+            }
+        ]
+    },
+    "post": {},
+    "delete": {}
+}

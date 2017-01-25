@@ -1,0 +1,32 @@
+{
+    "url": "arbitration_rules?filter[]=id%3E0&hide=resources",
+    "get": {
+        "name": "arbitration_rules",
+        "count": 0,
+        "subcount": 0,
+        "actions": [
+            {
+                "name": "query",
+                "method": "post",
+                "href": "http://localhost:3001/api/arbitration_rules"
+            },
+            {
+                "name": "create",
+                "method": "post",
+                "href": "http://localhost:3001/api/arbitration_rules"
+            },
+            {
+                "name": "delete",
+                "method": "post",
+                "href": "http://localhost:3001/api/arbitration_rules"
+            },
+            {
+                "name": "edit",
+                "method": "post",
+                "href": "http://localhost:3001/api/arbitration_rules"
+            }
+        ]
+    },
+    "post": {},
+    "delete": {}
+}
