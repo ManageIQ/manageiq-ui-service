@@ -1,0 +1,37 @@
+{
+    "url": "service_orders?filter[]=state%3Dordered&hide=resources",
+    "get": {
+        "name": "service_orders",
+        "count": 191,
+        "subcount": 129,
+        "actions": [
+            {
+                "name": "query",
+                "method": "post",
+                "href": "http://localhost:3001/api/service_orders"
+            },
+            {
+                "name": "create",
+                "method": "post",
+                "href": "http://localhost:3001/api/service_orders"
+            },
+            {
+                "name": "edit",
+                "method": "post",
+                "href": "http://localhost:3001/api/service_orders"
+            },
+            {
+                "name": "delete",
+                "method": "post",
+                "href": "http://localhost:3001/api/service_orders"
+            },
+            {
+                "name": "copy",
+                "method": "post",
+                "href": "http://localhost:3001/api/service_orders"
+            }
+        ]
+    },
+    "post": {},
+    "delete": {}
+}
