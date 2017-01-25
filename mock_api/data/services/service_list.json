@@ -465,6 +465,7 @@
                     }
                 ]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             },
             {
@@ -3187,6 +3188,8 @@
                 "method": "post",
                 "href": "http://localhost:3001/api/services"
 >>>>>>> 305e4a5... Added new Mock api file formats
+=======
+>>>>>>> a62dd7d... Added New Endpoints
             }
         ]
     },
