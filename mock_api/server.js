@@ -67,9 +67,7 @@ function processFile(file,allEndpoints) {
   var urlParts = url.parse(dataFile.url);
   var endpoint = urlParts.pathname;
 
-  if (!allEndpoints.hasOwnProperty(endpoint)) {
-    allEndpoints[endpoint] = {};
-  }
+
   //if it is a subpath deal with stripping out endpoint and create a
   if (endpoint.includes('/')) {
     var urlArray = endpoint.split('/');
@@ -80,12 +78,19 @@ function processFile(file,allEndpoints) {
     }
     allEndpoints[actualEndpoint][remainingUrl] = dataFile;
   }
-  if (urlParts.query != null) {
-    allEndpoints[endpoint][urlParts.query] = dataFile;
-  }
   else {
-    allEndpoints[endpoint][endpoint] = dataFile;
+    if (!allEndpoints.hasOwnProperty(endpoint)) {
+      allEndpoints[endpoint] = {};
+    }
+
+    if (urlParts.query != null) {
+      allEndpoints[endpoint][urlParts.query] = dataFile;
+    }
+    else {
+      allEndpoints[endpoint][endpoint] = dataFile;
+    }
   }
+
   return allEndpoints;
 }
 function buildRESTRoute(data, endpointName) {
