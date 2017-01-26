@@ -123,8 +123,14 @@ function requestWorkflowController(API_BASE, lodash, CollectionsApi, $q) {
           fields = environmentFields();
           break;
         case 'hardware':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Hardware"));
-          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("VM Reservations"));
+          if (lodash.includes(vm.workflowClass, "CloudManager")) {
+            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Properties"));
+          } else {
+            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Hardware"));
+            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("VM Limits"));
+            vm.customizedWorkflow.dialogs[key].panelTitle[2] = (__("VM Reservations"));
+          }
+          fields = hardwareFields();
           break;
         case 'network':
           vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Network Adapter Information"));
@@ -230,11 +236,37 @@ function requestWorkflowController(API_BASE, lodash, CollectionsApi, $q) {
     };
   }
 
+  function hardwareFields() {
+    return {
+      instanceType: { label: 'instance_type', panel: 0, order: 0 },
+      numberOfCpus: { label: 'number_of_cpus', panel: 0, order: 1 },
+      numberOfSockets: { label: 'number_of_sockets', panel: 0, order: 2 },
+      coresPerSocket: { label: 'cores_per_socket', panel: 0, order: 3 },
+      vmMemory: { label: 'vm_memory', panel: 0, order: 4 },
+      networkAdapters: { label: 'network_adapters', panel: 0, order: 5 },
+      diskFormat: { label: 'disk_format', panel: 0, order: 6 },
+      guestAccessKeyPair: { label: 'guest_access_key_pair', panel: 0, order: 7 },
+      monitoring: { label: 'monitoring', panel: 0, order: 8 },
+      vmDynamicMemory: { label: 'vm_dynamic_memory', panel: 0, order: 9 },
+      vmMinimumMemory: { label: 'vm_minimum_memory', panel: 0, order: 10 },
+      vmMaximumMemory: { label: 'vm_maximum_memory', panel: 0, order: 11 },
+      bootDiskSize: { label: 'boot_disk_size', panel: 0, order: 12 },
+      isPreemptible: { label: 'is_preemptible', panel: 0, order: 13 },
+      cpuLimit: { label: 'cpu_limit', panel: 1, order: 0 },
+      memoryLimit: { label: 'memory_limit', panel: 1, order: 1 },
+      cpuReserve: { label: 'cpu_reserve', panel: 2, order: 0 },
+      memoryReserve: { label: 'memory_reserve', panel: 2, order: 1 },
+    };
+  }
+
   function fieldsLayout(tab, fields, nPanels) {
     vm.customizedWorkflow.dialogs[tab].fieldsInPanel = [];
 
-    lodash.merge(vm.customizedWorkflow.dialogs[tab].fields,
-      lodash.mapKeys(fields, function (v, k) { return lodash.snakeCase(k); }));
+    vm.customizedWorkflow.dialogs[tab].fields
+      = lodash.filter(lodash.merge(vm.customizedWorkflow.dialogs[tab].fields,
+        lodash.mapKeys(fields, function (v, k) { return lodash.snakeCase(k); })),
+        function(o) { return angular.isDefined(o.display); });
+
     lodash.times(nPanels, function(key, value) {
       vm.customizedWorkflow.dialogs[tab].fieldsInPanel[key]
         = Object.values(lodash.filter(vm.customizedWorkflow.dialogs[tab].fields, {'panel': key}));

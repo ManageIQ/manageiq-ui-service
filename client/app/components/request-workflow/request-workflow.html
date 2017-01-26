@@ -19,6 +19,9 @@
                       </div>
                       <div ng-if="field.data_type !== 'boolean' && field.label !== 'vm_tags'">
                         {{ vm.customizedWorkflow.values[field.label] }}
+                        <span ng-if="field.notes_display === 'show'">
+                          {{ field.notes }}
+                        </span>
                       </div>
                       <div ng-if="field.data_type === 'boolean'">
                         <input  ng-disabled="true"
