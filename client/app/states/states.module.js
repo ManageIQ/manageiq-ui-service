@@ -1,7 +1,8 @@
 import { AboutMeState } from './about-me/about-me.state.js';
 import { AdminState } from './administration/admin.state.js';
-import { CatalogsEditorState } from './designer/catalogs/editor/editor.state.js';
-import { CatalogsState } from './designer/catalogs/catalogs.state.js';
+import {CatalogsEditorState} from "./catalogs/editor/editor.state.js";
+import {CatalogsExplorerState} from "./catalogs/explorer/explorer.state.js";
+import {CatalogsState} from "./catalogs/catalogs.state.js";
 import { CustomButtonDetailsState } from './services/custom_button_details/custom_button_details.state.js';
 import { DashboardState } from './dashboard/dashboard.state.js';
 import { DesignerState } from './designer/designer.state.js';
@@ -44,6 +45,7 @@ export const AppRoutingModule = angular
   .run(RulesState)
   .run(DashboardState)
   .run(CatalogsState)
+  .run(CatalogsExplorerState)
   .run(CatalogsEditorState)
   .run(DesignerState)
   .run(DialogsState)

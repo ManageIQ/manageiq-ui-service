@@ -48,7 +48,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
     if (angular.isUndefined(catalog.id)) {
       catalog = vm.selectedItemsList[0];
     }
-    $state.go('designer.catalogs.editor', {catalogId: catalog.id});
+    $state.go('catalogs.editor', {catalogId: catalog.id});
   }
 
   function handleEdit(action, catalog) {
@@ -56,7 +56,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
   }
 
   function addCatalog() {
-    $state.go('designer.catalogs.editor');
+    $state.go('catalogs.editor');
   }
 
   function handleSelectionChange() {

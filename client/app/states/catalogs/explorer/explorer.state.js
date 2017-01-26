@@ -1,14 +1,13 @@
 /** @ngInject */
-export function CatalogsState(routerHelper) {
+export function CatalogsExplorerState(routerHelper) {
   routerHelper.configureStates(getStates());
 }
 
 function getStates() {
   return {
-    'designer.catalogs': {
-      parent: 'application',
-      url: '/designer/catalogs',
-      templateUrl: 'app/states/designer/catalogs/catalogs.html',
+    'catalogs.explorer': {
+      url: '',
+      templateUrl: 'app/states/catalogs/explorer/catalogs.html',
       controller: CatalogsController,
       controllerAs: 'vm',
       title: N_('Catalogs'),

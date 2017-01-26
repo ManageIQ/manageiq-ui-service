@@ -7,9 +7,9 @@ export function CatalogsEditorState(routerHelper) {
 
 function getStates() {
   return {
-    'designer.catalogs.editor': {
+    'catalogs.editor': {
       url: '/edit/:catalogId',
-      templateUrl: 'app/states/designer/catalogs/editor/editor.html',
+      templateUrl: 'app/states/catalogs/editor/editor.html',
       controller: StateController,
       controllerAs: 'vm',
       resolve: {
@@ -47,7 +47,7 @@ function StateController(catalogId, catalogs, serviceTemplates, lodash) {
     vm.title = __("Add Catalog");
   }
 
-  vm.stateName = 'designer.catalogs.editor';
+  vm.stateName = 'catalogs.editor';
   vm.catalogs = catalogs;
   vm.serviceTemplates = serviceTemplates.resources;
 }

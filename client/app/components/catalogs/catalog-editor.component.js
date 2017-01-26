@@ -14,7 +14,7 @@ export const CatalogEditorComponent = {
 /** @ngInject */
 function ComponentController(CatalogsState, $scope, $state, SaveModalDialog, lodash) {
   var vm = this;
-  var listState = 'designer.catalogs';
+  var listState = 'catalogs';
   var watchers = [];
 
   vm.$onInit = function() {
