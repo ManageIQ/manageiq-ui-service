@@ -56,32 +56,33 @@
       <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-5 col-xs-12">
             <span class="no-wrap"
-                  tooltip="{{item.name}}"
-                  tooltip-placement="bottom"
+                  uib-tooltip="{{item.name}}"
+                  tooltip-placement="bottom-left"
                   tooltip-popup-delay="1000">
               <strong>{{item.name}}</strong>
             </span>
         </div>
         <div class="col-lg-5 col-md-4 hidden-sm hidden-xs">
-            <span class="no-wrap" tooltip="{{item.description}}" tooltip-placement="bottom" tooltip-popup-delay="1000">
+            <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-placement="bottom-left"
+                  tooltip-popup-delay="1000">
               {{item.description}}
             </span>
         </div>
         <div class="col-md-3 col-sm-4 col-xs-6">
             <span class="no-wrap" ng-if="item.tenant">
-              <span class="list-item-img tenant-img"></span>
-              <span tooltip="{{item.tenant.name}}" tooltip-placement="bottom" tooltip-popup-delay="1000">
+              <img class="ss-list-view__title-img__logo" src="images/tenant.png"/>
+              <span uib-tooltip="{{item.tenant.name}}" tooltip-placement="bottom-left" tooltip-popup-delay="1000">
                 {{item.tenant.name}}
               </span>
             </span>
         </div>
         <div class="col-md-2 col-sm-3 col-xs-6"
-             tooltip="{{item.serviceTemplatesTooltip}}"
-             tooltip-placement="bottom"
+             uib-tooltip="{{item.serviceTemplatesTooltip}}"
+             tooltip-placement="bottom-left"
              tooltip-popup-delay="1000">
             <span class="no-wrap">
               <span class="fa pficon-service"></span>
-              <span>{{item.serviceTemplates.length}}</span>
+              <span>{{item.service_templates.count}}</span>
             </span>
         </div>
       </div>
@@ -90,37 +91,37 @@
              class="service-explorer-children-list"
              config="vm.expandedListConfig"
              items="$parent.item.service_templates.resources">
-          <span class="list-view-expand-content-left ss-list-view__title-img">
-            <span class="ss-list-view__title-img__center"></span>
-            <img class="ss-list-view__title-img__logo" ng-src="{{item.picture.image_href}}" ng-if="item.picture"/>
-            <span class="list-item-img service-template-img" ng-if="!item.picture"></span>
-          </span>
-          <div class="row designer-catalog-templates-content">
-            <div class="col-lg-2 col-md-3 col-sm-5 col-xs-12">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-8 name-column">
               <span class="no-wrap"
-                    tooltip="{{item.name}}"
-                    tooltip-placement="bottom"
+                    uib-tooltip="{{item.name}}"
+                    tooltip-placement="bottom-left"
                     tooltip-append-to-body="true"
                     tooltip-popup-delay="1000">
+                <span class=" ss-list-view__title-img">
+                  <span class="ss-list-view__title-img__center"></span>
+                  <img class="ss-list-view__title-img__logo" ng-src="{{item.picture.image_href}}" ng-if="item.picture"/>
+                  <span class="ss-list-view__title-img__logo" src="images/service.png" ng-if="!item.picture"></span>
+                </span>
                 <span>
                   {{item.name}}
                 </span>
               </span>
             </div>
-            <div class="col-lg-6 col-md-5 hidden-sm hidden-xs">
+            <div class="col-lg-3 col-md-5 hidden-sm hidden-xs">
               <span class="no-wrap"
-                    tooltip="{{item.description}}"
-                    tooltip-placement="bottom"
+                    uib-tooltip="{{item.description}}"
+                    tooltip-placement="bottom-left"
                     tooltip-append-to-body="true"
                     tooltip-popup-delay="1000">
                 {{item.description}}
               </span>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
               <span class="list-item-title"><strong translate>Dialog</strong></span>
               <span ng-if="item.dialogs.length"
-                    tooltip="{{itekm.dialogs[0].label}}"
-                    tooltip-placement="bottom"
+                    uib-tooltip="{{itekm.dialogs[0].label}}"
+                    tooltip-placement="bottom-left"
                     tooltip-append-to-body="true"
                     tooltip-popup-delay="1000">
                 {{item.dialogs[0].label}}

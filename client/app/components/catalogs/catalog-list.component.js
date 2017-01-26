@@ -44,8 +44,10 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
     resolveCatalogs(vm.limit, 0);
   };
 
-
   function editCatalog(catalog) {
+    if (angular.isUndefined(catalog.id)) {
+      catalog = vm.selectedItemsList[0];
+    }
     $state.go('designer.catalogs.editor', {catalogId: catalog.id});
   }
 
@@ -61,12 +63,6 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
     vm.selectedItemsList = vm.catalogsList.filter(function(catalog) {
       return catalog.selected;
     });
-  }
-
-  function editSelectedCatalog() {
-    if (vm.selectedItemsList && vm.selectedItemsList.length === 1) {
-      editCatalog(vm.selectedItemsList[0]);
-    }
   }
 
   function removeCatalog() {
@@ -125,7 +121,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
       // showSelectBox: checkApproval(),
       useExpandingRows: true,
       selectionMatchProp: 'id',
-      onClick: expandRow,
+      onClick: toggleRow,
       onCheckBoxChange: handleSelectionChange,
     };
   }
@@ -162,7 +158,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
         name: __('Edit'),
         actionName: 'edit',
         title: __('Edit selected catalog'),
-        actionFn: editSelectedCatalog,
+        actionFn: editCatalog,
         isDisabled: false,
       }, {
         name: __('Delete'),
@@ -184,10 +180,22 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
         actionFn: selectAll,
         isDisabled: false,
       }, {
+        name: __('Unselect All'),
+        actionName: 'unselect',
+        title: __('Unselect All'),
+        actionFn: unselectAll,
+        isDisabled: false,
+      }, {
         name: __('Expand All'),
         actionName: 'expand',
         title: __('Expand All'),
-        actionFn: toggleExpand,
+        actionFn: expandAll,
+        isDisabled: false,
+      }, {
+        name: __('Collapse All'),
+        actionName: 'collapse',
+        title: __('Collapse All'),
+        actionFn: collapseAll,
         isDisabled: false,
       }],
     }];
@@ -267,10 +275,12 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
       vm.selectedItemsList = [];
 
       response.resources.forEach((item) => {
-        if (angular.isDefined(item.id)) {
-          item.disableRowExpansion = angular.isUndefined(item.service_templates) || item.service_templates.length;
-          vm.catalogsList.push(item);
+        if (angular.isDefined(item.service_templates)) {
+          item.service_templates.resources = item.service_templates.resources.filter((template) => template.display);
+
+          item.disableRowExpansion = item.service_templates.resources.length === 0;
         }
+        vm.catalogsList.push(item);
       });
 
       getFilterCount();
@@ -300,21 +310,37 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
     $state.go('marketplace.details', {serviceTemplateId: template.id});
   }
 
-  function expandRow(item) {
+  function toggleRow(item) {
     if (!item.disableRowExpansion) {
       item.isExpanded = !item.isExpanded;
     }
   }
 
-  function toggleExpand() {
+  function expandAll() {
     vm.catalogsList.forEach((item) => {
-      expandRow(item);
-    })
+      if (!item.disableRowExpansion) {
+        item.isExpanded = true;
+      }
+    });
+  }
+
+  function collapseAll() {
+    vm.catalogsList.forEach((item) => {
+      if (!item.disableRowExpansion) {
+        item.isExpanded = false;
+      }
+    });
   }
 
   function selectAll() {
     vm.catalogsList.forEach((item) => {
-      item.selected = !item.selected;
-    })
+      item.selected = true;
+    });
+  }
+
+  function unselectAll() {
+    vm.catalogsList.forEach((item) => {
+      item.selected = false;
+    });
   }
 }
