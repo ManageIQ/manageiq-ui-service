@@ -7,7 +7,7 @@ function getStates() {
   return {
     'services': {
       parent: 'application',
-      url: '/service-explorer',
+      url: '/services',
       redirectTo: 'services.explorer',
       template: '<ui-view></ui-view>',
     },
