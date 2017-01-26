@@ -8,7 +8,7 @@ function getStates() {
     'orders.explorer': {
       url: '',
       template: '<order-explorer></order-explorer>',
-      title: N_('My Orders'),
+      title: N_('Orders'),
     },
   };
 }
