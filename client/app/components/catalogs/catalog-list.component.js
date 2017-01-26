@@ -8,7 +8,7 @@ export const CatalogsListComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, Session, CatalogsState, lodash, sprintf, ListView, EventNotifications) {
+function ComponentController($state, Session, CatalogsState, sprintf, ListView, EventNotifications) {
   var vm = this;
 
   vm.$onInit = function() {
@@ -22,7 +22,6 @@ function ComponentController($state, Session, CatalogsState, lodash, sprintf, Li
 
       limit: 20,
       filterCount: 0,
-      catalogs: [],
       catalogsList: [],
       selectedItemsList: [],
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
@@ -43,78 +42,8 @@ function ComponentController($state, Session, CatalogsState, lodash, sprintf, Li
     });
 
     resolveCatalogs(vm.limit, 0);
-
   };
 
-  function compareCatalogs(item1, item2) {
-    var sortField = vm.toolbarConfig.sortConfig.currentField;
-    var compValue = 0;
-
-    if (sortField.id === 'name') {
-      compValue = item1.name.localeCompare(item2.name);
-    } else if (sortField.id === 'tenant') {
-      if (item1.tenant) {
-        if (item2.tenant) {
-          compValue = item1.tenant.name.localeCompare(item2.tenant.name);
-        } else {
-          compValue = -1;
-        }
-      } else {
-        if (item2.tenant) {
-          compValue = 1;
-        } else {
-          compValue = 0;
-        }
-      }
-    } else if (sortField.id === 'catalogItems') {
-      compValue = item1.serviceTemplates.length - item2.serviceTemplates.length;
-    }
-
-    if (compValue === 0) {
-      compValue = item1.name.localeCompare(item2.name);
-    }
-
-    if (!vm.toolbarConfig.sortConfig.isAscending) {
-      compValue = compValue * -1;
-    }
-
-    return compValue;
-  }
-
-  function filterChange(filters) {
-    vm.catalogsList = ListView.applyFilters(filters, vm.catalogsList, vm.catalogs, CatalogsState, matchesFilter);
-    resolveCatalogs(vm.limit, 0);
-
-    function matchesFilter(item, filter) {
-      var found = false;
-
-      if (filter.id === 'name') {
-        found = nameCompare(item, filter.value);
-      } else if (filter.id === 'description') {
-        found = item.description.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else if (filter.id === 'tenant') {
-        found = item.tenant && item.tenant.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-      } else if (filter.id === 'service') {
-        if (item.serviceTemplates) {
-          found = lodash.find(item.serviceTemplates, function(nextService) {
-            return nextService.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
-          });
-        }
-      }
-
-      return found;
-    }
-
-    function nameCompare(object, value) {
-      var match = false;
-
-      if (angular.isString(object.name) && angular.isString(value)) {
-        match = object.name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
-      }
-
-      return match;
-    }
-  }
 
   function editCatalog(catalog) {
     $state.go('designer.catalogs.editor', {catalogId: catalog.id});
@@ -129,7 +58,7 @@ function ComponentController($state, Session, CatalogsState, lodash, sprintf, Li
   }
 
   function handleSelectionChange() {
-    vm.selectedItemsList = vm.designerCatalogs.filter(function(catalog) {
+    vm.selectedItemsList = vm.catalogsList.filter(function(catalog) {
       return catalog.selected;
     });
   }
@@ -188,10 +117,6 @@ function ComponentController($state, Session, CatalogsState, lodash, sprintf, Li
       vm.catalogsToDelete.length);
   }
 
-  function listActionDisable(config, items) {
-    // editListAction.isDisabled = items.length !== 1;
-    // deleteListAction.isDisabled = items.length < 1;
-  }
 
   // Config
 
@@ -200,7 +125,7 @@ function ComponentController($state, Session, CatalogsState, lodash, sprintf, Li
       // showSelectBox: checkApproval(),
       useExpandingRows: true,
       selectionMatchProp: 'id',
-      // onClick: expandRow,
+      onClick: expandRow,
       onCheckBoxChange: handleSelectionChange,
     };
   }
@@ -221,33 +146,61 @@ function ComponentController($state, Session, CatalogsState, lodash, sprintf, Li
   }
 
   function getListActions() {
-    return [
-      {
-        name: __('Configuration'),
-        actionName: 'configuration',
-        icon: 'fa fa-cog',
+    return [{
+      title: __('Configuration'),
+      name: __('Configuration'),
+      actionName: 'configuration',
+      icon: 'fa fa-cog',
+      isDisabled: false,
+      actions: [{
+        name: __('Create'),
+        actionName: 'create',
+        title: __('Create new catalog'),
+        actionFn: addCatalog,
         isDisabled: false,
-        actions: [{
-          name: __('Create'),
-          actionName: 'create',
-          title: __('Create new catalog'),
-          actionFn: addCatalog,
-          isDisabled: false,
-        }, {
-          name: __('Edit'),
-          actionName: 'edit',
-          title: __('Edit selected catalog'),
-          actionFn: editSelectedCatalog,
-          isDisabled: false,
-        }, {
-          name: __('Delete'),
-          actionName: 'delete',
-          title: __('Delete selected catalogs'),
-          actionFn: deleteSelectedCatalogs,
-          isDisabled: false,
-        }],
-      },
-    ];
+      }, {
+        name: __('Edit'),
+        actionName: 'edit',
+        title: __('Edit selected catalog'),
+        actionFn: editSelectedCatalog,
+        isDisabled: false,
+      }, {
+        name: __('Delete'),
+        actionName: 'delete',
+        title: __('Delete selected catalogs'),
+        actionFn: deleteSelectedCatalogs,
+        isDisabled: false,
+      }],
+    }, {
+      title: __('List Actions'),
+      name: __(''),
+      actionName: 'listActions',
+      icon: 'fa fa-wrench',
+      isDisabled: false,
+      actions: [{
+        name: __('Select All'),
+        actionName: 'select',
+        title: __('Select All'),
+        actionFn: selectAll,
+        isDisabled: false,
+      }, {
+        name: __('Expand All'),
+        actionName: 'expand',
+        title: __('Expand All'),
+        actionFn: toggleExpand,
+        isDisabled: false,
+      }],
+    }];
+  }
+
+  function listActionDisable(config, items) {
+    switch (config.actionName) {
+      case 'configuration':
+        config.actions[0].isDisabled = items.length >= 1;
+        config.actions[1].isDisabled = items.length !== 1;
+        config.actions[2].isDisabled = !items.length >= 1;
+        break;
+    }
   }
 
   function getToolbarConfig() {
@@ -265,8 +218,8 @@ function ComponentController($state, Session, CatalogsState, lodash, sprintf, Li
       fields: [
         ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
         ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text'),
-        ListView.createFilterField('tenant', __('Tenant'), __('Filter by Tenant name'), 'text'),
-        ListView.createFilterField('service', __('Service'), __('Filter by Service'), 'text'),
+        // ListView.createFilterField('tenant', __('Tenant'), __('Filter by Tenant name'), 'text'),
+        // ListView.createFilterField('service', __('Service'), __('Filter by Service'), 'text'),
       ],
       resultsCount: 0,
       appliedFilters: CatalogsState.getFilters(),
@@ -274,12 +227,17 @@ function ComponentController($state, Session, CatalogsState, lodash, sprintf, Li
     };
   }
 
+  function filterChange(filters) {
+    CatalogsState.setFilters(filters);
+    resolveCatalogs(vm.limit, 0);
+  }
+
   function getSortConfig() {
     return {
       fields: [
         ListView.createSortField('name', __('Name'), 'alpha'),
-        ListView.createSortField('tenant', __('Tenant'), 'alpha'),
-        ListView.createSortField('catalogItems', __('Catalog Items'), 'numeric'),
+        ListView.createSortField('tenant_id', __('Tenant'), 'numeric'),
+        // ListView.createSortField('service_templates.count', __('Catalog Items'), 'numeric'),
       ],
       onSortChange: sortChange,
       isAscending: CatalogsState.getSort().isAscending,
@@ -287,7 +245,7 @@ function ComponentController($state, Session, CatalogsState, lodash, sprintf, Li
     };
   }
 
-  function getExpandedListConfig(){
+  function getExpandedListConfig() {
     return {
       showSelectBox: false,
       selectionMatchProp: 'id',
@@ -297,44 +255,32 @@ function ComponentController($state, Session, CatalogsState, lodash, sprintf, Li
 
   // Private
 
-  function resolveCatalogs(limit, offset, refresh) {
-    if (!refresh) {
-      vm.loading = true;
-    }
-
+  function resolveCatalogs(limit, offset) {
+    vm.loading = true;
     vm.offset = offset;
-    CatalogsState.getCatalogs(
-      limit,
-      offset,
-      CatalogsState.getFilters(),
-      CatalogsState.getSort().currentField,
-      CatalogsState.getSort().isAscending).then(success, failure);
+
+    CatalogsState.getCatalogs(limit, offset).then(success, failure);
 
     function success(response) {
       vm.loading = false;
-      vm.catalogs = [];
+      vm.catalogsList = [];
       vm.selectedItemsList = [];
-      vm.toolbarConfig.filterConfig.resultsCount = vm.filterCount;
 
-      angular.forEach(response.resources, checkExpansion);
-
-      function checkExpansion(item) {
+      response.resources.forEach((item) => {
         if (angular.isDefined(item.id)) {
           item.disableRowExpansion = angular.isUndefined(item.service_templates) || item.service_templates.length;
-          vm.catalogs.push(item);
+          vm.catalogsList.push(item);
         }
-      }
-
-
-      vm.catalogsList = angular.copy(vm.catalogs);
+      });
 
       getFilterCount();
 
       function getFilterCount() {
-        CatalogsState.getMinimal(CatalogsState.getFilters()).then(querySuccess, failure);
+        CatalogsState.getMinimal(limit, offset).then(success, failure);
 
-        function querySuccess(result) {
+        function success(result) {
           vm.filterCount = result.subcount;
+          vm.toolbarConfig.filterConfig.resultsCount = result.subcount;
         }
       }
     }
@@ -345,13 +291,30 @@ function ComponentController($state, Session, CatalogsState, lodash, sprintf, Li
     }
   }
 
-  function sortChange(sortId, direction) {
-    CatalogsState.setSort(sortId, direction);
-    resolveCatalogs(vm.limit, 0)
+  function sortChange(sortId, isAscending) {
+    CatalogsState.setSort(sortId, isAscending);
+    resolveCatalogs(vm.limit, 0);
   }
 
   function viewDetails(template) {
     $state.go('marketplace.details', {serviceTemplateId: template.id});
   }
 
+  function expandRow(item) {
+    if (!item.disableRowExpansion) {
+      item.isExpanded = !item.isExpanded;
+    }
+  }
+
+  function toggleExpand() {
+    vm.catalogsList.forEach((item) => {
+      expandRow(item);
+    })
+  }
+
+  function selectAll() {
+    vm.catalogsList.forEach((item) => {
+      item.selected = !item.selected;
+    })
+  }
 }

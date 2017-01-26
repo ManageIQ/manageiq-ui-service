@@ -22,8 +22,8 @@
 </div>
 <div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
   <actions>
-    <custom-dropdown config="item" items="vm.selectedCatalogs"
-                     items-count="vm.selectedCatalogs.length"
+    <custom-dropdown config="item" items="vm.selectedItemsList"
+                     items-count="vm.selectedItemsList.length"
                      ng-repeat="item in vm.listActions"
                      on-update="vm.listActionDisable($config, $changes)"
                      menu-right="true">
@@ -31,7 +31,10 @@
   </actions>
 </div>
 <div class="list-view-container section-container paged-container service-explorer-list">
-  <div class="list-view-container section-container"
+  <loading status="vm.loading"></loading>
+
+  <div ng-if="!vm.loading"
+       class="list-view-container section-container"
        confirmation
        confirmation-id="confirmDeleteCatalog"
        confirmation-trigger-value="vm.confirmDelete"

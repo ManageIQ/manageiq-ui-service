@@ -1,21 +1,24 @@
+/* eslint camelcase: "off" */
+
 /** @ngInject */
 export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf) {
   const collection = 'service_catalogs';
-  let sort = {
+  const sort = {
     isAscending: true,
     currentField: {id: 'name', title: __('Name'), sortType: 'alpha'},
   };
   let filters = [];
 
   return {
-    getSort: getSort,
     getMinimal: getMinimal,
     getCatalogs: getCatalogs,
+    getSort: getSort,
     setSort: setSort,
     getFilters: getFilters,
     setFilters: setFilters,
     addCatalog: addCatalog,
     editCatalog: editCatalog,
+    getServiceTemplates: getServiceTemplates,
     addServiceTemplates: addServiceTemplates,
     removeServiceTemplates: removeServiceTemplates,
     deleteCatalogs: deleteCatalogs,
@@ -39,18 +42,25 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     return filters;
   }
 
-  function getCatalogs() {
+  function getCatalogs(limit, offset) {
     const options = {
       expand: ['resources', 'service_templates'],
       attributes: ['tenant', 'picture', 'picture.image_href', 'service_template_catalog.name', 'dialogs'],
+      limit: limit,
+      offset: offset,
+      filter: getQueryFilters(getFilters()),
     };
+
+    options.sort_by = getSort().currentField.id;
+    options.sort_options = getSort().currentField.sortType === 'alpha' ? 'ignore_case' : '';
+    options.sort_order = getSort().isAscending ? 'asc' : 'desc';
 
     return CollectionsApi.query(collection, options);
   }
 
-  function getMinimal(filters) {
+  function getMinimal() {
     const options = {
-      filter: getQueryFilters(filters),
+      filter: getQueryFilters(getFilters()),
       hide: 'resources',
     };
 
@@ -119,6 +129,17 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     };
 
     return CollectionsApi.post('service_catalogs', catalog.id, {}, editObj).then(editSuccess, editFailure);
+  }
+
+  function getServiceTemplates() {
+    var attributes = ['picture', 'picture.image_href', 'service_template_catalog.name'];
+    var options = {
+      expand: 'resources',
+      filter: ['display=true'],
+      attributes: attributes,
+    };
+
+    return CollectionsApi.query('service_templates', options);
   }
 
   function addServiceTemplates(catalogId, serviceTemplates, skipResults) {
