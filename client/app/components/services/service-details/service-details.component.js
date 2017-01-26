@@ -15,7 +15,10 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
   var vm = this;
 
   vm.$onInit = activate();
-
+  vm.$onChanges = function(changesObj) {
+    createResourceGroups();
+  };
+  
   function activate() {
     Chargeback.processReports(vm.service);
 
