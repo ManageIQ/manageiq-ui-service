@@ -4,7 +4,7 @@
   "description": "RHEL7 on VMware",
   "retired": false,
   "retirement_warn": 0,
-  "retires_on": "2017-10-21T04:00:00Z",
+  "retires_on": "2017-10-21T08:00:00Z",
   "created_at": "2016-11-18",
   "options": {
     "dialog": {

@@ -39,11 +39,10 @@ module.exports = function(config) {
       {pattern: './tests/test-helpers/*.js'},
       {pattern: './tests/**/*.js'},
       {pattern: './tests/**/*.json', included: false, served: true, nocache: false},
-      {pattern: './client/assets/images/providers/*.svg', included: false, served: true, nocache: false},
+      {pattern: './client/assets/images/**/*', included: false, served: true, nocache: false},
     ],
-
     proxies: {
-      '/images/': '/images/',
+      '/images/': '/base/client/assets/images/',
     },
 
     // preprocess matching files before serving them to the browser
