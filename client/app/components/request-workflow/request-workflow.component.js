@@ -68,73 +68,114 @@ function requestWorkflowController(API_BASE, lodash, CollectionsApi, $q) {
     });
 
     function populateTabs(key, clusterTitle, hostTitle) {
+      var panelFields, panelTitles;
       switch (key) {
         case 'requester':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Request Information"));
-          vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Manager"));
-          fields = requesterFields();
+          panelTitles = [__("Request Information"), __("Manager")];
+          panelFields = [['owner_email', 'owner_first_name', 'owner_last_name', 'owner_address', 'owner_city',
+            'owner_state', 'owner_zip', 'owner_country', 'owner_title', 'owner_company',
+            'owner_department', 'owner_office', 'owner_phone', 'owner_phone_mobile', 'request_notes'],
+            ['owner_manager', 'owner_manager_mail', 'owner_manager_phone']];
+
+          fields = getFields(key, panelTitles, panelFields);
           break;
         case 'purpose':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select Tags to apply"));
-          fields = purposeFields();
+          panelTitles = [__("Select Tags to apply")];
+          panelFields = [['vm_tags']];
+
+          fields = getFields(key, panelTitles, panelFields);
           break;
         case 'service':
           if (lodash.every(["Redhat", "InfraManager"], function (value, key) {
             return lodash.includes(vm.workflowClass, value);
           })) {
-            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Selected VM"));
+            panelTitles = [__("Selected VM")];
           } else {
-            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Select"));
+            panelTitles = [__("Select")];
           }
           if (lodash.includes(vm.customizedWorkflow.values.provision_type, "pxe")) {
-            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("PXE"));
+            panelTitles.push(__("PXE"));
           } else if (lodash.includes(vm.customizedWorkflow.values.provision_type, "iso")) {
-            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("ISO"));
+            panelTitles.push(__("ISO"));
           }
           if (lodash.includes(vm.workflowClass, "CloudManager")) {
-            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Number of Instances"));
+            panelTitles.push(__("Number of Instances"));
           } else {
-            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("Number of VMs"));
+            panelTitles.push(__("Number of VMs"));
           }
-          vm.customizedWorkflow.dialogs[key].panelTitle[2] = (__("Naming"));
-          fields = serviceFields();
+          panelTitles.push(__("Naming"));
+
+          if (lodash.every(["Redhat", "InfraManager"], function(value, key) {
+            return lodash.includes(vm.workflowClass, value);
+          })) {
+            panelFields = [['src_vm_id', 'provision_type', 'linked_clone'],
+                           ['number_of_vms'],
+                           ['vm_name', 'vm_description', 'vm_prefix']];
+          } else {
+            panelFields = [['vm_filter', 'src_vm_id', 'provision_type', 'linked_clone', 'snapshot'],
+                           ['number_of_vms'],
+                           ['vm_name', 'vm_description', 'vm_prefix']];
+          }
+
+          fields = getFields(key, panelTitles, panelFields);
           break;
         case 'environment':
-          var i = 0;
-          vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Placement"));
+          panelTitles = [__("Placement")];
+
           if (vm.customizedWorkflow.values.placement_auto === 0
             && !lodash.includes(vm.workflowClass, "CloudManager")) {
-            vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Datacenter"));
-            vm.customizedWorkflow.dialogs[key].panelTitle[i++] = clusterTitle;
+            panelTitles.push(__("Datacenter"));
+            panelTitles.push(clusterTitle);
             if (lodash.every(["Vmware", "InfraManager"], function(value, key) {
               return lodash.includes(vm.workflowClass, value);
             })) {
-              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Resource Pool"));
-              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Folder"));
+              panelTitles.push(__("Resource Pool"));
+              panelTitles.push(__("Folder"));
             }
 
-            vm.customizedWorkflow.dialogs[key].panelTitle[i++] = hostTitle;
+            panelTitles.push(hostTitle);
+
             if (!lodash.includes(vm.workflowClass, "CloudManager")) {
-              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Datastore"));
+              panelTitles.push(__("Datastore"));
             } else {
-              vm.customizedWorkflow.dialogs[key].panelTitle[i++] = (__("Placement - Options"));
+              panelTitles.push(__("Placement - Options"));
             }
           }
-          fields = environmentFields();
+          panelFields = [
+            ['placement_auto'],
+            ['placement_dc_name'],
+            ['cluster_filter', 'placement_cluster_name'],
+            ['rp_filter', 'placement_rp_name'],
+            ['placement_folder_name'],
+            ['host_filter', 'placement_host_name'],
+            ['ds_filter', 'placement_storage_profile', 'placement_ds_name'],
+            ['cloud_tenant', 'availability_zone_filter', 'placement_availability_zone', 'cloud_network', 'cloud_subnet',
+              'security_groups', 'floating_ip_address', 'resource_group'],
+          ];
+
+          fields = getFields(key, panelTitles, panelFields);
           break;
         case 'hardware':
           if (lodash.includes(vm.workflowClass, "CloudManager")) {
-            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Properties"));
+            panelTitles = [__("Properties")];
           } else {
-            vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Hardware"));
-            vm.customizedWorkflow.dialogs[key].panelTitle[1] = (__("VM Limits"));
-            vm.customizedWorkflow.dialogs[key].panelTitle[2] = (__("VM Reservations"));
+            panelTitles = [__("Hardware"), __("VM Limits"), __("VM Reservations")];
           }
-          fields = hardwareFields();
+          panelFields = [
+            ['instance_type', 'number_of_cpus', 'number_of_sockets', 'cores_per_socket', 'vm_memory',
+              'network_adapters', 'disk_format', 'guest_access_key_pair', 'monitoring', 'vm_dynamic_memory',
+              'vm_minimum_memory', 'vm_maximum_memory', 'boot_disk_size', 'is_preemptible'],
+            ['cpu_limit', 'memory_limit'],
+            ['cpu_reserve', 'memory_reserve'],
+          ];
+
+          fields = getFields(key, panelTitles, panelFields);
           break;
         case 'network':
-          vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Network Adapter Information"));
-          fields = networkFields();
+          panelTitles = [__("Network Adapter Information")];
+          panelFields = [['vlan', 'mac_address']];
+
+          fields = getFields(key, panelTitles, panelFields);
           break;
         case 'customize':
           vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Credentials"));
@@ -151,120 +192,33 @@ function requestWorkflowController(API_BASE, lodash, CollectionsApi, $q) {
       fieldsLayout(key, fields, vm.customizedWorkflow.dialogs[key].panelTitle.length);
     }
   }
-
-  function requesterFields() {
-    return {
-      ownerEmail: { label: 'owner_email', panel: 0, order: 0 },
-      ownerFirstName: { label: 'owner_first_name', panel: 0, order: 1 },
-      ownerLastName: { label: 'owner_last_name', panel: 0, order: 2 },
-      ownerAddress: { label: 'owner_address', panel: 0, order: 3 },
-      ownerCity: { label: 'owner_city', panel: 0, order: 4 },
-      ownerState: { label: 'owner_state', panel: 0, order: 5 },
-      ownerZip: { label: 'owner_zip', panel: 0, order: 6 },
-      ownerCountry: { label: 'owner_country', panel: 0, order: 7 },
-      ownerTitle: { label: 'owner_title', panel: 0, order: 8 },
-      ownerCompany: { label: 'owner_company', panel: 0, order: 9 },
-      ownerDepartment: { label: 'owner_department', panel: 0, order: 10 },
-      ownerOffice: { label: 'owner_office', panel: 0, order: 11 },
-      ownerPhone: { label: 'owner_phone', panel: 0, order: 12 },
-      ownerPhoneMobile: { label: 'owner_phone_mobile', panel: 0, order: 13 },
-      requestNotes: { label: 'request_notes', panel: 0, order: 14 },
-      ownerManager: { label: 'owner_manager', panel: 1, order: 0 },
-      ownerManagerMail: { label: 'owner_manager_mail', panel: 1, order: 1 },
-      ownerManagerPhone: { label: 'owner_manager_phone', panel: 1, order: 2 },
-    };
-  }
-
-  function serviceFields() {
-    var serviceFields = {};
-    if (lodash.every(["Redhat", "InfraManager"], function(value, key) {
-      return lodash.includes(vm.workflowClass, value);
-    })) {
-      serviceFields =  {
-        srcVmId: {label: 'src_vm_id', panel: 0, order: 0},
-        provisionType: {label: 'provision_type', panel: 0, order: 1},
-        linkedClone: {label: 'linked_clone', panel: 0, order: 2},
-      };
-    } else {
-      serviceFields =  {
-        vmFilter: {label: 'vm_filter', panel: 0, order: 0},
-        srcVmId: {label: 'src_vm_id', panel: 0, order: 1},
-        provisionType: {label: 'provision_type', panel: 0, order: 2},
-        linkedClone: {label: 'linked_clone', panel: 0, order: 4},
-        snapshot: {label: 'snapshot', panel: 0, order: 5},
-      };
-      var serviceFieldsCommon = {
-        numberOfVms: {label: 'number_of_vms', panel: 1, order: 0},
-        vmName: {label: 'vm_name', panel: 2, order: 0},
-        vmDescription: {label: 'vm_description', panel: 2, order: 1},
-        vmPrefix: {label: 'vm_prefix', panel: 2, order: 2},
-      };
-    }
-
-    return lodash.extend(serviceFields, serviceFieldsCommon);
-  }
-
-  function purposeFields() {
-    return {
-      vmTags: { label: 'vm_tags', panel: 0, order: 0 },
-    };
-  }
-
-  function environmentFields() {
+  
+  function setSubPanelTitleAndFields(nPanel, key, panelTitle, arrFields) {
+    var fieldsObject = {};
     var i = 0;
 
-    return {
-      placementAuto: { label: 'placement_auto', panel: i++, order: 0 },
-      placementDcName: { label: 'placement_dc_name', panel: i++, order: 0 },
-      clusterFilter: { label: 'cluster_filter', panel: i, order: 0 },
-      placementClusterName: { label: 'placement_cluster_name', panel: i++, order: 1 },
-      rpFilter: { label: 'rp_filter', panel: i, order: 0 },
-      placementRpName: { label: 'placement_rp_name', panel: i++, order: 1 },
-      placementFolderName: { label: 'placement_folder_name', panel: i++, order: 0 },
-      hostFilter: { label: 'host_filter', panel: i, order: 0 },
-      placementHostName: { label: 'placement_host_name', panel: i++, order: 1 },
-      dsFilter: { label: 'ds_filter', panel: i, order: 0 },
-      placementStorageProfile: { label: 'placement_storage_profile', panel: i, order: 1 },
-      placementDsName: { label: 'placement_ds_name', panel: i++, order: 2 },
-      cloudTenant: { label: 'cloud_tenant', panel: i, order: 0 },
-      availabilityZoneFilter: { label: 'availability_zone_filter', panel: i, order: 1 },
-      placementAvailabilityZone: { label: 'placement_availability_zone', panel: i, order: 2 },
-      cloudNetwork: { label: 'cloud_network', panel: i, order: 3 },
-      cloudSubnet: { label: 'cloud_subnet', panel: i, order: 4 },
-      securityGroups: { label: 'security_groups', panel: i, order: 5 },
-      floatingIpAddress: { label: 'floating_ip_address', panel: i, order: 6 },
-      resourceGroup: { label: 'resource_group', panel: i, order: 7 },
-    };
+    vm.customizedWorkflow.dialogs[key].panelTitle[nPanel] = panelTitle;
+
+    lodash.forEach(arrFields, function (value) {
+      var obj = {label: value, panel: nPanel, order: i++};
+      var tempObj = {};
+
+      tempObj[value] = obj;
+      lodash.merge(fieldsObject, tempObj);
+    });
+
+    return fieldsObject;
   }
 
-  function hardwareFields() {
-    return {
-      instanceType: { label: 'instance_type', panel: 0, order: 0 },
-      numberOfCpus: { label: 'number_of_cpus', panel: 0, order: 1 },
-      numberOfSockets: { label: 'number_of_sockets', panel: 0, order: 2 },
-      coresPerSocket: { label: 'cores_per_socket', panel: 0, order: 3 },
-      vmMemory: { label: 'vm_memory', panel: 0, order: 4 },
-      networkAdapters: { label: 'network_adapters', panel: 0, order: 5 },
-      diskFormat: { label: 'disk_format', panel: 0, order: 6 },
-      guestAccessKeyPair: { label: 'guest_access_key_pair', panel: 0, order: 7 },
-      monitoring: { label: 'monitoring', panel: 0, order: 8 },
-      vmDynamicMemory: { label: 'vm_dynamic_memory', panel: 0, order: 9 },
-      vmMinimumMemory: { label: 'vm_minimum_memory', panel: 0, order: 10 },
-      vmMaximumMemory: { label: 'vm_maximum_memory', panel: 0, order: 11 },
-      bootDiskSize: { label: 'boot_disk_size', panel: 0, order: 12 },
-      isPreemptible: { label: 'is_preemptible', panel: 0, order: 13 },
-      cpuLimit: { label: 'cpu_limit', panel: 1, order: 0 },
-      memoryLimit: { label: 'memory_limit', panel: 1, order: 1 },
-      cpuReserve: { label: 'cpu_reserve', panel: 2, order: 0 },
-      memoryReserve: { label: 'memory_reserve', panel: 2, order: 1 },
-    };
-  }
+  function getFields(key, panelTitles, panelFields) {
+    var i = 0;
+    var j = 0;
+    var fields = {};
+    lodash.forEach(panelTitles, function (panelTitle) {
+      lodash.merge(fields, setSubPanelTitleAndFields(i++, key, panelTitle, panelFields[j++]));
+    });
 
-  function networkFields() {
-    return {
-      vlan: {label: 'vlan', panel: 0, order: 0},
-      macAddress: {label: 'mac_address', panel: 0, order: 1},
-    };
+    return fields;
   }
 
   function fieldsLayout(tab, fields, nPanels) {
@@ -272,7 +226,7 @@ function requestWorkflowController(API_BASE, lodash, CollectionsApi, $q) {
 
     vm.customizedWorkflow.dialogs[tab].fields
       = lodash.filter(lodash.merge(vm.customizedWorkflow.dialogs[tab].fields,
-        lodash.mapKeys(fields, function (v, k) { return lodash.snakeCase(k); })),
+      lodash.mapKeys(fields, function (v, k) { return k; })),
         function(o) { return angular.isDefined(o.display); });
 
     lodash.times(nPanels, function(key, value) {
