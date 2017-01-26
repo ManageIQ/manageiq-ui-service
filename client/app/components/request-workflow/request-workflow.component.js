@@ -134,6 +134,7 @@ function requestWorkflowController(API_BASE, lodash, CollectionsApi, $q) {
           break;
         case 'network':
           vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Network Adapter Information"));
+          fields = networkFields();
           break;
         case 'customize':
           vm.customizedWorkflow.dialogs[key].panelTitle[0] = (__("Credentials"));
@@ -256,6 +257,13 @@ function requestWorkflowController(API_BASE, lodash, CollectionsApi, $q) {
       memoryLimit: { label: 'memory_limit', panel: 1, order: 1 },
       cpuReserve: { label: 'cpu_reserve', panel: 2, order: 0 },
       memoryReserve: { label: 'memory_reserve', panel: 2, order: 1 },
+    };
+  }
+
+  function networkFields() {
+    return {
+      vlan: {label: 'vlan', panel: 0, order: 0},
+      macAddress: {label: 'mac_address', panel: 0, order: 1},
     };
   }
 
