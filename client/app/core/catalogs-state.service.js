@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf) {
+export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf, lodash) {
   const collection = 'service_catalogs';
   const sort = {
     isAscending: true,
@@ -18,6 +18,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     setFilters: setFilters,
     addCatalog: addCatalog,
     editCatalog: editCatalog,
+    setCatalogServiceTemplates: setCatalogServiceTemplates,
     getServiceTemplates: getServiceTemplates,
     addServiceTemplates: addServiceTemplates,
     removeServiceTemplates: removeServiceTemplates,
@@ -74,7 +75,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     };
 
     function createSuccess(response) {
-      EventNotifications.success(sprintf(__("Designer catalog %s was created."), catalogObj.name));
+      EventNotifications.success(sprintf(__("Catalog %s was created."), catalogObj.name));
 
       if (skipResults !== true) {
         return response.results[0];
@@ -82,7 +83,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     }
 
     function createFailure(response) {
-      EventNotifications.error(sprintf(__("There was an error creating designer catalog %s."), catalogObj.name));
+      EventNotifications.error(sprintf(__("There was an error creating catalog %s."), catalogObj.name));
 
       if (skipResults !== true) {
         return response.data;
@@ -108,7 +109,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
 
   function editCatalog(catalog, skipResults) {
     var editSuccess = function(response) {
-      EventNotifications.success(sprintf(__('Designer catalog %s was successfully updated.'), catalog.name));
+      EventNotifications.success(sprintf(__('Catalog %s was successfully updated.'), catalog.name));
 
       if (skipResults !== true) {
         return response;
@@ -116,7 +117,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     };
 
     var editFailure = function(response) {
-      EventNotifications.error(sprintf(__('There was an error updating designer catalog %s.'), catalog.name));
+      EventNotifications.error(sprintf(__('There was an error updating catalog %s.'), catalog.name));
 
       if (skipResults !== true) {
         return response.data;
@@ -145,7 +146,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
   function addServiceTemplates(catalogId, serviceTemplates, skipResults) {
     var editSuccess = function(response) {
       if (response && response.results && response.results[0] && response.results[0].success === false) {
-        EventNotifications.error(__('There was an error updating catalog items for the designer catalog.'));
+        EventNotifications.error(__('There was an error updating catalog items for the catalog.'));
 
         if (skipResults !== true) {
           return {
@@ -153,7 +154,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
           };
         }
       } else {
-        EventNotifications.success(__('Designer catalog was successfully updated.'));
+        EventNotifications.success(__('Catalog was successfully updated.'));
 
         if (skipResults !== true) {
           return response.results;
@@ -162,7 +163,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     };
 
     var editFailure = function(response) {
-      EventNotifications.error(__('There was an error updating catalog items for the designer catalog.'));
+      EventNotifications.error(__('There was an error updating catalog items for the catalog.'));
 
       return response.data;
     };
@@ -177,7 +178,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
 
   function removeServiceTemplates(catalogId, serviceTemplates, skipResults) {
     var editSuccess = function(response) {
-      EventNotifications.success(__('Designer catalog %s was successfully updated.'));
+      EventNotifications.success(__('Catalog %s was successfully updated.'));
 
       if (skipResults !== true) {
         return response.data;
@@ -185,7 +186,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     };
 
     var editFailure = function(response) {
-      EventNotifications.error(__('There was an error updating catalog items for the designer catalog.'));
+      EventNotifications.error(__('There was an error updating catalog items for the catalog.'));
 
       if (skipResults !== true) {
         return response.results;
@@ -200,6 +201,27 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     return CollectionsApi.post('service_catalogs/' + catalogId + '/service_templates', null, {}, editObj).then(editSuccess, editFailure);
   }
 
+  function setCatalogServiceTemplates(catalog, serviceTemplates) {
+    if (angular.isUndefined(catalog.serviceTemplates)) {
+      catalog.serviceTemplates = [];
+    } else {
+      catalog.serviceTemplates.splice(0, catalog.serviceTemplates.length);
+    }
+
+    angular.forEach(catalog.service_templates.resources, function(nextTemplate) {
+      var splits = nextTemplate.href.split('/');
+      var templateId = parseInt(splits[splits.length - 1], 10);
+      var serviceTemplate = lodash.find(serviceTemplates, {id: templateId});
+      if (serviceTemplate) {
+        catalog.serviceTemplates.push(serviceTemplate);
+      }
+    });
+    catalog.serviceTemplates.sort(function(item1, item2) {
+      return item1.name.localeCompare(item2.name);
+    });
+  }
+
+
   function deleteCatalogs(catalogs) {
     var catalogIds = [];
     for (var i = 0; i < catalogs.length; i++) {
@@ -212,7 +234,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     };
 
     function success() {
-      EventNotifications.success(__('Catalog(s) were succesfully deleted.'));
+      EventNotifications.success(__('Catalog(s) were successfully deleted.'));
     }
 
     function failure() {
