@@ -1,5 +1,5 @@
 {
-  "url": "service_catalogs?filter[]=id%3E0&hide=resources",
+  "url": "service_catalogs?hide=resources",
   "get": {
     "name": "service_catalogs",
     "count": 10,

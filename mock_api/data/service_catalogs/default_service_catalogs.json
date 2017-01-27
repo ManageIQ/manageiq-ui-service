@@ -1,5 +1,5 @@
 {
-  "url": "service_catalogs?attributes=tenant,picture,picture.image_href,service_template_catalog.name,dialogs&limit=20&expand=service_templates,resources&sort_order=asc",
+  "url": "service_catalogs?expand=resources%2Cservice_templates&attributes=tenant%2Cpicture%2Cpicture.image_href%2Cservice_template_catalog.name%2Cdialogs&limit=20&sort_by=name&sort_order=asc&sort_options=ignore_case",
   "get": {
     "name": "service_catalogs",
     "count": 10,
