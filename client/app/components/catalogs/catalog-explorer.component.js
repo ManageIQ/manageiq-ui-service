@@ -8,7 +8,7 @@ export const CatalogsListComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, Session, CatalogsState, sprintf, ListView, EventNotifications) {
+function ComponentController($state, Session, CatalogsState, sprintf, ListView, EventNotifications, RBAC, lodash) {
   var vm = this;
 
   vm.$onInit = function() {
@@ -31,6 +31,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
       removeCatalog: removeCatalog,
       cancelRemoveCatalog: cancelRemoveCatalog,
       listActionDisable: listActionDisable,
+      checkApproval: checkApproval,
 
       // Config
       listConfig: getListConfig(),
@@ -119,7 +120,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
 
   function getListConfig() {
     return {
-      // showSelectBox: checkApproval(),
+      showSelectBox: checkApproval(),
       useExpandingRows: true,
       selectionMatchProp: 'id',
       onClick: toggleRow,
@@ -128,7 +129,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
   }
 
   function getMenuActions() {
-    return [{
+    const menuActions = [{
       name: __('Edit'),
       title: __('Edit Catalog'),
       actionFn: handleEdit,
@@ -137,10 +138,12 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
       title: __('Delete Catalog'),
       actionFn: handleDelete,
     }];
+
+    return checkApproval() ? menuActions : null;
   }
 
   function getListActions() {
-    return [{
+    const itemActions = [{
       title: __('Configuration'),
       name: __('Configuration'),
       actionName: 'configuration',
@@ -165,7 +168,8 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
         actionFn: deleteSelectedCatalogs,
         isDisabled: false,
       }],
-    }, {
+    }];
+    const listActions = [{
       title: __('List Actions'),
       name: __(''),
       actionName: 'listActions',
@@ -176,13 +180,13 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
         actionName: 'select',
         title: __('Select All'),
         actionFn: selectAll,
-        isDisabled: false,
+        isDisabled: !checkApproval(),
       }, {
         name: __('Unselect All'),
         actionName: 'unselect',
         title: __('Unselect All'),
         actionFn: unselectAll,
-        isDisabled: false,
+        isDisabled: !checkApproval(),
       }, {
         name: __('Expand All'),
         actionName: 'expand',
@@ -197,6 +201,8 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
         isDisabled: false,
       }],
     }];
+
+    return checkApproval() ? itemActions.concat(listActions) : listActions;
   }
 
   function listActionDisable(config, items) {
@@ -340,5 +346,10 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
     vm.catalogsList.forEach((item) => {
       item.selected = false;
     });
+  }
+
+  function checkApproval() {
+    console.log( lodash.reduce(lodash.map(['catalogitem_admin', 'svc_catalog_admin', 'st_catalog_admin'], RBAC.has))    )
+    return lodash.reduce(lodash.map(['catalogitem_admin', 'svc_catalog_admin', 'st_catalog_admin'], RBAC.has));
   }
 }

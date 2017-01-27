@@ -32,9 +32,7 @@
 </div>
 <div class="list-view-container section-container paged-container service-explorer-list">
   <loading status="vm.loading"></loading>
-
-  <div ng-if="!vm.loading"
-       class="list-view-container section-container"
+  <div ng-if="!vm.loading" class="list-view-container section-container"
        confirmation
        confirmation-id="confirmDeleteCatalog"
        confirmation-trigger-value="vm.confirmDelete"
@@ -52,7 +50,8 @@
          config="vm.listConfig"
          items="vm.catalogsList"
          action-buttons="vm.actionButtons"
-         menu-actions="vm.menuActions">
+         menu-actions="vm.menuActions"
+         hide-menu-for-item-fn="!vm.checkApproval">
       <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-5 col-xs-12">
             <span class="no-wrap"
