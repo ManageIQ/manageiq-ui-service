@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 
 export const CatalogsListComponent = {
-  templateUrl: "app/components/catalogs/catalog-list.html",
+  templateUrl: "app/components/catalogs/catalog-explorer.html",
   controller: ComponentController,
   controllerAs: 'vm',
   bindToController: true,
