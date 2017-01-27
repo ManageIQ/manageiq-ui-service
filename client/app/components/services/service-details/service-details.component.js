@@ -40,6 +40,7 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
       suspendVM: suspendVM,
       gotoComputeResource: gotoComputeResource,
       gotoService: gotoService,
+      gotoServices: gotoServices,
       gotoCatalogItem: gotoCatalogItem,
 
       // Config setup
