@@ -349,7 +349,6 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
   }
 
   function checkApproval() {
-    console.log( lodash.reduce(lodash.map(['catalogitem_admin', 'svc_catalog_admin', 'st_catalog_admin'], RBAC.has))    )
     return lodash.reduce(lodash.map(['catalogitem_admin', 'svc_catalog_admin', 'st_catalog_admin'], RBAC.has));
   }
 }
