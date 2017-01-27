@@ -5,6 +5,6 @@ describe('Component: orderExplorer', function() {
   });
   it('should have correct breadcrumb', function() {
     var breadcrumb = element.all(by.css('.breadcrumb > .active'));
-    expect(breadcrumb.get(0).getInnerHtml()).toBe("My Orders");
+    expect(breadcrumb.get(0).getInnerHtml()).toBe("Orders");
   });
 });
