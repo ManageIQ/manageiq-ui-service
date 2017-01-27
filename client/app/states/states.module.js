@@ -22,9 +22,6 @@ import { OrdersExplorerState } from './orders/explorer/explorer.state.js';
 import { OrdersState } from './orders/orders.state.js';
 import { ProductsDetailsState } from './products/details/details.state.js';
 import { ProductsState } from './products/products.state.js';
-import { ProfilesDetailsState } from './administration/profiles/details/details.state.js';
-import { ProfilesEditorState } from './administration/profiles/editor/editor.state.js';
-import { ProfilesState } from './administration/profiles/profiles.state.js';
 import { RequestsDetailsState } from './requests/details/details.state.js';
 import { RequestsExplorerState } from './requests/explorer/explorer.state.js';
 import { RequestsState } from './requests/requests.state.js';
@@ -44,9 +41,6 @@ export const AppRoutingModule = angular
   .run(NotFoundState)
   .run(AboutMeState)
   .run(AdminState)
-  .run(ProfilesDetailsState)
-  .run(ProfilesEditorState)
-  .run(ProfilesState)
   .run(RulesState)
   .run(DashboardState)
   .run(CatalogsState)
