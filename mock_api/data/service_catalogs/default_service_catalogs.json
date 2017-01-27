@@ -2033,8 +2033,8 @@
       {
         "href": "http://localhost:3001/api/service_catalogs/10000000000015",
         "id": 10000000000015,
-        "name": "poop",
-        "description": "poop",
+        "name": "Azure Operations",
+        "description": "Azure Operations",
         "tenant_id": 10000000000001,
         "tenant": {
           "id": 10000000000001,

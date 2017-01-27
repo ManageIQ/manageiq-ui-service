@@ -8,7 +8,12 @@ describe('Component: catalogExplorer', function() {
     expect(breadcrumb.get(0).getInnerHtml()).toBe("Catalogs");
   });
   it('should have expected number of results', function() {
-    let results = element.all(by.css('.toolbar-pf-results h5'));
+    const results = element.all(by.css('.toolbar-pf-results h5'));
     expect(results.get(0).getInnerHtml()).toBe("10 Results");
   });
+  it('should have expected number of rows', function() {
+    const list = element.all(by.css('.list-view-container .list-group .list-group-item'));
+    expect(list.count()).toBe(10);
+  });
+
 });
