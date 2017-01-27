@@ -9,6 +9,6 @@ describe('Component: catalogExplorer', function() {
   });
   it('should have expected number of results', function() {
     let results = element.all(by.css('.toolbar-pf-results h5'));
-    expect(results.get(0).getInnerHtml()).toBe("9 Results");
+    expect(results.get(0).getInnerHtml()).toBe("10 Results");
   });
 });
