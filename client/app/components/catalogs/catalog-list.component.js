@@ -75,17 +75,18 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
     }
 
     if (deleteCatalogs.length > 0) {
-      CatalogsState.deleteCatalogs(deleteCatalogs).then(removeSuccess, removeFailure);
+      CatalogsState.deleteCatalogs(deleteCatalogs).then(removeSuccess,
+        removeFailure);
     }
     vm.confirmDelete = false;
     vm.catalogsToDelete.splice(0, vm.catalogsToDelete.length);
 
     function removeSuccess() {
-      vm.refreshFn();
+      resolveCatalogs(vm.limit, 0);
     }
 
     function removeFailure() {
-      vm.refreshFn();
+      resolveCatalogs(vm.limit, 0);
     }
   }
 
@@ -127,18 +128,15 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
   }
 
   function getMenuActions() {
-    return [
-      {
-        name: __('Edit'),
-        title: __('Edit Catalog'),
-        actionFn: handleEdit,
-      },
-      {
-        name: __('Delete'),
-        title: __('Delete Catalog'),
-        actionFn: handleDelete,
-      },
-    ];
+    return [{
+      name: __('Edit'),
+      title: __('Edit Catalog'),
+      actionFn: handleEdit,
+    }, {
+      name: __('Delete'),
+      title: __('Delete Catalog'),
+      actionFn: handleDelete,
+    }];
   }
 
   function getListActions() {

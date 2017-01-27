@@ -43,6 +43,20 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     return filters;
   }
 
+  function getQueryFilters(filters) {
+    const queryFilters = [];
+
+    angular.forEach(filters, function(nextFilter) {
+      if (nextFilter.id === 'name') {
+        queryFilters.push("name='%" + nextFilter.value + "%'");
+      } else {
+        queryFilters.push(nextFilter.id + '=' + nextFilter.value);
+      }
+    });
+
+    return queryFilters;
+  }
+
   function getCatalogs(limit, offset) {
     const options = {
       expand: ['resources', 'service_templates'],
@@ -91,20 +105,6 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     }
 
     return CollectionsApi.post('service_catalogs', null, {}, catalogObj).then(createSuccess, createFailure);
-  }
-
-  function getQueryFilters(filters) {
-    const queryFilters = [];
-
-    angular.forEach(filters, function(nextFilter) {
-      if (nextFilter.id === 'name') {
-        queryFilters.push("name='%" + nextFilter.value + "%'");
-      } else {
-        queryFilters.push(nextFilter.id + '=' + nextFilter.value);
-      }
-    });
-
-    return queryFilters;
   }
 
   function editCatalog(catalog, skipResults) {
@@ -178,7 +178,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
 
   function removeServiceTemplates(catalogId, serviceTemplates, skipResults) {
     var editSuccess = function(response) {
-      EventNotifications.success(__('Catalog %s was successfully updated.'));
+      EventNotifications.success(__('Catalog was successfully updated.'));
 
       if (skipResults !== true) {
         return response.data;
