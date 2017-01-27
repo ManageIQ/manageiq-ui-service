@@ -58,3 +58,10 @@ require('./assets/sass/styles.sass');
 
 // Angular templates
 requireAll(require.context('./app', true, /\.html$/));
+
+// Skin overrides
+try {
+  requireAll(require.context('./skin', true, /\.(js|css)$/));
+} catch (e) {
+  // Skin dependencies are not linked
+}
