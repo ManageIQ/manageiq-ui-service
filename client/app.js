@@ -54,6 +54,7 @@ require('manageiq-ui-components/dist/css/ui-components.css');
 require('ngprogress/ngProgress.css');
 
 // Application styles
+require('./assets/sass/_patternfly.scss');
 require('./assets/sass/styles.sass');
 
 // Angular templates
