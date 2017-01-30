@@ -19,21 +19,25 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
       confirmDelete: false,
       catalogsToDelete: [],
       deleteConfirmationMessage: '',
+      viewType: 'listView',
 
       limit: 20,
       filterCount: 0,
       catalogsList: [],
+      serviceTemplateList: [],
       selectedItemsList: [],
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
 
       // Functions
-      resolveCatalogs: resolveCatalogs,
-      removeCatalog: removeCatalog,
       cancelRemoveCatalog: cancelRemoveCatalog,
-      listActionDisable: listActionDisable,
       checkApproval: checkApproval,
+      listActionDisable: listActionDisable,
+      removeCatalog: removeCatalog,
+      resolveCatalogs: resolveCatalogs,
+      viewSelected: viewSelected,
 
       // Config
+      cardConfig: getCardConfig(),
       listConfig: getListConfig(),
       menuActions: getMenuActions(),
       listActions: getListActions(),
@@ -117,6 +121,14 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
 
 
   // Config
+
+  function getCardConfig() {
+    return {
+      showSelectBox: false,
+      selectionMatchProp: 'id',
+      onClick: viewDetails,
+    };
+  }
 
   function getListConfig() {
     return {
@@ -276,6 +288,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
     function success(response) {
       vm.loading = false;
       vm.catalogsList = [];
+      vm.serviceTemplateList = [];
       vm.selectedItemsList = [];
 
       response.resources.forEach((item) => {
@@ -284,8 +297,10 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
 
           item.disableRowExpansion = item.service_templates.resources.length === 0;
         }
+        vm.serviceTemplateList.push(item.service_templates.resources);
         vm.catalogsList.push(item);
       });
+      vm.serviceTemplateList = lodash.flattenDeep(vm.serviceTemplateList);
 
       getFilterCount();
 
@@ -350,5 +365,9 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
 
   function checkApproval() {
     return lodash.reduce(lodash.map(['catalogitem_admin', 'svc_catalog_admin', 'st_catalog_admin'], RBAC.has));
+  }
+
+  function viewSelected(viewId) {
+    vm.viewType = viewId;
   }
 }

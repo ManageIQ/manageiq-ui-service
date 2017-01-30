@@ -30,7 +30,22 @@
     </custom-dropdown>
   </actions>
 </div>
-<div class="list-view-container section-container paged-container service-explorer-list">
+<div ng-if="vm.viewType == 'cardView'" class="list-view-container section-container paged-container">
+  <loading status="vm.loading"></loading>
+  <div ng-if="!vm.loading" pf-card-view id="cardView" config="vm.cardConfig" items="vm.serviceTemplateList">
+    <h3>{{ item.name }}</h3>
+    <div class="ss-card__logo_wrapper">
+      <img ng-if="item.picture.image_href" class="ss-card__logo" alt="{{ item.name }}"
+           ng-src="{{ item.picture.image_href }}"/>
+      <img ng-if="!item.picture.image_href" class="ss-card__logo" alt="{{ item.name }}" src="./images/service.png"/>
+    </div>
+    <span uib-tooltip=" {{item.description}} " tooltip-placement="right"></i>
+      <strong translate>Description</strong>
+      <i class="fa fa-info-circle blue"></i>
+    </span>
+  </div>
+</div>
+<div ng-if="vm.viewType == 'listView'"  class="list-view-container section-container paged-container service-explorer-list">
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading" class="list-view-container section-container"
        confirmation
