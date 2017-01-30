@@ -98,6 +98,7 @@ module.exports = {
         test: /\.(css|s(a|c)ss)$/,
         use: ExtractTextWebpackPlugin.extract({
           fallbackLoader: 'style-loader',
+          allChunks: true,
           loader: [
             'css-loader?importLoaders=2&sourceMap=true',
             'postcss-loader',
@@ -105,7 +106,6 @@ module.exports = {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
-
                 includePaths: [
                   `${nodeModules}/bootstrap-sass/assets/stylesheets`,
                   `${nodeModules}/patternfly-sass/assets/stylesheets`,

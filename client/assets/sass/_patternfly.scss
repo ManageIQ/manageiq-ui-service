@@ -1,10 +1,9 @@
-$bootstrap-sass-asset-helper: true;
-
-$patternfly-sass-asset-helper: true;
-// $fa-font-path: '~/node_modules/font-awesome/fonts';
+// Bootstrap path variables
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+// Font Awesome path variables
 $fa-font-path: "~font-awesome/fonts";
-$img-path: '~/node_modules/patternfly-sass/assets/images';
-// PatternFly SCSS
+// Patternfly path variables
+$img-path: '~patternfly-sass/assets/images/patternfly/';
+$font-path: '~patternfly-sass/assets/fonts/patternfly/';
 
-@import '~font-awesome/scss/font-awesome';
 @import '~patternfly-sass/assets/stylesheets/patternfly';
