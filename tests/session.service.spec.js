@@ -65,7 +65,7 @@ describe('Session', function() {
       expect($state.navFeatures.dashboard.show).to.eq(true);
       expect($state.navFeatures.services.show).to.eq(true);
       expect($state.navFeatures.requests.show).to.eq(false);
-      expect($state.navFeatures.marketplace.show).to.eq(false);
+      expect($state.navFeatures.catalogs.show).to.eq(false);
 
       expect($state.actionFeatures.serviceEdit.show).to.eq(true);
       expect($state.actionFeatures.serviceDelete.show).to.eq(false);
@@ -85,7 +85,7 @@ describe('Session', function() {
       expect($state.navFeatures.dashboard.show).to.eq(true);
       expect($state.navFeatures.services.show).to.eq(false);
       expect($state.navFeatures.requests.show).to.eq(true);
-      expect($state.navFeatures.marketplace.show).to.eq(true);
+      expect($state.navFeatures.catalogs.show).to.eq(true);
     });
 
     it('returns false if user is not entitled to use ssui', function() {

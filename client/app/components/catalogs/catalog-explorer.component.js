@@ -326,7 +326,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
   }
 
   function viewDetails(template) {
-    $state.go('marketplace.details', {serviceTemplateId: template.id});
+    $state.go('catalogs.details', {serviceTemplateId: template.id});
   }
 
   function toggleRow(item) {

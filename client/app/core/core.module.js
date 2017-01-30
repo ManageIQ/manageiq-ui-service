@@ -4,7 +4,6 @@ import { authConfig, authInit } from './authorization.config.js';
 import { configure, init } from './config.js';
 import { formatBytes, megaBytes } from '../filters/format-bytes.filter.js';
 import { navConfig, navInit } from './navigation.config.js';
-
 import { AuthenticationApiFactory } from './authentication-api.factory.js';
 import { CatalogsStateFactory } from './catalogs-state.service.js';
 import { ChargebackFactory } from './chargeback.service.js';
@@ -19,7 +18,6 @@ import { LanguageFactory } from './language.service.js';
 import { ListConfigurationFactory } from './list-configuration.service.js';
 import { ListViewFactory } from './list-view.service.js';
 import { LoggerService } from './logger.service.js';
-import { MarketplaceStateFactory } from './marketplace-state.service.js';
 import { MessagesFactory } from './messages.service.js';
 import { NavCountsFactory } from './navcounts.service.js';
 import { NavigationProvider } from './navigation.provider.js';
@@ -80,7 +78,6 @@ export const CoreModule = angular
   .factory('Language', LanguageFactory)
   .factory('ListConfiguration', ListConfigurationFactory)
   .factory('ListView', ListViewFactory)
-  .factory('MarketplaceState', MarketplaceStateFactory)
   .factory('Messages', MessagesFactory)
   .factory('NavCounts', NavCountsFactory)
   .factory('OrdersState', OrdersStateFactory)

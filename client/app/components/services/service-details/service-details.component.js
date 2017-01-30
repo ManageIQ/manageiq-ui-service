@@ -303,7 +303,7 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
   }
 
   function gotoCatalogItem() {
-    $state.go('marketplace.details', {serviceTemplateId: vm.service.service_template.id});
+    $state.go('catalogs.details', {serviceTemplateId: vm.service.service_template.id});
   }
 
   function gotoServices() {
