@@ -7,7 +7,7 @@ function getStates() {
   return {
     'products': {
       url: '/',
-      redirectTo: 'marketplace',
+      redirectTo: 'catalogs',
       template: '<ui-view></ui-view>',
     },
   };

@@ -1,14 +1,14 @@
 /** @ngInject */
-export function MarketplaceDetailsState(routerHelper) {
+export function CatalogsDetailsState(routerHelper) {
   routerHelper.configureStates(getStates());
 }
 
 function getStates() {
   return {
-    'marketplace.details': {
+    'catalogs.details': {
       url: '/:serviceTemplateId',
-      templateUrl: 'app/states/marketplace/details/details.html',
-      controller: StateController,
+      templateUrl: 'app/states/catalogs/details/details.html',
+      controller: Controller,
       controllerAs: 'vm',
       title: N_('Service Template Details'),
       resolve: {
@@ -34,7 +34,7 @@ function resolveDialogs($stateParams, CollectionsApi) {
 }
 
 /** @ngInject */
-function StateController($state, CollectionsApi, dialogs, serviceTemplate, EventNotifications, DialogFieldRefresh, ShoppingCart) {
+function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRefresh, ShoppingCart) {
   var vm = this;
 
   vm.serviceTemplate = serviceTemplate;
@@ -73,7 +73,7 @@ function StateController($state, CollectionsApi, dialogs, serviceTemplate, Event
 
     angular.forEach(allDialogFields, function(dialogField) {
       if ((dialogField.type === "DialogFieldTagControl" || dialogField.type === "DialogFieldDropDownList")
-          && dialogField.default_value instanceof Array) {
+        && dialogField.default_value instanceof Array) {
         dialogFieldData[dialogField.name] = dialogField.default_value.join();
       } else {
         dialogFieldData[dialogField.name] = dialogField.default_value;
@@ -101,10 +101,10 @@ function StateController($state, CollectionsApi, dialogs, serviceTemplate, Event
       description: vm.serviceTemplate.name,
       data: dialogFieldData,
     })
-    .then(addSuccess, addFailure)
-    .then(function() {
-      vm.addingToCart = false;
-    });
+      .then(addSuccess, addFailure)
+      .then(function() {
+        vm.addingToCart = false;
+      });
 
     function addSuccess(result) {
       if (result.duplicate) {

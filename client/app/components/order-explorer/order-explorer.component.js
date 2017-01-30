@@ -78,9 +78,11 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
       onCheckBoxChange: selectionChange,
     };
   }
+
   function pollUpdateOrderList() {
     resolveOrders(vm.limit, vm.offset, true);
   }
+
   function getExpandedListConfig() {
     return {
       showSelectBox: checkApproval(),
@@ -131,22 +133,22 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
   }
 
   function getMenuActions() {
-    return [
+    const menuActions = [
       {
         name: __('Duplicate'),
         actionName: 'duplicate',
         title: __('Duplicate Order'),
         actionFn: duplicateOrder,
         isDisabled: false,
-      },
-      {
+      }, {
         name: __('Remove'),
         actionName: 'remove',
         title: __('Remove Order'),
         actionFn: removeOrder,
         isDisabled: false,
-      },
-    ];
+      }];
+
+    return checkApproval() ? menuActions : null;
   }
 
   function expandRow(item) {
@@ -251,7 +253,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
           vm.orders.push(dataRow);
         }
       }
-    
+
       function refreshRow(item) {
         for (var i = 0; i < existingOrders.length; i++) {
           var currentOrder = existingOrders[i];
@@ -265,7 +267,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
             break;
           }
         }
-        
+
         return item;
       }
 

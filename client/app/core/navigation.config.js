@@ -27,7 +27,7 @@ export function navConfig(NavigationProvider) {
   );
   const catalogs = createItem(
     N_('Catalogs'),
-    'designer.catalogs',
+    'catalogs',
     'fa fa-folder-open-o',
     N_('The total number of available catalogs')
   );

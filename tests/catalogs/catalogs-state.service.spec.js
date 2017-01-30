@@ -1,9 +1,9 @@
 describe('CatalogsState', function() {
-  beforeEach(function () {
+  beforeEach(function() {
     module('app.states');
   });
 
-  describe('service', function () {
+  describe('service', function() {
     var mockDir = 'tests/mock/catalogs/';
     var notificationsErrorSpy;
     var notificationsSuccessSpy;
@@ -13,7 +13,7 @@ describe('CatalogsState', function() {
     var errorResponse = 'error';
     var collectionsApiSpy;
 
-    beforeEach(function () {
+    beforeEach(function() {
       bard.inject('CatalogsState', 'CollectionsApi', 'EventNotifications');
       notificationsSuccessSpy = sinon.stub(EventNotifications, 'success').returns(null);
       notificationsErrorSpy = sinon.stub(EventNotifications, 'error').returns(null);
@@ -22,11 +22,18 @@ describe('CatalogsState', function() {
     it('should query the API for catalogs', function(done) {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
 
-      CatalogsState.getCatalogs().then(function(response) {
+      CatalogsState.getCatalogs(5, 0).then(function(response) {
         expect(collectionsApiSpy).to.have.been.calledWith(
           'service_catalogs',
           {
-            expand: 'resources',
+            expand: ['resources', 'service_templates'],
+            attributes: ['tenant', 'picture', 'picture.image_href', 'service_template_catalog.name', 'dialogs'],
+            limit: 5,
+            offset: 0,
+            filter: [],
+            sort_by: 'name',
+            sort_order: 'asc',
+            sort_options: 'ignore_case'
           }
         );
         done();
@@ -34,44 +41,15 @@ describe('CatalogsState', function() {
     });
 
     it('should query the API for service templates ', function(done) {
-        collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
+      collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
 
-        CatalogsState.getServiceTemplates().then(function(response) {
+      CatalogsState.getServiceTemplates().then(function(response) {
         expect(collectionsApiSpy).to.have.been.calledWith(
           'service_templates',
           {
             expand: 'resources',
             filter: ['display=true'],
             attributes: ['picture', 'picture.image_href', 'service_template_catalog.name'],
-          }
-        );
-        done();
-      });
-    });
-
-    it('should query the API for tenants', function(done) {
-      collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
-
-      CatalogsState.getTenants().then(function(response) {
-        expect(collectionsApiSpy).to.have.been.calledWith(
-          'tenants',
-          {
-            expand: 'resources',
-          }
-        );
-        done();
-      });
-    });
-
-    it('should query the API for service template dialogs', function(done) {
-      collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
-
-      CatalogsState.getServiceTemplateDialogs(1).then(function(response) {
-        expect(collectionsApiSpy).to.have.been.calledWith(
-          'service_templates/1/service_dialogs',
-          {
-            expand: 'resources',
-            attributes: ['id', 'label'],
           }
         );
         done();

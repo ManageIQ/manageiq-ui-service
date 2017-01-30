@@ -1,10 +1,13 @@
-<ol class="breadcrumb">
-  <li>
-    <a ui-sref="^">{{'Service Catalog'|translate}}</a>
-  </li>
-  <li class="active"> <strong>{{ ::vm.serviceTemplate.name }}</strong>
-  </li>
-</ol>
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li>
+          <a ui-sref="catalogs">{{'Catalogs'|translate}}</a>
+        </li>
+        <li class="active">{{ ::vm.serviceTemplate.name }}</li>
+      </ol>
+  </span>
+</div>
 
 <div class="ss-details-wrapper">
   <div class="panel panel-default ss-details-panel">
