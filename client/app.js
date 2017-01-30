@@ -45,16 +45,12 @@ require('angular-patternfly/dist/angular-patternfly');
 require('./app/app.module.js');
 
 // Vendor styles, order matters
-// require('bootstrap-select/dist/css/bootstrap-select.css');
-// require('bootstrap-touchspin/src/jquery.bootstrap-touchspin.css');
-// require('patternfly/dist/css/patternfly.css');
 require('patternfly/dist/css/patternfly-additions.css');
 // require('angular-patternfly/dist/styles/angular-patternfly.css');
 require('manageiq-ui-components/dist/css/ui-components.css');
 require('ngprogress/ngProgress.css');
 
 // Application styles
-require('./assets/sass/_patternfly.scss');
 require('./assets/sass/styles.sass');
 
 // Angular templates

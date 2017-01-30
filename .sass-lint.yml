@@ -2,6 +2,7 @@ options:
   formatter: stylish
 files:
   include: 'client/**/*.s+(a|c)ss'
+  ignore: 'client/**/_patternfly.scss'
 rules:
   # Extends
   extends-before-mixins: 2
