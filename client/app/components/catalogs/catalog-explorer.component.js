@@ -354,10 +354,12 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
   function selectAll() {
     vm.catalogsList.forEach((item) => {
       item.selected = true;
+      vm.selectedItemsList.push(item);
     });
   }
 
   function unselectAll() {
+    vm.selectedItemsList = [];
     vm.catalogsList.forEach((item) => {
       item.selected = false;
     });
