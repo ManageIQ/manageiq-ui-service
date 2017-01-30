@@ -96,12 +96,23 @@ module.exports = {
       // css loaders: extract styles to a separate bundle
       {
         test: /\.(css|s(a|c)ss)$/,
-        loader: ExtractTextWebpackPlugin.extract({
+        use: ExtractTextWebpackPlugin.extract({
           fallbackLoader: 'style-loader',
           loader: [
             'css-loader?importLoaders=2&sourceMap=true',
             'postcss-loader',
-            'sass-loader?sourceMap'
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+
+                includePaths: [
+                  `${nodeModules}/bootstrap-sass/assets/stylesheets`,
+                  `${nodeModules}/patternfly-sass/assets/stylesheets`,
+                  `${nodeModules}/font-awesome/scss`,
+                ],
+              },
+            },
           ],
         }),
       },
