@@ -67,7 +67,7 @@ function ComponentController() {
         vm.offset = vm.offset - vm.limit;
       }
       establishBoundaries();
-      vm.onUpdate({limit: vm.limit, $offset: vm.offset});
+      vm.onUpdate({$limit: vm.limit, $offset: vm.offset});
     }
   }
 
