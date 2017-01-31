@@ -1,7 +1,7 @@
 <div class="breadcrumb-bar">
   <span>
       <ol class="breadcrumb">
-        <li class="active">{{vm.title}}</li>
+        <li class="active">{{ 'Requests' | translate }}</li>
       </ol>
   </span>
 </div>
@@ -63,5 +63,5 @@
     </div>
   </div>
 </div>
-<explorer-pagination limit="vm.limit" count="vm.requestCount" limit-options="vm.limitOptions" on-update="vm.fetchData(vm.limit, $offset)">
+<explorer-pagination limit="vm.limit" count="vm.requestCount" limit-options="vm.limitOptions" on-update="vm.paginationUpdate($limit, $offset)">
 </explorer-pagination>

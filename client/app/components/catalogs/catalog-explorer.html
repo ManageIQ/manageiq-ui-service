@@ -1,8 +1,7 @@
 <div class="breadcrumb-bar">
   <span>
       <ol class="breadcrumb">
-        <li>{{'Catalogs'|translate}}</li>
-        <li class="active">{{vm.title}}</li>
+        <li class="active">{{'Catalogs'|translate}}</li>
       </ol>
   </span>
   <div class="view-selector-bar">
@@ -149,5 +148,5 @@
   </div>
 </div>
 <explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions"
-                     on-update="vm.resolveCatalogs($limit, $offset)">
+                     on-update="vm.updatePagination($limit, $offset)">
 </explorer-pagination>

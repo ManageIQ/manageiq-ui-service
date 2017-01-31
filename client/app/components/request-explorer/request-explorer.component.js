@@ -6,7 +6,7 @@ export const RequestExplorerComponent = {
 
 /** @ngInject */
 function ComponentController($state, CollectionsApi, RequestsState, ListView, $filter, lodash, Language, EventNotifications,
-                              ModalService, Polling) {
+                             ModalService, Polling) {
   var vm = this;
 
   vm.$onInit = function() {
@@ -57,6 +57,7 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
       ],
       listActionDisable: listActionDisable,
       pollingInterval: 10000,
+      paginationUpdate: paginationUpdate,
     });
 
     vm.configuration[0].actions = [
@@ -120,8 +121,8 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
       if (angular.isDefined(response.resources)) {
         var responseData = response.resources; // vm.selectedItemsList
         if (vm.selectedItemsList.length > 0) {
-          responseData.forEach(function (item) {
-            var selectedItem = lodash.find(vm.selectedItemsList, { id: item.id });
+          responseData.forEach(function(item) {
+            var selectedItem = lodash.find(vm.selectedItemsList, {id: item.id});
             if (angular.isDefined(selectedItem)) {
               item.selected = true;
             }
@@ -287,7 +288,14 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
   function listActionDisable(config, items) {
     items.length <= 0 ? config.isDisabled = true : config.isDisabled = false;
   }
+
   function pollUpdateRequestsList() {
     vm.fetchData(vm.limit, vm.offset, true);
-  } 
+  }
+
+  function paginationUpdate(limit, offset) {
+    vm.limit = limit;
+    vm.offset = offset;
+    vm.fetchData(limit, offset);
+  }
 }

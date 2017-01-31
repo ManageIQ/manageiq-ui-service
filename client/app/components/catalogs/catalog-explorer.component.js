@@ -34,6 +34,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
       listActionDisable: listActionDisable,
       removeCatalog: removeCatalog,
       resolveCatalogs: resolveCatalogs,
+      updatePagination: updatePagination,
       viewSelected: viewSelected,
 
       // Config
@@ -371,5 +372,11 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
 
   function viewSelected(viewId) {
     vm.viewType = viewId;
+  }
+
+  function updatePagination(limit, offset) {
+    vm.limit = limit;
+    vm.offset = offset;
+    vm.resolveCatalogs(limit, offset);
   }
 }

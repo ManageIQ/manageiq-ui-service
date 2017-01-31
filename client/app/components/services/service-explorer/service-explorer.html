@@ -1,7 +1,7 @@
 <div class="breadcrumb-bar">
   <span>
       <ol class="breadcrumb">
-        <li class="active">{{vm.title}}</li>
+        <li class="active">{{ 'Services' | translate }}</li>
       </ol>
   </span>
   <div class="view-selector-bar">
@@ -242,5 +242,5 @@
     </list-expanded-content>
   </div>
 </div>
-<explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions" on-update="vm.resolveServices($limit, $offset)">
+<explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions" on-update="vm.paginationUpdate($limit, $offset)">
 </explorer-pagination>
