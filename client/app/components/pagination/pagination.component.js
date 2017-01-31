@@ -54,6 +54,7 @@ function ComponentController() {
   function updateLimit(newLimit) {
     vm.offset = 0;
     vm.limit = newLimit;
+    vm.lastOffset = Math.floor(vm.count / vm.limit) * vm.limit;
     establishBoundaries();
     vm.onUpdate({$limit: vm.limit, $offset: vm.offset});
   }
