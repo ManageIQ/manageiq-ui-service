@@ -21,6 +21,7 @@ describe('pagination component', function() {
     });
 
     it('next increments offset by limit', function() {
+      ctrl.$onInit();
       ctrl.next();
       expect(ctrl.offset).to.equal(5);
       expect(ctrl.rightBoundary).to.equal(10);
@@ -28,6 +29,7 @@ describe('pagination component', function() {
     });
 
     it('previous decrements offset by limit', function() {
+      ctrl.$onInit();
       ctrl.next();
       ctrl.previous();
       expect(ctrl.offset).to.equal(0);

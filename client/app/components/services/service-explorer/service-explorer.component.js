@@ -35,6 +35,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       startService: startService,
       stopService: stopService,
       suspendService: suspendService,
+      paginationUpdate: paginationUpdate,
       // Config setup
       viewType: 'listView',
       cardConfig: getCardConfig(),
@@ -82,6 +83,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
 
     return compareValue.toLowerCase().indexOf('ansible') !== -1;
   }
+
   function getListActions() {
     var configActions, lifeCycleActions, policyActions;
     var listActions = [];
@@ -150,9 +152,11 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   function suspendService(action, item) {
     PowerOperations.suspendService(item);
   }
+
   function pollUpdateServicesList() {
     resolveServices(vm.limit, vm.offset, true);
   }
+
   function viewSelected(viewId) {
     vm.viewType = viewId;
   }
@@ -305,13 +309,13 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   }
 
   function getCurrentFilters() {
-    var filters =  ['ancestry=null'];
+    var filters = ['ancestry=null'];
 
     angular.forEach(vm.headerConfig.filterConfig.appliedFilters, function(nextFilter) {
       if (nextFilter.id === 'name') {
         filters.push("name='%" + nextFilter.value + "%'");
       } else {
-        filters.push(nextFilter.id + '=' + nextFilter.value );
+        filters.push(nextFilter.id + '=' + nextFilter.value);
       }
     });
 
@@ -338,7 +342,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       vm.loading = false;
     }
     vm.offset = offset;
-        
+
     ServicesState.getServices(
       limit,
       offset,
@@ -359,7 +363,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
           angular.forEach(item.all_service_children, function(childService) {
             childService.power_state = PowerOperations.getPowerState(item);
           });
-        
+
           if (refresh) {
             for (var i = 0; i < existingServices.length; i++) {
               var currentService = existingServices[i];
@@ -507,6 +511,12 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       },
     };
     ModalService.open(modalOptions);
+  }
+
+  function paginationUpdate(limit, offset) {
+    vm.limit = limit;
+    vm.offset = offset;
+    vm.resolveServices(limit, offset);
   }
 
   function editService() {

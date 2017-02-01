@@ -5070,7 +5070,7 @@ patternfly-bootstrap-treeview@~2.1.0:
     bootstrap "3.3.x"
     jquery ">= 2.1.x"
 
-patternfly-sass@^3.15.0:
+patternfly-sass@3.15.0:
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/patternfly-sass/-/patternfly-sass-3.15.0.tgz#9d51556c4980397e3d24c067108c8093d8fed642"
   dependencies:

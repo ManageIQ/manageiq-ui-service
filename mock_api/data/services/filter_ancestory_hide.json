@@ -2,8 +2,8 @@
     "url": "services?filter[]=ancestry%3Dnull&hide=resources",
     "get": {
         "name": "services",
-        "count": 72,
-        "subcount": 63,
+        "count": 3,
+        "subcount": 3,
         "actions": [
             {
                 "name": "query",

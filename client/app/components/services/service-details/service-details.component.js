@@ -40,7 +40,6 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
       suspendVM: suspendVM,
       gotoComputeResource: gotoComputeResource,
       gotoService: gotoService,
-      gotoServices: gotoServices,
       gotoCatalogItem: gotoCatalogItem,
 
       // Config setup
@@ -304,10 +303,6 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
 
   function gotoCatalogItem() {
     $state.go('catalogs.details', {serviceTemplateId: vm.service.service_template.id});
-  }
-
-  function gotoServices() {
-    $state.go('services.explorer');
   }
 
   function gotoService(service) {

@@ -27,6 +27,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
       // Functions
       resolveOrders: resolveOrders,
       listActionDisable: listActionDisable,
+      updatePagination: updatePagination,
       // Config setup
       actionConfig: getActionConfig(),
       menuActions: getMenuActions(),
@@ -364,6 +365,12 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
 
   function listActionDisable(config, items) {
     items.length <= 0 ? config.isDisabled = true : config.isDisabled = false;
+  }
+
+  function updatePagination(limit, offset) {
+    vm.limit = limit;
+    vm.offset = offset;
+    vm.resolveOrders(limit, offset);
   }
 
   Language.fixState(OrdersState, vm.toolbarConfig);
