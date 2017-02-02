@@ -142,6 +142,10 @@ module.exports = {
     }),
   ],
 
+  resolve: {
+    symlinks: false,
+  },
+
   // Disables noisy performance warnings. While the warnings are important, it
   // is not feasible to satisfy the recommendations until we start code splitting
   performance: {
