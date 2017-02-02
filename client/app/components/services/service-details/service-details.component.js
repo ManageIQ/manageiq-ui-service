@@ -10,7 +10,7 @@ export const ServiceDetailsComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, CollectionsApi, EventNotifications, Chargeback, Consoles,
+function ComponentController($state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
                              TagEditorModal, ModalService, PowerOperations, ServicesState) {
   var vm = this;
 
@@ -34,6 +34,7 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
       stopService: stopService,
       suspendService: suspendService,
       toggleOpenResourceGroup: toggleOpenResourceGroup,
+      openCockpit: openCockpit,
       openConsole: openConsole,
       startVM: startVM,
       stopVM: stopVM,
@@ -283,6 +284,10 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
 
   function openConsole(item) {
     Consoles.open(item.id);
+  }
+
+  function openCockpit(item) {
+    $window.open('http://' + item.ipaddresses[0] + ':9090');
   }
 
   function gotoComputeResource(resource) {

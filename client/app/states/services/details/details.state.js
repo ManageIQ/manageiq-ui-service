@@ -55,6 +55,7 @@ function resolveService($stateParams, CollectionsApi) {
     'options',
     'name',
     'guid',
+    'vms.ipaddresses',
   ];
   var options = {
     attributes: requestAttributes,
