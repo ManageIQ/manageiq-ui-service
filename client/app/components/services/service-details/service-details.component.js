@@ -16,8 +16,8 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
   var currentServiceState;
   vm.$onInit = activate();
   vm.$doCheck = function () {
-    if (!angular.equals(currentServiceState, this.service)) {
-      currentServiceState = angular.copy(this.service);
+    if (!angular.equals(currentServiceState, vm.service)) {
+      currentServiceState = angular.copy(vm.service);
       vm.computeGroup = createResourceGroups();
     }
   };
@@ -269,15 +269,13 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
   }
 
   function createResourceGroups() {
-    var computeGroup = {
+    return {
       title: __('Compute'),
       open: true,
       resourceTypeClass: 'pficon pficon-screen',
       emptyMessage: __('There are no Compute Resources for this service.'),
       resources: vm.service.vms || [],
     };
-
-    return computeGroup;
   }
 
   function toggleOpenResourceGroup(group) {
