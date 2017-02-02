@@ -69,7 +69,7 @@ export function navConfig(NavigationProvider) {
         {
           count: 0,
           tooltip: badgeTooltip,
-          originalToolTip: badgeTooltip
+          originalToolTip: badgeTooltip,
         },
       ];
     }
