@@ -3,42 +3,43 @@
 /** @ngInject */
 export function navConfig(NavigationProvider) {
   const dashboard = createItem(
-    N_('Dashboard'),
+    'Dashboard',
     'dashboard',
     'fa fa-dashboard'
   );
+
   const services = createItem(
-    N_('Services'),
+    'Services',
     'services',
     'pficon pficon-service',
-    N_('Total services ordered, both active and retired')
+    'Total services ordered, both active and retired'
   );
   const orders = createItem(
-    N_('Orders'),
+    'Orders',
     'orders',
     'fa fa-file-o',
-    N_('Total orders submitted')
+    'Total orders submitted'
   );
   const requests = createItem(
-    N_('Requests'),
+    'Requests',
     'requests',
     'fa fa-files-o',
-    N_('Total pending requests')
+    'Total pending requests'
   );
   const catalogs = createItem(
-    N_('Catalogs'),
+    'Catalogs',
     'catalogs',
     'fa fa-folder-open-o',
-    N_('The total number of available catalogs')
+    'The total number of available catalogs'
   );
   const dialogs = createItem(
-    N_('Dialogs'),
+    'Dialogs',
     'designer.dialogs',
     'pficon pficon-build',
-    N_('Total available dialogs')
+    'Total available dialogs'
   );
   const admin = createItem(
-    N_('Admin'),
+    'Admin',
     'administration',
     'fa fa-cog'
   );
@@ -58,6 +59,7 @@ export function navConfig(NavigationProvider) {
   function createItem(title, state, iconClass, badgeTooltip) {
     const item = {
       title: title,
+      originalTitle: title,
       state: state,
       iconClass: iconClass,
     };
@@ -67,6 +69,7 @@ export function navConfig(NavigationProvider) {
         {
           count: 0,
           tooltip: badgeTooltip,
+          originalToolTip: badgeTooltip
         },
       ];
     }
