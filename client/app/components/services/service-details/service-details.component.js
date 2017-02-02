@@ -13,15 +13,16 @@ export const ServiceDetailsComponent = {
 function ComponentController($state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
                              TagEditorModal, ModalService, PowerOperations, ServicesState) {
   var vm = this;
-
+  var currentServiceState;
   vm.$onInit = activate();
-  vm.$onChanges = function(changesObj) {
-    createResourceGroups();
+  vm.$doCheck = function () {
+    if (!angular.equals(currentServiceState, vm.service)) {
+      currentServiceState = angular.copy(vm.service);
+      vm.computeGroup = createResourceGroups();
+    }
   };
-  
   function activate() {
     Chargeback.processReports(vm.service);
-
     angular.extend(vm, {
       title: vm.service.name,
       // Functions
@@ -58,7 +59,7 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
       }
     }
 
-    createResourceGroups();
+    vm.computeGroup = createResourceGroups();
   }
 
   function isAnsibleService() {
@@ -269,7 +270,7 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
   }
 
   function createResourceGroups() {
-    vm.computeGroup = {
+    return {
       title: __('Compute'),
       open: true,
       resourceTypeClass: 'pficon pficon-screen',
