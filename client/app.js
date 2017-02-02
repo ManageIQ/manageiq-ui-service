@@ -12,6 +12,7 @@ window.moment = require('moment');
 window.sprintf = require('sprintf-js').sprintf;
 
 // Vendor libraries, order matters
+require('jquery-ui-bundle');
 require('moment-timezone');
 require('es6-shim');
 require('angular');
@@ -21,12 +22,16 @@ require('angular-resource');
 require('angular-messages');
 require('angular-sanitize');
 require('angular-base64');
+require('angular-bootstrap-switch');
 require('angular-ui-bootstrap');
+require('angular-ui-sortable');
 require('angular-gettext');
 require('bootstrap');
+require('angular-dragdrop');
 require('bootstrap-combobox');
 require('bootstrap-datepicker');
 require('bootstrap-select');
+require('bootstrap-switch');
 require('bootstrap-touchspin');
 require('angular-svg-base-fix');
 require('angular-ui-router');
