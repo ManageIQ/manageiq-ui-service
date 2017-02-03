@@ -101,7 +101,7 @@
     "patternfly-sass": "3.15.0",
     "phantomjs-prebuilt": "2.1.14",
     "postcss-loader": "1.2.2",
-    "protractor": "4.0.14",
+    "protractor": "5.1.0",
     "q": "1.4.1",
     "request": "2.79.0",
     "sass-lint": "1.10.2",
@@ -114,7 +114,7 @@
     "toastr": "2.1.2",
     "url-loader": "0.5.7",
     "webpack": "2.2.1",
-    "webpack-dev-server": "2.2.0-rc.0",
+    "webpack-dev-server": "2.3.0",
     "yargs": "6.6.0"
   },
   "dependencies": {
@@ -128,7 +128,7 @@
     "> 5%"
   ],
   "engines": {
-    "node": "6.7.0",
+    "node": "6.9.1",
     "npm": " 3.10.3 "
   }
 }
