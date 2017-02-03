@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
@@ -7,6 +8,7 @@ const root = path.resolve(__dirname, '../client');
 const dist = path.resolve(__dirname, '../../manageiq/public/ui/service');
 const nodeModules = path.resolve(__dirname, '../node_modules');
 const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000'
+const hasSkinImages = fs.existsSync(`${root}/skin/images`);
 console.log("Backend proxied on "+host);
 
 module.exports = {
@@ -94,12 +96,23 @@ module.exports = {
       // css loaders: extract styles to a separate bundle
       {
         test: /\.(css|s(a|c)ss)$/,
-        loader: ExtractTextWebpackPlugin.extract({
+        use: ExtractTextWebpackPlugin.extract({
           fallbackLoader: 'style-loader',
+          allChunks: true,
           loader: [
             'css-loader?importLoaders=2&sourceMap=true',
             'postcss-loader',
-            'sass-loader?sourceMap'
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                includePaths: [
+                  `${nodeModules}/bootstrap-sass/assets/stylesheets`,
+                  `${nodeModules}/patternfly-sass/assets/stylesheets`,
+                  `${nodeModules}/font-awesome/scss`,
+                ],
+              },
+            },
           ],
         }),
       },
@@ -117,6 +130,9 @@ module.exports = {
       {from: `${root}/gettext`, to: 'gettext'},
       {from: `${nodeModules}/no-vnc`, to: 'vendor/no-vnc'},
       {from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower'},
+
+      // Override images with skin replacements if they exist
+      {from: hasSkinImages ? `${root}/skin/images` : '', to: 'images', force: true},
     ]),
 
     // Generate index.html from template with script/link tags for bundles
@@ -125,6 +141,10 @@ module.exports = {
       template: '../client/index.ejs',
     }),
   ],
+
+  resolve: {
+    symlinks: false,
+  },
 
   // Disables noisy performance warnings. While the warnings are important, it
   // is not feasible to satisfy the recommendations until we start code splitting

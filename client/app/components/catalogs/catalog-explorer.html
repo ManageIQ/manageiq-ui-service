@@ -1,0 +1,152 @@
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li class="active">{{'Catalogs'|translate}}</li>
+      </ol>
+  </span>
+  <div class="view-selector-bar">
+    <div class="form-group toolbar-pf-view-selector">
+      <button class="btn btn-link"
+              ng-click="vm.viewSelected('listView')"
+              ng-class="{active: vm.viewType === 'listView'}">
+        <i class="fa fa-th-list"></i>
+      </button>
+      <button class="btn btn-link"
+              ng-click="vm.viewSelected('cardView')"
+              ng-class="{active: vm.viewType === 'cardView'}">
+        <i class="fa fa-th"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
+  <actions>
+    <custom-dropdown config="item" items="vm.selectedItemsList"
+                     items-count="vm.selectedItemsList.length"
+                     ng-repeat="item in vm.listActions"
+                     on-update="vm.listActionDisable($config, $changes)"
+                     menu-right="true">
+    </custom-dropdown>
+  </actions>
+</div>
+<div ng-if="vm.viewType == 'cardView'" class="list-view-container section-container paged-container">
+  <loading status="vm.loading"></loading>
+  <div ng-if="!vm.loading" pf-card-view id="cardView" config="vm.cardConfig" items="vm.serviceTemplateList">
+    <h3>{{ item.name }}</h3>
+    <div class="ss-card__logo_wrapper">
+      <img ng-if="item.picture.image_href" class="ss-card__logo" alt="{{ item.name }}"
+           ng-src="{{ item.picture.image_href }}"/>
+      <img ng-if="!item.picture.image_href" class="ss-card__logo" alt="{{ item.name }}" src="./images/service.png"/>
+    </div>
+    <span uib-tooltip=" {{item.description}} " tooltip-placement="right"></i>
+      <strong translate>Description</strong>
+      <i class="fa fa-info-circle blue"></i>
+    </span>
+  </div>
+</div>
+<div ng-if="vm.viewType == 'listView'"  class="list-view-container section-container paged-container service-explorer-list">
+  <loading status="vm.loading"></loading>
+  <div ng-if="!vm.loading" class="list-view-container section-container"
+       confirmation
+       confirmation-id="confirmDeleteCatalog"
+       confirmation-trigger-value="vm.confirmDelete"
+       confirmation-title="{{'Delete Catalog'|translate}}"
+       confirmation-message="{{vm.deleteConfirmationMessage}}"
+       confirmation-ok-text="{{'Delete'|translate}}"
+       confirmation-on-ok="vm.removeCatalog()"
+       confirmation-on-cancel="vm.cancelRemoveCatalog()"
+       confirmation-ok-style="primary"
+       confirmation-show-cancel="true"
+       confirmation-items-title="{{'Catalogs'|translate}}"
+       confirmation-items="vm.catalogsToDelete"
+       confirmation-item-name-field="name">
+    <div pf-list-view id="my-list"
+         config="vm.listConfig"
+         items="vm.catalogsList"
+         action-buttons="vm.actionButtons"
+         menu-actions="vm.menuActions"
+         hide-menu-for-item-fn="!vm.checkApproval">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-5 col-xs-12">
+            <span class="no-wrap"
+                  uib-tooltip="{{item.name}}"
+                  tooltip-placement="bottom-left"
+                  tooltip-popup-delay="1000">
+              <strong>{{item.name}}</strong>
+            </span>
+        </div>
+        <div class="col-lg-5 col-md-4 hidden-sm hidden-xs">
+            <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-placement="bottom-left"
+                  tooltip-popup-delay="1000">
+              {{item.description}}
+            </span>
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-6">
+            <span class="no-wrap" ng-if="item.tenant">
+              <img class="ss-list-view__title-img__logo" src="images/tenant.png"/>
+              <span uib-tooltip="{{item.tenant.name}}" tooltip-placement="bottom-left" tooltip-popup-delay="1000">
+                {{item.tenant.name}}
+              </span>
+            </span>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-6"
+             uib-tooltip="{{item.serviceTemplatesTooltip}}"
+             tooltip-placement="bottom-left"
+             tooltip-popup-delay="1000">
+            <span class="no-wrap">
+              <span class="fa pficon-service"></span>
+              <span>{{item.service_templates.count}}</span>
+            </span>
+        </div>
+      </div>
+      <list-expanded-content>
+        <div pf-list-view
+             class="service-explorer-children-list"
+             config="vm.expandedListConfig"
+             items="$parent.item.service_templates.resources">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-8 name-column">
+              <span class="no-wrap"
+                    uib-tooltip="{{item.name}}"
+                    tooltip-placement="bottom-left"
+                    tooltip-append-to-body="true"
+                    tooltip-popup-delay="1000">
+                <span class=" ss-list-view__title-img">
+                  <span class="ss-list-view__title-img__center"></span>
+                  <img class="ss-list-view__title-img__logo" ng-src="{{item.picture.image_href}}" ng-if="item.picture"/>
+                  <span class="ss-list-view__title-img__logo" src="images/service.png" ng-if="!item.picture"></span>
+                </span>
+                <span>
+                  {{item.name}}
+                </span>
+              </span>
+            </div>
+            <div class="col-lg-3 col-md-5 hidden-sm hidden-xs">
+              <span class="no-wrap"
+                    uib-tooltip="{{item.description}}"
+                    tooltip-placement="bottom-left"
+                    tooltip-append-to-body="true"
+                    tooltip-popup-delay="1000">
+                {{item.description}}
+              </span>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+              <span class="list-item-title"><strong translate>Dialog</strong></span>
+              <span ng-if="item.dialogs.length"
+                    uib-tooltip="{{itekm.dialogs[0].label}}"
+                    tooltip-placement="bottom-left"
+                    tooltip-append-to-body="true"
+                    tooltip-popup-delay="1000">
+                {{item.dialogs[0].label}}
+              </span>
+              <!--<span ng-if="item.dialogs.length > 0" translate>No Dialog</span>-->
+            </div>
+          </div>
+        </div>
+      </list-expanded-content>
+    </div>
+  </div>
+</div>
+<explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions"
+                     on-update="vm.updatePagination($limit, $offset)">
+</explorer-pagination>

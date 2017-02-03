@@ -7,7 +7,7 @@ function getStates() {
   return {
     'requests': {
       parent: 'application',
-      url: '/request-explorer',
+      url: '/requests',
       redirectTo: 'requests.explorer',
       template: '<ui-view></ui-view>',
     },

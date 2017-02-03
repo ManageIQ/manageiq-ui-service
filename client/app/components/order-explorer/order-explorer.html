@@ -1,7 +1,7 @@
 <div class="breadcrumb-bar">
   <span>
       <ol class="breadcrumb">
-        <li class="active">{{'My Orders'|translate}}</li>
+        <li class="active">{{'Orders'|translate}}</li>
       </ol>
   </span>
 </div>
@@ -25,8 +25,7 @@
        config="vm.listConfig"
        items="vm.ordersList"
        custom-scope="vm"
-       menu-actions="vm.menuActions"
-       update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
+       menu-actions="vm.menuActions">
     <div class="row">
       <div class="col-lg-3 col-md-3 col-sm-5 col-xs-8">
         <span class="no-wrap">
@@ -71,7 +70,7 @@
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
              <span class="no-wrap" uib-tooltip="{{item.id}}" tooltip-append-to-body="true"
                    tooltip-placement="bottom-left">
-              <strong>Request ID</strong>&nbsp;
+              <strong translate>Request ID</strong>&nbsp;
                 {{ item.id }}
               </span>
           </div>
@@ -96,6 +95,5 @@
   </div>
 </div>
 <explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions"
-                     on-update="vm.resolveOrders($limit, $offset)">
+                     on-update="vm.updatePagination($limit, $offset)">
 </explorer-pagination>
-

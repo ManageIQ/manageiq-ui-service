@@ -1,4 +1,4 @@
-describe('Marketplace.details', function() {
+describe('Catalogs.details', function() {
   beforeEach(function() {
     module('app.states', bard.fakeToastr);
   });
@@ -15,7 +15,7 @@ describe('Marketplace.details', function() {
 
     it('should query the API with the correct template id and options', function() {
       var options = {expand: 'resources', attributes: 'content'};
-      $state.get('marketplace.details').resolve.dialogs($stateParams, CollectionsApi);
+      $state.get('catalogs.details').resolve.dialogs($stateParams, CollectionsApi);
       expect(collectionsApiSpy).to.have.been.calledWith('service_templates/123/service_dialogs', options);
     });
   });
@@ -54,7 +54,7 @@ describe('Marketplace.details', function() {
     beforeEach(function() {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications');
 
-      controller = $controller($state.get('marketplace.details').controller, controllerResolves);
+      controller = $controller($state.get('catalogs.details').controller, controllerResolves);
     });
 
     describe('controller initialization', function() {

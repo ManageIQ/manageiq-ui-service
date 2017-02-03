@@ -162,12 +162,12 @@ export function NavigationController(Text,
   }
 
   function getTextForNavigationItems(navItem) {
-    if (angular.isDefined(navItem.title)) {
-      navItem.title = __(navItem.title);
+    if (angular.isDefined(navItem.originalTitle)) {
+      navItem.title = __(navItem.originalTitle);
     }
     if (angular.isDefined(navItem.badges)) {
       angular.forEach(navItem.badges, function(badge) {
-        badge.tooltip = __(badge.tooltip);
+        badge.tooltip = __(badge.originalTooltip);
       });
     }
   }

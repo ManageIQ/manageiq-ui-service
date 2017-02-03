@@ -10,18 +10,19 @@ export const ServiceDetailsComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, CollectionsApi, EventNotifications, Chargeback, Consoles,
+function ComponentController($state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
                              TagEditorModal, ModalService, PowerOperations, ServicesState) {
   var vm = this;
-
+  var currentServiceState;
   vm.$onInit = activate();
-  vm.$onChanges = function(changesObj) {
-    createResourceGroups();
+  vm.$doCheck = function () {
+    if (!angular.equals(currentServiceState, vm.service)) {
+      currentServiceState = angular.copy(vm.service);
+      vm.computeGroup = createResourceGroups();
+    }
   };
-  
   function activate() {
     Chargeback.processReports(vm.service);
-
     angular.extend(vm, {
       title: vm.service.name,
       // Functions
@@ -34,6 +35,7 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
       stopService: stopService,
       suspendService: suspendService,
       toggleOpenResourceGroup: toggleOpenResourceGroup,
+      openCockpit: openCockpit,
       openConsole: openConsole,
       startVM: startVM,
       stopVM: stopVM,
@@ -57,7 +59,7 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
       }
     }
 
-    createResourceGroups();
+    vm.computeGroup = createResourceGroups();
   }
 
   function isAnsibleService() {
@@ -268,7 +270,7 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
   }
 
   function createResourceGroups() {
-    vm.computeGroup = {
+    return {
       title: __('Compute'),
       open: true,
       resourceTypeClass: 'pficon pficon-screen',
@@ -283,6 +285,10 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
 
   function openConsole(item) {
     Consoles.open(item.id);
+  }
+
+  function openCockpit(item) {
+    $window.open('http://' + item.ipaddresses[0] + ':9090');
   }
 
   function gotoComputeResource(resource) {
@@ -302,11 +308,7 @@ function ComponentController($state, CollectionsApi, EventNotifications, Chargeb
   }
 
   function gotoCatalogItem() {
-    $state.go('marketplace.details', {serviceTemplateId: vm.service.service_template.id});
-  }
-
-  function gotoServices() {
-    $state.go('services.explorer');
+    $state.go('catalogs.details', {serviceTemplateId: vm.service.service_template.id});
   }
 
   function gotoService(service) {

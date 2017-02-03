@@ -98,8 +98,9 @@ export function SessionFactory($http, $sessionStorage, gettextCatalog, $window, 
     var features = {
       dashboard: {show: entitledForDashboard(productFeatures)},
       services: {show: entitledForServices(productFeatures)},
+      orders: {show: entitledForServices(productFeatures)},
       requests: {show: entitledForRequests(productFeatures)},
-      marketplace: {show: entitledForServiceCatalogs(productFeatures)},
+      catalogs: {show: entitledForServiceCatalogs(productFeatures)},
       designer: {show: entitledForServiceDesigner(productFeatures)},
       administration: {show: entitledForServiceDesigner(productFeatures)},
     };

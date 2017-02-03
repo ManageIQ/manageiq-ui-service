@@ -12,6 +12,7 @@ window.moment = require('moment');
 window.sprintf = require('sprintf-js').sprintf;
 
 // Vendor libraries, order matters
+require('jquery-ui-bundle');
 require('moment-timezone');
 require('es6-shim');
 require('angular');
@@ -21,12 +22,16 @@ require('angular-resource');
 require('angular-messages');
 require('angular-sanitize');
 require('angular-base64');
+require('angular-bootstrap-switch');
 require('angular-ui-bootstrap');
+require('angular-ui-sortable');
 require('angular-gettext');
 require('bootstrap');
+require('angular-dragdrop');
 require('bootstrap-combobox');
 require('bootstrap-datepicker');
 require('bootstrap-select');
+require('bootstrap-switch');
 require('bootstrap-touchspin');
 require('angular-svg-base-fix');
 require('angular-ui-router');
@@ -46,11 +51,8 @@ require('angular-patternfly/dist/angular-patternfly');
 require('./app/app.module.js');
 
 // Vendor styles, order matters
-require('bootstrap-select/dist/css/bootstrap-select.css');
-require('bootstrap-touchspin/src/jquery.bootstrap-touchspin.css');
-require('patternfly/dist/css/patternfly.css');
 require('patternfly/dist/css/patternfly-additions.css');
-require('angular-patternfly/dist/styles/angular-patternfly.css');
+// require('angular-patternfly/dist/styles/angular-patternfly.css');
 require('manageiq-ui-components/dist/css/ui-components.css');
 require('ngprogress/ngProgress.css');
 
@@ -59,3 +61,6 @@ require('./assets/sass/styles.sass');
 
 // Angular templates
 requireAll(require.context('./app', true, /\.html$/));
+
+// Skin overrides, require all js and css files within `client/skin`
+requireAll(require.context('./', true, /skin\/.*\.(js|css)$/));

@@ -22,7 +22,9 @@ function StateController(RequestsState) {
   activate();
 
   function activate() {
-    RequestsState.setFilters([{'id': 'approval_state', 'title': __('Request Status'), 'value': __('pending_approval')}]);
-    RequestsState.filterApplied = true;
+    if (angular.isUndefined(RequestsState.filterApplied)) {
+      RequestsState.setFilters([{ 'id': 'approval_state', 'title': __('Request Status'), 'value': __('pending_approval') }]);
+      RequestsState.filterApplied = true;
+    }
   }
 }

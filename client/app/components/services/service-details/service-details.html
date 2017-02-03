@@ -1,9 +1,8 @@
 <div class="breadcrumb-bar">
   <span>
       <ol class="breadcrumb">
-        <li>{{'Services'|translate}}</li>
         <li>
-          <a href="#" ng-click="vm.gotoServices()">{{'Service Explorer'|translate}}</a>
+          <a ui-sref="services">{{'Services'|translate}}</a>
         </li>
         <li class="active">{{vm.title}}</li>
       </ol>
@@ -195,7 +194,7 @@
                         </li>
                         <li role="menuitem"
                             ng-class="{'disabled': !item['supports_cockpit?'] || item.power_state !== 'on'}"
-                            ng-click="customScope.openConsole(item)">
+                            ng-click="customScope.openCockpit(item)">
                           <a href="#" translate>Open Cockpit Console</a>
                         </li>
                       </ul>

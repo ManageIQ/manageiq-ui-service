@@ -8,7 +8,7 @@ function getStates() {
     'administration': {
       parent: 'application',
       url: '',
-      redirectTo: 'administration.profiles',
+      redirectTo: 'administration.rules',
     },
   };
 }

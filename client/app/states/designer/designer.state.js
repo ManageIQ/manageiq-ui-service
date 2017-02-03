@@ -8,7 +8,7 @@ function getStates() {
     'designer': {
       parent: 'application',
       url: '/designer',
-      redirectTo: 'designer.catalogs',
+      redirectTo: 'designer.dialogs',
     },
   };
 }

@@ -14,39 +14,54 @@ If you would like to debug incoming http requests please set the following envir
 ####How to add data and RESTful endpoint data
 
 In the root of the project exists a folder /mock_api  
-If you look you will see a folder named data that contains .mock.json files.  
-If you want to add a new restful endpoint or edit an existing endpoint create a file with the following naming convention```restful_endpoint_name.mock.json```  
+If you look you will see a folder named **data** that contains subfolders that have .json files.  
+If you want to add a new restful endpoint or edit an existing endpoint create a file with the following naming convention```unique_filename.json```  
 
+* Please note that the folders under mock_api/data are just to help organize files and do not have to match the endpoint the files underneath are for.  
+ 
 Below you will see a sample of what one of the files looks like
 
 ```
 {
-    "endpoint":"blueprints",
-    "data":{"test":"test"},
-    "querystrings":[
-        {
-            "endpoint":"filter[]=id%3E0&hide=resources",
-            "data":{"testData":"test"}]}
-        }
-    ]
+    "url":"blueprints",
+    "get":{"test":"test"},
+    "put":{},
+    "post":{},
+    "delete":{}
 }
 ```  
 Key Elements in configuration    
 
-- **endpoint** - At the high level of the json object an endpoint is the restful endpoint you are defining.  So in this example "blueprints" would actually be for the url http://localhost:3000/api/blueprints
-- **data** - This is a object with the data you would like the server to respond with 
-- **querystring** - This is optional.  This is an array of objects that represents a possible querystring url for this endpoint.  In this example "filter[]=id%3E0&hide=resources" would actually end up being the url *http://localhost:3000/api/blueprints?filter[]=id%3E0&hide=resources*.  
-*** Please note that if a url has a nested path, please treat the rest of the path just like you would a querystring and add it to the query string array.  
-For example  
+- **url** - At the high level of the json object an endpoint is the restful endpoint you are defining.  So in this example "blueprints" would actually be for the url http://localhost:3000/api/blueprints.  
+- **get** - This is a object with the data you would like the server to respond with 
+- **put** - This is a object with the data you would like the server to respond with 
+- **post** - This is a object with the data you would like the server to respond with 
+- **delete** - This is a object with the data you would like the server to respond with 
+
+####Handling querystrings and subpaths
+
+Sometimes you will have urls with querystrings you need to handle
+like *http://localhost:3000/api/blueprints?test=123*
+  
+You also might end up with urls with subpaths like *http://localhost:3000/api/blueprints/test/path/*
+
+The Mock API handles defining both of these scenarios the same way.  
+For example querystrings  
 
 ```
 {  
-	"querystrings":[
-        {
-            "endpoint":"/test/path/123",
-            "data":{"testData":"test"}
-        }
-    ]
+	"url":"blueprints?test=123",
+	"get":{"test":"test"}
 }
 ```
-This example url would really be *http://localhost:3000/api/blueprints/test/path/123*
+or subpaths
+
+```
+{
+	"url":"blueprints/test/path/",
+	"get":{"test":"test"}
+}
+
+```
+####Overriding stock endpoints with local changes
+If you would like to override any of the endpoints in the repo please drop the overriden files into the mock_api/local directory structure.  This will pick up and override files that match from stock data.  

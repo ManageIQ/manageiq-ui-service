@@ -2,7 +2,7 @@
 
 import { AutofocusDirective } from './autofocus/autofocus.directive.js';
 import { CatalogEditorComponent } from './catalogs/catalog-editor.component.js';
-import { CatalogsListComponent } from './catalogs/catalog-list.component.js';
+import { CatalogsListComponent } from './catalogs/catalog-explorer.component';
 import { ConfirmationDirective } from './confirmation/confirmation.directive.js';
 import { CustomButtonDirective } from './custom-button/custom-button.directive.js';
 import { CustomDropdownComponent } from './custom-dropdown/custom-dropdown.directive.js';
@@ -53,7 +53,7 @@ export default angular
   ])
   .directive('autofocus', AutofocusDirective)
   .component('catalogEditor', CatalogEditorComponent)
-  .component('catalogsList', CatalogsListComponent)
+  .component('catalogExplorer', CatalogsListComponent)
   .directive('confirmation', ConfirmationDirective)
   .directive('customButton', CustomButtonDirective)
   .component('customDropdown', CustomDropdownComponent)

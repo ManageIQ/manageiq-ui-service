@@ -14,18 +14,18 @@ export const PaginationComponent = {
 function ComponentController() {
   var vm = this;
 
-  angular.extend(vm, {
-    leftBoundary: 0,
-    rightBoundary: 0,
-    offset: 0,
-    lastOffset: Math.floor(vm.count / vm.limit) * vm.limit,
-    disabled: disabled,
-    updateLimit: updateLimit,
-    previous: previous,
-    next: next,
-  });
-
   vm.$onInit = function() {
+    angular.extend(vm, {
+      leftBoundary: 0,
+      rightBoundary: 0,
+      offset: 0,
+      lastOffset: lastOffset(),
+      disabled: disabled,
+      updateLimit: updateLimit,
+      previous: previous,
+      next: next,
+    });
+
     establishBoundaries();
   };
 
@@ -33,10 +33,10 @@ function ComponentController() {
     if (angular.isDefined(changes.limit) || angular.isDefined(changes.count)) {
       vm.offset = 0;
     }
-    vm.lastOffset = Math.floor(vm.count / vm.limit) * vm.limit;
+
+    vm.lastOffset = lastOffset();
     establishBoundaries();
   };
-
 
   // Public
   function disabled(side) {
@@ -54,6 +54,7 @@ function ComponentController() {
   function updateLimit(newLimit) {
     vm.offset = 0;
     vm.limit = newLimit;
+    vm.lastOffset = Math.floor(vm.count / vm.limit) * vm.limit;
     establishBoundaries();
     vm.onUpdate({$limit: vm.limit, $offset: vm.offset});
   }
@@ -66,7 +67,7 @@ function ComponentController() {
         vm.offset = vm.offset - vm.limit;
       }
       establishBoundaries();
-      vm.onUpdate({limit: vm.limit, $offset: vm.offset});
+      vm.onUpdate({$limit: vm.limit, $offset: vm.offset});
     }
   }
 
@@ -97,5 +98,9 @@ function ComponentController() {
     if (vm.rightBoundary > vm.count) {
       vm.rightBoundary = vm.count;
     }
+  }
+
+  function lastOffset() {
+    return (vm.count % vm.limit) === 0 ? vm.count - vm.limit : Math.floor(vm.count / vm.limit) * vm.limit;
   }
 }

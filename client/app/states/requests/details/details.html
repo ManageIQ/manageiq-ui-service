@@ -1,10 +1,13 @@
-<ol class="breadcrumb">
-  <li>{{'My Requests'|translate}}</li>
-  <li>
-    <a ui-sref="^">{{'Requests'|translate}}</a>
-  </li>
-  <li class="active"><strong>{{vm.title}}</strong></li>
-</ol>
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li>
+          <a ui-sref="requests">{{'Requests'|translate}}</a>
+        </li>
+        <li class="active">{{ ::vm.title }}</li>
+      </ol>
+  </span>
+</div>
 <div class="ss-details-wrapper">
   <div class="panel panel-default ss-details-panel">
     <div class="panel-body">
