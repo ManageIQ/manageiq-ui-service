@@ -1,12 +1,12 @@
 language: node_js
 node_js:
-- 6.7.0
+- 6.9.1
 sudo: false
 cache:
   directories:
   - node_modules
 before_install:
-- npm install -g yarn@0.18.1
+- npm install -g yarn@0.19.1
 install:
 - yarn install --force
 after_script:
