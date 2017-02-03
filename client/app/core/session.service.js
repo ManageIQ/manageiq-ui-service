@@ -101,7 +101,7 @@ export function SessionFactory($http, $sessionStorage, gettextCatalog, $window, 
       orders: {show: entitledForServices(productFeatures)},
       requests: {show: entitledForRequests(productFeatures)},
       catalogs: {show: entitledForServiceCatalogs(productFeatures)},
-      designer: {show: entitledForServiceDesigner(productFeatures)},
+      dialogs: {show: entitledForServiceDesigner(productFeatures)},
       administration: {show: entitledForServiceDesigner(productFeatures)},
     };
     model.navFeatures = features;

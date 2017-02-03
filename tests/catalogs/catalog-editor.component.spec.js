@@ -29,12 +29,12 @@ describe('Component: catalogEditor', function() {
       $httpBackend.whenGET('').respond(200);
 
       scope.catalog = readJSON(mockDir + 'editCatalog.json');
-      scope.designerCatalogs = readJSON(mockDir + 'catalogs.json');
+      scope.catalogs = readJSON(mockDir + 'catalogs.json');
       scope.serviceTemplates = readJSON(mockDir + 'service-templates.json');
 
-      getCatalogsSpy = sinon.stub(CatalogsState, 'getCatalogs').returns(Promise.resolve({resources: scope.designerCatalogs}));
+      getCatalogsSpy = sinon.stub(CatalogsState, 'getCatalogs').returns(Promise.resolve({resources: scope.catalogs}));
 
-      let htmlTmp = '<catalog-editor state-name="designer.catalogs.editor" catalog="catalog" service-templates="serviceTemplates" />';
+      let htmlTmp = '<catalog-editor state-name="catalogs.editor" catalog="catalog" service-templates="serviceTemplates" />';
       compileHTML(htmlTmp, scope);
     }));
 
@@ -62,7 +62,7 @@ describe('Component: catalogEditor', function() {
 
     it('should recognize add mode and setup correctly', function() {
       scope.catalog = undefined;
-      let htmlTmp = '<catalog-editor state-name="designer.catalogs.editor" catalog="" service-templates="serviceTemplates" />';
+      let htmlTmp = '<catalog-editor state-name="catalogs.editor" catalog="" service-templates="serviceTemplates" />';
       compileHTML(htmlTmp, scope);
 
       let header = element.find('.ss-details-header h2 ');

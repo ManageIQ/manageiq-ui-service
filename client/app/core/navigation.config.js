@@ -34,7 +34,7 @@ export function navConfig(NavigationProvider) {
   );
   const dialogs = createItem(
     'Dialogs',
-    'designer.dialogs',
+    'dialogs',
     'pficon pficon-build',
     'Total available dialogs'
   );
