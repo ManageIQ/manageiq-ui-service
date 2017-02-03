@@ -18,13 +18,4 @@ function getStates() {
 /** @ngInject */
 function StateController(RequestsState) {
   var vm = this;
-
-  activate();
-
-  function activate() {
-    if (angular.isUndefined(RequestsState.filterApplied)) {
-      RequestsState.setFilters([{ 'id': 'approval_state', 'title': __('Request Status'), 'value': __('pending_approval') }]);
-      RequestsState.filterApplied = true;
-    }
-  }
 }
