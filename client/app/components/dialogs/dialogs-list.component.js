@@ -57,11 +57,11 @@ function DialogListController($state, DialogsState, $filter, Language, ListView)
   };
 
   function createDialog() {
-    $state.go('designer.dialogs.edit', {dialogId: 'new'});
+    $state.go('dialogs.edit', {dialogId: 'new'});
   }
 
   function handleClick(item, e) {
-    $state.go('designer.dialogs.details', {dialogId: item.id});
+    $state.go('dialogs.details', {dialogId: item.id});
   }
 
   function getSortConfigFields() {

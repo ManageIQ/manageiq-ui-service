@@ -9,7 +9,6 @@ import { CatalogsStateFactory } from './catalogs-state.service.js';
 import { ChargebackFactory } from './chargeback.service.js';
 import { CollectionsApiFactory } from './collections-api.factory.js';
 import { ConsolesFactory } from './consoles.service.js';
-import { DesignerStateFactory } from './designer-state.service.js';
 import { DialogFieldRefreshFactory } from './dialog-field-refresh.service.js';
 import { DialogStateFactory } from './dialogs-state.service.js';
 import { EventNotificationsFactory } from './event-notifications.service.js';
@@ -71,7 +70,6 @@ export const CoreModule = angular
   .factory('Chargeback', ChargebackFactory)
   .factory('CollectionsApi', CollectionsApiFactory)
   .factory('Consoles', ConsolesFactory)
-  .factory('DesignerState', DesignerStateFactory)
   .factory('DialogFieldRefresh', DialogFieldRefreshFactory)
   .factory('DialogsState', DialogStateFactory)
   .factory('EventNotifications', EventNotificationsFactory)

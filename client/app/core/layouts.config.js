@@ -33,7 +33,7 @@ function enterApplication(Polling, lodash, $state, NavCounts, Navigation) {
     switch (key) {
       case 'rules':
       case 'dialogs':
-        if ($state.navFeatures.designer.show === false) {
+        if ($state.navFeatures.dialogs.show === false) {
           return false;
         }
         break;
