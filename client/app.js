@@ -51,7 +51,7 @@ require('./app/app.module.js');
 
 // Vendor styles, order matters
 require('patternfly/dist/css/patternfly-additions.css');
-// require('angular-patternfly/dist/styles/angular-patternfly.css');
+require('angular-patternfly/dist/styles/angular-patternfly.css');
 require('manageiq-ui-components/dist/css/ui-components.css');
 require('ngprogress/ngProgress.css');
 
