@@ -7,7 +7,6 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
     frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
-    port: 9876,
     colors: true,
     autoWatch: true,
     browsers: ['PhantomJS'],
@@ -15,12 +14,7 @@ module.exports = function(config) {
     concurrency: Infinity,
     webpack: webpackConfig,
     webpackMiddleware: {
-      // webpack-dev-middleware configuration
-      noInfo: true,
-      // and use stats to turn off verbose output
-      stats: {
-        chunks: false
-      }
+      stats: 'errors-only'
     },
 
     // level of logging

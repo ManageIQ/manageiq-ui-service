@@ -9,7 +9,7 @@ const config = require('./webpack.dev.js');
 config.devtool = 'cheap-module-source-map';
 
 config.plugins.push(
-  new webpack.NoErrorsPlugin(),
+  new webpack.NoEmitOnErrorsPlugin(),
 
   new webpack.optimize.UglifyJsPlugin(),
 
