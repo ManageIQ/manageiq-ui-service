@@ -186,7 +186,7 @@
     vm.navigateToRequestsList = function(filterValue) {
       RequestsState.setFilters([{'id': 'approval_state', 'title': __('Request Status'), 'value': filterValue}]);
       RequestsState.filterApplied = true;
-      $state.go('requests.list');
+      $state.go('requests');
     };
 
     vm.navigateToServicesList = function(filterValue) {
