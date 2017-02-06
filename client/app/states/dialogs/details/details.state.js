@@ -5,9 +5,9 @@ export function DialogsDetailState(routerHelper) {
 
 function getStates() {
   return {
-    'designer.dialogs.details': {
+    'dialogs.details': {
       url: '/:dialogId',
-      templateUrl: 'app/states/designer/dialogs/details/details.html',
+      templateUrl: 'app/states/dialogs/details/details.html',
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Dialog Detail'),
@@ -35,7 +35,7 @@ function StateController($state, dialog, CollectionsApi, EventNotifications, spr
   vm.dialog.copyDialog = dialogAction('copy');
 
   function editDialog(item) {
-    $state.go('designer.dialogs.edit', {dialogId: dialog.id});
+    $state.go('dialogs.edit', {dialogId: dialog.id});
   }
 
   function dialogAction(action) {
@@ -52,7 +52,7 @@ function StateController($state, dialog, CollectionsApi, EventNotifications, spr
           actionString = sprintf(__('%s was deleted.'), vm.dialog.label);
         }
         EventNotifications.success(actionString);
-        $state.go('designer.dialogs.list');
+        $state.go('dialogs.list');
       }
 
       function actionFailure() {

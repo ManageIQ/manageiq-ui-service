@@ -5,10 +5,10 @@ export function DialogsState(routerHelper) {
 
 function getStates() {
   return {
-    'designer.dialogs': {
+    'dialogs': {
       parent: 'application',
       url: '/dialogs',
-      redirectTo: 'designer.dialogs.list',
+      redirectTo: 'dialogs.list',
       template: '<ui-view></ui-view>',
     },
   };

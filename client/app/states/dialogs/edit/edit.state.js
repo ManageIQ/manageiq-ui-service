@@ -7,9 +7,9 @@ export function DialogsEditState(routerHelper) {
 
 function getStates() {
   return {
-    'designer.dialogs.edit': {
+    'dialogs.edit': {
       url: '/edit/:dialogId',
-      templateUrl: 'app/states/designer/dialogs/edit/edit.html',
+      templateUrl: 'app/states/dialogs/edit/edit.html',
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Dialog Editing'),
@@ -53,9 +53,9 @@ function StateController($state, dialog, DialogEditor, CollectionsApi,
 
   function dismissChanges() {
     if (angular.isUndefined(dialog.id)) {
-      $state.go('designer.dialogs.list');
+      $state.go('dialogs.list');
     } else {
-      $state.go('designer.dialogs.details', {dialogId: dialog.id});
+      $state.go('dialogs.details', {dialogId: dialog.id});
     }
   }
 
@@ -100,7 +100,7 @@ function StateController($state, dialog, DialogEditor, CollectionsApi,
 
   function saveSuccess() {
     EventNotifications.success(vm.dialog.content[0].label + __(' was saved'));
-    $state.go('designer.dialogs.list');
+    $state.go('dialogs.list');
   }
 
   function saveFailure() {

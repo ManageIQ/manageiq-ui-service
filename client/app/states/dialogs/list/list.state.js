@@ -7,9 +7,9 @@ export function DialogsListState(routerHelper) {
 
 function getStates() {
   return {
-    'designer.dialogs.list': {
+    'dialogs.list': {
       url: '', // No url, this state is the index of dialogs
-      templateUrl: 'app/states/designer/dialogs/list/list.html',
+      templateUrl: 'app/states/dialogs/list/list.html',
       controller: DialogsController,
       controllerAs: 'vm',
       title: N_('Dialog List'),

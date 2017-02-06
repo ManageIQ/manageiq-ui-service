@@ -101,8 +101,8 @@ export function SessionFactory($http, $sessionStorage, gettextCatalog, $window, 
       orders: {show: entitledForServices(productFeatures)},
       requests: {show: entitledForRequests(productFeatures)},
       catalogs: {show: entitledForServiceCatalogs(productFeatures)},
-      designer: {show: entitledForServiceDesigner(productFeatures)},
-      administration: {show: entitledForServiceDesigner(productFeatures)},
+      dialogs: {show: entitledForService(productFeatures)},
+      administration: {show: entitledForService(productFeatures)},
     };
     model.navFeatures = features;
 
@@ -167,7 +167,7 @@ export function SessionFactory($http, $sessionStorage, gettextCatalog, $window, 
       || entitledForServiceCatalogs(productFeatures);
   }
 
-  function entitledForServiceDesigner(productFeatures) {
+  function entitledForService(productFeatures) {
     return angular.isDefined(productFeatures.service_create);
   }
 

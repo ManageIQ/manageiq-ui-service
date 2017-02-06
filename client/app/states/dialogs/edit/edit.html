@@ -1,11 +1,13 @@
 <div class="breadcrumb-bar">
   <span>
       <ol class="breadcrumb">
-        <li>{{'Designer'|translate}}</li>
         <li>
-          <a href="#" ui-sref="designer.dialogs.list">{{'Dialogs'|translate}}</a>
+          <a href="#" ui-sref="dialogs.list">{{'Dialogs'|translate}}</a>
         </li>
-        <li href="#" ui-sref="^">{{ ::vm.dialog.label }}</li>
+        <li>
+          <a href="#" ui-sref="^">
+            {{ ::vm.dialog.label }}</a>
+        </li>
         <li class="active"><strong translate>Edit:</strong> {{ ::vm.dialog.label }}</li>
       </ol>
   </span>
