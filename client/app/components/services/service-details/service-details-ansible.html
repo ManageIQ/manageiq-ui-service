@@ -1,9 +1,7 @@
 <div class="panel panel-default ss-details-panel">
   <div class="panel-body">
-    <section>
+    <section class="ss-form-readonly clearfix">
       <h2 translate>Results</h2>
-    </section>
-    <section class="ss-form-readonly">
       <div class="col-md-12">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -11,31 +9,31 @@
               <div class="form-group">
                 <label class="control-label col-sm-4" translate>Status</label>
                 <div class="col-sm-8">
-                  <!--<input class="form-control" readonly value="{{vm.service.id}}"/>-->
+                  <input class="form-control" readonly value="{{'test' |translate}}"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-4" translate>Started</label>
                 <div class="col-sm-8">
-                  <!--<input class="form-control" readonly value="{{vm.service.evm_owner.name}}"/>-->
+                  <input class="form-control" readonly value="{{'test' |translate}}"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-4" translate>Finished</label>
                 <div class="col-sm-8">
-                  <!--<input class="form-control" readonly value="${{vm.service.chargeback.used_cost_sum | number:3}}"/>-->
+                  <input class="form-control" readonly value="{{'test' |translate}}"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-4" translate>Elapsed</label>
                 <div class="col-sm-8">
-                  <!--<input class="form-control" readonly value="${{vm.service.chargeback.used_cost_sum | number:3}}"/>-->
+                  <input class="form-control" readonly value="{{'test' |translate}}"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-4" translate>Launched By</label>
                 <div class="col-sm-8">
-                  <!--<input class="form-control" readonly value="${{vm.service.chargeback.used_cost_sum | number:3}}"/>-->
+                  <input class="form-control" readonly value="{{'test' |translate}}"/>
                 </div>
               </div>
             </div>
@@ -45,34 +43,165 @@
               <div class="form-group">
                 <label class="control-label col-sm-4" translate>Playbook</label>
                 <div class="col-sm-8">
-                  <!--<input class="form-control" readonly value="{{vm.service.created_at | date:'medium'}}"/>-->
+                  <input class="form-control" readonly value="{{'test' |translate}}"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-4" translate>Repo Name</label>
                 <div class="col-sm-8">
-                  <!--<input class="form-control" readonly value="{{vm.service.retirement_state || ('Unknown' | translate)}}"/>-->
+                  <input class="form-control" readonly value="{{'test' |translate}}"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-4" translate>Verbosity</label>
                 <div class="col-sm-8">
-                  <!--<input ng-if="vm.service.retires_on" class="form-control" readonly-->
-                         <!--value="{{vm.service.retires_on | date}}"/>-->
-                  <!--<input ng-if="!vm.service.retires_on" class="form-control" readonly value="Never"/>-->
+                  <input class="form-control" readonly value="{{'test' |translate}}"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-4" translate>Inventory</label>
                 <div class="col-sm-8">
-                  <!--<input ng-if="vm.service.retires_on" class="form-control" readonly-->
+                  <input class="form-control" readonly value="{{'test' |translate}}"/>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
+    <section>
+      <ul class="list-group service-details-resources">
+        <li class="list-group-item service-details-resource-group-item">
+          <a class="service-details-resource-group-title" ng-class="{'collapsed': !vm.creds.open}"
+             ng-click="vm.creds.open = !vm.creds.open">
+            {{ 'Credentials' | translate}} ({{vm.creds.resources.length}})
+          </a>
+          <div class="service-details-resource-list-container" ng-class="{'collapse': !vm.creds.open}">
+            <div ng-if="vm.creds.resources.length < 1">
+              <span class="service-details-resource-empty-message" translate>
+                No credentials available.
+              </span>
+            </div>
+            <div pf-list-view ng-if="vm.creds.resources.length > 0" config="vm.credListConfig"
+                 items="vm.creds.resources" custom-scope="vm">
+              <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 name-column">
+                <span class="no-wrap">
+                  <strong> {{ item.provider }}</strong>
+                  </a>
+                </span>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <span class="no-wrap">
+                        {{ item.credential }}
+                  </a>
+                </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul class="list-group service-details-resources">
+        <li class="list-group-item service-details-resource-group-item">
+          <a class="service-details-resource-group-title" ng-class="{'collapsed': !vm.plays.open}"
+             ng-click="vm.plays.open = !vm.plays.open">
+            {{ 'Plays' | translate}} ({{vm.plays.resources.length}})
+          </a>
+          <div class="service-details-resource-list-container" ng-class="{'collapse': !vm.plays.open}">
+            <div ng-if="vm.plays.resources.length < 1">
+                <span class="service-details-resource-empty-message" translate>
+                  No plays available.
+                </span>
+            </div>
+            <div pf-list-view ng-if="vm.plays.resources.length > 0" config="vm.playsListConfig"
+                 items="vm.plays.resources" custom-scope="vm">
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-5 col-xs-8 name-column">
+                <span class="no-wrap">
+                     <i class="pficon pficon-ok" ng-if="item.status === 'successful'"></i>
+                      <strong>
+                        {{ item.name }}
+                      </strong>
+                  </a>
+                </span>
+                </div>
+                <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+                  <span class="no-wrap">
+                      <strong translate>Description</strong>
+                      <span>
+                        {{  item.description}}
+                      </span>
+                  </span>
+                </div>
+                <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+                  <span class="no-wrap">
+                      <strong translate>Started</strong>
+                      <span>
+                        {{ item.started | date : 'MMM dd, yyyy H:mm:ss' }}
+                      </span>
+                  </span>
+                </div>
+                <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+                  <span class="no-wrap" uib-tooltip="{{'Run Time'|translate}}"
+                        tooltip-append-to-body="true"
+                        tooltip-popup-delay="1000"
+                        tooltip-placement="bottom">
+                         <i class="fa fa-clock-o"></i>
+                      <span>
+                        {{item.run_time}}
+                      </span>
+                  </span>
+                </div>
+              </div>
+              <div class="list-view-pf-actions">
+                <div uib-dropdown="" dropdown-append-to-body class="dropdown pull-right dropdown-kebab-pf">
+                  <button uib-dropdown-toggle="" class="btn btn-link dropdown-toggle" type="button">
+                    <span class="fa fa-ellipsis-v"></span>
+                  </button>
+                  <ul uib-dropdown-menu="" class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body">
+                    <li role="menuitem">
+                      <a ng-click="vm.sampleAction(item)" translate>Sample</a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li role="menuitem">
+                      <a ng-click="vm.viewPlay(item)" translate>View Details</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class=" clearfix">
+      <h2 translate>Standard Out
+        <div class="pull-right">
+          <button ng-disabled="vm.output.length < 1" type="button" class="btn btn-default pull-right" translate>Watch Live</button>
+          <span class="small text-success">
+            <i class="fa fa-play-circle"></i>
+            <span>Play In Progress</span>
+          </span>
+          </span>
+        </div>
+      </h2>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="well ">
+            <div ng-if="vm.output.length < 1">
+                <span class="service-details-resource-empty-message" translate>
+                  No logs available.
+                </span>
+            </div>
+            <span ng-bind-html="vm.output"></span>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </div>
