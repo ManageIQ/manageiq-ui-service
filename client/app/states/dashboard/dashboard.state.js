@@ -188,6 +188,31 @@ function StateController($state, RequestsState, ServicesState, definedServiceIds
     $state.go('services');
   };
 
+  vm.navigateToRetiredServicesList = function() {
+    ServicesState.setFilters([{'id': 'retired', 'title': __('Retired'), 'value': true}]);
+    ServicesState.filterApplied = true;
+    $state.go('services');
+  };
+
+  vm.navigateToRetiringSoonServicesList = function () {
+    var currentDate = new Date();
+    var filters = [];
+
+    filters.push({ 'id': 'retires_on', 'operator': '>', 'value': currentDate.toISOString() });
+    filters.push({ 'id': 'retired', 'title': __('Retired'), 'value': false });
+    var days30 = currentDate.setDate(currentDate.getDate() + 30);
+    filters.push({ 'id': 'retires_on', 'operator': '<', 'value': new Date(days30).toISOString() });
+    ServicesState.setFilters(filters);
+    ServicesState.filterApplied = true;
+    $state.go('services');
+  };
+
+  vm.navigateToCurrentServicesList = function() {
+    ServicesState.setFilters([{'id': 'retired', 'title': 'Retired', 'value': false}]);
+    ServicesState.filterApplied = true;
+    $state.go('services');
+  };
+
   function resolveRequestPromises(promiseArray, type, lodash, $q) {
     $q.all(promiseArray).then(function(data) {
       var count = lodash.sum(data, 'subcount');

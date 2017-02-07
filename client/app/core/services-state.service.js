@@ -191,7 +191,11 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, $state) 
       if (nextFilter.id === 'name') {
         queryFilters.push("name='%" + nextFilter.value + "%'");
       } else {
-        queryFilters.push(nextFilter.id + '=' + nextFilter.value );
+        if (angular.isDefined(nextFilter.operator)) {
+          queryFilters.push(nextFilter.id + nextFilter.operator + nextFilter.value );
+        } else {
+          queryFilters.push(nextFilter.id + '=' + nextFilter.value );
+        }
       }
     });
 
