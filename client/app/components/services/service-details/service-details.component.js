@@ -284,11 +284,15 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
   }
 
   function openConsole(item) {
-    Consoles.open(item.id);
+    if (item['supports_console?'] && item.power_state === 'on') {
+      Consoles.open(item.id);
+    }
   }
 
   function openCockpit(item) {
-    $window.open('http://' + item.ipaddresses[0] + ':9090');
+    if (item['supports_cockpit?'] && item.power_state === 'on') {
+      $window.open('http://' + item.ipaddresses[0] + ':9090');
+    }
   }
 
   function gotoComputeResource(resource) {
