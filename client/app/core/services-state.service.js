@@ -1,8 +1,9 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function ServicesStateFactory(ListConfiguration, CollectionsApi, $state) {
+export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
   var service = {};
+  var actionFeatures = RBAC.getActionFeatures();
 
   ListConfiguration.setupListFunctions(service, { id: 'name', title: __('Name'), sortType: 'alpha' });
 
@@ -51,7 +52,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, $state) 
     var lifeCycleActions;
     var clockIcon = 'fa fa-clock-o';
 
-    if ($state.actionFeatures.serviceRetireNow.show || $state.actionFeatures.serviceRetire.show) {
+    if (actionFeatures.serviceRetireNow.show || actionFeatures.serviceRetire.show) {
       lifeCycleActions = {
         title: __('Lifecycle'),
         actionName: 'lifecycle',
@@ -59,7 +60,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, $state) 
         actions: [],
         isDisabled: false,
       };
-      if ($state.actionFeatures.serviceRetire.show) {
+      if (actionFeatures.serviceRetire.show) {
         lifeCycleActions.actions.push(
           {
             icon: clockIcon,
@@ -71,7 +72,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, $state) 
           }
         );
       }
-      if ($state.actionFeatures.serviceRetireNow.show) {
+      if (actionFeatures.serviceRetireNow.show) {
         lifeCycleActions.actions.push(
           {
             title: __('Retire'),
@@ -98,7 +99,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, $state) 
   service.getPolicyCustomDropdown = function(editTagsFn) {
     var policyActions;
 
-    if ($state.actionFeatures.serviceTag.show) {
+    if (actionFeatures.serviceTag.show) {
       policyActions =           {
         title: __('Policy'),
         actionName: 'policy',
@@ -123,9 +124,9 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, $state) 
   service.getConfigurationCustomDropdown = function(editServiceFn, removeServicesFn, setOwnershipFn) {
     var configActions;
 
-    if ($state.actionFeatures.serviceDelete.show
-      || $state.actionFeatures.serviceEdit.show
-      || $state.actionFeatures.serviceOwnership.show) {
+    if (actionFeatures.serviceDelete.show
+      || actionFeatures.serviceEdit.show
+      || actionFeatures.serviceOwnership.show) {
       configActions = {
         title: __('Configuration'),
         actionName: 'configuration',
@@ -134,7 +135,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, $state) 
         isDisabled: false,
       };
 
-      if ($state.actionFeatures.serviceEdit.show) {
+      if (actionFeatures.serviceEdit.show) {
         configActions.actions.push(
           {
             icon: 'pficon pficon-edit',
@@ -147,7 +148,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, $state) 
         );
       }
 
-      if ($state.actionFeatures.serviceDelete.show) {
+      if (actionFeatures.serviceDelete.show) {
         configActions.actions.push(
           {
             icon: 'pficon pficon-delete',
@@ -167,7 +168,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, $state) 
         );
       }
 
-      if ($state.actionFeatures.serviceOwnership.show) {
+      if (actionFeatures.serviceOwnership.show) {
         configActions.actions.push(
           {
             icon: 'pficon pficon-user',

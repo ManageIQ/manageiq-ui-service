@@ -31,8 +31,9 @@ function getStates() {
 // TODO API OR-ing bug/"design limitation" has forced an implementation change in how we gather count data for Requests
 // TODO One API call would now be split into two - one for ServiceTemplateProvisionRequest and other for ServiceReconfigureRequest
 
-function resolveAllRequests(CollectionsApi, $state) {
-  if (angular.isDefined($state.navFeatures) && !$state.navFeatures.requests.show) {
+function resolveAllRequests(CollectionsApi, RBAC) {
+  var navFeatures = RBAC.getNavFeatures();
+  if (!navFeatures.requests.show) {
     return undefined;
   }
 
@@ -95,8 +96,9 @@ function deniedRequestsForServiceReconfigureRequest(CollectionsApi) {
 }
 
 /** @ngInject */
-function resolveExpiringServices(CollectionsApi, $state) {
-  if (angular.isDefined($state.navFeatures) && !$state.navFeatures.services.show) {
+function resolveExpiringServices(CollectionsApi, RBAC) {
+  var navFeatures = RBAC.getNavFeatures();
+  if (!navFeatures.services.show) {
     return undefined;
   }
   var currentDate = new Date();
@@ -109,8 +111,9 @@ function resolveExpiringServices(CollectionsApi, $state) {
 }
 
 /** @ngInject */
-function resolveRetiredServices(CollectionsApi, $state) {
-  if (angular.isDefined($state.navFeatures) && !$state.navFeatures.services.show) {
+function resolveRetiredServices(CollectionsApi, RBAC) {
+  var navFeatures = RBAC.getNavFeatures();
+  if (!navFeatures.services.show) {
     return undefined;
   }
   var options = {hide: 'resources', filter: ['service_id=nil', 'retired=true']};
@@ -119,8 +122,9 @@ function resolveRetiredServices(CollectionsApi, $state) {
 }
 
 /** @ngInject */
-function resolveServicesWithDefinedServiceIds(CollectionsApi, $state) {
-  if (angular.isDefined($state.navFeatures) && !$state.navFeatures.services.show) {
+function resolveServicesWithDefinedServiceIds(CollectionsApi, RBAC) {
+  var navFeatures = RBAC.getNavFeatures();
+  if (!navFeatures.services.show) {
     return undefined;
   }
 
