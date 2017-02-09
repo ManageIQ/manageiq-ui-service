@@ -1,12 +1,12 @@
 <ol class="breadcrumb">
   <li>
-    <a ui-sref="services.explorer">{{'Service Explorer'|translate}}</a>
+    <a ui-sref="services.explorer">{{'Services'|translate}}</a>
   </li>
   <li>
     <a ui-sref="services.details({serviceId: vm.vmDetails.service.id})">{{ ::vm.vmDetails.service.name }}</a>
   </li>
   <li>
-    <a ui-sref="vms.details({vmId: vm.vmDetails.id})">{{ ::vm.vmDetails.name }}</a>
+    {{ ::vm.vmDetails.name }}
   </li>
 </ol>
 <div class="ss-details-wrapper vm-details-wrapper">

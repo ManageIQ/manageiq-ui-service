@@ -114,7 +114,7 @@
       </section>
     </div>
   </div>
-  <div class="panel panel-default ss-details-panel">
+  <div ng-if="vm.service.service_template.prov_type != 'generic_ansible_tower'" class="panel panel-default ss-details-panel">
     <div class="panel-body">
       <section>
         <h2 translate>Resources</h2>
@@ -228,6 +228,7 @@
       </section>
     </div>
   </div>
+  <service-details-ansible ng-if="vm.service.service_template.prov_type === 'generic_ansible_tower'" results="vm.service"></service-details-ansible>
   <div class="panel panel-default ss-details-panel relationships-panel">
     <div class="panel-body">
       <section>
