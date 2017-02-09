@@ -1,3 +1,4 @@
+/* eslint camelcase: "off" */
 export const ServiceDetailsAnsibleComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
@@ -22,12 +23,12 @@ function ComponentController() {
           name: "Sample Play",
           description: "Sample play description",
           started: new Date(),
-          run_time: 6000
+          run_time: 6000,
         }],
       },
       creds: {
         open: true,
-        resources: [{provider: "cloud", credential: "this is a sample credential"}]
+        resources: [{provider: "cloud", credential: "this is a sample credential"}],
       },
       output: "",
 
@@ -45,7 +46,7 @@ function ComponentController() {
     return {
       showSelectBox: false,
       selectionMatchProp: 'id',
-    }
+    };
   }
 
   function playsListConfig() {

@@ -181,15 +181,17 @@
     <section class=" clearfix">
       <h2 translate>Standard Out
         <div class="pull-right">
-          <button ng-disabled="vm.output.length < 1" type="button" class="btn btn-default pull-right" translate>Watch Live</button>
-          <span class="small text-success">
-            <i class="fa fa-play-circle"></i>
-            <span>Play In Progress</span>
-          </span>
-          </span>
+          <button type="button" class="btn btn-default pull-right" translate>Watch
+            Live
+          </button>
+          <label class="heading-label">
+            <span class="heading-label__success">
+              <i class="fa fa-play-circle"></i>
+              {{'Play In Progress' | translate}}
+            </span>
+          </label>
         </div>
       </h2>
-
       <div class="row">
         <div class="col-lg-12">
           <div class="well ">
