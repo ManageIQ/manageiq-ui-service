@@ -9,7 +9,7 @@ export const ServiceDetailsAnsibleComponent = {
 };
 
 /** @ngInject */
-function ComponentController() {
+function ComponentController(ModalService) {
   const vm = this;
   vm.$onInit = activate();
 
@@ -35,6 +35,7 @@ function ComponentController() {
       // Functions
       sampleAction: angular.noop(),
       viewPlay: angular.noop(),
+      watchLive: watchLive,
 
       // Config
       credListConfig: credListConfig(),
@@ -54,6 +55,18 @@ function ComponentController() {
       showSelectBox: false,
       selectionMatchProp: 'id',
     };
+  }
+
+  function watchLive(item) {
+    const modalOptions = {
+      component: 'serviceDetailsAnsibleModal',
+      resolve: {
+        item: function() {
+          return item;
+        },
+      },
+    };
+    ModalService.open(modalOptions);
   }
 }
 
