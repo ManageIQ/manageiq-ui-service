@@ -18,17 +18,14 @@ function ComponentController(ModalService) {
       // Data
       plays: {
         open: true,
-        resources: [{
-          status: "successful",
-          name: "Sample Play",
-          description: "Sample play description",
-          started: new Date(),
-          run_time: 6000,
-        }],
+        resources: [],
       },
       creds: {
         open: true,
-        resources: [{provider: "cloud", credential: "this is a sample credential"}],
+        resources: [],
+      },
+      results: {
+        resources: [],
       },
       output: "",
 
