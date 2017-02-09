@@ -14,20 +14,15 @@ export function DialogFieldRefreshFactory(lodash, CollectionsApi, EventNotificat
 
   function listenForAutoRefreshMessages(allDialogFields, autoRefreshableDialogFields, url, resourceId) {
     var listenerFunction = function(event) {
-      var dialogFieldsToRefresh = autoRefreshableDialogFields.filter(function(fieldName) {
-        if (event.originalEvent.data.fieldName !== fieldName) {
-          return fieldName;
+      var dialogFieldToRefresh = autoRefreshableDialogFields.filter(function(field, currentIndex) {
+        if (field.auto_refresh === true && event.originalEvent.data.refreshableFieldIndex < currentIndex) {
+          return field;
         }
       });
 
-      allDialogFields.forEach(function(dialogField) {
-        if (lodash.includes(dialogFieldsToRefresh, dialogField.name)) {
-          dialogField.beingRefreshed = true;
-        }
-      });
-
-      if (dialogFieldsToRefresh !== []) {
-        refreshMultipleDialogFields(allDialogFields, dialogFieldsToRefresh, url, resourceId);
+      if (dialogFieldToRefresh.length > 0) {
+        dialogFieldToRefresh[0].beingRefreshed = true;
+        refreshSingleDialogField(allDialogFields, dialogFieldToRefresh[0], url, resourceId);
       }
     };
 
@@ -73,20 +68,20 @@ export function DialogFieldRefreshFactory(lodash, CollectionsApi, EventNotificat
 
   function setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields) {
     angular.forEach(dialogs, function(dialog) {
-      angular.forEach(dialog.dialog_tabs, function(dialogTab) {
-        angular.forEach(dialogTab.dialog_groups, function(dialogGroup) {
-          angular.forEach(dialogGroup.dialog_fields, function(dialogField) {
+      angular.forEach(dialog.dialog_tabs, function(dialogTab, dialogTabIndex) {
+        angular.forEach(dialogTab.dialog_groups, function(dialogGroup, dialogGroupIndex) {
+          angular.forEach(dialogGroup.dialog_fields, function(dialogField, dialogFieldIndex) {
             allDialogFields.push(dialogField);
 
             selectDefaultValue(dialogField, dialogField);
 
+            if (dialogField.auto_refresh === true || dialogField.trigger_auto_refresh === true) {
+              dialogField.refreshableFieldIndex = autoRefreshableDialogFields.push(dialogField) - 1;
+            }
+
             dialogField.triggerAutoRefresh = function() {
               triggerAutoRefresh(dialogField);
             };
-
-            if (dialogField.auto_refresh === true) {
-              autoRefreshableDialogFields.push(dialogField.name);
-            }
           });
         });
       });
@@ -95,7 +90,7 @@ export function DialogFieldRefreshFactory(lodash, CollectionsApi, EventNotificat
 
   function triggerAutoRefresh(dialogField) {
     if (dialogField.trigger_auto_refresh === true) {
-      parent.postMessage({fieldName: dialogField.name}, '*');
+      parent.postMessage({refreshableFieldIndex: dialogField.refreshableFieldIndex}, '*');
     }
   }
 
