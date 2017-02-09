@@ -11,7 +11,7 @@ export const ServiceDetailsComponent = {
 
 /** @ngInject */
 function ComponentController($state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
-                             TagEditorModal, ModalService, PowerOperations, ServicesState) {
+                             TagEditorModal, ModalService, PowerOperations, ServicesState, RBAC) {
   var vm = this;
   var currentServiceState;
   vm.$onInit = activate();
@@ -122,7 +122,8 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
 
     configActions = ServicesState.getConfigurationCustomDropdown(editService, removeService, setOwnership);
     if (configActions) {
-      if (vm.service.reconfigure && $state.actionFeatures.serviceReconfigure.show) {
+      var actionFeatures = RBAC.getActionFeatures();
+      if (vm.service.reconfigure && actionFeatures.serviceReconfigure.show) {
         configActions.actions.push(
           {
             icon: 'fa fa-cog',
