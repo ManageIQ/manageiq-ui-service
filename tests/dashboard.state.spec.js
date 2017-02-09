@@ -1,7 +1,7 @@
 describe('Dashboard', function() {
   beforeEach(function() {
     module('app.states', bard.fakeToastr);
-    bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session', '$httpBackend', '$q');
+    bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session', '$httpBackend', '$q', 'RBAC');
   });
 
   beforeEach(function() {
@@ -42,7 +42,7 @@ describe('Dashboard', function() {
     var resolveAllRequests = [];
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi');
+      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi','RBAC');
 
       var controllerResolves = {
         definedServiceIdsServices: resolveServicesWithDefinedServiceIds,
@@ -55,7 +55,7 @@ describe('Dashboard', function() {
       dashboardState = $state.get('dashboard');
 
       state = $state;
-      state.navFeatures = {services: {show: true}};
+    //  state.navFeatures = {services: {show: true}};
       controller = $controller(dashboardState.controller, controllerResolves);
     });
 
@@ -64,10 +64,11 @@ describe('Dashboard', function() {
     });
 
     describe('resolveExpiringServices', function() {
+
       it('makes a query request using the CollectionApi', function() {
         var clock = sinon.useFakeTimers(new Date('2016-01-01').getTime());
         let collectionsApiSpy = sinon.stub(CollectionsApi);
-        dashboardState.resolve.expiringServices(collectionsApiSpy, state);
+        dashboardState.resolve.expiringServices(collectionsApiSpy);
 
         expect(collectionsApiSpy.query).to.have.been.calledWith('services', {
           hide: 'resources',
