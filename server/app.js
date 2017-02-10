@@ -1,7 +1,7 @@
 /* eslint-disable no-undef, no-console, no-process-env, angular/log, no-path-concat */
 
 'use strict';
-
+const path = require('path');
 var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -13,15 +13,11 @@ var proxyService = require('./utils/proxy')();
 var serviceApp = require('./utils/serviceApp');
 var serviceApi = require('./utils/serviceApi');
 var wsProxy = require('./utils/wsProxy');
-
+var buildOutputPath = process.env.BUILD_OUTPUT || './';
 var app = express();
 
-var port = process.env.PORT || 8001;
+var port = process.env.PORT || 3001;
 var environment = process.env.NODE_ENV;
-
-// view engine setup
-app.set('views', './client');
-app.set('view engine', 'ejs');
 
 // Api
 app.use('/api', serviceApi);
@@ -52,15 +48,9 @@ switch (environment) {
     var proxyErrorHandler = proxyService.proxyErrorHandler;
 
     console.log('** DEV **');
-    app.use(express.static('./'));
+    app.use(express.static(path.resolve(__dirname,buildOutputPath)));
 
     // dev routes
-    app.use('/ui/service/', serviceApp);
-
-    app.get('/ui/service', function (req, res) {
-      res.render('index');
-    });
-
     app.use('/pictures', function(req, res) {
       pictureProxy.web(req, res, proxyErrorHandler(req, res));
     });
@@ -69,8 +59,9 @@ switch (environment) {
       target: 'http://' + proxyHost + '/pictures',
     });
 
-    app.use('/*', function (req, res) {
-      res.render('index');
+    app.all('*', function (req, res, next) {
+      // Just send the index.html for other files to support HTML5Mode
+      res.sendFile(path.resolve(__dirname, buildOutputPath + '/index.html'));
     });
     break;
 }

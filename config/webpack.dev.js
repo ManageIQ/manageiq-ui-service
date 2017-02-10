@@ -5,12 +5,12 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const root = path.resolve(__dirname, '../client');
-const dist = path.resolve(__dirname, '../../manageiq/public/ui/service');
+const outputPath = process.env.BUILD_OUTPUT || '../../manageiq/public/ui/service';
+const dist = path.resolve(__dirname, outputPath);
 const nodeModules = path.resolve(__dirname, '../node_modules');
 const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000'
 const hasSkinImages = fs.existsSync(`${root}/skin/images`);
 console.log("Backend proxied on "+host);
-
 module.exports = {
   context: root,
   entry: {

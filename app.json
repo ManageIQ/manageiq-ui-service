@@ -3,7 +3,14 @@
   "description": "",
   "website": "https://manageiq.org/",
   "repository": "https://github.com/ManageIQ/manageiq-ui-service",
+  "scripts": {
+    "heroku-postbuild": "yarn build:static"
+  },
   "env": {
+    "BUILD_OUTPUT":{
+    "description": "This is where apps build artifacts get output to",
+    "value": "../build"
+    },
     "NODE_ENV": {
       "description": "Node Environment",
       "value": "development"
