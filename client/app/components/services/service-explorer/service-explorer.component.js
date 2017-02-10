@@ -16,7 +16,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   function activate() {
     angular.extend(vm, {
       loading: false,
-      title: __('Service Explorer'),
+      title: __('Services'),
       services: [],
       limit: 20,
       filterCount: 0,
