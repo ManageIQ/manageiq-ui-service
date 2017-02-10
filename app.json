@@ -1,0 +1,16 @@
+{
+  "name": "ManageIQ Service UI",
+  "description": "",
+  "website": "https://manageiq.org/",
+  "repository": "https://github.com/ManageIQ/manageiq-ui-service",
+  "env": {
+    "NODE_ENV": {
+      "description": "Node Environment",
+      "value": "development"
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "description": "NPM config",
+      "value": "false"
+    }
+  }
+}
