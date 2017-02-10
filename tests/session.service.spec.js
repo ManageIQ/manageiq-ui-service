@@ -100,7 +100,7 @@ describe('Session', function() {
       Session.loadUser();
       $httpBackend.flush();
 
-      expect(RBAC.activeNavigationFeatures()).to.eq(false);
+      expect(RBAC.navigationEnabled()).to.eq(false);
     });
   });
 });
