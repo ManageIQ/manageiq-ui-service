@@ -97,7 +97,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     }
 
     function createFailure(response) {
-      EventNotifications.error(sprintf(__("There was an error creating catalog %s."), catalogObj.name));
+      EventNotifications.error(sprintf(__("There was an error creating catalog %s. "), catalogObj.name) + __(response.data.error.message));
 
       if (skipResults !== true) {
         return response.data;

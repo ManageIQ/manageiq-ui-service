@@ -19,7 +19,7 @@ describe('CatalogsState', function() {
       notificationsErrorSpy = sinon.stub(EventNotifications, 'error').returns(null);
     });
 
-    it('should query the API for catalogs', function(done) {
+    it('should query the API for catalogs', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
 
       CatalogsState.getCatalogs(5, 0).then(function(response) {
@@ -36,11 +36,11 @@ describe('CatalogsState', function() {
             sort_options: 'ignore_case'
           }
         );
-        done();
+
       });
     });
 
-    it('should query the API for service templates ', function(done) {
+    it('should query the API for service templates ', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
 
       CatalogsState.getServiceTemplates().then(function(response) {
@@ -52,31 +52,30 @@ describe('CatalogsState', function() {
             attributes: ['picture', 'picture.image_href', 'service_template_catalog.name'],
           }
         );
-        done();
+
       });
     });
 
-    it('should post to the API to create a catalog and add a success notification when successful', function(done) {
+    it('should post to the API to create a catalog and add a success notification when successful', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
 
       CatalogsState.addCatalog({name: 'newCatalog'}, true).then(function() {
         expect(notificationsSuccessSpy).to.have.been.called;
         expect(notificationsErrorSpy).not.to.have.been.called;
-        done();
+
       });
     });
 
-    it('should post to the API to create a catalog and add an error notification when unsuccessful', function(done) {
+    it('should post to the API to create a catalog and add an error notification when unsuccessful', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(errorResponse));
 
       CatalogsState.addCatalog({name: 'newCatalog'}, true).then(function() {
         expect(notificationsSuccessSpy).not.to.have.been.called;
         expect(notificationsErrorSpy).to.have.been.called;
-        done();
       });
     });
 
-    it('should post to the API to edit a catalog and add a success notification when successful', function(done) {
+    it('should post to the API to edit a catalog and add a success notification when successful', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
 
       CatalogsState.editCatalog({id: 1, name: 'changedName'}, true).then(function(response) {
@@ -85,11 +84,11 @@ describe('CatalogsState', function() {
         );
         expect(notificationsSuccessSpy).to.have.been.called;
         expect(notificationsErrorSpy).not.to.have.been.called;
-        done();
+
       });
     });
 
-    it('should post to the API to edit a catalog and add an error notification when unsuccessful', function(done) {
+    it('should post to the API to edit a catalog and add an error notification when unsuccessful', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(errorResponse));
 
       CatalogsState.editCatalog({id: 1, name: 'changedName'}, true).then(function(response) {
@@ -98,11 +97,11 @@ describe('CatalogsState', function() {
         );
         expect(notificationsSuccessSpy).not.to.have.been.called;
         expect(notificationsErrorSpy).to.have.been.called;
-        done();
+
       });
     });
 
-    it('should post to the API to add service templates and add a success notification on success', function(done) {
+    it('should post to the API to add service templates and add a success notification on success', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
       var serviceTemplates = readJSON(mockDir + 'service-template-resources.json');
 
@@ -117,11 +116,11 @@ describe('CatalogsState', function() {
         );
         expect(notificationsSuccessSpy).to.have.been.called;
         expect(notificationsErrorSpy).not.to.have.been.called;
-        done();
+
       });
     });
 
-    it('should post to the API to add service templates and add an error notification on failure', function(done) {
+    it('should post to the API to add service templates and add an error notification on failure', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(errorResponse));
       var serviceTemplates = readJSON(mockDir + 'service-template-resources.json');
 
@@ -136,11 +135,11 @@ describe('CatalogsState', function() {
         );
         expect(notificationsSuccessSpy).not.to.have.been.called;
         expect(notificationsErrorSpy).to.have.been.called;
-        done();
+
       });
     });
 
-    it('should post to the API to remove service templates and add a success notification on success', function(done) {
+    it('should post to the API to remove service templates and add a success notification on success', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
       var serviceTemplates = readJSON(mockDir + 'service-template-resources.json');
 
@@ -154,11 +153,11 @@ describe('CatalogsState', function() {
         );
         expect(notificationsSuccessSpy).to.have.been.called;
         expect(notificationsErrorSpy).not.to.have.been.called;
-        done();
+
       });
     });
 
-    it('should post to the API to remove service templates and add an error notification on failure', function(done) {
+    it('should post to the API to remove service templates and add an error notification on failure', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(errorResponse));
       var serviceTemplates = readJSON(mockDir + 'service-template-resources.json');
 
@@ -172,11 +171,11 @@ describe('CatalogsState', function() {
         );
         expect(notificationsSuccessSpy).not.to.have.been.called;
         expect(notificationsErrorSpy).to.have.been.called;
-        done();
+
       });
     });
 
-    it('should post to the API to delete  catalogs and add a success notification on success', function(done) {
+    it('should post to the API to delete  catalogs and add a success notification on success', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
 
       CatalogsState.deleteCatalogs([{id: 1}, {id: 2}]).then(function(response) {
@@ -189,11 +188,11 @@ describe('CatalogsState', function() {
         );
         expect(notificationsSuccessSpy).to.have.been.called;
         expect(notificationsErrorSpy).not.to.have.been.called;
-        done();
+
       });
     });
 
-    it('should post to the API to delete catalogs and add an error notification on failure', function(done) {
+    it('should post to the API to delete catalogs and add an error notification on failure', function() {
       collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(errorResponse));
 
       CatalogsState.deleteCatalogs([{id: 1}, {id: 2}]).then(function(response) {
@@ -206,7 +205,7 @@ describe('CatalogsState', function() {
         );
         expect(notificationsSuccessSpy).not.to.have.been.called;
         expect(notificationsErrorSpy).to.have.been.called;
-        done();
+
       });
     });
   });
