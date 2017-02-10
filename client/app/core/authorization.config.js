@@ -72,30 +72,29 @@ export function authInit($rootScope, $state, Session, $sessionStorage, logger, L
 
       return;
     }
-    syncSession().then(rbacReloadOrLogin(toState, toParams));
+    syncSession().then(rbacReloadOrLogin(toState, toParams)).catch(badUser);
   }
   function syncSession() {
-    var deferred = $q.defer();
-        // trying saved token..
-    Session.create({
-      auth_token: $sessionStorage.token,
-      miqGroup: $sessionStorage.miqGroup,
+    return new Promise(function (resolve, reject) {
+      // trying saved token..
+      Session.create({
+        auth_token: $sessionStorage.token,
+        miqGroup: $sessionStorage.miqGroup,
+      });
+
+      Session.loadUser()
+        .then(Language.onReload)
+        .then(ServerInfo.set)
+        .then(ProductInfo.set)
+        .then(function () {
+          resolve();
+        })
+        .catch(badUser);
     });
-
-    Session.loadUser()
-      .then(Language.onReload)
-      .then(ServerInfo.set)
-      .then(ProductInfo.set)
-      .then(function() {
-        deferred.resolve("true");
-      })
-      .catch(badUser);
-
-    return deferred.promise;
   }
   function rbacReloadOrLogin(toState, toParams) {
     return function() {
-      if (RBAC.activeNavigationFeatures()) {
+      if (RBAC.navigationEnabled()) {
         $state.go(toState, toParams);
       } else {
         Session.privilegesError = true;

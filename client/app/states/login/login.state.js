@@ -53,7 +53,7 @@ function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD,
       .then(ProductInfo.set)
       .then(Language.onLogin)
       .then(function() {
-        if (RBAC.activeNavigationFeatures()) {
+        if (RBAC.navigationEnabled()) {
           if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
             $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
           }

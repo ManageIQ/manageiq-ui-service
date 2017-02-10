@@ -99,10 +99,6 @@ export function SessionFactory($http, $q, $sessionStorage, gettextCatalog, $wind
 
   function active() {
     // may not be current, but if we have one, we'll rely on API 401ing if it's not
-    if (model.token !== null) {
-      return model.token;
-    } else {
-      return false;
-    }
+    return angular.isString(model.token) ? model.token : false;
   }
 }

@@ -1,3 +1,5 @@
+/* eslint-disable arrow-parens */
+
 /** @ngInject */
 export function RBACFactory(lodash) {
   var features = {};
@@ -8,7 +10,7 @@ export function RBACFactory(lodash) {
     set: set,
     has: has,
     all: all,
-    activeNavigationFeatures: activeNavigationFeatures,
+    navigationEnabled: navigationEnabled,
     getNavFeatures: getNavFeatures,
     getActionFeatures: getActionFeatures,
     setNavFeatures: setNavFeatures,
@@ -19,8 +21,8 @@ export function RBACFactory(lodash) {
 
   function set(productFeatures) {
     features = productFeatures || {};
-    actionFeatures = setRBACForActions(productFeatures);
-    navFeatures = setRBACForNavigation(productFeatures);
+    actionFeatures = setActions(productFeatures);
+    navFeatures = setNavigation(productFeatures);
   }
 
   function has(feature) {
@@ -31,8 +33,8 @@ export function RBACFactory(lodash) {
     return features;
   }
 
-  function setRBACForNavigation(productFeatures) {
-    var features = {
+  function setNavigation(productFeatures) {
+    const features = {
       dashboard: {show: entitledForDashboard(productFeatures)},
       services: {show: entitledForServices(productFeatures)},
       orders: {show: entitledForServices(productFeatures)},
@@ -46,8 +48,6 @@ export function RBACFactory(lodash) {
   }
   function setNavFeatures(features) {
     navFeatures = features;
-
-    return navFeatures;
   }
   function setActionFeatures(features) {
     actionFeatures = features;
@@ -57,8 +57,8 @@ export function RBACFactory(lodash) {
   function getActionFeatures() {
     return actionFeatures;
   }
-  function setRBACForActions(productFeatures) {
-    var features = {
+  function setActions(productFeatures) {
+    const features = {
       serviceView: {show: angular.isDefined(productFeatures.service_view)},
       serviceEdit: {show: angular.isDefined(productFeatures.service_edit)},
       serviceTag: {show: angular.isDefined(productFeatures.service_tag)},
@@ -83,13 +83,7 @@ export function RBACFactory(lodash) {
   }
 
   function isAnyActionAllowed(actions, productFeatures) {
-    for (var i = 0; i <= actions.length; i++) {
-      if (angular.isDefined(productFeatures[actions[i]])) {
-        return true;
-      }
-    }
-
-    return false;
+    return actions.some(action => angular.isDefined(productFeatures[action]));
   }
 
   function entitledForCatalogItems(productFeatures) {
@@ -120,7 +114,7 @@ export function RBACFactory(lodash) {
     return angular.isDefined(productFeatures.service_create);
   }
 
-  function activeNavigationFeatures() {
+  function navigationEnabled() {
     var activeNavFeatures = lodash.find(navFeatures, function(o) {
       return o.show === true;
     });
