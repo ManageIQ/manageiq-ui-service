@@ -27,3 +27,6 @@ reports
 .idea*
 client/javascripts.html
 client/styles.html
+
+### Builds ###
+build

@@ -12,9 +12,11 @@
   "version": "1.0.1",
   "scripts": {
     "build": "NODE_ENV=\"production\" webpack --bail --progress --profile --config config/webpack.prod.js",
+    "build:static": "webpack --bail --progress --profile --config config/webpack.static.js",
     "start": "webpack-dev-server --open --progress --config config/webpack.dev.js",
     "start:mock-api": "cd mock_api && node server.js",
-    "start:all": "yarn start:mock-api & yarn start",
+    "start:mock-webserver":"cd server && node app.js",
+    "start:all": "yarn start:mock-api & yarn start:mock-webserver",
     "test": "yarn vet && karma start karma.conf.js --single-run",
     "test:e2e": "./node_modules/.bin/protractor protractor.conf.js",
     "test:watch": "karma start --auto-watch --no-single-run",
