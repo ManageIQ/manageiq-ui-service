@@ -18,9 +18,12 @@ var proxy = httpProxy.createProxyServer({
   target: proxyTarget,
 });
 
-router.use(function(req, res) {
+router.use(function (req, res) {
   var path = url.parse(req.url).path;
   console.log('PROXY: ' + proxyTarget + path);
+  if (req.url == '/?attributes=authorization') {
+    req.url = '?attributes=authorization';
+  }
   proxy.web(req, res, proxyErrorHandler(req, res));
 });
 

@@ -67,11 +67,11 @@ switch (environment) {
 }
 
 var server = http.createServer(app);
-
+/*
 server.on('upgrade', function (req, socket, head) {
   console.log('PROXY(ws,upgrade): ' + req.url);
   wsProxy.ws(req, socket, head);
-});
+});*/
 
 server.listen(port, function() {
   console.log('Express server listening on port ' + port);
