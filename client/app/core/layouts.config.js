@@ -19,26 +19,30 @@ function getLayouts() {
 }
 
 /** @ngInject */
-function enterApplication(Polling, lodash, $state, NavCounts, Navigation) {
+function enterApplication(Polling, lodash, NavCounts, Navigation, RBAC) {
   // Application layout displays the navigation which might have items that require polling to update the counts
+  var navFeatures = RBAC.getNavFeatures();
+  var actionFeatures = RBAC.getActionFeatures();
   angular.forEach(NavCounts.counts, updateCount);
   angular.forEach(Navigation.items, function(value, key) {
-    lodash.merge(value, $state.navFeatures[key]);
+    navFeatures[key] = lodash.merge(value, navFeatures[key]);
     angular.forEach(value.secondary, function(secondaryValue, secondaryKey) {
-      lodash.merge(secondaryValue, $state.actionFeatures[secondaryKey]);
+      actionFeatures[secondaryKey] = lodash.merge(secondaryValue, actionFeatures[secondaryKey]);
     });
   });
+  RBAC.setNavFeatures(navFeatures);
+  RBAC.setActionFeatures(actionFeatures);
 
   function updateCount(count, key) {
     switch (key) {
       case 'rules':
       case 'dialogs':
-        if ($state.navFeatures.dialogs.show === false) {
+        if (navFeatures.dialogs.show === false) {
           return false;
         }
         break;
       case 'profiles':
-        if ($state.navFeatures.administration.show === false) {
+        if (navFeatures.administration.show === false) {
           return false;
         }
         break;

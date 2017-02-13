@@ -1,5 +1,5 @@
 /** @ngInject */
-export function SessionFactory($http, $sessionStorage, gettextCatalog, $window, $state, $cookies, lodash, RBAC) {
+export function SessionFactory($http, $q, $sessionStorage, gettextCatalog, $window, $state, $cookies, lodash, RBAC, Polling) {
   var model = {
     token: null,
     user: {},
@@ -15,7 +15,6 @@ export function SessionFactory($http, $sessionStorage, gettextCatalog, $window, 
     requestWsToken: requestWsToken,
     destroyWsToken: destroyWsToken,
     switchGroup: switchGroup,
-    activeNavigationFeatures: activeNavigationFeatures,
   };
 
   destroy();
@@ -38,18 +37,35 @@ export function SessionFactory($http, $sessionStorage, gettextCatalog, $window, 
     delete $http.defaults.headers.common['X-Miq-Group'];
     delete $sessionStorage.miqGroup;
     delete $sessionStorage.token;
+    delete $sessionStorage.user;
   }
 
   function loadUser() {
+    Polling.start('UserPolling', getUserAuthorizations, 300000);
+    var deferred = $q.defer();
+    if (angular.isUndefined($sessionStorage.user)) {
+      getUserAuthorizations().then(function (response) {
+        deferred.resolve(response);
+      });
+    } else {
+      var response = angular.fromJson($sessionStorage.user);
+      currentUser(response.identity);
+      RBAC.set(response.authorization.product_features);
+      deferred.resolve(response);
+    }
+
+    return deferred.promise;
+  }
+  function getUserAuthorizations() {
     return $http.get('/api?attributes=authorization')
-      .then(function(response) {
+      .then(function (response) {
+        $sessionStorage.user = angular.toJson(response.data);
         currentUser(response.data.identity);
-        setRBAC(response.data.authorization.product_features);
+        RBAC.set(response.data.authorization.product_features);
 
         return response.data;
       });
   }
-
   function requestWsToken(arg) {
     return $http.get('/api/auth?requester_type=ws')
     .then(function(response) {
@@ -83,99 +99,6 @@ export function SessionFactory($http, $sessionStorage, gettextCatalog, $window, 
 
   function active() {
     // may not be current, but if we have one, we'll rely on API 401ing if it's not
-    return model.token;
-  }
-
-  function setRBAC(productFeatures) {
-    RBAC.set(productFeatures);
-
-    // FIXME move these to the RBAC service as well
-    $state.actionFeatures = setRBACForActions(productFeatures);
-    $state.navFeatures = setRBACForNavigation(productFeatures);
-  }
-
-  function setRBACForNavigation(productFeatures) {
-    var features = {
-      dashboard: {show: entitledForDashboard(productFeatures)},
-      services: {show: entitledForServices(productFeatures)},
-      orders: {show: entitledForServices(productFeatures)},
-      requests: {show: entitledForRequests(productFeatures)},
-      catalogs: {show: entitledForServiceCatalogs(productFeatures)},
-      dialogs: {show: entitledForService(productFeatures)},
-      administration: {show: entitledForService(productFeatures)},
-    };
-    model.navFeatures = features;
-
-    return model.navFeatures;
-  }
-
-  function setRBACForActions(productFeatures) {
-    var features = {
-      serviceView: {show: angular.isDefined(productFeatures.service_view)},
-      serviceEdit: {show: angular.isDefined(productFeatures.service_edit)},
-      serviceTag: {show: angular.isDefined(productFeatures.service_tag)},
-      serviceDelete: {show: angular.isDefined(productFeatures.service_delete)},
-      serviceReconfigure: {show: angular.isDefined(productFeatures.service_reconfigure)},
-      serviceRetireNow: {show: angular.isDefined(productFeatures.service_retire_now)},
-      serviceRetire: {show: angular.isDefined(productFeatures.service_retire)},
-      serviceOwnership: {show: angular.isDefined(productFeatures.service_ownership)},
-    };
-    model.actionFeatures = features;
-
-    return model.actionFeatures;
-  }
-
-  function entitledForServices(productFeatures) {
-    var serviceFeature = lodash.find(model.actionFeatures, function(o) {
-      return o.show === true;
-    });
-
-    return angular.isDefined(serviceFeature);
-  }
-
-  function isAnyActionAllowed(actions, productFeatures) {
-    for (var i = 0; i <= actions.length; i++) {
-      if (angular.isDefined(productFeatures[actions[i]])) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  function entitledForCatalogItems(productFeatures) {
-    var actions = ["atomic_catalogitem_edit",
-      "atomic_catalogitem_new",
-      "catalog_items_view",
-      "catalogitem_edit",
-      "catalogitem_new"];
-
-    return isAnyActionAllowed(actions, productFeatures);
-  }
-
-  function entitledForServiceCatalogs(productFeatures) {
-    return angular.isDefined(productFeatures.svc_catalog_provision);
-  }
-
-  function entitledForRequests(productFeatures) {
-    return angular.isDefined(productFeatures.miq_request_view);
-  }
-
-  function entitledForDashboard(productFeatures) {
-    return entitledForServices(productFeatures)
-      || entitledForRequests(productFeatures)
-      || entitledForServiceCatalogs(productFeatures);
-  }
-
-  function entitledForService(productFeatures) {
-    return angular.isDefined(productFeatures.service_create);
-  }
-
-  function activeNavigationFeatures() {
-    var activeNavFeatures = lodash.find(model.navFeatures, function(o) {
-      return o.show === true;
-    });
-
-    return angular.isDefined(activeNavFeatures);
+    return angular.isString(model.token) ? model.token : false;
   }
 }

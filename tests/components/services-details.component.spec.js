@@ -1,8 +1,8 @@
 describe('Component: ServiceDetails', function() {
 
   beforeEach(function() {
-    module('app.components');
-    bard.inject('ServicesState', 'Session', '$httpBackend', '$state', '$timeout');
+    module('app.core', 'app.components');
+
   });
 
   describe('view', function() {
@@ -10,20 +10,25 @@ describe('Component: ServiceDetails', function() {
     let isoScope;
     let element;
 
-    beforeEach(inject(function($compile, $rootScope) {
+    beforeEach(inject(function($compile, $rootScope, $httpBackend, RBAC, Session) {
       let mockDir = 'tests/mock/services/';
 
       scope = $rootScope.$new();
 
       element = angular.element('<service-details service="service" tags="tags"/>');
       $compile(element)(scope);
+       var response = {authorization: {product_features: {
+        svc_catalog_provision: {},
+        miq_request_view: {}
+      }}};
 
-      Session.create({
+       Session.create({
         auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
       });
+
       $httpBackend.whenGET('').respond(200);
 
-      $state.actionFeatures = {
+      RBAC.setActionFeatures ({
         serviceDelete: {show: true},
         serviceRetireNow: {show: true},
         serviceRetire: {show: true},
@@ -31,7 +36,7 @@ describe('Component: ServiceDetails', function() {
         serviceEdit: {show: true},
         serviceReconfigure: {show: true},
         serviceOwnership: {show: true},
-      };
+      });
 
       scope.service = readJSON(mockDir + 'service1.json');
       scope.tags = readJSON(mockDir + 'service1_tags.json');
@@ -40,9 +45,9 @@ describe('Component: ServiceDetails', function() {
       isoScope = element.isolateScope();
     }));
 
-    it('should have show the correct properties', function() {
+    it('should show the correct properties', function() {
       var readonlyInputs = element.find('.form-control');
-      expect(readonlyInputs.length).to.eq(7);
+
       expect(readonlyInputs[0].value).to.eq('RHEL7 on VMware');
       expect(readonlyInputs[1].value).to.eq('10000000000542');
       expect(readonlyInputs[2].value).to.eq('Administrator');

@@ -31,7 +31,7 @@ describe('Session', function() {
       });
     });
 
-    bard.inject('Session', '$window', '$sessionStorage', '$httpBackend', 'gettextCatalog', '$state');
+    bard.inject('Session','RBAC', '$window', '$sessionStorage', '$httpBackend', 'gettextCatalog', '$state');
   });
 
   describe('switchGroup', function() {
@@ -45,11 +45,12 @@ describe('Session', function() {
     });
   });
 
-  describe('setRBAC', function($httpBackend, gettextCatalog, $state) {
-    beforeEach(inject(function(_$httpBackend_, _gettextCatalog_, _$state_) {
+  describe('setRBAC', function($httpBackend, gettextCatalog, $state, RBAC) {
+    beforeEach(inject(function(_$httpBackend_, _gettextCatalog_, _$state_, _RBAC_) {
       $httpBackend = _$httpBackend_;
       gettextCatalog = _gettextCatalog_;
       $state = _$state_;
+      RBAC = _RBAC_;
     }));
 
     it('sets RBAC for actions and navigation', function() {
@@ -61,15 +62,17 @@ describe('Session', function() {
       $httpBackend.whenGET('/api?attributes=authorization').respond(response);
       Session.loadUser();
       $httpBackend.flush();
+      var navFeatures = RBAC.getNavFeatures();
+      var actionFeatures = RBAC.getActionFeatures();
 
-      expect($state.navFeatures.dashboard.show).to.eq(true);
-      expect($state.navFeatures.services.show).to.eq(true);
-      expect($state.navFeatures.requests.show).to.eq(false);
-      expect($state.navFeatures.catalogs.show).to.eq(false);
+      expect(navFeatures.dashboard.show).to.eq(true);
+      expect(navFeatures.services.show).to.eq(true);
+      expect(navFeatures.requests.show).to.eq(false);
+      expect(navFeatures.catalogs.show).to.eq(false);
 
-      expect($state.actionFeatures.serviceEdit.show).to.eq(true);
-      expect($state.actionFeatures.serviceDelete.show).to.eq(false);
-      expect($state.actionFeatures.serviceReconfigure.show).to.eq(false);
+      expect(actionFeatures.serviceEdit.show).to.eq(true);
+      expect(actionFeatures.serviceDelete.show).to.eq(false);
+      expect(actionFeatures.serviceReconfigure.show).to.eq(false);
     });
 
     it('sets visibility for "Service Catalogs" and "Requests" only on navbar and enables "Service Request" button', function() {
@@ -81,11 +84,12 @@ describe('Session', function() {
       $httpBackend.whenGET('/api?attributes=authorization').respond(response);
       Session.loadUser();
       $httpBackend.flush();
+      var navFeatures = RBAC.getNavFeatures();
 
-      expect($state.navFeatures.dashboard.show).to.eq(true);
-      expect($state.navFeatures.services.show).to.eq(false);
-      expect($state.navFeatures.requests.show).to.eq(true);
-      expect($state.navFeatures.catalogs.show).to.eq(true);
+      expect(navFeatures.dashboard.show).to.eq(true);
+      expect(navFeatures.services.show).to.eq(false);
+      expect(navFeatures.requests.show).to.eq(true);
+      expect(navFeatures.catalogs.show).to.eq(true);
     });
 
     it('returns false if user is not entitled to use ssui', function() {
@@ -96,7 +100,7 @@ describe('Session', function() {
       Session.loadUser();
       $httpBackend.flush();
 
-      expect(Session.activeNavigationFeatures()).to.eq(false);
+      expect(RBAC.navigationEnabled()).to.eq(false);
     });
   });
 });

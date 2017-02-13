@@ -1,7 +1,7 @@
 describe('Dashboard', function() {
   beforeEach(function() {
     module('app.states', 'app.components', bard.fakeToastr);
-    bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session');
+    bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session', 'RBAC');
   });
 
   describe('route', function() {
@@ -23,9 +23,9 @@ describe('Dashboard', function() {
     var controller;
 
     beforeEach(function() {
-      bard.inject('$componentController', '$log', '$state', '$rootScope');
+      bard.inject('$componentController', '$log', '$state', '$rootScope', 'RBAC');
 
-      $state.actionFeatures = {
+      RBAC.setActionFeatures( {
         serviceDelete: {show: true},
         serviceRetireNow: {show: true},
         serviceRetire: {show: true},
@@ -33,7 +33,7 @@ describe('Dashboard', function() {
         serviceEdit: {show: true},
         serviceReconfigure: {show: true},
         serviceOwnership: {show: true},
-      };
+      });
       controller = $componentController('serviceExplorer'), {};
     });
 

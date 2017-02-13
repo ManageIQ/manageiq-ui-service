@@ -45,11 +45,15 @@ export function authConfig($httpProvider) {
 }
 
 /** @ngInject */
-export function authInit($rootScope, $state, Session, $sessionStorage, logger, Language, ServerInfo, ProductInfo, $window) {
+export function authInit($rootScope, $state, Session, $sessionStorage, logger, Language, ServerInfo, ProductInfo, $window, RBAC) {
   var unregisterStart = $rootScope.$on('$stateChangeStart', changeStart);
   var unregisterError = $rootScope.$on('$stateChangeError', changeError);
   var unregisterSuccess = $rootScope.$on('$stateChangeSuccess', changeSuccess);
 
+  $sessionStorage.$sync();  // needed when called right on reload
+  if ($sessionStorage.token) {
+    syncSession();
+  }
   function changeStart(event, toState, toParams, fromState, fromParams) {
     if (toState.data && !toState.data.requireUser) {
       return;
@@ -61,7 +65,6 @@ export function authInit($rootScope, $state, Session, $sessionStorage, logger, L
 
     // user is required and session not active - not going anywhere right away
     event.preventDefault();
-
     $sessionStorage.$sync();  // needed when called right on reload
     if (!$sessionStorage.token) {
       // no saved token, go directly to login
@@ -69,24 +72,29 @@ export function authInit($rootScope, $state, Session, $sessionStorage, logger, L
 
       return;
     }
-
-    // trying saved token..
-    Session.create({
-      auth_token: $sessionStorage.token,
-      miqGroup: $sessionStorage.miqGroup,
-    });
-
-    Session.loadUser()
-      .then(Language.onReload)
-      .then(ServerInfo.set)
-      .then(ProductInfo.set)
-      .then(rbacReloadOrLogin(toState, toParams))
-      .catch(badUser);
+    syncSession().then(rbacReloadOrLogin(toState, toParams)).catch(badUser);
   }
+  function syncSession() {
+    return new Promise(function (resolve, reject) {
+      // trying saved token..
+      Session.create({
+        auth_token: $sessionStorage.token,
+        miqGroup: $sessionStorage.miqGroup,
+      });
 
+      Session.loadUser()
+        .then(Language.onReload)
+        .then(ServerInfo.set)
+        .then(ProductInfo.set)
+        .then(function () {
+          resolve();
+        })
+        .catch(badUser);
+    });
+  }
   function rbacReloadOrLogin(toState, toParams) {
     return function() {
-      if (Session.activeNavigationFeatures()) {
+      if (RBAC.navigationEnabled()) {
         $state.go(toState, toParams);
       } else {
         Session.privilegesError = true;
