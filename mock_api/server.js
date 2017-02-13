@@ -1,47 +1,68 @@
-var jsonServer = require('json-server')
-var server = jsonServer.create();
-var bodyParser = require('body-parser');
-var router = "";
-var middlewares = jsonServer.defaults()
-var fs = require('fs');
-var url  = require('url');
-var _ = require('lodash');
+const jsonServer = require('json-server');
+const fs = require('fs');
+const url = require('url');
+const lodash = require('lodash');
+const glob = require('glob');
+const path = require('path');
 
-var glob = require("glob")
-var restData = {};
+let server = jsonServer.create();
+let router = jsonServer.router();
+let middlewares = jsonServer.defaults();
 
-server.use(jsonServer.bodyParser);
-server.use(function (req, res, next) {
-  if (process.env.LOG_LEVEL && process.env.LOG_LEVEL === 'debug') {
-    console.log(req.body);
-  }
-  next()
-});
+init();
 
 function init() {
-  loadDataFiles().then(function (resp) { // We load all endpoints
+  server.use(jsonServer.bodyParser);
+  server.use(function(req, res, next) {
+    if (process.env.LOG_LEVEL && process.env.LOG_LEVEL === 'debug') {
+      console.log(req.body);
+    }
+    next();
+  });
+
+  loadDataFiles().then(function(resp) { // We load all endpoints
     return loadLocalOverrideFiles(resp);
   })
-    .then(function (endpoints) { // We apply local endpoint overrides
-      var uniqueURLS = 0;
-      _.forIn(endpoints, function (data, endpointName) {
+    .then(function(endpoints) { // We apply local endpoint overrides
+      let uniqueURLS = 0;
+      lodash.forIn(endpoints, function(data, endpointName) {
         uniqueURLS += Object.keys(data).length;
         buildRESTRoute(data, endpointName); //  This builds the rest route
       });
-      console.log("Endoints loaded "+ Object.keys(endpoints).length);
-      console.log("Unique URLS loaded "+uniqueURLS);
-      router = jsonServer.router();
+      console.log("Endoints loaded " + Object.keys(endpoints).length);
+      console.log("Unique URLS loaded " + uniqueURLS);
       startServer();
     });
 }
-init();
+
+function startServer() {
+  server.use(jsonServer.rewriter({
+    '/api/:resource': '/:resource',
+  }));
+
+  server.use(middlewares);
+  server.use(function(req, res) {
+    res.sendStatus(501);
+  });
+  server.use(router);
+
+  let port = 3000;
+  if (process.env.MOCK_API_HOST) {
+    let urlParts = url.parse(process.env.MOCK_API_HOST, false);
+    port = urlParts.host;
+  }
+
+  server.listen(port, function() {
+    console.log('Mock API Server is running on port ' + port);
+  })
+}
 
 function loadDataFiles() {
-  var allEndpoints = {};
+  let allEndpoints = {};
   return new Promise(
-    function (resolve, reject) {
-      glob("./data/**/*.json", function (er, files) {
-        files.forEach(function (file) {
+    function(resolve, reject) {
+      glob("./data/**/*.json", function(er, files) {
+        files.forEach(function(file) {
           allEndpoints = processFile(file, allEndpoints);
         });
         resolve(allEndpoints);
@@ -51,9 +72,9 @@ function loadDataFiles() {
 
 function loadLocalOverrideFiles(allEndpoints) {
   return new Promise(
-    function (resolve, reject) {
-      glob("./local/**/*.json", function (er, files) {
-        files.forEach(function (file) {
+    function(resolve, reject) {
+      glob("./local/**/*.json", function(er, files) {
+        files.forEach(function(file) {
           allEndpoints = processFile(file, allEndpoints);
         });
         resolve(allEndpoints);
@@ -61,18 +82,18 @@ function loadLocalOverrideFiles(allEndpoints) {
     });
 }
 
-function processFile(file,allEndpoints) {
-  var dataFile = require(file);
+function processFile(file, allEndpoints) {
+  const dataFile = require(file);
 
-  var urlParts = url.parse(dataFile.url);
-  var endpoint = urlParts.pathname;
+  let urlParts = url.parse(dataFile.url);
+  let endpoint = urlParts.pathname;
 
 
   //if it is a subpath deal with stripping out endpoint and create a
   if (endpoint.includes('/')) {
-    var urlArray = endpoint.split('/');
-    var actualEndpoint = urlArray.shift();
-    var remainingUrl = urlArray.join('/');
+    let urlArray = endpoint.split('/');
+    let actualEndpoint = urlArray.shift();
+    let remainingUrl = urlArray.join('/');
     if (!allEndpoints.hasOwnProperty(actualEndpoint)) {
       allEndpoints[actualEndpoint] = {};
     }
@@ -93,8 +114,9 @@ function processFile(file,allEndpoints) {
 
   return allEndpoints;
 }
+
 function buildRESTRoute(data, endpointName) {
-  var urlPath = '';
+  let urlPath = '';
   if (endpointName === 'api') {
     urlPath = '/api';
   }
@@ -102,24 +124,23 @@ function buildRESTRoute(data, endpointName) {
     urlPath = '/api/' + endpointName + '*';
   }
 
-  server.all(urlPath, function (req, res) {
-    var url_parts = url.parse(req.url, false);
-    var query = req.url;
-    var endpoint = query.replace(/\/api\//,"");
-    var match = '';
+  server.all(urlPath, function(req, res) {
+    const query = req.url;
+    let endpoint = query.replace(/\/api\//, "");
+    let match = '';
     if (endpoint === endpointName && data.hasOwnProperty(endpoint)) { //this happens when no querystring is passed
       match = data[endpoint];
     }
     else {
-      var querystrings = Object.keys(data).map(key => data[key]);
+      const querystrings = Object.keys(data).map(key => data[key]);
 
-      var match = _.find(querystrings, function (item) {
+      match = lodash.find(querystrings, function(item) {
         return query.includes(item.url);
       });
     }
-    if (match != undefined) {
+    if (match !== undefined) {
       //TODO: DEAL WITH PARTIAL MATCHES
-      var jsonResponse = generateResponse(req, match);
+      const jsonResponse = generateResponse(req, match);
       res.json(jsonResponse);
     }
     else {
@@ -129,42 +150,13 @@ function buildRESTRoute(data, endpointName) {
 
 }
 
-/*  KEEP THIS FOR reference
-    var json = JSON.stringify(restData);
-    fs.writeFile('./db.json', json);
-    router = jsonServer.router(restData);
- */
-
-//});
-
 function generateResponse(request, data) {
-  var reqMethod = request.method.toLowerCase();
-  var requestMethodExists = (data.hasOwnProperty(reqMethod) ? true : false);
+  let reqMethod = request.method.toLowerCase();
+  let requestMethodExists = data.hasOwnProperty(reqMethod);
   if (requestMethodExists) {
     return data[reqMethod];
   }
   else {
-    return { "status": "Data was received and the http method was " + reqMethod, "data": request.body };
+    return {"status": "Data was received and the http method was " + reqMethod, "data": request.body};
   }
-}
-
-function startServer() {
-  server.use(jsonServer.rewriter({
-    '/api/:resource': '/:resource'
-  }));
-  server.use(middlewares);
-   server.use(function(req, res){
-      res.sendStatus(501);
-   });
-  server.use(router);
-
-  var port = 3000;
-  if (process.env.MOCK_API_HOST) {
-    var urlParts = url.parse(process.env.MOCK_API_HOST, false);
-    port = urlParts.host;
-  }
-
-  server.listen(port, function () {
-    console.log('Mock API Server is running on port ' + port);
-  })
 }

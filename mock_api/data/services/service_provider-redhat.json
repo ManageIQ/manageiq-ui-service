@@ -24,7 +24,7 @@
             "id": 10000000000013,
             "resource_id": 10000000000016,
             "resource_type": "ServiceTemplate",
-            "image_href": "http://localhost:3001/pictures/10r13.jpg"
+            "image_href": "http://localhost:3001/images/service.png"
         },
         "evm_owner": {
             "name": "Cloud Operator",

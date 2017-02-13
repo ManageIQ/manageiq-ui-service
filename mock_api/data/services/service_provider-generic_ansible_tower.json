@@ -1,0 +1,270 @@
+{
+  "url": "services/10000000000571?expand=vms&attributes=description%2Cpicture%2Cpicture.image_href%2Cevm_owner.name%2Cevm_owner.userid%2Cmiq_group.description%2Call_service_children%2Call_vms%2Caggregate_all_vm_cpus%2Caggregate_all_vm_memory%2Caggregate_all_vm_disk_count%2Caggregate_all_vm_disk_space_allocated%2Caggregate_all_vm_disk_space_used%2Caggregate_all_vm_memory_on_disk%2Cretired%2Cretirement_state%2Cretirement_warn%2Cretires_on%2Cactions%2Ccustom_actions%2Cprovision_dialog%2Cservice_template%2Cservice_resources%2Cchargeback_report%2Cparent_service%2Cpower_state%2Cpower_status%2Ccreated_at%2Coptions%2Cname%2Cguid%2Cvms.ipaddresses&decorators=vms.supports_console%3F%2Cvms.supports_cockpit%3F",
+  "get": {
+    "href": "http://localhost:3001/api/services/10000000000571",
+    "id": 10000000000571,
+    "description": "Deploy PostgreSQL",
+    "created_at": "2016-12-22T09:40:56Z",
+    "options": {
+      "dialog": {
+        "dialog_vm_name": "changeme",
+        "dialog_limit": "changeme",
+        "dialog_param_postgresql_databases": "[{\"name\": \"database\"}]",
+        "dialog_param_postgresql_users": "[{\"name\": \"test\",\"password\": \"test\"}]"
+      },
+      "create_options": {
+        "extra_vars": {
+          "postgresql_databases": "[{\"name\": \"database\"}]",
+          "postgresql_users": "[{\"name\": \"test\",\"password\": \"test\"}]"
+        },
+        "limit": "changeme"
+      }
+    },
+    "name": "Deploy PostgreSQL-20161222-044558",
+    "guid": "bcecce70-c82a-11e6-8d9b-005056b10841",
+    "picture": {
+      "id": 10000000000003,
+      "resource_id": 10000000000003,
+      "resource_type": "ServiceTemplate",
+      "image_href": "http://localhost:3001/images/service.png"
+    },
+    "evm_owner": {
+      "name": "Cloud Operator",
+      "userid": "cloudops"
+    },
+    "miq_group": {
+      "description": "cloud-operators"
+    },
+    "all_service_children": [],
+    "all_vms": [],
+    "aggregate_all_vm_cpus": 0,
+    "aggregate_all_vm_memory": 0,
+    "aggregate_all_vm_disk_count": 0,
+    "aggregate_all_vm_disk_space_allocated": 0,
+    "aggregate_all_vm_disk_space_used": 0,
+    "aggregate_all_vm_memory_on_disk": 0,
+    "custom_actions": {
+      "buttons": [],
+      "button_groups": []
+    },
+    "provision_dialog": {
+      "description": "Deploy RHEL7 with PostgreSQL",
+      "buttons": "submit,cancel",
+      "label": "Deploy RHEL7 with PostgreSQL",
+      "dialog_tabs": [
+        {
+          "description": "Instance Details",
+          "display": "edit",
+          "label": "Instance Details",
+          "position": 0,
+          "dialog_groups": [
+            {
+              "description": "Instance Details",
+              "display": "edit",
+              "label": "Instance Details",
+              "position": 0,
+              "dialog_fields": [
+                {
+                  "name": "vm_name",
+                  "data_type": "string",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": true,
+                  "required_method_options": {},
+                  "default_value": "changeme",
+                  "values_method_options": {},
+                  "options": {
+                    "protected": false
+                  },
+                  "label": "VM Name",
+                  "position": 0,
+                  "validator_type": "regex",
+                  "validator_rule": "^[a-z][a-z0-9\\-]*$",
+                  "dynamic": false,
+                  "read_only": false,
+                  "trigger_auto_refresh": true,
+                  "visible": true,
+                  "type": "DialogFieldTextBox",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "display": "edit",
+          "label": "Database Details",
+          "position": 1,
+          "dialog_groups": [
+            {
+              "display": "edit",
+              "label": "Database Details",
+              "position": 0,
+              "dialog_fields": [
+                {
+                  "name": "limit",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": false,
+                  "required_method_options": {},
+                  "default_value": "",
+                  "values": "<Script error>",
+                  "values_method_options": {},
+                  "options": {
+                    "protected": false
+                  },
+                  "label": "Limit",
+                  "position": 0,
+                  "dynamic": true,
+                  "show_refresh_button": false,
+                  "read_only": false,
+                  "auto_refresh": true,
+                  "visible": true,
+                  "type": "DialogFieldTextBox",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_namespace": "AnsibleTower",
+                    "ae_class": "AnsibleDialog",
+                    "ae_instance": "Get_VM_Name",
+                    "ae_attributes": {}
+                  }
+                },
+                {
+                  "name": "param_postgresql_databases",
+                  "data_type": "string",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": false,
+                  "required_method_options": {},
+                  "default_value": "[{\"name\": \"database\"}]",
+                  "values_method_options": {},
+                  "options": {
+                    "protected": false
+                  },
+                  "label": "Database Name",
+                  "position": 1,
+                  "dynamic": false,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldTextBox",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                },
+                {
+                  "name": "param_postgresql_users",
+                  "data_type": "string",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": false,
+                  "required_method_options": {},
+                  "default_value": "[{\"name\": \"test\",\"password\": \"test\"}]",
+                  "values_method_options": {},
+                  "options": {
+                    "protected": false
+                  },
+                  "label": "Database User",
+                  "position": 2,
+                  "dynamic": false,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldTextBox",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "service_template": {
+      "id": 10000000000003,
+      "name": "Deploy PostgreSQL",
+      "description": "Deploy PostgreSQL",
+      "guid": "51ef126e-4e0d-11e6-b213-005056b170bd",
+      "type": "ServiceTemplateAnsibleTower",
+      "options": {},
+      "created_at": "2016-07-20T00:02:59Z",
+      "updated_at": "2016-07-20T00:02:59Z",
+      "display": false,
+      "miq_group_id": 10000000000002,
+      "service_type": "atomic",
+      "prov_type": "generic_ansible_tower",
+      "service_template_catalog_id": 10000000000001,
+      "tenant_id": 10000000000001
+    },
+    "service_resources": [
+      {
+        "id": 10000000001647,
+        "resource_id": 10000000000021,
+        "resource_type": "ConfigurationScript",
+        "group_idx": 0,
+        "scaling_min": 1,
+        "scaling_max": -1,
+        "created_at": "2016-12-22T09:40:56Z",
+        "updated_at": "2016-12-22T09:40:56Z",
+        "service_id": 10000000000571,
+        "provision_index": 0
+      },
+      {
+        "id": 10000000001649,
+        "resource_id": 10000000001889,
+        "resource_type": "OrchestrationStack",
+        "group_idx": 0,
+        "scaling_min": 1,
+        "scaling_max": -1,
+        "created_at": "2016-12-22T09:46:10Z",
+        "updated_at": "2016-12-22T09:46:10Z",
+        "service_id": 10000000000571,
+        "provision_index": 0
+      }
+    ],
+    "chargeback_report": {
+      "results": []
+    },
+    "actions": [
+      {
+        "name": "edit",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/10000000000571"
+      },
+      {
+        "name": "retire",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/10000000000571"
+      },
+      {
+        "name": "set_ownership",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/10000000000571"
+      },
+      {
+        "name": "start",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/10000000000571"
+      },
+      {
+        "name": "stop",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/10000000000571"
+      },
+      {
+        "name": "suspend",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/10000000000571"
+      },
+      {
+        "name": "delete",
+        "method": "delete",
+        "href": "http://localhost:3001/api/services/10000000000571"
+      }
+    ]
+  }
+}

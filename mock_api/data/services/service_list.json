@@ -2,10 +2,126 @@
     "url": "services?expand=resources&attributes=picture%2Cpicture.image_href%2Cchargeback_report%2Cevm_owner.userid%2Cmiq_group.description%2Cv_total_vms%2Cpower_state%2Cpower_states%2Cpower_status%2Call_service_children%2Call_vms%2Ccustom_actions%2Cservice_resources%2Ctags&filter[]=ancestry%3Dnull&limit=20&offset=0&sort_by=name&sort_order=asc&sort_options=ignore_case",
     "get": {
         "name": "services",
-        "count": 3,
-        "subcount": 3,
+        "count": 4,
+        "subcount": 4,
         "resources": [
             {
+                "href": "http://localhost:3001/api/services/10000000000571",
+                "id": 10000000000571,
+                "name": "Deploy PostgreSQL-20161222-044558",
+                "description": "Deploy PostgreSQL",
+                "guid": "bcecce70-c82a-11e6-8d9b-005056b10841",
+                "type": "ServiceAnsibleTower",
+                "service_template_id": 10000000000003,
+                "options": {
+                    "dialog": {
+                        "dialog_vm_name": "changeme",
+                        "dialog_limit": "changeme",
+                        "dialog_param_postgresql_databases": "[{\"name\": \"database\"}]",
+                        "dialog_param_postgresql_users": "[{\"name\": \"test\",\"password\": \"test\"}]"
+                    },
+                    "create_options": {
+                        "extra_vars": {
+                            "postgresql_databases": "[{\"name\": \"database\"}]",
+                            "postgresql_users": "[{\"name\": \"test\",\"password\": \"test\"}]"
+                        },
+                        "limit": "changeme"
+                    }
+                },
+                "display": false,
+                "created_at": "2016-12-22T09:40:56Z",
+                "updated_at": "2016-12-22T09:46:10Z",
+                "evm_owner_id": 10000000000007,
+                "miq_group_id": 10000000000021,
+                "tenant_id": 10000000000001,
+                "picture": {
+                    "id": 10000000000003,
+                    "resource_id": 10000000000003,
+                    "resource_type": "ServiceTemplate",
+                    "image_href": "http://localhost:3001/images/service.png"
+                },
+                "chargeback_report": {
+                    "results": []
+                },
+                "evm_owner": {
+                    "userid": "cloudops"
+                },
+                "miq_group": {
+                    "description": "cloud-operators"
+                },
+                "v_total_vms": 0,
+                "power_states": [],
+                "all_service_children": [],
+                "all_vms": [],
+                "custom_actions": {
+                    "buttons": [],
+                    "button_groups": []
+                },
+                "service_resources": [
+                    {
+                        "id": 10000000001647,
+                        "resource_id": 10000000000021,
+                        "resource_type": "ConfigurationScript",
+                        "group_idx": 0,
+                        "scaling_min": 1,
+                        "scaling_max": -1,
+                        "created_at": "2016-12-22T09:40:56Z",
+                        "updated_at": "2016-12-22T09:40:56Z",
+                        "service_id": 10000000000571,
+                        "provision_index": 0
+                    },
+                    {
+                        "id": 10000000001649,
+                        "resource_id": 10000000001889,
+                        "resource_type": "OrchestrationStack",
+                        "group_idx": 0,
+                        "scaling_min": 1,
+                        "scaling_max": -1,
+                        "created_at": "2016-12-22T09:46:10Z",
+                        "updated_at": "2016-12-22T09:46:10Z",
+                        "service_id": 10000000000571,
+                        "provision_index": 0
+                    }
+                ],
+                "tags": [],
+                "actions": [
+                    {
+                        "name": "edit",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000571"
+                    },
+                    {
+                        "name": "retire",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000571"
+                    },
+                    {
+                        "name": "set_ownership",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000571"
+                    },
+                    {
+                        "name": "start",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000571"
+                    },
+                    {
+                        "name": "stop",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000571"
+                    },
+                    {
+                        "name": "suspend",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/services/10000000000571"
+                    },
+                    {
+                        "name": "delete",
+                        "method": "delete",
+                        "href": "http://localhost:3001/api/services/10000000000571"
+                    }
+                ]
+            },{
                 "href": "http://localhost:3001/api/services/10000000000405",
                 "id": 10000000000405,
                 "name": "alaurent23",
@@ -35,7 +151,7 @@
                     "id": 10000000000013,
                     "resource_id": 10000000000016,
                     "resource_type": "ServiceTemplate",
-                    "image_href": "http://localhost:3001/pictures/10r13.jpg"
+                    "image_href": "http://localhost:3001/images/service.png"
                 },
                 "chargeback_report": {
                     "results": []
@@ -192,7 +308,7 @@
                     "id": 10000000000014,
                     "resource_id": 10000000000018,
                     "resource_type": "ServiceTemplate",
-                    "image_href": "http://localhost:3001/pictures/10r14.png"
+                    "image_href": "http://localhost:3001/images/service.png"
                 },
                 "chargeback_report": {
                     "results": []
@@ -342,7 +458,7 @@
                     "id": 10000000000014,
                     "resource_id": 10000000000018,
                     "resource_type": "ServiceTemplate",
-                    "image_href": "http://localhost:3001/pictures/10r14.png"
+                    "image_href": "http://localhost:3001/images/service.png"
                 },
                 "chargeback_report": {
                     "results": []

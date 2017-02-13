@@ -1,0 +1,21 @@
+{
+  "url": "services/10000000000571/tags/?expand=resources&attributes=categorization%2Ccategory",
+  "get": {
+    "name": "tags",
+    "count": 191,
+    "subcount": 0,
+    "resources": [],
+    "actions": [
+      {
+        "name": "assign",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/10000000000571/tags"
+      },
+      {
+        "name": "unassign",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/10000000000571/tags"
+      }
+    ]
+  }
+}

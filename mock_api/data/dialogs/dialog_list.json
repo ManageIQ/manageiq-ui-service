@@ -1,0 +1,117 @@
+{
+  "url": "service_dialogs?expand=resources&attributes=bundle",
+  "get": {
+    "name": "service_dialogs",
+    "count": 3,
+    "subcount": 3,
+    "resources": [
+      {
+        "href": "http://localhost:3001/api/service_dialogs/10000000000026",
+        "id": 10000000000026,
+        "description": "Azure Quickstart Template",
+        "buttons": "submit,cancel",
+        "created_at": "2016-10-05T17:52:35Z",
+        "updated_at": "2016-10-05T17:54:51Z",
+        "label": "101-vm-simple-rhel Dialog",
+        "actions": [
+          {
+            "name": "refresh_dialog_fields",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000026"
+          },
+          {
+            "name": "delete",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000026"
+          },
+          {
+            "name": "edit",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000026"
+          },
+          {
+            "name": "copy",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000026"
+          },
+          {
+            "name": "delete",
+            "method": "delete",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000026"
+          }
+        ]
+      },
+      {
+        "href": "http://localhost:3001/api/service_dialogs/10000000000027",
+        "id": 10000000000027,
+        "description": "Azure Quickstart Template",
+        "buttons": "submit,cancel",
+        "created_at": "2016-10-05T17:52:48Z",
+        "updated_at": "2016-10-05T17:55:00Z",
+        "label": "101-vm-simple-windows Dialog",
+        "actions": [
+          {
+            "name": "refresh_dialog_fields",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000027"
+          },
+          {
+            "name": "delete",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000027"
+          },
+          {
+            "name": "edit",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000027"
+          },
+          {
+            "name": "copy",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000027"
+          },
+          {
+            "name": "delete",
+            "method": "delete",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000027"
+          }
+        ]
+      },
+      {
+        "href": "http://localhost:3001/api/service_dialogs/10000000000028",
+        "id": 10000000000028,
+        "buttons": "submit,cancel",
+        "created_at": "2016-10-05T18:08:14Z",
+        "updated_at": "2016-10-05T18:08:14Z",
+        "label": "201-web-app-sql-database Dialog",
+        "actions": [
+          {
+            "name": "refresh_dialog_fields",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000028"
+          },
+          {
+            "name": "delete",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000028"
+          },
+          {
+            "name": "edit",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000028"
+          },
+          {
+            "name": "copy",
+            "method": "post",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000028"
+          },
+          {
+            "name": "delete",
+            "method": "delete",
+            "href": "http://localhost:3001/api/service_dialogs/10000000000028"
+          }
+        ]
+      }
+    ]
+  }
+}

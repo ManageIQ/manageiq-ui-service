@@ -1,0 +1,47 @@
+{
+  "url": "service_orders/10000000000001?expand=resources%2Cservice_requests",
+  "get": {
+    "href": "http://localhost:3001/api/service_orders/10000000000001",
+    "id": 10000000000001,
+    "name": "Order # 10000000000001",
+    "tenant_id": 10000000000001,
+    "user_id": 10000000000001,
+    "user_name": "Administrator",
+    "state": "ordered",
+    "created_at": "2016-07-19T21:25:43Z",
+    "updated_at": "2016-07-19T21:25:58Z",
+    "placed_at": "2016-07-19T21:25:58Z",
+    "actions": [
+      {
+        "name": "edit",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_orders/10000000000001"
+      },
+      {
+        "name": "delete",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_orders/10000000000001"
+      },
+      {
+        "name": "clear",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_orders/10000000000001"
+      },
+      {
+        "name": "order",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_orders/10000000000001"
+      },
+      {
+        "name": "copy",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_orders/10000000000001"
+      },
+      {
+        "name": "delete",
+        "method": "delete",
+        "href": "http://localhost:3001/api/service_orders/10000000000001"
+      }
+    ]
+  }
+}

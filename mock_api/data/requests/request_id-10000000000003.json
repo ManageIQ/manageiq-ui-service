@@ -1,0 +1,129 @@
+{
+  "url": "requests/10000000000003?attributes=provision_dialog%2Cpicture%2Cpicture.image_href",
+  "get": {
+    "href": "http://localhost:3001/api/service_requests/10000000000003",
+    "id": 10000000000003,
+    "description": "Provisioning Service [Create new AWS ELB] from [Create new AWS ELB]",
+    "approval_state": "approved",
+    "type": "ServiceTemplateProvisionRequest",
+    "created_on": "2016-07-19T21:46:55Z",
+    "updated_on": "2016-07-19T21:48:36Z",
+    "fulfilled_on": "2016-07-19T21:48:36Z",
+    "requester_id": 10000000000001,
+    "requester_name": "Administrator",
+    "request_type": "clone_to_service",
+    "request_state": "finished",
+    "message": "Service Provisioned Successfully",
+    "status": "Ok",
+    "options": {
+      "dialog": {
+        "dialog_param_elb_name": "my-second-aws-elb",
+        "dialog_param_instance_ids": ""
+      },
+      "workflow_settings": {
+        "resource_action_id": 10000000000604,
+        "dialog_id": 10000000000003
+      },
+      "src_id": 10000000000001,
+      "requester_group": "EvmGroup-super_administrator",
+      "delivered_on": "2016-07-19T21:47:11.117Z"
+    },
+    "userid": "admin",
+    "source_id": 10000000000001,
+    "source_type": "ServiceTemplate",
+    "tenant_id": 10000000000001,
+    "service_order_id": 10000000000004,
+    "process": true,
+    "provision_dialog": {
+      "buttons": "submit,cancel",
+      "label": "Simple AWS ELB Dialog",
+      "dialog_tabs": [
+        {
+          "display": "edit",
+          "label": "Basic Information",
+          "position": 0,
+          "dialog_groups": [
+            {
+              "display": "edit",
+              "label": "AWS ELB Details",
+              "position": 0,
+              "dialog_fields": [
+                {
+                  "name": "param_elb_name",
+                  "description": "elb_name",
+                  "data_type": "string",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": false,
+                  "required_method_options": {},
+                  "default_value": "aws-elb",
+                  "values_method_options": {},
+                  "options": {
+                    "protected": false
+                  },
+                  "label": "ELB Name",
+                  "position": 0,
+                  "reconfigurable": true,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldTextBox",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                },
+                {
+                  "name": "param_instance_ids",
+                  "description": "instance_ids",
+                  "data_type": "string",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": false,
+                  "required_method_options": {},
+                  "default_value": "",
+                  "values_method_options": {},
+                  "options": {
+                    "protected": false
+                  },
+                  "label": "Instance IDs",
+                  "position": 1,
+                  "reconfigurable": true,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldTextBox",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "picture": {
+      "id": 10000000000001,
+      "resource_id": 10000000000001,
+      "resource_type": "ServiceTemplate",
+      "image_href": "http://localhost:3001/pictures/10r1.png"
+    },
+    "actions": [
+      {
+        "name": "edit",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_requests/10000000000003"
+      },
+      {
+        "name": "approve",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_requests/10000000000003"
+      },
+      {
+        "name": "deny",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_requests/10000000000003"
+      }
+    ]
+  }
+}
