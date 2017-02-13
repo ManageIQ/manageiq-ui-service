@@ -21,20 +21,15 @@
 
     function listenForAutoRefreshMessages(allDialogFields, autoRefreshableDialogFields, url, resourceId) {
       var listenerFunction = function(event) {
-        var dialogFieldsToRefresh = autoRefreshableDialogFields.filter(function(fieldName) {
-          if (event.originalEvent.data.fieldName !== fieldName) {
-            return fieldName;
+        var dialogFieldToRefresh = autoRefreshableDialogFields.filter(function(field, currentIndex) {
+          if (field.auto_refresh === true && event.originalEvent.data.refreshableFieldIndex < currentIndex) {
+            return field;
           }
         });
 
-        allDialogFields.forEach(function(dialogField) {
-          if (lodash.includes(dialogFieldsToRefresh, dialogField.name)) {
-            dialogField.beingRefreshed = true;
-          }
-        });
-
-        if (dialogFieldsToRefresh !== []) {
-          refreshMultipleDialogFields(allDialogFields, dialogFieldsToRefresh, url, resourceId);
+        if (dialogFieldToRefresh.length > 0) {
+          dialogFieldToRefresh[0].beingRefreshed = true;
+          refreshSingleDialogField(allDialogFields, dialogFieldToRefresh[0], url, resourceId);
         }
       };
 
@@ -87,13 +82,13 @@
 
               selectDefaultValue(dialogField, dialogField);
 
+              if (dialogField.auto_refresh === true || dialogField.trigger_auto_refresh === true) {
+                dialogField.refreshableFieldIndex = autoRefreshableDialogFields.push(dialogField) - 1;
+              }
+
               dialogField.triggerAutoRefresh = function() {
                 triggerAutoRefresh(dialogField);
               };
-
-              if (dialogField.auto_refresh === true) {
-                autoRefreshableDialogFields.push(dialogField.name);
-              }
             });
           });
         });
@@ -102,7 +97,7 @@
 
     function triggerAutoRefresh(dialogField) {
       if (dialogField.trigger_auto_refresh === true) {
-        parent.postMessage({fieldName: dialogField.name}, '*');
+        parent.postMessage({refreshableFieldIndex: dialogField.refreshableFieldIndex}, '*');
       }
     }
 
