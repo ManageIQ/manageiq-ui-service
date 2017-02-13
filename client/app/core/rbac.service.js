@@ -21,8 +21,28 @@ export function RBACFactory(lodash) {
 
   function set(productFeatures) {
     features = productFeatures || {};
-    actionFeatures = setActions(productFeatures);
-    navFeatures = setNavigation(productFeatures);
+
+    const actionsPermissions = {
+      serviceView: {show: angular.isDefined(productFeatures.service_view)},
+      serviceEdit: {show: angular.isDefined(productFeatures.service_edit)},
+      serviceTag: {show: angular.isDefined(productFeatures.service_tag)},
+      serviceDelete: {show: angular.isDefined(productFeatures.service_delete)},
+      serviceReconfigure: {show: angular.isDefined(productFeatures.service_reconfigure)},
+      serviceRetireNow: {show: angular.isDefined(productFeatures.service_retire_now)},
+      serviceRetire: {show: angular.isDefined(productFeatures.service_retire)},
+      serviceOwnership: {show: angular.isDefined(productFeatures.service_ownership)},
+    };
+    setActionFeatures(actionsPermissions);
+    const navPermissions = {
+      dashboard: {show: entitledForDashboard(productFeatures)},
+      services: {show: entitledForServices(productFeatures)},
+      orders: {show: entitledForServices(productFeatures)},
+      requests: {show: entitledForRequests(productFeatures)},
+      catalogs: {show: entitledForServiceCatalogs(productFeatures)},
+      dialogs: {show: entitledForService(productFeatures)},
+      administration: {show: entitledForService(productFeatures)},
+    };
+    setNavFeatures(navPermissions);
   }
 
   function has(feature) {
@@ -33,19 +53,6 @@ export function RBACFactory(lodash) {
     return features;
   }
 
-  function setNavigation(productFeatures) {
-    const features = {
-      dashboard: {show: entitledForDashboard(productFeatures)},
-      services: {show: entitledForServices(productFeatures)},
-      orders: {show: entitledForServices(productFeatures)},
-      requests: {show: entitledForRequests(productFeatures)},
-      catalogs: {show: entitledForServiceCatalogs(productFeatures)},
-      dialogs: {show: entitledForService(productFeatures)},
-      administration: {show: entitledForService(productFeatures)},
-    };
-
-    return features;
-  }
   function setNavFeatures(features) {
     navFeatures = features;
   }
@@ -54,20 +61,6 @@ export function RBACFactory(lodash) {
   }
   function getActionFeatures() {
     return actionFeatures;
-  }
-  function setActions(productFeatures) {
-    const features = {
-      serviceView: {show: angular.isDefined(productFeatures.service_view)},
-      serviceEdit: {show: angular.isDefined(productFeatures.service_edit)},
-      serviceTag: {show: angular.isDefined(productFeatures.service_tag)},
-      serviceDelete: {show: angular.isDefined(productFeatures.service_delete)},
-      serviceReconfigure: {show: angular.isDefined(productFeatures.service_reconfigure)},
-      serviceRetireNow: {show: angular.isDefined(productFeatures.service_retire_now)},
-      serviceRetire: {show: angular.isDefined(productFeatures.service_retire)},
-      serviceOwnership: {show: angular.isDefined(productFeatures.service_ownership)},
-    };
-
-    return features;
   }
   function getNavFeatures() {
     return navFeatures;

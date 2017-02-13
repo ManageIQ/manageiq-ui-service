@@ -45,7 +45,7 @@ export function authConfig($httpProvider) {
 }
 
 /** @ngInject */
-export function authInit($rootScope, $state, Session, $sessionStorage, logger, Language, ServerInfo, ProductInfo, $window, $q, RBAC) {
+export function authInit($rootScope, $state, Session, $sessionStorage, logger, Language, ServerInfo, ProductInfo, $window, RBAC) {
   var unregisterStart = $rootScope.$on('$stateChangeStart', changeStart);
   var unregisterError = $rootScope.$on('$stateChangeError', changeError);
   var unregisterSuccess = $rootScope.$on('$stateChangeSuccess', changeSuccess);
