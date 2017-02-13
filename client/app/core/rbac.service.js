@@ -51,8 +51,6 @@ export function RBACFactory(lodash) {
   }
   function setActionFeatures(features) {
     actionFeatures = features;
-
-    return actionFeatures;
   }
   function getActionFeatures() {
     return actionFeatures;
