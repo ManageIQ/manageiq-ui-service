@@ -1,0 +1,137 @@
+{
+  "url":"requests/10000000000141?attributes=provision_dialog%2Cpicture%2Cpicture.image_href",
+  "get":{
+    "href": "http://localhost:3001/api/service_requests/10000000000141",
+    "id": 10000000000141,
+    "description": "Provisioning Service [Hybrid Cloud Application] from [Hybrid Cloud Application]",
+    "approval_state": "approved",
+    "type": "ServiceTemplateProvisionRequest",
+    "created_on": "2016-09-10T12:33:34Z",
+    "updated_on": "2016-09-10T14:24:20Z",
+    "fulfilled_on": "2016-09-10T14:24:20Z",
+    "requester_id": 10000000000009,
+    "requester_name": "Cloud User",
+    "request_type": "clone_to_service",
+    "request_state": "finished",
+    "message": "Request completed with errors",
+    "status": "Error",
+    "options": {
+      "dialog": {
+        "dialog_service_name": "MyProdApp",
+        "dialog_cloud_template": "prod"
+      },
+      "workflow_settings": {
+        "resource_action_id": 10000000000722,
+        "dialog_id": 10000000000006
+      },
+      "src_id": 10000000000010,
+      "requester_group": "cloud-users",
+      "delivered_on": "2016-09-10T06:33:42.153Z"
+    },
+    "userid": "clouduser",
+    "source_id": 10000000000010,
+    "source_type": "ServiceTemplate",
+    "tenant_id": 10000000000001,
+    "service_order_id": 10000000000087,
+    "process": true,
+    "provision_dialog": {
+      "description": "Hybrid Cloud Application",
+      "buttons": "submit,cancel",
+      "label": "Hybrid Cloud Application",
+      "dialog_tabs": [
+        {
+          "description": "Cloud Provisioning",
+          "display": "edit",
+          "label": "Cloud Provisioning",
+          "position": 0,
+          "dialog_groups": [
+            {
+              "description": "Cloud Provisioning",
+              "display": "edit",
+              "label": "Cloud Provisioning",
+              "position": 0,
+              "dialog_fields": [
+                {
+                  "name": "service_name",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": true,
+                  "required_method_options": {},
+                  "default_value": "",
+                  "values_method_options": {},
+                  "options": {
+                    "protected": false
+                  },
+                  "label": "Service Name",
+                  "position": 0,
+                  "validator_type": "regex",
+                  "validator_rule": "^[a-z][a-z0-9\\-]*$",
+                  "dynamic": false,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldTextBox",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                },
+                {
+                  "name": "cloud_template",
+                  "description": "Hybrid Cloud Target",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": false,
+                  "required_method_options": {},
+                  "values": [
+                    [
+                      null,
+                      "<Script error>"
+                    ]
+                  ],
+                  "values_method_options": {},
+                  "options": {},
+                  "label": "Hybrid Cloud Target",
+                  "position": 1,
+                  "dynamic": true,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldDropDownList",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_namespace": "Service",
+                    "ae_class": "DynamicDialogs",
+                    "ae_instance": "list_hybridcloud_tags",
+                    "ae_attributes": {}
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "picture": {
+      "id": 10000000000010,
+      "resource_id": 10000000000010,
+      "resource_type": "ServiceTemplate",
+      "image_href": "http://localhost:3001/pictures/10r10.png"
+    },
+    "actions": [
+      {
+        "name": "edit",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_requests/10000000000141"
+      },
+      {
+        "name": "approve",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_requests/10000000000141"
+      },
+      {
+        "name": "deny",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_requests/10000000000141"
+      }
+    ]
+  }
+}

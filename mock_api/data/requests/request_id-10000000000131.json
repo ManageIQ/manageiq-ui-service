@@ -1,0 +1,298 @@
+{
+  "url": "requests/10000000000131?attributes=provision_dialog%2Cpicture%2Cpicture.image_href",
+  "get": {
+    "href": "http://localhost:3001/api/service_requests/10000000000131",
+    "id": 10000000000131,
+    "description": "Provisioning Service [RHEL7 on VMware] from [RHEL7 on VMware]",
+    "approval_state": "approved",
+    "type": "ServiceTemplateProvisionRequest",
+    "created_on": "2016-08-29T21:20:21Z",
+    "updated_on": "2016-08-29T21:27:18Z",
+    "fulfilled_on": "2016-08-29T21:27:18Z",
+    "requester_id": 10000000000001,
+    "requester_name": "Administrator",
+    "request_type": "clone_to_service",
+    "request_state": "finished",
+    "message": "Request complete",
+    "status": "Ok",
+    "options": {
+      "dialog": {
+        "dialog_service_name": "Rodrigo",
+        "dialog_tag_0_environment": "dev",
+        "dialog_option_1_vm_name": "RodrigoVM",
+        "dialog_option_1_cores_per_socket": "1",
+        "dialog_option_1_vm_memory": "1024",
+        "dialog_tag_1_function": "app"
+      },
+      "workflow_settings": {
+        "resource_action_id": 10000000001063,
+        "dialog_id": 10000000000007
+      },
+      "src_id": 10000000000015,
+      "requester_group": "EvmGroup-super_administrator",
+      "delivered_on": "2016-08-29T21:20:37.950Z"
+    },
+    "userid": "admin",
+    "source_id": 10000000000015,
+    "source_type": "ServiceTemplate",
+    "tenant_id": 10000000000001,
+    "service_order_id": 10000000000082,
+    "process": true,
+    "provision_dialog": {
+      "description": "Create VM",
+      "buttons": "submit,cancel",
+      "label": "Create VM (VMware)",
+      "dialog_tabs": [
+        {
+          "description": "Service and VM Names",
+          "display": "edit",
+          "label": "Service and VM Names",
+          "position": 0,
+          "dialog_groups": [
+            {
+              "description": "Service Information",
+              "display": "edit",
+              "label": "Service Information",
+              "position": 0,
+              "dialog_fields": [
+                {
+                  "name": "service_name",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": true,
+                  "required_method_options": {},
+                  "default_value": "",
+                  "values_method_options": {},
+                  "options": {
+                    "protected": false
+                  },
+                  "label": "Service Name",
+                  "position": 0,
+                  "dynamic": false,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldTextBox",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                },
+                {
+                  "name": "tag_0_environment",
+                  "data_type": "string",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": true,
+                  "required_method_options": {},
+                  "default_value": "dev",
+                  "values": [
+                    [
+                      "dev",
+                      "Development"
+                    ],
+                    [
+                      "prod",
+                      "Production"
+                    ],
+                    [
+                      "test",
+                      "Test"
+                    ]
+                  ],
+                  "values_method_options": {},
+                  "options": {
+                    "sort_by": "description",
+                    "sort_order": "ascending"
+                  },
+                  "label": "Environment",
+                  "position": 1,
+                  "dynamic": false,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldRadioButton",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                }
+              ]
+            },
+            {
+              "description": "VM Information",
+              "display": "edit",
+              "label": "VM Information",
+              "position": 1,
+              "dialog_fields": [
+                {
+                  "name": "option_1_vm_name",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": true,
+                  "required_method_options": {},
+                  "default_value": "",
+                  "values_method_options": {},
+                  "options": {
+                    "protected": false
+                  },
+                  "label": "VM Name",
+                  "position": 0,
+                  "validator_type": "regex",
+                  "validator_rule": "^[a-z0-9-]{0,12}$",
+                  "dynamic": false,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldTextBox",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                },
+                {
+                  "name": "option_1_cores_per_socket",
+                  "data_type": "string",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": true,
+                  "required_method_options": {},
+                  "default_value": "1",
+                  "values": [
+                    [
+                      "1",
+                      "1"
+                    ],
+                    [
+                      "2",
+                      "2"
+                    ],
+                    [
+                      "4",
+                      "4"
+                    ]
+                  ],
+                  "values_method_options": {},
+                  "options": {
+                    "sort_by": "description",
+                    "sort_order": "ascending"
+                  },
+                  "label": "Number of CPUs",
+                  "position": 1,
+                  "dynamic": false,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldDropDownList",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                },
+                {
+                  "name": "option_1_vm_memory",
+                  "data_type": "string",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": true,
+                  "required_method_options": {},
+                  "default_value": "1024",
+                  "values": [
+                    [
+                      "1024",
+                      "1GB"
+                    ],
+                    [
+                      "2048",
+                      "2GB"
+                    ],
+                    [
+                      "4096",
+                      "4GB"
+                    ],
+                    [
+                      "8192",
+                      "8GB"
+                    ]
+                  ],
+                  "values_method_options": {},
+                  "options": {
+                    "sort_by": "description",
+                    "sort_order": "ascending"
+                  },
+                  "label": "Memory",
+                  "position": 2,
+                  "dynamic": false,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldDropDownList",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                },
+                {
+                  "name": "tag_1_function",
+                  "data_type": "string",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": true,
+                  "required_method_options": {},
+                  "default_value": "app",
+                  "values": [
+                    [
+                      "app",
+                      "Application Server"
+                    ],
+                    [
+                      "db",
+                      "Database Server"
+                    ],
+                    [
+                      "web",
+                      "Web Server"
+                    ]
+                  ],
+                  "values_method_options": {},
+                  "options": {
+                    "sort_by": "description",
+                    "sort_order": "ascending"
+                  },
+                  "label": "Function",
+                  "position": 3,
+                  "dynamic": false,
+                  "read_only": false,
+                  "visible": true,
+                  "type": "DialogFieldDropDownList",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "picture": {
+      "id": 10000000000012,
+      "resource_id": 10000000000015,
+      "resource_type": "ServiceTemplate",
+      "image_href": "http://localhost:3001/pictures/10r12.png"
+    },
+    "actions": [
+      {
+        "name": "edit",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_requests/10000000000131"
+      },
+      {
+        "name": "approve",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_requests/10000000000131"
+      },
+      {
+        "name": "deny",
+        "method": "post",
+        "href": "http://localhost:3001/api/service_requests/10000000000131"
+      }
+    ]
+  }
+}
