@@ -87,12 +87,12 @@
                     </select>
 
                     <span
-                      ng-if="vm.inputDisabled"
+                      ng-if="dialogField.read_only || vm.inputDisabled"
                       ng-switch-when="DialogFieldRadioButton"
                       class="btn-group">
                       <label>{{ vm.parsedOptions[dialogField.name] }}</label>
                     </span>
-                    <span ng-if="vm.inputDisabled === false"
+                    <span ng-if="dialogField.read_only === false || vm.inputDisabled === false"
                       ng-switch-when="DialogFieldRadioButton"
                       class="btn-group">
                       <label
