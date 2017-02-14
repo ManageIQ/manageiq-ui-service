@@ -59,7 +59,7 @@ function resolveService($stateParams, CollectionsApi) {
   ];
   var options = {
     attributes: requestAttributes,
-    decorators: ['vms.supports_console?', 'vms.supports_cockpit?'],
+    decorators: ['vms.snapshots', 'vms.supports_console?', 'vms.supports_cockpit?'],
     expand: 'vms',
   };
 

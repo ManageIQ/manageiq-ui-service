@@ -13,10 +13,10 @@
     <div class="ss-details-header__actions">
       <div uib-dropdown class="ss-details-header__actions__inner dropdown-kebab-pf">
         <custom-button ng-if="vm.hasCustomButtons()"
-          service-template-catalog-id="vm.service.service_template.service_template_catalog_id"
-          service-id="vm.service.id"
-          custom-actions="vm.service.custom_actions"
-          actions="vm.service.actions">
+                       service-template-catalog-id="vm.service.service_template.service_template_catalog_id"
+                       service-id="vm.service.id"
+                       custom-actions="vm.service.custom_actions"
+                       actions="vm.service.actions">
         </custom-button>
         <custom-dropdown class="custom-dropdown pull-left"
                          config="item"
@@ -83,7 +83,8 @@
                 <div class="form-group">
                   <label class="control-label col-sm-4" translate>Retirement State</label>
                   <div class="col-sm-8">
-                    <input class="form-control" readonly value="{{vm.service.retirement_state || ('Unknown' | translate)}}"/>
+                    <input class="form-control" readonly
+                           value="{{vm.service.retirement_state || ('Unknown' | translate)}}"/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -114,7 +115,8 @@
       </section>
     </div>
   </div>
-  <div ng-if="vm.service.service_template.prov_type != 'generic_ansible_tower'" class="panel panel-default ss-details-panel">
+  <div ng-if="vm.service.service_template.prov_type != 'generic_ansible_tower'"
+       class="panel panel-default ss-details-panel">
     <div class="panel-body">
       <section>
         <h2 translate>Resources</h2>
@@ -149,7 +151,8 @@
                          tooltip-append-to-body="true"
                          tooltip-popup-delay="1000"
                          tooltip-placement="bottom"></i>
-                      <i class="pficon fa fa-question-circle" ng-if="item.power_state !== 'on' && item.power_state !== 'off'"
+                      <i class="pficon fa fa-question-circle"
+                         ng-if="item.power_state !== 'on' && item.power_state !== 'off'"
                          uib-tooltip="{{'Power State: Unknown'|translate}}"
                          tooltip-append-to-body="true"
                          tooltip-popup-delay="1000"
@@ -168,10 +171,11 @@
                     </span>
                   </div>
                   <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
-                    <div uib-tooltip="{{'Last Boot Time' | translate}} : {{item.boot_time | date : 'MMM dd, yyyy H:mm:ss'}}"
-                         tooltip-append-to-body="true"
-                         tooltip-popup-delay="1000"
-                         tooltip-placement="bottom">
+                    <div
+                      uib-tooltip="{{'Last Boot Time' | translate}} : {{item.boot_time | date : 'MMM dd, yyyy H:mm:ss'}}"
+                      tooltip-append-to-body="true"
+                      tooltip-popup-delay="1000"
+                      tooltip-placement="bottom">
                       <span class="no-wrap">
                         <strong translate>Last Boot Time</strong>&nbsp;
                         <span>
@@ -181,12 +185,18 @@
                     </div>
                   </div>
                   <div class="list-view-pf-actions">
+                    <div ng-if="item.snapshots.length" class="btn-group dropdown-kebab-pf">
+                      <button type="button" class="btn btn-default" type="button" ui-sref="vms.snapshots({vmId: item.id})">
+                        <span translate>Snapshots</span>
+                      </button>
+                    </div>
                     <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body>
                       <button type="button" class="btn btn-default" uib-dropdown-toggle type="button">
                         <span translate>Access</span>
                         <span class="caret"></span>
                       </button>
-                      <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                      <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu"
+                          aria-labelledby="btn-append-to-to-body">
                         <li role="menuitem"
                             ng-class="{'disabled': !item['supports_console?'] || item.power_state !== 'on'}"
                             ng-click="customScope.openConsole(item)">
@@ -228,7 +238,8 @@
       </section>
     </div>
   </div>
-  <service-details-ansible ng-if="vm.service.service_template.prov_type === 'generic_ansible_tower'" results="vm.service"></service-details-ansible>
+  <service-details-ansible ng-if="vm.service.service_template.prov_type === 'generic_ansible_tower'"
+                           results="vm.service"></service-details-ansible>
   <div class="panel panel-default ss-details-panel relationships-panel">
     <div class="panel-body">
       <section>
