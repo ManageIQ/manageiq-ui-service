@@ -6,15 +6,13 @@ export function VmsService(CollectionsApi, EventNotifications, sprintf, lodash) 
 
 
   return {
-    getSnapshots: getSnapshots
+    getSnapshots: getSnapshots,
   };
 
-  function getSnapshots(vmId, limit, offset) {
+  function getSnapshots(vmId) {
     const options = {
-      expand: ['vms'],
-      attributes: ['snapshots','service'],
-      // limit: limit,
-      // offset: offset,
+      attributes: ['service'],
+      expand: ['snapshots'],
     };
 
     return CollectionsApi.query(collection + '/' + vmId, options);

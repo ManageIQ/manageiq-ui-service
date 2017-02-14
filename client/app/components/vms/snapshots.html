@@ -1,0 +1,18 @@
+<div class="breadcrumb-bar">
+  <span>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="services">{{'Services'|translate}}</a>
+      </li>
+      <li>
+        <a ui-sref="services.details({serviceId: vm.vm.service.id})">{{ ::vm.vm.service.name }}</a>
+      </li>
+      <li>
+        <a ui-sref="vms.details({vmId: vm.vm.id})"> {{::vm.vm.name}} </a>
+      </li>
+      <li translate>
+        Snapshots
+      </li>
+    </ol>
+  </span>
+</div>
