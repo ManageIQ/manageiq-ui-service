@@ -2,7 +2,7 @@ describe('Component: catalogEditor', function() {
 
   beforeEach(function() {
     module('app.core', 'app.states');
-    bard.inject('CatalogsState', '$state', 'Session', '$httpBackend');
+    bard.inject('CatalogsState', '$state', '$httpBackend');
   });
 
   describe('with $compile', function() {
@@ -23,9 +23,6 @@ describe('Component: catalogEditor', function() {
 
       scope = $rootScope.$new();
 
-      Session.create({
-        auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
-      });
       $httpBackend.whenGET('').respond(200);
 
       scope.catalog = readJSON(mockDir + 'editCatalog.json');

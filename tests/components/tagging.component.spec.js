@@ -2,7 +2,7 @@ describe('Component: taggingWidget', function() {
 
   beforeEach(function() {
     module('app.components');
-    bard.inject('Session', '$httpBackend', 'CollectionsApi');
+    bard.inject('$httpBackend', 'CollectionsApi');
   });
 
   describe('with $compile', function() {
@@ -25,9 +25,6 @@ describe('Component: taggingWidget', function() {
 
       scope = $rootScope.$new();
 
-      Session.create({
-        auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
-      });
       $httpBackend.whenGET('').respond(200);
 
       scope.tagsOfBlueprint = readJSON(mockDir + 'tags-of-blueprint.json');
