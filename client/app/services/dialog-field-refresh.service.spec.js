@@ -7,17 +7,42 @@ describe('app.services.DialogFieldRefresh', function() {
 
   describe('#listenForAutoRefreshMessages', function() {
     var eventListenerSpy;
+    var onListenerCallback;
+    var dialogField1;
+    var dialogField2;
+    var refreshSingleDialogFieldSpy;
 
     beforeEach(function() {
       $ = sinon.stub();
       eventListenerSpy = sinon.stub({on: function() {}, off: function() {}});
+
       $.withArgs(window).returns(eventListenerSpy);
+
+      refreshSingleDialogFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
+
+      dialogField1 = {auto_refresh: true};
+      dialogField2 = {auto_refresh: true};
+
+      DialogFieldRefresh.listenForAutoRefreshMessages([], [dialogField1, dialogField2], 'the_url', '123');
+      onListenerCallback = eventListenerSpy.on.getCall(0).args[1];
     });
 
     it('sets up a listener on the window', function() {
-      DialogFieldRefresh.listenForAutoRefreshMessages([], [], 'the_url', '123');
       expect(eventListenerSpy.off).to.have.been.calledWith('message');
-      expect(eventListenerSpy.on).to.have.been.calledWith('message');
+      expect(eventListenerSpy.on).to.have.been.calledWith('message', onListenerCallback);
+    });
+
+    describe('listenerCallback', function() {
+      var event;
+
+      beforeEach(function() {
+        event = {originalEvent: {data: {refreshableFieldIndex: 0}}};
+        onListenerCallback(event);
+      });
+
+      it('sets the being refreshed flag to true', function() {
+        expect(dialogField2.beingRefreshed).to.equal(true);
+      });
     });
   });
 
@@ -338,7 +363,37 @@ describe('app.services.DialogFieldRefresh', function() {
 
       it('pushes the dialog field name into the auto refreshable array', function() {
         DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
-        expect(autoRefreshableDialogFields[0]).to.equal('dialog1');
+        expect(autoRefreshableDialogFields[0].name).to.equal('dialog1');
+      });
+
+      it('sets the refreshableFieldIndex', function() {
+        DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
+        expect(dialogField.refreshableFieldIndex).to.equal(0);
+      });
+    });
+
+    describe('when the dialog field triggers auto refreshes', function() {
+      var dialogField = {auto_refresh: false, trigger_auto_refresh: true, name: 'dialog1'};
+      var dialogs = [{dialog_tabs: [{dialog_groups: [{dialog_fields: [dialogField]}]}]}];
+
+      it('pushes the dialog field into the all dialog fields array', function() {
+        DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
+        expect(allDialogFields.length).to.equal(1);
+      });
+
+      it('sets up the triggering of auto refresh', function() {
+        DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
+        expect(dialogField).to.respondTo('triggerAutoRefresh');
+      });
+
+      it('pushes the dialog field name into the auto refreshable array', function() {
+        DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
+        expect(autoRefreshableDialogFields[0].name).to.equal('dialog1');
+      });
+
+      it('sets the refreshableFieldIndex', function() {
+        DialogFieldRefresh.setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields);
+        expect(dialogField.refreshableFieldIndex).to.equal(0);
       });
     });
   });
@@ -359,11 +414,12 @@ describe('app.services.DialogFieldRefresh', function() {
     describe('when the dialog field triggers auto refreshes', function() {
       beforeEach(function() {
         dialogField.trigger_auto_refresh = true;
+        dialogField.refreshableFieldIndex = 123;
       });
 
       it('posts a message with the field name', function() {
         DialogFieldRefresh.triggerAutoRefresh(dialogField);
-        expect(postMessageSpy).to.have.been.calledWith({fieldName: 'dialogName'}, '*');
+        expect(postMessageSpy).to.have.been.calledWith({refreshableFieldIndex: 123}, '*');
       });
     });
 
