@@ -15,6 +15,8 @@ import {HelpState} from "./help/help.state.js";
 import {LoginState} from "./login/login.state.js";
 import {LogoutState} from "./logout/logout.state.js";
 import {NotFoundState} from "./404/404.state.js";
+import {OrchestrationTemplatesExplorerState} from "./orchestration-templates/explorer/explorer.state.js";
+import {OrchestrationTemplatesState} from "./orchestration-templates/orchestration.templates.state.js";
 import {OrdersDetailsState} from "./orders/details/details.state.js";
 import {OrdersExplorerState} from "./orders/explorer/explorer.state.js";
 import {OrdersState} from "./orders/orders.state.js";
@@ -54,6 +56,8 @@ export const AppRoutingModule = angular
   .run(HelpState)
   .run(LoginState)
   .run(LogoutState)
+  .run(OrchestrationTemplatesExplorerState)
+  .run(OrchestrationTemplatesState)
   .run(OrdersDetailsState)
   .run(OrdersExplorerState)
   .run(OrdersState)

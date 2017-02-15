@@ -20,6 +20,7 @@ import { LoggerService } from './logger.service.js';
 import { MessagesFactory } from './messages.service.js';
 import { NavCountsFactory } from './navcounts.service.js';
 import { NavigationProvider } from './navigation.provider.js';
+import { OrchestrationTemplatesFactory } from './orchestration-templates.service.js';
 import { OrdersStateFactory } from './orders-state.service.js';
 import { PollingFactory } from './polling.service.js';
 import { PowerOperationsFactory } from './poweroperations.service.js';
@@ -79,6 +80,7 @@ export const CoreModule = angular
   .factory('ListView', ListViewFactory)
   .factory('Messages', MessagesFactory)
   .factory('NavCounts', NavCountsFactory)
+  .factory('OrchestrationTemplates', OrchestrationTemplatesFactory)
   .factory('OrdersState', OrdersStateFactory)
   .factory('Polling', PollingFactory)
   .factory('PowerOperations', PowerOperationsFactory)

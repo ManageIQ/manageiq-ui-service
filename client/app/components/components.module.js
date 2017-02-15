@@ -19,6 +19,7 @@ import { ModalActionsComponent } from './modal-actions/modal-actions.component.j
 import { BaseModalController } from './modal/base-modal-controller.js';
 import { BaseModalFactory } from './modal/base-modal.factory.js';
 import { NavigationController } from './navigation/navigation-contoller.js';
+import { TemplateExplorerComponent } from './template-explorer/template-explorer.component.js';
 import { OrderExplorerComponent } from './order-explorer/order-explorer.component.js';
 import { OwnershipServiceModalComponent } from './ownership-service-modal/ownership-service-modal.component.js';
 import { PaginationComponent } from './pagination/pagination.component.js';
@@ -72,6 +73,7 @@ export default angular
   .factory('ModalService', BaseModalFactory)
   .controller('NavigationController', NavigationController)
   .component('ownershipServiceModal', OwnershipServiceModalComponent)
+  .component('orchestrationTemplateExplorer', TemplateExplorerComponent)
   .component('orderExplorer', OrderExplorerComponent)
   .component('explorerPagination', PaginationComponent)
   .component('powerState', PowerStateComponent)
