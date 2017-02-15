@@ -1,18 +1,86 @@
 <div class="breadcrumb-bar">
   <span>
     <ol class="breadcrumb">
-      <li>
+      <li ng-if="vm.vm.service.name">
         <a ui-sref="services">{{'Services'|translate}}</a>
       </li>
       <li>
-        <a ui-sref="services.details({serviceId: vm.vm.service.id})">{{ ::vm.vm.service.name }}</a>
+        <a ng-if="vm.vm.service.name" ui-sref="services.details({serviceId: vm.vm.service.id})">{{ ::vm.vm.service.name }}</a>
+        <a ng-if="!vm.vm.service.name" ui-sref="dashboard" translate>No Service</a>
       </li>
       <li>
-        <a ui-sref="vms.details({vmId: vm.vm.id})"> {{::vm.vm.name}} </a>
+        <a ui-sref="vms.details({vmId: vm.vm.id})"> {{vm.vm.name}} </a>
       </li>
       <li translate>
         Snapshots
       </li>
     </ol>
   </span>
+</div>
+<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
+  <actions>
+    <custom-dropdown config="vm.listActions" menu-right="true"></custom-dropdown>
+  </actions>
+</div>
+<div class="list-view-container section-container paged-container service-explorer-list">
+  <loading status="vm.loading"></loading>
+  <div ng-if="!vm.loading" class="list-view-container section-container"
+       confirmation
+       confirmation-trigger-value="vm.deleteModal"
+       confirmation-title="{{vm.deleteTitle}}"
+       confirmation-message="{{vm.deleteMessage}}"
+       confirmation-ok-text="{{'Delete'|translate}}"
+       confirmation-on-ok="vm.deleteSnapshots()"
+       confirmation-on-cancel="vm.canceldelete()"
+       confirmation-ok-style="primary"
+       confirmation-show-cancel="true"
+       confirmation-items-title="{{'Snapshots'|translate}}"
+       confirmation-items="vm.catalogsToDelete"
+       confirmation-item-name-field="name">
+    <div pf-list-view
+         config="vm.listConfig"
+         items="vm.snapshots"
+         menu-actions="vm.menuActions">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+          <span class="no-wrap">
+            <i class="pficon fa fa-power-off" ng-if="!item.current"
+               uib-tooltip="{{'Unused Snapshot'|translate}}"
+               tooltip-append-to-body="true"
+               tooltip-popup-delay="1000"
+               tooltip-placement="bottom"></i>
+            <i class="pficon pficon-ok" ng-if="item.current"
+               uib-tooltip="{{'Current Snapshot'|translate}}"
+               tooltip-append-to-body="true"
+               tooltip-popup-delay="1000"
+               tooltip-placement="bottom"></i>
+            <strong
+              uib-tooltip="{{item.name}}"
+              tooltip-placement="bottom-left"
+              tooltip-popup-delay="1000">{{item.name}}</strong>
+          </span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-placement="bottom-left"
+                  tooltip-popup-delay="1000">
+              {{item.description}}
+            </span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <span class="no-wrap" uib-tooltip="{{item.create_time  | date:'medium'}}" tooltip-placement="bottom-left"
+                  tooltip-popup-delay="1000">
+              <strong translate>Created:</strong>
+              {{item.create_time | date:'medium'}}
+            </span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-placement="bottom-left"
+                  tooltip-popup-delay="1000">
+              <strong translate>Updated:</strong>
+              {{item.updated_on | date:'medium'}}
+            </span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
