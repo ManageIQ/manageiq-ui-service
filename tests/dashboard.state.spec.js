@@ -2,7 +2,7 @@ describe('Dashboard', function() {
   beforeEach(function() {
     module('app.core');
     module('app.states', bard.fakeToastr);
-    bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session', '$httpBackend', '$q', 'RBAC');
+    bard.inject('$location', '$rootScope', '$state', '$templateCache', '$httpBackend', '$q', 'RBAC');
   });
 
   beforeEach(function() {
@@ -11,9 +11,6 @@ describe('Dashboard', function() {
     d = d.toISOString();
     d = d.substring(0, d.indexOf('.'));
 
-    Session.create({
-      auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
-    });
     $httpBackend.whenGET('').respond(200);
   });
 

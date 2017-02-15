@@ -2,7 +2,7 @@ describe('Component: rulesList', function() {
 
   beforeEach(function() {
     module('app.components');
-    bard.inject('RulesState', 'Session', '$httpBackend');
+    bard.inject('RulesState', '$httpBackend');
   });
 
   describe('with $compile', function() {
@@ -21,9 +21,6 @@ describe('Component: rulesList', function() {
       element = angular.element('<rules-list arbitration-rules="arbitrationRules" fields="fields" profiles="profiles"/>');
       $compile(element)(scope);
 
-      Session.create({
-        auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
-      });
       $httpBackend.whenGET('').respond(200);
 
       scope.arbitrationRules = [

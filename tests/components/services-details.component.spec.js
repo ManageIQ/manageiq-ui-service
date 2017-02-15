@@ -2,7 +2,6 @@ describe('Component: ServiceDetails', function() {
 
   beforeEach(function() {
     module('app.core', 'app.components');
-
   });
 
   describe('view', function() {
@@ -10,7 +9,7 @@ describe('Component: ServiceDetails', function() {
     let isoScope;
     let element;
 
-    beforeEach(inject(function($compile, $rootScope, $httpBackend, RBAC, Session) {
+    beforeEach(inject(function($compile, $rootScope, $httpBackend, RBAC) {
       let mockDir = 'tests/mock/services/';
 
       scope = $rootScope.$new();
@@ -21,10 +20,6 @@ describe('Component: ServiceDetails', function() {
         svc_catalog_provision: {},
         miq_request_view: {}
       }}};
-
-       Session.create({
-        auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
-      });
 
       $httpBackend.whenGET('').respond(200);
 

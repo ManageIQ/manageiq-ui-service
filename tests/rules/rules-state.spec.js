@@ -1,27 +1,14 @@
 describe('app.states.RulesState', function() {
   beforeEach(function () {
     module('app.states');
-    bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session', '$httpBackend');
-  });
-
-  beforeEach(function () {
-    Session.create({
-      auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
-    });
-    $httpBackend.whenGET('').respond(200);
+    bard.inject('$state');
   });
 
   describe('route', function() {
-
-    beforeEach(function() {
-      bard.inject('$state');
-    });
-
     it('should work with $state.go', function() {
       $state.go('administration.rules');
       expect($state.is('administration.rules'));
     });
-
   });
 
   describe('controller', function() {
@@ -93,7 +80,7 @@ describe('app.states.RulesState', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$state', '$rootScope', '$document', 'RulesState', 'ProfilesState');
+      bard.inject('$controller', 'RulesState', 'ProfilesState');
     });
 
     it('should be created successfully', function() {
@@ -107,12 +94,13 @@ describe('app.states.RulesState', function() {
       expect(controller).to.be.defined;
     });
 
-    it('should get data from the APIs', function () {
+    it('should get data from the APIs', function (done) {
       getRulesSpy = sinon.stub(RulesState, 'getRules').returns(Promise.resolve(arbitrationRules));
       getFieldsSpy = sinon.stub(RulesState, 'getRuleFields').returns(Promise.resolve(fields));
       getProfilesSpy = sinon.stub(ProfilesState, 'getProfiles').returns(Promise.resolve(profiles));
 
       $state.go('administration.rules');
+      done();
 
       expect(getRulesSpy).to.have.been.called;
       expect(getFieldsSpy).to.have.been.called;
