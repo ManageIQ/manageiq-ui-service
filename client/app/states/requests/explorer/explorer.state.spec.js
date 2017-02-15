@@ -5,10 +5,6 @@ describe('Dashboard', function() {
   });
 
   describe('route', function() {
-    var views = {
-      list: 'app/states/requests/list/list.html'
-    };
-
     beforeEach(function() {
       bard.inject('$location', '$rootScope', '$state', '$templateCache');
     });
