@@ -136,14 +136,30 @@ function ComponentController($filter, lodash, ListView, Language, Templates, Eve
       vm.templates = [];
       vm.templates = response.resources;
 
-      if (refresh && vm.selectedItemsList.length > 0) {
-        vm.templatesList = [];
-        angular.forEach(vm.templates, checkSelected);
-      } else {
-        vm.templatesList = angular.copy(vm.templates);
-      }
+    
+      vm.templatesList = [];
+      angular.forEach(vm.templates, processTemplates);
+      
+      function processTemplates(template) {
+        switch (template.type) {
+          case 'OrchestrationTemplateAzure':
+            template.logo = 'pictures/10r22.png';
+            break;
+          case 'OrchestrationTemplateCfn':
+            template.logo = 'pictures/10r14.png';
+            break;
+          case 'OrchestrationTemplateHot':
+          case 'OrchestrationTemplateVnfd':
+            template.logo = 'pictures/10r16.jpg';
+            break;
+          case 'OrchestrationTemplateVapp':
+            template.logo = 'pictures/10r12.png';
+            break;
+          default:
+            template.logo = 'images/service.png';
+            break;
+        }
 
-      function checkSelected(template) {
         template.selected = false;
         for (var i = 0; i < vm.selectedItemsList.length; i++) {
           var currentItem = vm.selectedItemsList[i];

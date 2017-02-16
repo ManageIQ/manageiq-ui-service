@@ -1,0 +1,102 @@
+{
+    "url": "orchestration_templates?expand=resources&attributes=&limit=20&offset=0&sort_by=name&sort_order=asc&sort_options=alpha",
+    "get": {
+        "name": "orchestration_templates",
+        "count": 156,
+        "subcount": 20,
+        "resources": [
+            {
+                "href": "http://localhost:3001/api/orchestration_templates/10000000000124",
+                "id": 10000000000124,
+                "name": "101-vm-simple-rhel",
+                "type": "OrchestrationTemplateAzure",
+                "description": "Simple template",
+                "content": "\n \n",
+                "md5": "ee4cd9c87a97e0dc9bd119f7eb47edef",
+                "created_at": "2016-10-05T17:50:38Z",
+                "updated_at": "2016-10-05T17:50:38Z",
+                "draft": false,
+                "orderable": true,
+                "actions": [
+                    {
+                        "name": "edit",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/orchestration_templates/10000000000124"
+                    },
+                    {
+                        "name": "delete",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/orchestration_templates/10000000000124"
+                    },
+                    {
+                        "name": "copy",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/orchestration_templates/10000000000124"
+                    },
+                    {
+                        "name": "delete",
+                        "method": "delete",
+                        "href": "http://localhost:3001/api/orchestration_templates/10000000000124"
+                    }
+                ]
+            },
+            {
+                "href": "http://localhost:3001/api/orchestration_templates/10000000000125",
+                "id": 10000000000125,
+                "name": "Demo Template",
+                "type": "OrchestrationTemplateAzure",
+                "description": "Simple template",
+                "content": "\n \n",
+                "md5": "ee4cd9c87a97e0dc9bd119f7eb47edef",
+                "created_at": "2016-10-06T17:50:38Z",
+                "updated_at": "2016-10-06T17:50:38Z",
+                "draft": false,
+                "orderable": true,
+                "actions": [
+                    {
+                        "name": "edit",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/orchestration_templates/10000000000125"
+                    },
+                    {
+                        "name": "delete",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/orchestration_templates/10000000000125"
+                    },
+                    {
+                        "name": "copy",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/orchestration_templates/10000000000125"
+                    },
+                    {
+                        "name": "delete",
+                        "method": "delete",
+                        "href": "http://localhost:3001/api/orchestration_templates/10000000000125"
+                    }
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "name": "create",
+                "method": "post",
+                "href": "http://localhost:3001/api/orchestration_templates"
+            },
+            {
+                "name": "edit",
+                "method": "post",
+                "href": "http://localhost:3001/api/orchestration_templates"
+            },
+            {
+                "name": "delete",
+                "method": "post",
+                "href": "http://localhost:3001/api/orchestration_templates"
+            },
+            {
+                "name": "copy",
+                "method": "post",
+                "href": "http://localhost:3001/api/orchestration_templates"
+            }
+        ]
+    }
+}
