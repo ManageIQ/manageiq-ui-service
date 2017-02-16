@@ -95,9 +95,6 @@ export default angular
   .component('ssCard', SSCardComponent)
   .factory('TagEditorModal', TagEditorFactory)
   .component('taggingWidget', TaggingComponent)
-<<<<<<< HEAD
-  .component('vmSnapshots', VmSnapshotsComponent)
-=======
   .component('templateExplorer', TemplateExplorerComponent)
->>>>>>> dd7cce6... Created Orchestration template component
+  .component('vmSnapshots', VmSnapshotsComponent)
   .name;

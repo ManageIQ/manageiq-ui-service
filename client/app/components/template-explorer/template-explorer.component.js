@@ -6,8 +6,8 @@ export const TemplateExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController($filter, lodash, ListView, Language, Templates, EventNotifications, Session, RBAC, ModalService,
-                             CollectionsApi, sprintf, Polling, $log) {
+function ComponentController($filter, lodash, ListView, Language, TemplatesService, EventNotifications, Session, RBAC, ModalService,
+                             CollectionsApi, sprintf, Polling) {
   const vm = this;
   vm.$onInit = activate();
   vm.$onDestroy = function() {
@@ -26,11 +26,8 @@ function ComponentController($filter, lodash, ListView, Language, Templates, Eve
       selectedItemsList: [],
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
       selectedItemsListCount: 0,
-      // Functions
       resolveTemplates: resolveTemplates,
-     // listActionDisable: listActionDisable,
       updatePagination: updatePagination,
-      // Config setup
       actionConfig: getActionConfig(),
       menuActions: getMenuActions(),
       toolbarConfig: getToolbarConfig(),
@@ -127,8 +124,8 @@ function ComponentController($filter, lodash, ListView, Language, Templates, Eve
     var existingTemplates = (angular.isDefined(vm.templatesList) && refresh ? angular.copy(vm.templatesList) : []);
     vm.offset = String(offset);
 
-    Templates.getMinimal(vm.filters).then(setResultTotals);
-    Templates.getTemplates(limit, vm.offset, vm.filters, vm.sortConfig).then(querySuccess);
+    TemplatesService.getMinimal(vm.filters).then(setResultTotals);
+    TemplatesService.getTemplates(limit, vm.offset, vm.filters, vm.sortConfig).then(querySuccess);
 
     function querySuccess(response) {
       vm.loading = false;
@@ -164,7 +161,7 @@ function ComponentController($filter, lodash, ListView, Language, Templates, Eve
         for (var i = 0; i < vm.selectedItemsList.length; i++) {
           var currentItem = vm.selectedItemsList[i];
           if (currentItem.id === template.id) {
-            if (angular.isDefined(currentItem.selected) && currentItem.selected === true) {
+            if (angular.isDefined(currentItem.selected) && currentItem.selected) {
               template.selected = true;
             }
             break;

@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function TemplatesFactory(CollectionsApi) {
+export function TemplatesServiceFactory(CollectionsApi) {
   const collection = 'orchestration_templates';
   const service = {
     getMinimal: getMinimal,

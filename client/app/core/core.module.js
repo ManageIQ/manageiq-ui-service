@@ -35,6 +35,7 @@ import { SessionFactory } from './session.service.js';
 import { ShoppingCartFactory } from './shopping-cart.service.js';
 import { SkinModule } from '../skin/skin.module.js';
 import { TemplatesFactory } from './templates.service.js';
+import { TemplatesServiceFactory } from './templates.service.js';
 import { VmsService } from './vms.service.js';
 import { gettextInit } from './gettext.config.js';
 import { layoutInit } from  './layouts.config.js';
@@ -94,10 +95,14 @@ export const CoreModule = angular
   .factory('Session', SessionFactory)
   .factory('ShoppingCart', ShoppingCartFactory)
 <<<<<<< HEAD
+<<<<<<< HEAD
   .factory('VmsService', VmsService)
 =======
   .factory('Templates', TemplatesFactory)
 >>>>>>> dd7cce6... Created Orchestration template component
+=======
+  .factory('TemplatesService', TemplatesServiceFactory)
+>>>>>>> 8576f2b... Changes based on PR feedback
   .factory('logger', LoggerService)
   .factory('taggingService', taggingService)
  
