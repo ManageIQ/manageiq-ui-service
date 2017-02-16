@@ -121,7 +121,8 @@
                         "href": "http://localhost:3001/api/services/10000000000571"
                     }
                 ]
-            },{
+            },
+            {
                 "href": "http://localhost:3001/api/services/10000000000405",
                 "id": 10000000000405,
                 "name": "alaurent23",
@@ -432,31 +433,34 @@
                 ]
             },
             {
-                "href": "http://localhost:3001/api/services/10000000000230",
-                "id": 10000000000230,
-                "name": "bz1375639",
-                "description": "RHEL7 on Amazon AWS",
-                "guid": "49013e02-7c3e-11e6-897d-005056b1c057",
-                "service_template_id": 10000000000018,
+                "href": "http://localhost:3001/api/services/10000000000527",
+                "id": 10000000000527,
+                "name": "jbarlow-1",
+                "description": "RHEL7 on RHEV",
+                "guid": "005d9d18-ac8a-11e6-b0f1-005056b1c9de",
+                "service_template_id": 10000000000016,
                 "options": {
                     "dialog": {
-                        "dialog_service_name": "bz1375639",
+                        "dialog_service_name": "jbarlow-1",
                         "dialog_tag_0_environment": "dev",
-                        "dialog_option_1_vm_name": "bz1375639",
+                        "dialog_option_1_vm_name": "jbarlow-1",
+                        "dialog_option_1_cores_per_socket": "1",
+                        "dialog_option_1_vm_memory": "1024",
                         "dialog_tag_1_function": "app",
-                        "dialog_option_1_keypair": "",
-                        "dialog_vm_name": "bz1375639"
+                        "dialog_vm_name": "jbarlow-1",
+                        "dialog_cores_per_socket": "1",
+                        "dialog_vm_memory": "1024"
                     }
                 },
                 "display": true,
-                "created_at": "2016-09-16T18:49:23Z",
-                "updated_at": "2016-09-16T18:49:30Z",
-                "evm_owner_id": 10000000000001,
-                "miq_group_id": 10000000000002,
+                "created_at": "2016-11-17T05:52:19Z",
+                "updated_at": "2016-11-17T05:52:36Z",
+                "evm_owner_id": 10000000000007,
+                "miq_group_id": 10000000000021,
                 "tenant_id": 10000000000001,
                 "picture": {
-                    "id": 10000000000014,
-                    "resource_id": 10000000000018,
+                    "id": 10000000000013,
+                    "resource_id": 10000000000016,
                     "resource_type": "ServiceTemplate",
                     "image_href": "http://localhost:3001/images/service.png"
                 },
@@ -464,41 +468,45 @@
                     "results": []
                 },
                 "evm_owner": {
-                    "userid": "admin"
+                    "userid": "cloudops"
                 },
                 "miq_group": {
-                    "description": "EvmGroup-super_administrator"
+                    "description": "cloud-operators"
                 },
                 "v_total_vms": 1,
                 "power_states": [
-                    "terminated"
+                    "unknown"
                 ],
                 "all_service_children": [],
                 "all_vms": [
                     {
-                        "id": 10000000000950,
-                        "vendor": "amazon",
-                        "name": "bz1375639",
-                        "location": "ec2-54-71-96-5.us-west-2.compute.amazonaws.com",
-                        "created_on": "2016-09-16T18:51:50Z",
-                        "updated_on": "2016-09-28T17:28:18Z",
-                        "guid": "a043ab28-7c3e-11e6-872f-005056b1e4d4",
-                        "uid_ems": "i-05091373001555722",
-                        "retires_on": "2016-10-16T00:00:00Z",
-                        "retired": false,
-                        "boot_time": "2016-09-22T19:21:59Z",
-                        "power_state": "terminated",
-                        "state_changed_on": "2016-09-28T17:28:18Z",
-                        "previous_state": "stopped",
-                        "last_perf_capture_on": "2016-09-23T14:07:00Z",
+                        "id": 10000000001447,
+                        "vendor": "redhat",
+                        "name": "jbarlow-1",
+                        "location": "116a3fc9-6be5-4c8d-9b49-8436ac530098.ovf",
+                        "created_on": "2016-11-17T06:05:38Z",
+                        "updated_on": "2016-12-17T05:04:22Z",
+                        "storage_id": 10000000000012,
+                        "guid": "dce47544-ac8b-11e6-b0f1-005056b1c9de",
+                        "uid_ems": "116a3fc9-6be5-4c8d-9b49-8436ac530098",
+                        "retires_on": "2016-12-17T00:00:00Z",
+                        "retired": true,
+                        "power_state": "unknown",
+                        "state_changed_on": "2016-12-17T05:03:11Z",
+                        "previous_state": "down",
+                        "connection_state": "connected",
+                        "last_perf_capture_on": "2016-12-17T04:47:22Z",
+                        "memory_reserve": 1024,
                         "template": false,
-                        "evm_owner_id": 10000000000001,
-                        "miq_group_id": 10000000000002,
-                        "type": "ManageIQ::Providers::Amazon::CloudManager::Vm",
-                        "ems_ref": "i-05091373001555722",
+                        "evm_owner_id": 10000000000007,
+                        "ems_ref_obj": "--- \"/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098\"\n",
+                        "miq_group_id": 10000000000021,
+                        "type": "ManageIQ::Providers::Redhat::InfraManager::Vm",
+                        "ems_ref": "/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098",
                         "retirement_warn": 7,
-                        "flavor_id": 10000000000010,
-                        "cloud": true,
+                        "retirement_last_warn": "2016-12-10T00:06:59Z",
+                        "cloud": false,
+                        "retirement_state": "retired",
                         "raw_power_state": "unknown",
                         "tenant_id": 10000000000001
                     }
@@ -509,27 +517,27 @@
                 },
                 "service_resources": [
                     {
-                        "id": 10000000000612,
-                        "resource_id": 10000000000106,
+                        "id": 10000000001533,
+                        "resource_id": 10000000000104,
                         "resource_type": "MiqRequest",
                         "group_idx": 0,
                         "scaling_min": 1,
                         "scaling_max": -1,
-                        "created_at": "2016-09-16T18:49:23Z",
-                        "updated_at": "2016-09-16T18:49:23Z",
-                        "service_id": 10000000000230,
+                        "created_at": "2016-11-17T05:52:19Z",
+                        "updated_at": "2016-11-17T05:52:19Z",
+                        "service_id": 10000000000527,
                         "provision_index": 0
                     },
                     {
-                        "id": 10000000000613,
-                        "resource_id": 10000000000950,
+                        "id": 10000000001534,
+                        "resource_id": 10000000001447,
                         "resource_type": "VmOrTemplate",
                         "group_idx": 0,
                         "scaling_min": 1,
                         "scaling_max": -1,
-                        "created_at": "2016-09-16T18:52:01Z",
-                        "updated_at": "2016-09-16T18:52:01Z",
-                        "service_id": 10000000000230,
+                        "created_at": "2016-11-17T06:07:14Z",
+                        "updated_at": "2016-11-17T06:07:14Z",
+                        "service_id": 10000000000527,
                         "provision_index": 0
                     }
                 ],
@@ -547,37 +555,37 @@
                     {
                         "name": "edit",
                         "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000230"
+                        "href": "http://localhost:3001/api/services/10000000000527"
                     },
                     {
                         "name": "retire",
                         "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000230"
+                        "href": "http://localhost:3001/api/services/10000000000527"
                     },
                     {
                         "name": "set_ownership",
                         "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000230"
+                        "href": "http://localhost:3001/api/services/10000000000527"
                     },
                     {
                         "name": "start",
                         "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000230"
+                        "href": "http://localhost:3001/api/services/10000000000527"
                     },
                     {
                         "name": "stop",
                         "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000230"
+                        "href": "http://localhost:3001/api/services/10000000000527"
                     },
                     {
                         "name": "suspend",
                         "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000230"
+                        "href": "http://localhost:3001/api/services/10000000000527"
                     },
                     {
                         "name": "delete",
                         "method": "delete",
-                        "href": "http://localhost:3001/api/services/10000000000230"
+                        "href": "http://localhost:3001/api/services/10000000000527"
                     }
                 ]
             }

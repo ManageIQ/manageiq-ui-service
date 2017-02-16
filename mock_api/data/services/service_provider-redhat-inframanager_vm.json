@@ -1,0 +1,158 @@
+{
+  "url": "vms/10000000001447?expand=&attributes=service",
+  "get": {
+    "href": "http://localhost:3001/api/vms/10000000001447",
+    "id": 10000000001447,
+    "vendor": "redhat",
+    "name": "jbarlow-1",
+    "location": "116a3fc9-6be5-4c8d-9b49-8436ac530098.ovf",
+    "created_on": "2016-11-17T06:05:38Z",
+    "updated_on": "2016-12-17T05:04:22Z",
+    "storage_id": 10000000000012,
+    "guid": "dce47544-ac8b-11e6-b0f1-005056b1c9de",
+    "uid_ems": "116a3fc9-6be5-4c8d-9b49-8436ac530098",
+    "retires_on": "2016-12-17T00:00:00Z",
+    "retired": true,
+    "power_state": "unknown",
+    "state_changed_on": "2016-12-17T05:03:11Z",
+    "previous_state": "down",
+    "connection_state": "connected",
+    "last_perf_capture_on": "2016-12-17T04:47:22Z",
+    "memory_reserve": 1024,
+    "template": false,
+    "evm_owner_id": 10000000000007,
+    "ems_ref_obj": "/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098",
+    "miq_group_id": 10000000000021,
+    "type": "ManageIQ::Providers::Redhat::InfraManager::Vm",
+    "ems_ref": "/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098",
+    "retirement_warn": 7,
+    "retirement_last_warn": "2016-12-10T00:06:59Z",
+    "cloud": false,
+    "retirement_state": "retired",
+    "raw_power_state": "unknown",
+    "tenant_id": 10000000000001,
+    "service": {
+      "id": 10000000000527,
+      "name": "jbarlow-1",
+      "description": "RHEL7 on RHEV",
+      "guid": "005d9d18-ac8a-11e6-b0f1-005056b1c9de",
+      "service_template_id": 10000000000016,
+      "options": {
+        "dialog": {
+          "dialog_service_name": "jbarlow-1",
+          "dialog_tag_0_environment": "dev",
+          "dialog_option_1_vm_name": "jbarlow-1",
+          "dialog_option_1_cores_per_socket": "1",
+          "dialog_option_1_vm_memory": "1024",
+          "dialog_tag_1_function": "app",
+          "dialog_vm_name": "jbarlow-1",
+          "dialog_cores_per_socket": "1",
+          "dialog_vm_memory": "1024"
+        }
+      },
+      "display": true,
+      "created_at": "2016-11-17T05:52:19Z",
+      "updated_at": "2016-11-17T05:52:36Z",
+      "evm_owner_id": 10000000000007,
+      "miq_group_id": 10000000000021,
+      "tenant_id": 10000000000001
+    },
+    "actions": [
+      {
+        "name": "add_lifecycle_event",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "add_event",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "refresh",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "shutdown_guest",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "reboot_guest",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "start",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "stop",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "suspend",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "shelve",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "shelve_offload",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "pause",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "request_console",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "reset",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "retire",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "delete",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "set_owner",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "set_ownership",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "scan",
+        "method": "post",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      },
+      {
+        "name": "delete",
+        "method": "delete",
+        "href": "http://localhost:3001/api/vms/10000000001447"
+      }
+    ]
+  }
+}
