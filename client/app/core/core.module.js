@@ -46,7 +46,6 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component.j
 import { ShoppingCartFactory } from './shopping-cart.service.js';
 import { SkinModule } from '../skin/skin.module.js';
 import { TemplatesServiceFactory } from './templates.service.js';
-import { VmsService } from './vms.service.js';
 import { TagEditorFactory } from './tag-editor-modal/tag-editor-modal.service.js';
 import { gettextInit } from './gettext.config.js';
 import { layoutInit } from  './layouts.config.js';
@@ -59,6 +58,7 @@ import { CatalogsStateFactory } from './catalogs-state.service.js';
 import { ConsolesFactory } from './consoles.service.js';
 import { PowerOperationsFactory } from './poweroperations.service.js';
 import { ServicesStateFactory } from './services-state.service.js';
+import { VmsService } from './vms.service.js';
 
 // Dialogs
 import { DialogStateFactory } from './dialogs-state.service.js';
