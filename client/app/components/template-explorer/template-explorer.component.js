@@ -61,7 +61,7 @@ function ComponentController($filter, lodash, ListView, Language, TemplatesServi
     };
   }
   function getToolbarConfig() {
-    var sortOrderFields = getOrderSortFields();
+    const sortOrderFields = getSortFields();
     const sortConfig = {
       fields: sortOrderFields,
       onSortChange: sortChange,
@@ -70,7 +70,7 @@ function ComponentController($filter, lodash, ListView, Language, TemplatesServi
     };
 
     const filterConfig = {
-      fields: getOrderFilterFields(),
+      fields: getFilterFields(),
       resultsCount: 0,
       appliedFilters: [],
       onFilterChange: filterChange,
@@ -84,7 +84,7 @@ function ComponentController($filter, lodash, ListView, Language, TemplatesServi
     };
   }
 
-  function getOrderFilterFields() {
+  function getFilterFields() {
     return [
       ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
       ListView.createFilterField('type', __('Type'), __('Filter by Type'), 'text'),
@@ -92,7 +92,7 @@ function ComponentController($filter, lodash, ListView, Language, TemplatesServi
     ];
   }
 
-  function getOrderSortFields() {
+  function getSortFields() {
     return [
       ListView.createSortField('name', __('Name'), 'alpha'),
       ListView.createSortField('type', __('Type'), 'alpha'),
@@ -121,7 +121,7 @@ function ComponentController($filter, lodash, ListView, Language, TemplatesServi
     if (!refresh) {
       vm.loading = true;
     }
-    var existingTemplates = (angular.isDefined(vm.templatesList) && refresh ? angular.copy(vm.templatesList) : []);
+    const existingTemplates = (angular.isDefined(vm.templatesList) && refresh ? angular.copy(vm.templatesList) : []);
     vm.offset = String(offset);
 
     TemplatesService.getMinimal(vm.filters).then(setResultTotals);
@@ -130,10 +130,7 @@ function ComponentController($filter, lodash, ListView, Language, TemplatesServi
     function querySuccess(response) {
       vm.loading = false;
       vm.toolbarConfig.filterConfig.resultsCount = vm.filterCount;
-      vm.templates = [];
       vm.templates = response.resources;
-
-    
       vm.templatesList = [];
       angular.forEach(vm.templates, processTemplates);
       
@@ -158,15 +155,16 @@ function ComponentController($filter, lodash, ListView, Language, TemplatesServi
         }
 
         template.selected = false;
-        for (var i = 0; i < vm.selectedItemsList.length; i++) {
-          var currentItem = vm.selectedItemsList[i];
-          if (currentItem.id === template.id) {
-            if (angular.isDefined(currentItem.selected) && currentItem.selected) {
+
+        vm.selectedItemsList.some(function (selectedItem) {
+          if (selectedItem.id === template.id) {
+            if (angular.isDefined(selectedItem.selected) && selectedItem.selected) {
               template.selected = true;
             }
-            break;
+
+            return true;
           }
-        }
+        });
         vm.templatesList.push(template);
       }
     }
