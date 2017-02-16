@@ -1,5 +1,5 @@
 {
-  "url": "services/10000000000527/tags/?expand=resources&attributes=categorization%2Ccategory",
+  "url": "vms/10000000001447/snapshots?expand=resources&attributes=&sort_by=name&sort_order=asc&sort_options=ignore_case",
   "get": {
     "name": "tags",
     "count": 191,
@@ -9,6 +9,9 @@
         "href": "http://localhost:3001/api/services/10000000000527/tags/10000000000023",
         "id": 10000000000023,
         "name": "/managed/environment/dev",
+        "current": 1,
+        "create_time": "2016-11-17T05:59:10Z",
+        "updated_on": "2016-12-17T05:02:10Z",
         "categorization": {
           "name": "dev",
           "description": "Development",
@@ -47,6 +50,8 @@
         "href": "http://localhost:3001/api/services/10000000000527/tags/10000000000185",
         "id": 10000000000185,
         "name": "/managed/function/app",
+        "create_time": "2016-11-17T05:59:10Z",
+        "updated_on": "2016-12-17T05:02:10Z",
         "categorization": {
           "name": "app",
           "description": "app",
