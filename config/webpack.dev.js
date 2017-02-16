@@ -107,6 +107,7 @@ module.exports = {
               options: {
                 sourceMap: true,
                 includePaths: [
+                  `${root}/assets/sass`,
                   `${nodeModules}/bootstrap-sass/assets/stylesheets`,
                   `${nodeModules}/patternfly-sass/assets/stylesheets`,
                   `${nodeModules}/font-awesome/scss`,

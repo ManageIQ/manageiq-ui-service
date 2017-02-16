@@ -31,9 +31,8 @@ employing [components](https://docs.angularjs.org/guide/component) is now prefer
 Much of the existing code base has already been refactored to take advantage of components, these elements are denoted:
 with the `.component.js` postfix. Find below a few examples for the benefit of extensibility:
 
-* [service catalog card](../client/app/components/ss-card/ss-card.component.js)
+* [service catalog card](../client/app/shared/ss-card/ss-card.component.js)
 * [cart](../client/app/components/shopping-cart/shopping-cart.component.js)
-* [profiles list](../client/app/components/profiles/profiles-list.component.js)
 
 In addition, a few choice supporting resources include:
 
