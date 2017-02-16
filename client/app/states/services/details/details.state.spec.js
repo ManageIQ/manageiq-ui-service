@@ -1,18 +1,10 @@
 describe('Dashboard', function() {
   beforeEach(function() {
-    module('app.states', 'app.components', bard.fakeToastr);
-    bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session', 'RBAC');
+    module('app.states', 'app.components');
+    bard.inject('$state');
   });
 
   describe('route', function() {
-    var views = {
-      list: 'app/states/services/list/list.html'
-    };
-
-    beforeEach(function() {
-      bard.inject('$location', '$rootScope', '$state', '$templateCache');
-    });
-
     it('should work with $state.go', function() {
       $state.go('services.details');
       expect($state.is('services.details'));
@@ -23,7 +15,7 @@ describe('Dashboard', function() {
     var controller;
 
     beforeEach(function() {
-      bard.inject('$componentController', '$log', '$state', '$rootScope', 'RBAC');
+      bard.inject('$componentController', 'RBAC');
 
       RBAC.setActionFeatures( {
         serviceDelete: {show: true},

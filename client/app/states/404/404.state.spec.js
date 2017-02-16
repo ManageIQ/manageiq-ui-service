@@ -7,7 +7,7 @@ describe('404', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$location', '$rootScope', '$state', '$templateCache');
+      bard.inject('$location', '$rootScope', '$state');
     });
 
     it('should map /404 route to 404 View template', function() {
@@ -16,13 +16,12 @@ describe('404', function() {
 
     it('should work with $state.go', function() {
       $state.go('404');
-      $rootScope.$apply();
       expect($state.is('404'));
     });
 
-    it('should route /invalid to the otherwise (404) route', function() {
+    it('should route /invalid to the otherwise (404) route', function(done) {
       $location.path('/invalid');
-      $rootScope.$apply();
+      done();
       expect($state.current.templateUrl).to.equal(views.four0four);
     });
   });
