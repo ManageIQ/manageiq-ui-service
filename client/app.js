@@ -36,6 +36,7 @@ require('bootstrap-touchspin');
 require('angular-svg-base-fix');
 require('angular-ui-router');
 require('patternfly/dist/js/patternfly.js');
+require('patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js');
 require('manageiq-ui-components/dist/js/ui-components.js');
 require('ngprogress/build/ngprogress.min.js');
 require('ngstorage');
