@@ -139,7 +139,7 @@
                    update-menu-action-for-item-fn="vm.updateResourceMenuActionForItemFn"
                    custom-scope="vm">
                 <div class="row">
-                  <div class="col-lg-4 col-md-4 col-sm-5 col-xs-8 name-column">
+                  <div class="col-lg-2 col-md-4 col-sm-3 col-xs-5 name-column">
                     <span class="no-wrap">
                       <i class="pficon fa fa-power-off" ng-if="item.power_state === 'off'"
                          uib-tooltip="{{'Power State: Off'|translate}}"
@@ -170,26 +170,77 @@
                       </a>
                     </span>
                   </div>
-                  <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
-                    <div
-                      uib-tooltip="{{'Last Boot Time' | translate}} : {{item.boot_time | date : 'MMM dd, yyyy H:mm:ss'}}"
-                      tooltip-append-to-body="true"
-                      tooltip-popup-delay="1000"
-                      tooltip-placement="bottom">
+                  <div class="col-lg-2 col-md-2 col-sm-3 hidden-xs">
+                    <div>
                       <span class="no-wrap">
-                        <strong translate>Last Boot Time</strong>&nbsp;
-                        <span>
+                        <strong translate>Snapshots</strong>&nbsp;
+                        <span ng-if="item.v_total_snapshots"
+                              uib-tooltip="{{'Total Snapshots' | translate}} : {{item.v_total_snapshots}}"
+                              tooltip-append-to-body="true"
+                              tooltip-popup-delay="1000"
+                              tooltip-placement="bottom">
+                          {{item.v_total_snapshots}}
+                        </span>
+                          <i ng-if="!item.v_total_snapshots"
+                             class="pficon fa fa-question-circle"
+                             uib-tooltip="{{'Totals Snapshots: Unknown'|translate}}"
+                             tooltip-append-to-body="true"
+                             tooltip-popup-delay="1000"
+                             tooltip-placement="bottom"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5">
+                    <div>
+                      <span class="no-wrap">
+                        <strong translate>Latest</strong>&nbsp;
+                        <span ng-if="item.v_snapshot_newest_name">
+                        <span
+                          uib-tooltip="{{'Latest Snapshot Name' | translate}} : {{item.v_snapshot_newest_name}}"
+                          tooltip-append-to-body="true"
+                          tooltip-popup-delay="1000"
+                          tooltip-placement="bottom">
+                         <a ui-sref="vms.snapshots({vmId: item.id})"> {{item.v_snapshot_newest_name}}</a>
+                        </span>
+                         -
+                        <span
+                          uib-tooltip="{{'Latest Snapshot Timestamp' | translate}} : {{item.v_snapshot_newest_timestamp| date:'medium'}}"
+                          tooltip-append-to-body="true"
+                          tooltip-popup-delay="1000"
+                          tooltip-placement="bottom">
+                          {{item.v_snapshot_newest_timestamp | date:'short'}}
+                        </span>
+                      </span>
+                      <i class="pficon fa fa-question-circle"
+                         ng-if="!item.v_snapshot_newest_name"
+                         uib-tooltip="{{'Latest Snapshot: Unknown'|translate}}"
+                         tooltip-append-to-body="true"
+                         tooltip-popup-delay="1000"
+                         tooltip-placement="bottom"></i>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+                    <div>
+                      <span class="no-wrap">
+                        <strong translate>Last Boot</strong>&nbsp;
+                        <span ng-if="item.boot_time"
+                              uib-tooltip="{{'Latest Boot Time' | translate}} : {{item.boot_time | date : 'MMM dd, yyyy H:mm:ss'}}"
+                              tooltip-append-to-body="true"
+                              tooltip-popup-delay="1000"
+                              tooltip-placement="bottom">
                           {{item.boot_time | date : 'MMM dd, yyyy H:mm:ss'}}
                         </span>
+                       <i class="pficon fa fa-question-circle"
+                          ng-if="!item.boot_time"
+                          uib-tooltip="{{'Boot Time: Unknown'|translate}}"
+                          tooltip-append-to-body="true"
+                          tooltip-popup-delay="1000"
+                          tooltip-placement="bottom"></i>
                       </span>
                     </div>
                   </div>
                   <div class="list-view-pf-actions">
-                    <div ng-if="item.snapshots.length" class="btn-group dropdown-kebab-pf">
-                      <button type="button" class="btn btn-default" type="button" ui-sref="vms.snapshots({vmId: item.id})">
-                        <span translate>Snapshots</span>
-                      </button>
-                    </div>
                     <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body>
                       <button type="button" class="btn btn-default" uib-dropdown-toggle type="button">
                         <span translate>Access</span>
@@ -226,6 +277,9 @@
                         <li role="separator" class="divider"></li>
                         <li role="menuitem">
                           <a ng-click="customScope.gotoComputeResource(item)" translate>View Details</a>
+                        </li>
+                        <li ng-if="item.snapshots.length" role="menuitem">
+                          <a ui-sref="vms.snapshots({vmId: item.id})" translate>View Snapshots</a>
                         </li>
                       </ul>
                     </div>

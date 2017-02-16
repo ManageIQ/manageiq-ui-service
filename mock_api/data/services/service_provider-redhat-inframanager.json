@@ -1,5 +1,5 @@
 {
-  "url": "services/10000000000527?expand=vms&attributes=description%2Cpicture%2Cpicture.image_href%2Cevm_owner.name%2Cevm_owner.userid%2Cmiq_group.description%2Call_service_children%2Call_vms%2Caggregate_all_vm_cpus%2Caggregate_all_vm_memory%2Caggregate_all_vm_disk_count%2Caggregate_all_vm_disk_space_allocated%2Caggregate_all_vm_disk_space_used%2Caggregate_all_vm_memory_on_disk%2Cretired%2Cretirement_state%2Cretirement_warn%2Cretires_on%2Cactions%2Ccustom_actions%2Cprovision_dialog%2Cservice_template%2Cservice_resources%2Cchargeback_report%2Cparent_service%2Cpower_state%2Cpower_status%2Ccreated_at%2Coptions%2Cname%2Cguid%2Cvms.ipaddresses&decorators=vms.snapshots%2Cvms.supports_console%3F%2Cvms.supports_cockpit%3F",
+  "url": "services/10000000000527?expand=vms&attributes=description%2Cpicture%2Cpicture.image_href%2Cevm_owner.name%2Cevm_owner.userid%2Cmiq_group.description%2Call_service_children%2Call_vms%2Caggregate_all_vm_cpus%2Caggregate_all_vm_memory%2Caggregate_all_vm_disk_count%2Caggregate_all_vm_disk_space_allocated%2Caggregate_all_vm_disk_space_used%2Caggregate_all_vm_memory_on_disk%2Cretired%2Cretirement_state%2Cretirement_warn%2Cretires_on%2Cactions%2Ccustom_actions%2Cprovision_dialog%2Cservice_template%2Cservice_resources%2Cchargeback_report%2Cparent_service%2Cpower_state%2Cpower_status%2Ccreated_at%2Coptions%2Cname%2Cguid%2Cvms.ipaddresses&decorators=vms.snapshots%2Cvms.v_total_snapshots%2Cvms.v_snapshot_newest_name%2Cvms.v_snapshot_newest_timestamp%2Cvms.v_snapshot_newest_total_size%2Cvms.supports_console%3F%2Cvms.supports_cockpit%3F",
   "get": {
     "href": "http://localhost:3001/api/services/10000000000527",
     "id": 10000000000527,
@@ -24,7 +24,7 @@
       "id": 10000000000013,
       "resource_id": 10000000000016,
       "resource_type": "ServiceTemplate",
-      "image_href": "http://localhost:3001/images/service.png"
+      "image_href": "http://localhost:3001/pictures/10r13.jpg"
     },
     "evm_owner": {
       "name": "Cloud Operator",
@@ -402,6 +402,9 @@
             "uid_ems": "07561327-e76d-4c78-a748-c06209900335"
           }
         ],
+        "v_total_snapshots": 1,
+        "v_snapshot_newest_name": "Active VM",
+        "v_snapshot_newest_timestamp": "2016-11-17T05:59:10.696Z",
         "supports_console?": true,
         "supports_cockpit?": false
       }
