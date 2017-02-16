@@ -20,7 +20,6 @@ import { LoggerService } from './logger.service.js';
 import { MessagesFactory } from './messages.service.js';
 import { NavCountsFactory } from './navcounts.service.js';
 import { NavigationProvider } from './navigation.provider.js';
-import { OrchestrationTemplatesFactory } from './orchestration-templates.service.js';
 import { OrdersStateFactory } from './orders-state.service.js';
 import { PollingFactory } from './polling.service.js';
 import { PowerOperationsFactory } from './poweroperations.service.js';
@@ -35,11 +34,13 @@ import { ServicesStateFactory } from './services-state.service.js';
 import { SessionFactory } from './session.service.js';
 import { ShoppingCartFactory } from './shopping-cart.service.js';
 import { SkinModule } from '../skin/skin.module.js';
+import { TemplatesFactory } from './templates.service.js';
 import { VmsService } from './vms.service.js';
 import { gettextInit } from './gettext.config.js';
 import { layoutInit } from  './layouts.config.js';
 import { substitute } from '../filters/substitute.js';
 import { taggingService } from './tagging.service.js';
+
 
 export const CoreModule = angular
   .module('app.core', [
@@ -80,7 +81,6 @@ export const CoreModule = angular
   .factory('ListView', ListViewFactory)
   .factory('Messages', MessagesFactory)
   .factory('NavCounts', NavCountsFactory)
-  .factory('OrchestrationTemplates', OrchestrationTemplatesFactory)
   .factory('OrdersState', OrdersStateFactory)
   .factory('Polling', PollingFactory)
   .factory('PowerOperations', PowerOperationsFactory)
@@ -93,9 +93,14 @@ export const CoreModule = angular
   .factory('ServicesState', ServicesStateFactory)
   .factory('Session', SessionFactory)
   .factory('ShoppingCart', ShoppingCartFactory)
+<<<<<<< HEAD
   .factory('VmsService', VmsService)
+=======
+  .factory('Templates', TemplatesFactory)
+>>>>>>> dd7cce6... Created Orchestration template component
   .factory('logger', LoggerService)
   .factory('taggingService', taggingService)
+ 
   .provider('Navigation', NavigationProvider)
   .config(configure)
   .config(authConfig)

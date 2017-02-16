@@ -1,7 +1,7 @@
 <div class="breadcrumb-bar">
   <span>
       <ol class="breadcrumb">
-        <li class="active">{{'Orchestration Templates'|translate}}</li>
+        <li class="active">{{'Templates'|translate}}</li>
       </ol>
   </span>
 </div>
@@ -21,25 +21,30 @@
 <div class="list-view-container section-container paged-container service-explorer-list">
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading"
-       pf-list-view id="orderList"
+       pf-list-view id="templatesList"
        config="vm.listConfig"
-       items="vm.templates"
+       items="vm.templatesList"
        custom-scope="vm"
        menu-actions="vm.menuActions">
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-5 col-xs-8">
         <span class="no-wrap">
-          <a>{{ item.name }}</a>
+          {{ item.name }}
         </span>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-5 col-xs-4">
+      <div class="col-lg-3 col-md-3 col-sm-5 col-xs-4">
         <span class="no-wrap">
-            Type {{ item.type }}
+            <strong>Type</strong> {{ item.type }}
         </span>
       </div>
-      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
+      <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
         <span class="no-wrap">
-         Draft: {{item.draft}}
+         <strong>Draft</strong> {{item.draft}}
+        </span>
+      </div>
+      <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+        <span class="no-wrap">
+         <strong>Updated</strong> {{item.updated_at}}
         </span>
       </div>
     </div>

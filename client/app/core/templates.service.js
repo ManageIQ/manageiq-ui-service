@@ -1,14 +1,12 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function OrchestrationTemplatesFactory(ListConfiguration, CollectionsApi) {
+export function TemplatesFactory(CollectionsApi) {
   const collection = 'orchestration_templates';
   const service = {
     getMinimal: getMinimal,
     getTemplates: getTemplates,
   };
-
- // ListConfiguration.setupListFunctions(service, {id: 'placed_at', title: __('Order Date'), sortType: 'numeric'});
 
   return service;
 
@@ -21,19 +19,19 @@ export function OrchestrationTemplatesFactory(ListConfiguration, CollectionsApi)
     return CollectionsApi.query(collection, options);
   }
 
-  function getTemplates(limit, offset, filters, sortField, sortAscending) {
+  function getTemplates(limit, offset, filters, sorting) {
     const options = {
-      expand: ['resources', 'service_requests'],
+      expand: ['resources'],
       limit: limit,
       offset: String(offset),
       attributes: [],
       filter: getQueryFilters(filters),
     };
 
-    if (angular.isDefined(sortField)) {
-      options.sort_by = service.getSort().currentField.id;
-      options.sort_options = service.getSort().currentField.sortType === 'alpha' ? 'ignore_case' : '';
-      options.sort_order = sortAscending ? 'asc' : 'desc';
+    if (angular.isDefined(sorting)) {
+      options.sort_by = sorting.field;
+      options.sort_options = sorting.sortOptions;
+      options.sort_order = sorting.direction;
     }
 
     return CollectionsApi.query(collection, options);

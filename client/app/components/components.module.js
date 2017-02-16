@@ -19,7 +19,6 @@ import { ModalActionsComponent } from './modal-actions/modal-actions.component.j
 import { BaseModalController } from './modal/base-modal-controller.js';
 import { BaseModalFactory } from './modal/base-modal.factory.js';
 import { NavigationController } from './navigation/navigation-contoller.js';
-import { TemplateExplorerComponent } from './template-explorer/template-explorer.component.js';
 import { OrderExplorerComponent } from './order-explorer/order-explorer.component.js';
 import { OwnershipServiceModalComponent } from './ownership-service-modal/ownership-service-modal.component.js';
 import { PaginationComponent } from './pagination/pagination.component.js';
@@ -43,6 +42,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component.j
 import { SSCardComponent } from './ss-card/ss-card.component.js';
 import { TagEditorFactory } from './tag-editor-modal/tag-editor-modal-service.factory.js';
 import { TaggingComponent } from './tagging/tagging.component.js';
+import { TemplateExplorerComponent } from './template-explorer/template-explorer.component.js';
 import { VmSnapshotsComponent } from './vms/snapshots.component';
 
 export default angular
@@ -73,7 +73,6 @@ export default angular
   .factory('ModalService', BaseModalFactory)
   .controller('NavigationController', NavigationController)
   .component('ownershipServiceModal', OwnershipServiceModalComponent)
-  .component('orchestrationTemplateExplorer', TemplateExplorerComponent)
   .component('orderExplorer', OrderExplorerComponent)
   .component('explorerPagination', PaginationComponent)
   .component('powerState', PowerStateComponent)
@@ -96,5 +95,9 @@ export default angular
   .component('ssCard', SSCardComponent)
   .factory('TagEditorModal', TagEditorFactory)
   .component('taggingWidget', TaggingComponent)
+<<<<<<< HEAD
   .component('vmSnapshots', VmSnapshotsComponent)
+=======
+  .component('templateExplorer', TemplateExplorerComponent)
+>>>>>>> dd7cce6... Created Orchestration template component
   .name;
