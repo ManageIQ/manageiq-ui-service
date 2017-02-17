@@ -17,6 +17,7 @@ ratings:
   - "**.js"
 exclude_paths:
 - "**.spec.js"
+- "**.e2e.js"
 - tests/**/*
 - node_modules/**
 - gulp/**
