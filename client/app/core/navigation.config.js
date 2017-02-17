@@ -38,6 +38,12 @@ export function navConfig(NavigationProvider) {
     'pficon pficon-build',
     'Total available dialogs'
   );
+  const templates = createItem(
+    'Templates',
+    'templates',
+    'pficon pficon-builder-image',
+    'Total available Templates'
+  );
   const admin = createItem(
     'Admin',
     'administration',
@@ -52,6 +58,7 @@ export function navConfig(NavigationProvider) {
       requests: requests,
       catalogs: catalogs,
       dialogs: dialogs,
+      templates: templates,
       admin: admin,
     },
   });
@@ -91,6 +98,7 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
   NavCounts.add('orders', fetchOrders, refreshTimeMs);
   NavCounts.add('catalogs', fetchServiceCatalogs, refreshTimeMs);
   NavCounts.add('dialogs', fetchDialogs, refreshTimeMs);
+  NavCounts.add('templates', fetchTemplates, refreshTimeMs);
 
   function fetchRequests() {
     angular.extend(options, {
@@ -136,6 +144,10 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
       .then(lodash.partial(updateCount, 'dialogs'));
   }
 
+  function fetchTemplates() {
+    CollectionsApi.query('orchestration_templates', options)
+      .then(lodash.partial(updateCount, 'templates'));
+  }
   function updateCount(item, data) {
     Navigation.items[item].badges[0].count = data.subcount;
   }

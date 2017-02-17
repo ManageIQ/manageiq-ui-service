@@ -34,11 +34,13 @@ import { ServicesStateFactory } from './services-state.service.js';
 import { SessionFactory } from './session.service.js';
 import { ShoppingCartFactory } from './shopping-cart.service.js';
 import { SkinModule } from '../skin/skin.module.js';
+import { TemplatesServiceFactory } from './templates.service.js';
 import { VmsService } from './vms.service.js';
 import { gettextInit } from './gettext.config.js';
 import { layoutInit } from  './layouts.config.js';
 import { substitute } from '../filters/substitute.js';
 import { taggingService } from './tagging.service.js';
+
 
 export const CoreModule = angular
   .module('app.core', [
@@ -91,6 +93,7 @@ export const CoreModule = angular
   .factory('ServicesState', ServicesStateFactory)
   .factory('Session', SessionFactory)
   .factory('ShoppingCart', ShoppingCartFactory)
+  .factory('TemplatesService', TemplatesServiceFactory)
   .factory('VmsService', VmsService)
   .factory('logger', LoggerService)
   .factory('taggingService', taggingService)

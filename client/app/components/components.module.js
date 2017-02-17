@@ -42,6 +42,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component.j
 import { SSCardComponent } from './ss-card/ss-card.component.js';
 import { TagEditorFactory } from './tag-editor-modal/tag-editor-modal-service.factory.js';
 import { TaggingComponent } from './tagging/tagging.component.js';
+import { TemplateExplorerComponent } from './template-explorer/template-explorer.component.js';
 import { VmSnapshotsComponent } from './vms/snapshots.component';
 
 export default angular
@@ -94,5 +95,6 @@ export default angular
   .component('ssCard', SSCardComponent)
   .factory('TagEditorModal', TagEditorFactory)
   .component('taggingWidget', TaggingComponent)
+  .component('templateExplorer', TemplateExplorerComponent)
   .component('vmSnapshots', VmSnapshotsComponent)
   .name;

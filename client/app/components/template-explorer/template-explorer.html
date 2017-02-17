@@ -1,0 +1,61 @@
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li class="active">{{'Templates'|translate}}</li>
+      </ol>
+  </span>
+</div>
+<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
+  <actions>
+    <custom-dropdown
+      class="custom-dropdown pull-left"
+      config="item"
+      items="vm.selectedItemsList"
+      items-count="vm.selectedItemsList.length"
+      ng-repeat="item in vm.actionConfig"
+      on-update="vm.listActionDisable($config, $changes)"
+      menu-right="true">
+    </custom-dropdown>
+  </actions>
+</div>
+<div class="list-view-container section-container paged-container service-explorer-list">
+  <loading status="vm.loading"></loading>
+  <div ng-if="!vm.loading"
+       pf-list-view id="templatesList"
+       config="vm.listConfig"
+       items="vm.templatesList"
+       custom-scope="vm"
+       menu-actions="vm.menuActions">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+        <span class="no-wrap">
+          <span class="ss-list-view__title-img">
+              <span class="ss-list-view__title-img__center">
+                <img class="ss-list-view__title-img__logo" ng-src="{{ item.logo }}"/>
+              </span>
+          </span>
+            <span class="label label-default" ng-if="item.draft" translate>Draft</span>
+          {{ item.name }}           
+        </span>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
+        <span class="no-wrap">
+            <strong ng-if="item.description" translate>Description</strong> {{ item.description }}
+        </span>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-4 col-xs-4">
+        <span class="no-wrap">
+          <span class="label label-success" ng-if="item.orderable === true" translate>Available</span>
+        </span>
+      </div>
+      <div class="col-lg-3 col-md-2 hidden-sm hidden-xs">
+        <span class="no-wrap">
+         <strong translate>Updated</strong> {{item.updated_at}}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions"
+                     on-update="vm.updatePagination($limit, $offset)">
+</explorer-pagination>
