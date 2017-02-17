@@ -1,7 +1,7 @@
 describe('Component: catalogEditor', function() {
 
   beforeEach(function() {
-    module('app.core', 'app.states');
+    module('app.core', 'app.states', 'app.catalogs');
     bard.inject('CatalogsState', '$state', '$httpBackend');
   });
 

@@ -1,7 +1,9 @@
 /* eslint camelcase: "off" */
+import './_dual-pane-selector.sass';
+import templateUrl from './dual-pane-selector.html';
 
 export const DualPaneSelectorComponent = {
-  templateUrl: "app/components/dual-pane-selector/dual-pane-selector.html",
+  templateUrl,
   bindings: {
     availableItems: "=",
     selectedItems: "=",

@@ -51,9 +51,6 @@ import { gettextInit } from './gettext.config.js';
 import { layoutInit } from  './layouts.config.js';
 import { taggingService } from './tagging.service.js';
 
-// Catalogs
-import { CatalogsStateFactory } from './catalogs-state.service.js';
-
 // Services
 import { ConsolesFactory } from './consoles.service.js';
 import { PowerOperationsFactory } from './poweroperations.service.js';
@@ -100,7 +97,6 @@ export const CoreModule = angular
   .component('shoppingCart', ShoppingCartComponent)
   .directive('languageSwitcher', LanguageSwitcherDirective)
   .factory('AuthenticationApi', AuthenticationApiFactory)
-  .factory('CatalogsState', CatalogsStateFactory)
   .factory('Chargeback', ChargebackFactory)
   .factory('CollectionsApi', CollectionsApiFactory)
   .factory('Consoles', ConsolesFactory)

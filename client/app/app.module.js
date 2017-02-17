@@ -3,6 +3,7 @@ import './components/components.module.js';
 
 import { AppController } from './app.controller.js';
 import { AppRoutingModule } from './states/states.module.js';
+import { CatalogsModule } from './catalogs/catalogs.module.js';
 import { CoreModule } from './core/core.module.js';
 
 export default angular
@@ -11,6 +12,7 @@ export default angular
 
     AppRoutingModule,
     CoreModule,
+    CatalogsModule,
   ])
   .controller('AppController', AppController)
   .name;

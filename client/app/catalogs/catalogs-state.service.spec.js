@@ -1,6 +1,6 @@
 describe('CatalogsState', function() {
   beforeEach(function() {
-    module('app.states');
+    module('app.states', 'app.catalogs');
   });
 
   describe('service', function() {

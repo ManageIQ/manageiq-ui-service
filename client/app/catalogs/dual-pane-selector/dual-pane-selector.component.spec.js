@@ -1,5 +1,5 @@
 describe('Dual Pane Selector Component', function() {
-  beforeEach(module('app.components'));
+  beforeEach(module('app.core', 'app.catalogs'));
 
   describe('controller', function() {
     var controller;

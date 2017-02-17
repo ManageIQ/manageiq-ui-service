@@ -1,7 +1,8 @@
 /* eslint camelcase: "off" */
+import templateUrl from './catalog-editor.html';
 
 export const CatalogEditorComponent = {
-  templateUrl: 'app/components/catalogs/catalog-editor.html',
+  templateUrl,
   bindings: {
     catalog: "<",
     serviceTemplates: "<",

@@ -1,10 +1,5 @@
 /* eslint-disable sort-imports */
 
-// Catalogs
-import { CatalogEditorComponent } from './catalogs/catalog-editor.component.js';
-import { CatalogsListComponent } from './catalogs/catalog-explorer.component';
-import { DualPaneSelectorComponent } from './dual-pane-selector/dual-pane-selector.component.js';
-
 // Services/Vms
 import { CustomButtonDirective } from './custom-button/custom-button.directive.js';
 import { EditServiceModalComponent } from './edit-service-modal/edit-service-modal.component.js';
@@ -43,12 +38,9 @@ export default angular
     'svgBaseFix',
     'miqStaticAssets',
   ])
-  .component('catalogEditor', CatalogEditorComponent)
-  .component('catalogExplorer', CatalogsListComponent)
   .directive('customButton', CustomButtonDirective)
   .component('detailReveal', DetailRevealComponent)
   .component('dialogsList', DialogsListComponent)
-  .component('dualPaneSelector', DualPaneSelectorComponent)
   .component('editServiceModal', EditServiceModalComponent)
   .component('ownershipServiceModal', OwnershipServiceModalComponent)
   .component('orderExplorer', OrderExplorerComponent)
