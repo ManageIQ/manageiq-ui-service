@@ -14,13 +14,6 @@ import { ServiceDetailsAnsibleModalComponent } from './services/service-details/
 import { VmSnapshotsComponent } from './vms/snapshots.component';
 import { DetailRevealComponent } from './detail-reveal/detail-reveal.component.js';
 
-// Orders/Requests
-import { OrderExplorerComponent } from './order-explorer/order-explorer.component.js';
-import { ProcessRequestsModalComponent } from './process-requests-modal/process-requests-modal.component.js';
-import { ProcessOrderModalComponent } from './process-order-modal/process-order-modal.component.js';
-import { RequestExplorerComponent } from './request-explorer/request-explorer.component.js';
-import { RequestListComponent } from './request-list/request-list.component.js';
-
 // Orchestration Templates
 import { TemplateExplorerComponent } from './template-explorer/template-explorer.component.js';
 
@@ -36,12 +29,7 @@ export default angular
   .component('detailReveal', DetailRevealComponent)
   .component('editServiceModal', EditServiceModalComponent)
   .component('ownershipServiceModal', OwnershipServiceModalComponent)
-  .component('orderExplorer', OrderExplorerComponent)
   .component('powerState', PowerStateComponent)
-  .component('processRequestsModal', ProcessRequestsModalComponent)
-  .component('processOrderModal', ProcessOrderModalComponent)
-  .component('requestExplorer', RequestExplorerComponent)
-  .component('requestList', RequestListComponent)
   .component('retireRemoveServiceModal', RetireRemoveServiceModalComponent)
   .component('retireServiceModal', RetireServiceModalComponent)
   .component('serviceExplorer', ServiceExplorerComponent)

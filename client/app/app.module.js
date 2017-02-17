@@ -7,6 +7,7 @@ import { AppRoutingModule } from './states/states.module.js';
 import { CatalogsModule } from './catalogs/catalogs.module.js';
 import { CoreModule } from './core/core.module.js';
 import { DialogsModule } from './dialogs/dialogs.module.js';
+import { RequestsModule } from './requests/requests.module.js';
 
 export default angular
   .module('app', [
@@ -19,6 +20,7 @@ export default angular
     AdminModule,
     CatalogsModule,
     DialogsModule,
+    RequestsModule,
   ])
   .controller('AppController', AppController)
   .name;

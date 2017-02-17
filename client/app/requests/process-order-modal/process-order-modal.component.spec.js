@@ -1,6 +1,6 @@
 describe('Component: processOrderModal', function() {
   beforeEach(function () {
-    module('app.components');
+    module('app.core', 'app.requests');
   });
 
   describe('controller', function () {

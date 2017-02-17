@@ -1,9 +1,11 @@
+import templateUrl from './request-list.html';
+
 export const RequestListComponent = {
   bindings: {
     'items': '<',
     'config': '<?',
   },
-  templateUrl: 'app/components/request-list/request-list.html',
+  templateUrl,
   controller: ComponentController,
   controllerAs: 'vm',
 };

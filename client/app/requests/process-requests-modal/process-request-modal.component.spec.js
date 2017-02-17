@@ -1,6 +1,6 @@
-describe('app.components.process-requests-modal', function() {
+describe('app.requests.process-requests-modal', function() {
   beforeEach(function () {
-    module('app.components');
+    module('app.states', 'app.requests');
   });
 
   describe('controller', function () {

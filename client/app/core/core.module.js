@@ -57,10 +57,6 @@ import { PowerOperationsFactory } from './poweroperations.service.js';
 import { ServicesStateFactory } from './services-state.service.js';
 import { VmsService } from './vms.service.js';
 
-// Orders/Requests
-import { OrdersStateFactory } from './orders-state.service.js';
-import { RequestsStateFactory } from './requests-state.service.js';
-
 export const CoreModule = angular
   .module('app.core', [
     'base64',
@@ -101,12 +97,10 @@ export const CoreModule = angular
   .factory('Messages', MessagesFactory)
   .factory('ModalService', BaseModalFactory)
   .factory('NavCounts', NavCountsFactory)
-  .factory('OrdersState', OrdersStateFactory)
   .factory('Polling', PollingFactory)
   .factory('PowerOperations', PowerOperationsFactory)
   .factory('ProductInfo', ProductInfo)
   .factory('RBAC', RBACFactory)
-  .factory('RequestsState', RequestsStateFactory)
   .factory('SaveModalDialog', SaveModalDialogFactory)
   .factory('ServerInfo', ServerInfo)
   .factory('ServicesState', ServicesStateFactory)

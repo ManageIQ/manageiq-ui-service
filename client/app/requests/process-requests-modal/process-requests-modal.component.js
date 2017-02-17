@@ -1,3 +1,5 @@
+import templateUrl from './process-requests-modal.html';
+
 export const ProcessRequestsModalComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
@@ -7,7 +9,7 @@ export const ProcessRequestsModalComponent = {
     close: '&',
     dismiss: '&',
   },
-  templateUrl: 'app/components/process-requests-modal/process-requests-modal.html',
+  templateUrl,
 };
 
 /** @ngInject */

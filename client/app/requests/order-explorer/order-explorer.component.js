@@ -1,7 +1,9 @@
+import templateUrl from './order-explorer.html';
+
 export const OrderExplorerComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
-  templateUrl: 'app/components/order-explorer/order-explorer.html',
+  templateUrl,
 };
 
 /** @ngInject */

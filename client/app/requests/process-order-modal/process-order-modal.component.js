@@ -1,3 +1,5 @@
+import templateUrl from './process-order-modal.html';
+
 export const ProcessOrderModalComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
@@ -6,7 +8,7 @@ export const ProcessOrderModalComponent = {
     close: '&',
     dismiss: '&',
   },
-  templateUrl: 'app/components/process-order-modal/process-order-modal.html',
+  templateUrl,
 };
 
 /** @ngInject */

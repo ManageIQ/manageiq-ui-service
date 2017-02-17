@@ -1,5 +1,7 @@
+import templateUrl from './request-explorer.html';
+
 export const RequestExplorerComponent = {
-  templateUrl: 'app/components/request-explorer/request-explorer.html',
+  templateUrl,
   controller: ComponentController,
   controllerAs: 'vm',
 };
