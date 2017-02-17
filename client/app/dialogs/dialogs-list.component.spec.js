@@ -28,7 +28,7 @@ describe('Component: dialogsList', function() {
   ];
 
   beforeEach(function() {
-    module('app.components');
+    module('app.core', 'app.states', 'app.dialogs');
   });
 
   describe('with $compile', function() {

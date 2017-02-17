@@ -57,9 +57,6 @@ import { PowerOperationsFactory } from './poweroperations.service.js';
 import { ServicesStateFactory } from './services-state.service.js';
 import { VmsService } from './vms.service.js';
 
-// Dialogs
-import { DialogStateFactory } from './dialogs-state.service.js';
-
 // Orders/Requests
 import { OrdersStateFactory } from './orders-state.service.js';
 import { RequestsStateFactory } from './requests-state.service.js';
@@ -101,7 +98,6 @@ export const CoreModule = angular
   .factory('CollectionsApi', CollectionsApiFactory)
   .factory('Consoles', ConsolesFactory)
   .factory('DialogFieldRefresh', DialogFieldRefreshFactory)
-  .factory('DialogsState', DialogStateFactory)
   .factory('EventNotifications', EventNotificationsFactory)
   .factory('Language', LanguageFactory)
   .factory('ListConfiguration', ListConfigurationFactory)

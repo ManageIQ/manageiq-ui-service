@@ -14,9 +14,6 @@ import { ServiceDetailsAnsibleModalComponent } from './services/service-details/
 import { VmSnapshotsComponent } from './vms/snapshots.component';
 import { DetailRevealComponent } from './detail-reveal/detail-reveal.component.js';
 
-// Dialogs
-import { DialogsListComponent } from './dialogs/dialogs-list.component.js';
-
 // Orders/Requests
 import { OrderExplorerComponent } from './order-explorer/order-explorer.component.js';
 import { ProcessRequestsModalComponent } from './process-requests-modal/process-requests-modal.component.js';
@@ -40,7 +37,6 @@ export default angular
   ])
   .directive('customButton', CustomButtonDirective)
   .component('detailReveal', DetailRevealComponent)
-  .component('dialogsList', DialogsListComponent)
   .component('editServiceModal', EditServiceModalComponent)
   .component('ownershipServiceModal', OwnershipServiceModalComponent)
   .component('orderExplorer', OrderExplorerComponent)

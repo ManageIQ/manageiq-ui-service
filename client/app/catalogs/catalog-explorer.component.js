@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 import templateUrl from './catalog-explorer.html';
 
-export const CatalogsListComponent = {
+export const CatalogExplorerComponent = {
   templateUrl,
   controller: ComponentController,
   controllerAs: 'vm',

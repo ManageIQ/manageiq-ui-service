@@ -1,6 +1,9 @@
 /* eslint camelcase: "off" */
+import './_dialogs-list.sass';
+import templateUrl from './dialogs-list.html';
+
 export const DialogsListComponent = {
-  templateUrl: "app/components/dialogs/dialogs-list.html",
+  templateUrl,
   bindings: {
     dialogs: "=",
   },
