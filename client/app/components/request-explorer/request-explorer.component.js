@@ -17,6 +17,7 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
       loading: true,
       requestCount: 0,
       limit: 20,
+      offset: 0,
       selectedItemsList: [],
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
       listConfig: {
@@ -79,7 +80,6 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
     ];
 
     vm.fetchData = fetchData;
-    vm.offest = 0;
     vm.fetchData(vm.limit, 0);
 
     if (RequestsState.filterApplied) {
@@ -215,7 +215,7 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
   function applyFilters(filters) {
     vm.selectedItemsList = [];
     vm.listDataCopy = ListView.applyFilters(filters, vm.listDataCopy, vm.listData, RequestsState, requestMatchesFilter);
-    vm.fetchData(vm.limit);
+    vm.fetchData(vm.limit, 0);
 
     /* Make sure sorting direction is maintained */
     sortChange(RequestsState.getSort().currentField, RequestsState.getSort().isAscending);
