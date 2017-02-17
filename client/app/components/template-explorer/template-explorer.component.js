@@ -1,4 +1,6 @@
 /* eslint camelcase: "off" */
+import templateUrl from './template-explorer.html';
+
 export const TemplateExplorerComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
@@ -6,8 +8,7 @@ export const TemplateExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController($filter, lodash, ListView, Language, TemplatesService, EventNotifications, Session, RBAC, ModalService,
-                             CollectionsApi, sprintf, Polling) {
+function ComponentController(ListView, Language, TemplatesService, EventNotifications, Session, Polling) {
   const vm = this;
   vm.$onInit = activate();
   vm.$onDestroy = function() {

@@ -56,7 +56,7 @@ module.exports = {
       {
         test: /\.html$/,
         use: [
-          `ngtemplate-loader?module=app.core&relativeTo=${root}/`,
+          `ngtemplate-loader?relativeTo=${root}/`,
           `html-loader?attrs=false&minimize=true`,
         ],
       },
