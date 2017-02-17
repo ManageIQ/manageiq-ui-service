@@ -29,6 +29,7 @@ import {ServicesExplorerState} from "./services/explorer/explorer.state.js";
 import {ServicesReconfigureState} from "./services/reconfigure/reconfigure.state.js";
 import {ServicesState} from "./services/services.state.js";
 import {VmsDetailsState} from "./vms/details/details.state.js";
+import {VmsSnapshotsState} from "./vms/snapshots/snapshots.state.js";
 import {VmsState} from "./vms/vms.state.js";
 
 export const AppRoutingModule = angular
@@ -67,5 +68,6 @@ export const AppRoutingModule = angular
   .run(ServicesReconfigureState)
   .run(ServicesState)
   .run(VmsDetailsState)
+  .run(VmsSnapshotsState)
   .run(VmsState)
   .name;

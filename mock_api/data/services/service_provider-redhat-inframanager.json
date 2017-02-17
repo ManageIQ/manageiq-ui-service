@@ -1,30 +1,30 @@
 {
-  "url": "services/10000000000405?expand=vms&attributes=description%2Cpicture%2Cpicture.image_href%2Cevm_owner.name%2Cevm_owner.userid%2Cmiq_group.description%2Call_service_children%2Call_vms%2Caggregate_all_vm_cpus%2Caggregate_all_vm_memory%2Caggregate_all_vm_disk_count%2Caggregate_all_vm_disk_space_allocated%2Caggregate_all_vm_disk_space_used%2Caggregate_all_vm_memory_on_disk%2Cretired%2Cretirement_state%2Cretirement_warn%2Cretires_on%2Cactions%2Ccustom_actions%2Cprovision_dialog%2Cservice_template%2Cservice_resources%2Cchargeback_report%2Cparent_service%2Cpower_state%2Cpower_status%2Ccreated_at%2Coptions%2Cname%2Cguid%2Cvms.ipaddresses&decorators=vms.snapshots%2Cvms.v_total_snapshots%2Cvms.v_snapshot_newest_name%2Cvms.v_snapshot_newest_timestamp%2Cvms.v_snapshot_newest_total_size%2Cvms.supports_console%3F%2Cvms.supports_cockpit%3F",
+  "url": "services/10000000000527?expand=vms&attributes=description%2Cpicture%2Cpicture.image_href%2Cevm_owner.name%2Cevm_owner.userid%2Cmiq_group.description%2Call_service_children%2Call_vms%2Caggregate_all_vm_cpus%2Caggregate_all_vm_memory%2Caggregate_all_vm_disk_count%2Caggregate_all_vm_disk_space_allocated%2Caggregate_all_vm_disk_space_used%2Caggregate_all_vm_memory_on_disk%2Cretired%2Cretirement_state%2Cretirement_warn%2Cretires_on%2Cactions%2Ccustom_actions%2Cprovision_dialog%2Cservice_template%2Cservice_resources%2Cchargeback_report%2Cparent_service%2Cpower_state%2Cpower_status%2Ccreated_at%2Coptions%2Cname%2Cguid%2Cvms.ipaddresses&decorators=vms.snapshots%2Cvms.v_total_snapshots%2Cvms.v_snapshot_newest_name%2Cvms.v_snapshot_newest_timestamp%2Cvms.v_snapshot_newest_total_size%2Cvms.supports_console%3F%2Cvms.supports_cockpit%3F",
   "get": {
-    "href": "http://localhost:3001/api/services/10000000000405",
-    "id": 10000000000405,
+    "href": "http://localhost:3001/api/services/10000000000527",
+    "id": 10000000000527,
     "description": "RHEL7 on RHEV",
-    "created_at": "2016-10-11T14:02:57Z",
+    "created_at": "2016-11-17T05:52:19Z",
     "options": {
       "dialog": {
-        "dialog_service_name": "alaurent23",
+        "dialog_service_name": "jbarlow-1",
         "dialog_tag_0_environment": "dev",
-        "dialog_option_1_vm_name": "laurent23",
+        "dialog_option_1_vm_name": "jbarlow-1",
         "dialog_option_1_cores_per_socket": "1",
-        "dialog_option_1_vm_memory": "2048",
+        "dialog_option_1_vm_memory": "1024",
         "dialog_tag_1_function": "app",
-        "dialog_vm_name": "laurent23",
+        "dialog_vm_name": "jbarlow-1",
         "dialog_cores_per_socket": "1",
-        "dialog_vm_memory": "2048"
+        "dialog_vm_memory": "1024"
       }
     },
-    "name": "alaurent23",
-    "guid": "6984da18-8fbb-11e6-8334-005056b142d5",
+    "name": "jbarlow-1",
+    "guid": "005d9d18-ac8a-11e6-b0f1-005056b1c9de",
     "picture": {
       "id": 10000000000013,
       "resource_id": 10000000000016,
       "resource_type": "ServiceTemplate",
-      "image_href": "http://localhost:3001/images/service.png"
+      "image_href": "http://localhost:3001/pictures/10r13.jpg"
     },
     "evm_owner": {
       "name": "Cloud Operator",
@@ -36,46 +36,43 @@
     "all_service_children": [],
     "all_vms": [
       {
-        "id": 10000000001050,
+        "id": 10000000001447,
         "vendor": "redhat",
-        "name": "laurent23",
-        "location": "1ed3d180-ed29-43db-9a60-fee5a41573d8.ovf",
-        "host_id": 10000000000008,
-        "created_on": "2016-10-11T14:05:03Z",
-        "updated_on": "2016-11-06T01:36:11Z",
+        "name": "jbarlow-1",
+        "location": "116a3fc9-6be5-4c8d-9b49-8436ac530098.ovf",
+        "created_on": "2016-11-17T06:05:38Z",
+        "updated_on": "2016-12-17T05:04:22Z",
         "storage_id": 10000000000012,
-        "guid": "b4e45718-8fbb-11e6-be0e-005056b1c9de",
-        "ems_id": 10000000000012,
-        "uid_ems": "1ed3d180-ed29-43db-9a60-fee5a41573d8",
-        "retires_on": "2016-11-10T00:00:00Z",
-        "retired": false,
-        "boot_time": "2016-10-11T08:07:22Z",
-        "power_state": "on",
-        "state_changed_on": "2016-10-11T14:05:36Z",
+        "guid": "dce47544-ac8b-11e6-b0f1-005056b1c9de",
+        "uid_ems": "116a3fc9-6be5-4c8d-9b49-8436ac530098",
+        "retires_on": "2016-12-17T00:00:00Z",
+        "retired": true,
+        "power_state": "unknown",
+        "state_changed_on": "2016-12-17T05:03:11Z",
         "previous_state": "down",
         "connection_state": "connected",
-        "last_perf_capture_on": "2016-11-06T01:36:30Z",
+        "last_perf_capture_on": "2016-12-17T04:47:22Z",
         "memory_reserve": 1024,
         "template": false,
         "evm_owner_id": 10000000000007,
-        "ems_ref_obj": "--- \"/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8\"\n",
+        "ems_ref_obj": "--- \"/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098\"\n",
         "miq_group_id": 10000000000021,
         "type": "ManageIQ::Providers::Redhat::InfraManager::Vm",
-        "ems_ref": "/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8",
-        "ems_cluster_id": 10000000000001,
+        "ems_ref": "/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098",
         "retirement_warn": 7,
-        "retirement_last_warn": "2016-11-03T00:11:55Z",
+        "retirement_last_warn": "2016-12-10T00:06:59Z",
         "cloud": false,
-        "raw_power_state": "up",
+        "retirement_state": "retired",
+        "raw_power_state": "unknown",
         "tenant_id": 10000000000001
       }
     ],
     "aggregate_all_vm_cpus": 1,
-    "aggregate_all_vm_memory": 2048,
+    "aggregate_all_vm_memory": 1024,
     "aggregate_all_vm_disk_count": 1,
     "aggregate_all_vm_disk_space_allocated": 10737418240,
-    "aggregate_all_vm_disk_space_used": 1164054528,
-    "aggregate_all_vm_memory_on_disk": 2147483648,
+    "aggregate_all_vm_disk_space_used": 1169174528,
+    "aggregate_all_vm_memory_on_disk": 0,
     "custom_actions": {
       "buttons": [],
       "button_groups": []
@@ -326,32 +323,32 @@
       "service_type": "atomic",
       "prov_type": "redhat",
       "service_template_catalog_id": 10000000000006,
-      "long_description": "\u003ch1\u003eGeneric RHEL 7 Server\u003c/h1\u003e\n\u003chr\u003e\n\u003cp\u003eThis catalog item will deploy a \u003cstrong\u003eRed Hat Enterprise Linux 7\u003c/strong\u003e server.\n  \n  A selection of CPU count and memory size can be made when ordering\u003c/p\u003e ",
+      "long_description": "<h1>Generic RHEL 7 Server</h1>\n<hr>\n<p>This catalog item will deploy a <strong>Red Hat Enterprise Linux 7</strong> server.\n  \n  A selection of CPU count and memory size can be made when ordering</p> ",
       "tenant_id": 10000000000001
     },
     "service_resources": [
       {
-        "id": 10000000001144,
+        "id": 10000000001533,
         "resource_id": 10000000000104,
         "resource_type": "MiqRequest",
         "group_idx": 0,
         "scaling_min": 1,
         "scaling_max": -1,
-        "created_at": "2016-10-11T14:02:57Z",
-        "updated_at": "2016-10-11T14:02:57Z",
-        "service_id": 10000000000405,
+        "created_at": "2016-11-17T05:52:19Z",
+        "updated_at": "2016-11-17T05:52:19Z",
+        "service_id": 10000000000527,
         "provision_index": 0
       },
       {
-        "id": 10000000001145,
-        "resource_id": 10000000001050,
+        "id": 10000000001534,
+        "resource_id": 10000000001447,
         "resource_type": "VmOrTemplate",
         "group_idx": 0,
         "scaling_min": 1,
         "scaling_max": -1,
-        "created_at": "2016-10-11T14:05:13Z",
-        "updated_at": "2016-10-11T14:05:13Z",
-        "service_id": 10000000000405,
+        "created_at": "2016-11-17T06:07:14Z",
+        "updated_at": "2016-11-17T06:07:14Z",
+        "service_id": 10000000000527,
         "provision_index": 0
       }
     ],
@@ -360,38 +357,54 @@
     },
     "vms": [
       {
-        "href": "http://localhost:3001/api/services/10000000000405/vms/10000000001050",
-        "id": 10000000001050,
+        "href": "http://localhost:3001/api/services/10000000000527/vms/10000000001447",
+        "id": 10000000001447,
         "vendor": "redhat",
-        "name": "laurent23",
-        "location": "1ed3d180-ed29-43db-9a60-fee5a41573d8.ovf",
-        "host_id": 10000000000008,
-        "created_on": "2016-10-11T14:05:03Z",
-        "updated_on": "2016-11-06T01:36:11Z",
+        "name": "jbarlow-1",
+        "location": "116a3fc9-6be5-4c8d-9b49-8436ac530098.ovf",
+        "created_on": "2016-11-17T06:05:38Z",
+        "updated_on": "2016-12-17T05:04:22Z",
         "storage_id": 10000000000012,
-        "guid": "b4e45718-8fbb-11e6-be0e-005056b1c9de",
-        "ems_id": 10000000000012,
-        "uid_ems": "1ed3d180-ed29-43db-9a60-fee5a41573d8",
-        "retires_on": "2016-11-10T00:00:00Z",
-        "retired": false,
-        "boot_time": "2016-10-11T08:07:22Z",
-        "power_state": "on",
-        "state_changed_on": "2016-10-11T14:05:36Z",
+        "guid": "dce47544-ac8b-11e6-b0f1-005056b1c9de",
+        "uid_ems": "116a3fc9-6be5-4c8d-9b49-8436ac530098",
+        "retires_on": "2016-12-17T00:00:00Z",
+        "retired": true,
+        "power_state": "unknown",
+        "state_changed_on": "2016-12-17T05:03:11Z",
         "previous_state": "down",
         "connection_state": "connected",
-        "last_perf_capture_on": "2016-11-06T01:36:30Z",
+        "last_perf_capture_on": "2016-12-17T04:47:22Z",
         "memory_reserve": 1024,
         "template": false,
         "evm_owner_id": 10000000000007,
-        "ems_ref_obj": "/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8",
+        "ems_ref_obj": "/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098",
         "miq_group_id": 10000000000021,
-        "ems_ref": "/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8",
-        "ems_cluster_id": 10000000000001,
+        "ems_ref": "/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098",
         "retirement_warn": 7,
-        "retirement_last_warn": "2016-11-03T00:11:55Z",
+        "retirement_last_warn": "2016-12-10T00:06:59Z",
         "cloud": false,
-        "raw_power_state": "up",
+        "retirement_state": "retired",
+        "raw_power_state": "unknown",
         "tenant_id": 10000000000001,
+        "ipaddresses": [],
+        "snapshots": [
+          {
+            "id": 10000000000092,
+            "uid": "07561327-e76d-4c78-a748-c06209900335",
+            "name": "Active VM",
+            "description": "Active VM",
+            "current": 1,
+            "create_time": "2016-11-17T05:59:10Z",
+            "disks": [],
+            "created_on": "2016-11-17T06:05:38Z",
+            "updated_on": "2016-12-17T05:02:10Z",
+            "vm_or_template_id": 10000000001447,
+            "uid_ems": "07561327-e76d-4c78-a748-c06209900335"
+          }
+        ],
+        "v_total_snapshots": 1,
+        "v_snapshot_newest_name": "Active VM",
+        "v_snapshot_newest_timestamp": "2016-11-17T05:59:10.696Z",
         "supports_console?": true,
         "supports_cockpit?": false
       }
@@ -400,37 +413,37 @@
       {
         "name": "edit",
         "method": "post",
-        "href": "http://localhost:3001/api/services/10000000000405"
+        "href": "http://localhost:3001/api/services/10000000000527"
       },
       {
         "name": "retire",
         "method": "post",
-        "href": "http://localhost:3001/api/services/10000000000405"
+        "href": "http://localhost:3001/api/services/10000000000527"
       },
       {
         "name": "set_ownership",
         "method": "post",
-        "href": "http://localhost:3001/api/services/10000000000405"
+        "href": "http://localhost:3001/api/services/10000000000527"
       },
       {
         "name": "start",
         "method": "post",
-        "href": "http://localhost:3001/api/services/10000000000405"
+        "href": "http://localhost:3001/api/services/10000000000527"
       },
       {
         "name": "stop",
         "method": "post",
-        "href": "http://localhost:3001/api/services/10000000000405"
+        "href": "http://localhost:3001/api/services/10000000000527"
       },
       {
         "name": "suspend",
         "method": "post",
-        "href": "http://localhost:3001/api/services/10000000000405"
+        "href": "http://localhost:3001/api/services/10000000000527"
       },
       {
         "name": "delete",
         "method": "delete",
-        "href": "http://localhost:3001/api/services/10000000000405"
+        "href": "http://localhost:3001/api/services/10000000000527"
       }
     ]
   }

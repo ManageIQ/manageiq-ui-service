@@ -15,10 +15,4 @@ describe('Component: catalogExplorer', function() {
     const list = element.all(by.css('.list-view-container .list-group .list-group-item'));
     expect(list.count()).toBe(10);
   });
-  it('should, after successful delete, have expected number of rows ', function() {
-    element.all(by.id('dropdownKebabRight_0')).click();
-    element.all(by.css('div#kebab_0 ul li:nth-child(2) a')).click();
-    element.all(by.css('div.confirmation__buttons button:nth-child(2)')).click();
-
-  });
 });
