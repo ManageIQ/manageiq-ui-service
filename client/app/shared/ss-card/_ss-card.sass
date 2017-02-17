@@ -1,0 +1,37 @@
+@import '_bem-support/index'
+@import 'app_colors'
+
++block(ss-card)
+  +element(description)
+    font-size: 12px
+    font-weight: 700
+    height: 20px
+    margin-top: 10px
+
+  +element(logo_wrapper)
+    height: 155px
+    padding-top: 10px
+
+  +element(logo)
+    display: inline-block
+    left: -2px
+    max-height: 120px
+    max-width: 190px
+    position: relative
+
+  background: $app-color-white
+  border-top: 2px solid transparent
+  box-shadow: 0 1px 1px $color-black-20
+  cursor: pointer
+  float: left
+  height: 290px
+  margin-bottom: 20px
+  margin-right: 20px
+  padding: 10px
+  position: relative
+  text-align: center
+  width: 260px
+
+  &:hover
+    border: 1px solid $app-color-light-gray-5
+    box-shadow: 0 3px 10px -2px $color-black-30

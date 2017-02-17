@@ -1,0 +1,28 @@
+@import '_bem-support/index'
+
++block(icon-list)
+  +element(container)
+    +element(background)
+      background: url('../../../assets/images/quadicon-single.png')
+      height: 72px
+      width: 72px
+
+    +element(icon)
+      border: 0
+      border-radius: 10px
+      height: 60px
+      margin: 6px 0 0 6px
+      position: absolute
+      width: 60px
+
+    +element(name)
+      overflow: hidden
+      text-align: center
+      text-overflow: ellipsis
+      white-space: nowrap
+      width: 72px
+
+    height: 100px
+    width: 100px
+
+  display: inline-flex
