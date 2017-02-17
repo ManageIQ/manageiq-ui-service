@@ -1,6 +1,6 @@
 describe('Dashboard', function() {
   beforeEach(function() {
-    module('app.core', 'app.states', 'app.requests');
+    module('app.core', 'app.states', 'app.requests', 'app.services');
     bard.inject('$location', '$rootScope', '$state', '$templateCache', '$httpBackend', '$q', 'RBAC');
   });
 

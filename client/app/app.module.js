@@ -8,6 +8,7 @@ import { CatalogsModule } from './catalogs/catalogs.module.js';
 import { CoreModule } from './core/core.module.js';
 import { DialogsModule } from './dialogs/dialogs.module.js';
 import { RequestsModule } from './requests/requests.module.js';
+import { ServicesModule } from './services/services.module.js';
 
 export default angular
   .module('app', [
@@ -21,6 +22,7 @@ export default angular
     CatalogsModule,
     DialogsModule,
     RequestsModule,
+    ServicesModule,
   ])
   .controller('AppController', AppController)
   .name;

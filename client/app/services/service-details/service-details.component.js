@@ -1,4 +1,7 @@
 /* eslint camelcase: "off" */
+import './_service-details.sass';
+import templateUrl from './service-details.html';
+
 export const ServiceDetailsComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
@@ -6,7 +9,7 @@ export const ServiceDetailsComponent = {
     service: "=",
     tags: "=",
   },
-  templateUrl: 'app/components/services/service-details/service-details.html',
+  templateUrl,
 };
 
 /** @ngInject */

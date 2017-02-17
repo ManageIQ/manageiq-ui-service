@@ -1,8 +1,11 @@
 /* eslint camelcase: "off" */
+import './_service-explorer.sass';
+import templateUrl from './service-explorer.html';
+
 export const ServiceExplorerComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
-  templateUrl: 'app/components/services/service-explorer/service-explorer.html',
+  templateUrl,
 };
 
 /** @ngInject */

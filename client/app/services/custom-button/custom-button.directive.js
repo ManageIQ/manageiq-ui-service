@@ -1,4 +1,6 @@
 /* eslint angular/document-service: "off" */
+import './_custom-button.sass';
+import templateUrl from './custom-button.html';
 
 /** @ngInject */
 export function CustomButtonDirective($window, $timeout) {

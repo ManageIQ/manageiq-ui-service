@@ -1,3 +1,6 @@
+import './_detail-reveal.sass';
+import templateUrl from './detail-reveal.html';
+
 export const DetailRevealComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
@@ -9,7 +12,7 @@ export const DetailRevealComponent = {
     rowClass: '@',
   },
   transclude: true,
-  templateUrl: 'app/components/detail-reveal/detail-reveal.html',
+  templateUrl,
 };
 
 /** @ngInject */

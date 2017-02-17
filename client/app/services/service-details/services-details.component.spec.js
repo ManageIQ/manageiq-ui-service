@@ -1,7 +1,7 @@
 describe('Component: ServiceDetails', function() {
 
   beforeEach(function() {
-    module('app.core', 'app.components');
+    module('app.core', 'app.states', 'app.services');
   });
 
   describe('view', function() {

@@ -1,6 +1,6 @@
 describe('Dashboard', function() {
   beforeEach(function() {
-    module('app.states', 'app.components');
+    module('app.states', 'app.services');
     bard.inject('$state');
   });
 

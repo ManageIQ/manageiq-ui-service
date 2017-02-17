@@ -1,10 +1,13 @@
+import './_power-state.sass';
+import templateUrl from './power-state.html';
+
 export const PowerStateComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
   bindings: {
     item: '=',
   },
-  templateUrl: 'app/components/power-state/power-state.html',
+  templateUrl,
 };
 
 /** @ngInject */

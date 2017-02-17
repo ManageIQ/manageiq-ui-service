@@ -51,12 +51,6 @@ import { gettextInit } from './gettext.config.js';
 import { layoutInit } from  './layouts.config.js';
 import { taggingService } from './tagging.service.js';
 
-// Services
-import { ConsolesFactory } from './consoles.service.js';
-import { PowerOperationsFactory } from './poweroperations.service.js';
-import { ServicesStateFactory } from './services-state.service.js';
-import { VmsService } from './vms.service.js';
-
 export const CoreModule = angular
   .module('app.core', [
     'base64',
@@ -88,7 +82,6 @@ export const CoreModule = angular
   .factory('AuthenticationApi', AuthenticationApiFactory)
   .factory('Chargeback', ChargebackFactory)
   .factory('CollectionsApi', CollectionsApiFactory)
-  .factory('Consoles', ConsolesFactory)
   .factory('DialogFieldRefresh', DialogFieldRefreshFactory)
   .factory('EventNotifications', EventNotificationsFactory)
   .factory('Language', LanguageFactory)
@@ -98,16 +91,13 @@ export const CoreModule = angular
   .factory('ModalService', BaseModalFactory)
   .factory('NavCounts', NavCountsFactory)
   .factory('Polling', PollingFactory)
-  .factory('PowerOperations', PowerOperationsFactory)
   .factory('ProductInfo', ProductInfo)
   .factory('RBAC', RBACFactory)
   .factory('SaveModalDialog', SaveModalDialogFactory)
   .factory('ServerInfo', ServerInfo)
-  .factory('ServicesState', ServicesStateFactory)
   .factory('Session', SessionFactory)
   .factory('ShoppingCart', ShoppingCartFactory)
   .factory('TemplatesService', TemplatesServiceFactory)
-  .factory('VmsService', VmsService)
   .factory('TagEditorModal', TagEditorFactory)
   .factory('logger', LoggerService)
   .factory('taggingService', taggingService)

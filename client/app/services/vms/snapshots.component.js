@@ -1,7 +1,8 @@
 /* eslint camelcase: "off" */
+import templateUrl from './snapshots.html';
 
 export const VmSnapshotsComponent = {
-  templateUrl: "app/components/vms/snapshots.html",
+  templateUrl,
   controller: ComponentController,
   controllerAs: 'vm',
   bindToController: true,

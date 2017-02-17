@@ -2,7 +2,7 @@ describe('detail-reveal component', function() {
   let ctrl;
 
   beforeEach(function(){
-      module('app.components');
+      module('app.services');
   });
 
   describe('controller', function() {

@@ -1,11 +1,13 @@
 /* eslint camelcase: "off" */
+import templateUrl from './service-details-ansible.html';
+
 export const ServiceDetailsAnsibleComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
   bindings: {
     results: '<',
   },
-  templateUrl: 'app/components/services/service-details/service-details-ansible.html',
+  templateUrl,
 };
 
 /** @ngInject */
