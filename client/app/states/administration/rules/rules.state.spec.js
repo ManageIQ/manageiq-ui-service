@@ -1,6 +1,6 @@
 describe('app.states.RulesState', function() {
   beforeEach(function () {
-    module('app.states');
+    module('app.states', 'app.admin');
     bard.inject('$state');
   });
 

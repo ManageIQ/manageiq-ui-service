@@ -1,7 +1,9 @@
 /* eslint camelcase: "off" */
+import './_rules-list.sass';
+import templateUrl from './rules-list.html';
 
 export const RulesListComponent = {
-  templateUrl: "app/components/rules/rules-list.html",
+  templateUrl,
   bindings: {
     arbitrationRules: "=",
     fields: "=",

@@ -1,6 +1,7 @@
 import './globals.js';
 import './components/components.module.js';
 
+import { AdminModule } from './admin/admin.module.js';
 import { AppController } from './app.controller.js';
 import { AppRoutingModule } from './states/states.module.js';
 import { CatalogsModule } from './catalogs/catalogs.module.js';
@@ -13,6 +14,9 @@ export default angular
 
     AppRoutingModule,
     CoreModule,
+
+    // Feature Modules
+    AdminModule,
     CatalogsModule,
     DialogsModule,
   ])

@@ -1,7 +1,7 @@
 describe('Component: rulesList', function() {
 
   beforeEach(function() {
-    module('app.components');
+    module('app.states', 'app.admin');
     bard.inject('RulesState', '$httpBackend');
   });
 

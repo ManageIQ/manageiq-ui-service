@@ -21,9 +21,6 @@ import { ProcessOrderModalComponent } from './process-order-modal/process-order-
 import { RequestExplorerComponent } from './request-explorer/request-explorer.component.js';
 import { RequestListComponent } from './request-list/request-list.component.js';
 
-// Admin
-import { RulesListComponent } from './rules/rules-list.component.js';
-
 // Orchestration Templates
 import { TemplateExplorerComponent } from './template-explorer/template-explorer.component.js';
 
@@ -47,7 +44,6 @@ export default angular
   .component('requestList', RequestListComponent)
   .component('retireRemoveServiceModal', RetireRemoveServiceModalComponent)
   .component('retireServiceModal', RetireServiceModalComponent)
-  .component('rulesList', RulesListComponent)
   .component('serviceExplorer', ServiceExplorerComponent)
   .component('serviceDetails', ServiceDetailsComponent)
   .component('serviceDetailsAnsible', ServiceDetailsAnsibleComponent)
