@@ -1,9 +1,9 @@
-<h3>{{ ::$ctrl.header }}</h3>
+<h3>{{ ::vm.header }}</h3>
 <div class="ss-card__logo_wrapper">
-    <img ng-if="$ctrl.image" class="ss-card__logo" alt="{{ ::$ctrl.header }}" ng-src="{{ ::$ctrl.image }}"/>
-    <img ng-if="!$ctrl.image" class="ss-card__logo" alt="{{ ::$ctrl.header }}" src="images/service.png"/>
+    <img ng-if="vm.image" class="ss-card__logo" alt="{{ ::vm.header }}" ng-src="{{ ::vm.image }}"/>
+    <img ng-if="!vm.image" class="ss-card__logo" alt="{{ ::vm.header }}" src="images/service.png"/>
 </div>
-<span uib-tooltip="{{ ::$ctrl.description }}" tooltip-placement="right"></i>
+<span uib-tooltip="{{ ::vm.description }}" tooltip-placement="right"></i>
   <strong translate>Description</strong>
   <i class="fa fa-info-circle blue"></i>
 </span>

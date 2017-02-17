@@ -7,5 +7,6 @@ export const SSCardComponent = {
     description: '<',
     image: '<',
   },
+  controllerAs: 'vm',
   templateUrl,
 };
