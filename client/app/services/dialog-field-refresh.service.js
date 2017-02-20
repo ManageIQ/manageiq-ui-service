@@ -26,6 +26,7 @@
 
         if (dialogFieldToRefresh.length > 0) {
           dialogFieldToRefresh[0].beingRefreshed = true;
+          dialogFieldToRefresh[0].triggerOverride = true;
           refreshSingleDialogField(allDialogFields, dialogFieldToRefresh[0], url, resourceId);
         }
       };
@@ -92,7 +93,7 @@
     }
 
     function triggerAutoRefresh(dialogField) {
-      if (dialogField.trigger_auto_refresh === true) {
+      if (dialogField.trigger_auto_refresh === true || dialogField.triggerOverride === true) {
         parent.postMessage({refreshableFieldIndex: dialogField.refreshableFieldIndex}, '*');
       }
     }
