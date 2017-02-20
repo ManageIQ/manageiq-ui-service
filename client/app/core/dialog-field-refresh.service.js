@@ -22,6 +22,7 @@ export function DialogFieldRefreshFactory(lodash, CollectionsApi, EventNotificat
 
       if (dialogFieldToRefresh.length > 0) {
         dialogFieldToRefresh[0].beingRefreshed = true;
+        dialogFieldToRefresh[0].triggerOverride = true;
         refreshSingleDialogField(allDialogFields, dialogFieldToRefresh[0], url, resourceId);
       }
     };
@@ -89,7 +90,7 @@ export function DialogFieldRefreshFactory(lodash, CollectionsApi, EventNotificat
   }
 
   function triggerAutoRefresh(dialogField) {
-    if (dialogField.trigger_auto_refresh === true) {
+    if (dialogField.trigger_auto_refresh === true || dialogField.triggerOverride === true) {
       parent.postMessage({refreshableFieldIndex: dialogField.refreshableFieldIndex}, '*');
     }
   }

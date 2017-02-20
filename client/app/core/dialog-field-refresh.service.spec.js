@@ -42,6 +42,10 @@ describe('DialogFieldRefresh', function() {
       it('sets the being refreshed flag to true', function() {
         expect(dialogField2.beingRefreshed).to.equal(true);
       });
+
+      it('sets the trigger override flag to true', function() {
+        expect(dialogField2.triggerOverride).to.equal(true);
+      });
     });
   });
 
@@ -427,9 +431,26 @@ describe('DialogFieldRefresh', function() {
         dialogField.trigger_auto_refresh = false;
       });
 
-      it('does not post a message', function() {
-        DialogFieldRefresh.triggerAutoRefresh(dialogField);
-        expect(postMessageSpy).not.to.have.been.called;
+      describe('when the override is true', function() {
+        beforeEach(function() {
+          dialogField.triggerOverride = true;
+        });
+
+        it('posts a message with the field name', function() {
+          DialogFieldRefresh.triggerAutoRefresh(dialogField);
+          expect(postMessageSpy).to.have.been.calledWith({refreshableFieldIndex: 123}, '*');
+        });
+      });
+
+      describe('when the override is undefined', function() {
+        beforeEach(function() {
+          dialogField.triggerOverride = undefined;
+        });
+
+        it('does not post a message', function() {
+          DialogFieldRefresh.triggerAutoRefresh(dialogField);
+          expect(postMessageSpy).not.to.have.been.called;
+        });
       });
     });
   });
