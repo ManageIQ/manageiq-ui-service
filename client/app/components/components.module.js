@@ -1,13 +1,9 @@
-// Orchestration Templates
+import { SharedModule } from '../shared/shared.module.js';
 import { TemplateExplorerComponent } from './template-explorer/template-explorer.component.js';
 
 export default angular
   .module('app.components', [
-    'app.core',
-    'ui.bootstrap',
-    'patternfly',
-    'svgBaseFix',
-    'miqStaticAssets',
+    SharedModule,
   ])
   .component('templateExplorer', TemplateExplorerComponent)
   .name;

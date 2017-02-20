@@ -17,6 +17,11 @@ import { substitute } from './substitute.filter.js';
 
 export const SharedModule = angular
   .module('app.shared', [
+    'app.core',
+    'miqStaticAssets',
+    'patternfly',
+    'svgBaseFix',
+    'ui.bootstrap',
   ])
   .component('customDropdown', CustomDropdownComponent)
   .component('dialogContent', DialogContentComponent)
