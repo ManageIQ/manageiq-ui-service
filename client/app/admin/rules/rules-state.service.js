@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function RulesStateFactory(CollectionsApi, EventNotifications, $q, $timeout) {
+export function RulesStateFactory(CollectionsApi, EventNotifications) {
   var ruleState = {};
 
   ruleState.getRules = function() {

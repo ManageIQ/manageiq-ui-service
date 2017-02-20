@@ -12,7 +12,7 @@ export const VmSnapshotsComponent = {
 };
 
 /** @ngInject */
-function ComponentController(VmsService, sprintf, EventNotifications, ListView) {
+function ComponentController(VmsService, sprintf, EventNotifications, ListView, ModalService) {
   const vm = this;
 
   vm.$onInit = function() {
@@ -61,7 +61,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView) 
     return [{
       name: __('Delete'),
       title: __('Delete Catalog'),
-      actionFn: confirmDelete,
+      actionFn: deleteSnapshot,
     }];
   }
 
@@ -98,10 +98,16 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView) 
       icon: 'fa fa-cog',
       isDisabled: false,
       actions: [{
+        name: __('Create Snapshot'),
+        actionName: 'create',
+        title: __('Create snapshot'),
+        actionFn: processSnapshot,
+        isDisabled: false,
+      }, {
         name: __('Delete All Snapshots'),
         actionName: 'delete',
         title: __('Delete all snapshots'),
-        actionFn: confirmDelete,
+        actionFn: deleteSnapshot,
         isDisabled: false,
       }],
     };
@@ -166,7 +172,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView) 
     resolveSnapshots();
   }
 
-  function confirmDelete(action, item) {
+  function deleteSnapshot(action, item) {
     if (angular.isDefined(item)) {
       vm.deleteSnapshotId = item.id;
       vm.deleteTitle = __('Delete Snapshot');
@@ -176,5 +182,21 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView) 
       vm.deleteMessage = sprintf(__('Please confirm, this action will delete all snapshots of vm %s'), vm.vm.name);
     }
     vm.deleteModal = true;
+  }
+
+  function processSnapshot(action, item) {
+    var modalOptions = {
+      component: 'processSnapshotsModal',
+      resolve: {
+        vm: function() {
+          return vm.vm;
+        },
+        modalType: function() {
+          return "create";
+        },
+      },
+      size: 'lg',
+    };
+    ModalService.open(modalOptions);
   }
 }
