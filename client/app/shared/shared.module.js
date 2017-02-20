@@ -16,7 +16,13 @@ import { TaggingComponent } from './tagging/tagging.component.js';
 import { substitute } from './substitute.filter.js';
 
 export const SharedModule = angular
-  .module('app.shared', [])
+  .module('app.shared', [
+    'app.core',
+    'miqStaticAssets',
+    'patternfly',
+    'svgBaseFix',
+    'ui.bootstrap',
+  ])
   .component('customDropdown', CustomDropdownComponent)
   .component('dialogContent', DialogContentComponent)
   .component('explorerPagination', PaginationComponent)

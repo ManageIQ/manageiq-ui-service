@@ -1,0 +1,108 @@
+@import 'app_colors'
+
+$pane-list-width: 225px
+$pane-list-height: 200px
+
+.dual-pane-selector
+  width: 100%
+
+.dual-pane-selector-list-container
+  display: inline-block
+  width: calc(50% - 32px)
+
+.dual-pane-selector-label
+  width: $pane-list-width
+
+  .dual-pane-selector-label-left
+    float: right
+    margin-right: 5px
+
+  .dual-pane-selector-label-right
+    float: left
+    margin-left: 5px
+
+.dual-pane-selector-list
+
+  &.dual-pane-selector-list-left
+    float: right
+    margin-right: 5px
+
+  &.dual-pane-selector-list-right
+    float: left
+    margin-left: 5px
+
+  .dual-pane-selector-items-container
+    border: 1px solid $color-black-30
+    height: $pane-list-height
+    overflow-x: hidden
+    overflow-y: auto
+    width: $pane-list-width
+
+  .dual-pane-selector-item
+    cursor: pointer
+    padding: 0 10px
+    width: 100%
+
+    .dual-pane-selector-item-select-indicator
+      display: inline-block
+      font-size: 12px
+      margin-left: 10px
+      vertical-align: middle
+      visibility: hidden
+
+    &.selected
+      background-color: $app-color-blue
+      color: $color-white
+
+      .dual-pane-selector-item-select-indicator
+        visibility: visible
+
+    &:hover
+      background-color: $app-color-light-blue-5
+      color: $color-black-1
+
+
+  .dual-pane-selector-item-container
+    display: inline-block
+    overflow: hidden
+    text-overflow: ellipsis
+    vertical-align: middle
+    white-space: nowrap
+    width: calc(100% - 26px)
+
+
+.dual-pane-selector-button-container
+  display: inline-block
+  padding: 0 10px
+  width: 40px
+
+  .btn-link
+    font-size: 24px
+    text-decoration: none
+
+    &:hover
+      text-decoration: none
+
+    &:focus
+      outline: none
+
+
+  .dual-pane-selector-select-button-container
+    height: $pane-list-height - 75px
+    position: relative
+
+    &.dual-pane-selector-select-button-container-top
+      .btn-link
+        bottom: 10px
+        position: absolute
+
+    &.dual-pane-selector-select-button-container-bottom
+      .btn-link
+        position: absolute
+        top: 10px
+
+.dual-pane-selector-count-text
+  border: 1px solid $color-black-30
+  border-top-width: 0
+  padding-left: 5px
+  width: $pane-list-width

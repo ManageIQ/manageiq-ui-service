@@ -46,30 +46,10 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component.j
 import { ShoppingCartFactory } from './shopping-cart.service.js';
 import { SkinModule } from '../skin/skin.module.js';
 import { TemplatesServiceFactory } from './templates.service.js';
-import { VmsService } from './vms.service.js';
 import { TagEditorFactory } from './tag-editor-modal/tag-editor-modal.service.js';
 import { gettextInit } from './gettext.config.js';
 import { layoutInit } from  './layouts.config.js';
 import { taggingService } from './tagging.service.js';
-
-// Catalogs
-import { CatalogsStateFactory } from './catalogs-state.service.js';
-
-// Services
-import { ConsolesFactory } from './consoles.service.js';
-import { PowerOperationsFactory } from './poweroperations.service.js';
-import { ServicesStateFactory } from './services-state.service.js';
-
-// Dialogs
-import { DialogStateFactory } from './dialogs-state.service.js';
-
-// Orders/Requests
-import { OrdersStateFactory } from './orders-state.service.js';
-import { RequestsStateFactory } from './requests-state.service.js';
-
-// Admin
-import { ProfilesStateFactory } from './profiles-state.service.js';
-import { RulesStateFactory } from './rules-state.service.js';
 
 export const CoreModule = angular
   .module('app.core', [
@@ -100,12 +80,9 @@ export const CoreModule = angular
   .component('shoppingCart', ShoppingCartComponent)
   .directive('languageSwitcher', LanguageSwitcherDirective)
   .factory('AuthenticationApi', AuthenticationApiFactory)
-  .factory('CatalogsState', CatalogsStateFactory)
   .factory('Chargeback', ChargebackFactory)
   .factory('CollectionsApi', CollectionsApiFactory)
-  .factory('Consoles', ConsolesFactory)
   .factory('DialogFieldRefresh', DialogFieldRefreshFactory)
-  .factory('DialogsState', DialogStateFactory)
   .factory('EventNotifications', EventNotificationsFactory)
   .factory('Language', LanguageFactory)
   .factory('ListConfiguration', ListConfigurationFactory)
@@ -113,21 +90,14 @@ export const CoreModule = angular
   .factory('Messages', MessagesFactory)
   .factory('ModalService', BaseModalFactory)
   .factory('NavCounts', NavCountsFactory)
-  .factory('OrdersState', OrdersStateFactory)
   .factory('Polling', PollingFactory)
-  .factory('PowerOperations', PowerOperationsFactory)
   .factory('ProductInfo', ProductInfo)
-  .factory('ProfilesState', ProfilesStateFactory)
   .factory('RBAC', RBACFactory)
-  .factory('RequestsState', RequestsStateFactory)
-  .factory('RulesState', RulesStateFactory)
   .factory('SaveModalDialog', SaveModalDialogFactory)
   .factory('ServerInfo', ServerInfo)
-  .factory('ServicesState', ServicesStateFactory)
   .factory('Session', SessionFactory)
   .factory('ShoppingCart', ShoppingCartFactory)
   .factory('TemplatesService', TemplatesServiceFactory)
-  .factory('VmsService', VmsService)
   .factory('TagEditorModal', TagEditorFactory)
   .factory('logger', LoggerService)
   .factory('taggingService', taggingService)
