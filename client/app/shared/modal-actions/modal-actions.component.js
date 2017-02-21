@@ -8,6 +8,7 @@ export const ModalActionsComponent = {
     confirmationModal: '<?',
     customButton: '<?',
     resetModal: '<?',
+    isDisabled: '<?',
     onCancel: '&',
     onReset: '&',
     onSave: '&',
@@ -19,21 +20,29 @@ export const ModalActionsComponent = {
 
 /** @ngInject */
 function ComponentController(sprintf) {
-  var vm = this;
-
-  angular.extend(vm, {
-    customButtonTranslated: sprintf(__("%s"), vm.customButton),
-    isPristine: isPristine,
-    cancelAction: cancelAction,
-    emitOriginal: emitOriginal,
-    saveResource: saveResource,
-    affirmConfirmation: affirmConfirmation,
-    customButtonAction: customButtonAction,
-  });
+  const vm = this;
 
 
   vm.$onInit = function() {
+    angular.extend(vm, {
+      isDisabled: angular.isUndefined(vm.isDisabled) ? false : vm.isDisabled,
+      customButtonTranslated: sprintf(__("%s"), vm.customButton),
+      isPristine: isPristine,
+      cancelAction: cancelAction,
+      emitOriginal: emitOriginal,
+      saveResource: saveResource,
+      affirmConfirmation: affirmConfirmation,
+      customButtonAction: customButtonAction,
+    })
+    ;
+
     vm.original = angular.copy(vm.modalData);
+  };
+
+  vm.$onChanges = function(changes) {
+    if (angular.isDefined(changes.isDisabled)) {
+      vm.isDisabled = changes.isDisabled.currentValue;
+    }
   };
 
   function cancelAction() {

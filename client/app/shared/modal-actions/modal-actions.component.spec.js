@@ -25,6 +25,8 @@ describe('modalActions component', function() {
     });
 
     it('calls onCancel when cancelAction is called', function() {
+      controller.$onInit();
+
       var spy = sinon.spy(controller, 'onCancel');
 
       controller.cancelAction();
@@ -43,6 +45,8 @@ describe('modalActions component', function() {
     });
 
     it('calls onSave when saveResource is called', function() {
+      controller.$onInit();
+
       var spy = sinon.spy(controller, 'onSave');
 
       controller.saveResource();
