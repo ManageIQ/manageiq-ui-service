@@ -39,6 +39,7 @@ var config = {
 
   onPrepare: function() {
     global.protractorConfig = env;
+    browser.driver.manage().window().maximize();
     browser.driver.get(env.baseUrl );
     browser.sleep(5000);
     browser.driver.findElement(by.id('inputUsername')).sendKeys('admin');
