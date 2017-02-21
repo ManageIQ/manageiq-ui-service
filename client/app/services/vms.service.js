@@ -10,12 +10,13 @@ export function VmsService(CollectionsApi) {
   let filters = [];
 
   return {
-    getSnapshots: getSnapshots,
     getVm: getVm,
     getSort: getSort,
     setSort: setSort,
     getFilters: getFilters,
     setFilters: setFilters,
+    getSnapshots: getSnapshots,
+    createSnapshots: createSnapshots,
     deleteSnapshots: deleteSnapshots,
   };
 
@@ -66,6 +67,15 @@ export function VmsService(CollectionsApi) {
     }
 
     return CollectionsApi.post(collection + '/' + vmId, null, {}, options);
+  }
+
+  function createSnapshots(vmId, data) {
+    const options = {
+      "action": "create",
+      "resources": [data],
+    };
+
+    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/', null, {}, options);
   }
 
   // Private
