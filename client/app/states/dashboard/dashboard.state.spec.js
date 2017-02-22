@@ -65,7 +65,7 @@ describe('Dashboard', function() {
       it('makes a query request using the CollectionApi', function() {
         var clock = sinon.useFakeTimers(new Date('2016-01-01').getTime());
         let collectionsApiSpy = sinon.stub(CollectionsApi);
-        RBAC.setNavFeatures({ "dashboard": { "show": true }, "services": { "show": true }, "orders": { "show": true }, "requests": { "show": true }, "catalogs": { "show": true }, "dialogs": { "show": true }, "administration": { "show": true } });
+        RBAC.setNavFeatures({ "dashboard": { "show": true }, "services": { "show": true }, "orders": { "show": true }, "requests": { "show": true }, "catalogs": { "show": true }, "dialogs": { "show": true } });
 
         dashboardState.resolve.expiringServices(collectionsApiSpy, RBAC);
 

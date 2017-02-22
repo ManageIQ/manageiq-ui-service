@@ -41,11 +41,6 @@ function enterApplication(Polling, lodash, NavCounts, Navigation, RBAC) {
           return false;
         }
         break;
-      case 'profiles':
-        if (navFeatures.administration.show === false) {
-          return false;
-        }
-        break;
     }
     count.func();
     if (count.interval) {

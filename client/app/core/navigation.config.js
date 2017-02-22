@@ -44,11 +44,6 @@ export function navConfig(NavigationProvider) {
     'pficon pficon-builder-image',
     'Total available Templates'
   );
-  const admin = createItem(
-    'Admin',
-    'administration',
-    'fa fa-cog'
-  );
 
   NavigationProvider.configure({
     items: {
@@ -59,7 +54,6 @@ export function navConfig(NavigationProvider) {
       catalogs: catalogs,
       dialogs: dialogs,
       templates: templates,
-      admin: admin,
     },
   });
 
