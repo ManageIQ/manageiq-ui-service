@@ -49,7 +49,7 @@ import { TemplatesServiceFactory } from './templates.service.js';
 import { TagEditorFactory } from './tag-editor-modal/tag-editor-modal.service.js';
 import { gettextInit } from './gettext.config.js';
 import { layoutInit } from  './layouts.config.js';
-import { taggingService } from './tagging.service.js';
+import { TaggingService } from './tagging.service.js';
 
 export const CoreModule = angular
   .module('app.core', [
@@ -100,7 +100,7 @@ export const CoreModule = angular
   .factory('TemplatesService', TemplatesServiceFactory)
   .factory('TagEditorModal', TagEditorFactory)
   .factory('logger', LoggerService)
-  .factory('taggingService', taggingService)
+  .factory('TaggingService', TaggingService)
   .provider('Navigation', NavigationProvider)
   .config(configure)
   .config(authConfig)

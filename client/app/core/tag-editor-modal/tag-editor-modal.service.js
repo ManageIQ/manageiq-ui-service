@@ -35,7 +35,7 @@ export function TagEditorFactory($uibModal) {
 
 /** @ngInject */
 function TagEditorModalController(services, tags, $controller, $uibModalInstance,
-                                  $state, taggingService, EventNotifications) {
+                                  $state, TaggingService, EventNotifications) {
   var vm = this;
   var base = $controller('BaseModalController', {
     $uibModalInstance: $uibModalInstance,
@@ -48,7 +48,7 @@ function TagEditorModalController(services, tags, $controller, $uibModalInstance
 
   // Override
   function save() {
-    return taggingService.assignTags('services', vm.services, tags, vm.modalData.tags)
+    return TaggingService.assignTags('services', vm.services, tags, vm.modalData.tags)
       .then(saveSuccess)
       .catch(saveFailure);
 
