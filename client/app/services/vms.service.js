@@ -60,13 +60,13 @@ export function VmsService(CollectionsApi) {
     return filters;
   }
 
-  function deleteSnapshots(vmId, snapshotId) {
-    const options = {"action": "delete"};
-    if (angular.isDefined(snapshotId)) {
-      return CollectionsApi.post(collection + '/' + vmId + '/snapshots/' + snapshotId, null, {}, options);
-    }
+  function deleteSnapshots(vmId, data) {
+    const options = {
+      "action": "delete",
+      "resources": data,
+    };
 
-    return CollectionsApi.post(collection + '/' + vmId, null, {}, options);
+    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/', null, {}, options);
   }
 
   function createSnapshots(vmId, data) {

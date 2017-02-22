@@ -27,7 +27,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
       // Functions
       resolveSnapshots: resolveSnapshots,
       deleteSnapshots: deleteSnapshots,
-      canceldelete: canceldelete,
+      cancelDelete: cancelDelete,
 
       // Config
       listConfig: getListConfig(),
@@ -114,21 +114,27 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
   }
 
   function deleteSnapshots() {
-    canceldelete();
-    VmsService.deleteSnapshots(vm.vm.id, vm.deleteSnapshotId).then(success, failure);
+    cancelDelete();
+    VmsService.deleteSnapshots(vm.vm.id, vm.snapshotsToRemove).then(success, failure);
 
     function success(response) {
-      vm.deleteSnapshotId = undefined;
-      EventNotifications.success(sprintf(__('All snapshots of vm %s have been deleted'), vm.vm.name));
+      response.results.forEach((response) => {
+        if (response.success) {
+          EventNotifications.success(__('Success deleting snapshot. ') + response.message);
+        } else {
+          EventNotifications.error(__('Error deleting snapshot. ') + response.message);
+        }
+      });
+      vm.snapshotsToRemove = undefined;
       resolveSnapshots();
     }
 
     function failure(response) {
-      EventNotifications.error(__('There was an error deleting snapshots.'));
+      EventNotifications.error(response.data.error.message);
     }
   }
 
-  function canceldelete() {
+  function cancelDelete() {
     vm.deleteModal = false;
   }
 
@@ -174,10 +180,11 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
 
   function deleteSnapshot(action, item) {
     if (angular.isDefined(item)) {
-      vm.deleteSnapshotId = item.id;
+      vm.snapshotsToRemove = [{"href": item.href}];
       vm.deleteTitle = __('Delete Snapshot');
       vm.deleteMessage = sprintf(__('Please confirm, this action will delete snapshot %s'), item.name);
     } else {
+      vm.snapshotsToRemove = vm.snapshots;
       vm.deleteTitle = sprintf(__('Delete All Snapshots on VM %s'), vm.vm.name);
       vm.deleteMessage = sprintf(__('Please confirm, this action will delete all snapshots of vm %s'), vm.vm.name);
     }
@@ -185,7 +192,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
   }
 
   function processSnapshot(action, item) {
-    var modalOptions = {
+    const modalOptions = {
       component: 'processSnapshotsModal',
       resolve: {
         vm: function() {
