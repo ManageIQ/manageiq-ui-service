@@ -1,5 +1,9 @@
-// global-require
 /** @ngInject */
+/* eslint-disable sort-imports */
+import ace from 'brace';
+import 'brace/mode/text';
+import 'brace/theme/monokai';
+
 export function AceEditorDirective() {
   const directive = {
     restrict: 'AE',
@@ -17,9 +21,6 @@ export function AceEditorDirective() {
     /** @ngInject */
   function AceEditorController($element) {
     var vm = this;
-    var ace = require('brace');
-    require('brace/mode/text');
-    require('brace/theme/monokai');
 
     var editor = loadAceEditor('text');
 

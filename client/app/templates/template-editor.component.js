@@ -7,7 +7,7 @@ export const TemplateEditorComponent = {
   controllerAs: 'vm',
   templateUrl,
   bindings: {
-    template: "<?",
+    template: "<",
   },
 };
 
@@ -48,7 +48,7 @@ function ComponentController( $state, TemplatesService, EventNotifications, loda
         name: '',
         type: '',
         description: '',
-        content: 'test1',
+        content: '',
         orderable: false,
         draft: true,
       };
