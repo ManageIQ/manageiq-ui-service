@@ -7,14 +7,14 @@
         type="button"
         class="btn btn-default"
         ng-click="vm.emitOriginal()"
-        ng-disabled="vm.isPristine()"
+        ng-disabled="vm.isDisabled || vm.isPristine()"
         translate>Reset
 </button>
 <button ng-if="!vm.confirmationModal && vm.modalData"
         type="button"
         class="btn btn-primary"
         ng-click="vm.saveResource()"
-        ng-disabled="vm.isPristine()"
+        ng-disabled="vm.isDisabled || vm.isPristine()"
         translate>Save
 </button>
 <button ng-if="vm.confirmationModal && !vm.modalData"
@@ -26,7 +26,7 @@
 <button ng-if="vm.confirmationModal && vm.modalData"
         type="button"
         class="btn btn-primary"
-        ng-disabled="vm.isPristine()"
+        ng-disabled="vm.isDisabled || vm.isPristine()"
         ng-click="vm.affirmConfirmation()"
         translate>OK
 </button>

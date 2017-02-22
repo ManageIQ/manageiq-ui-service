@@ -11,7 +11,7 @@
       <li>
         <a ui-sref="vms.details({vmId: vm.vm.id})"> {{vm.vm.name}} </a>
       </li>
-      <li class="active"translate>
+      <li class="active" translate>
         Snapshots
       </li>
     </ol>
@@ -42,42 +42,56 @@
          items="vm.snapshots"
          menu-actions="vm.menuActions">
       <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
           <span class="no-wrap">
-            <i class="pficon fa fa-power-off" ng-if="!item.current"
-               uib-tooltip="{{'Unused Snapshot'|translate}}"
-               tooltip-append-to-body="true"
-               tooltip-popup-delay="1000"
-               tooltip-placement="bottom"></i>
-            <i class="pficon pficon-ok" ng-if="item.current"
-               uib-tooltip="{{'Current Snapshot'|translate}}"
-               tooltip-append-to-body="true"
-               tooltip-popup-delay="1000"
-               tooltip-placement="bottom"></i>
             <strong
-              uib-tooltip="{{item.name}}"
+              uib-tooltip="Name: {{item.name}}"
+              tooltip-append-to-body="true"
               tooltip-placement="bottom-left"
               tooltip-popup-delay="1000">{{item.name}}</strong>
           </span>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-            <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-placement="bottom-left"
+        <div ng-if="item.current" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <span class="no-wrap" uib-tooltip="Description: {{item.description}}"
+                  tooltip-append-to-body="true"
+                  tooltip-placement="bottom-left"
                   tooltip-popup-delay="1000">
-              {{item.description}}
+              {{item.description || 'No Description' | translate }}
+            </span>
+        </div>
+        <div ng-if="!item.current" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <span class="no-wrap" uib-tooltip="Description: {{item.description}}"
+                  tooltip-append-to-body="true"
+                  tooltip-placement="bottom-left"
+                  tooltip-popup-delay="1000">
+              {{item.description || 'No Description' | translate }}
+            </span>
+        </div>
+        <div ng-if="item.current" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <span class="no-wrap"
+                  uib-tooltip="Status: Active"
+                  tooltip-append-to-body="true"
+                  tooltip-placement="bottom-left"
+                  tooltip-popup-delay="1000">
+              <span class="label label-primary" translate>Active</span>
             </span>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-            <span class="no-wrap" uib-tooltip="{{item.create_time  | date:'medium'}}" tooltip-placement="bottom-left"
+            <span class="no-wrap" uib-tooltip="Created: {{item.create_time  | date:'short'}}"
+                  tooltip-append-to-body="true"
+                  tooltip-placement="bottom-left"
                   tooltip-popup-delay="1000">
               <strong translate>Created:</strong>
-              {{item.create_time | date:'medium'}}
+              {{item.create_time | date:'short'}}
             </span>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-            <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-placement="bottom-left"
+            <span class="no-wrap" uib-tooltip="Updated: {{item.updated_on | date:'short'}}"
+                  tooltip-append-to-body="true"
+                  tooltip-placement="bottom-left"
                   tooltip-popup-delay="1000">
               <strong translate>Updated:</strong>
-              {{item.updated_on | date:'medium'}}
+              {{item.updated_on | date:'short'}}
             </span>
         </div>
       </div>

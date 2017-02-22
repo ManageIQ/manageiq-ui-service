@@ -5,6 +5,7 @@ import { EditServiceModalComponent } from './edit-service-modal/edit-service-mod
 import { OwnershipServiceModalComponent } from './ownership-service-modal/ownership-service-modal.component.js';
 import { PowerOperationsFactory } from './poweroperations.service.js';
 import { PowerStateComponent } from './power-state/power-state.component.js';
+import { ProcessSnapshotsModalComponent } from './process-snapshots-modal/process-snapshots-modal.component';
 import { RetireRemoveServiceModalComponent } from './retire-remove-service-modal/retire-remove-service-modal.component.js';
 import { RetireServiceModalComponent } from './retire-service-modal/retire-service-modal.component.js';
 import { ServiceDetailsAnsibleComponent } from './service-details/service-details-ansible.component';
@@ -25,6 +26,7 @@ export const ServicesModule = angular
   .component('editServiceModal', EditServiceModalComponent)
   .component('ownershipServiceModal', OwnershipServiceModalComponent)
   .component('powerState', PowerStateComponent)
+  .component('processSnapshotsModal', ProcessSnapshotsModalComponent)
   .component('retireRemoveServiceModal', RetireRemoveServiceModalComponent)
   .component('retireServiceModal', RetireServiceModalComponent)
   .component('serviceDetails', ServiceDetailsComponent)
