@@ -57,7 +57,7 @@ describe('Session', function() {
       var response = {authorization: {product_features: {
         service_view: {},
         service_edit: {}
-      }}};
+      }}, identity: {}};
       gettextCatalog.loadAndSet = function() {};
       $httpBackend.whenGET('/api?attributes=authorization').respond(response);
       Session.loadUser();
@@ -79,7 +79,7 @@ describe('Session', function() {
       var response = {authorization: {product_features: {
         svc_catalog_provision: {},
         miq_request_view: {}
-      }}};
+      }}, identity: {}};
       gettextCatalog.loadAndSet = function() {};
       $httpBackend.whenGET('/api?attributes=authorization').respond(response);
       Session.loadUser();
@@ -94,7 +94,7 @@ describe('Session', function() {
 
     it('returns false if user is not entitled to use ssui', function() {
       var response = {authorization: {product_features: {
-      }}};
+      }}, identity: {}};
       gettextCatalog.loadAndSet = function() {};
       $httpBackend.whenGET('/api?attributes=authorization').respond(response);
       Session.loadUser();
