@@ -2,7 +2,7 @@ import {
   formatBytes,
   megaBytes,
 } from './format-bytes.filter.js';
-
+import { AceEditorDirective } from './ace-editor/ace-editor.directive.js';
 import { AutofocusDirective } from './autofocus.directive.js';
 import { ConfirmationDirective } from './confirmation/confirmation.directive.js';
 import { CustomDropdownComponent } from './custom-dropdown/custom-dropdown.component.js';
@@ -12,6 +12,7 @@ import { LoadingComponent } from './loading.component.js';
 import { ModalActionsComponent } from './modal-actions/modal-actions.component.js';
 import { PaginationComponent } from './pagination/pagination.component.js';
 import { SSCardComponent } from './ss-card/ss-card.component.js';
+import { SelectDropdownComponent } from './select-dropdown/select-dropdown.component.js';
 import { TaggingComponent } from './tagging/tagging.component.js';
 import { substitute } from './substitute.filter.js';
 
@@ -30,8 +31,10 @@ export const SharedModule = angular
   .component('loading', LoadingComponent)
   .component('modalActions', ModalActionsComponent)
   .component('ssCard', SSCardComponent)
+  .component('selectDropdown', SelectDropdownComponent)
   .component('taggingWidget', TaggingComponent)
   .directive('autofocus', AutofocusDirective)
+  .directive('aceEditor', AceEditorDirective)
   .directive('confirmation', ConfirmationDirective)
   .filter('formatBytes', formatBytes)
   .filter('megaBytes', megaBytes)

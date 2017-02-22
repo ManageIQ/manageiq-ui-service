@@ -6,6 +6,7 @@ export function TemplatesServiceFactory(CollectionsApi) {
   const service = {
     getMinimal: getMinimal,
     getTemplates: getTemplates,
+    createTemplate: createTemplate,
   };
 
   return service;
@@ -72,5 +73,18 @@ export function TemplatesServiceFactory(CollectionsApi) {
     });
 
     return queryFilters;
+  }
+  function createTemplate(template) {
+    return new Promise(function (resolve, reject) {
+      CollectionsApi.post(collection, null, {}, template).then(createSuccess, createFailure);
+
+      function createSuccess(response) {
+        resolve(response);
+      }
+
+      function createFailure(response) {
+        reject(response);
+      }
+    });
   }
 }

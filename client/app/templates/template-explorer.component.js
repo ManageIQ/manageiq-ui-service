@@ -6,9 +6,13 @@ export const TemplateExplorerComponent = {
   controllerAs: 'vm',
   templateUrl,
 };
-
+// create
 /** @ngInject */
+<<<<<<< HEAD:client/app/components/template-explorer/template-explorer.component.js
 function ComponentController(ListView, TemplatesService, EventNotifications, Session, Polling) {
+=======
+function ComponentController(ListView, Language, TemplatesService, EventNotifications, Session, $state, Polling) {
+>>>>>>> Added ability to create Template:client/app/templates/template-explorer.component.js
   const vm = this;
   vm.$onInit = activate();
   vm.$onDestroy = function() {
@@ -43,8 +47,23 @@ function ComponentController(ListView, TemplatesService, EventNotifications, Ses
   }
 
   function getActionConfig() {
-    return [
-    ];
+    const itemActions = [{
+      title: __('Configuration'),
+      name: __('Configuration'),
+      actionName: 'configuration',
+      icon: 'fa fa-cog',
+      isDisabled: false,
+      actions: [{
+        name: __('Create'),
+        actionName: 'create',
+        title: __('Create new template'),
+        actionFn: addTemplate,
+        isDisabled: false,
+      },
+      ],
+    }];
+
+    return itemActions;
   }
 
   function getListConfig() {
@@ -81,6 +100,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, Ses
       sortConfig: sortConfig,
       filterConfig: filterConfig,
       actionsConfig: {
+        actionsInclude: true,
       },
     };
   }
@@ -197,5 +217,9 @@ function ComponentController(ListView, TemplatesService, EventNotifications, Ses
 
   function pollTemplates() {
     resolveTemplates(vm.limit, vm.offset, true);
+  }
+  function addTemplate() {
+    $state.go("templates.editor");
+    // console.log("works");
   }
 }
