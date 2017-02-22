@@ -7,7 +7,8 @@ export function SessionFactory($http, $q, $sessionStorage, gettextCatalog, $wind
 
   var service = {
     current: model,
-    create: create,
+    setAuthToken: setAuthToken,
+    setMiqGroup: setMiqGroup,
     destroy: destroy,
     active: active,
     currentUser: currentUser,
@@ -21,12 +22,15 @@ export function SessionFactory($http, $q, $sessionStorage, gettextCatalog, $wind
 
   return service;
 
-  function create(data) {
-    model.token = data.auth_token;
+  function setAuthToken(token) {
+    model.token = token;
     $http.defaults.headers.common['X-Auth-Token'] = model.token;
-    $http.defaults.headers.common['X-Miq-Group'] = data.miqGroup || undefined;
     $sessionStorage.token = model.token;
-    $sessionStorage.miqGroup = data.miqGroup || null;
+  }
+
+  function setMiqGroup(group) {
+    $http.defaults.headers.common['X-Miq-Group'] = group;
+    $sessionStorage.miqGroup = group || null;
   }
 
   function destroy() {
@@ -50,17 +54,20 @@ export function SessionFactory($http, $q, $sessionStorage, gettextCatalog, $wind
     } else {
       var response = angular.fromJson($sessionStorage.user);
       currentUser(response.identity);
+      setMiqGroup(response.identity.group);
       RBAC.set(response.authorization.product_features);
       deferred.resolve(response);
     }
 
     return deferred.promise;
   }
+
   function getUserAuthorizations() {
     return $http.get('/api?attributes=authorization')
       .then(function (response) {
         $sessionStorage.user = angular.toJson(response.data);
         currentUser(response.data.identity);
+        setMiqGroup(response.data.identity.group);
         RBAC.set(response.data.authorization.product_features);
 
         return response.data;

@@ -77,10 +77,8 @@ export function authInit($rootScope, $state, Session, $sessionStorage, logger, L
   function syncSession() {
     return new Promise(function (resolve, reject) {
       // trying saved token..
-      Session.create({
-        auth_token: $sessionStorage.token,
-        miqGroup: $sessionStorage.miqGroup,
-      });
+      Session.setAuthToken($sessionStorage.token);
+      Session.setMiqGroup($sessionStorage.miqGroup);
 
       Session.loadUser()
         .then(Language.onReload)
