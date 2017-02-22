@@ -59,7 +59,7 @@ function resolveService($stateParams, CollectionsApi) {
   ];
   var options = {
     attributes: requestAttributes,
-    decorators: ['vms.snapshots',     
+    decorators: ['vms.snapshots',
       'vms.v_total_snapshots',
       'vms.v_snapshot_newest_name',
       'vms.v_snapshot_newest_timestamp',
@@ -73,14 +73,14 @@ function resolveService($stateParams, CollectionsApi) {
 }
 
 /** @ngInject */
-function resolveTags($stateParams, taggingService) {
+function resolveTags($stateParams, TaggingService) {
   var serviceUrl = 'services/' + $stateParams.serviceId + '/tags/';
 
-  return taggingService.queryAvailableTags(serviceUrl);
+  return TaggingService.queryAvailableTags(serviceUrl);
 }
 
 /** @ngInject */
-function StateController($scope, $stateParams, service, tags, CollectionsApi, Polling, taggingService) {
+function StateController($scope, $stateParams, service, tags, CollectionsApi, Polling, TaggingService) {
   var vm = this;
   vm.service = service;
   vm.tags = tags;
@@ -90,12 +90,12 @@ function StateController($scope, $stateParams, service, tags, CollectionsApi, Po
   $scope.$on('$destroy', function () {
     Polling.stop('servicesPolling');
   });
-  
+
   function startPollingService() {
     resolveService($stateParams, CollectionsApi).then(function (data) {
       vm.service = data;
     });
-    resolveTags($stateParams, taggingService).then(function (data) {
+    resolveTags($stateParams, TaggingService).then(function (data) {
       vm.tags = data;
     });
   }

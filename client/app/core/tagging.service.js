@@ -1,5 +1,5 @@
 /** @ngInject */
-export function taggingService(CollectionsApi, lodash, exception) {
+export function TaggingService(CollectionsApi, lodash, exception) {
   var service = {
     assignTags: assignTags,
     findSharedTags: findSharedTags,
@@ -13,30 +13,14 @@ export function taggingService(CollectionsApi, lodash, exception) {
   // tagging APIs require separate requests for assignment of new tags and
   // unassignment of existing tags.
   function assignTags(collection, selectedResources, originalTags, tagsToAssign) {
-    var assignPayload = {
-      action: 'assign',
-      resources: tagsToAssign.map(toTagObject),
-    };
+    const tagObjectsToAssign = tagsToAssign.map(toTagObject);
+    const tagsToUnassign = lodash.difference(originalTags.map(tagName), tagsToAssign.map(tagName));
+    const tagObjectsToUnassign = tagsToUnassign.map(toTagObject);
 
-    var tagsToUnassign = lodash.difference(originalTags.map(tagName), tagsToAssign.map(tagName));
-
-    var unassignPayload = {
-      action: 'unassign',
-      resources: tagsToUnassign.map(toTagObject),
-    };
-
-    // Resolve when all assignment and unassignment requests resolve or reject
-    // if/when the first request rejects. This ensures that from the UI only a
-    // single notification is given for success/failure and keeps the
-    // assignment as an implementation detail.
-    //
-    // TODO: Swap out with more efficient implementation after API update
-    return Promise.all(selectedResources.reduce(function(allPromises, resource) {
-      allPromises.push(postTagPayload(resource, assignPayload));
-      allPromises.push(postTagPayload(resource, unassignPayload));
-
-      return allPromises;
-    }, []));
+    return Promise.all([
+      postTagPayload('assign_tags', tagsToAssign),
+      postTagPayload('unassign_tags', tagsToUnassign),
+    ]);
 
     function tagName(tag) {
       return tag.name;
@@ -46,9 +30,14 @@ export function taggingService(CollectionsApi, lodash, exception) {
       return { name: tag.name || tag };
     }
 
-    function postTagPayload(resource, payload) {
-      if (payload.resources.length > 0) {
-        return CollectionsApi.post(collection, resource.id + '/tags', {}, payload);
+    function postTagPayload(action, tags) {
+      if (tags.length > 0) {
+        const payload = {
+          action,
+          resources: selectedResources.map(({ href }) => ({ href, tags })),
+        };
+
+        return CollectionsApi.post(collection, null, {}, payload);
       }
     }
   }

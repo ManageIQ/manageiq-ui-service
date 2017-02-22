@@ -1,20 +1,20 @@
-describe('taggingService', function() {
+describe('TaggingService', function() {
   var service;
   var collectionsApiMock;
 
   beforeEach(module('app.states'));
 
-  beforeEach(inject(function(taggingService, CollectionsApi) {
-    service = taggingService;
+  beforeEach(inject(function(TaggingService, CollectionsApi) {
+    service = TaggingService;
     collectionsApiMock = sinon.mock(CollectionsApi);
   }));
 
   describe('#assignTags', function() {
-    it('makes 2 requests for each resource (assign, unassign)', function() {
+    it('makes 2 bulk requests (assign, unassign)', function() {
       collectionsApiMock
         .expects('post')
-        .withArgs('services', sinon.match(/tags/), {})
-        .exactly(4);
+        .withArgs('services', null, {})
+        .exactly(2);
 
       service.assignTags('services', [{}, {}], [{ name: '/first/tag' }], [{ name: '/new/tag' }]);
 
