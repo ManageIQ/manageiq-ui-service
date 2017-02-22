@@ -6,7 +6,7 @@ export const TemplateExplorerComponent = {
   controllerAs: 'vm',
   templateUrl,
 };
-// create
+
 /** @ngInject */
 <<<<<<< HEAD:client/app/components/template-explorer/template-explorer.component.js
 function ComponentController(ListView, TemplatesService, EventNotifications, Session, Polling) {

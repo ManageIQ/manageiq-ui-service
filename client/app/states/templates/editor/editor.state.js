@@ -1,6 +1,5 @@
-/* eslint camelcase: "off" */
-
 /** @ngInject */
+
 export function TemplatesEditorState(routerHelper) {
   routerHelper.configureStates(getStates());
 }
@@ -23,9 +22,9 @@ function getStates() {
 function resolveTemplate($stateParams, TemplatesService) {
   if ($stateParams.templateId) {
     return TemplatesService.getTemplate($stateParams.templateId);
-  } else {
-    return {};
   }
+
+  return {};
 }
 
 /** @ngInject */

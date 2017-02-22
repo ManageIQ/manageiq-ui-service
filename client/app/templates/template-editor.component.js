@@ -15,33 +15,34 @@ export const TemplateEditorComponent = {
 function ComponentController( $state, TemplatesService, EventNotifications, lodash) {
   const vm = this;
 
-  const templateTypes = [
-    {
-      "label": "Amazon Cloudformation",
-      "value": "OrchestrationTemplateCfn",
-    },
-    {
-      "label": "Openstack Heat",
-      "value": "OrchestrationTemplateHot",
-    },
-    {
-      "label": "Microsoft Azure",
-      "value": "OrchestrationTemplateAzure",
-    },
-    {
-      "label": "VNF",
-      "value": "OrchestrationTemplateVnfd",
-    },
-  ];
-
   vm.$onInit = activate();
 
   function activate() {
+    const templateTypes = [
+      {
+        "label": "Amazon Cloudformation",
+        "value": "OrchestrationTemplateCfn",
+      },
+      {
+        "label": "Openstack Heat",
+        "value": "OrchestrationTemplateHot",
+      },
+      {
+        "label": "Microsoft Azure",
+        "value": "OrchestrationTemplateAzure",
+      },
+      {
+        "label": "VNF",
+        "value": "OrchestrationTemplateVnfd",
+      },
+    ];
+
     angular.extend(vm, {
       saveTemplate: saveTemplate,
       templateTypes: templateTypes,
       templateTypeValue: '',
       cancelChanges: cancelChanges,
+      isPristine: isPristine,
     });
     if (!vm.template) {
       vm.template = {
@@ -63,12 +64,18 @@ function ComponentController( $state, TemplatesService, EventNotifications, loda
       TemplatesService.createTemplate(vm.template).then(createSuccess, createFailure);
     }
     function createSuccess(data) {
-      EventNotifications.success(__("Template created successfully."));
-      vm.template.id = data.results[0].id;
+      $state.go('templates.explorer');
     }
     function createFailure(data) {
       EventNotifications.error(__("There was an error creating the template"));
     }
+  }
+  function isPristine() {
+    if (!vm.template.name || !vm.templateTypeValue) {
+      return false;
+    }
+
+    return true;
   }
   function cancelChanges() {
     $state.go('templates');
