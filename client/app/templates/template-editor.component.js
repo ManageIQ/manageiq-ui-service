@@ -50,7 +50,7 @@ function ComponentController( $state, TemplatesService, EventNotifications, loda
         type: '',
         description: '',
         content: '',
-        orderable: false,
+        orderable: true,
         draft: true,
       };
     } else {

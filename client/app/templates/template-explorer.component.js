@@ -220,6 +220,5 @@ function ComponentController(ListView, Language, TemplatesService, EventNotifica
   }
   function addTemplate() {
     $state.go("templates.editor");
-    // console.log("works");
   }
 }

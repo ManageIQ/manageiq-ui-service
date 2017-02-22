@@ -75,16 +75,6 @@ export function TemplatesServiceFactory(CollectionsApi) {
     return queryFilters;
   }
   function createTemplate(template) {
-    return new Promise(function (resolve, reject) {
-      CollectionsApi.post(collection, null, {}, template).then(createSuccess, createFailure);
-
-      function createSuccess(response) {
-        resolve(response);
-      }
-
-      function createFailure(response) {
-        reject(response);
-      }
-    });
+    return CollectionsApi.post(collection, null, {}, template);
   }
 }

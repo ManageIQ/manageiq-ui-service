@@ -2,7 +2,7 @@ import {
   formatBytes,
   megaBytes,
 } from './format-bytes.filter.js';
-import { AceEditorDirective } from './ace-editor/ace-editor.directive.js';
+import { AceEditorComponent } from './ace-editor/ace-editor.component.js';
 import { AutofocusDirective } from './autofocus.directive.js';
 import { ConfirmationDirective } from './confirmation/confirmation.directive.js';
 import { CustomDropdownComponent } from './custom-dropdown/custom-dropdown.component.js';
@@ -34,7 +34,7 @@ export const SharedModule = angular
   .component('selectDropdown', SelectDropdownComponent)
   .component('taggingWidget', TaggingComponent)
   .directive('autofocus', AutofocusDirective)
-  .directive('aceEditor', AceEditorDirective)
+  .component('aceEditor', AceEditorComponent)
   .directive('confirmation', ConfirmationDirective)
   .filter('formatBytes', formatBytes)
   .filter('megaBytes', megaBytes)

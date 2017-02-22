@@ -21,11 +21,7 @@ function getStates() {
 
 /** @ngInject */
 function resolveTemplate($stateParams, TemplatesService) {
-  if ($stateParams.templateId) {
-    return TemplatesService.getTemplate($stateParams.templateId);
-  }
-
-  return {};
+  return $stateParams.templateId ? TemplatesService.getTemplate($stateParams.templateId) : {};
 }
 
 /** @ngInject */
