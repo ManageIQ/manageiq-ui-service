@@ -22,7 +22,7 @@
       }).then(loginSuccess, loginFailure);
 
       function loginSuccess(response) {
-        Session.create(response.data);
+        Session.setAuthToken(response.data.auth_token);
       }
 
       function loginFailure(response) {
