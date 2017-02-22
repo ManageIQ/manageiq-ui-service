@@ -1,12 +1,5 @@
 @import 'app_colors'
 
-.pagination
-  margin-top: 0
-
-  > .disabled > span
-    &:hover
-      cursor: not-allowed
-
 .pagination-footer
   background-color: $app-color-white
   border-top: 1px solid $app-color-gray
@@ -18,3 +11,10 @@
   .pagination-controls
     position: fixed
     right: 15px
+
+  .pagination
+    margin-top: 0
+
+    > .disabled > span
+      &:hover
+        cursor: not-allowed
