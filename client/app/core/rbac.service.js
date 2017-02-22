@@ -40,7 +40,6 @@ export function RBACFactory(lodash) {
       requests: {show: entitledForRequests(productFeatures)},
       catalogs: {show: entitledForServiceCatalogs(productFeatures)},
       dialogs: {show: entitledForService(productFeatures)},
-      administration: {show: entitledForService(productFeatures)},
     };
     setNavFeatures(navPermissions);
   }

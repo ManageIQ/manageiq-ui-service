@@ -1,5 +1,4 @@
 import {AboutMeState} from "./about-me/about-me.state.js";
-import {AdminState} from "./administration/admin.state.js";
 import {CatalogsDetailsState} from "./catalogs/details/details.state.js";
 import {CatalogsEditorState} from "./catalogs/editor/editor.state.js";
 import {CatalogsExplorerState} from "./catalogs/explorer/explorer.state.js";
@@ -23,7 +22,6 @@ import {ProductsState} from "./products/products.state.js";
 import {RequestsDetailsState} from "./requests/details/details.state.js";
 import {RequestsExplorerState} from "./requests/explorer/explorer.state.js";
 import {RequestsState} from "./requests/requests.state.js";
-import {RulesState} from "./administration/rules/rules.state.js";
 import {ServicesDetailsState} from "./services/details/details.state.js";
 import {ServicesExplorerState} from "./services/explorer/explorer.state.js";
 import {ServicesReconfigureState} from "./services/reconfigure/reconfigure.state.js";
@@ -41,8 +39,6 @@ export const AppRoutingModule = angular
   ])
   .run(NotFoundState)
   .run(AboutMeState)
-  .run(AdminState)
-  .run(RulesState)
   .run(DashboardState)
   .run(CatalogsState)
   .run(CatalogsExplorerState)
