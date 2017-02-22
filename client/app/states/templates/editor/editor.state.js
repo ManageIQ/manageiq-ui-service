@@ -1,3 +1,4 @@
+import templateUrl from './editor.html';
 /** @ngInject */
 
 export function TemplatesEditorState(routerHelper) {
@@ -8,7 +9,7 @@ function getStates() {
   return {
     'templates.editor': {
       url: '/edit/:templateId',
-      templateUrl: 'app/states/templates/editor/editor.html',
+      templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       resolve: {
