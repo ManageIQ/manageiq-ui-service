@@ -12,7 +12,7 @@ export const TaggingComponent = {
 };
 
 /** @ngInject */
-function TaggingController($scope, $filter, $q, $log, CollectionsApi, taggingService) {
+function TaggingController($scope, $filter, $q, $log, CollectionsApi, TaggingService) {
   var vm = this;
 
   vm.tags = {};
@@ -131,7 +131,7 @@ function TaggingController($scope, $filter, $q, $log, CollectionsApi, taggingSer
 
     // Add Selected Tag
     if (!matchingTag.length) {
-      var parsedTag = taggingService.parseTag(vm.tags.selectedTag);
+      var parsedTag = TaggingService.parseTag(vm.tags.selectedTag);
       vm.tagsOfItem.push(parsedTag);
     }
   };

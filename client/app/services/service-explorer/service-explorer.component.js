@@ -9,7 +9,7 @@ export const ServiceExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, ServicesState, Language, ListView, Chargeback, taggingService, TagEditorModal,
+function ComponentController($state, ServicesState, Language, ListView, Chargeback, TaggingService, TagEditorModal,
                              EventNotifications, ModalService, PowerOperations, lodash, Polling) {
   var vm = this;
   vm.$onInit = activate();
@@ -435,12 +435,12 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
 
   function doEditTags(services) {
     var extractSharedTagsFromSelectedServices
-      = lodash.partial(taggingService.findSharedTags, services);
+      = lodash.partial(TaggingService.findSharedTags, services);
 
     var launchTagEditorForSelectedServices
       = lodash.partial(TagEditorModal.showModal, services);
 
-    return taggingService.queryAvailableTags()
+    return TaggingService.queryAvailableTags()
       .then(extractSharedTagsFromSelectedServices)
       .then(launchTagEditorForSelectedServices);
   }
