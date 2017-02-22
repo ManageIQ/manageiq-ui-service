@@ -64,26 +64,12 @@ export function RBACFactory(lodash) {
   function getNavFeatures() {
     return navFeatures;
   }
-  function entitledForServices(productFeatures) {
+  function entitledForServices(_productFeatures) {
     var serviceFeature = lodash.find(actionFeatures, function(o) {
       return o.show === true;
     });
 
     return angular.isDefined(serviceFeature);
-  }
-
-  function isAnyActionAllowed(actions, productFeatures) {
-    return actions.some(action => angular.isDefined(productFeatures[action]));
-  }
-
-  function entitledForCatalogItems(productFeatures) {
-    var actions = ["atomic_catalogitem_edit",
-      "atomic_catalogitem_new",
-      "catalog_items_view",
-      "catalogitem_edit",
-      "catalogitem_new"];
-
-    return isAnyActionAllowed(actions, productFeatures);
   }
 
   function entitledForServiceCatalogs(productFeatures) {

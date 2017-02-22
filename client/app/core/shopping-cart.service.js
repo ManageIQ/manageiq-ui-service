@@ -1,5 +1,5 @@
 /** @ngInject */
-export function ShoppingCartFactory($rootScope, CollectionsApi, $q, $http, lodash, RBAC) {
+export function ShoppingCartFactory($rootScope, CollectionsApi, $q, lodash, RBAC) {
   var state = null;
 
   var service = {

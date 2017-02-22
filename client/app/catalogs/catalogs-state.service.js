@@ -104,7 +104,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
       }
     }
 
-    return CollectionsApi.post('service_catalogs', null, {}, catalogObj).then(createSuccess, createFailure);
+    return CollectionsApi.post('service_catalogs', null, {}, addObj).then(createSuccess, createFailure);
   }
 
   function editCatalog(catalog, skipResults) {

@@ -4,11 +4,11 @@ import templateUrl from './template-explorer.html';
 export const TemplateExplorerComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
-  templateUrl: 'app/components/template-explorer/template-explorer.html',
+  templateUrl,
 };
 
 /** @ngInject */
-function ComponentController(ListView, Language, TemplatesService, EventNotifications, Session, Polling) {
+function ComponentController(ListView, TemplatesService, EventNotifications, Session, Polling) {
   const vm = this;
   vm.$onInit = activate();
   vm.$onDestroy = function() {
@@ -122,11 +122,12 @@ function ComponentController(ListView, Language, TemplatesService, EventNotifica
     if (!refresh) {
       vm.loading = true;
     }
-    const existingTemplates = (angular.isDefined(vm.templatesList) && refresh ? angular.copy(vm.templatesList) : []);
     vm.offset = String(offset);
 
     TemplatesService.getMinimal(vm.filters).then(setResultTotals);
-    TemplatesService.getTemplates(limit, vm.offset, vm.filters, vm.sortConfig).then(querySuccess);
+    TemplatesService.getTemplates(limit, vm.offset, vm.filters, vm.sortConfig)
+      .then(querySuccess)
+      .catch(queryFailure);
 
     function querySuccess(response) {
       vm.loading = false;
@@ -134,7 +135,7 @@ function ComponentController(ListView, Language, TemplatesService, EventNotifica
       vm.templates = response.resources;
       vm.templatesList = [];
       angular.forEach(vm.templates, processTemplates);
-      
+
       function processTemplates(template) {
         switch (template.type) {
           case 'OrchestrationTemplateAzure':
@@ -170,13 +171,13 @@ function ComponentController(ListView, Language, TemplatesService, EventNotifica
       }
     }
 
-    function queryFailure(error) {
+    function queryFailure(_error) {
       vm.loading = false;
       EventNotifications.error(__('There was an error loading templates.'));
     }
   }
 
-  function selectionChange(item) {
+  function selectionChange(_item) {
     vm.selectedItemsList = vm.templatesList.filter(function (service) {
       return service.selected;
     });

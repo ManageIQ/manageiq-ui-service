@@ -101,7 +101,7 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
 
   // Private
 
-  function fetchData(limit, offset, refresh) {
+  function fetchData(limit, offset, _refresh) {
     var filter = [];
     var attributes = ['picture', 'picture.image_href', 'approval_state', 'created_on', 'description', 'requester_name'];
     var options = {
@@ -181,7 +181,7 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
     $state.go('requests.details', {requestId: item.id});
   }
 
-  function sortChange(sortId, direction) {
+  function sortChange(sortId, _direction) {
     vm.listDataCopy.sort(compareFn);
 
     /* Keep track of the current sorting state */

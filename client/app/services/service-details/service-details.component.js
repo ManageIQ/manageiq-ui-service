@@ -203,7 +203,7 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
       $state.go('services');
     }
 
-    function removeFailure(data) {
+    function removeFailure(_data) {
       EventNotifications.error(__('There was an error removing this service.'));
     }
   }

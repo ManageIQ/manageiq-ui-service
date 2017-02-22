@@ -2,7 +2,7 @@
 /* eslint no-cond-assign: "off" */
 
 /** @ngInject */
-export function ListViewFactory($log) {
+export function ListViewFactory() {
   var listView = {};
 
   listView.applyFilters = function(filters, retList, origList, stateFactory, matchesFilter) {

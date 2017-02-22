@@ -89,7 +89,7 @@ function TaggingController($scope, $filter, $q, $log, CollectionsApi, TaggingSer
   }
 
   vm.showTagDropdowns = false;
-  $scope.$watch('vm.tags.selectedCategory', function(value) {
+  $scope.$watch('vm.tags.selectedCategory', function() {
     vm.tags.filtered = $filter('filter')(vm.tags.all, matchCategory);
     if (vm.tags.filtered) {
       vm.tags.selectedTag = vm.tags.filtered[0];

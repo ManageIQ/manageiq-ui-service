@@ -18,7 +18,7 @@ export function NavigationProvider() {
   }
 
   /** @ngInject */
-  function Navigation($rootScope, $window, lodash) {
+  function Navigation() {
     var service = {
       items: model.items,
     };

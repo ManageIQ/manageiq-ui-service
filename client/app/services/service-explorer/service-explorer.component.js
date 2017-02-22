@@ -144,15 +144,15 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     action.isDisabled = !actionEnabled(action.actionName, item);
   }
 
-  function startService(action, item) {
+  function startService(_action, item) {
     PowerOperations.startService(item);
   }
 
-  function stopService(action, item) {
+  function stopService(_action, item) {
     PowerOperations.stopService(item);
   }
 
-  function suspendService(action, item) {
+  function suspendService(_action, item) {
     PowerOperations.suspendService(item);
   }
 
@@ -311,20 +311,6 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     ];
   }
 
-  function getCurrentFilters() {
-    var filters = ['ancestry=null'];
-
-    angular.forEach(vm.headerConfig.filterConfig.appliedFilters, function(nextFilter) {
-      if (nextFilter.id === 'name') {
-        filters.push("name='%" + nextFilter.value + "%'");
-      } else {
-        filters.push(nextFilter.id + '=' + nextFilter.value);
-      }
-    });
-
-    return filters;
-  }
-
   function getFilterCount() {
     ServicesState.getServicesMinimal(ServicesState.getFilters()).then(querySuccess, queryFailure);
 
@@ -332,7 +318,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       vm.filterCount = result.subcount;
     }
 
-    function queryFailure(error) {
+    function queryFailure(_error) {
       vm.loading = false;
       EventNotifications.error(__('There was an error loading the services.'));
     }
@@ -392,7 +378,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       getFilterCount();
     }
 
-    function queryFailure(error) {
+    function queryFailure(_error) {
       vm.loading = false;
       EventNotifications.error(__('There was an error loading the services.'));
     }
@@ -546,27 +532,27 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     doRetireService(vm.selectedItemsList);
   }
 
-  function editServiceItem(action, item) {
+  function editServiceItem(_action, item) {
     doEditService(item);
   }
 
-  function editTagsItem(action, item) {
+  function editTagsItem(_action, item) {
     doEditTags([item]);
   }
 
-  function removeServicesItem(action, item) {
+  function removeServicesItem(_action, item) {
     doRemoveServices([item]);
   }
 
-  function setOwnershipItem(action, item) {
+  function setOwnershipItem(_action, item) {
     doSetOwnership([item]);
   }
 
-  function setServiceRetirementItem(action, item) {
+  function setServiceRetirementItem(_action, item) {
     doSetServiceRetirement([item]);
   }
 
-  function retireServiceItem(action, item) {
+  function retireServiceItem(_action, item) {
     doRetireService([item]);
   }
 }

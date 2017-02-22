@@ -13,7 +13,7 @@ export function AutofocusDirective($timeout) {
 
   return directive;
 
-  function link(scope, element) {
+  function link(_scope, element) {
     $timeout(setFocus, 1);
 
     function setFocus() {

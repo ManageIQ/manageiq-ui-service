@@ -18,8 +18,8 @@ export function TaggingService(CollectionsApi, lodash, exception) {
     const tagObjectsToUnassign = tagsToUnassign.map(toTagObject);
 
     return Promise.all([
-      postTagPayload('assign_tags', tagsToAssign),
-      postTagPayload('unassign_tags', tagsToUnassign),
+      postTagPayload('assign_tags', tagObjectsToAssign),
+      postTagPayload('unassign_tags', tagObjectsToUnassign),
     ]);
 
     function tagName(tag) {

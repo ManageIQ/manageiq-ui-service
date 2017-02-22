@@ -57,12 +57,12 @@ export function routerHelperProvider($locationProvider, $stateProvider, $urlRout
       // Route cancellation:
       // On routing error, go to the dashboard.
       // Provide an exit clause if it tries to do it twice.
-      var unregisterError = $rootScope.$on('$stateChangeError', handleRoutingErrors);
-      var unregisterSuccess = $rootScope.$on('$stateChangeSuccess', updateTitle);
+      $rootScope.$on('$stateChangeError', handleRoutingErrors);
+      $rootScope.$on('$stateChangeSuccess', updateTitle);
       // Hack in redirect to default children
       // Discussions: https://github.com/angular-ui/ui-router/issues/1235
       // https://github.com/angular-ui/ui-router/issues/27
-      var unregisterStart = $rootScope.$on('$stateChangeStart', redirectTo);
+      $rootScope.$on('$stateChangeStart', redirectTo);
     }
 
     function getStates() {
@@ -71,7 +71,7 @@ export function routerHelperProvider($locationProvider, $stateProvider, $urlRout
 
     // Private
 
-    function handleRoutingErrors(event, toState, toParams, fromState, fromParams, error) {
+    function handleRoutingErrors(_event, toState, _toParams, _fromState, _fromParams, error) {
       var destination, msg;
 
       if (handlingStateChangeError) {
@@ -87,7 +87,7 @@ export function routerHelperProvider($locationProvider, $stateProvider, $urlRout
       $location.path('/');
     }
 
-    function updateTitle(event, toState) {
+    function updateTitle(_event, toState) {
       stateCounts.changes++;
       handlingStateChangeError = false;
       $rootScope.title = config.docTitle + ' ' + (toState.title ? __(toState.title) : ''); // data bind to <title>

@@ -14,7 +14,7 @@ export function CustomButtonDirective($window, $timeout) {
       serviceTemplateCatalogId: '=',
     },
     link: link,
-    templateUrl: 'app/components/custom-button/custom-button.html',
+    templateUrl,
     controller: CustomButtonController,
     controllerAs: 'vm',
     bindToController: true,
@@ -22,7 +22,7 @@ export function CustomButtonDirective($window, $timeout) {
 
   return directive;
 
-  function link(scope, element, attrs, controller, transclude) {
+  function link(scope, _element, _attrs, controller, _transclude) {
     controller.activate();
 
     var win = angular.element($window);

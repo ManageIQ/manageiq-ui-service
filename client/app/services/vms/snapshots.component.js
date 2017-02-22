@@ -150,7 +150,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
       vm.snapshots = response.resources;
     }
 
-    function failure(error) {
+    function failure(_error) {
       vm.loading = false;
       EventNotifications.error(__('There was an error loading snapshots.'));
     }
@@ -163,7 +163,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
       vm.vm = response;
     }
 
-    function failure(error) {
+    function failure(_error) {
       EventNotifications.error(__('There was an error loading the vm.'));
     }
   }
@@ -178,7 +178,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
     resolveSnapshots();
   }
 
-  function deleteSnapshot(action, item) {
+  function deleteSnapshot(_action, item) {
     if (angular.isDefined(item)) {
       vm.snapshotsToRemove = [{"href": item.href}];
       vm.deleteTitle = __('Delete Snapshot');
@@ -191,7 +191,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
     vm.deleteModal = true;
   }
 
-  function processSnapshot(action, item) {
+  function processSnapshot(_action, _item) {
     const modalOptions = {
       component: 'processSnapshotsModal',
       resolve: {
