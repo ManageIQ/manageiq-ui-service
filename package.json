@@ -24,7 +24,6 @@
     "vet": "eslint \"client/**/*.js\" && sass-lint --verbose --no-exit"
   },
   "devDependencies": {
-    "ace-code-editor": "^1.2.3",
     "actioncable": "5.0.1",
     "angular": "1.6.1",
     "angular-animate": "1.6.1",
@@ -48,7 +47,7 @@
     "bardjs": "0.1.8",
     "bootstrap-combobox": "1.0.2",
     "bootstrap-switch": "3.3.2",
-    "brace": "^0.9.1",
+    "brace": "0.9.1",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "chalk": "1.1.3",
