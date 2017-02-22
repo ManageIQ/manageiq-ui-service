@@ -119,9 +119,8 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
 
     function success(response) {
       response.results.forEach((response) => {
-        console.log(response);
         if (response.success) {
-          EventNotifications.success(__('Success deleting snapshot. ')+ response.message);
+          EventNotifications.success(__('Success deleting snapshot. ') + response.message);
         } else {
           EventNotifications.error(__('Error deleting snapshot. ') + response.message);
         }
