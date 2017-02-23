@@ -35,7 +35,7 @@ function StateController($state, dialog, CollectionsApi, EventNotifications, spr
   vm.dialog.copyDialog = dialogAction('copy');
 
   function editDialog(item) {
-    $state.go('dialogs.edit', {dialogId: dialog.id});
+    $state.go('dialogs.edit', {dialogId: item.id});
   }
 
   function dialogAction(action) {
@@ -56,11 +56,10 @@ function StateController($state, dialog, CollectionsApi, EventNotifications, spr
       }
 
       function actionFailure() {
-        var actionString;
         if (action === 'copy') {
-          actionString = EventNotifications.error(__('There was an error copying this dialog.'));
+          EventNotifications.error(__('There was an error copying this dialog.'));
         } else {
-          actionString = EventNotifications.error(__('There was an error deleting this dialog.'));
+          EventNotifications.error(__('There was an error deleting this dialog.'));
         }
       }
     };

@@ -33,7 +33,6 @@ export function authConfig($httpProvider) {
 
     function endSession() {
       var $state = $injector.get('$state');
-      var Notifications = $injector.get('Notifications');
       var Session = $injector.get('Session');
 
       if ('login' !== $state.current.name) {
@@ -46,15 +45,15 @@ export function authConfig($httpProvider) {
 
 /** @ngInject */
 export function authInit($rootScope, $state, Session, $sessionStorage, logger, Language, ServerInfo, ProductInfo, $window, RBAC) {
-  var unregisterStart = $rootScope.$on('$stateChangeStart', changeStart);
-  var unregisterError = $rootScope.$on('$stateChangeError', changeError);
-  var unregisterSuccess = $rootScope.$on('$stateChangeSuccess', changeSuccess);
+  $rootScope.$on('$stateChangeStart', changeStart);
+  $rootScope.$on('$stateChangeError', changeError);
+  $rootScope.$on('$stateChangeSuccess', changeSuccess);
 
   $sessionStorage.$sync();  // needed when called right on reload
   if ($sessionStorage.token) {
     syncSession();
   }
-  function changeStart(event, toState, toParams, fromState, fromParams) {
+  function changeStart(event, toState, toParams, _fromState, _fromParams) {
     if (toState.data && !toState.data.requireUser) {
       return;
     }
@@ -75,7 +74,7 @@ export function authInit($rootScope, $state, Session, $sessionStorage, logger, L
     syncSession().then(rbacReloadOrLogin(toState, toParams)).catch(badUser);
   }
   function syncSession() {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve, _reject) {
       // trying saved token..
       Session.setAuthToken($sessionStorage.token);
       Session.setMiqGroup($sessionStorage.miqGroup);
@@ -106,7 +105,7 @@ export function authInit($rootScope, $state, Session, $sessionStorage, logger, L
     $window.location.href = $state.href('login');
   }
 
-  function changeError(event, toState, toParams, fromState, fromParams, error) {
+  function changeError(event, toState, _toParams, _fromState, _fromParams, error) {
     // If a 401 is encountered during a state change, then kick the user back to the login
     if (401 === error.status) {
       event.preventDefault();

@@ -279,7 +279,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
       getFilterCount();
     }
 
-    function queryFailure(error) {
+    function queryFailure(_error) {
       vm.loading = false;
       EventNotifications.error(__('There was an error loading orders.'));
     }
@@ -292,7 +292,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
       vm.filterCount = result.subcount;
     }
 
-    function queryFailure(error) {
+    function queryFailure(_error) {
       EventNotifications.error(__('There was an error loading orders.'));
     }
   }
@@ -327,7 +327,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
     ModalService.open(modalOptions);
   }
 
-  function duplicateOrder(action, item) {
+  function duplicateOrder(_action, item) {
     CollectionsApi.post('service_orders', null, null, {action: "copy", resources: [{id: item.id}]}).then(success, failure);
 
     function success(response) {
@@ -335,12 +335,12 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
       resolveOrders(vm.limit, 0);
     }
 
-    function failure(error) {
+    function failure(_error) {
       EventNotifications.error(sprintf(__('There was an error duplicating %s.'), item.name));
     }
   }
 
-  function removeOrder(action, item) {
+  function removeOrder(_action, item) {
     const modalOptions = {
       component: 'processOrderModal',
       resolve: {

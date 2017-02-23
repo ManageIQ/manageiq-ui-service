@@ -2,7 +2,7 @@
 /* eslint angular/angularelement: "off" */
 
 /** @ngInject */
-export function DialogFieldRefreshFactory(lodash, CollectionsApi, EventNotifications) {
+export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
   var service = {
     listenForAutoRefreshMessages: listenForAutoRefreshMessages,
     refreshSingleDialogField: refreshSingleDialogField,
@@ -69,9 +69,9 @@ export function DialogFieldRefreshFactory(lodash, CollectionsApi, EventNotificat
 
   function setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields) {
     angular.forEach(dialogs, function(dialog) {
-      angular.forEach(dialog.dialog_tabs, function(dialogTab, dialogTabIndex) {
-        angular.forEach(dialogTab.dialog_groups, function(dialogGroup, dialogGroupIndex) {
-          angular.forEach(dialogGroup.dialog_fields, function(dialogField, dialogFieldIndex) {
+      angular.forEach(dialog.dialog_tabs, function(dialogTab) {
+        angular.forEach(dialogTab.dialog_groups, function(dialogGroup) {
+          angular.forEach(dialogGroup.dialog_fields, function(dialogField) {
             allDialogFields.push(dialogField);
 
             selectDefaultValue(dialogField, dialogField);
@@ -96,23 +96,6 @@ export function DialogFieldRefreshFactory(lodash, CollectionsApi, EventNotificat
   }
 
   // Private
-
-  function refreshMultipleDialogFields(allDialogFields, fieldNamesToRefresh, url, resourceId) {
-    function refreshSuccess(result) {
-      angular.forEach(allDialogFields, function(dialogField) {
-        if (fieldNamesToRefresh.indexOf(dialogField.name) > -1) {
-          var resultObj = result.result[dialogField.name];
-          updateAttributesForDialogField(dialogField, resultObj);
-        }
-      });
-    }
-
-    function refreshFailure(result) {
-      EventNotifications.error('There was an error automatically refreshing dialogs' + result);
-    }
-
-    fetchDialogFieldInfo(allDialogFields, fieldNamesToRefresh, url, resourceId, refreshSuccess, refreshFailure);
-  }
 
   function updateAttributesForDialogField(dialogField, newDialogField) {
     copyDynamicAttributes(dialogField, newDialogField);

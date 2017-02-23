@@ -8,14 +8,8 @@ function getStates() {
     'services.explorer': {
       url: '',
       templateUrl: 'app/states/services/explorer/explorer.html',
-      controller: StateController,
       controllerAs: 'vm',
       title: N_('Services Explorer'),
     },
   };
-}
-
-/** @ngInject */
-function StateController() {
-  var vm = this;
 }

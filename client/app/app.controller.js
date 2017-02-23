@@ -10,13 +10,13 @@ export class AppController {
   }
 
   $onInit() {
-    this.$scope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
+    this.$scope.$on('$stateChangeStart', (_event, toState) => {
       if (toState.resolve) {
         this.progressbar.start();
       }
     });
 
-    this.$scope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
+    this.$scope.$on('$stateChangeSuccess', (_event, toState) => {
       if (toState.resolve) {
         this.progressbar.complete();
       }

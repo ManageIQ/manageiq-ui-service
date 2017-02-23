@@ -1,5 +1,5 @@
 /** @ngInject */
-export function SessionFactory($http, $q, $sessionStorage, gettextCatalog, $window, $state, $cookies, lodash, RBAC, Polling) {
+export function SessionFactory($http, $q, $sessionStorage, $window, $state, $cookies, RBAC, Polling) {
   var model = {
     token: null,
     user: {},

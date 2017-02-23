@@ -31,7 +31,7 @@ export function ConfirmationDirective($uibPosition, $window) {
 
   return directive;
 
-  function link(scope, element, attrs, controller, transclude) {
+  function link(scope, element, attrs, controller) {
     controller.activate({
       getOffset: getOffset,
       getPosition: getPosition,

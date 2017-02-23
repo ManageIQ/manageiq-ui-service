@@ -23,6 +23,7 @@
   },
   "rules": {
     "accessor-pairs": "error",
+    "angular/on-watch": "off",
     "array-bracket-spacing": "off",
     "array-callback-return": "off",
     "arrow-body-style": "error",
@@ -234,7 +235,13 @@
     "no-unneeded-ternary": "error",
     "no-unsafe-negation": "error",
     "no-unused-expressions": "off",
-    "no-unused-vars": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "args": "all",
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "no-use-before-define": "off",
     "no-useless-call": "error",
     "no-useless-computed-key": "error",

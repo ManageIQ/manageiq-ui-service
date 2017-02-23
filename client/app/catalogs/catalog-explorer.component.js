@@ -58,7 +58,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
     $state.go('catalogs.editor', {catalogId: catalog.id});
   }
 
-  function handleEdit(action, catalog) {
+  function handleEdit(_action, catalog) {
     editCatalog(catalog);
   }
 
@@ -103,7 +103,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
     vm.confirmDelete = false;
   }
 
-  function handleDelete(action, catalog) {
+  function handleDelete(_action, catalog) {
     vm.catalogToDelete = catalog;
     vm.confirmDelete = true;
     vm.deleteConfirmationMessage = sprintf(__('Are you sure you want to delete catalog %s?'),
@@ -316,7 +316,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
       }
     }
 
-    function failure(error) {
+    function failure(_error) {
       vm.loading = false;
       EventNotifications.error(__('There was an error loading catalogs.'));
     }

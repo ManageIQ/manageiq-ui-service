@@ -228,6 +228,7 @@ export function NavigationController(Text,
     destroyCart();
     destroyNotifications();
     destroyToast();
+    destroy();
   });
 
   function handleItemClick(item) {

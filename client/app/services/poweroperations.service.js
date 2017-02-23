@@ -150,7 +150,7 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
   function powerOperation(apiType, powerAction, item, itemType) {
     CollectionsApi.post(apiType, item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure);
 
-    function actionSuccess(response) {
+    function actionSuccess(_response) {
       if (powerAction === 'start') {
         EventNotifications.success(sprintf(__("%s was started"), item.name));
       } else if (powerAction === 'stop') {

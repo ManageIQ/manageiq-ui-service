@@ -63,7 +63,7 @@ function DialogListController($state, DialogsState, $filter, Language, ListView)
     $state.go('dialogs.edit', {dialogId: 'new'});
   }
 
-  function handleClick(item, e) {
+  function handleClick(item, _event) {
     $state.go('dialogs.details', {dialogId: item.id});
   }
 
@@ -85,7 +85,7 @@ function DialogListController($state, DialogsState, $filter, Language, ListView)
   /* Apply the filtering to the data list */
   filterChange(DialogsState.getFilters());
 
-  function sortChange(sortId, isAscending) {
+  function sortChange(sortId, _isAscending) {
     vm.dialogList.sort(compareFn);
 
     /* Keep track of the current sorting state */

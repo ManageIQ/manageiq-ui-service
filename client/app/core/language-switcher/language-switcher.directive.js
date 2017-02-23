@@ -16,7 +16,7 @@ export function LanguageSwitcherDirective() {
   return directive;
 
   /** @ngInject */
-  function LanguageSwitcherController($scope, gettextCatalog, Language, lodash, $state, $window) {
+  function LanguageSwitcherController($scope, Language, lodash, $state) {
     var vm = this;
     vm.mode = vm.mode || 'menu';
 
