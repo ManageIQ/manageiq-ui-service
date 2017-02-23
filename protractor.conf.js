@@ -30,7 +30,7 @@ var env = {
 var config = {
  // seleniumAddress: env.seleniumAddress,
   specs: [
-    '**/template-editor.e2e.js'
+    '**/*.e2e.js'
   ],
 
   capabilities: env.capabilities,
