@@ -22,7 +22,7 @@ function ComponentController() {
     if (vm.content) {
       vm.editor.getSession().setValue(vm.content);
     }
-    vm.editor.getSession().on('change', function (e) {
+    vm.editor.getSession().on('change', function (_e) {
       vm.content = vm.editor.getValue();
     });
   };

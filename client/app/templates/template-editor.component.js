@@ -62,10 +62,10 @@ function ComponentController( $state, TemplatesService, EventNotifications, loda
       vm.template.type = vm.templateTypeValue.value;
       TemplatesService.createTemplate(vm.template).then(createSuccess, createFailure);
     }
-    function createSuccess(data) {
+    function createSuccess(_data) {
       $state.go('templates.explorer');
     }
-    function createFailure(data) {
+    function createFailure(_data) {
       EventNotifications.error(__("There was an error creating the template"));
     }
   }
