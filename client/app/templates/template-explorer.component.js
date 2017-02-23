@@ -1,4 +1,4 @@
-/* eslint camelcase: "off" */
+import '../../assets/sass/_explorer.sass';
 import templateUrl from './template-explorer.html';
 
 export const TemplateExplorerComponent = {
@@ -69,6 +69,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
       onCheckBoxChange: selectionChange,
     };
   }
+
   function getSortConfig() {
     return {
       direction: 'asc',
@@ -76,6 +77,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
       sortOptions: 'alpha',
     };
   }
+
   function getToolbarConfig() {
     const sortOrderFields = getSortFields();
     const sortConfig = {
@@ -117,8 +119,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
   }
 
   function getMenuActions() {
-    const menuActions = [
-    ];
+    const menuActions = [];
 
     return menuActions;
   }
@@ -130,10 +131,12 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
 
     resolveTemplates(vm.limit, 0);
   }
+
   function filterChange(filters) {
     vm.filters = filters;
     resolveTemplates(vm.limit, 0);
   }
+
   function resolveTemplates(limit, offset, refresh) {
     if (!refresh) {
       vm.loading = true;
@@ -174,7 +177,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
 
         template.selected = false;
 
-        vm.selectedItemsList.some(function (selectedItem) {
+        vm.selectedItemsList.some(function(selectedItem) {
           if (selectedItem.id === template.id) {
             if (angular.isDefined(selectedItem.selected) && selectedItem.selected) {
               template.selected = true;
@@ -194,7 +197,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
   }
 
   function selectionChange(_item) {
-    vm.selectedItemsList = vm.templatesList.filter(function (service) {
+    vm.selectedItemsList = vm.templatesList.filter(function(service) {
       return service.selected;
     });
   }
@@ -214,6 +217,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
   function pollTemplates() {
     resolveTemplates(vm.limit, vm.offset, true);
   }
+
   function addTemplate() {
     $state.go("templates.editor");
   }

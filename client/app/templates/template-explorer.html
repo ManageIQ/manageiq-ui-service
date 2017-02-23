@@ -18,7 +18,7 @@
     </custom-dropdown>
   </actions>
 </div>
-<div class="list-view-container section-container paged-container service-explorer-list">
+<div class="list-view-container section-container paged-container explorer-list">
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading"
        pf-list-view id="templatesList"
@@ -44,14 +44,20 @@
         </span>
       </div>
       <div class="col-lg-1 col-md-2 col-sm-4 col-xs-4">
-        <span class="no-wrap">
+        <span>
           <span class="label label-success" ng-if="item.orderable === true" translate>Available</span>
         </span>
       </div>
       <div class="col-lg-3 col-md-2 hidden-sm hidden-xs">
-        <span class="no-wrap">
-         <strong translate>Updated</strong> {{item.updated_at}}
-        </span>
+        <div class="list-view-stacked-item" uib-tooltip="Updated: {{item.updated_at | date : 'short'}}"
+             tooltip-append-to-body="true"
+             tooltip-popup-delay="1000"
+             tooltip-placement="bottom-left">
+          <strong translate>Updated</strong>
+          <div>
+            {{ item.updated_at | date : 'short' }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
