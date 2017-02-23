@@ -1,3 +1,4 @@
+import '../../../assets/sass/_explorer.sass';
 import templateUrl from './request-explorer.html';
 
 export const RequestExplorerComponent = {
@@ -52,6 +53,7 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
       configuration: [
         {
           title: __('Lifecycle'),
+          name: __('Lifecycle'),
           actionName: 'lifecycle',
           icon: 'fa fa-recycle',
           actions: [],
