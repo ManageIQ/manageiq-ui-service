@@ -8,11 +8,7 @@ export const TemplateExplorerComponent = {
 };
 
 /** @ngInject */
-<<<<<<< HEAD:client/app/components/template-explorer/template-explorer.component.js
-function ComponentController(ListView, TemplatesService, EventNotifications, Session, Polling) {
-=======
-function ComponentController(ListView, Language, TemplatesService, EventNotifications, Session, $state, Polling) {
->>>>>>> Added ability to create Template:client/app/templates/template-explorer.component.js
+function ComponentController(ListView, TemplatesService, EventNotifications, $state, Session, Polling) {
   const vm = this;
   vm.$onInit = activate();
   vm.$onDestroy = function() {
