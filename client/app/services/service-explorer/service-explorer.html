@@ -44,7 +44,7 @@
     </div>
   </div>
 </div>
-<div ng-if="vm.viewType == 'listView'" class="list-view-container section-container paged-container service-explorer-list">
+<div ng-if="vm.viewType == 'listView'" class="list-view-container section-container paged-container explorer-list">
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading" pf-list-view id="serviceList" config="vm.listConfig"
        items="vm.servicesList"
@@ -106,14 +106,14 @@
         </span>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
-          <div class="list-view-stacked-item" uib-tooltip="Created: {{item.created_at | date : 'MMM dd, yyyy H:mm:ss'}}"
-                tooltip-append-to-body="true"
-                tooltip-popup-delay="1000"
-                tooltip-placement="bottom">
-            <strong translate>Created</strong>&nbsp;
-            <div>
-              {{ item.created_at | date : 'shortDate' }}
-            </div>
+        <div class="list-view-stacked-item" uib-tooltip="Created: {{item.created_at | date : 'short'}}"
+             tooltip-append-to-body="true"
+             tooltip-popup-delay="1000"
+             tooltip-placement="bottom-left">
+          <strong translate>Created</strong>&nbsp;
+          <div>
+            {{ item.created_at | date : 'short' }}
+          </div>
         </div>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
@@ -124,7 +124,7 @@
              tooltip-placement="bottom">
           <strong translate>Retires</strong>&nbsp;
           <div>
-            {{item.retires_on ? (item.retires_on | date : 'shortDate') : ('Never' | translate)}}
+            {{item.retires_on ? (item.retires_on | date : 'short') : ('Never' | translate)}}
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@
     </div>
     <list-expanded-content>
       <div pf-list-view
-           class="service-explorer-children-list"
+           class="explorer-children-list"
            config="vm.serviceChildrenListConfig"
            items="$parent.item.all_service_children"
            custom-scope="vm"
@@ -192,13 +192,13 @@
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
           </div>
           <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
-            <div class="list-view-stacked-item" uib-tooltip="Created: {{item.created_at | date : 'MMM dd, yyyy H:mm:ss'}}"
+            <div class="list-view-stacked-item" uib-tooltip="Created: {{item.created_at | date : 'short'}}"
                  tooltip-append-to-body="true"
                  tooltip-popup-delay="1000"
-                 tooltip-placement="bottom">
-              <strong translate>Created</strong>&nbsp;
+                 tooltip-placement="bottom-left">
+              <strong translate>Created</strong>
               <div>
-                {{ item.created_at | date : 'shortDate' }}
+                {{ item.created_at | date : 'short' }}
               </div>
             </div>
           </div>
@@ -210,7 +210,7 @@
                  tooltip-placement="bottom">
               <strong translate>Retires</strong>&nbsp;
               <div>
-                {{item.retires_on ? (item.retires_on | date : 'shortDate') : ('Never' | translate)}}
+                {{item.retires_on ? (item.retires_on | date : 'short') : ('Never' | translate)}}
               </div>
             </div>
           </div>
