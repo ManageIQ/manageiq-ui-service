@@ -5,6 +5,7 @@ export const SelectDropdownComponent = {
   bindings: {
     model: "=",
     options: '<',
+    required: '<',
   },
   templateUrl,
 };

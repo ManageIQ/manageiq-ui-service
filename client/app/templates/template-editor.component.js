@@ -42,7 +42,6 @@ function ComponentController( $state, TemplatesService, EventNotifications, loda
       templateTypes: templateTypes,
       templateTypeValue: '',
       cancelChanges: cancelChanges,
-      isPristine: isPristine,
     });
     if (!vm.template) {
       vm.template = {
@@ -70,13 +69,7 @@ function ComponentController( $state, TemplatesService, EventNotifications, loda
       EventNotifications.error(__("There was an error creating the template"));
     }
   }
-  function isPristine() {
-    if (!vm.template.name || !vm.templateTypeValue) {
-      return false;
-    }
 
-    return true;
-  }
   function cancelChanges() {
     $state.go('templates');
   }
