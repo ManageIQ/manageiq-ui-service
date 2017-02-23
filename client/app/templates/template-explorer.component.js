@@ -33,6 +33,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
       menuActions: getMenuActions(),
       toolbarConfig: getToolbarConfig(),
       listConfig: getListConfig(),
+      listActionDisable: listActionDisable,
       sortConfig: getSortConfig(),
       offset: 0,
       pollingInterval: 10000,
@@ -54,6 +55,13 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
         actionName: 'create',
         title: __('Create new template'),
         actionFn: addTemplate,
+        isDisabled: false,
+      },
+      {
+        name: __('Edit'),
+        actionName: 'edit',
+        title: __('Edit template'),
+        actionFn: editTemplate,
         isDisabled: false,
       },
       ],
@@ -119,11 +127,25 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
   }
 
   function getMenuActions() {
-    const menuActions = [];
+    const menuActions = [{
+      name: __('Edit'),
+      title: __('Edit Template'),
+      actionFn: handleEdit,
+    }];
 
     return menuActions;
   }
+  function listActionDisable(config, items) {
+    const menuCreate = 0;
+    const menuEdit = 1;
 
+    switch (config.actionName) {
+      case 'configuration':
+        config.actions[menuCreate].isDisabled = items.length > 0;
+        config.actions[menuEdit].isDisabled = items.length !== 1;
+        break;
+    }
+  }
   function sortChange(sortId, direction) {
     vm.sortConfig.field = sortId.id;
     vm.sortConfig.direction = direction === true ? 'asc' : 'desc';
@@ -220,5 +242,16 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
 
   function addTemplate() {
     $state.go("templates.editor");
+  }
+
+  function handleEdit(_action, template) {
+    editTemplate(template);
+  }
+
+  function editTemplate(template) {
+    if (angular.isUndefined(template.id)) {
+      template = vm.selectedItemsList[0];
+    }
+    $state.go('templates.editor', {templateId: template.id});
   }
 }

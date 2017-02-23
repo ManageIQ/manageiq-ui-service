@@ -7,7 +7,7 @@ export const TemplateEditorComponent = {
   controllerAs: 'vm',
   templateUrl,
   bindings: {
-    template: "<",
+    existingTemplate: "<?",
   },
 };
 
@@ -36,6 +36,14 @@ function ComponentController( $state, TemplatesService, EventNotifications, loda
         "value": "OrchestrationTemplateVnfd",
       },
     ];
+    const defaultTemplate = {
+      name: '',
+      type: '',
+      description: '',
+      content: '',
+      orderable: true,
+      draft: true,
+    };
 
     angular.extend(vm, {
       saveTemplate: saveTemplate,
@@ -43,27 +51,40 @@ function ComponentController( $state, TemplatesService, EventNotifications, loda
       templateTypeValue: '',
       cancelChanges: cancelChanges,
     });
-    if (!vm.template) {
-      vm.template = {
-        name: '',
-        type: '',
-        description: '',
-        content: '',
-        orderable: true,
-        draft: true,
-      };
-    } else {
-      vm.templateTypeValue = lodash.find(templateTypes, { value: vm.template.type });
-    }
+    vm.template = setupTemplate(templateTypes, defaultTemplate);
   }
 
-  function saveTemplate() {
-    if (!vm.template.id) {
-      vm.template.type = vm.templateTypeValue.value;
-      TemplatesService.createTemplate(vm.template).then(createSuccess, createFailure);
+  function setupTemplate(templateTypes, defaultTemplate) {
+    if (vm.existingTemplate) {
+      vm.templateTypeValue = lodash.find(templateTypes, { value: vm.existingTemplate.type });
+
+      return {
+        name: vm.existingTemplate.name,
+        type: vm.existingTemplate.type,
+        description: vm.existingTemplate.description,
+        content: vm.existingTemplate.content,
+        orderable: vm.existingTemplate.orderable,
+        draft: vm.existingTemplate.draft,
+        id: vm.existingTemplate.id,
+      };
     }
-    function createSuccess(_data) {
+
+    return defaultTemplate;
+  }
+  function saveTemplate() {
+    vm.template.type = vm.templateTypeValue.value;
+
+    if (vm.existingTemplate) {
+      TemplatesService.updateTemplate(vm.template).then(changesSuccessful, changesFailed);
+    } else {
+      TemplatesService.createTemplate(vm.template).then(changesSuccessful, createFailure);
+    }
+
+    function changesSuccessful(_data) {
       $state.go('templates.explorer');
+    }
+    function changesFailed(_data) {
+      EventNotifications.error(__("There was an error updating the template"));
     }
     function createFailure(_data) {
       EventNotifications.error(__("There was an error creating the template"));
