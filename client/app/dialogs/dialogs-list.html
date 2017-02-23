@@ -1,34 +1,30 @@
-<div pf-toolbar class="section-toolbar" id="dialogsToolbar" config="vm.toolbarConfig"></div>
-
-<div class="list-view-container section-container">
-  <div pf-list-view id="dialogList" class="dialogs-list" config="vm.listConfig" items="vm.dialogList"
+<div pf-toolbar class="section-toolbar section-toolbar-right-actions" id="dialogsToolbar"
+     config="vm.toolbarConfig"></div>
+<div class="list-view-container section-container explorer-list">
+  <div pf-list-view id="dialogList" config="vm.listConfig" items="vm.dialogList"
        action-buttons="vm.actionButtons"
        enable-button-for-item-fn="vm.enableButtonForItemFn"
        menu-actions="vm.menuActions"
        update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 name-column">
         <span class="no-wrap">
           {{ item.label }}
         </span>
       </div>
-      <div class="col-md-3">
-        <span class="no-wrap">
-          <strong translate>Last Updated</strong>&nbsp;{{ item.updated_at | date:'yyyy-MM-dd hh:mm a' }}
-        </span>
+      <div class="col-lg-6 col-md-6 col-sm-6  col-xs-6">
+        <div class="list-view-stacked-item" uib-tooltip="Updated: {{item.updated_at | date : 'short'}}"
+             tooltip-append-to-body="true"
+             tooltip-popup-delay="1000"
+             tooltip-placement="bottom">
+          <strong translate>Updated</strong>&nbsp;
+          <div>
+            {{ item.updated_at | date : 'short' }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<script>
-  $(function() {
-    setTimeout(function(){
-      $(".simple-filter .dropdown-menu li a").click(function(){
-        $(".simple-filter input").focus();
-      });
-      $("#dialogList .list-view-pf .list-group-item .list-view-pf-actions .btn-default").addClass("btn-primary");
-    }, 500);
-  });
-</script>
 
 

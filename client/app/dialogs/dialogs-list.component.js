@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-import './_dialogs-list.sass';
+import '../../assets/sass/_explorer.sass';
 import templateUrl from './dialogs-list.html';
 
 export const DialogsListComponent = {
