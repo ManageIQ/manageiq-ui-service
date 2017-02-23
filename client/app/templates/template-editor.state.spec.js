@@ -42,7 +42,7 @@ describe('Component: templateEditor', function() {
        let templateTypes = element.find("select option");
        expect(templateTypes.length).to.eq(5);
 
-       let aceEditor = element.find(".ace_editor");
+       let aceEditor = element.find(".ace-editor");
        expect(aceEditor.length).to.eq(1);
     });
 
