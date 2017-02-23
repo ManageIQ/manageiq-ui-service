@@ -1,4 +1,3 @@
-/** @ngInject */
 /* eslint-disable sort-imports */
 import ace from 'brace';
 import 'brace/mode/text';
