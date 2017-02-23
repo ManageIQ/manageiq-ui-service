@@ -45,7 +45,6 @@ import { SharedModule } from '../shared/shared.module.js';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component.js';
 import { ShoppingCartFactory } from './shopping-cart.service.js';
 import { SkinModule } from '../skin/skin.module.js';
-import { TemplatesServiceFactory } from './templates.service.js';
 import { TagEditorFactory } from './tag-editor-modal/tag-editor-modal.service.js';
 import { gettextInit } from './gettext.config.js';
 import { layoutInit } from  './layouts.config.js';
@@ -97,7 +96,6 @@ export const CoreModule = angular
   .factory('ServerInfo', ServerInfo)
   .factory('Session', SessionFactory)
   .factory('ShoppingCart', ShoppingCartFactory)
-  .factory('TemplatesService', TemplatesServiceFactory)
   .factory('TagEditorModal', TagEditorFactory)
   .factory('logger', LoggerService)
   .factory('TaggingService', TaggingService)
