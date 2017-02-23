@@ -1,3 +1,4 @@
+import '../../../assets/sass/_explorer.sass';
 import templateUrl from './order-explorer.html';
 
 export const OrderExplorerComponent = {

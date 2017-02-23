@@ -51,7 +51,7 @@ describe('Component: dialogsList', function() {
 
     it('should sort the dialogs appropriately', function() {
       // Default sort is by name
-      var nameSpans = element.find('.list-view-pf-main-info > .row > .col-md-4 > span');
+      var nameSpans = element.find('.list-view-pf-main-info > .row > .col-md-6 > span');
       expect(nameSpans.length).to.eq(6);
       expect(nameSpans[0].innerHTML.trim()).to.eq("azure-single-vm-from-user-image");
 
@@ -62,7 +62,7 @@ describe('Component: dialogsList', function() {
       eventFire(angular.element(sortItems[1]), 'click');
       scope.$apply();
 
-      nameSpans = element.find('.list-view-pf-main-info > .row > .col-md-4 > span');
+      nameSpans = element.find('.list-view-pf-main-info > .row > .col-md-6 > span');
       expect(nameSpans.length).to.eq(6);
       expect(nameSpans[0].innerHTML.trim()).to.eq('RHEL7 with PostgreSQL');
     });

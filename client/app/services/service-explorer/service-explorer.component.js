@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-import './_service-explorer.sass';
+import '../../../assets/sass/_explorer.sass';
 import templateUrl from './service-explorer.html';
 
 export const ServiceExplorerComponent = {
