@@ -1,4 +1,5 @@
 /* eslint camelcase: "off" */
+import '../../assets/sass/_explorer.sass';
 import templateUrl from './catalog-explorer.html';
 
 export const CatalogExplorerComponent = {

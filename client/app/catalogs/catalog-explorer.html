@@ -39,7 +39,7 @@
     </ss-card>
   </div>
 </div>
-<div ng-if="vm.viewType == 'listView'"  class="list-view-container section-container paged-container service-explorer-list">
+<div ng-if="vm.viewType == 'listView'"  class="list-view-container section-container paged-container explorer-list">
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading" class="list-view-container section-container"
        confirmation
@@ -96,7 +96,7 @@
       </div>
       <list-expanded-content>
         <div pf-list-view
-             class="service-explorer-children-list"
+             class="explorer-children-list"
              config="vm.expandedListConfig"
              items="$parent.item.service_templates.resources">
           <div class="row">
