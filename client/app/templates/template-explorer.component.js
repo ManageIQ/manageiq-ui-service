@@ -8,7 +8,7 @@ export const TemplateExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController(ListView, TemplatesService, EventNotifications, $state, Session, Polling) {
+function ComponentController(ListView, TemplatesService, EventNotifications, $state, sprintf, Session, Polling) {
   const vm = this;
   vm.$onInit = activate();
   vm.$onDestroy = function() {
@@ -18,16 +18,20 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
   function activate() {
     angular.extend(vm, {
       currentUser: Session.currentUser(),
+      confirmDelete: false,
+      cancelRemoveTemplate: cancelRemoveTemplate,
       loading: false,
       templates: [],
       limit: 20,
       filterCount: 0,
       filters: [],
       templatesList: [],
+      templatesToDelete: [],
       selectedItemsList: [],
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
       selectedItemsListCount: 0,
       resolveTemplates: resolveTemplates,
+      removeTemplate: removeTemplate,
       updatePagination: updatePagination,
       actionConfig: getActionConfig(),
       menuActions: getMenuActions(),
@@ -62,6 +66,13 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
         actionName: 'edit',
         title: __('Edit template'),
         actionFn: editTemplate,
+        isDisabled: false,
+      },
+      {
+        name: __('Delete'),
+        actionName: 'delete',
+        title: __('Delete template'),
+        actionFn: deleteSelectedTemplates,
         isDisabled: false,
       },
       ],
@@ -131,18 +142,26 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
       name: __('Edit'),
       title: __('Edit Template'),
       actionFn: handleEdit,
-    }];
+    },
+    {
+      name: __('Delete'),
+      title: __('Delete Template'),
+      actionFn: handleDelete,
+    },
+    ];
 
     return menuActions;
   }
   function listActionDisable(config, items) {
     const menuCreate = 0;
     const menuEdit = 1;
+    const menuDelete = 2;
 
     switch (config.actionName) {
       case 'configuration':
         config.actions[menuCreate].isDisabled = items.length > 0;
         config.actions[menuEdit].isDisabled = items.length !== 1;
+        config.actions[menuDelete].isDisabled = items.length === 0;
         break;
     }
   }
@@ -252,6 +271,53 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
     if (angular.isUndefined(template.id)) {
       template = vm.selectedItemsList[0];
     }
-    $state.go('templates.editor', {templateId: template.id});
+    $state.go('templates.editor', { templateId: template.id });
+  }
+  function removeTemplate() {
+    let deleteTemplates;
+
+    if (vm.templatesToDelete.length > 0) {
+      deleteTemplates = vm.templatesToDelete;
+    } else if (vm.templatesToDelete) {
+      deleteTemplates = [vm.templatesToDelete];
+    }
+
+    if (deleteTemplates.length > 0) {
+      TemplatesService.deleteTemplates(deleteTemplates).then(removeSuccess,
+        removeFailure);
+    }
+    vm.confirmDelete = false;
+    vm.templatesToDelete = [];
+
+    function removeSuccess() {
+      resolveTemplates(vm.limit, 0);
+    }
+
+    function removeFailure() {
+      resolveTemplates(vm.limit, 0);
+    }
+  }
+
+  function cancelRemoveTemplate() {
+    vm.templatesToDelete = [];
+    vm.confirmDelete = false;
+  }
+
+  function handleDelete(_action, template) {
+    vm.templatesToDelete = template;
+    vm.confirmDelete = true;
+    vm.deleteConfirmationMessage = sprintf(__('Are you sure you want to delete template %s?'),
+      vm.templatesToDelete.name);
+  }
+
+  function deleteSelectedTemplates() {
+    vm.templatesToDelete.splice(0, vm.templatesToDelete.length);
+    angular.forEach(vm.selectedItemsList, function(selected) {
+      vm.templatesToDelete.push(selected);
+    });
+
+    vm.confirmDelete = true;
+    vm.deleteConfirmationMessage = sprintf(__('Are you sure you want to delete %d templates?'),
+      vm.templatesToDelete.length);
   }
 }

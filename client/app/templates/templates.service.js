@@ -9,6 +9,7 @@ export function TemplatesServiceFactory(CollectionsApi) {
     getTemplate: getTemplate,
     createTemplate: createTemplate,
     updateTemplate: updateTemplate,
+    deleteTemplates: deleteTemplates,
   };
 
   return service;
@@ -93,5 +94,21 @@ export function TemplatesServiceFactory(CollectionsApi) {
     };
 
     return CollectionsApi.post(collection, template.id, {}, editObj);
+  }
+
+  function deleteTemplates(templates) {
+    const templateIds = [];
+    templates.forEach(function (template) {
+      templateIds.push({
+        id: template.id,
+      });
+    });
+
+    const options = {
+      action: "delete",
+      resources: templateIds,
+    };
+
+    return CollectionsApi.post(collection, null, {}, options);
   }
 }
