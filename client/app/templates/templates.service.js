@@ -96,14 +96,7 @@ export function TemplatesServiceFactory(CollectionsApi) {
     return CollectionsApi.post(collection, template.id, {}, editObj);
   }
 
-  function deleteTemplates(templates) {
-    const templateIds = [];
-    templates.forEach(function (template) {
-      templateIds.push({
-        id: template.id,
-      });
-    });
-
+  function deleteTemplates(templateIds) {
     const options = {
       action: "delete",
       resources: templateIds,

@@ -274,12 +274,12 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
     $state.go('templates.editor', { templateId: template.id });
   }
   function removeTemplate() {
-    let deleteTemplates;
+    const deleteTemplates = [];
 
     if (vm.templatesToDelete.length > 0) {
-      deleteTemplates = vm.templatesToDelete;
+      vm.templatesToDelete.forEach((template) => { deleteTemplates.push({id: template.id}); });
     } else if (vm.templatesToDelete) {
-      deleteTemplates = [vm.templatesToDelete];
+      deleteTemplates.push({id: vm.templatesToDelete.id});
     }
 
     if (deleteTemplates.length > 0) {
@@ -290,10 +290,12 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
     vm.templatesToDelete = [];
 
     function removeSuccess() {
+      EventNotifications.success(__('Templates deleted successfully.'));
       resolveTemplates(vm.limit, 0);
     }
 
     function removeFailure() {
+      EventNotifications.error(__('There was an error deleting templates.'));
       resolveTemplates(vm.limit, 0);
     }
   }
@@ -312,9 +314,8 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
 
   function deleteSelectedTemplates() {
     vm.templatesToDelete.splice(0, vm.templatesToDelete.length);
-    angular.forEach(vm.selectedItemsList, function(selected) {
-      vm.templatesToDelete.push(selected);
-    });
+
+    vm.selectedItemsList.forEach((selected) => { vm.templatesToDelete.push(selected); });
 
     vm.confirmDelete = true;
     vm.deleteConfirmationMessage = sprintf(__('Are you sure you want to delete %d templates?'),
