@@ -6,7 +6,9 @@ export function TemplatesServiceFactory(CollectionsApi) {
   const service = {
     getMinimal: getMinimal,
     getTemplates: getTemplates,
+    getTemplate: getTemplate,
     createTemplate: createTemplate,
+    updateTemplate: updateTemplate,
   };
 
   return service;
@@ -38,7 +40,13 @@ export function TemplatesServiceFactory(CollectionsApi) {
     return CollectionsApi.query(collection, options);
   }
 
-  // Private
+  function getTemplate(templateId) {
+    const options = {
+      expand: ['resources'],
+    };
+    
+    return CollectionsApi.get(collection, templateId, options);
+  }
 
   function getQueryFilters(filters) {
     const queryFilters = [];
@@ -76,5 +84,14 @@ export function TemplatesServiceFactory(CollectionsApi) {
   }
   function createTemplate(template) {
     return CollectionsApi.post(collection, null, {}, template);
+  }
+
+  function updateTemplate(template) {
+    const editObj = {
+      "action": "edit",
+      "resource": template,
+    };
+
+    return CollectionsApi.post(collection, template.id, {}, editObj);
   }
 }
