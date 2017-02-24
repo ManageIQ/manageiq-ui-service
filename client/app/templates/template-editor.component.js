@@ -77,11 +77,13 @@ function ComponentController( $state, TemplatesService, EventNotifications, loda
     if (vm.existingTemplate) {
       TemplatesService.updateTemplate(vm.template).then(changesSuccessful, changesFailed);
     } else {
-      TemplatesService.createTemplate(vm.template).then(changesSuccessful, createFailure);
+      TemplatesService.createTemplate(vm.template).then(createSuccessful, createFailure);
     }
-
-    function changesSuccessful(_data) {
+    function createSuccessful(_data) {
       $state.go('templates.explorer');
+    }
+    function changesSuccessful(_data) {
+      EventNotifications.success(__("Templated updated"));
     }
     function changesFailed(_data) {
       EventNotifications.error(__("There was an error updating the template"));
