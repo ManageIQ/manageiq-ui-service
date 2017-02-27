@@ -176,7 +176,7 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
       vm.templateToDelete.name);
   }
 
-  function cancelRemoveTemplate(){
+  function cancelRemoveTemplate() {
     vm.confirmDelete = false;
     vm.templateToDelete = {};
   }
