@@ -12,7 +12,7 @@
 //   .catch(exception.catch('Nothing to do here'));
 
 /** @ngInject */
-export function exception(logger) {
+export function exception($log) {
   var service = {
     catch: exceptionCatcher,
     log: exceptionLogger,
@@ -41,6 +41,6 @@ export function exception(logger) {
       error.data.description = message;
     }
 
-    logger.error(message, error);
+    $log.error(message, error);
   }
 }

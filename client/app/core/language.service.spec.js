@@ -1,6 +1,6 @@
 describe('Language', function() {
   beforeEach(function() {
-    module('app.states', bard.fakeToastr);
+    module('app.states');
     bard.inject('Language');
   });
 

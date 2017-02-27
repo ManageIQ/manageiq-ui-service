@@ -1,6 +1,6 @@
 describe('services.reconfigure', function() {
   beforeEach(function() {
-    module('app.states', bard.fakeToastr);
+    module('app.states');
   });
 
   describe('controller', function() {

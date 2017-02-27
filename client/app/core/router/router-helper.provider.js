@@ -21,7 +21,7 @@ export function routerHelperProvider($locationProvider, $stateProvider, $urlRout
   }
 
   /** @ngInject */
-  function RouterHelper($location, $rootScope, $state, logger) {
+  function RouterHelper($location, $rootScope, $state, $log) {
     var handlingStateChangeError = false;
     var hasOtherwise = false;
     var stateCounts = {
@@ -83,7 +83,7 @@ export function routerHelperProvider($locationProvider, $stateProvider, $urlRout
       msg = 'Error routing to ' + destination + '. '
         + (error.data || '') + '. <br/>' + (error.statusText || '')
         + ': ' + (error.status || '');
-      logger.warning(msg, [toState, error]);
+      $log.warning(msg, [toState, error]);
       $location.path('/');
     }
 

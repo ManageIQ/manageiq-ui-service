@@ -29,7 +29,6 @@ import { LanguageFactory } from './language.service.js';
 import { LanguageSwitcherDirective } from './language-switcher/language-switcher.directive.js';
 import { ListConfigurationFactory } from './list-configuration.service.js';
 import { ListViewFactory } from './list-view.service.js';
-import { LoggerService } from './logger.service.js';
 import { MessagesFactory } from './messages.service.js';
 import { NavCountsFactory } from './navcounts.service.js';
 import { NavigationController } from './navigation/navigation-controller.js';
@@ -97,7 +96,6 @@ export const CoreModule = angular
   .factory('Session', SessionFactory)
   .factory('ShoppingCart', ShoppingCartFactory)
   .factory('TagEditorModal', TagEditorFactory)
-  .factory('logger', LoggerService)
   .factory('TaggingService', TaggingService)
   .provider('Navigation', NavigationProvider)
   .config(configure)
