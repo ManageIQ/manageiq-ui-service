@@ -15,7 +15,7 @@
   ],
   "devDependencies": {
     "bardjs": "~0.1.8",
-    "sinon": "http://sinonjs.org/releases/sinon-1.15.4.js"
+    "sinon": "1.15.4"
   },
   "dependencies": {
     "angular": "~1.5.0",
