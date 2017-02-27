@@ -1,5 +1,5 @@
 /** @ngInject */
-export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Session, logger, ActionCable) {
+export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Session, $log, ActionCable) {
   var state = {};
   var toastDelay = 8 * 1000;
 
@@ -53,7 +53,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     disconnected: function () {
       var vm = this;
       Session.requestWsToken().then(null, function () {
-        logger.warning('Unable to retrieve a valid ws_token!', null, 'Notifications');
+        $log.warning('Unable to retrieve a valid ws_token!');
         // Disconnect permanently if the ws_token cannot be fetched
         vm.consumer.connection.close({ allowReconnect: false });
       });

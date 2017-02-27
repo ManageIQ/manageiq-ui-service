@@ -1,6 +1,6 @@
 describe('Dialogs', function() {
   beforeEach(function() {
-    module('app.states', bard.fakeToastr);
+    module('app.states');
     bard.inject('$location', '$rootScope', '$state', '$templateCache', 'Session');
   });
 

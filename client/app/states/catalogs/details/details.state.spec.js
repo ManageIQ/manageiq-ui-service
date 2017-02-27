@@ -1,6 +1,6 @@
 describe('Catalogs.details', function() {
   beforeEach(function() {
-    module('app.states', bard.fakeToastr);
+    module('app.states');
   });
 
   describe('#resolveDialogs', function() {
