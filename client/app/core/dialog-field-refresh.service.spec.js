@@ -1,6 +1,6 @@
 describe('DialogFieldRefresh', function() {
   beforeEach(function() {
-    module('app.states', bard.fakeToastr);
+    module('app.states');
     bard.inject('CollectionsApi', 'Notifications', 'DialogFieldRefresh');
   });
 

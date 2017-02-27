@@ -44,7 +44,7 @@ export function authConfig($httpProvider) {
 }
 
 /** @ngInject */
-export function authInit($rootScope, $state, Session, $sessionStorage, logger, Language, ServerInfo, ProductInfo, $window, RBAC) {
+export function authInit($rootScope, $state, $log, Session, $sessionStorage, Language, ServerInfo, ProductInfo, $window, RBAC) {
   $rootScope.$on('$stateChangeStart', changeStart);
   $rootScope.$on('$stateChangeError', changeError);
   $rootScope.$on('$stateChangeSuccess', changeSuccess);
@@ -101,7 +101,7 @@ export function authInit($rootScope, $state, Session, $sessionStorage, logger, L
   }
 
   function badUser(error) {
-    logger.error(__('Error retrieving user info'), [error]);
+    $log.error(__('Error retrieving user info'), [error]);
     $window.location.href = $state.href('login');
   }
 

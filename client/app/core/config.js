@@ -17,7 +17,3 @@ export function configure($logProvider, $compileProvider) {
   $compileProvider.preAssignBindingsEnabled(true);
 }
 
-/** @ngInject */
-export function init(logger) {
-  logger.showToasts = isDevel;
-}

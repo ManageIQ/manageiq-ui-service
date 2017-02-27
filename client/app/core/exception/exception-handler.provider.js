@@ -35,7 +35,7 @@ export function config($provide) {
   * @return {Function} the decorated $exceptionHandler service
   * @ngInject
   */
-function extendExceptionHandler($delegate, exceptionHandler, logger) {
+function extendExceptionHandler($delegate, exceptionHandler, $log) {
   return function(exception, cause) {
     if (angular.isString(exception)) {
       exception = Error(exception);
@@ -54,6 +54,6 @@ function extendExceptionHandler($delegate, exceptionHandler, logger) {
       * @example
       *     throw { message: 'error message we added' };
       */
-    logger.error(exception.message, errorData);
+    $log.error(exception.message, errorData);
   };
 }

@@ -1,6 +1,6 @@
 describe('services.custom_button_details', function() {
   beforeEach(function() {
-    module('app.states', bard.fakeToastr);
+    module('app.states');
   });
 
   describe('controller', function() {
