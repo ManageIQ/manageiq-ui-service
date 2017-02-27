@@ -14,7 +14,7 @@
   ],
   "devDependencies": {
     "bardjs": "~0.1.8",
-    "sinon": "http://sinonjs.org/releases/sinon-1.15.4.js"
+    "sinon": "1.15.4"
   },
   "dependencies": {
     "jquery": "^2.1.4",
