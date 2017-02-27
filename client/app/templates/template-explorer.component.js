@@ -33,7 +33,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
       resolveTemplates: resolveTemplates,
       removeTemplate: removeTemplate,
       updatePagination: updatePagination,
-      actionConfig: getActionConfig(),
+      actionConfig: getConfigurationMenu(),
       menuActions: getMenuActions(),
       toolbarConfig: getToolbarConfig(),
       listConfig: getListConfig(),
@@ -47,8 +47,8 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
     Polling.start('templateListPolling', pollTemplates, vm.pollingInterval);
   }
 
-  function getActionConfig() {
-    const itemActions = [{
+  function getConfigurationMenu() {
+    const configurationMenu = [{
       title: __('Configuration'),
       name: __('Configuration'),
       actionName: 'configuration',
@@ -78,7 +78,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
       ],
     }];
 
-    return itemActions;
+    return configurationMenu;
   }
 
   function getListConfig() {
