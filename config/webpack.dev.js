@@ -97,7 +97,7 @@ module.exports = {
       {
         test: /\.(css|s(a|c)ss)$/,
         use: ExtractTextWebpackPlugin.extract({
-          fallbackLoader: 'style-loader',
+          fallback: 'style-loader',
           allChunks: true,
           loader: [
             'css-loader?importLoaders=2&sourceMap=true',

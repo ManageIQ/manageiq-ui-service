@@ -44,7 +44,7 @@ describe('Navigation controller', function() {
     it('controller sites are defined and injected URL to be correct', function() {
       expect(ctrl.sites).to.be.defined;
       expect(ctrl.sites.length).to.equal(1);
-      expect(ctrl.sites[0].url).to.equal('http://localhost:9876');
+      expect(ctrl.sites[0].url).to.equal('http://localhost:9878');
     });
   });
 });
