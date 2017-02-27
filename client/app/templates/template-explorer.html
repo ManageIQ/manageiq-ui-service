@@ -18,7 +18,21 @@
     </custom-dropdown>
   </actions>
 </div>
-<div class="list-view-container section-container paged-container explorer-list">
+<div class="list-view-container section-container paged-container explorer-list"
+       confirmation
+       confirmation-id="confirmDeleteTemplate"
+       confirmation-trigger-value="vm.confirmDelete"
+       confirmation-title="{{'Delete Template'|translate}}"
+       confirmation-message="{{vm.deleteConfirmationMessage}}"
+       confirmation-ok-text="{{'Delete'|translate}}"
+       confirmation-on-ok="vm.removeTemplate()"
+       confirmation-on-cancel="vm.cancelRemoveTemplate()"
+       confirmation-ok-style="primary"
+       confirmation-show-cancel="true"
+       confirmation-items-title="{{'Templates'|translate}}"
+       confirmation-items="vm.templatesToDelete"
+       confirmation-item-name-field="name"
+>
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading"
        pf-list-view id="templatesList"
