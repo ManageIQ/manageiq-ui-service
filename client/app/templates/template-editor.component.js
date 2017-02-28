@@ -150,7 +150,7 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
     $state.go('templates.editor', { templateId: vm.template.id });
   }
   function downloadTemplate() {
-    let data = new Blob([vm.template.content], { type: 'text/plain;charset=utf-8' });
+    const data = new Blob([vm.template.content], { type: 'text/plain;charset=utf-8' });
     FileSaver.saveAs(data, 'Template.txt');
   }
   function removeTemplate() {
