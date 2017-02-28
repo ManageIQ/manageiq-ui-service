@@ -28,6 +28,7 @@ require('angular-ui-sortable');
 require('angular-gettext');
 require('bootstrap');
 require('angular-dragdrop');
+require('angular-file-saver');
 require('bootstrap-combobox');
 require('bootstrap-datepicker');
 require('bootstrap-select');

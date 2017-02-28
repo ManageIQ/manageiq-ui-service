@@ -20,6 +20,7 @@ export const SharedModule = angular
   .module('app.shared', [
     'app.core',
     'miqStaticAssets',
+    'ngFileSaver',
     'patternfly',
     'svgBaseFix',
     'ui.bootstrap',
