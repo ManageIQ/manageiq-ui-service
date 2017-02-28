@@ -1,0 +1,364 @@
+{
+    "url": "services/10000000000245?expand=vms&attributes=description%2Cpicture%2Cpicture.image_href%2Cevm_owner.name%2Cevm_owner.userid%2Cmiq_group.description%2Call_service_children%2Call_vms%2Caggregate_all_vm_cpus%2Caggregate_all_vm_memory%2Caggregate_all_vm_disk_count%2Caggregate_all_vm_disk_space_allocated%2Caggregate_all_vm_disk_space_used%2Caggregate_all_vm_memory_on_disk%2Cretired%2Cretirement_state%2Cretirement_warn%2Cretires_on%2Cactions%2Ccustom_actions%2Cprovision_dialog%2Cservice_template%2Cservice_resources%2Cchargeback_report%2Cparent_service%2Cpower_state%2Cpower_status%2Ccreated_at%2Coptions%2Cname%2Cguid%2Cvms.ipaddresses&decorators=vms.snapshots%2Cvms.v_total_snapshots%2Cvms.v_snapshot_newest_name%2Cvms.v_snapshot_newest_timestamp%2Cvms.v_snapshot_newest_total_size%2Cvms.supports_console%3F%2Cvms.supports_cockpit%3F",
+    "get": {
+        "href": "http://localhost:3001/api/services/10000000000245",
+        "id": 10000000000245,
+        "description": "RHEL7 on Amazon AWS",
+        "created_at": "2016-09-23T19:38:34Z",
+        "options": {
+            "dialog": {
+                "dialog_service_name": "app",
+                "dialog_tag_0_environment": "dev",
+                "dialog_option_1_vm_name": "mywebserver",
+                "dialog_tag_1_function": "web",
+                "dialog_option_1_keypair": "",
+                "dialog_vm_name": "mywebserver"
+            }
+        },
+        "name": "app",
+        "guid": "50bc6cc0-81c5-11e6-b98c-005056b1e4d4",
+        "picture": {
+            "id": 10000000000014,
+            "resource_id": 10000000000018,
+            "resource_type": "ServiceTemplate",
+            "image_href": "http://localhost:3001/pictures/10r14.png"
+        },
+        "evm_owner": {
+            "name": "Cloud Operator",
+            "userid": "cloudops"
+        },
+        "miq_group": {
+            "description": "cloud-operators"
+        },
+        "all_service_children": [],
+        "all_vms": [
+            {
+                "id": 10000000000987,
+                "vendor": "amazon",
+                "name": "mywebserver",
+                "location": "ec2-52-36-211-107.us-west-2.compute.amazonaws.com",
+                "created_on": "2016-09-23T19:40:55Z",
+                "updated_on": "2016-09-28T17:28:18Z",
+                "guid": "a49de6ca-81c5-11e6-983c-005056b171b4",
+                "uid_ems": "i-079799a3eadf1ab55",
+                "retires_on": "2016-10-23T00:00:00Z",
+                "retired": false,
+                "boot_time": "2016-09-23T19:40:03Z",
+                "power_state": "terminated",
+                "state_changed_on": "2016-09-28T17:28:18Z",
+                "previous_state": "stopped",
+                "last_perf_capture_on": "2016-09-23T23:31:00Z",
+                "template": false,
+                "evm_owner_id": 10000000000007,
+                "miq_group_id": 10000000000021,
+                "type": "ManageIQ::Providers::Amazon::CloudManager::Vm",
+                "ems_ref": "i-079799a3eadf1ab55",
+                "retirement_warn": 7,
+                "flavor_id": 10000000000010,
+                "cloud": true,
+                "raw_power_state": "unknown",
+                "tenant_id": 10000000000001
+            }
+        ],
+        "aggregate_all_vm_cpus": 1,
+        "aggregate_all_vm_memory": 1024,
+        "aggregate_all_vm_disk_count": 0,
+        "aggregate_all_vm_disk_space_allocated": 0,
+        "aggregate_all_vm_disk_space_used": 0,
+        "aggregate_all_vm_memory_on_disk": 0,
+        "custom_actions": {
+            "buttons": [],
+            "button_groups": []
+        },
+        "provision_dialog": {
+            "buttons": "submit,cancel",
+            "label": "Create VM (EC2)",
+            "dialog_tabs": [
+                {
+                    "display": "edit",
+                    "label": "Amazon EC2 Provisioning",
+                    "position": 0,
+                    "dialog_groups": [
+                        {
+                            "display": "edit",
+                            "label": "Service Information",
+                            "position": 0,
+                            "dialog_fields": [
+                                {
+                                    "name": "service_name",
+                                    "display": "edit",
+                                    "display_method_options": {},
+                                    "required": false,
+                                    "required_method_options": {},
+                                    "default_value": "",
+                                    "values_method_options": {},
+                                    "options": {
+                                        "protected": false
+                                    },
+                                    "label": "Service Name",
+                                    "position": 0,
+                                    "validator_type": "regex",
+                                    "validator_rule": "^[A-Za-z][A-Za-z0-9\\-]*$",
+                                    "dynamic": false,
+                                    "read_only": false,
+                                    "visible": true,
+                                    "type": "DialogFieldTextBox",
+                                    "resource_action": {
+                                        "resource_type": "DialogField",
+                                        "ae_attributes": {}
+                                    }
+                                },
+                                {
+                                    "name": "tag_0_environment",
+                                    "data_type": "string",
+                                    "display": "edit",
+                                    "display_method_options": {},
+                                    "required": true,
+                                    "required_method_options": {},
+                                    "default_value": "dev",
+                                    "values": [
+                                        [
+                                            "dev",
+                                            "Development"
+                                        ],
+                                        [
+                                            "prod",
+                                            "Production"
+                                        ],
+                                        [
+                                            "test",
+                                            "Test"
+                                        ]
+                                    ],
+                                    "values_method_options": {},
+                                    "options": {
+                                        "sort_by": "description",
+                                        "sort_order": "ascending"
+                                    },
+                                    "label": "Environment",
+                                    "position": 1,
+                                    "dynamic": false,
+                                    "read_only": false,
+                                    "visible": true,
+                                    "type": "DialogFieldRadioButton",
+                                    "resource_action": {
+                                        "resource_type": "DialogField",
+                                        "ae_attributes": {}
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "display": "edit",
+                            "label": "VM Information",
+                            "position": 1,
+                            "dialog_fields": [
+                                {
+                                    "name": "option_1_vm_name",
+                                    "display": "edit",
+                                    "display_method_options": {},
+                                    "required": false,
+                                    "required_method_options": {},
+                                    "default_value": "",
+                                    "values_method_options": {},
+                                    "options": {
+                                        "protected": false
+                                    },
+                                    "label": "VM Name",
+                                    "position": 0,
+                                    "validator_type": "regex",
+                                    "validator_rule": "^[a-z0-9-]{0,12}$",
+                                    "dynamic": false,
+                                    "read_only": false,
+                                    "visible": true,
+                                    "type": "DialogFieldTextBox",
+                                    "resource_action": {
+                                        "resource_type": "DialogField",
+                                        "ae_attributes": {}
+                                    }
+                                },
+                                {
+                                    "name": "tag_1_function",
+                                    "data_type": "string",
+                                    "display": "edit",
+                                    "display_method_options": {},
+                                    "required": true,
+                                    "required_method_options": {},
+                                    "default_value": "app",
+                                    "values": [
+                                        [
+                                            "app",
+                                            "Application Server"
+                                        ],
+                                        [
+                                            "db",
+                                            "Database Server"
+                                        ],
+                                        [
+                                            "web",
+                                            "Web Server"
+                                        ]
+                                    ],
+                                    "values_method_options": {},
+                                    "options": {
+                                        "sort_by": "description",
+                                        "sort_order": "ascending"
+                                    },
+                                    "label": "Function",
+                                    "position": 1,
+                                    "dynamic": false,
+                                    "read_only": false,
+                                    "visible": true,
+                                    "type": "DialogFieldDropDownList",
+                                    "resource_action": {
+                                        "resource_type": "DialogField",
+                                        "ae_attributes": {}
+                                    }
+                                },
+                                {
+                                    "name": "option_1_keypair",
+                                    "description": "Paste in your public SSH key",
+                                    "display": "edit",
+                                    "display_method_options": {},
+                                    "required": false,
+                                    "required_method_options": {},
+                                    "default_value": "",
+                                    "values_method_options": {},
+                                    "options": {
+                                        "protected": false
+                                    },
+                                    "label": "Key Pair",
+                                    "position": 2,
+                                    "dynamic": false,
+                                    "read_only": false,
+                                    "visible": true,
+                                    "type": "DialogFieldTextAreaBox",
+                                    "resource_action": {
+                                        "resource_type": "DialogField",
+                                        "ae_attributes": {}
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "service_template": {
+            "id": 10000000000018,
+            "name": "RHEL7 on Amazon AWS",
+            "description": "RHEL7 on Amazon AWS",
+            "guid": "fc13b79c-6337-11e6-b9b2-005056b1a986",
+            "options": {},
+            "created_at": "2016-08-15T22:31:18Z",
+            "updated_at": "2016-08-15T22:31:18Z",
+            "display": true,
+            "miq_group_id": 10000000000002,
+            "service_type": "atomic",
+            "prov_type": "amazon",
+            "service_template_catalog_id": 10000000000001,
+            "long_description": "\u003ch1\u003eGeneric RHEL 7 Server\u003c/h1\u003e\n\u003chr\u003e\n\u003cp\u003eThis catalog item will deploy a \u003cstrong\u003eRed Hat Enterprise Linux 7\u003c/strong\u003e instance.\n",
+            "tenant_id": 10000000000001
+        },
+        "service_resources": [
+            {
+                "id": 10000000000655,
+                "resource_id": 10000000000106,
+                "resource_type": "MiqRequest",
+                "group_idx": 0,
+                "scaling_min": 1,
+                "scaling_max": -1,
+                "created_at": "2016-09-23T19:38:34Z",
+                "updated_at": "2016-09-23T19:38:34Z",
+                "service_id": 10000000000245,
+                "provision_index": 0
+            },
+            {
+                "id": 10000000000656,
+                "resource_id": 10000000000987,
+                "resource_type": "VmOrTemplate",
+                "group_idx": 0,
+                "scaling_min": 1,
+                "scaling_max": -1,
+                "created_at": "2016-09-23T19:41:00Z",
+                "updated_at": "2016-09-23T19:41:00Z",
+                "service_id": 10000000000245,
+                "provision_index": 0
+            }
+        ],
+        "chargeback_report": {
+            "results": []
+        },
+        "vms": [
+            {
+                "href": "http://localhost:3001/api/services/10000000000245/vms/10000000000987",
+                "id": 10000000000987,
+                "vendor": "amazon",
+                "name": "mywebserver",
+                "location": "ec2-52-36-211-107.us-west-2.compute.amazonaws.com",
+                "created_on": "2016-09-23T19:40:55Z",
+                "updated_on": "2016-09-28T17:28:18Z",
+                "guid": "a49de6ca-81c5-11e6-983c-005056b171b4",
+                "uid_ems": "i-079799a3eadf1ab55",
+                "retires_on": "2016-10-23T00:00:00Z",
+                "retired": false,
+                "boot_time": "2016-09-23T19:40:03Z",
+                "power_state": "terminated",
+                "state_changed_on": "2016-09-28T17:28:18Z",
+                "previous_state": "stopped",
+                "last_perf_capture_on": "2016-09-23T23:31:00Z",
+                "template": false,
+                "evm_owner_id": 10000000000007,
+                "miq_group_id": 10000000000021,
+                "ems_ref": "i-079799a3eadf1ab55",
+                "retirement_warn": 7,
+                "flavor_id": 10000000000010,
+                "cloud": true,
+                "raw_power_state": "unknown",
+                "tenant_id": 10000000000001,
+                "ipaddresses": [],
+                "snapshots": [],
+                "v_total_snapshots": 0,
+                "supports_console?": false,
+                "supports_cockpit?": false
+            }
+        ],
+        "actions": [
+            {
+                "name": "edit",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000245"
+            },
+            {
+                "name": "retire",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000245"
+            },
+            {
+                "name": "set_ownership",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000245"
+            },
+            {
+                "name": "start",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000245"
+            },
+            {
+                "name": "stop",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000245"
+            },
+            {
+                "name": "suspend",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000245"
+            },
+            {
+                "name": "delete",
+                "method": "delete",
+                "href": "http://localhost:3001/api/services/10000000000245"
+            }
+        ]
+    }
+}
