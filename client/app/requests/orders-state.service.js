@@ -42,7 +42,7 @@ export function OrdersStateFactory(ListConfiguration, CollectionsApi) {
   // Private
 
   function getQueryFilters(filters) {
-    const queryFilters = [];
+    const queryFilters = ['state=ordered'];
 
     angular.forEach(filters, function(nextFilter) {
       if (nextFilter.id === 'name') {
