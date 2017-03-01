@@ -10,14 +10,14 @@ describe('Component: actionButtonGroup', function() {
 
     beforeEach(inject(function($componentController) {
       controller = $componentController('actionButtonGroup', {}, {
-        modalData: mockData,
+        data: mockData,
         onCancel: mockCancel,
         onReset: mockReset,
         onSave: mockSave
       });
     }));
 
-    it('holds a copy of the original modal data', function() {
+    it('holds a copy of the original data', function() {
       controller.$onInit();
 
       expect(controller.original.name).to.equal('foo');
