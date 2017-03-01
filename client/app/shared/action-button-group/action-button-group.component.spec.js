@@ -3,7 +3,7 @@ describe('Component: actionButtonGroup', function() {
 
   describe('controller', function() {
     var controller;
-    var mockData = { name: 'foo', description: 'My service' };
+    var mockData = {name: 'foo', description: 'My service'};
     var mockCancel = angular.noop;
     var mockReset = angular.noop;
     var mockSave = angular.noop;
@@ -35,7 +35,7 @@ describe('Component: actionButtonGroup', function() {
     });
 
     it('calls onReset when emitOriginal is called', function() {
-      var payload = { $event: { original: mockData } };
+      var payload = {$event: {original: mockData}};
       var spy = sinon.stub(controller, 'onReset');
 
       controller.$onInit();
