@@ -4,11 +4,14 @@
         <li>
           <a href="#" ui-sref="dialogs.list">{{'Dialogs'|translate}}</a>
         </li>
-        <li>
+        <li ng-if="!vm.dialog.label" class="active" translate>
+          Create
+        </li>
+        <li ng-if="vm.dialog.label">
           <a href="#" ui-sref="^">
             {{ ::vm.dialog.label }}</a>
         </li>
-        <li class="active"><strong translate>Edit</strong> {{ ::vm.dialog.label }}</li>
+        <li ng-if="vm.dialog.label" class="active" translate>Edit</li>
       </ol>
   </span>
 </div>
