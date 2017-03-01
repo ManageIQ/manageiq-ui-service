@@ -34,8 +34,8 @@ function StateController($state, dialog, CollectionsApi, EventNotifications, spr
   vm.dialog.deleteDialog = dialogAction('delete');
   vm.dialog.copyDialog = dialogAction('copy');
 
-  function editDialog(item) {
-    $state.go('dialogs.edit', {dialogId: item.id});
+  function editDialog() {
+    $state.go('dialogs.edit', {dialogId: vm.dialog.id});
   }
 
   function dialogAction(action) {
