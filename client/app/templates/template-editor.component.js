@@ -8,13 +8,13 @@ export const TemplateEditorComponent = {
   templateUrl,
   bindings: {
     existingTemplate: "<?",
+    pageAction: "@",
   },
 };
 
 /** @ngInject */
-function ComponentController( $state, TemplatesService, EventNotifications, lodash) {
+function ComponentController($state, sprintf, TemplatesService, EventNotifications, lodash, FileSaver, Blob) {
   const vm = this;
-
   vm.$onInit = activate();
 
   function activate() {
@@ -44,12 +44,20 @@ function ComponentController( $state, TemplatesService, EventNotifications, loda
       orderable: true,
       draft: true,
     };
+    vm.title = __(vm.pageAction + ' Template');
 
     angular.extend(vm, {
       saveTemplate: saveTemplate,
       templateTypes: templateTypes,
       templateTypeValue: '',
       cancelChanges: cancelChanges,
+      listActions: getListActions(),
+      headerConfig: getHeaderConfig(),
+      downloadTemplate: downloadTemplate,
+      editingEnabled: configEditing(),
+      removeTemplate: removeTemplate,
+      confirmDelete: false,
+      cancelRemoveTemplate: cancelRemoveTemplate,
     });
     vm.template = setupTemplate(templateTypes, defaultTemplate);
   }
@@ -95,5 +103,81 @@ function ComponentController( $state, TemplatesService, EventNotifications, loda
 
   function cancelChanges() {
     $state.go('templates');
+  }
+
+  function getListActions() {
+    var listActions = [];
+
+    listActions.push(
+      {
+        title: __('Configuration'),
+        actionName: 'configuration',
+        icon: 'fa fa-cog',
+        actions: [
+          {
+            name: __('Edit'),
+            actionName: 'edit',
+            title: __('Edit Template'),
+            actionFn: handleEdit,
+          }, {
+            name: __('Delete'),
+            actionName: 'delete',
+            title: __('Delete Template'),
+            actionFn: handleDelete,
+          },
+        ],
+        isDisabled: false,
+      }
+    );
+
+    return listActions;
+  }
+  function getHeaderConfig() {
+    return {
+      actionsConfig: {
+        actionsInclude: true,
+      },
+    };
+  }
+  function configEditing() {
+    if (vm.pageAction !== 'View') {
+      return true;
+    }
+
+    return false;
+  }
+  function handleEdit(_action) {
+    $state.go('templates.editor', { templateId: vm.template.id });
+  }
+  function downloadTemplate() {
+    const data = new Blob([vm.template.content], { type: 'text/plain;charset=utf-8' });
+    FileSaver.saveAs(data, 'template.txt');
+  }
+  function removeTemplate() {
+    const templatesToDelete = [];
+    templatesToDelete.push({'id': vm.template.id});
+    TemplatesService.deleteTemplates(templatesToDelete).then(removeSuccess,
+      removeFailure);
+
+    vm.confirmDelete = false;
+
+    function removeSuccess() {
+      EventNotifications.success(__('Template deleted successfully.'));
+    }
+
+    function removeFailure() {
+      EventNotifications.error(__('There was an error deleting the template.'));
+    }
+  }
+  function handleDelete(_action) {
+    vm.templateToDelete = vm.template;
+    vm.confirmDelete = true;
+    vm.deleteConfirmationMessage = sprintf(__('Are you sure you want to delete template %s?'),
+      vm.templateToDelete.name);
+  }
+
+  function cancelRemoveTemplate() {
+    vm.confirmDelete = false;
+    vm.templateToDelete = {};
   }
 }
