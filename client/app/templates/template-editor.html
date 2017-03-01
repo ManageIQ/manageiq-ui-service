@@ -1,12 +1,45 @@
-<div class="ss-details-wrapper">
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li>
+          <a ui-sref="templates.explorer">{{'Templates'|translate}}</a>
+        </li>
+        <li class="active">{{vm.title}}</li>
+      </ol>
+  </span>
+</div>
+<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig" ng-if="vm.pageAction==='View'">
+  <actions>
+    <button class="btn btn-default primary-action" type="button" ng-click="vm.downloadTemplate()" translate>
+                         Download <span class="fa fa-download"></span>
+   </button>
+    <custom-dropdown class="custom-dropdown pull-right" config="item" items="vm.selectedItemsList" items-count="vm.selectedItemsListCount"
+      ng-repeat="item in vm.listActions" on-update="vm.listActionDisable($config, $changes)" menu-right="true">
+      </custom-dropdown>
+  </actions>
+</div>
+<div class="ss-details-wrapper ss-details-wrapper-with-toolbar"
+       confirmation
+       confirmation-id="confirmDeleteTemplate"
+       confirmation-trigger-value="vm.confirmDelete"
+       confirmation-title="{{'Delete Template'|translate}}"
+       confirmation-message="{{vm.deleteConfirmationMessage}}"
+       confirmation-ok-text="{{'Delete'|translate}}"
+       confirmation-on-ok="vm.removeTemplate()"
+       confirmation-on-cancel="vm.cancelRemoveTemplate()"
+       confirmation-ok-style="primary"
+       confirmation-show-cancel="true"
+       confirmation-items-title="{{'Templates'|translate}}"
+       confirmation-items="vm.templateToDelete"
+       confirmation-item-name-field="name"
+>
   <div class="panel panel-default ss-details-panel">
     <div class="panel-body">
       <section>
         <div class="col-md-12 ss-details-header">
           <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6">
-              <h2 translate ng-if="vm.template.id">Edit Template</h2>
-              <h2 translate ng-if="!vm.template.id">Add Template</h2>
+              <h2>{{vm.title}}</h2>
             </div>
           </div>
         </div>
@@ -23,29 +56,33 @@
             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="control-label col-sm-4" translate>Name *</label>
+                  <label class="control-label col-sm-4">{{'Name' | translate}} *</label>
                   <div class="col-sm-8">
                     <input id="template-editor-name"
                            class="form-control"
-                           ng-model="vm.template.name" required/>
+                           ng-model="vm.template.name" ng-if="vm.editingEnabled" required/>
+                           <span ng-if="!vm.editingEnabled">{{ vm.template.name }}</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-sm-4">{{'Description' | translate}}</label>
                   <div class="col-sm-8">
-                       <textarea class="form-control" rows="5" ng-model="vm.template.description" />
+                       <textarea class="form-control" rows="5" ng-model="vm.template.description" ng-if="vm.editingEnabled"/>
+                       <span ng-if="!vm.editingEnabled">{{ vm.template.description }}</span>
                   </div>
                 </div>
                 <div class="form-group test">
-                  <label class="control-label col-sm-4">{{'Template Type' | translate}}</label>
+                  <label class="control-label col-sm-4">{{'Template Type' | translate}} *</label>
                   <div class="col-sm-8">
-                  <select-dropdown options="vm.templateTypes" required="true" model="vm.templateTypeValue" id="templateType"></select-dropdown>
+                  <select-dropdown options="vm.templateTypes" required="true" is-disabled="false" model="vm.templateTypeValue" id="templateType" ng-if="vm.editingEnabled"></select-dropdown>
+                  <span ng-if="!vm.editingEnabled">{{ vm.templateTypeValue.label}}</span>
                   </div>
                 </div>
                 <div>
                   <label class="control-label col-sm-4">{{'Draft' | translate}}</label>
                   <div class="col-sm-8">
-                      <input type="checkbox" ng-model="vm.template.draft" />
+                      <input type="checkbox" ng-model="vm.template.draft" ng-if="vm.editingEnabled" />
+                      <span ng-if="!vm.editingEnabled">{{ vm.template.draft}}</span>
                   </div>
                 </div>
               </div>
@@ -65,7 +102,7 @@
   <div>
     <div class="panel panel-default ss-details-panel ss-details-panel-bottom">
       <div class="panel-body">
-        <section class="ss-details-section pull-left">
+        <section class="ss-details-section pull-left" ng-if="vm.editingEnabled">
           <button class="btn btn-primary" type="button" ng-click="vm.saveTemplate()" ng-disabled="templateForm.$invalid" translate>Save</button>
           <button class="btn btn-default" type="button" translate ng-click="vm.cancelChanges()">Cancel</button>
         </section>
