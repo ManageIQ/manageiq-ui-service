@@ -151,7 +151,7 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
   }
   function downloadTemplate() {
     const data = new Blob([vm.template.content], { type: 'text/plain;charset=utf-8' });
-    FileSaver.saveAs(data, 'Template.txt');
+    FileSaver.saveAs(data, 'template.txt');
   }
   function removeTemplate() {
     const templatesToDelete = [];
