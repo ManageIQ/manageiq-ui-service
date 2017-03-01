@@ -34,11 +34,11 @@
                 <button class="btn btn-danger" type="button"
                   confirmation
                   confirmation-id="confirmDeleteDialog"
-                  confirmation-on-ok="vm.dialog.deleteDialog()"
+                  confirmation-on-ok="vm.deleteDialog()"
                   confirmation-message="{{'Are you sure you want to delete the Dialog?'|translate}}"
                   translate>Delete</button>
-                <button class="btn btn-default" type="button" ng-click="vm.dialog.copyDialog()" translate>Copy</button>
-                <button class="btn btn-default" type="button" ng-click="vm.dialog.editDialog()" translate>Edit</button>
+                <button class="btn btn-default" type="button" ng-click="vm.copyDialog()" translate>Copy</button>
+                <button class="btn btn-default" type="button" ng-click="vm.editDialog()" translate>Edit</button>
               </div>
             </div>
 
