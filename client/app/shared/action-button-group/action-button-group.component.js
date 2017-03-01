@@ -4,11 +4,12 @@ export const ActionButtonGroupComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
   bindings: {
-    modalData: '<?',
-    confirmationModal: '<?',
+    data: '<?',
+    actionConfirmation: '<?',
     customButton: '<?',
-    resetModal: '<?',
+    resetButton: '<?',
     isDisabled: '<?',
+    isInverted: '<?',
     onCancel: '&',
     onReset: '&',
     onSave: '&',
@@ -26,6 +27,7 @@ function ComponentController(sprintf) {
   vm.$onInit = function() {
     angular.extend(vm, {
       isDisabled: angular.isUndefined(vm.isDisabled) ? false : vm.isDisabled,
+      isInverted: angular.isUndefined(vm.isInverted) ? false : vm.isInverted,
       customButtonTranslated: sprintf(__("%s"), vm.customButton),
       isPristine: isPristine,
       cancelAction: cancelAction,
@@ -36,7 +38,7 @@ function ComponentController(sprintf) {
     })
     ;
 
-    vm.original = angular.copy(vm.modalData);
+    vm.original = angular.copy(vm.data);
   };
 
   vm.$onChanges = function(changes) {
@@ -50,7 +52,7 @@ function ComponentController(sprintf) {
   }
 
   function isPristine() {
-    return angular.equals(vm.modalData, vm.original);
+    return angular.equals(vm.data, vm.original);
   }
 
   function emitOriginal() {

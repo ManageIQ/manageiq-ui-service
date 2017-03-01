@@ -1,29 +1,29 @@
-<button type="button"
+<button ng-if="!vm.isInverted" type="button"
         class="btn btn-default"
         ng-click="vm.cancelAction()"
         translate>Cancel
 </button>
-<button ng-if="vm.resetModal && vm.modalData"
+<button ng-if="!vm.isInverted && vm.resetButton && vm.data"
         type="button"
         class="btn btn-default"
         ng-click="vm.emitOriginal()"
         ng-disabled="vm.isDisabled || vm.isPristine()"
         translate>Reset
 </button>
-<button ng-if="!vm.confirmationModal && vm.modalData"
+<button ng-if="!vm.actionConfirmation && vm.data"
         type="button"
         class="btn btn-primary"
         ng-click="vm.saveResource()"
         ng-disabled="vm.isDisabled || vm.isPristine()"
         translate>Save
 </button>
-<button ng-if="vm.confirmationModal && !vm.modalData"
+<button ng-if="vm.actionConfirmation && !vm.data"
         type="button"
         class="btn btn-primary"
         ng-click="vm.affirmConfirmation()"
         translate>OK
 </button>
-<button ng-if="vm.confirmationModal && vm.modalData"
+<button ng-if="vm.actionConfirmation && vm.data"
         type="button"
         class="btn btn-primary"
         ng-disabled="vm.isDisabled || vm.isPristine()"
@@ -34,4 +34,16 @@
         type="button"
         class="btn btn-primary"
         ng-click="vm.customButtonAction()">{{ vm.customButtonTranslated }}
+</button>
+<button ng-if="vm.isInverted &&vm.resetButton && vm.data"
+        type="button"
+        class="btn btn-default"
+        ng-click="vm.emitOriginal()"
+        ng-disabled="vm.isDisabled || vm.isPristine()"
+        translate>Reset
+</button>
+<button ng-if="vm.isInverted" type="button"
+        class="btn btn-default"
+        ng-click="vm.cancelAction()"
+        translate>Cancel
 </button>

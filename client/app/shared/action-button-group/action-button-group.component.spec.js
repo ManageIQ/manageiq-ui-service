@@ -1,4 +1,4 @@
-describe('modalActions component', function() {
+describe('Component: actionButtonGroup', function() {
   beforeEach(module('app.components'));
 
   describe('controller', function() {
@@ -9,7 +9,7 @@ describe('modalActions component', function() {
     var mockSave = angular.noop;
 
     beforeEach(inject(function($componentController) {
-      controller = $componentController('modalActions', {}, {
+      controller = $componentController('actionButtonGroup', {}, {
         modalData: mockData,
         onCancel: mockCancel,
         onReset: mockReset,
