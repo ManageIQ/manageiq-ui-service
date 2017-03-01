@@ -24,16 +24,16 @@
   <icon-list items="vm.requests"></icon-list>
 </div>
 <div class="modal-footer">
-  <modal-actions
+  <action-button-group
     ng-if="vm.modalType !== 'invalid'"
     modal-data="vm.modalData"
     confirmation-modal="true"
     on-cancel="vm.cancel()"
     on-ok="vm.save()">
-  </modal-actions>
-  <modal-actions
+  </action-button-group>
+  <action-button-group
     ng-if="vm.modalType === 'invalid'"
     on-cancel="vm.cancel()">
-  </modal-actions>
+  </action-button-group>
 </div>
 

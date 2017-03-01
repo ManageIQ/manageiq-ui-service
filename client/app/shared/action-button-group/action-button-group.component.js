@@ -1,6 +1,6 @@
-import templateUrl from './modal-actions.html';
+import templateUrl from './action-button-group.html';
 
-export const ModalActionsComponent = {
+export const ActionButtonGroupComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
   bindings: {
