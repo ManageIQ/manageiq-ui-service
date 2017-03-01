@@ -47,7 +47,7 @@
           </div>
           <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6">
-              <h3 translate>Assign Services</h2>
+              <h3 translate>Assign Services</h3>
             </div>
           </div>
           <dual-pane-selector available-items="vm.editInfo.availableServiceTemplates"
@@ -66,10 +66,15 @@
   <div>
     <div class="panel panel-default ss-details-panel ss-details-panel-bottom">
       <div class="panel-body">
-        <section class="ss-details-section pull-right">
-            <button class="btn btn-primary" type="button" ng-disabled="!vm.dirty || !vm.catalogValid" ng-click="vm.handleSave()" translate>Save</button>
-            <button class="btn btn-default" type="button" translate ng-click="vm.handleCancel()">Cancel</button>
-        </section>
+        <action-button-group
+          reset-button="vm.catalog"
+          is-inverted="true"
+          is-disabled="!vm.dirty || !vm.catalogValid"
+          data="vm.editInfo"
+          on-reset="vm.reset($event)"
+          on-cancel="vm.handleCancel()"
+          on-save="vm.handleSave()">
+        </action-button-group>
       </div>
     </div>
   </div>
