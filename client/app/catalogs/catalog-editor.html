@@ -54,7 +54,7 @@
                               selected-items="vm.editInfo.selectedServiceTemplates"
                               available-title="{{'Unassigned'|translate}}"
                               selected-title="{{'Selected'|translate}}"
-                              sort-fn="vm.sortTemplates",
+                              sort-fn="vm.sortTemplates" ,
                               on-change-fn="vm.updateSelections">
             <available>{{$parent.item.name}}</available>
             <selected>{{$parent.item.name}}</selected>
@@ -63,19 +63,17 @@
       </section>
     </div>
   </div>
-  <div>
-    <div class="panel panel-default ss-details-panel ss-details-panel-bottom">
-      <div class="panel-body">
-        <action-button-group
-          reset-button="vm.catalog"
-          is-inverted="true"
-          is-disabled="!vm.dirty || !vm.catalogValid"
-          data="vm.editInfo"
-          on-reset="vm.reset($event)"
-          on-cancel="vm.handleCancel()"
-          on-save="vm.handleSave()">
-        </action-button-group>
-      </div>
+  <div class="panel panel-default ss-details-panel ss-details-panel-bottom">
+    <div class="panel-body">
+      <action-button-group
+        reset-button="vm.catalog"
+        is-inverted="true"
+        is-disabled="!vm.dirty || !vm.catalogValid"
+        data="vm.editInfo"
+        on-reset="vm.reset($event)"
+        on-cancel="vm.handleCancel()"
+        on-save="vm.handleSave()">
+      </action-button-group>
     </div>
   </div>
 </div>
