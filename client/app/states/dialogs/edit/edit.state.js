@@ -30,8 +30,7 @@ function resolveDialog($stateParams, CollectionsApi) {
         "dialog_tabs": [{
           "label": "New tab",
           "position": 0,
-          "dialog_groups": [
-          ],
+          "dialog_groups": [],
         }],
       }],
     };
@@ -42,7 +41,7 @@ function resolveDialog($stateParams, CollectionsApi) {
 
 /** @ngInject */
 function StateController($state, dialog, DialogEditor, CollectionsApi,
-         EventNotifications, lodash) {
+                         EventNotifications, lodash) {
   var vm = this;
 
   DialogEditor.setData(dialog);
