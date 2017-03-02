@@ -160,7 +160,7 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
     $state.go('templates.editor', { templateId: vm.template.id, pageAction: 'edit'});
   }
   function handleCopy(_action) {
-    $state.go('templates.copy', { templateId: vm.template.id, pageAction: 'copy' });
+    $state.go('templates.editor', { templateId: vm.template.id, pageAction: 'copy' });
   }
   function downloadTemplate() {
     const data = new Blob([vm.template.content], { type: 'text/plain;charset=utf-8' });
