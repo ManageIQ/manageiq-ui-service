@@ -102,7 +102,7 @@ function StateController($state, dialog, DialogEditor, CollectionsApi,
     $state.go('dialogs.list');
   }
 
-  function saveFailure() {
-    EventNotifications.error(__('There was an error editing this dialog.'));
+  function saveFailure(response) {
+    EventNotifications.error(__('There was an error editing this dialog. ') + response.data.error.message);
   }
 }

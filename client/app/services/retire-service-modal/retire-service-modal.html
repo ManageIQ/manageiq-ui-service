@@ -19,11 +19,11 @@
   <icon-list items="vm.services"></icon-list>
 </div>
 <div class="modal-footer">
-  <modal-actions
-    modal-data="vm.modalData"
-    reset-modal="vm.resetModal"
+  <action-button-group
+    data="vm.modalData"
+    reset-button="vm.resetModal"
     on-reset="vm.reset($event)"
     on-cancel="vm.cancel()"
     on-save="vm.save()">
-  </modal-actions>
+  </action-button-group>
 </div>

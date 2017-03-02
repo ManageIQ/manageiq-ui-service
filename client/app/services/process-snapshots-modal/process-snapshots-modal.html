@@ -20,10 +20,10 @@
   </form>
 </div>
 <div class="modal-footer">
-  <modal-actions
+  <action-button-group
     is-disabled="createSnapshots.$invalid"
-    modal-data="vm.modalData"
+    data="vm.modalData"
     on-cancel="vm.cancel()"
     on-save="vm.save()">
-  </modal-actions>
+  </action-button-group>
 </div>
