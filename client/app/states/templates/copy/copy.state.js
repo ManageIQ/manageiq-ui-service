@@ -1,11 +1,7 @@
 /** @ngInject */
 
 export function TemplatesCopyState(routerHelper) {
-  routerHelper.configureStates(getStates());
-}
-
-function getStates() {
-  return {
+  const state = {
     'templates.copy': {
       url: '/copy/:templateId',
       template: '<template-editor existing-template="vm.template" page-action="Copy"></template-editor>',
@@ -16,6 +12,7 @@ function getStates() {
       },
     },
   };
+  routerHelper.configureStates(state);
 }
 
 /** @ngInject */
