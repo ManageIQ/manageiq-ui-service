@@ -139,6 +139,7 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
         vm.requestCount = response.subcount;
         vm.toolbarConfig.filterConfig.resultsCount = vm.requestCount;
       }
+      sortChange(RequestsState.getSort().currentField, RequestsState.getSort().isAscending);
     }
 
     function handleError() {
