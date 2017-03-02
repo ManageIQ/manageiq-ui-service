@@ -8,7 +8,7 @@ export const TemplateEditorComponent = {
   templateUrl,
   bindings: {
     existingTemplate: "<?",
-    pageAction: "@",
+    pageAction: "<",
   },
 };
 
@@ -44,7 +44,7 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
       orderable: true,
       draft: true,
     };
-    vm.title = __(vm.pageAction + ' Template');
+    vm.title = __(lodash.capitalize(vm.pageAction) + ' Template');
 
     angular.extend(vm, {
       saveTemplate: saveTemplate,
@@ -73,7 +73,7 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
         orderable: vm.existingTemplate.orderable,
         draft: vm.existingTemplate.draft,
       };
-      if (vm.pageAction !== 'Copy') {
+      if (vm.pageAction !== 'copy') {
         template.id = vm.existingTemplate.id;
       }
 
@@ -95,6 +95,7 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
     }
     function changesSuccessful(_data) {
       EventNotifications.success(__("Templated updated"));
+      $state.go('templates.explorer');
     }
     function changesFailed(_data) {
       EventNotifications.error(__("There was an error updating the template"));
@@ -149,17 +150,17 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
     };
   }
   function configEditing() {
-    if (vm.pageAction !== 'View') {
+    if (vm.pageAction !== 'view') {
       return true;
     }
 
     return false;
   }
   function handleEdit(_action) {
-    $state.go('templates.editor', { templateId: vm.template.id });
+    $state.go('templates.editor', { templateId: vm.template.id, pageAction: 'edit'});
   }
   function handleCopy(_action) {
-    $state.go('templates.copy', { templateId: vm.template.id });
+    $state.go('templates.copy', { templateId: vm.template.id, pageAction: 'copy' });
   }
   function downloadTemplate() {
     const data = new Blob([vm.template.content], { type: 'text/plain;charset=utf-8' });

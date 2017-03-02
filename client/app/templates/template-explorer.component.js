@@ -275,7 +275,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
   }
 
   function addTemplate() {
-    $state.go("templates.editor");
+    $state.go("templates.editor", { pageAction: 'add'});
   }
 
   function handleEdit(_action, template) {
@@ -283,7 +283,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
   }
 
   function handleCopy(_action, template) {
-    $state.go('templates.copy', { templateId: template.id });
+    $state.go('templates.editor', { templateId: template.id, pageAction: 'copy' });
   }
 
   function copyTemplate(template) {
@@ -295,7 +295,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
     if (angular.isUndefined(template.id)) {
       template = vm.selectedItemsList[0];
     }
-    $state.go('templates.editor', { templateId: template.id });
+    $state.go('templates.editor', { templateId: template.id, pageAction: 'edit' });
   }
   function removeTemplate() {
     const deleteTemplates = [];

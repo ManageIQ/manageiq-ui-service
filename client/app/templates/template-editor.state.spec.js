@@ -25,7 +25,7 @@ describe('Component: templateEditor', function() {
       $httpBackend.whenGET('').respond(200);
 
       scope.template = {};
-      let htmlTmp = '<template-editor page-action="Add"/>';
+      let htmlTmp = '<template-editor page-action="add"/>';
       compileHTML(htmlTmp, scope);
     }));
 
