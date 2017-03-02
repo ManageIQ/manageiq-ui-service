@@ -1,0 +1,459 @@
+{
+    "url": "services/10000000000405?expand=vms&attributes=description%2Cpicture%2Cpicture.image_href%2Cevm_owner.name%2Cevm_owner.userid%2Cmiq_group.description%2Call_service_children%2Call_vms%2Caggregate_all_vm_cpus%2Caggregate_all_vm_memory%2Caggregate_all_vm_disk_count%2Caggregate_all_vm_disk_space_allocated%2Caggregate_all_vm_disk_space_used%2Caggregate_all_vm_memory_on_disk%2Cretired%2Cretirement_state%2Cretirement_warn%2Cretires_on%2Cactions%2Ccustom_actions%2Cprovision_dialog%2Cservice_template%2Cservice_resources%2Cchargeback_report%2Cparent_service%2Cpower_state%2Cpower_status%2Ccreated_at%2Coptions%2Cname%2Cguid%2Cvms.ipaddresses&decorators=vms.snapshots%2Cvms.v_total_snapshots%2Cvms.v_snapshot_newest_name%2Cvms.v_snapshot_newest_timestamp%2Cvms.v_snapshot_newest_total_size%2Cvms.supports_console%3F%2Cvms.supports_cockpit%3F",
+    "get": {
+        "href": "http://localhost:3001/api/services/10000000000405",
+        "id": 10000000000405,
+        "description": "RHEL7 on RHEV",
+        "created_at": "2016-10-11T14:02:57Z",
+        "options": {
+            "dialog": {
+                "dialog_service_name": "alaurent23",
+                "dialog_tag_0_environment": "dev",
+                "dialog_option_1_vm_name": "laurent23",
+                "dialog_option_1_cores_per_socket": "1",
+                "dialog_option_1_vm_memory": "2048",
+                "dialog_tag_1_function": "app",
+                "dialog_vm_name": "laurent23",
+                "dialog_cores_per_socket": "1",
+                "dialog_vm_memory": "2048"
+            },
+            "power_status": "stop_complete"
+        },
+        "name": "alaurent23",
+        "guid": "6984da18-8fbb-11e6-8334-005056b142d5",
+        "picture": {
+            "id": 10000000000013,
+            "resource_id": 10000000000016,
+            "resource_type": "ServiceTemplate",
+            "image_href": "http://localhost:3001/pictures/10r13.jpg"
+        },
+        "evm_owner": {
+            "name": "Cloud Operator",
+            "userid": "cloudops"
+        },
+        "miq_group": {
+            "description": "cloud-operators"
+        },
+        "all_service_children": [],
+        "all_vms": [
+            {
+                "id": 10000000001050,
+                "vendor": "redhat",
+                "name": "laurent23",
+                "location": "1ed3d180-ed29-43db-9a60-fee5a41573d8.ovf",
+                "host_id": 10000000000008,
+                "created_on": "2016-10-11T14:05:03Z",
+                "updated_on": "2016-11-06T01:36:11Z",
+                "storage_id": 10000000000012,
+                "guid": "b4e45718-8fbb-11e6-be0e-005056b1c9de",
+                "ems_id": 10000000000012,
+                "uid_ems": "1ed3d180-ed29-43db-9a60-fee5a41573d8",
+                "retires_on": "2016-11-10T00:00:00Z",
+                "retired": false,
+                "boot_time": "2016-10-11T08:07:22Z",
+                "power_state": "off",
+                "state_changed_on": "2016-10-11T14:05:36Z",
+                "previous_state": "down",
+                "connection_state": "connected",
+                "last_perf_capture_on": "2016-11-06T01:36:30Z",
+                "memory_reserve": 1024,
+                "template": false,
+                "evm_owner_id": 10000000000007,
+                "ems_ref_obj": "--- \"/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8\"\n",
+                "miq_group_id": 10000000000021,
+                "type": "ManageIQ::Providers::Redhat::InfraManager::Vm",
+                "ems_ref": "/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8",
+                "ems_cluster_id": 10000000000001,
+                "retirement_warn": 7,
+                "retirement_last_warn": "2016-11-03T00:11:55Z",
+                "cloud": false,
+                "raw_power_state": "up",
+                "tenant_id": 10000000000001
+            }
+        ],
+        "aggregate_all_vm_cpus": 1,
+        "aggregate_all_vm_memory": 2048,
+        "aggregate_all_vm_disk_count": 1,
+        "aggregate_all_vm_disk_space_allocated": 10737418240,
+        "aggregate_all_vm_disk_space_used": 1164054528,
+        "aggregate_all_vm_memory_on_disk": 0,
+        "custom_actions": {
+            "buttons": [],
+            "button_groups": []
+        },
+        "provision_dialog": {
+            "description": "Create VM",
+            "buttons": "submit,cancel",
+            "label": "Create VM (RHEV)",
+            "dialog_tabs": [
+                {
+                    "description": "Service and VM Names",
+                    "display": "edit",
+                    "label": "Service and VM Names",
+                    "position": 0,
+                    "dialog_groups": [
+                        {
+                            "description": "Service Information",
+                            "display": "edit",
+                            "label": "Service Information",
+                            "position": 0,
+                            "dialog_fields": [
+                                {
+                                    "name": "service_name",
+                                    "display": "edit",
+                                    "display_method_options": {},
+                                    "required": true,
+                                    "required_method_options": {},
+                                    "default_value": "",
+                                    "values_method_options": {},
+                                    "options": {
+                                        "protected": false
+                                    },
+                                    "label": "Service Name",
+                                    "position": 0,
+                                    "dynamic": false,
+                                    "read_only": false,
+                                    "visible": true,
+                                    "type": "DialogFieldTextBox",
+                                    "resource_action": {
+                                        "resource_type": "DialogField",
+                                        "ae_attributes": {}
+                                    }
+                                },
+                                {
+                                    "name": "tag_0_environment",
+                                    "data_type": "string",
+                                    "display": "edit",
+                                    "display_method_options": {},
+                                    "required": true,
+                                    "required_method_options": {},
+                                    "default_value": "dev",
+                                    "values": [
+                                        [
+                                            "dev",
+                                            "Development"
+                                        ],
+                                        [
+                                            "prod",
+                                            "Production"
+                                        ],
+                                        [
+                                            "test",
+                                            "Test"
+                                        ]
+                                    ],
+                                    "values_method_options": {},
+                                    "options": {
+                                        "sort_by": "description",
+                                        "sort_order": "ascending"
+                                    },
+                                    "label": "Environment",
+                                    "position": 1,
+                                    "dynamic": false,
+                                    "read_only": false,
+                                    "visible": true,
+                                    "type": "DialogFieldRadioButton",
+                                    "resource_action": {
+                                        "resource_type": "DialogField",
+                                        "ae_attributes": {}
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "description": "VM Information",
+                            "display": "edit",
+                            "label": "VM Information",
+                            "position": 1,
+                            "dialog_fields": [
+                                {
+                                    "name": "option_1_vm_name",
+                                    "display": "edit",
+                                    "display_method_options": {},
+                                    "required": true,
+                                    "required_method_options": {},
+                                    "default_value": "",
+                                    "values_method_options": {},
+                                    "options": {
+                                        "protected": false
+                                    },
+                                    "label": "VM Name",
+                                    "position": 0,
+                                    "validator_type": "regex",
+                                    "validator_rule": "^[a-z0-9-]{0,12}$",
+                                    "dynamic": false,
+                                    "read_only": false,
+                                    "visible": true,
+                                    "type": "DialogFieldTextBox",
+                                    "resource_action": {
+                                        "resource_type": "DialogField",
+                                        "ae_attributes": {}
+                                    }
+                                },
+                                {
+                                    "name": "option_1_cores_per_socket",
+                                    "data_type": "string",
+                                    "display": "edit",
+                                    "display_method_options": {},
+                                    "required": true,
+                                    "required_method_options": {},
+                                    "default_value": "1",
+                                    "values": [
+                                        [
+                                            "1",
+                                            "1"
+                                        ],
+                                        [
+                                            "2",
+                                            "2"
+                                        ],
+                                        [
+                                            "4",
+                                            "4"
+                                        ]
+                                    ],
+                                    "values_method_options": {},
+                                    "options": {
+                                        "sort_by": "description",
+                                        "sort_order": "ascending"
+                                    },
+                                    "label": "Number of CPUs",
+                                    "position": 1,
+                                    "dynamic": false,
+                                    "read_only": false,
+                                    "visible": true,
+                                    "type": "DialogFieldDropDownList",
+                                    "resource_action": {
+                                        "resource_type": "DialogField",
+                                        "ae_attributes": {}
+                                    }
+                                },
+                                {
+                                    "name": "option_1_vm_memory",
+                                    "data_type": "string",
+                                    "display": "edit",
+                                    "display_method_options": {},
+                                    "required": true,
+                                    "required_method_options": {},
+                                    "default_value": "1024",
+                                    "values": [
+                                        [
+                                            "1024",
+                                            "1GB"
+                                        ],
+                                        [
+                                            "2048",
+                                            "2GB"
+                                        ],
+                                        [
+                                            "4096",
+                                            "4GB"
+                                        ],
+                                        [
+                                            "8192",
+                                            "8GB"
+                                        ]
+                                    ],
+                                    "values_method_options": {},
+                                    "options": {
+                                        "sort_by": "description",
+                                        "sort_order": "ascending"
+                                    },
+                                    "label": "Memory",
+                                    "position": 2,
+                                    "dynamic": false,
+                                    "read_only": false,
+                                    "visible": true,
+                                    "type": "DialogFieldDropDownList",
+                                    "resource_action": {
+                                        "resource_type": "DialogField",
+                                        "ae_attributes": {}
+                                    }
+                                },
+                                {
+                                    "name": "tag_1_function",
+                                    "data_type": "string",
+                                    "display": "edit",
+                                    "display_method_options": {},
+                                    "required": true,
+                                    "required_method_options": {},
+                                    "default_value": "app",
+                                    "values": [
+                                        [
+                                            "app",
+                                            "Application Server"
+                                        ],
+                                        [
+                                            "db",
+                                            "Database Server"
+                                        ],
+                                        [
+                                            "web",
+                                            "Web Server"
+                                        ]
+                                    ],
+                                    "values_method_options": {},
+                                    "options": {
+                                        "sort_by": "description",
+                                        "sort_order": "ascending"
+                                    },
+                                    "label": "Function",
+                                    "position": 3,
+                                    "dynamic": false,
+                                    "read_only": false,
+                                    "visible": true,
+                                    "type": "DialogFieldDropDownList",
+                                    "resource_action": {
+                                        "resource_type": "DialogField",
+                                        "ae_attributes": {}
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "service_template": {
+            "id": 10000000000016,
+            "name": "RHEL7 on RHEV",
+            "description": "RHEL7 on RHEV",
+            "guid": "dffb5652-6335-11e6-b9b2-005056b1a986",
+            "options": {},
+            "created_at": "2016-08-15T22:16:12Z",
+            "updated_at": "2016-08-15T22:28:16Z",
+            "display": true,
+            "miq_group_id": 10000000000002,
+            "service_type": "atomic",
+            "prov_type": "redhat",
+            "service_template_catalog_id": 10000000000006,
+            "long_description": "\u003ch1\u003eGeneric RHEL 7 Server\u003c/h1\u003e\n\u003chr\u003e\n\u003cp\u003eThis catalog item will deploy a \u003cstrong\u003eRed Hat Enterprise Linux 7\u003c/strong\u003e server.\n  \n  A selection of CPU count and memory size can be made when ordering\u003c/p\u003e ",
+            "tenant_id": 10000000000001
+        },
+        "service_resources": [
+            {
+                "id": 10000000001144,
+                "resource_id": 10000000000104,
+                "resource_type": "MiqRequest",
+                "group_idx": 0,
+                "scaling_min": 1,
+                "scaling_max": -1,
+                "created_at": "2016-10-11T14:02:57Z",
+                "updated_at": "2016-10-11T14:02:57Z",
+                "service_id": 10000000000405,
+                "provision_index": 0
+            },
+            {
+                "id": 10000000001145,
+                "resource_id": 10000000001050,
+                "resource_type": "VmOrTemplate",
+                "group_idx": 0,
+                "scaling_min": 1,
+                "scaling_max": -1,
+                "created_at": "2016-10-11T14:05:13Z",
+                "updated_at": "2016-10-11T14:05:13Z",
+                "service_id": 10000000000405,
+                "provision_index": 0
+            }
+        ],
+        "chargeback_report": {
+            "results": []
+        },
+        "power_state": "off",
+        "power_status": "stop_complete",
+        "vms": [
+            {
+                "href": "http://localhost:3001/api/services/10000000000405/vms/10000000001050",
+                "id": 10000000001050,
+                "vendor": "redhat",
+                "name": "laurent23",
+                "location": "1ed3d180-ed29-43db-9a60-fee5a41573d8.ovf",
+                "host_id": 10000000000008,
+                "created_on": "2016-10-11T14:05:03Z",
+                "updated_on": "2016-11-06T01:36:11Z",
+                "storage_id": 10000000000012,
+                "guid": "b4e45718-8fbb-11e6-be0e-005056b1c9de",
+                "ems_id": 10000000000012,
+                "uid_ems": "1ed3d180-ed29-43db-9a60-fee5a41573d8",
+                "retires_on": "2016-11-10T00:00:00Z",
+                "retired": false,
+                "boot_time": "2016-10-11T08:07:22Z",
+                "power_state": "off",
+                "state_changed_on": "2016-10-11T14:05:36Z",
+                "previous_state": "down",
+                "connection_state": "connected",
+                "last_perf_capture_on": "2016-11-06T01:36:30Z",
+                "memory_reserve": 1024,
+                "template": false,
+                "evm_owner_id": 10000000000007,
+                "ems_ref_obj": "/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8",
+                "miq_group_id": 10000000000021,
+                "ems_ref": "/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8",
+                "ems_cluster_id": 10000000000001,
+                "retirement_warn": 7,
+                "retirement_last_warn": "2016-11-03T00:11:55Z",
+                "cloud": false,
+                "raw_power_state": "up",
+                "tenant_id": 10000000000001,
+                "ipaddresses": [],
+                "snapshots": [
+                    {
+                        "id": 10000000000077,
+                        "uid": "b89aa7ef-f715-4bb3-a8a6-c1beef85f414",
+                        "name": "Active VM",
+                        "description": "Active VM",
+                        "current": 1,
+                        "create_time": "2016-10-11T08:06:29Z",
+                        "disks": [],
+                        "created_on": "2016-10-11T14:05:03Z",
+                        "updated_on": "2016-11-06T01:35:59Z",
+                        "vm_or_template_id": 10000000001050,
+                        "uid_ems": "b89aa7ef-f715-4bb3-a8a6-c1beef85f414"
+                    }
+                ],
+                "v_total_snapshots": 1,
+                "v_snapshot_newest_name": "Active VM",
+                "v_snapshot_newest_timestamp": "2016-10-11T08:06:29.555Z",
+                "supports_console?": true,
+                "supports_cockpit?": false
+            }
+        ],
+        "actions": [
+            {
+                "name": "edit",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "retire",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "set_ownership",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "start",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "stop",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "suspend",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "delete",
+                "method": "delete",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            }
+        ]
+    }
+}

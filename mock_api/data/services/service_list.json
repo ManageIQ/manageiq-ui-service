@@ -152,7 +152,7 @@
                     "id": 10000000000013,
                     "resource_id": 10000000000016,
                     "resource_type": "ServiceTemplate",
-                    "image_href": "http://localhost:3001/images/service.png"
+                    "image_href": "http://localhost:3001/pictures/10r13.jpg"
                 },
                 "chargeback_report": {
                     "results": []
@@ -309,7 +309,7 @@
                     "id": 10000000000014,
                     "resource_id": 10000000000018,
                     "resource_type": "ServiceTemplate",
-                    "image_href": "http://localhost:3001/images/service.png"
+                    "image_href": "http://localhost:3001/pictures/10r14.png"
                 },
                 "chargeback_report": {
                     "results": []
@@ -338,7 +338,7 @@
                         "retires_on": "2016-10-23T00:00:00Z",
                         "retired": false,
                         "boot_time": "2016-09-23T19:40:03Z",
-                        "power_state": "terminated",
+                        "power_state": "stopped",
                         "state_changed_on": "2016-09-28T17:28:18Z",
                         "previous_state": "stopped",
                         "last_perf_capture_on": "2016-09-23T23:31:00Z",
@@ -350,7 +350,7 @@
                         "retirement_warn": 7,
                         "flavor_id": 10000000000010,
                         "cloud": true,
-                        "raw_power_state": "unknown",
+                        "raw_power_state": "stopped",
                         "tenant_id": 10000000000001
                     }
                 ],
@@ -462,7 +462,7 @@
                     "id": 10000000000013,
                     "resource_id": 10000000000016,
                     "resource_type": "ServiceTemplate",
-                    "image_href": "http://localhost:3001/images/service.png"
+                    "image_href": "http://localhost:3001/pictures/10r12.png"
                 },
                 "chargeback_report": {
                     "results": []
