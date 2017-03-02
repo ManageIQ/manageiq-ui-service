@@ -117,6 +117,8 @@
     "spice-html5-bower": "1.6.2",
     "sprintf-js": "1.0.3",
     "style-loader": "0.13.1",
+    "ts-loader": "2.0.1",
+    "typescript": "2.2.1",
     "url-loader": "0.5.7",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.3.0",
