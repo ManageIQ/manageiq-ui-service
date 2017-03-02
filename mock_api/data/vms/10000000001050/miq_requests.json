@@ -1,0 +1,106 @@
+{
+    "url": "services/10000000000405?attributes=miq_request",
+    "get": {
+        "href": "http://localhost:3001/api/services/10000000000405",
+        "id": 10000000000405,
+        "name": "alaurent23",
+        "description": "RHEL7 on RHEV",
+        "guid": "6984da18-8fbb-11e6-8334-005056b142d5",
+        "service_template_id": 10000000000016,
+        "options": {
+            "dialog": {
+                "dialog_service_name": "alaurent23",
+                "dialog_tag_0_environment": "dev",
+                "dialog_option_1_vm_name": "laurent23",
+                "dialog_option_1_cores_per_socket": "1",
+                "dialog_option_1_vm_memory": "2048",
+                "dialog_tag_1_function": "app",
+                "dialog_vm_name": "laurent23",
+                "dialog_cores_per_socket": "1",
+                "dialog_vm_memory": "2048"
+            },
+            "power_status": "stop_complete"
+        },
+        "display": true,
+        "created_at": "2016-10-11T14:02:57Z",
+        "updated_at": "2017-02-09T22:01:13Z",
+        "evm_owner_id": 10000000000007,
+        "miq_group_id": 10000000000021,
+        "tenant_id": 10000000000001,
+        "miq_request": {
+            "id": 10000000000269,
+            "description": "Provisioning Service [RHEL7 on RHEV] from [RHEL7 on RHEV]",
+            "approval_state": "approved",
+            "type": "ServiceTemplateProvisionRequest",
+            "created_on": "2016-10-11T14:02:44Z",
+            "updated_on": "2016-10-11T14:07:16Z",
+            "fulfilled_on": "2016-10-11T14:07:16Z",
+            "requester_id": 10000000000007,
+            "requester_name": "Cloud Operator",
+            "request_type": "clone_to_service",
+            "request_state": "finished",
+            "message": "Request complete",
+            "status": "Ok",
+            "options": {
+                "dialog": {
+                    "dialog_service_name": "alaurent23",
+                    "dialog_tag_0_environment": "dev",
+                    "dialog_option_1_vm_name": "laurent23",
+                    "dialog_option_1_cores_per_socket": "1",
+                    "dialog_option_1_vm_memory": "2048",
+                    "dialog_tag_1_function": "app"
+                },
+                "workflow_settings": {
+                    "resource_action_id": 10000000001079,
+                    "dialog_id": 10000000000008
+                },
+                "src_id": 10000000000016,
+                "requester_group": "cloud-operators",
+                "delivered_on": "2016-10-11T14:02:56.347Z"
+            },
+            "userid": "cloudops",
+            "source_id": 10000000000016,
+            "source_type": "ServiceTemplate",
+            "tenant_id": 10000000000001,
+            "service_order_id": 10000000000182,
+            "process": true
+        },
+        "actions": [
+            {
+                "name": "edit",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "retire",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "set_ownership",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "start",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "stop",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "suspend",
+                "method": "post",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            },
+            {
+                "name": "delete",
+                "method": "delete",
+                "href": "http://localhost:3001/api/services/10000000000405"
+            }
+        ]
+    }
+}

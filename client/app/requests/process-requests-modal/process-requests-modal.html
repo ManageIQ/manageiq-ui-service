@@ -16,24 +16,24 @@
   </form>
   <div ng-if="vm.modalType === 'invalid'">
     <i class="pf pficon-warning-triangle-o"></i>
-    <span>{{ "Warning: One or more of the selected requests have already been processed.
-      Remove these requests and retry." | translate }}</span>
+    <span>{{ "Warning: One or more of the selected requests have already been processed. " +
+      "Remove these requests and retry." | translate }}</span>
   </div>
   <hr>
   <h4 translate>Affected Requests</h4>
   <icon-list items="vm.requests"></icon-list>
 </div>
 <div class="modal-footer">
-  <modal-actions
+  <action-button-group
     ng-if="vm.modalType !== 'invalid'"
-    modal-data="vm.modalData"
-    confirmation-modal="true"
+    data="vm.modalData"
+    action-confirmation="true"
     on-cancel="vm.cancel()"
     on-ok="vm.save()">
-  </modal-actions>
-  <modal-actions
+  </action-button-group>
+  <action-button-group
     ng-if="vm.modalType === 'invalid'"
     on-cancel="vm.cancel()">
-  </modal-actions>
+  </action-button-group>
 </div>
 

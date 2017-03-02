@@ -84,7 +84,6 @@ function loadLocalOverrideFiles(allEndpoints) {
 
 function processFile(file, allEndpoints) {
   const dataFile = require(file);
-
   let urlParts = url.parse(dataFile.url);
   let endpoint = urlParts.pathname;
 
@@ -97,6 +96,9 @@ function processFile(file, allEndpoints) {
     if (!allEndpoints.hasOwnProperty(actualEndpoint)) {
       allEndpoints[actualEndpoint] = {};
     }
+    if (urlParts.search != null){
+      remainingUrl += urlParts.search;
+    }
     allEndpoints[actualEndpoint][remainingUrl] = dataFile;
   }
   else {
@@ -105,6 +107,7 @@ function processFile(file, allEndpoints) {
     }
 
     if (urlParts.query != null) {
+
       allEndpoints[endpoint][urlParts.query] = dataFile;
     }
     else {
@@ -133,7 +136,7 @@ function buildRESTRoute(data, endpointName) {
     }
     else {
       const querystrings = Object.keys(data).map(key => data[key]);
-
+      
       match = lodash.find(querystrings, function(item) {
         return query.includes(item.url);
       });
