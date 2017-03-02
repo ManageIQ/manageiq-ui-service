@@ -65,16 +65,19 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
   function setupTemplate(templateTypes, defaultTemplate) {
     if (vm.existingTemplate) {
       vm.templateTypeValue = lodash.find(templateTypes, { value: vm.existingTemplate.type });
-
-      return {
+      const template = {
         name: vm.existingTemplate.name,
         type: vm.existingTemplate.type,
         description: vm.existingTemplate.description,
         content: vm.existingTemplate.content,
         orderable: vm.existingTemplate.orderable,
         draft: vm.existingTemplate.draft,
-        id: vm.existingTemplate.id,
       };
+      if (vm.pageAction !== 'Copy') {
+        template.id = vm.existingTemplate.id;
+      }
+
+      return template;
     }
 
     return defaultTemplate;
@@ -82,7 +85,7 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
   function saveTemplate() {
     vm.template.type = vm.templateTypeValue.value;
 
-    if (vm.existingTemplate) {
+    if (vm.existingTemplate && vm.template.id) {
       TemplatesService.updateTemplate(vm.template).then(changesSuccessful, changesFailed);
     } else {
       TemplatesService.createTemplate(vm.template).then(createSuccessful, createFailure);
@@ -114,6 +117,12 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
         actionName: 'configuration',
         icon: 'fa fa-cog',
         actions: [
+          {
+            name: __('Copy'),
+            actionName: 'copy',
+            title: __('Copy Template'),
+            actionFn: handleCopy,
+          },
           {
             name: __('Edit'),
             actionName: 'edit',
@@ -148,6 +157,9 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
   }
   function handleEdit(_action) {
     $state.go('templates.editor', { templateId: vm.template.id });
+  }
+  function handleCopy(_action) {
+    $state.go('templates.copy', { templateId: vm.template.id });
   }
   function downloadTemplate() {
     const data = new Blob([vm.template.content], { type: 'text/plain;charset=utf-8' });
