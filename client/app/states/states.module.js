@@ -24,6 +24,7 @@ import {ServicesDetailsState} from "./services/details/details.state.js";
 import {ServicesExplorerState} from "./services/explorer/explorer.state.js";
 import {ServicesReconfigureState} from "./services/reconfigure/reconfigure.state.js";
 import {ServicesState} from "./services/services.state.js";
+import {TemplatesCopyState} from "./templates/copy/copy.state.js";
 import {TemplatesDetailsState} from "./templates/details/details.state.js";
 import {TemplatesEditorState} from "./templates/editor/editor.state.js";
 import {TemplatesExplorerState} from "./templates/explorer/explorer.state.js";
@@ -63,6 +64,7 @@ export const AppRoutingModule = angular
   .run(ServicesExplorerState)
   .run(ServicesReconfigureState)
   .run(ServicesState)
+  .run(TemplatesCopyState)
   .run(TemplatesDetailsState)
   .run(TemplatesEditorState)
   .run(TemplatesExplorerState)
