@@ -8,7 +8,7 @@ function getStates() {
   return {
     'templates.details': {
       url: '/details/:templateId',
-      template: '<template-editor existing-template="vm.template" page-action="View" ></template-editor>',
+      template: '<template-editor existing-template="vm.template" page-action="vm.pageAction" ></template-editor>',
       controller: StateController,
       controllerAs: 'vm',
       resolve: {
@@ -27,4 +27,5 @@ function resolveTemplate($stateParams, TemplatesService) {
 function StateController(template) {
   var vm = this;
   vm.template = template;
+  vm.pageAction = 'view';
 }

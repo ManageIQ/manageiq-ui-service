@@ -7,8 +7,8 @@ export function TemplatesEditorState(routerHelper) {
 function getStates() {
   return {
     'templates.editor': {
-      url: '/edit/:templateId',
-      template: '<template-editor existing-template="vm.template" page-action="Edit"></template-editor>',
+      url: '/:pageAction/:templateId',
+      template: '<template-editor existing-template="vm.template" page-action="vm.pageAction"></template-editor>',
       controller: StateController,
       controllerAs: 'vm',
       resolve: {
@@ -26,10 +26,8 @@ function resolveTemplate($stateParams, TemplatesService) {
 /** @ngInject */
 function StateController($stateParams, template) {
   var vm = this;
+  vm.pageAction = $stateParams.pageAction;
   if ($stateParams.templateId) {
-    vm.title = 'Edit Template';
     vm.template = template;
-  } else {
-    vm.title = 'Add Template';
   }
 }
