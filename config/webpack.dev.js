@@ -61,6 +61,12 @@ module.exports = {
         ],
       },
 
+      // ts loaders: standard typescript loader
+      {
+        test: /\.ts$/,
+        use: ['ts-loader'],
+      },
+
       // js loaders: transpile based on browserslist from package.json
       {
         test: /\.js$/,
@@ -144,6 +150,7 @@ module.exports = {
   ],
 
   resolve: {
+    extensions: ['.ts', '.js'],
     symlinks: false,
   },
 
