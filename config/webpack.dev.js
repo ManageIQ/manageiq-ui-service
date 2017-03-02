@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -14,7 +15,7 @@ console.log("Backend proxied on "+host);
 module.exports = {
   context: root,
   entry: {
-    app: './app.js',
+    app: './app/main.ts',
   },
 
   output: {
@@ -64,7 +65,10 @@ module.exports = {
       // ts loaders: standard typescript loader
       {
         test: /\.ts$/,
-        use: ['ts-loader'],
+        use: [
+          'babel-loader?presets[]=env',
+          'ts-loader',
+        ],
       },
 
       // js loaders: transpile based on browserslist from package.json
@@ -147,6 +151,13 @@ module.exports = {
       base: '/',
       template: '../client/index.ejs',
     }),
+
+    // Fix circular dependency error:
+    // https://github.com/angular/angular/issues/11580#issuecomment-282705332
+    new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)@angular/,
+      root
+    )
   ],
 
   resolve: {
