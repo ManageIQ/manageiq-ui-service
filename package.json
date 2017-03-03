@@ -24,6 +24,12 @@
     "vet": "eslint \"client/**/*.js\" && sass-lint --verbose --no-exit"
   },
   "devDependencies": {
+    "@angular/common": "4.0.0-rc.2",
+    "@angular/compiler": "4.0.0-rc.2",
+    "@angular/core": "4.0.0-rc.2",
+    "@angular/platform-browser": "4.0.0-rc.2",
+    "@angular/platform-browser-dynamic": "4.0.0-rc.2",
+    "@angular/upgrade": "4.0.0-rc.2",
     "actioncable": "5.0.1",
     "angular": "1.6.1",
     "angular-animate": "1.6.1",
@@ -55,6 +61,7 @@
     "clean-webpack-plugin": "0.1.15",
     "codeclimate-test-reporter": "0.4.0",
     "copy-webpack-plugin": "4.0.1",
+    "core-js": "2.4.1",
     "css-loader": "0.26.1",
     "debug": "2.6.0",
     "ejs": "2.5.5",
@@ -110,6 +117,7 @@
     "protractor": "5.1.0",
     "q": "1.4.1",
     "request": "2.79.0",
+    "rxjs": "5.2.0",
     "sass-lint": "1.10.2",
     "sass-loader": "4.1.1",
     "sinon": "1.17.7",
@@ -122,22 +130,14 @@
     "url-loader": "0.5.7",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.3.0",
-    "yargs": "6.6.0"
+    "yargs": "6.6.0",
+    "zone.js": "0.7.2"
   },
   "dependencies": {
-    "@angular/common": "4.0.0-rc.2",
-    "@angular/compiler": "4.0.0-rc.2",
-    "@angular/core": "4.0.0-rc.2",
-    "@angular/platform-browser": "4.0.0-rc.2",
-    "@angular/platform-browser-dynamic": "4.0.0-rc.2",
-    "@angular/upgrade": "4.0.0-rc.2",
-    "core-js": "2.4.1",
     "express": "4.14.1",
     "http-proxy": "1.16.2",
     "morgan": "1.7.0",
-    "rxjs": "5.2.0",
-    "serve-favicon": "2.3.2",
-    "zone.js": "0.7.2"
+    "serve-favicon": "2.3.2"
   },
   "browserslist": [
     "last 2 versions",
