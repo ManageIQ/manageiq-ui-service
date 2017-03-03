@@ -24,25 +24,25 @@
     };
 
     function powerOperationUnknownState(item) {
-      return item.power_state === "" && item.options.power_status === "";
+      return item.power_state === "" && item.power_status === "";
     }
 
     function powerOperationInProgressState(item) {
-      return (item.power_state !== "timeout" && item.options.power_status === "starting")
-        || (item.power_state !== "timeout" && item.options.power_status === "stopping")
-        || (item.power_state !== "timeout" && item.options.power_status === "suspending");
+      return (item.power_state !== "timeout" && item.power_status === "starting")
+        || (item.power_state !== "timeout" && item.power_status === "stopping")
+        || (item.power_state !== "timeout" && item.power_status === "suspending");
     }
 
     function powerOperationOnState(item) {
-      return item.power_state === "on" && item.options.power_status === "start_complete";
+      return item.power_state === "on" && item.power_status === "start_complete";
     }
 
     function powerOperationOffState(item) {
-      return item.power_state === "off" && item.options.power_status === "stop_complete";
+      return item.power_state === "off" && item.power_status === "stop_complete";
     }
 
     function powerOperationSuspendState(item) {
-      return item.power_state === "off" && item.options.power_status === "suspend_complete";
+      return item.power_state === "off" && item.power_status === "suspend_complete";
     }
 
     function powerOperationTimeoutState(item) {
@@ -50,32 +50,32 @@
     }
 
     function powerOperationStartTimeoutState(item) {
-      return item.power_state === "timeout" && item.options.power_status === "starting";
+      return item.power_state === "timeout" && item.power_status === "starting";
     }
 
     function powerOperationStopTimeoutState(item) {
-      return item.power_state === "timeout" && item.options.power_status === "stopping";
+      return item.power_state === "timeout" && item.power_status === "stopping";
     }
 
     function powerOperationSuspendTimeoutState(item) {
-      return item.power_state === "timeout" && item.options.power_status === "suspending";
+      return item.power_state === "timeout" && item.power_status === "suspending";
     }
 
     function startService(item) {
       item.power_state = '';
-      item.options.power_status = 'starting';
+      item.power_status = 'starting';
       powerOperation('start', item);
     }
 
     function stopService(item) {
       item.power_state = '';
-      item.options.power_status = 'stopping';
+      item.power_status = 'stopping';
       powerOperation('stop', item);
     }
 
     function suspendService(item) {
       item.power_state = '';
-      item.options.power_status = 'suspending';
+      item.power_status = 'suspending';
       powerOperation('suspend', item);
     }
 
