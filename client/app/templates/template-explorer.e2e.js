@@ -1,6 +1,5 @@
 describe('Component: templateExplorer', function () {
   beforeEach(function () {
-    browser.sleep(10000);
     browser.get('/templates');
   });
   it('should have correct breadcrumb', function () {

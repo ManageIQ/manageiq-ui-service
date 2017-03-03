@@ -1,6 +1,5 @@
 describe('Component: orderExplorer', function() {
   beforeEach(function() {
-    browser.sleep(10000);
     browser.get('/orders');
   });
   it('should have correct breadcrumb', function() {
