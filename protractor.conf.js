@@ -39,6 +39,11 @@ var config = {
 
   onPrepare: function() {
     global.protractorConfig = env;
+
+    // Required for protractor to work with a hybrid AngularJs/Angular app
+    browser.ignoreSynchronization = true;
+    browser.waitForAngularEnabled(false);
+
     browser.driver.manage().window().maximize();
     browser.driver.get(env.baseUrl );
     browser.sleep(5000);
