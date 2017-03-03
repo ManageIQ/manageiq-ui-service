@@ -62,6 +62,13 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
         isDisabled: false,
       },
       {
+        name: __('Copy'),
+        actionName: 'copy',
+        title: __('Copy template'),
+        actionFn: copyTemplate,
+        isDisabled: false,
+      },
+      {
         name: __('Edit'),
         actionName: 'edit',
         title: __('Edit template'),
@@ -138,28 +145,36 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
   }
 
   function getMenuActions() {
-    const menuActions = [{
-      name: __('Edit'),
-      title: __('Edit Template'),
-      actionFn: handleEdit,
-    },
-    {
-      name: __('Delete'),
-      title: __('Delete Template'),
-      actionFn: handleDelete,
-    },
+    const menuActions = [
+      {
+        name: __('Copy'),
+        title: __('Copy Template'),
+        actionFn: handleCopy,
+      },
+      {
+        name: __('Edit'),
+        title: __('Edit Template'),
+        actionFn: handleEdit,
+      },
+      {
+        name: __('Delete'),
+        title: __('Delete Template'),
+        actionFn: handleDelete,
+      },
     ];
 
     return menuActions;
   }
   function listActionDisable(config, items) {
     const menuCreate = 0;
-    const menuEdit = 1;
-    const menuDelete = 2;
+    const menuCopy = 1;
+    const menuEdit = 2;
+    const menuDelete = 3;
 
     switch (config.actionName) {
       case 'configuration':
         config.actions[menuCreate].isDisabled = items.length > 0;
+        config.actions[menuCopy].isDisabled = items.length !== 1;
         config.actions[menuEdit].isDisabled = items.length !== 1;
         config.actions[menuDelete].isDisabled = items.length === 0;
         break;
@@ -260,18 +275,27 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
   }
 
   function addTemplate() {
-    $state.go("templates.editor");
+    $state.go("templates.editor", { pageAction: 'add'});
   }
 
   function handleEdit(_action, template) {
     editTemplate(template);
   }
 
+  function handleCopy(_action, template) {
+    $state.go('templates.editor', { templateId: template.id, pageAction: 'copy' });
+  }
+
+  function copyTemplate(template) {
+    template = vm.selectedItemsList[0];
+    handleCopy("", template);
+  }
+
   function editTemplate(template) {
     if (angular.isUndefined(template.id)) {
       template = vm.selectedItemsList[0];
     }
-    $state.go('templates.editor', { templateId: template.id });
+    $state.go('templates.editor', { templateId: template.id, pageAction: 'edit' });
   }
   function removeTemplate() {
     const deleteTemplates = [];

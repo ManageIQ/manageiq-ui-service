@@ -1,23 +1,23 @@
-describe('modalActions component', function() {
+describe('Component: actionButtonGroup', function() {
   beforeEach(module('app.components'));
 
   describe('controller', function() {
     var controller;
-    var mockData = { name: 'foo', description: 'My service' };
+    var mockData = {name: 'foo', description: 'My service'};
     var mockCancel = angular.noop;
     var mockReset = angular.noop;
     var mockSave = angular.noop;
 
     beforeEach(inject(function($componentController) {
-      controller = $componentController('modalActions', {}, {
-        modalData: mockData,
+      controller = $componentController('actionButtonGroup', {}, {
+        data: mockData,
         onCancel: mockCancel,
         onReset: mockReset,
         onSave: mockSave
       });
     }));
 
-    it('holds a copy of the original modal data', function() {
+    it('holds a copy of the original data', function() {
       controller.$onInit();
 
       expect(controller.original.name).to.equal('foo');
@@ -35,7 +35,7 @@ describe('modalActions component', function() {
     });
 
     it('calls onReset when emitOriginal is called', function() {
-      var payload = { $event: { original: mockData } };
+      var payload = {$event: {original: mockData}};
       var spy = sinon.stub(controller, 'onReset');
 
       controller.$onInit();

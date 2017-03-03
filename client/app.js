@@ -23,6 +23,7 @@ require('angular-messages');
 require('angular-sanitize');
 require('angular-base64');
 require('angular-bootstrap-switch');
+require('angular-file-saver');
 require('angular-ui-bootstrap');
 require('angular-ui-sortable');
 require('angular-gettext');

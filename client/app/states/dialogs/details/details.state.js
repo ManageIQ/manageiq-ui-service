@@ -20,32 +20,32 @@ function getStates() {
 
 /** @ngInject */
 function resolveDialog($stateParams, CollectionsApi) {
-  var options = {};
-
-  return CollectionsApi.get('service_dialogs', $stateParams.dialogId, options);
+  return CollectionsApi.get('service_dialogs', $stateParams.dialogId, {});
 }
 
 /** @ngInject */
 function StateController($state, dialog, CollectionsApi, EventNotifications, sprintf) {
-  var vm = this;
+  const vm = this;
 
-  vm.dialog = dialog;
-  vm.dialog.editDialog = editDialog;
-  vm.dialog.deleteDialog = dialogAction('delete');
-  vm.dialog.copyDialog = dialogAction('copy');
+  angular.extend(vm, {
+    dialog: dialog,
+    editDialog: editDialog,
+    deleteDialog: dialogAction('delete'),
+    copyDialog: dialogAction('copy'),
+  });
 
-  function editDialog(item) {
-    $state.go('dialogs.edit', {dialogId: item.id});
+  function editDialog() {
+    $state.go('dialogs.edit', {dialogId: vm.dialog.id});
   }
 
   function dialogAction(action) {
     return function() {
-      var actionData = {action: action};
+      const actionData = {action: action};
       CollectionsApi.post('service_dialogs', vm.dialog.id, {}, actionData)
         .then(actionSuccess, actionFailure);
 
       function actionSuccess() {
-        var actionString;
+        let actionString;
         if (action === 'copy') {
           actionString = sprintf(__('%s was copied.'), vm.dialog.label);
         } else {

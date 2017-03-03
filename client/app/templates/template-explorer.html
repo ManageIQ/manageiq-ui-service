@@ -50,7 +50,11 @@
               </span>
           </span>
             <span class="label label-default" ng-if="item.draft" translate>Draft</span>
-          {{ item.name }}
+          <a ui-sref="templates.details({templateId: item.id})">
+           <span>
+            {{ item.name }}
+           </span>
+          </a>
         </span>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs">

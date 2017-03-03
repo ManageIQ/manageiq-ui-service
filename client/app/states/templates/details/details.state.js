@@ -1,14 +1,14 @@
 /** @ngInject */
 
-export function TemplatesEditorState(routerHelper) {
+export function TemplatesDetailsState(routerHelper) {
   routerHelper.configureStates(getStates());
 }
 
 function getStates() {
   return {
-    'templates.editor': {
-      url: '/:pageAction/:templateId',
-      template: '<template-editor existing-template="vm.template" page-action="vm.pageAction"></template-editor>',
+    'templates.details': {
+      url: '/details/:templateId',
+      template: '<template-editor existing-template="vm.template" page-action="vm.pageAction" ></template-editor>',
       controller: StateController,
       controllerAs: 'vm',
       resolve: {
@@ -24,10 +24,8 @@ function resolveTemplate($stateParams, TemplatesService) {
 }
 
 /** @ngInject */
-function StateController($stateParams, template) {
+function StateController(template) {
   var vm = this;
-  vm.pageAction = $stateParams.pageAction;
-  if ($stateParams.templateId) {
-    vm.template = template;
-  }
+  vm.template = template;
+  vm.pageAction = 'view';
 }

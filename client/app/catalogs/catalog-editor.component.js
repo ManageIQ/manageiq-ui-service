@@ -58,6 +58,7 @@ function ComponentController(CatalogsState, $scope, $state, SaveModalDialog, lod
         handleCancel: handleCancel,
         updateSelections: updateSelections,
         saveCatalog: saveCatalog,
+        reset: reset,
       }
     );
 
@@ -238,6 +239,10 @@ function ComponentController(CatalogsState, $scope, $state, SaveModalDialog, lod
 
   function handleSave() {
     saveCatalog();
+  }
+
+  function reset(event) {
+    angular.copy(event.original, vm.editInfo);
   }
 
   function handleCancel() {
