@@ -13,6 +13,14 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
   var vm = this;
 
   vm.$onInit = function() {
+    if ($state.params.filter) {
+      RequestsState.setFilters($state.params.filter);
+      RequestsState.filterApplied = true;
+    } else {
+      RequestsState.setFilters([]);
+      RequestsState.filterApplied = false;
+    }
+
     angular.extend(vm, {
       title: __('Request Explorer'),
       listData: [],
