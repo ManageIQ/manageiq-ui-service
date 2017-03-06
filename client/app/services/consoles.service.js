@@ -5,9 +5,10 @@
     .factory('Consoles', ConsolesFactory);
 
   /** @ngInject */
-  function ConsolesFactory(CollectionsApi, $timeout, logger, $location, EventNotifications) {
+  function ConsolesFactory(CollectionsApi, $window, $timeout, logger, $location, EventNotifications) {
     var service = {
       open: openConsole,
+      openCockpit: openCockpit,
     };
 
     return service;
@@ -19,6 +20,10 @@
       })
         .then(consoleResponse)
         .catch(consoleError);
+    }
+
+    function openCockpit(item) {
+      $window.open('http://' + item.ipaddresses[0] + ':9090');
     }
 
     function consoleResponse(response) {
