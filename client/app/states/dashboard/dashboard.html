@@ -107,13 +107,13 @@
                   <span class="card-pf-aggregate-status-notification">
                     <span class="pficon pficon-warning-triangle-o"></span>
                   </span>
-                  <span class="card-pf-aggregate-status-notification"><a ng-click="vm.navigateToRequestsList('Pending')">{{ ::vm.requestsCount.pending }}</a></span>
+                  <span class="card-pf-aggregate-status-notification"><a ng-click="vm.navigateToRequestsList('pending')">{{ ::vm.requestsCount.pending }}</a></span>
                 </p>
               </div>
             </a>
           </div>
           <div class="card-pf card-pf-aggregate-status card-divider">
-            <a ng-click="vm.navigateToRequestsList('Approved')">
+            <a ng-click="vm.navigateToRequestsList('approved')">
               <div class="card-pf-body">
                 <h2 class="card-pf-title" translate>
                   Approved Requests
@@ -128,7 +128,7 @@
             </a>
           </div>
           <div class="card-pf card-pf-aggregate-status card-divider">
-            <a ng-click="vm.navigateToRequestsList('Denied')">
+            <a ng-click="vm.navigateToRequestsList('denied')">
               <div class="card-pf-body">
                 <h2 class="card-pf-title" translate>
                   Denied Requests
