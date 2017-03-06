@@ -17,6 +17,14 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     Polling.stop('serviceListPolling');
   };
   function activate() {
+    if ($state.params.filter) {
+      ServicesState.setFilters($state.params.filter);
+      ServicesState.filterApplied = true;
+    } else {
+      ServicesState.setFilters([]);
+      ServicesState.filterApplied = false;
+    }
+
     angular.extend(vm, {
       loading: false,
       title: __('Services'),
