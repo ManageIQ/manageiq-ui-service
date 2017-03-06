@@ -1,4 +1,5 @@
 /* eslint camelcase: "off" */
+import templateUrl from './details.html';
 
 /** @ngInject */
 export function ServicesDetailsState(routerHelper) {
@@ -9,7 +10,7 @@ function getStates() {
   return {
     'services.details': {
       url: '/:serviceId',
-      templateUrl: 'app/states/services/details/details.html',
+      templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Service Details'),
