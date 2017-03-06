@@ -1,3 +1,5 @@
+import templateUrl from './catalogs.html';
+
 /** @ngInject */
 export function CatalogsExplorerState(routerHelper) {
   routerHelper.configureStates(getStates());
@@ -7,7 +9,7 @@ function getStates() {
   return {
     'catalogs.explorer': {
       url: '',
-      templateUrl: 'app/states/catalogs/explorer/catalogs.html',
+      templateUrl,
       controller: CatalogsController,
       controllerAs: 'vm',
       title: N_('Catalogs'),

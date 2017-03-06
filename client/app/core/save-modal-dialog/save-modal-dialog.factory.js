@@ -1,3 +1,5 @@
+import templateUrl from './save-modal-dialog.html';
+
 /** @ngInject */
 export function SaveModalDialogFactory($uibModal) {
   var modalSaveDialog = {
@@ -8,7 +10,7 @@ export function SaveModalDialogFactory($uibModal) {
 
   function showModal(saveCallback, doNotSaveCallback, cancelCallback, okToSave) {
     var modalOptions = {
-      templateUrl: 'app/components/save-modal-dialog/save-modal-dialog.html',
+      templateUrl,
       controller: SaveModalDialogController,
       controllerAs: 'vm',
       resolve: {
@@ -30,9 +32,11 @@ export function SaveModalDialogFactory($uibModal) {
     function resolveCancel() {
       return cancelCallback;
     }
+
     function resolveOkToSave() {
       return okToSave;
     }
+
     var modal = $uibModal.open(modalOptions);
 
     return modal.result;

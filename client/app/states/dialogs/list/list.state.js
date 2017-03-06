@@ -1,4 +1,5 @@
 /* eslint camelcase: "off" */
+import templateUrl from './list.html';
 
 /** @ngInject */
 export function DialogsListState(routerHelper) {
@@ -9,7 +10,7 @@ function getStates() {
   return {
     'dialogs.list': {
       url: '', // No url, this state is the index of dialogs
-      templateUrl: 'app/states/dialogs/list/list.html',
+      templateUrl,
       controller: DialogsController,
       controllerAs: 'vm',
       title: N_('Dialog List'),

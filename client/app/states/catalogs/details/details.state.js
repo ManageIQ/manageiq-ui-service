@@ -1,3 +1,5 @@
+import templateUrl from './details.html';
+
 /** @ngInject */
 export function CatalogsDetailsState(routerHelper) {
   routerHelper.configureStates(getStates());
@@ -7,7 +9,7 @@ function getStates() {
   return {
     'catalogs.details': {
       url: '/:serviceTemplateId',
-      templateUrl: 'app/states/catalogs/details/details.html',
+      templateUrl,
       controller: Controller,
       controllerAs: 'vm',
       title: N_('Service Template Details'),
