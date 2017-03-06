@@ -12,6 +12,7 @@ function getStates() {
       templateUrl,
       controllerAs: 'vm',
       title: N_('Requests'),
+      params: { 'filter': null },
     },
   };
 }

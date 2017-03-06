@@ -10,6 +10,7 @@ function getStates() {
       url: '/services',
       redirectTo: 'services.explorer',
       template: '<ui-view></ui-view>',
+      params: { filter: null },
     },
   };
 }
