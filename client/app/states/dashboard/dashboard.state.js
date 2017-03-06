@@ -140,7 +140,7 @@ function resolveServicesWithDefinedServiceIds(CollectionsApi, RBAC) {
 }
 
 /** @ngInject */
-function StateController($state, RequestsState, ServicesState, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback) {
+function StateController($state, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback) {
   var vm = this;
 
   if (angular.isDefined(definedServiceIdsServices)) {
@@ -183,21 +183,15 @@ function StateController($state, RequestsState, ServicesState, definedServiceIds
   }
 
   vm.navigateToRequestsList = function(filterValue) {
-    RequestsState.setFilters([{'id': 'approval_state', 'title': __('Request Status'), 'value': filterValue}]);
-    RequestsState.filterApplied = true;
-    $state.go('requests');
+    $state.go('requests', {'filter': [{'id': 'approval_state', 'title': __('Request Status'), 'value': filterValue}]});
   };
 
   vm.navigateToServicesList = function(filterValue) {
-    ServicesState.setFilters([{'id': 'retirement', 'title': __('Retirement Date'), 'value': filterValue}]);
-    ServicesState.filterApplied = true;
-    $state.go('services');
+    $state.go('services', {'filter': [{'id': 'retirement', 'title': __('Retirement Date'), 'value': filterValue}]});
   };
 
   vm.navigateToRetiredServicesList = function() {
-    ServicesState.setFilters([{'id': 'retired', 'title': __('Retired'), 'value': true}]);
-    ServicesState.filterApplied = true;
-    $state.go('services');
+    $state.go('services', {'filter': [{'id': 'retired', 'title': __('Retired'), 'value': true}]});
   };
 
   vm.navigateToRetiringSoonServicesList = function () {
@@ -208,15 +202,12 @@ function StateController($state, RequestsState, ServicesState, definedServiceIds
     filters.push({ 'id': 'retired', 'title': __('Retired'), 'value': false });
     var days30 = currentDate.setDate(currentDate.getDate() + 30);
     filters.push({ 'id': 'retires_on', 'operator': '<', 'value': new Date(days30).toISOString() });
-    ServicesState.setFilters(filters);
-    ServicesState.filterApplied = true;
-    $state.go('services');
+
+    $state.go('services', {'filter': filters});
   };
 
   vm.navigateToCurrentServicesList = function() {
-    ServicesState.setFilters([{'id': 'retired', 'title': 'Retired', 'value': false}]);
-    ServicesState.filterApplied = true;
-    $state.go('services');
+    $state.go('services', {'filter': [{'id': 'retired', 'title': 'Retired', 'value': false}]});
   };
 
   function resolveRequestPromises(promiseArray, type, lodash, $q) {
