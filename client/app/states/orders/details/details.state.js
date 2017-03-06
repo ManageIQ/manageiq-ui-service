@@ -1,3 +1,5 @@
+import templateUrl from './details.html';
+
 /** @ngInject */
 export function OrdersDetailsState(routerHelper) {
   routerHelper.configureStates(getStates());
@@ -7,7 +9,7 @@ function getStates() {
   return {
     'orders.details': {
       url: '/:serviceOrderId',
-      templateUrl: 'app/states/orders/details/details.html',
+      templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Order Details'),

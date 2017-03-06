@@ -1,3 +1,5 @@
+import templateUrl from './details.html';
+
 /** @ngInject */
 export function DialogsDetailState(routerHelper) {
   routerHelper.configureStates(getStates());
@@ -7,7 +9,7 @@ function getStates() {
   return {
     'dialogs.details': {
       url: '/:dialogId',
-      templateUrl: 'app/states/dialogs/details/details.html',
+      templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Dialog Detail'),

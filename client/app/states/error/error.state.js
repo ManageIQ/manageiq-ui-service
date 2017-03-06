@@ -1,3 +1,5 @@
+import templateUrl from './error.html';
+
 /** @ngInject */
 export function ErrorState(routerHelper) {
   var otherwise = '/error';
@@ -9,7 +11,7 @@ function getStates() {
     'error': {
       parent: 'blank',
       url: '/error',
-      templateUrl: 'app/states/error/error.html',
+      templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Error'),

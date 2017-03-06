@@ -1,3 +1,5 @@
+import templateUrl from './details.html';
+
 /** @ngInject */
 export function VmsDetailsState(routerHelper) {
   routerHelper.configureStates(getStates());
@@ -7,7 +9,7 @@ function getStates() {
   return {
     'vms.details': {
       url: '/:vmId',
-      templateUrl: 'app/states/vms/details/details.html',
+      templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('VM Details'),

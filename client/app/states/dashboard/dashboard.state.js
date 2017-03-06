@@ -1,3 +1,5 @@
+import templateUrl from './dashboard.html';
+
 /** @ngInject */
 export function DashboardState(routerHelper) {
   routerHelper.configureStates(getStates());
@@ -8,7 +10,7 @@ function getStates() {
     'dashboard': {
       parent: 'application',
       url: '/',
-      templateUrl: 'app/states/dashboard/dashboard.html',
+      templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Dashboard'),
