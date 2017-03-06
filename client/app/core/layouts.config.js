@@ -1,3 +1,6 @@
+import applicationTemplate from '../layouts/application.html';
+import blankTemplate from '../layouts/blank.html';
+
 /** @ngInject */
 export function layoutInit(routerHelper) {
   routerHelper.configureStates(getLayouts());
@@ -7,11 +10,11 @@ function getLayouts() {
   return {
     'blank': {
       abstract: true,
-      templateUrl: 'app/layouts/blank.html',
+      templateUrl: blankTemplate,
     },
     'application': {
       abstract: true,
-      templateUrl: 'app/layouts/application.html',
+      templateUrl: applicationTemplate,
       onEnter: enterApplication,
       onExit: exitApplication,
     },
