@@ -17,10 +17,7 @@ function ComponentController($scope, $state, CollectionsApi, EventNotifications,
 
   angular.extend(vm, {
     visibleOptions: [],
-    modalData: {
-      date: new Date(),
-      warn: 0,
-    },
+    modalData: {},
     isService: vm.resolve.services.length === 1,
     resetModal: false,
     services: vm.resolve.services,
@@ -54,7 +51,7 @@ function ComponentController($scope, $state, CollectionsApi, EventNotifications,
       vm.resetModal = true;
       var existingDate = new Date(vm.services[0].retires_on);
       var existingUTCDate = new Date(existingDate.getTime() + existingDate.getTimezoneOffset() * 60000);
-      vm.modalData.date = vm.services[0].retires_on ? existingUTCDate : new Date();
+      vm.modalData.date = vm.services[0].retires_on ? existingUTCDate : null;
       vm.modalData.warn = vm.services[0].retirement_warn || 0;
     }
 
