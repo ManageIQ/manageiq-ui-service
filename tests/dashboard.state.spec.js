@@ -11,9 +11,6 @@ describe('Dashboard', function() {
     d = d.toISOString();
     d = d.substring(0, d.indexOf('.'));
 
-    Session.create({
-      auth_token: 'b10ee568ac7b5d4efbc09a6b62cb99b8',
-    });
     $httpBackend.whenGET('').respond(200);
   });
 

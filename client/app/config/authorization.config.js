@@ -83,10 +83,8 @@
       }
 
       // trying saved token..
-      Session.create({
-        auth_token: $sessionStorage.token,
-        miqGroup: $sessionStorage.miqGroup,
-      });
+      Session.setAuthToken($sessionStorage.token);
+      Session.setMiqGroup($sessionStorage.miqGroup);
 
       Session.loadUser()
         .then(Language.onReload)

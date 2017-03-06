@@ -13,7 +13,8 @@
 
     var service = {
       current: model,
-      create: create,
+      setAuthToken: setAuthToken,
+      setMiqGroup: setMiqGroup,
       destroy: destroy,
       active: active,
       currentUser: currentUser,
@@ -28,13 +29,16 @@
 
     return service;
 
-    function create(data) {
-      model.token = data.auth_token;
+    function setAuthToken(token) {
+      model.token = token;
       $http.defaults.headers.common['X-Auth-Token'] = model.token;
-      $http.defaults.headers.common['X-Miq-Group'] = data.miqGroup || undefined;
       $sessionStorage.token = model.token;
-      $sessionStorage.miqGroup = data.miqGroup || null;
       fetchProductSetting("preview_flag", "service_ui_preview");
+    }
+
+    function setMiqGroup(group) {
+      $http.defaults.headers.common['X-Miq-Group'] = group;
+      $sessionStorage.miqGroup = group || null;
     }
 
     function destroy() {
@@ -57,6 +61,7 @@
       return $http.get('/api?attributes=authorization')
         .then(function(response) {
           currentUser(response.data.identity);
+          setMiqGroup(response.data.identity.group);
           setRBAC(response.data.authorization.product_features);
 
           return response.data;
@@ -132,7 +137,7 @@
         serviceOwnership: {show: angular.isDefined(productFeatures.service_ownership)},
       };
       model.actionFeatures = features;
-      
+
       return model.actionFeatures;
     }
 
