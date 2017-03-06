@@ -28,6 +28,9 @@ describe('Session', function() {
         get document() {
           return window.document;
         },
+        angular: {
+          callbacks: window.angular.callbacks
+        },
       });
     });
 
