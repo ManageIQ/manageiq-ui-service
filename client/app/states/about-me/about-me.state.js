@@ -1,3 +1,5 @@
+import templateUrl from './about-me.html';
+
 /** @ngInject */
 export function AboutMeState(routerHelper) {
   routerHelper.configureStates(getStates());
@@ -8,7 +10,7 @@ function getStates() {
     'about-me': {
       parent: 'application',
       url: '/about-me',
-      templateUrl: 'app/states/about-me/about-me.html',
+      templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('About Me'),

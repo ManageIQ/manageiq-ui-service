@@ -1,4 +1,6 @@
 /* eslint camelcase: "off" */
+import templateUrl from './editor.html';
+
 
 /** @ngInject */
 export function CatalogsEditorState(routerHelper) {
@@ -9,7 +11,7 @@ function getStates() {
   return {
     'catalogs.editor': {
       url: '/edit/:catalogId',
-      templateUrl: 'app/states/catalogs/editor/editor.html',
+      templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       resolve: {

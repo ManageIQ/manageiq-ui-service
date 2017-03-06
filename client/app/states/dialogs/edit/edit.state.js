@@ -1,4 +1,5 @@
 /* eslint camelcase: ["error", {properties: "never"}] */
+import templateUrl from './edit.html';
 
 /** @ngInject */
 export function DialogsEditState(routerHelper) {
@@ -9,7 +10,7 @@ function getStates() {
   return {
     'dialogs.edit': {
       url: '/edit/:dialogId',
-      templateUrl: 'app/states/dialogs/edit/edit.html',
+      templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Dialog Editing'),

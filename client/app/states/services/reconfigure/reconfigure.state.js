@@ -1,4 +1,6 @@
 /* eslint camelcase: "off" */
+import templateUrl from './reconfigure.html';
+
 
 /** @ngInject */
 export function ServicesReconfigureState(routerHelper) {
@@ -9,7 +11,7 @@ function getStates() {
   return {
     'services.reconfigure': {
       url: '/:serviceId',
-      templateUrl: 'app/states/services/reconfigure/reconfigure.html',
+      templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Service Details'),
