@@ -1,7 +1,6 @@
 describe('dashboard', function() {
   beforeEach(function () {
-    browser.sleep(10000);
-    browser.get(protractorConfig.baseUrl);
+    browser.get(browser.baseUrl);
   });
   it('should have two counters up top', function() {
     var list = element.all(by.css('.ss-dashboard__card-primary__count'));

@@ -1,6 +1,5 @@
 describe('Component: catalogExplorer', function() {
   beforeEach(function() {
-    browser.sleep(10000);
     browser.get('/catalogs');
   });
   it('should have correct breadcrumb', function() {

@@ -1,7 +1,6 @@
 describe('Component: pagination', function() {
   it('should correctly respond to a change in limit', function() {
     browser.get('/services');
-    browser.sleep(10000);
     element.all(by.css('.pagination-footer button')).click();
     element.all(by.css('.pagination-footer ul.dropdown-menu li:nth-child(1) a')).click();
 
@@ -11,7 +10,6 @@ describe('Component: pagination', function() {
 
   it('should successfully page forward', function() {
     browser.get('/catalogs');
-    browser.sleep(10000);
     changeLimit();
 
     const limit = element.all(by.css('.pagination-footer .pagination-controls'));
@@ -24,7 +22,6 @@ describe('Component: pagination', function() {
 
   it('should successfully page backward', function() {
     browser.get('/catalogs');
-    browser.sleep(10000);
     changeLimit();
 
     const limit = element.all(by.css('.pagination-footer .pagination-controls'));
@@ -44,10 +41,8 @@ describe('Component: pagination', function() {
 function changeLimit() {
   element.all(by.css('.pagination-footer button')).click();
   element.all(by.css('.pagination-footer ul.dropdown-menu li:nth-child(1) a')).click();
-  browser.sleep(10000);
 }
 
 function pageNext() {
   element.all(by.css('.pagination-footer .pagination-controls ul.pagination span[alt="Next"]')).click();
-  browser.sleep(10000);
 }

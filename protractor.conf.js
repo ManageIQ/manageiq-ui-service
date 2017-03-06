@@ -28,7 +28,6 @@ var env = {
 // This is the configuration file showing how a suite of tests might
 // handle log-in using the onPrepare field.
 var config = {
- // seleniumAddress: env.seleniumAddress,
   specs: [
     '**/*.e2e.js'
   ],
@@ -38,28 +37,21 @@ var config = {
   baseUrl: env.baseUrl + '/',
 
   onPrepare: function() {
-    global.protractorConfig = env;
-
     // Required for protractor to work with a hybrid AngularJs/Angular app
     browser.ignoreSynchronization = true;
     browser.waitForAngularEnabled(false);
 
     browser.driver.manage().window().maximize();
     browser.driver.get(env.baseUrl );
-    browser.sleep(5000);
     browser.driver.findElement(by.id('inputUsername')).sendKeys('admin');
     browser.driver.findElement(by.id('inputPassword')).sendKeys('smartvm');
     browser.driver.findElement(by.css('button[type=submit]')).click();
 
-    // Login takes some time, so wait until it's done.
-    // For the test app's login, we know it's done when it redirects to
-    // index.html.
-    return browser.driver.wait(function() {
-      return browser.driver.getCurrentUrl().then(function(url) {
-
-        return env.baseUrl +'/';
-      });
-    }, 10000);
+    return browser.driver.wait(
+      protractor.until.urlIs(browser.baseUrl),
+      10 * 1000,
+      'Browser did not redirect to dashboard after logging in...'
+    );
   }
 };
 
