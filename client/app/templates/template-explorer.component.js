@@ -1,4 +1,5 @@
 import '../../assets/sass/_explorer.sass';
+import './_template-explorer.sass';
 import templateUrl from './template-explorer.html';
 
 export const TemplateExplorerComponent = {
@@ -214,17 +215,17 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
       function processTemplates(template) {
         switch (template.type) {
           case 'OrchestrationTemplateAzure':
-            template.logo = 'pictures/10r22.png';
+            template.logo = 'images/providers/vendor-azure.svg';
             break;
           case 'OrchestrationTemplateCfn':
-            template.logo = 'pictures/10r14.png';
+            template.logo = 'images/providers/vendor-amazon.svg';
             break;
           case 'OrchestrationTemplateHot':
           case 'OrchestrationTemplateVnfd':
             template.logo = 'pictures/10r16.jpg';
             break;
           case 'OrchestrationTemplateVapp':
-            template.logo = 'pictures/10r12.png';
+            template.logo = 'images/providers/vendor-vmware_cloud.svg';
             break;
           default:
             template.logo = 'images/service.png';
