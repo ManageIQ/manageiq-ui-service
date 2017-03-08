@@ -137,9 +137,9 @@ amdefine@>=0.0.4:
   version "1.5.11"
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.5.11.tgz#1baa43c303d1b93c4e6aa89453b39114b7a1c669"
 
-angular-animate@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.2.tgz#def2a8b9ede53b4b6e234c25f5c64e4b4385df15"
+angular-animate@1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.3.tgz#d228a14f47a4e50bea44ed15bbc4651d44d194f5"
 
 angular-base64@2.0.5:
   version "2.0.5"
@@ -151,9 +151,9 @@ angular-bootstrap-switch@0.5.1, angular-bootstrap-switch@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/angular-bootstrap-switch/-/angular-bootstrap-switch-0.5.1.tgz#b36d2e6841963b53053236296e071665fc93b1b9"
 
-angular-cookies@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/angular-cookies/-/angular-cookies-1.6.2.tgz#ffb69f35f84d1efe71addac20a2905476b658884"
+angular-cookies@1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/angular-cookies/-/angular-cookies-1.6.3.tgz#1336af49684348538c329ac07b99e961db99858f"
 
 angular-drag-and-drop-lists@2.0.0:
   version "2.0.0"
@@ -188,13 +188,13 @@ angular-gettext@2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/angular-gettext/-/angular-gettext-2.3.8.tgz#f5aa77e3e12c8774d2996160d66e7592e149ea48"
 
-angular-messages@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.6.2.tgz#03838b7ec5cc8671153035a59068f2fbd4e37ce4"
+angular-messages@1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.6.3.tgz#7cbdeee209d5e2d19dcc96ab73ac46a168a11db1"
 
-angular-mocks@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.2.tgz#fbb28208e74d3512769afdb8771f5cc5a99f9128"
+angular-mocks@1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.3.tgz#12fafc0f1e0903f16864004ba375bf3fb9101ef1"
 
 angular-patternfly@3.22.1:
   version "3.22.1"
@@ -208,17 +208,17 @@ angular-patternfly@3.22.1:
     lodash "3.x"
     patternfly "~3.22.1"
 
-angular-resource@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.6.2.tgz#fe09e3a723cd7a046b8871382e44f4f83f38557a"
+angular-resource@1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.6.3.tgz#a6fb59409281e3ce5e23db3e545f0b9aff705e55"
 
 "angular-sanitize@1.3.0 - 1.5.*":
   version "1.5.11"
   resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.5.11.tgz#ebfb3f343e543f9b2ef050fb4c2e9ee048d1772f"
 
-angular-sanitize@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.6.2.tgz#8a327c1acb2c14f50da5b5cad5ea452750a1a375"
+angular-sanitize@1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.6.3.tgz#f8d93cc7e7a983ad19cc96a84a88e1d65a89873b"
 
 angular-svg-base-fix@2.0.0:
   version "2.0.0"
@@ -246,9 +246,9 @@ angular-ui-sortable@0.16.1, angular-ui-sortable@^0.16.1:
   version "1.5.11"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.5.11.tgz#8c5ba7386f15965c9acf3429f6881553aada30d6"
 
-angular@1.6.2, "angular@>= 1.0.8", angular@^1.0.8:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.2.tgz#d0b677242ac4bf9ae81424297c6320973af4bb5a"
+angular@1.6.3, "angular@>= 1.0.8", angular@^1.0.8:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.3.tgz#5d34b799234e8fa17c6a3a14e0258733935f43e7"
 
 ansi-align@^1.1.0:
   version "1.1.0"
@@ -807,9 +807,9 @@ babel-plugin-transform-strict-mode@^6.22.0:
     babel-runtime "^6.22.0"
     babel-types "^6.22.0"
 
-babel-preset-env@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.2.0.tgz#c33f12ddd9c5b822ee47f6316de539ae8dc98e08"
+babel-preset-env@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.2.1.tgz#659178f54df74a74765f796be4d290b5beeb3f5f"
   dependencies:
     babel-plugin-check-es2015-constants "^6.3.13"
     babel-plugin-syntax-trailing-function-commas "^6.13.0"
@@ -1061,7 +1061,13 @@ bootstrap-select@~1.10.0:
   dependencies:
     jquery ">=1.8"
 
-bootstrap-switch@3.3.4, bootstrap-switch@~3.3.2:
+bootstrap-switch@3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/bootstrap-switch/-/bootstrap-switch-3.3.2.tgz#79ddb49fadc308fb731e257f95957af48996eea7"
+  dependencies:
+    jquery ">=1.9.0"
+
+bootstrap-switch@~3.3.2:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/bootstrap-switch/-/bootstrap-switch-3.3.4.tgz#70e0aeb2a877c0dc766991de108e2170fc29a2ff"
 
@@ -1717,9 +1723,9 @@ css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
 
-css-loader@0.26.2:
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.26.2.tgz#a9cd4c2b1a559b45d8efc04fc311ab5d2aaccb9d"
+css-loader@0.26.4:
+  version "0.26.4"
+  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.26.4.tgz#b61e9e30db94303e6ffc892f10ecd09ad025a1fd"
   dependencies:
     babel-code-frame "^6.11.0"
     css-selector-tokenizer "^0.7.0"
@@ -2361,9 +2367,9 @@ eslint-plugin-angular@1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/eslint-plugin-angular/-/eslint-plugin-angular-1.6.2.tgz#c22fe4339e4a847391d9ffafd03c46ffaf352b3a"
 
-eslint@3.17.0:
-  version "3.17.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.17.0.tgz#e2704b09c5bae9fb49ee8bafeea3832c7257d498"
+eslint@3.17.1:
+  version "3.17.1"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.17.1.tgz#b80ae12d9c406d858406fccda627afce33ea10ea"
   dependencies:
     babel-code-frame "^6.16.0"
     chalk "^1.1.3"
@@ -3856,7 +3862,7 @@ jquery-ui-bundle@1.11.4:
   version "1.11.4"
   resolved "https://registry.yarnpkg.com/jquery-ui-bundle/-/jquery-ui-bundle-1.11.4.tgz#a4578eeaeb18c4b37cba4633e191256458c6ff38"
 
-jquery@3.1.1, "jquery@>= 2.1.x", jquery@>=1.10, jquery@>=1.7, jquery@>=1.7.0, jquery@>=1.7.1, jquery@>=1.8:
+jquery@3.1.1, "jquery@>= 2.1.x", jquery@>=1.10, jquery@>=1.7, jquery@>=1.7.0, jquery@>=1.7.1, jquery@>=1.8, jquery@>=1.9.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
 
@@ -5543,18 +5549,9 @@ postcss-zindex@^2.0.1:
     postcss "^5.0.4"
     uniqs "^2.0.0"
 
-postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.8, postcss@^5.2.11, postcss@^5.2.15:
+postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.11, postcss@^5.2.15:
   version "5.2.15"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.15.tgz#a9e8685e50e06cc5b3fdea5297273246c26f5b30"
-  dependencies:
-    chalk "^1.1.3"
-    js-base64 "^2.1.9"
-    source-map "^0.5.6"
-    supports-color "^3.2.3"
-
-postcss@^5.0.6:
-  version "5.2.11"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.11.tgz#ff29bcd6d2efb98bfe08a022055ec599bbe7b761"
   dependencies:
     chalk "^1.1.3"
     js-base64 "^2.1.9"
@@ -6157,9 +6154,9 @@ sass-lint@1.10.2:
     path-is-absolute "^1.0.0"
     util "^0.10.3"
 
-sass-loader@6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-6.0.2.tgz#96343a9f5c585780149321c7bda9e1da633d2c73"
+sass-loader@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-6.0.3.tgz#33983b1f90d27ddab0e57d0dac403dce9bc7ecfd"
   dependencies:
     async "^2.1.5"
     clone-deep "^0.2.4"
