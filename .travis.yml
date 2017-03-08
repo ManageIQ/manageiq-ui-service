@@ -3,12 +3,13 @@ node_js:
 - 6.9.1
 sudo: false
 cache:
+  yarn: true
   directories:
   - node_modules
 before_install:
 - npm install -g yarn@0.19.1
 install:
-- yarn install --force
+- yarn install
 after_script:
 - codeclimate-test-reporter < reports/coverage/report-lcov/lcov.info
 notifications:
