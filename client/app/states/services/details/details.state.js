@@ -48,6 +48,7 @@
       'options',
       'name',
       'guid',
+      'vms.ipaddresses',
     ];
     var options = {
       attributes: requestAttributes,
@@ -151,6 +152,8 @@
 
       if ($target.is('.open-console-button') || $target.is('.open-console-button *')) {
         Consoles.open(item.id);
+      } else if ($target.is('.open-cockpit-button') || $target.is('.open-cockpit-button *')) {
+        Consoles.openCockpit(item);
       }
     }
 
