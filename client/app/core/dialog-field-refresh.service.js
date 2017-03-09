@@ -109,6 +109,7 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
       currentDialogField.options = newDialogField.options;
       currentDialogField.read_only = newDialogField.read_only;
       currentDialogField.required = newDialogField.required;
+      currentDialogField.visible = newDialogField.visible;
     }
   }
 
