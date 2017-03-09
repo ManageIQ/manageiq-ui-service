@@ -113,7 +113,15 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
 
   function fetchData(limit, offset, _refresh) {
     var filter = [];
-    var attributes = ['picture', 'picture.image_href', 'approval_state', 'created_on', 'description', 'requester_name'];
+    var attributes = [
+      'approval_state',
+      'created_on',
+      'description',
+      'message',
+      'picture',
+      'picture.image_href',
+      'requester_name',
+    ];
     var options = {
       expand: 'resources',
       limit: limit,
