@@ -4,67 +4,26 @@ describe('Component: ServiceDetails', function() {
     module('app.core', 'app.states', 'app.services');
   });
 
-  describe('view', function() {
+  describe('with $compile', function() {
     let scope;
     let isoScope;
     let element;
-    let ctrl;
-    let collectionsApiSpy;
+    let mockDir = 'tests/mock/services/';
 
-
-    beforeEach(inject(function($compile, $rootScope, $httpBackend, CollectionsApi, RBAC) {
-      let mockDir = 'tests/mock/services/';
-      const options = {
-        attributes: [
-          'name', 'guid', 'created_at', 'type', 'description', 'picture', 'picture.image_href', 'evm_owner.name', 'evm_owner.userid',
-          'miq_group.description', 'all_service_children', 'aggregate_all_vm_cpus', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count',
-          'aggregate_all_vm_disk_space_allocated', 'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'retired',
-          'retirement_state', 'retirement_warn', 'retires_on', 'actions', 'custom_actions', 'provision_dialog', 'service_resources',
-          'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options',
-        ],
-        decorators: [
-          'vms.ipaddresses',
-          'vms.snapshots',
-          'vms.v_total_snapshots',
-          'vms.v_snapshot_newest_name',
-          'vms.v_snapshot_newest_timestamp',
-          'vms.v_snapshot_newest_total_size',
-          'vms.supports_console?',
-          'vms.supports_cockpit?'],
-        expand: 'vms',
-      };
-
-      RBAC.setActionFeatures ({
-        serviceDelete: {show: true},
-        serviceRetireNow: {show: true},
-        serviceRetire: {show: true},
-        serviceTag: {show: true},
-        serviceEdit: {show: true},
-        serviceReconfigure: {show: true},
-        serviceOwnership: {show: true},
-      });
-
-      const tagOptions = {
-        expand: 'resources',
-        attributes: ['categorization', 'category'],
-      };
-
+    beforeEach(inject(function($stateParams, $compile, $rootScope, $httpBackend) {
       scope = $rootScope.$new();
       $httpBackend.whenGET('').respond(200);
 
       scope.service = readJSON(mockDir + 'service1.json');
       scope.tags = readJSON(mockDir + 'service1_tags.json');
 
-      collectionsApiSpy = sinon.stub(CollectionsApi, 'get');
-      collectionsApiSpy.withArgs('services', 10000000000542, options).returns(Promise.resolve(scope.service));
-      collectionsApiSpy.withArgs('services/10000000000542/tags/', tagOptions).returns(Promise.resolve(scope.tags));
-
-      element = angular.element('<service-details service-id="10000000000542"></service-details>');
+      element = angular.element('<service-details />');
       let el = $compile(element)(scope);
       scope.$digest();
+
       isoScope = el.isolateScope();
-      isoScope.vm.loading = false;
       isoScope.vm.service = scope.service;
+      isoScope.vm.loading = false;
       isoScope.$digest();
     }));
 
@@ -74,7 +33,8 @@ describe('Component: ServiceDetails', function() {
 
       const readonlyInputs = element.find('.form-control');
       expect(readonlyInputs[1].value).to.eq('RHEL7 on VMware');
-      expect(readonlyInputs[2].value).to.eq('8e892478-addd-11e6-9f30-005056b15629');
+      expect(readonlyInputs[2].value).to.eq('8e892' +
+        '478-addd-11e6-9f30-005056b15629');
       expect(readonlyInputs[3].value).to.eq('10000000000542');
       expect(readonlyInputs[4].value).to.eq('Administrator');
       expect(readonlyInputs[5].value).to.eq('$');

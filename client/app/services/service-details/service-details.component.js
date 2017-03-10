@@ -6,6 +6,7 @@ export const ServiceDetailsComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
   templateUrl,
+  bindings: {},
 };
 
 /** @ngInject */
