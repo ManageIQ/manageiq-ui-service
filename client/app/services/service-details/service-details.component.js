@@ -5,14 +5,11 @@ import templateUrl from './service-details.html';
 export const ServiceDetailsComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
-  bindings: {
-    serviceId: "=",
-  },
   templateUrl,
 };
 
 /** @ngInject */
-function ComponentController($state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
+function ComponentController($stateParams, $state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
                              TagEditorModal, ModalService, PowerOperations, ServicesState, RBAC, TaggingService, lodash, Polling) {
   const vm = this;
   vm.$onInit = activate;
@@ -24,8 +21,9 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
 
   function activate() {
     angular.extend(vm, {
+      serviceId: $stateParams.serviceId,
       loading: true,
-      title: "",
+      title: N_('Service Details'),
       service: {},
       availableTags: [],
       listActions: [],

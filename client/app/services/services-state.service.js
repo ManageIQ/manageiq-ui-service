@@ -33,7 +33,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'miq_group.description', 'all_service_children', 'aggregate_all_vm_cpus', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count',
         'aggregate_all_vm_disk_space_allocated', 'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'retired',
         'retirement_state', 'retirement_warn', 'retires_on', 'actions', 'custom_actions', 'provision_dialog', 'service_resources',
-        'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options',
+        'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options', 'orchestration_stacks',
       ],
       decorators: [
         'vms.ipaddresses',
