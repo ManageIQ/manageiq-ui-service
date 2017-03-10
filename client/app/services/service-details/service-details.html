@@ -12,7 +12,7 @@
   <actions>
     <div class="ss-details-header__actions">
       <div uib-dropdown class="ss-details-header__actions__inner dropdown-kebab-pf">
-        <custom-button ng-if="vm.hasCustomButtons()"
+        <custom-button ng-if="vm.hasCustomButtons(vm.service)"
                        service-template-catalog-id="vm.service.service_template.service_template_catalog_id"
                        service-id="vm.service.id"
                        custom-actions="vm.service.custom_actions"
@@ -30,7 +30,8 @@
     </div>
   </actions>
 </div>
-<div class="ss-details-wrapper ss-details-wrapper-with-toolbar">
+<loading status="vm.loading"></loading>
+<div ng-if="!vm.loading" class="ss-details-wrapper ss-details-wrapper-with-toolbar">
   <div class="panel panel-default ss-details-panel">
     <div class="panel-body">
       <section>
@@ -42,9 +43,21 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="form-horizontal">
                 <div class="form-group">
+                  <label class="control-label col-sm-2" translate>Name</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" readonly value="{{vm.service.name}}"/>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="control-label col-sm-2" translate>Description</label>
                   <div class="col-sm-8">
                     <input class="form-control" readonly value="{{vm.service.description}}"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" translate>GUID</label>
+                  <div class="col-sm-6">
+                    <input class="form-control" readonly value="{{vm.service.guid}}"/>
                   </div>
                 </div>
               </div>
@@ -103,7 +116,7 @@
                   <label class="control-label col-sm-2" translate>Tags</label>
                   <div class="col-sm-10">
                     <div class="service-details-tag-control">
-                      <tagging-widget tags-of-item="vm.tags" read-only="true"></tagging-widget>
+                      <tagging-widget tags-of-item="vm.availableTags" read-only="true"></tagging-widget>
                     </div>
                   </div>
                 </div>
@@ -111,11 +124,10 @@
             </div>
           </div>
         </div>
-
       </section>
     </div>
   </div>
-  <div ng-if="vm.service.service_template.prov_type != 'generic_ansible_tower'"
+  <div ng-if="vm.service.type !== 'ServiceAnsiblePlaybook'"
        class="panel panel-default ss-details-panel">
     <div class="panel-body">
       <section>
@@ -202,7 +214,7 @@
                           tooltip-placement="bottom">
                          <a ui-sref="vms.snapshots({vmId: item.id})"> {{item.v_snapshot_newest_name}}</a>
                         </span>
-                         -
+                          -
                         <span
                           uib-tooltip="{{'Latest Snapshot Timestamp' | translate}} : {{item.v_snapshot_newest_timestamp| date:'medium'}}"
                           tooltip-append-to-body="true"
@@ -292,7 +304,7 @@
       </section>
     </div>
   </div>
-  <service-details-ansible ng-if="vm.service.service_template.prov_type === 'generic_ansible_tower'"
+  <service-details-ansible ng-if="vm.service.type === 'ServiceAnsiblePlaybook'"
                            results="vm.service"></service-details-ansible>
   <div class="panel panel-default ss-details-panel relationships-panel">
     <div class="panel-body">

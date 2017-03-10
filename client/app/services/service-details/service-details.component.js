@@ -6,30 +6,31 @@ export const ServiceDetailsComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
   bindings: {
-    service: "=",
-    tags: "=",
+    serviceId: "=",
   },
   templateUrl,
 };
 
 /** @ngInject */
 function ComponentController($state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
-                             TagEditorModal, ModalService, PowerOperations, ServicesState, RBAC) {
-  var vm = this;
-  var currentServiceState;
-  vm.$onInit = activate();
-  vm.$doCheck = function () {
-    if (!angular.equals(currentServiceState, vm.service)) {
-      currentServiceState = angular.copy(vm.service);
-      vm.computeGroup = createResourceGroups();
-    }
-  };
+                             TagEditorModal, ModalService, PowerOperations, ServicesState, RBAC, TaggingService, lodash, Polling) {
+  const vm = this;
+  vm.$onInit = activate;
+  vm.$onDestroy = onDestroy;
+
+  function onDestroy() {
+    Polling.stop('servicesPolling');
+  }
+
   function activate() {
-    Chargeback.processReports(vm.service);
     angular.extend(vm, {
-      title: vm.service.name,
+      loading: true,
+      title: "",
+      service: {},
+      availableTags: [],
+      listActions: [],
+
       // Functions
-      isAnsibleService: isAnsibleService,
       hasCustomButtons: hasCustomButtons,
       disableStopButton: disableStopButton,
       disableSuspendButton: disableSuspendButton,
@@ -46,42 +47,55 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
       gotoComputeResource: gotoComputeResource,
       gotoService: gotoService,
       gotoCatalogItem: gotoCatalogItem,
+      createResourceGroups: createResourceGroups,
 
       // Config setup
-      listActions: getListActions(),
       headerConfig: getHeaderConfig(),
       resourceListConfig: getResourceListConfig(),
     });
+    fetchResources(vm.serviceId);
+    Polling.start('servicesPolling', startPollingService, 10000);
+  }
 
-    var actions = vm.service.actions;
-    if (angular.isDefined(actions)) {
-      for (var i = 0; i < actions.length; i++) {
-        if (actions[i].name === "reconfigure") {
-          vm.service.reconfigure = true;
-        }
+  function startPollingService() {
+    fetchResources(vm.serviceId);
+  }
+
+  function fetchResources(id) {
+    ServicesState.getService(id).then(handleSuccess, handleFailure);
+
+    function handleSuccess(response) {
+      TaggingService.queryAvailableTags('services/' + id + '/tags/').then(assignAvailableTags);
+      function assignAvailableTags(response) {
+        vm.availableTags = response;
       }
+
+      vm.service = response;
+      vm.title = vm.service.name;
+      getListActions();
+      Chargeback.processReports(vm.service);
+      vm.computeGroup = vm.createResourceGroups(vm.service);
+      vm.loading = false;
     }
 
-    vm.computeGroup = createResourceGroups();
+    function handleFailure(response) {
+      EventNotifications.error(__('There was an error fetching this service. ') + response);
+    }
   }
 
-  function isAnsibleService() {
-    var compareValue = angular.isDefined(vm.service.type) ? vm.service.type : vm.service.name;
-
-    return compareValue.toLowerCase().indexOf('ansible') !== -1;
-  }
-
-  function hasCustomButtons() {
-    return angular.isDefined(vm.service.customActions)
-      && angular.isArray(vm.service.customActions.buttons)
-      && vm.service.customActions.buttons.length > 0;
+  function hasCustomButtons(service) {
+    return angular.isDefined(service.customActions)
+      && angular.isArray(service.customActions.buttons)
+      && service.customActions.buttons.length > 0;
   }
 
   function getListActions() {
-    var configActions, lifeCycleActions, policyActions;
-    var listActions = [];
+    const lifeCycleActions = ServicesState.getLifeCycleCustomDropdown(setServiceRetirement, retireService);
+    const configActions = ServicesState.getConfigurationCustomDropdown(editService, removeService, setOwnership);
+    const policyActions = ServicesState.getPolicyCustomDropdown(editTags);
+    const listActions = [];
 
-    if (!isAnsibleService()) {
+    if (angular.isUndefined(vm.service.type)) {
       listActions.push(
         {
           title: __('Power Operations'),
@@ -113,20 +127,17 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
       );
     }
 
-    lifeCycleActions = ServicesState.getLifeCycleCustomDropdown(setServiceRetirement, retireService);
     if (lifeCycleActions) {
       listActions.push(lifeCycleActions);
     }
 
-    policyActions = ServicesState.getPolicyCustomDropdown(editTags);
     if (policyActions) {
       listActions.push(policyActions);
     }
 
-    configActions = ServicesState.getConfigurationCustomDropdown(editService, removeService, setOwnership);
     if (configActions) {
-      var actionFeatures = RBAC.getActionFeatures();
-      if (vm.service.reconfigure && actionFeatures.serviceReconfigure.show) {
+      const actionFeatures = RBAC.getActionFeatures();
+      if (angular.isDefined(lodash.find(vm.service.actions, {'name': 'reconfigure'})) && actionFeatures.serviceReconfigure.show) {
         configActions.actions.push(
           {
             icon: 'fa fa-cog',
@@ -141,7 +152,7 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
       listActions.push(configActions);
     }
 
-    return listActions;
+    vm.listActions = listActions;
   }
 
   function disableStartButton(item) {
@@ -180,7 +191,7 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
   }
 
   function editService() {
-    var modalOptions = {
+    const modalOptions = {
       component: 'editServiceModal',
       resolve: {
         service: function() {
@@ -192,7 +203,7 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
   }
 
   function editTags() {
-    TagEditorModal.showModal(vm.service, vm.tags);
+    TagEditorModal.showModal(vm.service, vm.availableTags);
   }
 
   function removeService() {
@@ -209,7 +220,7 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
   }
 
   function setOwnership() {
-    var modalOptions = {
+    const modalOptions = {
       component: 'ownershipServiceModal',
       resolve: {
         services: function() {
@@ -224,14 +235,14 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
 
     /** @ngInject */
     function resolveUsers(CollectionsApi) {
-      var options = {expand: 'resources', attributes: ['userid', 'name'], sort_by: 'name', sort_options: 'ignore_case'};
+      const options = {expand: 'resources', attributes: ['userid', 'name'], sort_by: 'name', sort_options: 'ignore_case'};
 
       return CollectionsApi.query('users', options);
     }
 
     /** @ngInject */
     function resolveGroups(CollectionsApi) {
-      var options = {expand: 'resources', attributes: ['description'], sort_by: 'description', sort_options: 'ignore_case'};
+      const options = {expand: 'resources', attributes: ['description'], sort_by: 'description', sort_options: 'ignore_case'};
 
       return CollectionsApi.query('groups', options);
     }
@@ -242,7 +253,7 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
   }
 
   function setServiceRetirement() {
-    var modalOptions = {
+    const modalOptions = {
       component: 'retireServiceModal',
       resolve: {
         services: function() {
@@ -254,7 +265,7 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
   }
 
   function retireService() {
-    var data = {action: 'retire'};
+    const data = {action: 'retire'};
     CollectionsApi.post('services', vm.service.id, {}, data).then(retireSuccess, retireFailure);
 
     function retireSuccess() {
@@ -273,13 +284,13 @@ function ComponentController($state, $window, CollectionsApi, EventNotifications
     };
   }
 
-  function createResourceGroups() {
+  function createResourceGroups(service) {
     return {
       title: __('Compute'),
       open: true,
       resourceTypeClass: 'pficon pficon-screen',
       emptyMessage: __('There are no Compute Resources for this service.'),
-      resources: vm.service.vms || [],
+      resources: service.vms || [],
     };
   }
 

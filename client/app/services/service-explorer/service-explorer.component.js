@@ -18,11 +18,11 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   };
   function activate() {
     if ($state.params.filter) {
-      ServicesState.setFilters($state.params.filter);
-      ServicesState.filterApplied = true;
+      ServicesState.services.setFilters($state.params.filter);
+      ServicesState.services.filterApplied = true;
     } else {
-      ServicesState.setFilters([]);
-      ServicesState.filterApplied = false;
+      ServicesState.services.setFilters([]);
+      ServicesState.services.filterApplied = false;
     }
 
     angular.extend(vm, {
@@ -59,7 +59,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     });
     vm.offset = 0;
 
-    Language.fixState(ServicesState, vm.headerConfig);
+    Language.fixState(ServicesState.services, vm.headerConfig);
 
     resolveServices(vm.limit, 0);
     Polling.start('serviceListPolling', pollUpdateServicesList, vm.pollingInterval);
@@ -177,15 +177,15 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     var serviceFilterConfig = {
       fields: getServiceFilterFields(),
       resultsCount: 0,
-      appliedFilters: ServicesState.filterApplied ? ServicesState.getFilters() : [],
+      appliedFilters: ServicesState.services.filterApplied ? ServicesState.services.getFilters() : [],
       onFilterChange: filterChange,
     };
 
     var serviceSortConfig = {
       fields: getServiceSortFields(),
       onSortChange: sortChange,
-      isAscending: ServicesState.getSort().isAscending,
-      currentField: ServicesState.getSort().currentField,
+      isAscending: ServicesState.services.getSort().isAscending,
+      currentField: ServicesState.services.getSort().currentField,
     };
 
     return {
@@ -274,7 +274,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   }
 
   function sortChange(sortId, isAscending) {
-    ServicesState.setSort(sortId, isAscending);
+    ServicesState.services.setSort(sortId, isAscending);
     resolveServices(vm.limit, 0);
   }
 
@@ -291,7 +291,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
 
   // Private
   function filterChange(filters) {
-    ServicesState.setFilters(filters);
+    ServicesState.services.setFilters(filters);
     resolveServices(vm.limit, 0);
   }
 
@@ -343,9 +343,9 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     ServicesState.getServices(
       limit,
       offset,
-      ServicesState.getFilters(),
-      ServicesState.getSort().currentField,
-      ServicesState.getSort().isAscending).then(querySuccess, queryFailure);
+      ServicesState.services.getFilters(),
+      ServicesState.services.getSort().currentField,
+      ServicesState.services.getSort().isAscending).then(querySuccess, queryFailure);
 
     function querySuccess(result) {
       vm.loading = false;

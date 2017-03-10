@@ -2,22 +2,56 @@
 
 /** @ngInject */
 export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
-  var service = {};
-  var actionFeatures = RBAC.getActionFeatures();
+  const actionFeatures = RBAC.getActionFeatures();
+  const services = {};
 
-  ListConfiguration.setupListFunctions(service, { id: 'name', title: __('Name'), sortType: 'alpha' });
+  ListConfiguration.setupListFunctions(services, {id: 'name', title: __('Name'), sortType: 'alpha'});
+
+  return {
+    services: services,
+    getService: getService,
+    getServices: getServices,
+    getServicesMinimal: getServicesMinimal,
+    getLifeCycleCustomDropdown: getLifeCycleCustomDropdown,
+    getPolicyCustomDropdown: getPolicyCustomDropdown,
+    getConfigurationCustomDropdown: getConfigurationCustomDropdown,
+  };
 
   // Returns minimal data for the services matching the current filters, useful for getting a filter count
-  service.getServicesMinimal = function(filters) {
-    var options = {
+  function getServicesMinimal(filters) {
+    const options = {
       filter: getQueryFilters(filters),
     };
 
     return CollectionsApi.query('services', options);
-  };
+  }
 
-  service.getServices = function(limit, offset, filters, sortField, sortAscending) {
-    var options = {
+  function getService(id) {
+    const options = {
+      attributes: [
+        'name', 'guid', 'created_at', 'type', 'description', 'picture', 'picture.image_href', 'evm_owner.name', 'evm_owner.userid',
+        'miq_group.description', 'all_service_children', 'aggregate_all_vm_cpus', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count',
+        'aggregate_all_vm_disk_space_allocated', 'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'retired',
+        'retirement_state', 'retirement_warn', 'retires_on', 'actions', 'custom_actions', 'provision_dialog', 'service_resources',
+        'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options',
+      ],
+      decorators: [
+        'vms.ipaddresses',
+        'vms.snapshots',
+        'vms.v_total_snapshots',
+        'vms.v_snapshot_newest_name',
+        'vms.v_snapshot_newest_timestamp',
+        'vms.v_snapshot_newest_total_size',
+        'vms.supports_console?',
+        'vms.supports_cockpit?'],
+      expand: 'vms',
+    };
+
+    return CollectionsApi.get('services', id, options);
+  }
+
+  function getServices(limit, offset, filters, sortField, sortAscending) {
+    const options = {
       expand: 'resources',
       limit: limit,
       offset: String(offset),
@@ -35,22 +69,22 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'all_vms',
         'custom_actions',
         'service_resources',
-        'tags'],
+      ],
       filter: getQueryFilters(filters),
     };
 
     if (angular.isDefined(sortField)) {
-      options.sort_by = service.getSort().currentField.id;
-      options.sort_options = service.getSort().currentField.sortType === 'alpha' ? 'ignore_case' : '';
+      options.sort_by = services.getSort().currentField.id;
+      options.sort_options = services.getSort().currentField.sortType === 'alpha' ? 'ignore_case' : '';
       options.sort_order = sortAscending ? 'asc' : 'desc';
     }
 
     return CollectionsApi.query('services', options);
-  };
+  }
 
-  service.getLifeCycleCustomDropdown = function(setServiceRetirementFn, retireServiceFn) {
-    var lifeCycleActions;
-    var clockIcon = 'fa fa-clock-o';
+  function getLifeCycleCustomDropdown(setServiceRetirementFn, retireServiceFn) {
+    let lifeCycleActions;
+    const clockIcon = 'fa fa-clock-o';
 
     if (actionFeatures.serviceRetireNow.show || actionFeatures.serviceRetire.show) {
       lifeCycleActions = {
@@ -94,13 +128,13 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     }
 
     return lifeCycleActions;
-  };
+  }
 
-  service.getPolicyCustomDropdown = function(editTagsFn) {
-    var policyActions;
+  function getPolicyCustomDropdown(editTagsFn) {
+    let policyActions;
 
     if (actionFeatures.serviceTag.show) {
-      policyActions =           {
+      policyActions = {
         title: __('Policy'),
         actionName: 'policy',
         icon: 'fa fa-shield',
@@ -119,10 +153,10 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     }
 
     return policyActions;
-  };
+  }
 
-  service.getConfigurationCustomDropdown = function(editServiceFn, removeServicesFn, setOwnershipFn) {
-    var configActions;
+  function getConfigurationCustomDropdown(editServiceFn, removeServicesFn, setOwnershipFn) {
+    let configActions;
 
     if (actionFeatures.serviceDelete.show
       || actionFeatures.serviceEdit.show
@@ -183,25 +217,24 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     }
 
     return configActions;
-  };
+  }
 
+  // Private
   function getQueryFilters(filters) {
-    var queryFilters =  ['ancestry=null'];
+    const queryFilters = ['ancestry=null'];
 
     angular.forEach(filters, function(nextFilter) {
       if (nextFilter.id === 'name') {
         queryFilters.push("name='%" + nextFilter.value + "%'");
       } else {
         if (angular.isDefined(nextFilter.operator)) {
-          queryFilters.push(nextFilter.id + nextFilter.operator + nextFilter.value );
+          queryFilters.push(nextFilter.id + nextFilter.operator + nextFilter.value);
         } else {
-          queryFilters.push(nextFilter.id + '=' + nextFilter.value );
+          queryFilters.push(nextFilter.id + '=' + nextFilter.value);
         }
       }
     });
 
     return queryFilters;
   }
-
-  return service;
 }
