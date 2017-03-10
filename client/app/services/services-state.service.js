@@ -10,21 +10,13 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
   return {
     services: services,
     getService: getService,
+    getServiceCredential: getServiceCredential,
     getServices: getServices,
     getServicesMinimal: getServicesMinimal,
     getLifeCycleCustomDropdown: getLifeCycleCustomDropdown,
     getPolicyCustomDropdown: getPolicyCustomDropdown,
     getConfigurationCustomDropdown: getConfigurationCustomDropdown,
   };
-
-  // Returns minimal data for the services matching the current filters, useful for getting a filter count
-  function getServicesMinimal(filters) {
-    const options = {
-      filter: getQueryFilters(filters),
-    };
-
-    return CollectionsApi.query('services', options);
-  }
 
   function getService(id) {
     const options = {
@@ -48,6 +40,19 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     };
 
     return CollectionsApi.get('services', id, options);
+  }
+
+  function getServiceCredential(credentialId) {
+    return CollectionsApi.get('authentications', credentialId, {});
+  }
+
+  // Returns minimal data for the services matching the current filters, useful for getting a filter count
+  function getServicesMinimal(filters) {
+    const options = {
+      filter: getQueryFilters(filters),
+    };
+
+    return CollectionsApi.query('services', options);
   }
 
   function getServices(limit, offset, filters, sortField, sortAscending) {

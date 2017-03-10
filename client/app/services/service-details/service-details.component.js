@@ -27,6 +27,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       title: N_('Service Details'),
       service: {},
       availableTags: [],
+      credential: {},
       listActions: [],
 
       // Functions
@@ -53,7 +54,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       resourceListConfig: getResourceListConfig(),
     });
     fetchResources(vm.serviceId);
-    Polling.start('servicesPolling', startPollingService, 10000);
+    Polling.start('servicesPolling', startPollingService, 50000);
   }
 
   function startPollingService() {
@@ -64,16 +65,22 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
     ServicesState.getService(id).then(handleSuccess, handleFailure);
 
     function handleSuccess(response) {
-      TaggingService.queryAvailableTags('services/' + id + '/tags/').then(assignAvailableTags);
-      function assignAvailableTags(response) {
-        vm.availableTags = response;
-      }
-
       vm.service = response;
       vm.title = vm.service.name;
       getListActions();
       Chargeback.processReports(vm.service);
       vm.computeGroup = vm.createResourceGroups(vm.service);
+
+      TaggingService.queryAvailableTags('services/' + id + '/tags/').then(assignAvailableTags);
+      function assignAvailableTags(response) {
+        vm.availableTags = response;
+      }
+
+      ServicesState.getServiceCredential(vm.service.options.config_info.provision.credential_id).then(assignCredential);
+      function assignCredential(response) {
+        vm.service.credential = [response];
+      }
+
       vm.loading = false;
     }
 

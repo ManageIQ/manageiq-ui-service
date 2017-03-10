@@ -5,7 +5,7 @@ export const ServiceDetailsAnsibleComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
   bindings: {
-    results: '<',
+    service: '<',
   },
   templateUrl,
 };
@@ -17,24 +17,18 @@ function ComponentController(ModalService) {
 
   function activate() {
     angular.extend(vm, {
-      // Data
+      oStacks: vm.service.orchestration_stacks[0],
+      output: "",
       plays: {
         open: true,
         resources: [],
       },
-      creds: {
-        open: true,
-        resources: [],
-      },
-      results: {
-        resources: [],
-      },
-      output: "",
 
       // Functions
       sampleAction: angular.noop(),
       viewPlay: angular.noop(),
       watchLive: watchLive,
+      elapsed: elapsed,
 
       // Config
       credListConfig: credListConfig(),
@@ -66,6 +60,10 @@ function ComponentController(ModalService) {
       },
     };
     ModalService.open(modalOptions);
+  }
+
+  function elapsed(finish, start) {
+    return Math.abs(new Date(finish) - new Date(start)) / 100;
   }
 }
 
