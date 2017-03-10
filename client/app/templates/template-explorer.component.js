@@ -11,6 +11,7 @@ export const TemplateExplorerComponent = {
 /** @ngInject */
 function ComponentController(ListView, TemplatesService, EventNotifications, $state, sprintf, Session, Polling) {
   const vm = this;
+  vm.permissions = TemplatesService.getPermissions();
   vm.$onInit = activate();
   vm.$onDestroy = function() {
     Polling.stop('templateListPolling');
@@ -34,7 +35,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
       resolveTemplates: resolveTemplates,
       removeTemplate: removeTemplate,
       updatePagination: updatePagination,
-      actionConfig: getConfigurationMenu(),
+      actionConfig: getToolbarMenus(),
       menuActions: getMenuActions(),
       toolbarConfig: getToolbarConfig(),
       listConfig: getListConfig(),
@@ -48,45 +49,59 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
     Polling.start('templateListPolling', pollTemplates, vm.pollingInterval);
   }
 
-  function getConfigurationMenu() {
-    const configurationMenu = [{
+  function getToolbarMenus() {
+    const menus = [];
+    const configurationMenu = {
       title: __('Configuration'),
       name: __('Configuration'),
       actionName: 'configuration',
       icon: 'fa fa-cog',
       isDisabled: false,
-      actions: [{
-        name: __('Create'),
-        actionName: 'create',
-        title: __('Create new template'),
-        actionFn: addTemplate,
-        isDisabled: false,
-      },
-      {
-        name: __('Copy'),
-        actionName: 'copy',
-        title: __('Copy template'),
-        actionFn: copyTemplate,
-        isDisabled: false,
-      },
-      {
-        name: __('Edit'),
-        actionName: 'edit',
-        title: __('Edit template'),
-        actionFn: editTemplate,
-        isDisabled: false,
-      },
-      {
-        name: __('Delete'),
-        actionName: 'delete',
-        title: __('Delete template'),
-        actionFn: deleteSelectedTemplates,
-        isDisabled: false,
-      },
-      ],
+      actions: [],
+    };
+
+    const menuActions = [{
+      name: __('Create'),
+      actionName: 'create',
+      title: __('Create new template'),
+      actionFn: addTemplate,
+      isDisabled: false,
+      permissions: vm.permissions.create,
+    },
+    {
+      name: __('Copy'),
+      actionName: 'copy',
+      title: __('Copy template'),
+      actionFn: copyTemplate,
+      isDisabled: false,
+      permissions: vm.permissions.copy,
+    },
+    {
+      name: __('Edit'),
+      actionName: 'edit',
+      title: __('Edit template'),
+      actionFn: editTemplate,
+      isDisabled: false,
+      permissions: vm.permissions.edit,
+    },
+    {
+      name: __('Delete'),
+      actionName: 'delete',
+      title: __('Delete template'),
+      actionFn: deleteSelectedTemplates,
+      isDisabled: false,
+      permissions: vm.permissions.delete,
     }];
 
-    return configurationMenu;
+    angular.forEach(menuActions, hasPermission);
+    function hasPermission(item) {
+      if (item.permissions) {
+        configurationMenu.actions.push(item);
+      }
+    }
+    menus.push(configurationMenu);
+
+    return menus;
   }
 
   function getListConfig() {
@@ -146,23 +161,33 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
   }
 
   function getMenuActions() {
-    const menuActions = [
+    const menuActions = [];
+    const menuActionsConfig = [
       {
         name: __('Copy'),
         title: __('Copy Template'),
         actionFn: handleCopy,
+        permissions: vm.permissions.copy,
       },
       {
         name: __('Edit'),
         title: __('Edit Template'),
         actionFn: handleEdit,
+        permissions: vm.permissions.edit,
       },
       {
         name: __('Delete'),
         title: __('Delete Template'),
         actionFn: handleDelete,
+        permissions: vm.permissions.delete,
       },
     ];
+
+    angular.forEach(menuActionsConfig, function(menuItem) {
+      if (menuItem.permissions) {
+        menuActions.push(menuItem);
+      }
+    });
 
     return menuActions;
   }

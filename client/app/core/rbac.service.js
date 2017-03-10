@@ -9,6 +9,7 @@ export function RBACFactory(lodash) {
   var service = {
     set: set,
     has: has,
+    hasAny: hasAny,
     all: all,
     navigationEnabled: navigationEnabled,
     getNavFeatures: getNavFeatures,
@@ -47,11 +48,18 @@ export function RBACFactory(lodash) {
   function has(feature) {
     return feature in features;
   }
+  function hasAny(permissions) {
+    const hasPermission = permissions.some(function (feature) {
+      if (angular.isDefined(features[feature])) {
+        return true;
+      }
+    });
 
+    return hasPermission;
+  }
   function all() {
     return features;
   }
-
   function setNavFeatures(features) {
     navFeatures = features;
   }

@@ -54,10 +54,17 @@ export function authInit($rootScope, $state, $log, Session, $sessionStorage, Lan
     syncSession();
   }
   function changeStart(event, toState, toParams, _fromState, _fromParams) {
-    if (toState.data && !toState.data.requireUser) {
-      return;
+    if (angular.isDefined(toState.data)) {
+      if (angular.isDefined(toState.data.authorization) && !toState.data.authorization) {
+        event.preventDefault();
+        $state.transitionTo('dashboard');
+        
+        return;
+      }
+      if (!toState.data.requireUser) {
+        return;
+      }
     }
-
     if (Session.active()) {
       return;
     }
