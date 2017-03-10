@@ -7,7 +7,7 @@ function getStates() {
   return {
     'services.details': {
       url: '/:serviceId',
-      template: '<service-details service-id="vm.serviceId"></service-details>',
+      template: '<service-details></service-details>',
       controllerAs: 'vm',
       title: N_('Service Details'),
     },
