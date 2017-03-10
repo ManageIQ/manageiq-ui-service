@@ -1,10 +1,10 @@
 /** @ngInject */
 
-export function TemplatesEditorState(routerHelper) {
-  routerHelper.configureStates(getStates());
+export function TemplatesEditorState(routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC));
 }
 
-function getStates() {
+function getStates(RBAC) {
   return {
     'templates.editor': {
       url: '/:pageAction/:templateId',
@@ -13,6 +13,9 @@ function getStates() {
       controllerAs: 'vm',
       resolve: {
         template: resolveTemplate,
+      },
+      data: {
+        authorization: RBAC.hasAny(['orchestration_templates_admin', 'orchestration_templates_edit']),
       },
     },
   };

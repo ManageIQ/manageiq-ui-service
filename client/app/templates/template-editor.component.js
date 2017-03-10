@@ -15,6 +15,7 @@ export const TemplateEditorComponent = {
 /** @ngInject */
 function ComponentController($state, sprintf, TemplatesService, EventNotifications, lodash, FileSaver, Blob) {
   const vm = this;
+  vm.permissions = TemplatesService.getPermissions();
   vm.$onInit = activate();
 
   function activate() {
@@ -111,34 +112,42 @@ function ComponentController($state, sprintf, TemplatesService, EventNotificatio
 
   function getListActions() {
     var listActions = [];
-
-    listActions.push(
+    const listActionsMenu = {
+      title: __('Configuration'),
+      actionName: 'configuration',
+      icon: 'fa fa-cog',
+      actions: [],
+      isDisabled: false,
+    };
+    const menuActions = [
       {
-        title: __('Configuration'),
-        actionName: 'configuration',
-        icon: 'fa fa-cog',
-        actions: [
-          {
-            name: __('Copy'),
-            actionName: 'copy',
-            title: __('Copy Template'),
-            actionFn: handleCopy,
-          },
-          {
-            name: __('Edit'),
-            actionName: 'edit',
-            title: __('Edit Template'),
-            actionFn: handleEdit,
-          }, {
-            name: __('Delete'),
-            actionName: 'delete',
-            title: __('Delete Template'),
-            actionFn: handleDelete,
-          },
-        ],
-        isDisabled: false,
+        name: __('Copy'),
+        actionName: 'copy',
+        title: __('Copy Template'),
+        actionFn: handleCopy,
+        permissions: vm.permissions.copy,
+      },
+      {
+        name: __('Edit'),
+        actionName: 'edit',
+        title: __('Edit Template'),
+        actionFn: handleEdit,
+        permissions: vm.permissions.edit,
+      }, {
+        name: __('Delete'),
+        actionName: 'delete',
+        title: __('Delete Template'),
+        actionFn: handleDelete,
+        permissions: vm.permissions.delete,
+      },
+    ];
+    angular.forEach(menuActions, hasPermission);
+    function hasPermission(item) {
+      if (item.permissions) {
+        listActionsMenu.actions.push(item);
       }
-    );
+    }
+    listActions.push(listActionsMenu);
 
     return listActions;
   }

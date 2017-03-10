@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function TemplatesServiceFactory(CollectionsApi) {
+export function TemplatesServiceFactory(CollectionsApi, RBAC) {
   const collection = 'orchestration_templates';
   const service = {
     getMinimal: getMinimal,
@@ -10,10 +10,21 @@ export function TemplatesServiceFactory(CollectionsApi) {
     createTemplate: createTemplate,
     updateTemplate: updateTemplate,
     deleteTemplates: deleteTemplates,
+    getPermissions: getPermissions,
   };
 
   return service;
+  function getPermissions() {
+    const permissions = {
+      create: RBAC.hasAny(['orchestration_template_add', 'orchestration_templates_admin']),
+      view: RBAC.hasAny(['orchestration_templates_view', 'orchestration_templates_admin']),
+      edit: RBAC.hasAny(['orchestration_template_edit', 'orchestration_templates_admin']),
+      delete: RBAC.hasAny(['orchestration_template_remove', 'orchestration_templates_admin']),
+      copy: RBAC.hasAny(['orchestration_template_copy', 'orchestration_templates_admin']),
+    };
 
+    return permissions;
+  }
   function getMinimal(filters) {
     const options = {
       filter: getQueryFilters(filters),
