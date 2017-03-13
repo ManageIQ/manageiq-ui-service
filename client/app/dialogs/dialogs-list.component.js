@@ -116,7 +116,7 @@ function DialogListController($state, DialogsState, $filter, Language, ListView)
     vm.toolbarConfig.filterConfig.resultsCount = vm.dialogList.length;
   }
 
-  var matchesFilter = function(item, filter) {
+  function matchesFilter(item, filter) {
     if (filter.id === 'label') {
       return item.label.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
     } else if (filter.id === 'updated_at') {
@@ -124,7 +124,7 @@ function DialogListController($state, DialogsState, $filter, Language, ListView)
     }
 
     return false;
-  };
+  }
 
   Language.fixState(DialogsState, vm.toolbarConfig);
 }
