@@ -14,6 +14,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     getServiceRepository: getServiceRepository,
     getServices: getServices,
     getServicesMinimal: getServicesMinimal,
+    getPermissions: getPermissions,
     getLifeCycleCustomDropdown: getLifeCycleCustomDropdown,
     getPolicyCustomDropdown: getPolicyCustomDropdown,
     getConfigurationCustomDropdown: getConfigurationCustomDropdown,
@@ -46,6 +47,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
   function getServiceCredential(credentialId) {
     return CollectionsApi.get('authentications', credentialId, {});
   }
+
   function getServiceRepository(repositoryId) {
     return CollectionsApi.get('configuration_script_sources', repositoryId, {});
   }
@@ -89,6 +91,12 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     }
 
     return CollectionsApi.query('services', options);
+  }
+
+  function getPermissions() {
+    return {
+      viewAnsible: RBAC.hasAny(['configuration_script_view', 'configuration_scripts_accord']),
+    };
   }
 
   function getLifeCycleCustomDropdown(setServiceRetirementFn, retireServiceFn) {
