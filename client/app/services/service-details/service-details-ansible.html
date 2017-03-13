@@ -6,35 +6,35 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
           <div class="form-horizontal">
             <div class="form-group">
-              <label class="control-label col-sm-4" translate>Status</label>
+              <label class="control-label col-sm-3" translate>Status</label>
               <div class="col-sm-8">
                 <input class="form-control text-capitalize" readonly
                        value="{{vm.oStacks.status || ('Unknown' | translate)}}"/>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-4" translate>Started</label>
+              <label class="control-label col-sm-3" translate>Started</label>
               <div class="col-sm-8">
                 <input class="form-control" readonly
                        value="{{vm.oStacks.start_time | date:'short' || ('Unknown' | translate)}}"/>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-4" translate>Finished</label>
+              <label class="control-label col-sm-3" translate>Finished</label>
               <div class="col-sm-8">
                 <input class="form-control" readonly
                        value="{{vm.oStacks.finish_time | date:'short' || ('Unknown' | translate)}}"/>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-4" translate>Elapsed</label>
+              <label class="control-label col-sm-3" translate>Elapsed</label>
               <div class="col-sm-8">
                 <input class="form-control" readonly
                        value="{{ vm.elapsed(vm.oStacks.finish_time, vm.oStacks.start_time) | elapsedTime }}"/>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-4" translate>Launched By</label>
+              <label class="control-label col-sm-3" translate>Launched By</label>
               <div class="col-sm-8">
                 <input class="form-control text-capitalize" readonly
                        value="{{vm.service.evm_owner.name || ('Unknown' | translate)}}"/>
@@ -45,29 +45,30 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
           <div class="form-horizontal">
             <div class="form-group">
-              <label class="control-label col-sm-4" translate>Playbook</label>
+              <label class="control-label col-sm-3" translate>Playbook</label>
               <div class="col-sm-8">
                 <input class="form-control text-capitalize" readonly
                        value="{{vm.oStacks.name || ('Unknown' | translate)}}"/>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-4" translate>Repo Name</label>
+              <label class="control-label col-sm-3" translate>Repo Name</label>
               <div class="col-sm-8">
                 <input class="form-control text-capitalize" readonly
                        value="{{vm.service.repository.name || ('Unknown' | translate)}}"/>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-4" translate>Verbosity</label>
+              <label class="control-label col-sm-3" translate>Verbosity</label>
               <div class="col-sm-8">
                 <input class="form-control" readonly value="{{vm.oStacks.verbosity }}"/>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-4" translate>Hosts</label>
+              <label class="control-label col-sm-3" translate>Hosts</label>
               <div class="col-sm-8">
-                <input class="form-control" readonly value="{{vm.service.options.config_info.provision.hosts || ('Unknown' | translate)}}"/>
+                <input class="form-control" readonly
+                       value="{{vm.service.options.config_info.provision.hosts || ('Unknown' | translate)}}"/>
               </div>
             </div>
           </div>
@@ -90,17 +91,33 @@
             <div pf-list-view ng-if="vm.service.credential.length > 0" config="vm.credListConfig"
                  items="vm.service.credential" custom-scope="vm">
               <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 name-column">
-                <span class="no-wrap">
-                  <strong> {{ item.name }}</strong>
-                  </a>
-                </span>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  <div class="list-view-stacked-item">
+                    <strong translate>Name</strong>
+                    <div>
+                      {{item.name}}
+                    </div>
+                  </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <span class="no-wrap">
-                        {{ item.credential }}
-                  </a>
-                </span>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <div class="list-view-stacked-item">
+                    <strong translate>Id</strong>
+                    <div>
+                      {{item.userid}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                  <div class="list-view-stacked-item"
+                       uib-tooltip="Type: {{item.type}}"
+                       tooltip-append-to-body="true"
+                       tooltip-popup-delay="1000"
+                       tooltip-placement="bottom-left">
+                    <strong translate>Type</strong>&nbsp;
+                    <span class="no-wrap">
+                      {{item.type}}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
