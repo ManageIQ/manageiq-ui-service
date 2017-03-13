@@ -17,7 +17,7 @@ function getStates(RBAC) {
         request: resolveRequest,
       },
       data: {
-        authorization: RBAC.has('miq_request_show'),
+        authorization: RBAC.hasAny(['miq_request','miq_request_admin','miq_request_show']),
       },
     },
   };
