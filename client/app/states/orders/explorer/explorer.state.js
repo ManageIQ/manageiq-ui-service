@@ -1,14 +1,17 @@
 /** @ngInject */
-export function OrdersExplorerState(routerHelper) {
-  routerHelper.configureStates(getStates());
+export function OrdersExplorerState(routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC));
 }
 
-function getStates() {
+function getStates(RBAC) {
   return {
     'orders.explorer': {
       url: '',
       template: '<order-explorer></order-explorer>',
-      title: N_('Orders'),
+      title: __('Orders'),
+      data: {
+        authorization: RBAC.hasAny(['miq_request_show', 'miq_request_show_list']),
+      },
     },
   };
 }
