@@ -66,27 +66,26 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
 
     function handleSuccess(response) {
       vm.service = response;
+      vm.service.credential = [];
       vm.title = vm.service.name;
       getListActions();
       Chargeback.processReports(vm.service);
       vm.computeGroup = vm.createResourceGroups(vm.service);
 
-      TaggingService.queryAvailableTags('services/' + id + '/tags/').then(assignAvailableTags);
-      function assignAvailableTags(response) {
+      TaggingService.queryAvailableTags('services/' + id + '/tags/').then((response) => {
         vm.availableTags = response;
-      }
+      });
 
       if (angular.isDefined(vm.service.options.config_info)) {
-        ServicesState.getServiceCredential(vm.service.options.config_info.provision.credential_id).then(assignCredential);
-      } else {
-        vm.service.credential = [];
+        ServicesState.getServiceCredential(vm.service.options.config_info.provision.credential_id).then((response) => {
+          vm.service.credential.push(response);
+        });
+        ServicesState.getServiceRepository(vm.service.options.config_info.provision.repository_id).then((response) => {
+          vm.service.repository = response;
+        });
       }
 
       vm.loading = false;
-
-      function assignCredential(response) {
-        vm.service.credential = [response];
-      }
     }
 
     function handleFailure(response) {

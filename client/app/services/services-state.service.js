@@ -11,6 +11,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     services: services,
     getService: getService,
     getServiceCredential: getServiceCredential,
+    getServiceRepository: getServiceRepository,
     getServices: getServices,
     getServicesMinimal: getServicesMinimal,
     getLifeCycleCustomDropdown: getLifeCycleCustomDropdown,
@@ -44,6 +45,9 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
 
   function getServiceCredential(credentialId) {
     return CollectionsApi.get('authentications', credentialId, {});
+  }
+  function getServiceRepository(repositoryId) {
+    return CollectionsApi.get('configuration_script_sources', repositoryId, {});
   }
 
   // Returns minimal data for the services matching the current filters, useful for getting a filter count
