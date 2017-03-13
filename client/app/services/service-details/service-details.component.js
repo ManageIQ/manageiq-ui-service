@@ -76,12 +76,17 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
         vm.availableTags = response;
       }
 
-      ServicesState.getServiceCredential(vm.service.options.config_info.provision.credential_id).then(assignCredential);
-      function assignCredential(response) {
-        vm.service.credential = [response];
+      if (angular.isDefined(vm.service.options.config_info)) {
+        ServicesState.getServiceCredential(vm.service.options.config_info.provision.credential_id).then(assignCredential);
+      } else {
+        vm.service.credential = [];
       }
 
       vm.loading = false;
+
+      function assignCredential(response) {
+        vm.service.credential = [response];
+      }
     }
 
     function handleFailure(response) {
