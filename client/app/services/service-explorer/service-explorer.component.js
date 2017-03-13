@@ -320,7 +320,8 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   }
 
   function getFilterCount() {
-    ServicesState.getServicesMinimal(ServicesState.getFilters()).then(querySuccess, queryFailure);
+    ServicesState.getServicesMinimal(ServicesState.services.getFilters())
+      .then(querySuccess, queryFailure);
 
     function querySuccess(result) {
       vm.filterCount = result.subcount;
