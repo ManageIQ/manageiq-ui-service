@@ -14,7 +14,7 @@
       <section>
         <div class="col-md-12 ss-details-header__actions" ng-if="::vm.request.request_state === 'pending'">
           <div class="row">
-            <button class="btn btn-default" ng-click="vm.editingDisabled = false" translate>Edit</button>
+            <button class="btn btn-default" ng-if="vm.editPermission" ng-click="vm.editingDisabled = false" translate>Edit</button>
          </div>
          </div>
         <div class="col-md-12 ss-details-header">

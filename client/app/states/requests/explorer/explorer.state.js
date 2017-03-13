@@ -1,18 +1,21 @@
 import templateUrl from './explorer.html';
 
 /** @ngInject */
-export function RequestsExplorerState(routerHelper) {
-  routerHelper.configureStates(getStates());
+export function RequestsExplorerState(routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC));
 }
 
-function getStates() {
+function getStates(RBAC) {
   return {
     'requests.explorer': {
       url: '',
       templateUrl,
       controllerAs: 'vm',
-      title: N_('Requests'),
+      title: __('Requests'),
       params: { 'filter': null },
+      data: {
+        authorization: RBAC.hasAny(['miq_request_show', 'miq_request_show_list']),
+      },
     },
   };
 }
