@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf, lodash) {
+export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf, lodash, RBAC) {
   const collection = 'service_catalogs';
   const sort = {
     isAscending: true,
@@ -15,6 +15,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     getSort: getSort,
     setSort: setSort,
     getFilters: getFilters,
+    getPermissions: getPermissions,
     setFilters: setFilters,
     addCatalog: addCatalog,
     editCatalog: editCatalog,
@@ -55,6 +56,16 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     });
 
     return queryFilters;
+  }
+
+  function getPermissions() {
+    const permissions = {
+      create: RBAC.hasAny(['catalogitem_new', 'catalogitem_admin']),
+      edit: RBAC.hasAny(['catalogitem_edit', 'catalogitem_admin']),
+      delete: RBAC.hasAny(['catalogitem_delete', 'catalogitem_admin']),
+    };
+
+    return permissions;
   }
 
   function getCatalogs(limit, offset) {

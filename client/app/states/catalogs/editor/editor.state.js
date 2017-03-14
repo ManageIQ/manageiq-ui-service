@@ -3,11 +3,11 @@ import templateUrl from './editor.html';
 
 
 /** @ngInject */
-export function CatalogsEditorState(routerHelper) {
-  routerHelper.configureStates(getStates());
+export function CatalogsEditorState(routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC));
 }
 
-function getStates() {
+function getStates(RBAC) {
   return {
     'catalogs.editor': {
       url: '/edit/:catalogId',
@@ -18,6 +18,9 @@ function getStates() {
         catalogId: resolveCatalogId,
         catalogs: resolveCatalogs,
         serviceTemplates: resolveServiceTemplates,
+      },
+      data: {
+        authorization: RBAC.hasAny(['catalogs', 'catalogitem_edit']),
       },
     },
   };
