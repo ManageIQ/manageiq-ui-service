@@ -11,7 +11,7 @@ export const RequestExplorerComponent = {
 function ComponentController($state, CollectionsApi, RequestsState, ListView, $filter, lodash, Language, EventNotifications,
                              ModalService, Polling) {
   var vm = this;
-
+  vm.permissions = RequestsState.getPermissions();
   vm.$onInit = function() {
     if ($state.params.filter) {
       RequestsState.setFilters($state.params.filter);
@@ -72,25 +72,25 @@ function ComponentController($state, CollectionsApi, RequestsState, ListView, $f
       pollingInterval: 10000,
       paginationUpdate: paginationUpdate,
     });
-
-    vm.configuration[0].actions = [
-      {
-        icon: 'fa fa-check',
-        name: __('Approve'),
-        actionName: 'approve',
-        title: __('Approve'),
-        actionFn: approveRequests,
-        isDisabled: false,
-      }, {
-        icon: 'fa fa-ban',
-        name: __('Deny'),
-        actionName: 'deny',
-        title: __('Deny'),
-        actionFn: denyRequests,
-        isDisabled: false,
-      },
-    ];
-
+    if (vm.permissions.approval) {
+      vm.configuration[0].actions = [
+        {
+          icon: 'fa fa-check',
+          name: __('Approve'),
+          actionName: 'approve',
+          title: __('Approve'),
+          actionFn: approveRequests,
+          isDisabled: false,
+        }, {
+          icon: 'fa fa-ban',
+          name: __('Deny'),
+          actionName: 'deny',
+          title: __('Deny'),
+          actionFn: denyRequests,
+          isDisabled: false,
+        },
+      ];
+    }
     vm.fetchData = fetchData;
     vm.fetchData(vm.limit, 0);
 

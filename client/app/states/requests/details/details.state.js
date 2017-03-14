@@ -1,20 +1,23 @@
 import templateUrl from './details.html';
 
 /** @ngInject */
-export function RequestsDetailsState(routerHelper) {
-  routerHelper.configureStates(getStates());
+export function RequestsDetailsState(routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC));
 }
 
-function getStates() {
+function getStates(RBAC) {
   return {
     'requests.details': {
       url: '/:requestId',
       templateUrl,
       controller: RequestDetailsController,
       controllerAs: 'vm',
-      title: N_('Request Details'),
+      title: __('Request Details'),
       resolve: {
         request: resolveRequest,
+      },
+      data: {
+        authorization: RBAC.hasAny(['miq_request_show']),
       },
     },
   };
@@ -28,12 +31,13 @@ function resolveRequest($stateParams, CollectionsApi) {
 }
 
 /** @ngInject */
-function RequestDetailsController(request, CollectionsApi, DialogFieldRefresh, EventNotifications, $state) {
+function RequestDetailsController(request, CollectionsApi, DialogFieldRefresh, EventNotifications, $state, RBAC) {
   var vm = this;
   var autoRefreshableDialogFields = [];
   var allDialogFields = [];
 
   vm.editingDisabled = true;
+  vm.editPermission = RBAC.has('miq_request_edit');
   vm.title = request.description;
   vm.request = request;
   vm.dialogs = [];
