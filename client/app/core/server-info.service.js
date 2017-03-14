@@ -9,6 +9,7 @@ export function ServerInfo($q) {
         role: data.identity.role,
         version: data.server_info.version + '.' + data.server_info.build,
         server: data.server_info.appliance,
+        asyncNotify: data.settings.asynchronous_notifications,
       };
       resolve(factory.data);
 
