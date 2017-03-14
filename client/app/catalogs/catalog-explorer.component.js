@@ -10,8 +10,9 @@ export const CatalogExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, Session, CatalogsState, sprintf, ListView, EventNotifications, RBAC, lodash) {
+function ComponentController($state, Session, CatalogsState, sprintf, ListView, EventNotifications, lodash) {
   var vm = this;
+  vm.permissions = CatalogsState.getPermissions();
 
   vm.$onInit = function() {
     angular.extend(vm, {
@@ -144,46 +145,60 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
   }
 
   function getMenuActions() {
-    const menuActions = [{
+    const menuActionsConfig = [{
       name: __('Edit'),
       title: __('Edit Catalog'),
       actionFn: handleEdit,
+      permissions: vm.permissions.edit,
     }, {
       name: __('Delete'),
       title: __('Delete Catalog'),
       actionFn: handleDelete,
+      permissions: vm.permissions.delete,
     }];
 
-    return checkApproval() ? menuActions : null;
+    const menuActions = checkPermissions(menuActionsConfig);
+    
+    return menuActions;
   }
 
   function getListActions() {
+    const configurationMenuOptions = [{
+      name: __('Create'),
+      actionName: 'create',
+      title: __('Create new catalog'),
+      actionFn: addCatalog,
+      isDisabled: false,
+      permissions: vm.permissions.create,
+    }, {
+      name: __('Edit'),
+      actionName: 'edit',
+      title: __('Edit selected catalog'),
+      actionFn: editCatalog,
+      isDisabled: false,
+      permissions: vm.permissions.edit,
+    }, {
+      name: __('Delete'),
+      actionName: 'delete',
+      title: __('Delete selected catalogs'),
+      actionFn: deleteSelectedCatalogs,
+      isDisabled: false,
+      permissions: vm.permissions.delete,
+    }];
+
     const itemActions = [{
       title: __('Configuration'),
       name: __('Configuration'),
       actionName: 'configuration',
       icon: 'fa fa-cog',
       isDisabled: false,
-      actions: [{
-        name: __('Create'),
-        actionName: 'create',
-        title: __('Create new catalog'),
-        actionFn: addCatalog,
-        isDisabled: false,
-      }, {
-        name: __('Edit'),
-        actionName: 'edit',
-        title: __('Edit selected catalog'),
-        actionFn: editCatalog,
-        isDisabled: false,
-      }, {
-        name: __('Delete'),
-        actionName: 'delete',
-        title: __('Delete selected catalogs'),
-        actionFn: deleteSelectedCatalogs,
-        isDisabled: false,
-      }],
+      actions: checkPermissions(configurationMenuOptions),
     }];
+
+    let selectAllDisabled = true;
+    if (vm.permissions.edit || vm.permissions.delete) {
+      selectAllDisabled = false;
+    }
     const listActions = [{
       title: __('List Actions'),
       name: __(''),
@@ -195,13 +210,13 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
         actionName: 'select',
         title: __('Select All'),
         actionFn: selectAll,
-        isDisabled: !checkApproval(),
+        isDisabled: selectAllDisabled,
       }, {
         name: __('Unselect All'),
         actionName: 'unselect',
         title: __('Unselect All'),
         actionFn: unselectAll,
-        isDisabled: !checkApproval(),
+        isDisabled: selectAllDisabled,
       }, {
         name: __('Expand All'),
         actionName: 'expand',
@@ -217,7 +232,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
       }],
     }];
 
-    return checkApproval() ? itemActions.concat(listActions) : listActions;
+    return itemActions[0].actions.length > 0 ? itemActions.concat(listActions) : listActions;
   }
 
   function listActionDisable(config, items) {
@@ -229,7 +244,16 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
         break;
     }
   }
+  function checkPermissions(menuConfig) {
+    const approvedMenuItems = [];
+    angular.forEach(menuConfig, function(menuItem) {
+      if (menuItem.permissions) {
+        approvedMenuItems.push(menuItem);
+      }
+    });
 
+    return approvedMenuItems;
+  }
   function getToolbarConfig() {
     return {
       filterConfig: getFilterConfig(),
@@ -369,7 +393,11 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
   }
 
   function checkApproval() {
-    return lodash.reduce(lodash.map(['catalogitem_admin', 'svc_catalog_admin', 'st_catalog_admin'], RBAC.has));
+    if (vm.permissions.edit || vm.permissions.delete) {
+      return true;
+    }
+
+    return false;
   }
 
   function viewSelected(viewId) {
