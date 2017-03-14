@@ -11,6 +11,7 @@ export const OrderExplorerComponent = {
 function ComponentController($filter, lodash, ListView, Language, OrdersState, EventNotifications, Session, RBAC, ModalService,
                              CollectionsApi, sprintf, Polling) {
   const vm = this;
+  vm.permissions = OrdersState.getPermissions();
   vm.$onInit = activate();
   vm.$onDestroy = function() {
     Polling.stop('orderListPolling');
@@ -46,31 +47,37 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
   }
 
   function getActionConfig() {
-    return [
+    const actionMenuConfig = [];
+    const lifecycleMenu = {
+      title: __('Lifecycle'),
+      actionName: 'lifecycle',
+      name: __('Lifecycle'),
+      icon: 'fa fa-recycle',
+      actions: [],
+    };
+    const approvalActions = [
       {
-        title: __('Lifecycle'),
-        actionName: 'lifecycle',
-        name: __('Lifecycle'),
-        icon: 'fa fa-recycle',
-        actions: [
-          {
-            icon: 'fa fa-check',
-            name: __('Approve'),
-            actionName: 'approve',
-            title: __('Approve'),
-            actionFn: approveRequests,
-            isDisabled: false,
-          }, {
-            icon: 'fa fa-ban',
-            name: __('Deny'),
-            actionName: 'deny',
-            title: __('Deny'),
-            actionFn: denyRequests,
-            isDisabled: false,
-          },
-        ],
+        icon: 'fa fa-check',
+        name: __('Approve'),
+        actionName: 'approve',
+        title: __('Approve'),
+        actionFn: approveRequests,
+        isDisabled: false,
+      }, {
+        icon: 'fa fa-ban',
+        name: __('Deny'),
+        actionName: 'deny',
+        title: __('Deny'),
+        actionFn: denyRequests,
+        isDisabled: false,
       },
     ];
+    if (vm.permissions.approve) {
+      lifecycleMenu.actions = approvalActions;
+    }
+    actionMenuConfig.push(lifecycleMenu);
+
+    return actionMenuConfig;
   }
 
   function getListConfig() {
@@ -137,20 +144,28 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
   }
 
   function getMenuActions() {
-    const menuActions = [
-      {
+    const menuActions = [];
+    if (vm.permissions.copy) {
+      menuActions.push({
         name: __('Duplicate'),
         actionName: 'duplicate',
         title: __('Duplicate Order'),
         actionFn: duplicateOrder,
         isDisabled: false,
-      }, {
-        name: __('Remove'),
-        actionName: 'remove',
-        title: __('Remove Order'),
-        actionFn: removeOrder,
-        isDisabled: false,
-      }];
+      });
+    }
+
+    if (vm.permissions.delete) {
+      menuActions.push(
+        {
+          name: __('Remove'),
+          actionName: 'remove',
+          title: __('Remove Order'),
+          actionFn: removeOrder,
+          isDisabled: false,
+        }
+      );
+    }
 
     return checkApproval() ? menuActions : null;
   }

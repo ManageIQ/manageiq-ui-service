@@ -1,11 +1,12 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function OrdersStateFactory(ListConfiguration, CollectionsApi) {
+export function OrdersStateFactory(ListConfiguration, CollectionsApi, RBAC) {
   const collection = 'service_orders';
   const service = {
     getMinimal: getMinimal,
     getOrders: getOrders,
+    getPermissions: getPermissions,
   };
 
   ListConfiguration.setupListFunctions(service, {id: 'placed_at', title: __('Order Date'), sortType: 'numeric'});
@@ -53,5 +54,14 @@ export function OrdersStateFactory(ListConfiguration, CollectionsApi) {
     });
 
     return queryFilters;
+  }
+  function getPermissions() {
+    const permissions = {
+      approve: RBAC.has('miq_request_approval'),
+      delete: RBAC.has('miq_request_delete'),
+      copy: RBAC.has('miq_request_copy'),
+    };
+
+    return permissions;
   }
 }

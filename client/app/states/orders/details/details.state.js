@@ -1,20 +1,23 @@
 import templateUrl from './details.html';
 
 /** @ngInject */
-export function OrdersDetailsState(routerHelper) {
-  routerHelper.configureStates(getStates());
+export function OrdersDetailsState(routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC));
 }
 
-function getStates() {
+function getStates(RBAC) {
   return {
     'orders.details': {
       url: '/:serviceOrderId',
       templateUrl,
       controller: StateController,
       controllerAs: 'vm',
-      title: N_('Order Details'),
+      title: __('Order Details'),
       resolve: {
         order: resolveOrder,
+      },
+      data: {
+        authorization: RBAC.has('miq_request_show'),
       },
     },
   };
