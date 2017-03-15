@@ -11,20 +11,15 @@ export const ServiceDetailsAnsibleComponent = {
 };
 
 /** @ngInject */
-function ComponentController(ModalService) {
+function ComponentController(ModalService, ServicesState, lodash) {
   const vm = this;
-  vm.$onInit = activate();
+  vm.$onInit = activate;
+  vm.$onChanges = changes;
 
   function activate() {
     angular.extend(vm, {
-      oStacks: vm.service.orchestration_stacks[0],
-      output: "",
-      plays: {
-        open: true,
-        resources: [],
-      },
-
       // Functions
+      fetchResources: fetchResources,
       sampleAction: angular.noop(),
       viewPlay: angular.noop(),
       watchLive: watchLive,
@@ -34,6 +29,49 @@ function ComponentController(ModalService) {
       credListConfig: credListConfig(),
       playsListConfig: playsListConfig(),
     });
+  }
+
+  function changes() {
+    fetchResources();
+  }
+
+  function fetchResources() {
+    vm.loading = true;
+    const credentialTypes = ['credential_id', 'network_credential_id', 'machine_credential_id'];
+
+    if (angular.isDefined(vm.service.options.config_info)) {
+      vm.orcStacks = {};
+      vm.service.service_resources.forEach((resource) => {
+        const resourceName = resource.name.toLowerCase();
+        vm.orcStacks[resourceName] = {};
+        vm.orcStacks[resourceName].stack = lodash.find(vm.service.orchestration_stacks, {'id': resource.resource_id});
+        vm.orcStacks[resourceName].resource = resource;
+
+        vm.orcStacks[resourceName].credentials = [];
+        credentialTypes.forEach((credential) => {
+          if (angular.isDefined(vm.service.options.config_info[resourceName][credential])) {
+            ServicesState.getServiceCredential(vm.service.options.config_info[resourceName][credential]).then((response) => {
+              vm.orcStacks[resourceName].credentials.push(response);
+            });
+          }
+        });
+
+        ServicesState.getServiceRepository(vm.service.options.config_info[resourceName].repository_id).then((response) => {
+          vm.orcStacks[resourceName].repository = response;
+        });
+
+        vm.orcStacks[resourceName].jobs = [];
+        vm.orcStacks[resourceName].output = {};
+        ServicesState.getServiceJobs(vm.service.id, vm.orcStacks[resourceName].stack.id).then((response) => {
+          vm.orcStacks[resourceName].jobs = response.job_plays;
+          vm.orcStacks[resourceName].jobs.forEach((item) => {
+            item.elapsed = vm.elapsed(item.finish_time, item.start_time);
+          });
+          vm.orcStacks[resourceName].output = response.orchestration_stack_outputs || 'No standard out avaliable.';
+        });
+      });
+    }
+    vm.loading = false;
   }
 
   function credListConfig() {

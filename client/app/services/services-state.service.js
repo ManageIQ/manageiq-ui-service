@@ -12,6 +12,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     getService: getService,
     getServiceCredential: getServiceCredential,
     getServiceRepository: getServiceRepository,
+    getServiceJobs: getServiceJobs,
     getServices: getServices,
     getServicesMinimal: getServicesMinimal,
     getPermissions: getPermissions,
@@ -27,9 +28,11 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'miq_group.description', 'all_service_children', 'aggregate_all_vm_cpus', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count',
         'aggregate_all_vm_disk_space_allocated', 'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'retired',
         'retirement_state', 'retirement_warn', 'retires_on', 'actions', 'custom_actions', 'provision_dialog', 'service_resources',
-        'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options', 'orchestration_stacks',
+        'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options',
       ],
       decorators: [
+        'orchestration_stacks.job_plays',
+        'orchestration_stacks.raw_stdout',
         'vms.ipaddresses',
         'vms.snapshots',
         'vms.v_total_snapshots',
@@ -38,7 +41,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'vms.v_snapshot_newest_total_size',
         'vms.supports_console?',
         'vms.supports_cockpit?'],
-      expand: 'vms',
+      expand: ['vms', 'orchestration_stacks'],
     };
 
     return CollectionsApi.get('services', id, options);
@@ -52,7 +55,15 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     return CollectionsApi.get('configuration_script_sources', repositoryId, {});
   }
 
-  // Returns minimal data for the services matching the current filters, useful for getting a filter count
+  function getServiceJobs(serviceId, stackId) {
+    const options = {
+      attributes: ['job_plays', 'orchestration_stack_outputs'],
+    };
+
+    return CollectionsApi.get(`services/${serviceId}/orchestration_stacks`, stackId, options);
+  }
+
+// Returns minimal data for the services matching the current filters, useful for getting a filter count
   function getServicesMinimal(filters) {
     const options = {
       filter: getQueryFilters(filters),
@@ -236,7 +247,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     return configActions;
   }
 
-  // Private
+// Private
   function getQueryFilters(filters) {
     const queryFilters = ['ancestry=null'];
 

@@ -77,15 +77,6 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
         vm.availableTags = response;
       });
 
-      if (angular.isDefined(vm.service.options.config_info)) {
-        ServicesState.getServiceCredential(vm.service.options.config_info.provision.credential_id).then((response) => {
-          vm.service.credential.push(response);
-        });
-        ServicesState.getServiceRepository(vm.service.options.config_info.provision.repository_id).then((response) => {
-          vm.service.repository = response;
-        });
-      }
-
       vm.loading = false;
     }
 
