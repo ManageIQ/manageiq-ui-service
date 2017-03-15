@@ -1,0 +1,235 @@
+{
+  "url": "http://localhost:3001/api/services/45?expand=vms,orchestration_stacks,orchestration_stacks&attributes=name,guid,created_at,type,description,picture,picture.image_href,evm_owner.name,evm_owner.userid,miq_group.description,all_service_children,aggregate_all_vm_cpus,aggregate_all_vm_memory,aggregate_all_vm_disk_count,aggregate_all_vm_disk_space_allocated,aggregate_all_vm_disk_space_used,aggregate_all_vm_memory_on_disk,retired,retirement_state,retirement_warn,retires_on,actions,custom_actions,provision_dialog,service_resources,chargeback_report,service_template,parent_service,power_state,power_status,options&decorators=orchestration_stacks.job_plays,orchestration_stacks.raw_stdout,vms.ipaddresses,vms.snapshots,vms.v_total_snapshots,vms.v_snapshot_newest_name,vms.v_snapshot_newest_timestamp,vms.v_snapshot_newest_total_size,vms.supports_console?,vms.supports_cockpit?",
+  "get": {
+    "href": "http://localhost:3001/api/services/45",
+    "id": 45,
+    "name": "Test Playbook",
+    "guid": "7854d0b8-0435-11e7-8ed2-7831c1cc8812",
+    "created_at": "2017-03-08T19:28:55Z",
+    "type": "ServiceAnsiblePlaybook",
+    "description": "Ansible playbook",
+    "retired": false,
+    "options": {
+      "config_info": {
+        "provision": {
+          "repository_id": 23,
+          "playbook_id": 1209,
+          "credential_id": 42,
+          "hosts": "localhost",
+          "extra_vars": {},
+          "dialog_id": 12,
+          "fqname": "/Service/Generic/StateMachines/GenericLifecycle/provision"
+        }
+      },
+      "dialog": {
+        "dialog_hosts": "localhost"
+      },
+      "provision_job_options": {
+        "extra_vars": {}
+      }
+    },
+    "evm_owner": {
+      "name": "Administrator",
+      "userid": "admin"
+    },
+    "miq_group": {
+      "description": "EvmGroup-super_administrator"
+    },
+    "all_service_children": [],
+    "aggregate_all_vm_cpus": 0,
+    "aggregate_all_vm_memory": 0,
+    "aggregate_all_vm_disk_count": 0,
+    "aggregate_all_vm_disk_space_allocated": 0,
+    "aggregate_all_vm_disk_space_used": 0,
+    "aggregate_all_vm_memory_on_disk": 0,
+    "custom_actions": {
+      "buttons": [],
+      "button_groups": []
+    },
+    "provision_dialog": {
+      "buttons": "submit,cancel",
+      "label": "playbook2",
+      "dialog_tabs": [
+        {
+          "display": "edit",
+          "label": "Basic Information",
+          "position": 0,
+          "dialog_groups": [
+            {
+              "display": "edit",
+              "label": "Options",
+              "position": 0,
+              "dialog_fields": [
+                {
+                  "name": "credential",
+                  "description": "The credential to run the playbook",
+                  "data_type": "string",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": false,
+                  "required_method_options": {},
+                  "values": [
+                    [
+                      null,
+                      "\u003cDefault\u003e"
+                    ]
+                  ],
+                  "values_method_options": {},
+                  "options": {
+                    "sort_by": "description",
+                    "sort_order": "ascending"
+                  },
+                  "label": "Machine Credential",
+                  "position": 0,
+                  "reconfigurable": true,
+                  "dynamic": true,
+                  "visible": true,
+                  "type": "DialogFieldDropDownList",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_namespace": "AutomationManagement/AnsibleTower/Operations",
+                    "ae_class": "Methods",
+                    "ae_instance": "Available_Machine_Credentials",
+                    "ae_attributes": {}
+                  }
+                },
+                {
+                  "name": "hosts",
+                  "description": "A ','-separated string to list hosts for the playbook to run at",
+                  "data_type": "string",
+                  "display": "edit",
+                  "display_method_options": {},
+                  "required": false,
+                  "required_method_options": {},
+                  "default_value": "localhost",
+                  "values_method_options": {},
+                  "options": {
+                    "protected": false
+                  },
+                  "label": "Hosts",
+                  "position": 1,
+                  "reconfigurable": true,
+                  "visible": true,
+                  "type": "DialogFieldTextBox",
+                  "resource_action": {
+                    "resource_type": "DialogField",
+                    "ae_attributes": {}
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "service_resources": [
+      {
+        "id": 126,
+        "resource_id": 412,
+        "resource_type": "OrchestrationStack",
+        "group_idx": 0,
+        "scaling_min": 1,
+        "scaling_max": -1,
+        "created_at": "2017-03-08T19:29:50Z",
+        "updated_at": "2017-03-08T19:29:50Z",
+        "name": "Provision",
+        "service_id": 45,
+        "provision_index": 0
+      }
+    ],
+    "chargeback_report": {
+      "results": []
+    },
+    "service_template": {
+      "id": 85,
+      "name": "Test Provision",
+      "description": "test Provision",
+      "guid": "180ebfe8-0435-11e7-8ed2-7831c1cc8812",
+      "type": "ServiceTemplateAnsiblePlaybook",
+      "options": {
+        "config_info": {
+          "provision": {
+            "repository_id": 23,
+            "playbook_id": 1209,
+            "credential_id": 42,
+            "hosts": "localhost",
+            "extra_vars": {},
+            "dialog_id": 12,
+            "fqname": "/Service/Generic/StateMachines/GenericLifecycle/provision"
+          }
+        }
+      },
+      "created_at": "2017-03-08T19:26:14Z",
+      "updated_at": "2017-03-08T19:26:14Z",
+      "display": true,
+      "miq_group_id": 2,
+      "service_type": "atomic",
+      "prov_type": "generic_ansible_playbook",
+      "service_template_catalog_id": 1,
+      "tenant_id": 1
+    },
+    "orchestration_stacks": [
+      {
+        "href": "http://localhost:3001/api/services/45/orchestration_stacks/412",
+        "id": 412,
+        "name": "miq_provision",
+        "type": "ManageIQ::Providers::AnsibleTower::AutomationManager::Job",
+        "status": "successful",
+        "ems_ref": "454",
+        "ems_id": 14,
+        "orchestration_template_id": 1670,
+        "created_at": "2017-03-08T19:29:49Z",
+        "updated_at": "2017-03-08T19:35:15Z",
+        "start_time": "2017-03-07T21:20:50Z",
+        "finish_time": "2017-03-07T21:21:03Z",
+        "configuration_script_base_id": 1209,
+        "verbosity": 0,
+        "hosts": [
+          "localhost"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "edit",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/45"
+      },
+      {
+        "name": "retire",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/45"
+      },
+      {
+        "name": "set_ownership",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/45"
+      },
+      {
+        "name": "start",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/45"
+      },
+      {
+        "name": "stop",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/45"
+      },
+      {
+        "name": "suspend",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/45"
+      },
+      {
+        "name": "delete",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/45"
+      },
+      {
+        "name": "delete",
+        "method": "delete",
+        "href": "http://localhost:3001/api/services/45"
+      }
+    ]
+  }
+}

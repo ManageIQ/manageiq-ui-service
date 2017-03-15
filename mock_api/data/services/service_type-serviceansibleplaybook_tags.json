@@ -1,0 +1,21 @@
+{
+  "url": "http://localhost:3001/api/services/45/tags/?expand=resources&attributes=categorization,category",
+  "get": {
+    "name": "tags",
+    "count": 168,
+    "subcount": 0,
+    "resources": [],
+    "actions": [
+      {
+        "name": "assign",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/45/tags"
+      },
+      {
+        "name": "unassign",
+        "method": "post",
+        "href": "http://localhost:3001/api/services/45/tags"
+      }
+    ]
+  }
+}
