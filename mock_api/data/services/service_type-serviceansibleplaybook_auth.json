@@ -1,5 +1,5 @@
 {
-  "url": "http://localhost:3001/api/authentications/42",
+  "url": "authentications/42",
   "get": {
     "href": "http://localhost:3001/api/authentications/42",
     "id": 42,

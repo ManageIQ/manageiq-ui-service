@@ -1,5 +1,5 @@
 {
-  "url": "http://localhost:3001/api/services/45/orchestration_stacks/412?attributes=job_plays,get_stdout",
+  "url": "services/45/orchestration_stacks/412?attributes=job_plays,get_stdout",
   "get": {
     "href": "http://localhost:3001/api/services/45/orchestration_stacks/412",
     "id": 412,

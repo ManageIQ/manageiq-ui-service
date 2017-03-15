@@ -1,5 +1,5 @@
 {
-  "url": "http://localhost:3001/api/configuration_script_sources/23",
+  "url": "configuration_script_sources/23",
   "get": {
     "href": "http://localhost:3001/api/configuration_script_sources/23",
     "id": 23,
