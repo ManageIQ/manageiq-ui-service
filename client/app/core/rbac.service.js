@@ -41,6 +41,7 @@ export function RBACFactory(lodash) {
       requests: {show: entitledForRequests(productFeatures)},
       catalogs: {show: entitledForServiceCatalogs(productFeatures)},
       dialogs: {show: entitledForService(productFeatures)},
+      templates: {show: entitledForTemplates(productFeatures)},
     };
     setNavFeatures(navPermissions);
   }
@@ -93,7 +94,9 @@ export function RBACFactory(lodash) {
       || entitledForRequests(productFeatures)
       || entitledForServiceCatalogs(productFeatures);
   }
-
+  function entitledForTemplates(productFeatures) {
+    return angular.isDefined(productFeatures.orchestration_templates_view);
+  }
   function entitledForService(productFeatures) {
     return angular.isDefined(productFeatures.service_create);
   }

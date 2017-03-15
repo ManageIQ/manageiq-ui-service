@@ -37,17 +37,13 @@ function enterApplication(Polling, lodash, NavCounts, Navigation, RBAC) {
   RBAC.setActionFeatures(actionFeatures);
 
   function updateCount(count, key) {
-    switch (key) {
-      case 'rules':
-      case 'dialogs':
-        if (navFeatures.dialogs.show === false) {
-          return false;
-        }
-        break;
-    }
-    count.func();
-    if (count.interval) {
-      Polling.start(key, count.func, count.interval);
+    if (navFeatures[key].show) {
+      count.func();
+      if (count.interval) {
+        Polling.start(key, count.func, count.interval);
+      }
+    } else {
+      return false;
     }
   }
 }
