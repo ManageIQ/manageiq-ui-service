@@ -4,25 +4,25 @@
   </div>
   <div ng-if="vm.dialog.label">
     <div>
-      <h2 class="text-capitalize no-wrap">{{ ::vm.dialog.label }}</h2>
-      <p ng-if="vm.dialog.label != vm.dialog.description">{{ ::vm.dialog.description }}</p>
+      <h2 class="text-capitalize no-wrap">{{ vm.dialog.label }}</h2>
+      <p ng-if="vm.dialog.label != vm.dialog.description">{{ vm.dialog.description }}</p>
     </div>
     <tabset>
-      <tab ng-repeat="dialogTab in ::vm.dialog.dialog_tabs " heading="{{ ::dialogTab.label }}">
-        <div ng-repeat="dialogGroup in ::dialogTab.dialog_groups ">
+      <tab ng-repeat="dialogTab in vm.dialog.dialog_tabs " heading="{{ dialogTab.label }}">
+        <div ng-repeat="dialogGroup in dialogTab.dialog_groups ">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <strong>{{ ::dialogGroup.label }}</strong>
+              <strong>{{ dialogGroup.label }}</strong>
             </div>
             <div class="panel-body">
               <!-- form for interactive input -->
               <form
                 ng-if="!vm.options"
-                ng-repeat="dialogField in ::dialogGroup.dialog_fields "
+                ng-repeat="dialogField in dialogGroup.dialog_fields "
                 ng-init="inputTitle = dialogField.description"
                 class="form-horizontal">
-                <div class="form-group">
-                  <label class="control-label col-sm-2">{{ ::dialogField.label }}</label>
+                <div class="form-group" ng-if="dialogField.visible">
+                  <label class="control-label col-sm-2">{{ dialogField.label }}</label>
 
                   <div ng-switch on="dialogField.type" class="col-sm-5">
                     <input
@@ -33,7 +33,7 @@
                       ng-model-options="{debounce: {'default': 500}}"
                       class="form-control"
                       type="{{ dialogField.options.protected ? 'password' : 'text' }}"
-                      title="{{ ::inputTitle }}"
+                      title="{{ inputTitle }}"
                       value="{{ dialogField.default_value }}">
 
                     <textarea
@@ -43,7 +43,7 @@
                       ng-change="dialogField.triggerAutoRefresh(dialogField)"
                       ng-model-options="{debounce: {'default': 500}}"
                       class="form-control"
-                      title="{{ ::inputTitle }}"
+                      title="{{ inputTitle }}"
                       rows="4">{{ dialogField.default_value }}
                     </textarea>
 
@@ -55,7 +55,7 @@
                       ng-change="dialogField.triggerAutoRefresh(dialogField)"
                       class="form-control"
                       type="checkbox"
-                      title="{{ ::inputTitle }}"
+                      title="{{ inputTitle }}"
                       ng-checked="dialogField.default_value == 't'">
 
                     <select
@@ -99,8 +99,8 @@
                           ng-change="dialogField.triggerAutoRefresh(dialogField)"
                           ng-disabled="dialogField.read_only || vm.inputDisabled"
                           name="{{ dialogField.name }}"
-                          value="{{ ::fieldValue[0] }}"/>
-                        {{ ::fieldValue[1] }}
+                          value="{{ fieldValue[0] }}"/>
+                        {{ fieldValue[1] }}
                       </label>
                     </span>
 
@@ -141,12 +141,12 @@
               <!-- Form for read only -->
               <form
                 ng-if="vm.options"
-                ng-repeat="dialogField in ::dialogGroup.dialog_fields "
+                ng-repeat="dialogField in dialogGroup.dialog_fields "
                 ng-init="inputTitle = dialogField.description"
                 class="form-horizontal">
                 <div class="form-group">
                   <div class="col-sm-3">
-                    {{ ::dialogField.label }}
+                    {{ dialogField.label }}
                   </div>
 
                   <div ng-switch on="dialogField.type" class="col-sm-5">
@@ -156,14 +156,14 @@
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
                       class="form-control"
                       type="{{ dialogField.options.protected ? 'password' : 'text' }}"
-                      title="{{ ::inputTitle }}"
+                      title="{{ inputTitle }}"
                       value="{{ vm.parsedOptions[dialogField.name] }}">
 
                     <textarea
                       ng-switch-when="DialogFieldTextAreaBox"
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
                       class="form-control"
-                      title="{{ ::inputTitle }}"
+                      title="{{ inputTitle }}"
                       rows="4">{{ vm.parsedOptions[dialogField.name] }}
                     </textarea>
 
@@ -173,7 +173,7 @@
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
                       class="form-control"
                       type="checkbox"
-                      title="{{ ::inputTitle }}"
+                      title="{{ inputTitle }}"
                       ng-checked="vm.parsedOptions[dialogField.name] == 't' ">
 
                     <select
