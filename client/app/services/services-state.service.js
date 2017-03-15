@@ -12,7 +12,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     getService: getService,
     getServiceCredential: getServiceCredential,
     getServiceRepository: getServiceRepository,
-    getServiceJobs: getServiceJobs,
+    getServiceJobsStdout: getServiceJobsStdout,
     getServices: getServices,
     getServicesMinimal: getServicesMinimal,
     getPermissions: getPermissions,
@@ -55,10 +55,14 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     return CollectionsApi.get('configuration_script_sources', repositoryId, {});
   }
 
-  function getServiceJobs(serviceId, stackId) {
+  function getServiceJobsStdout(serviceId, stackId, isStdout) {
     const options = {
-      attributes: ['job_plays', 'orchestration_stack_outputs'],
+      attributes: ['job_plays'],
     };
+
+    if (isStdout) {
+      return CollectionsApi.get(`services/${serviceId}/orchestration_stacks/${serviceId}/stdout`, null, {});
+    }
 
     return CollectionsApi.get(`services/${serviceId}/orchestration_stacks`, stackId, options);
   }
