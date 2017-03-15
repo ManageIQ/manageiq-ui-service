@@ -2,48 +2,66 @@
 
 /** @ngInject */
 export function navConfig(NavigationProvider) {
-  const dashboard = createItem(
-    'Dashboard',
-    'dashboard',
-    'fa fa-dashboard'
-  );
+  const dashboard = createItem({
+    title: N_('Dashboard'),
+    originalTitle: 'Dashboard',
+    state: 'dashboard',
+    iconClass: 'fa fa-dashboard',
+  });
 
-  const services = createItem(
-    'Services',
-    'services',
-    'pficon pficon-service',
-    'Total services ordered, both active and retired'
-  );
-  const orders = createItem(
-    'Orders',
-    'orders',
-    'fa fa-file-o',
-    'Total orders submitted'
-  );
-  const requests = createItem(
-    'Requests',
-    'requests',
-    'fa fa-files-o',
-    'Total pending requests'
-  );
-  const catalogs = createItem(
-    'Catalogs',
-    'catalogs',
-    'fa fa-folder-open-o',
-    'The total number of available catalogs'
-  );
-  const dialogs = createItem(
-    'Dialogs',
-    'dialogs',
-    'pficon pficon-build',
-    'Total available dialogs'
-  );
-  const templates = createItem(
-    'Templates',
-    'templates',
-    'pficon pficon-builder-image',
-    'Total available Templates'
-  );
+  const services = createItem({
+    title: N_('Services'),
+    originalTitle: 'Services',
+    state: 'services',
+    iconClass: 'pficon pficon-service',
+    badgeTooltip: N_('Total services ordered, both active and retired'),
+    originalToolTip: 'Total services ordered, both active and retired',
+  });
+
+  const orders = createItem({
+    title: N_('Orders'),
+    originalTitle: 'Orders',
+    state: 'orders',
+    iconClass: 'fa fa-file-o',
+    badgeTooltip: N_('Total orders submitted'),
+    originalToolTip: 'Total orders submitted',
+  });
+
+  const requests = createItem({
+    title: N_('Requests'),
+    originalTitle: 'Requests',
+    state: 'requests',
+    iconClass: 'fa fa-files-o',
+    badgeTooltip: N_('Total pending requests'),
+    originalToolTip: 'Total pending requests',
+  });
+
+  const catalogs = createItem({
+    title: N_('Catalogs'),
+    originalTitle: 'Catalogs',
+    state: 'catalogs',
+    iconClass: 'fa fa-folder-open-o',
+    badgeTooltip: N_('The total number of available catalogs'),
+    originalToolTip: 'The total number of available catalogs',
+  });
+
+  const dialogs = createItem({
+    title: N_('Dialogs'),
+    originalTitle: 'Dialogs',
+    state: 'dialogs',
+    iconClass: 'pficon pficon-build',
+    badgeTooltip: N_('Total available dialogs'),
+    originalToolTip: 'Total available dialogs',
+  });
+
+  const templates = createItem({
+    title: N_('Templates'),
+    originalTitle: 'Templates',
+    state: 'templates',
+    iconClass: 'pficon pficon-builder-image',
+    badgeTooltip: N_('Total available Templates'),
+    originalToolTip: 'Total available Templates',
+  });
 
   NavigationProvider.configure({
     items: {
@@ -57,20 +75,13 @@ export function navConfig(NavigationProvider) {
     },
   });
 
-  function createItem(title, state, iconClass, badgeTooltip) {
-    const item = {
-      title: title,
-      originalTitle: title,
-      state: state,
-      iconClass: iconClass,
-    };
-
-    if (angular.isString(badgeTooltip)) {
+  function createItem(item) {
+    if (angular.isDefined(item.badgeTooltip)) {
       item.badges = [
         {
           count: 0,
-          tooltip: badgeTooltip,
-          originalToolTip: badgeTooltip,
+          tooltip: item.badgeTooltip,
+          originalToolTip: item.originalToolTip,
         },
       ];
     }
