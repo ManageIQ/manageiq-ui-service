@@ -358,8 +358,10 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
         if (angular.isUndefined(item.service_id)) {
           item.disableRowExpansion = item.all_service_children.length < 1;
           item.power_state = PowerOperations.getPowerState(item);
+          item.power = getPowerInfo(item.power_state);
           angular.forEach(item.all_service_children, function(childService) {
             childService.power_state = PowerOperations.getPowerState(item);
+            childService.power = getPowerInfo(childService.power_state);
           });
 
           if (refresh) {
@@ -386,7 +388,15 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
 
       getFilterCount();
     }
+    function getPowerInfo(powerState) {
+      const powerStates = {
+        'on': {icon: 'pficon-ok', tooltip: __('Power State: On')},
+        'off': {icon: 'fa-power-off', tooltip: __('Power State: Off')},
+        'unknown': {icon: 'fa-question-circle', tooltip: __('Power State: Unknown')},
+      };
 
+      return (powerState !== 'on' && powerState !== 'off' ? powerStates.unknown :  powerStates[powerState]);
+    }
     function queryFailure(_error) {
       vm.loading = false;
       EventNotifications.error(__('There was an error loading the services.'));
