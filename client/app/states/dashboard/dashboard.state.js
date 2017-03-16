@@ -161,7 +161,7 @@ function StateController($state, definedServiceIdsServices, retiredServices, exp
       services.forEach(Chargeback.processReports);
 
       vm.chargeback = {
-        'used_cost_sum': lodash(services).map('chargeback').map('used_cost_sum').values().sum(),
+        'used_cost_sum': lodash(services).pluck(['chargeback', 'used_cost_sum']).sum(),
       };
     }
 

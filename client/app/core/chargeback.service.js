@@ -2,7 +2,7 @@
 
 /** @ngInject */
 export function ChargebackFactory(lodash) {
-  var service = {
+  const service = {
     adjustRelativeCost: adjustRelativeCost,
     currentReport: currentReport,
     processReports: processReports,
@@ -11,14 +11,14 @@ export function ChargebackFactory(lodash) {
 
   // recomputes items[*].chargeback_relative_cost
   function adjustRelativeCost(items) {
-    var sums = lodash(items)
+    const sums = lodash(items)
       .pluck(['chargeback', 'used_cost_sum'])
       .sort()
       .filter(angular.identity) // nonzero
       .value();
 
-    var len = sums.length;
-    var bounds = [len * 0.25, len * 0.5, len * 0.75];
+    const len = sums.length;
+    const bounds = [len * 0.25, len * 0.5, len * 0.75];
 
     items.forEach(function(item) {
       if (!item.chargeback.used_cost_sum) {
@@ -27,7 +27,7 @@ export function ChargebackFactory(lodash) {
         return;
       }
 
-      var idx = sums.findIndex(function(v) {
+      const idx = sums.findIndex(function(v) {
         return v === item.chargeback.used_cost_sum;
       });
       if (idx < bounds[0]) {
@@ -43,13 +43,13 @@ export function ChargebackFactory(lodash) {
   }
 
   function currentReport(item) {
-    var latestDate = lodash(item.chargeback_report.results || [])
+    const latestDate = lodash(item.chargeback_report.results || [])
       .pluck('start_date')
       .sort()
       .reverse()
       .first();
 
-    var latestReports = lodash(item.chargeback_report.results || [])
+    const latestReports = lodash(item.chargeback_report.results || [])
       .filter({start_date: latestDate})
       .value();
 
@@ -59,7 +59,7 @@ export function ChargebackFactory(lodash) {
 
     return {
       start_date: latestDate,
-      used_cost_sum: lodash.sum(latestReports, 'used_cost_sum'),
+      used_cost_sum: lodash.sum(latestReports, 'used_cost_sum'), // sumBy in lodash4
       vms: latestReports,
     };
   }
@@ -70,17 +70,11 @@ export function ChargebackFactory(lodash) {
 
   // sum all *_used_cost fields in the report
   function reportUsedCost(report) {
-    var sum = 0;
+    return lodash.reduce(report, function(total, v, k) {
+      total += k.match(/_used_cost$/) ? Number(v) : 0;
 
-    lodash.each(report, function(v, k) {
-      if (!k.match(/_used_cost$/)) {
-        return;
-      }
-
-      sum += v;
-    });
-
-    return sum;
+      return total;
+    }, 0);
   }
 
   return service;
