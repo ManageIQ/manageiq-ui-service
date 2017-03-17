@@ -11,8 +11,8 @@
 <div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig"
      ng-if="vm.pageAction==='view'">
   <actions>
-    <button class="btn btn-default primary-action" type="button" ng-click="vm.downloadTemplate()" translate>
-      Download <span class="fa fa-download"></span>
+    <button class="btn btn-default primary-action" type="button" ng-click="vm.downloadTemplate()">
+      {{'Download'|translate}} <span class="fa fa-download"></span>
     </button>
     <custom-dropdown class="custom-dropdown pull-right" config="item" items="vm.selectedItemsList"
                      items-count="vm.selectedItemsListCount"
