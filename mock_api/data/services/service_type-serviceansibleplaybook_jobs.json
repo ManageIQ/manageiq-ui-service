@@ -1,0 +1,45 @@
+{
+  "url": "services/45/orchestration_stacks/412?attributes=job_plays%2Craw_stdout",
+  "get": {
+    "href": "http://localhost:3001/api/services/45/orchestration_stacks/412",
+    "id": 412,
+    "name": "miq_wei1_provision",
+    "type": "ManageIQ::Providers::AnsibleTower::AutomationManager::Job",
+    "status": "successful",
+    "ems_ref": "454",
+    "ems_id": 14,
+    "orchestration_template_id": 1670,
+    "created_at": "2017-03-08T19:29:49Z",
+    "updated_at": "2017-03-08T19:35:15Z",
+    "start_time": "2017-03-07T21:20:50Z",
+    "finish_time": "2017-03-07T21:21:03Z",
+    "configuration_script_base_id": 1209,
+    "raw_stdout": "SSH password: \r\n\r\nPLAY [server_55] ***************************************************************\r\n\r\nTASK [setup] *******************************************************************\r\nok: [10.8.99.207]\r\n\r\nTASK [check apache] ************************************************************\r\nchanged: [10.8.99.207]\r\n\r\nTASK [debug] *******************************************************************\r\nok: [10.8.99.207] => {\r\n    \"httpd_output.stdout_lines\": [\r\n        \"Loaded plugins: product-id, search-disabled-repos, subscription-manager\", \r\n        \"This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.\", \r\n        \"Installed Packages\", \r\n        \"Name        : httpd\", \r\n        \"Arch        : x86_64\", \r\n        \"Version     : 2.4.6\", \r\n        \"Release     : 40.el7_2.4\", \r\n        \"Size        : 3.7 M\", \r\n        \"Repo        : installed\", \r\n        \"From repo   : koji-override-3\", \r\n        \"Summary     : Apache HTTP Server\", \r\n        \"URL         : http://httpd.apache.org/\", \r\n        \"License     : ASL 2.0\", \r\n        \"Description : The Apache HTTP Server is a powerful, efficient, and extensible\", \r\n        \"            : web server.\"\r\n    ]\r\n}\r\n\r\nTASK [ensure apache is running (and enable it at boot)] ************************\r\nok: [10.8.99.207]\r\n\r\nPLAY [server_56] ***************************************************************\r\n\r\nTASK [setup] *******************************************************************\r\nok: [10.8.99.248]\r\n\r\nTASK [check postgresql] ********************************************************\r\nchanged: [10.8.99.248]\r\n\r\nTASK [debug] *******************************************************************\r\nok: [10.8.99.248] => {\r\n    \"sql_output.stdout_lines\": [\r\n        \"Loaded plugins: product-id, search-disabled-repos, subscription-manager\", \r\n        \"This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.\", \r\n        \"Installed Packages\", \r\n        \"Name        : rh-postgresql94-postgresql\", \r\n        \"Arch        : x86_64\", \r\n        \"Version     : 9.4.6\", \r\n        \"Release     : 3.el7\", \r\n        \"Size        : 18 M\", \r\n        \"Repo        : installed\", \r\n        \"From repo   : koji-override-2\", \r\n        \"Summary     : PostgreSQL client programs\", \r\n        \"URL         : http://www.postgresql.org/\", \r\n        \"License     : PostgreSQL\", \r\n        \"Description : PostgreSQL is an advanced Object-Relational database management\", \r\n        \"            : system (DBMS). The base postgresql package contains the client\", \r\n        \"            : programs that you'll need to access a PostgreSQL DBMS server, as\", \r\n        \"            : well as HTML documentation for the whole system.  These client\", \r\n        \"            : programs can be located on the same machine as the PostgreSQL\", \r\n        \"            : server, or on a remote machine that accesses a PostgreSQL server\", \r\n        \"            : over a network connection.  The PostgreSQL server can be found in\", \r\n        \"            : the postgresql-server sub-package.\"\r\n    ]\r\n}\r\n\r\nTASK [ensure that postgresql is started] ***************************************\r\nok: [10.8.99.248]\r\n\r\nPLAY RECAP *********************************************************************\r\n10.8.99.207                : ok=4    changed=1    unreachable=0    failed=0   \r\n10.8.99.248                : ok=4    changed=1    unreachable=0    failed=0   \r\n\r\n",
+    "verbosity": 0,
+    "hosts": [
+      "localhost"
+    ],
+    "job_plays": [
+      {
+        "id": 1213,
+        "name": "server_55",
+        "resource_category": "job_play",
+        "resource_status": "successful",
+        "stack_id": 412,
+        "ems_ref": "1901",
+        "start_time": "2017-03-07T21:20:52Z",
+        "finish_time": "2017-03-07T21:20:55Z"
+      },
+      {
+        "id": 1214,
+        "name": "server_56",
+        "resource_category": "job_play",
+        "resource_status": "successful",
+        "stack_id": 412,
+        "ems_ref": "1910",
+        "start_time": "2017-03-07T21:20:55Z",
+        "finish_time": "2017-03-07T21:21:03Z"
+      }
+    ]
+  }
+}

@@ -1,596 +1,589 @@
 {
-    "url": "services?expand=resources&attributes=picture%2Cpicture.image_href%2Cchargeback_report%2Cevm_owner.userid%2Cmiq_group.description%2Cv_total_vms%2Cpower_state%2Cpower_states%2Cpower_status%2Call_service_children%2Call_vms%2Ccustom_actions%2Cservice_resources&filter[]=ancestry%3Dnull&limit=20&offset=0&sort_by=name&sort_order=asc&sort_options=ignore_case",
-    "get": {
-        "name": "services",
-        "count": 4,
-        "subcount": 4,
-        "resources": [
-            {
-                "href": "http://localhost:3001/api/services/10000000000571",
-                "id": 10000000000571,
-                "name": "Deploy PostgreSQL-20161222-044558",
-                "description": "Deploy PostgreSQL",
-                "guid": "bcecce70-c82a-11e6-8d9b-005056b10841",
-                "type": "ServiceAnsibleTower",
-                "service_template_id": 10000000000003,
-                "options": {
-                    "dialog": {
-                        "dialog_vm_name": "changeme",
-                        "dialog_limit": "changeme",
-                        "dialog_param_postgresql_databases": "[{\"name\": \"database\"}]",
-                        "dialog_param_postgresql_users": "[{\"name\": \"test\",\"password\": \"test\"}]"
-                    },
-                    "create_options": {
-                        "extra_vars": {
-                            "postgresql_databases": "[{\"name\": \"database\"}]",
-                            "postgresql_users": "[{\"name\": \"test\",\"password\": \"test\"}]"
-                        },
-                        "limit": "changeme"
-                    }
-                },
-                "display": false,
-                "created_at": "2016-12-22T09:40:56Z",
-                "updated_at": "2016-12-22T09:46:10Z",
-                "evm_owner_id": 10000000000007,
-                "miq_group_id": 10000000000021,
-                "tenant_id": 10000000000001,
-                "picture": {
-                    "id": 10000000000003,
-                    "resource_id": 10000000000003,
-                    "resource_type": "ServiceTemplate",
-                    "image_href": "http://localhost:3001/images/service.png"
-                },
-                "chargeback_report": {
-                    "results": []
-                },
-                "evm_owner": {
-                    "userid": "cloudops"
-                },
-                "miq_group": {
-                    "description": "cloud-operators"
-                },
-                "v_total_vms": 0,
-                "power_states": [],
-                "all_service_children": [],
-                "all_vms": [],
-                "custom_actions": {
-                    "buttons": [],
-                    "button_groups": []
-                },
-                "service_resources": [
-                    {
-                        "id": 10000000001647,
-                        "resource_id": 10000000000021,
-                        "resource_type": "ConfigurationScript",
-                        "group_idx": 0,
-                        "scaling_min": 1,
-                        "scaling_max": -1,
-                        "created_at": "2016-12-22T09:40:56Z",
-                        "updated_at": "2016-12-22T09:40:56Z",
-                        "service_id": 10000000000571,
-                        "provision_index": 0
-                    },
-                    {
-                        "id": 10000000001649,
-                        "resource_id": 10000000001889,
-                        "resource_type": "OrchestrationStack",
-                        "group_idx": 0,
-                        "scaling_min": 1,
-                        "scaling_max": -1,
-                        "created_at": "2016-12-22T09:46:10Z",
-                        "updated_at": "2016-12-22T09:46:10Z",
-                        "service_id": 10000000000571,
-                        "provision_index": 0
-                    }
-                ],
-                "tags": [],
-                "actions": [
-                    {
-                        "name": "edit",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000571"
-                    },
-                    {
-                        "name": "retire",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000571"
-                    },
-                    {
-                        "name": "set_ownership",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000571"
-                    },
-                    {
-                        "name": "start",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000571"
-                    },
-                    {
-                        "name": "stop",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000571"
-                    },
-                    {
-                        "name": "suspend",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000571"
-                    },
-                    {
-                        "name": "delete",
-                        "method": "delete",
-                        "href": "http://localhost:3001/api/services/10000000000571"
-                    }
-                ]
-            },
-            {
-                "href": "http://localhost:3001/api/services/10000000000405",
-                "id": 10000000000405,
-                "name": "alaurent23",
-                "description": "RHEL7 on RHEV",
-                "guid": "6984da18-8fbb-11e6-8334-005056b142d5",
-                "service_template_id": 10000000000016,
-                "options": {
-                    "dialog": {
-                        "dialog_service_name": "alaurent23",
-                        "dialog_tag_0_environment": "dev",
-                        "dialog_option_1_vm_name": "laurent23",
-                        "dialog_option_1_cores_per_socket": "1",
-                        "dialog_option_1_vm_memory": "2048",
-                        "dialog_tag_1_function": "app",
-                        "dialog_vm_name": "laurent23",
-                        "dialog_cores_per_socket": "1",
-                        "dialog_vm_memory": "2048"
-                    }
-                },
-                "display": true,
-                "created_at": "2016-10-11T14:02:57Z",
-                "updated_at": "2016-10-11T14:03:10Z",
-                "evm_owner_id": 10000000000007,
-                "miq_group_id": 10000000000021,
-                "tenant_id": 10000000000001,
-                "picture": {
-                    "id": 10000000000013,
-                    "resource_id": 10000000000016,
-                    "resource_type": "ServiceTemplate",
-                    "image_href": "http://localhost:3001/pictures/10r13.jpg"
-                },
-                "chargeback_report": {
-                    "results": []
-                },
-                "evm_owner": {
-                    "userid": "cloudops"
-                },
-                "miq_group": {
-                    "description": "cloud-operators"
-                },
-                "v_total_vms": 1,
-                "power_states": [
-                    "on"
-                ],
-                "all_service_children": [],
-                "all_vms": [
-                    {
-                        "id": 10000000001050,
-                        "vendor": "redhat",
-                        "name": "laurent23",
-                        "location": "1ed3d180-ed29-43db-9a60-fee5a41573d8.ovf",
-                        "host_id": 10000000000008,
-                        "created_on": "2016-10-11T14:05:03Z",
-                        "updated_on": "2016-11-06T01:36:11Z",
-                        "storage_id": 10000000000012,
-                        "guid": "b4e45718-8fbb-11e6-be0e-005056b1c9de",
-                        "ems_id": 10000000000012,
-                        "uid_ems": "1ed3d180-ed29-43db-9a60-fee5a41573d8",
-                        "retires_on": "2016-11-10T00:00:00Z",
-                        "retired": false,
-                        "boot_time": "2016-10-11T08:07:22Z",
-                        "power_state": "on",
-                        "state_changed_on": "2016-10-11T14:05:36Z",
-                        "previous_state": "down",
-                        "connection_state": "connected",
-                        "last_perf_capture_on": "2016-11-06T01:36:30Z",
-                        "memory_reserve": 1024,
-                        "template": false,
-                        "evm_owner_id": 10000000000007,
-                        "ems_ref_obj": "--- \"/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8\"\n",
-                        "miq_group_id": 10000000000021,
-                        "type": "ManageIQ::Providers::Redhat::InfraManager::Vm",
-                        "ems_ref": "/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8",
-                        "ems_cluster_id": 10000000000001,
-                        "retirement_warn": 7,
-                        "retirement_last_warn": "2016-11-03T00:11:55Z",
-                        "cloud": false,
-                        "raw_power_state": "up",
-                        "tenant_id": 10000000000001
-                    }
-                ],
-                "custom_actions": {
-                    "buttons": [],
-                    "button_groups": []
-                },
-                "service_resources": [
-                    {
-                        "id": 10000000001144,
-                        "resource_id": 10000000000104,
-                        "resource_type": "MiqRequest",
-                        "group_idx": 0,
-                        "scaling_min": 1,
-                        "scaling_max": -1,
-                        "created_at": "2016-10-11T14:02:57Z",
-                        "updated_at": "2016-10-11T14:02:57Z",
-                        "service_id": 10000000000405,
-                        "provision_index": 0
-                    },
-                    {
-                        "id": 10000000001145,
-                        "resource_id": 10000000001050,
-                        "resource_type": "VmOrTemplate",
-                        "group_idx": 0,
-                        "scaling_min": 1,
-                        "scaling_max": -1,
-                        "created_at": "2016-10-11T14:05:13Z",
-                        "updated_at": "2016-10-11T14:05:13Z",
-                        "service_id": 10000000000405,
-                        "provision_index": 0
-                    }
-                ],
-                "tags": [
-                    {
-                        "id": 10000000000023,
-                        "name": "/managed/environment/dev"
-                    },
-                    {
-                        "id": 10000000000185,
-                        "name": "/managed/function/app"
-                    }
-                ],
-                "actions": [
-                    {
-                        "name": "edit",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000405"
-                    },
-                    {
-                        "name": "retire",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000405"
-                    },
-                    {
-                        "name": "set_ownership",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000405"
-                    },
-                    {
-                        "name": "start",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000405"
-                    },
-                    {
-                        "name": "stop",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000405"
-                    },
-                    {
-                        "name": "suspend",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000405"
-                    },
-                    {
-                        "name": "delete",
-                        "method": "delete",
-                        "href": "http://localhost:3001/api/services/10000000000405"
-                    }
-                ]
-            },
-            {
-                "href": "http://localhost:3001/api/services/10000000000245",
-                "id": 10000000000245,
-                "name": "app",
-                "description": "RHEL7 on Amazon AWS",
-                "guid": "50bc6cc0-81c5-11e6-b98c-005056b1e4d4",
-                "service_template_id": 10000000000018,
-                "options": {
-                    "dialog": {
-                        "dialog_service_name": "app",
-                        "dialog_tag_0_environment": "dev",
-                        "dialog_option_1_vm_name": "mywebserver",
-                        "dialog_tag_1_function": "web",
-                        "dialog_option_1_keypair": "",
-                        "dialog_vm_name": "mywebserver"
-                    }
-                },
-                "display": true,
-                "created_at": "2016-09-23T19:38:34Z",
-                "updated_at": "2016-09-23T19:38:46Z",
-                "evm_owner_id": 10000000000007,
-                "miq_group_id": 10000000000021,
-                "tenant_id": 10000000000001,
-                "picture": {
-                    "id": 10000000000014,
-                    "resource_id": 10000000000018,
-                    "resource_type": "ServiceTemplate",
-                    "image_href": "http://localhost:3001/pictures/10r14.png"
-                },
-                "chargeback_report": {
-                    "results": []
-                },
-                "evm_owner": {
-                    "userid": "cloudops"
-                },
-                "miq_group": {
-                    "description": "cloud-operators"
-                },
-                "v_total_vms": 1,
-                "power_states": [
-                    "terminated"
-                ],
-                "all_service_children": [],
-                "all_vms": [
-                    {
-                        "id": 10000000000987,
-                        "vendor": "amazon",
-                        "name": "mywebserver",
-                        "location": "ec2-52-36-211-107.us-west-2.compute.amazonaws.com",
-                        "created_on": "2016-09-23T19:40:55Z",
-                        "updated_on": "2016-09-28T17:28:18Z",
-                        "guid": "a49de6ca-81c5-11e6-983c-005056b171b4",
-                        "uid_ems": "i-079799a3eadf1ab55",
-                        "retires_on": "2016-10-23T00:00:00Z",
-                        "retired": false,
-                        "boot_time": "2016-09-23T19:40:03Z",
-                        "power_state": "stopped",
-                        "state_changed_on": "2016-09-28T17:28:18Z",
-                        "previous_state": "stopped",
-                        "last_perf_capture_on": "2016-09-23T23:31:00Z",
-                        "template": false,
-                        "evm_owner_id": 10000000000007,
-                        "miq_group_id": 10000000000021,
-                        "type": "ManageIQ::Providers::Amazon::CloudManager::Vm",
-                        "ems_ref": "i-079799a3eadf1ab55",
-                        "retirement_warn": 7,
-                        "flavor_id": 10000000000010,
-                        "cloud": true,
-                        "raw_power_state": "stopped",
-                        "tenant_id": 10000000000001
-                    }
-                ],
-                "custom_actions": {
-                    "buttons": [],
-                    "button_groups": []
-                },
-                "service_resources": [
-                    {
-                        "id": 10000000000655,
-                        "resource_id": 10000000000106,
-                        "resource_type": "MiqRequest",
-                        "group_idx": 0,
-                        "scaling_min": 1,
-                        "scaling_max": -1,
-                        "created_at": "2016-09-23T19:38:34Z",
-                        "updated_at": "2016-09-23T19:38:34Z",
-                        "service_id": 10000000000245,
-                        "provision_index": 0
-                    },
-                    {
-                        "id": 10000000000656,
-                        "resource_id": 10000000000987,
-                        "resource_type": "VmOrTemplate",
-                        "group_idx": 0,
-                        "scaling_min": 1,
-                        "scaling_max": -1,
-                        "created_at": "2016-09-23T19:41:00Z",
-                        "updated_at": "2016-09-23T19:41:00Z",
-                        "service_id": 10000000000245,
-                        "provision_index": 0
-                    }
-                ],
-                "tags": [
-                    {
-                        "id": 10000000000023,
-                        "name": "/managed/environment/dev"
-                    },
-                    {
-                        "id": 10000000000192,
-                        "name": "/managed/function/web"
-                    }
-                ],
-                "actions": [
-                    {
-                        "name": "edit",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000245"
-                    },
-                    {
-                        "name": "retire",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000245"
-                    },
-                    {
-                        "name": "set_ownership",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000245"
-                    },
-                    {
-                        "name": "start",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000245"
-                    },
-                    {
-                        "name": "stop",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000245"
-                    },
-                    {
-                        "name": "suspend",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000245"
-                    },
-                    {
-                        "name": "delete",
-                        "method": "delete",
-                        "href": "http://localhost:3001/api/services/10000000000245"
-                    }
-                ]
-            },
-            {
-                "href": "http://localhost:3001/api/services/10000000000527",
-                "id": 10000000000527,
-                "name": "jbarlow-1",
-                "description": "RHEL7 on RHEV",
-                "guid": "005d9d18-ac8a-11e6-b0f1-005056b1c9de",
-                "service_template_id": 10000000000016,
-                "options": {
-                    "dialog": {
-                        "dialog_service_name": "jbarlow-1",
-                        "dialog_tag_0_environment": "dev",
-                        "dialog_option_1_vm_name": "jbarlow-1",
-                        "dialog_option_1_cores_per_socket": "1",
-                        "dialog_option_1_vm_memory": "1024",
-                        "dialog_tag_1_function": "app",
-                        "dialog_vm_name": "jbarlow-1",
-                        "dialog_cores_per_socket": "1",
-                        "dialog_vm_memory": "1024"
-                    }
-                },
-                "display": true,
-                "created_at": "2016-11-17T05:52:19Z",
-                "updated_at": "2016-11-17T05:52:36Z",
-                "evm_owner_id": 10000000000007,
-                "miq_group_id": 10000000000021,
-                "tenant_id": 10000000000001,
-                "picture": {
-                    "id": 10000000000013,
-                    "resource_id": 10000000000016,
-                    "resource_type": "ServiceTemplate",
-                    "image_href": "http://localhost:3001/pictures/10r12.png"
-                },
-                "chargeback_report": {
-                    "results": []
-                },
-                "evm_owner": {
-                    "userid": "cloudops"
-                },
-                "miq_group": {
-                    "description": "cloud-operators"
-                },
-                "v_total_vms": 1,
-                "power_states": [
-                    "unknown"
-                ],
-                "all_service_children": [],
-                "all_vms": [
-                    {
-                        "id": 10000000001447,
-                        "vendor": "redhat",
-                        "name": "jbarlow-1",
-                        "location": "116a3fc9-6be5-4c8d-9b49-8436ac530098.ovf",
-                        "created_on": "2016-11-17T06:05:38Z",
-                        "updated_on": "2016-12-17T05:04:22Z",
-                        "storage_id": 10000000000012,
-                        "guid": "dce47544-ac8b-11e6-b0f1-005056b1c9de",
-                        "uid_ems": "116a3fc9-6be5-4c8d-9b49-8436ac530098",
-                        "retires_on": "2016-12-17T00:00:00Z",
-                        "retired": true,
-                        "power_state": "unknown",
-                        "state_changed_on": "2016-12-17T05:03:11Z",
-                        "previous_state": "down",
-                        "connection_state": "connected",
-                        "last_perf_capture_on": "2016-12-17T04:47:22Z",
-                        "memory_reserve": 1024,
-                        "template": false,
-                        "evm_owner_id": 10000000000007,
-                        "ems_ref_obj": "--- \"/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098\"\n",
-                        "miq_group_id": 10000000000021,
-                        "type": "ManageIQ::Providers::Redhat::InfraManager::Vm",
-                        "ems_ref": "/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098",
-                        "retirement_warn": 7,
-                        "retirement_last_warn": "2016-12-10T00:06:59Z",
-                        "cloud": false,
-                        "retirement_state": "retired",
-                        "raw_power_state": "unknown",
-                        "tenant_id": 10000000000001
-                    }
-                ],
-                "custom_actions": {
-                    "buttons": [],
-                    "button_groups": []
-                },
-                "service_resources": [
-                    {
-                        "id": 10000000001533,
-                        "resource_id": 10000000000104,
-                        "resource_type": "MiqRequest",
-                        "group_idx": 0,
-                        "scaling_min": 1,
-                        "scaling_max": -1,
-                        "created_at": "2016-11-17T05:52:19Z",
-                        "updated_at": "2016-11-17T05:52:19Z",
-                        "service_id": 10000000000527,
-                        "provision_index": 0
-                    },
-                    {
-                        "id": 10000000001534,
-                        "resource_id": 10000000001447,
-                        "resource_type": "VmOrTemplate",
-                        "group_idx": 0,
-                        "scaling_min": 1,
-                        "scaling_max": -1,
-                        "created_at": "2016-11-17T06:07:14Z",
-                        "updated_at": "2016-11-17T06:07:14Z",
-                        "service_id": 10000000000527,
-                        "provision_index": 0
-                    }
-                ],
-                "tags": [
-                    {
-                        "id": 10000000000023,
-                        "name": "/managed/environment/dev"
-                    },
-                    {
-                        "id": 10000000000185,
-                        "name": "/managed/function/app"
-                    }
-                ],
-                "actions": [
-                    {
-                        "name": "edit",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000527"
-                    },
-                    {
-                        "name": "retire",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000527"
-                    },
-                    {
-                        "name": "set_ownership",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000527"
-                    },
-                    {
-                        "name": "start",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000527"
-                    },
-                    {
-                        "name": "stop",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000527"
-                    },
-                    {
-                        "name": "suspend",
-                        "method": "post",
-                        "href": "http://localhost:3001/api/services/10000000000527"
-                    },
-                    {
-                        "name": "delete",
-                        "method": "delete",
-                        "href": "http://localhost:3001/api/services/10000000000527"
-                    }
-                ]
+  "url": "services?expand=resources&attributes=picture%2Cpicture.image_href%2Cchargeback_report%2Cevm_owner.userid%2Cmiq_group.description%2Cv_total_vms%2Cpower_state%2Cpower_states%2Cpower_status%2Call_service_children%2Call_vms%2Ccustom_actions%2Cservice_resources&filter[]=ancestry%3Dnull&limit=20&offset=0&sort_by=name&sort_order=asc&sort_options=ignore_case",
+  "get": {
+    "name": "services",
+    "count": 4,
+    "subcount": 4,
+    "resources": [
+      {
+        "href": "http://localhost:3001/api/services/45",
+        "id": 45,
+        "name": "Test Playbook",
+        "description": "Test playbook",
+        "guid": "7854d0b8-0435-11e7-8ed2-7831c1cc8812",
+        "type": "ServiceAnsiblePlaybook",
+        "service_template_id": 85,
+        "options": {
+          "config_info": {
+            "provision": {
+              "repository_id": 23,
+              "playbook_id": 1209,
+              "credential_id": 42,
+              "hosts": "localhost",
+              "extra_vars": {},
+              "dialog_id": 12,
+              "fqname": "/Service/Generic/StateMachines/GenericLifecycle/provision"
             }
+          },
+          "dialog": {
+            "dialog_hosts": "localhost"
+          },
+          "provision_job_options": {
+            "extra_vars": {}
+          }
+        },
+        "display": false,
+        "created_at": "2017-03-08T19:28:55Z",
+        "updated_at": "2017-03-08T19:29:31Z",
+        "evm_owner_id": 1,
+        "miq_group_id": 2,
+        "retired": false,
+        "tenant_id": 1,
+        "initiator": "user",
+        "chargeback_report": {
+          "results": []
+        },
+        "evm_owner": {
+          "userid": "admin"
+        },
+        "miq_group": {
+          "description": "EvmGroup-super_administrator"
+        },
+        "v_total_vms": 0,
+        "power_states": [],
+        "all_service_children": [],
+        "all_vms": [],
+        "custom_actions": {
+          "buttons": [],
+          "button_groups": []
+        },
+        "service_resources": [
+          {
+            "id": 126,
+            "resource_id": 412,
+            "resource_type": "OrchestrationStack",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": -1,
+            "created_at": "2017-03-08T19:29:50Z",
+            "updated_at": "2017-03-08T19:29:50Z",
+            "name": "Provision",
+            "service_id": 45,
+            "provision_index": 0
+          }
+        ],
+        "actions": [
+          {
+            "name": "edit",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/45"
+          },
+          {
+            "name": "retire",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/45"
+          },
+          {
+            "name": "set_ownership",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/45"
+          },
+          {
+            "name": "start",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/45"
+          },
+          {
+            "name": "stop",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/45"
+          },
+          {
+            "name": "suspend",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/45"
+          },
+          {
+            "name": "delete",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/45"
+          },
+          {
+            "name": "delete",
+            "method": "delete",
+            "href": "http://localhost:3001/api/services/45"
+          }
         ]
-    },
-    "post": {},
-    "delete": {}
+      },
+      {
+        "href": "http://localhost:3001/api/services/10000000000405",
+        "id": 10000000000405,
+        "name": "alaurent23",
+        "description": "RHEL7 on RHEV",
+        "guid": "6984da18-8fbb-11e6-8334-005056b142d5",
+        "service_template_id": 10000000000016,
+        "options": {
+          "dialog": {
+            "dialog_service_name": "alaurent23",
+            "dialog_tag_0_environment": "dev",
+            "dialog_option_1_vm_name": "laurent23",
+            "dialog_option_1_cores_per_socket": "1",
+            "dialog_option_1_vm_memory": "2048",
+            "dialog_tag_1_function": "app",
+            "dialog_vm_name": "laurent23",
+            "dialog_cores_per_socket": "1",
+            "dialog_vm_memory": "2048"
+          }
+        },
+        "display": true,
+        "created_at": "2016-10-11T14:02:57Z",
+        "updated_at": "2016-10-11T14:03:10Z",
+        "evm_owner_id": 10000000000007,
+        "miq_group_id": 10000000000021,
+        "tenant_id": 10000000000001,
+        "picture": {
+          "id": 10000000000013,
+          "resource_id": 10000000000016,
+          "resource_type": "ServiceTemplate",
+          "image_href": "http://localhost:3001/pictures/10r13.jpg"
+        },
+        "chargeback_report": {
+          "results": []
+        },
+        "evm_owner": {
+          "userid": "cloudops"
+        },
+        "miq_group": {
+          "description": "cloud-operators"
+        },
+        "v_total_vms": 1,
+        "power_states": [
+          "on"
+        ],
+        "all_service_children": [],
+        "all_vms": [
+          {
+            "id": 10000000001050,
+            "vendor": "redhat",
+            "name": "laurent23",
+            "location": "1ed3d180-ed29-43db-9a60-fee5a41573d8.ovf",
+            "host_id": 10000000000008,
+            "created_on": "2016-10-11T14:05:03Z",
+            "updated_on": "2016-11-06T01:36:11Z",
+            "storage_id": 10000000000012,
+            "guid": "b4e45718-8fbb-11e6-be0e-005056b1c9de",
+            "ems_id": 10000000000012,
+            "uid_ems": "1ed3d180-ed29-43db-9a60-fee5a41573d8",
+            "retires_on": "2016-11-10T00:00:00Z",
+            "retired": false,
+            "boot_time": "2016-10-11T08:07:22Z",
+            "power_state": "on",
+            "state_changed_on": "2016-10-11T14:05:36Z",
+            "previous_state": "down",
+            "connection_state": "connected",
+            "last_perf_capture_on": "2016-11-06T01:36:30Z",
+            "memory_reserve": 1024,
+            "template": false,
+            "evm_owner_id": 10000000000007,
+            "ems_ref_obj": "--- \"/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8\"\n",
+            "miq_group_id": 10000000000021,
+            "type": "ManageIQ::Providers::Redhat::InfraManager::Vm",
+            "ems_ref": "/api/vms/1ed3d180-ed29-43db-9a60-fee5a41573d8",
+            "ems_cluster_id": 10000000000001,
+            "retirement_warn": 7,
+            "retirement_last_warn": "2016-11-03T00:11:55Z",
+            "cloud": false,
+            "raw_power_state": "up",
+            "tenant_id": 10000000000001
+          }
+        ],
+        "custom_actions": {
+          "buttons": [],
+          "button_groups": []
+        },
+        "service_resources": [
+          {
+            "id": 10000000001144,
+            "resource_id": 10000000000104,
+            "resource_type": "MiqRequest",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": -1,
+            "created_at": "2016-10-11T14:02:57Z",
+            "updated_at": "2016-10-11T14:02:57Z",
+            "service_id": 10000000000405,
+            "provision_index": 0
+          },
+          {
+            "id": 10000000001145,
+            "resource_id": 10000000001050,
+            "resource_type": "VmOrTemplate",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": -1,
+            "created_at": "2016-10-11T14:05:13Z",
+            "updated_at": "2016-10-11T14:05:13Z",
+            "service_id": 10000000000405,
+            "provision_index": 0
+          }
+        ],
+        "tags": [
+          {
+            "id": 10000000000023,
+            "name": "/managed/environment/dev"
+          },
+          {
+            "id": 10000000000185,
+            "name": "/managed/function/app"
+          }
+        ],
+        "actions": [
+          {
+            "name": "edit",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000405"
+          },
+          {
+            "name": "retire",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000405"
+          },
+          {
+            "name": "set_ownership",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000405"
+          },
+          {
+            "name": "start",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000405"
+          },
+          {
+            "name": "stop",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000405"
+          },
+          {
+            "name": "suspend",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000405"
+          },
+          {
+            "name": "delete",
+            "method": "delete",
+            "href": "http://localhost:3001/api/services/10000000000405"
+          }
+        ]
+      },
+      {
+        "href": "http://localhost:3001/api/services/10000000000245",
+        "id": 10000000000245,
+        "name": "app",
+        "description": "RHEL7 on Amazon AWS",
+        "guid": "50bc6cc0-81c5-11e6-b98c-005056b1e4d4",
+        "service_template_id": 10000000000018,
+        "options": {
+          "dialog": {
+            "dialog_service_name": "app",
+            "dialog_tag_0_environment": "dev",
+            "dialog_option_1_vm_name": "mywebserver",
+            "dialog_tag_1_function": "web",
+            "dialog_option_1_keypair": "",
+            "dialog_vm_name": "mywebserver"
+          }
+        },
+        "display": true,
+        "created_at": "2016-09-23T19:38:34Z",
+        "updated_at": "2016-09-23T19:38:46Z",
+        "evm_owner_id": 10000000000007,
+        "miq_group_id": 10000000000021,
+        "tenant_id": 10000000000001,
+        "picture": {
+          "id": 10000000000014,
+          "resource_id": 10000000000018,
+          "resource_type": "ServiceTemplate",
+          "image_href": "http://localhost:3001/pictures/10r14.png"
+        },
+        "chargeback_report": {
+          "results": []
+        },
+        "evm_owner": {
+          "userid": "cloudops"
+        },
+        "miq_group": {
+          "description": "cloud-operators"
+        },
+        "v_total_vms": 1,
+        "power_states": [
+          "terminated"
+        ],
+        "all_service_children": [],
+        "all_vms": [
+          {
+            "id": 10000000000987,
+            "vendor": "amazon",
+            "name": "mywebserver",
+            "location": "ec2-52-36-211-107.us-west-2.compute.amazonaws.com",
+            "created_on": "2016-09-23T19:40:55Z",
+            "updated_on": "2016-09-28T17:28:18Z",
+            "guid": "a49de6ca-81c5-11e6-983c-005056b171b4",
+            "uid_ems": "i-079799a3eadf1ab55",
+            "retires_on": "2016-10-23T00:00:00Z",
+            "retired": false,
+            "boot_time": "2016-09-23T19:40:03Z",
+            "power_state": "stopped",
+            "state_changed_on": "2016-09-28T17:28:18Z",
+            "previous_state": "stopped",
+            "last_perf_capture_on": "2016-09-23T23:31:00Z",
+            "template": false,
+            "evm_owner_id": 10000000000007,
+            "miq_group_id": 10000000000021,
+            "type": "ManageIQ::Providers::Amazon::CloudManager::Vm",
+            "ems_ref": "i-079799a3eadf1ab55",
+            "retirement_warn": 7,
+            "flavor_id": 10000000000010,
+            "cloud": true,
+            "raw_power_state": "stopped",
+            "tenant_id": 10000000000001
+          }
+        ],
+        "custom_actions": {
+          "buttons": [],
+          "button_groups": []
+        },
+        "service_resources": [
+          {
+            "id": 10000000000655,
+            "resource_id": 10000000000106,
+            "resource_type": "MiqRequest",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": -1,
+            "created_at": "2016-09-23T19:38:34Z",
+            "updated_at": "2016-09-23T19:38:34Z",
+            "service_id": 10000000000245,
+            "provision_index": 0
+          },
+          {
+            "id": 10000000000656,
+            "resource_id": 10000000000987,
+            "resource_type": "VmOrTemplate",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": -1,
+            "created_at": "2016-09-23T19:41:00Z",
+            "updated_at": "2016-09-23T19:41:00Z",
+            "service_id": 10000000000245,
+            "provision_index": 0
+          }
+        ],
+        "tags": [
+          {
+            "id": 10000000000023,
+            "name": "/managed/environment/dev"
+          },
+          {
+            "id": 10000000000192,
+            "name": "/managed/function/web"
+          }
+        ],
+        "actions": [
+          {
+            "name": "edit",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000245"
+          },
+          {
+            "name": "retire",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000245"
+          },
+          {
+            "name": "set_ownership",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000245"
+          },
+          {
+            "name": "start",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000245"
+          },
+          {
+            "name": "stop",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000245"
+          },
+          {
+            "name": "suspend",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000245"
+          },
+          {
+            "name": "delete",
+            "method": "delete",
+            "href": "http://localhost:3001/api/services/10000000000245"
+          }
+        ]
+      },
+      {
+        "href": "http://localhost:3001/api/services/10000000000527",
+        "id": 10000000000527,
+        "name": "jbarlow-1",
+        "description": "RHEL7 on RHEV",
+        "guid": "005d9d18-ac8a-11e6-b0f1-005056b1c9de",
+        "service_template_id": 10000000000016,
+        "options": {
+          "dialog": {
+            "dialog_service_name": "jbarlow-1",
+            "dialog_tag_0_environment": "dev",
+            "dialog_option_1_vm_name": "jbarlow-1",
+            "dialog_option_1_cores_per_socket": "1",
+            "dialog_option_1_vm_memory": "1024",
+            "dialog_tag_1_function": "app",
+            "dialog_vm_name": "jbarlow-1",
+            "dialog_cores_per_socket": "1",
+            "dialog_vm_memory": "1024"
+          }
+        },
+        "display": true,
+        "created_at": "2016-11-17T05:52:19Z",
+        "updated_at": "2016-11-17T05:52:36Z",
+        "evm_owner_id": 10000000000007,
+        "miq_group_id": 10000000000021,
+        "tenant_id": 10000000000001,
+        "picture": {
+          "id": 10000000000013,
+          "resource_id": 10000000000016,
+          "resource_type": "ServiceTemplate",
+          "image_href": "http://localhost:3001/pictures/10r12.png"
+        },
+        "chargeback_report": {
+          "results": []
+        },
+        "evm_owner": {
+          "userid": "cloudops"
+        },
+        "miq_group": {
+          "description": "cloud-operators"
+        },
+        "v_total_vms": 1,
+        "power_states": [
+          "unknown"
+        ],
+        "all_service_children": [],
+        "all_vms": [
+          {
+            "id": 10000000001447,
+            "vendor": "redhat",
+            "name": "jbarlow-1",
+            "location": "116a3fc9-6be5-4c8d-9b49-8436ac530098.ovf",
+            "created_on": "2016-11-17T06:05:38Z",
+            "updated_on": "2016-12-17T05:04:22Z",
+            "storage_id": 10000000000012,
+            "guid": "dce47544-ac8b-11e6-b0f1-005056b1c9de",
+            "uid_ems": "116a3fc9-6be5-4c8d-9b49-8436ac530098",
+            "retires_on": "2016-12-17T00:00:00Z",
+            "retired": true,
+            "power_state": "unknown",
+            "state_changed_on": "2016-12-17T05:03:11Z",
+            "previous_state": "down",
+            "connection_state": "connected",
+            "last_perf_capture_on": "2016-12-17T04:47:22Z",
+            "memory_reserve": 1024,
+            "template": false,
+            "evm_owner_id": 10000000000007,
+            "ems_ref_obj": "--- \"/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098\"\n",
+            "miq_group_id": 10000000000021,
+            "type": "ManageIQ::Providers::Redhat::InfraManager::Vm",
+            "ems_ref": "/api/vms/116a3fc9-6be5-4c8d-9b49-8436ac530098",
+            "retirement_warn": 7,
+            "retirement_last_warn": "2016-12-10T00:06:59Z",
+            "cloud": false,
+            "retirement_state": "retired",
+            "raw_power_state": "unknown",
+            "tenant_id": 10000000000001
+          }
+        ],
+        "custom_actions": {
+          "buttons": [],
+          "button_groups": []
+        },
+        "service_resources": [
+          {
+            "id": 10000000001533,
+            "resource_id": 10000000000104,
+            "resource_type": "MiqRequest",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": -1,
+            "created_at": "2016-11-17T05:52:19Z",
+            "updated_at": "2016-11-17T05:52:19Z",
+            "service_id": 10000000000527,
+            "provision_index": 0
+          },
+          {
+            "id": 10000000001534,
+            "resource_id": 10000000001447,
+            "resource_type": "VmOrTemplate",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": -1,
+            "created_at": "2016-11-17T06:07:14Z",
+            "updated_at": "2016-11-17T06:07:14Z",
+            "service_id": 10000000000527,
+            "provision_index": 0
+          }
+        ],
+        "tags": [
+          {
+            "id": 10000000000023,
+            "name": "/managed/environment/dev"
+          },
+          {
+            "id": 10000000000185,
+            "name": "/managed/function/app"
+          }
+        ],
+        "actions": [
+          {
+            "name": "edit",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000527"
+          },
+          {
+            "name": "retire",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000527"
+          },
+          {
+            "name": "set_ownership",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000527"
+          },
+          {
+            "name": "start",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000527"
+          },
+          {
+            "name": "stop",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000527"
+          },
+          {
+            "name": "suspend",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000527"
+          },
+          {
+            "name": "delete",
+            "method": "delete",
+            "href": "http://localhost:3001/api/services/10000000000527"
+          }
+        ]
+      }
+    ]
+  },
+  "post": {},
+  "delete": {}
 }

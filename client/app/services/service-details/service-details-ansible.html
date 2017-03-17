@@ -1,209 +1,226 @@
 <div class="panel panel-default ss-details-panel">
-  <div class="panel-body">
-    <section class="ss-form-readonly clearfix">
-      <h2 translate>Results</h2>
-      <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <div class="form-horizontal">
-            <div class="form-group">
-              <label class="control-label col-sm-4" translate>Status</label>
-              <div class="col-sm-8">
-                <input class="form-control text-capitalize" readonly value="{{vm.oStacks.status || ('Unknown' | translate)}}"/>
+  <loading status="vm.loading"></loading>
+  <div ng-if="!vm.loading" class="panel-body" ng-repeat="item in vm.orcStacks">
+    <uib-tabset>
+      <uib-tab ng-repeat="item in vm.orcStacks" heading="{{ item.resource.name }}">
+        <div class="panel-body">
+          <section class="ss-form-readonly clearfix">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="form-horizontal">
+                  <h3 translate>Results</h3>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" translate>Status</label>
+                    <div class="col-sm-8">
+                      <input class="form-control text-capitalize" readonly
+                             value="{{item.stack.status || ('Unknown' | translate)}}"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" translate>Started</label>
+                    <div class="col-sm-8">
+                      <input class="form-control" readonly
+                             value="{{item.stack.start_time | date:'short' || ('Unknown' | translate)}}"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" translate>Finished</label>
+                    <div class="col-sm-8">
+                      <input class="form-control" readonly
+                             value="{{item.stack.finish_time | date:'short' || ('Unknown' | translate)}}"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" translate>Elapsed</label>
+                    <div class="col-sm-8">
+                      <input class="form-control" readonly
+                             value="{{ vm.elapsed(item.stack.finish_time, item.stack.start_time) | elapsedTime }}"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" translate>Launched By</label>
+                    <div class="col-sm-8">
+                      <input class="form-control text-capitalize" readonly
+                             value="{{vm.service.evm_owner.name || ('Unknown' | translate)}}"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="form-horizontal">
+                  <h3 translate>Details</h3>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" translate>Playbook</label>
+                    <div class="col-sm-8">
+                      <input class="form-control text-capitalize" readonly
+                             value="{{item.resource.name || ('Unknown' | translate)}}"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" translate>Repo Name</label>
+                    <div class="col-sm-8">
+                      <input class="form-control text-capitalize" readonly
+                             value="{{item.repository.name || ('Unknown' | translate)}}"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" translate>Verbosity</label>
+                    <div class="col-sm-8">
+                      <input class="form-control" readonly value="{{item.stack.verbosity }}"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" translate>Hosts</label>
+                    <div class="col-sm-8">
+                      <input class="form-control" readonly
+                             value="{{item.stack.hosts[0] || ('Unknown' | translate)}}"/>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" translate>Started</label>
-              <div class="col-sm-8">
-                <input class="form-control" readonly
-                       value="{{vm.oStacks.start_time | date:'short' || ('Unknown' | translate)}}"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" translate>Finished</label>
-              <div class="col-sm-8">
-                <input class="form-control" readonly
-                       value="{{vm.oStacks.finish_time | date:'short' || ('Unknown' | translate)}}"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" translate>Elapsed</label>
-              <div class="col-sm-8">
-                <input class="form-control" readonly
-                       value="{{ vm.elapsed(vm.oStacks.finish_time, vm.oStacks.start_time) | elapsedTime }}"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" translate>Launched By</label>
-              <div class="col-sm-8">
-                <input class="form-control text-capitalize" readonly value="{{vm.service.evm_owner.name || ('Unknown' | translate)}}"/>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <div class="form-horizontal">
-            <div class="form-group">
-              <label class="control-label col-sm-4" translate>Playbook</label>
-              <div class="col-sm-8">
-                <input class="form-control text-capitalize" readonly value="{{vm.oStacks.name || ('Unknown' | translate)}}"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" translate>Repo Name</label>
-              <div class="col-sm-8">
-                <input class="form-control text-capitalize" readonly value="{{vm.results.repo_name || ('Unknown' | translate)}}"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" translate>Verbosity</label>
-              <div class="col-sm-8">
-                <input class="form-control" readonly value="{{vm.oStacks.verbosity }}"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-sm-4" translate>Inventory</label>
-              <div class="col-sm-8">
-                <input class="form-control" readonly value="{{vm.results.inventory || ('Unknown' | translate)}}"/>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section>
-      <ul class="list-group service-details-resources">
-        <li class="list-group-item service-details-resource-group-item">
-          <a class="service-details-resource-group-title" ng-class="{'collapsed': vm.credential.open}"
-             ng-click="vm.credential.open = !vm.credential.open">
-            {{ 'Credentials' | translate}} ({{vm.service.credential.length}})
-          </a>
-          <div class="service-details-resource-list-container" ng-class="{'collapse': vm.credential.open}">
-            <div ng-if="vm.service.credential.length < 1">
+          </section>
+          <section>
+            <ul class="list-group service-details-resources">
+              <li class="list-group-item service-details-resource-group-item">
+                <a class="service-details-resource-group-title" ng-class="{'collapsed': vm.credential.open}"
+                   ng-click="vm.credential.open = !vm.credential.open">
+                  {{ 'Credentials' | translate}} ({{item.credentials.length}})
+                </a>
+                <div class="service-details-resource-list-container" ng-class="{'collapse': vm.credential.open}">
+                  <div ng-if="item.credentials.length < 1">
               <span class="service-details-resource-empty-message" translate>
                 No credentials available.
               </span>
-            </div>
-            <div pf-list-view ng-if="vm.service.credential.length > 0" config="vm.credListConfig"
-                 items="vm.service.credential" custom-scope="vm">
-              <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 name-column">
-                <span class="no-wrap">
-                  <strong> {{ item.name }}</strong>
-                  </a>
-                </span>
+                  </div>
+                  <div pf-list-view ng-if="item.credentials.length > 0" config="vm.credListConfig"
+                       items="item.credentials" custom-scope="vm">
+                    <div class="row">
+                      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <div class="list-view-stacked-item">
+                          <strong translate>Name</strong>
+                          <div>
+                            {{item.name}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="list-view-stacked-item">
+                          <strong translate>Id</strong>
+                          <div>
+                            {{item.userid}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                        <div class="list-view-stacked-item"
+                             uib-tooltip="Type: {{item.type}}"
+                             tooltip-append-to-body="true"
+                             tooltip-popup-delay="1000"
+                             tooltip-placement="bottom-left">
+                          <strong translate>Type</strong>&nbsp;
+                          <span class="no-wrap">
+                      {{item.type}}
+                    </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <span class="no-wrap">
-                        {{ item.credential }}
-                  </a>
-                </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <ul class="list-group service-details-resources">
-        <li class="list-group-item service-details-resource-group-item">
-          <a class="service-details-resource-group-title" ng-class="{'collapsed': vm.plays.open}"
-             ng-click="vm.plays.open = !vm.plays.open">
-            {{ 'Plays' | translate}} ({{vm.plays.resources.length}})
-          </a>
-          <div class="service-details-resource-list-container" ng-class="{'collapse': vm.plays.open}">
-            <div ng-if="vm.plays.resources.length < 1">
+              </li>
+            </ul>
+          </section>
+          <section>
+            <ul class="list-group service-details-resources">
+              <li class="list-group-item service-details-resource-group-item">
+                <a class="service-details-resource-group-title" ng-class="{'collapsed': vm.plays.open}"
+                   ng-click="vm.plays.open = !vm.plays.open">
+                  {{ 'Plays' | translate}} ({{item.jobs.length}})
+                </a>
+                <div class="service-details-resource-list-container" ng-class="{'collapse': vm.plays.open}">
+                  <div ng-if="item.jobs.length < 1">
                 <span class="service-details-resource-empty-message" translate>
                   No plays available.
                 </span>
-            </div>
-            <div pf-list-view ng-if="vm.plays.resources.length > 0" config="vm.playsListConfig"
-                 items="vm.plays.resources" custom-scope="vm">
-              <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-5 col-xs-8 name-column">
-                <span class="no-wrap">
-                     <i class="pficon pficon-ok" ng-if="item.status === 'successful'"></i>
-                      <strong>
-                        {{ item.name }}
-                      </strong>
-                  </a>
-                </span>
+                  </div>
+                  <div pf-list-view ng-if="item.jobs.length > 0" config="vm.playsListConfig"
+                       items="item.jobs" custom-scope="vm">
+                    <div class="row">
+                      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <div class="list-view-stacked-item">
+                          <strong translate>Name</strong>
+                          <div>
+                            {{ item.name }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="list-view-stacked-item">
+                          <strong translate>Status</strong>
+                          <div class="text-capitalize">
+                            {{ item.resource_status }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="list-view-stacked-item">
+                          <strong translate>Started</strong>
+                          <div>
+                            {{ item.start_time | date:'short' || ('Unknown' | translate) }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="list-view-stacked-item">
+                          <strong translate>Finished</strong>
+                          <div>
+                            {{ item.finish_time | date:'short' || ('Unknown' | translate) }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <div class="list-view-stacked-item">
+                          <strong translate>Elapsed</strong>
+                          <div>
+                            {{ item.elapsed | elapsedTime }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
-                  <span class="no-wrap">
-                      <strong translate>Description</strong>
-                      <span>
-                        {{  item.description}}
-                      </span>
-                  </span>
-                </div>
-                <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
-                  <span class="no-wrap">
-                      <strong translate>Started</strong>
-                      <span>
-                        {{ item.started | date : 'MMM dd, yyyy H:mm:ss' }}
-                      </span>
-                  </span>
-                </div>
-                <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
-                  <span class="no-wrap" uib-tooltip="{{'Run Time'|translate}}"
-                        tooltip-append-to-body="true"
-                        tooltip-popup-delay="1000"
-                        tooltip-placement="bottom">
-                         <i class="fa fa-clock-o"></i>
-                      <span>
-                        {{item.run_time}}
-                      </span>
-                  </span>
-                </div>
-              </div>
-              <div class="list-view-pf-actions">
-                <div uib-dropdown="" dropdown-append-to-body class="dropdown pull-right dropdown-kebab-pf">
-                  <button uib-dropdown-toggle="" class="btn btn-link dropdown-toggle" type="button">
-                    <span class="fa fa-ellipsis-v"></span>
-                  </button>
-                  <ul uib-dropdown-menu="" class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body">
-                    <li role="menuitem">
-                      <a ng-click="vm.sampleAction(item)" translate>Sample</a>
-                    </li>
-                    <li role="separator" class="divider"></li>
-                    <li role="menuitem">
-                      <a ng-click="vm.viewPlay(item)" translate>View Details</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </section>
-    <section class=" clearfix">
-      <h2 translate>Standard Out
-        <div class="pull-right" ng-if="vm.output.length > 1">
-          <button type="button" class="btn btn-default pull-right" ng-click="vm.watchLive()" translate>Watch
-            Live
-          </button>
-          <label class="heading-label">
+              </li>
+            </ul>
+          </section>
+          <section class="clearfix">
+            <h3 translate>Standard Out
+              <div class="pull-right" ng-if="false">
+                <button type="button" class="btn btn-default pull-right" ng-click="vm.watchLive()" translate>Watch
+                  Live
+                </button>
+                <label class="heading-label">
             <span class="heading-label__success">
               <i class="fa fa-play-circle"></i>
               {{'Play In Progress' | translate}}
             </span>
-          </label>
-        </div>
-      </h2>
-      <div class="row">
-        <div class="col-lg-16">
-          <div class="well ">
-            <div ng-if="vm.output.length < 1">
+                </label>
+              </div>
+            </h3>
+            <div class="row">
+              <div class="col-lg-16">
+                <div class="well ">
+                  <div ng-if="vm.output.length < 1">
                 <span class="service-details-resource-empty-message" translate>
                   No logs available.
                 </span>
+                  </div>
+                  <span ng-bind-html="item.output"></span>
+                </div>
+              </div>
             </div>
-            <span ng-bind-html="vm.output"></span>
-          </div>
+          </section>
         </div>
-      </div>
-    </section>
+      </uib-tab>
+    </uib-tabset>
   </div>
 </div>

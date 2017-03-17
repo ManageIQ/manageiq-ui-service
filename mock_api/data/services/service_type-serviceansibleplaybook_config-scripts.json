@@ -1,0 +1,14 @@
+{
+  "url": "configuration_script_sources/23",
+  "get": {
+    "href": "http://localhost:3001/api/configuration_script_sources/23",
+    "id": 23,
+    "manager_id": 14,
+    "manager_ref": "4",
+    "name": "Demo Project",
+    "description": "A great demo",
+    "created_at": "2017-03-08T19:06:30Z",
+    "updated_at": "2017-03-08T19:06:30Z",
+    "type": "ManageIQ::Providers::EmbeddedAnsible::AutomationManager::ConfigurationScriptSource"
+  }
+}

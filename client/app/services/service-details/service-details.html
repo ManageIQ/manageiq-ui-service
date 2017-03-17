@@ -304,7 +304,7 @@
       </section>
     </div>
   </div>
-  <service-details-ansible ng-if="vm.service.type === 'ServiceAnsiblePlaybook'"
+  <service-details-ansible ng-if="vm.service.type === 'ServiceAnsiblePlaybook' && vm.permissions.viewAnsible"
                            service="vm.service"></service-details-ansible>
   <div class="panel panel-default ss-details-panel relationships-panel">
     <div class="panel-body">
