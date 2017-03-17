@@ -1,5 +1,5 @@
 {
-    "url": "services/10000000000405/tags/?expand=resources&attributes=categorization%2Ccategory",
+    "url": "vms/10000000001050?expand=&attributes=service",
     "get": {
         "name": "tags",
         "count": 189,

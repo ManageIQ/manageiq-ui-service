@@ -1,5 +1,5 @@
 {
-  "url": "services/45/tags/?expand=resources&attributes=categorization,category",
+  "url": "services/45/tags/?expand=resources&attributes=categorization%2Ccategory",
   "get": {
     "name": "tags",
     "count": 168,
