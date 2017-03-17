@@ -31,8 +31,6 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options',
       ],
       decorators: [
-        'orchestration_stacks.job_plays',
-        'orchestration_stacks.raw_stdout',
         'vms.ipaddresses',
         'vms.snapshots',
         'vms.v_total_snapshots',
@@ -57,7 +55,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
 
   function getServiceJobsStdout(serviceId, stackId) {
     const options = {
-      attributes: ['job_plays', 'raw_stdout'],
+      attributes: ['job_plays', 'stdout_raw'],
     };
 
     return CollectionsApi.get(`services/${serviceId}/orchestration_stacks`, stackId, options);
