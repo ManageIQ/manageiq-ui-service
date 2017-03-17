@@ -1,5 +1,5 @@
 {
-  "url": "requests?expand=resources&attributes=picture%2Cpicture.image_href%2Capproval_state%2Ccreated_on%2Cdescription%2Crequester_name&limit=20&offset=0",
+  "url": "requests?expand=resources&attributes=approval_state%2Ccreated_on%2Cdescription%2Cmessage%2Cpicture%2Cpicture.image_href%2Crequester_name&limit=20&offset=0",
   "get": {
     "name": "requests",
     "count": 210,
