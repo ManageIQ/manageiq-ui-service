@@ -60,9 +60,10 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
       attributes: ['job_plays'],
     };
 
-    if (isStdout) {
-      return CollectionsApi.get(`services/${serviceId}/orchestration_stacks/${serviceId}/stdout`, null, {});
-    }
+    // TODO: Once api supporting job stcout is avalible hook this up to return the deets
+    // if (isStdout) {
+    //   return CollectionsApi.get(`services/${serviceId}/orchestration_stacks/${serviceId}/stdout`, null, {});
+    // }
 
     return CollectionsApi.get(`services/${serviceId}/orchestration_stacks`, stackId, options);
   }
