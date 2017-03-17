@@ -62,15 +62,12 @@ function ComponentController(ModalService, ServicesState, lodash) {
 
         vm.orcStacks[resourceName].jobs = [];
         vm.orcStacks[resourceName].output = {};
-        ServicesState.getServiceJobsStdout(vm.service.id, vm.orcStacks[resourceName].stack.id, false).then((response) => {
+        ServicesState.getServiceJobsStdout(vm.service.id, vm.orcStacks[resourceName].stack.id).then((response) => {
+          vm.orcStacks[resourceName].output = response.raw_stdout || 'No standard out avaliable.';
           vm.orcStacks[resourceName].jobs = response.job_plays;
           vm.orcStacks[resourceName].jobs.forEach((item) => {
             item.elapsed = vm.elapsed(item.finish_time, item.start_time);
           });
-        });
-
-        ServicesState.getServiceJobsStdout(vm.service.id, vm.orcStacks[resourceName].stack.id, false).then((response) => {
-          vm.orcStacks[resourceName].output = response.get_stdout || 'No standard out avaliable.';
         });
       });
     }

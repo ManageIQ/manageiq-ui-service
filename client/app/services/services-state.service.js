@@ -55,15 +55,10 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     return CollectionsApi.get('configuration_script_sources', repositoryId, {});
   }
 
-  function getServiceJobsStdout(serviceId, stackId, isStdout) {
+  function getServiceJobsStdout(serviceId, stackId) {
     const options = {
-      attributes: ['job_plays'],
+      attributes: ['job_plays', 'raw_stdout'],
     };
-
-    // TODO: Once api supporting job stcout is avalible hook this up to return the deets
-    // if (isStdout) {
-    //   return CollectionsApi.get(`services/${serviceId}/orchestration_stacks/${serviceId}/stdout`, null, {});
-    // }
 
     return CollectionsApi.get(`services/${serviceId}/orchestration_stacks`, stackId, options);
   }
