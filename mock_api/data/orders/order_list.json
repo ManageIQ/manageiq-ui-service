@@ -1,5 +1,5 @@
 {
-  "url": "service_orders?expand=resources%2Cservice_requests&attributes=&limit=20&offset=0&sort_by=placed_at&sort_order=asc",
+  "url": "service_orders?expand=resources%2Cservice_requests&attributes=&filter[]=state%3Dordered&limit=20&offset=0&sort_by=placed_at&sort_order=asc",
   "get": {
     "name": "service_orders",
     "count": 247,
