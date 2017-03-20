@@ -8,14 +8,13 @@ export function SaveModalDialogFactory($uibModal) {
 
   return modalSaveDialog;
 
-  function showModal(saveCallback, doNotSaveCallback, cancelCallback, okToSave) {
+  function showModal(saveCallback, cancelCallback, okToSave) {
     var modalOptions = {
       templateUrl,
       controller: SaveModalDialogController,
       controllerAs: 'vm',
       resolve: {
         saveCallback: resolveSave,
-        doNotSaveCallback: resolveDoNotSave,
         cancelCallback: resolveCancel,
         okToSave: resolveOkToSave,
       },
@@ -25,10 +24,6 @@ export function SaveModalDialogFactory($uibModal) {
       return saveCallback;
     }
 
-    function resolveDoNotSave() {
-      return doNotSaveCallback;
-    }
-
     function resolveCancel() {
       return cancelCallback;
     }
@@ -36,7 +31,7 @@ export function SaveModalDialogFactory($uibModal) {
     function resolveOkToSave() {
       return okToSave;
     }
-
+    
     var modal = $uibModal.open(modalOptions);
 
     return modal.result;
@@ -44,20 +39,15 @@ export function SaveModalDialogFactory($uibModal) {
 }
 
 /** @ngInject */
-function SaveModalDialogController(saveCallback, doNotSaveCallback, cancelCallback, okToSave, $uibModalInstance) {
+function SaveModalDialogController(saveCallback, cancelCallback, okToSave, $uibModalInstance) {
   var vm = this;
   vm.save = save;
-  vm.doNotSave = doNotSave;
+ // vm.doNotSave = doNotSave;
   vm.cancel = cancel;
   vm.okToSave = okToSave;
 
   function save() {
     saveCallback();
-    $uibModalInstance.close();
-  }
-
-  function doNotSave() {
-    doNotSaveCallback();
     $uibModalInstance.close();
   }
 
