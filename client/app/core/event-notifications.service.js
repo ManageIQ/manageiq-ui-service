@@ -55,7 +55,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
         disconnected: function() {
           var vm = this;
           Session.requestWsToken().then(null, function() {
-            $log.warning('Unable to retrieve a valid ws_token!');
+            $log.warn('Unable to retrieve a valid ws_token!');
             // Disconnect permanently if the ws_token cannot be fetched
             vm.consumer.connection.close({allowReconnect: false});
           });
