@@ -118,8 +118,9 @@ function resolveInstance(CollectionsApi, vmDetails) {
   }
 }
 /** @ngInject */
-function StateController(service, vmDetails, instance) {
+function StateController(service, vmDetails, instance, EventNotifications, sprintf) {
   var vm = this;
+
 
   vm.vmDetails = vmDetails;
 
@@ -144,6 +145,7 @@ function StateController(service, vmDetails, instance) {
     if (instance !== false) {
       processInstanceVariables(instance);
     }
+    EventNotifications.warn( sprintf(__("%s is a retired resource"), vm.vmDetails.name), {toastDelay: 100000, unread: false});
   }
   function defaultText(inputCount, defaultText) {
     var inputArrSize = inputCount.length;
