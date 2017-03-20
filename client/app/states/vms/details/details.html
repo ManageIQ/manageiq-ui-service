@@ -1,113 +1,157 @@
-<ol class="breadcrumb">
-  <li>
-    <a ui-sref="services.explorer">{{'Services'|translate}}</a>
-  </li>
-  <li>
-    <a ui-sref="services.details({serviceId: vm.vmDetails.service.id})">{{ ::vm.vmDetails.service.name }}</a>
-  </li>
-  <li>
-    {{ ::vm.vmDetails.name }}
-  </li>
-</ol>
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li>
+          <a ui-sref="services">{{'Services'|translate}}</a>
+        </li>
+        <li>
+          <a ui-sref="services.details({serviceId: vm.vmDetails.service.id})">{{ ::vm.vmDetails.service.name }}</a>
+        </li>
+        <li>
+          {{ ::vm.vmDetails.name }}
+        </li>
+      </ol>
+  </span>
+</div>
+
 <div class="ss-details-wrapper vm-details-wrapper">
-	<div class="container-fluid vm-details-container">
-		<div class="row title">
-			<div>{{'Properties'|translate}}</div>
-		</div>
-		<detail-reveal title="Name" detail="{{::vm.vmDetails.name}}"></detail-reveal>
-		<detail-reveal title="Hostnames" detail="{{::vm.vmDetails.hostnames.join(',')}}"></detail-reveal>
-		<detail-reveal title="IP Addresses" detail="{{::vm.vmDetails.ipaddresses.join(',')}}"></detail-reveal>
-		<detail-reveal title="MAC Address" detail="{{::vm.vmDetails.mac_addresses.join(',')}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Container" detail="{{::vm.vmDetails.containerSpecsText}}"></detail-reveal>
-		<detail-reveal title="Parent Host/Node Platform" detail="{{::vm.vmDetails.host.vmm_product}}" ng-if="vm.vmDetails.host"></detail-reveal>
-		<detail-reveal title="Platform Tools" detail="{{::vm.vmDetails.tools_status}}"></detail-reveal>
-		<detail-reveal title="Operating System" detail="{{::vm.vmDetails.hardware.guest_os_full_name}}"></detail-reveal>
-		<detail-reveal title="Architecture" detail="{{::vm.vmDetails.hardware.bitness}} bit" ng-if="vm.vmDetails.hardware.bitness"></detail-reveal>
-		<detail-reveal title="Devices" icon="fa fa-hdd-o fa-lg" detail="{{3 + vm.vmDetails.num_disks}}" ng-if="vm.vmDetails.cloud===false"></detail-reveal>
-		<detail-reveal title="CPU Affinity" detail="{{::vm.vmDetails.cpu_affinity}}" ng-if="vm.vmDetails.cloud===false"></detail-reveal>
-		<detail-reveal title="Snapshots" icon="fa fa-camera fa-lg" detail="{{::vm.vmDetails.snapshotCount}}"></detail-reveal>
-		<detail-reveal title="Advanced Settings" icon="fa fa-wrench fa-lg" detail="{{::vm.vmDetails.advanced_settings.length}}"></detail-reveal>
-		<detail-reveal title="Resources" detail="{{::vm.vmDetails.resourceAvailability}}"></detail-reveal>
-		<detail-reveal title="Management Engine GUID" detail="{{::vm.vmDetails.guid}}"></detail-reveal>
-		<detail-reveal title="Virtualization" detail="{{::vm.vmDetails.hardware.virtualization_type}}" ng-if="vm.vmDetails.hardware.virtualization_type"></detail-reveal>
-		<detail-reveal title="Root Device Type" detail="{{::vm.vmDetails.hardware.root_device_type}}" ng-if="vm.vmDetails.hardware.root_device_type"></detail-reveal>
-		<detail-reveal title="ID within Provider" detail="{{::vm.vmDetails.uid_ems}}" ng-if="vm.vmDetails.uid_ems"></detail-reveal>
-	</div>
+  <h2 class="text-center" ng-if="vm.vmDetails.instance.retired">This is a retired resource.</h2>
+  <div class="container-fluid vm-details-container">
+    <div class="row title">
+      <div>{{'Properties'|translate}}</div>
+    </div>
+    <detail-reveal title="Name" detail="{{::vm.vmDetails.name}}"></detail-reveal>
+    <detail-reveal title="Hostnames" detail="{{::vm.vmDetails.hostnames.join(',')}}"></detail-reveal>
+    <detail-reveal title="IP Addresses" detail="{{::vm.vmDetails.ipaddresses.join(',')}}"></detail-reveal>
+    <detail-reveal title="MAC Address" detail="{{::vm.vmDetails.mac_addresses.join(',')}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Container" detail="{{::vm.vmDetails.containerSpecsText}}"></detail-reveal>
+    <detail-reveal title="Parent Host/Node Platform" detail="{{::vm.vmDetails.host.vmm_product}}"
+                   ng-if="vm.vmDetails.host"></detail-reveal>
+    <detail-reveal title="Platform Tools" detail="{{::vm.vmDetails.tools_status}}"></detail-reveal>
+    <detail-reveal title="Operating System" detail="{{::vm.vmDetails.hardware.guest_os_full_name}}"></detail-reveal>
+    <detail-reveal title="Architecture" detail="{{::vm.vmDetails.hardware.bitness}} bit"
+                   ng-if="vm.vmDetails.hardware.bitness"></detail-reveal>
+    <detail-reveal title="Devices" icon="fa fa-hdd-o fa-lg" detail="{{3 + vm.vmDetails.num_disks}}"
+                   ng-if="vm.vmDetails.cloud===false"></detail-reveal>
+    <detail-reveal title="CPU Affinity" detail="{{::vm.vmDetails.cpu_affinity}}"
+                   ng-if="vm.vmDetails.cloud===false"></detail-reveal>
+    <detail-reveal title="Snapshots" icon="fa fa-camera fa-lg"
+                   detail="{{::vm.vmDetails.snapshotCount}}"></detail-reveal>
+    <detail-reveal title="Advanced Settings" icon="fa fa-wrench fa-lg"
+                   detail="{{::vm.vmDetails.advanced_settings.length}}"></detail-reveal>
+    <detail-reveal title="Resources" detail="{{::vm.vmDetails.resourceAvailability}}"></detail-reveal>
+    <detail-reveal title="Management Engine GUID" detail="{{::vm.vmDetails.guid}}"></detail-reveal>
+    <detail-reveal title="Virtualization" detail="{{::vm.vmDetails.hardware.virtualization_type}}"
+                   ng-if="vm.vmDetails.hardware.virtualization_type"></detail-reveal>
+    <detail-reveal title="Root Device Type" detail="{{::vm.vmDetails.hardware.root_device_type}}"
+                   ng-if="vm.vmDetails.hardware.root_device_type"></detail-reveal>
+    <detail-reveal title="ID within Provider" detail="{{::vm.vmDetails.uid_ems}}"
+                   ng-if="vm.vmDetails.uid_ems"></detail-reveal>
+  </div>
 
-	<div class="container-fluid vm-details-container">
-		<div class="row title">
-			<div>{{'Lifecycle'|translate}}</div>
-		</div>
-		<detail-reveal title="Discovered on" detail="{{ ::vm.vmDetails.created_on | date:'medium' }}"></detail-reveal>
-		<detail-reveal title="Last Analyzed" icon="fa fa-search fa-lg" detail="{{ ::vm.vmDetails.lastSyncOn | date:'medium' }}"></detail-reveal>
-		<detail-reveal title="Retirement Date" icon="fa fa-clock-o fa-lg" detail="{{ ::vm.vmDetails.retiresOn | date:'medium' }}"></detail-reveal>
-		<detail-reveal title="Provisioned On" detail="{{ ::vm.vmDetails.provisionDate | date:'medium' }}"></detail-reveal>
-		<detail-reveal title="Owner" detail="{{::vm.vmDetails.evm_owner.name}}"></detail-reveal>
-		<detail-reveal title="Group" detail="{{::vm.vmDetails.miq_group.description}}"></detail-reveal>
-	</div>
-	<div class="container-fluid vm-details-container">
-		<div class="row title">
-			<div>{{'Relationships'|translate}}</div>
-		</div>
-		<detail-reveal title="Availability Zone" detail="{{::vm.vmDetails.instance.availabilityZone}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Cloud Tenants" detail="{{::vm.vmDetails.instance.cloudTenant}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Flavor" detail="{{::vm.vmDetails.instance.flavor.name}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="VM Template" detail="{{::vm.vmDetails.instance.miq_provision_template.name}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Infrastructure provider" detail="{{::vm.vmDetails.ext_management_system.name}}" ng-if="vm.vmDetails.ext_management_system.name"></detail-reveal>
-		<detail-reveal title="{{'Cluster'|translate}} / {{'Deployment Role'|translate}}" icon="fa fa-lg pficon pficon-cluster" detail="{{::vm.vmDetails.ems_cluster.name}}"
-			ng-if="vm.vmDetails.ems_cluster.name"></detail-reveal>
-		<detail-reveal title="Host / Node" icon="fa fa-lg pficon pficon-screen" detail="{{::vm.vmDetails.host.name}}" ng-if="vm.vmDetails.host.name"></detail-reveal>
-		<detail-reveal title="Resource Pool" icon="fa fa-lg pficon pficon-resource-pool" detail="{{::vm.vmDetails.parent_resource_pool.name}}"
-			ng-if="vm.vmDetails.parent_resource_pool"></detail-reveal>
-		<detail-reveal title="Datastores" icon="fa fa-lg fa-database" detail="{{::vm.vmDetails.storages.length}}" ng-if="vm.vmDetails.storages.length > 0"></detail-reveal>
-		<detail-reveal title="Service" icon="fa fa-lg pficon pficon-service" detail="{{::vm.vmDetails.service.name}}"></detail-reveal>
-		<detail-reveal title="Virtual Private Cloud" detail="{{::vm.vmDetails.instance.cloud_networks[0].name}}" ng-if="vm.vmDetails.instance.cloud_networks.length > 0"></detail-reveal>
-		<detail-reveal title="Cloud Subnet" detail="{{::vm.vmDetails.instance.cloud_subnets[0].name}}" ng-if="vm.vmDetails.instance.cloud_subnets.length > 0"></detail-reveal>
-		<detail-reveal title="Stack" detail="{{::vm.vmDetails.instance.orchestrationStack}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Cloud Networks" detail="{{::vm.vmDetails.instance.cloud_networks.length}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Cloud Subnets" detail="{{::vm.vmDetails.instance.cloud_subnets.length}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Network Routers" detail="{{::vm.vmDetails.instance.network_routers.length}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Security Groups" detail="{{::vm.vmDetails.security_groups.length}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Floating IPs" detail="{{::vm.vmDetails.instance.floating_ip_addresses.length}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Network Ports" detail="{{::vm.vmDetails.instance.network_ports.length}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Load Balancers" detail="{{::vm.vmDetails.instance.load_balancers.length}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Cloud Volumes" detail="{{::vm.vmDetails.instance.cloud_volumes.length}}" ng-if="vm.vmDetails.instance"></detail-reveal>
-		<detail-reveal title="Genealogy" detail="{{'Show parent and child VMs'|translate}}" ng-if="vm.vmDetails.cloud===false"></detail-reveal>
-		<detail-reveal title="Drift History" detail="{{::vm.vmDetails.driftHistory}}"></detail-reveal>
-		<detail-reveal title="Analysis History" detail="{{::vm.vmDetails.scanHistoryCount}}"></detail-reveal>
-	</div>
-	<div class="container-fluid vm-details-container">
-		<div class="row title">
-			<div>{{'Compliance'|translate}}</div>
-		</div>
-		<detail-reveal title="Status" detail="{{::vm.vmDetails.lastComplianceStatus}}"></detail-reveal>
-		<detail-reveal title="History" detail="{{::vm.vmDetails.complianceHistory}}"></detail-reveal>
-	</div>
+  <div class="container-fluid vm-details-container">
+    <div class="row title">
+      <div>{{'Lifecycle'|translate}}</div>
+    </div>
+    <detail-reveal title="Discovered on" detail="{{ ::vm.vmDetails.created_on | date:'medium' }}"></detail-reveal>
+    <detail-reveal title="Last Analyzed" icon="fa fa-search fa-lg"
+                   detail="{{ ::vm.vmDetails.lastSyncOn | date:'medium' }}"></detail-reveal>
+    <detail-reveal title="Retirement Date" icon="fa fa-clock-o fa-lg"
+                   detail="{{ ::vm.vmDetails.retiresOn | date:'medium' }}"></detail-reveal>
+    <detail-reveal title="Provisioned On" detail="{{ ::vm.vmDetails.provisionDate | date:'medium' }}"></detail-reveal>
+    <detail-reveal title="Owner" detail="{{::vm.vmDetails.evm_owner.name}}"></detail-reveal>
+    <detail-reveal title="Group" detail="{{::vm.vmDetails.miq_group.description}}"></detail-reveal>
+  </div>
+  <div class="container-fluid vm-details-container">
+    <div class="row title">
+      <div>{{'Relationships'|translate}}</div>
+    </div>
+    <detail-reveal title="Availability Zone" detail="{{::vm.vmDetails.instance.availabilityZone}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Cloud Tenants" detail="{{::vm.vmDetails.instance.cloudTenant}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Flavor" detail="{{::vm.vmDetails.instance.flavor.name}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="VM Template" detail="{{::vm.vmDetails.instance.miq_provision_template.name}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Infrastructure provider" detail="{{::vm.vmDetails.ext_management_system.name}}"
+                   ng-if="vm.vmDetails.ext_management_system.name"></detail-reveal>
+    <detail-reveal title="{{'Cluster'|translate}} / {{'Deployment Role'|translate}}"
+                   icon="fa fa-lg pficon pficon-cluster" detail="{{::vm.vmDetails.ems_cluster.name}}"
+                   ng-if="vm.vmDetails.ems_cluster.name"></detail-reveal>
+    <detail-reveal title="Host / Node" icon="fa fa-lg pficon pficon-screen" detail="{{::vm.vmDetails.host.name}}"
+                   ng-if="vm.vmDetails.host.name"></detail-reveal>
+    <detail-reveal title="Resource Pool" icon="fa fa-lg pficon pficon-resource-pool"
+                   detail="{{::vm.vmDetails.parent_resource_pool.name}}"
+                   ng-if="vm.vmDetails.parent_resource_pool"></detail-reveal>
+    <detail-reveal title="Datastores" icon="fa fa-lg fa-database" detail="{{::vm.vmDetails.storages.length}}"
+                   ng-if="vm.vmDetails.storages.length > 0"></detail-reveal>
+    <detail-reveal title="Service" icon="fa fa-lg pficon pficon-service"
+                   detail="{{::vm.vmDetails.service.name}}"></detail-reveal>
+    <detail-reveal title="Virtual Private Cloud" detail="{{::vm.vmDetails.instance.cloud_networks[0].name}}"
+                   ng-if="vm.vmDetails.instance.cloud_networks.length > 0"></detail-reveal>
+    <detail-reveal title="Cloud Subnet" detail="{{::vm.vmDetails.instance.cloud_subnets[0].name}}"
+                   ng-if="vm.vmDetails.instance.cloud_subnets.length > 0"></detail-reveal>
+    <detail-reveal title="Stack" detail="{{::vm.vmDetails.instance.orchestrationStack}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Cloud Networks" detail="{{::vm.vmDetails.instance.cloud_networks.length}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Cloud Subnets" detail="{{::vm.vmDetails.instance.cloud_subnets.length}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Network Routers" detail="{{::vm.vmDetails.instance.network_routers.length}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Security Groups" detail="{{::vm.vmDetails.security_groups.length}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Floating IPs" detail="{{::vm.vmDetails.instance.floating_ip_addresses.length}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Network Ports" detail="{{::vm.vmDetails.instance.network_ports.length}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Load Balancers" detail="{{::vm.vmDetails.instance.load_balancers.length}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Cloud Volumes" detail="{{::vm.vmDetails.instance.cloud_volumes.length}}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+    <detail-reveal title="Genealogy" detail="{{'Show parent and child VMs'|translate}}"
+                   ng-if="vm.vmDetails.cloud===false"></detail-reveal>
+    <detail-reveal title="Drift History" detail="{{::vm.vmDetails.driftHistory}}"></detail-reveal>
+    <detail-reveal title="Analysis History" detail="{{::vm.vmDetails.scanHistoryCount}}"></detail-reveal>
+  </div>
+  <div class="container-fluid vm-details-container">
+    <div class="row title">
+      <div>{{'Compliance'|translate}}</div>
+    </div>
+    <detail-reveal title="Status" detail="{{::vm.vmDetails.lastComplianceStatus}}"></detail-reveal>
+    <detail-reveal title="History" detail="{{::vm.vmDetails.complianceHistory}}"></detail-reveal>
+  </div>
 
-	<div class="container-fluid vm-details-container">
-		<div class="row title">
-			<div>{{'Power Management'|translate}}</div>
-		</div>
-		<detail-reveal title="Power State" detail="{{::vm.vmDetails.power_state}}"></detail-reveal>
-		<detail-reveal title="Last Boot Time" detail="{{ ::vm.vmDetails.boot_time | date:'medium' }}"></detail-reveal>
-		<detail-reveal title="State Changed On" detail="{{ ::vm.vmDetails.state_changed_on | date:'medium' }}"></detail-reveal>
-	</div>
+  <div class="container-fluid vm-details-container">
+    <div class="row title">
+      <div>{{'Power Management'|translate}}</div>
+    </div>
+    <detail-reveal title="Power State" detail="{{::vm.vmDetails.power_state}}"></detail-reveal>
+    <detail-reveal title="Last Boot Time" detail="{{ ::vm.vmDetails.boot_time | date:'medium' }}"></detail-reveal>
+    <detail-reveal title="State Changed On"
+                   detail="{{ ::vm.vmDetails.state_changed_on | date:'medium' }}"></detail-reveal>
+  </div>
 
-	<div class="container-fluid vm-details-container">
-		<div class="row title">
-			<div>{{'Security'|translate}}</div>
-		</div>
-		<detail-reveal title="Users" icon="fa fa-lg pficon pficon-user" detail="{{ ::vm.vmDetails.users.length }}"></detail-reveal>
-		<detail-reveal title="Groups" icon="fa fa-lg pficon pficon-users" detail="{{ ::vm.vmDetails.groups.length }}"></detail-reveal>
-		<detail-reveal title="Key Pairs" detail="{{ ::vm.vmDetails.instance.keyPairLabels.join(',') }}" ng-if="vm.vmDetails.instance"></detail-reveal>
-	</div>
-	<div class="container-fluid vm-details-container">
-		<div class="row title">
-			<div>{{'Configuration'|translate}}</div>
-		</div>
-		<detail-reveal title="Packages" detail="{{ ::vm.vmDetails.guest_applications.length }}"></detail-reveal>
-		<detail-reveal title="Init Processes" detail="{{ ::vm.vmDetails.linux_initprocesses.length }}"></detail-reveal>
-		<detail-reveal title="Files" detail="{{ ::vm.vmDetails.files.length }}"></detail-reveal>
-	</div>
+  <div class="container-fluid vm-details-container">
+    <div class="row title">
+      <div>{{'Security'|translate}}</div>
+    </div>
+    <detail-reveal title="Users" icon="fa fa-lg pficon pficon-user"
+                   detail="{{ ::vm.vmDetails.users.length }}"></detail-reveal>
+    <detail-reveal title="Groups" icon="fa fa-lg pficon pficon-users"
+                   detail="{{ ::vm.vmDetails.groups.length }}"></detail-reveal>
+    <detail-reveal title="Key Pairs" detail="{{ ::vm.vmDetails.instance.keyPairLabels.join(',') }}"
+                   ng-if="vm.vmDetails.instance"></detail-reveal>
+  </div>
+  <div class="container-fluid vm-details-container">
+    <div class="row title">
+      <div>{{'Configuration'|translate}}</div>
+    </div>
+    <detail-reveal title="Packages" detail="{{ ::vm.vmDetails.guest_applications.length }}"></detail-reveal>
+    <detail-reveal title="Init Processes" detail="{{ ::vm.vmDetails.linux_initprocesses.length }}"></detail-reveal>
+    <detail-reveal title="Files" detail="{{ ::vm.vmDetails.files.length }}"></detail-reveal>
+  </div>
 
 </div>

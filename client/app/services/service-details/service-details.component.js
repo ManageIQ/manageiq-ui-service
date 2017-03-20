@@ -52,7 +52,10 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       // Config setup
       permissions: ServicesState.getPermissions(),
       headerConfig: getHeaderConfig(),
-      resourceListConfig: getResourceListConfig(),
+      resourceListConfig: {
+        showSelectBox: false,
+        checkDisabled: isResourceDisabled,
+      },
     });
     fetchResources(vm.serviceId);
     Polling.start('servicesPolling', startPollingService, 50000);
@@ -280,12 +283,6 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
     }
   }
 
-  function getResourceListConfig() {
-    return {
-      showSelectBox: false,
-    };
-  }
-
   function createResourceGroups(service) {
     return {
       title: __('Compute'),
@@ -334,5 +331,9 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
 
   function gotoService(service) {
     $state.go('services.details', {serviceId: service.id});
+  }
+
+  function isResourceDisabled(item) {
+    return item.retired;
   }
 }
