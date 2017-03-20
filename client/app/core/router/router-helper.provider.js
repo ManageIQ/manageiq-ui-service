@@ -83,7 +83,7 @@ export function routerHelperProvider($locationProvider, $stateProvider, $urlRout
       msg = 'Error routing to ' + destination + '. '
         + (error.data || '') + '. <br/>' + (error.statusText || '')
         + ': ' + (error.status || '');
-      $log.warning(msg, [toState, error]);
+      $log.warn(msg, [toState, error]);
       $location.path('/');
     }
 

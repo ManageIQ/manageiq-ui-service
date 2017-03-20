@@ -38,7 +38,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
 
   function miqFormatNotification(text, bindings) {
     var str = __(text);
-    lodash.each(bindings, function (value, key) {
+    lodash.each(bindings, function(value, key) {
       str = str.replace(new RegExp('%{' + key + '}', 'g'), value.text);
     });
 
@@ -47,21 +47,21 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
 
   doReset();
 
-  ServerInfo.promise.then( function() {
+  ServerInfo.promise.then(function() {
     if (ServerInfo.data.asyncNotify) {
       var cable = ActionCable.createConsumer('/ws/notifications');
 
       cable.subscriptions.create('NotificationChannel', {
-        disconnected: function () {
+        disconnected: function() {
           var vm = this;
-          Session.requestWsToken().then(null, function () {
-            $log.warning('Unable to retrieve a valid ws_token!');
+          Session.requestWsToken().then(null, function() {
+            $log.warn('Unable to retrieve a valid ws_token!');
             // Disconnect permanently if the ws_token cannot be fetched
-            vm.consumer.connection.close({ allowReconnect: false });
+            vm.consumer.connection.close({allowReconnect: false});
           });
         },
-        received: function (data) {
-          $timeout(function () {
+        received: function(data) {
+          $timeout(function() {
             var msg = miqFormatNotification(data.text, data.bindings);
             service.add('event', data.level, msg, {message: msg}, data.id);
           });
@@ -88,7 +88,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
       attributes: 'details',
     };
 
-    CollectionsApi.query('notifications', options).then(function (result) {
+    CollectionsApi.query('notifications', options).then(function(result) {
       result.resources.forEach(function(resource) {
         var msg = miqFormatNotification(resource.details.text, resource.details.bindings);
         events.notifications.unshift({
@@ -112,10 +112,10 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     var newNotification = {
       id: id,
       notificationType: notificationType,
-      unread: true,
+      unread: angular.isDefined(notificationData) ? notificationData.unread : true,
       type: type,
       message: message,
-      data: notificationData,
+      data: notificationData || {},
       href: id ? '/api/notifications/' + id : undefined,
       timeStamp: (new Date()).getTime(),
     };
@@ -209,11 +209,11 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
 
   function markAllRead(group) {
     if (group) {
-      var resources = group.notifications.map(function (notification) {
+      var resources = group.notifications.map(function(notification) {
         notification.unread = false;
         service.removeToast(notification);
 
-        return { href: notification.href };
+        return {href: notification.href};
       });
       if (resources.length > 0) {
         CollectionsApi.post('notifications', undefined, {}, {action: 'mark_as_seen', resources: resources});
@@ -256,7 +256,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
       var resources = group.notifications.map(function(notification) {
         service.removeToast(notification);
 
-        return { href: notification.href };
+        return {href: notification.href};
       });
 
       if (resources.length > 0) {
@@ -277,7 +277,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
 
   function showToast(notification) {
     notification.show = true;
-    notification.persistent = notification.type === 'danger' || notification.type === 'error';
+    notification.persistent = notification.data.persistent || notification.type === 'danger' || notification.type === 'error';
     state.toastNotifications.push(notification);
 
     // any toast notifications with out 'danger' or 'error' status are automatically removed after a delay
@@ -288,7 +288,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
         if (!notification.viewing) {
           removeToast(notification);
         }
-      }, toastDelay);
+      }, notification.data.toastDelay || toastDelay);
     }
   }
 

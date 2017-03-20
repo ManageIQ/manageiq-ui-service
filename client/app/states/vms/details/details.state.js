@@ -118,8 +118,9 @@ function resolveInstance(CollectionsApi, vmDetails) {
   }
 }
 /** @ngInject */
-function StateController(service, vmDetails, instance) {
+function StateController(service, vmDetails, instance, EventNotifications, sprintf) {
   var vm = this;
+
 
   vm.vmDetails = vmDetails;
 
@@ -144,7 +145,11 @@ function StateController(service, vmDetails, instance) {
     if (instance !== false) {
       processInstanceVariables(instance);
     }
+    if (angular.isDefined(vm.vmDetails.instance) && vm.vmDetails.instance.retired) {
+      EventNotifications.warn(sprintf(__("%s is a retired resource"), vm.vmDetails.name), {persistent: true, unread: false});
+    }
   }
+
   function defaultText(inputCount, defaultText) {
     var inputArrSize = inputCount.length;
     defaultText = (defaultText === null ? 'None' : defaultText);
@@ -154,13 +159,14 @@ function StateController(service, vmDetails, instance) {
       return inputArrSize;
     }
   }
+
   function processInstanceVariables(data) {
     var noneText = __('None');
     data.availabilityZone = (angular.isUndefined(data.availability_zone) ? noneText : data.availability_zone.name);
     data.cloudTenant = (angular.isUndefined(data.cloud_tenant) ? noneText : data.cloud_tenant);
-    data.orchestrationStack = ( angular.isUndefined(data.orchestration_stack) ? noneText :  data.orchestration_stack);
+    data.orchestrationStack = ( angular.isUndefined(data.orchestration_stack) ? noneText : data.orchestration_stack);
     data.keyPairLabels = [];
-    data.key_pairs.forEach( function(keyPair) {
+    data.key_pairs.forEach(function(keyPair) {
       data.keyPairLabels.push(keyPair.name);
     });
 
