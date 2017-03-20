@@ -277,7 +277,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
 
   function showToast(notification) {
     notification.show = true;
-    notification.persistent = notification.type === 'danger' || notification.type === 'error';
+    notification.persistent = notification.data.persistent || notification.type === 'danger' || notification.type === 'error';
     state.toastNotifications.push(notification);
 
     // any toast notifications with out 'danger' or 'error' status are automatically removed after a delay

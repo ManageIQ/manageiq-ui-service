@@ -145,8 +145,11 @@ function StateController(service, vmDetails, instance, EventNotifications, sprin
     if (instance !== false) {
       processInstanceVariables(instance);
     }
-    EventNotifications.warn( sprintf(__("%s is a retired resource"), vm.vmDetails.name), {toastDelay: 100000, unread: false});
+    if (angular.isDefined(vm.vmDetails.instance) && vm.vmDetails.instance.retired) {
+      EventNotifications.warn(sprintf(__("%s is a retired resource"), vm.vmDetails.name), {persistent: true, unread: false});
+    }
   }
+
   function defaultText(inputCount, defaultText) {
     var inputArrSize = inputCount.length;
     defaultText = (defaultText === null ? 'None' : defaultText);
@@ -156,13 +159,14 @@ function StateController(service, vmDetails, instance, EventNotifications, sprin
       return inputArrSize;
     }
   }
+
   function processInstanceVariables(data) {
     var noneText = __('None');
     data.availabilityZone = (angular.isUndefined(data.availability_zone) ? noneText : data.availability_zone.name);
     data.cloudTenant = (angular.isUndefined(data.cloud_tenant) ? noneText : data.cloud_tenant);
-    data.orchestrationStack = ( angular.isUndefined(data.orchestration_stack) ? noneText :  data.orchestration_stack);
+    data.orchestrationStack = ( angular.isUndefined(data.orchestration_stack) ? noneText : data.orchestration_stack);
     data.keyPairLabels = [];
-    data.key_pairs.forEach( function(keyPair) {
+    data.key_pairs.forEach(function(keyPair) {
       data.keyPairLabels.push(keyPair.name);
     });
 
