@@ -258,7 +258,7 @@ function ComponentController(CatalogsState, $scope, $state, SaveModalDialog, lod
   function onChangeState(event, state, params) {
     if (state.name !== 'login' && state.name !== vm.stateName && vm.dirty && !vm.savingCatalog) {
       vm.savingCatalog = true;
-      SaveModalDialog.showModal(onSaveDialogSave, onSaveDialogDoNotSave, onSaveDialogCancel, vm.catalogValid);
+      SaveModalDialog.showModal(onSaveDialogSave, onSaveDialogCancel, vm.catalogValid);
       event.preventDefault();
     }
 
@@ -267,14 +267,10 @@ function ComponentController(CatalogsState, $scope, $state, SaveModalDialog, lod
       vm.saveCatalog(state, params);
     }
 
-    function onSaveDialogDoNotSave() {
+    function onSaveDialogCancel() {
       vm.savingCatalog = false;
       vm.dirty = false;
       $state.go(state, params);
-    }
-
-    function onSaveDialogCancel() {
-      vm.savingCatalog = false;
     }
   }
 }
