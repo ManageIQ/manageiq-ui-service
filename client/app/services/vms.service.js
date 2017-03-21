@@ -91,7 +91,7 @@ export function VmsService(CollectionsApi, RBAC) {
 
   function revertSnapshot(vmId, snapshotId) {
     const options = {
-      "action": "revert"
+      "action": "revert",
     };
 
     return CollectionsApi.post(collection + '/' + vmId + '/snapshots/' + snapshotId, null, {}, options);
