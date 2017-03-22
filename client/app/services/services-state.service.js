@@ -89,6 +89,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'all_vms',
         'custom_actions',
         'service_resources',
+        'tags',
       ],
       filter: getQueryFilters(filters),
     };
