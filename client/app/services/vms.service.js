@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function VmsService(CollectionsApi) {
+export function VmsService(CollectionsApi, RBAC) {
   const collection = 'vms';
   const sort = {
     isAscending: true,
@@ -16,6 +16,8 @@ export function VmsService(CollectionsApi) {
     getFilters: getFilters,
     setFilters: setFilters,
     getSnapshots: getSnapshots,
+    getPermissions: getPermissions,
+    revertSnapshot: revertSnapshot,
     createSnapshots: createSnapshots,
     deleteSnapshots: deleteSnapshots,
   };
@@ -60,6 +62,15 @@ export function VmsService(CollectionsApi) {
     return filters;
   }
 
+  function getPermissions() {
+    return {
+      create: RBAC.hasAny(['vm_snapshot_add']),
+      delete: RBAC.hasAny(['vm_snapshot_delete']),
+      deleteAll: RBAC.hasAny(['vm_snapshot_delete_all']),
+      revert: RBAC.hasAny(['vm_snapshot_revert']),
+    };
+  }
+
   function deleteSnapshots(vmId, data) {
     const options = {
       "action": "delete",
@@ -76,6 +87,14 @@ export function VmsService(CollectionsApi) {
     };
 
     return CollectionsApi.post(collection + '/' + vmId + '/snapshots/', null, {}, options);
+  }
+
+  function revertSnapshot(vmId, snapshotId) {
+    const options = {
+      "action": "revert",
+    };
+
+    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/' + snapshotId, null, {}, options);
   }
 
   // Private

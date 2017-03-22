@@ -16,6 +16,8 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
   const vm = this;
 
   vm.$onInit = function() {
+    vm.permissions = VmsService.getPermissions();
+
     angular.extend(vm, {
       title: __('Snapshots'),
       vm: {},
@@ -28,6 +30,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
       resolveSnapshots: resolveSnapshots,
       deleteSnapshots: deleteSnapshots,
       cancelDelete: cancelDelete,
+      updateMenuActionForItemFn: updateMenuActionForItemFn,
 
       // Config
       listConfig: getListConfig(),
@@ -58,11 +61,28 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
   }
 
   function getMenuActions() {
-    return [{
+    const menuActions = [{
+      name: __('Revert'),
+      actionName: 'revert',
+      title: __('Revert Snapshot'),
+      actionFn: revertSnapshot,
+      isDisabled: true,
+      permissions: vm.permissions.revert,
+    }, {
       name: __('Delete'),
-      title: __('Delete Catalog'),
+      actionName: 'delete',
+      title: __('Delete Snapshot'),
       actionFn: deleteSnapshot,
+      permissions: vm.permissions.delete,
     }];
+
+    return menuActions.filter((item) => item.permissions);
+  }
+
+  function updateMenuActionForItemFn(action, item) {
+    if (action.actionName === 'revert') {
+      action.isDisabled = !item.current && angular.isUndefined(item.parent_uid);
+    }
   }
 
   function getFilterConfig() {
@@ -91,25 +111,29 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
   }
 
   function getListActions() {
+    const listActions = [{
+      name: __('Create Snapshot'),
+      actionName: 'create',
+      title: __('Create snapshot'),
+      actionFn: processSnapshot,
+      isDisabled: false,
+      permissions: vm.permissions.create,
+    }, {
+      name: __('Delete All Snapshots'),
+      actionName: 'delete',
+      title: __('Delete all snapshots'),
+      actionFn: deleteSnapshot,
+      isDisabled: false,
+      permissions: vm.permissions.deleteAll,
+    }];
+
     return {
       title: __('Configuration'),
       name: __('Configuration'),
       actionName: 'configuration',
       icon: 'fa fa-cog',
       isDisabled: false,
-      actions: [{
-        name: __('Create Snapshot'),
-        actionName: 'create',
-        title: __('Create snapshot'),
-        actionFn: processSnapshot,
-        isDisabled: false,
-      }, {
-        name: __('Delete All Snapshots'),
-        actionName: 'delete',
-        title: __('Delete all snapshots'),
-        actionFn: deleteSnapshot,
-        isDisabled: false,
-      }],
+      actions: listActions.filter((item) => item.permissions),
     };
   }
 
@@ -189,6 +213,19 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
       vm.deleteMessage = sprintf(__('Please confirm, this action will delete all snapshots of vm %s'), vm.vm.name);
     }
     vm.deleteModal = true;
+  }
+
+  function revertSnapshot(_action, item) {
+    VmsService.revertSnapshot(vm.vm.id, item.id).then(handleResponse);
+
+    function handleResponse(response) {
+      if (response.success) {
+        EventNotifications.success(__('Success reverting snapshot. ') + response.message);
+      } else {
+        EventNotifications.error(__('Error reverting snapshot. ') + response.message);
+      }
+      resolveSnapshots();
+    }
   }
 
   function processSnapshot(_action, _item) {

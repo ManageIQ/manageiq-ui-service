@@ -157,9 +157,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
       permissions: vm.permissions.delete,
     }];
 
-    const menuActions = checkPermissions(menuActionsConfig);
-    
-    return menuActions;
+    return menuActionsConfig.filter((item) => item.permissions);
   }
 
   function getListActions() {
@@ -192,7 +190,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
       actionName: 'configuration',
       icon: 'fa fa-cog',
       isDisabled: false,
-      actions: checkPermissions(configurationMenuOptions),
+      actions: configurationMenuOptions.filter((item) => item.permissions),
     }];
 
     let selectAllDisabled = true;
@@ -244,16 +242,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
         break;
     }
   }
-  function checkPermissions(menuConfig) {
-    const approvedMenuItems = [];
-    angular.forEach(menuConfig, function(menuItem) {
-      if (menuItem.permissions) {
-        approvedMenuItems.push(menuItem);
-      }
-    });
 
-    return approvedMenuItems;
-  }
   function getToolbarConfig() {
     return {
       filterConfig: getFilterConfig(),
