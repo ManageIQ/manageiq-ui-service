@@ -12,7 +12,7 @@ export const TaggingComponent = {
 };
 
 /** @ngInject */
-function TaggingController($scope, $filter, $q, $log, CollectionsApi, TaggingService) {
+function TaggingController($scope, $filter, $q, $log, CollectionsApi, TaggingService, lodash) {
   var vm = this;
 
   vm.tags = {};
@@ -71,7 +71,7 @@ function TaggingController($scope, $filter, $q, $log, CollectionsApi, TaggingSer
     CollectionsApi.query('categories', options).then(loadSuccess, loadFailure);
 
     function loadSuccess(response) {
-      vm.tags.categories = response.resources;
+      vm.tags.categories = lodash.sortBy(response.resources, 'description');
       vm.tags.selectedCategory = vm.tags.categories[0];
       deferred.resolve();
     }

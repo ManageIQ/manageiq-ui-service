@@ -53,7 +53,6 @@ describe('Component: taggingWidget', function() {
       setTimeout(function() {
         isoScope.$digest();
         expect(isoScope.vm.tags.all).to.eq(scope.allTags.resources);
-        expect(isoScope.vm.tags.categories).to.eq(scope.tagCategories.resources);
         expect(isoScope.vm.showTagDropdowns).to.eq(true);
 
         expect(collectionsApiSpy).to.have.been.calledWith('categories', options);
@@ -72,12 +71,12 @@ describe('Component: taggingWidget', function() {
         isoScope.$digest();
         let tagCategorySelect = element.find(".tag-category-select");
         let tagCategories = angular.element(tagCategorySelect).find("option");
-        expect(tagCategories[0].text).to.be.eq("Location");
+        expect(tagCategories[0].text).to.be.eq("Auto Approve - Max CPU");
         expect(tagCategories[0].selected).to.be.eq(true);
 
         let tagsOfCategorySelect = element.find(".tag-value-select");
         let tagsOfCategory = angular.element(tagsOfCategorySelect).find("option");
-        expect(tagsOfCategory.length).to.be.eq(5);    // 5 Location options
+        expect(tagsOfCategory.length).to.be.eq(6);    // 6 Auto Approve options
         expect(tagsOfCategory[0].selected).to.be.eq(true);
 
         done();
@@ -129,7 +128,7 @@ describe('Component: taggingWidget', function() {
         expect(angular.element(tagsOfItem[1]).parent().parent().text().trim()).to.be.eq("Service Level: Gold");
 
         // Select tag category 'Service Level' and tag 'Platinum'
-        isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[5];
+        isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[24];
         isoScope.$digest();
         isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[3];
         isoScope.$digest();
@@ -138,8 +137,8 @@ describe('Component: taggingWidget', function() {
 
         let tagCategorySelect = element.find(".tag-category-select");
         let tagCategories = angular.element(tagCategorySelect).find("option");
-        expect(tagCategories[5].text).to.be.eq("Service Level");
-        expect(tagCategories[5].selected).to.be.eq(true);
+        expect(tagCategories[24].text).to.be.eq("Service Level");
+        expect(tagCategories[24].selected).to.be.eq(true);
 
         let tagsOfCategorySelect = element.find(".tag-value-select");
         let tagsOfCategory = angular.element(tagsOfCategorySelect).find("option");
