@@ -1,23 +1,25 @@
 /* eslint-disable no-undef, no-console, no-process-env, angular/log, no-path-concat */
 
-'use strict';
 const path = require('path');
-var http = require('http');
-var express = require('express');
-var bodyParser = require('body-parser');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var httpProxy = require('http-proxy');
-var four0four = require('./utils/404')();
-var proxyService = require('./utils/proxy')();
-var serviceApp = require('./utils/serviceApp');
-var serviceApi = require('./utils/serviceApi');
-var wsProxy = require('./utils/wsProxy');
-var buildOutputPath = process.env.BUILD_OUTPUT || './';
-var app = express();
+const http = require('http');
+const express = require('express');
+const helmet = require('helmet');
+const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const httpProxy = require('http-proxy');
+const four0four = require('./utils/404')();
+const proxyService = require('./utils/proxy')();
+const serviceApi = require('./utils/serviceApi');
+const wsProxy = require('./utils/wsProxy');
 
-var port = process.env.PORT || 3001;
-var environment = process.env.NODE_ENV;
+const buildOutputPath = process.env.BUILD_OUTPUT || './';
+const app = express();
+const port = process.env.PORT || 3001;
+const environment = process.env.NODE_ENV;
+
+// Secure http headers
+app.use(helmet());
 
 // Api
 app.use('/api', serviceApi);
@@ -44,8 +46,8 @@ switch (environment) {
     app.use('/*', express.static('./public/index.html'));
     break;
   default:
-    var proxyHost = proxyService.proxyHost();
-    var proxyErrorHandler = proxyService.proxyErrorHandler;
+    const proxyHost = proxyService.proxyHost();
+    const proxyErrorHandler = proxyService.proxyErrorHandler;
 
     console.log('** DEV **');
     app.use(express.static(path.resolve(__dirname,buildOutputPath)));
@@ -55,7 +57,7 @@ switch (environment) {
       pictureProxy.web(req, res, proxyErrorHandler(req, res));
     });
 
-    var pictureProxy = httpProxy.createProxyServer({
+    const pictureProxy = httpProxy.createProxyServer({
       target: 'http://' + proxyHost + '/pictures',
     });
 
@@ -66,7 +68,7 @@ switch (environment) {
     break;
 }
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 /*
 server.on('upgrade', function (req, socket, head) {
   console.log('PROXY(ws,upgrade): ' + req.url);
