@@ -8,7 +8,6 @@ import { CoreModule } from './core/core.module.js';
 import { DialogsModule } from './dialogs/dialogs.module.js';
 import { RequestsModule } from './requests/requests.module.js';
 import { ServicesModule } from './services/services.module.js';
-import { TemplatesModule } from './templates/templates.module.js';
 
 export default angular
   .module('app', [
@@ -22,7 +21,6 @@ export default angular
     DialogsModule,
     RequestsModule,
     ServicesModule,
-    TemplatesModule,
   ])
   .controller('AppController', AppController)
   .name;
