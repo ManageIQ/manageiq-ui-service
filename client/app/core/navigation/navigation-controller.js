@@ -1,18 +1,20 @@
 /** @ngInject */
 export function NavigationController(Text,
-                        Navigation,
-                        Messages,
-                        Session,
-                        API_BASE,
-                        ShoppingCart,
-                        $scope,
-                        $uibModal,
-                        $state,
-                        $document,
-                        EventNotifications,
-                        ServerInfo,
-                        ProductInfo) {
-  var vm = this;
+                                     Navigation,
+                                     Messages,
+                                     Session,
+                                     API_BASE,
+                                     ShoppingCart,
+                                     $scope,
+                                     $uibModal,
+                                     $state,
+                                     $document,
+                                     EventNotifications,
+                                     ApplianceInfo) {
+  const vm = this;
+
+  const applianceInfo = ApplianceInfo.get();
+
   vm.text = Text.app;
   vm.user = Session.currentUser;
 
@@ -108,6 +110,15 @@ export function NavigationController(Text,
     imgAlt: __("Product logo"),
     imgSrc: "images/login-screen-logo.png",
     title: Text.app.name,
+    productInfo: [
+      {name: __('Version: '), value: applianceInfo.version},
+      {name: __('Server Name: '), value: applianceInfo.server},
+      {name: __('User Name: '), value: applianceInfo.user},
+      {name: __('User Role: '), value: applianceInfo.role},
+    ],
+    copyright: applianceInfo.copyright,
+    supportWebsiteText: applianceInfo.supportWebsiteText,
+    supportWebsite: applianceInfo.supportWebsite,
   };
 
   vm.sites = [{
@@ -117,19 +128,7 @@ export function NavigationController(Text,
     url: vm.API_BASE,
   }];
 
-  ServerInfo.promise.then( function() {
-    vm.about.productInfo = [
-      { name: __('Version: '), value: ServerInfo.data.version },
-      { name: __('Server Name: '), value: ServerInfo.data.server },
-      { name: __('User Name: '), value: ServerInfo.data.user },
-      { name: __('User Role: '), value: ServerInfo.data.role },
-    ];
-  });
-  ProductInfo.promise.then( function() {
-    vm.about.copyright = ProductInfo.data.copyright;
-    vm.about.supportWebsiteText = ProductInfo.data.supportWebsiteText;
-    vm.about.supportWebsite = ProductInfo.data.supportWebsite;
-  });
+
   vm.openAbout = function() {
     vm.about.isOpen = true;
   };
@@ -244,7 +243,7 @@ export function NavigationController(Text,
   }
 
   function closeOtherDropdowns() {
-    var userDropdown = angular.element( $document[0].getElementById('userDropdown') );
+    var userDropdown = angular.element($document[0].getElementById('userDropdown'));
     userDropdown.removeClass('open');
     userDropdown.children().attr('aria-expanded', false);
   }

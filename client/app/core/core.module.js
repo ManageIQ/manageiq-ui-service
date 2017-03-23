@@ -17,6 +17,7 @@ import {
 } from './navigation.config.js';
 
 // Core
+import { ApplianceInfo } from './appliance-info.service.js';
 import { AuthenticationApiFactory } from './authentication-api.factory.js';
 import { BaseModalController } from './modal/base-modal-controller.js';
 import { BaseModalFactory } from './modal/base-modal.factory.js';
@@ -34,11 +35,9 @@ import { NavCountsFactory } from './navcounts.service.js';
 import { NavigationController } from './navigation/navigation-controller.js';
 import { NavigationProvider } from './navigation.provider.js';
 import { PollingFactory } from './polling.service.js';
-import { ProductInfo } from './product-info.service.js';
 import { RBACFactory } from './rbac.service.js';
 import { RouterModule } from './router/router.module.js';
 import { SaveModalDialogFactory } from './save-modal-dialog/save-modal-dialog.factory.js';
-import { ServerInfo } from './server-info.service.js';
 import { SessionFactory } from './session.service.js';
 import { SharedModule } from '../shared/shared.module.js';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component.js';
@@ -77,6 +76,7 @@ export const CoreModule = angular
   .controller('NavigationController', NavigationController)
   .component('shoppingCart', ShoppingCartComponent)
   .directive('languageSwitcher', LanguageSwitcherDirective)
+  .factory('ApplianceInfo', ApplianceInfo)
   .factory('AuthenticationApi', AuthenticationApiFactory)
   .factory('Chargeback', ChargebackFactory)
   .factory('CollectionsApi', CollectionsApiFactory)
@@ -89,10 +89,8 @@ export const CoreModule = angular
   .factory('ModalService', BaseModalFactory)
   .factory('NavCounts', NavCountsFactory)
   .factory('Polling', PollingFactory)
-  .factory('ProductInfo', ProductInfo)
   .factory('RBAC', RBACFactory)
   .factory('SaveModalDialog', SaveModalDialogFactory)
-  .factory('ServerInfo', ServerInfo)
   .factory('Session', SessionFactory)
   .factory('ShoppingCart', ShoppingCartFactory)
   .factory('TagEditorModal', TagEditorFactory)

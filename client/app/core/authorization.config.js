@@ -44,7 +44,7 @@ export function authConfig($httpProvider) {
 }
 
 /** @ngInject */
-export function authInit($rootScope, $state, $log, Session, $sessionStorage, Language, ServerInfo, ProductInfo, $window, RBAC) {
+export function authInit($rootScope, $state, $log, Session, $sessionStorage, Language, ApplianceInfo, $window, RBAC) {
   $rootScope.$on('$stateChangeStart', changeStart);
   $rootScope.$on('$stateChangeError', changeError);
   $rootScope.$on('$stateChangeSuccess', changeSuccess);
@@ -88,9 +88,10 @@ export function authInit($rootScope, $state, $log, Session, $sessionStorage, Lan
 
       Session.loadUser()
         .then(Language.onReload)
-        .then(ServerInfo.set)
-        .then(ProductInfo.set)
-        .then(function () {
+        .then(function (response) {
+          if (angular.isDefined(response)) {
+            ApplianceInfo.set(response);
+          }
           resolve();
         })
         .catch(badUser);

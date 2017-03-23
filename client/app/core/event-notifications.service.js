@@ -1,5 +1,5 @@
 /** @ngInject */
-export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Session, $log, ActionCable, ServerInfo) {
+export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Session, $log, ActionCable, ApplianceInfo) {
   var state = {};
   var toastDelay = 8 * 1000;
 
@@ -47,28 +47,27 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
 
   doReset();
 
-  ServerInfo.promise.then(function() {
-    if (ServerInfo.data.asyncNotify) {
-      var cable = ActionCable.createConsumer('/ws/notifications');
+  const applianceInfo = ApplianceInfo.get();
+  if (applianceInfo.asyncNotify) {
+    var cable = ActionCable.createConsumer('/ws/notifications');
 
-      cable.subscriptions.create('NotificationChannel', {
-        disconnected: function() {
-          var vm = this;
-          Session.requestWsToken().then(null, function() {
-            $log.warn('Unable to retrieve a valid ws_token!');
-            // Disconnect permanently if the ws_token cannot be fetched
-            vm.consumer.connection.close({allowReconnect: false});
-          });
-        },
-        received: function(data) {
-          $timeout(function() {
-            var msg = miqFormatNotification(data.text, data.bindings);
-            service.add('event', data.level, msg, {message: msg}, data.id);
-          });
-        },
-      });
-    }
-  });
+    cable.subscriptions.create('NotificationChannel', {
+      disconnected: function() {
+        var vm = this;
+        Session.requestWsToken().then(null, function() {
+          $log.warn('Unable to retrieve a valid ws_token!');
+          // Disconnect permanently if the ws_token cannot be fetched
+          vm.consumer.connection.close({allowReconnect: false});
+        });
+      },
+      received: function(data) {
+        $timeout(function() {
+          var msg = miqFormatNotification(data.text, data.bindings);
+          service.add('event', data.level, msg, {message: msg}, data.id);
+        });
+      },
+    });
+  }
 
   return service;
 
