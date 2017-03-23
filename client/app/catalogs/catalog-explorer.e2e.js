@@ -11,7 +11,7 @@ describe('Component: catalogExplorer', function() {
     expect(results.get(0).getText()).toBe("10 Results");
   });
   it('should have expected number of rows', function() {
-    const list = element.all(by.css('.list-view-container .list-group .list-group-item'));
-    expect(list.count()).toBe(10);
+    const list = element.all(by.css('.list-view-container .card-view-pf .card'));
+    expect(list.count()).toBe(23);
   });
 });

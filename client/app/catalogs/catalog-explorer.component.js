@@ -22,7 +22,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
       confirmDelete: false,
       catalogsToDelete: [],
       deleteConfirmationMessage: '',
-      viewType: 'listView',
+      viewType: 'cardView',
 
       limit: 20,
       filterCount: 0,
