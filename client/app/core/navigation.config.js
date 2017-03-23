@@ -54,14 +54,14 @@ export function navConfig(NavigationProvider) {
     originalToolTip: 'Total available dialogs',
   });
 
-  const templates = createItem({
+  /* const templates = createItem({
     title: N_('Templates'),
     originalTitle: 'Templates',
     state: 'templates',
     iconClass: 'pficon pficon-builder-image',
     badgeTooltip: N_('Total available Templates'),
     originalToolTip: 'Total available Templates',
-  });
+  }); */
 
   NavigationProvider.configure({
     items: {
@@ -71,7 +71,7 @@ export function navConfig(NavigationProvider) {
       requests: requests,
       catalogs: catalogs,
       dialogs: dialogs,
-      templates: templates,
+   //   templates: templates,
     },
   });
 
@@ -103,7 +103,7 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
   NavCounts.add('orders', fetchOrders, refreshTimeMs);
   NavCounts.add('catalogs', fetchServiceCatalogs, refreshTimeMs);
   NavCounts.add('dialogs', fetchDialogs, refreshTimeMs);
-  NavCounts.add('templates', fetchTemplates, refreshTimeMs);
+  // NavCounts.add('templates', fetchTemplates, refreshTimeMs);
 
   function fetchRequests() {
     angular.extend(options, {
@@ -149,10 +149,11 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
       .then(lodash.partial(updateCount, 'dialogs'));
   }
 
-  function fetchTemplates() {
+/*  function fetchTemplates() {
     CollectionsApi.query('orchestration_templates', options)
       .then(lodash.partial(updateCount, 'templates'));
-  }
+  } 
+*/
   function updateCount(item, data) {
     Navigation.items[item].badges[0].count = data.subcount;
   }

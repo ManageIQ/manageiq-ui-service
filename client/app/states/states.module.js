@@ -24,10 +24,6 @@ import {ServicesDetailsState} from "./services/details/details.state.js";
 import {ServicesExplorerState} from "./services/explorer/explorer.state.js";
 import {ServicesReconfigureState} from "./services/reconfigure/reconfigure.state.js";
 import {ServicesState} from "./services/services.state.js";
-import {TemplatesDetailsState} from "./templates/details/details.state.js";
-import {TemplatesEditorState} from "./templates/editor/editor.state.js";
-import {TemplatesExplorerState} from "./templates/explorer/explorer.state.js";
-import {TemplatesState} from "./templates/templates.state.js";
 import {VmsDetailsState} from "./vms/details/details.state.js";
 import {VmsSnapshotsState} from "./vms/snapshots/snapshots.state.js";
 import {VmsState} from "./vms/vms.state.js";
@@ -63,10 +59,6 @@ export const AppRoutingModule = angular
   .run(ServicesExplorerState)
   .run(ServicesReconfigureState)
   .run(ServicesState)
-  .run(TemplatesDetailsState)
-  .run(TemplatesEditorState)
-  .run(TemplatesExplorerState)
-  .run(TemplatesState)
   .run(VmsDetailsState)
   .run(VmsSnapshotsState)
   .run(VmsState)
