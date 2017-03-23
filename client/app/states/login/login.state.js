@@ -23,7 +23,7 @@ function getStates() {
 
 /** @ngInject */
 function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi,
-                         Session, $rootScope, Notifications, Language, ServerInfo, ProductInfo, $window) {
+                         Session, $rootScope, Notifications, Language, ApplianceInfo, $window) {
   var vm = this;
 
   vm.text = Text.login;
@@ -51,10 +51,12 @@ function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD,
     return AuthenticationApi.login(vm.credentials.login, vm.credentials.password)
       .then(Session.loadUser)
       .then(Session.requestWsToken)
-      .then(ServerInfo.set)
-      .then(ProductInfo.set)
       .then(Language.onLogin)
-      .then(function() {
+      .then(function(response) {
+        if (angular.isDefined(response)) {
+          ApplianceInfo.set(response);
+        }
+
         if (RBAC.navigationEnabled()) {
           if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
             $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
