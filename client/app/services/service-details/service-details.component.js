@@ -313,16 +313,22 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
     $state.go('vms.details', {vmId: resource.id});
   }
 
-  function startVM(item) {
-    PowerOperations.startVm(item);
+  function startVM(item, isDisabled) {
+    if (!isDisabled) {
+      PowerOperations.startVm(item);
+    }
   }
 
-  function stopVM(item) {
-    PowerOperations.stopVm(item);
+  function stopVM(item, isDisabled) {
+    if (!isDisabled) {
+      PowerOperations.stopVm(item);
+    }
   }
 
-  function suspendVM(item) {
-    PowerOperations.suspendVm(item);
+  function suspendVM(item, isDisabled) {
+    if (!isDisabled) {
+      PowerOperations.suspendVm(item);
+    }
   }
 
   function gotoCatalogItem() {
