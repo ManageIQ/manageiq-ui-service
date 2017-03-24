@@ -11,7 +11,7 @@ export const ShoppingCartComponent = {
 };
 
 /** @ngInject */
-function ComponentController(ShoppingCart, EventNotifications) {
+function ComponentController($state, ShoppingCart, EventNotifications) {
   var vm = this;
 
   vm.$doCheck = refresh;
@@ -31,6 +31,7 @@ function ComponentController(ShoppingCart, EventNotifications) {
       .then(function() {
         EventNotifications.success(__('Shopping cart successfully ordered'));
         vm.modalInstance.dismiss();
+        $state.go('orders');
       })
       .then(null, function(err) {
         EventNotifications.error(__('There was an error submitting this request: ') + err);

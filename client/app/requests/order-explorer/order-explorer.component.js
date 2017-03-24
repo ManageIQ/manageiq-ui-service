@@ -41,7 +41,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
       offset: 0,
       pollingInterval: 10000,
     });
-
+    OrdersState.setSort({ id: "placed_at", title: "Order Date", sortType: "numeric" }, false);
     resolveOrders(vm.limit, 0);
     Polling.start('orderListPolling', pollUpdateOrderList, vm.pollingInterval);
   }
