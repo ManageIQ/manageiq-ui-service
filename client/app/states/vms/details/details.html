@@ -19,7 +19,7 @@
     <div class="row title">
       <div>{{'Properties'|translate}}</div>
     </div>
-    <detail-reveal ng-if="vm.vmDetails.instance.retired" title="Status" icon="pf pficon-warning-triangle-o" detail="{{'Retired' | translate}}"></detail-reveal>
+    <detail-reveal ng-if="vm.vmDetails.retired" title="Status" icon="pf pficon-warning-triangle-o" detail="{{'Retired' | translate}}"></detail-reveal>
     <detail-reveal title="Name" detail="{{::vm.vmDetails.name}}"></detail-reveal>
     <detail-reveal title="Hostnames" detail="{{::vm.vmDetails.hostnames.join(',')}}"></detail-reveal>
     <detail-reveal title="IP Addresses" detail="{{::vm.vmDetails.ipaddresses.join(',')}}"></detail-reveal>

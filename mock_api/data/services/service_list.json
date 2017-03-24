@@ -1,5 +1,5 @@
 {
-  "url": "services?expand=resources&attributes=picture%2Cpicture.image_href%2Cchargeback_report%2Cevm_owner.userid%2Cmiq_group.description%2Cv_total_vms%2Cpower_state%2Cpower_states%2Cpower_status%2Call_service_children%2Call_vms%2Ccustom_actions%2Cservice_resources&filter[]=ancestry%3Dnull&limit=20&offset=0&sort_by=name&sort_order=asc&sort_options=ignore_case",
+  "url": "services?expand=resources&attributes=picture%2Cpicture.image_href%2Cchargeback_report%2Cevm_owner.userid%2Cmiq_group.description%2Cv_total_vms%2Cpower_state%2Cpower_states%2Cpower_status%2Call_service_children%2Call_vms%2Ccustom_actions%2Cservice_resources%2Ctags&filter[]=ancestry%3Dnull&limit=20&offset=0&sort_by=name&sort_order=asc&sort_options=ignore_case",
   "get": {
     "name": "services",
     "count": 4,
