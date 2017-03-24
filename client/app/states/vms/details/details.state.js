@@ -41,28 +41,29 @@ function resolveVM($stateParams, CollectionsApi) {
     'guest_applications',
     'groups',
     'guid',
-    "hardware",
+    'hardware',
     'host',
     'hostnames',
     'id',
     'ipaddresses',
-    "kernel_drivers",
-    "lans",
+    'kernel_drivers',
+    'lans',
     'last_sync_on',
     'linux_initprocesses',
     'last_compliance_status',
-    "miq_group",
-    "miq_provision",
-    "miq_provision_requests",
-    "miq_provision_vms",
+    'miq_group',
+    'miq_provision',
+    'miq_provision_requests',
+    'miq_provision_vms',
     'name',
     'num_disks',
     'parent_resource_pool',
     'power_state',
+    'retired',
     'retires_on',
     'scan_histories',
-    "service",
-    "service_resources",
+    'service',
+    'service_resources',
     'snapshots',
     'state_changed_on',
     'storages',
@@ -145,7 +146,7 @@ function StateController(service, vmDetails, instance, EventNotifications, sprin
     if (instance !== false) {
       processInstanceVariables(instance);
     }
-    if (angular.isDefined(vm.vmDetails.instance) && vm.vmDetails.instance.retired) {
+    if (vm.vmDetails.retired) {
       EventNotifications.warn(sprintf(__("%s is a retired resource"), vm.vmDetails.name), {persistent: true, unread: false});
     }
   }
