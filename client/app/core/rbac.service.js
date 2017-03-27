@@ -82,7 +82,7 @@ export function RBACFactory(lodash) {
   }
 
   function entitledForServiceCatalogs(productFeatures) {
-    return angular.isDefined(productFeatures.svc_catalog_provision);
+    return angular.isDefined(productFeatures.svc_catalog_provision) || angular.isDefined(productFeatures.catalog_items_view);
   }
 
   function entitledForRequests(productFeatures) {
