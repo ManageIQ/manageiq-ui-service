@@ -11,7 +11,7 @@ describe('Component: reportsExplorer', function() {
     expect(results.get(0).getText()).toBe("5 Results");
   });
   it('should have expected number of rows', function() {
-    const list = element.all(by.css('.list-view-container .card-view-pf .card'));
+    const list = element.all(by.css('#reportsList .list-group-item'));
     expect(list.count()).toBe(5);
   });
 });
