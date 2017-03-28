@@ -86,8 +86,7 @@ function ComponentController(ListView, ReportsService, EventNotifications, Polli
 
     ReportsService.getMinimal(vm.filters).then(setResultTotals);
     ReportsService.getReports(limit, vm.offset, vm.filters, vm.sortConfig)
-      .then(querySuccess)
-      .catch(queryFailure);
+      .then(querySuccess, queryFailure);
 
     function querySuccess(response) {
       vm.loading = false;
