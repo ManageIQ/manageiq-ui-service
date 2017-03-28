@@ -1,0 +1,770 @@
+{
+    "url": "reports?expand=resources&limit=20&offset=0&sort_by=name&sort_order=asc&sort_options=alpha",
+    "get": {
+        "name": "reports",
+        "count": 5,
+        "subcount": 5,
+        "resources": [
+            {
+                "href": "http://localhost:3001/api/reports/10000000000375",
+                "id": 10000000000375,
+                "name": "1 - Lifecycle Activity",
+                "title": "Lifecycle Activity",
+                "rpt_group": "Custom",
+                "rpt_type": "Custom",
+                "priority": 140,
+                "db": "Vm",
+                "cols": [
+                    "name",
+                    "retires_on",
+                    "v_owning_datacenter",
+                    "mem_cpu",
+                    "num_cpu",
+                    "used_disk_storage"
+                ],
+                "include": {
+                    "miq_provision_template": {
+                        "columns": [
+                            "name"
+                        ]
+                    },
+                    "evm_owner": {
+                        "columns": [
+                            "name",
+                            "email"
+                        ]
+                    },
+                    "miq_provision": {
+                        "include": {
+                            "miq_request": {
+                                "columns": [
+                                    "requester_name",
+                                    "created_on",
+                                    "v_approved_by",
+                                    "v_approved_by_email",
+                                    "fulfilled_on"
+                                ]
+                            }
+                        },
+                        "columns": [
+                            "description",
+                            "message"
+                        ]
+                    },
+                    "managed": {
+                        "columns": [
+                            "environment",
+                            "location"
+                        ]
+                    },
+                    "ext_management_system": {
+                        "columns": [
+                            "name",
+                            "hostname"
+                        ]
+                    },
+                    "ems_cluster": {
+                        "columns": [
+                            "name"
+                        ]
+                    },
+                    "host": {
+                        "columns": [
+                            "name"
+                        ]
+                    },
+                    "storage": {
+                        "columns": [
+                            "name"
+                        ]
+                    },
+                    "operating_system": {
+                        "columns": [
+                            "product_name"
+                        ]
+                    }
+                },
+                "col_order": [
+                    "name",
+                    "miq_provision_template.name",
+                    "evm_owner.name",
+                    "evm_owner.email",
+                    "miq_request.requester_name",
+                    "miq_request.created_on",
+                    "miq_request.v_approved_by",
+                    "miq_request.v_approved_by_email",
+                    "miq_request.fulfilled_on",
+                    "miq_provision.description",
+                    "miq_provision.message",
+                    "retires_on",
+                    "managed.environment",
+                    "managed.location",
+                    "ext_management_system.name",
+                    "ext_management_system.hostname",
+                    "v_owning_datacenter",
+                    "ems_cluster.name",
+                    "host.name",
+                    "storage.name",
+                    "operating_system.product_name",
+                    "mem_cpu",
+                    "num_cpu",
+                    "used_disk_storage"
+                ],
+                "headers": [
+                    "VM Name",
+                    "Source Template",
+                    "Owner Name",
+                    "Owner Email",
+                    "Requester Name",
+                    "Request Date",
+                    "Approved By",
+                    "Approved By Email",
+                    "Approved Date",
+                    "Provision Description",
+                    "Provision Message",
+                    "Retires On",
+                    "Environment",
+                    "Location",
+                    "Provider",
+                    "Provider Hostname",
+                    "Datacenter",
+                    "Cluster",
+                    "Host",
+                    "Datastore",
+                    "Guest OS",
+                    "Allocated RAM (MB)",
+                    "Allocated vCPUs",
+                    "Total Used Disk Space"
+                ],
+                "conditions": {
+                    "exp": {
+                        "IS NOT EMPTY": {
+                            "field": "Vm.miq_provision_template-name"
+                        }
+                    },
+                    "context_type": null
+                },
+                "order": "Descending",
+                "sortby": [
+                    "miq_request.fulfilled_on"
+                ],
+                "created_on": "2016-08-18T20:22:16Z",
+                "updated_on": "2016-08-18T20:22:16Z",
+                "categories": [],
+                "template_type": "report",
+                "db_options": {},
+                "col_formats": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                "col_options": {},
+                "rpt_options": {
+                    "pdf": {
+                        "page_size": "US-Letter"
+                    }
+                },
+                "miq_group_id": 10000000000002,
+                "user_id": 10000000000001,
+                "actions": [
+                    {
+                        "name": "run",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/reports/10000000000375"
+                    },
+                    {
+                        "name": "schedule",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/reports/10000000000375"
+                    }
+                ]
+            },
+            {
+                "href": "http://localhost:3001/api/reports/10000000000369",
+                "id": 10000000000369,
+                "name": "2 - Cluster Memory Trends (last week)",
+                "title": "Cluster Memory Utilization Trends (last week)",
+                "rpt_group": "Custom",
+                "rpt_type": "Custom",
+                "priority": 80,
+                "db": "VimPerformanceTrend",
+                "cols": [],
+                "include": {},
+                "col_order": [],
+                "headers": [],
+                "order": "Ascending",
+                "sortby": [
+                    "resource_name"
+                ],
+                "created_on": "2016-08-18T20:22:16Z",
+                "updated_on": "2016-08-18T20:47:57Z",
+                "categories": [],
+                "template_type": "report",
+                "db_options": {
+                    "rpt_type": "trend",
+                    "interval": "daily",
+                    "end_offset": 0,
+                    "start_offset": 604800,
+                    "trend_db": "EmsClusterPerformance",
+                    "trend_col": "derived_memory_used",
+                    "limit_col": "max_derived_memory_available",
+                    "target_pcts": [
+                        70,
+                        80,
+                        90
+                    ]
+                },
+                "col_formats": [],
+                "tz": "UTC",
+                "time_profile_id": 10000000000001,
+                "col_options": {},
+                "rpt_options": {
+                    "pdf": {
+                        "page_size": "US-Letter"
+                    }
+                },
+                "miq_group_id": 10000000000002,
+                "user_id": 10000000000001,
+                "actions": [
+                    {
+                        "name": "run",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/reports/10000000000369"
+                    },
+                    {
+                        "name": "schedule",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/reports/10000000000369"
+                    }
+                ]
+            },
+            {
+                "href": "http://localhost:3001/api/reports/10000000000370",
+                "id": 10000000000370,
+                "name": "2 - Reconfigure Events",
+                "title": "All Reconfigure Events",
+                "rpt_group": "Custom",
+                "rpt_type": "Custom",
+                "priority": 130,
+                "db": "EmsEvent",
+                "cols": [
+                    "vm_name",
+                    "timestamp",
+                    "username",
+                    "message"
+                ],
+                "include": {},
+                "col_order": [
+                    "vm_name",
+                    "timestamp",
+                    "username",
+                    "message"
+                ],
+                "headers": [
+                    "VM Name",
+                    "Time Stamp",
+                    "Initiated By",
+                    "Message"
+                ],
+                "conditions": {
+                    "exp": {
+                        "IS NOT NULL": {
+                            "field": "EmsEvent-vm_name"
+                        }
+                    },
+                    "context_type": null
+                },
+                "order": "Descending",
+                "sortby": [
+                    "vm_name"
+                ],
+                "group": "c",
+                "created_on": "2016-08-18T20:22:16Z",
+                "updated_on": "2016-08-18T20:22:16Z",
+                "categories": [],
+                "template_type": "report",
+                "db_options": {},
+                "col_formats": [
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                "col_options": {
+                    "vm_name": {
+                        "break_label": "VM Name: "
+                    }
+                },
+                "rpt_options": {
+                    "pdf": {
+                        "page_size": "US-Letter"
+                    },
+                    "summary": {
+                        "hide_detail_rows": false
+                    }
+                },
+                "miq_group_id": 10000000000002,
+                "user_id": 10000000000001,
+                "actions": [
+                    {
+                        "name": "run",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/reports/10000000000370"
+                    },
+                    {
+                        "name": "schedule",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/reports/10000000000370"
+                    }
+                ]
+            },
+            {
+                "href": "http://localhost:3001/api/reports/10000000000374",
+                "id": 10000000000374,
+                "name": "3 - Datastore Report",
+                "title": "Datastore Report",
+                "rpt_group": "Custom",
+                "rpt_type": "Custom",
+                "db": "Storage",
+                "cols": [
+                    "name",
+                    "disk_size",
+                    "free_space",
+                    "store_type",
+                    "total_space",
+                    "uncommitted",
+                    "v_used_space"
+                ],
+                "include": {},
+                "col_order": [
+                    "name",
+                    "disk_size",
+                    "free_space",
+                    "store_type",
+                    "total_space",
+                    "uncommitted",
+                    "v_used_space"
+                ],
+                "headers": [
+                    "Name",
+                    "Disk Size",
+                    "Free Space",
+                    "Store Type",
+                    "Total Space",
+                    "Uncommitted",
+                    "Used Space"
+                ],
+                "order": "Ascending",
+                "created_on": "2016-08-18T20:22:16Z",
+                "updated_on": "2016-08-18T20:22:16Z",
+                "categories": [],
+                "template_type": "report",
+                "db_options": {},
+                "col_formats": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                "col_options": {},
+                "rpt_options": {
+                    "pdf": {
+                        "page_size": "US-Letter"
+                    }
+                },
+                "miq_group_id": 10000000000002,
+                "user_id": 10000000000001,
+                "actions": [
+                    {
+                        "name": "run",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/reports/10000000000374"
+                    },
+                    {
+                        "name": "schedule",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/reports/10000000000374"
+                    }
+                ]
+            },
+            {
+                "href": "http://localhost:3001/api/reports/10000000000371",
+                "id": 10000000000371,
+                "name": "4 - Chargeback - Production VMs",
+                "title": "Chargeback - Production VMs Summary for last month",
+                "rpt_group": "Custom",
+                "rpt_type": "Custom",
+                "db": "ChargebackVm",
+                "cols": [
+                    "start_date",
+                    "display_range",
+                    "vm_name",
+                    "cpu_cost",
+                    "cpu_metric",
+                    "cpu_used_cost",
+                    "cpu_used_metric",
+                    "disk_io_used_cost",
+                    "disk_io_used_metric",
+                    "fixed_compute_1_cost",
+                    "fixed_compute_2_cost",
+                    "fixed_storage_1_cost",
+                    "fixed_storage_2_cost",
+                    "fixed_cost",
+                    "memory_allocated_cost",
+                    "memory_allocated_metric",
+                    "memory_cost",
+                    "memory_metric",
+                    "memory_used_cost",
+                    "memory_used_metric",
+                    "net_io_used_cost",
+                    "net_io_used_metric",
+                    "owner_name",
+                    "storage_allocated_cost",
+                    "storage_allocated_metric",
+                    "storage_cost",
+                    "storage_metric",
+                    "storage_used_cost",
+                    "storage_used_metric",
+                    "total_cost",
+                    "cpu_allocated_cost",
+                    "cpu_allocated_metric"
+                ],
+                "include": {},
+                "col_order": [
+                    "display_range",
+                    "vm_name",
+                    "cpu_cost",
+                    "cpu_metric",
+                    "cpu_used_cost",
+                    "cpu_used_metric",
+                    "disk_io_used_cost",
+                    "disk_io_used_metric",
+                    "fixed_compute_1_cost",
+                    "fixed_compute_2_cost",
+                    "fixed_storage_1_cost",
+                    "fixed_storage_2_cost",
+                    "fixed_cost",
+                    "memory_allocated_cost",
+                    "memory_allocated_metric",
+                    "memory_cost",
+                    "memory_metric",
+                    "memory_used_cost",
+                    "memory_used_metric",
+                    "net_io_used_cost",
+                    "net_io_used_metric",
+                    "owner_name",
+                    "storage_allocated_cost",
+                    "storage_allocated_metric",
+                    "storage_cost",
+                    "storage_metric",
+                    "storage_used_cost",
+                    "storage_used_metric",
+                    "total_cost",
+                    "cpu_allocated_cost",
+                    "cpu_allocated_metric"
+                ],
+                "headers": [
+                    "Date Range",
+                    "VM Name",
+                    "CPU Total Cost",
+                    "CPU Total",
+                    "CPU Used Cost",
+                    "CPU Used",
+                    "Disk I/O Used Cost",
+                    "Disk I/O Used",
+                    "Fixed Compute Cost 1",
+                    "Fixed Compute Cost 2",
+                    "Fixed Storage Cost 1",
+                    "Fixed Storage Cost 2",
+                    "Fixed Total Cost",
+                    "Memory Allocated Cost",
+                    "Memory Allocated over Time Period",
+                    "Memory Total Cost",
+                    "Memory Total",
+                    "Memory Used Cost",
+                    "Memory Used",
+                    "Network I/O Used Cost",
+                    "Network I/O Used",
+                    "Owner",
+                    "Storage Allocated Cost",
+                    "Storage Allocated",
+                    "Storage Total Cost",
+                    "Storage Total",
+                    "Storage Used Cost",
+                    "Storage Used",
+                    "Total Cost",
+                    "vCPUs Allocated Cost",
+                    "vCPUs Allocated over Time Period"
+                ],
+                "order": "Ascending",
+                "sortby": [
+                    "start_date",
+                    "vm_name"
+                ],
+                "group": "y",
+                "created_on": "2016-08-18T20:22:16Z",
+                "updated_on": "2016-08-18T20:47:46Z",
+                "categories": [],
+                "template_type": "report",
+                "db_options": {
+                    "rpt_type": "ChargebackVm",
+                    "options": {
+                        "interval": "weekly",
+                        "interval_size": 4,
+                        "end_interval_offset": 0,
+                        "tag": "/managed/environment/prod"
+                    }
+                },
+                "col_formats": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                "tz": "Eastern Time (US \u0026 Canada)",
+                "col_options": {
+                    "cpu_allocated_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "cpu_allocated_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "cpu_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "cpu_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "cpu_used_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "cpu_used_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "disk_io_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "disk_io_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "disk_io_used_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "disk_io_used_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "fixed_compute_1_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "fixed_compute_2_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "fixed_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "fixed_storage_1_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "fixed_storage_2_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "memory_allocated_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "memory_allocated_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "memory_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "memory_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "memory_used_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "memory_used_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "net_io_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "net_io_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "net_io_used_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "net_io_used_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "storage_allocated_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "storage_allocated_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "storage_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "storage_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "storage_used_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "storage_used_metric": {
+                        "grouping": [
+                            "total"
+                        ]
+                    },
+                    "total_cost": {
+                        "grouping": [
+                            "total"
+                        ]
+                    }
+                },
+                "rpt_options": {
+                    "pdf": {
+                        "page_size": "US-Letter"
+                    },
+                    "summary": {
+                        "hide_detail_rows": false
+                    }
+                },
+                "miq_group_id": 10000000000002,
+                "user_id": 10000000000001,
+                "actions": [
+                    {
+                        "name": "run",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/reports/10000000000371"
+                    },
+                    {
+                        "name": "schedule",
+                        "method": "post",
+                        "href": "http://localhost:3001/api/reports/10000000000371"
+                    }
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "name": "import",
+                "method": "post",
+                "href": "http://localhost:3001/api/reports"
+            }
+        ]
+    }
+}
