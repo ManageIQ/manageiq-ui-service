@@ -55,7 +55,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
 
   function getServiceJobsStdout(serviceId, stackId) {
     const options = {
-      attributes: ['job_plays', 'stdout_raw'],
+      attributes: ['job_plays', 'stdout'],
     };
 
     return CollectionsApi.get(`services/${serviceId}/orchestration_stacks`, stackId, options);
