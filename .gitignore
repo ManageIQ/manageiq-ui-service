@@ -12,8 +12,7 @@ node_modules
 npm-debug.log
 
 ### Plato Reports ###
-reports
-
+reports/*
 ### Temp build directory ###
 .tmp
 

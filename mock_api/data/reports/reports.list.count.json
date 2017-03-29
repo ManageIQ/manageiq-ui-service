@@ -1,0 +1,15 @@
+{
+    "url": "reports?hide=resources",
+    "get": {
+        "name": "reports",
+        "count": 5,
+        "subcount": 5,
+        "actions": [
+            {
+                "name": "import",
+                "method": "post",
+                "href": "http://localhost:3001/api/reports"
+            }
+        ]
+    }
+}

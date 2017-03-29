@@ -54,6 +54,15 @@ export function navConfig(NavigationProvider) {
     originalToolTip: 'Total available dialogs',
   });
 
+  const reports = createItem({
+    title: N_('Reports'),
+    originalTitle: 'Reports',
+    state: 'reports',
+    iconClass: 'fa fa-area-chart',
+    badgeTooltip: N_('Reports'),
+    originalToolTip: 'Reports',
+  });
+
   /* const templates = createItem({
     title: N_('Templates'),
     originalTitle: 'Templates',
@@ -71,6 +80,7 @@ export function navConfig(NavigationProvider) {
       requests: requests,
       catalogs: catalogs,
       dialogs: dialogs,
+      reports: reports,
    //   templates: templates,
     },
   });
