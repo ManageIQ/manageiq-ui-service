@@ -79,7 +79,7 @@ export function navConfig(NavigationProvider) {
       orders: orders,
       requests: requests,
       catalogs: catalogs,
-      dialogs: dialogs,
+   //   dialogs: dialogs,
       reports: reports,
    //   templates: templates,
     },
@@ -112,7 +112,7 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
   NavCounts.add('services', fetchServices, refreshTimeMs);
   NavCounts.add('orders', fetchOrders, refreshTimeMs);
   NavCounts.add('catalogs', fetchServiceCatalogs, refreshTimeMs);
-  NavCounts.add('dialogs', fetchDialogs, refreshTimeMs);
+  // NavCounts.add('dialogs', fetchDialogs, refreshTimeMs);
   // NavCounts.add('templates', fetchTemplates, refreshTimeMs);
 
   function fetchRequests() {

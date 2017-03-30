@@ -5,10 +5,6 @@ import {CatalogsExplorerState} from "./catalogs/explorer/explorer.state.js";
 import {CatalogsState} from "./catalogs/catalogs.state.js";
 import {CustomButtonDetailsState} from "./services/custom_button_details/custom_button_details.state.js";
 import {DashboardState} from "./dashboard/dashboard.state.js";
-import {DialogsDetailState} from "./dialogs/details/details.state.js";
-import {DialogsEditState} from "./dialogs/edit/edit.state.js";
-import {DialogsListState} from "./dialogs/list/list.state.js";
-import {DialogsState} from "./dialogs/dialogs.state.js";
 import {ErrorState} from "./error/error.state.js";
 import {HelpState} from "./help/help.state.js";
 import {LoginState} from "./login/login.state.js";
@@ -44,10 +40,6 @@ export const AppRoutingModule = angular
   .run(CatalogsExplorerState)
   .run(CatalogsDetailsState)
   .run(CatalogsEditorState)
-  .run(DialogsState)
-  .run(DialogsDetailState)
-  .run(DialogsEditState)
-  .run(DialogsListState)
   .run(ErrorState)
   .run(HelpState)
   .run(LoginState)
