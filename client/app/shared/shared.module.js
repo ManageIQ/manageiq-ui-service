@@ -23,6 +23,7 @@ export const SharedModule = angular
     'miqStaticAssets',
     'ngFileSaver',
     'patternfly',
+    'smart-table',
     'svgBaseFix',
     'ui.bootstrap',
   ])

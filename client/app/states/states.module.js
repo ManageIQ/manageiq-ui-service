@@ -17,6 +17,7 @@ import {NotFoundState} from "./404/404.state.js";
 import {OrdersDetailsState} from "./orders/details/details.state.js";
 import {OrdersExplorerState} from "./orders/explorer/explorer.state.js";
 import {OrdersState} from "./orders/orders.state.js";
+import {ReportState} from "./reports/view/report.state.js";
 import {ReportsDetailsState} from "./reports/details/details.state.js";
 import {ReportsExplorerState} from "./reports/explorer/explorer.state.js";
 import {ReportsState} from "./reports/reports.state.js";
@@ -54,6 +55,7 @@ export const AppRoutingModule = angular
   .run(OrdersDetailsState)
   .run(OrdersExplorerState)
   .run(OrdersState)
+  .run(ReportState)
   .run(ReportsDetailsState)
   .run(ReportsExplorerState)
   .run(ReportsState)

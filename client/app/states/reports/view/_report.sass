@@ -1,0 +1,53 @@
+@import '_bem-support/index'
+@import 'app_colors'
+@import 'patternfly/color-variables'
+
+.report-field-container
+  min-height: 200px
+  width: 90%
+  border: 1px solid $color-black-1
+  padding: 4px
+  .report-field
+    display: inline-flex
+    width: 25%
+    height: 50px
+    padding: 5px
+    
+    input 
+      float: right
+
+    .report-field-label
+      width: 80%
+      word-wrap: break-word
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      display: inline-block
+
+.report-group-item
+
+  > a
+      color: $color-black-1
+      cursor: pointer
+      font-size: 13px
+      padding-left: 25px
+      padding-right: 5px
+      text-decoration: none
+      transition: 250ms
+
+      &::before
+        content: '\f107'
+        display: block
+        font-family: FontAwesome
+        font-size: 16px
+        font-weight: 500
+        left: 20px
+        position: absolute
+        top: 7px
+
+      &.collapsed
+        &::before
+          content: '\f105'
+.report-container
+  height: calc(100vh - 180px)
+  overflow-y: scroll
