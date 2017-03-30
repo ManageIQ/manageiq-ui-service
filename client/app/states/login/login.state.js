@@ -44,7 +44,6 @@ function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD,
   vm.onSubmit = onSubmit;
 
   function onSubmit() {
-    // clearing a flag that *could* have been set before redirect to /login
     Session.timeoutNotified = false;
     Session.privilegesError = false;
 
@@ -57,19 +56,17 @@ function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD,
           ApplianceInfo.set(response);
         }
 
+
         if (RBAC.navigationEnabled()) {
           if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
             $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
           }
-
-          // FIXME(#328) this should be $state.go('dashboard')
-          var url = $state.href('dashboard');
-          $window.document.location.href = url;
+          $state.go('dashboard');
         } else {
           Session.privilegesError = true;
-          Notifications.error(__('User does not have privileges to login.'));
+          Notifications.error(__('You do not have permission to view the Service UI. Contact your administrator to update your group permissions.'));
         }
       })
-      .catch(exception.catch('Login failed, possibly invalid credentials'));
+      .catch(exception.catch('Login failed, possibly invalid credentials.'));
   }
 }
