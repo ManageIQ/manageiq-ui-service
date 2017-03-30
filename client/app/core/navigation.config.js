@@ -44,7 +44,7 @@ export function navConfig(NavigationProvider) {
     badgeTooltip: N_('The total number of available catalogs'),
     originalToolTip: 'The total number of available catalogs',
   });
-
+/*
   const dialogs = createItem({
     title: N_('Dialogs'),
     originalTitle: 'Dialogs',
@@ -53,7 +53,7 @@ export function navConfig(NavigationProvider) {
     badgeTooltip: N_('Total available dialogs'),
     originalToolTip: 'Total available dialogs',
   });
-
+*/
   const reports = createItem({
     title: N_('Reports'),
     originalTitle: 'Reports',
@@ -150,7 +150,7 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
     CollectionsApi.query('service_catalogs', options)
       .then(lodash.partial(updateCount, 'catalogs'));
   }
-
+/*
   function fetchDialogs() {
     angular.extend(options, {
       filter: ['id>0'],
@@ -159,7 +159,7 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
       .then(lodash.partial(updateCount, 'dialogs'));
   }
 
-/*  function fetchTemplates() {
+  function fetchTemplates() {
     CollectionsApi.query('orchestration_templates', options)
       .then(lodash.partial(updateCount, 'templates'));
   } 
