@@ -45,6 +45,7 @@
     "angular-patternfly": "3.23.0",
     "angular-resource": "1.6.3",
     "angular-sanitize": "1.6.3",
+    "angular-smart-table": "2.1.8",
     "angular-svg-base-fix": "2.0.0",
     "angular-ui-bootstrap": "2.5.0",
     "angular-ui-router": "0.4.2",
