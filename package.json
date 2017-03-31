@@ -100,7 +100,7 @@
     "karma-sinon": "1.0.5",
     "karma-webpack": "2.0.3",
     "lodash": "3.10.1",
-    "manageiq-api-mock": "https://github.com/ManageIQ/manageiq-api-mock.git#master",
+    "manageiq-api-mock": "https://github.com/ManageIQ/manageiq-api-mock#master",
     "manageiq-ui-components": "0.0.13",
     "merge": "1.2.0",
     "mocha": "3.2.0",
