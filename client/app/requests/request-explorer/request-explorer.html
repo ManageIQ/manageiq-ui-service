@@ -19,7 +19,7 @@
 </div>
 <div class="list-view-container section-container paged-container explorer-list">
   <loading status="vm.loading"></loading>
-  <div pf-list-view ng-if="!vm.loading" id="requestList" config="vm.listConfig" items="vm.listDataCopy">
+  <div pf-list-view ng-if="!vm.loading" id="requestList" config="vm.listConfig" items="vm.listData">
     <div class="row">
       <div class="col-lg-4 col-md-5 col-sm-8 col-xs-8">
         <span class="no-wrap">
@@ -84,6 +84,6 @@
     </div>
   </div>
 </div>
-<explorer-pagination limit="vm.limit" count="vm.requestCount" limit-options="vm.limitOptions"
+<explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions"
                      on-update="vm.paginationUpdate($limit, $offset)">
 </explorer-pagination>
