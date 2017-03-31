@@ -320,18 +320,22 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   }
 
   function getFilterCount() {
-    ServicesState.getServicesMinimal(ServicesState.services.getFilters())
-      .then(querySuccess, queryFailure);
+    return new Promise((resolve, reject) => {
+      ServicesState.getServicesMinimal(ServicesState.services.getFilters())
+        .then(querySuccess, queryFailure);
 
-    function querySuccess(result) {
-      vm.filterCount = result.subcount;
-      vm.headerConfig.filterConfig.resultsCount = vm.filterCount;
-    }
+      function querySuccess(result) {
+        vm.filterCount = result.subcount;
+        vm.headerConfig.filterConfig.resultsCount = vm.filterCount;
+        resolve();
+      }
 
-    function queryFailure(_error) {
-      vm.loading = false;
-      EventNotifications.error(__('There was an error loading the services.'));
-    }
+      function queryFailure(_error) {
+        vm.loading = false;
+        EventNotifications.error(__('There was an error loading the services.'));
+        reject();
+      }
+    });
   }
 
   function resolveServices(limit, offset, refresh) {
@@ -341,13 +345,14 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       vm.loading = false;
     }
     vm.offset = offset;
-    getFilterCount();
-    ServicesState.getServices(
-      limit,
-      offset,
-      ServicesState.services.getFilters(),
-      ServicesState.services.getSort().currentField,
-      ServicesState.services.getSort().isAscending).then(querySuccess, queryFailure);
+    getFilterCount().then( () => {
+      ServicesState.getServices(
+        limit,
+        offset,
+        ServicesState.services.getFilters(),
+        ServicesState.services.getSort().currentField,
+        ServicesState.services.getSort().isAscending).then(querySuccess, queryFailure);
+    });
 
     function querySuccess(result) {
       vm.loading = false;

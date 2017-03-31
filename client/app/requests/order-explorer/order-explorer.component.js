@@ -243,16 +243,18 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
     if (!refresh) {
       vm.loading = true;
     }
-    getFilterCount();
     var existingOrders = (angular.isDefined(vm.ordersList) && refresh ? angular.copy(vm.ordersList) : []);
 
     vm.offset = offset;
-    OrdersState.getOrders(
-      limit,
-      offset,
-      OrdersState.getFilters(),
-      OrdersState.getSort().currentField,
-      OrdersState.getSort().isAscending).then(querySuccess, queryFailure);
+    getFilterCount().then(() => {
+      OrdersState.getOrders(
+        limit,
+        offset,
+        OrdersState.getFilters(),
+        OrdersState.getSort().currentField,
+        OrdersState.getSort().isAscending).then(querySuccess, queryFailure);
+    });
+    
 
     function querySuccess(response) {
       vm.loading = false;
@@ -301,15 +303,19 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
   }
 
   function getFilterCount() {
-    OrdersState.getMinimal(OrdersState.getFilters()).then(querySuccess, queryFailure);
+    return new Promise((resolve, reject) => {
+      OrdersState.getMinimal(OrdersState.getFilters()).then(querySuccess, queryFailure);
 
-    function querySuccess(result) {
-      vm.filterCount = result.subcount;
-    }
+      function querySuccess(result) {
+        vm.filterCount = result.subcount;
+        resolve();
+      }
 
-    function queryFailure(_error) {
-      EventNotifications.error(__('There was an error loading orders.'));
-    }
+      function queryFailure(_error) {
+        EventNotifications.error(__('There was an error loading orders.'));
+        reject();
+      }
+    });
   }
 
   function approveRequests() {
