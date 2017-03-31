@@ -52,14 +52,76 @@ describe('Catalogs.details', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications');
-
-      controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'ShoppingCart');
     });
 
     describe('controller initialization', function() {
       it('is created successfully', function() {
+        controller = $controller($state.get('catalogs.details').controller, controllerResolves);
         expect(controller).to.be.defined;
+      });
+
+      describe('#addToCartDisabled', function() {
+        context('when the cart is not allowed', function() {
+          beforeEach(function() {
+            sinon.stub(ShoppingCart, 'allowed').callsFake(function() {
+              return false;
+            });
+
+            controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+          });
+
+          it('returns true', function() {
+            expect(controller.addToCartDisabled()).to.equal(true);
+          });
+        });
+
+        context('when the cart is allowed', function() {
+          beforeEach(function() {
+            sinon.stub(ShoppingCart, 'allowed').callsFake(function() {
+              return true;
+            });
+          });
+
+          context('when addingToCart is true', function() {
+            beforeEach(function() {
+              controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+              controller.addingToCart = true;
+            });
+
+            it('returns true', function() {
+              expect(controller.addToCartDisabled()).to.equal(true);
+            });
+          });
+
+          context('when addingToCart is false', function() {
+            context('when any dialogs are being refreshed', function() {
+              beforeEach(function() {
+                dialogs.resources[0].content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].beingRefreshed = true;
+
+                controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+                controller.addingToCart = false;
+              });
+
+              it('returns true', function() {
+                expect(controller.addToCartDisabled()).to.equal(true);
+              });
+            });
+
+            context('when no dialogs are being refreshed', function() {
+              beforeEach(function() {
+                dialogs.resources[0].content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].beingRefreshed = false;
+
+                controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+                controller.addingToCart = false;
+              });
+
+              it('returns false', function() {
+                expect(controller.addToCartDisabled()).to.equal(false);
+              });
+            });
+          });
+        });
       });
     });
   });
