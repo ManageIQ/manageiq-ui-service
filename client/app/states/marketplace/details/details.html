@@ -28,7 +28,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ss-details-header__actions">
               <button type="button"
                       class="btn btn-primary"
-                      ng-disabled="! vm.cartAllowed() || vm.addingToCart"
+                      ng-disabled="vm.addToCartDisabled()"
                       confirmation
                       confirmation-if="vm.alreadyInCart()"
                       confirmation-title="{{'Duplicate Shopping Cart Item'|translate}}"
