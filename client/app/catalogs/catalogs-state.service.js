@@ -3,6 +3,8 @@
 /** @ngInject */
 export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf, lodash, RBAC) {
   const collection = 'service_catalogs';
+  let view = 'cardView';
+
   const sort = {
     isAscending: true,
     currentField: {id: 'name', title: __('Name'), sortType: 'alpha'},
@@ -24,6 +26,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     addServiceTemplates: addServiceTemplates,
     removeServiceTemplates: removeServiceTemplates,
     deleteCatalogs: deleteCatalogs,
+    viewType: viewType,
   };
 
 
@@ -253,5 +256,13 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
     }
 
     return CollectionsApi.post('service_catalogs', null, {}, options).then(success, failure);
+  }
+
+  function viewType(viewType) {
+    if (viewType) {
+      view = viewType;
+    } else {
+      return view;
+    }
   }
 }
