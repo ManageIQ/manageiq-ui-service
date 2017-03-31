@@ -48,6 +48,7 @@ function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRef
   vm.addToCart = addToCart;
   vm.cartAllowed = ShoppingCart.allowed;
   vm.alreadyInCart = alreadyInCart;
+  vm.addToCartDisabled = addToCartDisabled;
 
   var autoRefreshableDialogFields = [];
   var allDialogFields = [];
@@ -68,6 +69,18 @@ function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRef
     dialogUrl,
     vm.serviceTemplate.id
   );
+
+  function addToCartDisabled() {
+    return (!vm.cartAllowed() || vm.addingToCart) || anyDialogsBeingRefreshed();
+  }
+
+  function anyDialogsBeingRefreshed() {
+    function checkRefreshing(dialogField) {
+      return dialogField.beingRefreshed;
+    }
+
+    return allDialogFields.some(checkRefreshing);
+  }
 
   function dataForSubmit(href) {
     var dialogFieldData = {};
