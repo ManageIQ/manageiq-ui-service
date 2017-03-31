@@ -58,6 +58,7 @@ describe('Session', function() {
 
     it('sets RBAC for actions and navigation', function() {
       var response = {authorization: {product_features: {
+        dashboard_view: {},
         service_view: {},
         service_edit: {}
       }}, identity: {}};
@@ -80,6 +81,7 @@ describe('Session', function() {
 
     it('sets visibility for "Service Catalogs" and "Requests" only on navbar and enables "Service Request" button', function() {
       var response = {authorization: {product_features: {
+        dashboard_view: {},
         svc_catalog_provision: {},
         miq_request_view: {}
       }}, identity: {}};

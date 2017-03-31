@@ -49,8 +49,9 @@ export function RBACFactory(lodash) {
   function has(feature) {
     return feature in features;
   }
+
   function hasAny(permissions) {
-    const hasPermission = permissions.some(function (feature) {
+    const hasPermission = permissions.some(function(feature) {
       if (angular.isDefined(features[feature])) {
         return true;
       }
@@ -58,21 +59,27 @@ export function RBACFactory(lodash) {
 
     return hasPermission;
   }
+
   function all() {
     return features;
   }
+
   function setNavFeatures(features) {
     navFeatures = features;
   }
+
   function setActionFeatures(features) {
     actionFeatures = features;
   }
+
   function getActionFeatures() {
     return actionFeatures;
   }
+
   function getNavFeatures() {
     return navFeatures;
   }
+
   function entitledForServices(_productFeatures) {
     var serviceFeature = lodash.find(actionFeatures, function(o) {
       return o.show === true;
@@ -82,7 +89,7 @@ export function RBACFactory(lodash) {
   }
 
   function entitledForServiceCatalogs(productFeatures) {
-    return angular.isDefined(productFeatures.svc_catalog_provision) || angular.isDefined(productFeatures.catalog_items_view);
+    return angular.isDefined(productFeatures.catalog_items_view) || angular.isDefined(productFeatures.svc_catalog_provision);
   }
 
   function entitledForRequests(productFeatures) {
@@ -90,22 +97,18 @@ export function RBACFactory(lodash) {
   }
 
   function entitledForDashboard(productFeatures) {
-    return entitledForServices(productFeatures)
-      || entitledForRequests(productFeatures)
-      || entitledForServiceCatalogs(productFeatures);
+    return angular.isDefined(productFeatures.dashboard_view);
   }
+
   function entitledForTemplates(productFeatures) {
     return angular.isDefined(productFeatures.orchestration_templates_view);
   }
+
   function entitledForService(productFeatures) {
-    return angular.isDefined(productFeatures.service_create);
+    return angular.isDefined(productFeatures.service_view);
   }
 
   function navigationEnabled() {
-    var activeNavFeatures = lodash.find(navFeatures, function(o) {
-      return o.show === true;
-    });
-
-    return angular.isDefined(activeNavFeatures);
+    return lodash.some(navFeatures, (item) => item.show);
   }
 }
