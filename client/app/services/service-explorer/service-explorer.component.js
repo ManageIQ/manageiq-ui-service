@@ -325,6 +325,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
 
     function querySuccess(result) {
       vm.filterCount = result.subcount;
+      vm.headerConfig.filterConfig.resultsCount = vm.filterCount;
     }
 
     function queryFailure(_error) {
@@ -340,7 +341,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       vm.loading = false;
     }
     vm.offset = offset;
-
+    getFilterCount();
     ServicesState.getServices(
       limit,
       offset,
@@ -384,9 +385,6 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       vm.services.forEach(Chargeback.processReports);
       Chargeback.adjustRelativeCost(vm.services);
       vm.servicesList = angular.copy(vm.services);
-      vm.headerConfig.filterConfig.resultsCount = vm.filterCount;
-
-      getFilterCount();
     }
     function getPowerInfo(powerState) {
       const powerStates = {

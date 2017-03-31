@@ -243,6 +243,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
     if (!refresh) {
       vm.loading = true;
     }
+    getFilterCount();
     var existingOrders = (angular.isDefined(vm.ordersList) && refresh ? angular.copy(vm.ordersList) : []);
 
     vm.offset = offset;
@@ -291,8 +292,6 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
       }
 
       vm.ordersList = angular.copy(vm.orders);
-
-      getFilterCount();
     }
 
     function queryFailure(_error) {
