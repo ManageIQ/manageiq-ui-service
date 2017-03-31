@@ -10,20 +10,18 @@ export const CatalogExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, Session, CatalogsState, sprintf, ListView, EventNotifications, lodash) {
+function ComponentController($state, CatalogsState, sprintf, ListView, EventNotifications, lodash) {
   var vm = this;
   vm.permissions = CatalogsState.getPermissions();
 
   vm.$onInit = function() {
     angular.extend(vm, {
       title: __('Catalogs'),
-      currentUser: Session.currentUser(),
       loading: false,
       confirmDelete: false,
       catalogsToDelete: [],
       deleteConfirmationMessage: '',
-      viewType: 'cardView',
-
+      viewType: CatalogsState.viewType(),
       limit: 20,
       filterCount: 0,
       catalogsList: [],
@@ -390,6 +388,7 @@ function ComponentController($state, Session, CatalogsState, sprintf, ListView, 
   }
 
   function viewSelected(viewId) {
+    CatalogsState.viewType(viewId);
     vm.viewType = viewId;
   }
 
