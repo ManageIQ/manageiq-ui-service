@@ -1,8 +1,0 @@
-{
-    "url": "reports/10000000000375/results?offset=0&hide=resources",
-    "get": {
-        "name": "results",
-        "count": 262,
-        "subcount": 4
-    }
-}

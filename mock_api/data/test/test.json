@@ -1,8 +1,0 @@
-{
-    "url": "test",
-    "get": {
-        "test": "Normal test data"
-    },
-    "post": {},
-    "delete": {}
-}
