@@ -69,7 +69,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     return {
       multiSelect: true,
       selectionMatchProp: 'id',
-      onCheckBoxChange: vm.handleSelectionChange,
+      onCheckBoxChange: handleSelectionChange,
     };
   }
 
