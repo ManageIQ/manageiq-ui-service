@@ -294,6 +294,19 @@
                         <li role="menuitem" ng-class="{'disabled': customScope.disableSuspendButton(item)}">
                           <a ng-click="customScope.suspendVM(item, customScope.disableSuspendButton(item))" translate>Suspend</a>
                         </li>
+                          <li role="menuitem" 
+                            confirmation
+                            confirmation-if="vm.retireVMFlag"
+                            confirmation-title="{{'Retire Resource'|translate}}"
+                            confirmation-message="{{'Are you sure you would like to retire this resource?'|translate}}"
+                            confirmation-ok-text="{{'Retire'|translate}}"
+                            confirmation-ok-style="danger"
+                            confirmation-show-cancel="true"
+                            confirmation-on-ok="customScope.retireVM(item)"
+                            confirmation-on-cancel="vm.retireVMFlag=false"
+                          >
+                          <a ng-click="vm.retireVMFlag=true" translate>Retire</a>
+                        </li>
                         <li role="separator" class="divider"></li>
                         <li role="menuitem">
                           <a ng-click="customScope.gotoComputeResource(item)" translate>View Details</a>
