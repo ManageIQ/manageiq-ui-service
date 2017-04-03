@@ -8,7 +8,7 @@ export const OrderExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController($filter, lodash, ListView, Language, OrdersState, EventNotifications, Session, RBAC, ModalService,
+function ComponentController($filter, lodash, ListView, Language, OrdersState, ShoppingCart, EventNotifications, Session, RBAC, ModalService,
                              CollectionsApi, sprintf, Polling) {
   const vm = this;
   vm.permissions = OrdersState.getPermissions();
@@ -32,6 +32,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
       resolveOrders: resolveOrders,
       listActionDisable: listActionDisable,
       updatePagination: updatePagination,
+      updateMenuActionForItemFn: updateMenuActionForItemFn,
       // Config setup
       actionConfig: getActionConfig(),
       menuActions: getMenuActions(),
@@ -41,9 +42,10 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
       offset: 0,
       pollingInterval: 10000,
     });
-    OrdersState.setSort({ id: "placed_at", title: "Order Date", sortType: "numeric" }, false);
+    OrdersState.setSort({id: "placed_at", title: "Order Date", sortType: "numeric"}, false);
     resolveOrders(vm.limit, 0);
     Polling.start('orderListPolling', pollUpdateOrderList, vm.pollingInterval);
+    Language.fixState(OrdersState, vm.toolbarConfig);
   }
 
   function getActionConfig() {
@@ -151,7 +153,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
         actionName: 'duplicate',
         title: __('Duplicate Order'),
         actionFn: duplicateOrder,
-        isDisabled: false,
+        isDisabled: true,
       });
     }
 
@@ -254,7 +256,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
         OrdersState.getSort().currentField,
         OrdersState.getSort().isAscending).then(querySuccess, queryFailure);
     });
-    
+
 
     function querySuccess(response) {
       vm.loading = false;
@@ -349,9 +351,13 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
   }
 
   function duplicateOrder(_action, item) {
+    ShoppingCart.reset();
+    ShoppingCart.delete();
+
     CollectionsApi.post('service_orders', null, null, {action: "copy", resources: [{id: item.id}]}).then(success, failure);
 
     function success(response) {
+      ShoppingCart.reload();
       EventNotifications.success(sprintf(__('%s was duplicated, id # %d.'), item.name, response.results[0].id));
       resolveOrders(vm.limit, 0);
     }
@@ -396,5 +402,9 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, E
     vm.resolveOrders(limit, offset);
   }
 
-  Language.fixState(OrdersState, vm.toolbarConfig);
+  function updateMenuActionForItemFn(action, item) {
+    if (action.actionName === 'duplicate') {
+      action.isDisabled = item.state !== 'cart' && angular.isUndefined(item.service_requests);
+    }
+  }
 }
