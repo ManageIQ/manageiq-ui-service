@@ -32,9 +32,10 @@ function resolveService($stateParams, CollectionsApi) {
 
 /** @ngInject */
 function resolveDialog($stateParams, CollectionsApi) {
-  var options = {expand: 'resources', attributes: 'content'};
+  const options = {expand: 'resources', attributes: 'content'};
+  const dialogId = $stateParams.button.resource_action.dialog_id;
 
-  return CollectionsApi.query('service_dialogs/' + $stateParams.dialogId, options);
+  return CollectionsApi.query('service_dialogs/' + dialogId, options);
 }
 
 /** @ngInject */
