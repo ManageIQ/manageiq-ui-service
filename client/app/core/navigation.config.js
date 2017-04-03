@@ -15,7 +15,7 @@ export function navConfig(NavigationProvider) {
     state: 'services',
     iconClass: 'pficon pficon-service',
     badgeTooltip: N_('Total services ordered, both active and retired'),
-    originalToolTip: 'Total services ordered, both active and retired',
+    originalTooltip: 'Total services ordered, both active and retired',
   });
 
   const orders = createItem({
@@ -24,7 +24,7 @@ export function navConfig(NavigationProvider) {
     state: 'orders',
     iconClass: 'fa fa-file-o',
     badgeTooltip: N_('Total orders submitted'),
-    originalToolTip: 'Total orders submitted',
+    originalTooltip: 'Total orders submitted',
   });
 
   const requests = createItem({
@@ -33,7 +33,7 @@ export function navConfig(NavigationProvider) {
     state: 'requests',
     iconClass: 'fa fa-files-o',
     badgeTooltip: N_('Total pending requests'),
-    originalToolTip: 'Total pending requests',
+    originalTooltip: 'Total pending requests',
   });
 
   const catalogs = createItem({
@@ -42,7 +42,7 @@ export function navConfig(NavigationProvider) {
     state: 'catalogs',
     iconClass: 'fa fa-folder-open-o',
     badgeTooltip: N_('The total number of available catalogs'),
-    originalToolTip: 'The total number of available catalogs',
+    originalTooltip: 'The total number of available catalogs',
   });
 /*
   const dialogs = createItem({
@@ -51,7 +51,7 @@ export function navConfig(NavigationProvider) {
     state: 'dialogs',
     iconClass: 'pficon pficon-build',
     badgeTooltip: N_('Total available dialogs'),
-    originalToolTip: 'Total available dialogs',
+    originalTooltip: 'Total available dialogs',
   });
 */
   const reports = createItem({
@@ -60,7 +60,7 @@ export function navConfig(NavigationProvider) {
     state: 'reports',
     iconClass: 'fa fa-area-chart',
     badgeTooltip: N_('Reports'),
-    originalToolTip: 'Reports',
+    originalTooltip: 'Reports',
   });
 
   /* const templates = createItem({
@@ -69,7 +69,7 @@ export function navConfig(NavigationProvider) {
     state: 'templates',
     iconClass: 'pficon pficon-builder-image',
     badgeTooltip: N_('Total available Templates'),
-    originalToolTip: 'Total available Templates',
+    originalTooltip: 'Total available Templates',
   }); */
 
   NavigationProvider.configure({
@@ -91,7 +91,7 @@ export function navConfig(NavigationProvider) {
         {
           count: 0,
           tooltip: item.badgeTooltip,
-          originalToolTip: item.originalToolTip,
+          originalTooltip: item.originalTooltip,
         },
       ];
     }
