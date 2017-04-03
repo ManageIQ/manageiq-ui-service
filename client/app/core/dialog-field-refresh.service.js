@@ -59,8 +59,7 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
       if (dialogField.type === 'DialogFieldDateControl' || dialogField.type === 'DialogFieldDateTimeControl') {
         dialogField.default_value = new Date(newDialogField.values);
       } else {
-        if (angular.isUndefined(newDialogField.default_value) || newDialogField.default_value === null
-          || newDialogField.default_value === '' || dialogField.type === 'DialogFieldCheckBox') {
+        if (isBlank(newDialogField.default_value) || dialogField.type === 'DialogFieldCheckBox') {
           dialogField.default_value = newDialogField.values;
         }
       }
@@ -135,5 +134,11 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
     });
 
     return fieldValues;
+  }
+
+  function isBlank(value) {
+    return angular.isUndefined(value)
+      || value === null
+      || value === '';
   }
 }
