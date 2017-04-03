@@ -12,11 +12,13 @@ export const ServiceExplorerComponent = {
 function ComponentController($state, ServicesState, Language, ListView, Chargeback, TaggingService, TagEditorModal,
                              EventNotifications, ModalService, PowerOperations, lodash, Polling) {
   var vm = this;
+  
   vm.$onInit = activate();
   vm.$onDestroy = function() {
     Polling.stop('serviceListPolling');
   };
   function activate() {
+    vm.permissions = ServicesState.getPermissions();
     if ($state.params.filter) {
       ServicesState.services.setFilters($state.params.filter);
       ServicesState.services.filterApplied = true;
@@ -204,13 +206,19 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   }
 
   function getMenuActions() {
-    return [
+    const menu = [];
+    let showPowerMenu = false;
+    if (vm.permissions.powerOn || vm.permissions.powerOff || vm.permissions.suspend) {
+      showPowerMenu = true;
+    }
+    const menuOptions = [
       {
         name: __('Edit'),
         actionName: 'edit',
         title: __('Edit Service'),
         actionFn: editServiceItem,
         isDisabled: false,
+        permission: vm.permissions.edit,
       },
       {
         name: __('Edit Tags'),
@@ -218,6 +226,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
         title: __('Edit Tags'),
         actionFn: editTagsItem,
         isDisabled: false,
+        permission: vm.permissions.editTags,
       },
       {
         name: __('Set Ownership'),
@@ -225,6 +234,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
         title: __('Set Ownership'),
         actionFn: setOwnershipItem,
         isDisabled: false,
+        permission: vm.permissions.setOwnership,
       },
       {
         name: __('Retire'),
@@ -232,6 +242,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
         title: __('Retire Service'),
         actionFn: retireServiceItem,
         isDisabled: false,
+        permission: vm.permissions.retire,
       },
       {
         name: __('Set Retirement'),
@@ -239,6 +250,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
         title: __('Set Retirement Dates'),
         actionFn: setServiceRetirementItem,
         isDisabled: false,
+        permission: vm.permissions.setRetireDate,
       },
       {
         name: __('Remove'),
@@ -246,10 +258,12 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
         title: __('Remove Service'),
         actionFn: removeServicesItem,
         isDisabled: false,
+        permission: vm.permissions.delete,
       },
       {
         actionName: 'powerOperationsDivider',
         isSeparator: true,
+        permission: showPowerMenu,
       },
       {
         name: __('Start'),
@@ -257,20 +271,34 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
         title: __('Start this service'),
         actionFn: startService,
         isDisabled: false,
-      }, {
+        permission: vm.permissions.powerOn,
+      }, 
+      {
         name: __('Stop'),
         actionName: 'stop',
         title: __('Stop this service'),
         actionFn: stopService,
         isDisabled: false,
-      }, {
+        permission: vm.permissions.powerOff,
+      }, 
+      {
         name: __('Suspend'),
         actionName: 'suspend',
         title: __('Suspend this service'),
         actionFn: suspendService,
         isDisabled: false,
+        permission: vm.permissions.suspend,
       },
     ];
+
+    angular.forEach(menuOptions, hasPermission);
+    function hasPermission(item) {
+      if (item.permission) {
+        menu.push(item);
+      }
+    }
+
+    return menu;
   }
 
   function sortChange(sortId, isAscending) {

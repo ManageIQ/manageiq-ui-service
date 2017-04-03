@@ -1,18 +1,19 @@
-import templateUrl from './explorer.html';
-
 /** @ngInject */
-export function ServicesExplorerState(routerHelper) {
-  routerHelper.configureStates(getStates());
+export function ServicesExplorerState(routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC));
 }
 
-function getStates() {
+function getStates(RBAC) {
   return {
     'services.explorer': {
       url: '',
-      templateUrl,
+      template: '<service-explorer></service-explorer>',
       controllerAs: 'vm',
-      title: N_('Services Explorer'),
+      title: __('Services Explorer'),
       params: { filter: null },
+      data: {
+        authorization: RBAC.hasAny(['service_view']),
+      },
     },
   };
 }
