@@ -91,9 +91,9 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   }
 
   function hasCustomButtons(service) {
-    return angular.isDefined(service.customActions)
-      && angular.isArray(service.customActions.buttons)
-      && service.customActions.buttons.length > 0;
+    return angular.isDefined(service.custom_actions)
+      && angular.isArray(service.custom_actions.buttons)
+      && service.custom_actions.buttons.length > 0;
   }
 
   function getListActions() {

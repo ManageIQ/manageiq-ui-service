@@ -1,4 +1,3 @@
-
 function eventFire(el, etype){
   if (angular.isFunction(el.trigger)) {
     el.trigger(etype);
@@ -11,3 +10,6 @@ function eventFire(el, etype){
   }
 }
 
+function findIn(element, selector) {
+  return angular.element(element[0].querySelector(selector));
+}

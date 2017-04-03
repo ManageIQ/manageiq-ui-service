@@ -1,5 +1,5 @@
 import { ConsolesFactory } from './consoles.service.js';
-import { CustomButtonDirective } from './custom-button/custom-button.directive.js';
+import { CustomButtonComponent } from './custom-button/custom-button.component.js';
 import { DetailRevealComponent } from './detail-reveal/detail-reveal.component.js';
 import { EditServiceModalComponent } from './edit-service-modal/edit-service-modal.component.js';
 import { OwnershipServiceModalComponent } from './ownership-service-modal/ownership-service-modal.component.js';
@@ -21,7 +21,7 @@ export const ServicesModule = angular
   .module('app.services', [
     SharedModule,
   ])
-  .directive('customButton', CustomButtonDirective)
+  .component('customButton', CustomButtonComponent)
   .component('detailReveal', DetailRevealComponent)
   .component('editServiceModal', EditServiceModalComponent)
   .component('ownershipServiceModal', OwnershipServiceModalComponent)
