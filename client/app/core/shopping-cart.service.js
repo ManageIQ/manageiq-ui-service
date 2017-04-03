@@ -113,6 +113,7 @@ export function ShoppingCartFactory($rootScope, CollectionsApi, $q, lodash, RBAC
 
   function deleteCart() {
     persistence.getItems();
+    
     return CollectionsApi.delete('service_orders', 'cart', null);
   }
 

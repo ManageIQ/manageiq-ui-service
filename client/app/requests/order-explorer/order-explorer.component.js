@@ -359,7 +359,6 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
     function success(response) {
       ShoppingCart.reload();
       EventNotifications.success(sprintf(__('%s was duplicated, id # %d.'), item.name, response.results[0].id));
-      resolveOrders(vm.limit, 0);
     }
 
     function failure(_error) {
