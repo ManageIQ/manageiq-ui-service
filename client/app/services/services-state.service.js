@@ -3,6 +3,7 @@
 /** @ngInject */
 export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
   const actionFeatures = RBAC.getActionFeatures();
+  const permissions = getPermissions();
   const services = {};
 
   ListConfiguration.setupListFunctions(services, {id: 'name', title: __('Name'), sortType: 'alpha'});
@@ -105,7 +106,17 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
 
   function getPermissions() {
     return {
+      edit: RBAC.hasAny(['service_admin', 'service_edit']),
+      delete: RBAC.hasAny(['service_admin', 'service_delete']),
+      reconfigure: RBAC.hasAny(['service_admin', 'service_reconfigure']),
+      setOwnership: RBAC.hasAny(['service_admin', 'service_ownership']),
+      retire: RBAC.hasAny(['service_control', 'service_retire_now']),
+      setRetireDate: RBAC.hasAny(['service_control', 'service_retire']),
+      editTags: RBAC.hasAny(['service_control', 'service_tag']),
       viewAnsible: RBAC.hasAny(['configuration_script_view', 'configuration_scripts_accord']),
+      powerOn: RBAC.hasAny(['instance_control', 'instance_start']),
+      powerOff: RBAC.hasAny(['instance_control', 'instance_stop']),
+      suspend: RBAC.hasAny(['instance_control', 'instance_suspend']),
     };
   }
 
@@ -121,46 +132,52 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         actions: [],
         isDisabled: false,
       };
-      if (actionFeatures.serviceRetire.show) {
-        lifeCycleActions.actions.push(
-          {
-            icon: clockIcon,
-            name: __('Set Retirement Dates'),
-            actionName: 'setServiceRetirement',
-            title: __('Set Retirement'),
-            actionFn: setServiceRetirementFn,
-            isDisabled: false,
-          }
-        );
-      }
-      if (actionFeatures.serviceRetireNow.show) {
-        lifeCycleActions.actions.push(
-          {
-            title: __('Retire'),
-            name: __('Retire'),
-            actionName: 'retireService',
-            actionFn: retireServiceFn,
-            icon: clockIcon,
-            showConfirmation: true,
-            confirmationMessage: __('Confirm, would you like to retire this service?'),
-            confirmationTitle: __('Retire Service Now'),
-            confirmationShowCancel: true,
-            confirmationOkText: __('Yes, Retire Service Now'),
-            confirmationOkStyle: 'primary',
-            confirmationId: 'retireServiceConfirmId',
-            isDisabled: false,
-          }
-        );
-      }
+      const lifecycleOptions = [
+        {
+          icon: clockIcon,
+          name: __('Set Retirement Dates'),
+          actionName: 'setServiceRetirement',
+          title: __('Set Retirement'),
+          actionFn: setServiceRetirementFn,
+          permission: permissions.setRetireDate,
+          isDisabled: false,
+        },
+        {
+          title: __('Retire'),
+          name: __('Retire'),
+          actionName: 'retireService',
+          actionFn: retireServiceFn,
+          icon: clockIcon,
+          showConfirmation: true,
+          confirmationMessage: __('Confirm, would you like to retire this service?'),
+          confirmationTitle: __('Retire Service Now'),
+          confirmationShowCancel: true,
+          confirmationOkText: __('Yes, Retire Service Now'),
+          confirmationOkStyle: 'primary',
+          confirmationId: 'retireServiceConfirmId',
+          permission: permissions.retire,
+          isDisabled: false,
+        },
+      ];
+      lifeCycleActions.actions = checkMenuPermissions(lifecycleOptions);
     }
 
     return lifeCycleActions;
   }
+  function checkMenuPermissions(menuOptions) {
+    const menu = [];
+    angular.forEach(menuOptions, (menuOption) => {
+      if (menuOption.permission) {
+        menu.push(menuOption);
+      }
+    });
 
+    return menu;
+  }
   function getPolicyCustomDropdown(editTagsFn) {
     let policyActions;
 
-    if (actionFeatures.serviceTag.show) {
+    if (permissions.editTags) {
       policyActions = {
         title: __('Policy'),
         actionName: 'policy',
@@ -196,53 +213,45 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         isDisabled: false,
       };
 
-      if (actionFeatures.serviceEdit.show) {
-        configActions.actions.push(
-          {
-            icon: 'pficon pficon-edit',
-            name: __('Edit'),
-            actionName: 'edit',
-            title: __('Edit'),
-            actionFn: editServiceFn,
-            isDisabled: false,
-          }
-        );
-      }
-
-      if (actionFeatures.serviceDelete.show) {
-        configActions.actions.push(
-          {
-            icon: 'pficon pficon-delete',
-            name: __('Remove'),
-            actionName: 'remove',
-            title: __('Remove'),
-            actionFn: removeServicesFn,
-            isDisabled: false,
-            showConfirmation: true,
-            confirmationId: 'removeServiceConfirmId',
-            confirmationTitle: __('Remove Service'),
-            confirmationMessage: __('Confirm, would you like to remove this service?'),
-            confirmationOkText: __('Yes, Remove Service'),
-            confirmationOkStyle: 'primary',
-            confirmationShowCancel: true,
-          }
-        );
-      }
-
-      if (actionFeatures.serviceOwnership.show) {
-        configActions.actions.push(
-          {
-            icon: 'pficon pficon-user',
-            name: __('Set Ownership'),
-            actionName: 'ownership',
-            title: __('Set Ownership'),
-            actionFn: setOwnershipFn,
-            isDisabled: false,
-          }
-        );
-      }
+      const configMenuOptions = [
+        {
+          icon: 'pficon pficon-edit',
+          name: __('Edit'),
+          actionName: 'edit',
+          title: __('Edit'),
+          actionFn: editServiceFn,
+          isDisabled: false,
+          permission: permissions.edit,
+        },
+        {
+          icon: 'pficon pficon-delete',
+          name: __('Remove'),
+          actionName: 'remove',
+          title: __('Remove'),
+          actionFn: removeServicesFn,
+          isDisabled: false,
+          showConfirmation: true,
+          confirmationId: 'removeServiceConfirmId',
+          confirmationTitle: __('Remove Service'),
+          confirmationMessage: __('Confirm, would you like to remove this service?'),
+          confirmationOkText: __('Yes, Remove Service'),
+          confirmationOkStyle: 'primary',
+          confirmationShowCancel: true,
+          permission: permissions.delete,
+        },
+        {
+          icon: 'pficon pficon-user',
+          name: __('Set Ownership'),
+          actionName: 'ownership',
+          title: __('Set Ownership'),
+          actionFn: setOwnershipFn,
+          isDisabled: false,
+          permission: permissions.setOwnership,
+        },
+      ];
+      configActions.actions = checkMenuPermissions(configMenuOptions);
     }
-
+    
     return configActions;
   }
 
