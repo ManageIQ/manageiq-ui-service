@@ -24,7 +24,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
     angular.extend(vm, {
       serviceId: $stateParams.serviceId,
       loading: true,
-      title: N_('Service Details'),
+      title: __('Service Details'),
       service: {},
       availableTags: [],
       credential: {},
@@ -44,6 +44,8 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       startVM: startVM,
       stopVM: stopVM,
       suspendVM: suspendVM,
+      retireVM: retireVM,
+      retireVMFlag: false,
       gotoComputeResource: gotoComputeResource,
       gotoService: gotoService,
       gotoCatalogItem: gotoCatalogItem,
@@ -282,7 +284,20 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       EventNotifications.error(__('There was an error retiring this service.'));
     }
   }
+  function retireVM(resource) {
+    const resourceId = resource.id;
+    const data = {
+      action: 'retire',
+    };
+    CollectionsApi.post('vms', resourceId, {}, data).then(retireSuccess, retireFailure);
+    function retireSuccess() {
+      EventNotifications.success(resource.name + __(' was retired.'));
+    }
 
+    function retireFailure() {
+      EventNotifications.error(__('There was an error retiring this resource.'));
+    }
+  }
   function createResourceGroups(service) {
     return {
       title: __('Compute'),
