@@ -128,6 +128,40 @@ describe('DialogFieldRefresh', function() {
         });
       });
 
+      describe('when the dialogfield type is DialogFieldCheckBox', function() {
+        beforeEach(function() {
+          successResponse = {
+            result: {
+              dialog1: {
+                type: 'DialogFieldCheckBox',
+                options: 'options',
+                read_only: false,
+                required: false,
+                values: 'f'
+              }
+            }
+          };
+
+          triggerAutoRefreshSpy = sinon.stub(DialogFieldRefresh, 'triggerAutoRefresh');
+          collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
+        });
+
+        it('updates the attributes for the dialog field', function(done) {
+          DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialog1, 'the_url', 123);
+          done();
+          expect(dialog1.options).to.eq('options');
+          expect(dialog1.read_only).to.be.false;
+          expect(dialog1.required).to.be.false;
+          expect(dialog1.default_value).to.eq('f');
+        });
+
+        it('triggers an auto-refresh', function(done) {
+          DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialog1, 'the_url', 123);
+          done();
+          expect(triggerAutoRefreshSpy).to.have.been.called;
+        });
+      });
+
       describe('when the dialogfield type is anything else', function() {
         beforeEach(function() {
           successResponse = {

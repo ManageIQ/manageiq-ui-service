@@ -60,7 +60,7 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
         dialogField.default_value = new Date(newDialogField.values);
       } else {
         if (angular.isUndefined(newDialogField.default_value) || newDialogField.default_value === null
-          || newDialogField.default_value === '') {
+          || newDialogField.default_value === '' || dialogField.type === 'DialogFieldCheckBox') {
           dialogField.default_value = newDialogField.values;
         }
       }
