@@ -5,6 +5,7 @@ export function ShoppingCartFactory($rootScope, CollectionsApi, $q, lodash, RBAC
   var service = {
     add: add,
     reset: reset,
+    delete: deleteCart,
     reload: reload,
     count: count,
     removeItem: removeItem,
@@ -108,6 +109,12 @@ export function ShoppingCartFactory($rootScope, CollectionsApi, $q, lodash, RBAC
 
       return newItem;
     });
+  }
+
+  function deleteCart() {
+    persistence.getItems();
+    
+    return CollectionsApi.delete('service_orders', 'cart', null);
   }
 
   function reload() {
