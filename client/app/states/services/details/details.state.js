@@ -1,15 +1,18 @@
 /** @ngInject */
-export function ServicesDetailsState(routerHelper) {
-  routerHelper.configureStates(getStates());
+export function ServicesDetailsState(routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC));
 }
 
-function getStates() {
+function getStates(RBAC) {
   return {
     'services.details': {
       url: '/:serviceId',
       template: '<service-details></service-details>',
       controllerAs: 'vm',
-      title: N_('Service Details'),
+      title: __('Service Details'),
+      data: {
+        authorization: RBAC.hasAny(['service_view']),
+      },
     },
   };
 }
