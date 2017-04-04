@@ -5,17 +5,20 @@ export function RBACFactory(lodash) {
   var features = {};
   var navFeatures = {};
   var actionFeatures = {};
+  let currentRole;
 
   var service = {
     set: set,
     has: has,
     hasAny: hasAny,
+    hasRole: hasRole,
     all: all,
     navigationEnabled: navigationEnabled,
     getNavFeatures: getNavFeatures,
     getActionFeatures: getActionFeatures,
     setNavFeatures: setNavFeatures,
     setActionFeatures: setActionFeatures,
+    setRole: setRole,
   };
 
   return service;
@@ -60,6 +63,10 @@ export function RBACFactory(lodash) {
     return hasPermission;
   }
 
+  function hasRole(...roles) {
+    return roles.some((role) => role === currentRole || role === '_ALL_');
+  }
+
   function all() {
     return features;
   }
@@ -70,6 +77,10 @@ export function RBACFactory(lodash) {
 
   function setActionFeatures(features) {
     actionFeatures = features;
+  }
+
+  function setRole(newRole) {
+    currentRole = newRole;
   }
 
   function getActionFeatures() {

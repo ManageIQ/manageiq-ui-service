@@ -54,6 +54,7 @@ function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD,
       .then(function(response) {
         if (angular.isDefined(response)) {
           ApplianceInfo.set(response);
+          RBAC.setRole(response.identity.role);
         }
 
 

@@ -9,11 +9,19 @@ describe('CustomButton component', () => {
       buttons: [
         {
           name: 'Foo',
+          visibility: {
+            roles: ['_ALL_'],
+          },
           resource_action: {
             dialog_id: '_a dialog id_'
           },
         },
-        { name: 'Bar' },
+        {
+          name: 'Bar',
+          visibility: {
+            roles: ['_ALL_'],
+          },
+        },
       ],
     };
     parentScope.serviceId = '_a service id_';
@@ -41,6 +49,42 @@ describe('CustomButton component', () => {
     const actions = element[0].querySelectorAll('.custom-button-action');
 
     expect(actions.length).to.eq(numActions);
+  });
+
+  describe('for actions visible to specified roles', () => {
+    let RBAC;
+
+    beforeEach(inject((_RBAC_) => {
+      RBAC = _RBAC_;
+      parentScope.customActions = {
+        buttons: [
+          {
+            name: 'Secret Button',
+            visibility: {
+              roles: ['Secret-Agent'],
+            },
+          },
+        ],
+      };
+    }));
+
+    it('displays a button if the role allows', () => {
+      RBAC.setRole('Secret-Agent');
+      parentScope.$digest();
+
+      const actions = element[0].querySelectorAll('.custom-button-action');
+
+      expect(actions.length).to.eq(1);
+    });
+
+    it('does not display a button if the role disallows', () => {
+      RBAC.setRole('Innocent-Bystander');
+      parentScope.$digest();
+
+      const actions = element[0].querySelectorAll('.custom-button-action');
+
+      expect(actions.length).to.eq(0);
+    });
   });
 
   describe('#invokeCustomAction', () => {
