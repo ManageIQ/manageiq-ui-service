@@ -61,7 +61,7 @@ function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD,
           if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
             $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
           }
-          $state.go('dashboard');
+          $state.go('dashboard', {}, {reload: 'dashboard'});
         } else {
           Session.privilegesError = true;
           Notifications.error(__('You do not have permission to view the Service UI. Contact your administrator to update your group permissions.'));
