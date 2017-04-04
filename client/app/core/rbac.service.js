@@ -37,7 +37,7 @@ export function RBACFactory(lodash) {
     const navPermissions = {
       dashboard: {show: entitledForDashboard(productFeatures)},
       services: {show: entitledForServices(productFeatures)},
-      orders: {show: entitledForServices(productFeatures)},
+      orders: {show: entitledForServiceCatalogs(productFeatures)},
       requests: {show: entitledForRequests(productFeatures)},
       catalogs: {show: entitledForServiceCatalogs(productFeatures)},
       dialogs: {show: entitledForService(productFeatures)},
@@ -89,7 +89,7 @@ export function RBACFactory(lodash) {
   }
 
   function entitledForServiceCatalogs(productFeatures) {
-    return angular.isDefined(productFeatures.catalog_items_view) || angular.isDefined(productFeatures.svc_catalog_provision);
+    return  angular.isDefined(productFeatures.svc_catalog_provision);
   }
 
   function entitledForRequests(productFeatures) {
