@@ -53,7 +53,6 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       createResourceGroups: createResourceGroups,
 
       // Config setup
-      permissions: ServicesState.getPermissions(),
       headerConfig: getHeaderConfig(),
       resourceListConfig: {
         showSelectBox: false,
