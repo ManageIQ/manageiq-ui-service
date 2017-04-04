@@ -12,10 +12,17 @@ export const CustomButtonComponent = {
 };
 
 /** @ngInject */
-function CustomButtonController($state, EventNotifications, CollectionsApi) {
+function CustomButtonController($state, EventNotifications, CollectionsApi, RBAC) {
   const vm = this;
 
+  vm.hasRequiredRole = hasRequiredRole;
   vm.invokeCustomAction = invokeCustomAction;
+
+  function hasRequiredRole(button) {
+    const acceptableRoles = button.visibility.roles;
+
+    return RBAC.hasRole(...acceptableRoles);
+  }
 
   function invokeCustomAction(button) {
     if (button.resource_action && button.resource_action.dialog_id) {

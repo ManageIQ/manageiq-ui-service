@@ -64,7 +64,7 @@ export function RBACFactory(lodash) {
   }
 
   function hasRole(...roles) {
-    return roles.some((role) => currentRole === role);
+    return roles.some((role) => role === currentRole || role === '_ALL_');
   }
 
   function all() {

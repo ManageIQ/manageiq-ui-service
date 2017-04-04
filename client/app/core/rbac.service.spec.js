@@ -8,6 +8,12 @@ describe('RBAC service', () => {
   }));
 
   describe('#hasRole', () => {
+    it('returns true if given role is _ALL_', () => {
+      const result = service.hasRole('_ALL_');
+
+      expect(result).to.be.true;
+    });
+
     it('returns true if current role matches the given role', () => {
       service.setRole('admin');
 
