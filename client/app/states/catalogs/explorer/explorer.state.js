@@ -14,7 +14,7 @@ function getStates(RBAC) {
       controllerAs: 'vm',
       title: __('Catalogs'),
       data: {
-        authorization: RBAC.hasAny(['catalogs', 'catalog_items_view']),
+        authorization: RBAC.hasAny(['svc_catalog_provision']),
       },
     },
   };
