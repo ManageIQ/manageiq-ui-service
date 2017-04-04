@@ -116,6 +116,9 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
       viewAnsible: RBAC.hasAny(['configuration_script_view', 'configuration_scripts_accord']),
       powerOn: RBAC.hasAny(['instance_control', 'instance_start']),
       powerOff: RBAC.hasAny(['instance_control', 'instance_stop']),
+      cockpit: RBAC.has('cockpit_console'),
+      console: RBAC.has('vm_console'),
+      viewSnapshots: RBAC.hasAny(['vm_snapshot', 'vm_snapshot_view', 'cloud_volume_snapshot', 'cloud_volume_snapshot_view']),
       suspend: RBAC.hasAny(['instance_control', 'instance_suspend']),
     };
   }

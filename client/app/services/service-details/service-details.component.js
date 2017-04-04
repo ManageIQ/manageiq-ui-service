@@ -11,7 +11,7 @@ export const ServiceDetailsComponent = {
 
 /** @ngInject */
 function ComponentController($stateParams, $state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
-                             TagEditorModal, ModalService, PowerOperations, ServicesState, RBAC, TaggingService, lodash, Polling) {
+                             TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash, Polling) {
   const vm = this;
   vm.$onInit = activate;
   vm.$onDestroy = onDestroy;
@@ -21,6 +21,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   }
 
   function activate() {
+    vm.permissions = ServicesState.getPermissions();
     angular.extend(vm, {
       serviceId: $stateParams.serviceId,
       loading: true,
@@ -52,7 +53,6 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       createResourceGroups: createResourceGroups,
 
       // Config setup
-      permissions: ServicesState.getPermissions(),
       headerConfig: getHeaderConfig(),
       resourceListConfig: {
         showSelectBox: false,
@@ -103,35 +103,45 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
     const listActions = [];
 
     if (angular.isUndefined(vm.service.type)) {
-      listActions.push(
+      const powerOptionsMenu = {
+        title: __('Power Operations'),
+        actionName: 'powerOperations',
+        icon: 'fa fa-power-off',
+        actions: [],
+        isDisabled: false,
+      };
+      const powerOptionsActions = [
         {
-          title: __('Power Operations'),
-          actionName: 'powerOperations',
-          icon: 'fa fa-power-off',
-          actions: [
-            {
-              name: __('Start'),
-              actionName: 'start',
-              title: __('Start the Service'),
-              actionFn: startService,
-              isDisabled: disableStartButton(vm.service),
-            }, {
-              name: __('Stop'),
-              actionName: 'stop',
-              title: __('Stop the Service'),
-              actionFn: stopService,
-              isDisabled: disableStopButton(vm.service),
-            }, {
-              name: __('Suspend'),
-              actionName: 'suspend',
-              title: __('Suspend the Service'),
-              actionFn: suspendService,
-              isDisabled: disableSuspendButton(vm.service),
-            },
-          ],
-          isDisabled: false,
+          name: __('Start'),
+          actionName: 'start',
+          title: __('Start the Service'),
+          actionFn: startService,
+          permission: vm.permissions.powerOn,
+          isDisabled: disableStartButton(vm.service),
+        }, {
+          name: __('Stop'),
+          actionName: 'stop',
+          title: __('Stop the Service'),
+          actionFn: stopService,
+          permission: vm.permissions.powerOff,
+          isDisabled: disableStopButton(vm.service),
+        }, {
+          name: __('Suspend'),
+          actionName: 'suspend',
+          title: __('Suspend the Service'),
+          actionFn: suspendService,
+          permission: vm.permissions.suspend,
+          isDisabled: disableSuspendButton(vm.service),
+        },
+      ];
+      angular.forEach(powerOptionsActions, (menuOption) => {
+        if (menuOption.permission) {
+          powerOptionsMenu.actions.push(menuOption);
         }
-      );
+      });
+      if (powerOptionsMenu.actions.length > 0) {
+        listActions.push(powerOptionsMenu);
+      }
     }
 
     if (lifeCycleActions) {
@@ -143,8 +153,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
     }
 
     if (configActions) {
-      const actionFeatures = RBAC.getActionFeatures();
-      if (angular.isDefined(lodash.find(vm.service.actions, {'name': 'reconfigure'})) && actionFeatures.serviceReconfigure.show) {
+      if (angular.isDefined(lodash.find(vm.service.actions, {'name': 'reconfigure'})) && vm.permissions.reconfigure) {
         configActions.actions.push(
           {
             icon: 'fa fa-cog',
