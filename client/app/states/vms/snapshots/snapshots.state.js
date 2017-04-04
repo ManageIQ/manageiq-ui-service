@@ -1,5 +1,3 @@
-import templateUrl from './snapshots.html';
-
 /** @ngInject */
 export function VmsSnapshotsState(routerHelper) {
   routerHelper.configureStates(getStates());
@@ -9,7 +7,7 @@ function getStates() {
   return {
     'vms.snapshots': {
       url: '/:vmId/snapshots',
-      templateUrl,
+      template: '<vm-snapshots vm-id="vm.vmId" />',
       controller: StateController,
       controllerAs: 'vm',
       title: N_('VM Snapshots'),
