@@ -58,7 +58,7 @@ export function authInit($rootScope, $state, $log, Session, $sessionStorage, Lan
       if (angular.isDefined(toState.data.authorization) && !toState.data.authorization) {
         event.preventDefault();
         $state.transitionTo('dashboard');
-        
+
         return;
       }
       if (!toState.data.requireUser) {
@@ -91,6 +91,7 @@ export function authInit($rootScope, $state, $log, Session, $sessionStorage, Lan
         .then(function (response) {
           if (angular.isDefined(response)) {
             ApplianceInfo.set(response);
+            RBAC.setRole(response.identity.role);
           }
           resolve();
         })

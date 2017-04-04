@@ -8,6 +8,7 @@
     <ul uib-dropdown-menu role="menu" aria-labelledby="button_custom_actions">
       <li ng-repeat="button in vm.customActions.buttons" role="presentation">
         <a role="menuitem" tabindex="-1" class="custom-button-action"
+          ng-if="vm.hasRequiredRole(button)"
           ng-click="vm.invokeCustomAction(button)">
           {{ button.name }}
         </a>
@@ -16,6 +17,7 @@
         <li class="dropdown-header">{{ buttonGroup.name.split('|')[0] }}</li>
         <li ng-repeat="button in buttonGroup.buttons" role="presentation">
           <a role="menuitem" tabindex="-1" class="custom-button-action"
+            ng-if="vm.hasRequiredRole(button)"
             ng-click="vm.invokeCustomAction(button)">
             {{ button.name }}
           </a>
