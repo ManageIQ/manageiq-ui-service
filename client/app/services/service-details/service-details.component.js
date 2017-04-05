@@ -295,20 +295,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       EventNotifications.error(__('There was an error retiring this service.'));
     }
   }
-  function retireVM(resource) {
-    const resourceId = resource.id;
-    const data = {
-      action: 'retire',
-    };
-    CollectionsApi.post('vms', resourceId, {}, data).then(retireSuccess, retireFailure);
-    function retireSuccess() {
-      EventNotifications.success(resource.name + __(' was retired.'));
-    }
 
-    function retireFailure() {
-      EventNotifications.error(__('There was an error retiring this resource.'));
-    }
-  }
   function createResourceGroups(service) {
     return {
       title: __('Compute'),
@@ -354,6 +341,12 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   function suspendVM(item, isDisabled) {
     if (!isDisabled) {
       PowerOperations.suspendVm(item);
+    }
+  }
+
+  function retireVM(item, isDisabled) {
+    if (!isDisabled) {
+      PowerOperations.retireVM(item);
     }
   }
 
