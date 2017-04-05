@@ -13,28 +13,21 @@
       </ol>
   </span>
 </div>
-<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig">
+<div ng-if="vm.listActions.length" pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig">
   <actions>
     <div class="ss-details-header__actions">
       <div uib-dropdown class="ss-details-header__actions__inner dropdown-kebab-pf">
-        <custom-button ng-if="vm.hasCustomButtons(vm.service)"
-                       service-id="vm.service.id"
-                       custom-actions="vm.service.custom_actions">
-        </custom-button>
         <custom-dropdown class="custom-dropdown pull-left"
                          config="item"
-                         items="vm.selectedItemsList"
-                         items-count="vm.selectedItemsListCount"
                          ng-repeat="item in vm.listActions"
-                         on-update="vm.listActionDisable($config, $changes)"
                          menu-right="true">
         </custom-dropdown>
       </div>
     </div>
   </actions>
 </div>
-
-<div class="ss-details-wrapper vm-details-wrapper">
+<loading status="vm.loading"></loading>
+<div ng-if="!vm.loading" class="well ss-details-wrapper vm-details-wrapper">
   <div class="container-fluid vm-details-container">
     <div class="row title">
       <div>{{ 'Properties'|translate }}</div>
