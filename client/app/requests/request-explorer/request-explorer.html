@@ -69,15 +69,15 @@
         </div>
       </div>
       <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
-        <span class="text-capitalize no-wrap">
-          <span class="fa fa-clock-o" ng-if="item.approval_state == 'pending_approval'"
-                uib-tooltip="{{'The current approval status of the request'|translate}}"
+        <span class="text-capitalize no-wrap" ng-switch on="item.approval_state">
+          <span class="fa fa-clock-o" ng-switch-when="pending_approval"
+                uib-tooltip="{{'Request pending approval'|translate}}"
                 tooltip-placement="bottom"></span>
-          <span class="pficon pficon-error-circle-o" ng-if="item.approval_state == 'denied'"
-                uib-tooltip="{{'The current approval status of the request'|translate}}"
+          <span class="pficon pficon-error-circle-o" ng-switch-when="denied"
+                uib-tooltip="{{'Request denied'|translate}}"
                 tooltip-placement="bottom"></span>
-          <span class="pficon pficon-ok" ng-if="item.approval_state == 'approved'"
-                uib-tooltip="{{'The current approval status of the request'|translate}}"
+          <span class="pficon pficon-ok" ng-switch-when="approved"
+                uib-tooltip="{{'Request approved'|translate}}"
                 tooltip-placement="bottom"></span>
         </span>
       </div>
