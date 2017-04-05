@@ -97,6 +97,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, E
     vm.listActions = [];
     const powerOptionsMenu = {
       title: __('Power Operations'),
+      name: __('Power'),
       actionName: 'powerOperations',
       icon: 'fa fa-power-off',
       actions: [],
