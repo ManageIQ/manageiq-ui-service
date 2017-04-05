@@ -277,17 +277,13 @@
                         <span class="fa fa-ellipsis-v"></span>
                       </button>
                       <ul uib-dropdown-menu="" class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body">
-                        <li role="menuitem" ng-if="customScope.permissions.powerOn"
-                            ng-class="{'disabled': customScope.disableStartButton(item)}">
-                          <a ng-click="customScope.startVM(item, customScope.disableStartButton(item))"
-                             translate>Start</a>
+                        <li role="menuitem" ng-if="customScope.permissions.instanceStart" ng-class="{'disabled': customScope.disableStartButton(item)}">
+                          <a ng-click="customScope.startVM(item, customScope.disableStartButton(item))" translate>Start</a>
                         </li>
-                        <li role="menuitem" ng-if="customScope.permissions.powerOff"
-                            ng-class="{'disabled': customScope.disableStopButton(item)}">
+                        <li role="menuitem" ng-if="customScope.permissions.instanceStop" ng-class="{'disabled': customScope.disableStopButton(item)}">
                           <a ng-click="customScope.stopVM(item, customScope.disableStopButton(item))" translate>Stop</a>
                         </li>
-                        <li role="menuitem" ng-if="customScope.permissions.suspend"
-                            ng-class="{'disabled': customScope.disableSuspendButton(item)}">
+                        <li role="menuitem" ng-if="customScope.permissions.instanceSuspend" ng-class="{'disabled': customScope.disableSuspendButton(item)}">
                           <a ng-click="customScope.suspendVM(item, customScope.disableSuspendButton(item))" translate>Suspend</a>
                         </li>
                         <li role="menuitem"
@@ -300,8 +296,8 @@
                             confirmation-show-cancel="true"
                             confirmation-on-ok="customScope.retireVM(item)"
                             confirmation-on-cancel="vm.retireVMFlag=false"
-                            ng-if="customScope.permissions.retire"
-                        >
+                            ng-if="customScope.permissions.instanceRetire"
+                          >
                           <a ng-click="vm.retireVMFlag=true" translate>Retire</a>
                         </li>
                         <li role="separator" class="divider"></li>
