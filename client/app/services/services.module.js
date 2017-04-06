@@ -4,7 +4,6 @@ import { DetailRevealComponent } from './detail-reveal/detail-reveal.component.j
 import { EditServiceModalComponent } from './edit-service-modal/edit-service-modal.component.js';
 import { OwnershipServiceModalComponent } from './ownership-service-modal/ownership-service-modal.component.js';
 import { PowerOperationsFactory } from './poweroperations.service.js';
-import { PowerStateComponent } from './power-state/power-state.component.js';
 import { ProcessSnapshotsModalComponent } from './process-snapshots-modal/process-snapshots-modal.component';
 import { RetireRemoveServiceModalComponent } from './retire-remove-service-modal/retire-remove-service-modal.component.js';
 import { RetireServiceModalComponent } from './retire-service-modal/retire-service-modal.component.js';
@@ -25,7 +24,6 @@ export const ServicesModule = angular
   .component('detailReveal', DetailRevealComponent)
   .component('editServiceModal', EditServiceModalComponent)
   .component('ownershipServiceModal', OwnershipServiceModalComponent)
-  .component('powerState', PowerStateComponent)
   .component('processSnapshotsModal', ProcessSnapshotsModalComponent)
   .component('retireRemoveServiceModal', RetireRemoveServiceModalComponent)
   .component('retireServiceModal', RetireServiceModalComponent)
