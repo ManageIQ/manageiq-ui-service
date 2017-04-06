@@ -43,6 +43,7 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
       listConfig: getListConfig(),
       menuActions: getMenuActions(),
       listActions: getListActions(),
+      listHelpers: getListHelpers(),
       toolbarConfig: getToolbarConfig(),
       expandedListConfig: getExpandedListConfig(),
 
@@ -191,11 +192,11 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
       actions: configurationMenuOptions.filter((item) => item.permissions),
     }];
 
-    let selectAllDisabled = true;
-    if (vm.permissions.edit || vm.permissions.delete) {
-      selectAllDisabled = false;
-    }
-    const listActions = [{
+    return itemActions;
+  }
+
+  function getListHelpers() {
+    return [{
       title: __('List Actions'),
       name: __(''),
       actionName: 'listActions',
@@ -206,13 +207,13 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
         actionName: 'select',
         title: __('Select All'),
         actionFn: selectAll,
-        isDisabled: selectAllDisabled,
+        isDisabled: !vm.permissions.edit || !vm.permissions.delete,
       }, {
         name: __('Unselect All'),
         actionName: 'unselect',
         title: __('Unselect All'),
         actionFn: unselectAll,
-        isDisabled: selectAllDisabled,
+        isDisabled: !vm.permissions.edit || !vm.permissions.delete,
       }, {
         name: __('Expand All'),
         actionName: 'expand',
@@ -227,8 +228,6 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
         isDisabled: false,
       }],
     }];
-
-    return itemActions[0].actions.length > 0 ? itemActions.concat(listActions) : listActions;
   }
 
   function listActionDisable(config, items) {
