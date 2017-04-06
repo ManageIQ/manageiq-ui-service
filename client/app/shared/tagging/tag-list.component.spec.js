@@ -42,4 +42,16 @@ describe('TagList component', () => {
 
     expect(text).to.eq('There are no tags for this item.');
   });
+
+  it('emits a "tag.dismissed" event when dismissible tag is clicked', () => {
+    const spy = sinon.spy();
+    parentScope.$on('tag.dismissed', spy);
+    parentScope.dismissible = true;
+    parentScope.$digest();
+
+    const dismissIcon = findIn(element, '.pficon-close');
+    dismissIcon.triggerHandler('click');
+
+    expect(spy).to.have.been.calledWith(sinon.match.any);
+  });
 });

@@ -8,7 +8,7 @@
       <span class="label label-info">
         {{tag.categorization.displayName}}
         <a class="tag-list__dismiss-icon" ng-if="vm.dismissible">
-          <span class="pficon pficon-close"></span>
+          <span class="pficon pficon-close" ng-click="vm.emitEvent()"></span>
         </a>
       </span>
     </li>
