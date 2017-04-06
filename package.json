@@ -130,7 +130,7 @@
     "karma-read-json": "1.1.0",
     "karma-sinon": "1.0.5",
     "karma-webpack": "2.0.3",
-    "manageiq-api-mock": "ManageIQ/manageiq-api-mock#master",
+    "manageiq-api-mock": "ManageIQ/manageiq-api-mock#1cb0be3e8bfd0f520bce4229fb03097913104da0",
     "mocha": "3.2.0",
     "mocha-clean": "1.0.0",
     "morgan": "1.8.1",
