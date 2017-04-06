@@ -8,7 +8,6 @@ export function NavigationController(Text,
                                      $scope,
                                      $uibModal,
                                      $state,
-                                     $document,
                                      EventNotifications,
                                      ApplianceInfo) {
   const vm = this;
@@ -90,8 +89,8 @@ export function NavigationController(Text,
 
   vm.notificationsDrawerShown = false;
   vm.toggleNotificationsList = toggleNotificationsList;
-  vm.closeOtherDropdowns = closeOtherDropdowns;
   vm.newNotifications = false;
+  vm.closeMenus = closeMenus;
   vm.getNotficationStatusIconClass = getNotficationStatusIconClass;
   vm.markNotificationRead = markNotificationRead;
   vm.clearNotification = clearNotification;
@@ -127,14 +126,6 @@ export function NavigationController(Text,
     iconClass: 'fa-cogs',
     url: vm.API_BASE,
   }];
-
-
-  vm.openAbout = function() {
-    vm.about.isOpen = true;
-  };
-  vm.onCloseAbout = function() {
-    vm.about.isOpen = false;
-  };
 
   function getNavigationItems(items) {
     vm.items.splice(0, vm.items.length);
@@ -209,19 +200,21 @@ export function NavigationController(Text,
     refreshToast();
   }
 
-  var destroyCart = $scope.$on('shoppingCartUpdated', refreshCart);
+  const destroyCart = $scope.$on('shoppingCartUpdated', refreshCart);
 
-  var destroyNotifications = $scope.$watch(function() {
-    return EventNotifications.state().groups;
-  },
+  const destroyNotifications = $scope.$watch(
+    function() {
+      return EventNotifications.state().groups;
+    },
     refreshNotifications, true);
 
-  var destroyToast = $scope.$watch(function() {
-    return EventNotifications.state().toastNotifications;
-  },
+  const destroyToast = $scope.$watch(
+    function() {
+      return EventNotifications.state().toastNotifications;
+    },
     refreshToast, true);
 
-  var destroy = $scope.$on('shoppingCartUpdated', refresh);
+  const destroy = $scope.$on('shoppingCartUpdated', refresh);
 
   $scope.$on('destroy', function() {
     destroyCart();
@@ -242,10 +235,9 @@ export function NavigationController(Text,
     vm.notificationsDrawerShown = !vm.notificationsDrawerShown;
   }
 
-  function closeOtherDropdowns() {
-    var userDropdown = angular.element($document[0].getElementById('userDropdown'));
-    userDropdown.removeClass('open');
-    userDropdown.children().attr('aria-expanded', false);
+  function closeMenus() {
+    vm.helpOpen = false;
+    vm.adminOpen = false;
   }
 
   function getNotficationStatusIconClass(notification) {
