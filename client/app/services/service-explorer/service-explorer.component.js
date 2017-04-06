@@ -12,7 +12,7 @@ export const ServiceExplorerComponent = {
 function ComponentController($state, ServicesState, Language, ListView, Chargeback, TaggingService, TagEditorModal,
                              EventNotifications, ModalService, PowerOperations, lodash, Polling) {
   var vm = this;
-  
+
   vm.$onInit = activate();
   vm.$onDestroy = function() {
     Polling.stop('serviceListPolling');
@@ -72,6 +72,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       multiSelect: true,
       selectionMatchProp: 'id',
       onCheckBoxChange: handleSelectionChange,
+      onClick: viewService,
     };
   }
 
@@ -272,7 +273,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
         actionFn: startService,
         isDisabled: false,
         permission: vm.permissions.powerOn,
-      }, 
+      },
       {
         name: __('Stop'),
         actionName: 'stop',
@@ -280,7 +281,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
         actionFn: stopService,
         isDisabled: false,
         permission: vm.permissions.powerOff,
-      }, 
+      },
       {
         name: __('Suspend'),
         actionName: 'suspend',
@@ -373,7 +374,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       vm.loading = false;
     }
     vm.offset = offset;
-    getFilterCount().then( () => {
+    getFilterCount().then(() => {
       ServicesState.getServices(
         limit,
         offset,
@@ -419,6 +420,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       Chargeback.adjustRelativeCost(vm.services);
       vm.servicesList = angular.copy(vm.services);
     }
+
     function getPowerInfo(powerState) {
       const powerStates = {
         'on': {icon: 'pficon-ok', tooltip: __('Power State: On')},
@@ -426,8 +428,9 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
         'unknown': {icon: 'fa-question-circle', tooltip: __('Power State: Unknown')},
       };
 
-      return (powerState !== 'on' && powerState !== 'off' ? powerStates.unknown :  powerStates[powerState]);
+      return (powerState !== 'on' && powerState !== 'off' ? powerStates.unknown : powerStates[powerState]);
     }
+
     function queryFailure(_error) {
       vm.loading = false;
       EventNotifications.error(__('There was an error loading the services.'));

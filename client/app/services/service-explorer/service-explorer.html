@@ -33,15 +33,18 @@
 </div>
 <div ng-if="vm.viewType == 'cardView'" class="list-view-container section-container paged-container">
   <loading status="vm.loading"></loading>
-  <div ng-if="!vm.loading" pf-card-view id="cardView" config="vm.cardConfig" items="vm.servicesList">
+  <div class="container-fluid" ng-if="!vm.loading" pf-card-view id="cardView" config="vm.cardConfig" items="vm.servicesList">
     <ss-card
       header="item.name"
       description="item.description"
       image="item.picture.image_href">
     </ss-card>
     <div>
-      <power-state item="item"></power-state>
-    </div>
+      <i class="fa pficon power-icon fa-2x" ng-class="item.power.icon"
+         uib-tooltip="{{item.power.tooltip}}"
+         tooltip-append-to-body="true"
+         tooltip-popup-delay="1000"
+         tooltip-placement="bottom"></i>    </div>
   </div>
 </div>
 <div ng-if="vm.viewType == 'listView'" class="list-view-container section-container paged-container explorer-list">
