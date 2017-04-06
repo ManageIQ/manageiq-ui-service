@@ -90,6 +90,7 @@ export function VmsService(CollectionsApi, RBAC) {
         'uid_ems',
         'users',
         'vendor',
+        'v_total_snapshots',
         'vmsafe_enable',
       ],
       expand: [],

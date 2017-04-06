@@ -51,7 +51,7 @@
     <detail-reveal title="CPU Affinity" detail="{{ vm.vmDetails.cpu_affinity }}"
                    ng-if="vm.vmDetails.cloud===false"></detail-reveal>
     <detail-reveal title="Snapshots" icon="fa fa-camera fa-lg"
-                   detail="{{ vm.vmDetails.snapshots.length || 0 }}"></detail-reveal>
+                   detail="{{ vm.vmDetails.v_total_snapshots }}"></detail-reveal>
     <detail-reveal title="Advanced Settings" icon="fa fa-wrench fa-lg"
                    detail="{{ vm.vmDetails.advanced_settings.length }}"></detail-reveal>
     <detail-reveal title="Resources" detail="{{ vm.vmDetails.resourceAvailability }}"></detail-reveal>
