@@ -160,20 +160,5 @@ describe('Component: taggingWidget', function() {
         done();
       }, 500);
     });
-
-    it('should remove a tag', function(done) {
-      setTimeout(function() {
-        let tagsOfItem = element.find(".pficon-close");
-        expect(tagsOfItem.length).to.be.eq(2);
-
-        tagsOfItem[1].click();
-        isoScope.$digest();
-
-        tagsOfItem = element.find(".pficon-close");
-        expect(tagsOfItem.length).to.be.eq(1);
-
-        done();
-      }, 500);
-    });
   });
 });

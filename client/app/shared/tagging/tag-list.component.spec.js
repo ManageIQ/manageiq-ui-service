@@ -11,7 +11,7 @@ describe('TagList component', () => {
     ];
 
     element = angular.element(`
-      <tag-list tags="tags"></tag-list>
+      <tag-list tags="tags" dismissible="dismissible"></tag-list>
     `);
     $compile(element)(parentScope);
     parentScope.$digest();
@@ -22,6 +22,16 @@ describe('TagList component', () => {
     const tags = element[0].querySelectorAll('.tag-list__tag');
 
     expect(tags.length).to.eq(numTags);
+  });
+
+  it('displays icons to dismiss tags when the list is dismissible', () => {
+    parentScope.dismissible = true;
+    parentScope.$digest();
+
+    const numTags = parentScope.tags.length;
+    const icons = element[0].querySelectorAll('.tag-list__dismiss-icon');
+
+    expect(icons.length).to.eq(numTags);
   });
 
   it('displays a default message when there are no tags provided', () => {

@@ -3,6 +3,7 @@ import templateUrl from './tag-list.html';
 
 export const TagListComponent = {
   bindings: {
+    dismissible: '<?',
     tags: '<',
   },
   controllerAs: 'vm',
