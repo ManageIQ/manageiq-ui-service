@@ -14,7 +14,7 @@
 
 <div ng-if="vm.tagsOfItem && !vm.tagsOfItem.length" class="no-tag-header" translate>There are no tags for this item.</div>
 
-<ul class="tag-list list-inline" ng-class="{'tag-list-no-top-controls': vm.readOnly}">
+<ul class="tagging list-inline" ng-class="{'tag-list-no-top-controls': vm.readOnly}">
     <li ng-repeat="tag in vm.tagsOfItem">
         <span class="label label-info">
             {{tag.categorization.displayName}}

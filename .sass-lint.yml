@@ -9,9 +9,6 @@ rules:
   extends-before-declarations: 2
   placeholder-in-extend: 2
 
-  # Mixins
-  mixins-before-declarations: 2
-
   # Line Spacing
   one-declaration-per-line: 2
   empty-line-between-blocks: 2
