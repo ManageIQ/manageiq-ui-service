@@ -29,17 +29,10 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'miq_group.description', 'all_service_children', 'aggregate_all_vm_cpus', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count',
         'aggregate_all_vm_disk_space_allocated', 'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'retired',
         'retirement_state', 'retirement_warn', 'retires_on', 'actions', 'custom_actions', 'provision_dialog', 'service_resources',
-        'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options',
+        'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options', 'vms.ipaddresses',
+        'vms.snapshots', 'vms.v_total_snapshots', 'vms.v_snapshot_newest_name', 'vms.v_snapshot_newest_timestamp', 'vms.v_snapshot_newest_total_size',
+        'vms.supports_console?', 'vms.supports_launch_cockpit?',
       ],
-      decorators: [
-        'vms.ipaddresses',
-        'vms.snapshots',
-        'vms.v_total_snapshots',
-        'vms.v_snapshot_newest_name',
-        'vms.v_snapshot_newest_timestamp',
-        'vms.v_snapshot_newest_total_size',
-        'vms.supports_console?',
-        'vms.supports_cockpit?'],
       expand: ['vms', 'orchestration_stacks'],
     };
 
@@ -167,6 +160,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
 
     return lifeCycleActions;
   }
+
   function checkMenuPermissions(menuOptions) {
     const menu = [];
     angular.forEach(menuOptions, (menuOption) => {
@@ -177,6 +171,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
 
     return menu;
   }
+
   function getPolicyCustomDropdown(editTagsFn) {
     let policyActions;
 
@@ -254,7 +249,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
       ];
       configActions.actions = checkMenuPermissions(configMenuOptions);
     }
-    
+
     return configActions;
   }
 

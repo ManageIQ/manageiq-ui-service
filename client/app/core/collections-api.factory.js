@@ -82,13 +82,6 @@ export function CollectionsApiFactory($http, API_BASE) {
       params.push('attributes=' + encodeURIComponent(options.attributes));
     }
 
-    if (options.decorators) {
-      if (angular.isArray(options.decorators)) {
-        options.decorators = options.decorators.join(',');
-      }
-      params.push('decorators=' + encodeURIComponent(options.decorators));
-    }
-
     if (options.filter) {
       angular.forEach(options.filter, function(filter) {
         params.push('filter[]=' + encodeURIComponent(filter));
