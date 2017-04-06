@@ -1,42 +1,48 @@
 <div class="layout-application" ng-controller="NavigationController as vm">
-  <div pf-vertical-navigation items="vm.items" brand-src="images/brand.svg" brand-alt="{{ ::vm.text.name }}" update-active-items-on-click="true"
+  <div pf-vertical-navigation items="vm.items" brand-src="images/brand.svg" brand-alt="{{ ::vm.text.name }}"
+       update-active-items-on-click="true"
        pinnable-menus="true" item-click-callback="vm.handleItemClick" show-badges="true">
-    <div pf-toast-notification-list notifications="vm.toastNotifications" show-close="true" close-callback="vm.handleDismissToast" update-viewing="vm.updateViewingToast"></div>
+    <div pf-toast-notification-list notifications="vm.toastNotifications" show-close="true"
+         close-callback="vm.handleDismissToast" update-viewing="vm.updateViewingToast"></div>
 
-    <div pf-notification-drawer drawer-hidden="!vm.notificationsDrawerShown" notification-groups="vm.notificationGroups" allow-expand="true"
-         drawer-title="{{'Notifications' | translate}}" heading-include="{{vm.headingHTML}}" subheading-include="{{vm.subHeadingHTML}}"
+    <div pf-notification-drawer drawer-hidden="!vm.notificationsDrawerShown" notification-groups="vm.notificationGroups"
+         allow-expand="true"
+         drawer-title="{{'Notifications' | translate}}" heading-include="{{vm.headingHTML}}"
+         subheading-include="{{vm.subHeadingHTML}}"
          notification-body-include="{{vm.notificationHTML}}" notification-footer-include="{{vm.notificationFooterHTML}}"
          custom-scope="vm">
     </div>
 
-    <div pf-about-modal is-open="vm.about.isOpen" on-close="vm.onCloseAbout()" additional-info="vm.about.additionalInfo"
-         product-info="vm.about.productInfo" title="vm.about.title" copyright="vm.about.copyright" img-alt="vm.about.imgAlt" img-src="vm.about.imgSrc">
+    <div pf-about-modal is-open="vm.about.isOpen" on-close="vm.about.isOpen = false" additional-info="vm.about.additionalInfo"
+         product-info="vm.about.productInfo" title="vm.about.title" copyright="vm.about.copyright"
+         img-alt="vm.about.imgAlt" img-src="vm.about.imgSrc">
     </div>
 
     <div>
       <ul class="nav navbar-nav navbar-right navbar-iconic">
         <li ng-if="vm.shoppingCart.allowed()">
-          <a title="{{'Shopping cart' | translate}}" class="nav-item-iconic indicator" ng-click="vm.shoppingCart.open()">
+          <a title="{{'Shopping cart' | translate}}" class="nav-item-iconic indicator"
+             ng-click="vm.shoppingCart.open()">
             <i class="fa fa-shopping-cart"></i>
             <span class="badge" ng-show="vm.shoppingCart.count" ng-bind="vm.shoppingCart.count"></span>
           </a>
         </li>
         <li>
-          <a title="{{vm.notificationsIndicatorTooltip}}" class="nav-item-iconic indicator" ng-click="vm.toggleNotificationsList()">
+          <a title="{{vm.notificationsIndicatorTooltip}}" class="nav-item-iconic indicator"
+             ng-click="vm.toggleNotificationsList()">
             <i class="fa" ng-class="{'fa-bell': vm.newNotifications, 'fa-bell-o': !vm.newNotifications}"></i>
             <span class="badge" ng-show="vm.newNotifications">&#8226</span>
           </a>
         </li>
-        <li class="siteswitcher-item">
+        <li class="siteswitcher-item" ng-click="vm.closeMenus()">
           <miq-site-switcher sites="vm.sites"></miq-site-switcher>
         </li>
-        <li uib-dropdown>
-          <a class="nav-item-iconic" id="aboutModal" uib-dropdown-toggle aria-haspopup="true" aria-expanded="true"
-            ng-click="vm.closeOtherDropdowns()">
+        <li uib-dropdown is-open="vm.helpOpen">
+          <a class="nav-item-iconic" uib-dropdown-toggle aria-haspopup="true" aria-expanded="true">
             <span class="fa pficon-help"></span>
             <span class="caret"></span>
           </a>
-          <ul uib-dropdown-menu  aria-labelledby="aboutModal">
+          <ul uib-dropdown-menu aria-labelledby="aboutModal">
             <li>
               <a href="/support/index?support_tab=about" target="_blank">
                 {{ 'Documentation' | translate}}
@@ -48,13 +54,13 @@
               </a>
             </li>
             <li>
-              <a href="#" ng-click="vm.openAbout()">
+              <a href="#" ng-click="vm.about.isOpen = true">
                 {{'About' | translate}}
               </a>
             </li>
           </ul>
         </li>
-        <li uib-dropdown id="userDropdown">
+        <li uib-dropdown is-open="vm.adminOpen">
           <a uib-dropdown-toggle class="nav-item-iconic" title="{{ ::vm.user().userid }}">
             <i class="fa pficon-user"></i>
             <p class="navbar-user-name">{{ ::vm.user().name }}</p>
@@ -72,11 +78,12 @@
                 <li ng-repeat="group in vm.user().groups" ng-class="{ disabled: group === vm.user().group }">
                   <a href="#" ng-if="group === vm.user().group" title="{{'Currently Selected Group' | translate}}">
                     {{group}}
-                  <span translate>
+                    <span translate>
                     (Current Group)
                   </span>
                   </a>
-                  <a href="#" ng-if="group !== vm.user().group" title="{{'Change to this Group' | translate}}" ng-click="vm.groupSwitch(group)">
+                  <a href="#" ng-if="group !== vm.user().group" title="{{'Change to this Group' | translate}}"
+                     ng-click="vm.groupSwitch(group)">
                     {{group}}
                   </a>
                 </li>
@@ -99,7 +106,8 @@
       </ul>
     </div>
   </div>
-  <div class="container-pf-nav-pf-vertical nav-pf-vertical-with-badges" ng-class="{'collapsed-nav': vm.state.isCollapsed, 'hidden-nav': vm.state.isMobileNav }">
+  <div class="container-pf-nav-pf-vertical nav-pf-vertical-with-badges"
+       ng-class="{'collapsed-nav': vm.state.isCollapsed, 'hidden-nav': vm.state.isMobileNav }">
     <div class="main-content" ui-view></div>
   </div>
 </div>
