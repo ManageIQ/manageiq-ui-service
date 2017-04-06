@@ -19,8 +19,17 @@ describe('TagList component', () => {
 
   it('displays a tag for each tag in the list', () => {
     const numTags = parentScope.tags.length;
-    const tags = element[0].querySelectorAll('.label');
+    const tags = element[0].querySelectorAll('.tag-list__tag');
 
     expect(tags.length).to.eq(numTags);
+  });
+
+  it('displays a default message when there are no tags provided', () => {
+    parentScope.tags = [];
+    parentScope.$digest();
+
+    const text = findIn(element, '.tag-list__empty-state').text();
+
+    expect(text).to.eq('There are no tags for this item.');
   });
 });

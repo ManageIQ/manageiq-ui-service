@@ -1,25 +1,25 @@
-<div ng-if="!vm.readOnly" ng-class="{'spinner': !vm.showTagDropdowns, 'tag-spinner': !vm.showTagDropdowns}" class="spinner spinner-xs spinner-inline"></div>
+<div ng-class="{'spinner': !vm.showTagDropdowns, 'tag-spinner': !vm.showTagDropdowns}" class="spinner spinner-xs spinner-inline"></div>
 
 <div ng-show="vm.showTagDropdowns">
-    <select class="tag-category-select"
-            ng-options="category as category.description for category in vm.tags.categories"
-            ng-model="vm.tags.selectedCategory">
-    </select>
-    <select class="tag-value-select"
-            ng-options="item as item.categorization.description for item in vm.tags.filtered"
-            ng-model="vm.tags.selectedTag">
-    </select>
-    <a><span class="fa fa-plus tag-add" ng-click="vm.addTag()"></span></a>
+  <select class="tag-category-select"
+          ng-options="category as category.description for category in vm.tags.categories"
+          ng-model="vm.tags.selectedCategory">
+  </select>
+  <select class="tag-value-select"
+          ng-options="item as item.categorization.description for item in vm.tags.filtered"
+          ng-model="vm.tags.selectedTag">
+  </select>
+  <a><span class="fa fa-plus tag-add" ng-click="vm.addTag()"></span></a>
 </div>
 
 <div ng-if="vm.tagsOfItem && !vm.tagsOfItem.length" class="no-tag-header" translate>There are no tags for this item.</div>
 
-<ul class="tagging list-inline" ng-class="{'tag-list-no-top-controls': vm.readOnly}">
-    <li ng-repeat="tag in vm.tagsOfItem">
-        <span class="label label-info">
-            {{tag.categorization.displayName}}
-            <a class="tag-list-action" ng-if="!vm.readOnly"><span class="pficon pficon-close" ng-click="vm.removeTag(tag)"></span></a>
-        </span>
-    </li>
+<ul class="tagging list-inline">
+  <li ng-repeat="tag in vm.tagsOfItem">
+    <span class="label label-info">
+      {{tag.categorization.displayName}}
+      <a class="tag-list-action"><span class="pficon pficon-close" ng-click="vm.removeTag(tag)"></span></a>
+    </span>
+  </li>
 </ul>
 
