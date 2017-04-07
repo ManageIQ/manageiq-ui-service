@@ -15,18 +15,9 @@ describe('Dashboard', function() {
     var controller;
 
     beforeEach(function() {
-      bard.inject('$componentController', 'RBAC');
+      bard.inject('$componentController');
 
-      RBAC.setActionFeatures( {
-        serviceDelete: {show: true},
-        serviceRetireNow: {show: true},
-        serviceRetire: {show: true},
-        serviceTag: {show: true},
-        serviceEdit: {show: true},
-        serviceReconfigure: {show: true},
-        serviceOwnership: {show: true},
-      });
-      controller = $componentController('serviceExplorer'), {};
+      controller = $componentController('serviceExplorer', {});
     });
 
     it('should be created successfully', function() {
