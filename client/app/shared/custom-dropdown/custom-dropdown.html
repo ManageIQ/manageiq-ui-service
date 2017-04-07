@@ -1,7 +1,13 @@
 <span class="primary-action pull-left" uib-dropdown>
-  <button type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="vm.config.isDisabled">
+  <button type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="vm.config.isDisabled" 
+   uib-tooltip="{{vm.config.tooltipText}}"
+            tooltip-append-to-body="true"
+            tooltip-popup-delay="1000"
+            tooltip-placement="top"
+            tooltip-enable="vm.config.tooltipText"
+    >
     <i class="{{vm.config.icon}}"></i>
-    <sapn ng-if="vm.config.name">{{vm.config.name}}</sapn>
+    <span ng-if="vm.config.name">{{vm.config.name}}</span>
     <span class="caret"></span>
   </button>
     <ul uib-dropdown-menu role="menu" ng-class="{'dropdown-menu-right': vm.menuRight}">

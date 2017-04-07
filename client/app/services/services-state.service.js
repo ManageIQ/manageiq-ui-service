@@ -126,6 +126,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         icon: 'fa fa-recycle',
         actions: [],
         isDisabled: false,
+        tooltipText: __('Lifecycle'),
       };
       const lifecycleOptions = [
         {
@@ -179,6 +180,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         title: __('Policy'),
         actionName: 'policy',
         icon: 'fa fa-shield',
+        tooltipText: __('Policy'),
         actions: [
           {
             icon: 'pficon pficon-edit',
@@ -206,6 +208,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         icon: 'fa fa-cog',
         actions: [],
         isDisabled: false,
+        tooltipText: __('Configuration'),
       };
 
       const configMenuOptions = [
