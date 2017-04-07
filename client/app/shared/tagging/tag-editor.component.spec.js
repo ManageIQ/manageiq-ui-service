@@ -1,4 +1,4 @@
-describe('Component: taggingWidget', function() {
+describe('TagEditor component', function() {
 
   beforeEach(function() {
     module('app.components');
@@ -35,7 +35,7 @@ describe('Component: taggingWidget', function() {
       collectionsApiSpy.withArgs('categories', options).returns(Promise.resolve(scope.tagCategories));
       collectionsApiSpy.withArgs('tags', options2).returns(Promise.resolve(scope.allTags));
 
-      element = angular.element('<tagging-widget tags-of-item="tagsOfBlueprint"/>');
+      element = angular.element('<tag-editor tags-of-item="tagsOfBlueprint"/>');
       let el = $compile(element)(scope);
       scope.$digest();
       isoScope = el.isolateScope();

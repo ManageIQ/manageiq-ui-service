@@ -1,18 +1,18 @@
-import './_tagging.sass';
-import templateUrl from './tagging.html';
+import './_tag-editor.sass';
+import templateUrl from './tag-editor.html';
 
-export const TaggingComponent = {
+export const TagEditorComponent = {
   bindings: {
     tagsOfItem: '=',
     readOnly: '=',
   },
-  controller: TaggingController,
+  controller: TagEditorController,
   controllerAs: 'vm',
   templateUrl,
 };
 
 /** @ngInject */
-function TaggingController($scope, $filter, $q, $log, CollectionsApi, TaggingService, lodash) {
+function TagEditorController($scope, $filter, $q, $log, CollectionsApi, TaggingService, lodash) {
   var vm = this;
 
   vm.tags = {};
