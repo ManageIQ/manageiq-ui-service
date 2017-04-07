@@ -41,14 +41,14 @@ describe('TaggingService', function() {
         id: 1,
         name: '/tag/name',
         category: { id: 2 },
-        categorization: { display_name: 'fancy: name' },
+        categorization: { description: 'foo', display_name: 'fancy: name' },
       };
 
       var expected = {
         id: 1,
         name: '/tag/name',
         category: { id: 2 },
-        categorization: { displayName: 'fancy: name' },
+        categorization: { description: 'foo', displayName: 'fancy: name' },
       };
 
       var actual = service.parseTag(response);

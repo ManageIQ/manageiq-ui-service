@@ -3,8 +3,8 @@ import templateUrl from './tag-list.html';
 
 export const TagListComponent = {
   bindings: {
-    dismissible: '<?',
     tags: '<',
+    onRemoveTag: '&?',
   },
   controller: TagListController,
   controllerAs: 'vm',
@@ -12,10 +12,11 @@ export const TagListComponent = {
 };
 
 /** @ngInject */
-function TagListController($scope) {
+function TagListController() {
   const vm = this;
-
-  vm.emitEvent = function() {
-    $scope.$emit('tag.dismissed');
+  vm.dismissTag = function(tag) {
+    vm.onRemoveTag({
+      $event: { tag },
+    });
   };
 }

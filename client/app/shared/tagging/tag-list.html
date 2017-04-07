@@ -7,8 +7,8 @@
     <li class="tag-list__tag" ng-repeat="tag in vm.tags">
       <span class="label label-info">
         {{tag.categorization.displayName}}
-        <a class="tag-list__dismiss-icon" ng-if="vm.dismissible">
-          <span class="pficon pficon-close" ng-click="vm.emitEvent()"></span>
+        <a class="tag-list__dismiss-icon" ng-if="vm.onRemoveTag">
+          <span class="pficon pficon-close" ng-click="vm.dismissTag(tag)"></span>
         </a>
       </span>
     </li>

@@ -12,4 +12,4 @@
   <a><span class="fa fa-plus tag-add" ng-click="vm.addTag()"></span></a>
 </div>
 
-<tag-list tags="vm.tagsOfItem" dismissible="true"></tag-list>
+<tag-list tags="vm.tagsOfItem" on-remove-tag="vm.removeTag($event)"></tag-list>

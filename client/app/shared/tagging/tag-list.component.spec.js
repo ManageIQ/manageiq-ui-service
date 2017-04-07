@@ -11,7 +11,7 @@ describe('TagList component', () => {
     ];
 
     element = angular.element(`
-      <tag-list tags="tags" dismissible="dismissible"></tag-list>
+      <tag-list tags="tags" on-remove-tag="onRemoveTag"></tag-list>
     `);
     $compile(element)(parentScope);
     parentScope.$digest();
@@ -24,8 +24,8 @@ describe('TagList component', () => {
     expect(tags.length).to.eq(numTags);
   });
 
-  it('displays icons to dismiss tags when the list is dismissible', () => {
-    parentScope.dismissible = true;
+  it('displays icons to dismiss tags when onRemoveTag is set', () => {
+    parentScope.onRemoveTag = angular.noop;
     parentScope.$digest();
 
     const numTags = parentScope.tags.length;
@@ -41,17 +41,5 @@ describe('TagList component', () => {
     const text = findIn(element, '.tag-list__empty-state').text();
 
     expect(text).to.eq('There are no tags for this item.');
-  });
-
-  it('emits a "tag.dismissed" event when dismissible tag is clicked', () => {
-    const spy = sinon.spy();
-    parentScope.$on('tag.dismissed', spy);
-    parentScope.dismissible = true;
-    parentScope.$digest();
-
-    const dismissIcon = findIn(element, '.pficon-close');
-    dismissIcon.triggerHandler('click');
-
-    expect(spy).to.have.been.calledWith(sinon.match.any);
   });
 });

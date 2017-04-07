@@ -3,8 +3,7 @@ import templateUrl from './tag-editor.html';
 
 export const TagEditorComponent = {
   bindings: {
-    tagsOfItem: '=',
-    readOnly: '=',
+    tagsOfItem: '<',
   },
   controller: TagEditorController,
   controllerAs: 'vm',
@@ -12,90 +11,40 @@ export const TagEditorComponent = {
 };
 
 /** @ngInject */
-function TagEditorController($scope, $filter, $q, $log, CollectionsApi, TaggingService, lodash) {
-  var vm = this;
-
-  vm.tags = {};
-
-  function loadAllTagInfo() {
-    var deferred = $q.defer();
-
-    vm.loadAllTags().then(function() {
-      vm.loadAllCategories().then(function() {
-        deferred.resolve();
-      }, loadAllTagsfailure);
-    }, loadAllCategoriesfailure);
-
-    function loadAllTagsfailure() {
-      deferred.reject();
-    }
-
-    function loadAllCategoriesfailure() {
-      deferred.reject();
-    }
-
-    return deferred.promise;
-  }
-
-  vm.loadAllTags = function() {
-    var deferred = $q.defer();
-
-    var attributes = ['categorization', 'category.id', 'category.single_value'];
-    var options = {
-      expand: 'resources',
-      attributes: attributes,
-    };
-
-    CollectionsApi.query('tags', options).then(loadSuccess, loadFailure);
-
-    function loadSuccess(response) {
-      vm.tags.all = response.resources;
-      deferred.resolve();
-    }
-
-    function loadFailure() {
-      $log.error('There was an error loading all tags.');
-      deferred.reject();
-    }
-
-    return deferred.promise;
+function TagEditorController($scope, $filter, $log, CollectionsApi, TaggingService, lodash) {
+  const vm = this;
+  const placeholderCategorization = {
+    categorization: {
+      description: __('Select a value to assign'),
+    },
   };
 
-  vm.loadAllCategories = function() {
-    var deferred = $q.defer();
+  vm.$onInit = function() {
+    vm.tags = {};
+    vm.showTagDropdowns = false;
 
-    var options = {
-      expand: 'resources',
-    };
+    $scope.$watch('vm.tags.selectedCategory', function() {
+      vm.tags.filtered = $filter('filter')(vm.tags.all, matchCategory);
+      if (vm.tags.filtered) {
+        vm.tags.filtered[0] = placeholderCategorization;
+        vm.tags.selectedTag = vm.tags.filtered[0];
+        vm.showTagDropdowns = true;
+      }
+    }, true);
 
-    CollectionsApi.query('categories', options).then(loadSuccess, loadFailure);
-
-    function loadSuccess(response) {
-      vm.tags.categories = lodash.sortBy(response.resources, 'description');
-      vm.tags.selectedCategory = vm.tags.categories[0];
-      deferred.resolve();
-    }
-
-    function loadFailure() {
-      $log.error('There was an error loading categories.');
-      deferred.reject();
-    }
-
-    return deferred.promise;
+    TaggingService.queryAvailableTags()
+      .then((tags) => {
+        vm.tags.all = tags;
+      })
+      .then(() => CollectionsApi.query('categories', { expand: 'resources' }))
+      .then((response) => {
+        vm.tags.categories = lodash.sortBy(response.resources, 'description');
+        vm.tags.selectedCategory = vm.tags.categories[0];
+      })
+      .catch((error) => {
+        $log.error('There was an error loading all tags.', error);
+      });
   };
-
-  if (!vm.readOnly) {
-    loadAllTagInfo();
-  }
-
-  vm.showTagDropdowns = false;
-  $scope.$watch('vm.tags.selectedCategory', function() {
-    vm.tags.filtered = $filter('filter')(vm.tags.all, matchCategory);
-    if (vm.tags.filtered) {
-      vm.tags.selectedTag = vm.tags.filtered[0];
-      vm.showTagDropdowns = true;
-    }
-  }, true);
 
   function matchCategory(tag) {
     if (tag.category) {
@@ -105,8 +54,8 @@ function TagEditorController($scope, $filter, $q, $log, CollectionsApi, TaggingS
     }
   }
 
-  vm.removeTag = function(tag) {
-    var index = vm.tagsOfItem.indexOf(tag);
+  vm.removeTag = function(event) {
+    var index = vm.tagsOfItem.indexOf(event.tag);
     if (index !== -1) {
       vm.tagsOfItem.splice(index, 1);
     }

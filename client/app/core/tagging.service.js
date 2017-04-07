@@ -55,14 +55,17 @@ export function TaggingService(CollectionsApi, lodash, exception) {
 
   // Ensures that tags have the correct shape to be processed.
   function parseTag(tagResponse) {
+    const { id, name, category, categorization } = tagResponse;
+
     return {
-      id: tagResponse.id,
-      name: tagResponse.name,
+      id,
+      name,
       category: {
-        id: tagResponse.category.id,
+        id: category.id,
       },
       categorization: {
-        displayName: tagResponse.categorization.display_name,
+        description: categorization.description,
+        displayName: categorization.display_name || categorization.displayName,
       },
     };
   }
@@ -73,7 +76,7 @@ export function TaggingService(CollectionsApi, lodash, exception) {
   function queryAvailableTags(resourceUrl) {
     var queryOptions = {
       expand: 'resources',
-      attributes: ['categorization', 'category'],
+      attributes: ['categorization', 'category', 'category.single_value'],
     };
 
     return CollectionsApi.query(resourceUrl || 'tags', queryOptions)
