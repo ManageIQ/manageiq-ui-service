@@ -109,6 +109,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
         icon: 'fa fa-power-off',
         actions: [],
         isDisabled: false,
+        tooltipText: __('Power Operations'),
       };
       const powerOptionsActions = [
         {
