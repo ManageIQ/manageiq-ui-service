@@ -1,50 +1,31 @@
-/* eslint-disable arrow-parens */
-
 /** @ngInject */
 export function RBACFactory(lodash) {
-  var features = {};
   var navFeatures = {};
-  var actionFeatures = {};
+  let features = {};
   let currentRole;
 
-  var service = {
+  return {
+    all: all,
     set: set,
     has: has,
     hasAny: hasAny,
     hasRole: hasRole,
-    all: all,
-    navigationEnabled: navigationEnabled,
-    getNavFeatures: getNavFeatures,
-    getActionFeatures: getActionFeatures,
-    setNavFeatures: setNavFeatures,
-    setActionFeatures: setActionFeatures,
     setRole: setRole,
+    getNavFeatures: getNavFeatures,
+    setNavFeatures: setNavFeatures,
+    navigationEnabled: navigationEnabled,
   };
-
-  return service;
 
   function set(productFeatures) {
     features = productFeatures || {};
 
-    const actionsPermissions = {
-      serviceView: {show: angular.isDefined(productFeatures.service_view)},
-      serviceEdit: {show: angular.isDefined(productFeatures.service_edit)},
-      serviceTag: {show: angular.isDefined(productFeatures.service_tag)},
-      serviceDelete: {show: angular.isDefined(productFeatures.service_delete)},
-      serviceReconfigure: {show: angular.isDefined(productFeatures.service_reconfigure)},
-      serviceRetireNow: {show: angular.isDefined(productFeatures.service_retire_now)},
-      serviceRetire: {show: angular.isDefined(productFeatures.service_retire)},
-      serviceOwnership: {show: angular.isDefined(productFeatures.service_ownership)},
-    };
-    setActionFeatures(actionsPermissions);
     const navPermissions = {
-      dashboard: {show: entitledForDashboard(productFeatures)},
-      services: {show: entitledForServices(productFeatures)},
-      orders: {show: entitledForServiceCatalogs(productFeatures)},
-      requests: {show: entitledForRequests(productFeatures)},
-      catalogs: {show: entitledForServiceCatalogs(productFeatures)},
-      dialogs: {show: entitledForService(productFeatures)},
-      templates: {show: entitledForTemplates(productFeatures)},
+      dashboard: {show: angular.isDefined(productFeatures.dashboard_view)},
+      services: {show: angular.isDefined(productFeatures.service_view)},
+      orders: {show: angular.isDefined(productFeatures.miq_request_view)},
+      requests: {show: angular.isDefined(productFeatures.miq_request_view)},
+      catalogs: {show: angular.isDefined(productFeatures.catalog_items_view)},
+      reports: {show: angular.isDefined(productFeatures.miq_report_saved_reports_view || productFeatures.miq_report_view)},
     };
     setNavFeatures(navPermissions);
   }
@@ -54,13 +35,7 @@ export function RBACFactory(lodash) {
   }
 
   function hasAny(permissions) {
-    const hasPermission = permissions.some(function(feature) {
-      if (angular.isDefined(features[feature])) {
-        return true;
-      }
-    });
-
-    return hasPermission;
+    return permissions.some((feature) => angular.isDefined(features[feature]));
   }
 
   function hasRole(...roles) {
@@ -75,48 +50,12 @@ export function RBACFactory(lodash) {
     navFeatures = features;
   }
 
-  function setActionFeatures(features) {
-    actionFeatures = features;
-  }
-
   function setRole(newRole) {
     currentRole = newRole;
   }
 
-  function getActionFeatures() {
-    return actionFeatures;
-  }
-
   function getNavFeatures() {
     return navFeatures;
-  }
-
-  function entitledForServices(_productFeatures) {
-    var serviceFeature = lodash.find(actionFeatures, function(o) {
-      return o.show === true;
-    });
-
-    return angular.isDefined(serviceFeature);
-  }
-
-  function entitledForServiceCatalogs(productFeatures) {
-    return  angular.isDefined(productFeatures.svc_catalog_provision);
-  }
-
-  function entitledForRequests(productFeatures) {
-    return angular.isDefined(productFeatures.miq_request_view);
-  }
-
-  function entitledForDashboard(productFeatures) {
-    return angular.isDefined(productFeatures.dashboard_view);
-  }
-
-  function entitledForTemplates(productFeatures) {
-    return angular.isDefined(productFeatures.orchestration_templates_view);
-  }
-
-  function entitledForService(productFeatures) {
-    return angular.isDefined(productFeatures.service_view);
   }
 
   function navigationEnabled() {

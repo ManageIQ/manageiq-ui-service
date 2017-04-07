@@ -2,7 +2,6 @@
 
 /** @ngInject */
 export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
-  const actionFeatures = RBAC.getActionFeatures();
   const permissions = getPermissions();
   const services = {};
 
@@ -120,7 +119,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     let lifeCycleActions;
     const clockIcon = 'fa fa-clock-o';
 
-    if (actionFeatures.serviceRetireNow.show || actionFeatures.serviceRetire.show) {
+    if (permissions.retire || permissions.setRetireDate) {
       lifeCycleActions = {
         title: __('Lifecycle'),
         actionName: 'lifecycle',
@@ -200,9 +199,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
   function getConfigurationCustomDropdown(editServiceFn, removeServicesFn, setOwnershipFn) {
     let configActions;
 
-    if (actionFeatures.serviceDelete.show
-      || actionFeatures.serviceEdit.show
-      || actionFeatures.serviceOwnership.show) {
+    if (permissions.edit || permissions.delete || permissions.setOwnership) {
       configActions = {
         title: __('Configuration'),
         actionName: 'configuration',
