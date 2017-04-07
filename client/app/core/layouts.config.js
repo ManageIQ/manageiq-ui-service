@@ -24,17 +24,12 @@ function getLayouts() {
 /** @ngInject */
 function enterApplication(Polling, lodash, NavCounts, Navigation, RBAC) {
   // Application layout displays the navigation which might have items that require polling to update the counts
-  var navFeatures = RBAC.getNavFeatures();
-  var actionFeatures = RBAC.getActionFeatures();
+  const navFeatures = RBAC.getNavFeatures();
   angular.forEach(NavCounts.counts, updateCount);
-  angular.forEach(Navigation.items, function(value, key) {
+  angular.forEach(Navigation.items, (value, key) => {
     navFeatures[key] = lodash.merge(value, navFeatures[key]);
-    angular.forEach(value.secondary, function(secondaryValue, secondaryKey) {
-      actionFeatures[secondaryKey] = lodash.merge(secondaryValue, actionFeatures[secondaryKey]);
-    });
   });
   RBAC.setNavFeatures(navFeatures);
-  RBAC.setActionFeatures(actionFeatures);
 
   function updateCount(count, key) {
     if (navFeatures[key].show) {
@@ -42,8 +37,6 @@ function enterApplication(Polling, lodash, NavCounts, Navigation, RBAC) {
       if (count.interval) {
         Polling.start(key, count.func, count.interval);
       }
-    } else {
-      return false;
     }
   }
 }
