@@ -27,6 +27,12 @@
                      on-update="vm.listActionDisable($config, $changes)"
                      menu-right="true">
     </custom-dropdown>
+    <custom-dropdown
+      ng-if="vm.viewType === 'listView'"
+      config="item"
+      ng-repeat="item in vm.listHelpers"
+      menu-right="true">
+    </custom-dropdown>
   </actions>
 </div>
 <div ng-if="vm.viewType == 'cardView'" class="list-view-container section-container paged-container">
@@ -39,7 +45,7 @@
     </ss-card>
   </div>
 </div>
-<div ng-if="vm.viewType == 'listView'"  class="list-view-container section-container paged-container explorer-list">
+<div ng-if="vm.viewType == 'listView'" class="list-view-container section-container paged-container explorer-list">
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading" class="list-view-container section-container"
        confirmation
