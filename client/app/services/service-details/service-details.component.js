@@ -111,27 +111,28 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
         isDisabled: false,
         tooltipText: __('Power Operations'),
       };
+      // TODO: once service_control rbac operations are available, gate the following actions
       const powerOptionsActions = [
         {
           name: __('Start'),
           actionName: 'start',
           title: __('Start the Service'),
           actionFn: startService,
-          permission: vm.permissions.powerOn,
+          permission: true,
           isDisabled: disableStartButton(vm.service),
         }, {
           name: __('Stop'),
           actionName: 'stop',
           title: __('Stop the Service'),
           actionFn: stopService,
-          permission: vm.permissions.powerOff,
+          permission: true,
           isDisabled: disableStopButton(vm.service),
         }, {
           name: __('Suspend'),
           actionName: 'suspend',
           title: __('Suspend the Service'),
           actionFn: suspendService,
-          permission: vm.permissions.suspend,
+          permission: true,
           isDisabled: disableSuspendButton(vm.service),
         },
       ];
@@ -294,20 +295,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       EventNotifications.error(__('There was an error retiring this service.'));
     }
   }
-  function retireVM(resource) {
-    const resourceId = resource.id;
-    const data = {
-      action: 'retire',
-    };
-    CollectionsApi.post('vms', resourceId, {}, data).then(retireSuccess, retireFailure);
-    function retireSuccess() {
-      EventNotifications.success(resource.name + __(' was retired.'));
-    }
 
-    function retireFailure() {
-      EventNotifications.error(__('There was an error retiring this resource.'));
-    }
-  }
   function createResourceGroups(service) {
     return {
       title: __('Compute'),
@@ -353,6 +341,12 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   function suspendVM(item, isDisabled) {
     if (!isDisabled) {
       PowerOperations.suspendVm(item);
+    }
+  }
+
+  function retireVM(item, isDisabled) {
+    if (!isDisabled) {
+      PowerOperations.retireVM(item);
     }
   }
 

@@ -12,6 +12,7 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
     startVm: startVm,
     stopVm: stopVm,
     suspendVm: suspendVm,
+    retireVM: retireVm,
     allowStartVm: allowStart,
     allowStopVm: allowStop,
     allowSuspendVm: allowSuspend,
@@ -46,7 +47,7 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
 
   function allowStop(item) {
     return !powerOperationUnknownState(item)
-    && !powerOperationOffState(item);
+      && !powerOperationOffState(item);
   }
 
   function allowSuspend(item) {
@@ -147,26 +148,46 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
     vmPowerOperation('suspend', item);
   }
 
+  function retireVm(item) {
+    item.power_state = '';
+    item.power_status = 'retiring';
+    vmPowerOperation('retire', item);
+  }
+
   function powerOperation(apiType, powerAction, item, itemType) {
     CollectionsApi.post(apiType, item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure);
 
-    function actionSuccess(_response) {
-      if (powerAction === 'start') {
-        EventNotifications.success(sprintf(__("%s was started"), item.name));
-      } else if (powerAction === 'stop') {
-        EventNotifications.success(sprintf(__("%s was stopped"), item.name));
-      } else if (powerAction === 'suspend') {
-        EventNotifications.success(sprintf(__("%s was suspended"), item.name));
+    function actionSuccess(response) {
+      switch (powerAction) {
+        case 'start':
+          EventNotifications.success(sprintf(__("%s was started. " + response.message), item.name));
+          break;
+        case 'stop':
+          EventNotifications.success(sprintf(__("%s was stopped. " + response.message), item.name));
+          break;
+        case 'suspend':
+          EventNotifications.success(sprintf(__("%s was suspended. " + response.message), item.name));
+          break;
+        case 'retire':
+          EventNotifications.success(sprintf(__("%s was retired. " + response.message), item.name));
+          break;
       }
     }
 
     function actionFailure() {
-      if (powerAction === 'start') {
-        EventNotifications.error(sprintf(__('There was an error starting this %s.'), itemType));
-      } else if (powerAction === 'stop') {
-        EventNotifications.error(sprintf(__('There was an error stopping this %s.'), itemType));
-      } else if (powerAction === 'suspend') {
-        EventNotifications.error(sprintf(__('There was an error suspending this %s.'), itemType));
+      switch (powerAction) {
+        case 'start':
+          EventNotifications.error(sprintf(__('There was an error starting this %s.'), itemType));
+          break;
+        case 'stop':
+          EventNotifications.error(sprintf(__('There was an error stopping this %s.'), itemType));
+          break;
+        case 'suspend':
+          EventNotifications.error(sprintf(__('There was an error suspending this %s.'), itemType));
+          break;
+        case 'retire':
+          EventNotifications.error(sprintf(__('There was an error retiring this %s.'), itemType));
+          break;
       }
     }
   }

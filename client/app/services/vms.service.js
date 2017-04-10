@@ -15,6 +15,7 @@ export function VmsService(CollectionsApi, RBAC) {
     setSort: setSort,
     getFilters: getFilters,
     setFilters: setFilters,
+    getInstance: getInstance,
     getSnapshots: getSnapshots,
     getPermissions: getPermissions,
     revertSnapshot: revertSnapshot,
@@ -38,7 +39,60 @@ export function VmsService(CollectionsApi, RBAC) {
 
   function getVm(vmId) {
     const options = {
-      attributes: ['service'],
+      attributes: [
+        'advanced_settings',
+        'boot_time',
+        'cloud',
+        'compliances',
+        'cpu_affinity',
+        'created_on',
+        'disks',
+        'disks_aligned',
+        'drift_states',
+        'ems_cluster',
+        'ext_management_system',
+        'evm_owner',
+        'files',
+        'guest_applications',
+        'groups',
+        'guid',
+        'hardware',
+        'host',
+        'hostnames',
+        'id',
+        'ipaddresses',
+        'kernel_drivers',
+        'lans',
+        'last_sync_on',
+        'linux_initprocesses',
+        'last_compliance_status',
+        'miq_group',
+        'miq_provision',
+        'miq_provision_requests',
+        'miq_provision_vms',
+        'name',
+        'num_disks',
+        'parent_resource_pool',
+        'power_state',
+        'retired',
+        'retires_on',
+        'scan_histories',
+        'service',
+        'service.miq_request',
+        'service_resources',
+        'snapshots',
+        'state_changed_on',
+        'storages',
+        'tags',
+        'template',
+        'thin_provisioned',
+        'tools_status',
+        'uid_ems',
+        'users',
+        'vendor',
+        'v_total_snapshots',
+        'vmsafe_enable',
+      ],
       expand: [],
     };
 
@@ -95,6 +149,30 @@ export function VmsService(CollectionsApi, RBAC) {
     };
 
     return CollectionsApi.post(collection + '/' + vmId + '/snapshots/' + snapshotId, null, {}, options);
+  }
+
+  function getInstance(vmId) {
+    const options = {
+      attributes: [
+        'availability_zone',
+        'cloud_networks',
+        'cloud_subnets',
+        'cloud_tenant',
+        'cloud_volumes',
+        'flavor',
+        'floating_ip_addresses',
+        'key_pairs',
+        'load_balancers',
+        'mac_addresses',
+        'network_ports',
+        'network_routers',
+        'miq_provision_template',
+        'orchestration_stack',
+        'security_groups',
+      ],
+    };
+
+    return CollectionsApi.get('instances', vmId, options);
   }
 
   // Private
