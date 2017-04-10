@@ -129,7 +129,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, E
         permission: vm.permissions.instanceSuspend,
         isDisabled: vm.vmDetails.power_state !== 'on',
       }, {
-        icon: 'fa fa-bed',
+        icon: 'fa fa-clock-o',
         name: __('Retire'),
         actionName: 'retire',
         title: __('Retire the Service'),
