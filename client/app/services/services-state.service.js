@@ -106,12 +106,14 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
       setRetireDate: RBAC.hasAny(['service_control', 'service_retire']),
       editTags: RBAC.hasAny(['service_control', 'service_tag']),
       viewAnsible: RBAC.hasAny(['configuration_script_view', 'configuration_scripts_accord']),
-      powerOn: RBAC.hasAny(['instance_control', 'instance_start']),
-      powerOff: RBAC.hasAny(['instance_control', 'instance_stop']),
+      
+      instanceStart: RBAC.hasAny(['instance_control', 'instance_start']),
+      instanceStop: RBAC.hasAny(['instance_control', 'instance_stop']),
+      instanceSuspend: RBAC.hasAny(['instance_control', 'instance_suspend']),
+      instanceRetire: RBAC.hasAny(['instance_control', 'instance_retire']),
       cockpit: RBAC.has('cockpit_console'),
       console: RBAC.has('vm_console'),
       viewSnapshots: RBAC.hasAny(['vm_snapshot', 'vm_snapshot_view', 'cloud_volume_snapshot', 'cloud_volume_snapshot_view']),
-      suspend: RBAC.hasAny(['instance_control', 'instance_suspend']),
     };
   }
 
