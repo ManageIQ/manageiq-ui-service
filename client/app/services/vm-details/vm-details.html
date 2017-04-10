@@ -107,7 +107,7 @@
                    ng-if="vm.vmDetails.instance.cloud_networks.length > 0"></detail-reveal>
     <detail-reveal title="Cloud Subnet" detail="{{ vm.vmDetails.instance.cloud_subnets[0].name }}"
                    ng-if="vm.vmDetails.instance.cloud_subnets.length > 0"></detail-reveal>
-    <detail-reveal title="Stack" detail="{{ vm.vmDetails.instance.orchestrationStack }}"
+    <detail-reveal title="Stack" detail="{{ vm.vmDetails.instance.orchestrationStack.name }}"
                    ng-if="vm.vmDetails.instance"></detail-reveal>
     <detail-reveal title="Cloud Networks" detail="{{ vm.vmDetails.instance.cloud_networks.length }}"
                    ng-if="vm.vmDetails.instance"></detail-reveal>
