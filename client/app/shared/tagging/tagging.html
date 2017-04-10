@@ -9,7 +9,7 @@
             ng-options="item as item.categorization.description for item in vm.tags.filtered"
             ng-model="vm.tags.selectedTag">
     </select>
-    <a><span class="fa fa-plus tag-add" ng-click="vm.addTag()"></span></a>
+    <a><span class="fa fa-plus tag-add" ng-if="!vm.tags.selectedTag.placeholder" ng-click="vm.addTag()"></span></a>
 </div>
 
 <div ng-if="vm.tagsOfItem && !vm.tagsOfItem.length" class="no-tag-header" translate>There are no tags for this item.</div>
