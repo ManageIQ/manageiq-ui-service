@@ -14,6 +14,12 @@ export const TaggingComponent = {
 /** @ngInject */
 function TaggingController($scope, $filter, $q, $log, CollectionsApi, TaggingService, lodash) {
   var vm = this;
+  const placeholderCategorization = {
+    placeholder: true,
+    categorization: {
+      description: __('Select a value to assign'),
+    },
+  };
 
   vm.tags = {};
 
@@ -89,9 +95,11 @@ function TaggingController($scope, $filter, $q, $log, CollectionsApi, TaggingSer
   }
 
   vm.showTagDropdowns = false;
+
   $scope.$watch('vm.tags.selectedCategory', function() {
     vm.tags.filtered = $filter('filter')(vm.tags.all, matchCategory);
     if (vm.tags.filtered) {
+      vm.tags.filtered[0] = placeholderCategorization;
       vm.tags.selectedTag = vm.tags.filtered[0];
       vm.showTagDropdowns = true;
     }
