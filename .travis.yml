@@ -8,7 +8,7 @@ cache:
   directories:
   - node_modules
 before_install:
-- npm install -g yarn@0.19.1
+- npm install -g yarn@0.22.0
 install:
 - yarn install --force
 after_script:
