@@ -27,7 +27,7 @@ function getStates() {
 function resolveService($stateParams, CollectionsApi) {
   var options = {attributes: ['picture', 'picture.image_href']};
 
-  return CollectionsApi.get('services/', $stateParams.serviceId, options);
+  return CollectionsApi.get('services', $stateParams.serviceId, options);
 }
 
 /** @ngInject */
