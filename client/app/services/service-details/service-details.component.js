@@ -91,9 +91,11 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   }
 
   function hasCustomButtons(service) {
-    return angular.isDefined(service.custom_actions)
-      && angular.isArray(service.custom_actions.buttons)
-      && service.custom_actions.buttons.length > 0;
+    const actions = service.custom_actions || {};
+    const groups = actions.button_groups || [];
+    const buttons = [].concat(actions.buttons, ...groups.map((g) => g.buttons));
+
+    return lodash.compact(buttons).length > 0;
   }
 
   function getListActions() {
