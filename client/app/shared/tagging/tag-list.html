@@ -1,0 +1,16 @@
+<div class="tag-list">
+  <i class="tag-list__empty-state" ng-if="vm.tags && !vm.tags.length" translate>
+    There are no tags for this item.
+  </i>
+
+  <ul class="tag-list__list">
+    <li class="tag-list__tag" ng-repeat="tag in vm.tags">
+      <span class="label label-info">
+        {{tag.categorization.displayName}}
+        <a class="tag-list__dismiss-icon" ng-if="vm.onRemoveTag">
+          <span class="pficon pficon-close" ng-click="vm.dismissTag(tag)"></span>
+        </a>
+      </span>
+    </li>
+  </ul>
+</div>

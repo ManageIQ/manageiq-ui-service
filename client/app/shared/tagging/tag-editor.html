@@ -1,0 +1,15 @@
+<div ng-class="{'spinner': !vm.showTagDropdowns, 'tag-spinner': !vm.showTagDropdowns}" class="spinner spinner-xs spinner-inline"></div>
+
+<div ng-show="vm.showTagDropdowns">
+  <select class="tag-category-select"
+          ng-options="category as category.description for category in vm.tags.categories"
+          ng-model="vm.tags.selectedCategory">
+  </select>
+  <select class="tag-value-select"
+          ng-options="item as item.categorization.description for item in vm.tags.filtered"
+          ng-model="vm.tags.selectedTag">
+  </select>
+  <a><span class="fa fa-plus tag-add" ng-click="vm.addTag()"></span></a>
+</div>
+
+<tag-list tags="vm.tagsOfItem" on-remove-tag="vm.removeTag($event)"></tag-list>

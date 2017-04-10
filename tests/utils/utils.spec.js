@@ -13,3 +13,24 @@ function eventFire(el, etype){
 function findIn(element, selector) {
   return angular.element(element[0].querySelector(selector));
 }
+
+function componentSpyOn(name) {
+  function componentSpy($provide) {
+    componentSpy.bindings = [];
+
+    $provide.decorator(name + 'Directive', ($delegate) => {
+      let component = $delegate[0];
+
+      component.template = '';
+      component.controller = class {
+        constructor() {
+          componentSpy.bindings.push(this);
+        }
+      };
+
+      return $delegate;
+    });
+  }
+
+  return componentSpy;
+}
