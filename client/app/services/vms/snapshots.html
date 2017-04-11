@@ -2,7 +2,7 @@
   <span>
     <ol class="breadcrumb">
       <li ng-if="vm.vm.service.name">
-        <a ui-sref="services">{{'Services'|translate}}</a>
+        <a ui-sref="services">{{'My Services'|translate}}</a>
       </li>
       <li>
         <a ng-if="vm.vm.service.name" ui-sref="services.details({serviceId: vm.vm.service.id})">{{ ::vm.vm.service.name }}</a>
