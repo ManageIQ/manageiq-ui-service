@@ -13,7 +13,7 @@ export const ProcessSnapshotsModalComponent = {
 };
 
 /** @ngInject */
-function ComponentController($controller, $state, EventNotifications, VmsService, sprintf) {
+function ComponentController($controller, $state, EventNotifications, VmsService, ActionNotifications) {
   const vm = this;
 
   vm.$onInit = function() {
@@ -33,10 +33,10 @@ function ComponentController($controller, $state, EventNotifications, VmsService
     VmsService.createSnapshots(vm.vm.id, vm.modalData).then(success, failure);
   }
 
-  function success() {
+  function success(response) {
     vm.close();
     $state.go($state.current, {}, {reload: true});
-    EventNotifications.success(sprintf(__("Creating snapshot %s of VM %s."), vm.modalData.name, vm.vm.name));
+    ActionNotifications.add(response, __('Creating snapshot.'), __('Error creating snapshot.'));
   }
 
   function failure(response) {
