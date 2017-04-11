@@ -10,8 +10,8 @@ export function navConfig(NavigationProvider) {
   });
 
   const services = createItem({
-    title: N_('Services'),
-    originalTitle: 'Services',
+    title: N_('My Services'),
+    originalTitle: 'My Services',
     state: 'services',
     iconClass: 'pficon pficon-service',
     badgeTooltip: N_('Total services ordered, both active and retired'),
@@ -37,8 +37,8 @@ export function navConfig(NavigationProvider) {
   });
 
   const catalogs = createItem({
-    title: N_('Catalogs'),
-    originalTitle: 'Catalogs',
+    title: N_('Service Catalogs'),
+    originalTitle: 'Service Catalogs',
     state: 'catalogs',
     iconClass: 'fa fa-folder-open-o',
     badgeTooltip: N_('The total number of available catalogs'),
@@ -162,7 +162,7 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
   function fetchTemplates() {
     CollectionsApi.query('orchestration_templates', options)
       .then(lodash.partial(updateCount, 'templates'));
-  } 
+  }
 */
   function updateCount(item, data) {
     Navigation.items[item].badges[0].count = data.subcount;
