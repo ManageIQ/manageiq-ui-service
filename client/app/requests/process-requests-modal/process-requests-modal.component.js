@@ -13,7 +13,7 @@ export const ProcessRequestsModalComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, $controller, lodash, CollectionsApi, EventNotifications) {
+function ComponentController($state, $controller, lodash, CollectionsApi, EventNotifications, ActionNotifications) {
   var vm = this;
 
   angular.extend(vm, {
@@ -40,14 +40,14 @@ function ComponentController($state, $controller, lodash, CollectionsApi, EventN
       item.reason = vm.modalData.reason;
     }
 
-    function saveSuccess() {
+    function saveSuccess(response) {
       vm.close();
       switch (vm.modalType) {
         case "approve":
-          EventNotifications.success(__("Requests Approved"));
+          ActionNotifications.add(response, __('Request approved.'), __('Error approving request.'));
           break;
         case "deny":
-          EventNotifications.success(__("Requests Denied"));
+          ActionNotifications.add(response, __('Request denied.'), __('Error denying request.'));
           break;
       }
       $state.go($state.current, {}, {reload: true});

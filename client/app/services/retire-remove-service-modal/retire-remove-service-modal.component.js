@@ -12,7 +12,7 @@ export const RetireRemoveServiceModalComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, CollectionsApi, EventNotifications) {
+function ComponentController($state, CollectionsApi, EventNotifications, ActionNotifications) {
   var vm = this;
 
   angular.extend(vm, {
@@ -34,14 +34,14 @@ function ComponentController($state, CollectionsApi, EventNotifications) {
     };
     CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure);
 
-    function saveSuccess() {
+    function saveSuccess(response) {
       vm.close();
       switch (vm.resolve.modalType) {
         case "retire":
           EventNotifications.success(__("Services Retired"));
           break;
         case "remove":
-          EventNotifications.success(__("Services Removed"));
+          ActionNotifications.add(response, __('Service deleting.'), __('Error deleting service.'));
           break;
       }
       $state.go($state.current, {}, {reload: true});

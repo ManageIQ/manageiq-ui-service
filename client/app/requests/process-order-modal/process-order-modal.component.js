@@ -12,7 +12,7 @@ export const ProcessOrderModalComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, sprintf, CollectionsApi, EventNotifications) {
+function ComponentController($state, CollectionsApi, EventNotifications, ActionNotifications) {
   var vm = this;
 
   angular.extend(vm, {
@@ -32,14 +32,14 @@ function ComponentController($state, sprintf, CollectionsApi, EventNotifications
     };
     CollectionsApi.post('service_orders', '', {}, data).then(saveSuccess, saveFailure);
 
-    function saveSuccess() {
+    function saveSuccess(response) {
       vm.close();
-      EventNotifications.success(sprintf(__('%s was deleted.'), vm.order.name));
+      ActionNotifications.add(response, __('Deleting order.'), __('Error deleting order.'));
       $state.go($state.current, {}, {reload: true});
     }
 
     function saveFailure() {
-      EventNotifications.error(sprintf(__('There was an error deleting %s.'), vm.order.name));
+      EventNotifications.error(__('There was an error removing order'));
     }
   }
 }

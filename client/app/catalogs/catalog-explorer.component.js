@@ -10,7 +10,7 @@ export const CatalogExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, CatalogsState, sprintf, ListView, EventNotifications, lodash) {
+function ComponentController($state, CatalogsState, sprintf, ListView, EventNotifications, lodash, ActionNotifications) {
   var vm = this;
   vm.permissions = CatalogsState.getPermissions();
 
@@ -83,17 +83,18 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
     }
 
     if (deleteCatalogs.length > 0) {
-      CatalogsState.deleteCatalogs(deleteCatalogs).then(removeSuccess,
-        removeFailure);
+      CatalogsState.deleteCatalogs(deleteCatalogs).then(removeSuccess, removeFailure);
     }
     vm.confirmDelete = false;
     vm.catalogsToDelete.splice(0, vm.catalogsToDelete.length);
 
-    function removeSuccess() {
+    function removeSuccess(response) {
+      ActionNotifications.add(response, __('Deleting catalog.', 'Error deleting catalog.'));
       resolveCatalogs(vm.limit, 0);
     }
 
     function removeFailure() {
+      EventNotifications.error(__('There was an error deleting catalogs.'));
       resolveCatalogs(vm.limit, 0);
     }
   }
