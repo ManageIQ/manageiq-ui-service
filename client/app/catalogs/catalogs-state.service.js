@@ -247,15 +247,7 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
       resources: catalogIds,
     };
 
-    function success() {
-      EventNotifications.success(__('Catalog(s) were successfully deleted.'));
-    }
-
-    function failure() {
-      EventNotifications.error(__('There was an error deleting the catalog(s).'));
-    }
-
-    return CollectionsApi.post('service_catalogs', null, {}, options).then(success, failure);
+    return CollectionsApi.post('service_catalogs', null, {}, options);
   }
 
   function viewType(viewType) {
