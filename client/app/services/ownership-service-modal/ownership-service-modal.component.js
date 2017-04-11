@@ -13,7 +13,7 @@ export const OwnershipServiceModalComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, lodash, CollectionsApi, EventNotifications) {
+function ComponentController($state, lodash, CollectionsApi, EventNotifications, ActionNotifications) {
   var vm = this;
 
   angular.extend(vm, {
@@ -62,14 +62,14 @@ function ComponentController($state, lodash, CollectionsApi, EventNotifications)
 
     CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure);
 
-    function saveSuccess() {
+    function saveSuccess(response) {
       vm.close();
-      EventNotifications.success(__("Ownership was saved."));
+      ActionNotifications.add(response, __('Setting ownership.'), __('Error setting ownership.'));
       $state.go($state.current, {}, {reload: true});
     }
 
     function saveFailure() {
-      EventNotifications.error(__('There was an error saving ownership of this service.'));
+      EventNotifications.error(__('There was an error saving ownership.'));
     }
 
     function setOwnership(service) {
