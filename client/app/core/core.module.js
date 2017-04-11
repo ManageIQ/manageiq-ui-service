@@ -17,6 +17,7 @@ import {
 } from './navigation.config.js';
 
 // Core
+import { ActionNotificationsFactory } from './action-notifications.service';
 import { ApplianceInfo } from './appliance-info.service.js';
 import { AuthenticationApiFactory } from './authentication-api.factory.js';
 import { BaseModalController } from './modal/base-modal-controller.js';
@@ -76,6 +77,7 @@ export const CoreModule = angular
   .controller('NavigationController', NavigationController)
   .component('shoppingCart', ShoppingCartComponent)
   .directive('languageSwitcher', LanguageSwitcherDirective)
+  .factory('ActionNotifications', ActionNotificationsFactory)
   .factory('ApplianceInfo', ApplianceInfo)
   .factory('AuthenticationApi', AuthenticationApiFactory)
   .factory('Chargeback', ChargebackFactory)

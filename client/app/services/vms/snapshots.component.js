@@ -12,7 +12,7 @@ export const VmSnapshotsComponent = {
 };
 
 /** @ngInject */
-function ComponentController(VmsService, sprintf, EventNotifications, ListView, ModalService) {
+function ComponentController(VmsService, sprintf, EventNotifications, ListView, ModalService, ActionNotifications) {
   const vm = this;
 
   vm.$onInit = function() {
@@ -142,13 +142,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
     VmsService.deleteSnapshots(vm.vm.id, vm.snapshotsToRemove).then(success, failure);
 
     function success(response) {
-      response.results.forEach((response) => {
-        if (response.success) {
-          EventNotifications.success(__('Success deleting snapshot. ') + response.message);
-        } else {
-          EventNotifications.error(__('Error deleting snapshot. ') + response.message);
-        }
-      });
+      ActionNotifications.add(response, __('Deleting snapshot.'), __('Error deleting snapshot.'));
       vm.snapshotsToRemove = undefined;
       resolveSnapshots();
     }
@@ -216,15 +210,15 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
   }
 
   function revertSnapshot(_action, item) {
-    VmsService.revertSnapshot(vm.vm.id, item.id).then(handleResponse);
+    VmsService.revertSnapshot(vm.vm.id, item.id).then(success, failure);
 
-    function handleResponse(response) {
-      if (response.success) {
-        EventNotifications.success(__('Success reverting snapshot. ') + response.message);
-      } else {
-        EventNotifications.error(__('Error reverting snapshot. ') + response.message);
-      }
+    function success(response) {
+      ActionNotifications.add({results: [response]}, __('Reverting snapshot.'), __('Error reverting snapshot.'));
       resolveSnapshots();
+    }
+
+    function failure(response) {
+      EventNotifications.error(response.data.error.message);
     }
   }
 
