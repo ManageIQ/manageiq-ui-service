@@ -63,9 +63,9 @@ export function CatalogsStateFactory(CollectionsApi, EventNotifications, sprintf
 
   function getPermissions() {
     const permissions = {
-      create: RBAC.hasAny(['catalogitem_new', 'catalogitem_admin']),
-      edit: RBAC.hasAny(['catalogitem_edit', 'catalogitem_admin']),
-      delete: RBAC.hasAny(['catalogitem_delete', 'catalogitem_admin']),
+      create: RBAC.hasAny(['st_catalog_new', 'st_catalog_admin']),
+      edit: RBAC.hasAny(['st_catalog_edit', 'st_catalog_admin']),
+      delete: RBAC.hasAny(['st_catalog_delete', 'st_catalog_admin']),
     };
 
     return permissions;
