@@ -36,9 +36,29 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
       var resultObj = result.result[dialogField.name];
 
       updateAttributesForDialogField(dialogField, resultObj);
+      if (dialogField.type === 'DialogFieldDropDownList') {
+        updateDialogSortOrder(dialogField);
+      }
+ 
       triggerAutoRefresh(dialogField);
     }
+    function updateDialogSortOrder(dialogField) {
+      var values = dialogField.values;
+      var sortDirection = dialogField.options.sort_order;
+      var sortByValue = 0; // These are constants that are used to refer to array positions
+      var sortByDescription = 1; // These are constants that are used to refer to array positions
+      var sortBy = (dialogField.options.sort_by === 'value' ? sortByValue : sortByDescription);
+      dialogField.values = values.sort((option1, option2) => {
+        var trueValue = -1;
+        var falseValue = 1;
+        if (sortDirection !== 'ascending') {
+          trueValue = 1;
+          falseValue = -1;
+        }
 
+        return option2[sortBy] > option1[sortBy]  ? trueValue : falseValue;
+      });
+    }
     function refreshFailure(result) {
       EventNotifications.error('There was an error refreshing this dialog: ' + result);
     }
@@ -98,7 +118,6 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
 
   function updateAttributesForDialogField(dialogField, newDialogField) {
     copyDynamicAttributes(dialogField, newDialogField);
-
     selectDefaultValue(dialogField, newDialogField);
 
     dialogField.beingRefreshed = false;
