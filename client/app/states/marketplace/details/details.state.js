@@ -52,6 +52,7 @@
     vm.addToCart = addToCart;
     vm.cartAllowed = ShoppingCart.allowed;
     vm.alreadyInCart = alreadyInCart;
+    vm.addToCartDisabled = addToCartDisabled;
 
     var autoRefreshableDialogFields = [];
     var allDialogFields = [];
@@ -72,6 +73,18 @@
       dialogUrl,
       vm.serviceTemplate.id
     );
+
+    function addToCartDisabled() {
+      return (!vm.cartAllowed() || vm.addingToCart) || anyDialogsBeingRefreshed();
+    }
+
+    function anyDialogsBeingRefreshed() {
+      function checkRefreshing(dialogField) {
+        return dialogField.beingRefreshed;
+      }
+
+      return allDialogFields.some(checkRefreshing);
+    }
 
     function dataForSubmit(href) {
       var dialogFieldData = {};
