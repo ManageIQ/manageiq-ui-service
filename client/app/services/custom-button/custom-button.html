@@ -1,28 +1,34 @@
-<span>
-  <div uib-dropdown class="btn-group custom-actions-menu">
-    <button uib-dropdown-toggle class="btn btn-default custom-button"
-      uib-tooltip="{{'Custom Actions'|translate}}" tooltip-placement="bottom" type="button" id="button_custom_actions">
-      {{'Custom Actions'|translate}}
+<span class="pull-left" ng-repeat="button in vm.customActions.buttons">
+  <button class="btn btn-default custom-button-action"
+          ng-if="vm.hasRequiredRole(button)"
+          ng-click="vm.invokeCustomAction(button)"
+          uib-tooltip="{{button.description}}"
+          tooltip-placement="top">
+    {{ button.name }}
+  </button>
+</span>
+<span class="pull-left" ng-repeat="buttonGroup in vm.customActions.button_groups">
+  <div uib-dropdown class="btn-group">
+    <button class="btn btn-default custom-button-menu"
+            id="{{buttonGroup.id}}"
+            uib-dropdown-toggle
+            uib-tooltip="{{buttonGroup.description}}"
+            tooltip-placement="top">
+      {{ buttonGroup.name.split('|')[0] }}
       <span class="caret"></span>
     </button>
-    <ul uib-dropdown-menu role="menu" aria-labelledby="button_custom_actions">
-      <li ng-repeat="button in vm.customActions.buttons" role="presentation">
-        <a role="menuitem" tabindex="-1" class="custom-button-action"
-          ng-if="vm.hasRequiredRole(button)"
-          ng-click="vm.invokeCustomAction(button)">
+    <ul uib-dropdown-menu role="menu" aria-labelledby="{{buttonGroup.id}}">
+      <li ng-repeat="button in buttonGroup.buttons" role="presentation">
+        <a class="custom-button-action"
+           role="menuitem"
+           tabindex="-1"
+           ng-if="vm.hasRequiredRole(button)"
+           ng-click="vm.invokeCustomAction(button)"
+           uib-tooltip="{{button.description}}"
+           tooltip-placement="left">
           {{ button.name }}
         </a>
       </li>
-      <div ng-repeat="buttonGroup in vm.customActions.button_groups">
-        <li class="dropdown-header">{{ buttonGroup.name.split('|')[0] }}</li>
-        <li ng-repeat="button in buttonGroup.buttons" role="presentation">
-          <a role="menuitem" tabindex="-1" class="custom-button-action"
-            ng-if="vm.hasRequiredRole(button)"
-            ng-click="vm.invokeCustomAction(button)">
-            {{ button.name }}
-          </a>
-        </li>
-      </div>
     </ul>
   </div>
 </span>
