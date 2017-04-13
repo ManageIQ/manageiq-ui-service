@@ -41,7 +41,7 @@ var config = {
     browser.ignoreSynchronization = true;
     browser.waitForAngularEnabled(false);
 
-    browser.driver.manage().window().maximize();
+    browser.driver.manage().window().setSize(1400, 900);
     browser.driver.get(env.baseUrl );
     browser.driver.findElement(by.id('inputUsername')).sendKeys('admin');
     browser.driver.findElement(by.id('inputPassword')).sendKeys('smartvm');
