@@ -37,13 +37,6 @@ describe('CustomButton component', () => {
     apiPostStub = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve());
   }));
 
-  it('displays a "Custom Actions" dropdown', () => {
-    const dropdown = findIn(element, '#button_custom_actions');
-
-    expect(dropdown.hasClass('dropdown-toggle')).to.be.true;
-    expect(dropdown.text().trim()).to.eq('Custom Actions');
-  });
-
   it('displays a button for each custom action', () => {
     const numActions = parentScope.customActions.buttons.length;
     const actions = element[0].querySelectorAll('.custom-button-action');
@@ -90,7 +83,7 @@ describe('CustomButton component', () => {
   describe('#invokeCustomAction', () => {
     describe('when the action has a dialog', () => {
       it('navigates to the "services.custom_button_details" state', () => {
-        const action = findIn(element, 'a.custom-button-action');
+        const action = findIn(element, 'button.custom-button-action');
         const nextState = 'services.custom_button_details';
 
         action.triggerHandler('click');
