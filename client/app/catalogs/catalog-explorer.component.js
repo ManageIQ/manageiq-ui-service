@@ -11,7 +11,7 @@ export const CatalogExplorerComponent = {
 
 /** @ngInject */
 function ComponentController($state, CatalogsState, sprintf, ListView, EventNotifications, lodash, ActionNotifications) {
-  var vm = this;
+  const vm = this;
   vm.permissions = CatalogsState.getPermissions();
 
   vm.$onInit = function() {
@@ -44,11 +44,9 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
       menuActions: getMenuActions(),
       listActions: getListActions(),
       listHelpers: getListHelpers(),
-      toolbarConfig: getToolbarConfig(),
       expandedListConfig: getExpandedListConfig(),
 
     });
-
     resolveCatalogs(vm.limit, 0);
   };
 
@@ -261,12 +259,13 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
   }
 
   function getFilterConfig() {
+    const catalogNames = vm.catalogsList.map((catalog) => catalog.name);
+
     return {
       fields: [
         ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
         ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text'),
-        // ListView.createFilterField('tenant', __('Tenant'), __('Filter by Tenant name'), 'text'),
-        // ListView.createFilterField('service', __('Service'), __('Filter by Service'), 'text'),
+        ListView.createFilterField('name', __('Catalog Name'), __('Filter by Catalog Name'), 'select', catalogNames),
       ],
       resultsCount: 0,
       appliedFilters: CatalogsState.getFilters(),
@@ -320,11 +319,15 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
 
           item.disableRowExpansion = item.service_templates.resources.length === 0;
         }
+        item.service_templates.resources.forEach((service) => {
+          service.catalog_name = item.name;
+        });
         vm.serviceTemplateList.push(item.service_templates.resources);
         vm.catalogsList.push(item);
       });
-      vm.serviceTemplateList = lodash.flattenDeep(vm.serviceTemplateList);
 
+      vm.serviceTemplateList = lodash.flattenDeep(vm.serviceTemplateList);
+      vm.toolbarConfig = getToolbarConfig();
       getFilterCount();
 
       function getFilterCount() {

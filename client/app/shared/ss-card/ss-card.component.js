@@ -4,6 +4,7 @@ import templateUrl from './ss-card.html';
 export const SSCardComponent = {
   bindings: {
     header: '<',
+    subHeader: '<',
     description: '<',
     image: '<',
   },
