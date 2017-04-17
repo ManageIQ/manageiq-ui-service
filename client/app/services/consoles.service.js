@@ -47,8 +47,8 @@ export function ConsolesFactory($window, CollectionsApi, $timeout, $location, Ev
     }
   }
 
-  function consoleError(_error) {
-    EventNotifications.error(__("There was an error opening the console"));
+  function consoleError(error) {
+    EventNotifications.error(__("There was an error opening the console. " + error.message));
   }
 
   function consoleOpen(results) {
