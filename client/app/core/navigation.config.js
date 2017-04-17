@@ -37,8 +37,8 @@ export function navConfig(NavigationProvider) {
   });
 
   const catalogs = createItem({
-    title: N_('Service Catalogs'),
-    originalTitle: 'Service Catalogs',
+    title: N_('Service Catalog'),
+    originalTitle: 'Service Catalog',
     state: 'catalogs',
     iconClass: 'fa fa-folder-open-o',
     badgeTooltip: N_('The total number of available catalogs'),
