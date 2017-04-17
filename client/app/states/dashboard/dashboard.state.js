@@ -56,7 +56,7 @@ function resolveAllRequests(CollectionsApi, RBAC) {
 }
 
 function pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
-  var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=pending_approval'];
+  var filterValues = ['approval_state=pending_approval'];
   var options = {hide: 'resources', filter: filterValues};
 
   return CollectionsApi.query('requests', options);
