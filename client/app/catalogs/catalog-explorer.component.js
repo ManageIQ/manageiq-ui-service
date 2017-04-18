@@ -32,7 +32,6 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
       // Functions
       cancelRemoveCatalog: cancelRemoveCatalog,
       checkApproval: checkApproval,
-      listActionDisable: listActionDisable,
       removeCatalog: removeCatalog,
       resolveCatalogs: resolveCatalogs,
       updatePagination: updatePagination,
@@ -230,22 +229,6 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
         isDisabled: false,
       }],
     }];
-  }
-
-  function listActionDisable(config, items) {
-    switch (config.actionName) {
-      case 'configuration':
-        if (angular.isDefined(config.actions[0])) {
-          config.actions[0].isDisabled = items.length >= 1;
-        }
-        if (angular.isDefined(config.actions[1])) {
-          config.actions[1].isDisabled = items.length !== 1;
-        }
-        if (angular.isDefined(config.actions[2])) {
-          config.actions[2].isDisabled = !items.length >= 1;
-        }
-        break;
-    }
   }
 
   function getToolbarConfig() {
