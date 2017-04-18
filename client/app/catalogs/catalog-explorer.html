@@ -21,12 +21,6 @@
 </div>
 <div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
   <actions>
-    <custom-dropdown config="item" items="vm.selectedItemsList"
-                     items-count="vm.selectedItemsList.length"
-                     ng-repeat="item in vm.listActions"
-                     on-update="vm.listActionDisable($config, $changes)"
-                     menu-right="true">
-    </custom-dropdown>
     <custom-dropdown
       ng-if="vm.viewType === 'listView'"
       config="item"
