@@ -63,6 +63,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, E
       if (response.cloud) {
         VmsService.getInstance(response.id).then((response) => {
           vm.instance = response;
+          processInstanceVariables(vm.instance);
         });
       }
       vm.vmDetails = response;
@@ -78,9 +79,6 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, E
       vm.vmDetails.containerSpecsText = vm.vmDetails.vendor + ': ' + vm.vmDetails.hardware.cpu_total_cores + ' CPUs (' + vm.vmDetails.hardware.cpu_sockets
         + ' sockets x ' + vm.vmDetails.hardware.cpu_cores_per_socket + ' core), ' + vm.vmDetails.hardware.memory_mb + ' MB';
 
-      if (vm.vmDetails.cloud) {
-        processInstanceVariables(vm.instance);
-      }
       if (vm.vmDetails.retired) {
         EventNotifications.warn(sprintf(__("%s is a retired resource"), vm.vmDetails.name), {persistent: true, unread: false});
       }
