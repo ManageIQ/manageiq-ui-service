@@ -111,7 +111,7 @@ function ComponentController(ListView, ReportsService, EventNotifications, Polli
         onSortChange: sortChange,
         isAscending: ReportsService.listActions.getSort().isAscending,
         currentField: ReportsService.listActions.getSort().currentField,
-      }
+      },
     };
 
     return toolbarConfig;
