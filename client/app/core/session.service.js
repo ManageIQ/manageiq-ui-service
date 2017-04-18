@@ -25,6 +25,7 @@ export function SessionFactory($http, $q, $sessionStorage, $window, $state, $coo
   function setAuthToken(token) {
     model.token = token;
     $http.defaults.headers.common['X-Auth-Token'] = model.token;
+    $http.defaults.headers.common['X-Auth-Skip-Token-Renewal'] = 'True';
     $sessionStorage.token = model.token;
   }
 
