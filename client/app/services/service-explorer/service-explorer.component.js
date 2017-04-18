@@ -328,7 +328,6 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     return [
       ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
       ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text'),
-      ListView.createFilterField('v_total_vms', __('Number of VMs'), __('Filter by VMs'), 'numeric'),
 
       // TODO: find a way to filter on virtual attributes
       // ListView.createFilterField('chargeback_relative_cost', __('Relative Cost'), __('Filter by Relative Cost'), 'select', dollars),
