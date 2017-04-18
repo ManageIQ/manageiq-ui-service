@@ -1,6 +1,5 @@
 import {AboutMeState} from "./about-me/about-me.state.js";
 import {CatalogsDetailsState} from "./catalogs/details/details.state.js";
-import {CatalogsEditorState} from "./catalogs/editor/editor.state.js";
 import {CatalogsExplorerState} from "./catalogs/explorer/explorer.state.js";
 import {CatalogsState} from "./catalogs/catalogs.state.js";
 import {CustomButtonDetailsState} from "./services/custom_button_details/custom_button_details.state.js";
@@ -39,7 +38,6 @@ export const AppRoutingModule = angular
   .run(CatalogsState)
   .run(CatalogsExplorerState)
   .run(CatalogsDetailsState)
-  .run(CatalogsEditorState)
   .run(ErrorState)
   .run(HelpState)
   .run(LoginState)
