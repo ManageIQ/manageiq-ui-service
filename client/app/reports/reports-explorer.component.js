@@ -10,13 +10,14 @@ export const ReportsExplorerComponent = {
 /** @ngInject */
 function ComponentController(ListView, ReportsService, EventNotifications, Polling) {
   const vm = this;
-  
   vm.$onInit = activate();
   vm.$onDestroy = function() {
     Polling.stop('reportsListPolling');
   };
 
   function activate() {
+    ReportsService.listActions.setSort(ReportsService.listActions.getSort().currentField, false);
+
     angular.extend(vm, {
       loading: false,
       reports: [],
@@ -28,7 +29,6 @@ function ComponentController(ListView, ReportsService, EventNotifications, Polli
       updatePagination: updatePagination,
       toolbarConfig: getToolbarConfig(),
       listConfig: getListConfig(),
-      sortConfig: getSortConfig(),
       offset: 0,
       pollingInterval: 10000,
     });
@@ -44,14 +44,6 @@ function ComponentController(ListView, ReportsService, EventNotifications, Polli
     };
   }
 
-  function getSortConfig() {
-    return {
-      direction: 'asc',
-      field: 'name',
-      sortOptions: 'alpha',
-    };
-  }
-
   function getFilterFields() {
     return [
       ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
@@ -60,14 +52,13 @@ function ComponentController(ListView, ReportsService, EventNotifications, Polli
 
   function getSortFields() {
     return [
+      ListView.createSortField('updated_on', __('Updated'), 'numeric'),
       ListView.createSortField('name', __('Name'), 'alpha'),
     ];
   }
 
   function sortChange(sortId, direction) {
-    vm.sortConfig.field = sortId.id;
-    vm.sortConfig.direction = direction === true ? 'asc' : 'desc';
-    vm.sortConfig.sortOptions = sortId.sortType === 'alpha' ? 'ignore_case' : '';
+    ReportsService.listActions.setSort(sortId, direction);
 
     resolveReports(vm.limit, 0);
   }
@@ -85,7 +76,7 @@ function ComponentController(ListView, ReportsService, EventNotifications, Polli
     vm.offset = String(offset);
 
     ReportsService.getMinimal(vm.filters).then(setResultTotals);
-    ReportsService.getReports(limit, vm.offset, vm.filters, vm.sortConfig)
+    ReportsService.getReports(limit, vm.offset, vm.filters)
       .then(querySuccess, queryFailure);
 
     function querySuccess(response) {
@@ -104,9 +95,8 @@ function ComponentController(ListView, ReportsService, EventNotifications, Polli
     vm.offset = offset;
     vm.resolveReports(limit, offset);
   }
-  function getToolbarConfig() {
-    const sortFields = getSortFields();
 
+  function getToolbarConfig() {
     const toolbarConfig = {
       actionsConfig: {
         actionsInclude: true,
@@ -117,11 +107,11 @@ function ComponentController(ListView, ReportsService, EventNotifications, Polli
         onFilterChange: filterChange,
       },
       sortConfig: {
-        fields: sortFields,
+        fields: getSortFields(),
         onSortChange: sortChange,
-        isAscending: true,
-        currentField: sortFields[0],
-      },
+        isAscending: ReportsService.listActions.getSort().isAscending,
+        currentField: ReportsService.listActions.getSort().currentField,
+      }
     };
 
     return toolbarConfig;
