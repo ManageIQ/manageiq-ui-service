@@ -319,7 +319,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   }
 
   function openCockpit(item) {
-    if (item['supports_cockpit?'] && item.power_state === 'on') {
+    if (item['supports_launch_cockpit?'] && item.power_state === 'on') {
       $window.open('http://' + item.ipaddresses[0] + ':9090');
     }
   }
