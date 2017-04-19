@@ -20,12 +20,11 @@ export function RBACFactory(lodash) {
     features = productFeatures || {};
 
     const navPermissions = {
-      dashboard: {show: angular.isDefined(productFeatures.dashboard_view)},
       services: {show: angular.isDefined(productFeatures.service_view)},
       orders: {show: angular.isDefined(productFeatures.miq_request_view)},
       requests: {show: angular.isDefined(productFeatures.miq_request_view)},
       catalogs: {show: angular.isDefined(productFeatures.catalog_items_view)},
-      reports: {show: angular.isDefined(productFeatures.miq_report_saved_reports_view || productFeatures.miq_report_view)},
+      // reports: {show: angular.isDefined(productFeatures.miq_report_saved_reports_view || productFeatures.miq_report_view)},
     };
     setNavFeatures(navPermissions);
   }
