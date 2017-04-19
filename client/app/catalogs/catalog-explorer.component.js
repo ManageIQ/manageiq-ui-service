@@ -6,11 +6,10 @@ export const CatalogExplorerComponent = {
   templateUrl,
   controller: ComponentController,
   controllerAs: 'vm',
-  bindToController: true,
 };
 
 /** @ngInject */
-function ComponentController($state, CatalogsState, sprintf, ListView, EventNotifications, lodash, ActionNotifications) {
+function ComponentController($state, CatalogsState, ListView, EventNotifications, lodash) {
   const vm = this;
   vm.permissions = CatalogsState.getPermissions();
 
@@ -18,108 +17,21 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
     angular.extend(vm, {
       title: __('Catalogs'),
       loading: false,
-      confirmDelete: false,
-      catalogsToDelete: [],
-      deleteConfirmationMessage: '',
-      viewType: CatalogsState.viewType(),
       limit: 20,
       filterCount: 0,
       catalogsList: [],
       serviceTemplateList: [],
-      selectedItemsList: [],
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
 
       // Functions
-      cancelRemoveCatalog: cancelRemoveCatalog,
-      checkApproval: checkApproval,
-      removeCatalog: removeCatalog,
       resolveCatalogs: resolveCatalogs,
       updatePagination: updatePagination,
-      viewSelected: viewSelected,
 
       // Config
       cardConfig: getCardConfig(),
-      listConfig: getListConfig(),
-      menuActions: getMenuActions(),
-      listActions: getListActions(),
-      listHelpers: getListHelpers(),
-      expandedListConfig: getExpandedListConfig(),
-
     });
     resolveCatalogs(vm.limit, 0);
   };
-
-  function editCatalog(catalog) {
-    if (angular.isUndefined(catalog.id)) {
-      catalog = vm.selectedItemsList[0];
-    }
-    $state.go('catalogs.editor', {catalogId: catalog.id});
-  }
-
-  function handleEdit(_action, catalog) {
-    editCatalog(catalog);
-  }
-
-  function addCatalog() {
-    $state.go('catalogs.editor');
-  }
-
-  function handleSelectionChange() {
-    vm.selectedItemsList = vm.catalogsList.filter(function(catalog) {
-      return catalog.selected;
-    });
-  }
-
-  function removeCatalog() {
-    var deleteCatalogs;
-
-    if (vm.catalogsToDelete.length > 0) {
-      deleteCatalogs = vm.catalogsToDelete;
-    } else if (vm.catalogToDelete) {
-      deleteCatalogs = [vm.catalogToDelete];
-    }
-
-    if (deleteCatalogs.length > 0) {
-      CatalogsState.deleteCatalogs(deleteCatalogs).then(removeSuccess, removeFailure);
-    }
-    vm.confirmDelete = false;
-    vm.catalogsToDelete.splice(0, vm.catalogsToDelete.length);
-
-    function removeSuccess(response) {
-      ActionNotifications.add(response, __('Deleting catalog.', 'Error deleting catalog.'));
-      resolveCatalogs(vm.limit, 0);
-    }
-
-    function removeFailure() {
-      EventNotifications.error(__('There was an error deleting catalogs.'));
-      resolveCatalogs(vm.limit, 0);
-    }
-  }
-
-  function cancelRemoveCatalog() {
-    vm.catalogToDelete = undefined;
-    vm.catalogsToDelete.splice(0, vm.catalogsToDelete.length);
-    vm.confirmDelete = false;
-  }
-
-  function handleDelete(_action, catalog) {
-    vm.catalogToDelete = catalog;
-    vm.confirmDelete = true;
-    vm.deleteConfirmationMessage = sprintf(__('Are you sure you want to delete catalog %s?'),
-      vm.catalogToDelete.name);
-  }
-
-  function deleteSelectedCatalogs() {
-    vm.catalogsToDelete.splice(0, vm.catalogsToDelete.length);
-    angular.forEach(vm.selectedItemsList, function(selected) {
-      vm.catalogsToDelete.push(selected);
-    });
-
-    vm.confirmDelete = true;
-    vm.deleteConfirmationMessage = sprintf(__('Are you sure you want to delete %d catalogs?'),
-      vm.catalogsToDelete.length);
-  }
-
 
   // Config
 
@@ -129,106 +41,6 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
       selectionMatchProp: 'id',
       onClick: viewDetails,
     };
-  }
-
-  function getListConfig() {
-    return {
-      showSelectBox: checkApproval(),
-      useExpandingRows: true,
-      selectionMatchProp: 'id',
-      onClick: toggleRow,
-      onCheckBoxChange: handleSelectionChange,
-    };
-  }
-
-  function getMenuActions() {
-    const menuActionsConfig = [{
-      name: __('Edit'),
-      title: __('Edit Catalog'),
-      actionFn: handleEdit,
-      permissions: vm.permissions.edit,
-    }, {
-      name: __('Delete'),
-      title: __('Delete Catalog'),
-      actionFn: handleDelete,
-      permissions: vm.permissions.delete,
-    }];
-
-    return menuActionsConfig.filter((item) => item.permissions);
-  }
-
-  function getListActions() {
-    const configurationMenuOptions = [{
-      name: __('Create'),
-      actionName: 'create',
-      title: __('Create new catalog'),
-      actionFn: addCatalog,
-      isDisabled: false,
-      permissions: vm.permissions.create,
-    }, {
-      name: __('Edit'),
-      actionName: 'edit',
-      title: __('Edit selected catalog'),
-      actionFn: editCatalog,
-      isDisabled: false,
-      permissions: vm.permissions.edit,
-    }, {
-      name: __('Delete'),
-      actionName: 'delete',
-      title: __('Delete selected catalogs'),
-      actionFn: deleteSelectedCatalogs,
-      isDisabled: false,
-      permissions: vm.permissions.delete,
-    }];
-
-    const itemActions = [{
-      title: __('Configuration'),
-      name: __('Configuration'),
-      actionName: 'configuration',
-      icon: 'fa fa-cog',
-      isDisabled: false,
-      actions: configurationMenuOptions.filter((item) => item.permissions),
-    }];
-    if (itemActions[0].actions.length === 0) {
-      return [];
-    }
-
-    return itemActions;
-  }
-
-  function getListHelpers() {
-    return [{
-      title: __('List Actions'),
-      name: __(''),
-      actionName: 'listActions',
-      icon: 'fa fa-wrench',
-      isDisabled: false,
-      actions: [{
-        name: __('Select All'),
-        actionName: 'select',
-        title: __('Select All'),
-        actionFn: selectAll,
-        isDisabled: !vm.permissions.edit || !vm.permissions.delete,
-      }, {
-        name: __('Unselect All'),
-        actionName: 'unselect',
-        title: __('Unselect All'),
-        actionFn: unselectAll,
-        isDisabled: !vm.permissions.edit || !vm.permissions.delete,
-      }, {
-        name: __('Expand All'),
-        actionName: 'expand',
-        title: __('Expand All'),
-        actionFn: expandAll,
-        isDisabled: false,
-      }, {
-        name: __('Collapse All'),
-        actionName: 'collapse',
-        title: __('Collapse All'),
-        actionFn: collapseAll,
-        isDisabled: false,
-      }],
-    }];
   }
 
   function getToolbarConfig() {
@@ -274,14 +86,6 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
     };
   }
 
-  function getExpandedListConfig() {
-    return {
-      showSelectBox: false,
-      selectionMatchProp: 'id',
-      onClick: viewDetails,
-    };
-  }
-
   // Private
 
   function resolveCatalogs(limit, offset) {
@@ -294,7 +98,6 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
       vm.loading = false;
       vm.catalogsList = [];
       vm.serviceTemplateList = [];
-      vm.selectedItemsList = [];
 
       response.resources.forEach((item) => {
         if (angular.isDefined(item.service_templates)) {
@@ -336,55 +139,6 @@ function ComponentController($state, CatalogsState, sprintf, ListView, EventNoti
 
   function viewDetails(template) {
     $state.go('catalogs.details', {serviceTemplateId: template.id});
-  }
-
-  function toggleRow(item) {
-    if (!item.disableRowExpansion) {
-      item.isExpanded = !item.isExpanded;
-    }
-  }
-
-  function expandAll() {
-    vm.catalogsList.forEach((item) => {
-      if (!item.disableRowExpansion) {
-        item.isExpanded = true;
-      }
-    });
-  }
-
-  function collapseAll() {
-    vm.catalogsList.forEach((item) => {
-      if (!item.disableRowExpansion) {
-        item.isExpanded = false;
-      }
-    });
-  }
-
-  function selectAll() {
-    vm.catalogsList.forEach((item) => {
-      item.selected = true;
-      vm.selectedItemsList.push(item);
-    });
-  }
-
-  function unselectAll() {
-    vm.selectedItemsList = [];
-    vm.catalogsList.forEach((item) => {
-      item.selected = false;
-    });
-  }
-
-  function checkApproval() {
-    if (vm.permissions.edit || vm.permissions.delete) {
-      return true;
-    }
-
-    return false;
-  }
-
-  function viewSelected(viewId) {
-    CatalogsState.viewType(viewId);
-    vm.viewType = viewId;
   }
 
   function updatePagination(limit, offset) {
