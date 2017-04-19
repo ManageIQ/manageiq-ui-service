@@ -11,11 +11,6 @@
               ng-class="{active: vm.viewType === 'listView'}">
         <i class="fa fa-th-list"></i>
       </button>
-      <button class="btn btn-link"
-              ng-click="vm.viewSelected('cardView')"
-              ng-class="{active: vm.viewType === 'cardView'}">
-        <i class="fa fa-th"></i>
-      </button>
     </div>
   </div>
 </div>
@@ -30,22 +25,6 @@
                      menu-right="true">
     </custom-dropdown>
   </actions>
-</div>
-<div ng-if="vm.viewType == 'cardView'" class="list-view-container section-container paged-container">
-  <loading status="vm.loading"></loading>
-  <div class="container-fluid" ng-if="!vm.loading" pf-card-view id="cardView" config="vm.cardConfig" items="vm.servicesList">
-    <ss-card
-      header="item.name"
-      description="item.description"
-      image="item.picture.image_href">
-    </ss-card>
-    <div>
-      <i class="fa pficon power-icon fa-2x" ng-class="item.power.icon"
-         uib-tooltip="{{item.power.tooltip}}"
-         tooltip-append-to-body="true"
-         tooltip-popup-delay="1000"
-         tooltip-placement="bottom"></i>    </div>
-  </div>
 </div>
 <div ng-if="vm.viewType == 'listView'" class="list-view-container section-container paged-container explorer-list">
   <loading status="vm.loading"></loading>
