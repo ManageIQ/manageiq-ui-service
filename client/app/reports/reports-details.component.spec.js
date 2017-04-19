@@ -23,10 +23,9 @@ describe('Component: reportsDetails', function() {
       scope.$apply();
     }));
 
-    it('should work with $state.go', function() {
+    xit('should work with $state.go', function() {
       $state.go('reports.details',{reportId:'10000000000375'});
       expect($state.is('reports.details'));
     });
   });
-
 });

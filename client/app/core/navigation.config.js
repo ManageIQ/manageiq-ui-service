@@ -44,33 +44,33 @@ export function navConfig(NavigationProvider) {
     badgeTooltip: N_('The total number of available catalogs'),
     originalTooltip: 'The total number of available catalogs',
   });
-/*
-  const dialogs = createItem({
-    title: N_('Dialogs'),
-    originalTitle: 'Dialogs',
-    state: 'dialogs',
-    iconClass: 'pficon pficon-build',
-    badgeTooltip: N_('Total available dialogs'),
-    originalTooltip: 'Total available dialogs',
-  });
-*/
-  const reports = createItem({
-    title: N_('Reports'),
-    originalTitle: 'Reports',
-    state: 'reports',
-    iconClass: 'fa fa-area-chart',
-    badgeTooltip: N_('Reports'),
-    originalTooltip: 'Reports',
-  });
+  /*
+   const dialogs = createItem({
+   title: N_('Dialogs'),
+   originalTitle: 'Dialogs',
+   state: 'dialogs',
+   iconClass: 'pficon pficon-build',
+   badgeTooltip: N_('Total available dialogs'),
+   originalTooltip: 'Total available dialogs',
+   });
 
-  /* const templates = createItem({
-    title: N_('Templates'),
-    originalTitle: 'Templates',
-    state: 'templates',
-    iconClass: 'pficon pficon-builder-image',
-    badgeTooltip: N_('Total available Templates'),
-    originalTooltip: 'Total available Templates',
-  }); */
+   const reports = createItem({
+   title: N_('Reports'),
+   originalTitle: 'Reports',
+   state: 'reports',
+   iconClass: 'fa fa-area-chart',
+   badgeTooltip: N_('Reports'),
+   originalTooltip: 'Reports',
+   });
+
+   const templates = createItem({
+   title: N_('Templates'),
+   originalTitle: 'Templates',
+   state: 'templates',
+   iconClass: 'pficon pficon-builder-image',
+   badgeTooltip: N_('Total available Templates'),
+   originalTooltip: 'Total available Templates',
+   }); */
 
   NavigationProvider.configure({
     items: {
@@ -79,9 +79,9 @@ export function navConfig(NavigationProvider) {
       orders: orders,
       requests: requests,
       catalogs: catalogs,
-   //   dialogs: dialogs,
-      reports: reports,
-   //   templates: templates,
+      //   dialogs: dialogs,
+      //    reports: reports,
+      //   templates: templates,
     },
   });
 
@@ -150,20 +150,21 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
     CollectionsApi.query('service_catalogs', options)
       .then(lodash.partial(updateCount, 'catalogs'));
   }
-/*
-  function fetchDialogs() {
-    angular.extend(options, {
-      filter: ['id>0'],
-    });
-    CollectionsApi.query('service_dialogs', options)
-      .then(lodash.partial(updateCount, 'dialogs'));
-  }
 
-  function fetchTemplates() {
-    CollectionsApi.query('orchestration_templates', options)
-      .then(lodash.partial(updateCount, 'templates'));
-  }
-*/
+  /*
+   function fetchDialogs() {
+   angular.extend(options, {
+   filter: ['id>0'],
+   });
+   CollectionsApi.query('service_dialogs', options)
+   .then(lodash.partial(updateCount, 'dialogs'));
+   }
+
+   function fetchTemplates() {
+   CollectionsApi.query('orchestration_templates', options)
+   .then(lodash.partial(updateCount, 'templates'));
+   }
+   */
   function updateCount(item, data) {
     Navigation.items[item].badges[0].count = data.subcount;
   }
