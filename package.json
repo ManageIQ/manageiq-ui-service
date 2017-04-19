@@ -15,7 +15,7 @@
     "build:static": "webpack --bail --progress --profile --config config/webpack.static.js",
     "heroku-postbuild": "yarn build:static",
     "start": "webpack-dev-server --open --progress --config config/webpack.dev.js",
-    "start:mock-api": "cd node_modules/manageiq-api-mock/ && node index.js",
+    "start:mock-api": "cd node_modules/@manageiq/manageiq-api-mock/ && node index.js",
     "start:mock-webserver": "cd server && node app.js",
     "start:all": "yarn start:mock-api & yarn start:mock-webserver",
     "test": "yarn vet && karma start karma.conf.js --single-run",
@@ -103,6 +103,7 @@
     "zone.js": "0.8.5"
   },
   "devDependencies": {
+    "@manageiq/manageiq-api-mock": "1.0.1",
     "angular-mocks": "1.6.4",
     "bardjs": "0.1.8",
     "chai": "3.5.0",
@@ -130,7 +131,6 @@
     "karma-read-json": "1.1.0",
     "karma-sinon": "1.0.5",
     "karma-webpack": "2.0.3",
-    "manageiq-api-mock": "ManageIQ/manageiq-api-mock#1cb0be3e8bfd0f520bce4229fb03097913104da0",
     "mocha": "3.2.0",
     "mocha-clean": "1.0.0",
     "morgan": "1.8.1",
