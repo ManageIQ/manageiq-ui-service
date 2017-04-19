@@ -64,7 +64,7 @@ describe('services.custom_button_details', function() {
             'services',
             123,
             {},
-            '{"action":"buttonName","resource":{"dialogField1":"1","dialogField2":"2"}}'
+            '{"action":"buttonName","resource":{"dialogField1":1,"dialogField2":2}}'
           );
         });
 
