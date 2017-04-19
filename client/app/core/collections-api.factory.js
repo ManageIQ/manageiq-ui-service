@@ -1,3 +1,5 @@
+/* eslint camelcase: "off" */
+
 /** @ngInject */
 export function CollectionsApiFactory($http, API_BASE) {
   var service = {
@@ -80,6 +82,13 @@ export function CollectionsApiFactory($http, API_BASE) {
         options.attributes = options.attributes.join(',');
       }
       params.push('attributes=' + encodeURIComponent(options.attributes));
+    }
+
+    if (options.format_attributes) {
+      if (angular.isArray(options.format_attributes)) {
+        options.format_attributes = options.format_attributes.join(',');
+      }
+      params.push('format_attributes=' + encodeURIComponent(options.format_attributes));
     }
 
     if (options.filter) {
