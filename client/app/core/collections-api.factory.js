@@ -1,3 +1,5 @@
+/* eslint camelcase: "off" */
+
 /** @ngInject */
 export function CollectionsApiFactory($http, API_BASE) {
   var service = {
