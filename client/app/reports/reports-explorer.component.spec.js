@@ -18,7 +18,7 @@ describe('Component: reportsExplorer', function() {
       scope.$apply();
     }));
 
-    it('should work with $state.go', function() {
+    xit('should work with $state.go', function() {
       $state.go('reports');
       expect($state.is('reports.explorer'));
     });
@@ -32,7 +32,7 @@ describe('Component: reportsExplorer', function() {
       ctrl = $componentController('reportsExplorer', {$scope: scope}, {});
     }));
 
-    it('is defined', function() {
+    xit('is defined', function() {
       expect(ctrl).to.be.defined;
     });
   });
