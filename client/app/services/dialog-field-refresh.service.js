@@ -72,6 +72,9 @@
           }
         }
       }
+      if (parseInt(dialogField.default_value, 10)) {
+        dialogField.default_value = parseInt(dialogField.default_value, 10);
+      }
     }
 
     function setupDialogData(dialogs, allDialogFields, autoRefreshableDialogFields) {
