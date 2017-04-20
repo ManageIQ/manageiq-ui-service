@@ -9,7 +9,7 @@ export const VmDetailsComponent = {
 };
 
 /** @ngInject */
-function ComponentController($stateParams, VmsService, ServicesState, sprintf, EventNotifications, Polling, PowerOperations) {
+function ComponentController($stateParams, VmsService, ServicesState, sprintf, EventNotifications, Polling, PowerOperations, LONG_POLLING_INTERVAL) {
   const vm = this;
   vm.$onInit = activate;
   vm.$onDestroy = onDestroy;
@@ -36,7 +36,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, E
       },
     });
     resolveData();
-    Polling.start('polling', resolveData, 50000);
+    Polling.start('polling', resolveData, LONG_POLLING_INTERVAL);
   }
 
 // Private
