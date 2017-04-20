@@ -9,7 +9,7 @@ export const RequestExplorerComponent = {
 
 /** @ngInject */
 function ComponentController($state, RequestsState, ListView, lodash, Language, EventNotifications,
-                             ModalService, Polling) {
+                             ModalService, Polling, POLLING_INTERVAL) {
   const vm = this;
 
   vm.$onDestroy = function() {
@@ -68,7 +68,7 @@ function ComponentController($state, RequestsState, ListView, lodash, Language, 
         },
       ],
       listActionDisable: listActionDisable,
-      pollingInterval: 10000,
+      pollingInterval: POLLING_INTERVAL,
       paginationUpdate: paginationUpdate,
     });
     if (vm.permissions.approval) {

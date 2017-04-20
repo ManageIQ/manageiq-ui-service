@@ -73,6 +73,7 @@ export const CoreModule = angular
   .constant('API_BASE', location.protocol + '//' + location.host)
   .constant('API_LOGIN', '')
   .constant('API_PASSWORD', '')
+  .constant('POLLING_INTERVAL', 5000)
   .controller('BaseModalController', BaseModalController)
   .controller('NavigationController', NavigationController)
   .component('shoppingCart', ShoppingCartComponent)
