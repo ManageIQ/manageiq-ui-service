@@ -1,10 +1,7 @@
 describe('Component: pagination', function() {
-  // TODO: Will fail under mysterious conditions until this issue is resolved
-  // https://www.pivotaltracker.com/story/show/143656745
-  xit('should correctly respond to a change in limit', function() {
+  it('should correctly respond to a change in limit', function() {
     browser.get('/services');
-    element.all(by.css('.pagination-footer button')).click();
-    element.all(by.css('.pagination-footer ul.dropdown-menu li:nth-child(1) a')).click();
+    changeLimit();
 
     const limit = element.all(by.css('.pagination-footer .dropup button'));
     expect(limit.get(0).getText()).toBe("5 items");
