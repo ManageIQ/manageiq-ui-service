@@ -11,7 +11,7 @@ export const ServiceDetailsComponent = {
 
 /** @ngInject */
 function ComponentController($stateParams, $state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
-                             TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash, Polling) {
+                             TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash, Polling, LONG_POLLING_INTERVAL) {
   const vm = this;
   vm.$onInit = activate;
   vm.$onDestroy = onDestroy;
@@ -60,7 +60,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       },
     });
     fetchResources(vm.serviceId);
-    Polling.start('servicesPolling', startPollingService, 50000);
+    Polling.start('servicesPolling', startPollingService, LONG_POLLING_INTERVAL);
   }
 
   function startPollingService() {

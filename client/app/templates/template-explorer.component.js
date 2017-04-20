@@ -9,7 +9,7 @@ export const TemplateExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController(ListView, TemplatesService, EventNotifications, $state, sprintf, Session, Polling) {
+function ComponentController(ListView, TemplatesService, EventNotifications, $state, sprintf, Session, Polling, POLLING_INTERVAL) {
   const vm = this;
   vm.permissions = TemplatesService.getPermissions();
   vm.$onInit = activate();
@@ -42,7 +42,7 @@ function ComponentController(ListView, TemplatesService, EventNotifications, $st
       listActionDisable: listActionDisable,
       sortConfig: getSortConfig(),
       offset: 0,
-      pollingInterval: 10000,
+      pollingInterval: POLLING_INTERVAL,
     });
 
     resolveTemplates(vm.limit, 0);

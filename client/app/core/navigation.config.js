@@ -101,8 +101,8 @@ export function navConfig(NavigationProvider) {
 }
 
 /** @ngInject */
-export function navInit(lodash, CollectionsApi, Navigation, NavCounts) {
-  const refreshTimeMs = 60 * 1000;
+export function navInit(lodash, CollectionsApi, Navigation, NavCounts, POLLING_INTERVAL) {
+  const refreshTimeMs = POLLING_INTERVAL;
   const options = {
     hide: 'resources',
     auto_refresh: true,
