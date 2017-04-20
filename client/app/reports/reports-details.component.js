@@ -11,7 +11,7 @@ export const ReportsDetailsComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, ReportsService, FileSaver, Blob, CollectionsApi, EventNotifications, Polling) {
+function ComponentController($state, ReportsService, FileSaver, Blob, CollectionsApi, EventNotifications, Polling, POLLING_INTERVAL) {
   const vm = this;
 
   vm.$onInit = activate();
@@ -36,7 +36,7 @@ function ComponentController($state, ReportsService, FileSaver, Blob, Collection
       toolbarConfig: getToolbarConfig(),
       offset: 0,
       reportRunsCount: 0,
-      pollingInterval: 10000,
+      pollingInterval: POLLING_INTERVAL,
       permissions: ReportsService.getPermissions(),
     });
     getReportRuns();

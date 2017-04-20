@@ -9,7 +9,7 @@ export const OrderExplorerComponent = {
 
 /** @ngInject */
 function ComponentController($filter, lodash, ListView, Language, OrdersState, ShoppingCart, EventNotifications, Session, RBAC, ModalService,
-                             CollectionsApi, sprintf, Polling) {
+                             CollectionsApi, sprintf, Polling, POLLING_INTERVAL) {
   const vm = this;
   vm.permissions = OrdersState.getPermissions();
   vm.$onInit = activate();
@@ -40,7 +40,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
       listConfig: getListConfig(),
       expandedListConfig: getExpandedListConfig(),
       offset: 0,
-      pollingInterval: 10000,
+      pollingInterval: POLLING_INTERVAL,
     });
     OrdersState.setSort({id: "placed_at", title: "Order Date", sortType: "numeric"}, false);
     resolveOrders(vm.limit, 0);

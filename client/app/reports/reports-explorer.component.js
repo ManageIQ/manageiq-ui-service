@@ -8,7 +8,7 @@ export const ReportsExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController(ListView, ReportsService, EventNotifications, Polling) {
+function ComponentController(ListView, ReportsService, EventNotifications, Polling, POLLING_INTERVAL) {
   const vm = this;
   vm.$onInit = activate();
   vm.$onDestroy = function() {
@@ -30,7 +30,7 @@ function ComponentController(ListView, ReportsService, EventNotifications, Polli
       toolbarConfig: getToolbarConfig(),
       listConfig: getListConfig(),
       offset: 0,
-      pollingInterval: 10000,
+      pollingInterval: POLLING_INTERVAL,
     });
 
     resolveReports(vm.limit, 0);

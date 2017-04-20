@@ -10,7 +10,7 @@ export const ServiceExplorerComponent = {
 
 /** @ngInject */
 function ComponentController($state, ServicesState, Language, ListView, Chargeback, TaggingService, TagEditorModal,
-                             EventNotifications, ModalService, PowerOperations, lodash, Polling) {
+                             EventNotifications, ModalService, PowerOperations, lodash, Polling, POLLING_INTERVAL) {
   var vm = this;
 
   vm.$onInit = activate();
@@ -57,7 +57,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       headerConfig: getHeaderConfig(),
       menuActions: getMenuActions(),
       serviceChildrenListConfig: createServiceChildrenListConfig(),
-      pollingInterval: 10000,
+      pollingInterval: POLLING_INTERVAL,
     });
     vm.offset = 0;
 
