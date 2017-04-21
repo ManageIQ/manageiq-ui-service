@@ -2,17 +2,18 @@
 
 /** @ngInject */
 export function CollectionsApiFactory($http, API_BASE) {
-  var service = {
+  const service = {
     query: query,
     get: get,
     post: post,
+    options: options,
     delete: remove,
   };
 
   return service;
 
   function query(collection, options) {
-    var url = API_BASE + '/api/' + collection;
+    const url = API_BASE + '/api/' + collection;
 
     // $log.debug("query = " + url + buildQuery(options));
 
@@ -25,7 +26,7 @@ export function CollectionsApiFactory($http, API_BASE) {
   }
 
   function get(collection, id, options) {
-    var url = API_BASE + '/api/' + collection + '/' + id;
+    const url = API_BASE + '/api/' + collection + '/' + id;
 
     // $log.debug("get = " + url + buildQuery(options));
 
@@ -38,7 +39,7 @@ export function CollectionsApiFactory($http, API_BASE) {
   }
 
   function post(collection, id, options, data) {
-    var url = API_BASE + '/api/' + collection + '/' + (id || "") + buildQuery(options);
+    const url = API_BASE + '/api/' + collection + '/' + (id || "") + buildQuery(options);
 
     // $log.debug("post = " + url + buildQuery(options));
 
@@ -50,9 +51,20 @@ export function CollectionsApiFactory($http, API_BASE) {
     }
   }
 
+  function options(collection) {
+    const url = API_BASE + '/api/' + collection;
+
+    return $http.get(url + buildQuery(options))
+      .then(handleSuccess);
+
+    function handleSuccess(response) {
+      return response.data;
+    }
+  }
+
   // delete is a reserved word in JS
   function remove(collection, id, options) {
-    var url = API_BASE + '/api/' + collection + '/' + (id || "") + buildQuery(options);
+    const url = API_BASE + '/api/' + collection + '/' + (id || "") + buildQuery(options);
 
     // $log.debug("post = " + url + buildQuery(options));
 
@@ -67,7 +79,7 @@ export function CollectionsApiFactory($http, API_BASE) {
   // Private
 
   function buildQuery(options) {
-    var params = [];
+    const params = [];
     options = options || {};
 
     if (options.expand) {
@@ -125,7 +137,7 @@ export function CollectionsApiFactory($http, API_BASE) {
   }
 
   function buildConfig(options) {
-    var config = {};
+    const config = {};
     options = options || {};
 
     if (options.auto_refresh) {
