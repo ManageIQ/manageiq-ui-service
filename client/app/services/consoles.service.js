@@ -18,7 +18,7 @@ export function ConsolesFactory($window, CollectionsApi, $timeout, $location, Ev
   function consoleResponse(response) {
     if (!response.success) {
       // for some reason failure is 200 + success=false here, so throwing the message to use the same error handler
-      throw response.message;
+      throw response;
     }
 
     EventNotifications.info(__("Waiting for the console to become ready. "), response.message);
