@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-import templateUrl from './service-details-ansible.html';
+import templateUrl from "./service-details-ansible.html";
 
 export const ServiceDetailsAnsibleComponent = {
   controller: ComponentController,
@@ -51,6 +51,7 @@ function ComponentController(ModalService, ServicesState, lodash) {
         credentialTypes.forEach((credential) => {
           if (angular.isDefined(vm.service.options.config_info[resourceName][credential])) {
             ServicesState.getServiceCredential(vm.service.options.config_info[resourceName][credential]).then((response) => {
+              response.type = response.type.substring(response.type.lastIndexOf('::') + 2, response.type.lastIndexOf('Credential'));
               vm.orcStacks[resourceName].credentials.push(response);
             });
           }
