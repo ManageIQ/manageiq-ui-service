@@ -5,7 +5,7 @@ export const DetailRevealComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
   bindings: {
-    title: '@',
+    detailTitle: '@',
     detail: '@',
     icon: '@',
     translateTitle: '<',
@@ -22,7 +22,7 @@ function ComponentController($transclude) {
 
   function activate() {
     vm.translateTitle = (angular.isUndefined(vm.translateTitle) ? true : vm.translateTitle);
-    vm.title = (vm.translateTitle === true ? __(vm.title) : vm.title);
+    vm.detailTitle = (vm.translateTitle === true ? __(vm.detailTitle) : vm.detailTitle);
     vm.rowClass = (angular.isDefined(vm.rowClass) ? vm.rowClass : 'row detail-row');
     vm.toggleDetails = false;
     vm.hasMoreDetails = $transclude().length > 0;
