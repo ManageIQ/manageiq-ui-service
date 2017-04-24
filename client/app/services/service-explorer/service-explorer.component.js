@@ -26,7 +26,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       ServicesState.services.setFilters([]);
       ServicesState.services.filterApplied = false;
     }
-
+    ServicesState.services.setSort({id: "created_at", title: "Created", sortType: "numeric"}, false);
     angular.extend(vm, {
       loading: false,
       title: __('Services'),
