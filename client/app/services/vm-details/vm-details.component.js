@@ -80,6 +80,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, E
         + ' sockets x ' + vm.vmDetails.hardware.cpu_cores_per_socket + ' core), ' + vm.vmDetails.hardware.memory_mb + ' MB';
 
       if (vm.vmDetails.retired) {
+        EventNotifications.clearAll(EventNotifications.state().groups[0]);
         EventNotifications.warn(sprintf(__("%s is a retired resource"), vm.vmDetails.name), {persistent: true, unread: false});
       }
       getListActions();
