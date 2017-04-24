@@ -12,9 +12,6 @@ import {NotFoundState} from "./404/404.state.js";
 import {OrdersDetailsState} from "./orders/details/details.state.js";
 import {OrdersExplorerState} from "./orders/explorer/explorer.state.js";
 import {OrdersState} from "./orders/orders.state.js";
-import {RequestsDetailsState} from "./requests/details/details.state.js";
-import {RequestsExplorerState} from "./requests/explorer/explorer.state.js";
-import {RequestsState} from "./requests/requests.state.js";
 import {ServicesDetailsState} from "./services/details/details.state.js";
 import {ServicesExplorerState} from "./services/explorer/explorer.state.js";
 import {ServicesReconfigureState} from "./services/reconfigure/reconfigure.state.js";
@@ -41,9 +38,6 @@ export const AppRoutingModule = angular
   .run(OrdersDetailsState)
   .run(OrdersExplorerState)
   .run(OrdersState)
-  .run(RequestsDetailsState)
-  .run(RequestsExplorerState)
-  .run(RequestsState)
   .run(CustomButtonDetailsState)
   .run(ServicesDetailsState)
   .run(ServicesExplorerState)
