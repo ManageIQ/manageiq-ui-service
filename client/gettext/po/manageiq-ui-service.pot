@@ -4,7 +4,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: app/states/dashboard/dashboard.html:88
+#: app/states/dashboard/dashboard.html:77
 msgid "$0"
 msgstr ""
 
@@ -99,10 +99,6 @@ msgstr ""
 msgid "Affected Order"
 msgstr ""
 
-#: app/requests/process-requests-modal/process-requests-modal.html:23
-msgid "Affected Requests"
-msgstr ""
-
 #: app/core/tag-editor-modal/tag-editor-modal.html:20
 #: app/services/ownership-service-modal/ownership-service-modal.html:33
 #: app/services/retire-remove-service-modal/retire-remove-service-modal.html:13
@@ -112,21 +108,7 @@ msgstr ""
 
 #: app/requests/order-explorer/order-explorer.component.js:63
 #: app/requests/order-explorer/order-explorer.component.js:65
-#: app/requests/request-explorer/request-explorer.component.js:78
-#: app/requests/request-explorer/request-explorer.component.js:80
 msgid "Approve"
-msgstr ""
-
-#: app/requests/process-requests-modal/process-requests-modal.html:6
-msgid "Approve Requests"
-msgstr ""
-
-#: app/states/dashboard/dashboard.html:118
-msgid "Approved Requests"
-msgstr ""
-
-#: app/states/requests/details/details.html:79
-msgid "Approver"
 msgstr ""
 
 #: app/core/shopping-cart/shopping-cart.html:60
@@ -184,7 +166,6 @@ msgstr ""
 #: app/shared/action-button-group/action-button-group.html:1
 #: app/shared/action-button-group/action-button-group.html:45
 #: app/shared/confirmation/confirmation.directive.js:114
-#: app/states/requests/details/details.html:126
 #: app/states/services/reconfigure/reconfigure.html:24
 msgid "Cancel"
 msgstr ""
@@ -336,7 +317,7 @@ msgstr ""
 msgid "Current Group"
 msgstr ""
 
-#: app/states/dashboard/dashboard.html:48
+#: app/states/dashboard/dashboard.html:37
 msgid "Current Services"
 msgstr ""
 
@@ -403,19 +384,9 @@ msgstr ""
 msgid "Deleting snapshot."
 msgstr ""
 
-#: app/states/dashboard/dashboard.html:133
-msgid "Denied Requests"
-msgstr ""
-
 #: app/requests/order-explorer/order-explorer.component.js:70
 #: app/requests/order-explorer/order-explorer.component.js:72
-#: app/requests/request-explorer/request-explorer.component.js:85
-#: app/requests/request-explorer/request-explorer.component.js:87
 msgid "Deny"
-msgstr ""
-
-#: app/requests/process-requests-modal/process-requests-modal.html:5
-msgid "Deny Requests"
 msgstr ""
 
 #: app/services/vm-details/vm-details.html:98
@@ -423,8 +394,6 @@ msgid "Deployment Role"
 msgstr ""
 
 #: app/catalogs/catalog-explorer.component.js:62
-#: app/requests/request-explorer/request-explorer.component.js:128
-#: app/requests/request-explorer/request-explorer.component.js:138
 #: app/services/edit-service-modal/edit-service-modal.html:12
 #: app/services/process-snapshots-modal/process-snapshots-modal.html:15
 #: app/services/service-details/service-details.html:50
@@ -487,7 +456,6 @@ msgstr ""
 #: app/services/service-explorer/service-explorer.component.js:217
 #: app/services/services-state.service.js:220
 #: app/services/services-state.service.js:222
-#: app/states/requests/details/details.html:17
 #: app/templates/template-editor.component.js:131
 #: app/templates/template-explorer.component.js:173
 #: app/templates/template-explorer.component.js:80
@@ -525,10 +493,6 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: app/requests/process-requests-modal/process-requests-modal.component.js:47
-msgid "Error approving request."
-msgstr ""
-
 #: app/services/process-snapshots-modal/process-snapshots-modal.component.js:39
 msgid "Error creating snapshot."
 msgstr ""
@@ -543,10 +507,6 @@ msgstr ""
 
 #: app/services/vms/snapshots.component.js:145
 msgid "Error deleting snapshot."
-msgstr ""
-
-#: app/requests/process-requests-modal/process-requests-modal.component.js:50
-msgid "Error denying request."
 msgstr ""
 
 #: app/core/authorization.config.js:113
@@ -566,7 +526,6 @@ msgid "Filter by Catalog Name"
 msgstr ""
 
 #: app/catalogs/catalog-explorer.component.js:62
-#: app/requests/request-explorer/request-explorer.component.js:128
 #: app/services/service-explorer/service-explorer.component.js:330
 #: app/services/vms/snapshots.component.js:92
 msgid "Filter by Description"
@@ -591,22 +550,6 @@ msgstr ""
 
 #: app/requests/order-explorer/order-explorer.component.js:136
 msgid "Filter by Order Date"
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.component.js:131
-msgid "Filter by Request Date"
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.component.js:129
-msgid "Filter by Request ID"
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.component.js:130
-msgid "Filter by Requester"
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.component.js:132
-msgid "Filter by Status"
 msgstr ""
 
 #: app/templates/template-explorer.component.js:151
@@ -636,10 +579,6 @@ msgstr ""
 msgid "Hosts"
 msgstr ""
 
-#: app/requests/request-list/request-list.html:15
-msgid "ID"
-msgstr ""
-
 #: app/services/service-details/service-details-ansible.html:109
 msgid "Id"
 msgstr ""
@@ -650,10 +589,6 @@ msgstr ""
 
 #: app/core/authentication-api.factory.js:24
 msgid "Incorrect username or password."
-msgstr ""
-
-#: app/requests/process-requests-modal/process-requests-modal.html:7
-msgid "Invalid Requests"
 msgstr ""
 
 #: app/states/catalogs/details/details.state.js:128
@@ -670,15 +605,6 @@ msgstr ""
 
 #: app/services/service-details/service-details.html:237
 msgid "Last Boot"
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.html:41
-#: app/states/requests/details/details.html:89
-msgid "Last Message"
-msgstr ""
-
-#: app/states/requests/details/details.html:97
-msgid "Last Updated"
 msgstr ""
 
 #: app/services/service-details/service-details.html:207
@@ -707,8 +633,6 @@ msgstr ""
 
 #: app/requests/order-explorer/order-explorer.component.js:54
 #: app/requests/order-explorer/order-explorer.component.js:56
-#: app/requests/request-explorer/request-explorer.component.js:62
-#: app/requests/request-explorer/request-explorer.component.js:63
 #: app/services/services-state.service.js:127
 #: app/services/services-state.service.js:132
 #: app/services/vm-details/vm-details.html:71
@@ -748,7 +672,7 @@ msgstr ""
 msgid "Memory"
 msgstr ""
 
-#: app/states/dashboard/dashboard.html:78
+#: app/states/dashboard/dashboard.html:67
 msgid "Monthly Charges - This Month To Date"
 msgstr ""
 
@@ -837,10 +761,6 @@ msgstr ""
 msgid "Not Available"
 msgstr ""
 
-#: app/requests/process-requests-modal/process-requests-modal.html:11
-msgid "Note"
-msgstr ""
-
 #: app/layouts/application.html:10
 msgid "Notifications"
 msgstr ""
@@ -906,10 +826,6 @@ msgstr ""
 
 #: app/states/login/login.html:23
 msgid "Password"
-msgstr ""
-
-#: app/states/dashboard/dashboard.html:103
-msgid "Pending Requests"
 msgstr ""
 
 #: app/services/service-details/service-details-ansible.html:203
@@ -1084,89 +1000,16 @@ msgstr ""
 msgid "Reports Details"
 msgstr ""
 
-#: app/states/requests/details/details.html:68
-msgid "Request Approval State"
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.component.js:131
-#: app/requests/request-explorer/request-explorer.component.js:141
-#: app/requests/requests-state.service.js:13
-#: app/states/requests/details/details.html:56
-msgid "Request Date"
-msgstr ""
-
-#: app/states/requests/details/details.state.js:15
-msgid "Request Details"
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.component.js:25
-msgid "Request Explorer"
-msgstr ""
-
 #: app/requests/order-explorer/order-explorer.html:81
-#: app/requests/request-explorer/request-explorer.component.js:129
-#: app/requests/request-explorer/request-explorer.component.js:139
-#: app/states/requests/details/details.html:44
 msgid "Request ID"
 msgstr ""
 
 #: app/requests/order-explorer/order-explorer.html:96
-#: app/states/requests/details/details.html:50
 msgid "Request State"
 msgstr ""
 
-#: app/requests/request-explorer/request-explorer.component.js:132
-#: app/requests/request-explorer/request-explorer.component.js:142
-#: app/states/dashboard/dashboard.state.js:186
-msgid "Request Status"
-msgstr ""
-
-#: app/states/requests/details/details.html:103
-msgid "Request Type"
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.html:80
-msgid "Request approved"
-msgstr ""
-
-#: app/requests/process-requests-modal/process-requests-modal.component.js:47
-msgid "Request approved."
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.html:77
-msgid "Request denied"
-msgstr ""
-
-#: app/requests/process-requests-modal/process-requests-modal.component.js:50
-msgid "Request denied."
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.html:74
-msgid "Request pending approval"
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.html:65
-#: app/requests/request-list/request-list.html:25
-msgid "Requested"
-msgstr ""
-
-#: app/states/requests/details/details.html:62
-msgid "Requested By"
-msgstr ""
-
 #: app/requests/order-explorer/order-explorer.html:39
-#: app/requests/request-explorer/request-explorer.component.js:130
-#: app/requests/request-explorer/request-explorer.component.js:140
-#: app/requests/request-explorer/request-explorer.html:53
-#: app/requests/request-list/request-list.html:20
 msgid "Requester"
-msgstr ""
-
-#: app/core/navigation.config.js:31
-#: app/requests/request-explorer/request-explorer.html:4
-#: app/states/requests/details/details.html:5
-#: app/states/requests/explorer/explorer.state.js:14
-msgid "Requests"
 msgstr ""
 
 #: app/shared/action-button-group/action-button-group.html:38
@@ -1212,12 +1055,12 @@ msgid "Retire the Service"
 msgstr ""
 
 #: app/services/vm-details/vm-details.html:37
-#: app/states/dashboard/dashboard.state.js:194
-#: app/states/dashboard/dashboard.state.js:202
+#: app/states/dashboard/dashboard.state.js:105
+#: app/states/dashboard/dashboard.state.js:113
 msgid "Retired"
 msgstr ""
 
-#: app/states/dashboard/dashboard.html:63
+#: app/states/dashboard/dashboard.html:52
 msgid "Retired Services"
 msgstr ""
 
@@ -1227,7 +1070,7 @@ msgstr ""
 
 #: app/services/retire-service-modal/retire-service-modal.html:13
 #: app/services/service-explorer/service-explorer.component.js:343
-#: app/states/dashboard/dashboard.state.js:190
+#: app/states/dashboard/dashboard.state.js:101
 msgid "Retirement Date"
 msgstr ""
 
@@ -1248,7 +1091,7 @@ msgstr ""
 msgid "Retires On"
 msgstr ""
 
-#: app/states/dashboard/dashboard.html:33
+#: app/states/dashboard/dashboard.html:22
 msgid "Retiring Soon"
 msgstr ""
 
@@ -1270,7 +1113,6 @@ msgstr ""
 
 #: app/core/save-modal-dialog/save-modal-dialog.html:16
 #: app/shared/action-button-group/action-button-group.html:13
-#: app/states/requests/details/details.html:125
 msgid "Save"
 msgstr ""
 
@@ -1311,7 +1153,7 @@ msgid "Service"
 msgstr ""
 
 #: app/catalogs/catalog-explorer.html:4
-#: app/core/navigation.config.js:40
+#: app/core/navigation.config.js:31
 msgid "Service Catalog"
 msgstr ""
 
@@ -1535,21 +1377,15 @@ msgstr ""
 msgid "Tenant"
 msgstr ""
 
-#: app/requests/request-list/request-list.html:31
-#: app/requests/request-list/request-list.html:33
-#: app/requests/request-list/request-list.html:35
-msgid "The current approval status of the request"
-msgstr ""
-
-#: app/states/dashboard/dashboard.html:53
+#: app/states/dashboard/dashboard.html:42
 msgid "The number of active services"
 msgstr ""
 
-#: app/states/dashboard/dashboard.html:38
+#: app/states/dashboard/dashboard.html:27
 msgid "The number of services retiring within the next 30 days"
 msgstr ""
 
-#: app/states/dashboard/dashboard.html:68
+#: app/states/dashboard/dashboard.html:57
 msgid "The number of services which have hit their retirement period or been retired"
 msgstr ""
 
@@ -1561,7 +1397,7 @@ msgstr ""
 msgid "The page you requested cannot be found."
 msgstr ""
 
-#: app/core/navigation.config.js:44
+#: app/core/navigation.config.js:35
 msgid "The total number of available catalogs"
 msgstr ""
 
@@ -1634,10 +1470,6 @@ msgstr ""
 msgid "There was an error loading templates."
 msgstr ""
 
-#: app/requests/request-explorer/request-explorer.component.js:120
-msgid "There was an error loading the requests."
-msgstr ""
-
 #: app/services/service-explorer/service-explorer.component.js:363
 #: app/services/service-explorer/service-explorer.component.js:435
 msgid "There was an error loading the services."
@@ -1653,10 +1485,6 @@ msgstr ""
 
 #: app/services/consoles.service.js:51
 msgid "There was an error opening the console."
-msgstr ""
-
-#: app/requests/process-requests-modal/process-requests-modal.component.js:57
-msgid "There was an error processing one or more requests."
 msgstr ""
 
 #: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:51
@@ -1693,7 +1521,6 @@ msgid "There was an error stopping this %s."
 msgstr ""
 
 #: app/core/shopping-cart/shopping-cart.component.js:37
-#: app/states/requests/details/details.state.js:93
 #: app/states/services/custom_button_details/custom_button_details.state.js:91
 #: app/states/services/reconfigure/reconfigure.state.js:119
 msgid "There was an error submitting this request:"
@@ -1715,10 +1542,6 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: app/states/dashboard/dashboard.html:20
-msgid "Total Requests"
-msgstr ""
-
 #: app/states/dashboard/dashboard.html:9
 msgid "Total Services"
 msgstr ""
@@ -1729,10 +1552,6 @@ msgstr ""
 
 #: app/core/navigation.config.js:26
 msgid "Total orders submitted"
-msgstr ""
-
-#: app/core/navigation.config.js:35
-msgid "Total pending requests"
 msgstr ""
 
 #: app/core/navigation.config.js:17
@@ -1870,14 +1689,6 @@ msgstr ""
 msgid "and all of its service requests will be permanently removed!"
 msgstr ""
 
-#: app/requests/request-explorer/request-explorer.component.js:125
-msgid "approved"
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.component.js:125
-msgid "denied"
-msgstr ""
-
 #: app/shared/pagination/pagination.html:12
 #: app/shared/pagination/pagination.html:5
 msgid "items"
@@ -1886,10 +1697,6 @@ msgstr ""
 #: app/shared/pagination/pagination.html:29
 #: app/shared/pagination/pagination.html:32
 msgid "of"
-msgstr ""
-
-#: app/requests/request-explorer/request-explorer.component.js:125
-msgid "pending_approval"
 msgstr ""
 
 #: app/services/service-explorer/service-explorer.html:194
