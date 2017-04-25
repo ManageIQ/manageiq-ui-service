@@ -14,7 +14,7 @@ module.exports = function(config) {
     concurrency: Infinity,
     webpack: webpackConfig,
     webpackMiddleware: {
-      stats: 'errors-only'
+      stats: 'errors-only',
     },
 
     // level of logging
@@ -56,8 +56,8 @@ module.exports = function(config) {
       dir: './reports/coverage',
       reporters: [
         {type: 'json', subdir: 'json', file: 'coverage-final.json'},
-        {type: 'text-summary'}
-      ]
+        {type: 'text-summary'},
+      ],
     },
   });
 };

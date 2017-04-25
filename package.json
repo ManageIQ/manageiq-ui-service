@@ -21,7 +21,7 @@
     "test": "yarn vet && karma start karma.conf.js --single-run",
     "test:e2e": "protractor protractor.conf.js",
     "test:watch": "karma start --auto-watch --no-single-run",
-    "vet": "eslint \"client/**/*.js\" && sass-lint --verbose --no-exit"
+    "vet": "eslint . && sass-lint --verbose --no-exit"
   },
   "dependencies": {
     "@angular/common": "4.0.2",

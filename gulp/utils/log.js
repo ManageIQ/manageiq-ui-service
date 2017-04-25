@@ -1,3 +1,5 @@
+/* eslint-disable angular/typecheck-object */
+
 'use strict';
 
 var util = require('gulp-util');

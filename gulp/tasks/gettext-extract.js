@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 'use strict';
 
 var gettext = require('gulp-angular-gettext');

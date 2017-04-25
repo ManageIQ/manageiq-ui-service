@@ -16,8 +16,8 @@ module.exports = function() {
     return process.env.PROXY_HOST || '[::1]:3000';
   }
 
-  function proxyErrorHandler(req, res) {
-    return function(err, data) {
+  function proxyErrorHandler(_req, res) {
+    return function(err, _data) {
       if (!err) {
         return;
       }

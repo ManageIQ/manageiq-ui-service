@@ -1,10 +1,12 @@
+/* eslint-disable angular/definedundefined, angular/json-functions, global-require */
+
 'use strict';
 
 var glob = require('glob');
 var fs = require('fs');
 var log = require('../utils/log');
 
-module.exports = function(gulp, options) {
+module.exports = function(_gulp, options) {
   var config = require('../config')[options.key || 'availableLanguages'];
 
   return task;
@@ -22,18 +24,18 @@ module.exports = function(gulp, options) {
       supportedLanguages = JSON.parse(fs.readFileSync(config.supportedLangsFile, 'utf8'));
     }
 
-    langFiles.forEach(function(item, index) {
+    langFiles.forEach(function(item, _index) {
       var catalog = JSON.parse(fs.readFileSync(item, 'utf8'));
 
-      for(var propName in catalog) {
-        if (typeof(catalog[propName]) != 'undefined') {
+      for (var propName in catalog) {
+        if (typeof(catalog[propName]) !== 'undefined') {
           // If we have a list of supported languages and the language is not on the list, we skip it
           if (supportedLanguages.length > 0 && !supportedLanguages.includes(propName)) {
             continue;
           }
 
-          if (typeof(catalog[propName]['locale_name']) != 'undefined') {
-            availableLanguages[propName] = catalog[propName]['locale_name'];
+          if (typeof(catalog[propName].locale_name) !== 'undefined') {
+            availableLanguages[propName] = catalog[propName].locale_name;
           } else {
             availableLanguages[propName] = '';
           }

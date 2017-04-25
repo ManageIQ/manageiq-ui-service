@@ -5,7 +5,7 @@ config.module.rules.push({
   enforce: 'post',
   include: `${config.context}/app`,
   loader: 'istanbul-instrumenter-loader',
-  exclude: [/\.spec\.js$/, /node_modules/]
+  exclude: [/\.spec\.js$/, /node_modules/],
 });
 
 module.exports = config;
