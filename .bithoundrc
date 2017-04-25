@@ -1,0 +1,13 @@
+{
+  "ignore": [
+    "**/node_modules/**",
+    "**/**-min-**",
+    "**/**-min.**",
+    "**/**.min.**",
+    "**/**.spec.**",
+    "**/**.e2e.**"
+  ],
+  "critics": {
+    "lint": {"engine": "eslint"}
+  }
+}
