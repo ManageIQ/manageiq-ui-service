@@ -1,3 +1,5 @@
+/* eslint-disable angular/log, no-console */
+
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -9,9 +11,11 @@ const root = path.resolve(__dirname, '../client');
 const outputPath = process.env.BUILD_OUTPUT || '../../manageiq/public/ui/service';
 const dist = path.resolve(__dirname, outputPath);
 const nodeModules = path.resolve(__dirname, '../node_modules');
-const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000'
+const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000';
 const hasSkinImages = fs.existsSync(`${root}/skin/images`);
-console.log("Backend proxied on "+host);
+
+console.log("Backend proxied on " + host);
+
 module.exports = {
   context: root,
   entry: {
@@ -94,8 +98,9 @@ module.exports = {
 
               // Determine publicPath dynamically because in production, assets
               // must be relative to `/ui/service/`
-              publicPath: url => {
+              publicPath: (url) => {
                 const path = process.env.NODE_ENV === 'production' ? '/ui/service/' : '/';
+
                 return path + url;
               },
             },
@@ -157,7 +162,7 @@ module.exports = {
     new webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)@angular/,
       root
-    )
+    ),
   ],
 
   resolve: {

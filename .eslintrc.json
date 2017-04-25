@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "node": true,
     "amd": true,
     "jquery": true,
     "es6": true,
@@ -207,7 +208,7 @@
     "no-param-reassign": "off",
     "no-path-concat": "error",
     "no-plusplus": "off",
-    "no-process-env": "error",
+    "no-process-env": "off",
     "no-process-exit": "error",
     "no-proto": "error",
     "no-prototype-builtins": "off",
@@ -222,7 +223,7 @@
     "no-shadow": "off",
     "no-shadow-restricted-names": "error",
     "no-spaced-func": "error",
-    "no-sync": "error",
+    "no-sync": "off",
     "no-tabs": "off",
     "no-template-curly-in-string": "error",
     "no-ternary": "off",
