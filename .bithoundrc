@@ -1,11 +1,9 @@
 {
   "ignore": [
     "**/node_modules/**",
-    "**/**-min-**",
-    "**/**-min.**",
-    "**/**.min.**",
     "**/**.spec.**",
-    "**/**.e2e.**"
+    "**/**.e2e.**",
+    "**/**.ts"
   ],
   "critics": {
     "lint": {"engine": "eslint"}
