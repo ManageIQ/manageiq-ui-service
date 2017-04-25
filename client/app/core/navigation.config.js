@@ -27,15 +27,6 @@ export function navConfig(NavigationProvider) {
     originalTooltip: 'Total orders submitted',
   });
 
-  const requests = createItem({
-    title: N_('Requests'),
-    originalTitle: 'Requests',
-    state: 'requests',
-    iconClass: 'fa fa-files-o',
-    badgeTooltip: N_('Total pending requests'),
-    originalTooltip: 'Total pending requests',
-  });
-
   const catalogs = createItem({
     title: N_('Service Catalog'),
     originalTitle: 'Service Catalog',
@@ -77,7 +68,6 @@ export function navConfig(NavigationProvider) {
       dashboard: dashboard,
       services: services,
       orders: orders,
-      requests: requests,
       catalogs: catalogs,
       //   dialogs: dialogs,
       //    reports: reports,
@@ -108,21 +98,11 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts, POLLING_I
     auto_refresh: true,
   };
 
-  NavCounts.add('requests', fetchRequests, refreshTimeMs);
   NavCounts.add('services', fetchServices, refreshTimeMs);
   NavCounts.add('orders', fetchOrders, refreshTimeMs);
   NavCounts.add('catalogs', fetchServiceCatalogs, refreshTimeMs);
   // NavCounts.add('dialogs', fetchDialogs, refreshTimeMs);
   // NavCounts.add('templates', fetchTemplates, refreshTimeMs);
-
-  function fetchRequests() {
-    angular.extend(options, {
-      filter: ["approval_state=pending_approval"],
-    });
-
-    CollectionsApi.query('requests', options)
-      .then(lodash.partial(updateCount, 'requests'));
-  }
 
   function fetchOrders() {
     angular.extend(options, {
