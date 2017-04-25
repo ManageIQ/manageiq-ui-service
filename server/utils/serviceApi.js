@@ -18,7 +18,7 @@ const proxy = httpProxy.createProxyServer({
 router.use(function (req, res) {
   const path = url.parse(req.url).path;
   console.log('PROXY: ' + proxyTarget + path);
-  if (req.url == '/?attributes=authorization') {
+  if (req.url === '/?attributes=authorization') {
     req.url = '?attributes=authorization';
   }
   proxy.web(req, res, proxyErrorHandler(req, res));

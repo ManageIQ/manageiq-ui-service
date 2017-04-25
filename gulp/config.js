@@ -1,14 +1,13 @@
 'use strict';
 
 module.exports = (function() {
-  var client = './client/';
   var poDir = 'client/gettext/po/';
   var config = {};
 
   config.availableLanguages = {
     catalogs: 'client/gettext/json/*/*.json',
     availLangsFile: 'client/gettext/json/available_languages.json',
-    supportedLangsFile: 'client/gettext/json/supported_languages.json'
+    supportedLangsFile: 'client/gettext/json/supported_languages.json',
   };
 
   config.gettextExtract = {

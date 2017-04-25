@@ -1,3 +1,5 @@
+/* eslint-disable no-process-exit, angular/typecheck-function, angular/typecheck-object, global-require */
+
 'use strict';
 
 var args = require('yargs').argv;
@@ -37,7 +39,7 @@ function argOptions() {
     debugBrk: !!args.debugBrk,
     nosync: !!args.nosync,
     type: args.type,
-    version: args.version
+    version: args.version,
   };
 }
 

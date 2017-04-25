@@ -6,7 +6,7 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 const config = require('./webpack.dev.js');
 var urlBase = '/ui/service';
 
-if (process.env.BUILD_OUTPUT){
+if (process.env.BUILD_OUTPUT) {
   config.output.path = path.resolve(__dirname, process.env.BUILD_OUTPUT);
   urlBase = '/';
 }

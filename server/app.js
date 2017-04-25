@@ -1,4 +1,4 @@
-/* eslint-disable no-undef, no-console, no-process-env, angular/log, no-path-concat */
+/* eslint-disable no-undef, no-console, angular/log, no-path-concat */
 
 const path = require('path');
 const http = require('http');
@@ -11,7 +11,6 @@ const httpProxy = require('http-proxy');
 const four0four = require('./utils/404')();
 const proxyService = require('./utils/proxy')();
 const serviceApi = require('./utils/serviceApi');
-const wsProxy = require('./utils/wsProxy');
 
 const buildOutputPath = process.env.BUILD_OUTPUT || './';
 const app = express();
@@ -45,12 +44,12 @@ switch (environment) {
     // Any deep link calls should return index.html
     app.use('/*', express.static('./public/index.html'));
     break;
-  default:
+  default: {
     const proxyHost = proxyService.proxyHost();
     const proxyErrorHandler = proxyService.proxyErrorHandler;
 
     console.log('** DEV **');
-    app.use(express.static(path.resolve(__dirname,buildOutputPath)));
+    app.use(express.static(path.resolve(__dirname, buildOutputPath)));
 
     // dev routes
     app.use('/pictures', function(req, res) {
@@ -61,19 +60,15 @@ switch (environment) {
       target: 'http://' + proxyHost + '/pictures',
     });
 
-    app.all('*', function (req, res, next) {
+    app.all('*', function (_req, res, _next) {
       // Just send the index.html for other files to support HTML5Mode
       res.sendFile(path.resolve(__dirname, buildOutputPath + '/index.html'));
     });
     break;
+  }
 }
 
 const server = http.createServer(app);
-/*
-server.on('upgrade', function (req, socket, head) {
-  console.log('PROXY(ws,upgrade): ' + req.url);
-  wsProxy.ws(req, socket, head);
-});*/
 
 server.listen(port, function() {
   console.log('Express server listening on port ' + port);
