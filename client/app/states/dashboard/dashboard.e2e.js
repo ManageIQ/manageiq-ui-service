@@ -2,14 +2,13 @@ describe('dashboard', function() {
   beforeEach(function () {
     browser.get(browser.baseUrl);
   });
-  it('should have two counters up top', function() {
+  it('should have one counter up top', function() {
     var list = element.all(by.css('.ss-dashboard__card-primary__count'));
-    expect(list.count()).toBe(2);
+    expect(list.count()).toBe(1);
   });
 
   it('should have counters have a very specific non zero numnber', function() {
     var counters = element.all(by.css('.ss-dashboard__card-primary__count h2'));
     expect(counters.get(0).getText()).toBeGreaterThan(0);
-    expect(counters.get(1).getText()).toBeGreaterThan(0);
   });
 });

@@ -21,80 +21,9 @@ function getStates() {
         definedServiceIdsServices: resolveServicesWithDefinedServiceIds,
         retiredServices: resolveRetiredServices,
         expiringServices: resolveExpiringServices,
-        allRequests: resolveAllRequests,
       },
     },
   };
-}
-
-/** @ngInject */
-// TODO API in question: /api/requests
-// TODO with filterValues = ['type=ServiceReconfigureRequest', 'or type=ServiceTemplateProvisionRequest', 'approval_state=pending_approval'];
-// TODO API OR-ing bug/"design limitation" has forced an implementation change in how we gather count data for Requests
-// TODO One API call would now be split into two - one for ServiceTemplateProvisionRequest and other for ServiceReconfigureRequest
-
-function resolveAllRequests(CollectionsApi, RBAC) {
-  var navFeatures = RBAC.getNavFeatures();
-  if (!navFeatures.requests.show) {
-    return undefined;
-  }
-
-  return [
-    [
-      pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi),
-      pendingRequestsForServiceReconfigureRequest(CollectionsApi),
-    ],
-    [
-      approvedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
-      approvedRequestsForServiceReconfigureRequest(CollectionsApi),
-    ],
-    [
-      deniedRequestsForServiceTemplateProvisionRequest(CollectionsApi),
-      deniedRequestsForServiceReconfigureRequest(CollectionsApi),
-    ],
-  ];
-}
-
-function pendingRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
-  var filterValues = ['approval_state=pending_approval'];
-  var options = {hide: 'resources', filter: filterValues};
-
-  return CollectionsApi.query('requests', options);
-}
-
-function pendingRequestsForServiceReconfigureRequest(CollectionsApi) {
-  var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=pending_approval'];
-  var options = {hide: 'resources', filter: filterValues};
-
-  return CollectionsApi.query('requests', options);
-}
-
-function approvedRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
-  var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=approved'];
-  var options = {hide: 'resources', filter: filterValues};
-
-  return CollectionsApi.query('requests', options);
-}
-
-function approvedRequestsForServiceReconfigureRequest(CollectionsApi) {
-  var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=approved'];
-  var options = {hide: 'resources', filter: filterValues};
-
-  return CollectionsApi.query('requests', options);
-}
-
-function deniedRequestsForServiceTemplateProvisionRequest(CollectionsApi) {
-  var filterValues = ['type=ServiceTemplateProvisionRequest', 'approval_state=denied'];
-  var options = {hide: 'resources', filter: filterValues};
-
-  return CollectionsApi.query('requests', options);
-}
-
-function deniedRequestsForServiceReconfigureRequest(CollectionsApi) {
-  var filterValues = ['type=ServiceReconfigureRequest', 'approval_state=denied'];
-  var options = {hide: 'resources', filter: filterValues};
-
-  return CollectionsApi.query('requests', options);
 }
 
 /** @ngInject */
@@ -140,7 +69,7 @@ function resolveServicesWithDefinedServiceIds(CollectionsApi, RBAC) {
 }
 
 /** @ngInject */
-function StateController($state, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback) {
+function StateController($state, definedServiceIdsServices, retiredServices, expiringServices, lodash, Chargeback) {
   var vm = this;
 
   if (angular.isDefined(definedServiceIdsServices)) {
@@ -168,24 +97,6 @@ function StateController($state, definedServiceIdsServices, retiredServices, exp
     vm.servicesFeature = true;
   }
 
-  vm.requestsFeature = false;
-
-  if (angular.isDefined(allRequests)) {
-    vm.requestsCount = {};
-    vm.requestsCount.total = 0;
-
-    var allRequestTypes = ['pending', 'approved', 'denied'];
-    allRequests.forEach(function(promise, n) {
-      resolveRequestPromises(promise, allRequestTypes[n], lodash, $q);
-    });
-
-    vm.requestsFeature = true;
-  }
-
-  vm.navigateToRequestsList = function(filterValue) {
-    $state.go('requests', {'filter': [{'id': 'approval_state', 'title': __('Request Status'), 'value': filterValue}]});
-  };
-
   vm.navigateToServicesList = function(filterValue) {
     $state.go('services', {'filter': [{'id': 'retirement', 'title': __('Retirement Date'), 'value': filterValue}]});
   };
@@ -194,14 +105,14 @@ function StateController($state, definedServiceIdsServices, retiredServices, exp
     $state.go('services', {'filter': [{'id': 'retired', 'title': __('Retired'), 'value': true}]});
   };
 
-  vm.navigateToRetiringSoonServicesList = function () {
+  vm.navigateToRetiringSoonServicesList = function() {
     var currentDate = new Date();
     var filters = [];
 
-    filters.push({ 'id': 'retires_on', 'operator': '>', 'value': currentDate.toISOString() });
-    filters.push({ 'id': 'retired', 'title': __('Retired'), 'value': false });
+    filters.push({'id': 'retires_on', 'operator': '>', 'value': currentDate.toISOString()});
+    filters.push({'id': 'retired', 'title': __('Retired'), 'value': false});
     var days30 = currentDate.setDate(currentDate.getDate() + 30);
-    filters.push({ 'id': 'retires_on', 'operator': '<', 'value': new Date(days30).toISOString() });
+    filters.push({'id': 'retires_on', 'operator': '<', 'value': new Date(days30).toISOString()});
 
     $state.go('services', {'filter': filters});
   };
@@ -209,12 +120,4 @@ function StateController($state, definedServiceIdsServices, retiredServices, exp
   vm.navigateToCurrentServicesList = function() {
     $state.go('services', {'filter': [{'id': 'retired', 'title': 'Retired', 'value': false}]});
   };
-
-  function resolveRequestPromises(promiseArray, type, lodash, $q) {
-    $q.all(promiseArray).then(function(data) {
-      var count = lodash.sum(data, 'subcount');
-      vm.requestsCount[type] = count;
-      vm.requestsCount.total += count;
-    });
-  }
 }
