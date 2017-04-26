@@ -13,7 +13,10 @@
   "scripts": {
     "build": "NODE_ENV=\"production\" webpack --bail --progress --profile --config config/webpack.prod.js",
     "build:static": "webpack --bail --progress --profile --config config/webpack.static.js",
+    "available-languages": "cd ./config/ && node available-languages.js",
     "heroku-postbuild": "yarn build:static",
+    "gettext-compile": "angular-gettext-cli --compile --files './client/gettext/po/**/*.po' --dest 'client/gettext/json/manageiq-ui-service.json' --format json && yarn available-languages",
+    "gettext-extract": "angular-gettext-cli --files './client/**/*.+(js|html)' --exclude '**/*.+(spec.js|e2e.js)' --dest './client/gettext/po/manageiq-ui-service.pot' --marker-names '__,N_'",
     "start": "webpack-dev-server --open --progress --config config/webpack.dev.js",
     "start:mock-api": "cd node_modules/@manageiq/manageiq-api-mock/ && node index.js",
     "start:mock-webserver": "cd server && node app.js",
@@ -40,6 +43,7 @@
     "angular-dragdrop": "1.0.13",
     "angular-file-saver": "1.1.3",
     "angular-gettext": "2.3.9",
+    "angular-gettext-cli": "1.2.0",
     "angular-messages": "1.6.4",
     "angular-patternfly": "3.23.2",
     "angular-resource": "1.6.4",

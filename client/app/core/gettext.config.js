@@ -11,7 +11,7 @@ export function gettextInit($window, gettextCatalog, gettext) {
       lang = lang.replace('_', '-');
       gettextCatalog.setCurrentLanguage(lang);
       if (lang !== 'en') {
-        gettextCatalog.loadRemote("gettext/json/" + lang + "/manageiq-ui-service.json");
+        gettextCatalog.loadRemote("gettext/json/manageiq-ui-service.json");
       }
     }
   };
