@@ -7,5 +7,3 @@ PROXY\_HOST environment variable.
 connections were in use` or `Error: socket hang up` or ` Error: connect ECONNREFUSED`
 might be caused to by lower than expected connection pool size this is remedied by navigating to
 `manageiq/config/database.yml` and increasing the `pool: xx` value.
-- For a full list of gulp tasks available to the SUI.
-  - `gulp help`

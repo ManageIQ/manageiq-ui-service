@@ -20,5 +20,5 @@ exclude_paths:
 - "**.e2e.js"
 - tests/**/*
 - node_modules/**
-- gulp/**
 - reports/**
+- config/**
