@@ -1,11 +1,14 @@
 # ManageIQ Service UI
 
 [![Build Status](https://travis-ci.org/ManageIQ/manageiq-ui-service.svg?branch=master)](https://travis-ci.org/ManageIQ/manageiq-ui-service)
-[![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/gpa.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service)
 [![Test Coverage](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/coverage.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/coverage)
-[![NSP Status](https://nodesecurity.io/orgs/manageiq/projects/61d3dab5-eca6-40a7-a6e1-70554f523d1d/badge)](https://nodesecurity.io/orgs/manageiq/projects/61d3dab5-eca6-40a7-a6e1-70554f523d1d)
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-ui-service?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Translate](https://img.shields.io/badge/translate-zanata-blue.svg)](https://translate.zanata.org/zanata/project/view/manageiq-ui-service)
+
+[![bitHound Overall Score](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/badges/score.svg)](https://www.bithound.io/github/ManageIQ/manageiq-ui-service)
+[![bitHound Dependencies](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/badges/dependencies.svg)](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/master/dependencies/npm)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/badges/devDependencies.svg)](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/master/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/badges/code.svg)](https://www.bithound.io/github/ManageIQ/manageiq-ui-service)
 
 The Service UI (SUI), previously Self Service UI (SSUI), for the [ManageIQ](http://github.com/ManageIQ/manageiq) project.
 
