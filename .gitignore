@@ -29,3 +29,6 @@ client/styles.html
 
 ### Builds ###
 build
+
+### Zanata config ###
+zanata.local.json
