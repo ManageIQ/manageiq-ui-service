@@ -4,7 +4,6 @@
 
 const glob = require('glob');
 const fs = require('fs');
-const log = require('../gulp/utils/log');
 
 task();
 
@@ -15,7 +14,7 @@ function task() {
     supportedLangsFile: '../client/gettext/json/supported_languages.json',
   };
 
-  let langFile = glob.sync(config.catalogs);
+  const langFile = glob.sync(config.catalogs);
   let availableLanguages = {};
   let supportedLanguages = [];
 
@@ -25,7 +24,7 @@ function task() {
 
   const catalog = JSON.parse(fs.readFileSync(langFile[0], 'utf8'));
 
-  for (let propName in catalog) {
+  for (const propName in catalog) {
     if (typeof(catalog[propName]) !== 'undefined') {
       // If we have a list of supported languages and the language is not on the list, we skip it
       if (supportedLanguages.length > 0 && !supportedLanguages.includes(propName)) {

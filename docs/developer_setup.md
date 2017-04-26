@@ -12,8 +12,8 @@ Logging in to the SUI requires a running instance of ManageIQ. Instructions on h
   - `git clone git@github.com:ManageIQ/manageiq-ui-service.git`.
 - Have nodejs **v6.x** and npm **3.x.x** installed (npm should be installed with NodeJS)
 - If using [nvm](https://github.com/creationix/nvm) you can ensure you are using the correct node version with `nvm use`
-- Have yarn (^v0.18.1) and gulp globally installed.
-  - `npm install -g yarn gulp`
+- Have yarn (^v0.22.0) globally installed.
+  - `npm install -g yarn`
 
 ### Install Dependencies
 
