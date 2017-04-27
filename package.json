@@ -24,6 +24,8 @@
     "test": "yarn vet && karma start karma.conf.js --single-run",
     "test:e2e": "protractor protractor.conf.js",
     "test:watch": "karma start --auto-watch --no-single-run",
+    "translations:upload": "node language/index.js upload",
+    "translations:download": "node language/index.js download",
     "vet": "eslint . && sass-lint --verbose --no-exit"
   },
   "dependencies": {
@@ -108,6 +110,7 @@
   },
   "devDependencies": {
     "@manageiq/manageiq-api-mock": "1.2.2",
+    "angular-gettext-cli": "1.2.0",
     "angular-mocks": "1.6.4",
     "bardjs": "0.1.8",
     "chai": "3.5.0",
@@ -140,7 +143,8 @@
     "serve-favicon": "2.4.2",
     "sinon": "2.1.0",
     "sinon-chai": "2.9.0",
-    "webpack-dev-server": "2.4.2"
+    "webpack-dev-server": "2.4.2",
+    "zanata-js": "2.1.4"
   },
   "browserslist": [
     "last 2 versions",
