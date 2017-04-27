@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 /** @ngInject */
 export function SessionFactory($http, $q, $sessionStorage, $window, $state, $cookies, RBAC, Polling) {
   var model = {
@@ -30,7 +31,8 @@ export function SessionFactory($http, $q, $sessionStorage, $window, $state, $coo
   }
 
   function setMiqGroup(group) {
-    $http.defaults.headers.common['X-Miq-Group'] = group;
+    $http.defaults.headers.common['Accept'] = 'application/json;charset=UTF-8';
+    $http.defaults.headers.common['X-Miq-Group'] = unescape(encodeURIComponent(group));
     $sessionStorage.miqGroup = group || null;
   }
 
