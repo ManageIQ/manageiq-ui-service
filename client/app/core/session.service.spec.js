@@ -69,14 +69,14 @@ describe('Session', function() {
       var navFeatures = RBAC.getNavFeatures();
 
       expect(navFeatures.services.show).to.eq(true);
-      expect(navFeatures.requests.show).to.eq(false);
+      expect(navFeatures.orders.show).to.eq(false);
       expect(navFeatures.catalogs.show).to.eq(false);
     });
 
     it('sets visibility for "Service Catalogs" and "Requests" only on navbar and enables "Service Request" button', function() {
       var response = {authorization: {product_features: {
         catalog_items_view: {},
-        miq_request_view: {},
+        svc_catalog_provision: {},
       }}, identity: {}};
       gettextCatalog.loadAndSet = function() {};
       $httpBackend.whenGET('/api?attributes=authorization').respond(response);
@@ -85,7 +85,6 @@ describe('Session', function() {
       var navFeatures = RBAC.getNavFeatures();
 
       expect(navFeatures.services.show).to.eq(false);
-      expect(navFeatures.requests.show).to.eq(true);
       expect(navFeatures.orders.show).to.eq(true);
       expect(navFeatures.catalogs.show).to.eq(true);
     });
