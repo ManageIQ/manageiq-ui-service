@@ -24,7 +24,9 @@
     "test": "yarn vet && karma start karma.conf.js --single-run",
     "test:e2e": "protractor protractor.conf.js",
     "test:watch": "karma start --auto-watch --no-single-run",
-    "vet": "eslint . && sass-lint --verbose --no-exit"
+    "vet": "eslint . && sass-lint --verbose --no-exit",
+    "zanata:upload": "node language/index.js upload",
+    "zanata:download": "node language/index.js download"
   },
   "dependencies": {
     "@angular/common": "4.1.0",
@@ -116,6 +118,7 @@
     "codeclimate-test-reporter": "0.4.1",
     "debug": "2.6.6",
     "express": "4.15.2",
+    "gettext-parser": "1.2.2",
     "helmet": "3.5.0",
     "http-proxy": "1.16.2",
     "istanbul-instrumenter-loader": "2.0.0",

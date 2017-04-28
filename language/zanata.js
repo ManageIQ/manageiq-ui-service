@@ -30,8 +30,7 @@ const zanata = {
   },
   download(locales, outputDir) {
     zanata.getSourceFile().then((outputFile) => {
-            // loop through the locales and clone output file and output file to po directories
-      for (var locale of locales) {
+      locales.forEach((locale) => {
         console.log("downloading locale " + locale);
         zanata.getFile(locale).then((data) => {
           const sourceFile = _.clone(outputFile);
@@ -45,7 +44,7 @@ const zanata = {
             });
           });
         });
-      }
+      });
     });
   },
   getFile(locale) {
