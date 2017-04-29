@@ -39,6 +39,7 @@ For up-to-date info, please see the `client/assets/images` directory.
    * `bg-modal-about-pf.png` - background for the About dialog
    * `bg-navbar.png` - background for the top navbar
    * `brand.svg` - the application logo used in the navbar
+   * `brand_transparent.png` - default logo in a number of places (ie: 404, orders details, etc...)
    * `login-screen-logo.png` - login screen logo, also used in the About dialog
 
 
