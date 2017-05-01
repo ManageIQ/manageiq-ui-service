@@ -33,6 +33,7 @@ export function SessionFactory($http, $q, $sessionStorage, $window, $state, $coo
     $http.defaults.headers.common['Accept'] = 'application/json;charset=UTF-8';
     $http.defaults.headers.common['X-Miq-Group'] = unescape(encodeURIComponent(group));
     $sessionStorage.miqGroup = group || null;
+    $sessionStorage.selectedMiqGroup = group;
   }
 
   function destroy() {
@@ -56,7 +57,8 @@ export function SessionFactory($http, $q, $sessionStorage, $window, $state, $coo
     } else {
       var response = angular.fromJson($sessionStorage.user);
       currentUser(response.identity);
-      setMiqGroup(response.identity.group);
+      const miqGroup = (angular.isUndefined($sessionStorage.selectedMiqGroup) ? response.identity.group : $sessionStorage.selectedMiqGroup );
+      setMiqGroup(miqGroup);
       RBAC.set(response.authorization.product_features);
       deferred.resolve(response);
     }
@@ -99,7 +101,7 @@ export function SessionFactory($http, $q, $sessionStorage, $window, $state, $coo
 
   function switchGroup(group) {
     $sessionStorage.miqGroup = group;
-
+    setMiqGroup(group);
     // reload .. but on dashboard
     $window.location.href = $state.href('dashboard');
   }
