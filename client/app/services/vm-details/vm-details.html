@@ -39,7 +39,7 @@
     <detail-reveal detail-title="Hostnames" detail="{{ vm.vmDetails.hostnames.join(',') }}"></detail-reveal>
     <detail-reveal detail-title="IP Addresses" detail="{{ vm.vmDetails.ipaddresses.join(',') }}"></detail-reveal>
     <detail-reveal detail-title="MAC Address" detail="{{ vm.vmDetails.mac_addresses.join(',') }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Container" detail="{{ vm.vmDetails.containerSpecsText }}"></detail-reveal>
     <detail-reveal detail-title="Parent Host/Node Platform" detail="{{ vm.vmDetails.host.vmm_product }}"
                    ng-if="vm.vmDetails.host"></detail-reveal>
@@ -52,7 +52,7 @@
                    ng-if="vm.vmDetails.cloud===false"></detail-reveal>
     <detail-reveal detail-title="CPU Affinity" detail="{{ vm.vmDetails.cpu_affinity }}"
                    ng-if="vm.vmDetails.cloud===false"></detail-reveal>
-    <detail-reveal detail-title="Snapshots" icon="fa fa-camera fa-lg"
+    <detail-reveal ng-if="vm.permissions.vm_snapshot_show_list" detail-title="Snapshots" icon="fa fa-camera fa-lg"
                    detail="{{ vm.vmDetails.v_total_snapshots }}"></detail-reveal>
     <detail-reveal detail-title="Advanced Settings" icon="fa fa-wrench fa-lg"
                    detail="{{ vm.vmDetails.advanced_settings.length }}"></detail-reveal>
@@ -86,55 +86,56 @@
       <div>{{ 'Relationships'|translate }}</div>
     </div>
     <detail-reveal detail-title="Availability Zone" detail="{{ vm.vmDetails.instance.availabilityZone }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Cloud Tenants" detail="{{ vm.vmDetails.instance.cloudTenant }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Flavor" detail="{{ vm.vmDetails.instance.flavor.name }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="VM Template" detail="{{ vm.vmDetails.instance.miq_provision_template.name }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Infrastructure provider" detail="{{ vm.vmDetails.ext_management_system.name }}"
-                   ng-if="vm.vmDetails.ext_management_system.name"></detail-reveal>
+                   ng-if="vm.permissions.ems_infra_show && vm.vmDetails.ext_management_system.name"></detail-reveal>
     <detail-reveal detail-title="{{ 'Cluster'|translate }} / {{ 'Deployment Role'|translate }}"
                    icon="fa fa-lg pficon pficon-cluster" detail="{{ vm.vmDetails.ems_cluster.name }}"
-                   ng-if="vm.vmDetails.ems_cluster.name"></detail-reveal>
+                   ng-if="vm.permissions.ems_cluster_show && vm.vmDetails.ems_cluster.name"></detail-reveal>
     <detail-reveal detail-title="Host / Node" icon="fa fa-lg pficon pficon-screen" detail="{{ vm.vmDetails.host.name }}"
-                   ng-if="vm.vmDetails.host.name"></detail-reveal>
+                   ng-if="vm.permissions.host_show && vm.vmDetails.host.name"></detail-reveal>
     <detail-reveal detail-title="Resource Pool" icon="fa fa-lg pficon pficon-resource-pool"
                    detail="{{ vm.vmDetails.parent_resource_pool.name }}"
-                   ng-if="vm.vmDetails.parent_resource_pool"></detail-reveal>
+                   ng-if="vm.permissions.resource_pool_show && vm.vmDetails.parent_resource_pool"></detail-reveal>
     <detail-reveal detail-title="Datastores" icon="fa fa-lg fa-database" detail="{{ vm.vmDetails.storages.length }}"
-                   ng-if="vm.vmDetails.storages.length > 0"></detail-reveal>
+                   ng-if="vm.permissions.storage_show_list && vm.vmDetails.storages.length > 0"></detail-reveal>
     <detail-reveal detail-title="Service" icon="fa fa-lg pficon pficon-service"
                    detail="{{ vm.vmDetails.service.name }}"></detail-reveal>
     <detail-reveal detail-title="Virtual Private Cloud" detail="{{ vm.vmDetails.instance.cloud_networks[0].name }}"
-                   ng-if="vm.vmDetails.instance.cloud_networks.length > 0"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance.cloud_networks.length > 0"></detail-reveal>
     <detail-reveal detail-title="Cloud Subnet" detail="{{ vm.vmDetails.instance.cloud_subnets[0].name }}"
-                   ng-if="vm.vmDetails.instance.cloud_subnets.length > 0"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance.cloud_subnets.length > 0"></detail-reveal>
     <detail-reveal detail-title="Stack" detail="{{ vm.vmDetails.instance.orchestrationStack.name }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Cloud Networks" detail="{{ vm.vmDetails.instance.cloud_networks.length }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Cloud Subnets" detail="{{ vm.vmDetails.instance.cloud_subnets.length }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Network Routers" detail="{{ vm.vmDetails.instance.network_routers.length }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Security Groups" detail="{{ vm.vmDetails.security_groups.length }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Floating IPs" detail="{{ vm.vmDetails.instance.floating_ip_addresses.length }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Network Ports" detail="{{ vm.vmDetails.instance.network_ports.length }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Load Balancers" detail="{{ vm.vmDetails.instance.load_balancers.length }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Cloud Volumes" detail="{{ vm.vmDetails.instance.cloud_volumes.length }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
     <detail-reveal detail-title="Genealogy" detail="{{ 'Show parent and child VMs'|translate }}"
                    ng-if="vm.vmDetails.cloud===false"></detail-reveal>
-    <detail-reveal detail-title="Drift History" detail="{{ vm.vmDetails.driftHistory }}"></detail-reveal>
+    <detail-reveal ng-if="vm.permissions.vm_drift" detail-title="Drift History"
+                   detail="{{ vm.vmDetails.driftHistory }}"></detail-reveal>
     <detail-reveal detail-title="Analysis History" detail="{{ vm.vmDetails.scanHistoryCount }}"></detail-reveal>
   </div>
-  <div class="container-fluid vm-details-container">
+  <div ng-if="vm.permissions.vm_check_compliance" class="container-fluid vm-details-container">
     <div class="row title">
       <div>{{ 'Compliance'|translate }}</div>
     </div>
@@ -162,7 +163,7 @@
     <detail-reveal detail-title="Groups" icon="fa fa-lg pficon pficon-users"
                    detail="{{  vm.vmDetails.groups.length  }}"></detail-reveal>
     <detail-reveal detail-title="Key Pairs" detail="{{  vm.vmDetails.instance.keyPairLabels.join(',')  }}"
-                   ng-if="vm.vmDetails.instance"></detail-reveal>
+                   ng-if="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
   </div>
   <div class="container-fluid vm-details-container">
     <div class="row title">

@@ -107,7 +107,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
       setRetireDate: RBAC.hasAny(['service_control', 'service_retire']),
       editTags: RBAC.hasAny(['service_control', 'service_tag']),
       viewAnsible: RBAC.hasAny(['configuration_script_view', 'configuration_scripts_accord']),
-      
+
       instanceStart: RBAC.hasAny(['instance_control', 'instance_start']),
       instanceStop: RBAC.hasAny(['instance_control', 'instance_stop']),
       instanceSuspend: RBAC.hasAny(['instance_control', 'instance_suspend']),
@@ -115,6 +115,16 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
       cockpit: RBAC.has('cockpit_console'),
       console: RBAC.has('vm_console'),
       viewSnapshots: RBAC.hasAny(['vm_snapshot', 'vm_snapshot_view', 'cloud_volume_snapshot', 'cloud_volume_snapshot_view']),
+
+      vm_snapshot_show_list: RBAC.has('vm_snapshot_show_list'), // Display Lists of VM Snapshots
+      ems_infra_show: RBAC.has('ems_infra_show'), // View Infrastructure Providers
+      ems_cluster_show: RBAC.has('ems_cluster_show'), //  Display Individual Clusters / Deployment Roles
+      host_show: RBAC.has('host_show'), // Display Individual Hosts / Nodes
+      resource_pool_show: RBAC.has('resource_pool_show'), // Display Individual Resource Pools
+      storage_show_list: RBAC.has('storage_show_list'), // Display Lists of Datastores
+      instance_show: RBAC.has('instance_show'), // Display Individual Instances related to a CI
+      vm_drift: RBAC.has('vm_drift'), // Displays VMs Drift
+      vm_check_compliance: RBAC.has('vm_check_compliance'), // Check Compliance of Last Known Configuration
     };
   }
 

@@ -35,6 +35,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, E
         },
       },
     });
+    EventNotifications.info(__("The contents of this page is a function of the current users's group."));
     resolveData();
     Polling.start('polling', resolveData, LONG_POLLING_INTERVAL);
   }
