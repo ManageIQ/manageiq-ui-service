@@ -2,9 +2,7 @@
 export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Session, $log, ActionCable, ApplianceInfo) {
   const state = {};
   const toastDelay = 8 * 1000;
-
   const service = {
-    init: init,
     state: getState,
     add: add,
     info: addInfo,
@@ -23,11 +21,12 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     dismissToast: dismissToast,
   };
 
+  init();
+
   return service;
 
   function init() {
     doReset();
-
     if (ApplianceInfo.get().asyncNotify) {
       const cable = ActionCable.createConsumer('/ws/notifications');
 
@@ -111,7 +110,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     };
 
     group.notifications.unshift(newNotification);
-    updateUnreadCount();
+    updateUnreadCount(group);
     showToast(newNotification);
   }
 
@@ -169,11 +168,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
         service.removeToast(notification);
       }
     }
-    if (group) {
-      updateUnreadCount(group);
-    } else {
-      updateUnreadCount();
-    }
+    updateUnreadCount(group);
   }
 
   function markRead(notification, group) {
@@ -189,7 +184,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
 
   function markAllRead(group) {
     if (group) {
-      var resources = group.notifications.map(function(notification) {
+      const resources = group.notifications.map(function(notification) {
         notification.unread = false;
         service.removeToast(notification);
 
@@ -212,7 +207,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
   }
 
   function clear(notification, group) {
-    var index;
+    let index;
 
     if (!group) {
       group = lodash.find(state.groups, {notificationType: notification.notificationType});
@@ -233,7 +228,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
 
   function clearAll(group) {
     if (group) {
-      var resources = group.notifications.map(function(notification) {
+      const resources = group.notifications.map(function(notification) {
         service.removeToast(notification);
 
         return {href: notification.href};
@@ -249,7 +244,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
   }
 
   function removeToast(notification) {
-    var index = state.toastNotifications.indexOf(notification);
+    const index = state.toastNotifications.indexOf(notification);
     if (index > -1) {
       state.toastNotifications.splice(index, 1);
     }
@@ -305,7 +300,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
   }
 
   function miqFormatNotification(text, bindings) {
-    var str = __(text);
+    let str = __(text);
     lodash.each(bindings, function(value, key) {
       str = str.replace(new RegExp('%{' + key + '}', 'g'), value.text);
     });

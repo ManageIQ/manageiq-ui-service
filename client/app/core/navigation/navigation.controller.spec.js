@@ -8,7 +8,6 @@ describe('Navigation controller', function() {
       beforeEach(inject(function($controller) {
         bard.inject('Text',
           'Navigation',
-          'Messages',
           'Session',
           'ShoppingCart',
           'API_BASE',
@@ -22,7 +21,6 @@ describe('Navigation controller', function() {
       ctrl = $controller('NavigationController', {
         Text: Text,
         Navigation: Navigation,
-        Messages: Messages,
         Session: Session,
         API_BASE: API_BASE,
         ShoppingCart: ShoppingCart,

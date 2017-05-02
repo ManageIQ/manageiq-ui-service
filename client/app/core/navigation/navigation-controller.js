@@ -11,16 +11,117 @@ export function NavigationController(Text,
                                      ApplianceInfo) {
   const vm = this;
 
+  const destroy = $scope.$on('shoppingCartUpdated', refresh);
+  const destroyCart = $scope.$on('shoppingCartUpdated', refreshCart);
+  const destroyNotifications = $scope.$watch(
+    function() {
+      return EventNotifications.state().groups;
+    },
+    refreshNotifications, true);
+  const destroyToast = $scope.$watch(
+    function() {
+      return EventNotifications.state().toastNotifications;
+    },
+    refreshToast, true);
   const applianceInfo = ApplianceInfo.get();
 
-  vm.text = Text.app;
-  vm.user = Session.currentUser;
+  $scope.$on('destroy', function() {
+    destroyCart();
+    destroyNotifications();
+    destroyToast();
+    destroy();
+  });
+  $scope.$on("$stateChangeSuccess", function() {
+    clearActiveItems();
+    setActiveItems();
+  });
 
-  vm.activate = activate;
-  vm.handleItemClick = handleItemClick;
-  vm.clearMessages = clearMessages;
-  vm.API_BASE = API_BASE;
-  vm.groupSwitch = Session.switchGroup;
+  activate();
+
+  function activate() {
+    angular.extend(vm, {
+      state: Navigation.state,
+      text: Text.app,
+      user: Session.currentUser,
+      API_BASE: API_BASE,
+      groupSwitch: Session.switchGroup,
+      items: [],
+      notificationsDrawerShown: false,
+      newNotifications: false,
+      titleHtml: 'app/components/notifications/drawer-title.html',
+      headingHTML: 'app/components/notifications/heading.html',
+      notificationHTML: 'app/components/notifications/notification-body.html',
+      notificationFooterHTML: 'app/components/notifications/notification-footer.html',
+      handleItemClick: handleItemClick,
+      toggleNotificationsList: toggleNotificationsList,
+      updateViewingToast: updateViewingToast,
+      handleDismissToast: handleDismissToast,
+      closeMenus: closeMenus,
+      getNotficationStatusIconClass: getNotficationStatusIconClass,
+      markNotificationRead: markNotificationRead,
+      clearNotification: clearNotification,
+      clearAllNotifications: clearAllNotifications,
+      markAllRead: markAllRead,
+      shoppingCart: shoppingCart(),
+      about: about(),
+      sites: sites(),
+    });
+    getNavigationItems(Navigation.items);
+    refresh();
+
+    if (ShoppingCart.allowed()) {
+      ShoppingCart.reload();
+    }
+    setActiveItems();
+  }
+
+  function shoppingCart() {
+    return {
+      count: 0,
+      open: function() {
+        return $uibModal.open({
+          template: '<shopping-cart modal-instance="vm.modalInstance"></shopping-cart>',
+          size: 'lg',
+          controller: function($uibModalInstance) {
+            const vm = this;
+            vm.modalInstance = $uibModalInstance;
+          },
+          controllerAs: 'vm',
+          bindToController: true,
+
+        }).result;
+      },
+      allowed: ShoppingCart.allowed,
+    };
+  }
+
+  function about() {
+    return {
+      isOpen: false,
+      additionalInfo: "",
+      imgAlt: __("Product logo"),
+      imgSrc: "images/login-screen-logo.png",
+      title: Text.app.name,
+      productInfo: [
+        {name: __('Version: '), value: applianceInfo.version},
+        {name: __('Server Name: '), value: applianceInfo.server},
+        {name: __('User Name: '), value: applianceInfo.user},
+        {name: __('User Role: '), value: applianceInfo.role},
+      ],
+      copyright: applianceInfo.copyright,
+      supportWebsiteText: applianceInfo.supportWebsiteText,
+      supportWebsite: applianceInfo.supportWebsite,
+    };
+  }
+
+  function sites() {
+    return [{
+      title: __('Administration UI'),
+      tooltip: __('Log into the full administrative UI'),
+      iconClass: 'fa-cogs',
+      url: API_BASE,
+    }];
+  }
 
   function clearActiveItems() {
     angular.forEach(vm.items, function(item) {
@@ -63,69 +164,6 @@ export function NavigationController(Text,
     });
   }
 
-  $scope.$on("$stateChangeSuccess", function() {
-    clearActiveItems();
-    setActiveItems();
-  });
-
-  vm.shoppingCart = {
-    count: 0,
-    open: function() {
-      return $uibModal.open({
-        template: '<shopping-cart modal-instance="vm.modalInstance"></shopping-cart>',
-        size: 'lg',
-        controller: function($uibModalInstance) {
-          var vm = this;
-          vm.modalInstance = $uibModalInstance;
-        },
-        controllerAs: 'vm',
-        bindToController: true,
-
-      }).result;
-    },
-    allowed: ShoppingCart.allowed,
-  };
-
-  vm.notificationsDrawerShown = false;
-  vm.toggleNotificationsList = toggleNotificationsList;
-  vm.newNotifications = false;
-  vm.closeMenus = closeMenus;
-  vm.getNotficationStatusIconClass = getNotficationStatusIconClass;
-  vm.markNotificationRead = markNotificationRead;
-  vm.clearNotification = clearNotification;
-  vm.clearAllNotifications = clearAllNotifications;
-  vm.markAllRead = markAllRead;
-  vm.titleHtml = 'app/components/notifications/drawer-title.html';
-  vm.headingHTML = 'app/components/notifications/heading.html';
-  vm.notificationHTML = 'app/components/notifications/notification-body.html';
-  vm.notificationFooterHTML = 'app/components/notifications/notification-footer.html';
-  vm.updateViewingToast = updateViewingToast;
-  vm.handleDismissToast = handleDismissToast;
-
-  vm.about = {
-    isOpen: false,
-    additionalInfo: "",
-    imgAlt: __("Product logo"),
-    imgSrc: "images/login-screen-logo.png",
-    title: Text.app.name,
-    productInfo: [
-      {name: __('Version: '), value: applianceInfo.version},
-      {name: __('Server Name: '), value: applianceInfo.server},
-      {name: __('User Name: '), value: applianceInfo.user},
-      {name: __('User Role: '), value: applianceInfo.role},
-    ],
-    copyright: applianceInfo.copyright,
-    supportWebsiteText: applianceInfo.supportWebsiteText,
-    supportWebsite: applianceInfo.supportWebsite,
-  };
-
-  vm.sites = [{
-    title: __('Administration UI'),
-    tooltip: __('Log into the full administrative UI'),
-    iconClass: 'fa-cogs',
-    url: vm.API_BASE,
-  }];
-
   function getNavigationItems(items) {
     vm.items.splice(0, vm.items.length);
     angular.forEach(items, function(nextPrimary) {
@@ -161,19 +199,6 @@ export function NavigationController(Text,
     }
   }
 
-  function activate() {
-    vm.state = Navigation.state;
-    vm.items = [];
-
-    getNavigationItems(Navigation.items);
-    refresh();
-
-    if (ShoppingCart.allowed()) {
-      ShoppingCart.reload();
-    }
-    setActiveItems();
-  }
-
   function refreshCart() {
     vm.shoppingCart.count = ShoppingCart.count();
   }
@@ -197,29 +222,6 @@ export function NavigationController(Text,
     refreshNotifications();
     refreshToast();
   }
-
-  const destroyCart = $scope.$on('shoppingCartUpdated', refreshCart);
-
-  const destroyNotifications = $scope.$watch(
-    function() {
-      return EventNotifications.state().groups;
-    },
-    refreshNotifications, true);
-
-  const destroyToast = $scope.$watch(
-    function() {
-      return EventNotifications.state().toastNotifications;
-    },
-    refreshToast, true);
-
-  const destroy = $scope.$on('shoppingCartUpdated', refresh);
-
-  $scope.$on('destroy', function() {
-    destroyCart();
-    destroyNotifications();
-    destroyToast();
-    destroy();
-  });
 
   function handleItemClick(item) {
     $state.transitionTo(item.state);
@@ -276,6 +278,4 @@ export function NavigationController(Text,
   function handleDismissToast(notification) {
     EventNotifications.dismissToast(notification);
   }
-
-  activate();
 }
