@@ -64,7 +64,13 @@ export function SessionFactory($http, $q, $sessionStorage, $window, $state, $coo
   }
 
   function getUserAuthorizations() {
-    return $http.get('/api?attributes=authorization')
+    const config = {
+      headers: {
+        'X-Auth-Skip-Token-Renewal': true,
+      },
+    };
+
+    return $http.get('/api?attributes=authorization', config)
       .then(function (response) {
         $sessionStorage.user = angular.toJson(response.data);
         currentUser(response.data.identity);
