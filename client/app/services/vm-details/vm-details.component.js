@@ -9,7 +9,7 @@ export const VmDetailsComponent = {
 };
 
 /** @ngInject */
-function ComponentController($stateParams, VmsService, ServicesState, sprintf, EventNotifications, Polling, PowerOperations, LONG_POLLING_INTERVAL) {
+function ComponentController($stateParams, VmsService, ServicesState, sprintf, lodash, EventNotifications, Polling, PowerOperations, LONG_POLLING_INTERVAL) {
   const vm = this;
   vm.$onInit = activate;
   vm.$onDestroy = onDestroy;
@@ -81,7 +81,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, E
         + ' sockets x ' + vm.vmDetails.hardware.cpu_cores_per_socket + ' core), ' + vm.vmDetails.hardware.memory_mb + ' MB';
 
       if (vm.vmDetails.retired) {
-        EventNotifications.clearAll(EventNotifications.state().groups[0]);
+        EventNotifications.clearAll(lodash.find(EventNotifications.state().groups, {notificationType: 'warning'}));
         EventNotifications.warn(sprintf(__("%s is a retired resource"), vm.vmDetails.name), {persistent: true, unread: false});
       }
       getListActions();
