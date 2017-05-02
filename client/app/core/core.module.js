@@ -31,7 +31,6 @@ import { LanguageFactory } from './language.service.js';
 import { LanguageSwitcherDirective } from './language-switcher/language-switcher.directive.js';
 import { ListConfigurationFactory } from './list-configuration.service.js';
 import { ListViewFactory } from './list-view.service.js';
-import { MessagesFactory } from './messages.service.js';
 import { NavCountsFactory } from './navcounts.service.js';
 import { NavigationController } from './navigation/navigation-controller.js';
 import { NavigationProvider } from './navigation.provider.js';
@@ -89,7 +88,6 @@ export const CoreModule = angular
   .factory('Language', LanguageFactory)
   .factory('ListConfiguration', ListConfigurationFactory)
   .factory('ListView', ListViewFactory)
-  .factory('Messages', MessagesFactory)
   .factory('ModalService', BaseModalFactory)
   .factory('NavCounts', NavCountsFactory)
   .factory('Polling', PollingFactory)

@@ -1,7 +1,6 @@
 /** @ngInject */
 export function NavigationController(Text,
                                      Navigation,
-                                     Messages,
                                      Session,
                                      API_BASE,
                                      ShoppingCart,
@@ -163,7 +162,6 @@ export function NavigationController(Text,
   }
 
   function activate() {
-    vm.messages = Messages.items;
     vm.state = Navigation.state;
     vm.items = [];
 
@@ -225,10 +223,6 @@ export function NavigationController(Text,
 
   function handleItemClick(item) {
     $state.transitionTo(item.state);
-  }
-
-  function clearMessages() {
-    Messages.clear();
   }
 
   function toggleNotificationsList() {
