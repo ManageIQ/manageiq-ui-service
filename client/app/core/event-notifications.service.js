@@ -1,9 +1,11 @@
 /** @ngInject */
 export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Session, $log, ActionCable, ApplianceInfo) {
-  var state = {};
-  var toastDelay = 8 * 1000;
+  const state = {};
+  const toastDelay = 8 * 1000;
 
-  var service = {
+  const service = {
+    init: init,
+    state: getState,
     add: add,
     info: addInfo,
     success: addSuccess,
@@ -16,99 +18,88 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     markAllUnread: markAllUnread,
     clear: clear,
     clearAll: clearAll,
-    showToast: showToast,
     removeToast: removeToast,
     setViewingToast: setViewingToast,
     dismissToast: dismissToast,
-    state: function() {
-      return state;
-    },
   };
-
-  var updateUnreadCount = function(group) {
-    if (group) {
-      group.unreadCount = group.notifications.filter(function(notification) {
-        return notification.unread;
-      }).length;
-      state.unreadNotifications = angular.isDefined(lodash.find(state.groups, function(group) {
-        return group.unreadCount > 0;
-      }));
-    }
-  };
-
-  function miqFormatNotification(text, bindings) {
-    var str = __(text);
-    lodash.each(bindings, function(value, key) {
-      str = str.replace(new RegExp('%{' + key + '}', 'g'), value.text);
-    });
-
-    return str;
-  }
-
-  doReset();
-
-  const applianceInfo = ApplianceInfo.get();
-  if (applianceInfo.asyncNotify) {
-    var cable = ActionCable.createConsumer('/ws/notifications');
-
-    cable.subscriptions.create('NotificationChannel', {
-      disconnected: function() {
-        var vm = this;
-        Session.requestWsToken().then(null, function() {
-          $log.warn('Unable to retrieve a valid ws_token!');
-          // Disconnect permanently if the ws_token cannot be fetched
-          vm.consumer.connection.close({allowReconnect: false});
-        });
-      },
-      received: function(data) {
-        $timeout(function() {
-          var msg = miqFormatNotification(data.text, data.bindings);
-          service.add('event', data.level, msg, {message: msg}, data.id);
-        });
-      },
-    });
-  }
 
   return service;
 
+  function init() {
+    doReset();
+
+    if (ApplianceInfo.get().asyncNotify) {
+      const cable = ActionCable.createConsumer('/ws/notifications');
+
+      cable.subscriptions.create('NotificationChannel', {
+        disconnected: function() {
+          const vm = this;
+          Session.requestWsToken().then(null, function() {
+            $log.warn('Unable to retrieve a valid ws_token!');
+            // Disconnect permanently if the ws_token cannot be fetched
+            vm.consumer.connection.close({allowReconnect: false});
+          });
+        },
+        received: function(data) {
+          $timeout(function() {
+            const msg = miqFormatNotification(data.text, data.bindings);
+            service.add('event', data.level, msg, {message: msg}, data.id);
+          });
+        },
+      });
+    }
+  }
+
+  function getState() {
+    return state;
+  }
+
   function doReset() {
-    var events = {
-      notificationType: 'event',
-      heading: 'Events',
-      unreadCount: 0,
-      notifications: [],
-    };
-    state.groups = [events];
+    const eventTypes = ['info', 'success', 'error', 'warning'];
+
+    function Group(type) {
+      this.notificationType = type;
+      this.heading = lodash.capitalize(type);
+      this.unreadCount = 0;
+      this.notifications = [];
+    }
+
+    state.groups = eventTypes.map((type) => new Group(type));
     state.unreadNotifications = false;
     state.toastNotifications = [];
 
-    var options = {
+    const options = {
       expand: 'resources',
       attributes: 'details',
     };
-
-    CollectionsApi.query('notifications', options).then(function(result) {
-      result.resources.forEach(function(resource) {
-        var msg = miqFormatNotification(resource.details.text, resource.details.bindings);
-        events.notifications.unshift({
-          id: resource.id,
-          notificationType: 'event',
-          unread: !resource.seen,
-          type: resource.details.level,
-          message: msg,
-          data: {
-            message: msg,
-          },
-          href: resource.href,
-          timeStamp: resource.details.created_at,
-        });
+    CollectionsApi.query('notifications', options).then((result) => {
+      result.resources.forEach((resource) => {
+        const group = lodash.find(state.groups, {notificationType: resource.details.level}) || new Group(resource.details.level);
+        importServerNotifications(group, resource);
       });
-      updateUnreadCount(events);
+      updateUnreadCount();
     });
+
+    function importServerNotifications(group, resource) {
+      const msg = miqFormatNotification(resource.details.text, resource.details.bindings);
+      group.notifications.unshift({
+        id: resource.id,
+        notificationType: resource.details.level,
+        unread: !resource.seen,
+        type: resource.details.level,
+        message: msg,
+        data: {
+          message: msg,
+        },
+        href: resource.href,
+        timeStamp: resource.details.created_at,
+      });
+    }
   }
 
   function add(notificationType, type, message, notificationData, id) {
-    var newNotification = {
+    const group = lodash.find(state.groups, {notificationType: notificationType});
+    const newNotification = {
       id: id,
       notificationType: notificationType,
       unread: angular.isDefined(notificationData) ? notificationData.unread : true,
@@ -119,38 +110,30 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
       timeStamp: (new Date()).getTime(),
     };
 
-    var group = lodash.find(state.groups, {notificationType: notificationType});
-
-    if (group) {
-      if (group.notifications) {
-        group.notifications.unshift(newNotification);
-      } else {
-        group.notifications = [newNotification];
-      }
-      updateUnreadCount(group);
-    }
+    group.notifications.unshift(newNotification);
+    updateUnreadCount();
     showToast(newNotification);
   }
 
   function addInfo(message, notificationData, id) {
-    service.add('event', 'info', message, notificationData, id);
+    service.add('info', 'info', message, notificationData, id);
   }
 
   function addSuccess(message, notificationData, id) {
-    service.add('event', 'success', message, notificationData, id);
+    service.add('success', 'success', message, notificationData, id);
   }
 
   function addError(message, notificationData, id) {
-    service.add('event', 'danger', message, notificationData, id);
+    service.add('error', 'danger', message, notificationData, id);
   }
 
   function addWarn(message, notificationData, id) {
-    service.add('event', 'warning', message, notificationData, id);
+    service.add('warning', 'warning', message, notificationData, id);
   }
 
   function update(notificationType, type, message, notificationData, id, showToast) {
-    var notification;
-    var group = lodash.find(state.groups, {notificationType: notificationType});
+    let notification;
+    let group = lodash.find(state.groups, {notificationType: notificationType});
 
     if (group) {
       group = lodash.find(group.notifications, {id: id});
@@ -189,9 +172,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     if (group) {
       updateUnreadCount(group);
     } else {
-      state.groups.forEach(function(group) {
-        updateUnreadCount(group);
-      });
+      updateUnreadCount();
     }
   }
 
@@ -274,6 +255,21 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     }
   }
 
+  function setViewingToast(notification, viewing) {
+    notification.viewing = viewing;
+    if (!viewing && !notification.show) {
+      removeToast(notification);
+    }
+  }
+
+  function dismissToast(notification) {
+    notification.show = false;
+    removeToast(notification);
+    service.markRead(notification);
+  }
+
+
+// Private
   function showToast(notification) {
     notification.show = true;
     notification.persistent = notification.data.persistent || notification.type === 'danger' || notification.type === 'error';
@@ -291,16 +287,29 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     }
   }
 
-  function setViewingToast(notification, viewing) {
-    notification.viewing = viewing;
-    if (!viewing && !notification.show) {
-      removeToast(notification);
+  function updateUnreadCount(group) {
+    if (group) {
+      update(group);
+    } else {
+      state.groups.forEach((group) => {
+        update(group);
+      });
+    }
+
+    function update(group) {
+      group.unreadCount = group.notifications.filter((notification) => notification.unread).length;
+      state.unreadNotifications = angular.isDefined(lodash.find(state.groups, function(group) {
+        return group.unreadCount > 0;
+      }));
     }
   }
 
-  function dismissToast(notification) {
-    notification.show = false;
-    removeToast(notification);
-    service.markRead(notification);
+  function miqFormatNotification(text, bindings) {
+    var str = __(text);
+    lodash.each(bindings, function(value, key) {
+      str = str.replace(new RegExp('%{' + key + '}', 'g'), value.text);
+    });
+
+    return str;
   }
 }
