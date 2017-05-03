@@ -17,7 +17,6 @@ import {
 } from './navigation.config.js';
 
 // Core
-import { ActionNotificationsFactory } from './action-notifications.service';
 import { ApplianceInfo } from './appliance-info.service.js';
 import { AuthenticationApiFactory } from './authentication-api.factory.js';
 import { BaseModalController } from './modal/base-modal-controller.js';
@@ -31,7 +30,6 @@ import { LanguageFactory } from './language.service.js';
 import { LanguageSwitcherDirective } from './language-switcher/language-switcher.directive.js';
 import { ListConfigurationFactory } from './list-configuration.service.js';
 import { ListViewFactory } from './list-view.service.js';
-import { MessagesFactory } from './messages.service.js';
 import { NavCountsFactory } from './navcounts.service.js';
 import { NavigationController } from './navigation/navigation-controller.js';
 import { NavigationProvider } from './navigation.provider.js';
@@ -79,7 +77,6 @@ export const CoreModule = angular
   .controller('NavigationController', NavigationController)
   .component('shoppingCart', ShoppingCartComponent)
   .directive('languageSwitcher', LanguageSwitcherDirective)
-  .factory('ActionNotifications', ActionNotificationsFactory)
   .factory('ApplianceInfo', ApplianceInfo)
   .factory('AuthenticationApi', AuthenticationApiFactory)
   .factory('Chargeback', ChargebackFactory)
@@ -89,7 +86,6 @@ export const CoreModule = angular
   .factory('Language', LanguageFactory)
   .factory('ListConfiguration', ListConfigurationFactory)
   .factory('ListView', ListViewFactory)
-  .factory('Messages', MessagesFactory)
   .factory('ModalService', BaseModalFactory)
   .factory('NavCounts', NavCountsFactory)
   .factory('Polling', PollingFactory)

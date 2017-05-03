@@ -1,198 +1,72 @@
 /** @ngInject */
 export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Session, $log, ActionCable, ApplianceInfo) {
-  var state = {};
-  var toastDelay = 8 * 1000;
-
-  var service = {
-    add: add,
+  const state = {};
+  const toastDelay = 8 * 1000;
+  const service = {
+    state: getState,
+    batch: batchAdd,
     info: addInfo,
     success: addSuccess,
     error: addError,
     warn: addWarn,
-    update: update,
     markRead: markRead,
     markUnread: markUnread,
     markAllRead: markAllRead,
     markAllUnread: markAllUnread,
     clear: clear,
     clearAll: clearAll,
-    showToast: showToast,
-    removeToast: removeToast,
     setViewingToast: setViewingToast,
     dismissToast: dismissToast,
-    state: function() {
-      return state;
-    },
   };
 
-  var updateUnreadCount = function(group) {
-    if (group) {
-      group.unreadCount = group.notifications.filter(function(notification) {
-        return notification.unread;
-      }).length;
-      state.unreadNotifications = angular.isDefined(lodash.find(state.groups, function(group) {
-        return group.unreadCount > 0;
-      }));
-    }
-  };
-
-  function miqFormatNotification(text, bindings) {
-    var str = __(text);
-    lodash.each(bindings, function(value, key) {
-      str = str.replace(new RegExp('%{' + key + '}', 'g'), value.text);
-    });
-
-    return str;
-  }
-
-  doReset();
-
-  const applianceInfo = ApplianceInfo.get();
-  if (applianceInfo.asyncNotify) {
-    var cable = ActionCable.createConsumer('/ws/notifications');
-
-    cable.subscriptions.create('NotificationChannel', {
-      disconnected: function() {
-        var vm = this;
-        Session.requestWsToken().then(null, function() {
-          $log.warn('Unable to retrieve a valid ws_token!');
-          // Disconnect permanently if the ws_token cannot be fetched
-          vm.consumer.connection.close({allowReconnect: false});
-        });
-      },
-      received: function(data) {
-        $timeout(function() {
-          var msg = miqFormatNotification(data.text, data.bindings);
-          service.add('event', data.level, msg, {message: msg}, data.id);
-        });
-      },
-    });
-  }
+  notificationsInit();
+  asyncInit();
 
   return service;
 
-  function doReset() {
-    var events = {
-      notificationType: 'event',
-      heading: 'Events',
-      unreadCount: 0,
-      notifications: [],
-    };
-    state.groups = [events];
-    state.unreadNotifications = false;
-    state.toastNotifications = [];
-
-    var options = {
-      expand: 'resources',
-      attributes: 'details',
-    };
-
-    CollectionsApi.query('notifications', options).then(function(result) {
-      result.resources.forEach(function(resource) {
-        var msg = miqFormatNotification(resource.details.text, resource.details.bindings);
-        events.notifications.unshift({
-          id: resource.id,
-          notificationType: 'event',
-          unread: !resource.seen,
-          type: resource.details.level,
-          message: msg,
-          data: {
-            message: msg,
-          },
-          href: resource.href,
-          timeStamp: resource.details.created_at,
-        });
-      });
-      updateUnreadCount(events);
-    });
+  function getState() {
+    return state;
   }
 
-  function add(notificationType, type, message, notificationData, id) {
-    var newNotification = {
-      id: id,
-      notificationType: notificationType,
-      unread: angular.isDefined(notificationData) ? notificationData.unread : true,
-      type: type,
-      message: message,
-      data: notificationData || {},
-      href: id ? '/api/notifications/' + id : undefined,
-      timeStamp: (new Date()).getTime(),
-    };
-
-    var group = lodash.find(state.groups, {notificationType: notificationType});
-
-    if (group) {
-      if (group.notifications) {
-        group.notifications.unshift(newNotification);
+  function batchAdd(events, successMsg = "", failMsg = "") {
+    const displayToast = events.length <= 6;
+    events.forEach(function(event) {
+      if (event.success) {
+        service.success(successMsg + ' ' + event.message);
       } else {
-        group.notifications = [newNotification];
+        service.error(failMsg + ' ' + event.message);
       }
-      updateUnreadCount(group);
+    });
+    if (!displayToast) {
+      state.toastNotifications = [];
+      service.info(__('Review the notification tray for results of this batch operation'));
     }
-    showToast(newNotification);
   }
 
   function addInfo(message, notificationData, id) {
-    service.add('event', 'info', message, notificationData, id);
+    add('info', 'info', message, notificationData, id);
   }
 
   function addSuccess(message, notificationData, id) {
-    service.add('event', 'success', message, notificationData, id);
+    add('success', 'success', message, notificationData, id);
   }
 
-  function addError(message, notificationData, id) {
-    service.add('event', 'danger', message, notificationData, id);
+  function addError(message, notificationData, id, displayToast) {
+    add('error', 'danger', message, notificationData, id, displayToast);
   }
 
   function addWarn(message, notificationData, id) {
-    service.add('event', 'warning', message, notificationData, id);
-  }
-
-  function update(notificationType, type, message, notificationData, id, showToast) {
-    var notification;
-    var group = lodash.find(state.groups, {notificationType: notificationType});
-
-    if (group) {
-      group = lodash.find(group.notifications, {id: id});
-
-      if (notification) {
-        if (showToast) {
-          notification.unread = true;
-        }
-        notification.type = type;
-        notification.message = message;
-        notification.data = notificationData;
-        notification.timeStamp = (new Date()).getTime();
-        updateUnreadCount(group);
-      }
-    }
-
-    if (showToast) {
-      if (!notification) {
-        notification = {
-          type: type,
-          message: message,
-        };
-      }
-
-      showToast(notification);
-    }
+    add('warning', 'warning', message, notificationData, id);
   }
 
   function updateNotificationRead(unread, notification, group) {
     if (notification) {
       notification.unread = unread;
       if (!unread) {
-        service.removeToast(notification);
+        removeToast(notification);
       }
     }
-    if (group) {
-      updateUnreadCount(group);
-    } else {
-      state.groups.forEach(function(group) {
-        updateUnreadCount(group);
-      });
-    }
+    updateUnreadCount(group);
   }
 
   function markRead(notification, group) {
@@ -208,9 +82,9 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
 
   function markAllRead(group) {
     if (group) {
-      var resources = group.notifications.map(function(notification) {
+      const resources = group.notifications.map(function(notification) {
         notification.unread = false;
-        service.removeToast(notification);
+        removeToast(notification);
 
         return {href: notification.href};
       });
@@ -231,7 +105,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
   }
 
   function clear(notification, group) {
-    var index;
+    let index;
 
     if (!group) {
       group = lodash.find(state.groups, {notificationType: notification.notificationType});
@@ -241,7 +115,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
       index = group.notifications.indexOf(notification);
       if (index > -1) {
         group.notifications.splice(index, 1);
-        service.removeToast(notification);
+        removeToast(notification);
         if (notification.href) {
           CollectionsApi.delete('notifications', notification.id);
         }
@@ -252,8 +126,8 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
 
   function clearAll(group) {
     if (group) {
-      var resources = group.notifications.map(function(notification) {
-        service.removeToast(notification);
+      const resources = group.notifications.map(function(notification) {
+        removeToast(notification);
 
         return {href: notification.href};
       });
@@ -267,8 +141,116 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     }
   }
 
+  function setViewingToast(notification, viewing) {
+    notification.viewing = viewing;
+    if (!viewing && !notification.show) {
+      removeToast(notification);
+    }
+  }
+
+  function dismissToast(notification) {
+    notification.show = false;
+    removeToast(notification);
+    service.markRead(notification);
+  }
+
+// Private
+  function add(notificationType, type, message, notificationData, id) {
+    const group = lodash.find(state.groups, {notificationType: notificationType});
+    const newNotification = {
+      id: id,
+      notificationType: notificationType,
+      unread: angular.isDefined(notificationData) ? notificationData.unread : true,
+      type: type,
+      message: message,
+      data: notificationData || {},
+      href: id ? '/api/notifications/' + id : undefined,
+      timeStamp: (new Date()).getTime(),
+    };
+
+    group.notifications.unshift(newNotification);
+    updateUnreadCount(group);
+    showToast(newNotification);
+  }
+
+
+  function asyncInit() {
+    if (ApplianceInfo.get().asyncNotify) {
+      const cable = ActionCable.createConsumer('/ws/notifications');
+
+      cable.subscriptions.create('NotificationChannel', {
+        disconnected: function() {
+          const vm = this;
+          Session.requestWsToken().then(null, function() {
+            $log.warn('Unable to retrieve a valid ws_token!');
+            // Disconnect permanently if the ws_token cannot be fetched
+            vm.consumer.connection.close({allowReconnect: false});
+          });
+        },
+        received: function(data) {
+          $timeout(function() {
+            const msg = miqFormatNotification(data.text, data.bindings);
+            add('event', data.level, msg, {message: msg}, data.id);
+          });
+        },
+      });
+    }
+  }
+
+  function miqFormatNotification(text, bindings) {
+    let str = __(text);
+    lodash.each(bindings, function(value, key) {
+      str = str.replace(new RegExp('%{' + key + '}', 'g'), value.text);
+    });
+
+    return str;
+  }
+
+  function notificationsInit() {
+    const eventTypes = ['info', 'success', 'error', 'warning'];
+
+    function Group(type) {
+      this.notificationType = type;
+      this.heading = lodash.capitalize(type);
+      this.unreadCount = 0;
+      this.notifications = [];
+    }
+
+    state.groups = eventTypes.map((type) => new Group(type));
+    state.unreadNotifications = false;
+    state.toastNotifications = [];
+
+    const options = {
+      expand: 'resources',
+      attributes: 'details',
+    };
+    CollectionsApi.query('notifications', options).then((result) => {
+      result.resources.forEach((resource) => {
+        const group = lodash.find(state.groups, {notificationType: resource.details.level}) || new Group(resource.details.level);
+        importServerNotifications(group, resource);
+      });
+      updateUnreadCount();
+    });
+
+    function importServerNotifications(group, resource) {
+      const msg = miqFormatNotification(resource.details.text, resource.details.bindings);
+      group.notifications.unshift({
+        id: resource.id,
+        notificationType: resource.details.level,
+        unread: !resource.seen,
+        type: resource.details.level,
+        message: msg,
+        data: {
+          message: msg,
+        },
+        href: resource.href,
+        timeStamp: resource.details.created_at,
+      });
+    }
+  }
+
   function removeToast(notification) {
-    var index = state.toastNotifications.indexOf(notification);
+    const index = state.toastNotifications.indexOf(notification);
     if (index > -1) {
       state.toastNotifications.splice(index, 1);
     }
@@ -291,16 +273,20 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     }
   }
 
-  function setViewingToast(notification, viewing) {
-    notification.viewing = viewing;
-    if (!viewing && !notification.show) {
-      removeToast(notification);
+  function updateUnreadCount(group) {
+    if (group) {
+      update(group);
+    } else {
+      state.groups.forEach((group) => {
+        update(group);
+      });
     }
-  }
 
-  function dismissToast(notification) {
-    notification.show = false;
-    removeToast(notification);
-    service.markRead(notification);
+    function update(group) {
+      group.unreadCount = group.notifications.filter((notification) => notification.unread).length;
+      state.unreadNotifications = angular.isDefined(lodash.find(state.groups, function(group) {
+        return group.unreadCount > 0;
+      }));
+    }
   }
 }

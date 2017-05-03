@@ -13,7 +13,7 @@ export const OwnershipServiceModalComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, lodash, CollectionsApi, EventNotifications, ActionNotifications) {
+function ComponentController($state, lodash, CollectionsApi, EventNotifications) {
   var vm = this;
 
   angular.extend(vm, {
@@ -64,7 +64,7 @@ function ComponentController($state, lodash, CollectionsApi, EventNotifications,
 
     function saveSuccess(response) {
       vm.close();
-      ActionNotifications.add(response, __('Setting ownership.'), __('Error setting ownership.'));
+      EventNotifications.batch(response.results, __('Setting ownership.'), __('Error setting ownership.'));
       $state.go($state.current, {}, {reload: true});
     }
 

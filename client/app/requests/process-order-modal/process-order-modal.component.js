@@ -12,7 +12,7 @@ export const ProcessOrderModalComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, CollectionsApi, EventNotifications, ActionNotifications) {
+function ComponentController($state, CollectionsApi, EventNotifications) {
   var vm = this;
 
   angular.extend(vm, {
@@ -34,7 +34,7 @@ function ComponentController($state, CollectionsApi, EventNotifications, ActionN
 
     function saveSuccess(response) {
       vm.close();
-      ActionNotifications.add(response, __('Deleting order.'), __('Error deleting order.'));
+      EventNotifications.batch(response.results, __('Deleting order.'), __('Error deleting order.'));
       $state.go($state.current, {}, {reload: true});
     }
 

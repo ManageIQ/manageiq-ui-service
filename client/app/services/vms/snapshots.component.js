@@ -12,7 +12,7 @@ export const VmSnapshotsComponent = {
 };
 
 /** @ngInject */
-function ComponentController(VmsService, sprintf, EventNotifications, ListView, ModalService, ActionNotifications) {
+function ComponentController(VmsService, sprintf, EventNotifications, ListView, ModalService) {
   const vm = this;
 
   vm.$onInit = function() {
@@ -142,7 +142,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
     VmsService.deleteSnapshots(vm.vm.id, vm.snapshotsToRemove).then(success, failure);
 
     function success(response) {
-      ActionNotifications.add(response, __('Deleting snapshot.'), __('Error deleting snapshot.'));
+      EventNotifications.batch(response.results, __('Deleting snapshot.'), __('Error deleting snapshot.'));
       vm.snapshotsToRemove = undefined;
       resolveSnapshots();
     }
@@ -213,7 +213,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
     VmsService.revertSnapshot(vm.vm.id, item.id).then(success, failure);
 
     function success(response) {
-      ActionNotifications.add({results: [response]}, __('Reverting snapshot.'), __('Error reverting snapshot.'));
+      EventNotifications.batch({results: [response]}, __('Reverting snapshot.'), __('Error reverting snapshot.'));
       resolveSnapshots();
     }
 
