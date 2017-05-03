@@ -12,7 +12,7 @@ export const RetireRemoveServiceModalComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, CollectionsApi, EventNotifications, ActionNotifications) {
+function ComponentController($state, CollectionsApi, EventNotifications) {
   var vm = this;
 
   angular.extend(vm, {
@@ -41,7 +41,7 @@ function ComponentController($state, CollectionsApi, EventNotifications, ActionN
           EventNotifications.success(__("Services Retired"));
           break;
         case "remove":
-          ActionNotifications.add(response, __('Service deleting.'), __('Error deleting service.'));
+          EventNotifications.batch(response.results, __('Service deleting.'), __('Error deleting service.'));
           break;
       }
       $state.go($state.current, {}, {reload: true});
