@@ -19,8 +19,8 @@ export function navConfig(NavigationProvider) {
   });
 
   const orders = createItem({
-    title: N_('Orders'),
-    originalTitle: 'Orders',
+    title: N_('My Orders'),
+    originalTitle: 'My Orders',
     state: 'orders',
     iconClass: 'fa fa-file-o',
     badgeTooltip: N_('Total orders submitted'),
