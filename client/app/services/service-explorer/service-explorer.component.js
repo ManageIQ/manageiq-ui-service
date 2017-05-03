@@ -81,7 +81,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       useExpandingRows: true,
       selectionMatchProp: 'id',
       onCheckBoxChange: handleSelectionChange,
-      onClick: expandRow,
+      onClick: viewService,
     };
   }
 
@@ -305,12 +305,6 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   function sortChange(sortId, isAscending) {
     ServicesState.services.setSort(sortId, isAscending);
     resolveServices(vm.limit, 0);
-  }
-
-  function expandRow(item) {
-    if (!item.disableRowExpansion) {
-      item.isExpanded = !item.isExpanded;
-    }
   }
 
   function viewService(item, ev) {

@@ -33,7 +33,7 @@
        menu-actions="vm.menuActions"
        update-menu-action-for-item-fn="vm.updateMenuActionForItemFn"
        custom-scope="vm">
-    <div class="row">
+    <div class="row serviceExplorerRow">
       <div class="col-lg-4 col-md-4 col-sm-5 col-xs-8 name-column">
         <span class="no-wrap">
          <i class="fa pficon power-icon" ng-class="item.power.icon"
@@ -45,7 +45,7 @@
            tooltip-placement="bottom"
            tooltip-append-to-body="true"
            tooltip-popup-delay="1000"
-           ng-click="customScope.viewService(item, $event)">
+        >
           <span class="ss-list-view__title-img">
             <span class="ss-list-view__title-img__center"></span>
             <img class="ss-list-view__title-img__logo" ng-src="{{ item.picture.image_href }}"
@@ -138,7 +138,7 @@
                  tooltip-placement="bottom"
                  tooltip-append-to-body="true"
                  tooltip-popup-delay="1000"
-                 ng-click="customScope.viewService(item, $event)">
+              >
               <span class="ss-list-view__title-img">
                 <span class="ss-list-view__title-img__center"></span>
                 <img class="ss-list-view__title-img__logo" ng-src="{{ item.picture.image_href }}"
