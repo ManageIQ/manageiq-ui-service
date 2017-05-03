@@ -11,6 +11,17 @@
         </div>
       </div>
     </div>
+    <div class="col-xs-6 col-sm-6 col-md-6" ng-show="vm.requestsFeature">
+      <div class="card-pf card-pf-accented ss-dashboard__card-primary total-requests">
+        <div class="card-pf-body">
+          <span class="fa fa-file-text-o"></span>
+          <div class="ss-dashboard__card-primary__count">
+            <h2>{{ vm.requestsCount.total }}</h2>
+            <h3 translate>Total Requests</h3>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row row-cards-pf">
     <div class="col-xs-6 col-sm-6 col-md-6" ng-show="vm.servicesFeature">
@@ -79,6 +90,51 @@
                 </span>
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6" ng-show="vm.requestsFeature">
+      <div class="card-pf">
+        <div class="row row-cards-pf">
+          <div class="card-pf card-pf-aggregate-status card-divider">
+              <div class="card-pf-body">
+                <h2 class="card-pf-title" translate>
+                  Pending Requests
+                </h2>
+                <p class="card-pf-aggregate-status-notifications">
+                  <span class="card-pf-aggregate-status-notification">
+                    <span class="pficon pficon-warning-triangle-o"></span>
+                  </span>
+                  <span class="card-pf-aggregate-status-notification">{{ ::vm.requestsCount.pending }}</span>
+                </p>
+              </div>
+          </div>
+          <div class="card-pf card-pf-aggregate-status card-divider">
+              <div class="card-pf-body">
+                <h2 class="card-pf-title" translate>
+                  Approved Requests
+                </h2>
+                <p class="card-pf-aggregate-status-notifications">
+                  <span class="card-pf-aggregate-status-notification">
+                    <span class="pficon fa fa-check"></span>
+                  </span>
+                  <span class="card-pf-aggregate-status-notification">{{ ::vm.requestsCount.approved }}</span>
+                </p>
+              </div>
+          </div>
+          <div class="card-pf card-pf-aggregate-status card-divider">
+              <div class="card-pf-body">
+                <h2 class="card-pf-title" translate>
+                  Denied Requests
+                </h2>
+                <p class="card-pf-aggregate-status-notifications">
+                  <span class="card-pf-aggregate-status-notification">
+                    <span class="pficon pficon pficon-close"></span>
+                  </span>
+                  <span class="card-pf-aggregate-status-notification">{{ ::vm.requestsCount.denied }}</span>
+                </p>
+              </div>
           </div>
         </div>
       </div>
