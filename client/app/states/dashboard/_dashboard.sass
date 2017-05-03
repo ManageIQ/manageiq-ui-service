@@ -42,43 +42,42 @@
     .card-pf-aggregate-status-notification
       border-left: 0
       margin: 0
+    
+    .pficon
+      border: 2px solid $app-color-medium-blue
+      border-radius: 100px
+      font-size: 24px
+      padding: 8px
+      position: relative
+      top: 2px
 
+    .pficon-warning-triangle-o
+      border-color: $app-color-orange-3
+
+    .fa-check
+      border-color: $app-color-medium-green
+      color: $app-color-medium-green
+
+    .pficon-close
+      border-color: $app-color-dark-red
+      color: $app-color-dark-red
+      width: 44px
+
+    .magic-dollar
+      color: $app-color-medium-blue
+      display: inline-block
+      font-weight: 400
+      line-height: 1
+      width: 44px
+
+      &::before
+        content: '$'
     a
       color: $color-black
       cursor: pointer
 
       &:hover
         text-decoration: none
-
-      .pficon
-        border: 2px solid $app-color-medium-blue
-        border-radius: 100px
-        font-size: 24px
-        padding: 8px
-        position: relative
-        top: 2px
-
-      .pficon-warning-triangle-o
-        border-color: $app-color-orange-3
-
-      .fa-check
-        border-color: $app-color-medium-green
-        color: $app-color-medium-green
-
-      .pficon-close
-        border-color: $app-color-dark-red
-        color: $app-color-dark-red
-        width: 44px
-
-      .magic-dollar
-        color: $app-color-medium-blue
-        display: inline-block
-        font-weight: 400
-        line-height: 1
-        width: 44px
-
-        &::before
-          content: '$'
 
     .card-pf
       border-bottom: 0
@@ -87,3 +86,5 @@
     .card-divider
       border-bottom: 1px solid $color-gray-1
       margin-bottom: 0
+.total-requests
+  cursor: default
