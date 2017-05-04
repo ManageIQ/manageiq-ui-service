@@ -26,9 +26,9 @@
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@angular/upgrade/-/upgrade-4.0.2.tgz#89e760a797f888f50dff0b1e8336722ef3609b53"
 
-"@manageiq/manageiq-api-mock@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@manageiq/manageiq-api-mock/-/manageiq-api-mock-1.0.1.tgz#b9137af4b26af543dd8d96d20d50ca8aa2b2ad5f"
+"@manageiq/manageiq-api-mock@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@manageiq/manageiq-api-mock/-/manageiq-api-mock-1.2.2.tgz#81ba8a4ac467dd15171188e79d322b37696de094"
   dependencies:
     commander "^2.9.0"
     glob "^7.1.1"
@@ -4023,7 +4023,7 @@ json-schema@0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/json-schema/-/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"
 
-json-server@0.9.6:
+json-server@0.9.6, json-server@^0.9.6:
   version "0.9.6"
   resolved "https://registry.yarnpkg.com/json-server/-/json-server-0.9.6.tgz#0d6894876c5fb2a5d25ca4139dab673ab536984f"
   dependencies:
@@ -5807,17 +5807,13 @@ qjobs@^1.1.4:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/qjobs/-/qjobs-1.1.5.tgz#659de9f2cf8dcc27a1481276f205377272382e73"
 
-qs@6.2.1:
+qs@6.2.1, qs@~6.2.0:
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.2.1.tgz#ce03c5ff0935bc1d9d69a9f14cbd18e568d67625"
 
 qs@6.4.0, qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
-
-qs@~6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.2.0.tgz#3b7848c03c2dece69a9522b0fae8c4126d745f3b"
 
 qs@~6.3.0:
   version "6.3.0"
