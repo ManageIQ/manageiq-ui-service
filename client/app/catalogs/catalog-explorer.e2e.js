@@ -8,10 +8,10 @@ describe('Component: catalogExplorer', function() {
   });
   it('should have expected number of results', function() {
     const results = element.all(by.css('.toolbar-pf-results h5'));
-    expect(results.get(0).getText()).toBe("10 Results");
+    expect(results.get(0).getText()).toBe("26 Results");
   });
   it('should have expected number of rows', function() {
     const list = element.all(by.css('.list-view-container .card-view-pf .card'));
-    expect(list.count()).toBe(23);
+    expect(list.count()).toBe(26);
   });
 });
