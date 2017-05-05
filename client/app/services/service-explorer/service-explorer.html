@@ -26,7 +26,7 @@
     </custom-dropdown>
   </actions>
 </div>
-<div ng-if="vm.viewType == 'listView'" class="list-view-container section-container paged-container explorer-list">
+<div ng-if="vm.viewType == 'listView'" class="list-view-container section-container explorer-list">
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading" pf-list-view id="serviceList" config="vm.listConfig"
        items="vm.servicesList"
