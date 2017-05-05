@@ -34,7 +34,6 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
       updatePagination: updatePagination,
       updateMenuActionForItemFn: updateMenuActionForItemFn,
       // Config setup
-      actionConfig: getActionConfig(),
       menuActions: getMenuActions(),
       toolbarConfig: getToolbarConfig(),
       listConfig: getListConfig(),
@@ -46,40 +45,6 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
     resolveOrders(vm.limit, 0);
     Polling.start('orderListPolling', pollUpdateOrderList, vm.pollingInterval);
     Language.fixState(OrdersState, vm.toolbarConfig);
-  }
-
-  function getActionConfig() {
-    const actionMenuConfig = [];
-    const lifecycleMenu = {
-      title: __('Lifecycle'),
-      actionName: 'lifecycle',
-      name: __('Lifecycle'),
-      icon: 'fa fa-recycle',
-      actions: [],
-    };
-    const approvalActions = [
-      {
-        icon: 'fa fa-check',
-        name: __('Approve'),
-        actionName: 'approve',
-        title: __('Approve'),
-        actionFn: approveRequests,
-        isDisabled: false,
-      }, {
-        icon: 'fa fa-ban',
-        name: __('Deny'),
-        actionName: 'deny',
-        title: __('Deny'),
-        actionFn: denyRequests,
-        isDisabled: false,
-      },
-    ];
-    if (vm.permissions.approve) {
-      lifecycleMenu.actions = approvalActions;
-    }
-    actionMenuConfig.push(lifecycleMenu);
-
-    return actionMenuConfig;
   }
 
   function getListConfig() {
@@ -318,36 +283,6 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
         reject();
       }
     });
-  }
-
-  function approveRequests() {
-    const modalOptions = {
-      component: 'processRequestsModal',
-      resolve: {
-        requests: function() {
-          return vm.selectedItemsList;
-        },
-        modalType: function() {
-          return lodash.find(vm.selectedItemsList, isPending) ? 'invalid' : "approve";
-        },
-      },
-    };
-    ModalService.open(modalOptions);
-  }
-
-  function denyRequests() {
-    const modalOptions = {
-      component: 'processRequestsModal',
-      resolve: {
-        requests: function() {
-          return vm.selectedItemsList;
-        },
-        modalType: function() {
-          return lodash.find(vm.selectedItemsList, isPending) ? 'invalid' : "deny";
-        },
-      },
-    };
-    ModalService.open(modalOptions);
   }
 
   function duplicateOrder(_action, item) {
