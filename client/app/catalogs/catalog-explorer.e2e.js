@@ -12,6 +12,6 @@ describe('Component: catalogExplorer', function() {
   });
   it('should have expected number of rows', function() {
     const list = element.all(by.css('.list-view-container .card-view-pf .card'));
-    expect(list.count()).toBe(26);
+    expect(list.count()).toBe(20);
   });
 });
