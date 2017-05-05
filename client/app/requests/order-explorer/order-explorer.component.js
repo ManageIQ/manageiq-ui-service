@@ -317,10 +317,6 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
     return lodash.reduce(lodash.map(['miq_request_approval', 'miq_request_admin'], RBAC.has));
   }
 
-  function isPending(item) {
-    return item.approval_state === 'approved' || item.approval_state === 'denied';
-  }
-
   function selectItem(item) {
     item.selected = !item.selected;
     extendedSelectionChange(item);
