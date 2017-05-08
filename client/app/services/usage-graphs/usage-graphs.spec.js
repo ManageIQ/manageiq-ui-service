@@ -35,6 +35,7 @@ describe('Usage Graph component', () => {
                 'total': '40',
             },
             label: 'used',
+            chartId: 'storageChart'
         }
     };
 
@@ -42,13 +43,17 @@ describe('Usage Graph component', () => {
       <usage-graphs cpu-chart="charts.cpuChart" memory-chart="charts.memoryChart" storage-chart="charts.storageChart"></usage-graphs>
     `);
     $compile(element)(parentScope);
-    console.log(element)
     parentScope.$digest();
   }));
 
   it('displays 3 Graphs', () => {
-    const graphs = element[0].querySelectorAll('#storageChartdonutChart');
-
-    expect(graphs.length).to.eq(1);
+    const graphs = element[0].querySelectorAll('div[pf-c3-chart]');
+    expect(graphs.length).to.eq(3);
   });
+  it('Chart availble values match', () => {
+     const graphs = element[0].querySelectorAll('.metric-number');
+        expect(graphs[0].innerHTML).to.eq("1000");
+        expect(graphs[1].innerHTML).to.eq("6");
+        expect(graphs[2].innerHTML).to.eq("38");
+  })
 });
