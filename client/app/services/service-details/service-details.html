@@ -7,8 +7,24 @@
         <li class="active">{{vm.title}}</li>
       </ol>
   </span>
+  <span class="service-details-toolbar-buttons">
+    <i class="fa fa-tachometer"
+    ng-click="vm.displayedContent='graphs'"
+    uib-tooltip="{{'Utilization'|translate}}"
+    tooltip-append-to-body="true"
+    tooltip-popup-delay="1000"
+    tooltip-placement="bottom"></i>
+    <i class="fa fa-list-alt"
+    ng-click="vm.displayedContent='details'"
+    uib-tooltip="{{'Service Details'|translate}}"
+    tooltip-append-to-body="true"
+    tooltip-popup-delay="1000"
+    tooltip-placement="bottom"
+    ></i>
+  </span>
 </div>
-<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig">
+<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig"
+ng-if="!vm.loading && vm.displayedContent === 'details'">
   <actions>
     <div class="ss-details-header__actions">
       <div uib-dropdown class="ss-details-header__actions__inner dropdown-kebab-pf">
@@ -29,7 +45,10 @@
   </actions>
 </div>
 <loading status="vm.loading"></loading>
-<div ng-if="!vm.loading" class="ss-details-wrapper ss-details-wrapper-with-toolbar">
+<div ng-if="vm.displayedContent === 'graphs'" class="ss-details-wrapper usage-graphs-container">
+  <usage-graphs cpu-chart="vm.cpuChart" memory-chart="vm.memoryChart" storage-chart="vm.storageChart"></usage-graphs>
+</div>
+<div ng-if="!vm.loading && vm.displayedContent === 'details'" class="ss-details-wrapper ss-details-wrapper-with-toolbar">
   <div class="panel panel-default ss-details-panel">
     <div class="panel-body">
       <section>

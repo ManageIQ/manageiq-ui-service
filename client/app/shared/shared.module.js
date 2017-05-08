@@ -26,6 +26,7 @@ export const SharedModule = angular
     'smart-table',
     'svgBaseFix',
     'ui.bootstrap',
+    'patternfly.charts',
   ])
   .component('actionButtonGroup', ActionButtonGroupComponent)
   .component('customDropdown', CustomDropdownComponent)

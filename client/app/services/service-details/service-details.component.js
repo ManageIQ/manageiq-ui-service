@@ -30,10 +30,10 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       availableTags: [],
       credential: {},
       listActions: [],
-
       // Functions
       hasCustomButtons: hasCustomButtons,
       disableStopButton: disableStopButton,
+      displayedContent: 'details',
       disableSuspendButton: disableSuspendButton,
       disableStartButton: disableStartButton,
       startService: startService,
@@ -51,7 +51,9 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       gotoService: gotoService,
       gotoCatalogItem: gotoCatalogItem,
       createResourceGroups: createResourceGroups,
-
+      cpuChart: getCPUChartConfig(),
+      memoryChart: getMemoryChartConfig(),
+      storageChart: getStorageChartConfig(),
       // Config setup
       headerConfig: getHeaderConfig(),
       resourceListConfig: {
@@ -66,7 +68,88 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   function startPollingService() {
     fetchResources(vm.serviceId);
   }
+  function getCPUChartConfig(used, total) {
+    let usedValue = 0;
+    let totalValue = 0;
 
+    if (angular.isDefined(used)) {
+      usedValue = used;
+      totalValue = total;
+    }
+
+    return {
+      config: {
+        units: 'MHz',
+      },
+      data: {
+        'used': usedValue,
+        'total': totalValue,
+      },
+      label: 'used',
+    };
+  }
+
+  function getMemoryChartConfig(used, total) {
+    let usedValue = 0;
+    let totalValue = 0;
+
+    if (angular.isDefined(used)) {
+      usedValue = used;
+      totalValue = total;
+    }
+
+    return {
+      config: {
+        units: 'GB',
+        chartId: 'memoryChart',
+      },
+      data: {
+        'used': usedValue,
+        'total': totalValue,
+      },
+      label: 'used',
+    };
+  }
+
+  function getStorageChartConfig(used, total) {
+    let usedValue = 0;
+    let totalValue = 0;
+    if (angular.isDefined(used)) {
+      usedValue = used;
+      totalValue = total;
+    }
+
+    return {
+      config: {
+        units: 'GB',
+        chartId: 'storageChart',
+      },
+      data: {
+        'used': usedValue,
+        'total': totalValue,
+      },
+      label: 'used',
+    };
+  }
+
+  function getChartConfigs() {
+    const allocatedStorage = (vm.service.aggregate_all_vm_disk_space_allocated / 1073741824).toFixed(2); // convert bytes to gb
+    const usedStorage = (vm.service.aggregate_all_vm_disk_space_used / 1073741824).toFixed(2); // convert bytes to gb
+    let usedMemory = 0;
+    let usedCPU = 0;
+    let totalCPU = 0;
+    const allocatedMemory = vm.service.aggregate_all_vm_memory / 1024; // this metric is in mb
+    angular.forEach(vm.service.vms, (instance) => {
+      usedCPU += instance.cpu_usagemhz_rate_average_avg_over_time_period;
+      totalCPU += (angular.isDefined(instance.hardware.aggregate_cpu_speed) ? instance.hardware.aggregate_cpu_speed : 0);
+      usedMemory += instance.max_mem_usage_absolute_average_avg_over_time_period;
+    });
+
+    usedMemory = (usedMemory / 1073741824).toFixed(2);
+    vm.cpuChart = getCPUChartConfig(usedCPU, totalCPU);
+    vm.memoryChart = getMemoryChartConfig(usedMemory, allocatedMemory);
+    vm.storageChart = getStorageChartConfig(usedStorage, allocatedStorage);
+  }
   function fetchResources(id) {
     ServicesState.getService(id).then(handleSuccess, handleFailure);
 
@@ -75,6 +158,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       vm.service.credential = [];
       vm.title = vm.service.name;
       getListActions();
+      getChartConfigs();
       Chargeback.processReports(vm.service);
       vm.computeGroup = vm.createResourceGroups(vm.service);
 

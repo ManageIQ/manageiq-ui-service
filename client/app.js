@@ -12,6 +12,8 @@ window.moment = require('moment');
 window.sprintf = require('sprintf-js').sprintf;
 
 // Vendor libraries, order matters
+window.c3 = require('c3/c3.js');
+require('d3/build/d3.min.js');
 require('jquery-ui-bundle');
 require('moment-timezone');
 require('es6-shim');

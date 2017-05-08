@@ -1,0 +1,71 @@
+  <h2 translate>Utilization</h2>
+  <hr>
+  <div class="row">
+    <div class="col-md-4 text-center">
+                <div>
+                    <div class="metric-title" translate>CPU</div>
+                    <div ng-if="!vm.cpuDataExists">
+                      <div>
+                          <i class="pf pficon-info"></i>
+                      </div>
+                      <div translate>
+                        No Data Available
+                      </div>
+                    </div>
+                    <div class="metric-details-container" ng-if="vm.cpuDataExists">
+                        <span class="metric-number">{{vm.availableCPU}}</span>
+                        <span class="metric-details">
+                            <p translate>mhz available</p>
+                            <p><span translate>of</span> {{vm.cpuChart.data.total}} <span translate>mhz</span></p>
+                        </span>
+                    </div>
+                    <hr>
+                </div>
+                <div pf-donut-pct-chart ng-if="vm.cpuDataExists" config="vm.cpuChart.config" data="vm.cpuChart.data" center-label="vm.cpuChart.label"></div>
+    </div>
+    <div class="col-md-4 text-center">
+        <div>
+                    <div class="metric-title" translate>Memory</div>
+                    <div ng-if="!vm.memoryDataExists">
+                      <div>
+                          <i class="pf pficon-info"></i>
+                      </div>
+                      <div translate>
+                        No Data Available
+                      </div>
+                    </div>
+                    <div class="metric-details-container" ng-if="vm.memoryDataExists">
+                        <span class="metric-number">{{vm.availableMemory}}</span>
+                        <span class="metric-details">
+                            <p translate>gb available</p>
+                            <p><span translate>of</span> {{vm.memoryChart.data.total}} <span translate>gb</span></p>
+                        </span>
+                    </div>
+                    <hr>
+            </div>
+
+            <div pf-donut-pct-chart ng-if="vm.memoryDataExists" config="vm.memoryChart.config" data="vm.memoryChart.data" center-label="vm.memoryChart.label"></div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div>
+                <div class="metric-title" translate>Storage</div>
+                <div ng-if="!vm.storageDataExists">
+                      <div>
+                          <i class="pf pficon-info"></i>
+                      </div>
+                      <div translate>
+                        No Data Available
+                      </div>
+                </div>
+                <div class="metric-details-container" ng-if="vm.storageDataExists">
+                    <span class="metric-number">{{vm.availableStorage}}</span>
+                    <span class="metric-details">
+                        <p translate>gb available</p>
+                        <p><span translate>of</span> {{vm.storageChart.data.total}} <span translate>gb</span></p>
+                    </span>
+                </div>
+                <hr>
+            </div>
+            <div pf-donut-pct-chart ng-if="vm.storageDataExists" config="vm.storageChart.config" data="vm.storageChart.data" center-label="vm.storageChart.label"></div>
+        </div>
+</div>
