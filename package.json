@@ -53,7 +53,7 @@
     "angular-smart-table": "2.1.8",
     "angular-svg-base-fix": "2.0.0",
     "angular-ui-bootstrap": "2.5.0",
-    "angular-ui-router": "0.4.2",
+    "angular-ui-router": "1.0.3",
     "angular-ui-sortable": "0.17.1",
     "babel-core": "6.24.1",
     "babel-loader": "7.0.0",
@@ -105,7 +105,7 @@
     "typescript": "2.3.2",
     "url-loader": "0.5.8",
     "webpack": "2.5.1",
-    "yargs": "7.1.0",
+    "yargs": "8.0.1",
     "zone.js": "0.8.10"
   },
   "devDependencies": {
