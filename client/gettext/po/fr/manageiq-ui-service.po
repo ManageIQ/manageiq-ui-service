@@ -1,1427 +1,1245 @@
-# Loic Avenel <lavenel@redhat.com>, 2016. #zanata
-# Milan Zázrivec <mzazrivec@redhat.com>, 2016. #zanata
-# jfenal <jfenal@free.fr>, 2016. #zanata
+# Laurence Ganseman <laurence.ganseman@stoquart.com>, 2017. #zanata
+# Marie Robert <marie.robert@stoquart.com>, 2017. #zanata
+# croe <croe@redhat.com>, 2017. #zanata
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2016-09-19 10:07-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"PO-Revision-Date: 2017-05-02 12:51-0400\n"
+"Last-Translator: croe <croe@redhat.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
 "X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
+#: app/states/dashboard/dashboard.html:77
+msgid "$0"
+msgstr "$0"
+
 #: app/components/notifications/notification-body.html:22
-#: app/components/notifications/notification-body.html:46
+#: app/components/notifications/notification-body.html:47
 msgid "% Complete"
-msgstr ""
+msgstr "% terminé"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:308
-msgid "%s was created."
-msgstr ""
+#: app/shared/action-button-group/action-button-group.component.js:31
+msgid "%s"
+msgstr "%s"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:317
-msgid "%s was published."
-msgstr ""
+#: app/services/vm-details/vm-details.component.js:84
+msgid "%s is a retired resource"
+msgstr "% est une ressource désactivée"
 
-#: app/states/designer/blueprints/editor/editorCtrl.js:67
-msgid "'%s' was succesfully saved."
-msgstr ""
+#: app/requests/order-explorer/order-explorer.component.js:361
+msgid "%s was duplicated, id # %d."
+msgstr "%s a été dupliqué, ID # %d."
 
-#: app/layouts/application.html:75
+#: app/services/edit-service-modal/edit-service-modal.component.js:31
+msgid "%s was edited."
+msgstr "%s a été modifié."
+
+#: app/services/poweroperations.service.js:172
+msgid "%s was retired."
+msgstr "% a été désactivé."
+
+#: app/services/poweroperations.service.js:163
+msgid "%s was started."
+msgstr "%s a été démarré."
+
+#: app/services/poweroperations.service.js:166
+msgid "%s was stopped."
+msgstr "% a été arrêté."
+
+#: app/services/poweroperations.service.js:169
+msgid "%s was suspended."
+msgstr "% a été mis en attente."
+
+#: app/layouts/application.html:81
 msgid "(Current Group)"
-msgstr "(Groupe Actuel)"
+msgstr "(Groupe actuel)"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:59
+#: app/services/retire-service-modal/retire-service-modal.component.js:40
 msgid "1 Week"
-msgstr "1 Semaine"
+msgstr "1 semaine"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:60
+#: app/services/retire-service-modal/retire-service-modal.component.js:41
 msgid "2 Weeks"
-msgstr "2 Semaines"
+msgstr "2 semaines"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:61
+#: app/services/retire-service-modal/retire-service-modal.component.js:42
 msgid "3 Weeks"
-msgstr "3 Semaines"
+msgstr "3 semaines"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:62
+#: app/services/retire-service-modal/retire-service-modal.component.js:43
 msgid "4 Weeks"
-msgstr "4 Semaines"
+msgstr "4 semaines"
 
-#: app/layouts/application.html:52
+#: app/layouts/application.html:58
 msgid "About"
-msgstr ""
+msgstr "À propos de"
 
 #: app/states/about-me/about-me.html:1
-#: app/states/about-me/about-me.state.js:20
+#: app/states/about-me/about-me.state.js:16
 msgid "About Me"
-msgstr "À propos de moi"
+msgstr "À propos de\n"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:86
-msgid "Action Order"
-msgstr ""
+#: app/services/service-details/service-details.html:258
+msgid "Access"
+msgstr "Accès"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/custom-button/custom-button.directive.js:121
-#: app/components/custom-button/custom-button.directive.js:133
+#: app/services/custom-button/custom-button.component.js:49
 msgid "Action not able to submit."
-msgstr "Action impossible à soumettre."
+msgstr "Action impossible à envoyer."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.state.js:33
-msgid "Activated Products Details View"
-msgstr "Vue détaillées des Produits activés"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:18
+#: app/services/vms/snapshots.html:77
 msgid "Active"
 msgstr "Actif"
 
-#: app/states/designer/blueprints/editor/editor.html:21
-msgid "Add Item"
-msgstr ""
-
-#: app/components/profiles/profile-editor.html:9
-#: app/states/administration/profiles/editor/editor.state.js:55
-msgid "Add Profile"
-msgstr ""
-
-#: app/states/marketplace/details/details.html:36
-#: app/states/marketplace/details/details.html:41
+#: app/states/catalogs/details/details.html:39
+#: app/states/catalogs/details/details.html:44
 msgid "Add to Shopping Cart"
 msgstr "Ajoutez au Panier"
 
-#: app/config/navigation.config.js:69
-#: app/states/administration/profiles/profiles.html:5
-#: app/states/administration/rules/rules.html:5
-msgid "Administration"
-msgstr ""
+#: app/core/navigation/navigation-controller.js:124
+msgid "Administration UI"
+msgstr "IU administration"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:75
-msgid "Advanced Options"
-msgstr ""
+#: app/requests/process-order-modal/process-order-modal.html:11
+msgid "Affected Order"
+msgstr "Commande affectée"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:104
-#: app/states/requests/list/list.state.js:346
-msgid "Approved"
-msgstr "Approuvée"
+#: app/core/tag-editor-modal/tag-editor-modal.html:20
+#: app/services/ownership-service-modal/ownership-service-modal.html:33
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.html:13
+#: app/services/retire-service-modal/retire-service-modal.html:18
+msgid "Affected Services"
+msgstr "Services affectés"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.html:91
-msgid "Approved Requests"
-msgstr "Demandes approuvées"
+#: app/requests/order-explorer/order-explorer.component.js:63
+#: app/requests/order-explorer/order-explorer.component.js:65
+msgid "Approve"
+msgstr "Approuver"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:72
-msgid "Approver"
-msgstr "Approbateur"
+#: app/core/shopping-cart/shopping-cart.html:60
+msgid "Are you sure you want to clear all items from your shopping cart?"
+msgstr "Êtes-vous sûr de vouloir vider le panier ?"
 
-#: app/components/profiles/profiles-list.html:8
-msgid "Are you sure you want to delete profile [[profile_name]]?"
-msgstr ""
+#: app/templates/template-explorer.component.js:371
+msgid "Are you sure you want to delete %d templates?"
+msgstr "Êtes-vous sûr de vouloir supprimer %d modèles ?"
 
-#: app/components/rules/rules-list.html:123
-msgid "Are you sure you want to delete this rule?"
-msgstr ""
+#: app/templates/template-editor.component.js:197
+#: app/templates/template-explorer.component.js:361
+msgid "Are you sure you want to delete template %s?"
+msgstr "Êtes-vous sûr de vouloir supprimer le modèle %s ?"
 
-#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:8
-msgid "Are you sure you want to delete {{vm.blueprintsList[0].name}}?"
-msgid_plural "Are you sure you want to delete {{$count}} blueprints?"
-msgstr[0] ""
-msgstr[1] ""
+#: app/core/shopping-cart/shopping-cart.html:20
+msgid "Are you sure you want to remove this item from your shopping cart?"
+msgstr "Êtes-vous sûr de vouloir enlever cet article de votre panier ?"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/confirmation/confirmation.directive.js:107
+#: app/shared/confirmation/confirmation.directive.js:112
 msgid "Are you sure you wish to proceed?"
 msgstr "Êtes-vous sûr de vouloir continuer ?"
 
 #: app/components/notifications/notification-footer.html:14
 msgid "Are you sure you would like to clear all [[heading]]?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir effacer tous les [[heading]] ?"
 
-#: app/components/profiles/profile-details.html:59
-#: app/components/profiles/profile-editor.html:63
-msgid "Availability Zone"
-msgstr ""
+#: app/services/service-details/service-details.html:293
+msgid "Are you sure you would like to retire this resource?"
+msgstr "Êtes-vous sûr de vouloir vous désactiver cette ressource ?"
 
-#: app/states/designer/blueprints/editor/editor.html:5
-msgid "Back to Blueprints"
-msgstr ""
+#: app/services/vm-details/vm-details.component.js:27
+#: app/templates/template-explorer.html:67
+msgid "Available"
+msgstr "Disponible"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:3
-#: app/states/requests/order_details/order_details.html:3
-msgid "Back to My Requests"
-msgstr "Retour à Mes Demandes "
+#: app/reports/reports-details.html:57
+msgid "Based On"
+msgstr "Basé sur"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:3
-msgid "Back to My Services"
-msgstr "Retour à Mes Services "
+#: app/reports/reports-details.html:28
+#: app/templates/template-editor.html:55
+msgid "Basic Information"
+msgstr "Informations de base"
 
-#: app/states/administration/profiles/details/details.html:4
-#: app/states/administration/profiles/editor/editor.html:4
-msgid "Back to Profiles"
-msgstr ""
+#: app/services/service-details/service-details.html:247
+msgid "Boot Time: Unknown"
+msgstr "Heure de démarrage : inconnue"
 
-#: app/states/services/custom_button_details/custom_button_details.html:7
-#: app/states/services/reconfigure/reconfigure.html:3
-msgid "Back to Service"
-msgstr "Retour vers Service"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/details/details.html:3
-#: app/states/services/custom_button_details/custom_button_details.html:3
-msgid "Back to Service Catalog"
-msgstr "Retour au Catalogue de Services"
-
-#: app/states/designer/blueprints/editor/editor.html:33
-msgid "Blueprint Details"
-msgstr ""
-
-#: app/states/designer/blueprints/editor/editor.html:7
-msgid "Blueprint Editor:"
-msgstr ""
-
-#: app/states/designer/blueprints/list/list.state.js:20
-#: app/states/designer/blueprints/list/list.state.js:70
-msgid "Blueprint List"
-msgstr "Liste de Blueprint"
-
-#: app/services/blueprints-state.service.js:255
-msgid "Blueprint(s) were succesfully deleted."
-msgstr ""
-
-#: app/config/navigation.config.js:57
-msgid "Blueprints"
-msgstr "Blueprints"
-
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:100
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:111
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:88
-msgid "Browse"
-msgstr ""
-
-#: app/components/language-switcher/language-switcher.directive.js:29
+#: app/core/language-switcher/language-switcher.directive.js:25
 msgid "Browser Default"
-msgstr "Navigateur par défaut"
+msgstr "Paramètres par défaut du navigateur"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/custom-button/custom-button.directive.js:101
-msgid "Button action not supported."
-msgstr "Bouton Action non pris en charge."
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:113
-msgid "CPU"
-msgstr "CPU"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:17
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:156
-#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:11
-#: app/components/confirmation/confirmation.directive.js:109
-#: app/components/create-catalog-modal/create-catalog-modal.html:12
-#: app/components/edit-service-modal/edit-service-modal.html:21
-#: app/components/ownership-service-modal/ownership-service-modal.html:32
-#: app/components/profiles/profile-editor.html:126
-#: app/components/retire-service-modal/retire-service-modal.html:19
-#: app/components/rules/rules-list.html:98
-#: app/states/administration/profiles/editor/save-profile-modal.html:12
-#: app/states/administration/rules/save-rule-modal.html:12
-#: app/states/designer/blueprints/editor/save-blueprint-modal.html:11
-#: app/states/services/reconfigure/reconfigure.html:22
+#: app/core/save-modal-dialog/save-modal-dialog.html:14
+#: app/shared/action-button-group/action-button-group.html:1
+#: app/shared/action-button-group/action-button-group.html:45
+#: app/shared/confirmation/confirmation.directive.js:114
+#: app/states/services/reconfigure/reconfigure.html:24
 msgid "Cancel"
 msgstr "Annuler"
 
-#: app/states/designer/blueprints/list/list.state.js:242
-msgid "Cannot publish a blueprint with no service items."
-msgstr ""
-
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:43
-#: app/states/designer/blueprints/list/list.state.js:161
-#: app/states/designer/blueprints/list/list.state.js:202
-msgid "Catalog"
-msgstr ""
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/list/list.state.js:110
-#: app/states/marketplace/list/list.state.js:91
+#: app/catalogs/catalog-explorer.component.js:63
 msgid "Catalog Name"
-msgstr "Catalogue"
+msgstr "Nom du catalogue"
 
-#: app/layouts/application.html:67
+#: app/catalogs/catalog-explorer.component.js:18
+#: app/states/catalogs/explorer/explorer.state.js:15
+#: app/states/catalogs/explorer/explorer.state.js:26
+msgid "Catalogs"
+msgstr "Catalogues"
+
+#: app/layouts/application.html:73
 msgid "Change Group:"
-msgstr "Changement de Groupe:"
+msgstr "Changement Groupe :"
 
-#: app/layouts/application.html:79
+#: app/layouts/application.html:85
 msgid "Change to this Group"
 msgstr "Changement vers ce groupe"
 
-#: app/components/shopping-cart/shopping-cart.html:46
+#: app/core/shopping-cart/shopping-cart.html:53
+#: app/core/shopping-cart/shopping-cart.html:61
 msgid "Clear"
-msgstr "Vider"
+msgstr "Effacer"
 
 #: app/components/notifications/notification-footer.html:15
-#: app/components/notifications/notification-footer.html:20
+#: app/components/notifications/notification-footer.html:19
 msgid "Clear All"
-msgstr ""
+msgstr "Tout effacer"
 
 #: app/components/notifications/notification-footer.html:13
 msgid "Clear All [[heading]]"
-msgstr ""
+msgstr "Tout effacer [[heading]]"
 
-#: app/components/shopping-cart/shopping-cart.html:38
+#: app/core/shopping-cart/shopping-cart.html:59
+msgid "Clear Shopping Cart"
+msgstr "Vider le Panier"
+
+#: app/core/shopping-cart/shopping-cart.html:45
 msgid "Close"
 msgstr "Fermer"
 
-#: app/components/profiles/profile-details.html:71
-#: app/components/profiles/profile-editor.html:83
-msgid "Cloud Network"
-msgstr ""
+#: app/services/vm-details/vm-details.html:98
+msgid "Cluster"
+msgstr "Cluster"
 
-#: app/components/profiles/profile-details.html:77
-#: app/components/profiles/profile-editor.html:94
-msgid "Cloud Subnet"
-msgstr ""
+#: app/templates/template-editor.html:99
+msgid "Code"
+msgstr "Code"
 
-#: app/components/notifications/notification-body.html:52
+#: app/components/notifications/notification-body.html:53
 msgid "Completed:"
-msgstr ""
+msgstr "Terminé :"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:40
+#: app/services/vm-details/vm-details.html:139
+msgid "Compliance"
+msgstr "Conformité"
+
+#: app/services/service-details/service-details.component.js:303
+msgid "Compute"
+msgstr "Calcul"
+
+#: app/services/services-state.service.js:209
+#: app/services/services-state.service.js:214
+#: app/services/vm-details/vm-details.html:169
+#: app/services/vms/snapshots.component.js:131
+#: app/services/vms/snapshots.component.js:132
+#: app/templates/template-editor.component.js:116
+#: app/templates/template-explorer.component.js:55
+#: app/templates/template-explorer.component.js:56
+msgid "Configuration"
+msgstr "Configuration"
+
+#: app/services/services-state.service.js:237
 msgid "Confirm, would you like to remove this service?"
-msgstr "Confirmation, voulez-vous supprimer ce service ?"
+msgstr "Confirmez-vous la suppression de ce service ?"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:54
+#: app/services/services-state.service.js:151
 msgid "Confirm, would you like to retire this service?"
-msgstr "Confirmation, voulez-vous retirer ce service ?"
+msgstr "Confirmez-vous la désactivation de ce service ?"
 
-#: app/components/navigation/navigation-contoller.js:124
-msgid "Copyright (c) 2016 ManageIQ. Sponsored by Red Hat Inc."
-msgstr ""
+#: app/core/save-modal-dialog/save-modal-dialog.html:15
+msgid "Continue"
+msgstr "Continuer"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:91
-#: app/components/profiles/profiles-list.directive.js:266
-#: app/components/rules/rules-list.html:9
-#: app/states/designer/blueprints/editor/editor.html:97
-#: app/states/designer/blueprints/list/list.state.js:213
+#: app/templates/template-editor.component.js:124
+#: app/templates/template-explorer.component.js:167
+#: app/templates/template-explorer.component.js:72
+msgid "Copy"
+msgstr "Copier"
+
+#: app/templates/template-editor.component.js:126
+#: app/templates/template-explorer.component.js:168
+msgid "Copy Template"
+msgstr "Copier Modèle"
+
+#: app/templates/template-explorer.component.js:74
+msgid "Copy template"
+msgstr "Copier modèle"
+
+#: app/services/service-explorer/service-explorer.html:114
+msgid "Cost not available"
+msgstr "Coût indisponible"
+
+#: app/templates/template-explorer.component.js:64
 msgid "Create"
-msgstr ""
+msgstr "Créer"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:90
-msgid "Create Blueprint"
-msgstr ""
+#: app/services/process-snapshots-modal/process-snapshots-modal.html:5
+#: app/services/vms/snapshots.component.js:115
+msgid "Create Snapshot"
+msgstr "Créer un cliché"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:54
-#: app/components/create-catalog-modal/create-catalog-modal.html:5
-msgid "Create Catalog"
-msgstr ""
+#: app/templates/template-explorer.component.js:66
+msgid "Create new template"
+msgstr "Créer un modèle"
 
-#: app/states/designer/blueprints/list/list.state.js:214
-msgid "Create a new Blueprint"
-msgstr ""
+#: app/services/vms/snapshots.component.js:117
+msgid "Create snapshot"
+msgstr "Créer un cliché"
 
-#: app/components/profiles/profiles-list.directive.js:267
-msgid "Create a new Profile"
-msgstr ""
-
-#: app/components/rules/rules-list.html:7
-msgid "Create a new rule"
-msgstr ""
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/profiles/profile-details.html:20
-#: app/states/services/list/list.state.js:126
-#: app/states/services/list/list.state.js:93
+#: app/services/service-explorer/service-explorer.component.js:341
+#: app/services/service-explorer/service-explorer.html:161
+#: app/services/service-explorer/service-explorer.html:85
+#: app/services/vms/snapshots.component.js:104
 msgid "Created"
 msgstr "Créé"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:103
-#: app/states/services/list/list.html:48
+#: app/reports/reports-details.html:81
+#: app/services/service-details/service-details.html:89
 msgid "Created On"
 msgstr "Créé le"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:33
-msgid "Creation Date"
-msgstr "Date de création"
+#: app/services/vms/snapshots.html:85
+msgid "Created:"
+msgstr "Créé :"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:77
-msgid "Current"
-msgstr "Actuel"
+#: app/services/process-snapshots-modal/process-snapshots-modal.component.js:39
+msgid "Creating snapshot."
+msgstr "Création d'un cliché."
 
-#: app/layouts/application.html:86
+#: app/services/service-details/service-details-ansible.html:88
+msgid "Credentials"
+msgstr "Informations d'identification"
+
+#: app/layouts/application.html:93
 msgid "Current Group"
-msgstr "Groupe Actuel"
+msgstr "Groupe actuel"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.html:45
+#: app/states/dashboard/dashboard.html:37
 msgid "Current Services"
 msgstr "Services actuels"
 
-#: app/layouts/application.html:73
+#: app/layouts/application.html:79
 msgid "Currently Selected Group"
-msgstr "Groupe Actuel seclectioné"
-
-#: app/components/custom-button/custom-button.html:28
-#: app/components/custom-button/custom-button.html:30
-msgid "Custom Actions"
-msgstr "Actions Personnalisées"
+msgstr "Groupe actuellement sélectionné"
 
 #: app/states/services/custom_button_details/custom_button_details.html:10
 msgid "Custom Button:"
-msgstr "Bouton Personnalisé"
+msgstr "Bouton personnalisé :"
 
-#: app/states/services/custom_button_details/custom_button_details.state.js:46
+#: app/states/services/custom_button_details/custom_button_details.state.js:44
 msgid "Custom button action"
-msgstr "Bouton Action Personnalisé"
+msgstr "Action du bouton personnalisé"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:14
-#: app/states/dashboard/dashboard.state.js:20
+#: app/core/navigation.config.js:6
+#: app/states/dashboard/dashboard.state.js:16
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:18
-#: app/components/profiles/profiles-list.directive.js:197
-#: app/components/profiles/profiles-list.html:9
-#: app/components/rules/rules-list.html:124
-#: app/states/designer/blueprints/list/list.state.js:137
-#: app/states/designer/blueprints/list/list.state.js:218
+#: app/services/vms/snapshots.component.js:72
+#: app/services/vms/snapshots.html:32
+#: app/templates/template-editor.component.js:137
+#: app/templates/template-editor.html:30
+#: app/templates/template-explorer.component.js:179
+#: app/templates/template-explorer.component.js:88
+#: app/templates/template-explorer.html:27
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
-#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:5
-#: app/states/designer/blueprints/list/list.state.js:138
-#: app/states/designer/blueprints/list/list.state.js:219
-msgid "Delete Blueprint"
-msgstr ""
+#: app/services/vms/snapshots.component.js:122
+msgid "Delete All Snapshots"
+msgstr "Supprimer tous les clichés"
 
-#: app/components/profiles/profiles-list.directive.js:198
-#: app/components/profiles/profiles-list.html:7
-msgid "Delete Profile"
-msgstr ""
+#: app/services/vms/snapshots.component.js:206
+msgid "Delete All Snapshots on VM %s"
+msgstr "Supprimer tous les clichés sur la VM %s"
 
-#: app/components/rules/rules-list.html:122
-msgid "Delete Rule"
-msgstr ""
+#: app/services/vms/snapshots.component.js:202
+#: app/services/vms/snapshots.component.js:74
+msgid "Delete Snapshot"
+msgstr "Supprimer le cliché"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:104
-#: app/states/requests/list/list.state.js:344
-msgid "Denied"
-msgstr "Refusée"
+#: app/templates/template-editor.component.js:139
+#: app/templates/template-editor.html:28
+#: app/templates/template-explorer.component.js:180
+#: app/templates/template-explorer.html:25
+msgid "Delete Template"
+msgstr "Supprimer le modèle"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.html:104
-msgid "Denied Requests"
-msgstr "Demandes refusées"
+#: app/services/vms/snapshots.component.js:124
+msgid "Delete all snapshots"
+msgstr "Supprimer tous les clichés"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:19
-#: app/components/edit-service-modal/edit-service-modal.html:13
-#: app/components/profiles/profile-editor.html:26
-#: app/components/profiles/profiles-list.directive.js:227
-#: app/states/marketplace/list/list.state.js:85
-#: app/states/requests/list/list.state.js:115
-#: app/states/requests/list/list.state.js:77
+#: app/templates/template-explorer.component.js:90
+msgid "Delete template"
+msgstr "Supprimer le modèle"
+
+#: app/requests/process-order-modal/process-order-modal.component.js:37
+msgid "Deleting order."
+msgstr "Ordre de suppression."
+
+#: app/services/vms/snapshots.component.js:145
+msgid "Deleting snapshot."
+msgstr "Suppression du cliché."
+
+#: app/requests/order-explorer/order-explorer.component.js:70
+#: app/requests/order-explorer/order-explorer.component.js:72
+msgid "Deny"
+msgstr "Rejeter"
+
+#: app/services/vm-details/vm-details.html:98
+msgid "Deployment Role"
+msgstr "Rôle de déploiement"
+
+#: app/catalogs/catalog-explorer.component.js:62
+#: app/services/edit-service-modal/edit-service-modal.html:12
+#: app/services/process-snapshots-modal/process-snapshots-modal.html:15
+#: app/services/service-details/service-details.html:50
+#: app/services/service-explorer/service-explorer.component.js:330
+#: app/services/vms/snapshots.component.js:92
+#: app/shared/ss-card/ss-card.html:8
+#: app/templates/template-editor.html:71
+#: app/templates/template-explorer.html:62
 msgid "Description"
 msgstr "Description"
 
-#: app/config/navigation.config.js:52
-msgid "Designer"
-msgstr ""
+#: app/services/service-details/service-details-ansible.html:51
+msgid "Details"
+msgstr "Détails"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:61
-msgid "Dialog"
-msgstr ""
+#: app/core/save-modal-dialog/save-modal-dialog.html:7
+msgid "Discard Changes"
+msgstr "Abandonner les modifications"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:125
-msgid "Disk Count"
-msgstr "Nombre de disques"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:131
-msgid "Disk Space Allocated"
-msgstr "Espace total alloué"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:137
-msgid "Disk Space Used"
-msgstr "Espace utilisé"
-
-#: app/states/administration/profiles/editor/save-profile-modal.html:13
-#: app/states/administration/rules/save-rule-modal.html:13
-msgid "Do Not Save"
-msgstr ""
-
-#: app/layouts/application.html:42
+#: app/layouts/application.html:48
 msgid "Documentation"
-msgstr ""
+msgstr "Documentation"
 
-#: app/states/designer/blueprints/editor/save-blueprint-modal.html:12
-msgid "Don't Save"
-msgstr ""
+#: app/services/ownership-service-modal/ownership-service-modal.html:11
+#: app/services/ownership-service-modal/ownership-service-modal.html:23
+msgid "Don't Change"
+msgstr "Ne pas modifier"
 
-#: app/states/designer/blueprints/list/list.html:45
+#: app/templates/template-editor.html:15
+msgid "Download"
+msgstr "Télécharger"
+
+#: app/reports/reports-details.html:154
+msgid "Download CSV"
+msgstr "Télécharger CSV"
+
+#: app/templates/template-editor.html:88
+#: app/templates/template-explorer.component.js:152
+#: app/templates/template-explorer.html:52
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
-#: app/components/shopping-cart/shopping-cart.html:22
-#: app/states/designer/blueprints/editor/editor.html:24
-#: app/states/designer/blueprints/list/list.state.js:132
+#: app/core/shopping-cart/shopping-cart.html:29
+#: app/requests/order-explorer/order-explorer.component.js:152
 msgid "Duplicate"
-msgstr ""
+msgstr "Dupliquer"
 
-#: app/states/designer/blueprints/list/list.state.js:133
-msgid "Duplicate Blueprint"
-msgstr ""
+#: app/requests/order-explorer/order-explorer.component.js:154
+msgid "Duplicate Order"
+msgstr "Dupliquer la commande"
 
-#: app/states/marketplace/details/details.html:34
+#: app/states/catalogs/details/details.html:37
 msgid "Duplicate Shopping Cart Item"
-msgstr ""
+msgstr "Dupliquer un article du panier"
 
-#: app/states/designer/blueprints/list/list.state.js:236
-msgid "Duplicate blueprint feature not available."
-msgstr ""
+#: app/reports/reports-details.html:73
+msgid "EVM Group"
+msgstr "Groupe EVM"
 
-#: app/components/profiles/profile-details.html:99
-#: app/components/profiles/profiles-list.directive.js:192
-#: app/states/designer/blueprints/list/list.state.js:127
+#: app/services/service-explorer/service-explorer.component.js:217
+#: app/services/services-state.service.js:220
+#: app/services/services-state.service.js:222
+#: app/templates/template-editor.component.js:131
+#: app/templates/template-explorer.component.js:173
+#: app/templates/template-explorer.component.js:80
 msgid "Edit"
-msgstr ""
+msgstr "Modifier"
 
-#: app/states/designer/blueprints/list/list.state.js:128
-msgid "Edit Blueprint"
-msgstr ""
-
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:98
-#: app/states/designer/blueprints/editor/editor.html:35
-msgid "Edit Blueprint Details"
-msgstr ""
-
-#: app/components/profiles/profile-editor.html:8
-#: app/components/profiles/profiles-list.directive.js:193
-msgid "Edit Profile"
-msgstr ""
-
-#: app/states/administration/profiles/editor/editor.state.js:53
-msgid "Edit Profile: %s"
-msgstr ""
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/edit-service-modal/edit-service-modal.html:5
-#: app/states/services/details/details.html:62
+#: app/services/edit-service-modal/edit-service-modal.html:5
+#: app/services/service-explorer/service-explorer.component.js:219
 msgid "Edit Service"
 msgstr "Modifier le service"
 
-#: app/components/rules/rules-list.html:62
-msgid "Enter a value"
-msgstr ""
+#: app/core/tag-editor-modal/tag-editor-modal.html:5
+#: app/services/service-explorer/service-explorer.component.js:225
+#: app/services/service-explorer/service-explorer.component.js:227
+#: app/services/services-state.service.js:190
+#: app/services/services-state.service.js:192
+msgid "Edit Tags"
+msgstr "Modifier les balises"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/error/error.state.js:21
+#: app/templates/template-editor.component.js:133
+#: app/templates/template-explorer.component.js:174
+msgid "Edit Template"
+msgstr "Modifier le modèle"
+
+#: app/templates/template-explorer.component.js:82
+msgid "Edit template"
+msgstr "Modifier le modèle"
+
+#: app/services/service-details/service-details-ansible.html:183
+#: app/services/service-details/service-details-ansible.html:34
+msgid "Elapsed"
+msgstr "Écoulé"
+
+#: app/states/error/error.state.js:17
 msgid "Error"
 msgstr "Erreur"
 
-#: app/config/authorization.config.js:110
+#: app/services/process-snapshots-modal/process-snapshots-modal.component.js:39
+msgid "Error creating snapshot."
+msgstr "Erreur lors de la création du cliché"
+
+#: app/requests/process-order-modal/process-order-modal.component.js:37
+msgid "Error deleting order."
+msgstr "Erreur de suppression de la commande."
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
+msgid "Error deleting service."
+msgstr "Erreur de suppression du service."
+
+#: app/services/vms/snapshots.component.js:145
+msgid "Error deleting snapshot."
+msgstr "Erreur lors de la suppression du cliché"
+
+#: app/core/authorization.config.js:113
 msgid "Error retrieving user info"
-msgstr "Erreur de récuperation des informations utilisateur"
+msgstr "Erreur de récupération des informations utilisateur"
 
-#: app/states/designer/blueprints/editor/editorCtrl.js:74
-msgid "Failed to save '%s'."
-msgstr ""
+#: app/services/vms/snapshots.component.js:216
+msgid "Error reverting snapshot."
+msgstr "Erreur rétablissement cliché"
 
-#: app/states/designer/blueprints/list/list.state.js:162
-msgid "Filter by Catalog"
-msgstr ""
+#: app/services/ownership-service-modal/ownership-service-modal.component.js:67
+msgid "Error setting ownership."
+msgstr "Erreur définition propriété."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/list/list.state.js:92
+#: app/catalogs/catalog-explorer.component.js:63
 msgid "Filter by Catalog Name"
 msgstr "Filtrer par nom de catalogue"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:94
-msgid "Filter by Created On"
-msgstr "Filtrer par date de création"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/profiles/profiles-list.directive.js:228
-#: app/states/marketplace/list/list.state.js:86
-#: app/states/requests/list/list.state.js:78
+#: app/catalogs/catalog-explorer.component.js:62
+#: app/services/service-explorer/service-explorer.component.js:330
+#: app/services/vms/snapshots.component.js:92
+#, fuzzy
 msgid "Filter by Description"
-msgstr "Filter par description"
+msgstr "Filtrer par description"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:157
-#: app/states/requests/list/list.state.js:84
+#: app/templates/template-explorer.component.js:152
+msgid "Filter by Draft"
+msgstr "Filtrer par brouillon"
+
+#: app/requests/order-explorer/order-explorer.component.js:135
 msgid "Filter by ID"
 msgstr "Filtrer par ID"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/profiles/profiles-list.directive.js:209
-#: app/states/designer/blueprints/list/list.state.js:149
-#: app/states/marketplace/list/list.state.js:80
-#: app/states/requests/list/list.state.js:151
-#: app/states/services/list/list.state.js:69
+#: app/catalogs/catalog-explorer.component.js:61
+#: app/reports/reports-explorer.component.js:49
+#: app/requests/order-explorer/order-explorer.component.js:134
+#: app/services/service-explorer/service-explorer.component.js:329
+#: app/services/vms/snapshots.component.js:91
+#: app/templates/template-explorer.component.js:150
 msgid "Filter by Name"
 msgstr "Filtrer par nom"
 
-#: app/states/requests/list/list.state.js:163
+#: app/requests/order-explorer/order-explorer.component.js:136
+#, fuzzy
 msgid "Filter by Order Date"
-msgstr ""
+msgstr "Filtrer par date de commande"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:88
-msgid "Filter by Owner"
-msgstr "Filtrer par utilisateur"
+#: app/templates/template-explorer.component.js:151
+msgid "Filter by Type"
+msgstr "Filtrer par type"
 
-#: app/components/profiles/profiles-list.directive.js:215
-msgid "Filter by Provider Name"
-msgstr ""
+#: app/services/service-details/service-details-ansible.html:175
+#: app/services/service-details/service-details-ansible.html:27
+msgid "Finished"
+msgstr "Terminé"
 
-#: app/components/profiles/profiles-list.directive.js:221
-msgid "Filter by Provider Type"
-msgstr ""
-
-#: app/states/designer/blueprints/list/list.state.js:169
-msgid "Filter by Publish State"
-msgstr ""
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:96
-msgid "Filter by Request Date"
-msgstr "Filtrer par date de demande"
-
-#: app/states/requests/list/list.state.js:90
-msgid "Filter by Requester"
-msgstr ""
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:75
-msgid "Filter by Retirement Date"
-msgstr "Filtrer par date de décommissionnement "
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:102
-msgid "Filter by Status"
-msgstr "Filtrer par état"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:82
-msgid "Filter by VMs"
-msgstr "Filtrer par VM"
-
-#: app/states/designer/blueprints/list/list.state.js:155
-msgid "Filter by Visibility"
-msgstr ""
-
-#: app/states/designer/blueprints/editor/editor.html:102
-msgid "Filter by name"
-msgstr ""
-
-#: app/components/profiles/profile-details.html:65
-#: app/components/profiles/profile-editor.html:73
-msgid "Flavor"
-msgstr ""
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/confirmation/confirmation.directive.js:66
-#: app/components/confirmation/confirmation.directive.js:71
+#: app/shared/confirmation/confirmation.directive.js:66
+#: app/shared/confirmation/confirmation.directive.js:71
 msgid "For Sizing"
 msgstr "Dimensionnement"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:83
-msgid "General"
-msgstr ""
+#: app/services/service-details/service-details.html:56
+msgid "GUID"
+msgstr "GUID"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:97
-msgid "Group"
-msgstr "Groupe"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/help/help.html:1
-#: app/states/help/help.state.js:20
+#: app/states/help/help.state.js:16
 msgid "Help"
 msgstr "Aide"
 
-#: app/states/designer/blueprints/editor/editor.html:43
-msgid "Hide Connectors"
-msgstr ""
+#: app/services/service-details/service-details-ansible.html:73
+msgid "Hosts"
+msgstr "Hôtes"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:56
-msgid "Hourly"
-msgstr "À l'heure"
+#: app/services/service-details/service-details-ansible.html:109
+msgid "Id"
+msgstr "Id"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/request-list/request-list.html:15
-#: app/states/requests/list/list.html:26
-msgid "ID"
-msgstr "ID"
-
-#: app/components/rules/rules-list.html:26
-#: app/components/rules/rules-list.html:50
-msgid "IF"
-msgstr ""
-
-#: app/states/administration/rules/save-rule-modal.html:9
+#: app/core/save-modal-dialog/save-modal-dialog.html:10
 msgid "If you do not save, any changes will be lost."
-msgstr ""
+msgstr "Si vous n'enregistrez pas, toutes les modifications seront perdues."
 
-#: app/states/administration/profiles/editor/save-profile-modal.html:9
-msgid "If you do not save, your changes will be lost."
-msgstr ""
-
-#: app/states/designer/blueprints/editor/save-blueprint-modal.html:8
-msgid "If you don't save, your changes will be lost."
-msgstr ""
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:47
-msgid "Inactivate the service"
-msgstr "Désactiver le service"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:19
-msgid "Inactive"
-msgstr "Inactif"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/resources/authentication-api.factory.js:30
+#: app/core/authentication-api.factory.js:24
 msgid "Incorrect username or password."
-msgstr "Mot de passe ou utilisateur incorrect"
+msgstr "Mot de passe ou nom d'utilisateur incorrect"
 
-#: app/states/services/details/details.html:168
-msgid "Instance name"
-msgstr ""
-
-#: app/states/marketplace/details/details.state.js:114
+#: app/states/catalogs/details/details.state.js:128
 msgid "Item added to shopping cart"
-msgstr "Article(s) ajouté(s) dans le panier"
+msgstr "Article ajouté au panier"
 
-#: app/states/marketplace/details/details.state.js:112
+#: app/states/catalogs/details/details.state.js:126
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
 msgstr ""
-
-#: app/states/designer/blueprints/list/list.html:23
-#: app/states/designer/blueprints/list/list.state.js:192
-msgid "Items"
-msgstr ""
-
-#: app/components/profiles/profile-details.html:53
-#: app/components/profiles/profile-editor.html:53
-msgid "Key Pair"
-msgstr ""
+"L'article a été ajouté au panier, mais c'est un doublon d'un article "
+"existant"
 
 #: app/states/login/login.html:31
 msgid "Language"
-msgstr "Language"
+msgstr "Langue"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:82
-msgid "Last Message"
-msgstr "Dernier message"
+#: app/services/service-details/service-details.html:237
+msgid "Last Boot"
+msgstr "Dernier démarrage"
 
-#: app/components/profiles/profile-details.html:26
-#: app/components/profiles/profiles-list.directive.js:245
-#: app/components/profiles/profiles-list.html:36
-#: app/states/designer/blueprints/list/list.html:17
-#: app/states/designer/blueprints/list/list.state.js:187
-msgid "Last Modified"
-msgstr ""
+#: app/services/service-details/service-details.html:207
+msgid "Latest"
+msgstr "Les plus récentes"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:183
-msgid "Last Scan"
-msgstr "Dernier balayage"
+#: app/services/service-details/service-details.html:239
+msgid "Latest Boot Time"
+msgstr "Dernière heure de démarrage"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:38
-#: app/states/requests/details/details.html:90
-msgid "Last Updated"
-msgstr "Dernière mise à jour"
+#: app/services/service-details/service-details.html:210
+#, fuzzy
+msgid "Latest Snapshot Name"
+msgstr "Nom du cliché le plus récent"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
+#: app/services/service-details/service-details.html:218
+#, fuzzy
+msgid "Latest Snapshot Timestamp"
+msgstr "Horodatage du cliché le plus récent"
+
+#: app/services/service-details/service-details.html:227
+msgid "Latest Snapshot: Unknown"
+msgstr "Cliché le plus récent : Inconnu"
+
+#: app/services/service-details/service-details-ansible.html:41
+msgid "Launched By"
+msgstr "Lancé par"
+
+#: app/requests/order-explorer/order-explorer.component.js:54
+#: app/requests/order-explorer/order-explorer.component.js:56
+#: app/services/services-state.service.js:127
+#: app/services/services-state.service.js:132
+#: app/services/vm-details/vm-details.html:71
+msgid "Lifecycle"
+msgstr "Cycle de vie"
+
+#: app/services/service-details/service-details-ansible-modal.html:5
+msgid "Live Ansible Play"
+msgstr "Jeu Ansible en direct"
+
 #: app/states/login/login.html:37
 msgid "Log In"
 msgstr "Connexion"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/layouts/application.html:18
+#: app/core/navigation/navigation-controller.js:125
 msgid "Log into the full administrative UI"
 msgstr "Connexion à l'interface d'administration"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/login/login.state.js:20
+#: app/states/login/login.state.js:16
 msgid "Login"
-msgstr "Connexion"
+msgstr "Se connecter"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/layouts/application.html:96
-#: app/states/logout/logout.state.js:18
+#: app/layouts/application.html:103
+#: app/states/logout/logout.state.js:12
 msgid "Logout"
-msgstr "Déconnexion"
+msgstr "Se déconnecter"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/error/error.html:3
 msgid "ManageIQ Self Service"
-msgstr "Self-service ManageIQ"
+msgstr "ManageIQ Self Service"
 
 #: app/components/notifications/notification-footer.html:6
 msgid "Mark All Read"
-msgstr ""
+msgstr "Tout marquer comme lu"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:119
+#: app/services/process-snapshots-modal/process-snapshots-modal.html:12
 msgid "Memory"
 msgstr "Mémoire"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:144
-msgid "Memory on Disk"
-msgstr "Mémoire sur disque"
+#: app/states/dashboard/dashboard.html:67
+msgid "Monthly Charges - This Month To Date"
+msgstr "Frais mensuels : ce mois-ci jusqu'à la date d'aujourd'hui "
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:57
-msgid "Monthly"
-msgstr "Mensuel"
+#: app/services/service-details/service-details.html:79
+msgid "Monthly Cost"
+msgstr "Coût mensuel"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/ss-card/ss-card.html:9
-msgid "More"
-msgstr "Plus"
-
-#: app/states/requests/list/list.html:9
-msgid "My Orders"
-msgstr "Mes Commandes"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:30
-#: app/states/requests/list/list.html:2
-msgid "My Requests"
-msgstr "Mes demandes"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:19
+#: app/core/navigation.config.js:13
+#: app/services/service-details/service-details.html:5
+#: app/services/service-explorer/service-explorer.html:4
+#: app/services/vm-details/vm-details.html:5
+#: app/services/vms/snapshots.html:5
+#: app/states/services/reconfigure/reconfigure.html:3
 msgid "My Services"
 msgstr "Mes services"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:13
-#: app/components/edit-service-modal/edit-service-modal.html:9
-#: app/components/profiles/profile-editor.html:20
-#: app/components/profiles/profiles-list.directive.js:208
-#: app/components/profiles/profiles-list.directive.js:240
-#: app/services/blueprints-state.service.js:15
-#: app/services/marketplace-state.service.js:13
-#: app/services/profiles-state.service.js:66
-#: app/services/services-state.service.js:14
-#: app/states/designer/blueprints/list/list.state.js:148
-#: app/states/designer/blueprints/list/list.state.js:182
-#: app/states/marketplace/list/list.state.js:105
-#: app/states/marketplace/list/list.state.js:79
-#: app/states/requests/list/list.state.js:150
-#: app/states/requests/list/list.state.js:175
-#: app/states/services/list/list.state.js:106
-#: app/states/services/list/list.state.js:68
+#: app/catalogs/catalog-explorer.component.js:61
+#: app/catalogs/catalog-explorer.component.js:79
+#: app/catalogs/catalogs-state.service.js:9
+#: app/reports/reports-explorer.component.js:49
+#: app/reports/reports-explorer.component.js:56
+#: app/requests/order-explorer/order-explorer.component.js:134
+#: app/requests/order-explorer/order-explorer.component.js:142
+#: app/services/edit-service-modal/edit-service-modal.html:9
+#: app/services/service-details/service-details-ansible.html:101
+#: app/services/service-details/service-details-ansible.html:151
+#: app/services/service-details/service-details.html:44
+#: app/services/service-explorer/service-explorer.component.js:329
+#: app/services/service-explorer/service-explorer.component.js:342
+#: app/services/services-state.service.js:8
+#: app/services/vms.service.js:8
+#: app/services/vms/snapshots.component.js:103
+#: app/services/vms/snapshots.component.js:91
+#: app/templates/template-editor.html:62
+#: app/templates/template-explorer.component.js:150
+#: app/templates/template-explorer.component.js:158
 msgid "Name"
 msgstr "Nom"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.html:24
+#: app/services/process-snapshots-modal/process-snapshots-modal.html:9
+msgid "Name *"
+msgstr "Nom *"
+
+#: app/services/vm-details/vm-details.component.js:25
 msgid "Never"
 msgstr "Jamais"
+
+#: app/services/vm-details/vm-details.component.js:76
+msgid "Never Verified"
+msgstr "Jamais vérifié"
 
 #: app/components/notifications/heading.html:2
 #: app/components/notifications/subheading.html:1
 msgid "New"
-msgstr ""
+msgstr "Nouveau"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/dialog-content/dialog-content.html:3
+#: app/shared/dialog-content/dialog-content.html:3
 msgid "No Provisioning Dialog Available."
-msgstr "Pas de dialogue d'approvisionnement disponible"
+msgstr "Aucune boîte de dialogue de mise en service disponible."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:58
+#: app/services/vms/snapshots.html:9
+msgid "No Service"
+msgstr "Aucun service"
+
+#: app/services/retire-service-modal/retire-service-modal.component.js:39
 msgid "No Warning"
 msgstr "Aucun avertissement"
 
-#: app/components/flowchart/flowchart_template.html:15
-msgid "No available connections! Click on the canvas to cancel"
-msgstr ""
+#: app/services/service-details/service-details-ansible.html:92
+msgid "No credentials available."
+msgstr "Aucune information d'identification disponible."
 
-#: app/layouts/application.html:7
+#: app/services/service-details/service-details-ansible.html:212
+msgid "No logs available."
+msgstr "Aucun journal disponible."
+
+#: app/services/service-details/service-details-ansible.html:142
+msgid "No plays available."
+msgstr "Aucune lecture disponible."
+
+#: app/services/vm-details/vm-details.component.js:26
+msgid "None"
+msgstr "Aucun"
+
+#: app/services/vm-details/vm-details.component.js:28
+msgid "Not Available"
+msgstr "Non disponible"
+
+#: app/layouts/application.html:10
 msgid "Notifications"
-msgstr ""
+msgstr "Notifications"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:116
-#: app/states/services/list/list.state.js:81
-msgid "Number of VMs"
-msgstr "Nombre de VM"
+#: app/shared/action-button-group/action-button-group.html:20
+#: app/shared/action-button-group/action-button-group.html:26
+msgid "OK"
+msgstr "OK"
 
-#: app/states/services/details/details.html:199
-msgid "Open Cockpit console for this VM"
-msgstr ""
+#: app/services/service-details/service-details.html:271
+msgid "Open Cockpit Console"
+msgstr "Ouvrir la console Cockpit"
 
-#: app/states/services/details/details.html:196
-msgid "Open a HTML5 console for this VM"
-msgstr "Ouvrir une console HTML5 pour cette VM"
+#: app/services/service-details/service-details.html:266
+msgid "Open VM Console"
+msgstr "Ouvrir la console VM"
 
-#: app/components/shopping-cart/shopping-cart.html:54
+#: app/core/shopping-cart/shopping-cart.html:68
 msgid "Order"
-msgstr "Commander"
+msgstr "Commande"
 
-#: app/services/orders-state.service.js:13
-#: app/states/requests/list/list.state.js:162
-#: app/states/requests/list/list.state.js:185
+#: app/requests/order-explorer/order-explorer.html:33
+msgid "Order #"
+msgstr "N° de commande"
+
+#: app/requests/order-explorer/order-explorer.component.js:136
+#: app/requests/order-explorer/order-explorer.component.js:144
+#: app/requests/orders-state.service.js:12
 msgid "Order Date"
-msgstr ""
+msgstr "Date de la commande"
 
-#: app/states/requests/order_details/order_details.state.js:19
+#: app/states/orders/details/details.state.js:15
 msgid "Order Details"
 msgstr "Détails de la commande"
 
-#: app/states/requests/list/list.state.js:156
-#: app/states/requests/list/list.state.js:180
+#: app/requests/order-explorer/order-explorer.component.js:135
+#: app/requests/order-explorer/order-explorer.component.js:143
 msgid "Order ID"
 msgstr "ID de la commande"
 
-#: app/states/requests/order_details/order_details.html:5
-msgid "Orders:"
-msgstr "Commandes;"
+#: app/requests/order-explorer/order-explorer.html:47
+msgid "Ordered"
+msgstr "Commandé"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:91
-#: app/states/services/list/list.html:40
-#: app/states/services/list/list.state.js:121
-#: app/states/services/list/list.state.js:87
+#: app/core/navigation.config.js:22
+#: app/requests/order-explorer/order-explorer.html:4
+#: app/states/orders/details/details.html:5
+#: app/states/orders/explorer/explorer.state.js:11
+msgid "Orders"
+msgstr "Commandes"
+
+#: app/services/service-details/service-details.html:73
 msgid "Owner"
-msgstr "Utilisateur"
+msgstr "Propriétaire"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
+#: app/services/service-details/service-details.html:341
+msgid "Parent Catalog Item"
+msgstr "Article de catalogue parent"
+
+#: app/services/service-details/service-details.html:332
+msgid "Parent Service"
+msgstr "Service parent"
+
 #: app/states/login/login.html:23
 msgid "Password"
 msgstr "Mot de passe"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:104
-#: app/states/requests/list/list.state.js:342
-msgid "Pending"
-msgstr "En cours"
+#: app/services/service-details/service-details-ansible.html:203
+msgid "Play In Progress"
+msgstr "Lecture en cours"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.html:78
-msgid "Pending Requests"
-msgstr "Demandes en cours"
+#: app/services/service-details/service-details-ansible.html:53
+msgid "Playbook"
+msgstr "Playbook"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:36
-msgid "Permanently delete the service"
-msgstr "Supprimer définitivement le service"
+#: app/services/service-explorer/service-explorer.html:73
+msgid "Playbook: [[playbook]]"
+msgstr "Playbook : [[playbook]]"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:93
-msgid "Please enter a Provisioning Entry Point"
+#: app/services/service-details/service-details-ansible.html:138
+msgid "Plays"
+msgstr "Lectures"
+
+#: app/services/vms/snapshots.component.js:207
+msgid "Please confirm, this action will delete all snapshots of vm %s"
 msgstr ""
+"Veuillez confirmer. Cette action va supprimer tous les clichés de la VM %s"
 
-#: app/components/create-catalog-modal/create-catalog-modal.html:8
-msgid "Please enter a name for the new Catalog"
-msgstr ""
+#: app/services/vms/snapshots.component.js:203
+msgid "Please confirm, this action will delete snapshot %s"
+msgstr "Veuillez confirmer. Cette action va supprimer tous les clichés de %s"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:188
-#: app/states/services/details/details.html:189
-#: app/states/services/details/details.html:190
-#: app/states/services/details/details.html:191
-msgid "Power State"
+#: app/services/services-state.service.js:183
+#: app/services/services-state.service.js:186
+msgid "Policy"
+msgstr "Stratégie"
+
+#: app/services/vm-details/vm-details.component.js:99
+msgid "Power"
 msgstr "Alimentation"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:50
-msgid "Pricing"
-msgstr "Prix"
+#: app/services/vm-details/vm-details.html:147
+msgid "Power Management"
+msgstr "Gestion de l'alimentation"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:10
-msgid "Product"
-msgstr "Produit"
+#: app/services/service-details/service-details.component.js:109
+#: app/services/service-details/service-details.component.js:114
+#: app/services/vm-details/vm-details.component.js:98
+msgid "Power Operations"
+msgstr "Opérations d'alimentation"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:17
-msgid "Product Status"
-msgstr "État du produit"
+#: app/services/service-details/service-details.html:162
+#: app/services/service-explorer/service-explorer.component.js:426
+msgid "Power State: Off"
+msgstr "Alimentation : éteinte"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:28
-msgid "Product Tags"
-msgstr "Tags du produit"
+#: app/services/service-details/service-details.html:167
+#: app/services/service-explorer/service-explorer.component.js:425
+msgid "Power State: On"
+msgstr "Alimentation : allumée"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:23
-msgid "Product Type"
-msgstr "Type de produit"
+#: app/services/service-details/service-details.html:173
+#: app/services/service-explorer/service-explorer.component.js:427
+msgid "Power State: Unknown"
+msgstr "État de l'alimentation : inconnu"
 
-#: app/components/navigation/navigation-contoller.js:125
+#: app/reports/reports-details.html:41
+msgid "Primary record filter"
+msgstr "Filtre d'enregistrements principal"
+
+#: app/core/navigation/navigation-controller.js:109
 msgid "Product logo"
-msgstr ""
+msgstr "Logo du produit"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.state.js:19
-msgid "Products Details"
-msgstr "Information sur le produit"
+#: app/services/service-details/service-details.html:36
+#: app/services/vm-details/vm-details.html:34
+msgid "Properties"
+msgstr "Propriétés"
 
-#: app/services/profiles-state.service.js:150
-msgid "Profile %s was created."
-msgstr ""
+#: app/reports/reports-details.component.js:119
+#: app/reports/reports-details.component.js:121
+msgid "Queue Report"
+msgstr "Rapport de file d'attente"
 
-#: app/services/profiles-state.service.js:162
-msgid "Profile %s was successfully updated."
-msgstr ""
+#: app/reports/reports-details.html:131
+msgid "Queued at"
+msgstr "Heure de mise en file d'attente"
 
-#: app/states/administration/profiles/details/details.state.js:19
-msgid "Profile Details"
-msgstr ""
-
-#: app/services/profiles-state.service.js:190
-msgid "Profile(s) were succesfully deleted."
-msgstr ""
-
-#: app/components/profiles/profiles-list.directive.js:23
-#: app/config/navigation.config.js:74
-#: app/states/administration/profiles/profiles.state.js:20
-#: app/states/administration/profiles/profiles.state.js:36
-msgid "Profiles"
-msgstr ""
-
-#: app/components/profiles/profile-details.html:47
-#: app/components/profiles/profile-editor.html:42
-msgid "Provider"
-msgstr ""
-
-#: app/components/profiles/profiles-list.directive.js:214
-#: app/components/profiles/profiles-list.directive.js:250
-msgid "Provider Name"
-msgstr ""
-
-#: app/components/profiles/profile-details.html:41
-#: app/components/profiles/profile-editor.html:32
-#: app/components/profiles/profiles-list.directive.js:220
-#: app/components/profiles/profiles-list.directive.js:255
-msgid "Provider Type"
-msgstr ""
-
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:85
-msgid "Provision Order"
-msgstr ""
-
-#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:43
-msgid "Provisioning"
-msgstr ""
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:43
-msgid "Provisioning Answers"
-msgstr "Réponses de l'approvisionnement"
-
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:82
-msgid "Provisioning Entry Point"
-msgstr ""
-
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:84
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:93
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:94
-#: app/states/designer/blueprints/list/list.state.js:109
-#: app/states/designer/blueprints/list/list.state.js:116
-msgid "Publish"
-msgstr ""
-
-#: app/states/designer/blueprints/list/list.state.js:110
-msgid "Publish Blueprint"
-msgstr ""
-
-#: app/states/designer/blueprints/list/list.state.js:168
-msgid "Publish State"
-msgstr ""
-
-#: app/states/designer/blueprints/list/list.html:42
-msgid "Published"
-msgstr ""
-
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:135
-msgid "Rearrange Items to set Action Order"
-msgstr ""
-
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:123
-msgid "Rearrange Items to set Provision Order"
-msgstr ""
-
-#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:45
-#: app/states/services/details/details.html:64
+#: app/services/service-details/service-details.component.js:164
+#: app/states/services/reconfigure/reconfigure.html:8
 msgid "Reconfigure"
-msgstr "Reconfiguration"
+msgstr "Reconfigurer"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:97
-msgid "Reconfigure Entry Point"
-msgstr ""
+#: app/services/service-details/service-details.component.js:166
+msgid "Reconfigure the Service"
+msgstr "Reconfigurer le service"
 
-#: app/states/services/reconfigure/reconfigure.html:5
-msgid "Reconfigure Service:"
-msgstr "Reconfiguration du Service:"
-
-#: app/states/services/reconfigure/reconfigure.state.js:118
+#: app/states/services/reconfigure/reconfigure.state.js:124
 msgid "Reconfigure this service has been cancelled"
-msgstr "La reconfiguration du service a été annulé"
+msgstr "La reconfiguration du service a été annulée"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/dialog-content/dialog-content.html:111
+#: app/shared/dialog-content/dialog-content.html:136
 msgid "Refresh"
-msgstr "Rafraîchir"
+msgstr "Actualiser"
 
-#: app/components/shopping-cart/shopping-cart.html:17
-#: app/states/designer/blueprints/editor/editor.html:28
+#: app/services/service-details/service-details.html:326
+#: app/services/vm-details/vm-details.html:86
+msgid "Relationships"
+msgstr "Relations"
+
+#: app/services/service-explorer/service-explorer.html:106
+msgid "Relative current cost"
+msgstr "Coût relatif actuel"
+
+#: app/core/shopping-cart/shopping-cart.html:16
+#: app/core/shopping-cart/shopping-cart.html:21
+#: app/requests/order-explorer/order-explorer.component.js:163
+#: app/services/service-explorer/service-explorer.component.js:257
+#: app/services/services-state.service.js:229
+#: app/services/services-state.service.js:231
 msgid "Remove"
-msgstr "Supprimer"
+msgstr "Enlever"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:36
-#: app/states/services/details/details.html:39
+#: app/core/shopping-cart/shopping-cart.html:19
+msgid "Remove Item"
+msgstr "Enlever l'article"
+
+#: app/requests/order-explorer/order-explorer.component.js:165
+#: app/requests/process-order-modal/process-order-modal.html:5
+msgid "Remove Order"
+msgstr "Supprimer la commande"
+
+#: app/services/service-explorer/service-explorer.component.js:259
+#: app/services/services-state.service.js:236
 msgid "Remove Service"
 msgstr "Supprimer le service"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:61
-msgid "Request Approval State"
-msgstr "État de l'approbation"
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.html:5
+msgid "Remove Services"
+msgstr "Supprimer les services"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/services/requests-state.service.js:13
-#: app/states/requests/details/details.html:49
-#: app/states/requests/list/list.state.js:130
-#: app/states/requests/list/list.state.js:95
-msgid "Request Date"
-msgstr "Date de la demande"
+#: app/services/service-details/service-details-ansible.html:60
+msgid "Repo Name"
+msgstr "Nom de référentiel"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:37
-#: app/states/requests/list/list.state.js:120
-#: app/states/requests/list/list.state.js:83
+#: app/states/reports/view/report.state.js:17
+msgid "Report"
+msgstr "Rapport"
+
+#: app/reports/reports-explorer.html:42
+msgid "Report Filters"
+msgstr "Filtres de rapport"
+
+#: app/reports/reports-details.html:127
+msgid "Report Queued"
+msgstr "Rapport en file d'attente"
+
+#: app/reports/reports-details.component.js:59
+msgid "Report has been queued"
+msgstr "Le rapport a été mis en file d'attente"
+
+#: app/reports/reports-details.html:119
+msgid "Report is queued"
+msgstr "Rapport mis en file d'attente"
+
+#: app/reports/reports-details.html:113
+msgid "Report run successfully"
+msgstr "Rapport exécuté avec succès"
+
+#: app/reports/reports-details.html:4
+#: app/reports/reports-explorer.html:4
+#: app/states/reports/explorer/explorer.state.js:11
+#: app/states/reports/view/report.html:4
+msgid "Reports"
+msgstr "Rapports"
+
+#: app/states/reports/details/details.state.js:13
+msgid "Reports Details"
+msgstr "Détails du rapport"
+
+#: app/requests/order-explorer/order-explorer.html:81
 msgid "Request ID"
 msgstr "ID de la demande"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/list/list.state.js:19
-msgid "Request List"
-msgstr "Liste des demandes"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:43
+#: app/requests/order-explorer/order-explorer.html:96
 msgid "Request State"
 msgstr "État de la demande"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.state.js:171
-#: app/states/requests/list/list.state.js:101
-#: app/states/requests/list/list.state.js:135
-msgid "Request Status"
-msgstr "État de la demande"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:96
-msgid "Request Type"
-msgstr "Type de demande"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:5
-msgid "Request:"
-msgstr "Demande :"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/request-list/request-list.html:25
-msgid "Requested"
-msgstr "Demandé"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.html:55
-msgid "Requested By"
+#: app/requests/order-explorer/order-explorer.html:39
+msgid "Requester"
 msgstr "Demandeur"
 
-#: app/components/request-list/request-list.html:20
-#: app/states/requests/list/list.state.js:125
-#: app/states/requests/list/list.state.js:89
-msgid "Requester"
-msgstr ""
+#: app/shared/action-button-group/action-button-group.html:38
+#: app/shared/action-button-group/action-button-group.html:6
+msgid "Reset"
+msgstr "Réinitialiser"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/requests/details/details.state.js:19
-msgid "Requests Details"
-msgstr "Informations sur la demande"
+#: app/services/service-details/service-details.html:132
+msgid "Resources"
+msgstr "Ressources"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:48
+#: app/services/service-details/service-details-ansible.html:11
+msgid "Results"
+msgstr "Résultats"
+
+#: app/services/service-details/service-details.html:294
+#: app/services/service-details/service-details.html:301
+#: app/services/service-explorer/service-explorer.component.js:241
+#: app/services/services-state.service.js:145
+#: app/services/services-state.service.js:146
+#: app/services/vm-details/vm-details.component.js:132
 msgid "Retire"
-msgstr "Décommissionner"
+msgstr "Désactiver"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:52
-msgid "Retire Now"
-msgstr "Décommissionner maintenant"
+#: app/services/service-details/service-details.html:292
+msgid "Retire Resource"
+msgstr "Désactiver Ressource"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:53
+#: app/services/service-explorer/service-explorer.component.js:243
+msgid "Retire Service"
+msgstr "Désactiver un service"
+
+#: app/services/services-state.service.js:152
 msgid "Retire Service Now"
-msgstr "Décommissionner le service maintenant"
+msgstr "Désactiver le service maintenant"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:77
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.html:6
+msgid "Retire Services"
+msgstr "Désactiver des services"
+
+#: app/services/vm-details/vm-details.component.js:134
+msgid "Retire the Service"
+msgstr "Désactiver le service"
+
+#: app/services/vm-details/vm-details.html:37
+#: app/states/dashboard/dashboard.state.js:105
+#: app/states/dashboard/dashboard.state.js:113
 msgid "Retired"
-msgstr "Décommissionné"
+msgstr "Désactivé"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.html:58
+#: app/states/dashboard/dashboard.html:52
 msgid "Retired Services"
-msgstr "Services décommissionnés"
+msgstr "Services désactivés"
 
-#: app/components/browse-entry-point-modal/browse-entry-point-modal-service.factory.js:47
-msgid "Retirement"
-msgstr ""
+#: app/services/service-details/service-details.html:156
+msgid "Retired resource"
+msgstr "Ressource désactivée"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal.html:13
-#: app/states/dashboard/dashboard.state.js:177
-#: app/states/services/details/details.html:83
-#: app/states/services/list/list.html:20
-#: app/states/services/list/list.state.js:111
-#: app/states/services/list/list.state.js:74
+#: app/services/retire-service-modal/retire-service-modal.html:13
+#: app/services/service-explorer/service-explorer.component.js:343
+#: app/states/dashboard/dashboard.state.js:101
 msgid "Retirement Date"
-msgstr "Date de décommissionnement"
+msgstr "Date de désactivation"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:108
-msgid "Retirement Entry Point"
-msgstr ""
+#: app/services/service-details/service-details.html:95
+msgid "Retirement State"
+msgstr "État de désactivation"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal.html:9
+#: app/services/retire-service-modal/retire-service-modal.html:9
 msgid "Retirement Warning"
-msgstr "Avertissement de décommissionnement"
+msgstr "Avertissement de désactivation"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.html:32
+#: app/services/service-explorer/service-explorer.html:173
+#: app/services/service-explorer/service-explorer.html:97
+msgid "Retires"
+msgstr "Désactive"
+
+#: app/services/service-details/service-details.html:102
+msgid "Retires On"
+msgstr "Désactivation le"
+
+#: app/states/dashboard/dashboard.html:22
 msgid "Retiring Soon"
-msgstr "Décommissionnement imminent"
+msgstr "Désactivation imminente"
 
-#: app/services/rules-state.service.js:77
-msgid "Rule(s) were succesfully deleted."
-msgstr ""
+#: app/services/vms/snapshots.component.js:65
+msgid "Revert"
+msgstr "Revenir"
 
-#: app/components/rules/rules-list.directive.js:177
-#: app/config/navigation.config.js:84
-#: app/states/administration/rules/rules.html:7
-#: app/states/administration/rules/rules.state.js:21
-#: app/states/administration/rules/rules.state.js:50
-msgid "Rules"
-msgstr ""
+#: app/services/vms/snapshots.component.js:67
+msgid "Revert Snapshot"
+msgstr "Revenir au Cliché"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:141
-msgid "Same as Provision Order"
-msgstr ""
+#: app/services/vms/snapshots.component.js:216
+msgid "Reverting snapshot."
+msgstr "Rétablissement cliché"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:99
-#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:12
-#: app/components/create-catalog-modal/create-catalog-modal.html:13
-#: app/components/edit-service-modal/edit-service-modal.html:22
-#: app/components/ownership-service-modal/ownership-service-modal.html:33
-#: app/components/profiles/profile-editor.html:127
-#: app/components/retire-service-modal/retire-service-modal.html:20
-#: app/components/rules/rules-list.html:95
-#: app/states/administration/profiles/editor/save-profile-modal.html:14
-#: app/states/administration/rules/save-rule-modal.html:14
-#: app/states/designer/blueprints/editor/editor.html:10
-#: app/states/designer/blueprints/editor/save-blueprint-modal.html:13
+#: app/reports/reports-details.html:124
+msgid "Run at"
+msgstr "Exécuté à"
+
+#: app/core/save-modal-dialog/save-modal-dialog.html:16
+#: app/shared/action-button-group/action-button-group.html:13
 msgid "Save"
 msgstr "Enregistrer"
 
-#: app/states/designer/blueprints/editor/editor.html:12
-msgid "Save Blueprint"
-msgstr ""
-
-#: app/states/administration/profiles/editor/save-profile-modal.html:6
-#: app/states/administration/rules/save-rule-modal.html:6
+#: app/core/save-modal-dialog/save-modal-dialog.html:6
 msgid "Save Changes"
-msgstr ""
+msgstr "Enregistrer les modifications"
 
-#: app/states/designer/blueprints/editor/save-blueprint-modal.html:5
-msgid "Save Changes to {{vm.blueprint.name}}"
-msgstr ""
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:59
-msgid "Schedule Retirement"
-msgstr "Planifier le décommissionnement"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal.html:5
+#: app/services/retire-service-modal/retire-service-modal.html:5
 msgid "Schedule Service Retirement"
-msgstr "Planifier le décommissionnement du service"
+msgstr "Planifier la désactivation de ce service"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:75
-msgid "Scheduling retirement for"
-msgstr "Planifier le décommissionnement pour"
+#: app/services/retire-service-modal/retire-service-modal.component.js:77
+msgid "Scheduling retirement."
+msgstr "Planifier la désactivation pour"
 
-#: app/components/profiles/profile-details.html:83
-#: app/components/profiles/profile-editor.html:104
-msgid "Security Group"
-msgstr ""
+#: app/services/vm-details/vm-details.html:158
+msgid "Security"
+msgstr "Sécurité"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:68
-msgid "Select Dialog"
-msgstr ""
-
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:52
-msgid "Select a Catalog"
-msgstr ""
-
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:70
-msgid "Select a Dialog"
-msgstr ""
-
-#: app/components/ownership-service-modal/ownership-service-modal.html:19
+#: app/services/ownership-service-modal/ownership-service-modal.html:20
 msgid "Select a Group"
-msgstr "Sélectionnez un Groupe"
+msgstr "Sélectionner un groupe"
 
-#: app/components/profiles/profile-editor.html:88
-msgid "Select a cloud network"
-msgstr ""
+#: app/shared/tagging/tagging.component.js:20
+msgid "Select a value to assign"
+msgstr "Sélectionner une valeur à assigner"
 
-#: app/components/profiles/profile-editor.html:99
-msgid "Select a cloud subnet"
-msgstr ""
-
-#: app/components/rules/rules-list.html:55
-msgid "Select a field"
-msgstr ""
-
-#: app/components/profiles/profile-editor.html:78
-msgid "Select a flavor"
-msgstr ""
-
-#: app/components/profiles/profile-editor.html:58
-msgid "Select a key pair"
-msgstr ""
-
-#: app/components/rules/rules-list.html:82
-msgid "Select a profile"
-msgstr ""
-
-#: app/components/profiles/profile-editor.html:47
-msgid "Select a provider"
-msgstr ""
-
-#: app/components/profiles/profile-editor.html:37
-msgid "Select a provider type"
-msgstr ""
-
-#: app/components/flowchart/flowchart_template.html:12
-msgid ""
-"Select a second item to complete the connection or click on the canvas to "
-"cancel"
-msgstr ""
-
-#: app/components/profiles/profile-editor.html:109
-msgid "Select a security group"
-msgstr ""
-
-#: app/components/ownership-service-modal/ownership-service-modal.html:9
+#: app/services/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
-msgstr "Sélectionnez un utilisateur"
+msgstr "Sélectionner un propriétaire"
 
-#: app/components/profiles/profile-editor.html:68
-msgid "Select an availability zone"
-msgstr ""
-
-#: app/components/rules/rules-list.html:58
-msgid "Select an operator"
-msgstr ""
-
-#: app/components/browse-entry-point-modal/browse-entry-point-modal.html:5
-msgid "Select {{vm.entryPointTypeTitle}} Entry Point"
-msgstr ""
-
-#: app/components/navigation/navigation-contoller.js:133
+#: app/core/navigation/navigation-controller.js:114
 msgid "Server Name:"
-msgstr ""
+msgstr "Nom du serveur :"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:41
-#: app/states/marketplace/list/list.state.js:20
+#: app/states/services/custom_button_details/custom_button_details.html:7
+msgid "Service"
+msgstr "Service"
+
+#: app/catalogs/catalog-explorer.html:4
+#: app/core/navigation.config.js:31
 msgid "Service Catalog"
 msgstr "Catalogue de services"
 
-#: app/states/services/custom_button_details/custom_button_details.state.js:19
-msgid "Service Custom Button Details"
-msgstr "Information sur le bouton personnalisé du Service"
+#: app/states/catalogs/details/details.html:5
+#: app/states/services/custom_button_details/custom_button_details.html:3
+msgid "Service Catalogs"
+msgstr "Catalogues de services"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:19
-#: app/states/services/reconfigure/reconfigure.state.js:20
-#: app/states/services/reconfigure/reconfigure.state.js:42
+#: app/states/services/custom_button_details/custom_button_details.state.js:16
+msgid "Service Custom Button Details"
+msgstr "Information sur le bouton personnalisé du service"
+
+#: app/services/service-details/service-details.component.js:28
+#: app/states/services/details/details.state.js:12
+#: app/states/services/reconfigure/reconfigure.state.js:17
+#: app/states/services/reconfigure/reconfigure.state.js:39
 msgid "Service Details"
 msgstr "Informations sur le service"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:76
+#: app/services/service-details/service-details.html:66
 msgid "Service Id"
-msgstr "ID du dervice"
+msgstr "ID du service"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:19
-msgid "Service List"
-msgstr "Liste des services"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/details/details.state.js:19
+#: app/states/catalogs/details/details.state.js:15
 msgid "Service Template Details"
-msgstr "Informatins sur le modèle"
+msgstr "Informations sur le modèle du service"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/marketplace/details/details.html:5
-#: app/states/services/details/details.html:5
-msgid "Service:"
-msgstr "Service :"
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
+msgid "Service deleting."
+msgstr "Suppression du service."
 
-#: app/states/services/details/details.html:63
+#: app/services/service-explorer/service-explorer.component.js:32
+msgid "Services"
+msgstr "Services"
+
+#: app/states/services/explorer/explorer.state.js:12
+msgid "Services Explorer"
+msgstr "Explorateur de services"
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:41
+msgid "Services Retired"
+msgstr "Services désactivés"
+
+#: app/services/service-explorer/service-explorer.component.js:233
+#: app/services/service-explorer/service-explorer.component.js:235
+#: app/services/services-state.service.js:245
+#: app/services/services-state.service.js:247
 msgid "Set Ownership"
-msgstr "Définir un utilisateur"
+msgstr "Définir la propriété"
 
-#: app/components/ownership-service-modal/ownership-service-modal.html:5
+#: app/services/service-explorer/service-explorer.component.js:249
+#: app/services/services-state.service.js:139
+msgid "Set Retirement"
+msgstr "Définir la désactivation"
+
+#: app/services/service-explorer/service-explorer.component.js:251
+#: app/services/services-state.service.js:137
+msgid "Set Retirement Dates"
+msgstr "Définir les dates de désactivation"
+
+#: app/services/ownership-service-modal/ownership-service-modal.html:5
 msgid "Set Service Ownership"
-msgstr "Définir l'utilisateur du Service"
+msgstr "Définir la propriété du service"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/products/details/details.html:55
-msgid "Setup"
-msgstr "Configuration"
+#: app/services/ownership-service-modal/ownership-service-modal.component.js:67
+msgid "Setting ownership."
+msgstr "Définition de la propriété."
 
-#: app/components/shopping-cart/shopping-cart.html:5
+#: app/core/shopping-cart/shopping-cart.html:5
 msgid "Shopping Cart"
 msgstr "Panier"
 
@@ -1429,382 +1247,526 @@ msgstr "Panier"
 msgid "Shopping cart"
 msgstr "Panier"
 
-#: app/components/shopping-cart/shopping-cart.html:30
+#: app/core/shopping-cart/shopping-cart.html:37
 msgid "Shopping cart is empty."
 msgstr "Le panier est vide"
 
-#: app/components/shopping-cart/shopping-cart.directive.js:47
+#: app/core/shopping-cart/shopping-cart.component.js:32
 msgid "Shopping cart successfully ordered"
-msgstr "Le panier a été commandé avec succès   "
+msgstr "La commande du panier a abouti"
 
-#: app/components/blueprint-delete-modal/blueprint-delete-modal.html:10
-msgid "Show Blueprint Names"
-msgstr ""
+#: app/services/vm-details/vm-details.html:132
+msgid "Show parent and child VMs"
+msgstr "Afficher les VM mères et filles"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:178
-msgid "Size"
-msgstr "Taille"
+#: app/services/vms/snapshots.component.js:22
+#: app/services/vms/snapshots.html:14
+#: app/services/vms/snapshots.html:37
+msgid "Snapshots"
+msgstr "Clichés"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.state.js:77
-msgid "Soon"
-msgstr "Bientôt"
+#: app/reports/reports-details.html:49
+msgid "Sort By"
+msgstr "Trier par"
 
-#: app/components/notifications/notification-body.html:40
+#: app/reports/reports-details.html:135
+msgid "Source"
+msgstr "Source"
+
+#: app/services/service-details/service-details-ansible.html:196
+msgid "Standard Out"
+msgstr "Standard Out"
+
+#: app/services/service-details/service-details.component.js:119
+#: app/services/service-details/service-details.html:281
+#: app/services/service-explorer/service-explorer.component.js:270
+#: app/services/service-explorer/service-explorer.html:188
+#: app/services/vm-details/vm-details.component.js:108
+msgid "Start"
+msgstr "Démarrer"
+
+#: app/services/service-details/service-details.component.js:121
+#: app/services/vm-details/vm-details.component.js:110
+msgid "Start the Service"
+msgstr "Démarrer le service"
+
+#: app/services/service-explorer/service-explorer.component.js:272
+#: app/services/service-explorer/service-explorer.html:188
+msgid "Start this service"
+msgstr "Démarrer ce service"
+
+#: app/services/service-details/service-details-ansible.html:167
+#: app/services/service-details/service-details-ansible.html:20
+msgid "Started"
+msgstr "Démarré"
+
+#: app/components/notifications/notification-body.html:41
 msgid "Started:"
-msgstr ""
+msgstr "Démarré :"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
+#: app/services/service-details/service-details-ansible.html:13
+#: app/services/service-details/service-details-ansible.html:159
+msgid "Status"
+msgstr "Statut"
+
+#: app/services/service-details/service-details.component.js:126
+#: app/services/service-details/service-details.html:284
+#: app/services/service-explorer/service-explorer.component.js:278
+#: app/services/service-explorer/service-explorer.html:191
+#: app/services/vm-details/vm-details.component.js:116
+msgid "Stop"
+msgstr "Arrêter"
+
+#: app/services/service-details/service-details.component.js:128
+#: app/services/vm-details/vm-details.component.js:118
+msgid "Stop the Service"
+msgstr "Arrêter le service"
+
+#: app/services/service-explorer/service-explorer.component.js:280
+#: app/services/service-explorer/service-explorer.html:191
+msgid "Stop this service"
+msgstr "Arrêter ce service"
+
 #: app/states/services/custom_button_details/custom_button_details.html:19
-#: app/states/services/reconfigure/reconfigure.html:21
+#: app/states/services/reconfigure/reconfigure.html:23
 msgid "Submit Request"
 msgstr "Soumettre une demande"
 
-#: app/components/language-switcher/language-switcher.html:2
+#: app/services/service-details/service-details.component.js:133
+#: app/services/service-details/service-details.html:287
+#: app/services/service-explorer/service-explorer.component.js:286
+#: app/services/service-explorer/service-explorer.html:194
+#: app/services/vm-details/vm-details.component.js:124
+msgid "Suspend"
+msgstr "Interrompre"
+
+#: app/services/service-details/service-details.component.js:135
+#: app/services/vm-details/vm-details.component.js:126
+msgid "Suspend the Service"
+msgstr "Interrompre le service"
+
+#: app/services/service-explorer/service-explorer.component.js:288
+msgid "Suspend this service"
+msgstr "Interrompre ce service"
+
+#: app/core/language-switcher/language-switcher.html:2
 msgid "Switch Language:"
-msgstr "Changer de Langue:"
+msgstr "Changer de langue :"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:32
-#: app/components/flowchart/node-toolbar.html:11
+#: app/core/tag-editor-modal/tag-editor-modal.service.js:57
+msgid "Tagging successful."
+msgstr "Le balisage a abouti."
+
+#: app/core/tag-editor-modal/tag-editor-modal.html:13
+#: app/services/service-details/service-details.html:114
 msgid "Tags"
-msgstr ""
+msgstr "Balises"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:324
-msgid "The Publish Blueprint feature is not yet implemented."
-msgstr ""
+#: app/templates/template-editor.component.js:48
+msgid "Template"
+msgstr "Modèle"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/request-list/request-list.html:30
-#: app/components/request-list/request-list.html:31
-#: app/components/request-list/request-list.html:32
-msgid "The current approval status of the request"
-msgstr "État actuel de l'approbation"
+#: app/templates/template-editor.html:79
+msgid "Template Type"
+msgstr "Type de modèle"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:183
-msgid "The last heartbeat received from the instances"
-msgstr "Le dernier signal de vie reçus des instances"
+#: app/templates/template-editor.component.js:187
+msgid "Template deleted successfully."
+msgstr "Le modèle a été supprimé."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.html:50
+#: app/templates/template-editor.component.js:98
+msgid "Templated updated"
+msgstr "Modèle mis à jour"
+
+#: app/states/templates/explorer/explorer.state.js:11
+#: app/templates/template-editor.html:35
+#: app/templates/template-editor.html:5
+#: app/templates/template-explorer.html:32
+#: app/templates/template-explorer.html:4
+msgid "Templates"
+msgstr "Modèles"
+
+#: app/templates/template-explorer.component.js:343
+msgid "Templates deleted successfully."
+msgstr "Les modèles ont été supprimés."
+
+#: app/catalogs/catalog-explorer.component.js:80
+msgid "Tenant"
+msgstr "Locataire"
+
+#: app/states/dashboard/dashboard.html:42
 msgid "The number of active services"
 msgstr "Nombre de services actifs"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.html:31
-msgid "The number of instances running this service"
-msgstr "Le nombre d'instances en exécution dans ce service"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.html:37
+#: app/states/dashboard/dashboard.html:27
 msgid "The number of services retiring within the next 30 days"
 msgstr ""
-"Le nombre de services qui seront décommissionnés dans les 30 prochains jours"
+"Le nombre de services qui seront désactivés dans les 30 prochains jours"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.html:63
+#: app/states/dashboard/dashboard.html:57
 msgid ""
 "The number of services which have hit their retirement period or been "
 "retired"
 msgstr ""
-"Le nombre de services qui sont décommissionnés ou ayant atteint leur date "
-"limite"
+"Le nombre de services qui sont désactivés ou ayant atteint leur date limite"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/404/404.html:6
 msgid ""
 "The page you are looking for might have been removed, had its name changed, "
 "or is temporarily unavailable."
 msgstr ""
-"La page que vous recherchez a peut-être été supprimée, ou renommée, ou est "
-"temporairement indisponible."
+"La page que vous recherchez a peut-être été supprimée ou renommée, ou elle "
+"est temporairement indisponible."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/404/404.html:5
 msgid "The page you requested cannot be found."
-msgstr "La page que vous recherchez est introuvable."
+msgstr "La page que vous avez demandée est introuvable."
 
-#: app/services/rules-state.service.js:37
-msgid "The rule was created."
-msgstr ""
+#: app/core/navigation.config.js:35
+msgid "The total number of available catalogs"
+msgstr "Le nombre tolal de catalogues disponibles"
 
-#: app/config/navigation.config.js:79
-msgid "The total number of available arbitration profiles"
-msgstr ""
-
-#: app/config/navigation.config.js:89
-msgid "The total number of available arbitration rules"
-msgstr ""
-
-#: app/config/navigation.config.js:62
-msgid "The total number of available blueprints"
-msgstr "Le nombre tolal de blueprints disponible"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:47
-msgid "The total number of available catalog items"
-msgstr "Le nombre d'articles dans le catalogue"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:36
-msgid "The total number of requests that you have submitted"
-msgstr "Le nombre de demandes que vous avez soumis"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/navigation.config.js:25
-msgid ""
-"The total number of services that you have ordered, both active and retired"
-msgstr ""
-"Le nombre de service que vous avez demandé, tant actifs que décommissionnés"
-
-#: app/states/marketplace/details/details.html:35
+#: app/states/catalogs/details/details.html:38
 msgid ""
 "There already is an identical item in the cart. Do you want to add it "
 "anyway?"
 msgstr ""
+"Il existe déjà un article identique dans le panier. Voulez-vous l'ajouter "
+"malgré tout ?"
 
-#: app/components/tagging/tagging.html:15
+#: app/services/service-details/service-details.component.js:306
+msgid "There are no Compute Resources for this service."
+msgstr "Il n'existe aucune ressource de calcul pour ce service."
+
+#: app/shared/tagging/tagging.html:15
 msgid "There are no tags for this item."
-msgstr ""
+msgstr "Il n'existe aucune balise pour cet article."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/error/error.html:10
 msgid "There was a problem loading the page."
 msgstr "Un problème est survenu lors du chargement de la page."
 
-#: app/states/marketplace/details/details.state.js:121
+#: app/states/catalogs/details/details.state.js:135
 msgid "There was an error adding to shopping cart:"
-msgstr "Un problème est survenu lors de l'ajout d'article au panier:"
+msgstr "Une erreur s'est produite lors de l'ajout d'un article au panier :"
 
-#: app/services/profiles-state.service.js:154
-msgid "There was an error creating profile %s."
-msgstr ""
+#: app/services/process-snapshots-modal/process-snapshots-modal.component.js:43
+msgid "There was an error creating the snapshot."
+msgstr "Une erreur s'est produite lors de la création du cliché."
 
-#: app/services/rules-state.service.js:41
-msgid "There was an error creating this rule."
-msgstr ""
+#: app/templates/template-editor.component.js:105
+msgid "There was an error creating the template"
+msgstr "Une erreur s'est produite lors de la création du modèle."
 
-#: app/services/blueprints-state.service.js:260
-msgid "There was an error deleting the blueprint(s)."
-msgstr ""
+#: app/templates/template-explorer.component.js:348
+msgid "There was an error deleting templates."
+msgstr "Une erreur s'est produite lors de la suppression des modèles."
 
-#: app/services/profiles-state.service.js:194
-msgid "There was an error deleting the profile(s)."
-msgstr ""
+#: app/templates/template-editor.component.js:191
+msgid "There was an error deleting the template."
+msgstr "Une erreur s'est produite lors de la suppression du modèle."
 
-#: app/services/rules-state.service.js:81
-msgid "There was an error deleting the rule(s)."
-msgstr ""
+#: app/requests/order-explorer/order-explorer.component.js:365
+msgid "There was an error duplicating %s."
+msgstr "Une erreur s'est produite lors de la duplication de %s."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/edit-service-modal/edit-service-modal-service.factory.js:65
+#: app/services/edit-service-modal/edit-service-modal.component.js:32
 msgid "There was an error editing this service."
-msgstr "Un problème est survenu lors de l'édition du service."
+msgstr "Une erreur s'est produite lors de la modification de ce service."
 
-#: app/services/consoles.service.js:37
-msgid "There was an error opening the console"
-msgstr "Un problème est survenu en ouvrant la console"
+#: app/services/service-details/service-details.component.js:89
+msgid "There was an error fetching this service."
+msgstr "Une erreur s'est produite lors de l'extraction de ce service."
 
-#: app/services/consoles.service.js:38
-msgid "There was an error opening the console:"
-msgstr "Un problème est survenu en ouvrant la console:"
+#: app/catalogs/catalog-explorer.component.js:131
+msgid "There was an error loading catalogs."
+msgstr "Une erreur s'est produite lors du chargement des catalogues."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:118
+#: app/requests/order-explorer/order-explorer.component.js:303
+#: app/requests/order-explorer/order-explorer.component.js:317
+msgid "There was an error loading orders."
+msgstr "Une erreur s'est produite lors du chargement des commandes."
+
+#: app/reports/reports-explorer.component.js:89
+msgid "There was an error loading reports."
+msgstr "Une erreur s'est produite lors du chargement des rapports."
+
+#: app/services/vms/snapshots.component.js:173
+msgid "There was an error loading snapshots."
+msgstr "Une erreur s'est produite lors du chargement des clichés."
+
+#: app/templates/template-explorer.component.js:277
+msgid "There was an error loading templates."
+msgstr "Une erreur s'est produite lors du chargement des modèles."
+
+#: app/services/service-explorer/service-explorer.component.js:363
+#: app/services/service-explorer/service-explorer.component.js:435
+msgid "There was an error loading the services."
+msgstr "Une erreur s'est produite lors du chargement des services."
+
+#: app/services/vm-details/vm-details.component.js:91
+msgid "There was an error loading the vm details."
+msgstr ""
+"Une erreur s'est produite lors de l'enregistrement des détails de la VM."
+
+#: app/services/vms/snapshots.component.js:185
+msgid "There was an error loading the vm."
+msgstr "Une erreur s'est produite lors du chargement de la VM."
+
+#: app/services/consoles.service.js:51
+msgid "There was an error opening the console."
+msgstr "Un problème est survenu en ouvrant la console."
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:51
+msgid "There was an error removing one or more services."
+msgstr ""
+"Une erreur s'est produite lors de la suppression d'un ou de plusieurs "
+"services."
+
+#: app/requests/process-order-modal/process-order-modal.component.js:42
+msgid "There was an error removing order"
+msgstr "Une erreur s'est produite lors de la suppression de la commande"
+
+#: app/services/service-details/service-details.component.js:238
 msgid "There was an error removing this service."
-msgstr "Un problème est survenu lors de la suppression de ce service."
+msgstr "Une erreur s'est produite lors de la suppression de ce service."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/retire-service-modal/retire-service-modal-service.factory.js:80
-#: app/states/services/details/details.state.js:157
+#: app/services/poweroperations.service.js:189
+msgid "There was an error retiring this %s."
+msgstr "Une erreur s'est produite lors de la désactivation de %s."
+
+#: app/services/retire-service-modal/retire-service-modal.component.js:82
+#: app/services/service-details/service-details.component.js:297
 msgid "There was an error retiring this service."
-msgstr "Un problème est survenu lors du décommissionnement de ce service."
+msgstr "Une erreur s'est produite lors de la désactivation de ce service."
 
-#: app/components/ownership-service-modal/ownership-service-modal-service.factory.js:94
-msgid "There was an error saving ownership of this service."
-msgstr ""
-"Il y a une erreur lors de la définition de l'utilisateur de ce service"
+#: app/services/ownership-service-modal/ownership-service-modal.component.js:72
+msgid "There was an error saving ownership."
+msgstr "Une erreur s'est produite lors de l'enregistrement de la propriété."
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:326
-msgid "There was an error saving this Blueprint's Details."
-msgstr ""
+#: app/services/poweroperations.service.js:180
+msgid "There was an error starting this %s."
+msgstr "Une erreur s'est produite lors du démarrage de ce %s."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/shopping-cart/shopping-cart.directive.js:51
-#: app/states/services/custom_button_details/custom_button_details.state.js:93
-#: app/states/services/reconfigure/reconfigure.state.js:113
+#: app/services/poweroperations.service.js:183
+msgid "There was an error stopping this %s."
+msgstr "Une erreur s'est produite lors de l'arrêt de ce %s."
+
+#: app/core/shopping-cart/shopping-cart.component.js:37
+#: app/states/services/custom_button_details/custom_button_details.state.js:91
+#: app/states/services/reconfigure/reconfigure.state.js:119
 msgid "There was an error submitting this request:"
-msgstr "Un problème est survenu lors de la soumission de cette demande :"
+msgstr "Une erreur s'est produite lors de l'envoi de cette demande :"
 
-#: app/services/profiles-state.service.js:166
-msgid "There was an error updating profile %s."
-msgstr ""
+#: app/services/poweroperations.service.js:186
+msgid "There was an error suspending this %s."
+msgstr "Une erreur s'est produite lors de l'interruption de ce %s."
 
-#: app/services/rules-state.service.js:52
-msgid "There was an error updating the rules."
-msgstr ""
+#: app/core/tag-editor-modal/tag-editor-modal.service.js:62
+msgid "There was an error tagging this service."
+msgstr "Une erreur s'est produite lors du balisage de ce service."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:161
-msgid "This service has no associated VMs"
-msgstr "Le service n'est associé à aucune VM"
+#: app/templates/template-editor.component.js:102
+msgid "There was an error updating the template"
+msgstr "Une erreur s'est produite lors de la mise à jour du modèle."
 
-#: app/layouts/application.html:30
-msgid "Toggle notifications list"
-msgstr ""
+#: app/reports/reports-details.html:33
+msgid "Title"
+msgstr "Titre"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/dashboard/dashboard.html:20
-msgid "Total Requests"
-msgstr "Nombre de demandes"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/dashboard/dashboard.html:9
 msgid "Total Services"
-msgstr "Nombre de services"
+msgstr "Nombre total de services"
 
-#: app/components/rules/rules-list.html:38
-#: app/components/rules/rules-list.html:78
-msgid "USE"
-msgstr ""
+#: app/services/service-details/service-details.html:195
+msgid "Total Snapshots"
+msgstr "Nombre total de clichés"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:50
-#: app/states/designer/blueprints/list/list.state.js:81
-#: app/states/designer/blueprints/list/list.state.js:82
-msgid "Unassigned"
-msgstr ""
+#: app/core/navigation.config.js:26
+#, fuzzy
+msgid "Total orders submitted"
+msgstr "Nombre total de commandes envoyées"
 
-#: app/services/consoles.service.js:75
-msgid "Unsupported console protocol returned"
-msgstr "Protocol non supporté"
+#: app/core/navigation.config.js:17
+msgid "Total services ordered, both active and retired"
+msgstr "Nombre total de services commandés, actifs et désactivés"
 
-#: app/services/consoles.service.js:76
-msgid "Unsupported console protocol returned:"
-msgstr "Protocol non supporté:"
+#: app/services/service-details/service-details-ansible.html:121
+#: app/templates/template-explorer.component.js:151
+#: app/templates/template-explorer.component.js:159
+msgid "Type"
+msgstr "Type"
 
-#: app/components/blueprint-details-modal/blueprint-details-modal-service.factory.js:136
-#: app/services/blueprints-state.service.js:269
-#: app/states/designer/blueprints/editor/editor.html:9
-msgid "Untitled Blueprint"
-msgstr ""
+#: app/services/vm-details/vm-details.component.js:78
+msgid "Unknown"
+msgstr "Inconnu"
 
-#: app/components/language-switcher/language-switcher.directive.js:28
+#: app/services/consoles.service.js:66
+msgid "Unsupported console protocol returned."
+msgstr "Protocole de console non pris en charge."
+
+#: app/reports/reports-explorer.component.js:55
+#: app/reports/reports-explorer.html:50
+#: app/reports/reports.service.js:15
+#: app/services/vms/snapshots.component.js:105
+#: app/templates/template-explorer.html:75
+msgid "Updated"
+msgstr "Mis à jour"
+
+#: app/reports/reports-details.html:89
+msgid "Updated On"
+msgstr "Mis à jour le"
+
+#: app/services/vms/snapshots.html:94
+msgid "Updated:"
+msgstr "Mis à jour :"
+
+#: app/reports/reports-details.html:65
+msgid "User"
+msgstr "Utilisateur"
+
+#: app/core/language-switcher/language-switcher.directive.js:24
 msgid "User Default"
-msgstr "Défaut utilisateur "
+msgstr "Utilisateur par défaut"
 
-#: app/components/navigation/navigation-contoller.js:134
+#: app/core/navigation/navigation-controller.js:115
 msgid "User Name:"
-msgstr ""
+msgstr "Nom d'utilisateur"
 
-#: app/components/navigation/navigation-contoller.js:135
+#: app/core/navigation/navigation-controller.js:116
 msgid "User Role:"
-msgstr ""
+msgstr "Rôle de l'utilisateur :"
 
-#: app/states/login/login.state.js:40
-#: app/states/login/login.state.js:63
+#: app/states/login/login.state.js:41
 msgid "User does not have privileges to login."
-msgstr "L'utilisateur n'est pas autorisé a se connecter"
+msgstr "L'utilisateur n'est pas autorisé a se connecter."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/login/login.html:15
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/list/list.html:34
-msgid "VMs"
-msgstr "VM"
+#: app/states/vms/details/details.state.js:11
+msgid "VM Details"
+msgstr "Informations sur la VM"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:173
-msgid "Vendor"
-msgstr "Fournisseur"
+#: app/states/vms/snapshots/snapshots.state.js:13
+msgid "VM Snapshots"
+msgstr "Clichés de la VM"
 
-#: app/components/navigation/navigation-contoller.js:132
+#: app/services/service-details/service-details-ansible.html:67
+msgid "Verbosity"
+msgstr "Verbosité"
+
+#: app/core/navigation/navigation-controller.js:113
 msgid "Version:"
+msgstr "Version :"
+
+#: app/services/service-details/service-details.html:305
+msgid "View Details"
+msgstr "Voir les informations"
+
+#: app/reports/reports-details.html:151
+msgid "View Report"
+msgstr "Afficher Rapport"
+
+#: app/services/service-details/service-details.html:308
+msgid "View Snapshots"
+msgstr "Afficher les clichés"
+
+#: app/services/consoles.service.js:24
+msgid "Waiting for the console to become ready."
+msgstr "En attente de la console."
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.html:11
+msgid ""
+"Warning: The selected Services and ALL of their components will be "
+"immediately retired!"
 msgstr ""
+"Avertissement : les services sélectionnés et TOUS leurs composants seront "
+"immédiatement désactivés."
 
-#: app/components/profiles/profiles-list.directive.js:187
-msgid "View"
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.html:10
+msgid ""
+"Warning: The selected Services and ALL of their components will be "
+"permanently removed!"
 msgstr ""
+"Avertissement : les services sélectionnés et TOUS leurs composants seront "
+"définitivement supprimés."
 
-#: app/components/profiles/profiles-list.directive.js:188
-msgid "View Profile"
-msgstr ""
+#: app/services/service-details/service-details-ansible.html:198
+msgid "Watch Live"
+msgstr "Watch Live"
 
-#: app/components/profiles/profile-details.directive.js:24
-msgid "View Profile: %s"
-msgstr ""
-
-#: app/states/services/details/details.html:160
-msgid "Virtual Machines ({{ ::vm.vms.length }})"
-msgstr "Machines Virtuelles ({{ ::vm.vms.length }})"
-
-#: app/components/blueprint-details-modal/blueprint-details-modal.html:24
-#: app/states/designer/blueprints/list/list.state.js:154
-#: app/states/designer/blueprints/list/list.state.js:197
-msgid "Visibility"
-msgstr ""
-
-#: app/services/consoles.service.js:30
-msgid "Waiting for the console to become ready"
-msgstr "En attente de la console"
-
-#: app/services/consoles.service.js:31
-msgid "Waiting for the console to become ready:"
-msgstr "En attente de la console:"
-
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
 #: app/states/404/404.html:7
 #: app/states/error/error.html:13
 msgid "We apologize for the inconvenience."
 msgstr "Veuillez nous excuser pour la gêne occasionnée."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:41
+#: app/services/services-state.service.js:238
 msgid "Yes, Remove Service"
 msgstr "Oui, supprimer le service"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.html:55
+#: app/services/services-state.service.js:154
 msgid "Yes, Retire Service Now"
-msgstr "Oui, décommissionner le service maintenant"
+msgstr "Oui, désactiver le service maintenant"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/config/authorization.config.js:48
+#: app/states/login/login.state.js:68
+msgid ""
+"You do not have permission to view the Service UI. Contact your "
+"administrator to update your group permissions."
+msgstr ""
+"Vous ne possédez pas les permissions pour afficher l'IU Service. Veuillez "
+"contacter votre administrateur pour mettre à jour vos permissions de groupe."
+
+#: app/core/save-modal-dialog/save-modal-dialog.html:11
+msgid ""
+"Your current edits are invalid and cannot be saved. Continuing will discard "
+"your changes."
+msgstr ""
+"Les modifications apportées ne sont pas valides et ne peuvent pas être "
+"enregistrées.  Si vous poursuivez, vos modifications seront perdues."
+
+#: app/states/login/login.state.js:37
 msgid "Your session has timed out."
 msgstr "Votre session a expiré."
 
-#: app/states/services/list/list.html:32
+#: app/services/service-explorer/service-explorer.html:62
 msgid "[[number]] VMs"
-msgstr ""
+msgstr "[[number]] VM"
 
-#: app/config/gettext.config.js:34
-msgid "locale_name"
-msgstr "Français"
+#: app/requests/process-order-modal/process-order-modal.html:9
+msgid "and all of its service requests will be permanently removed!"
+msgstr "et toutes ses demandes  de service seront définitivement supprimées."
 
-#: app/states/requests/list/list.html:31
-msgid "ordered"
-msgstr "Commandé"
+#: app/shared/pagination/pagination.html:12
+#: app/shared/pagination/pagination.html:5
+msgid "items"
+msgstr "articles"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/components/edit-service-modal/edit-service-modal-service.factory.js:60
-msgid "was edited."
-msgstr "a été modifié(e)."
+#: app/shared/pagination/pagination.html:29
+#: app/shared/pagination/pagination.html:32
+msgid "of"
+msgstr "de"
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:113
+#: app/services/service-explorer/service-explorer.html:194
+msgid "suspend this service"
+msgstr "interrompre ce service"
+
+#: app/core/navigation/navigation-controller.js:190
+msgid "unread notifications"
+msgstr "notifications non lues"
+
+#: app/services/service-details/service-details.component.js:233
 msgid "was removed."
-msgstr "a été suprimé(e)."
+msgstr "a été supprimé."
 
-# auto translated by TM merge from project: ManageIQ Self Service UI, version: master, DocId: po/manageiq-ssui
-#: app/states/services/details/details.state.js:152
+#: app/services/service-details/service-details.component.js:292
 msgid "was retired."
-msgstr "a été décommissionné(e)."
+msgstr "a été désactivé."
 
-#: app/states/requests/list/list.html:35
+#: app/requests/order-explorer/order-explorer.html:55
 msgid "{{ $count }} item"
 msgid_plural "{{ $count }} items"
-msgstr[0] "{{ $count }} Article"
-msgstr[1] "{{ $count }} Artiches"
+msgstr[0] "{{ $count }} article"
+msgstr[1] "{{ $count }} articles"
+
