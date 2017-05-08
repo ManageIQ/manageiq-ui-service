@@ -58,6 +58,7 @@ export const CoreModule = angular
     'ngSanitize',
     'ngStorage',
     'ui.router',
+    'ui.router.state.events',
 
     ExceptionModule,
     RouterModule,
