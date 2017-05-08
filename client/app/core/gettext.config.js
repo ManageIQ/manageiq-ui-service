@@ -18,4 +18,9 @@ export function gettextInit($window, gettextCatalog, gettext) {
 
   $window.N_ = gettext;
   $window.__ = gettextCatalog.getString.bind(gettextCatalog);
+
+  // 'locale_name' will be translated into locale name in every translation
+  // For example, in german translation it will be 'Deutsch', in slovak 'Slovensky', etc.
+  // The localized locale name will then be presented to the user to select from in the UI.
+  const localeName = __('locale_name');
 }
