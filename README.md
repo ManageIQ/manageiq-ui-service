@@ -1,7 +1,8 @@
 # ManageIQ Service UI
 
 [![Build Status](https://travis-ci.org/ManageIQ/manageiq-ui-service.svg?branch=master)](https://travis-ci.org/ManageIQ/manageiq-ui-service)
-[![Test Coverage](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/coverage.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/coverage) [![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/gpa.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service) 
+[![Test Coverage](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/coverage.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/coverage) 
+[![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/gpa.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service) 
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-ui-service?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Translate](https://img.shields.io/badge/translate-zanata-blue.svg)](https://translate.zanata.org/zanata/project/view/manageiq-ui-service)
 
