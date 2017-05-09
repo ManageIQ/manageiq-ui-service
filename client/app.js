@@ -10,9 +10,9 @@ window.$ = window.jQuery = require('jquery');
 window._ = require('lodash');
 window.moment = require('moment');
 window.sprintf = require('sprintf-js').sprintf;
-
-// Vendor libraries, order matters
 window.c3 = require('c3/c3.js');
+// Vendor libraries, order matters
+
 require('d3/build/d3.min.js');
 require('jquery-ui-bundle');
 require('moment-timezone');
