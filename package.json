@@ -109,7 +109,7 @@
     "zone.js": "0.8.10"
   },
   "devDependencies": {
-    "@manageiq/manageiq-api-mock": "1.2.3",
+    "@manageiq/manageiq-api-mock": "1.3.1",
     "angular-mocks": "1.6.4",
     "axios": "0.16.1",
     "bardjs": "0.1.8",

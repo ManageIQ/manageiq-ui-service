@@ -26,9 +26,9 @@
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@angular/upgrade/-/upgrade-4.1.1.tgz#f04f99caaddd8730d4479ee73d477c8302919e7e"
 
-"@manageiq/manageiq-api-mock@1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@manageiq/manageiq-api-mock/-/manageiq-api-mock-1.2.3.tgz#b8766354962357c06d17c6c7741a843457669f68"
+"@manageiq/manageiq-api-mock@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@manageiq/manageiq-api-mock/-/manageiq-api-mock-1.3.1.tgz#a7a55d558e65d394c190ea9367d5049f7dbeb416"
   dependencies:
     commander "^2.9.0"
     glob "^7.1.1"

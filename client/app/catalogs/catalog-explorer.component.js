@@ -9,7 +9,7 @@ export const CatalogExplorerComponent = {
 };
 
 /** @ngInject */
-function ComponentController($state, CatalogsState, ListView, EventNotifications, lodash) {
+function ComponentController($state, CatalogsState, ListView, EventNotifications) {
   const vm = this;
   vm.permissions = CatalogsState.getPermissions();
 
@@ -24,13 +24,13 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
 
       // Functions
-      resolveCatalogs: resolveCatalogs,
+      resolveServiceTemplates: resolveServiceTemplates,
       updatePagination: updatePagination,
 
       // Config
       cardConfig: getCardConfig(),
     });
-    resolveCatalogs(vm.limit, 0);
+    resolveServiceTemplates(vm.limit, 0);
   };
 
   // Config
@@ -60,7 +60,7 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
       fields: [
         ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
         ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text'),
-        ListView.createFilterField('name', __('Catalog Name'), __('Filter by Catalog Name'), 'select', catalogNames),
+        ListView.createFilterField('service_template_catalog.name', __('Catalog Name'), __('Filter by Catalog Name'), 'select', catalogNames),
       ],
       resultsCount: 0,
       appliedFilters: CatalogsState.getFilters(),
@@ -70,7 +70,7 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
 
   function filterChange(filters) {
     CatalogsState.setFilters(filters);
-    resolveCatalogs(vm.limit, 0);
+    resolveServiceTemplates(vm.limit, 0);
   }
 
   function getSortConfig() {
@@ -87,37 +87,24 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
   }
 
   // Private
-
-  function resolveCatalogs(limit, offset) {
+  function resolveServiceTemplates(limit, offset) {
     vm.loading = true;
     vm.offset = offset;
 
-    CatalogsState.getCatalogs(limit, offset).then(success, failure);
+    CatalogsState.getServiceTemplates(limit, offset).then(success, failure);
 
     function success(response) {
-      vm.loading = false;
-      vm.catalogsList = [];
-      vm.serviceTemplateList = [];
+      vm.serviceTemplateList = response.resources;
 
-      response.resources.forEach((item) => {
-        if (angular.isDefined(item.service_templates)) {
-          item.service_templates.resources = item.service_templates.resources.filter((template) => template.display);
-
-          item.disableRowExpansion = item.service_templates.resources.length === 0;
-        }
-        item.service_templates.resources.forEach((service) => {
-          service.catalog_name = item.name;
-        });
-        vm.serviceTemplateList.push(item.service_templates.resources);
-        vm.catalogsList.push(item);
+      CatalogsState.getCatalogs(limit, offset).then((response) => {
+        vm.catalogsList = response.resources;
+        vm.loading = false;
+        vm.toolbarConfig = getToolbarConfig();
+        getFilterCount();
       });
 
-      vm.serviceTemplateList = lodash.flattenDeep(vm.serviceTemplateList);
-      vm.toolbarConfig = getToolbarConfig();
-      getFilterCount();
-
       function getFilterCount() {
-        CatalogsState.getMinimal(limit, offset).then(success, failure);
+        CatalogsState.getMinimal('service_templates').then(success, failure);
 
         function success(result) {
           vm.filterCount = result.subcount;
@@ -134,7 +121,7 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
 
   function sortChange(sortId, isAscending) {
     CatalogsState.setSort(sortId, isAscending);
-    resolveCatalogs(vm.limit, 0);
+    resolveServiceTemplates(vm.limit, 0);
   }
 
   function viewDetails(template) {
@@ -144,6 +131,6 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
   function updatePagination(limit, offset) {
     vm.limit = limit;
     vm.offset = offset;
-    vm.resolveCatalogs(limit, offset);
+    vm.resolveServiceTemplates(limit, offset);
   }
 }
