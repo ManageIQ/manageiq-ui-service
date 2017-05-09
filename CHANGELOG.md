@@ -332,8 +332,8 @@
 - (feature) [DESIGN] myService Details - Generic info for all Services
 - (bug) [UI] Login page shows RoutingError 
 - (bug) BZ 1409959 
-- (feature) [UI] Allow user to launch other CloudForms UIs
-- (feature) [DESIGN] Allow user to launch other CloudForms UIs
+- (feature) [UI] Allow user to launch other ManageIQ UIs
+- (feature) [DESIGN] Allow user to launch other ManageIQ UIs
 - (feature) [SPIKE] Investigate component-izing Topology Widget
 - (feature) [UI] Remove gulp
 - (feature) [UI] Implement Karma-Webpack
