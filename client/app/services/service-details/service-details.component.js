@@ -33,7 +33,8 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       // Functions
       hasCustomButtons: hasCustomButtons,
       disableStopButton: disableStopButton,
-      displayedContent: 'details',
+      viewType: 'detailsView',
+      viewSelected: viewSelected,
       disableSuspendButton: disableSuspendButton,
       disableStartButton: disableStartButton,
       startService: startService,
@@ -68,6 +69,9 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   function startPollingService() {
     fetchResources(vm.serviceId);
   }
+  function viewSelected(view) {
+    vm.viewType = view;
+  }
   function getCPUChartConfig(used, total) {
     let usedValue = 0;
     let totalValue = 0;
@@ -79,13 +83,13 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
 
     return {
       config: {
-        units: 'MHz',
+        units: __('MHz'),
       },
       data: {
         'used': usedValue,
         'total': totalValue,
       },
-      label: 'used',
+      label: __('used'),
     };
   }
 
@@ -100,14 +104,14 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
 
     return {
       config: {
-        units: 'GB',
+        units: __('GB'),
         chartId: 'memoryChart',
       },
       data: {
         'used': usedValue,
         'total': totalValue,
       },
-      label: 'used',
+      label: __('used'),
     };
   }
 
@@ -121,14 +125,14 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
 
     return {
       config: {
-        units: 'GB',
+        units: __('GB'),
         chartId: 'storageChart',
       },
       data: {
         'used': usedValue,
         'total': totalValue,
       },
-      label: 'used',
+      label: __('used'),
     };
   }
 
@@ -139,7 +143,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
     let usedCPU = 0;
     let totalCPU = 0;
     const allocatedMemory = vm.service.aggregate_all_vm_memory / 1024; // this metric is in mb
-    angular.forEach(vm.service.vms, (instance) => {
+    vm.service.vms.forEach((instance) => {
       usedCPU += instance.cpu_usagemhz_rate_average_avg_over_time_period;
       totalCPU += (angular.isDefined(instance.hardware.aggregate_cpu_speed) ? instance.hardware.aggregate_cpu_speed : 0);
       usedMemory += instance.max_mem_usage_absolute_average_avg_over_time_period;
@@ -165,7 +169,6 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       TaggingService.queryAvailableTags('services/' + id + '/tags/').then((response) => {
         vm.availableTags = response;
       });
-
       vm.loading = false;
     }
 
