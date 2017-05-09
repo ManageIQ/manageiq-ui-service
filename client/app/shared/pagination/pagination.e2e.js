@@ -12,11 +12,11 @@ describe('Component: pagination', function() {
     changeLimit();
 
     const limit = element.all(by.css('.pagination-footer .pagination-controls'));
-    expect(limit.get(0).getText()).toBe("1 - 5 of 10");
+    expect(limit.get(0).getText()).toBe("1 - 5 of 26");
 
     pageNext();
     const updatedIndex = element.all(by.css('.pagination-footer .pagination-controls li:nth-child(3) span'));
-    expect(updatedIndex.get(0).getText()).toBe("6 - 10 of 10");
+    expect(updatedIndex.get(0).getText()).toBe("6 - 10 of 26");
   }, 1200000);
 
   it('should successfully page backward', function() {
@@ -24,15 +24,15 @@ describe('Component: pagination', function() {
     changeLimit();
 
     const limit = element.all(by.css('.pagination-footer .pagination-controls'));
-    expect(limit.get(0).getText()).toBe("1 - 5 of 10");
+    expect(limit.get(0).getText()).toBe("1 - 5 of 26");
 
     pageNext();
     const updatedIndex = element.all(by.css('.pagination-footer .pagination-controls li:nth-child(3) span'));
-    expect(updatedIndex.get(0).getText()).toBe("6 - 10 of 10");
+    expect(updatedIndex.get(0).getText()).toBe("6 - 10 of 26");
 
     element.all(by.css('.pagination-footer .pagination-controls ul.pagination span[alt="Previous"]')).click();
     const previousIndex = element.all(by.css('.pagination-footer .pagination-controls li:nth-child(3) span'));
-    expect(previousIndex.get(0).getText()).toBe("1 - 5 of 10");
+    expect(previousIndex.get(0).getText()).toBe("1 - 5 of 26");
   }, 1200000);
 });
 

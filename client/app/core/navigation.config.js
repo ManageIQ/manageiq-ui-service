@@ -124,10 +124,10 @@ export function navInit(lodash, CollectionsApi, Navigation, NavCounts, POLLING_I
 
   function fetchServiceCatalogs() {
     angular.extend(options, {
-      filter: ['id>0'],
+      filter: ['display=true'],
     });
 
-    CollectionsApi.query('service_catalogs', options)
+    CollectionsApi.query('service_templates', options)
       .then(lodash.partial(updateCount, 'catalogs'));
   }
 
