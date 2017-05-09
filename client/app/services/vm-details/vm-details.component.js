@@ -99,6 +99,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
     const actions = vm.vmDetails.custom_actions || {};
     const groups = actions.button_groups || [];
     const buttons = [].concat(actions.buttons, ...groups.map((g) => g.buttons));
+   
     return lodash.compact(buttons).length > 0;
   }
 
