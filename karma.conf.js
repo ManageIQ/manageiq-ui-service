@@ -16,7 +16,6 @@ module.exports = function(config) {
     webpackMiddleware: {
       stats: 'errors-only',
     },
-
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR ||
     // config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
@@ -50,14 +49,16 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress', 'coverage'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage', 'clear-screen'],
-
-    coverageReporter: {
+    reporters: ['progress', 'clear-screen', 'coverage-istanbul'],
+    coverageIstanbulReporter: {
       dir: './reports/coverage',
-      reporters: [
-        {type: 'json', subdir: 'json', file: 'coverage-final.json'},
-        {type: 'text-summary'},
-      ],
+      reports: [ 'html', 'lcovonly', 'text-summary' ],
+      fixWebpackSourcePaths: true,
+      'report-config': {
+        html: {
+          subdir: 'html',
+        },
+      },
     },
   });
 };

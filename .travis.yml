@@ -12,7 +12,7 @@ before_install:
 install:
 - yarn install --force
 after_script:
-- codeclimate-test-reporter < reports/coverage/report-lcov/lcov.info
+- codeclimate-test-reporter < reports/coverage/lcov.info
 notifications:
   webhooks:
     urls:
