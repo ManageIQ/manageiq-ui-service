@@ -223,9 +223,9 @@ angular-mocks@1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.4.tgz#47fdf50921cf24fb489f100a8cf2ad99d0538f40"
 
-angular-patternfly@3.23.3:
-  version "3.23.3"
-  resolved "https://registry.yarnpkg.com/angular-patternfly/-/angular-patternfly-3.23.3.tgz#de2cfb932fc3a174d9290b7251fec00c2750ad3a"
+angular-patternfly@^3.24.0:
+  version "3.24.0"
+  resolved "https://registry.yarnpkg.com/angular-patternfly/-/angular-patternfly-3.24.0.tgz#a7b9ab6ac56e1c5dc34f9dff33ffc41bc7d96299"
   dependencies:
     angular "1.3.0 - 1.5.*"
     angular-animate "1.3.0 - 1.5.*"
@@ -233,7 +233,7 @@ angular-patternfly@3.23.3:
     angular-sanitize "1.3.0 - 1.5.*"
     angular-ui-bootstrap "0.14.x"
     lodash "3.x"
-    patternfly "~3.23.3"
+    patternfly "~3.24.0"
 
 angular-resource@1.6.4:
   version "1.6.4"
@@ -1211,6 +1211,10 @@ bootstrap-switch@3.3.2, bootstrap-switch@~3.3.2:
   resolved "https://registry.yarnpkg.com/bootstrap-switch/-/bootstrap-switch-3.3.2.tgz#79ddb49fadc308fb731e257f95957af48996eea7"
   dependencies:
     jquery ">=1.9.0"
+
+bootstrap-switch@~3.3.4:
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/bootstrap-switch/-/bootstrap-switch-3.3.4.tgz#70e0aeb2a877c0dc766991de108e2170fc29a2ff"
 
 bootstrap-touchspin@~3.1.1:
   version "3.1.1"
@@ -5668,9 +5672,9 @@ patternfly-sass@3.23.2:
     patternfly-bootstrap-combobox "~1.1.7"
     patternfly-bootstrap-treeview "~2.1.0"
 
-patternfly@~3.23.3:
-  version "3.23.3"
-  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.23.3.tgz#4fe6d2f9e5bc35336f3a3fd10abe8d129217fe2a"
+patternfly@~3.24.0:
+  version "3.24.0"
+  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.24.0.tgz#75551ce20667b025a534f29f30aa20d42afc708b"
   dependencies:
     bootstrap "~3.3.7"
     font-awesome "^4.7.0"
@@ -5678,7 +5682,7 @@ patternfly@~3.23.3:
   optionalDependencies:
     bootstrap-datepicker "~1.6.4"
     bootstrap-select "~1.10.0"
-    bootstrap-switch "~3.3.2"
+    bootstrap-switch "~3.3.4"
     bootstrap-touchspin "~3.1.1"
     c3 "~0.4.11"
     d3 "~3.5.17"
