@@ -23,7 +23,6 @@ export function RBACFactory(lodash) {
       services: {show: angular.isDefined(productFeatures.service_view)},
       orders: {show: angular.isDefined(productFeatures.svc_catalog_provision)},
       catalogs: {show: angular.isDefined(productFeatures.catalog_items_view)},
-      // reports: {show: angular.isDefined(productFeatures.miq_report_saved_reports_view || productFeatures.miq_report_view)},
     };
     setNavFeatures(navPermissions);
   }

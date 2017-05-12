@@ -47,7 +47,7 @@
     "angular-gettext": "2.3.9",
     "angular-gettext-cli": "1.2.0",
     "angular-messages": "1.6.4",
-    "angular-patternfly": "^3.24.0",
+    "angular-patternfly": "3.24.0",
     "angular-resource": "1.6.4",
     "angular-sanitize": "1.6.4",
     "angular-smart-table": "2.1.8",
