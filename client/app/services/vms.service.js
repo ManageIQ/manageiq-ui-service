@@ -46,6 +46,8 @@ export function VmsService(CollectionsApi, RBAC) {
         'compliances',
         'cpu_affinity',
         'created_on',
+        'custom_actions',
+        'custom_action_buttons',
         'disks',
         'disks_aligned',
         'drift_states',
