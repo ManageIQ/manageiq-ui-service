@@ -21,6 +21,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   function activate() {
     vm.permissions = ServicesState.getPermissions();
     angular.extend(vm, {
+      hasCustomButtons: hasCustomButtons,
       loading: true,
       neverText: __('Never'),
       noneText: __('None'),
@@ -85,12 +86,21 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
         EventNotifications.warn(sprintf(__("%s is a retired resource"), vm.vmDetails.name), {persistent: true, unread: false});
       }
       getListActions();
+      hasCustomButtons();
       vm.loading = false;
     }
 
     function handleFailure(_error) {
       EventNotifications.error(__('There was an error loading the vm details.'));
     }
+  }
+
+  function hasCustomButtons() {
+    const actions = vm.vmDetails.custom_actions || {};
+    const groups = actions.button_groups || [];
+    const buttons = [].concat(actions.buttons, ...groups.map((g) => g.buttons));
+   
+    return lodash.compact(buttons).length > 0;
   }
 
   function getListActions() {
