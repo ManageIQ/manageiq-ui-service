@@ -13,6 +13,7 @@ import { ServiceDetailsComponent } from './service-details/service-details.compo
 import { ServiceExplorerComponent } from './service-explorer/service-explorer.component.js';
 import { ServicesStateFactory } from './services-state.service.js';
 import { SharedModule } from '../shared/shared.module.js';
+import { UsageGraphsComponent } from './usage-graphs/usage-graphs.component.js';
 import { VmDetailsComponent } from './vm-details/vm-details.component';
 import { VmSnapshotsComponent } from './vms/snapshots.component';
 import { VmsService } from './vms.service.js';
@@ -32,6 +33,7 @@ export const ServicesModule = angular
   .component('serviceDetailsAnsible', ServiceDetailsAnsibleComponent)
   .component('serviceDetailsAnsibleModal', ServiceDetailsAnsibleModalComponent)
   .component('serviceExplorer', ServiceExplorerComponent)
+  .component('usageGraphs', UsageGraphsComponent)
   .component('vmDetails', VmDetailsComponent)
   .component('vmSnapshots', VmSnapshotsComponent)
   .factory('Consoles', ConsolesFactory)
