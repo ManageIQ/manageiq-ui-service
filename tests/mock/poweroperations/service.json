@@ -1,0 +1,625 @@
+{
+    "href": "http://localhost:3001/api/services/10000000000619",
+    "id": 10000000000619,
+    "name": "Deploy Ticket Monster on VMware-20170222-115347",
+    "guid": "701d0ecc-f91f-11e6-989f-0050569fa8d9",
+    "created_at": "2017-02-22T16:53:30Z",
+    "retired": false,
+    "options": {
+        "dialog": {
+            "dialog_option_1_vm_name": "niickdb",
+            "dialog_option_3_vm_name": "niickapp",
+            "dialog_option_2_lookup_limit": "item_1_option_vm_target_name",
+            "dialog_option_2_param_postgresql_databases": "[{\"name\":\"ticketmonster\"}]",
+            "dialog_option_2_param_postgresql_users": "[{\"name\":\"test\", \"password\":\"test\"}]",
+            "dialog_option_4_lookup_limit": "item_3_option_vm_target_name",
+            "dialog_option_4_lookup_param_ext_database_name": "item_1_option_vm_target_name"
+        }
+    },
+    "picture": {
+        "id": 10000000000033,
+        "resource_id": 10000000000042,
+        "resource_type": "ServiceTemplate",
+        "image_href": "http://localhost:3001/pictures/10r33.jpg"
+    },
+    "evm_owner": {
+        "name": "Cloud Operator",
+        "userid": "cloudops"
+    },
+    "miq_group": {
+        "description": "cloud-operators"
+    },
+    "all_service_children": [
+        {
+            "id": 10000000000622,
+            "name": "Deploy RHEL7 VM-20170222-120243",
+            "description": "Deploy RHEL7 VM",
+            "guid": "73d36962-f91f-11e6-989f-0050569fa8d9",
+            "service_template_id": 10000000000043,
+            "options": {
+                "dialog": {
+                    "dialog_vm_name": "niickapp"
+                }
+            },
+            "display": false,
+            "created_at": "2017-02-22T16:53:36Z",
+            "updated_at": "2017-02-22T17:02:43Z",
+            "evm_owner_id": 10000000000007,
+            "miq_group_id": 10000000000021,
+            "retired": false,
+            "tenant_id": 10000000000001,
+            "ancestry": "10000000000619"
+        },
+        {
+            "id": 10000000000620,
+            "name": "Deploy RHEL7 VM-20170222-115404",
+            "description": "Deploy RHEL7 VM",
+            "guid": "70c5faa0-f91f-11e6-989f-0050569fa8d9",
+            "service_template_id": 10000000000044,
+            "options": {
+                "dialog": {
+                    "dialog_vm_name": "niickdb"
+                }
+            },
+            "display": false,
+            "created_at": "2017-02-22T16:53:31Z",
+            "updated_at": "2017-02-22T16:54:04Z",
+            "evm_owner_id": 10000000000007,
+            "miq_group_id": 10000000000021,
+            "retired": false,
+            "tenant_id": 10000000000001,
+            "ancestry": "10000000000619"
+        }
+    ],
+    "aggregate_all_vm_cpus": 4,
+    "aggregate_all_vm_memory": 4096,
+    "aggregate_all_vm_disk_count": 4,
+    "aggregate_all_vm_disk_space_allocated": 34359738368,
+    "aggregate_all_vm_disk_space_used": 34359738368,
+    "aggregate_all_vm_memory_on_disk": 4294967296,
+    "custom_actions": {
+        "buttons": [],
+        "button_groups": []
+    },
+    "provision_dialog": {
+        "description": "Deploy Ticket Monster Application on two RHEL7 instances",
+        "buttons": "submit,cancel",
+        "label": "Deploy Ticket Monster Application (with DynamicParameters)",
+        "dialog_tabs": [
+            {
+                "description": "Service Details",
+                "display": "edit",
+                "label": "Service Details",
+                "position": 0,
+                "dialog_groups": [
+                    {
+                        "description": "Service Details",
+                        "display": "edit",
+                        "label": "Service Details",
+                        "position": 0,
+                        "dialog_fields": [
+                            {
+                                "name": "option_1_vm_name",
+                                "data_type": "string",
+                                "display": "edit",
+                                "display_method_options": {},
+                                "required": true,
+                                "required_method_options": {},
+                                "default_value": "changeme",
+                                "values_method_options": {},
+                                "options": {
+                                    "protected": false
+                                },
+                                "label": "DB Name",
+                                "position": 0,
+                                "dynamic": false,
+                                "read_only": false,
+                                "visible": true,
+                                "type": "DialogFieldTextBox",
+                                "resource_action": {
+                                    "resource_type": "DialogField",
+                                    "ae_attributes": {}
+                                }
+                            },
+                            {
+                                "name": "option_3_vm_name",
+                                "data_type": "string",
+                                "display": "edit",
+                                "display_method_options": {},
+                                "required": true,
+                                "required_method_options": {},
+                                "default_value": "changeme",
+                                "values_method_options": {},
+                                "options": {
+                                    "protected": false
+                                },
+                                "label": "App. Server Name",
+                                "position": 1,
+                                "dynamic": false,
+                                "read_only": false,
+                                "visible": true,
+                                "type": "DialogFieldTextBox",
+                                "resource_action": {
+                                    "resource_type": "DialogField",
+                                    "ae_attributes": {}
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "description": "Dynamic Parameters",
+                "display": "edit",
+                "label": "Dynamic Parameters",
+                "position": 1,
+                "dialog_groups": [
+                    {
+                        "display": "edit",
+                        "label": "Deploy PostgreSQL (Ansible)",
+                        "position": 0,
+                        "dialog_fields": [
+                            {
+                                "name": "option_2_lookup_limit",
+                                "data_type": "string",
+                                "display": "edit",
+                                "display_method_options": {},
+                                "required": true,
+                                "required_method_options": {},
+                                "default_value": "item_1_option_vm_target_name",
+                                "values_method_options": {},
+                                "options": {
+                                    "protected": false
+                                },
+                                "label": "Limit",
+                                "position": 0,
+                                "validator_type": "",
+                                "validator_rule": "",
+                                "dynamic": false,
+                                "read_only": true,
+                                "visible": true,
+                                "type": "DialogFieldTextBox",
+                                "resource_action": {
+                                    "resource_type": "DialogField",
+                                    "ae_attributes": {}
+                                }
+                            },
+                            {
+                                "name": "option_2_param_postgresql_databases",
+                                "data_type": "string",
+                                "display": "edit",
+                                "display_method_options": {},
+                                "required": true,
+                                "required_method_options": {},
+                                "default_value": "[{\"name\":\"ticketmonster\"}]",
+                                "values_method_options": {},
+                                "options": {
+                                    "protected": false
+                                },
+                                "label": "Extra Var. postgresql_databases",
+                                "position": 1,
+                                "validator_type": "",
+                                "validator_rule": "",
+                                "dynamic": false,
+                                "read_only": false,
+                                "visible": true,
+                                "type": "DialogFieldTextBox",
+                                "resource_action": {
+                                    "resource_type": "DialogField",
+                                    "ae_attributes": {}
+                                }
+                            },
+                            {
+                                "name": "option_2_param_postgresql_users",
+                                "data_type": "string",
+                                "display": "edit",
+                                "display_method_options": {},
+                                "required": true,
+                                "required_method_options": {},
+                                "default_value": "[{\"name\":\"test\", \"password\":\"test\"}]",
+                                "values_method_options": {},
+                                "options": {
+                                    "protected": false
+                                },
+                                "label": "Extra Var. postgresql_users",
+                                "position": 2,
+                                "dynamic": false,
+                                "read_only": false,
+                                "visible": true,
+                                "type": "DialogFieldTextBox",
+                                "resource_action": {
+                                    "resource_type": "DialogField",
+                                    "ae_attributes": {}
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "display": "edit",
+                        "label": "Deploy Jboss (Ansible)",
+                        "position": 1,
+                        "dialog_fields": [
+                            {
+                                "name": "option_4_lookup_limit",
+                                "data_type": "string",
+                                "display": "edit",
+                                "display_method_options": {},
+                                "required": true,
+                                "required_method_options": {},
+                                "default_value": "item_3_option_vm_target_name",
+                                "values_method_options": {},
+                                "options": {
+                                    "protected": false
+                                },
+                                "label": "Limit ",
+                                "position": 0,
+                                "validator_type": "",
+                                "validator_rule": "^[a-z][a-z0-9\\-]*$",
+                                "dynamic": false,
+                                "read_only": true,
+                                "visible": true,
+                                "type": "DialogFieldTextBox",
+                                "resource_action": {
+                                    "resource_type": "DialogField",
+                                    "ae_attributes": {}
+                                }
+                            },
+                            {
+                                "name": "option_4_lookup_param_ext_database_name",
+                                "data_type": "string",
+                                "display": "edit",
+                                "display_method_options": {},
+                                "required": true,
+                                "required_method_options": {},
+                                "default_value": "item_1_option_vm_target_name",
+                                "values_method_options": {},
+                                "options": {
+                                    "protected": false
+                                },
+                                "label": "Extra Var. ext_database_name",
+                                "position": 1,
+                                "validator_type": "",
+                                "validator_rule": "^[a-z][a-z0-9\\-]*$",
+                                "dynamic": false,
+                                "read_only": true,
+                                "visible": true,
+                                "type": "DialogFieldTextBox",
+                                "resource_action": {
+                                    "resource_type": "DialogField",
+                                    "ae_attributes": {}
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "service_resources": [
+        {
+            "id": 10000000001804,
+            "resource_id": 10000000000623,
+            "resource_type": "Service",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": -1,
+            "created_at": "2017-02-22T16:53:39Z",
+            "updated_at": "2017-02-22T16:53:39Z",
+            "service_id": 10000000000619,
+            "provision_index": 0
+        },
+        {
+            "id": 10000000001800,
+            "resource_id": 10000000000621,
+            "resource_type": "Service",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": -1,
+            "created_at": "2017-02-22T16:53:35Z",
+            "updated_at": "2017-02-22T16:53:35Z",
+            "service_id": 10000000000619,
+            "provision_index": 0
+        },
+        {
+            "id": 10000000001803,
+            "resource_id": 10000000000622,
+            "resource_type": "Service",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": -1,
+            "created_at": "2017-02-22T16:53:36Z",
+            "updated_at": "2017-02-22T16:53:36Z",
+            "service_id": 10000000000619,
+            "provision_index": 0
+        },
+        {
+            "id": 10000000001794,
+            "resource_id": 10000000000044,
+            "resource_type": "ServiceTemplate",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": 1,
+            "start_action": "Power On",
+            "start_delay": 0,
+            "stop_action": "Shutdown",
+            "stop_delay": 0,
+            "created_at": "2017-02-22T16:53:30Z",
+            "updated_at": "2017-02-22T16:53:30Z",
+            "service_id": 10000000000619,
+            "provision_index": 0
+        },
+        {
+            "id": 10000000001799,
+            "resource_id": 10000000000620,
+            "resource_type": "Service",
+            "group_idx": 0,
+            "scaling_min": 1,
+            "scaling_max": -1,
+            "created_at": "2017-02-22T16:53:31Z",
+            "updated_at": "2017-02-22T16:53:31Z",
+            "service_id": 10000000000619,
+            "provision_index": 0
+        },
+        {
+            "id": 10000000001795,
+            "resource_id": 10000000000006,
+            "resource_type": "ServiceTemplate",
+            "group_idx": 1,
+            "scaling_min": 1,
+            "scaling_max": 1,
+            "start_action": "Power On",
+            "start_delay": 0,
+            "stop_action": "Shutdown",
+            "stop_delay": 0,
+            "created_at": "2017-02-22T16:53:30Z",
+            "updated_at": "2017-02-22T16:53:30Z",
+            "service_id": 10000000000619,
+            "provision_index": 1
+        },
+        {
+            "id": 10000000001796,
+            "resource_id": 10000000000043,
+            "resource_type": "ServiceTemplate",
+            "group_idx": 2,
+            "scaling_min": 1,
+            "scaling_max": 1,
+            "start_action": "Power On",
+            "start_delay": 0,
+            "stop_action": "Shutdown",
+            "stop_delay": 0,
+            "created_at": "2017-02-22T16:53:30Z",
+            "updated_at": "2017-02-22T16:53:30Z",
+            "service_id": 10000000000619,
+            "provision_index": 2
+        },
+        {
+            "id": 10000000001797,
+            "resource_id": 10000000000005,
+            "resource_type": "ServiceTemplate",
+            "group_idx": 3,
+            "scaling_min": 1,
+            "scaling_max": 1,
+            "start_action": "Power On",
+            "start_delay": 0,
+            "stop_action": "Shutdown",
+            "stop_delay": 0,
+            "created_at": "2017-02-22T16:53:30Z",
+            "updated_at": "2017-02-22T16:53:30Z",
+            "service_id": 10000000000619,
+            "provision_index": 3
+        }
+    ],
+    "chargeback_report": {
+        "results": []
+    },
+    "service_template": {
+        "id": 10000000000042,
+        "name": "Deploy Ticket Monster on VMware",
+        "description": "Deploy Ticket Monster on VMware",
+        "guid": "5452a6e8-a87f-11e6-a877-005056b1a986",
+        "options": {},
+        "created_at": "2016-11-12T02:25:51Z",
+        "updated_at": "2016-11-12T02:31:56Z",
+        "display": true,
+        "miq_group_id": 10000000000002,
+        "service_type": "composite",
+        "service_template_catalog_id": 10000000000005,
+        "long_description": "",
+        "tenant_id": 10000000000001
+    },
+    "vms": [
+        {
+            "href": "http://localhost:3001/api/services/10000000000619/vms/10000000002056",
+            "id": 10000000002056,
+            "vendor": "vmware",
+            "name": "niickapp",
+            "location": "niickapp/niickapp.vmx",
+            "host_id": 10000000000017,
+            "created_on": "2017-02-22T17:05:54Z",
+            "updated_on": "2017-02-26T03:03:38Z",
+            "storage_id": 10000000000001,
+            "guid": "2bf0711a-f921-11e6-8d9b-005056b10841",
+            "ems_id": 10000000000001,
+            "uid_ems": "421f8ba2-1ef0-9a16-6d6f-e0550082e556",
+            "boot_time": "2017-02-22T17:06:13Z",
+            "tools_status": "toolsOk",
+            "standby_action": "checkpoint",
+            "power_state": "on",
+            "state_changed_on": "2017-02-22T17:06:14Z",
+            "previous_state": "poweredOff",
+            "connection_state": "connected",
+            "last_perf_capture_on": "2017-02-26T03:03:20Z",
+            "memory_reserve": 0,
+            "memory_reserve_expand": false,
+            "memory_limit": -1,
+            "memory_shares": 20480,
+            "memory_shares_level": "normal",
+            "cpu_reserve": 0,
+            "cpu_reserve_expand": false,
+            "cpu_limit": -1,
+            "cpu_shares": 2000,
+            "cpu_shares_level": "normal",
+            "template": false,
+            "evm_owner_id": 10000000000007,
+            "ems_ref_obj": "vm-427",
+            "miq_group_id": 10000000000021,
+            "linked_clone": true,
+            "fault_tolerance": false,
+            "ems_ref": "vm-427",
+            "ems_cluster_id": 10000000000006,
+            "cloud": false,
+            "raw_power_state": "poweredOn",
+            "tenant_id": 10000000000001,
+            "ipaddresses": [
+                "10.9.62.96",
+                "fe80::250:56ff:fe9f:b4c6"
+            ],
+            "snapshots": [],
+            "v_total_snapshots": 0,
+            "supports_console?": true,
+            "supports_launch_cockpit?": true,
+            "max_mem_usage_absolute_average_avg_over_time_period": 0,
+            "hardware": {
+                "id": 10000000001309,
+                "virtual_hw_version": "11",
+                "guest_os": "rhel7_64",
+                "cpu_sockets": 2,
+                "bios": "421f8ba2-1ef0-9a16-6d6f-e0550082e556",
+                "annotation": "Owner:  \nEmail: jmarc@redhat.com\nSource: RHEL7_Base_hybridcloud\n\nMIQ GUID=dfa990ac-f920-11e6-8d9b-005056b10841\n\nParent Service: Deploy RHEL7 VM-20170222-120243 (73d36962-f91f-11e6-989f-0050569fa8d9)",
+                "vm_or_template_id": 10000000002056,
+                "memory_mb": 2048,
+                "manufacturer": "",
+                "model": "",
+                "cpu_cores_per_socket": 1,
+                "cpu_total_cores": 2,
+                "guest_os_full_name": "Red Hat Enterprise Linux 7 (64-bit)"
+            },
+            "cpu_usagemhz_rate_average_avg_over_time_period": 0
+        },
+        {
+            "href": "http://localhost:3001/api/services/10000000000619/vms/10000000002054",
+            "id": 10000000002054,
+            "vendor": "vmware",
+            "name": "niickdb",
+            "location": "niickdb/niickdb.vmx",
+            "host_id": 10000000000017,
+            "created_on": "2017-02-22T16:56:06Z",
+            "updated_on": "2017-02-26T03:03:39Z",
+            "storage_id": 10000000000001,
+            "guid": "cd04a37a-f91f-11e6-8d9b-005056b10841",
+            "ems_id": 10000000000001,
+            "uid_ems": "421f72cc-3441-f721-a076-31224edaa029",
+            "boot_time": "2017-02-22T16:56:21Z",
+            "tools_status": "toolsOk",
+            "standby_action": "checkpoint",
+            "power_state": "on",
+            "state_changed_on": "2017-02-22T16:56:22Z",
+            "previous_state": "poweredOff",
+            "connection_state": "connected",
+            "last_perf_capture_on": "2017-02-26T03:03:20Z",
+            "memory_reserve": 0,
+            "memory_reserve_expand": false,
+            "memory_limit": -1,
+            "memory_shares": 20480,
+            "memory_shares_level": "normal",
+            "cpu_reserve": 0,
+            "cpu_reserve_expand": false,
+            "cpu_limit": -1,
+            "cpu_shares": 2000,
+            "cpu_shares_level": "normal",
+            "template": false,
+            "evm_owner_id": 10000000000007,
+            "ems_ref_obj": "vm-425",
+            "miq_group_id": 10000000000021,
+            "linked_clone": true,
+            "fault_tolerance": false,
+            "ems_ref": "vm-425",
+            "ems_cluster_id": 10000000000006,
+            "cloud": false,
+            "raw_power_state": "poweredOn",
+            "tenant_id": 10000000000001,
+            "ipaddresses": [
+                "10.9.62.102",
+                "fe80::250:56ff:fe9f:61a1"
+            ],
+            "snapshots": [],
+            "v_total_snapshots": 0,
+            "supports_console?": true,
+            "supports_launch_cockpit?": true,
+            "max_mem_usage_absolute_average_avg_over_time_period": 0,
+            "hardware": {
+                "id": 10000000001307,
+                "virtual_hw_version": "11",
+                "guest_os": "rhel7_64",
+                "cpu_sockets": 2,
+                "bios": "421f72cc-3441-f721-a076-31224edaa029",
+                "annotation": "Owner:  \nEmail: jmarc@redhat.com\nSource: RHEL7_Base_hybridcloud\n\nMIQ GUID=aa87061c-f91f-11e6-8d9b-005056b10841\n\nParent Service: Deploy RHEL7 VM-20170222-115404 (70c5faa0-f91f-11e6-989f-0050569fa8d9)",
+                "vm_or_template_id": 10000000002054,
+                "memory_mb": 2048,
+                "manufacturer": "",
+                "model": "",
+                "cpu_cores_per_socket": 1,
+                "cpu_total_cores": 2,
+                "guest_os_full_name": "Red Hat Enterprise Linux 7 (64-bit)"
+            },
+            "cpu_usagemhz_rate_average_avg_over_time_period": 0
+        }
+    ],
+    "actions": [
+        {
+            "name": "edit",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        },
+        {
+            "name": "retire",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        },
+        {
+            "name": "set_ownership",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        },
+        {
+            "name": "start",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        },
+        {
+            "name": "stop",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        },
+        {
+            "name": "suspend",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        },
+        {
+            "name": "delete",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        },
+        {
+            "name": "add_resource",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        },
+        {
+            "name": "remove_all_resources",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        },
+        {
+            "name": "remove_resource",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        },
+        {
+            "name": "delete",
+            "method": "delete",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        }
+    ]
+}
