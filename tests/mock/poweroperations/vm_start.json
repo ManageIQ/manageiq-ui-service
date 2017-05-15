@@ -1,0 +1,7 @@
+{
+    "success": true,
+    "message": "VM id:10000000002056 name:'niickapp' starting",
+    "task_id": 10000000194024,
+    "task_href": "http://localhost:3001/api/tasks/10000000194024",
+    "href": "http://localhost:3001/api/vms/10000000002056"
+}

@@ -57,7 +57,6 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
 
   function getPowerState(item) {
     var powerState = "";
-
     if (angular.isDefined(item.power_state)) {
       powerState = item.power_state;
     } else if (angular.isArray(item.power_states)) {
@@ -115,48 +114,84 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
   function startService(item) {
     item.power_state = '';
     item.power_status = 'starting';
-    servicePowerOperation('start', item);
+    
+    return new Promise((resolve, _reject) => { 
+      servicePowerOperation('start', item).then((results) => {
+        resolve(results);
+      });
+    });
   }
 
   function stopService(item) {
     item.power_state = '';
     item.power_status = 'stopping';
-    servicePowerOperation('stop', item);
+
+    return new Promise((resolve, _reject) => {
+      servicePowerOperation('stop', item).then((results) => {
+        resolve(results);
+      });
+    });
   }
 
   function suspendService(item) {
     item.power_state = '';
     item.power_status = 'suspending';
-    servicePowerOperation('suspend', item);
+    
+    return new Promise((resolve, _reject) => {
+      servicePowerOperation('suspend', item).then((results) => {
+        resolve(results);
+      });
+    });
   }
 
   function startVm(item) {
     item.power_state = '';
     item.power_status = 'starting';
-    vmPowerOperation('start', item);
+    
+    return new Promise((resolve, _reject) => {
+      vmPowerOperation('start', item).then((results) => {
+        resolve(results);
+      });
+    });
   }
 
   function stopVm(item) {
     item.power_state = '';
     item.power_status = 'stopping';
-    vmPowerOperation('stop', item);
+    
+    return new Promise((resolve, _reject) => {
+      vmPowerOperation('stop', item).then((results) => {
+        resolve(results);
+      });
+    });
   }
 
   function suspendVm(item) {
     item.power_state = '';
     item.power_status = 'suspending';
-    vmPowerOperation('suspend', item);
+
+    return new Promise((resolve, _reject) => {
+      vmPowerOperation('suspend', item).then((results) => {
+        resolve(results);
+      });
+    });
   }
 
   function retireVm(item) {
     item.power_state = '';
     item.power_status = 'retiring';
-    vmPowerOperation('retire', item);
+
+    return new Promise((resolve, _reject) => {
+      vmPowerOperation('retire', item).then((results) => {
+        resolve(results);
+      });
+    });
   }
 
   function powerOperation(apiType, powerAction, item, itemType) {
-    CollectionsApi.post(apiType, item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure);
-
+    return new Promise((resolve, _reject) => {
+      resolve(CollectionsApi.post(apiType, item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure));
+    });
     function actionSuccess(response) {
       switch (powerAction) {
         case 'start':
@@ -193,11 +228,19 @@ export function PowerOperationsFactory(CollectionsApi, EventNotifications, sprin
   }
 
   function servicePowerOperation(powerAction, item) {
-    powerOperation('services', powerAction, item, 'service');
+    return new Promise((resolve, _reject) => {
+      powerOperation('services', powerAction, item, 'service').then((result) => {
+        resolve(result);
+      });
+    }); 
   }
 
   function vmPowerOperation(powerAction, item) {
-    powerOperation('vms', powerAction, item, 'virtual machine');
+    return new Promise((resolve, _reject) => {
+      powerOperation('vms', powerAction, item, 'virtual machine').then((result) => {
+        resolve(result);
+      });
+    }); 
   }
 
   return service;

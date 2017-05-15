@@ -1,0 +1,7 @@
+{
+    "success": true,
+    "message": "Service id:10000000000619 name:'Deploy Ticket Monster on VMware-20170222-115347' suspended",
+    "task_id": 10000000194022,
+    "task_href": "http://localhost:3001/api/tasks/10000000194022",
+    "href": "http://localhost:3001/api/services/10000000000619"
+}
