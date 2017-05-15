@@ -9,7 +9,7 @@ export const VmDetailsComponent = {
 };
 
 /** @ngInject */
-function ComponentController($stateParams, VmsService, ServicesState, sprintf, EventNotifications, Polling, PowerOperations, LONG_POLLING_INTERVAL) {
+function ComponentController($stateParams, VmsService, ServicesState, sprintf, lodash, EventNotifications, Polling, PowerOperations, LONG_POLLING_INTERVAL) {
   const vm = this;
   vm.$onInit = activate;
   vm.$onDestroy = onDestroy;
