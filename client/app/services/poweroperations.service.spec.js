@@ -64,6 +64,15 @@ describe('Power Operation Service', function() {
       expect(eventNotificationsSpy).to.have.been.calledWith("Deploy Ticket Monster on VMware-20170222-115347 was suspended. Service id:10000000000619 name:'Deploy Ticket Monster on VMware-20170222-115347' suspended");
     });
   });
+  it('Should notify of service suspend failure', function(){
+    const serviceSuspendResponse = readJSON(mockDir + 'service_suspend_failure.json');
+    const eventNotificationsFailureSpy = sinon.spy(EventNotifications, 'error');
+    collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(serviceSuspendResponse));
+    
+    return PowerOperations.suspendService(service).then(function(data){
+      expect(eventNotificationsFailureSpy).to.have.been.calledWith("There was an error suspending this service.");
+    });
+  });
   it('Should allow a service to start', ()=>{
     const allowStart = PowerOperations.allowStartService(service);
     expect(allowStart).to.eql(true);
@@ -76,7 +85,96 @@ describe('Power Operation Service', function() {
     const allowStart = PowerOperations.allowSuspendService(service);
     expect(allowStart).to.eql(false);
   });
-
+  it("Should allow multiple VM's to report status of being on", () =>{
+    const testService = {
+      "power_states":[
+        "on",
+        "on"
+      ]
+    };
+    const powerState = PowerOperations.getPowerState(testService);
+    expect(powerState).to.eql('on');
+  });
+  it("Should allow multiple VM's to report status of being off", () =>{
+    const testService = {
+      "power_states":[
+        'off',
+        'off'
+      ]
+    };
+    const powerState = PowerOperations.getPowerState(testService);
+    expect(powerState).to.eql('off');
+  });
+  it("Should allow multiple VM's to report status of timeout", () =>{
+    const testService = {
+      "power_states":[
+        'timeout',
+        'timeout'
+      ]
+    };
+    const powerState = PowerOperations.getPowerState(testService);
+    expect(powerState).to.eql('timeout');
+  });
+  it('Should display power state change in progress', () =>{
+    const testVm = {
+      'power_state':'on',
+      'power_status': 'starting'
+    };
+    const progressState = PowerOperations.powerOperationInProgressState(testVm);
+    expect(progressState).to.eql(true);
+  });
+  it('Should retrieve the power on state', () => {
+      const testVm = {
+        'power_state': 'on'
+      };
+      const testPowerState = PowerOperations.powerOperationOnState(testVm);
+      expect(testPowerState).to.eq(true);
+  });
+  it('Should retrieve the power off state', () => {
+      const testVm = {
+        'power_state': 'off'
+      };
+      const testPowerState = PowerOperations.powerOperationOffState(testVm);
+      expect(testPowerState).to.eq(true);
+  });
+  it('Should retrieve the power suspend state', () => {
+      const testVm = {
+        'power_state': 'off'
+      };
+      const testPowerState = PowerOperations.powerOperationSuspendState(testVm);
+      expect(testPowerState).to.eq(true);
+  });
+  it('Should retrieve the power timeout state', () => {
+      const testVm = {
+        'power_state': 'timeout'
+      };
+      const testPowerState = PowerOperations.powerOperationTimeoutState(testVm);
+      expect(testPowerState).to.eq(true);
+  });
+  it('Should retrieve the power on in progress timeout state', () => {
+      const testVm = {
+        'power_state': 'timeout',
+        'power_status': 'starting'
+      };
+      const testPowerState = PowerOperations.powerOperationStartTimeoutState(testVm);
+      expect(testPowerState).to.eq(true);
+  });
+  it('Should retrieve the power off in progress timeout state', () => {
+      const testVm = {
+        'power_state': 'timeout',
+        'power_status': 'stopping'
+      };
+      const testPowerState = PowerOperations.powerOperationStopTimeoutState(testVm);
+      expect(testPowerState).to.eq(true);
+  });
+  it('Should retrieve the power suspend in progress timeout state', () => {
+      const testVm = {
+        'power_state': 'timeout',
+        'power_status': 'suspending'
+      };
+      const testPowerState = PowerOperations.powerOperationSuspendTimeoutState(testVm);
+      expect(testPowerState).to.eq(true);
+  });
   it('Should start power for a VM',function(){
     collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
     PowerOperations.startVm(vm);
@@ -160,4 +258,5 @@ describe('Power Operation Service', function() {
     const powerState = PowerOperations.getPowerState(vm);
     expect(powerState).to.eq('on');
   });
+
 });
