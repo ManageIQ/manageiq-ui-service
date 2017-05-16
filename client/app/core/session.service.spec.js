@@ -99,5 +99,23 @@ describe('Session', function() {
 
       expect(RBAC.navigationEnabled()).to.eq(false);
     });
+    it('allows a user to be retrieved from session', () => {
+      const user = readJSON('tests/mock/session/user.json');
+      const expectedUserProps = ['userid', 'name', 'user_href', 'group', 'group_href', 'role', 'role_href', 'tenant', 'groups'];
+      $sessionStorage.user = user;
+      Session.loadUser();
+      const userInfo = Session.currentUser();
+      expect(userInfo).to.have.all.keys(expectedUserProps);
+    });
+    it('allow a ws token to be set', ()=>{
+      bard.inject('$http','$cookies');
+      const wsTokenResponse = {"data":{"auth_token":"9873777d3e7acddf76e279f65261deeb","token_ttl":3600,"expires_on":"2017-05-16T18:45:10Z"}};
+      const wsTokensApiSpy = sinon.stub($http, 'get').returns(Promise.resolve(wsTokenResponse));
+      const wsTokenSpy = sinon.spy($cookies, 'put');
+
+      return Session.requestWsToken('').then((data) =>{
+        expect(wsTokenSpy).to.have.been.calledWith('ws_token','9873777d3e7acddf76e279f65261deeb',{ path: '/ws/notifications'});
+      });
+    });
   });
 });
