@@ -1,6 +1,7 @@
 // Product overrides of Boostrap & Patternfly variables
 
-$modal-about-pf-bg-color:  #083c5a // sets background color of 'About' modal
+$modal-about-pf-bg-color: #083c5a
+// sets background color of 'About' modal
 
 
 // Product overrides for 'About' Modal
@@ -8,7 +9,6 @@ $modal-about-pf-bg-color:  #083c5a // sets background color of 'About' modal
 .about-modal-pf
   background-color: $modal-about-pf-bg-color
   background-image: url('../images/bg-modal-about-pf.png')
-
 
 // @font-face
 //  font-family: 'FontAwesome'
@@ -18,7 +18,8 @@ $modal-about-pf-bg-color:  #083c5a // sets background color of 'About' modal
 
 
 body
-  overflow: hidden // Adding so tooltips don't cause a scrollbar to appear
+  overflow: hidden
+// Adding so tooltips don't cause a scrollbar to appear
 
 .layout-application
   height: 100%
@@ -77,3 +78,11 @@ body
       position: fixed
       right: 0
       top: 60px
+
+li
+  &.brand-white-label
+    background: url('~/../../../upload/custom_logo.png') right top no-repeat
+    background-size: auto 38px
+    height: 38px
+    margin-top: 10px
+    width: 320px
