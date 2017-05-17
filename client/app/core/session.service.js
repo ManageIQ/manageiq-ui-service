@@ -69,7 +69,7 @@ export function SessionFactory($http, $q, $sessionStorage, $window, $state, $coo
   function getUserAuthorizations() {
     const config = {
       headers: {
-        'X-Auth-Skip-Token-Renewal': true,
+        'X-Auth-Skip-Token-Renewal': 'true',
       },
     };
 
