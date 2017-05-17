@@ -21,7 +21,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     getConfigurationCustomDropdown: getConfigurationCustomDropdown,
   };
 
-  function getService(id) {
+  function getService(id, refresh) {
     const options = {
       attributes: [
         'name', 'guid', 'created_at', 'type', 'description', 'picture', 'picture.image_href', 'evm_owner.name', 'evm_owner.userid',
@@ -33,6 +33,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'vms.supports_console?', 'vms.supports_launch_cockpit?',
       ],
       expand: ['vms', 'orchestration_stacks'],
+      auto_refresh: refresh,
     };
 
     return CollectionsApi.get('services', id, options);
@@ -64,7 +65,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     return CollectionsApi.query('services', options);
   }
 
-  function getServices(limit, offset, filters, sortField, sortAscending) {
+  function getServices(limit, offset, filters, sortField, sortAscending, refresh) {
     const options = {
       expand: 'resources',
       limit: limit,
@@ -86,6 +87,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'tags',
       ],
       filter: getQueryFilters(filters),
+      auto_refresh: refresh,
     };
 
     if (angular.isDefined(sortField)) {

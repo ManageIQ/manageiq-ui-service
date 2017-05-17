@@ -64,11 +64,11 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   }
 
   function startPollingService() {
-    fetchResources(vm.serviceId);
+    fetchResources(vm.serviceId, true);
   }
 
-  function fetchResources(id) {
-    ServicesState.getService(id).then(handleSuccess, handleFailure);
+  function fetchResources(id, refresh) {
+    ServicesState.getService(id, refresh).then(handleSuccess, handleFailure);
 
     function handleSuccess(response) {
       vm.service = response;

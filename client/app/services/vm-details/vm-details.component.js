@@ -37,7 +37,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       },
     });
     resolveData();
-    Polling.start('polling', resolveData, LONG_POLLING_INTERVAL);
+    Polling.start('polling', pollVM, LONG_POLLING_INTERVAL);
   }
 
 // Private
@@ -56,9 +56,11 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   function retireVM() {
     PowerOperations.retireVM(vm.vmDetails);
   }
-
-  function resolveData() {
-    VmsService.getVm($stateParams.vmId).then(handleSuccess, handleFailure);
+  function pollVM() {
+    resolveData(true);
+  }
+  function resolveData(refresh) {
+    VmsService.getVm($stateParams.vmId, refresh).then(handleSuccess, handleFailure);
 
     function handleSuccess(response) {
       if (response.cloud) {
