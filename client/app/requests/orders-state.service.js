@@ -17,18 +17,20 @@ export function OrdersStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     const options = {
       filter: getQueryFilters(filters),
       hide: 'resources',
+      auto_refresh: true,
     };
 
     return CollectionsApi.query(collection, options);
   }
 
-  function getOrders(limit, offset, filters, sortField, sortAscending) {
+  function getOrders(limit, offset, filters, sortField, sortAscending, refresh) {
     const options = {
       expand: ['resources', 'service_requests'],
       limit: limit,
       offset: String(offset),
       attributes: [],
       filter: getQueryFilters(filters),
+      auto_refresh: refresh,
     };
 
     if (angular.isDefined(sortField)) {

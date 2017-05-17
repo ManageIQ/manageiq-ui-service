@@ -37,7 +37,7 @@ export function VmsService(CollectionsApi, RBAC) {
     return CollectionsApi.query(collection + '/' + vmId + '/snapshots', options);
   }
 
-  function getVm(vmId) {
+  function getVm(vmId, refresh) {
     const options = {
       attributes: [
         'advanced_settings',
@@ -96,6 +96,7 @@ export function VmsService(CollectionsApi, RBAC) {
         'vmsafe_enable',
       ],
       expand: [],
+      auto_refresh: refresh,
     };
 
     return CollectionsApi.query(collection + '/' + vmId, options);

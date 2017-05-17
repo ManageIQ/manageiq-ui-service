@@ -219,7 +219,8 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
         offset,
         OrdersState.getFilters(),
         OrdersState.getSort().currentField,
-        OrdersState.getSort().isAscending).then(querySuccess, queryFailure);
+        OrdersState.getSort().isAscending,
+        refresh).then(querySuccess, queryFailure);
     });
 
 

@@ -67,7 +67,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   }
 
   function startPollingService() {
-    fetchResources(vm.serviceId);
+    fetchResources(vm.serviceId, true);
   }
   function viewSelected(view) {
     vm.viewType = view;
@@ -154,8 +154,8 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
     vm.memoryChart = getMemoryChartConfig(usedMemory, allocatedMemory);
     vm.storageChart = getStorageChartConfig(usedStorage, allocatedStorage);
   }
-  function fetchResources(id) {
-    ServicesState.getService(id).then(handleSuccess, handleFailure);
+  function fetchResources(id, refresh) {
+    ServicesState.getService(id, refresh).then(handleSuccess, handleFailure);
 
     function handleSuccess(response) {
       vm.service = response;
