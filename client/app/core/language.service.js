@@ -79,7 +79,6 @@ export function LanguageFactory($http, $q, $log, $window, gettextCatalog, lodash
 
   function onLogin(data) {
     setUser(data);
-
     var code = 'en';
     if (!service.chosen.code || (service.chosen.code === '_user_')) {
       code = getLocale(data);
@@ -87,8 +86,9 @@ export function LanguageFactory($http, $q, $log, $window, gettextCatalog, lodash
       code = service.chosen.code;
       save(code);
     }
-
     setLocale(code);
+
+    return code;
   }
 
   function onReload(data) {
@@ -97,7 +97,7 @@ export function LanguageFactory($http, $q, $log, $window, gettextCatalog, lodash
     var code = getLocale(data);
     setLocale(code);
 
-    return data;
+    return code;
   }
 
   function save(code) {
