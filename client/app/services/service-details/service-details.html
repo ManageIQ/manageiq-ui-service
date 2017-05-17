@@ -9,17 +9,19 @@
   </span>
   <div class="view-selector-bar">
     <div class="form-group toolbar-pf-view-selector">
-      <button class="btn btn-link usage-graphs-button" ng-click="vm.viewSelected('graphsView')" ng-class="{active: vm.viewType === 'graphsView'}">
-         <i class="fa fa-tachometer"></i>
-       </button>
-      <button class="btn btn-link" ng-click="vm.viewSelected('detailsView')" ng-class="{active: vm.viewType === 'detailsView'}">
-       <i class="fa fa-list-alt"></i>
+      <button class="btn btn-link usage-graphs-button" ng-click="vm.viewSelected('graphsView')"
+              ng-class="{active: vm.viewType === 'graphsView'}">
+        <i class="fa fa-tachometer"></i>
+      </button>
+      <button class="btn btn-link" ng-click="vm.viewSelected('detailsView')"
+              ng-class="{active: vm.viewType === 'detailsView'}">
+        <i class="fa fa-list-alt"></i>
       </button>
     </div>
   </div>
 </div>
 <div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig"
-ng-if="!vm.loading && vm.viewType === 'detailsView'">
+     ng-if="!vm.loading && vm.viewType === 'detailsView'">
   <actions>
     <div class="ss-details-header__actions">
       <div uib-dropdown class="ss-details-header__actions__inner dropdown-kebab-pf">
@@ -92,7 +94,8 @@ ng-if="!vm.loading && vm.viewType === 'detailsView'">
                 <div class="form-group">
                   <label class="control-label col-sm-4" translate>Monthly Cost</label>
                   <div class="col-sm-8">
-                    <input class="form-control" readonly value="${{vm.service.chargeback.used_cost_sum | number:3}}"/>
+                    <input class="form-control" readonly
+                           value="${{vm.service.chargeback.used_cost_sum | number:3}}"/>
                   </div>
                 </div>
               </div>
@@ -102,7 +105,8 @@ ng-if="!vm.loading && vm.viewType === 'detailsView'">
                 <div class="form-group">
                   <label class="control-label col-sm-4" translate>Created On</label>
                   <div class="col-sm-8">
-                    <input class="form-control" readonly value="{{vm.service.created_at | date:'medium'}}"/>
+                    <input class="form-control" readonly
+                           value="{{vm.service.created_at | date:'medium'}}"/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -117,7 +121,8 @@ ng-if="!vm.loading && vm.viewType === 'detailsView'">
                   <div class="col-sm-8">
                     <input ng-if="vm.service.retires_on" class="form-control" readonly
                            value="{{vm.service.retires_on | date}}"/>
-                    <input ng-if="!vm.service.retires_on" class="form-control" readonly value="Never"/>
+                    <input ng-if="!vm.service.retires_on" class="form-control" readonly
+                           value="Never"/>
                   </div>
                 </div>
               </div>
@@ -128,7 +133,8 @@ ng-if="!vm.loading && vm.viewType === 'detailsView'">
                   <label class="control-label col-sm-2" translate>Tags</label>
                   <div class="col-sm-10">
                     <div class="service-details-tag-control">
-                      <tagging-widget tags-of-item="vm.availableTags" read-only="true"></tagging-widget>
+                      <tagging-widget tags-of-item="vm.availableTags"
+                                      read-only="true"></tagging-widget>
                     </div>
                   </div>
                 </div>
@@ -139,7 +145,7 @@ ng-if="!vm.loading && vm.viewType === 'detailsView'">
       </section>
     </div>
   </div>
-  <div ng-if="vm.service.type !== 'ServiceAnsiblePlaybook'"
+  <div ng-if="vm.service.vms.length"
        class="panel panel-default ss-details-panel">
     <div class="panel-body">
       <section>
@@ -151,13 +157,15 @@ ng-if="!vm.loading && vm.viewType === 'detailsView'">
                ng-click="vm.toggleOpenResourceGroup(vm.computeGroup)">
               {{vm.computeGroup.title}} ({{vm.computeGroup.resources.length}})
             </a>
-            <div class="service-details-resource-list-container" ng-class="{'collapse': !vm.computeGroup.open}">
+            <div class="service-details-resource-list-container"
+                 ng-class="{'collapse': !vm.computeGroup.open}">
               <div ng-if="vm.computeGroup.resources.length < 1">
                 <span class="service-details-resource-empty-message">
                   {{vm.computeGroup.emptyMessage}}
                 </span>
               </div>
-              <div ng-if="vm.computeGroup.resources.length > 0" pf-list-view config="vm.resourceListConfig"
+              <div ng-if="vm.computeGroup.resources.length > 0" pf-list-view
+                   config="vm.resourceListConfig"
                    items="vm.computeGroup.resources"
                    menu-actions="vm.resourceMenuActions"
                    update-menu-action-for-item-fn="vm.updateResourceMenuActionForItemFn"
@@ -268,7 +276,8 @@ ng-if="!vm.loading && vm.viewType === 'detailsView'">
                   <div ng-if="!item.retired " class="list-view-pf-actions">
                     <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body
                          ng-if="customScope.permissions.cockpit || customScope.permissions.console">
-                      <button type="button" class="btn btn-default" uib-dropdown-toggle type="button">
+                      <button type="button" class="btn btn-default" uib-dropdown-toggle
+                              type="button">
                         <span translate>Access</span>
                         <span class="caret"></span>
                       </button>
@@ -286,19 +295,28 @@ ng-if="!vm.loading && vm.viewType === 'detailsView'">
                         </li>
                       </ul>
                     </div>
-                    <div uib-dropdown="" dropdown-append-to-body class="dropdown pull-right dropdown-kebab-pf">
-                      <button uib-dropdown-toggle="" class="btn btn-link dropdown-toggle" type="button">
+                    <div uib-dropdown="" dropdown-append-to-body
+                         class="dropdown pull-right dropdown-kebab-pf">
+                      <button uib-dropdown-toggle="" class="btn btn-link dropdown-toggle"
+                              type="button">
                         <span class="fa fa-ellipsis-v"></span>
                       </button>
-                      <ul uib-dropdown-menu="" class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body">
-                        <li role="menuitem" ng-if="customScope.permissions.instanceStart" ng-class="{'disabled': customScope.disableStartButton(item)}">
-                          <a ng-click="customScope.startVM(item, customScope.disableStartButton(item))" translate>Start</a>
+                      <ul uib-dropdown-menu=""
+                          class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body">
+                        <li role="menuitem" ng-if="customScope.permissions.instanceStart"
+                            ng-class="{'disabled': customScope.disableStartButton(item)}">
+                          <a ng-click="customScope.startVM(item, customScope.disableStartButton(item))"
+                             translate>Start</a>
                         </li>
-                        <li role="menuitem" ng-if="customScope.permissions.instanceStop" ng-class="{'disabled': customScope.disableStopButton(item)}">
-                          <a ng-click="customScope.stopVM(item, customScope.disableStopButton(item))" translate>Stop</a>
+                        <li role="menuitem" ng-if="customScope.permissions.instanceStop"
+                            ng-class="{'disabled': customScope.disableStopButton(item)}">
+                          <a ng-click="customScope.stopVM(item, customScope.disableStopButton(item))"
+                             translate>Stop</a>
                         </li>
-                        <li role="menuitem" ng-if="customScope.permissions.instanceSuspend" ng-class="{'disabled': customScope.disableSuspendButton(item)}">
-                          <a ng-click="customScope.suspendVM(item, customScope.disableSuspendButton(item))" translate>Suspend</a>
+                        <li role="menuitem" ng-if="customScope.permissions.instanceSuspend"
+                            ng-class="{'disabled': customScope.disableSuspendButton(item)}">
+                          <a ng-click="customScope.suspendVM(item, customScope.disableSuspendButton(item))"
+                             translate>Suspend</a>
                         </li>
                         <li role="menuitem"
                             confirmation
@@ -311,15 +329,17 @@ ng-if="!vm.loading && vm.viewType === 'detailsView'">
                             confirmation-on-ok="customScope.retireVM(item)"
                             confirmation-on-cancel="vm.retireVMFlag=false"
                             ng-if="customScope.permissions.instanceRetire"
-                          >
+                        >
                           <a ng-click="vm.retireVMFlag=true" translate>Retire</a>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li role="menuitem">
-                          <a ng-click="customScope.gotoComputeResource(item)" translate>View Details</a>
+                          <a ng-click="customScope.gotoComputeResource(item)" translate>View
+                            Details</a>
                         </li>
                         <li role="menuitem" ng-if="customScope.permissions.viewSnapshots">
-                          <a ui-sref="vms.snapshots({vmId: item.id})" translate>View Snapshots</a>
+                          <a ui-sref="vms.snapshots({vmId: item.id})" translate>View
+                            Snapshots</a>
                         </li>
                       </ul>
                     </div>
