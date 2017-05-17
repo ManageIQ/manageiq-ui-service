@@ -42,34 +42,36 @@ function ComponentController(ModalService, ServicesState, lodash) {
     if (angular.isDefined(vm.service.options.config_info)) {
       vm.orcStacks = {};
       vm.service.service_resources.forEach((resource) => {
-        const resourceName = resource.name.toLowerCase();
-        vm.orcStacks[resourceName] = {};
-        vm.orcStacks[resourceName].stack = lodash.find(vm.service.orchestration_stacks, {'id': resource.resource_id});
-        vm.orcStacks[resourceName].resource = resource;
+        if (resource.name) {
+          const resourceName = resource.name.toLowerCase();
+          vm.orcStacks[resourceName] = {};
+          vm.orcStacks[resourceName].stack = lodash.find(vm.service.orchestration_stacks, {'id': resource.resource_id});
+          vm.orcStacks[resourceName].resource = resource;
 
-        vm.orcStacks[resourceName].credentials = [];
-        credentialTypes.forEach((credential) => {
-          if (angular.isDefined(vm.service.options.config_info[resourceName][credential])) {
-            ServicesState.getServiceCredential(vm.service.options.config_info[resourceName][credential]).then((response) => {
-              response.type = response.type.substring(response.type.lastIndexOf('::') + 2, response.type.lastIndexOf('Credential'));
-              vm.orcStacks[resourceName].credentials.push(response);
-            });
-          }
-        });
-
-        ServicesState.getServiceRepository(vm.service.options.config_info[resourceName].repository_id).then((response) => {
-          vm.orcStacks[resourceName].repository = response;
-        });
-
-        vm.orcStacks[resourceName].jobs = [];
-        vm.orcStacks[resourceName].output = {};
-        ServicesState.getServiceJobsStdout(vm.service.id, vm.orcStacks[resourceName].stack.id).then((response) => {
-          vm.orcStacks[resourceName].stdout = response.stdout || 'No standard out avaliable.';
-          vm.orcStacks[resourceName].jobs = response.job_plays;
-          vm.orcStacks[resourceName].jobs.forEach((item) => {
-            item.elapsed = vm.elapsed(item.finish_time, item.start_time);
+          vm.orcStacks[resourceName].credentials = [];
+          credentialTypes.forEach((credential) => {
+            if (angular.isDefined(vm.service.options.config_info[resourceName][credential])) {
+              ServicesState.getServiceCredential(vm.service.options.config_info[resourceName][credential]).then((response) => {
+                response.type = response.type.substring(response.type.lastIndexOf('::') + 2, response.type.lastIndexOf('Credential'));
+                vm.orcStacks[resourceName].credentials.push(response);
+              });
+            }
           });
-        });
+
+          ServicesState.getServiceRepository(vm.service.options.config_info[resourceName].repository_id).then((response) => {
+            vm.orcStacks[resourceName].repository = response;
+          });
+
+          vm.orcStacks[resourceName].jobs = [];
+          vm.orcStacks[resourceName].output = {};
+          ServicesState.getServiceJobsStdout(vm.service.id, vm.orcStacks[resourceName].stack.id).then((response) => {
+            vm.orcStacks[resourceName].stdout = response.stdout || 'No standard out avaliable.';
+            vm.orcStacks[resourceName].jobs = response.job_plays;
+            vm.orcStacks[resourceName].jobs.forEach((item) => {
+              item.elapsed = vm.elapsed(item.finish_time, item.start_time);
+            });
+          });
+        }
       });
     }
     vm.loading = false;
@@ -93,7 +95,7 @@ function ComponentController(ModalService, ServicesState, lodash) {
     const modalOptions = {
       component: 'serviceDetailsAnsibleModal',
       resolve: {
-        item: function() {
+        item: function () {
           return item;
         },
       },
