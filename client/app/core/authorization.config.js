@@ -87,11 +87,11 @@ export function authInit($rootScope, $state, $log, Session, $sessionStorage, Lan
       Session.setMiqGroup($sessionStorage.miqGroup);
 
       Session.loadUser()
-        .then(Language.onReload)
         .then(function (response) {
           if (angular.isDefined(response)) {
+            Language.onReload(response);
             ApplianceInfo.set(response);
-            RBAC.setRole(response.identity.role);
+            RBAC.setRole(response.identity.role);         
           }
           resolve();
         })
