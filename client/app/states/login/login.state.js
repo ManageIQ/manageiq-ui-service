@@ -50,9 +50,9 @@ function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD,
     return AuthenticationApi.login(vm.credentials.login, vm.credentials.password)
       .then(Session.loadUser)
       .then(Session.requestWsToken)
-      .then(Language.onLogin)
       .then(function(response) {
         if (angular.isDefined(response)) {
+          Language.onLogin(response);
           ApplianceInfo.set(response);
           RBAC.setRole(response.identity.role);
         }
