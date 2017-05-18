@@ -11,10 +11,11 @@ const root = path.resolve(__dirname, '../client');
 const outputPath = process.env.BUILD_OUTPUT || '../../manageiq/public/ui/service';
 const dist = path.resolve(__dirname, outputPath);
 const nodeModules = path.resolve(__dirname, '../node_modules');
+const protocol = process.env.PROXY_PROTOCOL || 'http://';
 const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000';
 const hasSkinImages = fs.existsSync(`${root}/skin/images`);
 
-console.log("Backend proxied on " + host);
+console.log("Backend proxied on " + protocol + host);
 
 module.exports = {
   context: root,
@@ -34,10 +35,12 @@ module.exports = {
     port: 3001,
     proxy: {
       '/api': {
-        target: `http://${host}`,
+        target: `${protocol}${host}`,
+        secure: false,
       },
       '/pictures': {
-        target: `http://${host}`,
+        target: `${protocol}${host}`,
+        secure: false,
       },
       '/ws': {
         target: `ws://${host}`,
