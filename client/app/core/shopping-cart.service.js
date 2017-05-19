@@ -72,17 +72,18 @@ export function ShoppingCartFactory($rootScope, CollectionsApi, $q, lodash, RBAC
 
     // remove a thingy from the cart
     removeItem: function(requestId) {
-      return CollectionsApi.post('service_orders/cart/service_requests', null, null, {
-        action: "remove",
-        resources: [ { id: requestId } ],
-      })
+      return new Promise((resolve, reject) => {
+        CollectionsApi.post('service_orders/cart/service_requests', null, null, {
+          action: "remove",
+          resources: [ { id: requestId } ],
+        })
       .then(function(response) {
         // handle failure
         if (response.results[0].success === false) {
-          return $q.reject(response.results[0].message);
+          reject(response.results[0].message);
         }
-
-        return response.results[0];
+        resolve(response.results[0]);
+      });
       });
     },
   };
