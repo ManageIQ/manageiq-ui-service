@@ -56,4 +56,90 @@ describe('Console Service', function() {
             expect(collectionsApiGetSpy).to.have.been.calledWith('tasks', '1', { attributes: 'task_results' });
         }); 
     });
+    it('should successfully start a vnc session', function() {
+        const taskResponse = {
+                'state': 'Finished',
+                'status': 'Ok',
+                'task_results': { 
+                    'proto':'vnc',
+                    'url':'blah',
+                    'secret':'blah'
+                }
+            };
+        const collectionsApiPostSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
+        const collectionsApiGetSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(taskResponse));
+        return Consoles.open('12345').then((data)=>{
+            $timeout.flush()
+            expect(collectionsApiGetSpy).to.have.been.calledWith('tasks', '1', { attributes: 'task_results' });
+        }); 
+    });
+    it('should successfully start a remote session', function() {
+        const taskResponse = {
+                'state': 'Finished',
+                'status': 'Ok',
+                'task_results': { 
+                    'proto':'remote',
+                    'remote_url':'blah'
+                }
+            };
+        const collectionsApiPostSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
+        const collectionsApiGetSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(taskResponse));
+        return Consoles.open('12345').then((data)=>{
+            $timeout.flush()
+            expect(collectionsApiGetSpy).to.have.been.calledWith('tasks', '1', { attributes: 'task_results' });
+        }); 
+    });
+    it('should fail if a unknown protocol is sent', function() {
+        const taskResponse = {
+                'state': 'Finished',
+                'status': 'Ok',
+                'task_results': { 
+                    'proto':'fds',
+                    'remote_url':'blah'
+                }
+            };
+        const collectionsApiPostSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
+        const collectionsApiGetSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(taskResponse));
+        const eventNotificationsFailureSpy = sinon.spy(EventNotifications, 'error');
+        return Consoles.open('12345').then((data)=>{
+            $timeout.flush()
+          expect(collectionsApiGetSpy).to.have.been.calledWith('tasks', '1', { attributes: 'task_results' });
+        }); 
+    });
+    it('should rerun if state is queued', function() {
+        const taskResponse = {
+                'id':'1',
+                'state': 'Queued',
+                'status': 'Ok',
+                'task_results': { 
+                    'proto':'fds',
+                    'remote_url':'blah'
+                }
+            };
+        const collectionsApiPostSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
+        const collectionsApiGetSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(taskResponse));
+        const eventNotificationsFailureSpy = sinon.spy(EventNotifications, 'error');
+        return Consoles.open('12345').then((data)=>{
+            $timeout.flush()
+          expect(collectionsApiGetSpy).to.have.been.calledWith('tasks', '1', { attributes: 'task_results' });
+        }); 
+    });
+    it('should throw an error if task fails', function() {
+        const taskResponse = {
+                'id':'1',
+                'state': 'Queued',
+                'status': 'failed',
+                'task_results': { 
+                    'proto':'fds',
+                    'remote_url':'blah'
+                }
+            };
+        const collectionsApiPostSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
+        const collectionsApiGetSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(taskResponse));
+        const eventNotificationsFailureSpy = sinon.spy(EventNotifications, 'error');
+        return Consoles.open('12345').then((data)=>{
+            $timeout.flush()
+          expect(collectionsApiGetSpy).to.have.been.calledWith('tasks', '1', { attributes: 'task_results' });
+        }); 
+    });
 });
