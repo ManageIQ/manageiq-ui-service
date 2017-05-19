@@ -7,7 +7,7 @@ export function ConsolesFactory($window, CollectionsApi, $timeout, $location, Ev
   return service;
 
   function openConsole(vmId) {
-    CollectionsApi.post('vms', vmId, {}, {
+    return CollectionsApi.post('vms', vmId, {}, {
       action: 'request_console',
       resource: {protocol: "html5"},
     })
