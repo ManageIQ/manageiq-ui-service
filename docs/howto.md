@@ -1,10 +1,21 @@
 # How to
 
 ## Add A Functional Zone
-[My Services](../client/app/services), [My Orders](../client/app/requests) and [Service Catalogs](../client/app/catalogs)
-are each unique functional zones of the Service User Interface (sui).  Each has a root resource explorer and a details
-page corresponding to each resource listed.  This guide will identify each aspect of a functional zone and explain the
-code patterns that make it work.
+The sum total of the following parts, a left navigation entry point, root/supporting states and root/supporting components
+are the core components that make up a functional zone.  As of writing, the Service UI, (SUI) contains four functional zones:
+* [Dashboard](../client/app/dashboard)
+* [My Services](../client/app/services)
+* [My Orders](../client/app/requests)
+* [Service Catalogs](../client/app/catalogs)
+
+Each functional zone has a root resource explorer and a details page corresponding to the listed resource.
+This guide will identify each aspect of functional zones and explain the code patterns that make it work.  As a developer
+once asked:
+
+> What is the UX term for the "bottom right half of the screen"
+
+It is more than a menu button, more than a navigation item, it is those things *plus* everything that makes what the user
+interacts with work.
 
 ### Left Navigation (lnav) Entry Point
 Each functional zone is accessed by clicking on the lnav entry point.
