@@ -1,15 +1,15 @@
 # How to
 
-## Add A Functional Zone
+## Add A Functional Area
 The sum total of the following parts, a left navigation entry point, root/supporting states and root/supporting components
-are the core components that make up a functional zone.  As of writing, the Service UI, (SUI) contains four functional zones:
+are the core components that make up a functional area.  As of writing, the Service UI, (SUI) contains four functional areas:
 * [Dashboard](../client/app/dashboard)
 * [My Services](../client/app/services)
 * [My Orders](../client/app/requests)
 * [Service Catalogs](../client/app/catalogs)
 
-Each functional zone has a root resource explorer and a details page corresponding to the listed resource.
-This guide will identify each aspect of functional zones and explain the code patterns that make it work.  As a developer
+Each functional area has a root resource explorer and a details page corresponding to the listed resource.
+This guide will identify each aspect of functional areas and explain the code patterns that make it work.  As a developer
 once asked:
 
 > What is the UX term for the "bottom right half of the screen"
@@ -18,10 +18,10 @@ It is more than a menu button, more than a navigation item, it is those things *
 interacts with work.
 
 ### Left Navigation (lnav) Entry Point
-Each functional zone is accessed by clicking on the lnav entry point.
+Each functional area is accessed by clicking on the lnav entry point.
 
 #### Definition
-The definition of the services functional zone lnav entry point occurs [here](../client/app/core/navigation.config.js#L12):
+The definition of the services functional area lnav entry point occurs [here](../client/app/core/navigation.config.js#L12):
 ```
   const services = createItem({
     title: N_('My Services'),
@@ -36,18 +36,18 @@ Two points of note regarding the lnav definition code above, firstly the `N_` pr
 flag. It is essential for the title and tooltip to support internationalization.
 
 Secondly, pay close attention to the object name `services` and the value of the key `state`.  The former is used for setting RBAC
-(discussed next) while the ladder is used for routing to the functional zone (the state name must correspond directly to
+(discussed next) while the ladder is used for routing to the functional area (the state name must correspond directly to
  the state name declared).
 
 #### Role Based Access Control (RBAC)
 RBAC gates sui functionality based the roles that are assigned to the users active group. Product features added to roles
 control what a user can and can't do within the OPS and SUI.  The lnav respects user's privileges and gates accessibility
-of functional zones [here](../client/app/core/rbac.service.js#22).  In the case of the service functional zone, we gate
+of functional areas [here](../client/app/core/rbac.service.js#22).  In the case of the service functional area, we gate
 user accessiblity on the product feature `view_service`:
 ```
 services: {show: angular.isDefined(productFeatures.service_view)},
 ```
-Note the key `services` directly corresponds to the above mentioned functional zone definition `services`. For RBAC to
+Note the key `services` directly corresponds to the above mentioned functional area definition `services`. For RBAC to
 operate as desired these two values must directly match.
 
 #### Resource Count Badge
@@ -60,16 +60,16 @@ count we wish to display.
 
 ### Routing State
 Routing states are independent of the component definition and can be found [here](../client/app/states). Each functional
-zone has a root routing state and a series of supporting states. Supporting states directly correspond to supporting components
-of a functional zone. For example, you'll notice we have a [services routing state](../client/app/services).  Contained
+area has a root routing state and a series of supporting states. Supporting states directly correspond to supporting components
+of a functional area. For example, you'll notice we have a [services routing state](../client/app/services).  Contained
 within this folder are a number of sub-folders including `details` (a supporting state for the service details component)
 and `explorer` (a supporting state for the explorer component).
 
 #### Root State
 The root state definition occurs in the root state folder, for instance
 [services root routing state](../client/app/services/services.state.js). Filename is important here, `services.state.js`
-that single word you used to define your functional zone lnav should be reused here for the sake of continuity.  In large,
-most of the root state definition can be copy and pasted for new functional zones:
+that single word you used to define your functional area lnav should be reused here for the sake of continuity.  In large,
+most of the root state definition can be copy and pasted for new functional areas:
 ```
 /** @ngInject */
 export function ServicesState(routerHelper) {
@@ -129,7 +129,7 @@ Supporting states principally serve as routing mechanisms for components, in thi
 The `__` is a placeholder indicating text to be translated [see here](http://manageiq.org/docs/guides/i18n).
 
 ### Functional Component
-What a user views and interacts with when activating and manipulating a functional zone is in actuality a functional component.
+What a user views and interacts with when activating and manipulating a functional area is in actuality a functional component.
 All the other noise is supporting the expression of functional components.  Service lists, catalog explorers, shopping cart,
 event notification box, these are each a different functional component. Familiarity with one way binding and
 lifecycle hooks is highly encouraged prior to undertaking the authoring of a component.  For more information checkout
@@ -236,7 +236,7 @@ export const ServicesModule = angular
   .factory('VmsService', VmsService)
   .name;
 ```
-When a new functional zone is created a new zone module will need to be included in the root [app.module.js](../client/app.module.js).
+When a new functional area is created a new area module will need to be included in the root [app.module.js](../client/app.module.js).
 The services.module.js is defined in this file as follows:
 ```
 import { ServicesModule } from './services/services.module.js';
