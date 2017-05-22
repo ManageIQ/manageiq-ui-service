@@ -131,7 +131,7 @@ which is invoked by a root component rather than a root state. The pagination co
 [seen here](../client/app/services/service-explorer/service-explorer.html#202) acts as a supporting component.
 
 #### Supporting Components
-Components invoked in root components typically from the html.  Examples include `<explorer-pagination>`, `<loading>`, <custom-dropdown>,
+Components invoked in root components typically from the html.  Examples include `<explorer-pagination>`, `<loading>`, ``<custom-dropdown>``,
 and many others. When view logic becomes complex or an opportunity to reduce code redundancy has been identified, a
 supporting component should be authored. The fundamental definition of a supporting component is identical to that of a
 root component, the only difference beening in the invocation, via a root componet rather than a state.
