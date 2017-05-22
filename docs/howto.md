@@ -125,11 +125,108 @@ lifecycle hooks is highly encouraged prior to undertaking the authoring of a com
 this [AngularJS documentation](https://docs.angularjs.org/guide/component).
 
 #### Root Component
-Root components had states invoking them directly, in this case, when the supporting state`services.explorer` declares a
-template of `<service-explorer/>`, that component becomes a root component.
+Root components are invoked by states (root and supporting) directly, when the supporting state`services.explorer` declares a
+template of `<service-explorer/>`, that component becomes a root component. This is in contrast to a suppporting component
+which is invoked by a root component rather than a root state. The pagination component when used by each explorer component
+[seen here](../client/app/services/service-explorer/service-explorer.html#202) acts as a supporting component.
 
 #### Supporting Components
-These are components that are used by root components, examples include `<pagination>`, `<loading>`, etc
+Components invoked in root components typically from the html.  Examples include `<explorer-pagination>`, `<loading>`, <custom-dropdown>,
+and many others. When view logic becomes complex or an opportunity to reduce code redundancy has been identified, a
+supporting component should be authored. The fundamental definition of a supporting component is identical to that of a
+root component, the only difference beening in the invocation, via a root componet rather than a state.
 
 #### Component Service
-Components handel displaying data modifying views, fetching permissions and data persisting are handled by component services.
+Component services make available all resources needed by components, crud operations as they relate to permissions/data,
+ persisting user input and other functionality are handled by component services. Segmenting the concerns of data handling
+  from manipulation results decreases code duplications, produces cleaner components and increases readability. Once such
+  component service includes the [service component service](../client/app/services/services-state.service.js). All
+  component services follow the naming convention of `component-name.service.js`.  In addition to a standard naming
+  convention service components also follow the same general definition pattern as seen
+  [here](../client/app/services/services-state.service.js):
+  ```
+  /** @ngInject */
+  export function ServicesStateFactory(CollectionsApi, RBAC) {
+    const permissions = getPermissions();
+    const services = {};
+
+    return {
+      services: services,
+      getService: getService,
+      getServiceCredential: getServiceCredential,
+      getServiceRepository: getServiceRepository,
+      getServiceJobsStdout: getServiceJobsStdout,
+      getServices: getServices,
+      getServicesMinimal: getServicesMinimal,
+      getPermissions: getPermissions,
+      getLifeCycleCustomDropdown: getLifeCycleCustomDropdown,
+      getPolicyCustomDropdown: getPolicyCustomDropdown,
+      getConfigurationCustomDropdown: getConfigurationCustomDropdown,
+    };
+
+    function getService(id, refresh) {
+        ...
+    }
+  }
+
+  ```
+The variability of component services is high due to the specialized nature of each. Principal actions that are made
+  available on the service include getting a service, getting services, getting a service credential, getting permissions
+  and other supporting service actions. Each of these functions is exposed on the service and invoked by the service
+  component name then the function name, `ServicesState.getPermissions();`, to be discussed at length in the
+  [Component Modules](#ComponentModules) section below.
+
+#### Component Modules
+Collections of related components are clustered in a folder, for example `../client/app/services/` holds all functionality
+relating to services. Each of these components is included in the app by an entry in the
+[services module](../client/app/services/services.module.js) as seen below:
+```
+import { ConsolesFactory } from './consoles.service.js';
+import { CustomButtonComponent } from './custom-button/custom-button.component.js';
+import { DetailRevealComponent } from './detail-reveal/detail-reveal.component.js';
+import { EditServiceModalComponent } from './edit-service-modal/edit-service-modal.component.js';
+import { OwnershipServiceModalComponent } from './ownership-service-modal/ownership-service-modal.component.js';
+import { PowerOperationsFactory } from './poweroperations.service.js';
+import { ProcessSnapshotsModalComponent } from './process-snapshots-modal/process-snapshots-modal.component';
+import { RetireRemoveServiceModalComponent } from './retire-remove-service-modal/retire-remove-service-modal.component.js';
+import { RetireServiceModalComponent } from './retire-service-modal/retire-service-modal.component.js';
+import { ServiceDetailsAnsibleComponent } from './service-details/service-details-ansible.component';
+import { ServiceDetailsAnsibleModalComponent } from './service-details/service-details-ansible-modal.component';
+import { ServiceDetailsComponent } from './service-details/service-details.component';
+import { ServiceExplorerComponent } from './service-explorer/service-explorer.component.js';
+import { ServicesStateFactory } from './services-state.service.js';
+import { SharedModule } from '../shared/shared.module.js';
+import { UsageGraphsComponent } from './usage-graphs/usage-graphs.component.js';
+import { VmDetailsComponent } from './vm-details/vm-details.component';
+import { VmSnapshotsComponent } from './vms/snapshots.component';
+import { VmsService } from './vms.service.js';
+
+export const ServicesModule = angular
+  .module('app.services', [
+    SharedModule,
+  ])
+  .component('customButton', CustomButtonComponent)
+  .component('detailReveal', DetailRevealComponent)
+  .component('editServiceModal', EditServiceModalComponent)
+  .component('ownershipServiceModal', OwnershipServiceModalComponent)
+  .component('processSnapshotsModal', ProcessSnapshotsModalComponent)
+  .component('retireRemoveServiceModal', RetireRemoveServiceModalComponent)
+  .component('retireServiceModal', RetireServiceModalComponent)
+  .component('serviceDetails', ServiceDetailsComponent)
+  .component('serviceDetailsAnsible', ServiceDetailsAnsibleComponent)
+  .component('serviceDetailsAnsibleModal', ServiceDetailsAnsibleModalComponent)
+  .component('serviceExplorer', ServiceExplorerComponent)
+  .component('usageGraphs', UsageGraphsComponent)
+  .component('vmDetails', VmDetailsComponent)
+  .component('vmSnapshots', VmSnapshotsComponent)
+  .factory('Consoles', ConsolesFactory)
+  .factory('PowerOperations', PowerOperationsFactory)
+  .factory('ServicesState', ServicesStateFactory)
+  .factory('VmsService', VmsService)
+  .name;
+```
+When a new functional zone is created a new zone module will need to be included in the root [app.module.js](../client/app.module.js).
+The services.module.js is defined in this file as follows:
+```
+import { ServicesModule } from './services/services.module.js';
+```
