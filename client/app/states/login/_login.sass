@@ -1,19 +1,20 @@
+@import '_bem-support/index'
+
 +block(login-pf)
   background-color: $app-color-deep-blue
-  background-image: url('../images/bg-login-2.png')
-  background-position: 100% 100%
-  background-repeat: no-repeat
-  background-size: auto
   height: calc(100vh)
   margin-bottom: -38px
   margin-top: -60px
 
-  &::before
-    background: transparent
-    background-position: 0% 0%
-    background-repeat: no-repeat
-    background-size: auto
-    content: url('../images/bg-login.png')
+  +element(img)
+    +modifier(top)
+      left: 0
+      top: 0
+    +modifier(bottom)
+      position: fixed
+      right: 0
+      bottom: 0
+
 
   .container
     background-color: transparent
