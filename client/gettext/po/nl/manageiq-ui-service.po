@@ -1,11 +1,12 @@
 # Fred van Zwieten <fvanzwie@redhat.com>, 2017. #zanata
+# Milan Zázrivec <mzazrivec@redhat.com>, 2017. #zanata
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2017-04-26 05:49-0400\n"
+"PO-Revision-Date: 2017-05-23 05:40-0400\n"
 "Last-Translator: Fred van Zwieten <fvanzwie@redhat.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -27,7 +28,7 @@ msgstr "%s"
 
 #: app/services/vm-details/vm-details.component.js:84
 msgid "%s is a retired resource"
-msgstr ""
+msgstr "%s is een vervallen hulpbron"
 
 #: app/requests/order-explorer/order-explorer.component.js:361
 msgid "%s was duplicated, id # %d."
@@ -39,19 +40,19 @@ msgstr "%s is aangepast"
 
 #: app/services/poweroperations.service.js:172
 msgid "%s was retired."
-msgstr ""
+msgstr "%s is vervallen"
 
 #: app/services/poweroperations.service.js:163
 msgid "%s was started."
-msgstr ""
+msgstr "%s is gestart"
 
 #: app/services/poweroperations.service.js:166
 msgid "%s was stopped."
-msgstr ""
+msgstr "%s is gestopt"
 
 #: app/services/poweroperations.service.js:169
 msgid "%s was suspended."
-msgstr ""
+msgstr "%s is gepauzeerd"
 
 #: app/layouts/application.html:81
 msgid "(Current Group)"
@@ -146,7 +147,7 @@ msgstr "Weet u zeker dat uw alle [[heading]] wilt verwijderen?"
 
 #: app/services/service-details/service-details.html:293
 msgid "Are you sure you would like to retire this resource?"
-msgstr ""
+msgstr "Weet u zeker dat u deze hulpbron wilt laten vervallen?"
 
 #: app/services/vm-details/vm-details.component.js:27
 #: app/templates/template-explorer.html:67
@@ -155,7 +156,7 @@ msgstr "Beschikbaar"
 
 #: app/reports/reports-details.html:57
 msgid "Based On"
-msgstr ""
+msgstr "Gebaseerd op"
 
 #: app/reports/reports-details.html:28
 #: app/templates/template-editor.html:55
@@ -180,7 +181,7 @@ msgstr "Annuleren"
 
 #: app/catalogs/catalog-explorer.component.js:63
 msgid "Catalog Name"
-msgstr ""
+msgstr "Catalogus Naam"
 
 #: app/catalogs/catalog-explorer.component.js:18
 #: app/states/catalogs/explorer/explorer.state.js:15
@@ -255,7 +256,7 @@ msgstr "Verwijder deze Dienst. Zeker weten?"
 
 #: app/services/services-state.service.js:151
 msgid "Confirm, would you like to retire this service?"
-msgstr "Dienst terugtrekken. Zeker weten?"
+msgstr "Dienst vervallen. Zeker weten?"
 
 #: app/core/save-modal-dialog/save-modal-dialog.html:15
 msgid "Continue"
@@ -315,7 +316,7 @@ msgstr "Gemaakt:"
 
 #: app/services/process-snapshots-modal/process-snapshots-modal.component.js:39
 msgid "Creating snapshot."
-msgstr ""
+msgstr "Momentopname wordt gemaakt."
 
 #: app/services/service-details/service-details-ansible.html:88
 msgid "Credentials"
@@ -386,11 +387,11 @@ msgstr "Verwijder sjabloon"
 
 #: app/requests/process-order-modal/process-order-modal.component.js:37
 msgid "Deleting order."
-msgstr ""
+msgstr "Bestelling wordt verwijderd."
 
 #: app/services/vms/snapshots.component.js:145
 msgid "Deleting snapshot."
-msgstr ""
+msgstr "Momentopname wordt verwijderd."
 
 #: app/requests/order-explorer/order-explorer.component.js:70
 #: app/requests/order-explorer/order-explorer.component.js:72
@@ -415,7 +416,7 @@ msgstr "Omschrijving"
 
 #: app/services/service-details/service-details-ansible.html:51
 msgid "Details"
-msgstr ""
+msgstr "Details"
 
 #: app/core/save-modal-dialog/save-modal-dialog.html:7
 msgid "Discard Changes"
@@ -436,7 +437,7 @@ msgstr "Download"
 
 #: app/reports/reports-details.html:154
 msgid "Download CSV"
-msgstr ""
+msgstr "Download CSV"
 
 #: app/templates/template-editor.html:88
 #: app/templates/template-explorer.component.js:152
@@ -459,7 +460,7 @@ msgstr "Dupliceer Winkelwagen Item"
 
 #: app/reports/reports-details.html:73
 msgid "EVM Group"
-msgstr ""
+msgstr "EVM Groep"
 
 #: app/services/service-explorer/service-explorer.component.js:217
 #: app/services/services-state.service.js:220
@@ -503,15 +504,15 @@ msgstr "Fout"
 
 #: app/services/process-snapshots-modal/process-snapshots-modal.component.js:39
 msgid "Error creating snapshot."
-msgstr ""
+msgstr "Fout bij maken momentopname."
 
 #: app/requests/process-order-modal/process-order-modal.component.js:37
 msgid "Error deleting order."
-msgstr ""
+msgstr "Fout bij verwijderen bestelling."
 
 #: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
 msgid "Error deleting service."
-msgstr ""
+msgstr "Fout bij verwijderen dienst."
 
 #: app/services/vms/snapshots.component.js:145
 msgid "Error deleting snapshot."
@@ -523,15 +524,15 @@ msgstr "Fout bij ophalen gebruikers info"
 
 #: app/services/vms/snapshots.component.js:216
 msgid "Error reverting snapshot."
-msgstr ""
+msgstr "Fout bij terugzetten momentopname."
 
 #: app/services/ownership-service-modal/ownership-service-modal.component.js:67
 msgid "Error setting ownership."
-msgstr ""
+msgstr "Fout bij instellen eigenaarschap."
 
 #: app/catalogs/catalog-explorer.component.js:63
 msgid "Filter by Catalog Name"
-msgstr ""
+msgstr "Filteren op Catalogus Naam"
 
 #: app/catalogs/catalog-explorer.component.js:62
 #: app/services/service-explorer/service-explorer.component.js:330
@@ -585,11 +586,11 @@ msgstr "Help"
 
 #: app/services/service-details/service-details-ansible.html:73
 msgid "Hosts"
-msgstr ""
+msgstr "Hosts"
 
 #: app/services/service-details/service-details-ansible.html:109
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: app/core/save-modal-dialog/save-modal-dialog.html:10
 msgid "If you do not save, any changes will be lost."
@@ -647,48 +648,48 @@ msgstr "Gestart door"
 #: app/services/services-state.service.js:132
 #: app/services/vm-details/vm-details.html:71
 msgid "Lifecycle"
-msgstr ""
+msgstr "Levenscyclus"
 
 #: app/services/service-details/service-details-ansible-modal.html:5
 msgid "Live Ansible Play"
-msgstr ""
+msgstr "Live Ansible Play"
 
 #: app/states/login/login.html:37
 msgid "Log In"
-msgstr ""
+msgstr "Log In"
 
 #: app/core/navigation/navigation-controller.js:125
 msgid "Log into the full administrative UI"
-msgstr ""
+msgstr "Log in de volledige administratieve UI"
 
 #: app/states/login/login.state.js:16
 msgid "Login"
-msgstr ""
+msgstr "Inloggen"
 
 #: app/layouts/application.html:103
 #: app/states/logout/logout.state.js:12
 msgid "Logout"
-msgstr ""
+msgstr "Uitloggen"
 
 #: app/states/error/error.html:3
 msgid "ManageIQ Self Service"
-msgstr ""
+msgstr "ManageIQ Zelf Service"
 
 #: app/components/notifications/notification-footer.html:6
 msgid "Mark All Read"
-msgstr ""
+msgstr "Markeer Alles Gelezen"
 
 #: app/services/process-snapshots-modal/process-snapshots-modal.html:12
 msgid "Memory"
-msgstr ""
+msgstr "Geheugen"
 
 #: app/states/dashboard/dashboard.html:67
 msgid "Monthly Charges - This Month To Date"
-msgstr ""
+msgstr "Maandelijkse Kosten - Deze maand tot nu"
 
 #: app/services/service-details/service-details.html:79
 msgid "Monthly Cost"
-msgstr ""
+msgstr "Maandelijkse kosten"
 
 #: app/core/navigation.config.js:13
 #: app/services/service-details/service-details.html:5
@@ -697,7 +698,7 @@ msgstr ""
 #: app/services/vms/snapshots.html:5
 #: app/states/services/reconfigure/reconfigure.html:3
 msgid "My Services"
-msgstr ""
+msgstr "Mijn Diensten"
 
 #: app/catalogs/catalog-explorer.component.js:61
 #: app/catalogs/catalog-explorer.component.js:79
@@ -720,229 +721,231 @@ msgstr ""
 #: app/templates/template-explorer.component.js:150
 #: app/templates/template-explorer.component.js:158
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #: app/services/process-snapshots-modal/process-snapshots-modal.html:9
 msgid "Name *"
-msgstr ""
+msgstr "Naam *"
 
 #: app/services/vm-details/vm-details.component.js:25
 msgid "Never"
-msgstr ""
+msgstr "Nooit"
 
 #: app/services/vm-details/vm-details.component.js:76
 msgid "Never Verified"
-msgstr ""
+msgstr "Nooit geverifieerd"
 
 #: app/components/notifications/heading.html:2
 #: app/components/notifications/subheading.html:1
 msgid "New"
-msgstr ""
+msgstr "Nieuw"
 
 #: app/shared/dialog-content/dialog-content.html:3
 msgid "No Provisioning Dialog Available."
-msgstr ""
+msgstr "Geen Provisionering Dialoog Beschikbaar."
 
 #: app/services/vms/snapshots.html:9
 msgid "No Service"
-msgstr ""
+msgstr "Geen Dienst"
 
 #: app/services/retire-service-modal/retire-service-modal.component.js:39
 msgid "No Warning"
-msgstr ""
+msgstr "Geen Waarschuwing"
 
 #: app/services/service-details/service-details-ansible.html:92
 msgid "No credentials available."
-msgstr ""
+msgstr "Geen rechten beschikbaar."
 
 #: app/services/service-details/service-details-ansible.html:212
 msgid "No logs available."
-msgstr ""
+msgstr "Geen logboek beschikbaar."
 
 #: app/services/service-details/service-details-ansible.html:142
 msgid "No plays available."
-msgstr ""
+msgstr "Geen plays beschikbaar."
 
 #: app/services/vm-details/vm-details.component.js:26
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 #: app/services/vm-details/vm-details.component.js:28
 msgid "Not Available"
-msgstr ""
+msgstr "Niet Beschikbaar"
 
 #: app/layouts/application.html:10
 msgid "Notifications"
-msgstr ""
+msgstr "Meldingen"
 
 #: app/shared/action-button-group/action-button-group.html:20
 #: app/shared/action-button-group/action-button-group.html:26
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: app/services/service-details/service-details.html:271
 msgid "Open Cockpit Console"
-msgstr ""
+msgstr "Open Cockpit Console"
 
 #: app/services/service-details/service-details.html:266
 msgid "Open VM Console"
-msgstr ""
+msgstr "Open VM Console"
 
 #: app/core/shopping-cart/shopping-cart.html:68
 msgid "Order"
-msgstr ""
+msgstr "Bestel"
 
 #: app/requests/order-explorer/order-explorer.html:33
 msgid "Order #"
-msgstr ""
+msgstr "Bestel #"
 
 #: app/requests/order-explorer/order-explorer.component.js:136
 #: app/requests/order-explorer/order-explorer.component.js:144
 #: app/requests/orders-state.service.js:12
 msgid "Order Date"
-msgstr ""
+msgstr "Bestel Datum"
 
 #: app/states/orders/details/details.state.js:15
 msgid "Order Details"
-msgstr ""
+msgstr "Bestel Details"
 
 #: app/requests/order-explorer/order-explorer.component.js:135
 #: app/requests/order-explorer/order-explorer.component.js:143
 msgid "Order ID"
-msgstr ""
+msgstr "Bestel ID"
 
 #: app/requests/order-explorer/order-explorer.html:47
 msgid "Ordered"
-msgstr ""
+msgstr "Besteld"
 
 #: app/core/navigation.config.js:22
 #: app/requests/order-explorer/order-explorer.html:4
 #: app/states/orders/details/details.html:5
 #: app/states/orders/explorer/explorer.state.js:11
 msgid "Orders"
-msgstr ""
+msgstr "Bestellingen"
 
 #: app/services/service-details/service-details.html:73
 msgid "Owner"
-msgstr ""
+msgstr "Eigenaar"
 
 #: app/services/service-details/service-details.html:341
 msgid "Parent Catalog Item"
-msgstr ""
+msgstr "Bron Catalogus Onderdeel"
 
 #: app/services/service-details/service-details.html:332
 msgid "Parent Service"
-msgstr ""
+msgstr "Bron Dienst"
 
 #: app/states/login/login.html:23
 msgid "Password"
-msgstr ""
+msgstr "Wachtwoord"
 
 #: app/services/service-details/service-details-ansible.html:203
 msgid "Play In Progress"
-msgstr ""
+msgstr "Play in Uitvoering"
 
 #: app/services/service-details/service-details-ansible.html:53
 msgid "Playbook"
-msgstr ""
+msgstr "Playbook"
 
 #: app/services/service-explorer/service-explorer.html:73
 msgid "Playbook: [[playbook]]"
-msgstr ""
+msgstr "Playbook: [[playbook]]"
 
 #: app/services/service-details/service-details-ansible.html:138
 msgid "Plays"
-msgstr ""
+msgstr "Plays"
 
 #: app/services/vms/snapshots.component.js:207
 msgid "Please confirm, this action will delete all snapshots of vm %s"
 msgstr ""
+"Bevestig alstublieft: deze actie zal alle momentopnamen van vm %s "
+"verwijderen"
 
 #: app/services/vms/snapshots.component.js:203
 msgid "Please confirm, this action will delete snapshot %s"
-msgstr ""
+msgstr "Bevestig alstublieft: deze actie zal momentopname %s verwijderen"
 
 #: app/services/services-state.service.js:183
 #: app/services/services-state.service.js:186
 msgid "Policy"
-msgstr ""
+msgstr "Beleid"
 
 #: app/services/vm-details/vm-details.component.js:99
 msgid "Power"
-msgstr ""
+msgstr "Voeding"
 
 #: app/services/vm-details/vm-details.html:147
 msgid "Power Management"
-msgstr ""
+msgstr "Voedings Beheer"
 
 #: app/services/service-details/service-details.component.js:109
 #: app/services/service-details/service-details.component.js:114
 #: app/services/vm-details/vm-details.component.js:98
 msgid "Power Operations"
-msgstr ""
+msgstr "Voedings Operaties"
 
 #: app/services/service-details/service-details.html:162
 #: app/services/service-explorer/service-explorer.component.js:426
 msgid "Power State: Off"
-msgstr ""
+msgstr "Voedings Status: Uit"
 
 #: app/services/service-details/service-details.html:167
 #: app/services/service-explorer/service-explorer.component.js:425
 msgid "Power State: On"
-msgstr ""
+msgstr "Voedings Status: Aan"
 
 #: app/services/service-details/service-details.html:173
 #: app/services/service-explorer/service-explorer.component.js:427
 msgid "Power State: Unknown"
-msgstr ""
+msgstr "Voedings Status: Onbekend"
 
 #: app/reports/reports-details.html:41
 msgid "Primary record filter"
-msgstr ""
+msgstr "Primaire record filter"
 
 #: app/core/navigation/navigation-controller.js:109
 msgid "Product logo"
-msgstr ""
+msgstr "Product logo"
 
 #: app/services/service-details/service-details.html:36
 #: app/services/vm-details/vm-details.html:34
 msgid "Properties"
-msgstr ""
+msgstr "Eigenschappen"
 
 #: app/reports/reports-details.component.js:119
 #: app/reports/reports-details.component.js:121
 msgid "Queue Report"
-msgstr ""
+msgstr "plaats rapport in wachtrij"
 
 #: app/reports/reports-details.html:131
 msgid "Queued at"
-msgstr ""
+msgstr "In wachtrij op"
 
 #: app/services/service-details/service-details.component.js:164
 #: app/states/services/reconfigure/reconfigure.html:8
 msgid "Reconfigure"
-msgstr ""
+msgstr "Herconfigureren"
 
 #: app/services/service-details/service-details.component.js:166
 msgid "Reconfigure the Service"
-msgstr ""
+msgstr "Herconfigureer de Dienst"
 
 #: app/states/services/reconfigure/reconfigure.state.js:124
 msgid "Reconfigure this service has been cancelled"
-msgstr ""
+msgstr "Herconfigureren deze dienst is geannuleerd"
 
 #: app/shared/dialog-content/dialog-content.html:136
 msgid "Refresh"
-msgstr ""
+msgstr "Ververs"
 
 #: app/services/service-details/service-details.html:326
 #: app/services/vm-details/vm-details.html:86
 msgid "Relationships"
-msgstr ""
+msgstr "Relaties"
 
 #: app/services/service-explorer/service-explorer.html:106
 msgid "Relative current cost"
-msgstr ""
+msgstr "Relatieve huidige kosten"
 
 #: app/core/shopping-cart/shopping-cart.html:16
 #: app/core/shopping-cart/shopping-cart.html:21
@@ -951,89 +954,89 @@ msgstr ""
 #: app/services/services-state.service.js:229
 #: app/services/services-state.service.js:231
 msgid "Remove"
-msgstr ""
+msgstr "Verwijder"
 
 #: app/core/shopping-cart/shopping-cart.html:19
 msgid "Remove Item"
-msgstr ""
+msgstr "Verwijder Onderdeel"
 
 #: app/requests/order-explorer/order-explorer.component.js:165
 #: app/requests/process-order-modal/process-order-modal.html:5
 msgid "Remove Order"
-msgstr ""
+msgstr "Verwijder Bestelling"
 
 #: app/services/service-explorer/service-explorer.component.js:259
 #: app/services/services-state.service.js:236
 msgid "Remove Service"
-msgstr ""
+msgstr "Verwijder Dienst"
 
 #: app/services/retire-remove-service-modal/retire-remove-service-modal.html:5
 msgid "Remove Services"
-msgstr ""
+msgstr "Verwijder Diensten"
 
 #: app/services/service-details/service-details-ansible.html:60
 msgid "Repo Name"
-msgstr ""
+msgstr "Repo Naam"
 
 #: app/states/reports/view/report.state.js:17
 msgid "Report"
-msgstr ""
+msgstr "Rapport"
 
 #: app/reports/reports-explorer.html:42
 msgid "Report Filters"
-msgstr ""
+msgstr "Rapport Filters"
 
 #: app/reports/reports-details.html:127
 msgid "Report Queued"
-msgstr ""
+msgstr "Rapport in wachtrij geplaatst"
 
 #: app/reports/reports-details.component.js:59
 msgid "Report has been queued"
-msgstr ""
+msgstr "Rapport is in de wachtrij geplaatst"
 
 #: app/reports/reports-details.html:119
 msgid "Report is queued"
-msgstr ""
+msgstr "Rapport in wachtrij geplaatst"
 
 #: app/reports/reports-details.html:113
 msgid "Report run successfully"
-msgstr ""
+msgstr "Rapport succesvol gemaakt"
 
 #: app/reports/reports-details.html:4
 #: app/reports/reports-explorer.html:4
 #: app/states/reports/explorer/explorer.state.js:11
 #: app/states/reports/view/report.html:4
 msgid "Reports"
-msgstr ""
+msgstr "Rapporten"
 
 #: app/states/reports/details/details.state.js:13
 msgid "Reports Details"
-msgstr ""
+msgstr "Rapport details"
 
 #: app/requests/order-explorer/order-explorer.html:81
 msgid "Request ID"
-msgstr ""
+msgstr "Aanvraag ID"
 
 #: app/requests/order-explorer/order-explorer.html:96
 msgid "Request State"
-msgstr ""
+msgstr "Aanvraag Status"
 
 #: app/requests/order-explorer/order-explorer.html:39
 msgid "Requester"
-msgstr ""
+msgstr "Aanvrager"
 
 #: app/shared/action-button-group/action-button-group.html:38
 #: app/shared/action-button-group/action-button-group.html:6
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #: app/services/service-details/service-details.html:132
 msgid "Resources"
-msgstr ""
+msgstr "Hulpbronnen"
 
 #: app/services/service-details/service-details-ansible.html:11
 msgid "Results"
-msgstr ""
+msgstr "Resultaten"
 
 #: app/services/service-details/service-details.html:294
 #: app/services/service-details/service-details.html:301
@@ -1042,233 +1045,233 @@ msgstr ""
 #: app/services/services-state.service.js:146
 #: app/services/vm-details/vm-details.component.js:132
 msgid "Retire"
-msgstr ""
+msgstr "Verval"
 
 #: app/services/service-details/service-details.html:292
 msgid "Retire Resource"
-msgstr ""
+msgstr "Verval hulpbron"
 
 #: app/services/service-explorer/service-explorer.component.js:243
 msgid "Retire Service"
-msgstr ""
+msgstr "Verval Dienst"
 
 #: app/services/services-state.service.js:152
 msgid "Retire Service Now"
-msgstr ""
+msgstr "Verval Dienst Nu"
 
 #: app/services/retire-remove-service-modal/retire-remove-service-modal.html:6
 msgid "Retire Services"
-msgstr ""
+msgstr "Verval Diensten"
 
 #: app/services/vm-details/vm-details.component.js:134
 msgid "Retire the Service"
-msgstr ""
+msgstr "Verval de dienst"
 
 #: app/services/vm-details/vm-details.html:37
 #: app/states/dashboard/dashboard.state.js:105
 #: app/states/dashboard/dashboard.state.js:113
 msgid "Retired"
-msgstr ""
+msgstr "Vervallen"
 
 #: app/states/dashboard/dashboard.html:52
 msgid "Retired Services"
-msgstr ""
+msgstr "Vervallen Diensten"
 
 #: app/services/service-details/service-details.html:156
 msgid "Retired resource"
-msgstr ""
+msgstr "Vervallen hulpbron"
 
 #: app/services/retire-service-modal/retire-service-modal.html:13
 #: app/services/service-explorer/service-explorer.component.js:343
 #: app/states/dashboard/dashboard.state.js:101
 msgid "Retirement Date"
-msgstr ""
+msgstr "Vervaldatum"
 
 #: app/services/service-details/service-details.html:95
 msgid "Retirement State"
-msgstr ""
+msgstr "Vervalstatus"
 
 #: app/services/retire-service-modal/retire-service-modal.html:9
 msgid "Retirement Warning"
-msgstr ""
+msgstr "Verval Waarschuwing"
 
 #: app/services/service-explorer/service-explorer.html:173
 #: app/services/service-explorer/service-explorer.html:97
 msgid "Retires"
-msgstr ""
+msgstr "Vervalt"
 
 #: app/services/service-details/service-details.html:102
 msgid "Retires On"
-msgstr ""
+msgstr "Vervalt Op"
 
 #: app/states/dashboard/dashboard.html:22
 msgid "Retiring Soon"
-msgstr ""
+msgstr "Vervalt Binnenkort"
 
 #: app/services/vms/snapshots.component.js:65
 msgid "Revert"
-msgstr ""
+msgstr "Terugzetten"
 
 #: app/services/vms/snapshots.component.js:67
 msgid "Revert Snapshot"
-msgstr ""
+msgstr "Terugzetten Momentopname"
 
 #: app/services/vms/snapshots.component.js:216
 msgid "Reverting snapshot."
-msgstr ""
+msgstr "Momentopname is terug gezet."
 
 #: app/reports/reports-details.html:124
 msgid "Run at"
-msgstr ""
+msgstr "Draaien om"
 
 #: app/core/save-modal-dialog/save-modal-dialog.html:16
 #: app/shared/action-button-group/action-button-group.html:13
 msgid "Save"
-msgstr ""
+msgstr "Bewaar"
 
 #: app/core/save-modal-dialog/save-modal-dialog.html:6
 msgid "Save Changes"
-msgstr ""
+msgstr "Bewaar Wijzigingen"
 
 #: app/services/retire-service-modal/retire-service-modal.html:5
 msgid "Schedule Service Retirement"
-msgstr ""
+msgstr "Inplannen Vervalmoment Dienst"
 
 #: app/services/retire-service-modal/retire-service-modal.component.js:77
 msgid "Scheduling retirement."
-msgstr ""
+msgstr "Inplannen vervalmoment"
 
 #: app/services/vm-details/vm-details.html:158
 msgid "Security"
-msgstr ""
+msgstr "Beveiliging"
 
 #: app/services/ownership-service-modal/ownership-service-modal.html:20
 msgid "Select a Group"
-msgstr ""
+msgstr "Selecteer een Groep"
 
 #: app/shared/tagging/tagging.component.js:20
 msgid "Select a value to assign"
-msgstr ""
+msgstr "Selecteer een waarde voor toekenning"
 
 #: app/services/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
-msgstr ""
+msgstr "Selecteer een Eigenaar"
 
 #: app/core/navigation/navigation-controller.js:114
 msgid "Server Name:"
-msgstr ""
+msgstr "Server Naam:"
 
 #: app/states/services/custom_button_details/custom_button_details.html:7
 msgid "Service"
-msgstr ""
+msgstr "Dienst"
 
 #: app/catalogs/catalog-explorer.html:4
 #: app/core/navigation.config.js:31
 msgid "Service Catalog"
-msgstr ""
+msgstr "Diensten Catalogus"
 
 #: app/states/catalogs/details/details.html:5
 #: app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Service Catalogs"
-msgstr ""
+msgstr "Diensten Catalogi"
 
 #: app/states/services/custom_button_details/custom_button_details.state.js:16
 msgid "Service Custom Button Details"
-msgstr ""
+msgstr "Dienst Aangepaste Knop Details"
 
 #: app/services/service-details/service-details.component.js:28
 #: app/states/services/details/details.state.js:12
 #: app/states/services/reconfigure/reconfigure.state.js:17
 #: app/states/services/reconfigure/reconfigure.state.js:39
 msgid "Service Details"
-msgstr ""
+msgstr "Dienst Details"
 
 #: app/services/service-details/service-details.html:66
 msgid "Service Id"
-msgstr ""
+msgstr "Dienst ID"
 
 #: app/states/catalogs/details/details.state.js:15
 msgid "Service Template Details"
-msgstr ""
+msgstr "Dienst Sjabloon Details"
 
 #: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
 msgid "Service deleting."
-msgstr ""
+msgstr "Dienst wordt verwijderd."
 
 #: app/services/service-explorer/service-explorer.component.js:32
 msgid "Services"
-msgstr ""
+msgstr "Diensten"
 
 #: app/states/services/explorer/explorer.state.js:12
 msgid "Services Explorer"
-msgstr ""
+msgstr "Diensten Verkenner"
 
 #: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:41
 msgid "Services Retired"
-msgstr ""
+msgstr "Diensten Verwijderd"
 
 #: app/services/service-explorer/service-explorer.component.js:233
 #: app/services/service-explorer/service-explorer.component.js:235
 #: app/services/services-state.service.js:245
 #: app/services/services-state.service.js:247
 msgid "Set Ownership"
-msgstr ""
+msgstr "Instellen Eigenaar"
 
 #: app/services/service-explorer/service-explorer.component.js:249
 #: app/services/services-state.service.js:139
 msgid "Set Retirement"
-msgstr ""
+msgstr "Instellen Vervaldatum"
 
 #: app/services/service-explorer/service-explorer.component.js:251
 #: app/services/services-state.service.js:137
 msgid "Set Retirement Dates"
-msgstr ""
+msgstr "Stel Verval Data in"
 
 #: app/services/ownership-service-modal/ownership-service-modal.html:5
 msgid "Set Service Ownership"
-msgstr ""
+msgstr "Stel Dienst Eigenaar in"
 
 #: app/services/ownership-service-modal/ownership-service-modal.component.js:67
 msgid "Setting ownership."
-msgstr ""
+msgstr "Eigenaarschap wordt ingesteld."
 
 #: app/core/shopping-cart/shopping-cart.html:5
 msgid "Shopping Cart"
-msgstr ""
+msgstr "Winkelwagen"
 
 #: app/layouts/application.html:24
 msgid "Shopping cart"
-msgstr ""
+msgstr "Winkelwagen"
 
 #: app/core/shopping-cart/shopping-cart.html:37
 msgid "Shopping cart is empty."
-msgstr ""
+msgstr "Winkelwagen is leeg"
 
 #: app/core/shopping-cart/shopping-cart.component.js:32
 msgid "Shopping cart successfully ordered"
-msgstr ""
+msgstr "Winkelwagen succesvol besteld"
 
 #: app/services/vm-details/vm-details.html:132
 msgid "Show parent and child VMs"
-msgstr ""
+msgstr "Toon bron en afgeleide VMs"
 
 #: app/services/vms/snapshots.component.js:22
 #: app/services/vms/snapshots.html:14
 #: app/services/vms/snapshots.html:37
 msgid "Snapshots"
-msgstr ""
+msgstr "Momentopname"
 
 #: app/reports/reports-details.html:49
 msgid "Sort By"
-msgstr ""
+msgstr "Sorteer Op"
 
 #: app/reports/reports-details.html:135
 msgid "Source"
-msgstr ""
+msgstr "Bron"
 
 #: app/services/service-details/service-details-ansible.html:196
 msgid "Standard Out"
-msgstr ""
+msgstr "Standaard Uitvoer"
 
 #: app/services/service-details/service-details.component.js:119
 #: app/services/service-details/service-details.html:281
@@ -1276,31 +1279,31 @@ msgstr ""
 #: app/services/service-explorer/service-explorer.html:188
 #: app/services/vm-details/vm-details.component.js:108
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: app/services/service-details/service-details.component.js:121
 #: app/services/vm-details/vm-details.component.js:110
 msgid "Start the Service"
-msgstr ""
+msgstr "Start de Dienst"
 
 #: app/services/service-explorer/service-explorer.component.js:272
 #: app/services/service-explorer/service-explorer.html:188
 msgid "Start this service"
-msgstr ""
+msgstr "Start deze Dienst"
 
 #: app/services/service-details/service-details-ansible.html:167
 #: app/services/service-details/service-details-ansible.html:20
 msgid "Started"
-msgstr ""
+msgstr "Gestart"
 
 #: app/components/notifications/notification-body.html:41
 msgid "Started:"
-msgstr ""
+msgstr "Gestart:"
 
 #: app/services/service-details/service-details-ansible.html:13
 #: app/services/service-details/service-details-ansible.html:159
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: app/services/service-details/service-details.component.js:126
 #: app/services/service-details/service-details.html:284
@@ -1308,22 +1311,22 @@ msgstr ""
 #: app/services/service-explorer/service-explorer.html:191
 #: app/services/vm-details/vm-details.component.js:116
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 #: app/services/service-details/service-details.component.js:128
 #: app/services/vm-details/vm-details.component.js:118
 msgid "Stop the Service"
-msgstr ""
+msgstr "Stop de Dienst"
 
 #: app/services/service-explorer/service-explorer.component.js:280
 #: app/services/service-explorer/service-explorer.html:191
 msgid "Stop this service"
-msgstr ""
+msgstr "Stop deze Dienst"
 
 #: app/states/services/custom_button_details/custom_button_details.html:19
 #: app/states/services/reconfigure/reconfigure.html:23
 msgid "Submit Request"
-msgstr ""
+msgstr "Verzend Aanvraag"
 
 #: app/services/service-details/service-details.component.js:133
 #: app/services/service-details/service-details.html:287
@@ -1331,45 +1334,45 @@ msgstr ""
 #: app/services/service-explorer/service-explorer.html:194
 #: app/services/vm-details/vm-details.component.js:124
 msgid "Suspend"
-msgstr ""
+msgstr "Pauzeer"
 
 #: app/services/service-details/service-details.component.js:135
 #: app/services/vm-details/vm-details.component.js:126
 msgid "Suspend the Service"
-msgstr ""
+msgstr "Pauzeer de Dienst"
 
 #: app/services/service-explorer/service-explorer.component.js:288
 msgid "Suspend this service"
-msgstr ""
+msgstr "Pauzeer deze Dienst"
 
 #: app/core/language-switcher/language-switcher.html:2
 msgid "Switch Language:"
-msgstr ""
+msgstr "Wijzig Taal:"
 
 #: app/core/tag-editor-modal/tag-editor-modal.service.js:57
 msgid "Tagging successful."
-msgstr ""
+msgstr "Etikettering gelukt."
 
 #: app/core/tag-editor-modal/tag-editor-modal.html:13
 #: app/services/service-details/service-details.html:114
 msgid "Tags"
-msgstr ""
+msgstr "Etiketten"
 
 #: app/templates/template-editor.component.js:48
 msgid "Template"
-msgstr ""
+msgstr "Sjabloon"
 
 #: app/templates/template-editor.html:79
 msgid "Template Type"
-msgstr ""
+msgstr "Sjabloon Type"
 
 #: app/templates/template-editor.component.js:187
 msgid "Template deleted successfully."
-msgstr ""
+msgstr "Sjabloon succesvol verwijderd."
 
 #: app/templates/template-editor.component.js:98
 msgid "Templated updated"
-msgstr ""
+msgstr "Sjabloon gewijzigd"
 
 #: app/states/templates/explorer/explorer.state.js:11
 #: app/templates/template-editor.html:35
@@ -1377,216 +1380,222 @@ msgstr ""
 #: app/templates/template-explorer.html:32
 #: app/templates/template-explorer.html:4
 msgid "Templates"
-msgstr ""
+msgstr "Sjablonen"
 
 #: app/templates/template-explorer.component.js:343
 msgid "Templates deleted successfully."
-msgstr ""
+msgstr "Sjablonen succesvol verwijderd."
 
 #: app/catalogs/catalog-explorer.component.js:80
 msgid "Tenant"
-msgstr ""
+msgstr "Organisatie"
 
 #: app/states/dashboard/dashboard.html:42
 msgid "The number of active services"
-msgstr ""
+msgstr "Het aantal actieve diensten"
 
 #: app/states/dashboard/dashboard.html:27
 msgid "The number of services retiring within the next 30 days"
-msgstr ""
+msgstr "Het aantal diensten welke binnen de volgende 30 dagen zijn vervallen"
 
 #: app/states/dashboard/dashboard.html:57
 msgid ""
 "The number of services which have hit their retirement period or been "
 "retired"
 msgstr ""
+"Het aantal diensten dat hun vervaldatum heeft bereikt of zijn vervallen"
 
 #: app/states/404/404.html:6
 msgid ""
 "The page you are looking for might have been removed, had its name changed, "
 "or is temporarily unavailable."
 msgstr ""
+"De pagina die u zoekt kan zijn verwijderd, een andere naam gekregen, of "
+"tijdelijk niet beschikbaar zijn."
 
 #: app/states/404/404.html:5
 msgid "The page you requested cannot be found."
-msgstr ""
+msgstr "De aangevraagde pagina kan niet gevonden worden."
 
 #: app/core/navigation.config.js:35
 msgid "The total number of available catalogs"
-msgstr ""
+msgstr "Het totaal aantal beschikbare catalogi"
 
 #: app/states/catalogs/details/details.html:38
 msgid ""
 "There already is an identical item in the cart. Do you want to add it "
 "anyway?"
 msgstr ""
+"Er is al een identiek onderdeel in de winkelwagen. Wilt u het toch "
+"toevoegen?"
 
 #: app/services/service-details/service-details.component.js:306
 msgid "There are no Compute Resources for this service."
-msgstr ""
+msgstr "Er zijn geen rekeneenheden voor deze dienst."
 
 #: app/shared/tagging/tagging.html:15
 msgid "There are no tags for this item."
-msgstr ""
+msgstr "Er zijn geen etiketten voor dit onderdeel."
 
 #: app/states/error/error.html:10
 msgid "There was a problem loading the page."
-msgstr ""
+msgstr "Er was een probleem bij het laden van deze pagina."
 
 #: app/states/catalogs/details/details.state.js:135
 msgid "There was an error adding to shopping cart:"
-msgstr ""
+msgstr "Er is een fout opgetreden bij het toevoegen aan de winkelwagen:"
 
 #: app/services/process-snapshots-modal/process-snapshots-modal.component.js:43
 msgid "There was an error creating the snapshot."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het maken van de momentopname."
 
 #: app/templates/template-editor.component.js:105
 msgid "There was an error creating the template"
-msgstr ""
+msgstr "Er is een fout opgetreden bij het het maken van de sjabloon"
 
 #: app/templates/template-explorer.component.js:348
 msgid "There was an error deleting templates."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het verwijderen van sjablonen."
 
 #: app/templates/template-editor.component.js:191
 msgid "There was an error deleting the template."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het verwijderen van een sjabloon."
 
 #: app/requests/order-explorer/order-explorer.component.js:365
 msgid "There was an error duplicating %s."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het dupliceren van %s."
 
 #: app/services/edit-service-modal/edit-service-modal.component.js:32
 msgid "There was an error editing this service."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het  aanpasse nvan deze dienst."
 
 #: app/services/service-details/service-details.component.js:89
 msgid "There was an error fetching this service."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het ophalen van deze dienst."
 
 #: app/catalogs/catalog-explorer.component.js:131
 msgid "There was an error loading catalogs."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het laden van de catalogi."
 
 #: app/requests/order-explorer/order-explorer.component.js:303
 #: app/requests/order-explorer/order-explorer.component.js:317
 msgid "There was an error loading orders."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het laden van de aanvragen."
 
 #: app/reports/reports-explorer.component.js:89
 msgid "There was an error loading reports."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het laden van de rapporten."
 
 #: app/services/vms/snapshots.component.js:173
 msgid "There was an error loading snapshots."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het laden van de momentopnamen."
 
 #: app/templates/template-explorer.component.js:277
 msgid "There was an error loading templates."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het laden van de sjablonen."
 
 #: app/services/service-explorer/service-explorer.component.js:363
 #: app/services/service-explorer/service-explorer.component.js:435
 msgid "There was an error loading the services."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het laden van de diensten."
 
 #: app/services/vm-details/vm-details.component.js:91
 msgid "There was an error loading the vm details."
-msgstr ""
+msgstr "Er s een fout opgetreden bij het laden van de vm details."
 
 #: app/services/vms/snapshots.component.js:185
 msgid "There was an error loading the vm."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het laden van de vm."
 
 #: app/services/consoles.service.js:51
 msgid "There was an error opening the console."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het openen van de console"
 
 #: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:51
 msgid "There was an error removing one or more services."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het verwijderen van 1 of meer diensten."
 
 #: app/requests/process-order-modal/process-order-modal.component.js:42
 msgid "There was an error removing order"
-msgstr ""
+msgstr "Er is een fout opgetreden bij het verwijderen van de bestelling."
 
 #: app/services/service-details/service-details.component.js:238
 msgid "There was an error removing this service."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het verwijderen van deze dienst."
 
 #: app/services/poweroperations.service.js:189
 msgid "There was an error retiring this %s."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het verwijderen van deze %s."
 
 #: app/services/retire-service-modal/retire-service-modal.component.js:82
 #: app/services/service-details/service-details.component.js:297
 msgid "There was an error retiring this service."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het laten vervallen van deze dienst."
 
 #: app/services/ownership-service-modal/ownership-service-modal.component.js:72
 msgid "There was an error saving ownership."
 msgstr ""
+"Er is een fout opgetreden tijdens het opslaan van het eigenaarsschap. "
 
 #: app/services/poweroperations.service.js:180
 msgid "There was an error starting this %s."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het starten van deze %s."
 
 #: app/services/poweroperations.service.js:183
 msgid "There was an error stopping this %s."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het stoppen van deze %s."
 
 #: app/core/shopping-cart/shopping-cart.component.js:37
 #: app/states/services/custom_button_details/custom_button_details.state.js:91
 #: app/states/services/reconfigure/reconfigure.state.js:119
 msgid "There was an error submitting this request:"
-msgstr ""
+msgstr "Er is een fout opgetreden bij het verzenden van deze aanvraag."
 
 #: app/services/poweroperations.service.js:186
 msgid "There was an error suspending this %s."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het pauzeren van deze %s."
 
 #: app/core/tag-editor-modal/tag-editor-modal.service.js:62
 msgid "There was an error tagging this service."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het etiketteren van deze dienst."
 
 #: app/templates/template-editor.component.js:102
 msgid "There was an error updating the template"
-msgstr ""
+msgstr "Er is een fout opgetreden bij het wijzigen van de sjabloon."
 
 #: app/reports/reports-details.html:33
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: app/states/dashboard/dashboard.html:9
 msgid "Total Services"
-msgstr ""
+msgstr "Totaal Diensten"
 
 #: app/services/service-details/service-details.html:195
 msgid "Total Snapshots"
-msgstr ""
+msgstr "Totaal Momentopnamen"
 
 #: app/core/navigation.config.js:26
 msgid "Total orders submitted"
-msgstr ""
+msgstr "Totaal aanvragen verzonden"
 
 #: app/core/navigation.config.js:17
 msgid "Total services ordered, both active and retired"
-msgstr ""
+msgstr "Totaal diensten aangevraagd, zowel actief als vervallen"
 
 #: app/services/service-details/service-details-ansible.html:121
 #: app/templates/template-explorer.component.js:151
 #: app/templates/template-explorer.component.js:159
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: app/services/vm-details/vm-details.component.js:78
 msgid "Unknown"
-msgstr ""
+msgstr "Onbekend"
 
 #: app/services/consoles.service.js:66
 msgid "Unsupported console protocol returned."
-msgstr ""
+msgstr "Niet ondersteunt console protocol geretourneerd"
 
 #: app/reports/reports-explorer.component.js:55
 #: app/reports/reports-explorer.html:50
@@ -1594,154 +1603,162 @@ msgstr ""
 #: app/services/vms/snapshots.component.js:105
 #: app/templates/template-explorer.html:75
 msgid "Updated"
-msgstr ""
+msgstr "Gewijzigd"
 
 #: app/reports/reports-details.html:89
 msgid "Updated On"
-msgstr ""
+msgstr "Aangepast Op"
 
 #: app/services/vms/snapshots.html:94
 msgid "Updated:"
-msgstr ""
+msgstr "Gewijzigd:"
 
 #: app/reports/reports-details.html:65
 msgid "User"
-msgstr ""
+msgstr "Gebruiker"
 
 #: app/core/language-switcher/language-switcher.directive.js:24
 msgid "User Default"
-msgstr ""
+msgstr "Gebruiker Standaard"
 
 #: app/core/navigation/navigation-controller.js:115
 msgid "User Name:"
-msgstr ""
+msgstr "Gebruikersnaam:"
 
 #: app/core/navigation/navigation-controller.js:116
 msgid "User Role:"
-msgstr ""
+msgstr "Gebruikersrol:"
 
 #: app/states/login/login.state.js:41
 msgid "User does not have privileges to login."
-msgstr ""
+msgstr "Gebruiker heeft geen bevoegdheden om in te loggen."
 
 #: app/states/login/login.html:15
 msgid "Username"
-msgstr ""
+msgstr "Gebruikersnaam"
 
 #: app/states/vms/details/details.state.js:11
 msgid "VM Details"
-msgstr ""
+msgstr "VM Details"
 
 #: app/states/vms/snapshots/snapshots.state.js:13
 msgid "VM Snapshots"
-msgstr ""
+msgstr "VM Momentopname"
 
 #: app/services/service-details/service-details-ansible.html:67
 msgid "Verbosity"
-msgstr ""
+msgstr "Detailniveau"
 
 #: app/core/navigation/navigation-controller.js:113
 msgid "Version:"
-msgstr ""
+msgstr "Versie:"
 
 #: app/services/service-details/service-details.html:305
 msgid "View Details"
-msgstr ""
+msgstr "Toon Details"
 
 #: app/reports/reports-details.html:151
 msgid "View Report"
-msgstr ""
+msgstr "Toon Rapport"
 
 #: app/services/service-details/service-details.html:308
 msgid "View Snapshots"
-msgstr ""
+msgstr "Toon Momentopnamen"
 
 #: app/services/consoles.service.js:24
 msgid "Waiting for the console to become ready."
-msgstr ""
+msgstr "Wacht op beschikbaar komen van console."
 
 #: app/services/retire-remove-service-modal/retire-remove-service-modal.html:11
 msgid ""
 "Warning: The selected Services and ALL of their components will be "
 "immediately retired!"
 msgstr ""
+"Waarschuwing: De geselecteerde Diensten inclusief AL hun componenten "
+"vervallen direct!"
 
 #: app/services/retire-remove-service-modal/retire-remove-service-modal.html:10
 msgid ""
 "Warning: The selected Services and ALL of their components will be "
 "permanently removed!"
 msgstr ""
+"Waarschuwing: De geselecteerde Diensten worden inclusief AL hun componenten "
+"direct verwijderd!"
 
 #: app/services/service-details/service-details-ansible.html:198
 msgid "Watch Live"
-msgstr ""
+msgstr "Bekijk Nu"
 
 #: app/states/404/404.html:7
 #: app/states/error/error.html:13
 msgid "We apologize for the inconvenience."
-msgstr ""
+msgstr "Wij veronderschuldigen ons voor het ongemak."
 
 #: app/services/services-state.service.js:238
 msgid "Yes, Remove Service"
-msgstr ""
+msgstr "Ja, Verwijder Dienst"
 
 #: app/services/services-state.service.js:154
 msgid "Yes, Retire Service Now"
-msgstr ""
+msgstr "Ja, Laat Dienst Nu vervallen"
 
 #: app/states/login/login.state.js:68
 msgid ""
 "You do not have permission to view the Service UI. Contact your "
 "administrator to update your group permissions."
 msgstr ""
+"U heeft geen persimmies om de Diensten Interface to zien. Neem contact op me "
+"tuw beheerder om uw groeps permissies aan te laten passen."
 
 #: app/core/save-modal-dialog/save-modal-dialog.html:11
 msgid ""
 "Your current edits are invalid and cannot be saved. Continuing will discard "
 "your changes."
 msgstr ""
+"Je huidige aanpassingen zijn ongeldig en kunnen niet worden opgeslagen. "
+"Doorgaan betekend dat deze wijzigingen verloren gaan."
 
 #: app/states/login/login.state.js:37
 msgid "Your session has timed out."
-msgstr ""
+msgstr "Je sessie is verlopen."
 
 #: app/services/service-explorer/service-explorer.html:62
 msgid "[[number]] VMs"
-msgstr ""
+msgstr "[[number]] VMs"
 
 #: app/requests/process-order-modal/process-order-modal.html:9
 msgid "and all of its service requests will be permanently removed!"
-msgstr ""
+msgstr "en alle bijbehorende dienst aanvragen worden permanent verwijderd!"
 
 #: app/shared/pagination/pagination.html:12
 #: app/shared/pagination/pagination.html:5
 msgid "items"
-msgstr ""
+msgstr "onderdelen"
 
 #: app/shared/pagination/pagination.html:29
 #: app/shared/pagination/pagination.html:32
 msgid "of"
-msgstr ""
+msgstr "van"
 
 #: app/services/service-explorer/service-explorer.html:194
 msgid "suspend this service"
-msgstr ""
+msgstr "pauzeer deze dienst"
 
 #: app/core/navigation/navigation-controller.js:190
 msgid "unread notifications"
-msgstr ""
+msgstr "ongelezen notificaties"
 
 #: app/services/service-details/service-details.component.js:233
 msgid "was removed."
-msgstr ""
+msgstr "is verwijderd."
 
 #: app/services/service-details/service-details.component.js:292
 msgid "was retired."
-msgstr ""
+msgstr "is vervallen."
 
 #: app/requests/order-explorer/order-explorer.html:55
 msgid "{{ $count }} item"
 msgid_plural "{{ $count }} items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{ $count }} onderdeel"
+msgstr[1] "{{ $count }} onderdelen"
 
