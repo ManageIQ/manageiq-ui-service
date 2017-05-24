@@ -13,6 +13,12 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   const vm = this;
   vm.$onInit = activate;
   vm.$onDestroy = onDestroy;
+  vm.startVm = startVM;
+  vm.stopVm = stopVM;
+  vm.suspendVM = suspendVM;
+  vm.getListActions = getListActions;
+  vm.pollVM = pollVM;
+  vm.retireVM = retireVM;
 
   function onDestroy() {
     Polling.stop('polling');
@@ -35,7 +41,9 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
           actionsInclude: true,
         },
       },
+      listActions: [],
     });
+    
     EventNotifications.info(__("The contents of this page is a function of the current users's group."));
     resolveData();
     Polling.start('polling', pollVM, LONG_POLLING_INTERVAL);
@@ -57,6 +65,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   function retireVM() {
     PowerOperations.retireVM(vm.vmDetails);
   }
+
   function pollVM() {
     resolveData(true);
   }
@@ -101,7 +110,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
     const actions = vm.vmDetails.custom_actions || {};
     const groups = actions.button_groups || [];
     const buttons = [].concat(actions.buttons, ...groups.map((g) => g.buttons));
-   
+
     return lodash.compact(buttons).length > 0;
   }
 
@@ -148,15 +157,15 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
         actionFn: retireVM,
         permission: vm.permissions.instanceRetire,
         isDisabled: vm.vmDetails.power_state !== 'on',
-
       },
     ];
     powerOptionsActions.forEach((menuOption) => {
       menuOption.permission ? powerOptionsMenu.actions.push(menuOption) : false;
     });
     powerOptionsMenu.actions.length ? vm.listActions.push(powerOptionsMenu) : false;
-  }
 
+    return vm.listActions;
+  }
 
   function defaultText(inputCount, defaultText) {
     const inputArrSize = inputCount.length;
