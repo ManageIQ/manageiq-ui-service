@@ -1,4 +1,4 @@
-import './_shopping-cart.scss';
+import './_shopping-cart.sass';
 import templateUrl from './shopping-cart.html';
 
 export const ShoppingCartComponent = {
