@@ -1,20 +1,20 @@
 @import '_bem-support/index'
 
 +block(login-pf)
-  background-color: $app-color-deep-blue
-  height: calc(100vh)
-  margin-bottom: -38px
-  margin-top: -60px
-
   +element(img)
     +modifier(top)
       left: 0
       top: 0
     +modifier(bottom)
+      bottom: 0
       position: fixed
       right: 0
-      bottom: 0
 
+
+  background-color: $app-color-deep-blue
+  height: calc(100vh)
+  margin-bottom: -38px
+  margin-top: -60px
 
   .container
     background-color: transparent

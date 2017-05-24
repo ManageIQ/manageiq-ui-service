@@ -118,7 +118,7 @@ module.exports = {
         use: ExtractTextWebpackPlugin.extract({
           fallback: 'style-loader',
           allChunks: true,
-          loader: [
+          use: [
             'css-loader?importLoaders=1&sourceMap=true',
             'postcss-loader',
           ],
@@ -129,12 +129,12 @@ module.exports = {
         use: ExtractTextWebpackPlugin.extract({
           fallback: 'style-loader',
           allChunks: true,
-          loader: [
+          use: [
             'css-loader?importLoaders=1&sourceMap=true',
             {
               loader: 'sass-loader',
               options: {
-                data: `$imgBasePath: ${appBasePath}`,
+                data: `$img-base-path: ${appBasePath}`,
                 sourceMap: true,
                 includePaths: [
                   `${root}/assets/sass`,
