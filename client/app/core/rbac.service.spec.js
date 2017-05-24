@@ -35,5 +35,10 @@ describe('RBAC service', () => {
 
       expect(result).to.be.false;
     });
+    
+    it('returns all feature permissions', () => {
+      const results = service.all();
+      expect(results).to.be.empty;
+    });
   });
 });
