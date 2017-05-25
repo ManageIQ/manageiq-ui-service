@@ -31,7 +31,7 @@ function ComponentController() {
       vm.memoryDataExists = false;
     }
     if (vm.storageChart.data.total === 0) {
-      vm.storageChart = false;
+      vm.storageDataExists = false;
     }
     vm.availableCPU = vm.cpuChart.data.total - vm.cpuChart.data.used;
     vm.availableMemory = vm.memoryChart.data.total - vm.memoryChart.data.used;
