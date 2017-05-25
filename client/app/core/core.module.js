@@ -23,6 +23,7 @@ import { BaseModalController } from './modal/base-modal-controller.js';
 import { BaseModalFactory } from './modal/base-modal.factory.js';
 import { ChargebackFactory } from './chargeback.service.js';
 import { CollectionsApiFactory } from './collections-api.factory.js';
+import { DialogFieldListenerFactory } from './dialog-field-listener.service.js';
 import { DialogFieldRefreshFactory } from './dialog-field-refresh.service.js';
 import { EventNotificationsFactory } from './event-notifications.service.js';
 import { ExceptionModule } from './exception/exception.module.js';
@@ -82,6 +83,7 @@ export const CoreModule = angular
   .factory('AuthenticationApi', AuthenticationApiFactory)
   .factory('Chargeback', ChargebackFactory)
   .factory('CollectionsApi', CollectionsApiFactory)
+  .factory('DialogFieldListener', DialogFieldListenerFactory)
   .factory('DialogFieldRefresh', DialogFieldRefreshFactory)
   .factory('EventNotifications', EventNotificationsFactory)
   .factory('Language', LanguageFactory)
