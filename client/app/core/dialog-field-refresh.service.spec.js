@@ -15,7 +15,7 @@ describe('DialogFieldRefresh', function() {
       $ = sinon.stub();
       eventListenerSpy = sinon.stub({on: function() {}, off: function() {}});
 
-      $.withArgs(window).returns(eventListenerSpy);
+      $.withArgs(document).returns(eventListenerSpy);
 
       refreshSingleDialogFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
 
@@ -27,8 +27,8 @@ describe('DialogFieldRefresh', function() {
     });
 
     it('sets up a listener on the window', function() {
-      expect(eventListenerSpy.off).to.have.been.calledWith('message');
-      expect(eventListenerSpy.on).to.have.been.calledWith('message', onListenerCallback);
+      expect(eventListenerSpy.off).to.have.been.calledWith('dialog::autoRefresh');
+      expect(eventListenerSpy.on).to.have.been.calledWith('dialog::autoRefresh', onListenerCallback);
     });
 
     describe('listenerCallback', function() {
@@ -436,16 +436,15 @@ describe('DialogFieldRefresh', function() {
   });
 
   describe('#triggerAutoRefresh', function() {
-    var postMessageSpy;
+    var triggerSpy;
     var dialogField = {};
 
     beforeEach(function() {
-      postMessageSpy = sinon.stub(parent, 'postMessage');
-      dialogField.name = 'dialogName';
-    });
+      $ = sinon.stub();
+      triggerSpy = sinon.stub({trigger: function(messageName, data) {}});
 
-    afterEach(function() {
-      parent.postMessage.restore();
+      $.withArgs(document).returns(triggerSpy);
+      dialogField.name = 'dialogName';
     });
 
     describe('when the dialog field triggers auto refreshes', function() {
@@ -456,7 +455,7 @@ describe('DialogFieldRefresh', function() {
 
       it('posts a message with the field name', function() {
         DialogFieldRefresh.triggerAutoRefresh(dialogField);
-        expect(postMessageSpy).to.have.been.calledWith({refreshableFieldIndex: 123}, '*');
+        expect(triggerSpy.trigger).to.have.been.calledWith('dialog::autoRefresh', {refreshableFieldIndex: 123});
       });
     });
 
@@ -472,7 +471,7 @@ describe('DialogFieldRefresh', function() {
 
         it('posts a message with the field name', function() {
           DialogFieldRefresh.triggerAutoRefresh(dialogField);
-          expect(postMessageSpy).to.have.been.calledWith({refreshableFieldIndex: 123}, '*');
+          expect(triggerSpy.trigger).to.have.been.calledWith('dialog::autoRefresh', {refreshableFieldIndex: 123});
         });
       });
 
@@ -483,7 +482,7 @@ describe('DialogFieldRefresh', function() {
 
         it('does not post a message', function() {
           DialogFieldRefresh.triggerAutoRefresh(dialogField);
-          expect(postMessageSpy).not.to.have.been.called;
+          expect(triggerSpy.trigger).not.to.have.been.called;
         });
       });
     });

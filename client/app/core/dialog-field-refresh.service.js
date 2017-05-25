@@ -27,8 +27,8 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
       }
     };
 
-    $(window).off('message'); // Unbind all previous message listeners
-    $(window).on('message', listenerFunction);
+    $(document).off('dialog::autoRefresh'); // Unbind all previous message listeners
+    $(document).on('dialog::autoRefresh', listenerFunction);
   }
 
   function refreshSingleDialogField(allDialogFields, dialogField, url, resourceId) {
@@ -113,7 +113,7 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
 
   function triggerAutoRefresh(dialogField) {
     if (dialogField.trigger_auto_refresh === true || dialogField.triggerOverride === true) {
-      parent.postMessage({refreshableFieldIndex: dialogField.refreshableFieldIndex}, '*');
+      $(document).trigger('dialog::autoRefresh', {refreshableFieldIndex: dialogField.refreshableFieldIndex});
     }
   }
 
