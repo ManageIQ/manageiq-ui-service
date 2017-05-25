@@ -11,7 +11,8 @@ export const ServiceDetailsComponent = {
 
 /** @ngInject */
 function ComponentController($stateParams, $state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
-                             TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash, Polling, LONG_POLLING_INTERVAL) {
+                             TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash,
+                             Polling, LONG_POLLING_INTERVAL, UsageGraphsService) {
   const vm = this;
   vm.$onInit = activate;
   vm.$onDestroy = onDestroy;
@@ -52,9 +53,9 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       gotoService: gotoService,
       gotoCatalogItem: gotoCatalogItem,
       createResourceGroups: createResourceGroups,
-      cpuChart: getCPUChartConfig(),
-      memoryChart: getMemoryChartConfig(),
-      storageChart: getStorageChartConfig(),
+      cpuChart: UsageGraphsService.cpuChartConfig(),
+      memoryChart: UsageGraphsService.memoryChartConfig(),
+      storageChart: UsageGraphsService.storageChartConfig(),
       // Config setup
       headerConfig: getHeaderConfig(),
       resourceListConfig: {
@@ -72,70 +73,6 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   function viewSelected(view) {
     vm.viewType = view;
   }
-  function getCPUChartConfig(used, total) {
-    let usedValue = 0;
-    let totalValue = 0;
-
-    if (angular.isDefined(used)) {
-      usedValue = used;
-      totalValue = total;
-    }
-
-    return {
-      config: {
-        units: __('MHz'),
-      },
-      data: {
-        'used': usedValue,
-        'total': totalValue,
-      },
-      label: __('used'),
-    };
-  }
-
-  function getMemoryChartConfig(used, total) {
-    let usedValue = 0;
-    let totalValue = 0;
-
-    if (angular.isDefined(used)) {
-      usedValue = used;
-      totalValue = total;
-    }
-
-    return {
-      config: {
-        units: __('GB'),
-        chartId: 'memoryChart',
-      },
-      data: {
-        'used': usedValue,
-        'total': totalValue,
-      },
-      label: __('used'),
-    };
-  }
-
-  function getStorageChartConfig(used, total) {
-    let usedValue = 0;
-    let totalValue = 0;
-    if (angular.isDefined(used)) {
-      usedValue = used;
-      totalValue = total;
-    }
-
-    return {
-      config: {
-        units: __('GB'),
-        chartId: 'storageChart',
-      },
-      data: {
-        'used': usedValue,
-        'total': totalValue,
-      },
-      label: __('used'),
-    };
-  }
-
   function getChartConfigs() {
     const allocatedStorage = (vm.service.aggregate_all_vm_disk_space_allocated / 1073741824).toFixed(2); // convert bytes to gb
     const usedStorage = (vm.service.aggregate_all_vm_disk_space_used / 1073741824).toFixed(2); // convert bytes to gb
@@ -152,9 +89,9 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
     }
 
     usedMemory = (usedMemory / 1073741824).toFixed(2);
-    vm.cpuChart = getCPUChartConfig(usedCPU, totalCPU);
-    vm.memoryChart = getMemoryChartConfig(usedMemory, allocatedMemory);
-    vm.storageChart = getStorageChartConfig(usedStorage, allocatedStorage);
+    vm.cpuChart = UsageGraphsService.cpuChartConfig(usedCPU, totalCPU);
+    vm.memoryChart = UsageGraphsService.memoryChartConfig(usedMemory, allocatedMemory);
+    vm.storageChart = UsageGraphsService.storageChartConfig(usedStorage, allocatedStorage);
   }
 
   function fetchResources(id, refresh) {
