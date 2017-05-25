@@ -5,6 +5,7 @@ export const CustomButtonComponent = {
   bindings: {
     customActions: '<',
     serviceId: '<',
+    vmId: '<',
   },
   controller: CustomButtonController,
   controllerAs: 'vm',
@@ -30,6 +31,11 @@ function CustomButtonController($state, EventNotifications, CollectionsApi, RBAC
         button,
         serviceId: vm.serviceId,
       });
+    } else if (vm.vmId) { 
+      const data = {action: button.name};
+      CollectionsApi.post('vms', vm.vmId, {}, data)
+        .then(postSuccess)
+        .catch(postFailure);
     } else {
       const data = {action: button.name};
       CollectionsApi.post('services', vm.serviceId, {}, data)

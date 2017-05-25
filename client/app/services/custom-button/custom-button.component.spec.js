@@ -112,3 +112,47 @@ describe('CustomButton component', () => {
     });
   });
 });
+
+  describe('Custom buttons for a VM', () => {
+  let parentScope, element, stateGoStub, apiPostStub;
+
+  beforeEach(module('app.services'));
+
+  beforeEach(inject(($compile, $rootScope, $state, CollectionsApi) => {
+    parentScope = $rootScope.$new();
+    parentScope.customActions = {
+      buttons: [
+        {
+          name: 'Bar',
+          visibility: {
+            roles: ['_ALL_'],
+          },
+        },
+      ],
+    };
+    parentScope.serviceId = '_a service id_';
+    parentScope.vmId = '_a vm id_';
+
+    element = angular.element(`
+      <custom-button custom-actions="customActions" service-id="serviceId" vm-id="vmId">
+      </custom-button>
+    `);
+    $compile(element)(parentScope);
+    parentScope.$digest();
+
+    apiPostStub = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve());
+  }));
+
+  it('should make a post to the vms endpoint', () => {
+     const button = element[0].querySelectorAll('.custom-button-action')[0];
+     const action = angular.element(button);
+
+      action.triggerHandler('click');
+      expect(apiPostStub).to.have.been.calledWith(
+          'vms',
+          '_a vm id_',
+          {},
+          { action: 'Bar' },
+      );
+  });
+});
