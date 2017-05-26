@@ -236,7 +236,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
         if (angular.isDefined(item.id)) {
           item.disableRowExpansion = angular.isUndefined(item.service_requests)
             || (angular.isDefined(item.service_requests) && item.service_requests.length < 1);
-          var dataRow = item;
+          let dataRow = item;
           if (refresh) {
             dataRow = refreshRow(item);
           }
@@ -245,18 +245,16 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
       }
 
       function refreshRow(item) {
-        for (var i = 0; i < existingOrders.length; i++) {
-          var currentOrder = existingOrders[i];
-          if (currentOrder.id === item.id) {
-            item.selected = (angular.isDefined(currentOrder.selected) ? currentOrder.selected : false);
-            item.isExpanded = (angular.isDefined(currentOrder.isExpanded) ? currentOrder.isExpanded : false);
+        existingOrders.forEach((order) => {
+          if (order.id === item.id) {
+            item.isExpanded = angular.isDefined(order.isExpanded) ? order.isExpanded : false;
+            item.selected = angular.isDefined(order.selected) ? order.selected : false;
             if (item.selected) {
               vm.selectedItemsList.push(item);
             }
-            existingOrders.splice(i, 1);
-            break;
+            lodash.pull(existingOrders, order);
           }
-        }
+        });
 
         return item;
       }
