@@ -11,6 +11,7 @@ const dist = path.resolve(__dirname, outputPath);
 const nodeModules = path.resolve(__dirname, '../node_modules');
 const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000'
 const hasSkinImages = fs.existsSync(`${root}/skin/images`);
+const appBasePath = process.env.NODE_ENV === 'production' ? "'/ui/service/'" : "'/'";
 console.log("Backend proxied on "+host);
 module.exports = {
   context: root,
@@ -105,16 +106,27 @@ module.exports = {
 
       // css loaders: extract styles to a separate bundle
       {
-        test: /\.(css|s(a|c)ss)$/,
+        test: /\.(css)$/,
         use: ExtractTextWebpackPlugin.extract({
           fallback: 'style-loader',
           allChunks: true,
-          loader: [
-            'css-loader?importLoaders=2&sourceMap=true',
+          use: [
+            'css-loader?importLoaders=1&sourceMap=true',
             'postcss-loader',
+          ],
+        }),
+      },
+      {
+        test: /\.(sass|scss)$/,
+        use: ExtractTextWebpackPlugin.extract({
+          fallback: 'style-loader',
+          allChunks: true,
+          use: [
+            'css-loader?importLoaders=1&sourceMap=true',
             {
               loader: 'sass-loader',
               options: {
+                data: `$img-base-path: ${appBasePath}`,
                 sourceMap: true,
                 includePaths: [
                   `${root}/assets/sass`,
