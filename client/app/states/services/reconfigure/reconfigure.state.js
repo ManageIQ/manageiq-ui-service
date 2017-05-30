@@ -33,7 +33,7 @@ function resolveService($stateParams, CollectionsApi) {
 }
 
 /** @ngInject */
-function StateController($state, $stateParams, CollectionsApi, service, EventNotifications, DialogFieldRefresh, DialogFieldListener) {
+function StateController($state, $stateParams, CollectionsApi, service, EventNotifications, DialogFieldRefresh) {
   var vm = this;
 
   vm.title = __('Service Details');
@@ -87,7 +87,7 @@ function StateController($state, $stateParams, CollectionsApi, service, EventNot
     };
   });
 
-  DialogFieldListener.listenForAutoRefreshMessages(
+  DialogFieldRefresh.listenForAutoRefreshMessages(
     allDialogFields,
     autoRefreshableDialogFields,
     dialogUrl,

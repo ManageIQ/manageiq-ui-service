@@ -36,7 +36,7 @@ function resolveDialogs($stateParams, CollectionsApi) {
 }
 
 /** @ngInject */
-function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRefresh, DialogFieldListener, ShoppingCart) {
+function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRefresh, ShoppingCart) {
   var vm = this;
 
   vm.serviceTemplate = serviceTemplate;
@@ -63,7 +63,7 @@ function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRef
     };
   });
 
-  DialogFieldListener.listenForAutoRefreshMessages(
+  DialogFieldRefresh.listenForAutoRefreshMessages(
     allDialogFields,
     autoRefreshableDialogFields,
     dialogUrl,
