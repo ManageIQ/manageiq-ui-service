@@ -4,7 +4,6 @@
 /** @ngInject */
 export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
   var service = {
-    listenForAutoRefreshMessages: listenForAutoRefreshMessages,
     refreshSingleDialogField: refreshSingleDialogField,
     setupDialogData: setupDialogData,
     triggerAutoRefresh: triggerAutoRefresh,
@@ -12,26 +11,7 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
 
   return service;
 
-  function listenForAutoRefreshMessages(allDialogFields, autoRefreshableDialogFields, url, resourceId) {
-    var listenerFunction = function(event) {
-      var dialogFieldToRefresh = autoRefreshableDialogFields.filter(function(field, currentIndex) {
-        if (field.auto_refresh === true && event.originalEvent.data.refreshableFieldIndex < currentIndex) {
-          return field;
-        }
-      });
-
-      if (dialogFieldToRefresh.length > 0) {
-        dialogFieldToRefresh[0].beingRefreshed = true;
-        dialogFieldToRefresh[0].triggerOverride = true;
-        refreshSingleDialogField(allDialogFields, dialogFieldToRefresh[0], url, resourceId);
-      }
-    };
-
-    $(window).off('message'); // Unbind all previous message listeners
-    $(window).on('message', listenerFunction);
-  }
-
-  function refreshSingleDialogField(allDialogFields, dialogField, url, resourceId) {
+  function refreshSingleDialogField(allDialogFields, dialogField, url, resourceId, autoRefreshOptions) {
     function refreshSuccess(result) {
       var resultObj = result.result[dialogField.name];
 
@@ -39,26 +19,10 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
       if (dialogField.type === 'DialogFieldDropDownList') {
         updateDialogSortOrder(dialogField);
       }
- 
-      triggerAutoRefresh(dialogField);
-    }
-    function updateDialogSortOrder(dialogField) {
-      var values = dialogField.values;
-      var sortDirection = dialogField.options.sort_order;
-      var sortByValue = 0; // These are constants that are used to refer to array positions
-      var sortByDescription = 1; // These are constants that are used to refer to array positions
-      var sortBy = (dialogField.options.sort_by === 'value' ? sortByValue : sortByDescription);
-      dialogField.values = values.sort((option1, option2) => {
-        var trueValue = -1;
-        var falseValue = 1;
-        if (sortDirection !== 'ascending') {
-          trueValue = 1;
-          falseValue = -1;
-        }
 
-        return option2[sortBy] > option1[sortBy]  ? trueValue : falseValue;
-      });
+      triggerAutoRefresh(dialogField, false, autoRefreshOptions);
     }
+
     function refreshFailure(result) {
       EventNotifications.error('There was an error refreshing this dialog: ' + result);
     }
@@ -103,7 +67,7 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
             }
 
             dialogField.triggerAutoRefresh = function() {
-              triggerAutoRefresh(dialogField);
+              triggerAutoRefresh(dialogField, true);
             };
           });
         });
@@ -111,9 +75,19 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
     });
   }
 
-  function triggerAutoRefresh(dialogField) {
+  function triggerAutoRefresh(dialogField, initialTrigger, autoRefreshOptions) {
     if (dialogField.trigger_auto_refresh === true || dialogField.triggerOverride === true) {
-      parent.postMessage({refreshableFieldIndex: dialogField.refreshableFieldIndex}, '*');
+      var triggerOptions = {};
+
+      if (initialTrigger === true) {
+        triggerOptions.initializingIndex = dialogField.refreshableFieldIndex;
+        triggerOptions.currentIndex = 0;
+      } else {
+        triggerOptions.initializingIndex = autoRefreshOptions.initializingIndex;
+        triggerOptions.currentIndex = autoRefreshOptions.currentIndex;
+      }
+
+      $(document).trigger('dialog::autoRefresh', triggerOptions);
     }
   }
 
@@ -132,6 +106,24 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
       currentDialogField.required = newDialogField.required;
       currentDialogField.visible = newDialogField.visible;
     }
+  }
+
+  function updateDialogSortOrder(dialogField) {
+    var values = dialogField.values;
+    var sortDirection = dialogField.options.sort_order;
+    var sortByValue = 0; // These are constants that are used to refer to array positions
+    var sortByDescription = 1; // These are constants that are used to refer to array positions
+    var sortBy = (dialogField.options.sort_by === 'value' ? sortByValue : sortByDescription);
+    dialogField.values = values.sort((option1, option2) => {
+      var trueValue = -1;
+      var falseValue = 1;
+      if (sortDirection !== 'ascending') {
+        trueValue = 1;
+        falseValue = -1;
+      }
+
+      return option2[sortBy] > option1[sortBy]  ? trueValue : falseValue;
+    });
   }
 
   function fetchDialogFieldInfo(allDialogFields, dialogFieldsToFetch, url, resourceId, successCallback, failureCallback) {
