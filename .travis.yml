@@ -11,8 +11,11 @@ before_install:
 - npm install -g yarn@0.22.0
 install:
 - yarn install --force
-after_script:
-- codeclimate-test-reporter < reports/coverage/lcov.info
+deploy:
+  provider: script
+  script: codeclimate-test-reporter < reports/coverage/lcov.info
+  on:
+    branch: master
 notifications:
   webhooks:
     urls:
