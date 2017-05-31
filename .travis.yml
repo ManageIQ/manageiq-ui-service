@@ -12,7 +12,7 @@ before_install:
 install:
 - yarn install --force
 -after_script:
- -- if [ "$TRAVIS_BRANCH" = "master" ]; codeclimate-test-reporter < reports/coverage/lcov.info; fi
+ -- codeclimate-test-reporter < reports/coverage/lcov.info
 notifications:
   webhooks:
     urls:
