@@ -12,8 +12,9 @@ export function ChargebackFactory(lodash) {
   // recomputes items[*].chargeback_relative_cost
   function adjustRelativeCost(items) {
     const sums = lodash(items)
-      .pluck(['chargeback', 'used_cost_sum'])
-      .sort()
+      .map('chargeback')
+      .map('used_cost_sum')
+      .values().sort()
       .filter(angular.identity) // nonzero
       .value();
 
@@ -44,7 +45,8 @@ export function ChargebackFactory(lodash) {
 
   function currentReport(item) {
     const latestDate = lodash(item.chargeback_report.results || [])
-      .pluck('start_date')
+      .map('start_date')
+      .values()
       .sort()
       .reverse()
       .first();
@@ -59,7 +61,7 @@ export function ChargebackFactory(lodash) {
 
     return {
       start_date: latestDate,
-      used_cost_sum: lodash.sum(latestReports, 'used_cost_sum'), // sumBy in lodash4
+      used_cost_sum: lodash.sumBy(latestReports, 'used_cost_sum'),
       vms: latestReports,
     };
   }
