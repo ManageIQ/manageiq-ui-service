@@ -1,22 +1,22 @@
 <div class="layout-application" ng-controller="NavigationController as vm">
-  <div pf-vertical-navigation items="vm.items" brand-src="images/brand.svg" brand-alt="{{ ::vm.text.name }}"
+  <pf-vertical-navigation items="vm.items" brand-src="images/brand.svg" brand-alt="{{ ::vm.text.name }}"
        update-active-items-on-click="true"
        pinnable-menus="true" item-click-callback="vm.handleItemClick" show-badges="true">
-    <div pf-toast-notification-list notifications="vm.toastNotifications" show-close="true"
-         close-callback="vm.handleDismissToast" update-viewing="vm.updateViewingToast"></div>
+    <pf-toast-notification-list notifications="vm.toastNotifications" show-close="true"
+         close-callback="vm.handleDismissToast" update-viewing="vm.updateViewingToast"></pf-toast-notification-list>
 
-    <div pf-notification-drawer drawer-hidden="!vm.notificationsDrawerShown" notification-groups="vm.notificationGroups"
+    <pf-notification-drawer drawer-hidden="!vm.notificationsDrawerShown" notification-groups="vm.notificationGroups"
          allow-expand="true"
          drawer-title="{{'Notifications' | translate}}" heading-include="{{vm.headingHTML}}"
          subheading-include="{{vm.subHeadingHTML}}"
          notification-body-include="{{vm.notificationHTML}}" notification-footer-include="{{vm.notificationFooterHTML}}"
-         custom-scope="vm">
-    </div>
+         custom-scope="vm" />
+    </pf-notification-drawer>
 
-    <div pf-about-modal is-open="vm.about.isOpen" on-close="vm.about.isOpen = false" additional-info="vm.about.additionalInfo"
+    <pf-about-modal is-open="vm.about.isOpen" on-close="vm.about.isOpen = false" additional-info="vm.about.additionalInfo"
          product-info="vm.about.productInfo" title="vm.about.title" copyright="vm.about.copyright"
          img-alt="vm.about.imgAlt" img-src="vm.about.imgSrc">
-    </div>
+    </pf-about-modal>
 
     <div>
       <ul class="nav navbar-nav navbar-right navbar-iconic">
@@ -106,7 +106,7 @@
         </li>
       </ul>
     </div>
-  </div>
+  </pf-vertical-navigation>
   <div class="container-pf-nav-pf-vertical nav-pf-vertical-with-badges"
        ng-class="{'collapsed-nav': vm.state.isCollapsed, 'hidden-nav': vm.state.isMobileNav }">
     <div class="main-content" ui-view></div>

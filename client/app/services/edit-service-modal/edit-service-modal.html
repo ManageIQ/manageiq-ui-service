@@ -6,14 +6,14 @@
 </div>
 <div class="modal-body">
   <form class="form-horizontal">
-    <div pf-form-group pf-label="{{'Name'|translate}}" required>
+    <pf-form-group pf-label="{{'Name'|translate}}" required>
       <input id="name" name="name" ng-model="vm.modalData.name" type="text" required/>
-    </div>
-    <div pf-form-group pf-input-class="col-sm-9" pf-label="{{'Description'|translate}}">
+    </pf-form-group>
+    <pf-form-group pf-input-class="col-sm-9" pf-label="{{'Description'|translate}}">
         <textarea id="description" name="description" ng-model="vm.modalData.description">
           {{ vm.modalData.description }}
         </textarea>
-    </div>
+    </pf-form-group>
   </form>
 </div>
 <div class="modal-footer">

@@ -5,7 +5,7 @@
       </ol>
   </span>
 </div>
-<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
+<pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
   <actions>
     <custom-dropdown
       class="custom-dropdown pull-left"
@@ -17,11 +17,11 @@
       menu-right="true">
     </custom-dropdown>
   </actions>
-</div>
+</pf-toolbar>
 <div class="list-view-container section-container explorer-list">
   <loading status="vm.loading"></loading>
-  <div ng-if="!vm.loading"
-       pf-list-view id="orderList"
+  <pf-list-view ng-if="!vm.loading"
+       id="orderList"
        config="vm.listConfig"
        items="vm.ordersList"
        custom-scope="vm"
@@ -59,7 +59,7 @@
       </div>
     </div>
     <list-expanded-content>
-      <div pf-list-view
+      <pf-list-view
            class="explorer-children-list"
            config="vm.expandedListConfig"
            items="$parent.item.service_requests"
@@ -98,9 +98,9 @@
             </span>
           </div>
         </div>
-      </div>
+      </pf-list-view>
     </list-expanded-content>
-  </div>
+  </pf-list-view>
 </div>
 <explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions"
                      on-update="vm.updatePagination($limit, $offset)">

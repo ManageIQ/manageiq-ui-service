@@ -20,7 +20,7 @@
     </div>
   </div>
 </div>
-<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig"
+<pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig"
      ng-if="!vm.loading && vm.viewType === 'detailsView'">
   <actions>
     <div class="ss-details-header__actions">
@@ -40,7 +40,7 @@
       </div>
     </div>
   </actions>
-</div>
+</pf-toolbar>
 <loading status="vm.loading"></loading>
 <div ng-if="vm.viewType === 'graphsView'" class="ss-details-wrapper usage-graphs-container">
   <usage-graphs cpu-chart="vm.cpuChart" memory-chart="vm.memoryChart" storage-chart="vm.storageChart"></usage-graphs>
@@ -164,7 +164,7 @@
                   {{vm.computeGroup.emptyMessage}}
                 </span>
               </div>
-              <div ng-if="vm.computeGroup.resources.length > 0" pf-list-view
+              <pf-list-view ng-if="vm.computeGroup.resources.length > 0"
                    config="vm.resourceListConfig"
                    items="vm.computeGroup.resources"
                    menu-actions="vm.resourceMenuActions"
@@ -345,7 +345,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </pf-list-view>
             </div>
           </li>
         </ul>

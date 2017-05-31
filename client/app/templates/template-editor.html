@@ -8,7 +8,7 @@
       </ol>
   </span>
 </div>
-<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig"
+<pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig"
      ng-if="vm.pageAction==='view'">
   <actions>
     <button class="btn btn-default primary-action" type="button" ng-click="vm.downloadTemplate()">
@@ -20,7 +20,7 @@
                      menu-right="true">
     </custom-dropdown>
   </actions>
-</div>
+</pf-toolbar>
 <div class="ss-details-wrapper ss-details-wrapper-with-toolbar"
      confirmation
      confirmation-id="confirmDeleteTemplate"

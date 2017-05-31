@@ -6,13 +6,13 @@
 </div>
 <div class="modal-body">
   <form class="form-horizontal">
-      <div pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Retirement Warning'|translate}}">
+      <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Retirement Warning'|translate}}">
         <select pf-select ng-model="vm.modalData.warn" class="form-control" ng-options="opt.value as opt.label for opt in vm.visibleOptions">
         </select>
-      </div>
-    <div pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Retirement Date'|translate}}">
+      </pf-form-group>
+    <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Retirement Date'|translate}}">
       <div pf-datepicker options="vm.dateOptions" date="vm.modalData.date"></div>
-    </div>
+    </pf-form-group>
   </form>
   <hr>
   <h4 translate>Affected Services</h4>

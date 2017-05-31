@@ -13,7 +13,7 @@
       </ol>
   </span>
 </div>
-<div ng-if="vm.listActions.length" pf-toolbar class="section-toolbar section-toolbar-right-actions"
+<pf-toolbar ng-if="vm.listActions.length" class="section-toolbar section-toolbar-right-actions"
      config="vm.headerConfig">
   <actions>
     <div class="ss-details-header__actions">
@@ -31,7 +31,7 @@
       </div>
     </div>
   </actions>
-</div>
+</pf-toolbar>
 <loading status="vm.loading"></loading>
 <div ng-if="!vm.loading" class="well ss-details-wrapper vm-details-wrapper">
   <div class="container-fluid vm-details-container">
