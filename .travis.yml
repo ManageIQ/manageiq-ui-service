@@ -11,8 +11,9 @@ before_install:
 - npm install -g yarn@0.22.0
 install:
 - yarn install --force
--after_script:
- -- codeclimate-test-reporter < reports/coverage/lcov.info
+after_script:
+ - codeclimate-test-reporter < reports/coverage/lcov.info
+ - cat reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 notifications:
   webhooks:
     urls:
