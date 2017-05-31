@@ -11,11 +11,8 @@ before_install:
 - npm install -g yarn@0.22.0
 install:
 - yarn install --force
-deploy:
-  provider: script
-  script: codeclimate-test-reporter < reports/coverage/lcov.info
-  on:
-    branch: master
+-after_script:
+ -- if [ "$TRAVIS_BRANCH" = "master" ]; codeclimate-test-reporter < reports/coverage/lcov.info; fi
 notifications:
   webhooks:
     urls:
