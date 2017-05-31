@@ -39,7 +39,7 @@ function resolveDialog($stateParams, CollectionsApi) {
 }
 
 /** @ngInject */
-function StateController($state, $stateParams, dialog, service, CollectionsApi, EventNotifications, DialogFieldRefresh, DialogFieldListener) {
+function StateController($state, $stateParams, dialog, service, CollectionsApi, EventNotifications, DialogFieldRefresh) {
   var vm = this;
   vm.title = __('Custom button action');
   vm.dialogs = dialog.content;
@@ -61,7 +61,7 @@ function StateController($state, $stateParams, dialog, service, CollectionsApi, 
     };
   });
 
-  DialogFieldListener.listenForAutoRefreshMessages(
+  DialogFieldRefresh.listenForAutoRefreshMessages(
     allDialogFields,
     autoRefreshableDialogFields,
     dialogUrl,

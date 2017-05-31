@@ -28,7 +28,7 @@
                       ng-switch-when="DialogFieldTextBox"
                       ng-model="dialogField.default_value"
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
-                      ng-change="dialogField.triggerAutoRefresh()"
+                      ng-change="dialogField.triggerAutoRefresh(dialogField)"
                       ng-model-options="{debounce: {'default': 500}}"
                       class="form-control"
                       type="{{ dialogField.options.protected ? 'password' : 'text' }}"
@@ -39,7 +39,7 @@
                       ng-switch-when="DialogFieldTextAreaBox"
                       ng-model="dialogField.default_value"
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
-                      ng-change="dialogField.triggerAutoRefresh()"
+                      ng-change="dialogField.triggerAutoRefresh(dialogField)"
                       ng-model-options="{debounce: {'default': 500}}"
                       class="form-control"
                       uib-tooltip="{{ ::inputTitle }}"
@@ -50,7 +50,7 @@
                       ng-model="dialogField.default_value"
                       ng-true-value="'t'"
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
-                      ng-change="dialogField.triggerAutoRefresh()"
+                      ng-change="dialogField.triggerAutoRefresh(dialogField)"
                       class="form-control"
                       type="checkbox"
                       uib-tooltip="{{ ::inputTitle }}"
@@ -60,7 +60,7 @@
                       ng-switch-when="DialogFieldDropDownList"
                       ng-model="dialogField.default_value"
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
-                      ng-change="dialogField.triggerAutoRefresh()"
+                      ng-change="dialogField.triggerAutoRefresh(dialogField)"
                       class="form-control"
                       ng-options="fieldValue[0] as fieldValue[1] for fieldValue in dialogField.values">
                     </select>
@@ -70,7 +70,7 @@
                       ng-switch-when="DialogFieldTagControl"
                       ng-model="dialogField.default_value"
                       ng-disabled="dialogField.read_only || vm.inputDisabled"
-                      ng-change="dialogField.triggerAutoRefresh()"
+                      ng-change="dialogField.triggerAutoRefresh(dialogField)"
                       class="form-control"
                       ng-options="fieldValue.id as fieldValue.description for fieldValue in dialogField.values">
                     </select>
@@ -81,7 +81,7 @@
                             ng-switch-when="DialogFieldTagControl"
                             ng-model="dialogField.default_value"
                             ng-disabled="dialogField.read_only || vm.inputDisabled"
-                            ng-change="dialogField.triggerAutoRefresh()"
+                            ng-change="dialogField.triggerAutoRefresh(dialogField)"
                             class="form-control"
                             ng-options="fieldValue.id as fieldValue.description for fieldValue in dialogField.values">
                     </select>
@@ -101,7 +101,7 @@
                         <input
                           type="radio"
                           ng-model="dialogField.default_value"
-                          ng-change="dialogField.triggerAutoRefresh()"
+                          ng-change="dialogField.triggerAutoRefresh(dialogField)"
                           ng-disabled="dialogField.read_only || vm.inputDisabled"
                           name="{{ dialogField.name }}"
                           value="{{ ::fieldValue[0] }}"/>
@@ -112,7 +112,7 @@
                     <input
                       ng-switch-when="DialogFieldDateControl"
                       ng-model="dialogField.default_value"
-                      ng-change="dialogField.triggerAutoRefresh()"
+                      ng-change="triggerAutoRefresh(dialogField)"
                       pf-datepicker options="vm.dateOptions"
                       date="dialogField.default_value">
 
@@ -120,7 +120,7 @@
                       <div class="col-sm-6 dateTimePadding">
                         <input
                           ng-model="dialogField.default_value"
-                          ng-change="dialogField.triggerAutoRefresh()"
+                          ng-change="dialogField.triggerAutoRefresh(dialogField)"
                           pf-datepicker options="vm.dateOptions"
                           date="dialogField.default_value">
                       </div>
