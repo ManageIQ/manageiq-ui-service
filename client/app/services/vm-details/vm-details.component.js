@@ -21,6 +21,9 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   vm.pollVM = pollVM;
   vm.retireVM = retireVM;
   vm.getData = resolveData;
+  vm.storageChartConfigOptions =  {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')};
+  vm.memoryChartConfigOptions =  {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')};
+  vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')};
   vm.processInstanceVariables = processInstanceVariables;
   // vm.resolveData = resolveData;
   function onDestroy() {
@@ -40,9 +43,9 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       viewType: 'detailsView',
       viewSelected: viewSelected,
       instance: {},
-      cpuChart: UsageGraphsService.cpuChartConfig(),
-      memoryChart: UsageGraphsService.memoryChartConfig(),
-      storageChart: UsageGraphsService.storageChartConfig(),
+      cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
+      memoryChart: UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions),
+      storageChart: UsageGraphsService.getChartConfig(vm.storageChartConfigOptions),
       // Config
       headerConfig: {
         actionsConfig: {
@@ -108,9 +111,9 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       vm.vmDetails.provisionDate = angular.isDefined(vm.vmDetails.service.miq_request) ? vm.vmDetails.service.miq_request.fulfilled_on : __('Unknown');
       vm.vmDetails.containerSpecsText = vm.vmDetails.vendor + ': ' + vm.vmDetails.hardware.cpu_total_cores + ' CPUs (' + vm.vmDetails.hardware.cpu_sockets
         + ' sockets x ' + vm.vmDetails.hardware.cpu_cores_per_socket + ' core), ' + vm.vmDetails.hardware.memory_mb + ' MB';
-      vm.cpuChart = UsageGraphsService.cpuChartConfig(usedCPU, totalCPU);
-      vm.memoryChart = UsageGraphsService.memoryChartConfig(usedMemory, totalMemory);
-      vm.storageChart = UsageGraphsService.storageChartConfig(usedStorage, allocatedStorage);
+      vm.cpuChart = UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions, usedCPU, totalCPU);
+      vm.memoryChart = UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions, usedMemory, totalMemory);
+      vm.storageChart = UsageGraphsService.getChartConfig(vm.storageChartConfigOptions, usedStorage, allocatedStorage);
       if (vm.vmDetails.retired) {
         EventNotifications.clearAll(lodash.find(EventNotifications.state().groups, {notificationType: 'warning'}));
         EventNotifications.warn(sprintf(__("%s is a retired resource"), vm.vmDetails.name), {persistent: true, unread: false});

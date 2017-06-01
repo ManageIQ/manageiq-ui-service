@@ -23,6 +23,10 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
 
   function activate() {
     vm.permissions = ServicesState.getPermissions();
+    vm.storageChartConfigOptions =  {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')};
+    vm.memoryChartConfigOptions =  {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')};
+    vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')};
+
     angular.extend(vm, {
       serviceId: $stateParams.serviceId,
       loading: true,
@@ -53,9 +57,9 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       gotoService: gotoService,
       gotoCatalogItem: gotoCatalogItem,
       createResourceGroups: createResourceGroups,
-      cpuChart: UsageGraphsService.cpuChartConfig(),
-      memoryChart: UsageGraphsService.memoryChartConfig(),
-      storageChart: UsageGraphsService.storageChartConfig(),
+      cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
+      memoryChart: UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions),
+      storageChart: UsageGraphsService.getChartConfig(vm.storageChartConfigOptions),
       // Config setup
       headerConfig: getHeaderConfig(),
       resourceListConfig: {
@@ -74,8 +78,8 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
     vm.viewType = view;
   }
   function getChartConfigs() {
-    const allocatedStorage = (vm.service.aggregate_all_vm_disk_space_allocated / 1073741824).toFixed(2); // convert bytes to gb
-    const usedStorage = (vm.service.aggregate_all_vm_disk_space_used / 1073741824).toFixed(2); // convert bytes to gb
+    const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.service.aggregate_all_vm_disk_space_allocated);
+    const usedStorage = UsageGraphsService.convertBytestoGb(vm.service.aggregate_all_vm_disk_space_used);
     let usedMemory = 0;
     let usedCPU = 0;
     let totalCPU = 0;
@@ -88,10 +92,10 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       });
     }
 
-    usedMemory = (usedMemory / 1073741824).toFixed(2);
-    vm.cpuChart = UsageGraphsService.cpuChartConfig(usedCPU, totalCPU);
-    vm.memoryChart = UsageGraphsService.memoryChartConfig(usedMemory, allocatedMemory);
-    vm.storageChart = UsageGraphsService.storageChartConfig(usedStorage, allocatedStorage);
+    usedMemory = UsageGraphsService.convertBytestoGb(usedMemory);
+    vm.cpuChart = UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions, usedCPU, totalCPU);
+    vm.memoryChart = UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions, usedMemory, allocatedMemory);
+    vm.storageChart = UsageGraphsService.getChartConfig(vm.storageChartConfigOptions, usedStorage, allocatedStorage);
   }
 
   function fetchResources(id, refresh) {

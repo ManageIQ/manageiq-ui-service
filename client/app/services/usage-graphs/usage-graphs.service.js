@@ -1,13 +1,11 @@
 /** @ngInject */
 export function UsageGraphsFactory() {
   var service = {
-    cpuChartConfig: getCPUChartConfig,
-    memoryChartConfig: getMemoryChartConfig,
-    storageChartConfig: getStorageChartConfig,
     convertBytestoGb: convertBytestoGb,
+    getChartConfig: getChartConfig,
   };
 
-  function getCPUChartConfig(used, total) {
+  function getChartConfig(config, used, total) {
     let usedValue = 0;
     let totalValue = 0;
 
@@ -18,59 +16,17 @@ export function UsageGraphsFactory() {
 
     return {
       config: {
-        units: __('MHz'),
+        units: config.units,
+        chartId: config.chartId,
       },
       data: {
         'used': usedValue,
         'total': totalValue,
       },
-      label: __('used'),
+      label: config.label,
     };
   }
 
-  function getMemoryChartConfig(used, total) {
-    let usedValue = 0;
-    let totalValue = 0;
-
-    if (angular.isDefined(used)) {
-      usedValue = used;
-      totalValue = total;
-    }
-
-    return {
-      config: {
-        units: __('GB'),
-        chartId: 'memoryChart',
-      },
-      data: {
-        'used': usedValue,
-        'total': totalValue,
-      },
-      label: __('used'),
-    };
-  }
-
-  function getStorageChartConfig(used, total) {
-    let usedValue = 0;
-    let totalValue = 0;
-
-    if (angular.isDefined(used)) {
-      usedValue = used;
-      totalValue = total;
-    }
-
-    return {
-      config: {
-        units: __('GB'),
-        chartId: 'storageChart',
-      },
-      data: {
-        'used': usedValue,
-        'total': totalValue,
-      },
-      label: __('used'),
-    };
-  }
   function convertBytestoGb(bytes) {
     return (bytes / 1073741824).toFixed(2);
   }

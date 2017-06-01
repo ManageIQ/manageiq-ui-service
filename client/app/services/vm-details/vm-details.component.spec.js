@@ -74,6 +74,7 @@ describe('Component: VM Details', function() {
            // EventNotifications
             controller.$onInit();
             scope.$digest();
+
             return controller.getData().then( (data) => {
                 expect(notificationSpy).to.have.been.calledTwice;
             });
@@ -132,6 +133,7 @@ describe('Component: VM Details', function() {
             const notificationSpy = sinon.spy(EventNotifications,'error');
             controller.$onInit();
             scope.$digest();
+
             return controller.getData().then( (data) => {
                 expect(notificationSpy).to.have.been.calledWith('There was an error loading the vm details.');
             });
