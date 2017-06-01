@@ -86,9 +86,8 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   }
 
   function handleSelectionChange() {
-    vm.selectedItemsList = vm.servicesList.filter(function(service) {
-      return service.selected;
-    });
+    vm.selectedItemsList = vm.servicesList.filter((service) => service.selected);
+    vm.headerConfig.filterConfig.selectedCount = vm.selectedItemsList.length;
     vm.selectedItemsListCount = vm.selectedItemsList.length;
   }
 
@@ -180,6 +179,8 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     var serviceFilterConfig = {
       fields: getServiceFilterFields(),
       resultsCount: 0,
+      totalCount: 0,
+      selectedCount: 0,
       appliedFilters: ServicesState.services.filterApplied ? ServicesState.services.getFilters() : [],
       onFilterChange: filterChange,
     };
@@ -382,6 +383,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       vm.services = [];
       var existingServices = (angular.isDefined(vm.servicesList) && refresh ? angular.copy(vm.servicesList) : []);
       vm.selectedItemsList = [];
+      vm.headerConfig.filterConfig.totalCount = result.subcount;
 
       angular.forEach(result.resources, function(item) {
         if (angular.isUndefined(item.service_id)) {

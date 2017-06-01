@@ -32,6 +32,7 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
       toolbarConfig: {
         sortConfig: getSortConfig(),
         filterConfig: {},
+        isTableView: false,
       },
     });
     resolveServiceTemplates(vm.limit, 0);
@@ -57,6 +58,7 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
         ListView.createFilterField('service_template_catalog.name', __('Catalog Name'), __('Filter by Catalog Name'), 'select', catalogNames),
       ],
       resultsCount: 0,
+      totalCount: 0,
       appliedFilters: CatalogsState.getFilters(),
       onFilterChange: filterChange,
     };
