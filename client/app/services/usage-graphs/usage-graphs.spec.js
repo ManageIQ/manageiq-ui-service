@@ -47,7 +47,7 @@ describe('Usage Graph component', () => {
   }));
 
   it('displays 3 Graphs', () => {
-    const graphs = element[0].querySelectorAll('div[pf-c3-chart]');
+    const graphs = element[0].querySelectorAll('pf-donut-pct-chart');
     expect(graphs.length).to.eq(3);
   });
   it('Chart availble values match', () => {
