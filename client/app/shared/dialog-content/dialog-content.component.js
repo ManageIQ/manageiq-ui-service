@@ -19,9 +19,9 @@ function DialogContentController(API_BASE, lodash) {
   vm.$onInit = activate;
   vm.parsedOptions = {};
   vm.dateOptions = {
-    autoclose: true,
-    todayBtn: 'linked',
-    todayHighlight: true,
+    initDate: new Date(),
+    minDate: new Date(),
+    showWeeks: false,
   };
   vm.supportedDialog = true;
   vm.API_BASE = API_BASE;

@@ -28,11 +28,9 @@ function ComponentController($scope, $state, CollectionsApi, EventNotifications,
 
 
   vm.dateOptions = {
-    autoclose: true,
-    clearBtn: true,
-    todayBtn: 'linked',
-    todayHighlight: true,
-    startDate: new Date(),
+    initDate: new Date(),
+    minDate: new Date(),
+    showWeeks: false,
   };
 
   vm.warningOptions = [

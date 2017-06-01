@@ -67,12 +67,12 @@
 
 
                     <select ng-if="dialogField.options.force_single_value"
-                      ng-switch-when="DialogFieldTagControl"
-                      ng-model="dialogField.default_value"
-                      ng-disabled="dialogField.read_only || vm.inputDisabled"
-                      ng-change="dialogField.triggerAutoRefresh(dialogField)"
-                      class="form-control"
-                      ng-options="fieldValue.id as fieldValue.description for fieldValue in dialogField.values">
+                            ng-switch-when="DialogFieldTagControl"
+                            ng-model="dialogField.default_value"
+                            ng-disabled="dialogField.read_only || vm.inputDisabled"
+                            ng-change="dialogField.triggerAutoRefresh(dialogField)"
+                            class="form-control"
+                            ng-options="fieldValue.id as fieldValue.description for fieldValue in dialogField.values">
                     </select>
 
                     <!-- Somewhat of a hack, but open angular issue using ng-att-multiple, so this is the workaround -->
@@ -93,8 +93,8 @@
                       <label>{{ vm.parsedOptions[dialogField.name] }}</label>
                     </span>
                     <span ng-if="dialogField.read_only === false || vm.inputDisabled === false"
-                      ng-switch-when="DialogFieldRadioButton"
-                      class="btn-group">
+                          ng-switch-when="DialogFieldRadioButton"
+                          class="btn-group">
                       <label
                         class="btn btn-primary"
                         ng-repeat="fieldValue in dialogField.values">
@@ -109,20 +109,31 @@
                       </label>
                     </span>
 
-                    <input
-                      ng-switch-when="DialogFieldDateControl"
-                      ng-model="dialogField.default_value"
-                      ng-change="triggerAutoRefresh(dialogField)"
-                      pf-datepicker options="vm.dateOptions"
-                      date="dialogField.default_value">
+                    <p ng-switch-when="DialogFieldDateControl" class="input-group">
+                      <input uib-datepicker-popup type="text" class="form-control"
+                             ng-model="dialogField.default_value"
+                             ng-change="triggerAutoRefresh(dialogField)"
+                             is-open="open"
+                             datepicker-options="vm.dateOptions" close-text="Close"/>
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open = !open">
+                          <i class="fa fa-calendar"></i></button>
+                      </span>
+                    </p>
 
                     <div ng-switch-when="DialogFieldDateTimeControl">
                       <div class="col-sm-6 dateTimePadding">
-                        <input
-                          ng-model="dialogField.default_value"
-                          ng-change="dialogField.triggerAutoRefresh(dialogField)"
-                          pf-datepicker options="vm.dateOptions"
-                          date="dialogField.default_value">
+                        <p class="input-group">
+                          <input uib-datepicker-popup type="text" class="form-control"
+                                 ng-model="dialogField.default_value"
+                                 ng-change="triggerAutoRefresh(dialogField)"
+                                 is-open="open"
+                                 datepicker-options="vm.dateOptions" close-text="Close"/>
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open = !open">
+                              <i class="fa fa-calendar"></i></button>
+                          </span>
+                        </p>
                       </div>
                       <div class="col-sm-6">
                         <uib-timepicker ng-model="dialogField.default_value"></uib-timepicker>
@@ -132,7 +143,8 @@
                     <span ng-switch-default ng-hide="true"></span>
                   </div>
 
-                  <div class="col-sm-1" ng-if="dialogField.dynamic && dialogField.show_refresh_button && vm.inputDisabled===false">
+                  <div class="col-sm-1"
+                       ng-if="dialogField.dynamic && dialogField.show_refresh_button && vm.inputDisabled===false">
                     <button type="button" class="btn" ng-click="dialogField.refreshSingleDialogField()" translate>
                       Refresh
                     </button>

@@ -6,12 +6,19 @@
 </div>
 <div class="modal-body">
   <form class="form-horizontal">
-      <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Retirement Warning'|translate}}">
-        <pf-select selected="vm.modalData.warn" empty-value="{{vm.warningOptions[0].label}}" options="vm.visibleOptions"
-                   display-field="label"></pf-select>
-      </pf-form-group>
+    <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Retirement Warning'|translate}}">
+      <pf-select selected="vm.modalData.warn" empty-value="{{'Nothing Selected' | translate}}" options="vm.visibleOptions"
+                 display-field="label"></pf-select>
+    </pf-form-group>
     <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Retirement Date'|translate}}">
-      <div pf-datepicker options="vm.dateOptions" date="vm.modalData.date"></div>
+      <p class="input-group">
+        <input uib-datepicker-popup type="text" class="form-control" ng-model="vm.modalData.date" is-open="open"
+               datepicker-options="vm.dateOptions" close-text="Close"/>
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open = !open">
+              <i class="fa fa-calendar"></i></button>
+          </span>
+      </p>
     </pf-form-group>
   </form>
   <hr>
