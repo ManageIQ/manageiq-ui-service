@@ -13,7 +13,6 @@ import {IconListComponent} from './icon-list/icon-list.component.js';
 import {LoadingComponent} from './loading.component.js';
 import {PaginationComponent} from './pagination/pagination.component.js';
 import {SSCardComponent} from './ss-card/ss-card.component.js';
-import {SelectDropdownComponent} from './select-dropdown/select-dropdown.component.js';
 import {TaggingComponent} from './tagging/tagging.component.js';
 import {substitute} from './substitute.filter.js';
 
@@ -35,7 +34,6 @@ export const SharedModule = angular
   .component('iconList', IconListComponent)
   .component('loading', LoadingComponent)
   .component('ssCard', SSCardComponent)
-  .component('selectDropdown', SelectDropdownComponent)
   .component('taggingWidget', TaggingComponent)
   .directive('autofocus', AutofocusDirective)
   .component('aceEditor', AceEditorComponent)
