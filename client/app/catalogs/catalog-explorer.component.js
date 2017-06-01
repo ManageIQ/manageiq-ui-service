@@ -29,6 +29,10 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
 
       // Config
       cardConfig: getCardConfig(),
+      toolbarConfig: {
+        sortConfig: getSortConfig(),
+        filterConfig: {},
+      },
     });
     resolveServiceTemplates(vm.limit, 0);
   };
@@ -40,16 +44,6 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
       showSelectBox: false,
       selectionMatchProp: 'id',
       onClick: viewDetails,
-    };
-  }
-
-  function getToolbarConfig() {
-    return {
-      filterConfig: getFilterConfig(),
-      sortConfig: getSortConfig(),
-      actionsConfig: {
-        actionsInclude: true,
-      },
     };
   }
 
@@ -99,7 +93,7 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
       CatalogsState.getCatalogs(limit, offset).then((response) => {
         vm.catalogsList = response.resources;
         vm.loading = false;
-        vm.toolbarConfig = getToolbarConfig();
+        vm.toolbarConfig.filterConfig = getFilterConfig();
         getFilterCount();
       });
 
