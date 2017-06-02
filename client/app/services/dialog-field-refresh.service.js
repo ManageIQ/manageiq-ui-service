@@ -6,7 +6,7 @@
   'use strict';
 
   angular.module('app.services')
-    .factory('DialogFieldRefresh', ['lodash', 'CollectionsApi', 'EventNotifications', DialogFieldRefreshFactory]);
+    .factory('DialogFieldRefresh', ['lodash', 'CollectionsApi', 'EventNotifications', 'DialogFieldRefreshFactory']);
 
   /** @ngInject */
   function DialogFieldRefreshFactory(lodash, CollectionsApi, EventNotifications) {
