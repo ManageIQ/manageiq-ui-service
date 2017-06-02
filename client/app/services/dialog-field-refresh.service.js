@@ -55,7 +55,7 @@
         var sortByValue = 0; // These are constants that are used to refer to array positions
         var sortByDescription = 1; // These are constants that are used to refer to array positions
         var sortBy = (dialogField.options.sort_by === 'value' ? sortByValue : sortByDescription);
-        dialogField.values = values.sort(function (option1, option2) {
+        dialogField.values = values.sort(function(option1, option2) {
           var trueValue = -1;
           var falseValue = 1;
           if (sortDirection !== 'ascending') {
