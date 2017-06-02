@@ -201,7 +201,7 @@
                          tooltip-placement="bottom"
                          tooltip-append-to-body="true"
                          tooltip-popup-delay="1000"
-                         ng-click="customScope.gotoComputeResource(item)"
+                         ng-click="$ctrl.customScope.gotoComputeResource(item)"
                          href="#">
                         <i class="pficon pficon-screen"></i>
                         <span>
@@ -275,7 +275,7 @@
                   </div>
                   <div ng-if="!item.retired " class="list-view-pf-actions">
                     <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body
-                         ng-if="customScope.permissions.cockpit || customScope.permissions.console">
+                         ng-if="$ctrl.customScope.permissions.cockpit || $ctrl.customScope.permissions.console">
                       <button type="button" class="btn btn-default" uib-dropdown-toggle
                               type="button">
                         <span translate>Access</span>
@@ -284,13 +284,13 @@
                       <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu"
                           aria-labelledby="btn-append-to-to-body">
                         <li role="menuitem"
-                            ng-class="{'disabled': !item['supports_console?'] || item.power_state !== 'on' || !customScope.permissions.console}"
-                            ng-click="customScope.openConsole(item)">
+                            ng-class="{'disabled': !item['supports_console?'] || item.power_state !== 'on' || !$ctrl.customScope.permissions.console}"
+                            ng-click="$ctrl.customScope.openConsole(item)">
                           <a href="#" translate>Open VM Console</a>
                         </li>
                         <li role="menuitem"
-                            ng-class="{'disabled': !item['supports_launch_cockpit?'] || item.power_state !== 'on' || !customScope.permissions.cockpit}"
-                            ng-click="customScope.openCockpit(item)">
+                            ng-class="{'disabled': !item['supports_launch_cockpit?'] || item.power_state !== 'on' || !$ctrl.customScope.permissions.cockpit}"
+                            ng-click="$ctrl.customScope.openCockpit(item)">
                           <a href="#" translate>Open Cockpit Console</a>
                         </li>
                       </ul>
@@ -303,19 +303,19 @@
                       </button>
                       <ul uib-dropdown-menu=""
                           class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body">
-                        <li role="menuitem" ng-if="customScope.permissions.instanceStart"
-                            ng-class="{'disabled': customScope.disableStartButton(item)}">
-                          <a ng-click="customScope.startVM(item, customScope.disableStartButton(item))"
+                        <li role="menuitem" ng-if="$ctrl.customScope.permissions.instanceStart"
+                            ng-class="{'disabled': $ctrl.customScope.disableStartButton(item)}">
+                          <a ng-click="$ctrl.customScope.startVM(item, $ctrl.customScope.disableStartButton(item))"
                              translate>Start</a>
                         </li>
-                        <li role="menuitem" ng-if="customScope.permissions.instanceStop"
-                            ng-class="{'disabled': customScope.disableStopButton(item)}">
-                          <a ng-click="customScope.stopVM(item, customScope.disableStopButton(item))"
+                        <li role="menuitem" ng-if="$ctrl.customScope.permissions.instanceStop"
+                            ng-class="{'disabled': $ctrl.customScope.disableStopButton(item)}">
+                          <a ng-click="$ctrl.customScope.stopVM(item, $ctrl.customScope.disableStopButton(item))"
                              translate>Stop</a>
                         </li>
-                        <li role="menuitem" ng-if="customScope.permissions.instanceSuspend"
-                            ng-class="{'disabled': customScope.disableSuspendButton(item)}">
-                          <a ng-click="customScope.suspendVM(item, customScope.disableSuspendButton(item))"
+                        <li role="menuitem" ng-if="$ctrl.customScope.permissions.instanceSuspend"
+                            ng-class="{'disabled': $ctrl.customScope.disableSuspendButton(item)}">
+                          <a ng-click="$ctrl.customScope.suspendVM(item, $ctrl.customScope.disableSuspendButton(item))"
                              translate>Suspend</a>
                         </li>
                         <li role="menuitem"
@@ -326,18 +326,18 @@
                             confirmation-ok-text="{{'Retire'|translate}}"
                             confirmation-ok-style="danger"
                             confirmation-show-cancel="true"
-                            confirmation-on-ok="customScope.retireVM(item)"
+                            confirmation-on-ok="$ctrl.customScope.retireVM(item)"
                             confirmation-on-cancel="vm.retireVMFlag=false"
-                            ng-if="customScope.permissions.instanceRetire"
+                            ng-if="$ctrl.customScope.permissions.instanceRetire"
                         >
                           <a ng-click="vm.retireVMFlag=true" translate>Retire</a>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li role="menuitem">
-                          <a ng-click="customScope.gotoComputeResource(item)" translate>View
+                          <a ng-click="$ctrl.customScope.gotoComputeResource(item)" translate>View
                             Details</a>
                         </li>
-                        <li role="menuitem" ng-if="customScope.permissions.viewSnapshots">
+                        <li role="menuitem" ng-if="$ctrl.customScope.permissions.viewSnapshots">
                           <a ui-sref="vms.snapshots({vmId: item.id})" translate>View
                             Snapshots</a>
                         </li>
