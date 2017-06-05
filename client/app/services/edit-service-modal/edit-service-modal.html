@@ -6,10 +6,10 @@
 </div>
 <div class="modal-body">
   <form class="form-horizontal">
-    <pf-form-group pf-label="{{'Name'|translate}}" required>
+    <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Name'|translate}}" required>
       <input id="name" name="name" ng-model="vm.modalData.name" type="text" required/>
     </pf-form-group>
-    <pf-form-group pf-input-class="col-sm-9" pf-label="{{'Description'|translate}}">
+    <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Description'|translate}}">
         <textarea id="description" name="description" ng-model="vm.modalData.description">
           {{ vm.modalData.description }}
         </textarea>
