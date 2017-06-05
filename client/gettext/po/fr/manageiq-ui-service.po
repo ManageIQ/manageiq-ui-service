@@ -7,7 +7,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2017-05-02 12:51-0400\n"
+"PO-Revision-Date: 2017-05-28 07:55-0400\n"
 "Last-Translator: croe <croe@redhat.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -238,7 +238,7 @@ msgstr "Conformité"
 
 #: app/services/service-details/service-details.component.js:303
 msgid "Compute"
-msgstr "Calcul"
+msgstr "Compute"
 
 #: app/services/services-state.service.js:209
 #: app/services/services-state.service.js:214
@@ -329,7 +329,7 @@ msgstr "Groupe actuel"
 
 #: app/states/dashboard/dashboard.html:37
 msgid "Current Services"
-msgstr "Services actuels"
+msgstr "Services en cours"
 
 #: app/layouts/application.html:79
 msgid "Currently Selected Group"
@@ -538,7 +538,6 @@ msgstr "Filtrer par nom de catalogue"
 #: app/catalogs/catalog-explorer.component.js:62
 #: app/services/service-explorer/service-explorer.component.js:330
 #: app/services/vms/snapshots.component.js:92
-#, fuzzy
 msgid "Filter by Description"
 msgstr "Filtrer par description"
 
@@ -1436,7 +1435,7 @@ msgstr ""
 
 #: app/services/service-details/service-details.component.js:306
 msgid "There are no Compute Resources for this service."
-msgstr "Il n'existe aucune ressource de calcul pour ce service."
+msgstr "Il n'existe aucune ressource compute pour ce service."
 
 #: app/shared/tagging/tagging.html:15
 msgid "There are no tags for this item."
