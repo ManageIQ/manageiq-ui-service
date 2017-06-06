@@ -4,12 +4,17 @@ export function PollingFactory($interval, lodash) {
     start: start,
     stop: stop,
     stopAll: stopAll,
+    getPolls: getPolls,
   };
 
   var polls = {};
 
   return service;
-
+  
+  function getPolls() {
+    return polls;
+  }
+  
   function start(key, func, interval, limit) {
     var poll;
 
