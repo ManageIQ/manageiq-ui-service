@@ -32,7 +32,7 @@ function enterApplication(Polling, lodash, NavCounts, Navigation, RBAC) {
   RBAC.setNavFeatures(navFeatures);
 
   function updateCount(count, key) {
-    if (navFeatures[key].show) {
+    if (angular.isDefined(navFeatures[key]) && navFeatures[key].show) {
       count.func();
       if (count.interval) {
         Polling.start(key, count.func, count.interval);
