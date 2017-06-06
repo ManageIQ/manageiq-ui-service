@@ -77,7 +77,6 @@ describe('Event Notifications Service', () => {
             notificationsState = EventNotifications.state();
             warningGroup = notificationsState.groups[warningGroupIndex];
         });
-
         it('should allow for message to be marked as read', () => {
             EventNotifications.markRead(warningGroup.notifications[0], warningGroup);
             const currentNotificationsState = EventNotifications.state();
@@ -85,7 +84,6 @@ describe('Event Notifications Service', () => {
             expect(currentWarningGroupStatus.unreadCount).to.eq(0);
             expect(currentWarningGroupStatus.notifications.length).to.eq(1);
         });
-
         it('should allow for message to be marked as Unread', () => {
             EventNotifications.markUnread(warningGroup.notifications[0], warningGroup);
             const currentNotificationsState = EventNotifications.state();
@@ -141,7 +139,4 @@ describe('Event Notifications Service', () => {
            expect(currentNotificationsState.toastNotifications.length).to.eq(0);
         });
     });
-
-
-   
 });
