@@ -5,13 +5,12 @@
     </ol>
   </span>
 </div>
-<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
-</div>
+<pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
+</pf-toolbar>
 <div class="list-view-container section-container">
   <loading status="vm.loading"></loading>
-  <div class="container-fluid"
+  <pf-card-view class="container-fluid"
        id="cardView"
-       pf-card-view
        ng-if="!vm.loading"
        config="vm.cardConfig"
        items="vm.serviceTemplateList">
@@ -20,7 +19,7 @@
              description="item.description"
              image="item.picture.image_href">
     </ss-card>
-  </div>
+  </pf-card-view>
 </div>
 <explorer-pagination count="vm.filterCount"
                      limit="vm.limit"

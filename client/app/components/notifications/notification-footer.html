@@ -2,7 +2,7 @@
   <div class="footer-button-left">
     <a class="btn btn-link" role="button"
        ng-class="{'disabled': !notificationGroup.notifications || notificationGroup.notifications.length === 0}"
-       ng-click="customScope.markAllRead(notificationGroup)">
+       ng-click="$ctrl.customScope.markAllRead(notificationGroup)">
       <span>{{'Mark All Read' | translate}}</span>
     </a>
   </div>
@@ -13,7 +13,7 @@
        confirmation-title="{{'Clear All [[heading]]'|translate|substitute:{heading: notificationGroup.heading} }}"
        confirmation-message="{{'Are you sure you would like to clear all [[heading]]?'|translate|substitute:{heading: notificationGroup.heading} }}"
        confirmation-ok-text="{{'Clear All'|translate}}"
-       confirmation-on-ok="customScope.clearAllNotifications(notificationGroup)"
+       confirmation-on-ok="$ctrl.customScope.clearAllNotifications(notificationGroup)"
        confirmation-ok-style="primary"
        confirmation-show-cancel="true" >
       <span>{{'Clear All' | translate}}</span>

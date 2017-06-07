@@ -29,6 +29,11 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
 
       // Config
       cardConfig: getCardConfig(),
+      toolbarConfig: {
+        sortConfig: getSortConfig(),
+        filterConfig: {},
+        isTableView: false,
+      },
     });
     resolveServiceTemplates(vm.limit, 0);
   };
@@ -43,16 +48,6 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
     };
   }
 
-  function getToolbarConfig() {
-    return {
-      filterConfig: getFilterConfig(),
-      sortConfig: getSortConfig(),
-      actionsConfig: {
-        actionsInclude: true,
-      },
-    };
-  }
-
   function getFilterConfig() {
     const catalogNames = vm.catalogsList.map((catalog) => catalog.name);
 
@@ -63,6 +58,7 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
         ListView.createFilterField('service_template_catalog.name', __('Catalog Name'), __('Filter by Catalog Name'), 'select', catalogNames),
       ],
       resultsCount: 0,
+      totalCount: 0,
       appliedFilters: CatalogsState.getFilters(),
       onFilterChange: filterChange,
     };
@@ -99,7 +95,7 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
       CatalogsState.getCatalogs(limit, offset).then((response) => {
         vm.catalogsList = response.resources;
         vm.loading = false;
-        vm.toolbarConfig = getToolbarConfig();
+        vm.toolbarConfig.filterConfig = getFilterConfig();
         getFilterCount();
       });
 

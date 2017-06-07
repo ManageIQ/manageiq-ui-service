@@ -156,7 +156,7 @@ function StateController($state, definedServiceIdsServices, retiredServices, exp
       services.forEach(Chargeback.processReports);
 
       vm.chargeback = {
-        'used_cost_sum': lodash(services).pluck(['chargeback', 'used_cost_sum']).sum(),
+        'used_cost_sum': lodash(services).map('chargeback').map('used_cost_sum').values().sum(),
       };
     }
 
@@ -184,14 +184,14 @@ function StateController($state, definedServiceIdsServices, retiredServices, exp
     $state.go('services', {'filter': [{'id': 'retired', 'title': __('Retired'), 'value': true}]});
   };
 
-  vm.navigateToRetiringSoonServicesList = function () {
+  vm.navigateToRetiringSoonServicesList = function() {
     var currentDate = new Date();
     var filters = [];
 
-    filters.push({ 'id': 'retires_on', 'operator': '>', 'value': currentDate.toISOString() });
-    filters.push({ 'id': 'retired', 'title': __('Retired'), 'value': false });
+    filters.push({'id': 'retires_on', 'operator': '>', 'value': currentDate.toISOString()});
+    filters.push({'id': 'retired', 'title': __('Retired'), 'value': false});
     var days30 = currentDate.setDate(currentDate.getDate() + 30);
-    filters.push({ 'id': 'retires_on', 'operator': '<', 'value': new Date(days30).toISOString() });
+    filters.push({'id': 'retires_on', 'operator': '<', 'value': new Date(days30).toISOString()});
 
     $state.go('services', {'filter': filters});
   };
@@ -202,7 +202,7 @@ function StateController($state, definedServiceIdsServices, retiredServices, exp
 
   function resolveRequestPromises(promiseArray, type, lodash, $q) {
     $q.all(promiseArray).then(function(data) {
-      var count = lodash.sum(data, 'subcount');
+      var count = lodash.sumBy(data, 'subcount');
       vm.requestsCount[type] = count;
       vm.requestsCount.total += count;
     });

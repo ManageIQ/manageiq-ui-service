@@ -1,5 +1,5 @@
-import '../../../assets/sass/_explorer.sass';
-import templateUrl from './order-explorer.html';
+import "../../../assets/sass/_explorer.sass";
+import templateUrl from "./order-explorer.html";
 
 export const OrderExplorerComponent = {
   controller: ComponentController,
@@ -27,7 +27,6 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
       ordersList: [],
       selectedItemsList: [],
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
-      selectedItemsListCount: 0,
       // Functions
       resolveOrders: resolveOrders,
       listActionDisable: listActionDisable,
@@ -81,6 +80,8 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
     const filterConfig = {
       fields: getOrderFilterFields(),
       resultsCount: 0,
+      totalCount: 0,
+      selectedCount: 0,
       appliedFilters: OrdersState.filterApplied ? OrdersState.getFilters() : [],
       onFilterChange: orderFilterChange,
     };
@@ -177,11 +178,9 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
           request.selected = true;
         });
       }
-      vm.selectedItemsList = item.service_requests.filter(function(item) {
-        return item.selected;
-      });
     }
-    vm.selectedItemsListCount = vm.selectedItemsList.length;
+    vm.selectedItemsList = vm.ordersList.filter((item) => item.selected);
+    vm.toolbarConfig.filterConfig.selectedCount = vm.selectedItemsList.length;
   }
 
   function extendedSelectionChange(item) {
@@ -195,7 +194,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
 
     lodash.indexOf(vm.selectedItemsList, item) === -1 ? vm.selectedItemsList.push(item) : lodash.pull(vm.selectedItemsList, item);
 
-    vm.selectedItemsListCount = vm.selectedItemsList.length;
+    vm.toolbarConfig.filterConfig.selectedCount = vm.selectedItemsList.length;
 
     function findItem(order) {
       return lodash.find(order.service_requests, item);
@@ -229,6 +228,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
       vm.orders = [];
       vm.selectedItemsList = [];
       vm.toolbarConfig.filterConfig.resultsCount = vm.filterCount;
+      vm.toolbarConfig.filterConfig.totalCount = response.subcount;
 
       angular.forEach(response.resources, checkExpansion);
 

@@ -17,11 +17,11 @@
     </ol>
   </span>
 </div>
-<div pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
+<pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
   <actions>
     <custom-dropdown config="vm.listActions" menu-right="true"></custom-dropdown>
   </actions>
-</div>
+</pf-toolbar>
 <div class="list-view-container section-container explorer-list">
   <loading status="vm.loading"></loading>
   <div ng-if="!vm.loading" class="list-view-container section-container"
@@ -37,7 +37,7 @@
        confirmation-items-title="{{'Snapshots'|translate}}"
        confirmation-items="vm.catalogsToDelete"
        confirmation-item-name-field="name">
-    <div pf-list-view
+    <pf-list-view
          config="vm.listConfig"
          items="vm.snapshots"
          menu-actions="vm.menuActions"
@@ -96,6 +96,6 @@
             </span>
         </div>
       </div>
-    </div>
+    </pf-list-view>
   </div>
 </div>

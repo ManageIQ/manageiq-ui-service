@@ -1,8 +1,9 @@
-import templateUrl from './language-switcher.html';
+import "./_language-switcher.sass";
+import templateUrl from "./language-switcher.html";
 
 /** @ngInject */
 export function LanguageSwitcherDirective() {
-  var directive = {
+  return {
     restrict: 'AE',
     scope: {
       mode: '@?',
@@ -13,42 +14,39 @@ export function LanguageSwitcherDirective() {
     bindToController: true,
   };
 
-  return directive;
-
   /** @ngInject */
-  function LanguageSwitcherController($scope, Language, lodash, $state) {
-    var vm = this;
+  function LanguageSwitcherController(Language, lodash, $state) {
+    const vm = this;
+
+    angular.extend(vm, {
+      switchLanguage: switchLanguage,
+      available: [],
+    });
+
     vm.mode = vm.mode || 'menu';
 
-    var hardcoded = {
-      "_user_": __("User Default"),
-      "_browser_": __("Browser Default"),
+    const hardcoded = {
+      _browser_: __("Browser Default"),
     };
-    vm.available = hardcoded;
-
-    if (vm.mode === 'menu') {
-      delete hardcoded._user_;
-    } else {
-      vm.chosen = Language.chosen = { code: '_user_' };
-
-      $scope.$watch('vm.chosen.code', function(val) {
-        if (!val || (val === '_user_')) {
-          val = "en";
-        }
-
-        Language.setLocale(val);
-      });
-    }
 
     Language.ready
       .then(function(available) {
-        vm.available = lodash.extend({}, hardcoded, available);
+        if (vm.mode !== 'menu') {
+          hardcoded._user_ = __("User Default");
+          Language.chosen = {code: '_user_'};
+        }
+        lodash.forEach(lodash.extend({}, hardcoded, available), (value, key) => {
+          vm.available.push({value: key, label: value});
+        });
+        vm.chosen = lodash.find(vm.available, {'value': '_user_'});
       });
 
-    vm.switch = function(code) {
-      Language.setLocale(code);
-      Language.save(code);
-      $state.reload();
-    };
+    function switchLanguage(input) {
+      Language.setLocale(input.value || input);
+      if (!input.value) {
+        Language.save(input);
+        $state.reload();
+      }
+    }
   }
 }

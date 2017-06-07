@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
   <form class="form-horizontal">
-    <div pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Select an Owner'|translate}}">
+    <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Select an Owner'|translate}}">
       <select ng-model="vm.modalData.owner.userid" class="form-control">
         <option ng-if="!vm.isService" value="" translate>Don't Change</option>
         <option ng-repeat="user in vm.users.resources"
@@ -15,9 +15,9 @@
           {{user.name}}
         </option>
       </select>
-    </div>
+    </pf-form-group>
 
-    <div pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Select a Group'|translate}}">
+    <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Select a Group'|translate}}">
       <select ng-model="vm.modalData.group.description"
               class="form-control">
         <option ng-if="!vm.isService" value="" translate>Don't Change</option>
@@ -27,7 +27,7 @@
           {{group.description}}
         </option>
       </select>
-    </div>
+    </pf-form-group>
   </form>
   <hr>
   <h4 translate>Affected Services</h4>
