@@ -143,17 +143,20 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
     let usedCPU = 0;
     let totalCPU = 0;
     const allocatedMemory = vm.service.aggregate_all_vm_memory / 1024; // this metric is in mb
-    vm.service.vms.forEach((instance) => {
-      usedCPU += instance.cpu_usagemhz_rate_average_avg_over_time_period;
-      totalCPU += (angular.isDefined(instance.hardware.aggregate_cpu_speed) ? instance.hardware.aggregate_cpu_speed : 0);
-      usedMemory += instance.max_mem_usage_absolute_average_avg_over_time_period;
-    });
+    if (vm.service.vms) {
+      vm.service.vms.forEach((instance) => {
+        usedCPU += instance.cpu_usagemhz_rate_average_avg_over_time_period;
+        totalCPU += (angular.isDefined(instance.hardware.aggregate_cpu_speed) ? instance.hardware.aggregate_cpu_speed : 0);
+        usedMemory += instance.max_mem_usage_absolute_average_avg_over_time_period;
+      });
+    }
 
     usedMemory = (usedMemory / 1073741824).toFixed(2);
     vm.cpuChart = getCPUChartConfig(usedCPU, totalCPU);
     vm.memoryChart = getMemoryChartConfig(usedMemory, allocatedMemory);
     vm.storageChart = getStorageChartConfig(usedStorage, allocatedStorage);
   }
+
   function fetchResources(id, refresh) {
     ServicesState.getService(id, refresh).then(handleSuccess, handleFailure);
 
