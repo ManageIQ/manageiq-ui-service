@@ -4,51 +4,6 @@ describe('DialogFieldRefresh', function() {
     bard.inject('CollectionsApi', 'Notifications', 'AutoRefresh', 'DialogFieldRefresh');
   });
 
-  describe('#listenForAutoRefreshMessages', function() {
-    var eventListenerSpy;
-    var onListenerCallback;
-    var dialogField1;
-    var dialogField2;
-    var refreshSingleDialogFieldSpy;
-
-    beforeEach(function() {
-      $ = sinon.stub();
-      eventListenerSpy = sinon.stub({on: function() {}, off: function() {}});
-
-      $.withArgs(window).returns(eventListenerSpy);
-
-      refreshSingleDialogFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
-
-      dialogField1 = {auto_refresh: true};
-      dialogField2 = {auto_refresh: true};
-
-      DialogFieldRefresh.listenForAutoRefreshMessages([], [dialogField1, dialogField2], 'the_url', '123');
-      onListenerCallback = eventListenerSpy.on.getCall(0).args[1];
-    });
-
-    it('sets up a listener on the window', function() {
-      expect(eventListenerSpy.off).to.have.been.calledWith('message');
-      expect(eventListenerSpy.on).to.have.been.calledWith('message', onListenerCallback);
-    });
-
-    describe('listenerCallback', function() {
-      var event;
-
-      beforeEach(function() {
-        event = {originalEvent: {data: {refreshableFieldIndex: 0}}};
-        onListenerCallback(event);
-      });
-
-      it('sets the being refreshed flag to true', function() {
-        expect(dialogField2.beingRefreshed).to.equal(true);
-      });
-
-      it('sets the trigger override flag to true', function() {
-        expect(dialogField2.triggerOverride).to.equal(true);
-      });
-    });
-  });
-
   describe('#refreshSingleDialogField with values not as an object', function() {
     var dialog1 = {name: 'dialog1', default_value: 'name1'};
     var dialog2 = {name: 'dialog2', default_value: 'name2'};
@@ -443,10 +398,6 @@ describe('DialogFieldRefresh', function() {
       autoRefreshSpy = sinon.stub(AutoRefresh, 'triggerAutoRefresh');
 
       dialogField.name = 'dialogName';
-    });
-
-    afterEach(function() {
-      parent.postMessage.restore();
     });
 
     describe('when the dialog field triggers auto refreshes', function() {

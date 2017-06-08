@@ -64,7 +64,7 @@ function StateController($state, $stateParams, CollectionsApi, service, EventNot
                   }
 
                   dialogField.triggerAutoRefresh = function () {
-                    DialogFieldRefresh.triggerAutoRefresh(dialogField);
+                    DialogFieldRefresh.triggerAutoRefresh(dialogField, true);
                   };
 
                   if (dialogField.auto_refresh === true) {
