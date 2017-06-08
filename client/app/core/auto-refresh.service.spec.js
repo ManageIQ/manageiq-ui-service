@@ -32,10 +32,6 @@ describe('AutoRefresh Service', function() {
       listenerFunction = AutoRefresh.callbacks[0];
     });
 
-    // it('pushes the listener function onto the callback stack', function() {
-    //   expect(AutoRefresh.callbacks).to.equal();
-    // });
-
     describe('#listenForAutoRefresh listenerFunction', function() {
       describe('when the list of fields to refresh is greater than 0', function() {
         var data = {initializingIndex: 0, currentIndex: 0};

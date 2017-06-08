@@ -19,11 +19,11 @@ import {
 // Core
 import { ApplianceInfo } from './appliance-info.service.js';
 import { AuthenticationApiFactory } from './authentication-api.factory.js';
+import { AutoRefreshFactory } from './auto-refresh.service.js';
 import { BaseModalController } from './modal/base-modal-controller.js';
 import { BaseModalFactory } from './modal/base-modal.factory.js';
 import { ChargebackFactory } from './chargeback.service.js';
 import { CollectionsApiFactory } from './collections-api.factory.js';
-import { AutoRefreshFactory } from '../services/auto-refresh.service.js';
 import { DialogFieldRefreshFactory } from './dialog-field-refresh.service.js';
 import { EventNotificationsFactory } from './event-notifications.service.js';
 import { ExceptionModule } from './exception/exception.module.js';
@@ -81,9 +81,9 @@ export const CoreModule = angular
   .directive('languageSwitcher', LanguageSwitcherDirective)
   .factory('ApplianceInfo', ApplianceInfo)
   .factory('AuthenticationApi', AuthenticationApiFactory)
+  .factory('AutoRefresh', AutoRefreshFactory)
   .factory('Chargeback', ChargebackFactory)
   .factory('CollectionsApi', CollectionsApiFactory)
-  .factory('AutoRefresh', AutoRefreshFactory)
   .factory('DialogFieldRefresh', DialogFieldRefreshFactory)
   .factory('EventNotifications', EventNotificationsFactory)
   .factory('Language', LanguageFactory)

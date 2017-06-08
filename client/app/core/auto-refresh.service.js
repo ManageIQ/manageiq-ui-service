@@ -1,29 +1,29 @@
 /** @ngInject */
 export function AutoRefreshFactory() {
-  var callbacks = [];
-  var service = {
+  const callbacks = [];
+  const service = {
     triggerAutoRefresh: triggerAutoRefresh,
     listenForAutoRefresh: listenForAutoRefresh,
     callbacks: callbacks,
   };
 
   function triggerAutoRefresh(data) {
-    angular.forEach(callbacks, (function(callback) {
+    callbacks.forEach((callback) => {
       callback(data);
-    }));
+    });
   }
 
   function listenForAutoRefresh(allDialogFields, autoRefreshableDialogFields, url, resourceId, refreshCallback) {
-    var nextFieldToRefresh = function(field, data, currentIndex) {
+    const nextFieldToRefresh = function(field, data, currentIndex) {
       return (field.auto_refresh === true && data.initializingIndex !== currentIndex && data.currentIndex < currentIndex);
     };
 
-    var listenerFunction = function(data) {
-      var autoRefreshOptions = {
+    const listenerFunction = function(data) {
+      const autoRefreshOptions = {
         initializingIndex: data.initializingIndex,
       };
 
-      var dialogFieldToRefresh = autoRefreshableDialogFields.filter(function(field, currentIndex) {
+      const dialogFieldToRefresh = autoRefreshableDialogFields.filter(function(field, currentIndex) {
         if (nextFieldToRefresh(field, data, currentIndex)) {
           return field;
         }

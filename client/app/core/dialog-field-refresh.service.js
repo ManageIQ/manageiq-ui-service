@@ -78,7 +78,7 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications, Au
 
   function triggerAutoRefresh(dialogField, initialTrigger, autoRefreshOptions) {
     if (dialogField.trigger_auto_refresh === true || dialogField.triggerOverride === true) {
-      var triggerOptions = {};
+      const triggerOptions = {};
 
       if (initialTrigger === true) {
         triggerOptions.initializingIndex = dialogField.refreshableFieldIndex;
