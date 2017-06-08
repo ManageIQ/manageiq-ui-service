@@ -2,7 +2,7 @@
 /* eslint angular/angularelement: "off" */
 
 /** @ngInject */
-export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
+export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications, AutoRefresh) {
   var service = {
     listenForAutoRefreshMessages: listenForAutoRefreshMessages,
     refreshSingleDialogField: refreshSingleDialogField,
@@ -39,8 +39,8 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
       if (dialogField.type === 'DialogFieldDropDownList') {
         updateDialogSortOrder(dialogField);
       }
- 
-      triggerAutoRefresh(dialogField);
+
+      DialogFieldRefresh.triggerAutoRefresh(dialogField, false, autoRefreshOptions);
     }
     function updateDialogSortOrder(dialogField) {
       var values = dialogField.values;
@@ -64,7 +64,7 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
     }
 
     dialogField.beingRefreshed = true;
-    fetchDialogFieldInfo(allDialogFields, [dialogField.name], url, resourceId, refreshSuccess, refreshFailure);
+    return fetchDialogFieldInfo(allDialogFields, [dialogField.name], url, resourceId, refreshSuccess, refreshFailure);
   }
 
   function selectDefaultValue(dialogField, newDialogField) {
@@ -113,7 +113,17 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
 
   function triggerAutoRefresh(dialogField) {
     if (dialogField.trigger_auto_refresh === true || dialogField.triggerOverride === true) {
-      parent.postMessage({refreshableFieldIndex: dialogField.refreshableFieldIndex}, '*');
+      var triggerOptions = {};
+
+      if (initialTrigger === true) {
+        triggerOptions.initializingIndex = dialogField.refreshableFieldIndex;
+        triggerOptions.currentIndex = 0;
+      } else {
+        triggerOptions.initializingIndex = autoRefreshOptions.initializingIndex;
+        triggerOptions.currentIndex = autoRefreshOptions.currentIndex;
+      }
+
+      AutoRefresh.triggerAutoRefresh(triggerOptions);
     }
   }
 
@@ -135,7 +145,7 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications) {
   }
 
   function fetchDialogFieldInfo(allDialogFields, dialogFieldsToFetch, url, resourceId, successCallback, failureCallback) {
-    CollectionsApi.post(
+    return CollectionsApi.post(
       url,
       resourceId,
       {},
