@@ -7,6 +7,7 @@ import {CustomDropdownComponent} from "./custom-dropdown/custom-dropdown.compone
 import {DialogContentComponent} from "./dialog-content/dialog-content.component.js";
 import {ElapsedTime} from "./elapsedTime.filter.js";
 import {IconListComponent} from "./icon-list/icon-list.component.js";
+import {IconStatusComponent} from './icon-status.component.js';
 import {LoadingComponent} from "./loading.component.js";
 import {PaginationComponent} from "./pagination/pagination.component.js";
 import {SSCardComponent} from "./ss-card/ss-card.component.js";
@@ -30,6 +31,7 @@ export const SharedModule = angular
   .component('dialogContent', DialogContentComponent)
   .component('explorerPagination', PaginationComponent)
   .component('iconList', IconListComponent)
+  .component('iconStatus', IconStatusComponent)
   .component('loading', LoadingComponent)
   .component('ssCard', SSCardComponent)
   .component('taggingWidget', TaggingComponent)
