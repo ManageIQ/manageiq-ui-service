@@ -1,52 +1,7 @@
 describe('DialogFieldRefresh', function() {
   beforeEach(function() {
     module('app.states');
-    bard.inject('CollectionsApi', 'Notifications', 'DialogFieldRefresh');
-  });
-
-  describe('#listenForAutoRefreshMessages', function() {
-    var eventListenerSpy;
-    var onListenerCallback;
-    var dialogField1;
-    var dialogField2;
-    var refreshSingleDialogFieldSpy;
-
-    beforeEach(function() {
-      $ = sinon.stub();
-      eventListenerSpy = sinon.stub({on: function() {}, off: function() {}});
-
-      $.withArgs(window).returns(eventListenerSpy);
-
-      refreshSingleDialogFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
-
-      dialogField1 = {auto_refresh: true};
-      dialogField2 = {auto_refresh: true};
-
-      DialogFieldRefresh.listenForAutoRefreshMessages([], [dialogField1, dialogField2], 'the_url', '123');
-      onListenerCallback = eventListenerSpy.on.getCall(0).args[1];
-    });
-
-    it('sets up a listener on the window', function() {
-      expect(eventListenerSpy.off).to.have.been.calledWith('message');
-      expect(eventListenerSpy.on).to.have.been.calledWith('message', onListenerCallback);
-    });
-
-    describe('listenerCallback', function() {
-      var event;
-
-      beforeEach(function() {
-        event = {originalEvent: {data: {refreshableFieldIndex: 0}}};
-        onListenerCallback(event);
-      });
-
-      it('sets the being refreshed flag to true', function() {
-        expect(dialogField2.beingRefreshed).to.equal(true);
-      });
-
-      it('sets the trigger override flag to true', function() {
-        expect(dialogField2.triggerOverride).to.equal(true);
-      });
-    });
+    bard.inject('CollectionsApi', 'Notifications', 'AutoRefresh', 'DialogFieldRefresh');
   });
 
   describe('#refreshSingleDialogField with values not as an object', function() {
@@ -436,16 +391,13 @@ describe('DialogFieldRefresh', function() {
   });
 
   describe('#triggerAutoRefresh', function() {
-    var postMessageSpy;
+    var autoRefreshSpy;
     var dialogField = {};
 
     beforeEach(function() {
-      postMessageSpy = sinon.stub(parent, 'postMessage');
-      dialogField.name = 'dialogName';
-    });
+      autoRefreshSpy = sinon.stub(AutoRefresh, 'triggerAutoRefresh');
 
-    afterEach(function() {
-      parent.postMessage.restore();
+      dialogField.name = 'dialogName';
     });
 
     describe('when the dialog field triggers auto refreshes', function() {
@@ -454,9 +406,35 @@ describe('DialogFieldRefresh', function() {
         dialogField.refreshableFieldIndex = 123;
       });
 
-      it('posts a message with the field name', function() {
-        DialogFieldRefresh.triggerAutoRefresh(dialogField);
-        expect(postMessageSpy).to.have.been.calledWith({refreshableFieldIndex: 123}, '*');
+      describe('when the initial trigger is true', function() {
+        beforeEach(function() {
+          DialogFieldRefresh.triggerAutoRefresh(dialogField, true);
+        });
+
+        it('calls the auto refresh trigger function with a currentIndex of 0', function() {
+          expect(autoRefreshSpy).to.have.been.calledWith({
+            initializingIndex: 123,
+            currentIndex: 0
+          });
+        });
+      });
+
+      describe('when the initial trigger is not true', function() {
+        beforeEach(function() {
+          var autoRefreshOptions = {
+            initializingIndex: 123,
+            currentIndex: 321
+          };
+
+          DialogFieldRefresh.triggerAutoRefresh(dialogField, false, autoRefreshOptions);
+        });
+
+        it('calls the auto refresh trigger function and passes along the autoRefreshOptions', function() {
+          expect(autoRefreshSpy).to.have.been.calledWith({
+            initializingIndex: 123,
+            currentIndex: 321
+          });
+        });
       });
     });
 
@@ -470,9 +448,34 @@ describe('DialogFieldRefresh', function() {
           dialogField.triggerOverride = true;
         });
 
-        it('posts a message with the field name', function() {
-          DialogFieldRefresh.triggerAutoRefresh(dialogField);
-          expect(postMessageSpy).to.have.been.calledWith({refreshableFieldIndex: 123}, '*');
+        describe('when the initial trigger is true', function() {
+          beforeEach(function() {
+            DialogFieldRefresh.triggerAutoRefresh(dialogField, true);
+          });
+
+          it('calls the auto refresh trigger function with a currentIndex of 0', function() {
+            expect(autoRefreshSpy).to.have.been.calledWith({
+              initializingIndex: 123,
+              currentIndex: 0
+            });
+          });
+        });
+
+        describe('when the initial trigger is not true', function() {
+          beforeEach(function() {
+            var autoRefreshOptions = {
+              initializingIndex: 123,
+              currentIndex: 321
+            };
+            DialogFieldRefresh.triggerAutoRefresh(dialogField, false, autoRefreshOptions);
+          });
+
+          it('calls the auto refresh trigger function and passes along the autoRefreshOptions', function() {
+            expect(autoRefreshSpy).to.have.been.calledWith({
+              initializingIndex: 123,
+              currentIndex: 321
+            });
+          });
         });
       });
 
@@ -483,7 +486,7 @@ describe('DialogFieldRefresh', function() {
 
         it('does not post a message', function() {
           DialogFieldRefresh.triggerAutoRefresh(dialogField);
-          expect(postMessageSpy).not.to.have.been.called;
+          expect(autoRefreshSpy).not.to.have.been.called;
         });
       });
     });

@@ -36,7 +36,7 @@ function resolveDialogs($stateParams, CollectionsApi) {
 }
 
 /** @ngInject */
-function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRefresh, ShoppingCart) {
+function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRefresh, AutoRefresh, ShoppingCart) {
   var vm = this;
 
   vm.serviceTemplate = serviceTemplate;
@@ -63,11 +63,12 @@ function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRef
     };
   });
 
-  DialogFieldRefresh.listenForAutoRefreshMessages(
+  AutoRefresh.listenForAutoRefresh(
     allDialogFields,
     autoRefreshableDialogFields,
     dialogUrl,
-    vm.serviceTemplate.id
+    vm.serviceTemplate.id,
+    DialogFieldRefresh.refreshSingleDialogField
   );
 
   function addToCartDisabled() {

@@ -25,19 +25,23 @@ describe('Catalogs.details', function() {
     var controller;
     var notificationsErrorSpy;
     var notificationsSuccessSpy;
+    var refreshSingleFieldSpy;
+    var autoRefreshSpy;
+    var dialogFields = [{
+      name: 'dialogField1',
+      default_value: '1'
+    }, {
+      name: 'dialogField2',
+      default_value: '2'
+    }];
+
     var dialogs = {
       subcount: 1,
       resources: [{
         content: [{
           dialog_tabs: [{
             dialog_groups: [{
-              dialog_fields: [{
-                name: 'dialogField1',
-                default_value: '1'
-              }, {
-                name: 'dialogField2',
-                default_value: '2'
-              }]
+              dialog_fields: dialogFields
             }]
           }]
         }]
@@ -52,13 +56,26 @@ describe('Catalogs.details', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'ShoppingCart');
+      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'AutoRefresh', 'ShoppingCart');
+
+      autoRefreshSpy = sinon.stub(AutoRefresh, 'listenForAutoRefresh').callsFake(function() {
+        return false;
+      });
+
+      refreshSingleFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
     });
 
     describe('controller initialization', function() {
       it('is created successfully', function() {
         controller = $controller($state.get('catalogs.details').controller, controllerResolves);
         expect(controller).to.be.defined;
+      });
+
+      it('listens for auto refresh messages', function() {
+        $controller($state.get('catalogs.details').controller, controllerResolves);
+        expect(autoRefreshSpy).to.have.been.calledWith(
+          dialogFields, [], 'service_catalogs/321/service_templates', 123, refreshSingleFieldSpy
+        );
       });
 
       describe('#addToCartDisabled', function() {
