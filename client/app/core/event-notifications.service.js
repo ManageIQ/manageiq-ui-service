@@ -157,20 +157,23 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
 // Private
   function add(notificationType, type, message, notificationData, id) {
     const group = lodash.find(state.groups, {notificationType: notificationType});
-    const newNotification = {
-      id: id,
-      notificationType: notificationType,
-      unread: angular.isDefined(notificationData) ? notificationData.unread : true,
-      type: type,
-      message: message,
-      data: notificationData || {},
-      href: id ? '/api/notifications/' + id : undefined,
-      timeStamp: (new Date()).getTime(),
-    };
+    // Ignoring duplicate notifications of the same type
+    if (!lodash.find(group.notifications, {message: message})) {
+      const newNotification = {
+        id: id,
+        notificationType: notificationType,
+        unread: angular.isDefined(notificationData) ? notificationData.unread : true,
+        type: type,
+        message: message,
+        data: notificationData || {},
+        href: id ? '/api/notifications/' + id : undefined,
+        timeStamp: (new Date()).getTime(),
+      };
 
-    group.notifications.unshift(newNotification);
-    updateUnreadCount(group);
-    showToast(newNotification);
+      group.notifications.unshift(newNotification);
+      updateUnreadCount(group);
+      showToast(newNotification);
+    }
   }
 
 
