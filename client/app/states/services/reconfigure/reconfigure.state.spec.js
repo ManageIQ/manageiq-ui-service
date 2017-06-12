@@ -8,35 +8,49 @@ describe('services.reconfigure', function() {
     var controller;
     var notificationsErrorSpy;
     var notificationsSuccessSpy;
+    var autoRefreshSpy;
+    var refreshSingleFieldSpy;
+    var dialogFields = [{
+      name: 'dialogField1',
+      default_value: '1'
+    }, {
+      name: 'dialogField2',
+      default_value: '2'
+    }];
     var dialog = {
       dialog_tabs: [{
         dialog_groups: [{
-          dialog_fields: [{
-            name: 'dialogField1',
-            default_value: '1'
-          }, {
-            name: 'dialogField2',
-            default_value: '2'
-          }]
+          dialog_fields: dialogFields
         }]
       }]
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'CollectionsApi', 'Notifications');
+      bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'AutoRefresh');
+
+      autoRefreshSpy = sinon.stub(AutoRefresh, 'listenForAutoRefresh').callsFake(function() {
+        return false;
+      });
+
+      refreshSingleFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
 
       controller = $controller($state.get('services.reconfigure').controller, {
         $stateParams: {
           serviceId: 123
         },
-        service: {provision_dialog: dialog, id: 123}
+        service: {provision_dialog: dialog, id: 123, service_template_catalog_id: 1234}
       });
-
     });
 
     describe('controller initialization', function() {
       it('is created successfully', function() {
         expect(controller).to.be.defined;
+      });
+
+      it('listens for auto refresh messages', function() {
+        expect(autoRefreshSpy).to.have.been.calledWith(
+          dialogFields, [], 'services/1234/service_templates', 123, refreshSingleFieldSpy
+        );
       });
     });
 

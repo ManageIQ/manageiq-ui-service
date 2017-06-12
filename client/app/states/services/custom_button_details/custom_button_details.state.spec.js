@@ -8,16 +8,19 @@ describe('services.custom_button_details', function() {
     var controller;
     var notificationsErrorSpy;
     var notificationsSuccessSpy;
+    var refreshSingleFieldSpy;
+    var autoRefreshSpy;
+    var dialogFields = [{
+      name: 'dialogField1',
+      default_value: '1'
+    }, {
+      name: 'dialogField2',
+      default_value: '2'
+    }];
     var dialog = {
       dialog_tabs: [{
         dialog_groups: [{
-          dialog_fields: [{
-            name: 'dialogField1',
-            default_value: '1'
-          }, {
-            name: 'dialogField2',
-            default_value: '2'
-          }]
+          dialog_fields: dialogFields
         }]
       }]
     };
@@ -27,10 +30,16 @@ describe('services.custom_button_details', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'CollectionsApi', 'Notifications');
+      bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'AutoRefresh');
+
+      autoRefreshSpy = sinon.stub(AutoRefresh, 'listenForAutoRefresh').callsFake(function() {
+        return false;
+      });
+
+      refreshSingleFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
 
       controller = $controller($state.get('services.custom_button_details').controller, {
-        dialog: {content: [dialog]},
+        dialog: {content: [dialog], id: 213},
         service: {},
         $stateParams: {
           dialogId: 213,
@@ -44,6 +53,12 @@ describe('services.custom_button_details', function() {
     describe('controller initialization', function() {
       it('is created successfully', function() {
         expect(controller).to.be.defined;
+      });
+
+      it('listens for auto refresh messages', function() {
+        expect(autoRefreshSpy).to.have.been.calledWith(
+          dialogFields, [], 'service_dialogs/', 213, refreshSingleFieldSpy
+        );
       });
     });
 

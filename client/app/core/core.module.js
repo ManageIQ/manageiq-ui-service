@@ -20,6 +20,7 @@ import {
 import { ActionNotificationsFactory } from './action-notifications.service';
 import { ApplianceInfo } from './appliance-info.service.js';
 import { AuthenticationApiFactory } from './authentication-api.factory.js';
+import { AutoRefreshFactory } from './auto-refresh.service.js';
 import { BaseModalController } from './modal/base-modal-controller.js';
 import { BaseModalFactory } from './modal/base-modal.factory.js';
 import { ChargebackFactory } from './chargeback.service.js';
@@ -82,6 +83,7 @@ export const CoreModule = angular
   .factory('ActionNotifications', ActionNotificationsFactory)
   .factory('ApplianceInfo', ApplianceInfo)
   .factory('AuthenticationApi', AuthenticationApiFactory)
+  .factory('AutoRefresh', AutoRefreshFactory)
   .factory('Chargeback', ChargebackFactory)
   .factory('CollectionsApi', CollectionsApiFactory)
   .factory('DialogFieldRefresh', DialogFieldRefreshFactory)
