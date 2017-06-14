@@ -14,6 +14,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   const vm = this;
   vm.$onInit = activate;
   vm.$onDestroy = onDestroy;
+  vm.hasUsageGraphs = true;
   vm.startVm = startVM;
   vm.stopVm = stopVM;
   vm.suspendVM = suspendVM;
@@ -99,7 +100,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
           processInstanceVariables(vm.instance);
         });
       }
-
+      hasUsageGraphs();
       vm.vmDetails.lastSyncOn = (angular.isUndefined(vm.vmDetails.last_sync_on) ? vm.neverText : vm.vmDetails.last_sync_on);
       vm.vmDetails.retiresOn = (angular.isUndefined(vm.vmDetails.retires_on) ? vm.neverText : vm.vmDetails.retires_on);
       vm.vmDetails.snapshotCount = defaultText(vm.vmDetails.snapshots);
@@ -134,6 +135,21 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
     const buttons = [].concat(actions.buttons, ...groups.map((g) => g.buttons));
 
     return lodash.compact(buttons).length > 0;
+  }
+  function hasUsageGraphs() {
+    if (angular.isUndefined(vm.vmDetails.allocated_disk_storage) || vm.vmDetails.allocated_disk_storage === 0) {
+      vm.usageGraphs = false;
+    }
+    if (angular.isUndefined(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period) 
+        || vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period === 0) {
+      vm.usageGraphs = false;
+    }
+    if (angular.isUndefined(vm.vmDetails.hardware.aggregate_cpu_speed) 
+        || vm.vmDetails.hardware.aggregate_cpu_speed === 0) {
+      vm.usageGraphs = false;
+    }
+    
+    return vm.usageGraphs;
   }
 
   function getListActions() {

@@ -1,7 +1,7 @@
   <h2 translate>Utilization</h2>
   <hr>
   <div class="row">
-    <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center" ng-if="vm.cpuDataExists">
                 <div>
                     <div class="metric-title" translate>CPU</div>
                     <div class="metric-details-container">
@@ -25,7 +25,7 @@
                 </div>
                 <pf-donut-pct-chart ng-if="vm.cpuDataExists" config="vm.cpuChart.config" data="vm.cpuChart.data" center-label="vm.cpuChart.label"></pf-donut-pct-chart>
     </div>
-    <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center" ng-if="vm.memoryDataExists">
         <div>
             <div class="metric-title" translate>Memory</div>
             <div class="metric-details-container">
@@ -49,7 +49,7 @@
         </div>
         <pf-donut-pct-chart ng-if="vm.memoryDataExists" config="vm.memoryChart.config" data="vm.memoryChart.data" center-label="vm.memoryChart.label"></pf-donut-pct-chart>
     </div>
-    <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center" ng-if="vm.storageDataExists">
         <div>
             <div class="metric-title" translate>Storage</div>
             <div class="metric-details-container">

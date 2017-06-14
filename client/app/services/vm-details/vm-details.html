@@ -15,7 +15,7 @@
   <div class="view-selector-bar">
     <div class="form-group toolbar-pf-view-selector">
       <button class="btn btn-link usage-graphs-button" ng-click="vm.viewSelected('graphsView')"
-              ng-class="{active: vm.viewType === 'graphsView'}">
+              ng-class="{active: vm.viewType === 'graphsView'}" ng-if="vm.hasUsageGraphs">
         <i class="fa fa-tachometer"></i>
       </button>
       <button class="btn btn-link" ng-click="vm.viewSelected('detailsView')"
