@@ -227,6 +227,7 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
       vm.loading = false;
       vm.orders = [];
       vm.selectedItemsList = [];
+      vm.toolbarConfig.filterConfig.selectedCount = 0;
       vm.toolbarConfig.filterConfig.resultsCount = vm.filterCount;
       vm.toolbarConfig.filterConfig.totalCount = response.subcount;
 

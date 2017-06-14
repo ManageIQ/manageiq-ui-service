@@ -36,7 +36,6 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       servicesList: [],
       selectedItemsList: [],
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
-      selectedItemsListCount: 0,
       // Functions
       resolveServices: resolveServices,
       viewSelected: viewSelected,
@@ -88,7 +87,6 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   function handleSelectionChange() {
     vm.selectedItemsList = vm.servicesList.filter((service) => service.selected);
     vm.headerConfig.filterConfig.selectedCount = vm.selectedItemsList.length;
-    vm.selectedItemsListCount = vm.selectedItemsList.length;
   }
 
   function isAnsibleService(service) {
@@ -384,6 +382,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       var existingServices = (angular.isDefined(vm.servicesList) && refresh ? angular.copy(vm.servicesList) : []);
       vm.selectedItemsList = [];
       vm.headerConfig.filterConfig.totalCount = result.subcount;
+      vm.headerConfig.filterConfig.selectedCount = 0;
 
       angular.forEach(result.resources, function(item) {
         if (angular.isUndefined(item.service_id)) {

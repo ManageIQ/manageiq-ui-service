@@ -19,7 +19,7 @@
     <custom-dropdown class="custom-dropdown pull-left"
                      config="item"
                      items="vm.selectedItemsList"
-                     items-count="vm.selectedItemsListCount"
+                     items-count="vm.headerConfig.filterConfig.selectedCount"
                      ng-repeat="item in vm.listActions"
                      on-update="vm.listActionDisable($config, $changes)"
                      menu-right="true">
