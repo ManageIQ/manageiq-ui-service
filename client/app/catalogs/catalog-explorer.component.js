@@ -87,7 +87,7 @@ function ComponentController($state, CatalogsState, ListView, EventNotifications
     vm.loading = true;
     vm.offset = offset;
 
-    CatalogsState.getServiceTemplates(limit, offset).then(success, failure);
+    return CatalogsState.getServiceTemplates(limit, offset).then(success, failure);
 
     function success(response) {
       vm.serviceTemplateList = response.resources;
