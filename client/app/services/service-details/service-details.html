@@ -286,12 +286,12 @@
                         <li role="menuitem"
                             ng-class="{'disabled': !item['supports_console?'] || item.power_state !== 'on' || !$ctrl.customScope.permissions.console}"
                             ng-click="$ctrl.customScope.openConsole(item)">
-                          <a href="#" translate>Open VM Console</a>
+                          <a href="#" translate>VM Console</a>
                         </li>
                         <li role="menuitem"
                             ng-class="{'disabled': !item['supports_launch_cockpit?'] || item.power_state !== 'on' || !$ctrl.customScope.permissions.cockpit}"
                             ng-click="$ctrl.customScope.openCockpit(item)">
-                          <a href="#" translate>Open Cockpit Console</a>
+                          <a href="#" translate>Web Console</a>
                         </li>
                       </ul>
                     </div>
