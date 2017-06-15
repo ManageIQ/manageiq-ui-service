@@ -11,7 +11,8 @@ export const ServiceDetailsComponent = {
 
 /** @ngInject */
 function ComponentController($stateParams, $state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
-                             TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash, Polling, LONG_POLLING_INTERVAL) {
+                             TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash,
+                             Polling, LONG_POLLING_INTERVAL, UsageGraphsService) {
   const vm = this;
   vm.$onInit = activate;
   vm.$onDestroy = onDestroy;
@@ -22,6 +23,10 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
 
   function activate() {
     vm.permissions = ServicesState.getPermissions();
+    vm.storageChartConfigOptions =  {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')};
+    vm.memoryChartConfigOptions =  {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')};
+    vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')};
+
     angular.extend(vm, {
       serviceId: $stateParams.serviceId,
       loading: true,
@@ -52,9 +57,9 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       gotoService: gotoService,
       gotoCatalogItem: gotoCatalogItem,
       createResourceGroups: createResourceGroups,
-      cpuChart: getCPUChartConfig(),
-      memoryChart: getMemoryChartConfig(),
-      storageChart: getStorageChartConfig(),
+      cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
+      memoryChart: UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions),
+      storageChart: UsageGraphsService.getChartConfig(vm.storageChartConfigOptions),
       // Config setup
       headerConfig: getHeaderConfig(),
       resourceListConfig: {
@@ -72,73 +77,9 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   function viewSelected(view) {
     vm.viewType = view;
   }
-  function getCPUChartConfig(used, total) {
-    let usedValue = 0;
-    let totalValue = 0;
-
-    if (angular.isDefined(used)) {
-      usedValue = used;
-      totalValue = total;
-    }
-
-    return {
-      config: {
-        units: __('MHz'),
-      },
-      data: {
-        'used': usedValue,
-        'total': totalValue,
-      },
-      label: __('used'),
-    };
-  }
-
-  function getMemoryChartConfig(used, total) {
-    let usedValue = 0;
-    let totalValue = 0;
-
-    if (angular.isDefined(used)) {
-      usedValue = used;
-      totalValue = total;
-    }
-
-    return {
-      config: {
-        units: __('GB'),
-        chartId: 'memoryChart',
-      },
-      data: {
-        'used': usedValue,
-        'total': totalValue,
-      },
-      label: __('used'),
-    };
-  }
-
-  function getStorageChartConfig(used, total) {
-    let usedValue = 0;
-    let totalValue = 0;
-    if (angular.isDefined(used)) {
-      usedValue = used;
-      totalValue = total;
-    }
-
-    return {
-      config: {
-        units: __('GB'),
-        chartId: 'storageChart',
-      },
-      data: {
-        'used': usedValue,
-        'total': totalValue,
-      },
-      label: __('used'),
-    };
-  }
-
   function getChartConfigs() {
-    const allocatedStorage = (vm.service.aggregate_all_vm_disk_space_allocated / 1073741824).toFixed(2); // convert bytes to gb
-    const usedStorage = (vm.service.aggregate_all_vm_disk_space_used / 1073741824).toFixed(2); // convert bytes to gb
+    const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.service.aggregate_all_vm_disk_space_allocated);
+    const usedStorage = UsageGraphsService.convertBytestoGb(vm.service.aggregate_all_vm_disk_space_used);
     let usedMemory = 0;
     let usedCPU = 0;
     let totalCPU = 0;
@@ -151,10 +92,10 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       });
     }
 
-    usedMemory = (usedMemory / 1073741824).toFixed(2);
-    vm.cpuChart = getCPUChartConfig(usedCPU, totalCPU);
-    vm.memoryChart = getMemoryChartConfig(usedMemory, allocatedMemory);
-    vm.storageChart = getStorageChartConfig(usedStorage, allocatedStorage);
+    usedMemory = UsageGraphsService.convertBytestoGb(usedMemory);
+    vm.cpuChart = UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions, usedCPU, totalCPU);
+    vm.memoryChart = UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions, usedMemory, allocatedMemory);
+    vm.storageChart = UsageGraphsService.getChartConfig(vm.storageChartConfigOptions, usedStorage, allocatedStorage);
   }
 
   function fetchResources(id, refresh) {

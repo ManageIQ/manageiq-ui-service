@@ -56,4 +56,42 @@ describe('Usage Graph component', () => {
         expect(graphs[1].innerHTML).to.eq("6");
         expect(graphs[2].innerHTML).to.eq("38");
   })
+
 });
+
+describe('Should be able to pass 0 as amount of metric', () => {
+      let ctrl;
+
+      beforeEach(module('app.services','app.shared'));
+      beforeEach( () => {
+        bard.inject('$componentController');
+        const graphData = {
+            'cpuChart':{
+                'data': {
+                    'total': 0,
+                    'used': 0
+                }
+            },
+            'memoryChart':{
+                'data': {
+                    'total': 0,
+                    'used': 0
+                }
+            },
+            'storageChart':{
+                'data': {
+                    'total': 0,
+                    'used': 0
+                }
+            }
+        };
+
+        ctrl = $componentController('usageGraphs', {}, graphData);
+       });
+     it('should allow for 0 to be passed in', () =>{
+        ctrl.$onInit();
+        expect(ctrl.cpuDataExists).to.be.false;
+        expect(ctrl.memoryDataExists).to.be.false;
+        expect(ctrl.storageDataExists).to.be.false;
+     });
+})

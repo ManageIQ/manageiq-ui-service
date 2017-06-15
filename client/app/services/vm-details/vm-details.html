@@ -12,6 +12,18 @@
         </li>
       </ol>
   </span>
+  <div class="view-selector-bar">
+    <div class="form-group toolbar-pf-view-selector">
+      <button class="btn btn-link usage-graphs-button" ng-click="vm.viewSelected('graphsView')"
+              ng-class="{active: vm.viewType === 'graphsView'}" ng-if="vm.hasUsageGraphs">
+        <i class="fa fa-tachometer"></i>
+      </button>
+      <button class="btn btn-link" ng-click="vm.viewSelected('detailsView')"
+              ng-class="{active: vm.viewType === 'detailsView'}">
+        <i class="fa fa-list-alt"></i>
+      </button>
+    </div>
+  </div>
 </div>
 <pf-toolbar ng-if="vm.listActions.length" class="section-toolbar section-toolbar-right-actions"
      config="vm.headerConfig">
@@ -33,7 +45,10 @@
   </actions>
 </pf-toolbar>
 <loading status="vm.loading"></loading>
-<div ng-if="!vm.loading" class="well ss-details-wrapper vm-details-wrapper">
+<div ng-if="vm.viewType === 'graphsView'" class="ss-details-wrapper usage-graphs-container">
+  <usage-graphs cpu-chart="vm.cpuChart" memory-chart="vm.memoryChart" storage-chart="vm.storageChart"></usage-graphs>
+</div>
+<div ng-if="!vm.loading" ng-show="vm.viewType === 'detailsView'" class="well ss-details-wrapper vm-details-wrapper">
   <div class="container-fluid vm-details-container">
     <div class="row title">
       <div>{{ 'Properties'|translate }}</div>

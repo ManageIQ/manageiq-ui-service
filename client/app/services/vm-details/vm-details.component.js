@@ -9,19 +9,26 @@ export const VmDetailsComponent = {
 };
 
 /** @ngInject */
-function ComponentController($stateParams, VmsService, ServicesState, sprintf, lodash, EventNotifications, Polling, PowerOperations, LONG_POLLING_INTERVAL) {
+function ComponentController($stateParams, VmsService, ServicesState, sprintf, lodash,
+                             EventNotifications, Polling, PowerOperations, LONG_POLLING_INTERVAL, UsageGraphsService) {
   const vm = this;
   vm.$onInit = activate;
   vm.$onDestroy = onDestroy;
+  vm.hasUsageGraphs = true;
   vm.startVm = startVM;
   vm.stopVm = stopVM;
   vm.suspendVM = suspendVM;
   vm.getListActions = getListActions;
   vm.pollVM = pollVM;
   vm.retireVM = retireVM;
-
+  vm.getData = resolveData;
+  vm.storageChartConfigOptions =  {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')};
+  vm.memoryChartConfigOptions =  {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')};
+  vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')};
+  vm.processInstanceVariables = processInstanceVariables;
+  // vm.resolveData = resolveData;
   function onDestroy() {
-    Polling.stop('polling');
+    Polling.stop('vmPolling');
   }
 
   function activate() {
@@ -34,7 +41,12 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       availableText: __('Available'),
       notAvailable: __("Not Available"),
       vmDetails: {},
+      viewType: 'detailsView',
+      viewSelected: viewSelected,
       instance: {},
+      cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
+      memoryChart: UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions),
+      storageChart: UsageGraphsService.getChartConfig(vm.storageChartConfigOptions),
       // Config
       headerConfig: {
         actionsConfig: {
@@ -46,7 +58,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
     
     EventNotifications.info(__("The contents of this page is a function of the current users's group."));
     resolveData();
-    Polling.start('polling', pollVM, LONG_POLLING_INTERVAL);
+    Polling.start('vmPolling', pollVM, LONG_POLLING_INTERVAL);
   }
 
 // Private
@@ -65,21 +77,30 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   function retireVM() {
     PowerOperations.retireVM(vm.vmDetails);
   }
-
+  function viewSelected(view) {
+    vm.viewType = view;
+  }
   function pollVM() {
     resolveData(true);
   }
   function resolveData(refresh) {
-    VmsService.getVm($stateParams.vmId, refresh).then(handleSuccess, handleFailure);
+    return VmsService.getVm($stateParams.vmId, refresh).then(handleSuccess, handleFailure);
 
     function handleSuccess(response) {
+      vm.vmDetails = response;
+      const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.allocated_disk_storage); // convert bytes to gb
+      const usedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.used_storage);
+      const totalMemory = vm.vmDetails.ram_size / 1024;
+      const usedMemory  = UsageGraphsService.convertBytestoGb(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period);
+      const usedCPU = vm.vmDetails.cpu_usagemhz_rate_average_avg_over_time_period;
+      const totalCPU = (angular.isDefined(vm.vmDetails.hardware.aggregate_cpu_speed) ? vm.vmDetails.hardware.aggregate_cpu_speed : 0);
       if (response.cloud) {
         VmsService.getInstance(response.id).then((response) => {
           vm.instance = response;
           processInstanceVariables(vm.instance);
         });
       }
-      vm.vmDetails = response;
+      hasUsageGraphs();
       vm.vmDetails.lastSyncOn = (angular.isUndefined(vm.vmDetails.last_sync_on) ? vm.neverText : vm.vmDetails.last_sync_on);
       vm.vmDetails.retiresOn = (angular.isUndefined(vm.vmDetails.retires_on) ? vm.neverText : vm.vmDetails.retires_on);
       vm.vmDetails.snapshotCount = defaultText(vm.vmDetails.snapshots);
@@ -91,7 +112,9 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       vm.vmDetails.provisionDate = angular.isDefined(vm.vmDetails.service.miq_request) ? vm.vmDetails.service.miq_request.fulfilled_on : __('Unknown');
       vm.vmDetails.containerSpecsText = vm.vmDetails.vendor + ': ' + vm.vmDetails.hardware.cpu_total_cores + ' CPUs (' + vm.vmDetails.hardware.cpu_sockets
         + ' sockets x ' + vm.vmDetails.hardware.cpu_cores_per_socket + ' core), ' + vm.vmDetails.hardware.memory_mb + ' MB';
-
+      vm.cpuChart = UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions, usedCPU, totalCPU);
+      vm.memoryChart = UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions, usedMemory, totalMemory);
+      vm.storageChart = UsageGraphsService.getChartConfig(vm.storageChartConfigOptions, usedStorage, allocatedStorage);
       if (vm.vmDetails.retired) {
         EventNotifications.clearAll(lodash.find(EventNotifications.state().groups, {notificationType: 'warning'}));
         EventNotifications.warn(sprintf(__("%s is a retired resource"), vm.vmDetails.name), {persistent: true, unread: false});
@@ -112,6 +135,21 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
     const buttons = [].concat(actions.buttons, ...groups.map((g) => g.buttons));
 
     return lodash.compact(buttons).length > 0;
+  }
+  function hasUsageGraphs() {
+    if (angular.isUndefined(vm.vmDetails.allocated_disk_storage) || vm.vmDetails.allocated_disk_storage === 0) {
+      vm.usageGraphs = false;
+    }
+    if (angular.isUndefined(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period) 
+        || vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period === 0) {
+      vm.usageGraphs = false;
+    }
+    if (angular.isUndefined(vm.vmDetails.hardware.aggregate_cpu_speed) 
+        || vm.vmDetails.hardware.aggregate_cpu_speed === 0) {
+      vm.usageGraphs = false;
+    }
+    
+    return vm.usageGraphs;
   }
 
   function getListActions() {
@@ -188,5 +226,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
     });
 
     vm.vmDetails.instance = data;
+
+    return vm.vmDetails.instance;
   }
 }

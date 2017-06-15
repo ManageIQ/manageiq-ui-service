@@ -14,6 +14,7 @@ import { ServiceExplorerComponent } from './service-explorer/service-explorer.co
 import { ServicesStateFactory } from './services-state.service.js';
 import { SharedModule } from '../shared/shared.module.js';
 import { UsageGraphsComponent } from './usage-graphs/usage-graphs.component.js';
+import { UsageGraphsFactory } from './usage-graphs/usage-graphs.service.js';
 import { VmDetailsComponent } from './vm-details/vm-details.component';
 import { VmSnapshotsComponent } from './vms/snapshots.component';
 import { VmsService } from './vms.service.js';
@@ -39,5 +40,6 @@ export const ServicesModule = angular
   .factory('Consoles', ConsolesFactory)
   .factory('PowerOperations', PowerOperationsFactory)
   .factory('ServicesState', ServicesStateFactory)
+  .factory('UsageGraphsService', UsageGraphsFactory)
   .factory('VmsService', VmsService)
   .name;
