@@ -21,11 +21,11 @@ export const SharedModule = angular
     'app.core',
     'miqStaticAssets',
     'ngFileSaver',
-    'patternfly',
-    'smart-table',
     'svgBaseFix',
     'ui.bootstrap',
+    'patternfly',
     'patternfly.charts',
+    'patternfly.table',
   ])
   .component('actionButtonGroup', ActionButtonGroupComponent)
   .component('customDropdown', CustomDropdownComponent)

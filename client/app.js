@@ -11,8 +11,8 @@ window._ = require('lodash');
 window.moment = require('moment');
 window.sprintf = require('sprintf-js').sprintf;
 window.c3 = require('c3/c3.js');
-// Vendor libraries, order matters
 
+// Vendor libraries, order matters
 require('d3/build/d3.min.js');
 require('jquery-ui-bundle');
 require('moment-timezone');
@@ -44,7 +44,10 @@ require('patternfly/dist/js/patternfly.js');
 require('manageiq-ui-components/dist/js/ui-components.js');
 require('ngprogress/build/ngprogress.min.js');
 require('ngstorage');
-require('angular-smart-table');
+require('datatables.net/js/jquery.dataTables');
+require('datatables.net-select/js/dataTables.select');
+require('angular-datatables');
+require('angular-datatables/dist/plugins/select/angular-datatables.select');
 
 // Needs imports loader because it expects `this` to be `window`
 require('imports-loader?this=>window!actioncable');
@@ -60,6 +63,7 @@ require('patternfly/dist/css/patternfly-additions.css');
 require('angular-patternfly/dist/styles/angular-patternfly.css');
 require('manageiq-ui-components/dist/css/ui-components.css');
 require('ngprogress/ngProgress.css');
+require('datatables.net-dt/css/jquery.dataTables.css');
 
 // Application styles
 require('./assets/sass/styles.sass');
