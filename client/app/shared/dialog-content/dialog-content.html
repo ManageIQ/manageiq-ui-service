@@ -56,15 +56,18 @@
                       uib-tooltip="{{ ::inputTitle }}"
                       ng-checked="dialogField.default_value == 't'">
 
-                    <select
-                      ng-switch-when="DialogFieldDropDownList"
-                      ng-model="dialogField.default_value"
-                      ng-disabled="dialogField.read_only || vm.inputDisabled"
-                      ng-change="dialogField.triggerAutoRefresh(dialogField)"
-                      class="form-control"
-                      ng-options="fieldValue[0] as fieldValue[1] for fieldValue in dialogField.values">
-                    </select>
-
+                    <span ng-switch-when="DialogFieldDropDownList">
+                      <ui-select ng-model="dialogField.default_value"
+                                 ng-disabled="dialogField.read_only || vm.inputDisabled"
+                                 theme="bootstrap">
+                        <ui-select-match
+                          placeholder="{{dialogField.description}}">{{$select.selected[1] }}</ui-select-match>
+                        <ui-select-choices
+                          repeat="fieldValue[0] as fieldValue in dialogField.values | filter: $select.search">
+                          <span>{{fieldValue[1]}}</span>
+                        </ui-select-choices>
+                      </ui-select>
+                    </span>
 
                     <select ng-if="dialogField.options.force_single_value"
                             ng-switch-when="DialogFieldTagControl"
