@@ -48,6 +48,7 @@ require('datatables.net/js/jquery.dataTables');
 require('datatables.net-select/js/dataTables.select');
 require('angular-datatables');
 require('angular-datatables/dist/plugins/select/angular-datatables.select');
+require('ui-select');
 
 // Needs imports loader because it expects `this` to be `window`
 require('imports-loader?this=>window!actioncable');
@@ -64,6 +65,7 @@ require('angular-patternfly/dist/styles/angular-patternfly.css');
 require('manageiq-ui-components/dist/css/ui-components.css');
 require('ngprogress/ngProgress.css');
 require('datatables.net-dt/css/jquery.dataTables.css');
+require('ui-select/dist/select.css');
 
 // Application styles
 require('./assets/sass/styles.sass');

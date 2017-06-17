@@ -108,6 +108,7 @@
     "style-loader": "0.18.1",
     "ts-loader": "2.1.0",
     "typescript": "2.3.4",
+    "ui-select": "0.19.8",
     "url-loader": "0.5.8",
     "webpack": "2.6.1",
     "yargs": "8.0.1",
