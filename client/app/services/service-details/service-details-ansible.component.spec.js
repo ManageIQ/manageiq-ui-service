@@ -1,0 +1,56 @@
+describe('Service Details ansible component - ', function () {
+    let scope;
+    let ctrl;
+    let mockDir = 'tests/mock/services/';
+    const service = readJSON(mockDir + 'serviceDetailsAnsibleComponent.json');
+    const successResponse = {};
+    
+    beforeEach(function () {
+        module('app.core', 'app.states', 'app.services');
+        bard.inject('$componentController','$state', 'ModalService', 'ServicesState', 'lodash');
+        ctrl = $componentController('serviceDetailsAnsible', { $scope: scope }, { service:service});
+    });
+
+    it('is defined', function () {
+        expect(ctrl).to.be.defined;
+    });
+    it('should allow credList to be retrieved', () => {
+        const expectedConfig = {showSelectBox: false, selectionMatchProp: 'id'};
+        ctrl.$onInit();
+        expect(ctrl.credListConfig).to.eql(expectedConfig);
+    });
+    it('should allow playlistconfig to be retrieved', () => {
+        const expectedConfig = {showSelectBox: false, selectionMatchProp: 'id'};
+        ctrl.$onInit();
+        expect(ctrl.playsListConfig).to.eql(expectedConfig);
+    });
+    it('should allow watchLive', () => {
+        const modalSpy = sinon.spy(ModalService,'open');
+        ctrl.$onInit();
+        ctrl.watchLive('item');
+        expect(modalSpy).to.have.been.called;
+
+    });
+    it('should get a services credentials if they exist', () => {
+
+        const getServiceCredentialSpy = sinon.stub(ServicesState,'getServiceCredential').returns(Promise.resolve(successResponse));
+        const getServiceRepositorySpy = sinon.stub(ServicesState,'getServiceRepository').returns(Promise.resolve(successResponse));
+        const getServiceJobsStdoutSpy = sinon.stub(ServicesState,'getServiceJobsStdout').returns(Promise.resolve(successResponse));
+
+        ctrl.$onInit();
+        ctrl.fetchResources();
+        expect(getServiceCredentialSpy).to.have.been.calledWith('testing');
+        expect(getServiceRepositorySpy).to.have.been.calledWith('testrepo');
+        expect(getServiceJobsStdoutSpy).to.have.been.calledWith(12345, 1);
+    });
+    it('should calculate elapsed time', () => {
+        ctrl.$onInit();
+        const elapsedTime = ctrl.elapsed(1497908279,1497908159);
+        expect(elapsedTime).to.eq(1.2);
+    });
+    it('should allow onchanges to be called', () => {
+        const getServiceCredentialSpy = sinon.stub(ServicesState,'getServiceCredential').returns(Promise.resolve(successResponse));
+        ctrl.$onChanges();
+        expect(getServiceCredentialSpy).to.have.been.calledOnce;
+    });
+});
