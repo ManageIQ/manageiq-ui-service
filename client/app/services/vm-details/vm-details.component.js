@@ -41,7 +41,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       availableText: __('Available'),
       notAvailable: __("Not Available"),
       vmDetails: {},
-      viewType: 'detailsView',
+      viewType: $stateParams.viewType || 'detailsView',
       viewSelected: viewSelected,
       instance: {},
       cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
