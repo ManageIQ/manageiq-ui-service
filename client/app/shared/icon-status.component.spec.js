@@ -30,7 +30,7 @@ describe('Component: Icon-status', () => {
   it('should display pending when status matches pending', () => {
     const renderedElement = compileHtml(angular.element(`<icon-status status="'pending'" queued="['pending']"/>`), parentScope);
 
-    expect(renderedElement[0].querySelectorAll('.fa-clock-o').length).to.eq(1);
+    expect(renderedElement[0].querySelectorAll('.fa-hourglass-half').length).to.eq(1);
   });
 
   it('should display spinner when status is matches inprogress', () => {

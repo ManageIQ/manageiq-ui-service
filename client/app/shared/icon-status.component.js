@@ -20,7 +20,7 @@ export const IconStatusComponent = {
      tooltip-popup-delay="1000"
      tooltip-placement="bottom" />
    <span ng-if="vm.isInprogress" class="spinner spinner-xs spinner-inline"/>  
-   <i class="fa fa-clock-o" ng-if="vm.isQueued"
+   <i class="fa fa-hourglass-half" ng-if="vm.isQueued"
      uib-tooltip="{{vm.status}}"
      tooltip-append-to-body="true"
      tooltip-popup-delay="1000"
