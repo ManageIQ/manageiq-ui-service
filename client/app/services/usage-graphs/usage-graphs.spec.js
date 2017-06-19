@@ -89,7 +89,7 @@ describe('Should be able to pass 0 as amount of metric', () => {
         ctrl = $componentController('usageGraphs', {}, graphData);
        });
      it('should allow for 0 to be passed in', () =>{
-        ctrl.$onInit();
+        ctrl.$onChanges();
         expect(ctrl.cpuDataExists).to.be.false;
         expect(ctrl.memoryDataExists).to.be.false;
         expect(ctrl.storageDataExists).to.be.false;
