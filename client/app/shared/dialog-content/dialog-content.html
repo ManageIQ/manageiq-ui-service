@@ -56,7 +56,6 @@
                       uib-tooltip="{{ ::inputTitle }}"
                       ng-checked="dialogField.default_value == 't'">
 
-<<<<<<< HEAD
                     <span ng-switch-when="DialogFieldDropDownList">
                       <ui-select ng-model="dialogField.default_value"
                                  ng-disabled="dialogField.read_only || vm.inputDisabled"
@@ -69,16 +68,6 @@
                         </ui-select-choices>
                       </ui-select>
                     </span>
-=======
-                      <select
-                        ng-switch-when="DialogFieldDropDownList"
-                        ng-model="dialogField.default_value"
-                        ng-disabled="dialogField.read_only || vm.inputDisabled"
-                        ng-change="dialogField.triggerAutoRefresh(dialogField)"
-                        class="form-control"
-                        ng-options="fieldValue[0] as fieldValue[1] for fieldValue in dialogField.values">
-                      </select>
->>>>>>> Allow clientside validation of dialog fields [Finishes #146312755]
 
                     <select ng-if="dialogField.options.force_single_value"
                             ng-switch-when="DialogFieldTagControl"
