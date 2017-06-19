@@ -1,0 +1,25 @@
+{
+    "id": 12345,
+    "options": {
+        "config_info": {
+            "test":{
+                "credential_id": "testing",
+                "repository_id": "testrepo"
+            }
+        }
+    },
+    "service_resources":[
+        {
+            "name":"test",
+            "resource_id": 1
+        }
+    ],
+    "orchestration_stacks":[
+        {
+            "id":1,
+            "stack":{
+                "id":12345
+            }
+        }
+    ]
+}
