@@ -337,6 +337,10 @@
                           <a ng-click="$ctrl.customScope.gotoComputeResource(item)" translate>View
                             Details</a>
                         </li>
+                        <li role="menuitem">
+                          <a ui-sref="vms.details({vmId: item.id, viewType: 'graphsView'})" translate>View
+                            Graphs</a>
+                        </li>
                         <li role="menuitem" ng-if="$ctrl.customScope.permissions.viewSnapshots">
                           <a ui-sref="vms.snapshots({vmId: item.id})" translate>View
                             Snapshots</a>
