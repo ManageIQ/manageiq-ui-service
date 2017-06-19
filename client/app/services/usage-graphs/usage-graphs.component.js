@@ -15,7 +15,7 @@ export const UsageGraphsComponent = {
 /** @ngInject */
 function ComponentController() {
   const vm = this;
-  vm.$onInit = activate;
+  vm.$onChanges = activate;
 
   function activate() {
     angular.extend(vm, {
