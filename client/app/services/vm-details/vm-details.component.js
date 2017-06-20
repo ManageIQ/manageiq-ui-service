@@ -61,7 +61,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
     Polling.start('vmPolling', pollVM, LONG_POLLING_INTERVAL);
   }
 
-// Private
+  // Private
   function startVM() {
     PowerOperations.startVm(vm.vmDetails);
   }

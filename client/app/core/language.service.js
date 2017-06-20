@@ -147,8 +147,8 @@ export function LanguageFactory($http, $q, $log, $window, gettextCatalog, lodash
         return a.orig.toLowerCase() === r.orig.toLowerCase();
       }) || lodash.find(short.available, function(a) {
         // lowercase, only language code match second
-        return a.short.toLowerCase() === r.short.toLowerCase();
-      });
+          return a.short.toLowerCase() === r.short.toLowerCase();
+        });
 
       if (match) {
         return match.orig;

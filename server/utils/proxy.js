@@ -10,7 +10,7 @@ module.exports = function() {
 
   return service;
 
-// Private
+  // Private
 
   function proxyHost() {
     return process.env.PROXY_HOST || '[::1]:3000';
