@@ -98,7 +98,11 @@
       "error",
       2,
       {
-        "SwitchCase": 1
+        "SwitchCase": 1,
+        "MemberExpression":"off",
+        "FunctionDeclaration": {
+          "parameters": "off"
+        }
       }
     ],
     "init-declarations": "off",

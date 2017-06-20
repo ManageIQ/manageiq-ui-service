@@ -57,7 +57,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     return CollectionsApi.get(`services/${serviceId}/orchestration_stacks`, stackId, options);
   }
 
-// Returns minimal data for the services matching the current filters, useful for getting a filter count
+  // Returns minimal data for the services matching the current filters, useful for getting a filter count
   function getServicesMinimal(filters) {
     const options = {
       filter: getQueryFilters(filters),
@@ -269,7 +269,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     return configActions;
   }
 
-// Private
+  // Private
   function getQueryFilters(filters) {
     const queryFilters = ['ancestry=null'];
 

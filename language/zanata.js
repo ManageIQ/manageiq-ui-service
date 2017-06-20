@@ -15,18 +15,18 @@ const zanata = {
   upload(potFile) {
     const contents = fs.readFileSync(potFile, 'UTF-8');
     Gettext.po2json('manageiq-ui-service.pot', 'pot', contents)
-          .then((data) => {
-            var requestConfig = {
-              headers: { 'Content-Type': 'application/json' },
-            };
-            axios.put(`rest/projects/p/${config.project}/iterations/i/${config.version}/r/manageiq-ui-service`,
-              JSON.stringify(data), requestConfig).then((response) => {
-                // console.log(response);
-                if (response.status === 200) {
-                  console.log('POT file uploaded successfully');
-                }
-              });
-          });
+      .then((data) => {
+        var requestConfig = {
+          headers: {'Content-Type': 'application/json'},
+        };
+        axios.put(`rest/projects/p/${config.project}/iterations/i/${config.version}/r/manageiq-ui-service`,
+          JSON.stringify(data), requestConfig).then((response) => {
+          // console.log(response);
+          if (response.status === 200) {
+            console.log('POT file uploaded successfully');
+          }
+        });
+      });
   },
   download(locales, outputDir) {
     zanata.getSourceFile().then((outputFile) => {
@@ -37,7 +37,7 @@ const zanata = {
           Object.keys(data).forEach((k) => sourceFile[k] = data[k]);
           Gettext.json2po(sourceFile).then((poData) => {
             const poFilename = locale.replace(/-/g, '_');
-            fs.writeFile(`${outputDir}/${locale}/${poFilename}.po`, poData.toString(), function (err) {
+            fs.writeFile(`${outputDir}/${locale}/${poFilename}.po`, poData.toString(), function(err) {
               if (err) {
                 return console.log(err);
               }
@@ -50,7 +50,7 @@ const zanata = {
   getFile(locale) {
     return new Promise((resolve, _reject) => {
       const reqConfig = {
-        headers: { 'Accept': 'application/json' },
+        headers: {'Accept': 'application/json'},
       };
       const url = `rest/projects/p/${config.project}/iterations/i/${config.version}/r/manageiq-ui-service/translations/${locale}?ext=gettext&ext=comment&skeletons=true`;
       axios.get(url, reqConfig).then((data) => {
@@ -61,7 +61,7 @@ const zanata = {
   getSourceFile() {
     return new Promise((resolve, _reject) => {
       const reqConfig = {
-        headers: { 'Accept': 'application/json' },
+        headers: {'Accept': 'application/json'},
       };
       const url = `rest/projects/p/${config.project}/iterations/i/${config.version}/r/manageiq-ui-service?ext=gettext&ext=comment`;
       axios.get(url, reqConfig).then((data) => {

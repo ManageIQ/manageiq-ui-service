@@ -154,7 +154,7 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     service.markRead(notification);
   }
 
-// Private
+  // Private
   function add(notificationType, type, message, notificationData, id) {
     const group = lodash.find(state.groups, {notificationType: notificationType});
     const newNotification = {
