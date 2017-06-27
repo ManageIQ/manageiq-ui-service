@@ -21,7 +21,7 @@
   </div>
 </div>
 <pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig"
-     ng-if="!vm.loading && vm.viewType === 'detailsView'">
+            ng-if="!vm.loading && vm.viewType === 'detailsView'">
   <actions>
     <div class="ss-details-header__actions">
       <div uib-dropdown class="ss-details-header__actions__inner dropdown-kebab-pf">
@@ -165,11 +165,11 @@
                 </span>
               </div>
               <pf-list-view ng-if="vm.computeGroup.resources.length > 0"
-                   config="vm.resourceListConfig"
-                   items="vm.computeGroup.resources"
-                   menu-actions="vm.resourceMenuActions"
-                   update-menu-action-for-item-fn="vm.updateResourceMenuActionForItemFn"
-                   custom-scope="vm">
+                            config="vm.resourceListConfig"
+                            items="vm.computeGroup.resources"
+                            menu-actions="vm.resourceMenuActions"
+                            update-menu-action-for-item-fn="vm.updateResourceMenuActionForItemFn"
+                            custom-scope="vm">
                 <div class="row">
                   <div class="col-lg-2 col-md-4 col-sm-3 col-xs-5 name-column">
                     <span class="no-wrap">
@@ -223,7 +223,7 @@
                       </span>
                     </div>
                   </div>
-                  <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5">
+                  <div class="col-lg-2 col-md-4 col-sm-4 col-xs-5">
                     <div>
                       <span class="no-wrap">
                         <strong translate>Latest</strong>&nbsp;
@@ -274,6 +274,23 @@
                     </div>
                   </div>
                   <div ng-if="!item.retired " class="list-view-pf-actions">
+                    <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body
+                         ng-if="$ctrl.customScope.permissions.vm_snapshot_add || $ctrl.customScope.permissions.viewSnapshots">
+                      <button type="button" class="btn btn-default" uib-dropdown-toggle
+                              type="button">
+                        <span translate><i class="fa fa-camera"></i>Snapshots</span>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu"
+                          aria-labelledby="btn-append-to-to-body">
+                        <li role="menuitem" ng-if="$ctrl.customScope.permissions.viewSnapshots">
+                          <a ui-sref="vms.snapshots({vmId: item.id})" translate>View</a>
+                        </li>
+                        <li role="menuitem" ng-if="$ctrl.customScope.permissions.vm_snapshot_add">
+                          <a ng-click="$ctrl.customScope.processSnapshot(item)" translate>Create</a>
+                        </li>
+                      </ul>
+                    </div>
                     <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body
                          ng-if="$ctrl.customScope.permissions.cockpit || $ctrl.customScope.permissions.console">
                       <button type="button" class="btn btn-default" uib-dropdown-toggle
@@ -340,10 +357,6 @@
                         <li role="menuitem">
                           <a ui-sref="vms.details({vmId: item.id, viewType: 'graphsView'})" translate>View
                             Graphs</a>
-                        </li>
-                        <li role="menuitem" ng-if="$ctrl.customScope.permissions.viewSnapshots">
-                          <a ui-sref="vms.snapshots({vmId: item.id})" translate>View
-                            Snapshots</a>
                         </li>
                       </ul>
                     </div>
