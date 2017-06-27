@@ -15,11 +15,11 @@ function getStates() {
 }
 
 /** @ngInject */
-function StateController($state, Session, $window) {
+function StateController(Session, $window) {
   activate();
 
   function activate() {
     Session.destroy();
-    $window.location.href = $state.href('login');
+    $window.location.href = $window.location.href;
   }
 }
