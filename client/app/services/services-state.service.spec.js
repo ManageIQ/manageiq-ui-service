@@ -36,28 +36,28 @@ let permissionsSpy;
         ServicesState.getServicesMinimal();
         expect(collectionsApiSpy).to.have.been.calledWith('services', { filter: ['ancestry=null'] });
     });
-    it('should be able to get service credentials', () => {    
+    it('should be able to get service credentials', () => {
         const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
         const serviceCredential = '12345';
         ServicesState.getServiceCredential(serviceCredential);
         expect(collectionsApiSpy).to.have.been.calledWith('authentications',serviceCredential, {});
     });
-    it('should be able to get service repository', () => {    
+    it('should be able to get service repository', () => {
         const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
         const serviceRepository = '12345';
         ServicesState.getServiceRepository(serviceRepository);
         expect(collectionsApiSpy).to.have.been.calledWith('configuration_script_sources',serviceRepository, {});
     });
-    it('should be able to get ServiceJobsStdout', () => {    
+    it('should be able to get ServiceJobsStdout', () => {
         const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
         const serviceId = '12345';
         const stackId = '4567';
         const expectedAttributes = { attributes: ['job_plays', 'stdout'], format_attributes: 'stdout=html' };
         ServicesState.getServiceJobsStdout(serviceId, stackId);
-        
+
         expect(collectionsApiSpy).to.have.been.calledWith('services/12345/orchestration_stacks', stackId, expectedAttributes);
     });
-     it('should get users permissions', () => {    
+     it('should get users permissions', () => {
          const expectedPermissions = {
                 'edit': false,
                 'delete': false,
@@ -74,6 +74,7 @@ let permissionsSpy;
                 'cockpit': false,
                 'console': false,
                 'viewSnapshots': false,
+                'vm_snapshot_add': false,
                 'vm_snapshot_show_list': false,
                 'ems_infra_show': false,
                 'ems_cluster_show': false,
@@ -91,7 +92,7 @@ let permissionsSpy;
     it('should allow services to be retrieved', () => {
          const collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
          ServicesState.services.setSort({'id':'name', 'title':'Name','sortType':'alpha'}, 'asc');
-         const nameFilter = { 
+         const nameFilter = {
             id: 'name',
             title: 'Name',
             placeholder: 'Filter by Name',
