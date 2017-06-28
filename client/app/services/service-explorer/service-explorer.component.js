@@ -13,11 +13,11 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
                              EventNotifications, ModalService, PowerOperations, lodash, Polling, POLLING_INTERVAL) {
   var vm = this;
 
-  vm.$onInit = activate();
   vm.$onDestroy = function() {
     Polling.stop('serviceListPolling');
   };
-  function activate() {
+
+  vm.$onInit = () => {
     vm.permissions = ServicesState.getPermissions();
     if ($state.params.filter) {
       ServicesState.services.setFilters($state.params.filter);
@@ -64,7 +64,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
 
     resolveServices(vm.limit, 0);
     Polling.start('serviceListPolling', pollUpdateServicesList, vm.pollingInterval);
-  }
+  };
 
   function getCardConfig() {
     return {
