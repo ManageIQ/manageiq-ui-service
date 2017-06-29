@@ -1,6 +1,6 @@
 /* eslint camelcase: "off" */
-import './_vm-details.sass';
-import templateUrl from './vm-details.html';
+import "./_vm-details.sass";
+import templateUrl from "./vm-details.html";
 
 export const VmDetailsComponent = {
   controller: ComponentController,
@@ -22,11 +22,11 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   vm.pollVM = pollVM;
   vm.retireVM = retireVM;
   vm.getData = resolveData;
-  vm.storageChartConfigOptions =  {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')};
-  vm.memoryChartConfigOptions =  {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')};
+  vm.storageChartConfigOptions = {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')};
+  vm.memoryChartConfigOptions = {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')};
   vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')};
   vm.processInstanceVariables = processInstanceVariables;
-  // vm.resolveData = resolveData;
+
   function onDestroy() {
     Polling.stop('vmPolling');
   }
@@ -55,7 +55,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       },
       listActions: [],
     });
-    
+
     EventNotifications.info(__("The contents of this page is a function of the current users's group."));
     resolveData();
     Polling.start('vmPolling', pollVM, LONG_POLLING_INTERVAL);
@@ -77,12 +77,15 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   function retireVM() {
     PowerOperations.retireVM(vm.vmDetails);
   }
+
   function viewSelected(view) {
     vm.viewType = view;
   }
+
   function pollVM() {
     resolveData(true);
   }
+
   function resolveData(refresh) {
     return VmsService.getVm($stateParams.vmId, refresh).then(handleSuccess, handleFailure);
 
@@ -115,6 +118,33 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       vm.cpuChart = UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions, usedCPU, totalCPU);
       vm.memoryChart = UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions, usedMemory, totalMemory);
       vm.storageChart = UsageGraphsService.getChartConfig(vm.storageChartConfigOptions, usedStorage, allocatedStorage);
+      vm.operatingRanges = {
+        CPU: {
+          max: response.cpu_usagemhz_rate_average_max_over_time_period,
+          high: response.cpu_usagemhz_rate_average_high_over_time_period,
+          average: response.cpu_usagemhz_rate_average_avg_over_time_period,
+          low: response.cpu_usagemhz_rate_average_low_over_time_period,
+        },
+        CPU_Usage: {
+          max: response.max_cpu_usage_rate_average_max_over_time_period,
+          high: response.max_cpu_usage_rate_average_high_over_time_period,
+          average: response.max_cpu_usage_rate_average_avg_over_time_period,
+          low: response.max_cpu_usage_rate_average_low_over_time_period,
+        },
+        Memory: {
+          max: response.derived_memory_used_max_over_time_period,
+          high: response.derived_memory_used_high_over_time_period,
+          average: response.derived_memory_used_avg_over_time_period,
+          low: response.derived_memory_used_low_over_time_period,
+        },
+        Memory_Usage: {
+          max: response.max_mem_usage_absolute_average_max_over_time_period,
+          high: response.max_mem_usage_absolute_average_high_over_time_period,
+          average: response.max_mem_usage_absolute_average_avg_over_time_period,
+          low: response.max_mem_usage_absolute_average_low_over_time_period,
+        },
+      };
+
       if (vm.vmDetails.retired) {
         EventNotifications.clearAll(lodash.find(EventNotifications.state().groups, {notificationType: 'warning'}));
         EventNotifications.warn(sprintf(__("%s is a retired resource"), vm.vmDetails.name), {persistent: true, unread: false});
@@ -136,6 +166,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
 
     return lodash.compact(buttons).length > 0;
   }
+
   function hasUsageGraphs() {
     if (angular.isUndefined(vm.vmDetails.allocated_disk_storage) || vm.vmDetails.allocated_disk_storage === 0) {
       vm.usageGraphs = false;
@@ -144,11 +175,11 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
         || vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period === 0) {
       vm.usageGraphs = false;
     }
-    if (angular.isUndefined(vm.vmDetails.hardware.aggregate_cpu_speed) 
-        || vm.vmDetails.hardware.aggregate_cpu_speed === 0) {
+    if (angular.isUndefined(vm.vmDetails.hardware.aggregate_cpu_speed)
+      || vm.vmDetails.hardware.aggregate_cpu_speed === 0) {
       vm.usageGraphs = false;
     }
-    
+
     return vm.usageGraphs;
   }
 

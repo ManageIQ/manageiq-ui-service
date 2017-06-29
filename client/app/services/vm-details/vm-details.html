@@ -158,6 +158,27 @@
                        detail="{{ vm.vmDetails.driftHistory }}"></detail-reveal>
         <detail-reveal detail-title="Analysis History" detail="{{ vm.vmDetails.scanHistoryCount }}"></detail-reveal>
       </div>
+      <div class="container-fluid vm-details-container">
+        <div class="row title">
+          <div>{{ 'Normal Operating Ranges (over 30 days)'|translate }}</div>
+        </div>
+        <div class="row" ng-repeat="(title, ranges) in vm.operatingRanges">
+          <div class="col-xs-4">
+            {{title.replace('_', ' ') | translate}}
+          </div>
+          <div class="col-xs-8">
+            <div class="row detail-row" ng-repeat="(key, value) in ranges">
+              <div class="col-xs-6 text-capitalize">
+                {{key |translate}}
+              </div>
+              <div class="col-xs-6">
+                {{value | number:2}} {{title === 'CPU'? 'Mhz': title === 'Memory'? 'MB' : title.includes('Usage')?
+                '%':null}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-xs-6">
       <div ng-if="vm.permissions.vm_check_compliance" class="container-fluid vm-details-container">
