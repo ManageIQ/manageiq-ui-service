@@ -154,8 +154,9 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       vm.loading = false;
     }
 
-    function handleFailure(_error) {
-      EventNotifications.error(__('There was an error loading the vm details.'));
+    function handleFailure(response) {
+      EventNotifications.error(__(`There was an error loading the vm details.
+      ${response.data.error.message}`) );
     }
   }
 
