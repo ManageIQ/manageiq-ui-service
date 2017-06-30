@@ -1,0 +1,1762 @@
+# Ludek Janda <ljanda@redhat.com>, 2017. #zanata
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2017-06-30 01:28-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt-BR\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: app/states/dashboard/dashboard.html:77
+msgid "$0"
+msgstr "$0"
+
+#: app/components/notifications/notification-body.html:22
+#: app/components/notifications/notification-body.html:47
+msgid "% Complete"
+msgstr "% concluído"
+
+#: app/shared/action-button-group/action-button-group.component.js:31
+msgid "%s"
+msgstr "%s"
+
+#: app/services/vm-details/vm-details.component.js:84
+msgid "%s is a retired resource"
+msgstr "%s é um recurso retirado"
+
+#: app/requests/order-explorer/order-explorer.component.js:361
+msgid "%s was duplicated, id # %d."
+msgstr "%s foi duplicado, ID # %d."
+
+#: app/services/edit-service-modal/edit-service-modal.component.js:31
+msgid "%s was edited."
+msgstr "%s foi editado."
+
+#: app/services/poweroperations.service.js:172
+msgid "%s was retired."
+msgstr "%s foi retirado."
+
+#: app/services/poweroperations.service.js:163
+msgid "%s was started."
+msgstr "%s foi iniciado."
+
+#: app/services/poweroperations.service.js:166
+msgid "%s was stopped."
+msgstr "%s foi interrompido."
+
+#: app/services/poweroperations.service.js:169
+msgid "%s was suspended."
+msgstr "%s foi suspenso."
+
+#: app/layouts/application.html:81
+msgid "(Current Group)"
+msgstr "(Grupo atual)"
+
+#: app/services/retire-service-modal/retire-service-modal.component.js:40
+msgid "1 Week"
+msgstr "1 semana"
+
+#: app/services/retire-service-modal/retire-service-modal.component.js:41
+msgid "2 Weeks"
+msgstr "2 semanas"
+
+#: app/services/retire-service-modal/retire-service-modal.component.js:42
+msgid "3 Weeks"
+msgstr "3 semanas"
+
+#: app/services/retire-service-modal/retire-service-modal.component.js:43
+msgid "4 Weeks"
+msgstr "4 semanas"
+
+#: app/layouts/application.html:58
+msgid "About"
+msgstr "Sobre"
+
+#: app/states/about-me/about-me.html:1
+#: app/states/about-me/about-me.state.js:16
+msgid "About Me"
+msgstr "Sobre mim"
+
+#: app/services/service-details/service-details.html:258
+msgid "Access"
+msgstr "Acesso"
+
+#: app/services/custom-button/custom-button.component.js:49
+msgid "Action not able to submit."
+msgstr "A ação não pode ser enviada."
+
+#: app/services/vms/snapshots.html:77
+msgid "Active"
+msgstr "Ativo"
+
+#: app/states/catalogs/details/details.html:39
+#: app/states/catalogs/details/details.html:44
+msgid "Add to Shopping Cart"
+msgstr "Adicionar ao carrinho de compras"
+
+#: app/core/navigation/navigation-controller.js:124
+msgid "Administration UI"
+msgstr "IU de administração"
+
+#: app/requests/process-order-modal/process-order-modal.html:11
+msgid "Affected Order"
+msgstr "Pedido afetado"
+
+#: app/core/tag-editor-modal/tag-editor-modal.html:20
+#: app/services/ownership-service-modal/ownership-service-modal.html:33
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.html:13
+#: app/services/retire-service-modal/retire-service-modal.html:18
+msgid "Affected Services"
+msgstr "Serviços afetados"
+
+#: app/requests/order-explorer/order-explorer.component.js:63
+#: app/requests/order-explorer/order-explorer.component.js:65
+msgid "Approve"
+msgstr "Aprovar"
+
+#: app/core/shopping-cart/shopping-cart.html:60
+msgid "Are you sure you want to clear all items from your shopping cart?"
+msgstr ""
+"Tem certeza de que deseja remover todos os itens do seu carrinho de compras?"
+
+#: app/templates/template-explorer.component.js:371
+msgid "Are you sure you want to delete %d templates?"
+msgstr "Tem certeza de que deseja excluir %d modelos?"
+
+#: app/templates/template-editor.component.js:197
+#: app/templates/template-explorer.component.js:361
+msgid "Are you sure you want to delete template %s?"
+msgstr "Tem certeza de que deseja excluir todos o modelo %s?"
+
+#: app/core/shopping-cart/shopping-cart.html:20
+msgid "Are you sure you want to remove this item from your shopping cart?"
+msgstr ""
+"Tem certeza de que deseja remover este item do seu carrinho de compras?"
+
+#: app/shared/confirmation/confirmation.directive.js:112
+msgid "Are you sure you wish to proceed?"
+msgstr "Tem certeza de que deseja continuar?"
+
+#: app/components/notifications/notification-footer.html:14
+msgid "Are you sure you would like to clear all [[heading]]?"
+msgstr "Tem certeza de que gostaria de limpar todos os [[heading]]?"
+
+#: app/services/service-details/service-details.html:293
+msgid "Are you sure you would like to retire this resource?"
+msgstr "Tem certeza de que deseja retirar este recurso?"
+
+#: app/services/vm-details/vm-details.component.js:27
+#: app/templates/template-explorer.html:67
+msgid "Available"
+msgstr "Disponível"
+
+#: app/reports/reports-details.html:57
+msgid "Based On"
+msgstr "Baseado em"
+
+#: app/reports/reports-details.html:28
+#: app/templates/template-editor.html:55
+msgid "Basic Information"
+msgstr "Informações básicas"
+
+#: app/services/service-details/service-details.html:247
+msgid "Boot Time: Unknown"
+msgstr "Horário da inicialização: desconhecido"
+
+#: app/core/language-switcher/language-switcher.directive.js:25
+msgid "Browser Default"
+msgstr "Navegador padrão"
+
+#: app/core/save-modal-dialog/save-modal-dialog.html:14
+#: app/shared/action-button-group/action-button-group.html:1
+#: app/shared/action-button-group/action-button-group.html:45
+#: app/shared/confirmation/confirmation.directive.js:114
+#: app/states/services/reconfigure/reconfigure.html:24
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: app/catalogs/catalog-explorer.component.js:63
+msgid "Catalog Name"
+msgstr "Nome do catálogo"
+
+#: app/catalogs/catalog-explorer.component.js:18
+#: app/states/catalogs/explorer/explorer.state.js:15
+#: app/states/catalogs/explorer/explorer.state.js:26
+msgid "Catalogs"
+msgstr "Catálogos"
+
+#: app/layouts/application.html:73
+msgid "Change Group:"
+msgstr "Alterar grupo:"
+
+#: app/layouts/application.html:85
+msgid "Change to this Group"
+msgstr "Alterar para este grupo"
+
+#: app/core/shopping-cart/shopping-cart.html:53
+#: app/core/shopping-cart/shopping-cart.html:61
+msgid "Clear"
+msgstr "Limpar"
+
+#: app/components/notifications/notification-footer.html:15
+#: app/components/notifications/notification-footer.html:19
+msgid "Clear All"
+msgstr "Limpar tudo"
+
+#: app/components/notifications/notification-footer.html:13
+msgid "Clear All [[heading]]"
+msgstr "Limpar todos os [[heading]]"
+
+#: app/core/shopping-cart/shopping-cart.html:59
+msgid "Clear Shopping Cart"
+msgstr "Limpar carrinho de compras"
+
+#: app/core/shopping-cart/shopping-cart.html:45
+msgid "Close"
+msgstr "Fechar"
+
+#: app/services/vm-details/vm-details.html:98
+msgid "Cluster"
+msgstr "Cluster"
+
+#: app/templates/template-editor.html:99
+msgid "Code"
+msgstr "Código"
+
+#: app/components/notifications/notification-body.html:53
+msgid "Completed:"
+msgstr "Concluído:"
+
+#: app/services/vm-details/vm-details.html:139
+msgid "Compliance"
+msgstr "Conformidade"
+
+#: app/services/service-details/service-details.component.js:303
+msgid "Compute"
+msgstr "Computação"
+
+#: app/services/services-state.service.js:209
+#: app/services/services-state.service.js:214
+#: app/services/vm-details/vm-details.html:169
+#: app/services/vms/snapshots.component.js:131
+#: app/services/vms/snapshots.component.js:132
+#: app/templates/template-editor.component.js:116
+#: app/templates/template-explorer.component.js:55
+#: app/templates/template-explorer.component.js:56
+msgid "Configuration"
+msgstr "Configuração"
+
+#: app/services/services-state.service.js:237
+msgid "Confirm, would you like to remove this service?"
+msgstr "Confirme: deseja remover este serviço?"
+
+#: app/services/services-state.service.js:151
+msgid "Confirm, would you like to retire this service?"
+msgstr "Confirme: deseja retirar este serviço?"
+
+#: app/core/save-modal-dialog/save-modal-dialog.html:15
+msgid "Continue"
+msgstr "Continuar"
+
+#: app/templates/template-editor.component.js:124
+#: app/templates/template-explorer.component.js:167
+#: app/templates/template-explorer.component.js:72
+msgid "Copy"
+msgstr "Copiar"
+
+#: app/templates/template-editor.component.js:126
+#: app/templates/template-explorer.component.js:168
+msgid "Copy Template"
+msgstr "Copiar modelo"
+
+#: app/templates/template-explorer.component.js:74
+msgid "Copy template"
+msgstr "Copiar modelo"
+
+#: app/services/service-explorer/service-explorer.html:114
+msgid "Cost not available"
+msgstr "Custo indisponível"
+
+#: app/templates/template-explorer.component.js:64
+msgid "Create"
+msgstr "Criar"
+
+#: app/services/process-snapshots-modal/process-snapshots-modal.html:5
+#: app/services/vms/snapshots.component.js:115
+msgid "Create Snapshot"
+msgstr "Criar snapshot"
+
+#: app/templates/template-explorer.component.js:66
+msgid "Create new template"
+msgstr "Criar novo modelo"
+
+#: app/services/vms/snapshots.component.js:117
+msgid "Create snapshot"
+msgstr "Criar snapshot"
+
+#: app/services/service-explorer/service-explorer.component.js:341
+#: app/services/service-explorer/service-explorer.html:161
+#: app/services/service-explorer/service-explorer.html:85
+#: app/services/vms/snapshots.component.js:104
+msgid "Created"
+msgstr "Criado"
+
+#: app/reports/reports-details.html:81
+#: app/services/service-details/service-details.html:89
+msgid "Created On"
+msgstr "Criado em"
+
+#: app/services/vms/snapshots.html:85
+msgid "Created:"
+msgstr "Criado:"
+
+#: app/services/process-snapshots-modal/process-snapshots-modal.component.js:39
+msgid "Creating snapshot."
+msgstr "Criando snapshot"
+
+#: app/services/service-details/service-details-ansible.html:88
+msgid "Credentials"
+msgstr "Credenciais"
+
+#: app/layouts/application.html:93
+msgid "Current Group"
+msgstr "Grupo atual"
+
+#: app/states/dashboard/dashboard.html:37
+msgid "Current Services"
+msgstr "Serviços atuais"
+
+#: app/layouts/application.html:79
+msgid "Currently Selected Group"
+msgstr "Grupo selecionado atualmente"
+
+#: app/states/services/custom_button_details/custom_button_details.html:10
+msgid "Custom Button:"
+msgstr "Botão personalizado"
+
+#: app/states/services/custom_button_details/custom_button_details.state.js:44
+msgid "Custom button action"
+msgstr "Ação do botão personalizado"
+
+#: app/core/navigation.config.js:6
+#: app/states/dashboard/dashboard.state.js:16
+msgid "Dashboard"
+msgstr "Painel"
+
+#: app/services/vms/snapshots.component.js:72
+#: app/services/vms/snapshots.html:32
+#: app/templates/template-editor.component.js:137
+#: app/templates/template-editor.html:30
+#: app/templates/template-explorer.component.js:179
+#: app/templates/template-explorer.component.js:88
+#: app/templates/template-explorer.html:27
+msgid "Delete"
+msgstr "Excluir"
+
+#: app/services/vms/snapshots.component.js:122
+msgid "Delete All Snapshots"
+msgstr "Excluir todos os snapshots"
+
+#: app/services/vms/snapshots.component.js:206
+msgid "Delete All Snapshots on VM %s"
+msgstr "Excluir todos os snapshots na máquina virtual %s"
+
+#: app/services/vms/snapshots.component.js:202
+#: app/services/vms/snapshots.component.js:74
+msgid "Delete Snapshot"
+msgstr "Excluir snapshot"
+
+#: app/templates/template-editor.component.js:139
+#: app/templates/template-editor.html:28
+#: app/templates/template-explorer.component.js:180
+#: app/templates/template-explorer.html:25
+msgid "Delete Template"
+msgstr "Excluir modelo"
+
+#: app/services/vms/snapshots.component.js:124
+msgid "Delete all snapshots"
+msgstr "Excluir todos os snapshots"
+
+#: app/templates/template-explorer.component.js:90
+msgid "Delete template"
+msgstr "Excluir modelo"
+
+#: app/requests/process-order-modal/process-order-modal.component.js:37
+msgid "Deleting order."
+msgstr "Excluindo pedido."
+
+#: app/services/vms/snapshots.component.js:145
+msgid "Deleting snapshot."
+msgstr "Excluindo snapshot."
+
+#: app/requests/order-explorer/order-explorer.component.js:70
+#: app/requests/order-explorer/order-explorer.component.js:72
+msgid "Deny"
+msgstr "Negar"
+
+#: app/services/vm-details/vm-details.html:98
+msgid "Deployment Role"
+msgstr "Papel da implantação"
+
+#: app/catalogs/catalog-explorer.component.js:62
+#: app/services/edit-service-modal/edit-service-modal.html:12
+#: app/services/process-snapshots-modal/process-snapshots-modal.html:15
+#: app/services/service-details/service-details.html:50
+#: app/services/service-explorer/service-explorer.component.js:330
+#: app/services/vms/snapshots.component.js:92
+#: app/shared/ss-card/ss-card.html:8
+#: app/templates/template-editor.html:71
+#: app/templates/template-explorer.html:62
+msgid "Description"
+msgstr "Descrição"
+
+#: app/services/service-details/service-details-ansible.html:51
+msgid "Details"
+msgstr "Detalhes"
+
+#: app/core/save-modal-dialog/save-modal-dialog.html:7
+msgid "Discard Changes"
+msgstr "Descartar alterações"
+
+#: app/layouts/application.html:48
+msgid "Documentation"
+msgstr "Documentação"
+
+#: app/services/ownership-service-modal/ownership-service-modal.html:11
+#: app/services/ownership-service-modal/ownership-service-modal.html:23
+msgid "Don't Change"
+msgstr "Não alterar"
+
+#: app/templates/template-editor.html:15
+msgid "Download"
+msgstr "Fazer download"
+
+#: app/reports/reports-details.html:154
+msgid "Download CSV"
+msgstr "Fazer download do CSV"
+
+#: app/templates/template-editor.html:88
+#: app/templates/template-explorer.component.js:152
+#: app/templates/template-explorer.html:52
+msgid "Draft"
+msgstr "Rascunho"
+
+#: app/core/shopping-cart/shopping-cart.html:29
+#: app/requests/order-explorer/order-explorer.component.js:152
+msgid "Duplicate"
+msgstr "Duplicar"
+
+#: app/requests/order-explorer/order-explorer.component.js:154
+msgid "Duplicate Order"
+msgstr "Duplicar pedido"
+
+#: app/states/catalogs/details/details.html:37
+msgid "Duplicate Shopping Cart Item"
+msgstr "Duplicar item do carrinho de compras"
+
+#: app/reports/reports-details.html:73
+msgid "EVM Group"
+msgstr "Grupo EVM"
+
+#: app/services/service-explorer/service-explorer.component.js:217
+#: app/services/services-state.service.js:220
+#: app/services/services-state.service.js:222
+#: app/templates/template-editor.component.js:131
+#: app/templates/template-explorer.component.js:173
+#: app/templates/template-explorer.component.js:80
+msgid "Edit"
+msgstr "Editar"
+
+#: app/services/edit-service-modal/edit-service-modal.html:5
+#: app/services/service-explorer/service-explorer.component.js:219
+msgid "Edit Service"
+msgstr "Editar serviço"
+
+#: app/core/tag-editor-modal/tag-editor-modal.html:5
+#: app/services/service-explorer/service-explorer.component.js:225
+#: app/services/service-explorer/service-explorer.component.js:227
+#: app/services/services-state.service.js:190
+#: app/services/services-state.service.js:192
+msgid "Edit Tags"
+msgstr "Editar tags"
+
+#: app/templates/template-editor.component.js:133
+#: app/templates/template-explorer.component.js:174
+msgid "Edit Template"
+msgstr "Editar modelo"
+
+#: app/templates/template-explorer.component.js:82
+msgid "Edit template"
+msgstr "Editar modelo"
+
+#: app/services/service-details/service-details-ansible.html:183
+#: app/services/service-details/service-details-ansible.html:34
+msgid "Elapsed"
+msgstr "Decorrido"
+
+#: app/states/error/error.state.js:17
+msgid "Error"
+msgstr "Erro"
+
+#: app/services/process-snapshots-modal/process-snapshots-modal.component.js:39
+msgid "Error creating snapshot."
+msgstr "Erro ao criar snapshot."
+
+#: app/requests/process-order-modal/process-order-modal.component.js:37
+msgid "Error deleting order."
+msgstr "Erro ao excluir pedido."
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
+msgid "Error deleting service."
+msgstr "Erro ao excluir serviço."
+
+#: app/services/vms/snapshots.component.js:145
+msgid "Error deleting snapshot."
+msgstr "Erro ao excluir snapshot."
+
+#: app/core/authorization.config.js:113
+msgid "Error retrieving user info"
+msgstr "Erro ao recuperar informações do usuário."
+
+#: app/services/vms/snapshots.component.js:216
+msgid "Error reverting snapshot."
+msgstr "Erro ao reverter snapshot."
+
+#: app/services/ownership-service-modal/ownership-service-modal.component.js:67
+msgid "Error setting ownership."
+msgstr "Erro ao configurar propriedade."
+
+#: app/catalogs/catalog-explorer.component.js:63
+msgid "Filter by Catalog Name"
+msgstr "Filtrar por nome do catálogo"
+
+#: app/catalogs/catalog-explorer.component.js:62
+#: app/services/service-explorer/service-explorer.component.js:330
+#: app/services/vms/snapshots.component.js:92
+msgid "Filter by Description"
+msgstr "Filtrar por descrição"
+
+#: app/templates/template-explorer.component.js:152
+msgid "Filter by Draft"
+msgstr "Filtrar por rascunho"
+
+#: app/requests/order-explorer/order-explorer.component.js:135
+msgid "Filter by ID"
+msgstr "Filtrar por ID"
+
+#: app/catalogs/catalog-explorer.component.js:61
+#: app/reports/reports-explorer.component.js:49
+#: app/requests/order-explorer/order-explorer.component.js:134
+#: app/services/service-explorer/service-explorer.component.js:329
+#: app/services/vms/snapshots.component.js:91
+#: app/templates/template-explorer.component.js:150
+msgid "Filter by Name"
+msgstr "Filtrar por nome"
+
+#: app/requests/order-explorer/order-explorer.component.js:136
+msgid "Filter by Order Date"
+msgstr "Filtrar por data do pedido"
+
+#: app/templates/template-explorer.component.js:151
+msgid "Filter by Type"
+msgstr "Filtrar por tipo"
+
+#: app/services/service-details/service-details-ansible.html:175
+#: app/services/service-details/service-details-ansible.html:27
+msgid "Finished"
+msgstr "Concluído"
+
+#: app/shared/confirmation/confirmation.directive.js:66
+#: app/shared/confirmation/confirmation.directive.js:71
+msgid "For Sizing"
+msgstr "Para dimensionamento"
+
+#: app/services/service-details/service-details.html:56
+msgid "GUID"
+msgstr "GUID"
+
+#: app/states/help/help.html:1
+#: app/states/help/help.state.js:16
+msgid "Help"
+msgstr "Ajuda"
+
+#: app/services/service-details/service-details-ansible.html:73
+msgid "Hosts"
+msgstr "Hosts"
+
+#: app/services/service-details/service-details-ansible.html:109
+msgid "Id"
+msgstr "ID"
+
+#: app/core/save-modal-dialog/save-modal-dialog.html:10
+msgid "If you do not save, any changes will be lost."
+msgstr "Se você não salvar, todas as alterações serão perdidas."
+
+#: app/core/authentication-api.factory.js:24
+msgid "Incorrect username or password."
+msgstr "Senha ou usuário incorreto."
+
+#: app/states/catalogs/details/details.state.js:128
+msgid "Item added to shopping cart"
+msgstr "Idem adicionado ao carrinho de compras."
+
+#: app/states/catalogs/details/details.state.js:126
+msgid "Item added to shopping cart, but it's a duplicate of an existing item"
+msgstr ""
+"Idem adicionado ao carrinho de compras, mas é um item existente duplicado."
+
+#: app/states/login/login.html:31
+msgid "Language"
+msgstr "Idioma"
+
+#: app/services/service-details/service-details.html:237
+msgid "Last Boot"
+msgstr "Última inicialização"
+
+#: app/services/service-details/service-details.html:207
+msgid "Latest"
+msgstr "Mais  recente"
+
+#: app/services/service-details/service-details.html:239
+msgid "Latest Boot Time"
+msgstr "Horário da inicialização mais recente"
+
+#: app/services/service-details/service-details.html:210
+msgid "Latest Snapshot Name"
+msgstr "Nome do snapshot mais recente"
+
+#: app/services/service-details/service-details.html:218
+msgid "Latest Snapshot Timestamp"
+msgstr "Carimbo de data/hora do snapshot mais recente"
+
+#: app/services/service-details/service-details.html:227
+msgid "Latest Snapshot: Unknown"
+msgstr "Snapshot mais recente: desconhecido"
+
+#: app/services/service-details/service-details-ansible.html:41
+msgid "Launched By"
+msgstr "Iniciado por"
+
+#: app/requests/order-explorer/order-explorer.component.js:54
+#: app/requests/order-explorer/order-explorer.component.js:56
+#: app/services/services-state.service.js:127
+#: app/services/services-state.service.js:132
+#: app/services/vm-details/vm-details.html:71
+msgid "Lifecycle"
+msgstr "Ciclo de vida"
+
+#: app/services/service-details/service-details-ansible-modal.html:5
+msgid "Live Ansible Play"
+msgstr "Reprodução do Ansible ao vivo"
+
+#: app/states/login/login.html:37
+msgid "Log In"
+msgstr "Fazer login"
+
+#: app/core/navigation/navigation-controller.js:125
+msgid "Log into the full administrative UI"
+msgstr "Fazer login na IU administrativa completa"
+
+#: app/states/login/login.state.js:16
+msgid "Login"
+msgstr "Login"
+
+#: app/layouts/application.html:103
+#: app/states/logout/logout.state.js:12
+msgid "Logout"
+msgstr "Logoff"
+
+#: app/states/error/error.html:3
+msgid "ManageIQ Self Service"
+msgstr "ManageIQ Self Service"
+
+#: app/components/notifications/notification-footer.html:6
+msgid "Mark All Read"
+msgstr "Marcar todos como lidos"
+
+#: app/services/process-snapshots-modal/process-snapshots-modal.html:12
+msgid "Memory"
+msgstr "Memória"
+
+#: app/states/dashboard/dashboard.html:67
+msgid "Monthly Charges - This Month To Date"
+msgstr "Cobranças mensais - desse mês até o momento atual"
+
+#: app/services/service-details/service-details.html:79
+msgid "Monthly Cost"
+msgstr "Custo mensal"
+
+#: app/core/navigation.config.js:13
+#: app/services/service-details/service-details.html:5
+#: app/services/service-explorer/service-explorer.html:4
+#: app/services/vm-details/vm-details.html:5
+#: app/services/vms/snapshots.html:5
+#: app/states/services/reconfigure/reconfigure.html:3
+msgid "My Services"
+msgstr "Meus serviços"
+
+#: app/catalogs/catalog-explorer.component.js:61
+#: app/catalogs/catalog-explorer.component.js:79
+#: app/catalogs/catalogs-state.service.js:9
+#: app/reports/reports-explorer.component.js:49
+#: app/reports/reports-explorer.component.js:56
+#: app/requests/order-explorer/order-explorer.component.js:134
+#: app/requests/order-explorer/order-explorer.component.js:142
+#: app/services/edit-service-modal/edit-service-modal.html:9
+#: app/services/service-details/service-details-ansible.html:101
+#: app/services/service-details/service-details-ansible.html:151
+#: app/services/service-details/service-details.html:44
+#: app/services/service-explorer/service-explorer.component.js:329
+#: app/services/service-explorer/service-explorer.component.js:342
+#: app/services/services-state.service.js:8
+#: app/services/vms.service.js:8
+#: app/services/vms/snapshots.component.js:103
+#: app/services/vms/snapshots.component.js:91
+#: app/templates/template-editor.html:62
+#: app/templates/template-explorer.component.js:150
+#: app/templates/template-explorer.component.js:158
+msgid "Name"
+msgstr "Nome"
+
+#: app/services/process-snapshots-modal/process-snapshots-modal.html:9
+msgid "Name *"
+msgstr "Nome *"
+
+#: app/services/vm-details/vm-details.component.js:25
+msgid "Never"
+msgstr "Nunca"
+
+#: app/services/vm-details/vm-details.component.js:76
+msgid "Never Verified"
+msgstr "Nunca verificado"
+
+#: app/components/notifications/heading.html:2
+#: app/components/notifications/subheading.html:1
+msgid "New"
+msgstr "Novo"
+
+#: app/shared/dialog-content/dialog-content.html:3
+msgid "No Provisioning Dialog Available."
+msgstr "Nenhum diálogo de provisionamento disponível."
+
+#: app/services/vms/snapshots.html:9
+msgid "No Service"
+msgstr "Nenhum serviço"
+
+#: app/services/retire-service-modal/retire-service-modal.component.js:39
+msgid "No Warning"
+msgstr "Nenhum aviso"
+
+#: app/services/service-details/service-details-ansible.html:92
+msgid "No credentials available."
+msgstr "Nenhuma credencial disponível."
+
+#: app/services/service-details/service-details-ansible.html:212
+msgid "No logs available."
+msgstr "Nenhum registro disponível."
+
+#: app/services/service-details/service-details-ansible.html:142
+msgid "No plays available."
+msgstr "Nenhuma ação disponível."
+
+#: app/services/vm-details/vm-details.component.js:26
+msgid "None"
+msgstr "Nenhum"
+
+#: app/services/vm-details/vm-details.component.js:28
+msgid "Not Available"
+msgstr "Indisponível"
+
+#: app/layouts/application.html:10
+msgid "Notifications"
+msgstr "Notificações"
+
+#: app/shared/action-button-group/action-button-group.html:20
+#: app/shared/action-button-group/action-button-group.html:26
+msgid "OK"
+msgstr "OK"
+
+#: app/services/service-details/service-details.html:271
+msgid "Open Cockpit Console"
+msgstr "Abrir console do cockpit"
+
+#: app/services/service-details/service-details.html:266
+msgid "Open VM Console"
+msgstr "Abrir console da máquina virtual"
+
+#: app/core/shopping-cart/shopping-cart.html:68
+msgid "Order"
+msgstr "Pedido"
+
+#: app/requests/order-explorer/order-explorer.html:33
+msgid "Order #"
+msgstr "Nº do pedido"
+
+#: app/requests/order-explorer/order-explorer.component.js:136
+#: app/requests/order-explorer/order-explorer.component.js:144
+#: app/requests/orders-state.service.js:12
+msgid "Order Date"
+msgstr "Data do pedido"
+
+#: app/states/orders/details/details.state.js:15
+msgid "Order Details"
+msgstr "Detalhes do pedido"
+
+#: app/requests/order-explorer/order-explorer.component.js:135
+#: app/requests/order-explorer/order-explorer.component.js:143
+msgid "Order ID"
+msgstr "ID do pedido"
+
+#: app/requests/order-explorer/order-explorer.html:47
+msgid "Ordered"
+msgstr "Encomendado"
+
+#: app/core/navigation.config.js:22
+#: app/requests/order-explorer/order-explorer.html:4
+#: app/states/orders/details/details.html:5
+#: app/states/orders/explorer/explorer.state.js:11
+msgid "Orders"
+msgstr "Pedidos"
+
+#: app/services/service-details/service-details.html:73
+msgid "Owner"
+msgstr "Proprietário"
+
+#: app/services/service-details/service-details.html:341
+msgid "Parent Catalog Item"
+msgstr "Item do catálogo pai"
+
+#: app/services/service-details/service-details.html:332
+msgid "Parent Service"
+msgstr "Serviço pai"
+
+#: app/states/login/login.html:23
+msgid "Password"
+msgstr "Senha"
+
+#: app/services/service-details/service-details-ansible.html:203
+msgid "Play In Progress"
+msgstr "Ação em progresso"
+
+#: app/services/service-details/service-details-ansible.html:53
+msgid "Playbook"
+msgstr "Playbook"
+
+#: app/services/service-explorer/service-explorer.html:73
+msgid "Playbook: [[playbook]]"
+msgstr "Playbook: [[playbook]]"
+
+#: app/services/service-details/service-details-ansible.html:138
+msgid "Plays"
+msgstr "Ações"
+
+#: app/services/vms/snapshots.component.js:207
+msgid "Please confirm, this action will delete all snapshots of vm %s"
+msgstr "Confirme: esta ação excluirá todos os snapshots da máquina virtual %s"
+
+#: app/services/vms/snapshots.component.js:203
+msgid "Please confirm, this action will delete snapshot %s"
+msgstr "Confirme: esta ação excluirá o snapshot %s"
+
+#: app/services/services-state.service.js:183
+#: app/services/services-state.service.js:186
+msgid "Policy"
+msgstr "Política"
+
+#: app/services/vm-details/vm-details.component.js:99
+msgid "Power"
+msgstr "Energia"
+
+#: app/services/vm-details/vm-details.html:147
+msgid "Power Management"
+msgstr "Gerenciamento de energia"
+
+#: app/services/service-details/service-details.component.js:109
+#: app/services/service-details/service-details.component.js:114
+#: app/services/vm-details/vm-details.component.js:98
+msgid "Power Operations"
+msgstr "Operações de gerenciamento de energia"
+
+#: app/services/service-details/service-details.html:162
+#: app/services/service-explorer/service-explorer.component.js:426
+msgid "Power State: Off"
+msgstr "Estado de energia: desligado"
+
+#: app/services/service-details/service-details.html:167
+#: app/services/service-explorer/service-explorer.component.js:425
+msgid "Power State: On"
+msgstr "Estado de energia: ligado"
+
+#: app/services/service-details/service-details.html:173
+#: app/services/service-explorer/service-explorer.component.js:427
+msgid "Power State: Unknown"
+msgstr "Estado de energia: desconhecido"
+
+#: app/reports/reports-details.html:41
+msgid "Primary record filter"
+msgstr "Filtro de registro primário"
+
+#: app/core/navigation/navigation-controller.js:109
+msgid "Product logo"
+msgstr "Logotipo do produto"
+
+#: app/services/service-details/service-details.html:36
+#: app/services/vm-details/vm-details.html:34
+msgid "Properties"
+msgstr "Propriedades"
+
+#: app/reports/reports-details.component.js:119
+#: app/reports/reports-details.component.js:121
+msgid "Queue Report"
+msgstr "Colocar relatório na fila"
+
+#: app/reports/reports-details.html:131
+msgid "Queued at"
+msgstr "Na fila em"
+
+#: app/services/service-details/service-details.component.js:164
+#: app/states/services/reconfigure/reconfigure.html:8
+msgid "Reconfigure"
+msgstr "Reconfigurar"
+
+#: app/services/service-details/service-details.component.js:166
+msgid "Reconfigure the Service"
+msgstr "Reconfigurar o serviço"
+
+#: app/states/services/reconfigure/reconfigure.state.js:124
+msgid "Reconfigure this service has been cancelled"
+msgstr "A reconfiguração deste serviço foi cancelada"
+
+#: app/shared/dialog-content/dialog-content.html:136
+msgid "Refresh"
+msgstr "Atualizar"
+
+#: app/services/service-details/service-details.html:326
+#: app/services/vm-details/vm-details.html:86
+msgid "Relationships"
+msgstr "Relações"
+
+#: app/services/service-explorer/service-explorer.html:106
+msgid "Relative current cost"
+msgstr "Custo atual relativo"
+
+#: app/core/shopping-cart/shopping-cart.html:16
+#: app/core/shopping-cart/shopping-cart.html:21
+#: app/requests/order-explorer/order-explorer.component.js:163
+#: app/services/service-explorer/service-explorer.component.js:257
+#: app/services/services-state.service.js:229
+#: app/services/services-state.service.js:231
+msgid "Remove"
+msgstr "Remover"
+
+#: app/core/shopping-cart/shopping-cart.html:19
+msgid "Remove Item"
+msgstr "Remover item"
+
+#: app/requests/order-explorer/order-explorer.component.js:165
+#: app/requests/process-order-modal/process-order-modal.html:5
+msgid "Remove Order"
+msgstr "Remover pedido"
+
+#: app/services/service-explorer/service-explorer.component.js:259
+#: app/services/services-state.service.js:236
+msgid "Remove Service"
+msgstr "Remover serviço"
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.html:5
+msgid "Remove Services"
+msgstr "Remover serviços"
+
+#: app/services/service-details/service-details-ansible.html:60
+msgid "Repo Name"
+msgstr "Nome do repo"
+
+#: app/states/reports/view/report.state.js:17
+msgid "Report"
+msgstr "Relatório"
+
+#: app/reports/reports-explorer.html:42
+msgid "Report Filters"
+msgstr "Filtros do relatório"
+
+#: app/reports/reports-details.html:127
+msgid "Report Queued"
+msgstr "Relatório em fila"
+
+#: app/reports/reports-details.component.js:59
+msgid "Report has been queued"
+msgstr "O relatório foi colocado na fila"
+
+#: app/reports/reports-details.html:119
+msgid "Report is queued"
+msgstr "O relatório está na fila"
+
+#: app/reports/reports-details.html:113
+msgid "Report run successfully"
+msgstr "O relatório foi executado com êxito"
+
+#: app/reports/reports-details.html:4
+#: app/reports/reports-explorer.html:4
+#: app/states/reports/explorer/explorer.state.js:11
+#: app/states/reports/view/report.html:4
+msgid "Reports"
+msgstr "Relatórios"
+
+#: app/states/reports/details/details.state.js:13
+msgid "Reports Details"
+msgstr "Detalhes dos relatórios"
+
+#: app/requests/order-explorer/order-explorer.html:81
+msgid "Request ID"
+msgstr "ID da solicitação"
+
+#: app/requests/order-explorer/order-explorer.html:96
+msgid "Request State"
+msgstr "Estado da solicitação"
+
+#: app/requests/order-explorer/order-explorer.html:39
+msgid "Requester"
+msgstr "Solicitante"
+
+#: app/shared/action-button-group/action-button-group.html:38
+#: app/shared/action-button-group/action-button-group.html:6
+msgid "Reset"
+msgstr "Redefinir"
+
+#: app/services/service-details/service-details.html:132
+msgid "Resources"
+msgstr "Recursos"
+
+#: app/services/service-details/service-details-ansible.html:11
+msgid "Results"
+msgstr "Resultados"
+
+#: app/services/service-details/service-details.html:294
+#: app/services/service-details/service-details.html:301
+#: app/services/service-explorer/service-explorer.component.js:241
+#: app/services/services-state.service.js:145
+#: app/services/services-state.service.js:146
+#: app/services/vm-details/vm-details.component.js:132
+msgid "Retire"
+msgstr "Retirar"
+
+#: app/services/service-details/service-details.html:292
+msgid "Retire Resource"
+msgstr "Retirar recurso"
+
+#: app/services/service-explorer/service-explorer.component.js:243
+msgid "Retire Service"
+msgstr "Retirar serviço"
+
+#: app/services/services-state.service.js:152
+msgid "Retire Service Now"
+msgstr "Retirar serviço agora"
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.html:6
+msgid "Retire Services"
+msgstr "Retirar serviços"
+
+#: app/services/vm-details/vm-details.component.js:134
+msgid "Retire the Service"
+msgstr "Retirar o serviço"
+
+#: app/services/vm-details/vm-details.html:37
+#: app/states/dashboard/dashboard.state.js:105
+#: app/states/dashboard/dashboard.state.js:113
+msgid "Retired"
+msgstr "Retirado"
+
+#: app/states/dashboard/dashboard.html:52
+msgid "Retired Services"
+msgstr "Serviços retirados"
+
+#: app/services/service-details/service-details.html:156
+msgid "Retired resource"
+msgstr "Recurso retirado"
+
+#: app/services/retire-service-modal/retire-service-modal.html:13
+#: app/services/service-explorer/service-explorer.component.js:343
+#: app/states/dashboard/dashboard.state.js:101
+msgid "Retirement Date"
+msgstr "Data da retirada"
+
+#: app/services/service-details/service-details.html:95
+msgid "Retirement State"
+msgstr "Estado da retirada"
+
+#: app/services/retire-service-modal/retire-service-modal.html:9
+msgid "Retirement Warning"
+msgstr "Aviso de retirada"
+
+#: app/services/service-explorer/service-explorer.html:173
+#: app/services/service-explorer/service-explorer.html:97
+msgid "Retires"
+msgstr "Retiradas"
+
+#: app/services/service-details/service-details.html:102
+msgid "Retires On"
+msgstr "Retirado em"
+
+#: app/states/dashboard/dashboard.html:22
+msgid "Retiring Soon"
+msgstr "Será retirado em breve"
+
+#: app/services/vms/snapshots.component.js:65
+msgid "Revert"
+msgstr "Reverter"
+
+#: app/services/vms/snapshots.component.js:67
+msgid "Revert Snapshot"
+msgstr "Reverter snapshot"
+
+#: app/services/vms/snapshots.component.js:216
+msgid "Reverting snapshot."
+msgstr "Revertendo snapshot."
+
+#: app/reports/reports-details.html:124
+msgid "Run at"
+msgstr "Executar em"
+
+#: app/core/save-modal-dialog/save-modal-dialog.html:16
+#: app/shared/action-button-group/action-button-group.html:13
+msgid "Save"
+msgstr "Salvar"
+
+#: app/core/save-modal-dialog/save-modal-dialog.html:6
+msgid "Save Changes"
+msgstr "Salvar alterações"
+
+#: app/services/retire-service-modal/retire-service-modal.html:5
+msgid "Schedule Service Retirement"
+msgstr "Agendar retirada do serviço "
+
+#: app/services/retire-service-modal/retire-service-modal.component.js:77
+msgid "Scheduling retirement."
+msgstr "Agendando retirada."
+
+#: app/services/vm-details/vm-details.html:158
+msgid "Security"
+msgstr "Segurança"
+
+#: app/services/ownership-service-modal/ownership-service-modal.html:20
+msgid "Select a Group"
+msgstr "Selecione um grupo"
+
+#: app/shared/tagging/tagging.component.js:20
+msgid "Select a value to assign"
+msgstr "Selecione um valor para atribuir"
+
+#: app/services/ownership-service-modal/ownership-service-modal.html:9
+msgid "Select an Owner"
+msgstr "Selecione um proprietário"
+
+#: app/core/navigation/navigation-controller.js:114
+msgid "Server Name:"
+msgstr "Nome do servidor:"
+
+#: app/states/services/custom_button_details/custom_button_details.html:7
+msgid "Service"
+msgstr "Serviço"
+
+#: app/catalogs/catalog-explorer.html:4
+#: app/core/navigation.config.js:31
+msgid "Service Catalog"
+msgstr "Catálogo do serviço"
+
+#: app/states/catalogs/details/details.html:5
+#: app/states/services/custom_button_details/custom_button_details.html:3
+msgid "Service Catalogs"
+msgstr "Catálogos do serviço"
+
+#: app/states/services/custom_button_details/custom_button_details.state.js:16
+msgid "Service Custom Button Details"
+msgstr "Detalhes do botão de personalização do serviço"
+
+#: app/services/service-details/service-details.component.js:28
+#: app/states/services/details/details.state.js:12
+#: app/states/services/reconfigure/reconfigure.state.js:17
+#: app/states/services/reconfigure/reconfigure.state.js:39
+msgid "Service Details"
+msgstr "Detalhes do serviço"
+
+#: app/services/service-details/service-details.html:66
+msgid "Service Id"
+msgstr "ID do serviço"
+
+#: app/states/catalogs/details/details.state.js:15
+msgid "Service Template Details"
+msgstr "Detalhes do modelo do serviço"
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
+msgid "Service deleting."
+msgstr "Excluindo serviço."
+
+#: app/services/service-explorer/service-explorer.component.js:32
+msgid "Services"
+msgstr "Serviços"
+
+#: app/states/services/explorer/explorer.state.js:12
+msgid "Services Explorer"
+msgstr "Explorador de serviços"
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:41
+msgid "Services Retired"
+msgstr "Serviços retirados"
+
+#: app/services/service-explorer/service-explorer.component.js:233
+#: app/services/service-explorer/service-explorer.component.js:235
+#: app/services/services-state.service.js:245
+#: app/services/services-state.service.js:247
+msgid "Set Ownership"
+msgstr "Definir propriedade"
+
+#: app/services/service-explorer/service-explorer.component.js:249
+#: app/services/services-state.service.js:139
+msgid "Set Retirement"
+msgstr "Definir retirada"
+
+#: app/services/service-explorer/service-explorer.component.js:251
+#: app/services/services-state.service.js:137
+msgid "Set Retirement Dates"
+msgstr "Definir datas de retirada"
+
+#: app/services/ownership-service-modal/ownership-service-modal.html:5
+msgid "Set Service Ownership"
+msgstr "Definir propriedade do serviço"
+
+#: app/services/ownership-service-modal/ownership-service-modal.component.js:67
+msgid "Setting ownership."
+msgstr "Definindo propriedade."
+
+#: app/core/shopping-cart/shopping-cart.html:5
+msgid "Shopping Cart"
+msgstr "Carrinho de compras"
+
+#: app/layouts/application.html:24
+msgid "Shopping cart"
+msgstr "Carrinho de compras"
+
+#: app/core/shopping-cart/shopping-cart.html:37
+msgid "Shopping cart is empty."
+msgstr "O carrinho de compras está vazio."
+
+#: app/core/shopping-cart/shopping-cart.component.js:32
+msgid "Shopping cart successfully ordered"
+msgstr "Carrinho de compras encomendado com êxito"
+
+#: app/services/vm-details/vm-details.html:132
+msgid "Show parent and child VMs"
+msgstr "Mostrar máquinas virtuais pai e filho"
+
+#: app/services/vms/snapshots.component.js:22
+#: app/services/vms/snapshots.html:14
+#: app/services/vms/snapshots.html:37
+msgid "Snapshots"
+msgstr "Snapshots"
+
+#: app/reports/reports-details.html:49
+msgid "Sort By"
+msgstr "Classificar por"
+
+#: app/reports/reports-details.html:135
+msgid "Source"
+msgstr "Fonte"
+
+#: app/services/service-details/service-details-ansible.html:196
+msgid "Standard Out"
+msgstr "Reduzir"
+
+#: app/services/service-details/service-details.component.js:119
+#: app/services/service-details/service-details.html:281
+#: app/services/service-explorer/service-explorer.component.js:270
+#: app/services/service-explorer/service-explorer.html:188
+#: app/services/vm-details/vm-details.component.js:108
+msgid "Start"
+msgstr "Iniciar"
+
+#: app/services/service-details/service-details.component.js:121
+#: app/services/vm-details/vm-details.component.js:110
+msgid "Start the Service"
+msgstr "Iniciar o serviço"
+
+#: app/services/service-explorer/service-explorer.component.js:272
+#: app/services/service-explorer/service-explorer.html:188
+msgid "Start this service"
+msgstr "Iniciar este serviço"
+
+#: app/services/service-details/service-details-ansible.html:167
+#: app/services/service-details/service-details-ansible.html:20
+msgid "Started"
+msgstr "Iniciado"
+
+#: app/components/notifications/notification-body.html:41
+msgid "Started:"
+msgstr "Iniciado:"
+
+#: app/services/service-details/service-details-ansible.html:13
+#: app/services/service-details/service-details-ansible.html:159
+msgid "Status"
+msgstr "Status"
+
+#: app/services/service-details/service-details.component.js:126
+#: app/services/service-details/service-details.html:284
+#: app/services/service-explorer/service-explorer.component.js:278
+#: app/services/service-explorer/service-explorer.html:191
+#: app/services/vm-details/vm-details.component.js:116
+msgid "Stop"
+msgstr "Interromper"
+
+#: app/services/service-details/service-details.component.js:128
+#: app/services/vm-details/vm-details.component.js:118
+msgid "Stop the Service"
+msgstr "Interromper o serviço"
+
+#: app/services/service-explorer/service-explorer.component.js:280
+#: app/services/service-explorer/service-explorer.html:191
+msgid "Stop this service"
+msgstr "Interromper este serviço"
+
+#: app/states/services/custom_button_details/custom_button_details.html:19
+#: app/states/services/reconfigure/reconfigure.html:23
+msgid "Submit Request"
+msgstr "Enviar solicitação"
+
+#: app/services/service-details/service-details.component.js:133
+#: app/services/service-details/service-details.html:287
+#: app/services/service-explorer/service-explorer.component.js:286
+#: app/services/service-explorer/service-explorer.html:194
+#: app/services/vm-details/vm-details.component.js:124
+msgid "Suspend"
+msgstr "Suspender"
+
+#: app/services/service-details/service-details.component.js:135
+#: app/services/vm-details/vm-details.component.js:126
+msgid "Suspend the Service"
+msgstr "Suspender o serviço"
+
+#: app/services/service-explorer/service-explorer.component.js:288
+msgid "Suspend this service"
+msgstr "Suspender este serviço"
+
+#: app/core/language-switcher/language-switcher.html:2
+msgid "Switch Language:"
+msgstr "Alternar idioma:"
+
+#: app/core/tag-editor-modal/tag-editor-modal.service.js:57
+msgid "Tagging successful."
+msgstr "Atribuição de tags realizada com êxito."
+
+#: app/core/tag-editor-modal/tag-editor-modal.html:13
+#: app/services/service-details/service-details.html:114
+msgid "Tags"
+msgstr "Tags"
+
+#: app/templates/template-editor.component.js:48
+msgid "Template"
+msgstr "Modelo"
+
+#: app/templates/template-editor.html:79
+msgid "Template Type"
+msgstr "Tipo de modelo"
+
+#: app/templates/template-editor.component.js:187
+msgid "Template deleted successfully."
+msgstr "Modelo excluído com êxito."
+
+#: app/templates/template-editor.component.js:98
+msgid "Templated updated"
+msgstr "Modelo atualizado"
+
+#: app/states/templates/explorer/explorer.state.js:11
+#: app/templates/template-editor.html:35
+#: app/templates/template-editor.html:5
+#: app/templates/template-explorer.html:32
+#: app/templates/template-explorer.html:4
+msgid "Templates"
+msgstr "Modelos"
+
+#: app/templates/template-explorer.component.js:343
+msgid "Templates deleted successfully."
+msgstr "Modelos excluídos com êxito."
+
+#: app/catalogs/catalog-explorer.component.js:80
+msgid "Tenant"
+msgstr "Tenant"
+
+#: app/states/dashboard/dashboard.html:42
+msgid "The number of active services"
+msgstr "Número de serviços ativos."
+
+#: app/states/dashboard/dashboard.html:27
+msgid "The number of services retiring within the next 30 days"
+msgstr "Número de serviços sendo retirados nos próximos 30 dias"
+
+#: app/states/dashboard/dashboard.html:57
+msgid ""
+"The number of services which have hit their retirement period or been "
+"retired"
+msgstr ""
+"Número de serviços que chegaram ao período de retirada ou foram retirados"
+
+#: app/states/404/404.html:6
+msgid ""
+"The page you are looking for might have been removed, had its name changed, "
+"or is temporarily unavailable."
+msgstr ""
+"É possível que a página que você está procurando tenha sido removida, tido "
+"seu nome alterado ou está temporariamente indisponível."
+
+#: app/states/404/404.html:5
+msgid "The page you requested cannot be found."
+msgstr "A página que você solicitou não pode ser encontrada."
+
+#: app/core/navigation.config.js:35
+msgid "The total number of available catalogs"
+msgstr "Número total de catálogos disponíveis"
+
+#: app/states/catalogs/details/details.html:38
+msgid ""
+"There already is an identical item in the cart. Do you want to add it "
+"anyway?"
+msgstr ""
+"Já há um item idêntico no seu carrinho. Deseja adicioná-lo mesmo assim?"
+
+#: app/services/service-details/service-details.component.js:306
+msgid "There are no Compute Resources for this service."
+msgstr "Não há recursos de computação para este serviço."
+
+#: app/shared/tagging/tagging.html:15
+msgid "There are no tags for this item."
+msgstr "Não há tags para este item."
+
+#: app/states/error/error.html:10
+msgid "There was a problem loading the page."
+msgstr "Ocorreu um problema ao carregar a página."
+
+#: app/states/catalogs/details/details.state.js:135
+msgid "There was an error adding to shopping cart:"
+msgstr "Ocorreu um erro ao adicionar ao carrinho de compras:"
+
+#: app/services/process-snapshots-modal/process-snapshots-modal.component.js:43
+msgid "There was an error creating the snapshot."
+msgstr "Ocorreu um erro ao criar o snapshot."
+
+#: app/templates/template-editor.component.js:105
+msgid "There was an error creating the template"
+msgstr "Ocorreu um erro ao criar o modelo"
+
+#: app/templates/template-explorer.component.js:348
+msgid "There was an error deleting templates."
+msgstr "Ocorreu um erro ao excluir os modelos."
+
+#: app/templates/template-editor.component.js:191
+msgid "There was an error deleting the template."
+msgstr "Ocorreu um erro ao excluir o modelo."
+
+#: app/requests/order-explorer/order-explorer.component.js:365
+msgid "There was an error duplicating %s."
+msgstr "Ocorreu um erro ao duplicar %s."
+
+#: app/services/edit-service-modal/edit-service-modal.component.js:32
+msgid "There was an error editing this service."
+msgstr "Ocorreu um erro ao editar este serviço."
+
+#: app/services/service-details/service-details.component.js:89
+msgid "There was an error fetching this service."
+msgstr "Ocorreu um erro ao recuperar este serviço."
+
+#: app/catalogs/catalog-explorer.component.js:131
+msgid "There was an error loading catalogs."
+msgstr "Ocorreu um erro ao carregar os catálogos."
+
+#: app/requests/order-explorer/order-explorer.component.js:303
+#: app/requests/order-explorer/order-explorer.component.js:317
+msgid "There was an error loading orders."
+msgstr "Ocorreu um erro ao carregar os pedidos."
+
+#: app/reports/reports-explorer.component.js:89
+msgid "There was an error loading reports."
+msgstr "Ocorreu um erro ao carregar os relatórios."
+
+#: app/services/vms/snapshots.component.js:173
+msgid "There was an error loading snapshots."
+msgstr "Ocorreu um erro ao carregar os snapshots."
+
+#: app/templates/template-explorer.component.js:277
+msgid "There was an error loading templates."
+msgstr "Ocorreu um erro ao carregar os modelos."
+
+#: app/services/service-explorer/service-explorer.component.js:363
+#: app/services/service-explorer/service-explorer.component.js:435
+msgid "There was an error loading the services."
+msgstr "Ocorreu um erro ao carregar os serviços."
+
+#: app/services/vm-details/vm-details.component.js:91
+msgid "There was an error loading the vm details."
+msgstr "Ocorreu um erro ao carregar os detalhes da máquina virtual."
+
+#: app/services/vms/snapshots.component.js:185
+msgid "There was an error loading the vm."
+msgstr "Ocorreu um erro ao carregar a máquina virtual."
+
+#: app/services/consoles.service.js:51
+msgid "There was an error opening the console."
+msgstr "Ocorreu um erro ao abrir o console."
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:51
+msgid "There was an error removing one or more services."
+msgstr "Ocorreu um erro ao remover um ou mais serviços."
+
+#: app/requests/process-order-modal/process-order-modal.component.js:42
+msgid "There was an error removing order"
+msgstr "Ocorreu um erro ao remover o pedido"
+
+#: app/services/service-details/service-details.component.js:238
+msgid "There was an error removing this service."
+msgstr "Ocorreu um erro ao remover este serviço."
+
+#: app/services/poweroperations.service.js:189
+msgid "There was an error retiring this %s."
+msgstr "Ocorreu um erro ao retirar este %s."
+
+#: app/services/retire-service-modal/retire-service-modal.component.js:82
+#: app/services/service-details/service-details.component.js:297
+msgid "There was an error retiring this service."
+msgstr "Ocorreu um erro ao retirar este serviço."
+
+#: app/services/ownership-service-modal/ownership-service-modal.component.js:72
+msgid "There was an error saving ownership."
+msgstr "Ocorreu um erro ao salvar a propriedade."
+
+#: app/services/poweroperations.service.js:180
+msgid "There was an error starting this %s."
+msgstr "Ocorreu um erro ao iniciar este %s."
+
+#: app/services/poweroperations.service.js:183
+msgid "There was an error stopping this %s."
+msgstr "Ocorreu um erro ao interromper este %s."
+
+#: app/core/shopping-cart/shopping-cart.component.js:37
+#: app/states/services/custom_button_details/custom_button_details.state.js:91
+#: app/states/services/reconfigure/reconfigure.state.js:119
+msgid "There was an error submitting this request:"
+msgstr "Ocorreu um erro ao enviar esta solicitação:"
+
+#: app/services/poweroperations.service.js:186
+msgid "There was an error suspending this %s."
+msgstr "Ocorreu um erro ao suspender este %s."
+
+#: app/core/tag-editor-modal/tag-editor-modal.service.js:62
+msgid "There was an error tagging this service."
+msgstr "Ocorreu um erro ao atribuir uma tag a este serviço."
+
+#: app/templates/template-editor.component.js:102
+msgid "There was an error updating the template"
+msgstr "Ocorreu um erro ao atualizar o modelo"
+
+#: app/reports/reports-details.html:33
+msgid "Title"
+msgstr "Título"
+
+#: app/states/dashboard/dashboard.html:9
+msgid "Total Services"
+msgstr "Total de serviços"
+
+#: app/services/service-details/service-details.html:195
+msgid "Total Snapshots"
+msgstr "Total de snapshots"
+
+#: app/core/navigation.config.js:26
+msgid "Total orders submitted"
+msgstr "Total de pedidos enviados"
+
+#: app/core/navigation.config.js:17
+msgid "Total services ordered, both active and retired"
+msgstr "Total de serviços encomendados, ambos ativos e retirados."
+
+#: app/services/service-details/service-details-ansible.html:121
+#: app/templates/template-explorer.component.js:151
+#: app/templates/template-explorer.component.js:159
+msgid "Type"
+msgstr "Tipo"
+
+#: app/services/vm-details/vm-details.component.js:78
+msgid "Unknown"
+msgstr "Desconhecido"
+
+#: app/services/consoles.service.js:66
+msgid "Unsupported console protocol returned."
+msgstr "Protocolo de console não suportado retornado."
+
+#: app/reports/reports-explorer.component.js:55
+#: app/reports/reports-explorer.html:50
+#: app/reports/reports.service.js:15
+#: app/services/vms/snapshots.component.js:105
+#: app/templates/template-explorer.html:75
+msgid "Updated"
+msgstr "Atualizado"
+
+#: app/reports/reports-details.html:89
+msgid "Updated On"
+msgstr "Atualizado em"
+
+#: app/services/vms/snapshots.html:94
+msgid "Updated:"
+msgstr "Atualizado:"
+
+#: app/reports/reports-details.html:65
+msgid "User"
+msgstr "Usuário"
+
+#: app/core/language-switcher/language-switcher.directive.js:24
+msgid "User Default"
+msgstr "Padrão do usuário"
+
+#: app/core/navigation/navigation-controller.js:115
+msgid "User Name:"
+msgstr "Nome do usuário"
+
+#: app/core/navigation/navigation-controller.js:116
+msgid "User Role:"
+msgstr "Papel do usuário"
+
+#: app/states/login/login.state.js:41
+msgid "User does not have privileges to login."
+msgstr "O usuário não tem privilégios para fazer login."
+
+#: app/states/login/login.html:15
+msgid "Username"
+msgstr "Nome do usuário"
+
+#: app/states/vms/details/details.state.js:11
+msgid "VM Details"
+msgstr "Detalhes da máquina virtual"
+
+#: app/states/vms/snapshots/snapshots.state.js:13
+msgid "VM Snapshots"
+msgstr "Snapshots da máquina virtual"
+
+#: app/services/service-details/service-details-ansible.html:67
+msgid "Verbosity"
+msgstr "Detalhamento"
+
+#: app/core/navigation/navigation-controller.js:113
+msgid "Version:"
+msgstr "Versão:"
+
+#: app/services/service-details/service-details.html:305
+msgid "View Details"
+msgstr "Visualizar detalhes"
+
+#: app/reports/reports-details.html:151
+msgid "View Report"
+msgstr "Visualizar relatório"
+
+#: app/services/service-details/service-details.html:308
+msgid "View Snapshots"
+msgstr "Visualizar snapshots"
+
+#: app/services/consoles.service.js:24
+msgid "Waiting for the console to become ready."
+msgstr "Aguardando que o console fique pronto."
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.html:11
+msgid ""
+"Warning: The selected Services and ALL of their components will be "
+"immediately retired!"
+msgstr ""
+"Aviso: os serviços selecionados e TODOS os seus componentes serão retirados "
+"imediatamente!"
+
+#: app/services/retire-remove-service-modal/retire-remove-service-modal.html:10
+msgid ""
+"Warning: The selected Services and ALL of their components will be "
+"permanently removed!"
+msgstr ""
+"Aviso: os serviços selecionados e TODOS os seus componentes serão "
+"permanentemente retirados!"
+
+#: app/services/service-details/service-details-ansible.html:198
+msgid "Watch Live"
+msgstr "Assistir ao vivo"
+
+#: app/states/404/404.html:7
+#: app/states/error/error.html:13
+msgid "We apologize for the inconvenience."
+msgstr "Pedimos desculpas pelo inconveniente."
+
+#: app/services/services-state.service.js:238
+msgid "Yes, Remove Service"
+msgstr "Sim, remover o serviço."
+
+#: app/services/services-state.service.js:154
+msgid "Yes, Retire Service Now"
+msgstr "Sim, retirar o serviço agora."
+
+#: app/states/login/login.state.js:68
+msgid ""
+"You do not have permission to view the Service UI. Contact your "
+"administrator to update your group permissions."
+msgstr ""
+"Você não tem permissão para visualizar a IU do serviço. Entre em contato com "
+"o administrador para atualizar as permissões do seu grupo."
+
+#: app/core/save-modal-dialog/save-modal-dialog.html:11
+msgid ""
+"Your current edits are invalid and cannot be saved. Continuing will discard "
+"your changes."
+msgstr ""
+"Suas edições atuais são inválidas e não podem ser salvas. Continuar "
+"descartará suas alterações."
+
+#: app/states/login/login.state.js:37
+msgid "Your session has timed out."
+msgstr "O tempo limite da sua sessão foi atingido."
+
+#: app/services/service-explorer/service-explorer.html:62
+msgid "[[number]] VMs"
+msgstr "[[number]] máquinas virtuais"
+
+#: app/requests/process-order-modal/process-order-modal.html:9
+msgid "and all of its service requests will be permanently removed!"
+msgstr ""
+"e todas as respectivas solicitações de serviço serão permanentemente "
+"removidas!"
+
+#: app/shared/pagination/pagination.html:12
+#: app/shared/pagination/pagination.html:5
+msgid "items"
+msgstr "itens"
+
+#: app/shared/pagination/pagination.html:29
+#: app/shared/pagination/pagination.html:32
+msgid "of"
+msgstr "de"
+
+#: app/services/service-explorer/service-explorer.html:194
+msgid "suspend this service"
+msgstr "Suspender este serviço"
+
+#: app/core/navigation/navigation-controller.js:190
+msgid "unread notifications"
+msgstr "notificações não lidas"
+
+#: app/services/service-details/service-details.component.js:233
+msgid "was removed."
+msgstr "foi removido."
+
+#: app/services/service-details/service-details.component.js:292
+msgid "was retired."
+msgstr "foi retirado."
+
+#: app/requests/order-explorer/order-explorer.html:55
+msgid "{{ $count }} item"
+msgid_plural "{{ $count }} items"
+msgstr[0] "{{ $count }} item"
+msgstr[1] "{{ $count }} itens"
+
