@@ -120,6 +120,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
       viewSnapshots: RBAC.hasAny(['vm_snapshot', 'vm_snapshot_view', 'cloud_volume_snapshot', 'cloud_volume_snapshot_view']),
 
       vm_snapshot_show_list: RBAC.has('vm_snapshot_show_list'), // Display Lists of VM Snapshots
+      vm_snapshot_add: RBAC.hasAny(['vm_snapshot_add']), // Create Snapshot
       ems_infra_show: RBAC.has('ems_infra_show'), // View Infrastructure Providers
       ems_cluster_show: RBAC.has('ems_cluster_show'), //  Display Individual Clusters / Deployment Roles
       host_show: RBAC.has('host_show'), // Display Individual Hosts / Nodes

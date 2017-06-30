@@ -23,8 +23,8 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
 
   function activate() {
     vm.permissions = ServicesState.getPermissions();
-    vm.storageChartConfigOptions =  {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')};
-    vm.memoryChartConfigOptions =  {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')};
+    vm.storageChartConfigOptions = {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')};
+    vm.memoryChartConfigOptions = {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')};
     vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')};
 
     angular.extend(vm, {
@@ -48,6 +48,7 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       toggleOpenResourceGroup: toggleOpenResourceGroup,
       openCockpit: openCockpit,
       openConsole: openConsole,
+      processSnapshot: processSnapshot,
       startVM: startVM,
       stopVM: stopVM,
       suspendVM: suspendVM,
@@ -74,9 +75,11 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   function startPollingService() {
     fetchResources(vm.serviceId, true);
   }
+
   function viewSelected(view) {
     vm.viewType = view;
   }
+
   function getChartConfigs() {
     const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.service.aggregate_all_vm_disk_space_allocated);
     const usedStorage = UsageGraphsService.convertBytestoGb(vm.service.aggregate_all_vm_disk_space_used);
@@ -393,5 +396,17 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
 
   function isResourceDisabled(item) {
     return item.retired;
+  }
+
+  function processSnapshot(item) {
+    const modalOptions = {
+      component: 'processSnapshotsModal',
+      resolve: {
+        vm: () => item,
+        modalType: () => "create",
+      },
+      size: 'lg',
+    };
+    ModalService.open(modalOptions);
   }
 }
