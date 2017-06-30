@@ -39,7 +39,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       neverText: __('Never'),
       noneText: __('None'),
       availableText: __('Available'),
-      notAvailable: __("Not Available"),
+      notAvailableText: __("Not Available"),
       vmDetails: {},
       viewType: $stateParams.viewType || 'detailsView',
       viewSelected: viewSelected,
@@ -91,6 +91,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
 
     function handleSuccess(response) {
       vm.vmDetails = response;
+      vm.currentDate = new Date();
       const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.allocated_disk_storage); // convert bytes to gb
       const usedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.used_storage);
       const totalMemory = vm.vmDetails.ram_size / 1024;
@@ -111,7 +112,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       vm.vmDetails.driftHistory = defaultText(vm.vmDetails.drift_states);
       vm.vmDetails.scanHistoryCount = defaultText(vm.vmDetails.scan_histories);
       vm.vmDetails.lastComplianceStatus = (angular.isUndefined(vm.vmDetails.last_compliance_status) ? __('Never Verified') : vm.vmDetails.last_compliance_status);
-      vm.vmDetails.complianceHistory = (vm.vmDetails.compliances.length > 0 ? vm.availableText : vm.notAvailable);
+      vm.vmDetails.complianceHistory = (vm.vmDetails.compliances.length > 0 ? vm.availableText : vm.notAvailableText);
       vm.vmDetails.provisionDate = angular.isDefined(vm.vmDetails.service.miq_request) ? vm.vmDetails.service.miq_request.fulfilled_on : __('Unknown');
       vm.vmDetails.containerSpecsText = vm.vmDetails.vendor + ': ' + vm.vmDetails.hardware.cpu_total_cores + ' CPUs (' + vm.vmDetails.hardware.cpu_sockets
         + ' sockets x ' + vm.vmDetails.hardware.cpu_cores_per_socket + ' core), ' + vm.vmDetails.hardware.memory_mb + ' MB';

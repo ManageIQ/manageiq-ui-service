@@ -182,7 +182,7 @@
                 {{key |translate}}
               </div>
               <div class="col-xs-6">
-                {{value | number:2 || vm.notAvailable}} {{title === 'CPU'? 'Mhz': title === 'Memory'? 'MB' :
+                {{value | number:2 || vm.notAvailableText}} {{title === 'CPU'? 'Mhz': title === 'Memory'? 'MB' :
                 title.includes('Usage')?
                 '%':null}}
               </div>
@@ -192,6 +192,7 @@
       </div>
     </div>
     <div class="col-xs-6">
+
       <div ng-if="vm.permissions.vm_check_compliance" class="container-fluid vm-details-container">
         <div class="row title">
           <div>{{ 'Compliance'|translate }}</div>
@@ -233,7 +234,7 @@
         <detail-reveal detail-title="Files" detail="{{  vm.vmDetails.files.length  }}"></detail-reveal>
       </div>
 
-      <div class="container-fluid vm-details-container">
+      <div class="container-fluid vm-details-container" ng-if="vm.permissions.storage_show_list">
         <div class="row title">
           <div>{{ 'Datastore Allocation Summary'|translate }}</div>
         </div>
@@ -249,52 +250,52 @@
                        detail="{{ vm.vmDetails.disk_size | formatBytes}}"></detail-reveal>
       </div>
 
-      <div class="container-fluid vm-details-container">
+      <div class="container-fluid vm-details-container" ng-if="vm.permissions.storage_show_list">
         <div class="row title">
           <div>{{ 'Datastore Actual Usage Summary'|translate }}</div>
         </div>
         <detail-reveal detail-title="Disks"
                        detail="{{  vm.vmDetails.disk_size | formatBytes }}"></detail-reveal>
         <detail-reveal detail-title="Snapshots"
-                       detail="{{ vm.vmDetails.derived_storage_snapshot_managed }}"></detail-reveal>
+                       detail="{{ vm.vmDetails.derived_storage_snapshot_managed || 0 | formatBytes }}"></detail-reveal>
         <detail-reveal detail-title="Total Datastore Used Space"
                        detail="{{ vm.vmDetails.used_disk_storage | formatBytes  }}"></detail-reveal>
         <detail-reveal detail-title="Unused/Overcommited Allocation"
                        detail="{{ vm.vmDetails.uncommitted_storage | formatBytes }}"></detail-reveal>
       </div>
 
-      <!--<div class="container-fluid vm-details-container">-->
-        <!--<div class="row title">-->
-          <!--<div>{{ 'Diagnostics'|translate }}</div>-->
-        <!--</div>-->
-        <!--<detail-reveal detail-title="Running Processes	"-->
-                       <!--detail="{{  vm.vmDetails.vmsafe_enable? 'true' : 'false'  }}"></detail-reveal>-->
-        <!--<detail-reveal detail-title="Event Logs"-->
-                       <!--detail="{{  vm.vmDetails.vmsafe_enable? 'true' : 'false'  }}"></detail-reveal>-->
-      <!--</div>-->
+      <div class="container-fluid vm-details-container">
+        <div class="row title">
+          <div>{{ 'Diagnostics'|translate }}</div>
+        </div>
+        <detail-reveal detail-title="Running Processes"
+                       icon="fa fa-cog"
+                       detail="{{ vm.vmDetails.operating_system.processes.length? 'From About ' + (vm.currentDate - vm.vmDetails.operating_system.processes[0].updated_on | elapsedTime) + ' Ago': vm.notAvailableText }}"></detail-reveal>
+        <detail-reveal detail-title="Event Logs"
+                       detail="{{ vm.vmDetails.event_logs.length? vm.available: vm.notAvailableText }}" icon="fa fa fa-file-text-o"></detail-reveal>
+      </div>
 
-      <!--<div class="container-fluid vm-details-container">-->
-        <!--<div class="row title">-->
-          <!--<div>{{ 'Smart Management'|translate }}</div>-->
-        <!--</div>-->
-        <!--<div class="row detail-row" ng-repeat="(title, ranges) in vm.operatingRanges">-->
-          <!--<div class="col-xs-4">-->
-            <!--{{title.replace('_', ' ') | translate}}-->
-          <!--</div>-->
-          <!--<div class="col-xs-8">-->
-            <!--<div class="row sub-row" ng-repeat="(key, value) in ranges">-->
-              <!--<div class="col-xs-6 text-capitalize">-->
-                <!--{{key |translate}}-->
-              <!--</div>-->
-              <!--<div class="col-xs-6">-->
-                <!--{{value | number:2 || vm.notAvailable}} {{title === 'CPU'? 'Mhz': title === 'Memory'? 'MB' :-->
-                <!--title.includes('Usage')?-->
-                <!--'%':null}}-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
+      <div class="container-fluid vm-details-container">
+        <div class="row title">
+          <div>{{ 'Smart Management'|translate }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">
+            {{'Tags' | translate}}
+          </div>
+          <div class="col-xs-8">
+            <div class="row detail-row" ng-repeat="item in vm.vmDetails.drift_states[0].data.tags"
+                 ng-if="item.category_description && vm.vmDetails.drift_states[0].data.tags">
+              <div class="col-xs-12 text-capitalize">
+                <i class="fa fa-tag"></i> {{item.category_description |translate}}: {{item.entry_description|translate}}
+              </div>
+            </div>
+            <div ng-if="!vm.vmDetails.drift_states[0].data.tags" class="row">
+              {{'No Tags have been assigned'|translate}}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

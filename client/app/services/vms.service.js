@@ -122,6 +122,8 @@ export function VmsService(CollectionsApi, RBAC) {
         'used_disk_storage',
         'uncommitted_storage',
         'ems_events',
+        'operating_system.processes',
+        'event_logs',
       ],
       expand: [],
       auto_refresh: refresh,
