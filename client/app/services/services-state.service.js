@@ -129,6 +129,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
       instance_show: RBAC.has('instance_show'), // Display Individual Instances related to a CI
       vm_drift: RBAC.has('vm_drift'), // Displays VMs Drift
       vm_check_compliance: RBAC.has('vm_check_compliance'), // Check Compliance of Last Known Configuration
+      ops_diagnostics_server_view: RBAC.has('ops_diagnostics_server_view'), // Diagnostics
     };
   }
 

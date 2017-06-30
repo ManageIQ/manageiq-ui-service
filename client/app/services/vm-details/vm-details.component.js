@@ -94,7 +94,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.allocated_disk_storage); // convert bytes to gb
       const usedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.used_storage);
       const totalMemory = vm.vmDetails.ram_size / 1024;
-      const usedMemory  = UsageGraphsService.convertBytestoGb(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period);
+      const usedMemory = UsageGraphsService.convertBytestoGb(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period);
       const usedCPU = vm.vmDetails.cpu_usagemhz_rate_average_avg_over_time_period;
       const totalCPU = (angular.isDefined(vm.vmDetails.hardware.aggregate_cpu_speed) ? vm.vmDetails.hardware.aggregate_cpu_speed : 0);
       if (response.cloud) {
@@ -156,7 +156,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
 
     function handleFailure(response) {
       EventNotifications.error(__(`There was an error loading the vm details.
-      ${response.data.error.message}`) );
+      ${response.data ? response.data.error.message : null}`));
     }
   }
 
@@ -172,8 +172,8 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
     if (angular.isUndefined(vm.vmDetails.allocated_disk_storage) || vm.vmDetails.allocated_disk_storage === 0) {
       vm.usageGraphs = false;
     }
-    if (angular.isUndefined(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period) 
-        || vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period === 0) {
+    if (angular.isUndefined(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period)
+      || vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period === 0) {
       vm.usageGraphs = false;
     }
     if (angular.isUndefined(vm.vmDetails.hardware.aggregate_cpu_speed)
