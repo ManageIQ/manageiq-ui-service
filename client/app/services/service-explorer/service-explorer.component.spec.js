@@ -36,7 +36,8 @@ describe('Component: serviceExplorer', () => {
       storage_show_list: false,
       instance_show: false,
       vm_drift: false,
-      vm_check_compliance: false
+      vm_check_compliance: false,
+      ops_diagnostics_server_view: false,
     };
 
     expect(ctrl.permissions).to.eql(expectedPermissions);
