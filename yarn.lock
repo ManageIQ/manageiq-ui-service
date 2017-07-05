@@ -2,39 +2,39 @@
 # yarn lockfile v1
 
 
-"@angular/common@4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-4.2.3.tgz#e0173612eb6a9cf8dd50bd34c8a932dbce91d2bf"
+"@angular/common@4.2.5":
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-4.2.5.tgz#4d50a95b444cd58cf706f0da9dd1407d3b83362e"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/compiler@4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.2.3.tgz#e9cded47994cf4adb7522d778c46b1f7c5263302"
+"@angular/compiler@4.2.5":
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.2.5.tgz#b48674c7456b2b0df1072d70e4e667af86cddf83"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/core@4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.2.3.tgz#ab7329c18d4fd305872b82718ffae3e76e4d4549"
+"@angular/core@4.2.5":
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.2.5.tgz#61c1b5885c262332d737fbe0f5d71151759a8464"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/platform-browser-dynamic@4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.2.3.tgz#87ce41f5779d31cbc68c71db6bfeba216d135554"
+"@angular/platform-browser-dynamic@4.2.5":
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.2.5.tgz#8076ec4a885cc3a1a23c5e540c40a7fdd3f7e7b2"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/platform-browser@4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.2.3.tgz#9a1accfc9e93a9561012bba037a04b41cedc0255"
+"@angular/platform-browser@4.2.5":
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.2.5.tgz#d9ddfe0f81084e98ef24a79f485dbb112e78a0c4"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/upgrade@4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/upgrade/-/upgrade-4.2.3.tgz#b238df106a823c6cfe5481e773eddf3b3f367dfc"
+"@angular/upgrade@4.2.5":
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/@angular/upgrade/-/upgrade-4.2.5.tgz#6e5edf77082103b43c0102692659561b50b12464"
   dependencies:
     tslib "^1.7.1"
 
@@ -101,9 +101,9 @@ acorn@~2.6.4:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-2.6.4.tgz#eb1f45b4a43fa31d03701a5ec46f3b52673e90ee"
 
-actioncable@5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/actioncable/-/actioncable-5.1.1.tgz#6bb9fa96ad52e163ba8e1ed824bee84c98537cd8"
+actioncable@5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/actioncable/-/actioncable-5.1.2.tgz#a83268e386963ad66f96b931ad9b294a36702c62"
 
 adm-zip@0.4.4:
   version "0.4.4"
@@ -264,17 +264,17 @@ angular-mocks@1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.4.tgz#47fdf50921cf24fb489f100a8cf2ad99d0538f40"
 
-angular-patternfly@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/angular-patternfly/-/angular-patternfly-4.0.0.tgz#172b15386caf2f987e6672ea3803f6d58ef004f2"
+angular-patternfly@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/angular-patternfly/-/angular-patternfly-4.1.0.tgz#434d9a68666717df590bc9d331b35741a0d6a8ab"
   dependencies:
     angular "1.5.*"
     angular-animate "1.5.*"
     angular-sanitize "1.5.*"
     angular-svg-base-fix "2.0.0"
     angular-ui-bootstrap "2.3.x"
-    lodash-amd "4.x"
-    patternfly "3.25.0"
+    lodash "4.x"
+    patternfly ">=3.25.1"
   optionalDependencies:
     angular-datatables "^0.5.6"
     angular-drag-and-drop-lists "2.0.0"
@@ -282,7 +282,7 @@ angular-patternfly@4.0.0:
     c3 "~0.4.11"
     components-jqueryui components/jqueryui#1.12.1
     d3 "~3.5.17"
-    datatables.net "^1.10.11"
+    datatables.net "^1.10.12"
     datatables.net-select "~1.2.0"
     jquery "~3.2.1"
     moment "~2.14.1"
@@ -362,6 +362,12 @@ ansi-regex@^2.0.0:
 ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
+
+ansi-styles@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-3.1.0.tgz#09c202d5c917ec23188caa5c9cb9179cd9547750"
+  dependencies:
+    color-convert "^1.0.0"
 
 anymatch@^1.3.0:
   version "1.3.0"
@@ -732,9 +738,9 @@ babel-helpers@^6.24.1:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-loader@7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-7.1.0.tgz#3fbf2581f085774bd9642dca9990e6d6c1491144"
+babel-loader@7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-7.1.1.tgz#b87134c8b12e3e4c2a94e0546085bc680a2b8488"
   dependencies:
     find-cache-dir "^1.0.0"
     loader-utils "^1.0.2"
@@ -1447,9 +1453,9 @@ bytes@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.4.0.tgz#7d97196f9d5baf7f6935e25985549edd2a6c2339"
 
-c3@0.4.13, c3@~0.4.11:
-  version "0.4.13"
-  resolved "https://registry.yarnpkg.com/c3/-/c3-0.4.13.tgz#d671aea5a048cc137c3d745a0fc5e3c648ce5f1e"
+c3@0.4.14, c3@~0.4.11:
+  version "0.4.14"
+  resolved "https://registry.yarnpkg.com/c3/-/c3-0.4.14.tgz#f91232c44c1a6199a2f45665e37bad1a67a0a67f"
   dependencies:
     d3 "~3.5.0"
 
@@ -1549,7 +1555,15 @@ chai@3.5.0:
     deep-eql "^0.1.3"
     type-detect "^1.0.0"
 
-chalk@1.1.3, chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
+chalk@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.0.1.tgz#dbec49436d2ae15f536114e76d14656cdbc0f44d"
+  dependencies:
+    ansi-styles "^3.1.0"
+    escape-string-regexp "^1.0.5"
+    supports-color "^4.0.0"
+
+chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-1.1.3.tgz#a8115c55e4a702fe4d150abd3872822a7e09fc98"
   dependencies:
@@ -1688,7 +1702,7 @@ codeclimate-test-reporter@0.5.0:
     lcov-parse "0.0.10"
     request "~2.79.0"
 
-color-convert@^1.3.0:
+color-convert@^1.0.0, color-convert@^1.3.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.0.tgz#1accf97dd739b983bf994d56fec8f95853641b7a"
   dependencies:
@@ -2411,7 +2425,7 @@ datatables.net-select@>=1.0.1, datatables.net-select@~1.2.0:
     datatables.net ">=1.10.9"
     jquery ">=1.7"
 
-datatables.net@>=1.10.9, datatables.net@^1.10.11, datatables.net@^1.10.15:
+datatables.net@>=1.10.9, datatables.net@^1.10.11, datatables.net@^1.10.12, datatables.net@^1.10.15:
   version "1.10.15"
   resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.15.tgz#c789077bbfe385e75ff5a233fa5f23251a72df68"
   dependencies:
@@ -2977,9 +2991,9 @@ eslint-loader@1.8.0:
     object-hash "^1.1.4"
     rimraf "^2.6.1"
 
-eslint-plugin-angular@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-angular/-/eslint-plugin-angular-2.5.0.tgz#bac77e7d05c50e8356d6f7d8f6ed2fe1b4fe536d"
+eslint-plugin-angular@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-angular/-/eslint-plugin-angular-3.0.0.tgz#495dba339c9af7fe2a595547746bddd6dc3ed7d3"
 
 eslint-scope@^3.7.1:
   version "3.7.1"
@@ -2988,9 +3002,9 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.0.0.tgz#7277c01437fdf41dccd168d5aa0e49b75ca1f260"
+eslint@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.1.1.tgz#facbdfcfe3e0facd3a8b80dc98c4e6c13ae582df"
   dependencies:
     babel-code-frame "^6.22.0"
     chalk "^1.1.3"
@@ -3014,6 +3028,7 @@ eslint@4.0.0:
     json-stable-stringify "^1.0.1"
     levn "^0.3.0"
     lodash "^4.17.4"
+    minimatch "^3.0.2"
     mkdirp "^0.5.1"
     natural-compare "^1.4.0"
     optionator "^0.8.2"
@@ -3786,6 +3801,10 @@ has-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-1.0.0.tgz#9d9e793165ce017a00f00418c43f942a7b1d11fa"
 
+has-flag@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-2.0.0.tgz#e8207af1cc7b30d446cc70b734b5e8be18f88d51"
+
 has-unicode@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/has-unicode/-/has-unicode-2.0.1.tgz#e0e6fe6a28cf51138855e086d1691e771de2a8b9"
@@ -3934,9 +3953,9 @@ html-minifier@^3.0.1, html-minifier@^3.2.3:
     relateurl "0.2.x"
     uglify-js "~2.8.22"
 
-html-webpack-plugin@2.28.0:
-  version "2.28.0"
-  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.28.0.tgz#2e7863b57e5fd48fe263303e2ffc934c3064d009"
+html-webpack-plugin@2.29.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.29.0.tgz#e987f421853d3b6938c8c4c8171842e5fd17af23"
   dependencies:
     bluebird "^3.4.7"
     html-minifier "^3.2.3"
@@ -4667,9 +4686,9 @@ karma-chai@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/karma-chai/-/karma-chai-0.1.0.tgz#bee5ad40400517811ae34bb945f762909108b79a"
 
-karma-chrome-launcher@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/karma-chrome-launcher/-/karma-chrome-launcher-2.1.1.tgz#216879c68ac04d8d5140e99619ba04b59afd46cf"
+karma-chrome-launcher@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/karma-chrome-launcher/-/karma-chrome-launcher-2.2.0.tgz#cf1b9d07136cc18fe239327d24654c3dbc368acf"
   dependencies:
     fs-access "^1.0.0"
     which "^1.2.1"
@@ -4879,10 +4898,6 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-amd@4.x:
-  version "4.17.4"
-  resolved "https://registry.yarnpkg.com/lodash-amd/-/lodash-amd-4.17.4.tgz#2d42f8013acff2bfbffb6a4f47bd6682c8a08a62"
-
 lodash-id@^0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/lodash-id/-/lodash-id-0.13.0.tgz#1b2086c24f004f07411bdb09b775072114bcddc6"
@@ -4984,7 +4999,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@4, lodash@4.17.4, lodash@^4.0.0, lodash@^4.0.1, lodash@^4.11.2, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.5.0:
+lodash@4, lodash@4.17.4, lodash@4.x, lodash@^4.0.0, lodash@^4.0.1, lodash@^4.11.2, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.5.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -5368,9 +5383,9 @@ ngstorage@0.3.11:
   version "0.3.11"
   resolved "https://registry.yarnpkg.com/ngstorage/-/ngstorage-0.3.11.tgz#1637c45b872d909d9cc7e18b374898d50b2e844f"
 
-ngtemplate-loader@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ngtemplate-loader/-/ngtemplate-loader-2.0.0.tgz#07182e5b2e7e00f195aade778b3b7d7530bdd382"
+ngtemplate-loader@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ngtemplate-loader/-/ngtemplate-loader-2.0.1.tgz#9d7ed2e8a2363523ad7b64d74aac402d8daff3f3"
   dependencies:
     jsesc "^0.5.0"
     loader-utils "^1.0.2"
@@ -5887,9 +5902,9 @@ patternfly-sass@3.23.2:
     patternfly-bootstrap-combobox "~1.1.7"
     patternfly-bootstrap-treeview "~2.1.0"
 
-patternfly@3.25.0:
-  version "3.25.0"
-  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.25.0.tgz#7c4aa7c8f930a40909d9a8ed9bfc02aa7f95f1b1"
+patternfly@>=3.25.1:
+  version "3.25.1"
+  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.25.1.tgz#2cb95924ea0300ff5c720be876b949257befaf9d"
   dependencies:
     bootstrap "~3.3.7"
     font-awesome "^4.7.0"
@@ -7097,9 +7112,9 @@ sinon-chai@2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/sinon-chai/-/sinon-chai-2.11.0.tgz#93d90f989fff67ce45767077ffe575dde1faea6d"
 
-sinon@2.3.5, sinon@>=1.12.2:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-2.3.5.tgz#9a2fc0ff8d526da716f30953aa2c65d518917f6c"
+sinon@2.3.6, sinon@>=1.12.2:
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-2.3.6.tgz#95378e7e0f976a9712e9b4591ff5b39e73dc3dde"
   dependencies:
     diff "^3.1.0"
     formatio "1.2.0"
@@ -7440,6 +7455,12 @@ supports-color@^3.1.0, supports-color@^3.1.1, supports-color@^3.1.2, supports-co
   dependencies:
     has-flag "^1.0.0"
 
+supports-color@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-4.1.0.tgz#92cc14bb3dad8928ca5656c33e19a19f20af5c7a"
+  dependencies:
+    has-flag "^2.0.0"
+
 svgo@^0.7.0:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/svgo/-/svgo-0.7.2.tgz#9f5772413952135c6fefbf40afe6a4faa88b4bb5"
@@ -7591,9 +7612,9 @@ tryor@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/tryor/-/tryor-0.1.2.tgz#8145e4ca7caff40acde3ccf946e8b8bb75b4172b"
 
-ts-loader@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-2.1.0.tgz#5a8efcc5c72c06fc49d69bad69c85617c6194f77"
+ts-loader@2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-2.2.2.tgz#6ea98ebe384ee9ba4c891fea6de6d4e7d8134730"
   dependencies:
     colors "^1.0.3"
     enhanced-resolve "^3.0.0"
