@@ -20,21 +20,21 @@
                 ng-repeat="dialogField in ::dialogGroup.dialog_fields "
                 ng-init="inputTitle = dialogField.description"
                 class="form-horizontal">
-                <div ng-if="dialogField.visible" class="form-group">
+                <div ng-if="dialogField.visible" class="form-group" ng-class="{'has-error': dialogField.fieldValidation===false}">
                   <label class="control-label col-sm-2">{{ ::dialogField.label }}</label>
-
                   <div ng-switch on="dialogField.type" class="col-sm-5">
-                    <input
-                      ng-switch-when="DialogFieldTextBox"
-                      ng-model="dialogField.default_value"
-                      ng-disabled="dialogField.read_only || vm.inputDisabled"
-                      ng-change="dialogField.triggerAutoRefresh(dialogField)"
-                      ng-model-options="{debounce: {'default': 500}}"
-                      class="form-control"
-                      type="{{ dialogField.options.protected ? 'password' : 'text' }}"
-                      uib-tooltip="{{ ::inputTitle }}"
-                      value="{{ dialogField.default_value }}">
-
+                      <input
+                        ng-switch-when="DialogFieldTextBox"
+                        ng-model="dialogField.default_value"
+                        ng-disabled="dialogField.read_only || vm.inputDisabled"
+                        ng-change="dialogField.triggerAutoRefresh(dialogField)"
+                        ng-model-options="{debounce: {'default': 500}}"
+                        class="form-control"
+                        type="{{ dialogField.options.protected ? 'password' : 'text' }}"
+                        uib-tooltip="{{ ::inputTitle }}"
+                        value="{{ dialogField.default_value }}"
+                        ng-blur="vm.validateField(dialogField)"
+                        >
                     <textarea
                       ng-switch-when="DialogFieldTextAreaBox"
                       ng-model="dialogField.default_value"
@@ -144,6 +144,7 @@
                     </div>
 
                     <span ng-switch-default ng-hide="true"></span>
+                   <div ng-if="dialogField.fieldValidation===false" class="has-error">{{dialogField.errorMessage}}</div>
                   </div>
 
                   <div class="col-sm-1"

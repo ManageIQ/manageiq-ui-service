@@ -14,7 +14,7 @@ export const DialogContentComponent = {
 };
 
 /** @ngInject */
-function DialogContentController(API_BASE, lodash) {
+function DialogContentController(API_BASE, lodash, DialogUtilities) {
   var vm = this;
   vm.$onInit = activate;
   vm.parsedOptions = {};
@@ -25,6 +25,7 @@ function DialogContentController(API_BASE, lodash) {
   };
   vm.supportedDialog = true;
   vm.API_BASE = API_BASE;
+  vm.validateField = validateField;
 
   function activate() {
     if (vm.options) {
@@ -34,7 +35,10 @@ function DialogContentController(API_BASE, lodash) {
       vm.dialog.dialog_tabs.forEach(iterateBGroups);
     }
   }
-
+  function validateField(field) {
+    const isFieldValid = DialogUtilities.validateField(field);
+    field.fieldValidation = isFieldValid;
+  }
   // Private functions
   function parseOptions(value, key) {
     vm.parsedOptions[key.replace('dialog_', '')] = value;
@@ -52,8 +56,11 @@ function DialogContentController(API_BASE, lodash) {
     if (Object.keys(vm.parsedOptions).length > 0) {
       item.dialog_fields.forEach(iterateDialogFields);
     }
+    item.dialog_fields.forEach(setFieldDefaults);
   }
-
+  function setFieldDefaults(item) {
+    item.fieldValidation = null;
+  }
   function iterateDialogFields(item) {
     item.default_value = vm.parsedOptions[item.name];
   }

@@ -36,7 +36,7 @@ function resolveDialogs($stateParams, CollectionsApi) {
 }
 
 /** @ngInject */
-function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRefresh, AutoRefresh, ShoppingCart) {
+function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRefresh, AutoRefresh, ShoppingCart, DialogUtilities) {
   var vm = this;
 
   vm.serviceTemplate = serviceTemplate;
@@ -108,7 +108,10 @@ function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRef
     if (!ShoppingCart.allowed()) {
       return;
     }
-
+    const allFieldsValidate = DialogUtilities.validateAllFields(allDialogFields);
+    if (!allFieldsValidate) {
+      return;
+    }
     var dialogFieldData = dataForSubmit('service_template_href');
 
     vm.addingToCart = true;
