@@ -26,7 +26,8 @@ describe('services.custom_button_details', function() {
     };
     var button = {
       name: 'buttonName',
-      applies_to_id: 456
+      applies_to_id: 456,
+      applies_to_class: 'Service'
     };
 
     beforeEach(function() {
