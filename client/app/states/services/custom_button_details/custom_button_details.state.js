@@ -70,14 +70,16 @@ function StateController($state, $stateParams, dialog, service, CollectionsApi, 
   );
 
   function submitCustomButton() {
-    var dialogFieldData = {};
+    const dialogFieldData = {};
+    const buttonClass = vm.button.applies_to_class.toLowerCase();
+    const collection = buttonClass === 'service' ? 'services' : buttonClass === 'vm' ? 'vms' : null;
 
-    angular.forEach(allDialogFields, function(dialogField) {
+    allDialogFields.forEach((dialogField) => {
       dialogFieldData[dialogField.name] = dialogField.default_value;
     });
 
     CollectionsApi.post(
-      'services',
+      collection,
       $stateParams.serviceId,
       {},
       angular.toJson({action: $stateParams.button.name, resource: dialogFieldData})
@@ -89,7 +91,7 @@ function StateController($state, $stateParams, dialog, service, CollectionsApi, 
     }
 
     function submitFailure(result) {
-      EventNotifications.error(__('There was an error submitting this request: ') + result);
+      EventNotifications.error(__('There was an error submitting this request: ') + result.data.error.message);
     }
   }
 }
