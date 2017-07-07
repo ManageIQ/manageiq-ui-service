@@ -9,12 +9,19 @@ export function CustomButtonDetailsState(routerHelper) {
 function getStates() {
   return {
     'services.custom_button_details': {
-      url: '/:serviceId/custom_button_details/:buttonId',
+      url: '/{serviceId:int}/custom_button_details',
       templateUrl,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Service Custom Button Details'),
-      params: {dialogId: null, button: null, serviceTemplateCatalogId: null},
+      params: {
+        button: {
+          value: null,
+        },
+        serviceId: {
+          value: null,
+        },
+      },
       resolve: {
         dialog: resolveDialog,
         service: resolveService,
