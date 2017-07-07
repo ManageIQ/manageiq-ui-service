@@ -28,7 +28,7 @@ function CustomButtonController($state, EventNotifications, CollectionsApi, RBAC
   function invokeCustomAction(button) {
     if (button.resource_action && button.resource_action.dialog_id) {
       $state.go('services.custom_button_details', {
-        button,
+        button: button,
         serviceId: vm.serviceId,
       });
     } else if (vm.vmId) { 
