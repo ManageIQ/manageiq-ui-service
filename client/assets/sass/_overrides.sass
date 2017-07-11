@@ -10,7 +10,6 @@
     button
       margin-bottom: 4px
 
-
 // This should be in patternfly
 .dropdown-menu-appended-to-body
   &::before,
@@ -43,10 +42,19 @@
     .form-group
       margin-bottom: 0 !important // sass-lint:disable-line no-important
 
+    // pf-toolbar-dropdown goes crazy when given sufficent cause to, this keeps it inline
+    .toolbar-apf-filter
+      .dropdown-menu
+        max-height: 78em
+        max-width: 1em
+        overflow-y: scroll
+
+        li
+          overflow-x: scroll
+
 // Override patternfly-timeline default icon size
 .timeline-pf-drop
   font-size: 20px !important // sass-lint:disable-line no-important
 
   &:hover
     font-size: 30px !important // sass-lint:disable-line no-important
-
