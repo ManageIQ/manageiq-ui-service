@@ -363,9 +363,6 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       ServicesState.getServices(
         limit,
         offset,
-        ServicesState.services.getFilters(),
-        ServicesState.services.getSort().currentField,
-        ServicesState.services.getSort().isAscending,
         refresh).then(querySuccess, queryFailure);
     });
 

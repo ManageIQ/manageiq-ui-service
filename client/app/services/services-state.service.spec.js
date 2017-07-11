@@ -1,142 +1,142 @@
 describe('Services-state Service', function() {
-let successResponse = {
-    'status':'success'
-};
-let permissionsSpy;
+  let successResponse = {
+    'status': 'success'
+  };
+  let permissionsSpy;
 
- describe('basic service functions - ', ()=>{
+  describe('basic service functions - ', () => {
 
     beforeEach(function() {
-            module('app.services');
-            bard.inject('ServicesState', '$http','CollectionsApi','ListConfiguration','RBAC');
-        });
+      module('app.services');
+      bard.inject('ServicesState', '$http', 'CollectionsApi', 'ListConfiguration', 'RBAC');
+    });
 
-    it('should allow a service to be retrieved', () =>{
-        const serviceId = '12345';
-        const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
-        ServicesState.getService(serviceId,false);
-        const expectedOptions = {
-            attributes: [
-                'name', 'guid', 'created_at', 'type', 'description', 'picture', 'picture.image_href', 'evm_owner.name', 'evm_owner.userid',
-                'miq_group.description', 'all_service_children', 'aggregate_all_vm_cpus', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count',
-                'aggregate_all_vm_disk_space_allocated', 'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'retired',
-                'retirement_state', 'retirement_warn', 'retires_on', 'actions', 'custom_actions', 'provision_dialog', 'service_resources',
-                'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options', 'vms.ipaddresses',
-                'vms.snapshots', 'vms.v_total_snapshots', 'vms.v_snapshot_newest_name', 'vms.v_snapshot_newest_timestamp', 'vms.v_snapshot_newest_total_size',
-                'vms.supports_console?', 'vms.supports_launch_cockpit?', 'vms.max_mem_usage_absolute_average_avg_over_time_period', 'vms.hardware',
-                'vms.hardware.aggregate_cpu_speed', 'vms.cpu_usagemhz_rate_average_avg_over_time_period',
-            ],
-            expand: ['vms', 'orchestration_stacks'],
-            auto_refresh: false,
-        };
-        expect(collectionsApiSpy).to.have.been.calledWith('services',serviceId, expectedOptions)
+    it('should allow a service to be retrieved', () => {
+      const serviceId = '12345';
+      const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
+      ServicesState.getService(serviceId, false);
+      const expectedOptions = {
+        attributes: [
+          'name', 'guid', 'created_at', 'type', 'description', 'picture', 'picture.image_href', 'evm_owner.name', 'evm_owner.userid',
+          'miq_group.description', 'all_service_children', 'aggregate_all_vm_cpus', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count',
+          'aggregate_all_vm_disk_space_allocated', 'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'retired',
+          'retirement_state', 'retirement_warn', 'retires_on', 'actions', 'custom_actions', 'provision_dialog', 'service_resources',
+          'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options', 'vms.ipaddresses',
+          'vms.snapshots', 'vms.v_total_snapshots', 'vms.v_snapshot_newest_name', 'vms.v_snapshot_newest_timestamp', 'vms.v_snapshot_newest_total_size',
+          'vms.supports_console?', 'vms.supports_launch_cockpit?', 'vms.max_mem_usage_absolute_average_avg_over_time_period', 'vms.hardware',
+          'vms.hardware.aggregate_cpu_speed', 'vms.cpu_usagemhz_rate_average_avg_over_time_period',
+        ],
+        expand: ['vms', 'orchestration_stacks'],
+        auto_refresh: false,
+      };
+      expect(collectionsApiSpy).to.have.been.calledWith('services', serviceId, expectedOptions)
     });
     it('should be able to get a record count', () => {
-        const collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
-        ServicesState.getServicesMinimal();
-        expect(collectionsApiSpy).to.have.been.calledWith('services', { filter: ['ancestry=null'] });
+      const collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
+      ServicesState.getServicesMinimal();
+      expect(collectionsApiSpy).to.have.been.calledWith('services', {filter: ['ancestry=null']});
     });
     it('should be able to get service credentials', () => {
-        const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
-        const serviceCredential = '12345';
-        ServicesState.getServiceCredential(serviceCredential);
-        expect(collectionsApiSpy).to.have.been.calledWith('authentications',serviceCredential, {});
+      const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
+      const serviceCredential = '12345';
+      ServicesState.getServiceCredential(serviceCredential);
+      expect(collectionsApiSpy).to.have.been.calledWith('authentications', serviceCredential, {});
     });
     it('should be able to get service repository', () => {
-        const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
-        const serviceRepository = '12345';
-        ServicesState.getServiceRepository(serviceRepository);
-        expect(collectionsApiSpy).to.have.been.calledWith('configuration_script_sources',serviceRepository, {});
+      const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
+      const serviceRepository = '12345';
+      ServicesState.getServiceRepository(serviceRepository);
+      expect(collectionsApiSpy).to.have.been.calledWith('configuration_script_sources', serviceRepository, {});
     });
     it('should be able to get ServiceJobsStdout', () => {
-        const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
-        const serviceId = '12345';
-        const stackId = '4567';
-        const expectedAttributes = { attributes: ['job_plays', 'stdout'], format_attributes: 'stdout=html' };
-        ServicesState.getServiceJobsStdout(serviceId, stackId);
+      const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
+      const serviceId = '12345';
+      const stackId = '4567';
+      const expectedAttributes = {attributes: ['job_plays', 'stdout'], format_attributes: 'stdout=html'};
+      ServicesState.getServiceJobsStdout(serviceId, stackId);
 
-        expect(collectionsApiSpy).to.have.been.calledWith('services/12345/orchestration_stacks', stackId, expectedAttributes);
+      expect(collectionsApiSpy).to.have.been.calledWith('services/12345/orchestration_stacks', stackId, expectedAttributes);
     });
-     it('should get users permissions', () => {
-         const expectedPermissions = {
-                'edit': false,
-                'delete': false,
-                'reconfigure': false,
-                'setOwnership': false,
-                'retire': false,
-                'setRetireDate': false,
-                'editTags': false,
-                'viewAnsible': false,
-                'instanceStart': false,
-                'instanceStop': false,
-                'instanceSuspend': false,
-                'instanceRetire': false,
-                'cockpit': false,
-                'console': false,
-                'viewSnapshots': false,
-                'vm_snapshot_add': false,
-                'vm_snapshot_show_list': false,
-                'ems_infra_show': false,
-                'ems_cluster_show': false,
-                'host_show': false,
-                'resource_pool_show': false,
-                'storage_show_list': false,
-                'instance_show': false,
-                'vm_drift': false,
-                'vm_check_compliance': false
-            };
-        const actualPermissions = ServicesState.getPermissions();
-        expect (actualPermissions).to.eql(expectedPermissions);
-     });
+    it('should get users permissions', () => {
+      const expectedPermissions = {
+        'edit': false,
+        'delete': false,
+        'reconfigure': false,
+        'setOwnership': false,
+        'retire': false,
+        'setRetireDate': false,
+        'editTags': false,
+        'viewAnsible': false,
+        'instanceStart': false,
+        'instanceStop': false,
+        'instanceSuspend': false,
+        'instanceRetire': false,
+        'cockpit': false,
+        'console': false,
+        'viewSnapshots': false,
+        'vm_snapshot_add': false,
+        'vm_snapshot_show_list': false,
+        'ems_infra_show': false,
+        'ems_cluster_show': false,
+        'host_show': false,
+        'resource_pool_show': false,
+        'storage_show_list': false,
+        'instance_show': false,
+        'vm_drift': false,
+        'vm_check_compliance': false
+      };
+      const actualPermissions = ServicesState.getPermissions();
+      expect(actualPermissions).to.eql(expectedPermissions);
+    });
 
     it('should allow services to be retrieved', () => {
-         const collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
-         ServicesState.services.setSort({'id':'name', 'title':'Name','sortType':'alpha'}, 'asc');
-         const nameFilter = {
-            id: 'name',
-            title: 'Name',
-            placeholder: 'Filter by Name',
-            filterType: 'text',
-            value: 'test',
-            };
-        const expectedOptions = {
-            attributes: ['picture', 'picture.image_href', 'chargeback_report', 'evm_owner.userid', 'miq_group.description', 'v_total_vms', 'power_state', 'power_states', 'power_status', 'all_service_children', 'all_vms', 'custom_actions', 'service_resources', 'tags'],
-            auto_refresh: false,
-            expand: 'resources',
-            filter: ['ancestry=null', "name='%test%'"],
-            limit: 5,
-            offset: '0',
-            sort_by: 'name',
-            sort_options: 'ignore_case',
-            sort_order: 'asc'
-	        };
+      const collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
+      ServicesState.services.setSort({'id': 'name', 'title': 'Name', 'sortType': 'alpha'}, 'asc');
+      const nameFilter = {
+        id: 'name',
+        title: 'Name',
+        placeholder: 'Filter by Name',
+        filterType: 'text',
+        value: 'test',
+      };
+      const expectedOptions = {
+        attributes: ["picture", "picture.image_href", "chargeback_report", "evm_owner.userid", "miq_group.description", "v_total_vms", "power_state", "power_states", "power_status", "all_service_children", "all_vms", "custom_actions", "service_resources", "tags"],
+        auto_refresh: false,
+        expand: "resources",
+        filter: ["ancestry=null"],
+        limit: 5,
+        offset: "0",
+        sort_by: "name",
+        sort_options: "ignore_case",
+        sort_order: "asc"
+      };
 
-        ServicesState.getServices(5, 0,[nameFilter],'name',true, false );
-        expect(collectionsApiSpy).to.have.been.calledWith('services',expectedOptions);
+      ServicesState.getServices(5, 0, false);
+      expect(collectionsApiSpy).to.have.been.calledWith('services', expectedOptions);
     });
- });
- describe('Permission based functions - ', () => {
+  });
+  describe('Permission based functions - ', () => {
     beforeEach(function() {
-        module('app.services');
-        bard.inject('RBAC');
-        permissionsSpy = sinon.stub(RBAC,'hasAny').returns(true);
+      module('app.services');
+      bard.inject('RBAC');
+      permissionsSpy = sinon.stub(RBAC, 'hasAny').returns(true);
 
-        bard.inject('ServicesState', '$http','CollectionsApi','ListConfiguration');
-        });
+      bard.inject('ServicesState', '$http', 'CollectionsApi', 'ListConfiguration');
+    });
     it('should get getLifeCycleCustomDropdown', () => {
-        const dropDown = ServicesState.getLifeCycleCustomDropdown({},{});
-        expect(dropDown.actions.length).to.eq(2)
+      const dropDown = ServicesState.getLifeCycleCustomDropdown({}, {});
+      expect(dropDown.actions.length).to.eq(2)
     });
     it('should get getPolicyCustomDropdown', () => {
-        const dropDown = ServicesState.getPolicyCustomDropdown({});
-        expect(dropDown.title).to.eq('Policy');
-        expect(dropDown.actions.length).to.eq(1);
+      const dropDown = ServicesState.getPolicyCustomDropdown({});
+      expect(dropDown.title).to.eq('Policy');
+      expect(dropDown.actions.length).to.eq(1);
     });
     it('should get getConfigurationCustomDropdown', () => {
-        const dropDown = ServicesState.getConfigurationCustomDropdown({},{},{});
-        expect(dropDown.title).to.eq('Configuration');
-        expect(dropDown.actions.length).to.eq(3);
+      const dropDown = ServicesState.getConfigurationCustomDropdown({}, {}, {});
+      expect(dropDown.title).to.eq('Configuration');
+      expect(dropDown.actions.length).to.eq(3);
     });
- });
+  });
 
 })
