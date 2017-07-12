@@ -36,9 +36,6 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
       disableStopButton: disableStopButton,
       disableSuspendButton: disableSuspendButton,
       disableStartButton: disableStartButton,
-      startService: startService,
-      stopService: stopService,
-      suspendService: suspendService,
       toggleOpenResourceGroup: toggleOpenResourceGroup,
       openCockpit: openCockpit,
       openConsole: openConsole,
@@ -189,17 +186,17 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
 
   function startService() {
     PowerOperations.startService(vm.service);
-    vm.listActions = getListActions();
+    getListActions();
   }
 
   function stopService() {
     PowerOperations.stopService(vm.service);
-    vm.listActions = getListActions();
+    getListActions();
   }
 
   function suspendService() {
     PowerOperations.suspendService(vm.service);
-    vm.listActions = getListActions();
+    getListActions();
   }
 
   function getHeaderConfig() {
