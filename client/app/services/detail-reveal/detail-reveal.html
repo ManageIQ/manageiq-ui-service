@@ -1,21 +1,23 @@
-<div class="row detail-row" ng-click="vm.hasMoreDetails ? vm.toggleDetails = !vm.toggleDetails:''" ng-class="(vm.hasMoreDetails ? 'details-exist' : '') + ' ' + (vm.toggleDetails ? 'row-active':'') ">
-	<div class="col-xs-6 col-md-3">
-		<div class="detail-reveal-arrow-container" ng-class="vm.hasMoreDetails ? '' : 'no-details' ">
-			<i class="fa fa-lg detail-reveal-arrow" ng-class="(vm.toggleDetails===true ? 'fa-angle-down' : 'fa-angle-right')"></i>
-		</div>
-		<span>{{vm.detailTitle}}</span>
-	</div>
-	<div class="col-xs-6 col-md-9">
-		<i ng-if="vm.icon" class="{{vm.icon}}"></i> 
-		<span>{{vm.detail}}</span>
-	</div>
+<div class="row detail-row" ng-click="vm.hasMoreDetails ? vm.toggleDetails = !vm.toggleDetails:''"
+     ng-class="(vm.hasMoreDetails ? 'details-exist' : '') + ' ' + (vm.toggleDetails ? 'row-active':'') ">
+  <div class="col-xs-5">
+    <div class="detail-reveal-arrow-container" ng-class="vm.hasMoreDetails ? '' : 'no-details' ">
+      <i class="fa fa-lg detail-reveal-arrow"
+         ng-class="(vm.toggleDetails===true ? 'fa-angle-down' : 'fa-angle-right')"></i>
+    </div>
+    <span>{{vm.detailTitle}}</span>
+  </div>
+  <div class="col-xs-7">
+    <i ng-if="vm.icon" class="{{vm.icon}}"></i>
+    <span>{{vm.detail}}</span>
+  </div>
 </div>
 <div class="row item-extra-details-container" ng-if="vm.hasMoreDetails" uib-collapse="vm.toggleDetails===false">
-	<div>
-		<div class="close-button-container">
-			<i class="pficon fa-lg pficon-close" ng-click="vm.toggleDetails=false"></i>
-		</div>
-		<div ng-transclude class="detail-content">
-		</div>
-	</div>
+  <div>
+    <div class="close-button-container">
+      <i class="pficon fa-lg pficon-close" ng-click="vm.toggleDetails=false"></i>
+    </div>
+    <div ng-transclude class="detail-content">
+    </div>
+  </div>
 </div>

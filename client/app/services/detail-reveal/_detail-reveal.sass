@@ -1,21 +1,26 @@
-@import 'app_colors'
+@import '../../../assets/sass/app_colors'
 
 .detail-row
-  border-bottom: solid 1px $color-concrete-solid
+  border-bottom: solid 1px $app-color-gray-2
+  overflow: auto
   padding: 5px 0
 
   &.details-exist
     cursor: pointer
 
   &:hover
-    background-color: $color-cararra-approx
+    background-color: $app-color-light-gray-2
 
   &.row-active
-    background-color: $color-cararra-approx
-    border: 1px solid $color-blue-300
+    background-color: $app-color-light-gray-2
+    border: 1px solid $app-color-blue
+
+  .sub-row
+    &:hover
+      background-color: $app-color-white
 
 .detail-reveal-arrow-container
-  border-right: 1px solid $color-concrete-solid
+  border-right: 1px solid $app-color-gray-2
   display: inline-block
   height: 21px
   margin-right: 13px
@@ -30,10 +35,10 @@
   width: 10px
 
   &.no-details
-    color: $color-light-gray-approx
+    color: $app-color-light-gray-5
 
 .item-extra-details-container
-  border: 1px solid $color-blue-300
+  border: 1px solid $app-color-blue
   border-top: 0
   padding-bottom: 10px
 
