@@ -1,4 +1,4 @@
-<div class="row detail-row" ng-click="vm.hasMoreDetails ? vm.toggleDetails = !vm.toggleDetails:''" ng-class="(vm.hasMoreDetails ? 'details-exist' : '') + ' ' + (vm.toggleDetails ? 'row-active':'') ">
+<div class="row detail-row" ng-click="vm.hasMoreDetails ? vm.toggleDetails = !vm.toggleDetails:''" ng-class="(vm.hasMoreDetails ? 'details-exist' : '') + ' ' + (vm.toggleDetails ? 'row-active':'') " ng-if="vm.displayField">
 	<div class="col-xs-6 col-md-3">
 		<div class="detail-reveal-arrow-container" ng-class="vm.hasMoreDetails ? '' : 'no-details' ">
 			<i class="fa fa-lg detail-reveal-arrow" ng-class="(vm.toggleDetails===true ? 'fa-angle-down' : 'fa-angle-right')"></i>
