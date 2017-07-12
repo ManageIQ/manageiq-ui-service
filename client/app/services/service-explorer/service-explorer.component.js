@@ -68,7 +68,6 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     Language.fixState(ServicesState.services, vm.toolbarConfig);
 
     resolveServices(vm.limit, 0);
-    Polling.start('serviceListPolling', pollUpdateServicesList, vm.pollingInterval);
   };
 
   function getCardConfig() {
@@ -357,6 +356,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   }
 
   function resolveServices(limit, offset, refresh) {
+    Polling.stop('serviceListPolling');
     vm.loading = !refresh;
     vm.offset = offset;
     getFilterCount().then(() => {
@@ -367,6 +367,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     });
 
     function querySuccess(result) {
+      Polling.start('serviceListPolling', pollUpdateServicesList, vm.pollingInterval);
       vm.loading = false;
       vm.services = [];
       var existingServices = (angular.isDefined(vm.servicesList) && refresh ? angular.copy(vm.servicesList) : []);
@@ -417,9 +418,9 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       return (powerState !== 'on' && powerState !== 'off' ? powerStates.unknown : powerStates[powerState]);
     }
 
-    function queryFailure(_error) {
+    function queryFailure(response) {
       vm.loading = false;
-      EventNotifications.error(__('There was an error loading the services.'));
+      EventNotifications.error(__('There was an error loading the services. ') + response.data.error.message);
     }
   }
 
