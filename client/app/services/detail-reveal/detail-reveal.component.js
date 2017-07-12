@@ -10,6 +10,7 @@ export const DetailRevealComponent = {
     icon: '@',
     translateTitle: '<',
     rowClass: '@',
+    displayField: '<?',
   },
   transclude: true,
   templateUrl,
@@ -21,6 +22,9 @@ function ComponentController($transclude) {
   vm.$onInit = activate();
 
   function activate() {
+    if (angular.isUndefined(vm.displayField)) {
+      vm.displayField = true;
+    }
     vm.translateTitle = (angular.isUndefined(vm.translateTitle) ? true : vm.translateTitle);
     vm.detailTitle = (vm.translateTitle === true ? __(vm.detailTitle) : vm.detailTitle);
     vm.rowClass = (angular.isDefined(vm.rowClass) ? vm.rowClass : 'row detail-row');
