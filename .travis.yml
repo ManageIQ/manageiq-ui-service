@@ -9,10 +9,13 @@ cache:
   - node_modules
 before_install:
 - npm install -g yarn@0.22.0
+- yarn global add greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
 install:
 - yarn install --force
 after_script:
  - cat reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+ - greenkeeper-lockfile-upload
 notifications:
   webhooks:
     urls:
