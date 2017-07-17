@@ -3,7 +3,6 @@
   height: calc(100vh - 208px)
   margin-top: 1px
   overflow-x: hidden
-  overflow-y: auto
 
   .alert
     margin: 20px 0
@@ -22,12 +21,10 @@
 
     &.paged-container
       height: calc(100vh - 237px)
-      overflow-y: hidden
 
 .list-view-pf
   line-height: 45px
-  overflow-y: hidden // Adding so tooltips don't cause a second scrollbar in the data list
-  padding-bottom: 30px // Adding so tooltips on the last row don't get cut off
+  margin-top: 0
 
   .no-wrap
     display: block
