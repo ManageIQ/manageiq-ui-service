@@ -33,8 +33,17 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications, Au
   }
 
   function selectDefaultValue(dialogField, newDialogField) {
+    const dropDownValues = [];
     if (angular.isObject(newDialogField.values)) {
-      dialogField.values = newDialogField.values;
+      newDialogField.values.forEach(function (value) {
+        if (parseInt(value[0], 10)) {
+          dropDownValues.push([parseInt(value[0], 10), value[1]]);
+        } else {
+          dropDownValues.push(value);
+        }
+      });
+      newDialogField.values = dropDownValues;
+      dialogField.values = dropDownValues;
       if (angular.isDefined(newDialogField.default_value) && newDialogField.default_value !== null) {
         dialogField.default_value = newDialogField.default_value;
       } else {
