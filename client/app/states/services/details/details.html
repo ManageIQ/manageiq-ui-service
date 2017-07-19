@@ -237,7 +237,7 @@
               <button class="btn btn-default open-console-button" ng-if="item['supports_console?'] && item.power_state == 'on'" tooltip="{{'HTML5 console'|translate}}" tooltip-placement="bottom">
                 <i class="fa fa-html5 fa-lg"></i>
               </button>
-              <button class="btn btn-default open-cockpit-button" ng-if="item['supports_cockpit?'] && item.power_state == 'on'" tooltip="{{'Cockpit console'|translate}}" tooltip-placement="bottom">
+              <button class="btn btn-default open-cockpit-button" ng-if="item['supports_launch_cockpit?'] && item.power_state == 'on'" tooltip="{{'Cockpit console'|translate}}" tooltip-placement="bottom">
                 <img src="images/cockpit.png">
               </button>
             </div>
