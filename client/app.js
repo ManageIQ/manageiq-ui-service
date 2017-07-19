@@ -11,9 +11,9 @@ window._ = require('lodash');
 window.moment = require('moment');
 window.sprintf = require('sprintf-js').sprintf;
 window.c3 = require('c3/c3.js');
+window.d3 = require('d3/d3.js');
 
 // Vendor libraries, order matters
-require('d3');
 require('jquery-ui-bundle');
 require('moment-timezone');
 require('es6-shim');
