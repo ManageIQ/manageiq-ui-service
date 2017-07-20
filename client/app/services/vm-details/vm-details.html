@@ -22,10 +22,6 @@
               ng-class="{active: vm.viewType === 'detailsView'}">
         <i class="fa fa-list-alt"></i>
       </button>
-      <button class="btn btn-link" ng-click="vm.viewSelected('topologyView')"
-              ng-class="{active: vm.viewType === 'topologyView'}">
-        <i class="pf pficon-topology"></i>
-      </button>
     </div>
   </div>
 </div>
@@ -198,12 +194,5 @@
     <detail-reveal detail-title="Init Processes"
                    detail="{{  vm.vmDetails.linux_initprocesses.length  }}"></detail-reveal>
     <detail-reveal detail-title="Files" detail="{{  vm.vmDetails.files.length  }}"></detail-reveal>
-  </div>
-</div>
-<div ng-if="vm.viewType === 'topologyView'" class="ss-details-wrappe">
-  <div class="row">
-    <div class="col-xs-12">
-      <timeline data="vm.data" options="vm.options"></timeline>
-    </div>
   </div>
 </div>

@@ -27,7 +27,6 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')};
   vm.processInstanceVariables = processInstanceVariables;
 
-  // vm.resolveData = resolveData;
   function onDestroy() {
     Polling.stop('vmPolling');
   }
@@ -42,7 +41,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       availableText: __('Available'),
       notAvailable: __("Not Available"),
       vmDetails: {},
-      viewType: $stateParams.viewType || 'topologyView',
+      viewType: $stateParams.viewType || 'detailsView',
       viewSelected: viewSelected,
       instance: {},
       cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
@@ -56,33 +55,6 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       },
       listActions: [],
     });
-
-    const ONE_HOUR = 60 * 60 * 1000;
-    const ONE_DAY = 24 * ONE_HOUR;
-    const ONE_WEEK = 7 * ONE_DAY;
-    const ONE_MONTH = 30 * ONE_DAY;
-    const today = new Date('2016-05-02T17:59:06.134Z');
-
-    vm.data = [{
-      "name": "Alarm/Error",
-      "data": [
-        {"date": new Date("2016-04-21T01:06:19.126Z"), "details": {"event": "vmPowerOn", "object": "vmName"}},
-        {
-          "date": new Date("2016-04-16T13:07:15.205Z"),
-          "details": {"event": "<a href='google.com'>This is a link</a>", "object": "hostName"},
-        },
-        {"date": new Date("2016-04-30T20:02:25.693Z"), "details": {"event": "vmPowerOn", "object": "vmName"}},
-        {"date": new Date("2016-04-30T20:02:26.664Z"), "details": {"event": "vmPowerUp", "object": "vmNorm"}},
-        {"date": new Date("2016-04-30T20:02:27.627Z"), "details": {"event": "vmPowerDown", "object": "vmGnome"}},
-        {"date": new Date("2016-04-30T20:02:28.694Z"), "details": {"event": "vmPowerIn", "object": "vmNone"}},
-        {"date": new Date("2016-04-30T20:02:28.628Z"), "details": {"event": "vmPowerOut", "object": "vmNoon"}},
-        {"date": new Date("2016-04-30T20:02:29.618Z"), "details": {"event": "vmPowerOutage", "object": "vmName"}},
-        {"date": new Date("2016-04-30T20:02:25.693Z"), "details": {"event": "vmPowerOn", "object": "vmName"}},
-        {"date": new Date("2016-04-07T22:35:41.145Z"), "details": {"event": "vmPowerOff", "object": "hostName"}},
-      ],
-      "display": true,
-    }];
-    vm.options = {end: today, start: today - ONE_WEEK, minScale: ONE_WEEK / ONE_MONTH, maxScale: ONE_WEEK / ONE_HOUR};
 
     EventNotifications.info(__("The contents of this page is a function of the current users's group."));
     resolveData();
