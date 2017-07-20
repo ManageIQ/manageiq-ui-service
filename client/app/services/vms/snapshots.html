@@ -17,6 +17,15 @@
     </ol>
   </span>
 </div>
+
+<div class="section-container">
+  <div class="row">
+    <div class="col-xs-12">
+      <timeline data="vm.data" options="vm.options"></timeline>
+    </div>
+  </div>
+</div>
+
 <pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
   <actions>
     <custom-dropdown config="vm.listActions" menu-right="true"></custom-dropdown>
@@ -38,10 +47,10 @@
        confirmation-items="vm.catalogsToDelete"
        confirmation-item-name-field="name">
     <pf-list-view
-         config="vm.listConfig"
-         items="vm.snapshots"
-         menu-actions="vm.menuActions"
-    update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
+      config="vm.listConfig"
+      items="vm.snapshots"
+      menu-actions="vm.menuActions"
+      update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
       <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
           <span class="no-wrap">
