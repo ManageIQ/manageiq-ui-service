@@ -2,8 +2,8 @@ import './_timeline.sass';
 
 export const TimelineComponent = {
   bindings: {
-    data: '=',
-    options: '<?',
+    data: '<',
+    options: '<',
   },
   controller: TimelineController,
   controllerAs: 'vm',
@@ -14,12 +14,31 @@ function TimelineController($element, $window) {
   const vm = this;
   const d3 = $window.d3;
 
-  vm.$onInit = function() {
+  vm.$onChanges = (changes) => {
+    vm.data = [{
+      "name": "",
+      "data": [
+        {"date": "", "details": {"event": "", "object": ""}},
+      ],
+      "display": true,
+    }];
+
+    angular.element($element[0]).find('div.timeline').remove();
+    const config = buildConfig(changes.options.currentValue ? changes.options.currentValue : vm.options);
+    buildTimeline(config, changes.data.currentValue ? changes.data.currentValue : vm.data);
+  };
+
+  function buildConfig(options = {}) {
+    const hour = 60 * 60 * 1000;
+    const day = 24 * hour;
+    const week = 7 * day;
+    const month = 30 * day;
+
     const {
       start = new Date(0),
       end = new Date(),
-      minScale = 0,
-      maxScale = Infinity,
+      minScale = week / month,
+      maxScale = week / hour,
       width = 800,
       padding = {top: 30, left: 40, bottom: 40, right: 40},
       lineHeight = 40,
@@ -76,9 +95,9 @@ function TimelineController($element, $window) {
       context = true,
       slider = true,
       eventGrouping = 60000,
-    } = vm.options;
+    } = options;
 
-    const timelineChart = d3.chart.timeline()
+    return d3.chart.timeline()
       .start(start)
       .end(end)
       .minScale(minScale)
@@ -100,10 +119,12 @@ function TimelineController($element, $window) {
       .context(context)
       .slider(slider)
       .eventGrouping(eventGrouping);
+  }
 
+  function buildTimeline(config, data) {
     d3.select($element[0])
       .append('div').attr('class', 'timeline')
-      .datum(vm.data)
-      .call(timelineChart);
-  };
+      .datum(data)
+      .call(config);
+  }
 }

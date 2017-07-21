@@ -12,8 +12,6 @@ describe('Component: timeline', function() {
     }));
 
     it('is defined, accepts bindings data/options', function() {
-      ctrl.$onInit();
-
       expect(ctrl).to.be.defined;
       expect(ctrl.data.details).be.defined;
       expect(ctrl.options.width).be.defined;

@@ -41,23 +41,6 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
     resolveSnapshots();
     resolveVm();
 
-
-    const ONE_HOUR = 60 * 60 * 1000;
-    const ONE_DAY = 24 * ONE_HOUR;
-    const ONE_WEEK = 7 * ONE_DAY;
-    const ONE_MONTH = 30 * ONE_DAY;
-    const today = new Date('2016-05-02T17:59:06.134Z');
-
-    vm.data = [{
-      "name": "Snapshot timeline",
-      "data": [
-        {"date": new Date("2016-04-21T01:06:19.126Z"), "details": {"event": "vmPowerOn", "object": "vmName"}},
-        {"date": new Date("2016-04-30T20:02:25.693Z"), "details": {"event": "vmPowerOn", "object": "vmName"}},
-        {"date": new Date("2016-04-07T22:35:41.145Z"), "details": {"event": "vmPowerOff", "object": "hostName"}},
-      ],
-      "display": true,
-    }];
-    vm.options = {end: today, start: today - ONE_WEEK, minScale: ONE_WEEK / ONE_MONTH, maxScale: ONE_WEEK / ONE_HOUR, eventShape: '\uf030'};
   };
 
   function getToolbarConfig() {
@@ -184,6 +167,33 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
       vm.loading = false;
       vm.toolbarConfig.filterConfig.resultsCount = response.subcount;
       vm.snapshots = response.resources;
+
+      const ONE_HOUR = 60 * 60 * 1000;
+      const ONE_DAY = 24 * ONE_HOUR;
+      const ONE_WEEK = 7 * ONE_DAY;
+      const ONE_MONTH = 30 * ONE_DAY;
+      const today = new Date('2016-05-02T17:59:06.134Z');
+
+
+
+      vm.data = [{
+        "name": "Snapshot timeline",
+        "data": [
+          {"date": new Date("2016-04-21T01:06:19.126Z"), "details": {"event": "vmPowerOn", "object": "vmName"}},
+          {"date": new Date("2016-04-30T20:02:25.693Z"), "details": {"event": "vmPowerOn", "object": "vmName"}},
+          {"date": new Date("2016-04-07T22:35:41.145Z"), "details": {"event": "vmPowerOff", "object": "hostName"}},
+        ],
+        "display": true,
+      }];
+
+      vm.options = {
+        end: today,
+        start: today - ONE_WEEK,
+        minScale: ONE_WEEK / ONE_MONTH,
+        maxScale: ONE_WEEK / ONE_HOUR,
+        eventShape: '\uf030'
+      };
+
     }
 
     function failure(_error) {
