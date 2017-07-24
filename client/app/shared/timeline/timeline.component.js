@@ -79,19 +79,7 @@ function TimelineController($element, $window) {
           return '\uf111';
         }
       },
-      eventPopover = (d) => {
-        let popover = '';
-        if (d.hasOwnProperty("events")) {
-          popover = `Group of ${d.events.length} events`;
-        } else {
-          for (const i in d.details) {
-            popover = popover + i.charAt(0).toUpperCase() + i.slice(1) + ': ' + d.details[i] + '<br>';
-          }
-          popover = popover + 'Date: ' + d.date;
-        }
-
-        return popover;
-      },
+      eventPopover = null,
       context = true,
       slider = true,
       eventGrouping = 60000,
