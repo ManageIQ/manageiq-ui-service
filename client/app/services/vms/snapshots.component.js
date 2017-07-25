@@ -1,4 +1,5 @@
 /* eslint camelcase: "off", no-undef: "off" */
+import './_snapshots.sass';
 import templateUrl from './snapshots.html';
 
 export const VmSnapshotsComponent = {
@@ -175,7 +176,6 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
       }));
 
       vm.tlData = [{
-        "name": "Snapshot timeline",
         "data": tlSnapshots,
         "display": true,
       }];

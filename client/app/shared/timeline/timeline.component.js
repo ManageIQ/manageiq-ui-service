@@ -14,8 +14,13 @@ function TimelineController($element, $window) {
   const vm = this;
   const d3 = $window.d3;
 
+  angular.element($window).on('resize', function() {
+    renderTimeline();
+  });
+
   vm.$onChanges = (changes) => {
-    vm.data = [{
+    vm.options = changes.options.currentValue || vm.options;
+    vm.data = changes.data.currentValue || [{
       "name": "",
       "data": [
         {"date": "", "details": {"event": "", "object": ""}},
@@ -23,10 +28,14 @@ function TimelineController($element, $window) {
       "display": true,
     }];
 
-    angular.element($element[0]).find('div.timeline').remove();
-    const config = buildConfig(changes.options.currentValue ? changes.options.currentValue : vm.options);
-    buildTimeline(config, changes.data.currentValue ? changes.data.currentValue : vm.data);
+    renderTimeline();
   };
+
+  function renderTimeline() {
+    angular.element($element[0]).find('div.timeline').remove();
+    const config = buildConfig(vm.options);
+    buildTimeline(config, vm.data);
+  }
 
   function buildConfig(options = {}) {
     const hour = 60 * 60 * 1000;
@@ -39,7 +48,7 @@ function TimelineController($element, $window) {
       end = new Date(),
       minScale = week / month,
       maxScale = week / hour,
-      width = 800,
+      width = null,
       padding = {top: 30, left: 40, bottom: 40, right: 40},
       lineHeight = 40,
       contextHeight = 50,
