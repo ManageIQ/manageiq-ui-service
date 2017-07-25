@@ -267,7 +267,10 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
       .select('body')
       .append('div')
       .attr('class', 'popover fade bottom in')
-      .attr('role', 'tooltip');
+      .attr('role', 'tooltip')
+      .on('mouseout', () => {
+        d3.select('body').selectAll('.popover').remove();
+      });
     const rightOrLeftLimit = fontSize * tooltipWidth;
     const direction = d3.event.pageX > rightOrLeftLimit ? 'right' : 'left';
     const left = direction === 'right' ? d3.event.pageX - rightOrLeftLimit : d3.event.pageX;
