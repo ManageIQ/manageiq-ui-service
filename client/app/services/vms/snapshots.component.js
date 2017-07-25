@@ -1,4 +1,4 @@
-/* eslint camelcase: "off" */
+/* eslint camelcase: "off", no-undef: "off" */
 import templateUrl from './snapshots.html';
 
 export const VmSnapshotsComponent = {
@@ -171,7 +171,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
       const end = lodash.maxBy(vm.snapshots, 'create_time');
       const tlSnapshots = vm.snapshots.map((item) => ({
         "date": new Date(item.create_time),
-        "details": {"event": item.name, "object": item.name},
+        "details": {"event": item.name, "object": item.name, item},
       }));
 
       vm.tlData = [{
@@ -184,6 +184,7 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
         start: new Date(start.create_time),
         end: new Date(end.create_time),
         eventShape: '\uf030',
+        eventHover: showTooltip,
       };
     }
 
@@ -256,4 +257,35 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
     };
     ModalService.open(modalOptions);
   }
+
+  const showTooltip = (item) => {
+    d3.select('body').selectAll('.popover').remove();
+
+    const fontSize = 12; // in pixels
+    const tooltipWidth = 9; // in rem
+    const tooltip = d3
+      .select('body')
+      .append('div')
+      .attr('class', 'popover fade bottom in')
+      .attr('role', 'tooltip');
+    const rightOrLeftLimit = fontSize * tooltipWidth;
+    const direction = d3.event.pageX > rightOrLeftLimit ? 'right' : 'left';
+    const left = direction === 'right' ? d3.event.pageX - rightOrLeftLimit : d3.event.pageX;
+    const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+
+    tooltip.html(
+      `
+        <div class="arrow"></div>
+        <div class="popover-content">
+          <div>Name: ${item.details.event}</div> 
+          <div>Date: ${item.date.toLocaleDateString("en-US", options)}</div>                    
+        </div>
+    `
+    );
+
+    tooltip
+      .style('left', `${left}px`)
+      .style('top', `${d3.event.pageY + 8}px`)
+      .style('display', 'block');
+  };
 }
