@@ -41,7 +41,7 @@ require('angular-svg-base-fix');
 require('angular-ui-router');
 require('angular-ui-router/release/stateEvents');
 require('patternfly/dist/js/patternfly.js');
-require('manageiq-ui-components/dist/js/ui-components.js');
+require('@manageiq/ui-components/dist/js/ui-components.js');
 require('ngprogress/build/ngprogress.min.js');
 require('ngstorage');
 require('datatables.net/js/jquery.dataTables');
@@ -62,7 +62,7 @@ require('./app/app.module.js');
 // Vendor styles, order matters
 require('patternfly/dist/css/patternfly-additions.css');
 require('angular-patternfly/dist/styles/angular-patternfly.css');
-require('manageiq-ui-components/dist/css/ui-components.css');
+require('@manageiq/ui-components/dist/css/ui-components.css');
 require('ngprogress/ngProgress.css');
 require('datatables.net-dt/css/jquery.dataTables.css');
 require('ui-select/dist/select.css');

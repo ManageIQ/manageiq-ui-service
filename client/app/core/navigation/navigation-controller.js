@@ -56,7 +56,6 @@ export function NavigationController(Text,
       toggleNotificationsList: toggleNotificationsList,
       updateViewingToast: updateViewingToast,
       handleDismissToast: handleDismissToast,
-      closeMenus: closeMenus,
       getNotficationStatusIconClass: getNotficationStatusIconClass,
       markNotificationRead: markNotificationRead,
       clearNotification: clearNotification,
@@ -229,11 +228,6 @@ export function NavigationController(Text,
 
   function toggleNotificationsList() {
     vm.notificationsDrawerShown = !vm.notificationsDrawerShown;
-  }
-
-  function closeMenus() {
-    vm.helpOpen = false;
-    vm.adminOpen = false;
   }
 
   function getNotficationStatusIconClass(notification) {

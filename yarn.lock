@@ -46,6 +46,14 @@
     glob "^7.1.1"
     json-server "^0.9.6"
 
+"@manageiq/ui-components@0.0.17":
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-0.0.17.tgz#11165b09a3be4b87d179af4ebbf1ad638cfd4291"
+  dependencies:
+    angular-bootstrap-switch "^0.5.1"
+    angular-dragdrop "^1.0.13"
+    angular-ui-sortable "^0.16.1"
+
 "@types/node@^6.0.46":
   version "6.0.71"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.71.tgz#aa49e0109e35f1457867b45822caf7f4883ca248"
@@ -5100,14 +5108,6 @@ make-dir@^1.0.0:
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.0.0.tgz#97a011751e91dd87cfadef58832ebb04936de978"
   dependencies:
     pify "^2.3.0"
-
-manageiq-ui-components@0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/manageiq-ui-components/-/manageiq-ui-components-0.0.13.tgz#cc5a78798aabd17761230866be9c9c227b83fbc3"
-  dependencies:
-    angular-bootstrap-switch "^0.5.1"
-    angular-dragdrop "^1.0.13"
-    angular-ui-sortable "^0.16.1"
 
 map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
