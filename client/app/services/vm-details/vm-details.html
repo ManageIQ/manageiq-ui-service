@@ -55,16 +55,16 @@
     </div>
     <detail-reveal display-field="vm.vmDetails.retired" detail-title="Status" icon="pf pficon-warning-triangle-o"
                    detail="{{ 'Retired' | translate }}"></detail-reveal>
-    <detail-reveal detail-title="Name" detail="{{ vm.vmDetails.name }}"></detail-reveal>
-    <detail-reveal detail-title="Hostnames" detail="{{ vm.vmDetails.hostnames.join(',') }}"></detail-reveal>
-    <detail-reveal detail-title="IP Addresses" detail="{{ vm.vmDetails.ipaddresses.join(',') }}"></detail-reveal>
-    <detail-reveal detail-title="MAC Address" detail="{{ vm.vmDetails.mac_addresses.join(',') }}"
+    <detail-reveal display-field="true" detail-title="Name" detail="{{ vm.vmDetails.name }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="Hostnames" detail="{{ vm.vmDetails.hostnames.join(',') }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="IP Addresses" detail="{{ vm.vmDetails.ipaddresses.join(',') }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="MAC Address" detail="{{ vm.vmDetails.mac_addresses.join(',') }}"
                    display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
-    <detail-reveal detail-title="Container" detail="{{ vm.vmDetails.containerSpecsText }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="Container" detail="{{ vm.vmDetails.containerSpecsText }}"></detail-reveal>
     <detail-reveal detail-title="Parent Host/Node Platform" detail="{{ vm.vmDetails.host.vmm_product }}"
                    display-field="vm.vmDetails.host"></detail-reveal>
-    <detail-reveal detail-title="Platform Tools" detail="{{ vm.vmDetails.tools_status }}"></detail-reveal>
-    <detail-reveal detail-title="Operating System"
+    <detail-reveal display-field="true" detail-title="Platform Tools" detail="{{ vm.vmDetails.tools_status }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="Operating System"
                    detail="{{ vm.vmDetails.hardware.guest_os_full_name }}"></detail-reveal>
     <detail-reveal detail-title="Architecture" detail="{{ vm.vmDetails.hardware.bitness }} bit"
                    display-field="vm.vmDetails.hardware.bitness"></detail-reveal>
@@ -75,10 +75,10 @@
     <detail-reveal display-field="vm.permissions.vm_snapshot_show_list" detail-title="Snapshots"
                    icon="fa fa-camera fa-lg"
                    detail="{{ vm.vmDetails.v_total_snapshots }}"></detail-reveal>
-    <detail-reveal detail-title="Advanced Settings" icon="fa fa-wrench fa-lg"
+    <detail-reveal display-field="true" detail-title="Advanced Settings" icon="fa fa-wrench fa-lg"
                    detail="{{ vm.vmDetails.advanced_settings.length }}"></detail-reveal>
-    <detail-reveal detail-title="Resources" detail="{{ vm.vmDetails.resourceAvailability }}"></detail-reveal>
-    <detail-reveal detail-title="Management Engine GUID" detail="{{ vm.vmDetails.guid }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="Resources" detail="{{ vm.vmDetails.resourceAvailability }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="Management Engine GUID" detail="{{ vm.vmDetails.guid }}"></detail-reveal>
     <detail-reveal detail-title="Virtualization" detail="{{ vm.vmDetails.hardware.virtualization_type }}"
                    display-field="vm.vmDetails.hardware.virtualization_type"></detail-reveal>
     <detail-reveal detail-title="Root Device Type" detail="{{ vm.vmDetails.hardware.root_device_type }}"
@@ -91,16 +91,17 @@
     <div class="row title">
       <div>{{ 'Lifecycle'|translate }}</div>
     </div>
-    <detail-reveal detail-title="Discovered on"
+    <detail-reveal display-field="true"
+                   detail-title="Discovered on"
                    detail="{{  vm.vmDetails.created_on | date:'medium'  }}"></detail-reveal>
-    <detail-reveal detail-title="Last Analyzed" icon="fa fa-search fa-lg"
+    <detail-reveal display-field="true" detail-title="Last Analyzed" icon="fa fa-search fa-lg"
                    detail="{{  vm.vmDetails.lastSyncOn | date:'medium'  }}"></detail-reveal>
-    <detail-reveal detail-title="Retirement Date" icon="fa fa-clock-o fa-lg"
+    <detail-reveal display-field="true" detail-title="Retirement Date" icon="fa fa-clock-o fa-lg"
                    detail="{{  vm.vmDetails.retiresOn | date:'medium'  }}"></detail-reveal>
-    <detail-reveal detail-title="Provisioned On"
+    <detail-reveal display-field="true" detail-title="Provisioned On"
                    detail="{{  vm.vmDetails.provisionDate | date:'medium'  }}"></detail-reveal>
-    <detail-reveal detail-title="Owner" detail="{{ vm.vmDetails.evm_owner.name }}"></detail-reveal>
-    <detail-reveal detail-title="Group" detail="{{ vm.vmDetails.miq_group.description }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="Owner" detail="{{ vm.vmDetails.evm_owner.name }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="Group" detail="{{ vm.vmDetails.miq_group.description }}"></detail-reveal>
   </div>
   <div class="container-fluid vm-details-container">
     <div class="row title">
@@ -126,7 +127,7 @@
                    display-field="vm.permissions.resource_pool_show && vm.vmDetails.parent_resource_pool"></detail-reveal>
     <detail-reveal detail-title="Datastores" icon="fa fa-lg fa-database" detail="{{ vm.vmDetails.storages.length }}"
                    display-field="vm.permissions.storage_show_list && vm.vmDetails.storages.length > 0"></detail-reveal>
-    <detail-reveal detail-title="Service" icon="fa fa-lg pficon pficon-service"
+    <detail-reveal display-field="true" detail-title="Service" icon="fa fa-lg pficon pficon-service"
                    detail="{{ vm.vmDetails.service.name }}"></detail-reveal>
     <detail-reveal detail-title="Virtual Private Cloud" detail="{{ vm.vmDetails.instance.cloud_networks[0].name }}"
                    display-field="vm.permissions.instance_show && vm.vmDetails.instance.cloud_networks.length > 0"></detail-reveal>
@@ -154,24 +155,26 @@
                    display-field="vm.vmDetails.cloud===false"></detail-reveal>
     <detail-reveal display-field="vm.permissions.vm_drift" detail-title="Drift History"
                    detail="{{ vm.vmDetails.driftHistory }}"></detail-reveal>
-    <detail-reveal detail-title="Analysis History" detail="{{ vm.vmDetails.scanHistoryCount }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="Analysis History" detail="{{ vm.vmDetails.scanHistoryCount }}"></detail-reveal>
   </div>
   <div ng-if="vm.permissions.vm_check_compliance" class="container-fluid vm-details-container">
     <div class="row title">
       <div>{{ 'Compliance'|translate }}</div>
     </div>
-    <detail-reveal detail-title="Status" detail="{{ vm.vmDetails.lastComplianceStatus }}"></detail-reveal>
-    <detail-reveal detail-title="History" detail="{{ vm.vmDetails.complianceHistory }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="Status" detail="{{ vm.vmDetails.lastComplianceStatus }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="History" detail="{{ vm.vmDetails.complianceHistory }}"></detail-reveal>
   </div>
 
   <div class="container-fluid vm-details-container">
     <div class="row title">
       <div>{{ 'Power Management'|translate }}</div>
     </div>
-    <detail-reveal detail-title="Power State" detail="{{ vm.vmDetails.power_state }}"></detail-reveal>
-    <detail-reveal detail-title="Last Boot Time"
+    <detail-reveal display-field="true" detail-title="Power State" detail="{{ vm.vmDetails.power_state }}"></detail-reveal>
+    <detail-reveal display-field="true"
+                   detail-title="Last Boot Time"
                    detail="{{  vm.vmDetails.boot_time | date:'medium'  }}"></detail-reveal>
-    <detail-reveal detail-title="State Changed On"
+    <detail-reveal display-field="true"
+                   detail-title="State Changed On"
                    detail="{{  vm.vmDetails.state_changed_on | date:'medium'  }}"></detail-reveal>
   </div>
 
@@ -179,9 +182,9 @@
     <div class="row title">
       <div>{{ 'Security'|translate }}</div>
     </div>
-    <detail-reveal detail-title="Users" icon="fa fa-lg pficon pficon-user"
+    <detail-reveal display-field="true" detail-title="Users" icon="fa fa-lg pficon pficon-user"
                    detail="{{  vm.vmDetails.users.length  }}"></detail-reveal>
-    <detail-reveal detail-title="Groups" icon="fa fa-lg pficon pficon-users"
+    <detail-reveal display-field="true" detail-title="Groups" icon="fa fa-lg pficon pficon-users"
                    detail="{{  vm.vmDetails.groups.length  }}"></detail-reveal>
     <detail-reveal detail-title="Key Pairs" detail="{{  vm.vmDetails.instance.keyPairLabels.join(',')  }}"
                    display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>
@@ -190,9 +193,10 @@
     <div class="row title">
       <div>{{ 'Configuration'|translate }}</div>
     </div>
-    <detail-reveal detail-title="Packages" detail="{{  vm.vmDetails.guest_applications.length  }}"></detail-reveal>
-    <detail-reveal detail-title="Init Processes"
+    <detail-reveal display-field="true" detail-title="Packages" detail="{{  vm.vmDetails.guest_applications.length  }}"></detail-reveal>
+    <detail-reveal display-field="true"
+                   detail-title="Init Processes"
                    detail="{{  vm.vmDetails.linux_initprocesses.length  }}"></detail-reveal>
-    <detail-reveal detail-title="Files" detail="{{  vm.vmDetails.files.length  }}"></detail-reveal>
+    <detail-reveal display-field="true" detail-title="Files" detail="{{  vm.vmDetails.files.length  }}"></detail-reveal>
   </div>
 </div>
