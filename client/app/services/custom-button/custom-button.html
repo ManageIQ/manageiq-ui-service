@@ -4,6 +4,7 @@
           ng-click="vm.invokeCustomAction(button)"
           uib-tooltip="{{button.description}}"
           tooltip-placement="top">
+    <i ng-class="button.options.button_icon" ng-style="{color: button.options.button_color }"></i>
     {{ button.name }}
   </button>
 </span>
@@ -14,6 +15,7 @@
             uib-dropdown-toggle
             uib-tooltip="{{buttonGroup.description}}"
             tooltip-placement="top">
+      <i ng-class="buttonGroup.set_data.button_icon" ng-style="{color: buttonGroup.set_data.button_color }"></i>
       {{ buttonGroup.name.split('|')[0] }}
       <span class="caret"></span>
     </button>
@@ -26,6 +28,7 @@
            ng-click="vm.invokeCustomAction(button)"
            uib-tooltip="{{button.description}}"
            tooltip-placement="left">
+          <i ng-class="button.options.button_icon" ng-style="{color: button.options.button_color }"></i>
           {{ button.name }}
         </a>
       </li>
