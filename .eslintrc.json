@@ -158,7 +158,7 @@
     "no-bitwise": "error",
     "no-caller": "error",
     "no-catch-shadow": "error",
-    "no-confusing-arrow": ["error", {"allowParens": true}],
+    "no-confusing-arrow": "error",
     "no-continue": "off",
     "no-div-regex": "error",
     "no-duplicate-imports": "error",
