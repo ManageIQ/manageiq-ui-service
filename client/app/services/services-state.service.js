@@ -66,7 +66,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     return CollectionsApi.query('services', options);
   }
 
-  function getServices(limit, offset, filters, sortField, sortAscending, refresh) {
+  function getServices(limit, offset, refresh) {
     const options = {
       expand: 'resources',
       limit: limit,
@@ -87,15 +87,13 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'service_resources',
         'tags',
       ],
-      filter: getQueryFilters(filters),
+      filter: getQueryFilters(services.getFilters()),
       auto_refresh: refresh,
     };
 
-    if (angular.isDefined(sortField)) {
-      options.sort_by = services.getSort().currentField.id;
-      options.sort_options = services.getSort().currentField.sortType === 'alpha' ? 'ignore_case' : '';
-      options.sort_order = sortAscending ? 'asc' : 'desc';
-    }
+    options.sort_by = services.getSort().currentField.id || '';
+    options.sort_options = services.getSort().currentField.sortType === 'alpha' ? 'ignore_case' : '';
+    options.sort_order = services.getSort().isAscending ? 'asc' : 'desc';
 
     return CollectionsApi.query('services', options);
   }

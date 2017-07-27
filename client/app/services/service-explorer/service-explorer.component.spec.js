@@ -52,13 +52,13 @@ describe('Component: serviceExplorer', () => {
   });
 
   it('should set toolbar', () => {
-    expect(ctrl.headerConfig.sortConfig.fields).to.have.lengthOf(3);
-    expect(ctrl.headerConfig.sortConfig.currentField).to.eql({id: 'created_at', title: 'Created', sortType: 'numeric'});
+    expect(ctrl.toolbarConfig.sortConfig.fields).to.have.lengthOf(3);
+    expect(ctrl.toolbarConfig.sortConfig.currentField).to.eql({id: 'created_at', title: 'Created', sortType: 'numeric'});
   });
 
   it('should allow for sorting to be able to be updated', () => {
     const catalogSpy = sinon.spy(ServicesState.services, 'setSort');
-    ctrl.headerConfig.sortConfig.onSortChange('name', true);
+    ctrl.toolbarConfig.sortConfig.onSortChange('name', true);
 
     expect(catalogSpy).to.have.been.called.once;
   });
