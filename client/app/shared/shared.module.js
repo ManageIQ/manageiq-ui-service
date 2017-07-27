@@ -12,6 +12,7 @@ import {LoadingComponent} from "./loading.component.js";
 import {PaginationComponent} from "./pagination/pagination.component.js";
 import {SSCardComponent} from "./ss-card/ss-card.component.js";
 import {TaggingComponent} from "./tagging/tagging.component.js";
+import {TimelineComponent} from "./timeline/timeline.component.js";
 import {substitute} from "./substitute.filter.js";
 
 export const SharedModule = angular
@@ -35,6 +36,7 @@ export const SharedModule = angular
   .component('loading', LoadingComponent)
   .component('ssCard', SSCardComponent)
   .component('taggingWidget', TaggingComponent)
+  .component('timeline', TimelineComponent)
   .directive('autofocus', AutofocusDirective)
   .component('aceEditor', AceEditorComponent)
   .directive('confirmation', ConfirmationDirective)

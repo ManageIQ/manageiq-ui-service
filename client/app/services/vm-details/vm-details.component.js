@@ -22,11 +22,11 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   vm.pollVM = pollVM;
   vm.retireVM = retireVM;
   vm.getData = resolveData;
-  vm.storageChartConfigOptions =  {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')};
-  vm.memoryChartConfigOptions =  {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')};
+  vm.storageChartConfigOptions = {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')};
+  vm.memoryChartConfigOptions = {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')};
   vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')};
   vm.processInstanceVariables = processInstanceVariables;
-  // vm.resolveData = resolveData;
+
   function onDestroy() {
     Polling.stop('vmPolling');
   }
@@ -55,7 +55,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       },
       listActions: [],
     });
-    
+
     EventNotifications.info(__("The contents of this page is a function of the current users's group."));
     resolveData();
     Polling.start('vmPolling', pollVM, LONG_POLLING_INTERVAL);
@@ -77,12 +77,15 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
   function retireVM() {
     PowerOperations.retireVM(vm.vmDetails);
   }
+
   function viewSelected(view) {
     vm.viewType = view;
   }
+
   function pollVM() {
     resolveData(true);
   }
+
   function resolveData(refresh) {
     return VmsService.getVm($stateParams.vmId, refresh).then(handleSuccess, handleFailure);
 
@@ -91,7 +94,7 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
       const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.allocated_disk_storage); // convert bytes to gb
       const usedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.used_storage);
       const totalMemory = vm.vmDetails.ram_size / 1024;
-      const usedMemory  = UsageGraphsService.convertBytestoGb(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period);
+      const usedMemory = UsageGraphsService.convertBytestoGb(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period);
       const usedCPU = vm.vmDetails.cpu_usagemhz_rate_average_avg_over_time_period;
       const totalCPU = (angular.isDefined(vm.vmDetails.hardware.aggregate_cpu_speed) ? vm.vmDetails.hardware.aggregate_cpu_speed : 0);
       if (response.cloud) {
@@ -136,19 +139,20 @@ function ComponentController($stateParams, VmsService, ServicesState, sprintf, l
 
     return lodash.compact(buttons).length > 0;
   }
+
   function hasUsageGraphs() {
     if (angular.isUndefined(vm.vmDetails.allocated_disk_storage) || vm.vmDetails.allocated_disk_storage === 0) {
       vm.usageGraphs = false;
     }
-    if (angular.isUndefined(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period) 
-        || vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period === 0) {
+    if (angular.isUndefined(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period)
+      || vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period === 0) {
       vm.usageGraphs = false;
     }
-    if (angular.isUndefined(vm.vmDetails.hardware.aggregate_cpu_speed) 
-        || vm.vmDetails.hardware.aggregate_cpu_speed === 0) {
+    if (angular.isUndefined(vm.vmDetails.hardware.aggregate_cpu_speed)
+      || vm.vmDetails.hardware.aggregate_cpu_speed === 0) {
       vm.usageGraphs = false;
     }
-    
+
     return vm.usageGraphs;
   }
 

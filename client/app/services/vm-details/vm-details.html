@@ -26,7 +26,7 @@
   </div>
 </div>
 <pf-toolbar ng-if="vm.listActions.length" class="section-toolbar section-toolbar-right-actions"
-     config="vm.headerConfig">
+            config="vm.headerConfig">
   <actions>
     <div class="ss-details-header__actions">
       <div uib-dropdown class="ss-details-header__actions__inner dropdown-kebab-pf">
@@ -72,7 +72,8 @@
                    display-field="vm.vmDetails.cloud===false"></detail-reveal>
     <detail-reveal detail-title="CPU Affinity" detail="{{ vm.vmDetails.cpu_affinity }}"
                    display-field="vm.vmDetails.cloud===false"></detail-reveal>
-    <detail-reveal display-field="vm.permissions.vm_snapshot_show_list" detail-title="Snapshots" icon="fa fa-camera fa-lg"
+    <detail-reveal display-field="vm.permissions.vm_snapshot_show_list" detail-title="Snapshots"
+                   icon="fa fa-camera fa-lg"
                    detail="{{ vm.vmDetails.v_total_snapshots }}"></detail-reveal>
     <detail-reveal detail-title="Advanced Settings" icon="fa fa-wrench fa-lg"
                    detail="{{ vm.vmDetails.advanced_settings.length }}"></detail-reveal>

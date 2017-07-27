@@ -1,4 +1,5 @@
-/* eslint camelcase: "off" */
+/* eslint camelcase: "off", no-undef: "off" */
+import './_snapshots.sass';
 import templateUrl from './snapshots.html';
 
 export const VmSnapshotsComponent = {
@@ -12,7 +13,7 @@ export const VmSnapshotsComponent = {
 };
 
 /** @ngInject */
-function ComponentController(VmsService, sprintf, EventNotifications, ListView, ModalService) {
+function ComponentController(VmsService, sprintf, EventNotifications, ListView, ModalService, lodash) {
   const vm = this;
 
   vm.$onInit = function() {
@@ -166,6 +167,25 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
       vm.loading = false;
       vm.toolbarConfig.filterConfig.resultsCount = response.subcount;
       vm.snapshots = response.resources;
+
+      const start = lodash.minBy(vm.snapshots, 'create_time');
+      const end = lodash.maxBy(vm.snapshots, 'create_time');
+      const tlSnapshots = vm.snapshots.map((item) => ({
+        "date": new Date(item.create_time),
+        "details": {"event": item.name, "object": item.name, item},
+      }));
+
+      vm.tlData = [{
+        "data": tlSnapshots,
+        "display": true,
+      }];
+
+      vm.tlOptions = {
+        start: new Date(start.create_time),
+        end: new Date(end.create_time),
+        eventShape: '\uf030',
+        eventHover: showTooltip,
+      };
     }
 
     function failure(_error) {
@@ -237,4 +257,38 @@ function ComponentController(VmsService, sprintf, EventNotifications, ListView, 
     };
     ModalService.open(modalOptions);
   }
+
+  const showTooltip = (item) => {
+    d3.select('body').selectAll('.popover').remove();
+
+    const fontSize = 12; // in pixels
+    const tooltipWidth = 9; // in rem
+    const tooltip = d3
+      .select('body')
+      .append('div')
+      .attr('class', 'popover fade bottom in')
+      .attr('role', 'tooltip')
+      .on('mouseout', () => {
+        d3.select('body').selectAll('.popover').remove();
+      });
+    const rightOrLeftLimit = fontSize * tooltipWidth;
+    const direction = d3.event.pageX > rightOrLeftLimit ? 'right' : 'left';
+    const left = direction === 'right' ? d3.event.pageX - rightOrLeftLimit : d3.event.pageX;
+    const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+
+    tooltip.html(
+      `
+        <div class="arrow"></div>
+        <div class="popover-content">
+          <div>Name: ${item.details.event}</div> 
+          <div>Date: ${item.date.toLocaleDateString("en-US", options)}</div>                    
+        </div>
+    `
+    );
+
+    tooltip
+      .style('left', `${left}px`)
+      .style('top', `${d3.event.pageY + 8}px`)
+      .style('display', 'block');
+  };
 }
