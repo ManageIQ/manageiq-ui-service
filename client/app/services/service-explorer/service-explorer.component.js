@@ -11,7 +11,7 @@ export const ServiceExplorerComponent = {
 /** @ngInject */
 function ComponentController($state, ServicesState, Language, ListView, Chargeback, TaggingService, TagEditorModal,
                              EventNotifications, ModalService, PowerOperations, lodash, Polling, POLLING_INTERVAL) {
-  const vm = this;
+  var vm = this;
 
   vm.$onDestroy = function() {
     Polling.stop('serviceListPolling');
@@ -19,13 +19,14 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
 
   vm.$onInit = () => {
     vm.permissions = ServicesState.getPermissions();
-    $state.params.filter ? ServicesState.services.setFilters($state.params.filter) : ServicesState.services.setFilters([]);
+    if ($state.params.filter) {
+      ServicesState.services.setFilters($state.params.filter);
+      ServicesState.services.filterApplied = true;
+    } else {
+      ServicesState.services.setFilters([]);
+      ServicesState.services.filterApplied = false;
+    }
     ServicesState.services.setSort({id: "created_at", title: "Created", sortType: "numeric"}, false);
-
-    TaggingService.queryAvailableTags().then((response) => {
-      vm.filterTags = response;
-    });
-
     angular.extend(vm, {
       loading: false,
       title: __('Services'),
@@ -52,22 +53,17 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       cardConfig: getCardConfig(),
       listConfig: getListConfig(),
       listActions: getListActions(),
-      toolbarConfig: {
-        sortConfig: serviceSortConfig(),
-        filterConfig: serviceFilterConfig(),
-        actionsConfig: {
-          actionsInclude: true,
-        },
-      },
+      headerConfig: getHeaderConfig(),
       menuActions: getMenuActions(),
       serviceChildrenListConfig: createServiceChildrenListConfig(),
       pollingInterval: POLLING_INTERVAL,
     });
     vm.offset = 0;
 
-    Language.fixState(ServicesState.services, vm.toolbarConfig);
+    Language.fixState(ServicesState.services, vm.headerConfig);
 
     resolveServices(vm.limit, 0);
+    Polling.start('serviceListPolling', pollUpdateServicesList, vm.pollingInterval);
   };
 
   function getCardConfig() {
@@ -90,7 +86,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
 
   function handleSelectionChange() {
     vm.selectedItemsList = vm.servicesList.filter((service) => service.selected);
-    vm.toolbarConfig.filterConfig.selectedCount = vm.selectedItemsList.length;
+    vm.headerConfig.filterConfig.selectedCount = vm.selectedItemsList.length;
   }
 
   function isAnsibleService(service) {
@@ -177,23 +173,29 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   }
 
 
-  function serviceFilterConfig() {
-    return {
-      fields: [],
+  function getHeaderConfig() {
+    var serviceFilterConfig = {
+      fields: getServiceFilterFields(),
       resultsCount: 0,
       totalCount: 0,
       selectedCount: 0,
-      appliedFilters: ServicesState.services.getFilters() || [],
+      appliedFilters: ServicesState.services.filterApplied ? ServicesState.services.getFilters() : [],
       onFilterChange: filterChange,
     };
-  }
 
-  function serviceSortConfig() {
-    return {
+    var serviceSortConfig = {
       fields: getServiceSortFields(),
       onSortChange: sortChange,
       isAscending: ServicesState.services.getSort().isAscending,
       currentField: ServicesState.services.getSort().currentField,
+    };
+
+    return {
+      sortConfig: serviceSortConfig,
+      filterConfig: serviceFilterConfig,
+      actionsConfig: {
+        actionsInclude: true,
+      },
     };
   }
 
@@ -316,15 +318,14 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   }
 
   function getServiceFilterFields() {
-    const filterTags = lodash(vm.filterTags.map((tag) => (tag.name.match(/\//g).length === 3 ? tag.name : false)))
-      .compact()
-      .uniqBy()
-      .value();
-
     return [
       ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
       ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text'),
-      ListView.createFilterField('tags.name', __('Tag Category/Value'), __('Filter by Tag Category/Value'), 'select', filterTags),
+
+      // TODO: find a way to filter on virtual attributes
+      // ListView.createFilterField('chargeback_relative_cost', __('Relative Cost'), __('Filter by Relative Cost'), 'select', dollars),
+      // TODO:  find a good way to filter on date other than string
+      // ListView.createFilterField('owner', __('Created'), __('Filter by Created On'), 'text'),
     ];
   }
 
@@ -333,6 +334,9 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       ListView.createSortField('created_at', __('Created'), 'numeric'),
       ListView.createSortField('name', __('Name'), 'alpha'),
       ListView.createSortField('retires_on', __('Retirement Date'), 'numeric'),
+
+      // TODO: Find a way to sort by charback cost
+      // ListView.createSortField('chargeback_report.used_cost_sum', __('Relative Cost'), 'alpha'),
     ];
   }
 
@@ -343,7 +347,7 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
 
       function querySuccess(result) {
         vm.filterCount = result.subcount;
-        vm.toolbarConfig.filterConfig.resultsCount = vm.filterCount;
+        vm.headerConfig.filterConfig.resultsCount = vm.filterCount;
         resolve();
       }
 
@@ -356,27 +360,31 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   }
 
   function resolveServices(limit, offset, refresh) {
-    Polling.stop('serviceListPolling');
-    vm.loading = !refresh;
+    if (!refresh) {
+      vm.loading = true;
+    } else {
+      vm.loading = false;
+    }
     vm.offset = offset;
     getFilterCount().then(() => {
       ServicesState.getServices(
         limit,
         offset,
+        ServicesState.services.getFilters(),
+        ServicesState.services.getSort().currentField,
+        ServicesState.services.getSort().isAscending,
         refresh).then(querySuccess, queryFailure);
     });
 
     function querySuccess(result) {
-      Polling.start('serviceListPolling', pollUpdateServicesList, vm.pollingInterval);
       vm.loading = false;
       vm.services = [];
       var existingServices = (angular.isDefined(vm.servicesList) && refresh ? angular.copy(vm.servicesList) : []);
       vm.selectedItemsList = [];
-      vm.toolbarConfig.filterConfig.fields = getServiceFilterFields();
-      vm.toolbarConfig.filterConfig.totalCount = result.subcount;
-      vm.toolbarConfig.filterConfig.selectedCount = 0;
+      vm.headerConfig.filterConfig.totalCount = result.subcount;
+      vm.headerConfig.filterConfig.selectedCount = 0;
 
-      result.resources.forEach((item)  => {
+      angular.forEach(result.resources, function(item) {
         if (angular.isUndefined(item.service_id)) {
           item.disableRowExpansion = item.all_service_children.length < 1;
           item.power_state = PowerOperations.getPowerState(item);
@@ -418,9 +426,9 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
       return (powerState !== 'on' && powerState !== 'off' ? powerStates.unknown : powerStates[powerState]);
     }
 
-    function queryFailure(response) {
+    function queryFailure(_error) {
       vm.loading = false;
-      EventNotifications.error(__('There was an error loading the services. ') + response.data.error.message);
+      EventNotifications.error(__('There was an error loading the services.'));
     }
   }
 
