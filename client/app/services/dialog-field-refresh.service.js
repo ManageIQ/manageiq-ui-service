@@ -74,23 +74,23 @@
       fetchDialogFieldInfo(allDialogFields, [dialogField.name], url, resourceId, refreshSuccess, refreshFailure);
     }
 
-  function selectDefaultValue(dialogField, newDialogField) {
-    const dropDownValues = [];
-    if (angular.isObject(newDialogField.values)) {
-      newDialogField.values.forEach(function (value) {
-        if (parseInt(value[0], 10)) {
-          dropDownValues.push([parseInt(value[0], 10), value[1]]);
+    function selectDefaultValue(dialogField, newDialogField) {
+      var dropDownValues = [];
+      if (angular.isObject(newDialogField.values)) {
+        newDialogField.values.forEach(function(value) {
+          if (parseInt(value[0], 10)) {
+            dropDownValues.push([parseInt(value[0], 10), value[1]]);
+          } else {
+            dropDownValues.push(value);
+          }
+        });
+        newDialogField.values = dropDownValues;
+        dialogField.values = dropDownValues;
+        if (angular.isDefined(newDialogField.default_value) && newDialogField.default_value !== null) {
+          dialogField.default_value = newDialogField.default_value;
         } else {
-          dropDownValues.push(value);
+          dialogField.default_value = newDialogField.values[0][0];
         }
-      });
-      newDialogField.values = dropDownValues;
-      dialogField.values = dropDownValues;
-      if (angular.isDefined(newDialogField.default_value) && newDialogField.default_value !== null) {
-        dialogField.default_value = newDialogField.default_value;
-      } else {
-        dialogField.default_value = newDialogField.values[0][0];
-      }
       } else {
         if (dialogField.type === 'DialogFieldDateControl' || dialogField.type === 'DialogFieldDateTimeControl') {
           dialogField.default_value = new Date(newDialogField.values);
