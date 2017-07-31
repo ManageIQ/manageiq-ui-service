@@ -23,8 +23,9 @@ function ComponentController($transclude) {
 
   function activate() {
     if (angular.isUndefined(vm.displayField)) {
-      vm.displayField = true;
+      vm.displayField = false;
     }
+
     vm.translateTitle = (angular.isUndefined(vm.translateTitle) ? true : vm.translateTitle);
     vm.detailTitle = (vm.translateTitle === true ? __(vm.detailTitle) : vm.detailTitle);
     vm.rowClass = (angular.isDefined(vm.rowClass) ? vm.rowClass : 'row detail-row');
