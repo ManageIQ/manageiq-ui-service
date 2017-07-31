@@ -23,7 +23,6 @@ describe('Custom Dropdown component - ', function () {
 
     it('should handle changes', () => {
         ctrl.$onChanges();
-        // { $changes: ["item1", "item2"], $config: { test: "test" } }
         expect(updateSpy).have.been.calledWith(
             { $changes: ["item1", "item2"], $config: { test: "test" } });
     });
