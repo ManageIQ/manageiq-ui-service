@@ -1,4 +1,4 @@
-describe('Custom Dropdown component - ', function () {
+describe('Component: customDropdown ', function () {
     let scope;
     let ctrl;
     let updateSpy;
