@@ -1,9 +1,9 @@
-describe('State: services.reconfigure', function() {
-  beforeEach(function() {
+describe('State: services.reconfigure', () => {
+  beforeEach(() => {
     module('app.states');
   });
 
-  describe('controller', function() {
+  describe('controller', () => {
     let collectionsApiSpy, ctrl, notificationsErrorSpy, notificationsSuccessSpy, autoRefreshSpy, refreshSingleFieldSpy;
     let dialogFields = [{
       name: 'dialogField1',
@@ -19,11 +19,12 @@ describe('State: services.reconfigure', function() {
         }]
       }]
     };
+    let service = {provision_dialog: dialog, id: 123, service_template_catalog_id: 1234};
 
-    beforeEach(function() {
+    beforeEach(() => {
       bard.inject('$controller', '$state', '$stateParams', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'AutoRefresh');
 
-      autoRefreshSpy = sinon.stub(AutoRefresh, 'listenForAutoRefresh').callsFake(function() {
+      autoRefreshSpy = sinon.stub(AutoRefresh, 'listenForAutoRefresh').callsFake(() => {
         return false;
       });
 
@@ -33,25 +34,35 @@ describe('State: services.reconfigure', function() {
         $stateParams: {
           serviceId: 123
         },
-        service: {provision_dialog: dialog, id: 123, service_template_catalog_id: 1234}
+        service: service
       });
     });
 
-    describe('controller initialization', function() {
-      it('is created successfully', function() {
+    describe('controller initialization', () => {
+      it('is created successfully', () => {
         expect(ctrl).to.be.defined;
       });
 
-      it('listens for auto refresh messages', function() {
+      it('listens for auto refresh messages', () => {
         expect(autoRefreshSpy).to.have.been.calledWith(
           dialogFields, [], 'services/1234/service_templates', 123, refreshSingleFieldSpy
         );
       });
+
+      it('resolves data', () => {
+        collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(service));
+
+        $state.get('services.reconfigure').resolve.service({
+          serviceId: 123
+        }, CollectionsApi);
+
+        expect(collectionsApiSpy).to.have.been.calledWith('services', 123, {attributes: ["provision_dialog"]});
+      });
     });
 
-    describe('controller#submitDialog', function() {
-      describe('when the API call is successful', function() {
-        beforeEach(function() {
+    describe('controller#submitDialog', () => {
+      describe('when the API call is successful', () => {
+        beforeEach(() => {
           const successResponse = {
             message: 'Great Success!'
           };
@@ -60,7 +71,7 @@ describe('State: services.reconfigure', function() {
           notificationsSuccessSpy = sinon.spy(Notifications, 'success');
         });
 
-        it('POSTs to the service templates API', function() {
+        it('POSTs to the service templates API', () => {
           ctrl.submitDialog();
 
           expect(collectionsApiSpy).to.have.been.calledWith(
@@ -71,7 +82,7 @@ describe('State: services.reconfigure', function() {
           );
         });
 
-        it('and canceled, does not POST to the service templates API', function() {
+        it('and canceled, does not POST to the service templates API', () => {
           ctrl.cancelDialog();
 
           expect(collectionsApiSpy).to.have.not.been.calledWith(
@@ -97,8 +108,8 @@ describe('State: services.reconfigure', function() {
         });
       });
 
-      describe('when the API call fails', function() {
-        beforeEach(function() {
+      describe('when the API call fails', () => {
+        beforeEach(() => {
           const errorResponse = 'oopsies';
 
           collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(errorResponse));
