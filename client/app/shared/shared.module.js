@@ -1,5 +1,4 @@
 import {formatBytes, megaBytes} from "./format-bytes.filter.js";
-import {AceEditorComponent} from "./ace-editor/ace-editor.component.js";
 import {ActionButtonGroupComponent} from "./action-button-group/action-button-group.component.js";
 import {AutofocusDirective} from "./autofocus.directive.js";
 import {ConfirmationDirective} from "./confirmation/confirmation.directive.js";
@@ -38,7 +37,6 @@ export const SharedModule = angular
   .component('taggingWidget', TaggingComponent)
   .component('timeline', TimelineComponent)
   .directive('autofocus', AutofocusDirective)
-  .component('aceEditor', AceEditorComponent)
   .directive('confirmation', ConfirmationDirective)
   .filter('formatBytes', formatBytes)
   .filter('megaBytes', megaBytes)
