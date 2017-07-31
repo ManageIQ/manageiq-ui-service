@@ -27,7 +27,7 @@ function ComponentController($state, ShoppingCart, EventNotifications) {
   }
 
   function submit() {
-    ShoppingCart.submit()
+    return ShoppingCart.submit()
       .then(function() {
         EventNotifications.success(__('Shopping cart successfully ordered'));
         vm.modalInstance.dismiss();
