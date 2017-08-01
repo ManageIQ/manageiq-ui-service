@@ -22,12 +22,21 @@ function ComponentController($state, ShoppingCart, EventNotifications) {
   vm.remove = ShoppingCart.removeItem;
   vm.state = null;
 
+  /**
+  * Refreshes shopping cart state
+  * @function refresh
+  */
   function refresh() {
     vm.state = ShoppingCart.state();
   }
 
+  /**
+  * Submits a shopping cart
+  * @function submit
+  * @returns Promise 
+  */
   function submit() {
-    ShoppingCart.submit()
+    return ShoppingCart.submit()
       .then(function() {
         EventNotifications.success(__('Shopping cart successfully ordered'));
         vm.modalInstance.dismiss();
@@ -38,6 +47,10 @@ function ComponentController($state, ShoppingCart, EventNotifications) {
       });
   }
 
+  /**
+  * closes a shopping cart modal
+  * @function close
+  */
   function close() {
     vm.modalInstance.dismiss();
   }
