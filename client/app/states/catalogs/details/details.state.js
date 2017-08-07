@@ -12,7 +12,7 @@ function getStates() {
       templateUrl,
       controller: Controller,
       controllerAs: 'vm',
-      title: N_('Service Template Details'),
+      title: __('Service Template Details'),
       resolve: {
         dialogs: resolveDialogs,
         serviceTemplate: resolveServiceTemplate,
@@ -22,12 +22,24 @@ function getStates() {
 }
 
 /** @ngInject */
+/**
+ * This function handles REST request for service templates
+ * @function resolveServiceTemplate
+ * @param  {object} $stateParams
+ * @param  {object} CollectionsApi
+ */
 function resolveServiceTemplate($stateParams, CollectionsApi) {
   var options = {attributes: ['picture', 'picture.image_href']};
 
   return CollectionsApi.get('service_templates', $stateParams.serviceTemplateId, options);
 }
 
+/**
+ * Handles querying for dialog data
+ * @function resolveDialogs
+ * @param  {object} $stateParams
+ * @param  {object} CollectionsApi
+ */
 /** @ngInject */
 function resolveDialogs($stateParams, CollectionsApi) {
   var options = {expand: 'resources', attributes: 'content'};
@@ -36,7 +48,7 @@ function resolveDialogs($stateParams, CollectionsApi) {
 }
 
 /** @ngInject */
-function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRefresh, AutoRefresh, ShoppingCart) {
+function Controller(dialogs, serviceTemplate, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash) {
   var vm = this;
 
   vm.serviceTemplate = serviceTemplate;
@@ -47,63 +59,67 @@ function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRef
 
   vm.addToCart = addToCart;
   vm.cartAllowed = ShoppingCart.allowed;
+  vm.addToCartEnabled = false;
   vm.alreadyInCart = alreadyInCart;
   vm.addToCartDisabled = addToCartDisabled;
+  vm.refreshField = refreshField;
+  vm.setDialogData = setDialogData;
+  vm.dialogData = {};
 
-  var autoRefreshableDialogFields = [];
-  var allDialogFields = [];
-
-  DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
-
-  var dialogUrl = 'service_catalogs/' + serviceTemplate.service_template_catalog_id + '/service_templates';
-
-  angular.forEach(allDialogFields, function(dialogField) {
-    dialogField.refreshSingleDialogField = function() {
-      DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialogField, dialogUrl, vm.serviceTemplate.id);
-    };
-  });
-
-  AutoRefresh.listenForAutoRefresh(
-    allDialogFields,
-    autoRefreshableDialogFields,
-    dialogUrl,
-    vm.serviceTemplate.id,
-    DialogFieldRefresh.refreshSingleDialogField
-  );
-
+  vm.dialogUrl = 'service_catalogs/' + serviceTemplate.service_template_catalog_id + '/service_templates';
+ 
+  /**
+ * This function triggers a refresh of a single dialog field
+ * @function refreshField
+ * @param  {object} field
+ * @returns {Promise}
+ */
+  function refreshField(field) {
+    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], vm.dialogUrl, vm.serviceTemplate.id);
+  }
+  /**
+   * Stores resulting data output from a dialog
+   * @function setDialogData
+   * @param  {object} data
+  */
+  function setDialogData(data) {
+    vm.addToCartEnabled = data.validations.isValid;
+    vm.dialogData = data.data;
+  }
+  /**
+   * Determines whether a user can add to cart
+   * @function addToCartDisabled
+   * @returns {boolean}
+  */
   function addToCartDisabled() {
-    return (!vm.cartAllowed() || vm.addingToCart) || anyDialogsBeingRefreshed();
+    return (!vm.cartAllowed() || !vm.addToCartEnabled);
   }
 
-  function anyDialogsBeingRefreshed() {
-    function checkRefreshing(dialogField) {
-      return dialogField.beingRefreshed;
-    }
-
-    return allDialogFields.some(checkRefreshing);
-  }
-
+  /**
+   * Prepares data from dialog to be submitted
+   * @function dataForSubmit
+   * @param {string} href
+   * @returns {object}
+  */
   function dataForSubmit(href) {
     var dialogFieldData = {};
     dialogFieldData[href] = '/api/service_templates/' + serviceTemplate.id;
 
-    angular.forEach(allDialogFields, function(dialogField) {
-      if ((dialogField.type === "DialogFieldTagControl" || dialogField.type === "DialogFieldDropDownList")
-        && dialogField.default_value instanceof Array) {
-        dialogFieldData[dialogField.name] = dialogField.default_value.join();
-      } else {
-        dialogFieldData[dialogField.name] = dialogField.default_value;
-      }
-    });
-
-    return dialogFieldData;
+    return lodash.merge(vm.dialogData, dialogFieldData);
   }
-
-
+  /**
+   * Checks to see if a user is submitting a duplicate request
+   * @function alreadyInCart
+   * @returns {boolean}
+  */
   function alreadyInCart() {
     return ShoppingCart.isDuplicate(dataForSubmit('service_template_href'));
   }
 
+  /**
+   * Adds service to cart
+   * @function addToCart
+  */
   function addToCart() {
     if (!ShoppingCart.allowed()) {
       return;
