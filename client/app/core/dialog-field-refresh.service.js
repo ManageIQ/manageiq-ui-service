@@ -49,7 +49,7 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications, Au
         }
       }
     }
-    if (parseInt(dialogField.default_value, 10)) {
+    if (dialogField.data_type === "integer") {
       dialogField.default_value = parseInt(dialogField.default_value, 10);
     }
   }
