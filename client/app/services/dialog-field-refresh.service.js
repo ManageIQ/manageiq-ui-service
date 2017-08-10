@@ -78,7 +78,7 @@
       var dropDownValues = [];
       if (angular.isObject(newDialogField.values)) {
         newDialogField.values.forEach(function(value) {
-          if (parseInt(value[0], 10)) {
+          if (dialogField.data_type === "integer") {
             dropDownValues.push([parseInt(value[0], 10), value[1]]);
           } else {
             dropDownValues.push(value);
@@ -101,7 +101,7 @@
           }
         }
       }
-      if (parseInt(dialogField.default_value, 10)) {
+      if (dialogField.data_type === "integer") {
         dialogField.default_value = parseInt(dialogField.default_value, 10);
       }
     }

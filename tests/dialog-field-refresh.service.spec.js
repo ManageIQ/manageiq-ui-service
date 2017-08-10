@@ -331,7 +331,7 @@ describe('app.services.DialogFieldRefresh', function() {
       });
 
       describe('when there is a default value assigned', function() {
-        var dialogField = {name: 'dialog1', values: [[1, 'one'], [2, 'two']], default_value: 2};
+        var dialogField = {name: 'dialog1', values: [[1, 'one'], [2, 'two']], default_value: 2, data_type: "integer"};
         var dialogs = [{dialog_tabs: [{dialog_groups: [{dialog_fields: [dialogField]}]}]}];
 
         it('pushes the dialog field into the all dialog fields array', function() {
