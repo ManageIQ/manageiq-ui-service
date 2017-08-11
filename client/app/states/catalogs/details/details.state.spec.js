@@ -26,7 +26,7 @@ describe('Catalogs.details', function() {
     var notificationsErrorSpy;
     var notificationsSuccessSpy;
     var refreshSingleFieldSpy;
-    var autoRefreshSpy;
+
     var dialogFields = [{
       name: 'dialogField1',
       default_value: '1'
@@ -56,14 +56,8 @@ describe('Catalogs.details', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'AutoRefresh', 'ShoppingCart');
-
-      autoRefreshSpy = sinon.stub(AutoRefresh, 'listenForAutoRefresh').callsFake(function() {
-        return false;
-      });
-
-      refreshSingleFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
-    });
+      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'ShoppingCart');
+   });
 
     describe('controller initialization', function() {
       it('is created successfully', function() {
@@ -71,12 +65,6 @@ describe('Catalogs.details', function() {
         expect(controller).to.be.defined;
       });
 
-      it('listens for auto refresh messages', function() {
-        $controller($state.get('catalogs.details').controller, controllerResolves);
-        expect(autoRefreshSpy).to.have.been.calledWith(
-          dialogFields, [], 'service_catalogs/321/service_templates', 123, refreshSingleFieldSpy
-        );
-      });
 
       describe('#addToCartDisabled', function() {
         context('when the cart is not allowed', function() {
@@ -127,10 +115,9 @@ describe('Catalogs.details', function() {
 
             context('when no dialogs are being refreshed', function() {
               beforeEach(function() {
-                dialogs.resources[0].content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].beingRefreshed = false;
-
                 controller = $controller($state.get('catalogs.details').controller, controllerResolves);
                 controller.addingToCart = false;
+                controller.addToCartEnabled = true;
               });
 
               it('returns false', function() {
