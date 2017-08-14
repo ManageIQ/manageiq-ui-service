@@ -36,6 +36,12 @@ function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD,
   if ($window.location.href.includes("?timeout")) {
     Notifications.message('danger', '', __('Your session has timed out.'), true);
   }
+  
+  if ($window.location.href.includes('?pause')) {
+    const params = (new URL($window.document.location)).searchParams;
+    const pauseLength = params.get('pause');
+    Session.setPause(pauseLength);
+  }
 
   if (Session.privilegesError) {
     Notifications.error(__('User does not have privileges to login.'));
