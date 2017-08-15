@@ -17,6 +17,7 @@ export function SessionFactory($http, $q, $sessionStorage, $window, $state, $coo
     requestWsToken: requestWsToken,
     destroyWsToken: destroyWsToken,
     switchGroup: switchGroup,
+    setPause: setPause,
   };
 
   destroy();
@@ -35,7 +36,12 @@ export function SessionFactory($http, $q, $sessionStorage, $window, $state, $coo
     $sessionStorage.miqGroup = group || null;
     $sessionStorage.selectedMiqGroup = group;
   }
+  
+  function setPause(pauseLength) {
+    $sessionStorage.pause = pauseLength * 1000;
 
+    return $sessionStorage.pause;
+  }
   function destroy() {
     model.token = null;
     model.user = {};
