@@ -15,7 +15,7 @@
 - removed node 7 added node 8 [(#841)](https://github.com/ManageIQ/manageiq-ui-service/pull/841)
 - BZ#145848583 - Introduce service tag filtering [(#840)](https://github.com/ManageIQ/manageiq-ui-service/pull/840)
 
-## Changes for Sprint 64
+### Changes for Sprint 64
 - Update deps [(#839)](https://github.com/ManageIQ/manageiq-ui-service/pull/839)
 - PT#148515861 Service.custom_button_details state params cleaned [(#838)](https://github.com/ManageIQ/manageiq-ui-service/pull/838)
 - BZ#1460316 - Ensure action target collection matches button class [(#837)](https://github.com/ManageIQ/manageiq-ui-service/pull/837)
@@ -27,7 +27,7 @@
 - Resolves production redirect error on logout [(#828)](https://github.com/ManageIQ/manageiq-ui-service/pull/828)
 - Updates dependencies [(#827)](https://github.com/ManageIQ/manageiq-ui-service/pull/827)
 
-## Changes for Sprint 63
+### Changes for Sprint 63
 - Utilization graphs now react to any change in data [(#825)](https://github.com/ManageIQ/manageiq-ui-service/pull/825)
 - Adds "View Graphs" link to service details [(#823)](https://github.com/ManageIQ/manageiq-ui-service/pull/823)
 - Adds web access icon to Access dropdown [(#822)](https://github.com/ManageIQ/manageiq-ui-service/pull/822)
@@ -38,7 +38,7 @@
 - Fix for service catalog service dialog refresh function behaving differently [(#814)](https://github.com/ManageIQ/manageiq-ui-service/pull/814)
 - PT#146772249 - Error loading services without vms [(#812)](https://github.com/ManageIQ/manageiq-ui-service/pull/812)
 
-## Changes for Sprint 62
+### Changes for Sprint 62
 - PT#139486261 - Update angular patternfly [(#804)](https://github.com/ManageIQ/manageiq-ui-service/pull/804)
 - Fixed button link formatting [(#803)](https://github.com/ManageIQ/manageiq-ui-service/pull/803)
 - Coveralls integration [(#802)](https://github.com/ManageIQ/manageiq-ui-service/pull/802)
@@ -51,7 +51,7 @@
 - Added support for a vm to submit a custom button action [(#791)](https://github.com/ManageIQ/manageiq-ui-service/pull/791)
 - BZ#145849913 Allows for image assets to be dynamically skinned [(#790)](https://github.com/ManageIQ/manageiq-ui-service/pull/790)
 
-## Changes for Sprint 61
+### Changes for Sprint 61
 - PT#145689219-Adds support for proxy_protocol env [(#779)](https://github.com/ManageIQ/manageiq-ui-service/pull/779)
 - Dupilcate of #775 for master - Ensures ansible service displays vm resources [(#776)](https://github.com/ManageIQ/manageiq-ui-service/pull/776)
 - Login and page refresh not working [(#774)](https://github.com/ManageIQ/manageiq-ui-service/pull/774)
