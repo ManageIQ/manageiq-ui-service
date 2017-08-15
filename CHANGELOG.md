@@ -3,15 +3,15 @@
 - Removed ace component from SUI [(#863)](https://github.com/ManageIQ/manageiq-ui-service/pull/863)
 - Update code owners to be formatted correctly [(#859)](https://github.com/ManageIQ/manageiq-ui-service/pull/859)
 - Update code owners [(#857)](https://github.com/ManageIQ/manageiq-ui-service/pull/857)
-- Fixed: the VM status shows "retired" for all VM's
+- Fixed: the VM status shows "retired" for all VM's [(#856)](https://github.com/ManageIQ/manageiq-ui-service/pull/856)
 - Adds font fabulous dep [(#854)](https://github.com/ManageIQ/manageiq-ui-service/pull/854)
 
 ### Changes for Sprint 65
 - Display colored fonticons before custom buttons [(#851)](https://github.com/ManageIQ/manageiq-ui-service/pull/851)
 - BZ#142772825 - snapshottimeline [(#848)](https://github.com/ManageIQ/manageiq-ui-service/pull/848)
-- BZ#1469802 - Buttons are updated on power operations
+- BZ#1469802 - Buttons are updated on power operations [(#844)](https://github.com/ManageIQ/manageiq-ui-service/pull/844)
 - Remove Saucelabs from Travis CI [(#843)](https://github.com/ManageIQ/manageiq-ui-service/pull/843)
-- BZ 1467569- in the self service portal after a little time displaying a vm
+- BZ 1467569- in the self service portal after a little time displaying a vm [(#842)](https://github.com/ManageIQ/manageiq-ui-service/pull/842
 - removed node 7 added node 8 [(#841)](https://github.com/ManageIQ/manageiq-ui-service/pull/841)
 - BZ#145848583 - Introduce service tag filtering [(#840)](https://github.com/ManageIQ/manageiq-ui-service/pull/840)
 
