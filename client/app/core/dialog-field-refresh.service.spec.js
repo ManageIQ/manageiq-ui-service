@@ -140,7 +140,10 @@ describe('DialogFieldRefresh', function() {
              'dialog2': 'value2'
            };
             return DialogFieldRefresh.refreshDialogField(dialogData,['dialog1'],'/test/1',1234).then((response) => {
-              expect(collectionsApiSpy).to.have.been.calledWith('/test/1', 1234, {});
+              expect(collectionsApiSpy).to.have.been.calledWith('/test/1',
+              1234,
+              {},
+              '{"action":"refresh_dialog_fields","resource":{"dialog_fields":{"dialog1":"value1","dialog2":"value2"},"fields":["dialog1"]}}');
             })
         });
         it('updates the attributes for the dialog field', function(done) {
