@@ -1,3 +1,5 @@
+// sass-lint:disable no-important
+
 // Over-ridden until fixed in angular patternfly
 .pf-expand-placeholder
   margin-right: 15px
@@ -9,7 +11,6 @@
 
     button
       margin-bottom: 4px
-
 
 // This should be in patternfly
 .dropdown-menu-appended-to-body
@@ -41,12 +42,25 @@
   .toolbar-pf-actions
 
     .form-group
-      margin-bottom: 0 !important // sass-lint:disable-line no-important
+      margin-bottom: 0 !important
+
+    // Override margin-left added to parent of pfFilter complex select
+    .btn-group + .dropdown
+      margin-left: 0
+
+    // pf-toolbar-dropdown goes crazy when given sufficent cause to, this keeps it inline
+    .toolbar-apf-filter
+      .dropdown-menu
+        max-height: 78em
+        max-width: 202px
+        overflow-y: scroll
+
+        li
+          overflow-x: scroll
 
 // Override patternfly-timeline default icon size
 .timeline-pf-drop
-  font-size: 20px !important // sass-lint:disable-line no-important
+  font-size: 20px !important
 
   &:hover
-    font-size: 30px !important // sass-lint:disable-line no-important
-
+    font-size: 30px !important

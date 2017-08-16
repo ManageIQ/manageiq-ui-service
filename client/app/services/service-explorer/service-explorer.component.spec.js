@@ -1,11 +1,12 @@
 describe('Component: serviceExplorer', () => {
-  let scope, ctrl;
+  let scope, ctrl, collectionsApiMock;
 
   beforeEach(() => {
     module('app.core', 'app.states', 'app.services');
-    bard.inject('$componentController', 'EventNotifications', 'ListView', 'ServicesState', '$state');
+    bard.inject('$componentController', 'EventNotifications', 'ListView', 'ServicesState', '$state', 'CollectionsApi');
     ctrl = $componentController('serviceExplorer', {$scope: scope}, {});
     ctrl.$onInit();
+    collectionsApiMock = sinon.mock(CollectionsApi);
   });
 
   it('is defined', () => expect(ctrl).to.be.defined);
@@ -52,14 +53,30 @@ describe('Component: serviceExplorer', () => {
   });
 
   it('should set toolbar', () => {
-    expect(ctrl.headerConfig.sortConfig.fields).to.have.lengthOf(3);
-    expect(ctrl.headerConfig.sortConfig.currentField).to.eql({id: 'created_at', title: 'Created', sortType: 'numeric'});
+
+    expect(ctrl.toolbarConfig.sortConfig.fields).to.have.lengthOf(3);
+    expect(ctrl.toolbarConfig.sortConfig.currentField).to.eql({
+      id: 'created_at',
+      title: 'Created',
+      sortType: 'numeric'
+    });
   });
 
   it('should allow for sorting to be able to be updated', () => {
     const catalogSpy = sinon.spy(ServicesState.services, 'setSort');
-    ctrl.headerConfig.sortConfig.onSortChange('name', true);
+    ctrl.toolbarConfig.sortConfig.onSortChange('name', true);
 
     expect(catalogSpy).to.have.been.called.once;
+  });
+
+  it('should make a query for services', () => {
+    collectionsApiMock
+      .expects('query')
+      .withArgs('services', { filter: ["ancestry=null"] })
+      .returns(Promise.resolve());
+
+    ctrl.resolveServices(20, 0);
+
+    collectionsApiMock.verify();
   });
 });
