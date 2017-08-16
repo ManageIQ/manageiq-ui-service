@@ -134,7 +134,18 @@ describe('DialogFieldRefresh', function() {
           triggerAutoRefreshSpy = sinon.stub(DialogFieldRefresh, 'triggerAutoRefresh');
           collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
         });
-
+        // refreshDialogField calls it and watch for the variables it was called with
+        it('allows a dialog field to be refreshed', () => {
+    
+           //dialogData, dialogField, url, resourceId
+           const dialogData = {
+             'dialog1': 'value1',
+             'dialog2': 'value2'
+           };
+            return DialogFieldRefresh.refreshDialogField(dialogData,['dialog1'],'/test/1',1234).then((response) => {
+              expect(collectionsApiSpy).to.have.been.calledWith('/test/1', 1234, {});
+            })
+        });
         it('updates the attributes for the dialog field', function(done) {
           DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialog1, 'the_url', 123);
           done();

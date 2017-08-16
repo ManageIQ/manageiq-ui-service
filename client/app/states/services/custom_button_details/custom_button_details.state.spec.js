@@ -9,7 +9,6 @@ describe('services.custom_button_details', function() {
     var notificationsErrorSpy;
     var notificationsSuccessSpy;
     var refreshSingleFieldSpy;
-    var autoRefreshSpy;
     var dialogFields = [{
       name: 'dialogField1',
       default_value: '1'
@@ -27,17 +26,13 @@ describe('services.custom_button_details', function() {
     var button = {
       name: 'buttonName',
       applies_to_id: 456,
-      applies_to_class: 'Service'
+      applies_to_class: 'servicetemplate'
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'AutoRefresh');
+      bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh');
 
-      autoRefreshSpy = sinon.stub(AutoRefresh, 'listenForAutoRefresh').callsFake(function() {
-        return false;
-      });
-
-      refreshSingleFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
+      refreshSingleFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshDialogField');
 
       controller = $controller($state.get('services.custom_button_details').controller, {
         dialog: {content: [dialog], id: 213},
@@ -49,20 +44,32 @@ describe('services.custom_button_details', function() {
           serviceTemplateCatalogId: 321
         }
       });
+      const dialogData = {
+        "validations": {
+          "isValid": true
+        },
+        "data": {
+          "dialogField1": 1,
+          "dialogField2": 2
+        }
+      };
+      controller.setDialogData(dialogData);
     });
 
     describe('controller initialization', function() {
       it('is created successfully', function() {
         expect(controller).to.be.defined;
       });
-
-      it('listens for auto refresh messages', function() {
-        expect(autoRefreshSpy).to.have.been.calledWith(
-          dialogFields, [], 'service_dialogs/', 213, refreshSingleFieldSpy
-        );
+    });
+    describe('dialog values are updated', () => {
+      it('has values updated', () => {
+        const dialogValues = {
+          "dialogField1": 1,
+          "dialogField2": 2
+        }; 
+        expect(controller.dialogData).to.eql(dialogValues);
       });
     });
-
     describe('controller#submitCustomButton', function() {
       describe('when the API call is successful', function() {
         beforeEach(function() {
