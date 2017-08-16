@@ -101,7 +101,7 @@
         "SwitchCase": 1,
         "MemberExpression":"off",
         "FunctionDeclaration": {
-          "parameters": "off"
+          "parameters": "first"
         }
       }
     ],
