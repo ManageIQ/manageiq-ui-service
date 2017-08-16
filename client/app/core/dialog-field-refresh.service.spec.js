@@ -134,10 +134,7 @@ describe('DialogFieldRefresh', function() {
           triggerAutoRefreshSpy = sinon.stub(DialogFieldRefresh, 'triggerAutoRefresh');
           collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
         });
-        // refreshDialogField calls it and watch for the variables it was called with
         it('allows a dialog field to be refreshed', () => {
-    
-           //dialogData, dialogField, url, resourceId
            const dialogData = {
              'dialog1': 'value1',
              'dialog2': 'value2'
