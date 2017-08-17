@@ -9,11 +9,11 @@ export function CustomButtonDetailsState(routerHelper) {
 function getStates() {
   return {
     'services.custom_button_details': {
-      url: '/{serviceId:int}/custom_button_details',
+      url: '/:serviceId/custom_button_details',
       templateUrl,
       controller: StateController,
       controllerAs: 'vm',
-      title: N_('Service Custom Button Details'),
+      title: __('Service Custom Button Details'),
       params: {
         button: {
           value: null,
@@ -41,12 +41,12 @@ function resolveService($stateParams, CollectionsApi) {
 function resolveDialog($stateParams, CollectionsApi) {
   const options = {expand: 'resources', attributes: 'content'};
   const dialogId = $stateParams.button.resource_action.dialog_id;
-
+ 
   return CollectionsApi.query('service_dialogs/' + dialogId, options);
 }
 
 /** @ngInject */
-function StateController($state, $stateParams, dialog, service, CollectionsApi, EventNotifications, DialogFieldRefresh, AutoRefresh) {
+function StateController($state, $stateParams, dialog, service, CollectionsApi, EventNotifications, DialogFieldRefresh) {
   var vm = this;
   vm.title = __('Custom button action');
   vm.dialogs = dialog.content;
@@ -54,42 +54,30 @@ function StateController($state, $stateParams, dialog, service, CollectionsApi, 
   vm.serviceId = $stateParams.serviceId;
   vm.button = $stateParams.button;
   vm.submitCustomButton = submitCustomButton;
+  vm.submitButtonEnabled = false;
+  vm.dialogUrl = 'service_dialogs/';
+  vm.refreshField = refreshField;
+  vm.setDialogData = setDialogData;
+  vm.dialogData = {};
 
-  var autoRefreshableDialogFields = [];
-  var allDialogFields = [];
+  function refreshField(field) {
+    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], vm.dialogUrl, dialog.id);
+  }
 
-  DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
-
-  var dialogUrl = 'service_dialogs/';
-
-  angular.forEach(allDialogFields, function(dialogField) {
-    dialogField.refreshSingleDialogField = function() {
-      DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialogField, dialogUrl, dialog.id);
-    };
-  });
-
-  AutoRefresh.listenForAutoRefresh(
-    allDialogFields,
-    autoRefreshableDialogFields,
-    dialogUrl,
-    dialog.id,
-    DialogFieldRefresh.refreshSingleDialogField
-  );
-
+  function setDialogData(data) {
+    vm.submitButtonEnabled = data.validations.isValid;
+    vm.dialogData = data.data;
+  }
+  
   function submitCustomButton() {
-    const dialogFieldData = {};
     const buttonClass = vm.button.applies_to_class.toLowerCase();
-    const collection = buttonClass === 'service' ? 'services' : buttonClass === 'vm' ? 'vms' : null;
-
-    allDialogFields.forEach((dialogField) => {
-      dialogFieldData[dialogField.name] = dialogField.default_value;
-    });
+    const collection = buttonClass === 'servicetemplate' ? 'services' : buttonClass === 'vm' ? 'vms' : null;
 
     CollectionsApi.post(
       collection,
       $stateParams.serviceId,
       {},
-      angular.toJson({action: $stateParams.button.name, resource: dialogFieldData})
+      angular.toJson({action: $stateParams.button.name, resource: vm.dialogData})
     ).then(submitSuccess, submitFailure);
 
     function submitSuccess(result) {

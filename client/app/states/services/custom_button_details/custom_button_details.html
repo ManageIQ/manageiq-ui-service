@@ -16,7 +16,7 @@
     <div class="col-md-12 ss-details-header ss-marketplace-details-header">
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ss-details-header__actions">
-          <button type="button" class="btn btn-primary" ng-click="vm.submitCustomButton()" translate>Submit Request</button>
+          <button type="button" ng-disabled="!vm.submitButtonEnabled" class="btn btn-primary" ng-click="vm.submitCustomButton()" translate>Submit Request</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
     <div class="col-md-12">
       <div class="row">
         <div ng-repeat="dialog in ::vm.dialogs">
-          <dialog-content dialog="dialog"></dialog-content>
+          <dialog-user class="dialog-box" dialog="dialog" refresh-field="vm.refreshField(field)" on-update="vm.setDialogData(data)"></dialog-user>
         </div>
       </div>
     </div>
