@@ -28,5 +28,19 @@ describe('DialogFieldRefresh', () => {
         '{"action":"refresh_dialog_fields","resource":{"dialog_fields":{"dialog1":"value1","dialog2":"value2"},"fields":["dialog1"]}}');
     })
   });
+
+  it('reports back when a field fails to refresh', () => {
+    const dialogData = {
+      'dialog1': 'value1',
+      'dialog2': 'value2'
+    };
+    const failureResponse = {"status":"failed"};
+    const collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(failureResponse));
+    return DialogFieldRefresh.refreshDialogField(dialogData, ['dialog1'], '/test/1', 1234).then((response) => {
+
+    }).catch((err) =>{ 
+      expect(err).to.eq(failureResponse);
+    });
+  });
 });
 
