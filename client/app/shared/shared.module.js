@@ -3,7 +3,6 @@ import {ActionButtonGroupComponent} from "./action-button-group/action-button-gr
 import {AutofocusDirective} from "./autofocus.directive.js";
 import {ConfirmationDirective} from "./confirmation/confirmation.directive.js";
 import {CustomDropdownComponent} from "./custom-dropdown/custom-dropdown.component.js";
-import {DialogContentComponent} from "./dialog-content/dialog-content.component.js";
 import {ElapsedTime} from "./elapsedTime.filter.js";
 import {IconListComponent} from "./icon-list/icon-list.component.js";
 import {IconStatusComponent} from './icon-status.component.js';
@@ -28,7 +27,6 @@ export const SharedModule = angular
   ])
   .component('actionButtonGroup', ActionButtonGroupComponent)
   .component('customDropdown', CustomDropdownComponent)
-  .component('dialogContent', DialogContentComponent)
   .component('explorerPagination', PaginationComponent)
   .component('iconList', IconListComponent)
   .component('iconStatus', IconStatusComponent)
