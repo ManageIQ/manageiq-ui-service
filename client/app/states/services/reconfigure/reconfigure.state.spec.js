@@ -19,7 +19,9 @@ describe('State: services.reconfigure', () => {
         }]
       }]
     };
-    let service = {provision_dialog: dialog, id: 123, service_template_catalog_id: 1234};
+    const options = {"dialog": {"dialog_dialogField1": "1", "dialog_dialogField2":"2"}};
+
+    let service = {provision_dialog: dialog, id: 123, service_template_catalog_id: 1234, options: options};
 
     beforeEach(() => {
       bard.inject('$controller', '$state', '$stateParams', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh');
