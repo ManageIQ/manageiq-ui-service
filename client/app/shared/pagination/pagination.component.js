@@ -93,7 +93,7 @@ function ComponentController() {
   }
 
   function leftBoundary() {
-    vm.leftBoundary = vm.offset + 1;
+    vm.leftBoundary = vm.count === 0 ? 0 : vm.offset + 1;
   }
 
   function rightBoundary() {
