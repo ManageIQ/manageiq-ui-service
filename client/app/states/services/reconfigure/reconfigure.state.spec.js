@@ -4,7 +4,7 @@ describe('State: services.reconfigure', () => {
   });
 
   describe('controller', () => {
-    let collectionsApiSpy, ctrl, notificationsErrorSpy, notificationsSuccessSpy, autoRefreshSpy, refreshSingleFieldSpy;
+    let collectionsApiSpy, ctrl, notificationsErrorSpy, notificationsSuccessSpy;
     let dialogFields = [{
       name: 'dialogField1',
       default_value: '1'
@@ -19,16 +19,12 @@ describe('State: services.reconfigure', () => {
         }]
       }]
     };
-    let service = {provision_dialog: dialog, id: 123, service_template_catalog_id: 1234};
+    const options = {"dialog": {"dialog_dialogField1": "1", "dialog_dialogField2":"2"}};
+
+    let service = {provision_dialog: dialog, id: 123, service_template_catalog_id: 1234, options: options};
 
     beforeEach(() => {
-      bard.inject('$controller', '$state', '$stateParams', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'AutoRefresh');
-
-      autoRefreshSpy = sinon.stub(AutoRefresh, 'listenForAutoRefresh').callsFake(() => {
-        return false;
-      });
-
-      refreshSingleFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
+      bard.inject('$controller', '$state', '$stateParams', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh');
 
       ctrl = $controller($state.get('services.reconfigure').controller, {
         $stateParams: {
@@ -41,12 +37,6 @@ describe('State: services.reconfigure', () => {
     describe('controller initialization', () => {
       it('is created successfully', () => {
         expect(ctrl).to.be.defined;
-      });
-
-      it('listens for auto refresh messages', () => {
-        expect(autoRefreshSpy).to.have.been.calledWith(
-          dialogFields, [], 'services/1234/service_templates', 123, refreshSingleFieldSpy
-        );
       });
 
       it('resolves data', () => {
@@ -72,13 +62,20 @@ describe('State: services.reconfigure', () => {
         });
 
         it('POSTs to the service templates API', () => {
+          const dialogData = {
+            "data":{
+              "dialogField1":"1",
+              "dialogField2":"2"
+            }
+          };
+          ctrl.setDialogData(dialogData);
           ctrl.submitDialog();
 
           expect(collectionsApiSpy).to.have.been.calledWith(
             'services',
             123,
             {},
-            '{"action":"reconfigure","resource":{"href":"/api/services/123","dialogField1":"1","dialogField2":"2"}}'
+            '{"action":"reconfigure","resource":{"dialogField1":"1","dialogField2":"2","href":"/api/services/123"}}'
           );
         });
 
