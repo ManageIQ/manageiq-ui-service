@@ -18,13 +18,18 @@ describe('Catalogs.details', function() {
       $state.get('catalogs.details').resolve.dialogs($stateParams, CollectionsApi);
       expect(collectionsApiSpy).to.have.been.calledWith('service_templates/123/service_dialogs', options);
     });
+    
+    it('should query the API for service templates', function() {
+      const serviceTemplateSpy = sinon.spy(CollectionsApi, 'get');
+      var options = { attributes: "picture,picture.image_href" };
+      $state.get('catalogs.details').resolve.serviceTemplate($stateParams, CollectionsApi);
+      expect(serviceTemplateSpy).to.have.been.calledWith('service_templates',123, options);
+    });
   });
 
   describe('controller', function() {
     var collectionsApiSpy;
     var controller;
-    var notificationsErrorSpy;
-    var notificationsSuccessSpy;
     var refreshSingleFieldSpy;
 
     var dialogFields = [{
@@ -48,7 +53,7 @@ describe('Catalogs.details', function() {
       }]
     };
 
-    var serviceTemplate = {id: 123, service_template_catalog_id: 321};
+    var serviceTemplate = {id: 123, service_template_catalog_id: 321, name: 'test template'};
 
     var controllerResolves = {
       dialogs: dialogs,
@@ -56,7 +61,7 @@ describe('Catalogs.details', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'ShoppingCart');
+      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'EventNotifications', 'DialogFieldRefresh', 'ShoppingCart');
    });
 
     describe('controller initialization', function() {
@@ -64,9 +69,34 @@ describe('Catalogs.details', function() {
         controller = $controller($state.get('catalogs.details').controller, controllerResolves);
         expect(controller).to.be.defined;
       });
-
+      it('it allows a field to be refreshed', () => {
+        controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+        const refreshSpy = sinon.stub(DialogFieldRefresh, 'refreshDialogField').returns(Promise.resolve({'status':'success'}));
+        const dialogData = {
+          "dialogField1": '1',
+          "dialogField2": '2'
+        };
+        const field = {"name":"dialogField1"};
+        controller.dialogData = dialogData;
+         return controller.refreshField(field).then((data) => {
+          expect(refreshSpy).to.have.been.calledWith(dialogData, ["dialogField1"], 'service_catalogs/321/service_templates', 123 );
+         });
+        
+      });
+      it('allows dialog data to be updated' ,()  => {
+        const testData = {
+          validations:{ isValid: true },
+          data: {
+            "dialogField1": '1',
+            "dialogField2": '2'
+          }
+        };
+        controller.setDialogData(testData);
+        expect(controller.dialogData).to.deep.equal({"dialogField1": '1', "dialogField2": '2'});
+      });
 
       describe('#addToCartDisabled', function() {
+
         context('when the cart is not allowed', function() {
           beforeEach(function() {
             sinon.stub(ShoppingCart, 'allowed').callsFake(function() {
@@ -78,6 +108,10 @@ describe('Catalogs.details', function() {
 
           it('returns true', function() {
             expect(controller.addToCartDisabled()).to.equal(true);
+          });
+          it('fails to add to cart', () => {
+            const addToCart = controller.addToCart();
+            expect(addToCart).to.equal(undefined);
           });
         });
 
@@ -92,13 +126,62 @@ describe('Catalogs.details', function() {
             beforeEach(function() {
               controller = $controller($state.get('catalogs.details').controller, controllerResolves);
               controller.addingToCart = true;
+              controller.dialogData = {
+              "dialogField1": '1',
+              "dialogField2": '2'
+            };
             });
 
             it('returns true', function() {
               expect(controller.addToCartDisabled()).to.equal(true);
             });
-          });
 
+            it('add to cart successfully', () => {
+              const addSpy = sinon.stub(ShoppingCart, 'add').returns(Promise.resolve(""));
+              controller.addToCart();
+              const expectedObject = {
+                data: {
+                  dialogField1: '1',
+                  dialogField2: '2',
+                  service_template_href: '/api/service_templates/123'
+                },
+                description: 'test template'
+              };
+              expect(addSpy).to.have.been.calledWith(expectedObject);
+            });
+            it('adds successfully but is a duplicate', () => {
+              const addSpy = sinon.stub(ShoppingCart, 'add').returns(Promise.resolve({"duplicate":true}));
+              const notificationsSuccessSpy = sinon.spy(EventNotifications, 'success');
+
+              return controller.addToCart().then((data) =>{
+                expect(notificationsSuccessSpy).to.have.been.calledWith(`Item added to shopping cart, but it's a duplicate of an existing item`);
+              });
+            });
+            it('fails to add to cart', () => {
+              const addSpy = sinon.stub(ShoppingCart, 'add').returns(Promise.reject('generic error'));
+              const notificationsErrorSpy = sinon.spy(EventNotifications, 'error');
+              return controller.addToCart().then((data) => {
+                expect(notificationsErrorSpy).to.have.been.calledWith(`There was an error adding to shopping cart: generic error`);
+              });
+            });
+          });
+          context('when you check for a duplicate cart', () => {
+             beforeEach(function() {
+              controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+              controller.addingToCart = true;
+            });
+            it ('checks for a duplicate cart', () => {
+              const shoppingCartSpy = sinon.stub(ShoppingCart, 'isDuplicate').returns(false);
+              controller.dialogData = {
+                "dialogField1": '1',
+                "dialogField2": '2'
+              };
+              const expectedData = controller.dialogData;
+              expectedData.service_template_href = '/api/service_templates/123';
+              controller.alreadyInCart();
+              expect(shoppingCartSpy).to.have.been.calledWith(expectedData);
+            })
+          });
           context('when addingToCart is false', function() {
             context('when any dialogs are being refreshed', function() {
               beforeEach(function() {

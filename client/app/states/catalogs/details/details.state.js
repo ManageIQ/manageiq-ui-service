@@ -128,8 +128,8 @@ function Controller(dialogs, serviceTemplate, EventNotifications, ShoppingCart, 
     var dialogFieldData = dataForSubmit('service_template_href');
 
     vm.addingToCart = true;
-
-    ShoppingCart.add({
+    
+    return ShoppingCart.add({
       description: vm.serviceTemplate.name,
       data: dialogFieldData,
     })
