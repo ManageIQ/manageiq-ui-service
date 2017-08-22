@@ -49,6 +49,7 @@ export function SessionFactory($http, $q, $sessionStorage, $window, $state, $coo
     delete $http.defaults.headers.common['X-Auth-Token'];
     delete $http.defaults.headers.common['X-Miq-Group'];
     delete $sessionStorage.miqGroup;
+    delete $sessionStorage.selectedMiqGroup;
     delete $sessionStorage.token;
     delete $sessionStorage.user;
   }
