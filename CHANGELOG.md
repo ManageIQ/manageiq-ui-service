@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+
+## Sprint 67 ending 2017-08-21
+- Updated service reconfigure to use dialog component [(#877)](https://github.com/ManageIQ/manageiq-ui-service/pull/877)
+- Extract and upload latest text for translation to zanata [(#876)](https://github.com/ManageIQ/manageiq-ui-service/pull/876)
+- Set leftBoundary as zero if there is nothing to display [(#875)](https://github.com/ManageIQ/manageiq-ui-service/pull/875)
+- Updated custom button details to use Dialog Component [(#874)](https://github.com/ManageIQ/manageiq-ui-service/pull/874)
+- Update deps [(#872)](https://github.com/ManageIQ/manageiq-ui-service/pull/872)
+- Bumped version of UI-components [(#871)](https://github.com/ManageIQ/manageiq-ui-service/pull/871)
+- Added ui-components Dialog to SUI [(#867)](https://github.com/ManageIQ/manageiq-ui-service/pull/867)
+
 ### Changes for Sprint 66
 - Updated code owners for project [(#866)](https://github.com/ManageIQ/manageiq-ui-service/pull/866)
 - Removed ace component from SUI [(#863)](https://github.com/ManageIQ/manageiq-ui-service/pull/863)
