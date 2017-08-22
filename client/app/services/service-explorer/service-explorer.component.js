@@ -312,6 +312,16 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
 
   // Private
   function filterChange(filters) {
+    if (filters.length) {
+      const latestFilter = filters[filters.length - 1];
+      const latestFilterCategory = latestFilter.value.substring(-1, latestFilter.value.lastIndexOf('/'));
+
+      if (latestFilter.id === "tags.name") {
+        lodash.remove(filters, (tag) => lodash.includes(tag.value, latestFilterCategory));
+        filters.push(latestFilter);
+      }
+    }
+
     ServicesState.services.setFilters(filters);
     resolveServices(vm.limit, 0);
   }
@@ -321,10 +331,10 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
     const filterCategories = {};
 
     tags.forEach((tag) => {
-      if (tag.name.match(/\//g).length === 2) {
-        const displayName = tag.categorization.displayName;
+      const displayName = tag.categorization.displayName;
 
-        filterValues.push(tag.name);
+      if (tag.name.match(/\//g).length === 2) {
+        filterValues.push({title: displayName.substr(-displayName.lastIndexOf(':')), id: tag.name});
         filterCategories[`${tag.name}`] = {
           id: tag.name,
           title: displayName.substr(-displayName.lastIndexOf(':')),
@@ -332,7 +342,12 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
         };
       }
       if (tag.name.match(/\//g).length === 3) {
-        filterCategories[tag.name.substring(-1, tag.name.lastIndexOf('/'))].filterValues.push(tag.name.substr(tag.name.lastIndexOf('/') + 1));
+        filterCategories[tag.name.substring(-1, tag.name.lastIndexOf('/'))]
+          .filterValues
+          .push({
+            title: displayName.substr(displayName.lastIndexOf(':') + 1),
+            id: tag.name.substr(tag.name.lastIndexOf('/') + 1),
+          });
       }
     });
 
