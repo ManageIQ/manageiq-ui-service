@@ -272,15 +272,16 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
   function getQueryFilters(filters) {
     const queryFilters = ['ancestry=null'];
 
-    angular.forEach(filters, function(nextFilter) {
+    angular.forEach(filters, (nextFilter) => {
       if (nextFilter.id === 'name') {
-        queryFilters.push("name='%" + nextFilter.value + "%'");
+        queryFilters.push(`name='%${nextFilter.value}%'`);
+      } else if (nextFilter.id === 'tags.name') {
+        const tagValue = nextFilter.value;
+        queryFilters.push(`${nextFilter.id}=${tagValue.filterCategory.id}${tagValue.filterDelimiter}${tagValue.filterValue.id}`);
+      } else if (angular.isDefined(nextFilter.operator)) {
+        queryFilters.push(`${nextFilter.id}${nextFilter.operator}${nextFilter.value}`);
       } else {
-        if (angular.isDefined(nextFilter.operator)) {
-          queryFilters.push(nextFilter.id + nextFilter.operator + nextFilter.value);
-        } else {
-          queryFilters.push(nextFilter.id + '=' + nextFilter.value);
-        }
+        queryFilters.push(`${nextFilter.id}=${nextFilter.value}`);
       }
     });
 

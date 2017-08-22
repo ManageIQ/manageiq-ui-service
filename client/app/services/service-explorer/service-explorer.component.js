@@ -314,10 +314,9 @@ function ComponentController($state, ServicesState, Language, ListView, Chargeba
   function filterChange(filters) {
     if (filters.length) {
       const latestFilter = filters[filters.length - 1];
-      const latestFilterCategory = latestFilter.value.substring(-1, latestFilter.value.lastIndexOf('/'));
 
       if (latestFilter.id === "tags.name") {
-        lodash.remove(filters, (tag) => lodash.includes(tag.value, latestFilterCategory));
+        lodash.remove(filters, (item) => item.value.filterCategory);
         filters.push(latestFilter);
       }
     }

@@ -78,5 +78,13 @@ describe('Component: serviceExplorer', () => {
     ctrl.resolveServices(20, 0);
 
     collectionsApiMock.verify();
+    ctrl.$onDestroy();
+
+  });
+
+  it('should change view type', () => {
+    expect(ctrl.viewType).to.equal("listView");
+    ctrl.viewSelected("tableView");
+    expect(ctrl.viewType).to.equal("tableView");
   });
 });
