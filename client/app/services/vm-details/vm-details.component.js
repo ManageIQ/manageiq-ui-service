@@ -1,4 +1,4 @@
-/* eslint camelcase: "off" */
+/* eslint-disable no-unused-expressions */
 import './_vm-details.sass'
 import templateUrl from './vm-details.html'
 
@@ -9,8 +9,8 @@ export const VmDetailsComponent = {
 }
 
 /** @ngInject */
-function ComponentController ($stateParams, VmsService, ServicesState, sprintf, lodash,
-                              EventNotifications, Polling, PowerOperations, LONG_POLLING_INTERVAL, UsageGraphsService) {
+function ComponentController ($state, $stateParams, VmsService, ServicesState, sprintf, lodash,
+  EventNotifications, Polling, ModalService, PowerOperations, LONG_POLLING_INTERVAL, UsageGraphsService) {
   const vm = this
   vm.$onInit = activate
   vm.$onDestroy = onDestroy
@@ -19,12 +19,15 @@ function ComponentController ($stateParams, VmsService, ServicesState, sprintf, 
   vm.stopVm = stopVM
   vm.suspendVM = suspendVM
   vm.getListActions = getListActions
+  vm.getSnapshotListActions = getSnapshotListActions
+  vm.viewSnapshots = viewSnapshots
+  vm.processSnapshot = processSnapshot
   vm.pollVM = pollVM
   vm.retireVM = retireVM
   vm.getData = resolveData
-  vm.storageChartConfigOptions = {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')}
-  vm.memoryChartConfigOptions = {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')}
-  vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')}
+  vm.storageChartConfigOptions = { 'units': __('GB'), 'chartId': 'storageChart', 'label': __('used') }
+  vm.memoryChartConfigOptions = { 'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used') }
+  vm.cpuChartConfigOptions = { 'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used') }
   vm.processInstanceVariables = processInstanceVariables
 
   function onDestroy () {
@@ -44,6 +47,7 @@ function ComponentController ($stateParams, VmsService, ServicesState, sprintf, 
       viewType: $stateParams.viewType || 'detailsView',
       viewSelected: viewSelected,
       instance: {},
+      snapshotListActions: {},
       cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
       memoryChart: UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions),
       storageChart: UsageGraphsService.getChartConfig(vm.storageChartConfigOptions),
@@ -86,6 +90,20 @@ function ComponentController ($stateParams, VmsService, ServicesState, sprintf, 
     resolveData(true)
   }
 
+  function processSnapshot () {
+    const modalOptions = {
+      component: 'processSnapshotsModal',
+      resolve: {
+        vm: () => vm.vmDetails,
+        modalType: () => 'create'
+      },
+      size: 'lg'
+    }
+    ModalService.open(modalOptions)
+  }
+  function viewSnapshots () {
+    $state.go('vms.snapshots', { vmId: vm.vmDetails.id })
+  }
   function resolveData (refresh) {
     return VmsService.getVm($stateParams.vmId, refresh).then(handleSuccess, handleFailure)
 
@@ -119,13 +137,14 @@ function ComponentController ($stateParams, VmsService, ServicesState, sprintf, 
       vm.memoryChart = UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions, usedMemory, totalMemory)
       vm.storageChart = UsageGraphsService.getChartConfig(vm.storageChartConfigOptions, usedStorage, allocatedStorage)
       if (vm.vmDetails.retired) {
-        EventNotifications.clearAll(lodash.find(EventNotifications.state().groups, {notificationType: 'warning'}))
+        EventNotifications.clearAll(lodash.find(EventNotifications.state().groups, { notificationType: 'warning' }))
         EventNotifications.warn(sprintf(__('%s is a retired resource'), vm.vmDetails.name), {
           persistent: true,
           unread: false
         })
       }
       getListActions()
+      getSnapshotListActions()
       hasCustomButtons()
       vm.loading = false
     }
@@ -142,7 +161,38 @@ function ComponentController ($stateParams, VmsService, ServicesState, sprintf, 
 
     return lodash.compact(buttons).length > 0
   }
+  function getSnapshotListActions () {
+    const snapshotOptionsMenu = {
+      title: __('Snapshots'),
+      name: __('Snapshots'),
+      actionName: 'snapshotOperations',
+      icon: 'fa fa-camera',
+      actions: [],
+      isDisabled: false
+    }
+    const snapshotOptionsActions = [
+      {
+        name: __('View'),
+        actionName: 'view',
+        title: __('View snapshots'),
+        actionFn: viewSnapshots,
+        permission: vm.permissions.viewSnapshots
+      },
+      {
+        name: __('Create'),
+        actionName: 'create',
+        title: __('Create snapshots'),
+        actionFn: processSnapshot,
+        permission: vm.permissions.vm_snapshot_add
+      }
+    ]
+    snapshotOptionsActions.forEach((menuOption) => {
+      menuOption.permission ? snapshotOptionsMenu.actions.push(menuOption) : false
+    })
+    vm.snapshotListActions = [snapshotOptionsMenu]
 
+    return vm.snapshotListActions
+  }
   function hasUsageGraphs () {
     if (angular.isUndefined(vm.vmDetails.allocated_disk_storage) || vm.vmDetails.allocated_disk_storage === 0) {
       vm.usageGraphs = false
