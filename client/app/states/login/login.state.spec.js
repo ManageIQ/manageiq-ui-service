@@ -9,7 +9,11 @@ describe('State: login', () => {
     beforeEach(() => {
       bard.inject('$controller', '$state', '$stateParams', 'Session', '$window', 'API_LOGIN', 'API_PASSWORD');
 
-      ctrl = $controller($state.get('login').controller, {});
+      ctrl = $controller($state.get('login').controller, {
+        Session: {
+          privilegesError: true
+        }
+      });
     });
 
     describe('controller initialization', () => {
