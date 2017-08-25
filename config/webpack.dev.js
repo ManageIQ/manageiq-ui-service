@@ -86,8 +86,8 @@ module.exports = {
         use: [
           'ng-annotate-loader',
           'babel-loader?presets[]=env',
-          'eslint-loader',
         ],
+          'standard-loader'
       },
 
       // font/images loaders: if smaller than limit embed as data uri
