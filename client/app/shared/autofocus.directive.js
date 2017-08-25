@@ -5,19 +5,19 @@ This directive is redundant for browsers that do but has no negative effects.
 */
 
 /** @ngInject */
-export function AutofocusDirective($timeout) {
+export function AutofocusDirective ($timeout) {
   var directive = {
     restrict: 'A',
-    link: link,
-  };
+    link: link
+  }
 
-  return directive;
+  return directive
 
-  function link(_scope, element) {
-    $timeout(setFocus, 1);
+  function link (_scope, element) {
+    $timeout(setFocus, 1)
 
-    function setFocus() {
-      element[0].focus();
+    function setFocus () {
+      element[0].focus()
     }
   }
 }

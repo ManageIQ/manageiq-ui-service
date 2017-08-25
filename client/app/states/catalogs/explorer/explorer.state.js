@@ -1,11 +1,11 @@
-import templateUrl from './catalogs.html';
+import templateUrl from './catalogs.html'
 
 /** @ngInject */
-export function CatalogsExplorerState(routerHelper, RBAC) {
-  routerHelper.configureStates(getStates(RBAC));
+export function CatalogsExplorerState (routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC))
 }
 
-function getStates(RBAC) {
+function getStates (RBAC) {
   return {
     'catalogs.explorer': {
       url: '',
@@ -14,14 +14,14 @@ function getStates(RBAC) {
       controllerAs: 'vm',
       title: __('Catalogs'),
       data: {
-        authorization: RBAC.hasAny(['svc_catalog_provision']),
-      },
-    },
-  };
+        authorization: RBAC.hasAny(['svc_catalog_provision'])
+      }
+    }
+  }
 }
 
 /** @ngInject */
-function CatalogsController() {
-  var vm = this;
-  vm.title = __('Catalogs');
+function CatalogsController () {
+  var vm = this
+  vm.title = __('Catalogs')
 }

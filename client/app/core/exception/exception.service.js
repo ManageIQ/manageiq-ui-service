@@ -12,35 +12,35 @@
 //   .catch(exception.catch('Nothing to do here'));
 
 /** @ngInject */
-export function exception($log) {
+export function exception ($log) {
   var service = {
     catch: exceptionCatcher,
-    log: exceptionLogger,
-  };
-
-  return service;
-
-  function exceptionCatcher(message) {
-    return function(error) {
-      logErrorMessage(message, error);
-    };
+    log: exceptionLogger
   }
 
-  function exceptionLogger(message) {
-    return function(error) {
-      logErrorMessage(message, error);
+  return service
 
-      return Promise.reject(error);
-    };
+  function exceptionCatcher (message) {
+    return function (error) {
+      logErrorMessage(message, error)
+    }
+  }
+
+  function exceptionLogger (message) {
+    return function (error) {
+      logErrorMessage(message, error)
+
+      return Promise.reject(error)
+    }
   }
 
   // Private
-  function logErrorMessage(message, error) {
+  function logErrorMessage (message, error) {
     if (error.data && error.data.description) {
-      message += '\n' + error.data.description;
-      error.data.description = message;
+      message += '\n' + error.data.description
+      error.data.description = message
     }
 
-    $log.error(message, error);
+    $log.error(message, error)
   }
 }

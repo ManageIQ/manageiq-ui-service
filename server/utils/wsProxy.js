@@ -1,16 +1,16 @@
 /* eslint-disable no-undef */
 
-'use strict';
+'use strict'
 
-var httpProxy = require('http-proxy');
-var proxyService = require('./proxy')();
+var httpProxy = require('http-proxy')
+var proxyService = require('./proxy')()
 
-var proxyHost = proxyService.proxyHost();
-var proxyTarget = 'http://' + proxyHost;
+var proxyHost = proxyService.proxyHost()
+var proxyTarget = 'http://' + proxyHost
 
 var wsProxy = httpProxy.createProxyServer({
   target: proxyTarget,
-  ws: true,
-});
+  ws: true
+})
 
-module.exports = wsProxy;
+module.exports = wsProxy

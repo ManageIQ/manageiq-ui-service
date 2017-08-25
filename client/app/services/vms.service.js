@@ -1,13 +1,13 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function VmsService(CollectionsApi, RBAC) {
-  const collection = 'vms';
+export function VmsService (CollectionsApi, RBAC) {
+  const collection = 'vms'
   const sort = {
     isAscending: true,
-    currentField: {id: 'name', title: __('Name'), sortType: 'alpha'},
-  };
-  let filters = [];
+    currentField: {id: 'name', title: __('Name'), sortType: 'alpha'}
+  }
+  let filters = []
 
   return {
     getVm: getVm,
@@ -20,24 +20,24 @@ export function VmsService(CollectionsApi, RBAC) {
     getPermissions: getPermissions,
     revertSnapshot: revertSnapshot,
     createSnapshots: createSnapshots,
-    deleteSnapshots: deleteSnapshots,
-  };
+    deleteSnapshots: deleteSnapshots
+  }
 
-  function getSnapshots(vmId) {
+  function getSnapshots (vmId) {
     const options = {
       attributes: [],
       expand: ['resources'],
-      filter: getQueryFilters(getFilters()),
-    };
+      filter: getQueryFilters(getFilters())
+    }
 
-    options.sort_by = getSort().currentField.id;
-    options.sort_options = getSort().currentField.sortType === 'alpha' ? 'ignore_case' : '';
-    options.sort_order = getSort().isAscending ? 'asc' : 'desc';
+    options.sort_by = getSort().currentField.id
+    options.sort_options = getSort().currentField.sortType === 'alpha' ? 'ignore_case' : ''
+    options.sort_order = getSort().isAscending ? 'asc' : 'desc'
 
-    return CollectionsApi.query(collection + '/' + vmId + '/snapshots', options);
+    return CollectionsApi.query(collection + '/' + vmId + '/snapshots', options)
   }
 
-  function getVm(vmId, refresh) {
+  function getVm (vmId, refresh) {
     const options = {
       attributes: [
         'advanced_settings',
@@ -99,68 +99,68 @@ export function VmsService(CollectionsApi, RBAC) {
         'max_mem_usage_absolute_average_avg_over_time_period',
         'hardware.aggregate_cpu_speed',
         'allocated_disk_storage',
-        'ram_size',
+        'ram_size'
       ],
       expand: [],
-      auto_refresh: refresh,
-    };
+      auto_refresh: refresh
+    }
 
-    return CollectionsApi.query(collection + '/' + vmId, options);
+    return CollectionsApi.query(collection + '/' + vmId, options)
   }
 
-  function setSort(currentField, isAscending) {
-    sort.isAscending = isAscending;
-    sort.currentField = currentField;
+  function setSort (currentField, isAscending) {
+    sort.isAscending = isAscending
+    sort.currentField = currentField
   }
 
-  function getSort() {
-    return sort;
+  function getSort () {
+    return sort
   }
 
-  function setFilters(filterArray) {
-    filters = filterArray;
+  function setFilters (filterArray) {
+    filters = filterArray
   }
 
-  function getFilters() {
-    return filters;
+  function getFilters () {
+    return filters
   }
 
-  function getPermissions() {
+  function getPermissions () {
     return {
       create: RBAC.hasAny(['vm_snapshot_add']),
       delete: RBAC.hasAny(['vm_snapshot_delete']),
       deleteAll: RBAC.hasAny(['vm_snapshot_delete_all']),
-      revert: RBAC.hasAny(['vm_snapshot_revert']),
-    };
+      revert: RBAC.hasAny(['vm_snapshot_revert'])
+    }
   }
 
-  function deleteSnapshots(vmId, data) {
+  function deleteSnapshots (vmId, data) {
     const options = {
-      "action": "delete",
-      "resources": data,
-    };
+      'action': 'delete',
+      'resources': data
+    }
 
-    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/', null, {}, options);
+    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/', null, {}, options)
   }
 
-  function createSnapshots(vmId, data) {
+  function createSnapshots (vmId, data) {
     const options = {
-      "action": "create",
-      "resources": [data],
-    };
+      'action': 'create',
+      'resources': [data]
+    }
 
-    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/', null, {}, options);
+    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/', null, {}, options)
   }
 
-  function revertSnapshot(vmId, snapshotId) {
+  function revertSnapshot (vmId, snapshotId) {
     const options = {
-      "action": "revert",
-    };
+      'action': 'revert'
+    }
 
-    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/' + snapshotId, null, {}, options);
+    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/' + snapshotId, null, {}, options)
   }
 
-  function getInstance(vmId) {
+  function getInstance (vmId) {
     const options = {
       attributes: [
         'availability_zone',
@@ -177,25 +177,25 @@ export function VmsService(CollectionsApi, RBAC) {
         'network_routers',
         'miq_provision_template',
         'orchestration_stack',
-        'security_groups',
-      ],
-    };
+        'security_groups'
+      ]
+    }
 
-    return CollectionsApi.get('instances', vmId, options);
+    return CollectionsApi.get('instances', vmId, options)
   }
 
   // Private
-  function getQueryFilters(filters) {
-    const queryFilters = [];
+  function getQueryFilters (filters) {
+    const queryFilters = []
 
     filters.forEach((nextFilter) => {
       if (nextFilter.id === 'name' || nextFilter.id === 'description') {
-        queryFilters.push(nextFilter.id + "='%" + nextFilter.value + "%'");
+        queryFilters.push(nextFilter.id + "='%" + nextFilter.value + "%'")
       } else {
-        queryFilters.push(nextFilter.id + '=' + nextFilter.value);
+        queryFilters.push(nextFilter.id + '=' + nextFilter.value)
       }
-    });
+    })
 
-    return queryFilters;
+    return queryFilters
   }
 }

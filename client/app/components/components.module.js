@@ -1,7 +1,7 @@
-import { SharedModule } from '../shared/shared.module.js';
+import { SharedModule } from '../shared/shared.module.js'
 
 export default angular
   .module('app.components', [
-    SharedModule,
+    SharedModule
   ])
-  .name;
+  .name

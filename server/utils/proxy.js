@@ -1,33 +1,33 @@
 /* eslint-disable no-undef, no-console, no-process-env, angular/log */
 
-'use strict';
+'use strict'
 
-module.exports = function() {
+module.exports = function () {
   var service = {
     proxyHost: proxyHost,
-    proxyErrorHandler: proxyErrorHandler,
-  };
+    proxyErrorHandler: proxyErrorHandler
+  }
 
-  return service;
+  return service
 
   // Private
 
-  function proxyHost() {
-    return process.env.PROXY_HOST || '[::1]:3000';
+  function proxyHost () {
+    return process.env.PROXY_HOST || '[::1]:3000'
   }
 
-  function proxyErrorHandler(_req, res) {
-    return function(err, _data) {
+  function proxyErrorHandler (_req, res) {
+    return function (err, _data) {
       if (!err) {
-        return;
+        return
       }
 
       res.writeHead(500, {
-        'Content-Type': 'text/plain',
-      });
+        'Content-Type': 'text/plain'
+      })
 
-      res.end('Something went wrong: ' + err);
-      console.error(err);
-    };
+      res.end('Something went wrong: ' + err)
+      console.error(err)
+    }
   }
-};
+}

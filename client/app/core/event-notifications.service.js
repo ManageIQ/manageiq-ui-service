@@ -1,7 +1,7 @@
 /** @ngInject */
-export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Session, $log, ActionCable, ApplianceInfo) {
-  const state = {};
-  const toastDelay = 8 * 1000;
+export function EventNotificationsFactory ($timeout, lodash, CollectionsApi, Session, $log, ActionCable, ApplianceInfo) {
+  const state = {}
+  const toastDelay = 8 * 1000
   const service = {
     state: getState,
     batch: batchAdd,
@@ -16,147 +16,147 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
     clear: clear,
     clearAll: clearAll,
     setViewingToast: setViewingToast,
-    dismissToast: dismissToast,
-  };
-
-  notificationsInit();
-  asyncInit();
-
-  return service;
-
-  function getState() {
-    return state;
+    dismissToast: dismissToast
   }
 
-  function batchAdd(events, successMsg = "", failMsg = "") {
-    const displayToast = events.length <= 6;
-    events.forEach(function(event) {
+  notificationsInit()
+  asyncInit()
+
+  return service
+
+  function getState () {
+    return state
+  }
+
+  function batchAdd (events, successMsg = '', failMsg = '') {
+    const displayToast = events.length <= 6
+    events.forEach(function (event) {
       if (event.success) {
-        service.success(successMsg + ' ' + event.message);
+        service.success(successMsg + ' ' + event.message)
       } else {
-        service.error(failMsg + ' ' + event.message);
+        service.error(failMsg + ' ' + event.message)
       }
-    });
+    })
     if (!displayToast) {
-      state.toastNotifications = [];
-      service.info(__('Review the notification tray for results of this batch operation'));
+      state.toastNotifications = []
+      service.info(__('Review the notification tray for results of this batch operation'))
     }
   }
 
-  function addInfo(message, notificationData, id) {
-    add('info', 'info', message, notificationData, id);
+  function addInfo (message, notificationData, id) {
+    add('info', 'info', message, notificationData, id)
   }
 
-  function addSuccess(message, notificationData, id) {
-    add('success', 'success', message, notificationData, id);
+  function addSuccess (message, notificationData, id) {
+    add('success', 'success', message, notificationData, id)
   }
 
-  function addError(message, notificationData, id, displayToast) {
-    add('error', 'danger', message, notificationData, id, displayToast);
+  function addError (message, notificationData, id, displayToast) {
+    add('error', 'danger', message, notificationData, id, displayToast)
   }
 
-  function addWarn(message, notificationData, id) {
-    add('warning', 'warning', message, notificationData, id);
+  function addWarn (message, notificationData, id) {
+    add('warning', 'warning', message, notificationData, id)
   }
 
-  function updateNotificationRead(unread, notification, group) {
+  function updateNotificationRead (unread, notification, group) {
     if (notification) {
-      notification.unread = unread;
+      notification.unread = unread
       if (!unread) {
-        removeToast(notification);
+        removeToast(notification)
       }
     }
-    updateUnreadCount(group);
+    updateUnreadCount(group)
   }
 
-  function markRead(notification, group) {
+  function markRead (notification, group) {
     if (notification && notification.href) {
-      CollectionsApi.post('notifications', notification.id, {}, {action: 'mark_as_seen'});
+      CollectionsApi.post('notifications', notification.id, {}, {action: 'mark_as_seen'})
     }
-    updateNotificationRead(false, notification, group);
+    updateNotificationRead(false, notification, group)
   }
 
-  function markUnread(notification, group) {
-    updateNotificationRead(true, notification, group);
+  function markUnread (notification, group) {
+    updateNotificationRead(true, notification, group)
   }
 
-  function markAllRead(group) {
+  function markAllRead (group) {
     if (group) {
-      const resources = group.notifications.map(function(notification) {
-        notification.unread = false;
-        removeToast(notification);
+      const resources = group.notifications.map(function (notification) {
+        notification.unread = false
+        removeToast(notification)
 
-        return {href: notification.href};
-      });
+        return {href: notification.href}
+      })
       if (resources.length > 0) {
-        CollectionsApi.post('notifications', undefined, {}, {action: 'mark_as_seen', resources: resources});
+        CollectionsApi.post('notifications', undefined, {}, {action: 'mark_as_seen', resources: resources})
       }
-      updateUnreadCount(group);
+      updateUnreadCount(group)
     }
   }
 
-  function markAllUnread(group) {
+  function markAllUnread (group) {
     if (group) {
-      group.notifications.forEach(function(notification) {
-        notification.unread = true;
-      });
-      updateUnreadCount(group);
+      group.notifications.forEach(function (notification) {
+        notification.unread = true
+      })
+      updateUnreadCount(group)
     }
   }
 
-  function clear(notification, group) {
-    let index;
+  function clear (notification, group) {
+    let index
 
     if (!group) {
-      group = lodash.find(state.groups, {notificationType: notification.notificationType});
+      group = lodash.find(state.groups, {notificationType: notification.notificationType})
     }
 
     if (group) {
-      index = group.notifications.indexOf(notification);
+      index = group.notifications.indexOf(notification)
       if (index > -1) {
-        group.notifications.splice(index, 1);
-        removeToast(notification);
+        group.notifications.splice(index, 1)
+        removeToast(notification)
         if (notification.href) {
-          CollectionsApi.delete('notifications', notification.id);
+          CollectionsApi.delete('notifications', notification.id)
         }
-        updateUnreadCount(group);
+        updateUnreadCount(group)
       }
     }
   }
 
-  function clearAll(group) {
+  function clearAll (group) {
     if (group) {
-      const resources = group.notifications.map(function(notification) {
-        removeToast(notification);
+      const resources = group.notifications.map(function (notification) {
+        removeToast(notification)
 
-        return {href: notification.href};
-      });
+        return {href: notification.href}
+      })
 
       if (resources.length > 0) {
-        CollectionsApi.post('notifications', undefined, {}, {action: 'delete', resources: resources});
+        CollectionsApi.post('notifications', undefined, {}, {action: 'delete', resources: resources})
       }
 
-      group.notifications = [];
-      updateUnreadCount(group);
+      group.notifications = []
+      updateUnreadCount(group)
     }
   }
 
-  function setViewingToast(notification, viewing) {
-    notification.viewing = viewing;
+  function setViewingToast (notification, viewing) {
+    notification.viewing = viewing
     if (!viewing && !notification.show) {
-      removeToast(notification);
+      removeToast(notification)
     }
   }
 
-  function dismissToast(notification) {
-    notification.show = false;
-    removeToast(notification);
-    service.markRead(notification);
+  function dismissToast (notification) {
+    notification.show = false
+    removeToast(notification)
+    service.markRead(notification)
   }
 
   // Private
-  function add(notificationType, type, message, notificationData, id) {
-    const group = lodash.find(state.groups, {notificationType: notificationType});
+  function add (notificationType, type, message, notificationData, id) {
+    const group = lodash.find(state.groups, {notificationType: notificationType})
     const newNotification = {
       id: id,
       notificationType: notificationType,
@@ -165,75 +165,74 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
       message: message,
       data: notificationData || {},
       href: id ? '/api/notifications/' + id : undefined,
-      timeStamp: (new Date()).getTime(),
-    };
+      timeStamp: (new Date()).getTime()
+    }
 
-    group.notifications.unshift(newNotification);
-    updateUnreadCount(group);
-    showToast(newNotification);
+    group.notifications.unshift(newNotification)
+    updateUnreadCount(group)
+    showToast(newNotification)
   }
 
-
-  function asyncInit() {
+  function asyncInit () {
     if (ApplianceInfo.get().asyncNotify) {
-      const cable = ActionCable.createConsumer('/ws/notifications');
+      const cable = ActionCable.createConsumer('/ws/notifications')
 
       cable.subscriptions.create('NotificationChannel', {
-        disconnected: function() {
-          const vm = this;
-          Session.requestWsToken().then(null, function() {
-            $log.warn('Unable to retrieve a valid ws_token!');
+        disconnected: function () {
+          const vm = this
+          Session.requestWsToken().then(null, function () {
+            $log.warn('Unable to retrieve a valid ws_token!')
             // Disconnect permanently if the ws_token cannot be fetched
-            vm.consumer.connection.close({allowReconnect: false});
-          });
+            vm.consumer.connection.close({allowReconnect: false})
+          })
         },
-        received: function(data) {
-          $timeout(function() {
-            const msg = miqFormatNotification(data.text, data.bindings);
-            add('event', data.level, msg, {message: msg}, data.id);
-          });
-        },
-      });
+        received: function (data) {
+          $timeout(function () {
+            const msg = miqFormatNotification(data.text, data.bindings)
+            add('event', data.level, msg, {message: msg}, data.id)
+          })
+        }
+      })
     }
   }
 
-  function miqFormatNotification(text, bindings) {
-    let str = __(text);
-    lodash.each(bindings, function(value, key) {
-      str = str.replace(new RegExp('%{' + key + '}', 'g'), value.text);
-    });
+  function miqFormatNotification (text, bindings) {
+    let str = __(text)
+    lodash.each(bindings, function (value, key) {
+      str = str.replace(new RegExp('%{' + key + '}', 'g'), value.text)
+    })
 
-    return str;
+    return str
   }
 
-  function notificationsInit() {
-    const eventTypes = ['info', 'success', 'error', 'warning'];
+  function notificationsInit () {
+    const eventTypes = ['info', 'success', 'error', 'warning']
 
-    function Group(type) {
-      this.notificationType = type;
-      this.heading = lodash.capitalize(type);
-      this.unreadCount = 0;
-      this.notifications = [];
+    function Group (type) {
+      this.notificationType = type
+      this.heading = lodash.capitalize(type)
+      this.unreadCount = 0
+      this.notifications = []
     }
 
-    state.groups = eventTypes.map((type) => new Group(type));
-    state.unreadNotifications = false;
-    state.toastNotifications = [];
+    state.groups = eventTypes.map((type) => new Group(type))
+    state.unreadNotifications = false
+    state.toastNotifications = []
 
     const options = {
       expand: 'resources',
-      attributes: 'details',
-    };
+      attributes: 'details'
+    }
     CollectionsApi.query('notifications', options).then((result) => {
       result.resources.forEach((resource) => {
-        const group = lodash.find(state.groups, {notificationType: resource.details.level}) || new Group(resource.details.level);
-        importServerNotifications(group, resource);
-      });
-      updateUnreadCount();
-    });
+        const group = lodash.find(state.groups, {notificationType: resource.details.level}) || new Group(resource.details.level)
+        importServerNotifications(group, resource)
+      })
+      updateUnreadCount()
+    })
 
-    function importServerNotifications(group, resource) {
-      const msg = miqFormatNotification(resource.details.text, resource.details.bindings);
+    function importServerNotifications (group, resource) {
+      const msg = miqFormatNotification(resource.details.text, resource.details.bindings)
       group.notifications.unshift({
         id: resource.id,
         notificationType: resource.details.level,
@@ -241,52 +240,52 @@ export function EventNotificationsFactory($timeout, lodash, CollectionsApi, Sess
         type: resource.details.level,
         message: msg,
         data: {
-          message: msg,
+          message: msg
         },
         href: resource.href,
-        timeStamp: resource.details.created_at,
-      });
+        timeStamp: resource.details.created_at
+      })
     }
   }
 
-  function removeToast(notification) {
-    const index = state.toastNotifications.indexOf(notification);
+  function removeToast (notification) {
+    const index = state.toastNotifications.indexOf(notification)
     if (index > -1) {
-      state.toastNotifications.splice(index, 1);
+      state.toastNotifications.splice(index, 1)
     }
   }
 
-  function showToast(notification) {
-    notification.show = true;
-    notification.persistent = notification.data.persistent || notification.type === 'danger' || notification.type === 'error';
-    state.toastNotifications.push(notification);
+  function showToast (notification) {
+    notification.show = true
+    notification.persistent = notification.data.persistent || notification.type === 'danger' || notification.type === 'error'
+    state.toastNotifications.push(notification)
 
     // any toast notifications with out 'danger' or 'error' status are automatically removed after a delay
     if (!notification.persistent) {
-      notification.viewing = false;
-      $timeout(function() {
-        notification.show = false;
+      notification.viewing = false
+      $timeout(function () {
+        notification.show = false
         if (!notification.viewing) {
-          removeToast(notification);
+          removeToast(notification)
         }
-      }, notification.data.toastDelay || toastDelay);
+      }, notification.data.toastDelay || toastDelay)
     }
   }
 
-  function updateUnreadCount(group) {
+  function updateUnreadCount (group) {
     if (group) {
-      update(group);
+      update(group)
     } else {
       state.groups.forEach((group) => {
-        update(group);
-      });
+        update(group)
+      })
     }
 
-    function update(group) {
-      group.unreadCount = group.notifications.filter((notification) => notification.unread).length;
-      state.unreadNotifications = angular.isDefined(lodash.find(state.groups, function(group) {
-        return group.unreadCount > 0;
-      }));
+    function update (group) {
+      group.unreadCount = group.notifications.filter((notification) => notification.unread).length
+      state.unreadNotifications = angular.isDefined(lodash.find(state.groups, function (group) {
+        return group.unreadCount > 0
+      }))
     }
   }
 }

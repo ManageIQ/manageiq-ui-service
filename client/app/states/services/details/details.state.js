@@ -1,9 +1,9 @@
 /** @ngInject */
-export function ServicesDetailsState(routerHelper, RBAC) {
-  routerHelper.configureStates(getStates(RBAC));
+export function ServicesDetailsState (routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC))
 }
 
-function getStates(RBAC) {
+function getStates (RBAC) {
   return {
     'services.details': {
       url: '/:serviceId',
@@ -11,8 +11,8 @@ function getStates(RBAC) {
       controllerAs: 'vm',
       title: __('Service Details'),
       data: {
-        authorization: RBAC.hasAny(['service_view']),
-      },
-    },
-  };
+        authorization: RBAC.hasAny(['service_view'])
+      }
+    }
+  }
 }

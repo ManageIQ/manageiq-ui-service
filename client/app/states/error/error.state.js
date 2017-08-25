@@ -1,12 +1,12 @@
-import templateUrl from './error.html';
+import templateUrl from './error.html'
 
 /** @ngInject */
-export function ErrorState(routerHelper) {
-  var otherwise = '/error';
-  routerHelper.configureStates(getStates(), otherwise);
+export function ErrorState (routerHelper) {
+  var otherwise = '/error'
+  routerHelper.configureStates(getStates(), otherwise)
 }
 
-function getStates() {
+function getStates () {
   return {
     'error': {
       parent: 'blank',
@@ -16,18 +16,18 @@ function getStates() {
       controllerAs: 'vm',
       title: N_('Error'),
       data: {
-        layout: 'blank',
+        layout: 'blank'
       },
       params: {
-        error: null,
-      },
-    },
-  };
+        error: null
+      }
+    }
+  }
 }
 
 /** @ngInject */
-function StateController($stateParams) {
-  var vm = this;
+function StateController ($stateParams) {
+  var vm = this
 
-  vm.error = $stateParams.error;
+  vm.error = $stateParams.error
 }

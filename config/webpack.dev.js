@@ -1,33 +1,33 @@
 /* eslint-disable angular/log, no-console */
 
-const fs = require('fs');
-const path = require('path');
-const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const fs = require('fs')
+const path = require('path')
+const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const root = path.resolve(__dirname, '../client');
-const outputPath = process.env.BUILD_OUTPUT || '../../manageiq/public/ui/service';
-const dist = path.resolve(__dirname, outputPath);
-const nodeModules = path.resolve(__dirname, '../node_modules');
-const protocol = process.env.PROXY_PROTOCOL || 'http://';
-const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000';
-const hasSkinImages = fs.existsSync(`${root}/skin/images`);
-const appBasePath = process.env.NODE_ENV === 'production' ? "'/ui/service/'" : "'/'";
+const root = path.resolve(__dirname, '../client')
+const outputPath = process.env.BUILD_OUTPUT || '../../manageiq/public/ui/service'
+const dist = path.resolve(__dirname, outputPath)
+const nodeModules = path.resolve(__dirname, '../node_modules')
+const protocol = process.env.PROXY_PROTOCOL || 'http://'
+const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000'
+const hasSkinImages = fs.existsSync(`${root}/skin/images`)
+const appBasePath = process.env.NODE_ENV === 'production' ? "'/ui/service/'" : "'/'"
 
-console.log("Backend proxied on " + protocol + host);
+console.log('Backend proxied on ' + protocol + host)
 
 module.exports = {
   context: root,
   entry: {
-    app: './app/main.ts',
+    app: './app/main.ts'
   },
 
   output: {
     chunkFilename: 'js/[name]-[hash].chunk.js',
     filename: 'js/[name]-[hash].js',
-    path: dist,
+    path: dist
   },
 
   devServer: {
@@ -37,17 +37,17 @@ module.exports = {
     proxy: {
       '/api': {
         target: `${protocol}${host}`,
-        secure: false,
+        secure: false
       },
       '/pictures': {
         target: `${protocol}${host}`,
-        secure: false,
+        secure: false
       },
       '/ws': {
         target: `ws://${host}`,
-        ws: true,
-      },
-    },
+        ws: true
+      }
+    }
   },
 
   // Output source maps suitable for development
@@ -66,8 +66,8 @@ module.exports = {
         test: /\.html$/,
         use: [
           `ngtemplate-loader?relativeTo=${root}/`,
-          `html-loader?attrs=false&minimize=true`,
-        ],
+          `html-loader?attrs=false&minimize=true`
+        ]
       },
 
       // ts loaders: standard typescript loader
@@ -75,8 +75,8 @@ module.exports = {
         test: /\.ts$/,
         use: [
           'babel-loader?presets[]=env',
-          'ts-loader',
-        ],
+          'ts-loader'
+        ]
       },
 
       // js loaders: transpile based on browserslist from package.json
@@ -86,8 +86,8 @@ module.exports = {
         use: [
           'ng-annotate-loader',
           'babel-loader?presets[]=env',
-        ],
           'standard-loader'
+        ]
       },
 
       // font/images loaders: if smaller than limit embed as data uri
@@ -103,13 +103,13 @@ module.exports = {
               // Determine publicPath dynamically because in production, assets
               // must be relative to `/ui/service/`
               publicPath: (url) => {
-                const path = process.env.NODE_ENV === 'production' ? '/ui/service/' : '/';
+                const path = process.env.NODE_ENV === 'production' ? '/ui/service/' : '/'
 
-                return path + url;
-              },
-            },
-          },
-        ],
+                return path + url
+              }
+            }
+          }
+        ]
       },
 
       // css loaders: extract styles to a separate bundle
@@ -120,9 +120,9 @@ module.exports = {
           allChunks: true,
           use: [
             'css-loader?importLoaders=1&sourceMap=true',
-            'postcss-loader',
-          ],
-        }),
+            'postcss-loader'
+          ]
+        })
       },
       {
         test: /\.(sass|scss)$/,
@@ -141,14 +141,14 @@ module.exports = {
                   `${nodeModules}/bootstrap-sass/assets/stylesheets`,
                   `${nodeModules}/patternfly-sass/assets/stylesheets`,
                   `${nodeModules}/font-awesome/scss`,
-                  `${nodeModules}/font-fabulous/assets/stylesheets`,
-                ],
-              },
-            },
-          ],
-        }),
-      },
-    ],
+                  `${nodeModules}/font-fabulous/assets/stylesheets`
+                ]
+              }
+            }
+          ]
+        })
+      }
+    ]
   },
 
   plugins: [
@@ -164,13 +164,13 @@ module.exports = {
       {from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower'},
 
       // Override images with skin replacements if they exist
-      {from: hasSkinImages ? `${root}/skin/images` : '', to: 'images', force: true},
+      {from: hasSkinImages ? `${root}/skin/images` : '', to: 'images', force: true}
     ]),
 
     // Generate index.html from template with script/link tags for bundles
     new HtmlWebpackPlugin({
       base: '/',
-      template: '../client/index.ejs',
+      template: '../client/index.ejs'
     }),
 
     // Fix circular dependency error:
@@ -178,17 +178,17 @@ module.exports = {
     new webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)@angular/,
       root
-    ),
+    )
   ],
 
   resolve: {
     extensions: ['.ts', '.js'],
-    symlinks: false,
+    symlinks: false
   },
 
   // Disables noisy performance warnings. While the warnings are important, it
   // is not feasible to satisfy the recommendations until we start code splitting
   performance: {
-    hints: false,
-  },
-};
+    hints: false
+  }
+}

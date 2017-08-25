@@ -1,23 +1,23 @@
-import "../../../assets/sass/_explorer.sass";
-import templateUrl from "./order-explorer.html";
+import '../../../assets/sass/_explorer.sass'
+import templateUrl from './order-explorer.html'
 
 export const OrderExplorerComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
-  templateUrl,
-};
+  templateUrl
+}
 
 /** @ngInject */
-function ComponentController($filter, lodash, ListView, Language, OrdersState, ShoppingCart, EventNotifications, Session, RBAC, ModalService,
+function ComponentController ($filter, lodash, ListView, Language, OrdersState, ShoppingCart, EventNotifications, Session, RBAC, ModalService,
                              CollectionsApi, sprintf, Polling, POLLING_INTERVAL) {
-  const vm = this;
-  vm.permissions = OrdersState.getPermissions();
-  vm.$onInit = activate();
-  vm.$onDestroy = function() {
-    Polling.stop('orderListPolling');
-  };
+  const vm = this
+  vm.permissions = OrdersState.getPermissions()
+  vm.$onInit = activate()
+  vm.$onDestroy = function () {
+    Polling.stop('orderListPolling')
+  }
 
-  function activate() {
+  function activate () {
     angular.extend(vm, {
       currentUser: Session.currentUser(),
       loading: false,
@@ -38,44 +38,44 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
       listConfig: getListConfig(),
       expandedListConfig: getExpandedListConfig(),
       offset: 0,
-      pollingInterval: POLLING_INTERVAL,
-    });
-    OrdersState.setSort({id: "placed_at", title: "Order Date", sortType: "numeric"}, false);
-    resolveOrders(vm.limit, 0);
-    Polling.start('orderListPolling', pollUpdateOrderList, vm.pollingInterval);
-    Language.fixState(OrdersState, vm.toolbarConfig);
+      pollingInterval: POLLING_INTERVAL
+    })
+    OrdersState.setSort({id: 'placed_at', title: 'Order Date', sortType: 'numeric'}, false)
+    resolveOrders(vm.limit, 0)
+    Polling.start('orderListPolling', pollUpdateOrderList, vm.pollingInterval)
+    Language.fixState(OrdersState, vm.toolbarConfig)
   }
 
-  function getListConfig() {
+  function getListConfig () {
     return {
       showSelectBox: checkApproval(),
       useExpandingRows: true,
       selectionMatchProp: 'id',
       onClick: expandRow,
-      onCheckBoxChange: selectionChange,
-    };
+      onCheckBoxChange: selectionChange
+    }
   }
 
-  function pollUpdateOrderList() {
-    resolveOrders(vm.limit, vm.offset, true);
+  function pollUpdateOrderList () {
+    resolveOrders(vm.limit, vm.offset, true)
   }
 
-  function getExpandedListConfig() {
+  function getExpandedListConfig () {
     return {
       showSelectBox: checkApproval(),
       selectionMatchProp: 'id',
       onClick: selectItem,
-      onCheckBoxChange: extendedSelectionChange,
-    };
+      onCheckBoxChange: extendedSelectionChange
+    }
   }
 
-  function getToolbarConfig() {
+  function getToolbarConfig () {
     const sortConfig = {
       fields: getOrderSortFields(),
       onSortChange: sortChange,
       isAscending: OrdersState.getSort().isAscending,
-      currentField: OrdersState.getSort().currentField,
-    };
+      currentField: OrdersState.getSort().currentField
+    }
 
     const filterConfig = {
       fields: getOrderFilterFields(),
@@ -83,44 +83,44 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
       totalCount: 0,
       selectedCount: 0,
       appliedFilters: OrdersState.filterApplied ? OrdersState.getFilters() : [],
-      onFilterChange: orderFilterChange,
-    };
+      onFilterChange: orderFilterChange
+    }
 
     return {
       sortConfig: sortConfig,
       filterConfig: filterConfig,
       actionsConfig: {
-        actionsInclude: checkApproval(),
-      },
-    };
+        actionsInclude: checkApproval()
+      }
+    }
   }
 
-  function getOrderFilterFields() {
+  function getOrderFilterFields () {
     return [
       ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
       ListView.createFilterField('id', __('Order ID'), __('Filter by ID'), 'text'),
-      ListView.createFilterField('placed_at', __('Order Date'), __('Filter by Order Date'), 'text'),
-    ];
+      ListView.createFilterField('placed_at', __('Order Date'), __('Filter by Order Date'), 'text')
+    ]
   }
 
-  function getOrderSortFields() {
+  function getOrderSortFields () {
     return [
       ListView.createSortField('name', __('Name'), 'alpha'),
       ListView.createSortField('id', __('Order ID'), 'numeric'),
-      ListView.createSortField('placed_at', __('Order Date'), 'numeric'),
-    ];
+      ListView.createSortField('placed_at', __('Order Date'), 'numeric')
+    ]
   }
 
-  function getMenuActions() {
-    const menuActions = [];
+  function getMenuActions () {
+    const menuActions = []
     if (vm.permissions.copy) {
       menuActions.push({
         name: __('Duplicate'),
         actionName: 'duplicate',
         title: __('Duplicate Order'),
         actionFn: duplicateOrder,
-        isDisabled: true,
-      });
+        isDisabled: true
+      })
     }
 
     if (vm.permissions.delete) {
@@ -130,88 +130,88 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
           actionName: 'remove',
           title: __('Remove Order'),
           actionFn: removeOrder,
-          isDisabled: false,
+          isDisabled: false
         }
-      );
+      )
     }
 
-    return checkApproval() ? menuActions : null;
+    return checkApproval() ? menuActions : null
   }
 
-  function expandRow(item) {
+  function expandRow (item) {
     if (!item.disableRowExpansion) {
-      item.isExpanded = !item.isExpanded;
+      item.isExpanded = !item.isExpanded
     }
   }
 
-  function sortChange(sortId, direction) {
-    OrdersState.setSort(sortId, direction);
-    resolveOrders(vm.limit, 0);
+  function sortChange (sortId, direction) {
+    OrdersState.setSort(sortId, direction)
+    resolveOrders(vm.limit, 0)
   }
 
-  function orderFilterChange(filters) {
-    vm.ordersList = ListView.applyFilters(filters, vm.ordersList, vm.orders, OrdersState, orderMatchesFilter);
-    resolveOrders(vm.limit, 0);
+  function orderFilterChange (filters) {
+    vm.ordersList = ListView.applyFilters(filters, vm.ordersList, vm.orders, OrdersState, orderMatchesFilter)
+    resolveOrders(vm.limit, 0)
   }
 
-  function orderMatchesFilter(item, filter) {
+  function orderMatchesFilter (item, filter) {
     if (filter.id === 'name') {
-      return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      return item.name.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1
     } else if (filter.id === 'id') {
-      return String(item.id).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      return String(item.id).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1
     } else if (filter.id === 'placed_at') {
-      return $filter('date')(item.placed_at || item.updated_at).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1;
+      return $filter('date')(item.placed_at || item.updated_at).toLowerCase().indexOf(filter.value.toLowerCase()) !== -1
     }
 
-    return false;
+    return false
   }
 
-  function selectionChange(item) {
+  function selectionChange (item) {
     if (angular.isDefined(item.service_requests)) {
       // if any child requests are unchecked, check them otherwise uncheck all
       if (item.service_requests.length === lodash.filter(item.service_requests, returnSelected).length) {
         item.service_requests.forEach((request) => {
-          request.selected = false;
-        });
+          request.selected = false
+        })
       } else {
         item.service_requests.forEach((request) => {
-          request.selected = true;
-        });
+          request.selected = true
+        })
       }
     }
-    vm.selectedItemsList = vm.ordersList.filter((item) => item.selected);
-    vm.toolbarConfig.filterConfig.selectedCount = vm.selectedItemsList.length;
+    vm.selectedItemsList = vm.ordersList.filter((item) => item.selected)
+    vm.toolbarConfig.filterConfig.selectedCount = vm.selectedItemsList.length
   }
 
-  function extendedSelectionChange(item) {
-    const parent = lodash.find(vm.ordersList, findItem);
+  function extendedSelectionChange (item) {
+    const parent = lodash.find(vm.ordersList, findItem)
 
     if (parent.service_requests.length === lodash.filter(parent.service_requests, returnSelected).length) {
-      parent.selected = !parent.selected;
+      parent.selected = !parent.selected
     } else {
-      parent.selected = false;
+      parent.selected = false
     }
 
-    lodash.indexOf(vm.selectedItemsList, item) === -1 ? vm.selectedItemsList.push(item) : lodash.pull(vm.selectedItemsList, item);
+    lodash.indexOf(vm.selectedItemsList, item) === -1 ? vm.selectedItemsList.push(item) : lodash.pull(vm.selectedItemsList, item)
 
-    vm.toolbarConfig.filterConfig.selectedCount = vm.selectedItemsList.length;
+    vm.toolbarConfig.filterConfig.selectedCount = vm.selectedItemsList.length
 
-    function findItem(order) {
-      return lodash.find(order.service_requests, item);
+    function findItem (order) {
+      return lodash.find(order.service_requests, item)
     }
   }
 
-  function returnSelected(item) {
-    return item.selected;
+  function returnSelected (item) {
+    return item.selected
   }
 
-  function resolveOrders(limit, offset, refresh) {
+  function resolveOrders (limit, offset, refresh) {
     if (!refresh) {
-      vm.loading = true;
+      vm.loading = true
     }
-    var existingOrders = (angular.isDefined(vm.ordersList) && refresh ? angular.copy(vm.ordersList) : []);
+    var existingOrders = (angular.isDefined(vm.ordersList) && refresh ? angular.copy(vm.ordersList) : [])
 
-    vm.offset = offset;
+    vm.offset = offset
     getFilterCount().then(() => {
       OrdersState.getOrders(
         limit,
@@ -219,122 +219,121 @@ function ComponentController($filter, lodash, ListView, Language, OrdersState, S
         OrdersState.getFilters(),
         OrdersState.getSort().currentField,
         OrdersState.getSort().isAscending,
-        refresh).then(querySuccess, queryFailure);
-    });
+        refresh).then(querySuccess, queryFailure)
+    })
 
+    function querySuccess (response) {
+      vm.loading = false
+      vm.orders = []
+      vm.selectedItemsList = []
+      vm.toolbarConfig.filterConfig.selectedCount = 0
+      vm.toolbarConfig.filterConfig.resultsCount = vm.filterCount
+      vm.toolbarConfig.filterConfig.totalCount = response.subcount
 
-    function querySuccess(response) {
-      vm.loading = false;
-      vm.orders = [];
-      vm.selectedItemsList = [];
-      vm.toolbarConfig.filterConfig.selectedCount = 0;
-      vm.toolbarConfig.filterConfig.resultsCount = vm.filterCount;
-      vm.toolbarConfig.filterConfig.totalCount = response.subcount;
+      angular.forEach(response.resources, checkExpansion)
 
-      angular.forEach(response.resources, checkExpansion);
-
-      function checkExpansion(item) {
+      function checkExpansion (item) {
         if (angular.isDefined(item.id)) {
-          item.disableRowExpansion = angular.isUndefined(item.service_requests)
-            || (angular.isDefined(item.service_requests) && item.service_requests.length < 1);
-          let dataRow = item;
+          item.disableRowExpansion = angular.isUndefined(item.service_requests) ||
+            (angular.isDefined(item.service_requests) && item.service_requests.length < 1)
+          let dataRow = item
           if (refresh) {
-            dataRow = refreshRow(item);
+            dataRow = refreshRow(item)
           }
-          vm.orders.push(dataRow);
+          vm.orders.push(dataRow)
         }
       }
 
-      function refreshRow(item) {
+      function refreshRow (item) {
         existingOrders.forEach((order) => {
           if (order.id === item.id) {
-            item.isExpanded = angular.isDefined(order.isExpanded) ? order.isExpanded : false;
-            item.selected = angular.isDefined(order.selected) ? order.selected : false;
+            item.isExpanded = angular.isDefined(order.isExpanded) ? order.isExpanded : false
+            item.selected = angular.isDefined(order.selected) ? order.selected : false
             if (item.selected) {
-              vm.selectedItemsList.push(item);
+              vm.selectedItemsList.push(item)
             }
-            lodash.pull(existingOrders, order);
+            lodash.pull(existingOrders, order)
           }
-        });
+        })
 
-        return item;
+        return item
       }
 
-      vm.ordersList = angular.copy(vm.orders);
+      vm.ordersList = angular.copy(vm.orders)
     }
 
-    function queryFailure(_error) {
-      vm.loading = false;
-      EventNotifications.error(__('There was an error loading orders.'));
+    function queryFailure (_error) {
+      vm.loading = false
+      EventNotifications.error(__('There was an error loading orders.'))
     }
   }
 
-  function getFilterCount() {
+  function getFilterCount () {
     return new Promise((resolve, reject) => {
-      OrdersState.getMinimal(OrdersState.getFilters()).then(querySuccess, queryFailure);
+      OrdersState.getMinimal(OrdersState.getFilters()).then(querySuccess, queryFailure)
 
-      function querySuccess(result) {
-        vm.filterCount = result.subcount;
-        resolve();
+      function querySuccess (result) {
+        vm.filterCount = result.subcount
+        resolve()
       }
 
-      function queryFailure(_error) {
-        EventNotifications.error(__('There was an error loading orders.'));
-        reject();
+      function queryFailure (_error) {
+        EventNotifications.error(__('There was an error loading orders.'))
+        reject(__('There was an error loading orders.'))
       }
-    });
+    })
   }
 
-  function duplicateOrder(_action, item) {
-    ShoppingCart.reset();
-    ShoppingCart.delete();
+  function duplicateOrder (_action, item) {
+    ShoppingCart.reset()
+    ShoppingCart.delete()
 
-    CollectionsApi.post('service_orders', null, null, {action: "copy", resources: [{id: item.id}]}).then(success, failure);
+    CollectionsApi.post('service_orders', null, null, {action: 'copy', resources: [{id: item.id}]}).then(success, failure)
 
-    function success(response) {
-      ShoppingCart.reload();
-      EventNotifications.success(sprintf(__('%s was duplicated, id # %d.'), item.name, response.results[0].id));
+    function success (response) {
+      ShoppingCart.reload()
+      EventNotifications.success(sprintf(__('%s was duplicated, id # %d.'), item.name, response.results[0].id))
     }
 
-    function failure(_error) {
-      EventNotifications.error(sprintf(__('There was an error duplicating %s.'), item.name));
+    function failure (_error) {
+      EventNotifications.error(sprintf(__('There was an error duplicating %s.'), item.name))
     }
   }
 
-  function removeOrder(_action, item) {
+  function removeOrder (_action, item) {
     const modalOptions = {
       component: 'processOrderModal',
       resolve: {
-        order: function() {
-          return item;
-        },
-      },
-    };
-    ModalService.open(modalOptions);
+        order: function () {
+          return item
+        }
+      }
+    }
+    ModalService.open(modalOptions)
   }
 
-  function checkApproval() {
-    return lodash.reduce(lodash.map(['miq_request_approval', 'miq_request_admin'], RBAC.has));
+  function checkApproval () {
+    return lodash.reduce(lodash.map(['miq_request_approval', 'miq_request_admin'], RBAC.has))
   }
 
-  function selectItem(item) {
-    item.selected = !item.selected;
-    extendedSelectionChange(item);
+  function selectItem (item) {
+    item.selected = !item.selected
+    extendedSelectionChange(item)
   }
 
-  function listActionDisable(config, items) {
-    items.length <= 0 ? config.isDisabled = true : config.isDisabled = false;
+  function listActionDisable (config, items) {
+    items.length <= 0 ? config.isDisabled = true : config.isDisabled = false
   }
 
-  function updatePagination(limit, offset) {
-    vm.limit = limit;
-    vm.offset = offset;
-    vm.resolveOrders(limit, offset);
+  function updatePagination (limit, offset) {
+    vm.limit = limit
+    vm.offset = offset
+    vm.resolveOrders(limit, offset)
   }
 
-  function updateMenuActionForItemFn(action, item) {
+  function updateMenuActionForItemFn (action, item) {
     if (action.actionName === 'duplicate') {
-      action.isDisabled = item.state !== 'cart' && angular.isUndefined(item.service_requests);
+      action.isDisabled = item.state !== 'cart' && angular.isUndefined(item.service_requests)
     }
   }
 }

@@ -1,14 +1,14 @@
-import templateUrl from "./save-modal-dialog.html";
+import templateUrl from './save-modal-dialog.html'
 
 /** @ngInject */
-export function SaveModalDialogFactory($uibModal) {
+export function SaveModalDialogFactory ($uibModal) {
   var modalSaveDialog = {
-    showModal: showModal,
-  };
+    showModal: showModal
+  }
 
-  return modalSaveDialog;
+  return modalSaveDialog
 
-  function showModal(saveCallback, cancelCallback, okToSave) {
+  function showModal (saveCallback, cancelCallback, okToSave) {
     var modalOptions = {
       templateUrl,
       controller: SaveModalDialogController,
@@ -16,42 +16,42 @@ export function SaveModalDialogFactory($uibModal) {
       resolve: {
         saveCallback: resolveSave,
         cancelCallback: resolveCancel,
-        okToSave: resolveOkToSave,
-      },
-    };
-
-    function resolveSave() {
-      return saveCallback;
+        okToSave: resolveOkToSave
+      }
     }
 
-    function resolveCancel() {
-      return cancelCallback;
+    function resolveSave () {
+      return saveCallback
     }
 
-    function resolveOkToSave() {
-      return okToSave;
+    function resolveCancel () {
+      return cancelCallback
     }
 
-    var modal = $uibModal.open(modalOptions);
+    function resolveOkToSave () {
+      return okToSave
+    }
 
-    return modal.result;
+    var modal = $uibModal.open(modalOptions)
+
+    return modal.result
   }
 }
 
 /** @ngInject */
-function SaveModalDialogController(saveCallback, cancelCallback, okToSave, $uibModalInstance) {
-  var vm = this;
-  vm.save = save;
-  vm.cancel = cancel;
-  vm.okToSave = okToSave;
+function SaveModalDialogController (saveCallback, cancelCallback, okToSave, $uibModalInstance) {
+  var vm = this
+  vm.save = save
+  vm.cancel = cancel
+  vm.okToSave = okToSave
 
-  function save() {
-    saveCallback();
-    $uibModalInstance.close();
+  function save () {
+    saveCallback()
+    $uibModalInstance.close()
   }
 
-  function cancel() {
-    cancelCallback();
-    $uibModalInstance.close();
+  function cancel () {
+    cancelCallback()
+    $uibModalInstance.close()
   }
 }

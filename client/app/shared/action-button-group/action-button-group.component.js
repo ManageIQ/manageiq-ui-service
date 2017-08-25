@@ -1,4 +1,4 @@
-import templateUrl from './action-button-group.html';
+import templateUrl from './action-button-group.html'
 
 export const ActionButtonGroupComponent = {
   controller: ComponentController,
@@ -14,64 +14,62 @@ export const ActionButtonGroupComponent = {
     onReset: '&',
     onSave: '&',
     onOk: '&',
-    onCustomButton: '&',
+    onCustomButton: '&'
   },
-  templateUrl,
-};
+  templateUrl
+}
 
 /** @ngInject */
-function ComponentController(sprintf) {
-  const vm = this;
+function ComponentController (sprintf) {
+  const vm = this
 
-
-  vm.$onInit = function() {
+  vm.$onInit = function () {
     angular.extend(vm, {
       isDisabled: angular.isUndefined(vm.isDisabled) ? false : vm.isDisabled,
       isInverted: angular.isUndefined(vm.isInverted) ? false : vm.isInverted,
-      customButtonTranslated: sprintf(__("%s"), vm.customButton),
+      customButtonTranslated: sprintf(__('%s'), vm.customButton),
       isPristine: isPristine,
       cancelAction: cancelAction,
       emitOriginal: emitOriginal,
       saveResource: saveResource,
       affirmConfirmation: affirmConfirmation,
-      customButtonAction: customButtonAction,
+      customButtonAction: customButtonAction
     })
-    ;
 
-    vm.original = angular.copy(vm.data);
-  };
+    vm.original = angular.copy(vm.data)
+  }
 
-  vm.$onChanges = function(changes) {
+  vm.$onChanges = function (changes) {
     if (angular.isDefined(changes.isDisabled)) {
-      vm.isDisabled = changes.isDisabled.currentValue;
+      vm.isDisabled = changes.isDisabled.currentValue
     }
-  };
-
-  function cancelAction() {
-    vm.onCancel();
   }
 
-  function isPristine() {
-    return angular.equals(vm.data, vm.original);
+  function cancelAction () {
+    vm.onCancel()
   }
 
-  function emitOriginal() {
+  function isPristine () {
+    return angular.equals(vm.data, vm.original)
+  }
+
+  function emitOriginal () {
     vm.onReset({
       $event: {
-        original: vm.original,
-      },
-    });
+        original: vm.original
+      }
+    })
   }
 
-  function saveResource() {
-    vm.onSave();
+  function saveResource () {
+    vm.onSave()
   }
 
-  function affirmConfirmation() {
-    vm.onOk();
+  function affirmConfirmation () {
+    vm.onOk()
   }
 
-  function customButtonAction() {
-    vm.onCustomButton();
+  function customButtonAction () {
+    vm.onCustomButton()
   }
 }

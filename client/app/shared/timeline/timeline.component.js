@@ -1,47 +1,47 @@
-import './_timeline.sass';
+import './_timeline.sass'
 
 export const TimelineComponent = {
   bindings: {
     data: '<',
-    options: '<',
+    options: '<'
   },
   controller: TimelineController,
-  controllerAs: 'vm',
-};
+  controllerAs: 'vm'
+}
 
 /** @ngInject */
-function TimelineController($element, $window) {
-  const vm = this;
-  const d3 = $window.d3;
+function TimelineController ($element, $window) {
+  const vm = this
+  const d3 = $window.d3
 
-  angular.element($window).on('resize', function() {
-    renderTimeline();
-  });
+  angular.element($window).on('resize', function () {
+    renderTimeline()
+  })
 
   vm.$onChanges = (changes) => {
-    vm.options = changes.options.currentValue || vm.options;
+    vm.options = changes.options.currentValue || vm.options
     vm.data = changes.data.currentValue || [{
-      "name": "",
-      "data": [
-        {"date": "", "details": {"event": "", "object": ""}},
+      'name': '',
+      'data': [
+        {'date': '', 'details': {'event': '', 'object': ''}}
       ],
-      "display": true,
-    }];
+      'display': true
+    }]
 
-    renderTimeline();
-  };
-
-  function renderTimeline() {
-    angular.element($element[0]).find('div.timeline').remove();
-    const config = buildConfig(vm.options);
-    buildTimeline(config, vm.data);
+    renderTimeline()
   }
 
-  function buildConfig(options = {}) {
-    const hour = 60 * 60 * 1000;
-    const day = 24 * hour;
-    const week = 7 * day;
-    const month = 30 * day;
+  function renderTimeline () {
+    angular.element($element[0]).find('div.timeline').remove()
+    const config = buildConfig(vm.options)
+    buildTimeline(config, vm.data)
+  }
+
+  function buildConfig (options = {}) {
+    const hour = 60 * 60 * 1000
+    const day = 24 * hour
+    const week = 7 * day
+    const month = 30 * day
 
     const {
       start = new Date(0),
@@ -61,7 +61,7 @@ function TimelineController($element, $window) {
         ['%I %p', (d) => d.getHours()],
         ['%b %d', (d) => d.getMonth() && d.getDate()],
         ['%b', (d) => d.getMonth()],
-        ['%Y', () => true],
+        ['%Y', () => true]
       ],
       eventHover = null,
       eventZoom = null,
@@ -69,30 +69,30 @@ function TimelineController($element, $window) {
       eventLineColor = (_d, i) => {
         switch (i % 5) {
           case 0:
-            return "#00659c";
+            return '#00659c'
           case 1:
-            return "#0088ce";
+            return '#0088ce'
           case 2:
-            return "#3f9c35";
+            return '#3f9c35'
           case 3:
-            return "#ec7a08";
+            return '#ec7a08'
           case 4:
-            return "#cc0000";
+            return '#cc0000'
         }
       },
       eventColor = null,
       eventShape = (d) => {
-        if (d.hasOwnProperty("events")) {
-          return '\uf140';
+        if (d.hasOwnProperty('events')) {
+          return '\uf140'
         } else {
-          return '\uf111';
+          return '\uf111'
         }
       },
       eventPopover = null,
       context = true,
       slider = true,
-      eventGrouping = 60000,
-    } = options;
+      eventGrouping = 60000
+    } = options
 
     return d3.chart.timeline()
       .start(start)
@@ -115,13 +115,13 @@ function TimelineController($element, $window) {
       .eventPopover(eventPopover)
       .context(context)
       .slider(slider)
-      .eventGrouping(eventGrouping);
+      .eventGrouping(eventGrouping)
   }
 
-  function buildTimeline(config, data) {
+  function buildTimeline (config, data) {
     d3.select($element[0])
       .append('div').attr('class', 'timeline')
       .datum(data)
-      .call(config);
+      .call(config)
   }
 }

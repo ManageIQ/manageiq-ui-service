@@ -1,16 +1,16 @@
 /** @ngInject */
-export function BaseModalFactory($uibModal) {
+export function BaseModalFactory ($uibModal) {
   return {
-    open: openModal,
-  };
+    open: openModal
+  }
 
-  function openModal(overrideOptions) {
+  function openModal (overrideOptions) {
     var defaultOptions = {
-      size: 'md',
-    };
-    var modalOptions = angular.merge({}, defaultOptions, overrideOptions);
-    var modal = $uibModal.open(modalOptions);
+      size: 'md'
+    }
+    var modalOptions = angular.merge({}, defaultOptions, overrideOptions)
+    var modal = $uibModal.open(modalOptions)
 
-    return modal.result;
+    return modal.result
   }
 }

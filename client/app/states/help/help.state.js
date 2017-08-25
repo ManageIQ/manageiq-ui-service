@@ -1,11 +1,11 @@
-import templateUrl from './help.html';
+import templateUrl from './help.html'
 
 /** @ngInject */
-export function HelpState(routerHelper) {
-  routerHelper.configureStates(getStates());
+export function HelpState (routerHelper) {
+  routerHelper.configureStates(getStates())
 }
 
-function getStates() {
+function getStates () {
   return {
     'help': {
       parent: 'application',
@@ -13,11 +13,11 @@ function getStates() {
       templateUrl,
       controller: StateController,
       controllerAs: 'vm',
-      title: N_('Help'),
-    },
-  };
+      title: N_('Help')
+    }
+  }
 }
 
 /** @ngInject */
-function StateController() {
+function StateController () {
 }
