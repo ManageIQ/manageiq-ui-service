@@ -151,7 +151,7 @@
     "morgan": "1.8.2",
     "phantomjs-prebuilt": "2.1.15",
     "protractor": "5.1.2",
-    "sass-lint": "1.11.0",
+    "sass-lint": "1.11.1",
     "serve-favicon": "2.4.3",
     "sinon": "3.2.1",
     "sinon-chai": "2.13.0",
