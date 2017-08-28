@@ -34,7 +34,7 @@ function ComponentController ($state, lodash, CollectionsApi, EventNotifications
     cancel: cancel,
     reset: reset
   })
-  
+
   function cancel () {
     vm.dismiss({$value: 'cancel'})
   }
