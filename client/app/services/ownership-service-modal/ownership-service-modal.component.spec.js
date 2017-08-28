@@ -53,5 +53,104 @@ describe('Component: ownershipServiceModal', () => {
             ctrl.cancel();
             expect(dismissSpy).to.have.been.calledWith({ $value: "cancel" });
         });
+        it('can reset a modal', () => {
+            const originalService = service;
+            originalService.id = 4567;
+            ctrl.reset({original: originalService});
+            expect (ctrl.modalData.id).to.eq(4567);
+        });
     });
+     describe('with multiple services', () => {
+         const services = [
+             {
+                 id: 1234,
+                 evm_owner: {
+                     userid: 1234
+                 },
+                 miq_group: {
+                     description: 'test'
+                 }
+             },
+             {
+                 id: 4567,
+                 evm_owner: {
+                     userid: 4567
+                 },
+                 miq_group: {
+                     description: 'test'
+                 }
+             }
+         ];
+        const bindings = {
+            resolve: {
+                services: services,
+                users: [],
+                groups: []
+            },
+            close: function () { },
+            dismiss: function () { }
+        };
+        let scope, ctrl;
+
+        beforeEach(inject(($componentController) => {
+            bard.inject('CollectionsApi', 'EventNotifications', 'lodash', '$state');
+            ctrl = $componentController('ownershipServiceModal', { $scope: scope }, bindings);
+            ctrl.$onInit();
+        }));
+
+        it('Saves successfully', () => {
+            const response = {
+                results: [{ "success": "true", "message": "test" }]
+            };
+            const spy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(response));
+            const notificationSpy = sinon.stub(EventNotifications, 'batch').returns(true);
+            const expectedObject = {
+                action: "set_ownership",
+                resources: [{
+                    evm_owner: { userid: 1234 },
+                    group: { description: '' },
+                    id: 1234,
+                    miq_group: { description: "test" },
+                    owner: { userid: '' }
+                }, {
+                    evm_owner: { userid: 4567 },
+                    group: { description: '' },
+                    id: 4567,
+                    miq_group: { description: "test" },
+                    owner: { userid: '' }
+                }]
+            };
+            return ctrl.save().then((data) => {
+                expect(spy).to.have.been.calledWith('services', '',{},  expectedObject);
+                expect(notificationSpy).to.have.been.calledWith([{ message: "test", success: "true" }], 'Setting ownership.', 'Error setting ownership.');
+            });
+        });
+    });
+     describe('No owner or description', () => {
+         const service =
+             {
+                 id: 1234
+             };
+         const bindings = {
+             resolve: {
+                 services: service,
+                 users: [],
+                 groups: []
+             },
+             close: function () { },
+             dismiss: function () { }
+         };
+         let scope, ctrl;
+
+         beforeEach(inject(($componentController) => {
+             bard.inject('CollectionsApi', 'EventNotifications', 'lodash', '$state');
+             ctrl = $componentController('ownershipServiceModal', { $scope: scope }, bindings);
+             ctrl.$onInit();
+         }));
+
+         it('should default userid and description if they dont exist', () => {
+             expect(ctrl.modalData.owner.userid).to.eq('');
+             expect(ctrl.modalData.group.description).to.eq('');
+         });
+     });
 });
