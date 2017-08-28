@@ -34,8 +34,7 @@ function ComponentController ($state, lodash, CollectionsApi, EventNotifications
     cancel: cancel,
     reset: reset
   })
-  activate()
-
+  
   function cancel () {
     vm.dismiss({$value: 'cancel'})
   }
@@ -59,7 +58,7 @@ function ComponentController ($state, lodash, CollectionsApi, EventNotifications
       data.resources = resources
     }
 
-    CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure)
+    return CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure)
 
     function saveSuccess (response) {
       vm.close()
@@ -78,7 +77,7 @@ function ComponentController ($state, lodash, CollectionsApi, EventNotifications
   }
 
   // Private
-  function activate () {
+  vm.$onInit = function () {
     if (vm.isService) {
       vm.resetModal = true
       vm.modalData.id = vm.services[0].id
