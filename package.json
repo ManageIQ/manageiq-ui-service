@@ -169,9 +169,10 @@
   "greenkeeper": {
     "ignore": [
       "angular-datatables",
-      "typescript",
       "chai",
-      "chai-as-promised"
+      "chai-as-promised",
+      "d3",
+      "typescript"
     ]
   },
   "standard": {
