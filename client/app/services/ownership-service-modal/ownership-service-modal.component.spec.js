@@ -133,7 +133,7 @@ describe('Component: ownershipServiceModal', () => {
              };
          const bindings = {
              resolve: {
-                 services: service,
+                 services: [service],
                  users: [],
                  groups: []
              },
