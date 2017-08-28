@@ -34,8 +34,15 @@ function ComponentController ($state, lodash, CollectionsApi, EventNotifications
     cancel: cancel,
     reset: reset
   })
-  activate()
 
+  vm.$onInit = function () {
+    if (vm.isService) {
+      vm.resetModal = true
+      vm.modalData.id = vm.services[0].id
+      vm.modalData.owner.userid = (vm.services[0].evm_owner && vm.services[0].evm_owner.userid) || ''
+      vm.modalData.group.description = (vm.services[0].miq_group && vm.services[0].miq_group.description) || ''
+    }
+  }
   function cancel () {
     vm.dismiss({$value: 'cancel'})
   }
@@ -59,7 +66,7 @@ function ComponentController ($state, lodash, CollectionsApi, EventNotifications
       data.resources = resources
     }
 
-    CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure)
+    return CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure)
 
     function saveSuccess (response) {
       vm.close()
@@ -74,16 +81,6 @@ function ComponentController ($state, lodash, CollectionsApi, EventNotifications
     function setOwnership (service) {
       service.owner = {userid: vm.modalData.owner.userid}
       service.group = {description: vm.modalData.group.description}
-    }
-  }
-
-  // Private
-  function activate () {
-    if (vm.isService) {
-      vm.resetModal = true
-      vm.modalData.id = vm.services[0].id
-      vm.modalData.owner.userid = (vm.services[0].evm_owner && vm.services[0].evm_owner.userid) || ''
-      vm.modalData.group.description = (vm.services[0].miq_group && vm.services[0].miq_group.description) || ''
     }
   }
 }
