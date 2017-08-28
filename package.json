@@ -70,7 +70,7 @@
     "copy-webpack-plugin": "4.0.1",
     "core-js": "2.5.0",
     "css-loader": "0.28.5",
-    "d3": "4.10.0",
+    "d3": "3.5.17",
     "datatables.net-dt": "1.10.15",
     "datatables.net-select-dt": "1.2.2",
     "ejs": "2.5.7",
