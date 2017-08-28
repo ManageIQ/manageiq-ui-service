@@ -2,94 +2,97 @@
 
 All notable changes to this project will be documented in this file.
 
-## Sprint 67 ending 2017-08-21
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+
+## Unreleased as of Sprint 67 ending 2017-08-21
+
+### Added
 - Updated service reconfigure to use dialog component [(#877)](https://github.com/ManageIQ/manageiq-ui-service/pull/877)
 - Extract and upload latest text for translation to zanata [(#876)](https://github.com/ManageIQ/manageiq-ui-service/pull/876)
-- Set leftBoundary as zero if there is nothing to display [(#875)](https://github.com/ManageIQ/manageiq-ui-service/pull/875)
 - Updated custom button details to use Dialog Component [(#874)](https://github.com/ManageIQ/manageiq-ui-service/pull/874)
-- Update deps [(#872)](https://github.com/ManageIQ/manageiq-ui-service/pull/872)
-- Bumped version of UI-components [(#871)](https://github.com/ManageIQ/manageiq-ui-service/pull/871)
 - Added ui-components Dialog to SUI [(#867)](https://github.com/ManageIQ/manageiq-ui-service/pull/867)
 
-### Changes for Sprint 66
-- Updated code owners for project [(#866)](https://github.com/ManageIQ/manageiq-ui-service/pull/866)
-- Removed ace component from SUI [(#863)](https://github.com/ManageIQ/manageiq-ui-service/pull/863)
-- Update code owners to be formatted correctly [(#859)](https://github.com/ManageIQ/manageiq-ui-service/pull/859)
-- Update code owners [(#857)](https://github.com/ManageIQ/manageiq-ui-service/pull/857)
-- Fixed: the VM status shows "retired" for all VM's [(#856)](https://github.com/ManageIQ/manageiq-ui-service/pull/856)
+### Fixed
+- Set leftBoundary as zero if there is nothing to display [(#875)](https://github.com/ManageIQ/manageiq-ui-service/pull/875)
+- Bumped version of UI-components [(#871)](https://github.com/ManageIQ/manageiq-ui-service/pull/871)
+
+## Unreleased as of Sprint 66 ending 2017-08-07
+
+### Fixed
+- The VM status shows "retired" for all VM's [(#856)](https://github.com/ManageIQ/manageiq-ui-service/pull/856)
+
+### Added
 - Adds font fabulous dep [(#854)](https://github.com/ManageIQ/manageiq-ui-service/pull/854)
 
-### Changes for Sprint 65
+## Unreleased as of Sprint 65 ending 2017-07-24
+
+### Added
 - Display colored fonticons before custom buttons [(#851)](https://github.com/ManageIQ/manageiq-ui-service/pull/851)
-- BZ#142772825 - snapshottimeline [(#848)](https://github.com/ManageIQ/manageiq-ui-service/pull/848)
-- BZ#1469802 - Buttons are updated on power operations [(#844)](https://github.com/ManageIQ/manageiq-ui-service/pull/844)
-- Remove Saucelabs from Travis CI [(#843)](https://github.com/ManageIQ/manageiq-ui-service/pull/843)
-- BZ 1467569- in the self service portal after a little time displaying a vm [(#842)](https://github.com/ManageIQ/manageiq-ui-service/pull/842
-- removed node 7 added node 8 [(#841)](https://github.com/ManageIQ/manageiq-ui-service/pull/841)
-- BZ#145848583 - Introduce service tag filtering [(#840)](https://github.com/ManageIQ/manageiq-ui-service/pull/840)
+- Adds the reusable (and rather well executed) timeline component to the sui in addition to the timeline in the snapshots components [(#848)](https://github.com/ManageIQ/manageiq-ui-service/pull/848)
+- Introduce service tag filtering [(#840)](https://github.com/ManageIQ/manageiq-ui-service/pull/840)
 
-### Changes for Sprint 64
-- Update deps [(#839)](https://github.com/ManageIQ/manageiq-ui-service/pull/839)
-- PT#148515861 Service.custom_button_details state params cleaned [(#838)](https://github.com/ManageIQ/manageiq-ui-service/pull/838)
-- BZ#1460316 - Ensure action target collection matches button class [(#837)](https://github.com/ManageIQ/manageiq-ui-service/pull/837)
-- added github dir with CODEOWNERS and ISSUE TEMPLATE [(#835)](https://github.com/ManageIQ/manageiq-ui-service/pull/835)
-- BZ#1466514 - Gracefully handle 403 state change error [(#833)](https://github.com/ManageIQ/manageiq-ui-service/pull/833)
-- Pt/148240713 Update Deps [(#832)](https://github.com/ManageIQ/manageiq-ui-service/pull/832)
-- Pt#147640893 - redesign vm details [(#831)](https://github.com/ManageIQ/manageiq-ui-service/pull/831)
-- Adds create snapshot button on service details page [(#829)](https://github.com/ManageIQ/manageiq-ui-service/pull/829)
+### Fixed
+- Buttons are updated on power operations [(#844)](https://github.com/ManageIQ/manageiq-ui-service/pull/844)
+- Fixes an issue with polling causing issues with data not rendering properly [(#842)](https://github.com/ManageIQ/manageiq-ui-service/pull/842
+
+## Unreleased as of Sprint 64 ending 2017-07-10
+
+### Fixed
+- Service.custom_button_details state params cleaned [(#838)](https://github.com/ManageIQ/manageiq-ui-service/pull/838)
+- Ensure action target collection matches button class [(#837)](https://github.com/ManageIQ/manageiq-ui-service/pull/837)
+- Gracefully handle 403 state change error [(#833)](https://github.com/ManageIQ/manageiq-ui-service/pull/833)
 - Resolves production redirect error on logout [(#828)](https://github.com/ManageIQ/manageiq-ui-service/pull/828)
-- Updates dependencies [(#827)](https://github.com/ManageIQ/manageiq-ui-service/pull/827)
 
-### Changes for Sprint 63
+### Added
+- Redesign vm details [(#831)](https://github.com/ManageIQ/manageiq-ui-service/pull/831)
+- Adds create snapshot button on service details page [(#829)](https://github.com/ManageIQ/manageiq-ui-service/pull/829)
+
+## Unreleased as of Sprint 63 ending 2017-06-19
+
+### Fixed
 - Utilization graphs now react to any change in data [(#825)](https://github.com/ManageIQ/manageiq-ui-service/pull/825)
+- Unify console names between ops & service UI - VM Console & Web Console [(#819)](https://github.com/ManageIQ/manageiq-ui-service/pull/819)
+- Fix for service catalog service dialog refresh function behaving differently [(#814)](https://github.com/ManageIQ/manageiq-ui-service/pull/814)
+- Error loading services without vms [(#812)](https://github.com/ManageIQ/manageiq-ui-service/pull/812)
+
+### Added
 - Adds "View Graphs" link to service details [(#823)](https://github.com/ManageIQ/manageiq-ui-service/pull/823)
 - Adds web access icon to Access dropdown [(#822)](https://github.com/ManageIQ/manageiq-ui-service/pull/822)
-- Pt/#146312989 typeahead dialog select [(#821)](https://github.com/ManageIQ/manageiq-ui-service/pull/821)
-- PT#146810903 Adds and wires pf-table deps [(#820)](https://github.com/ManageIQ/manageiq-ui-service/pull/820)
-- Unify console names between ops & service UI - VM Console & Web Console [(#819)](https://github.com/ManageIQ/manageiq-ui-service/pull/819)
 - Adds icon-status component [(#815)](https://github.com/ManageIQ/manageiq-ui-service/pull/815)
-- Fix for service catalog service dialog refresh function behaving differently [(#814)](https://github.com/ManageIQ/manageiq-ui-service/pull/814)
-- PT#146772249 - Error loading services without vms [(#812)](https://github.com/ManageIQ/manageiq-ui-service/pull/812)
 
-### Changes for Sprint 62
-- PT#139486261 - Update angular patternfly [(#804)](https://github.com/ManageIQ/manageiq-ui-service/pull/804)
-- Fixed button link formatting [(#803)](https://github.com/ManageIQ/manageiq-ui-service/pull/803)
+## Unreleased as of Sprint 62 ending 2017-06-05
+
+### Added
+- Update angular patternfly [(#804)](https://github.com/ManageIQ/manageiq-ui-service/pull/804)
 - Coveralls integration [(#802)](https://github.com/ManageIQ/manageiq-ui-service/pull/802)
-- Removed code climate conditional execution [(#800)](https://github.com/ManageIQ/manageiq-ui-service/pull/800)
-- PT#14636890 - Update deps [(#798)](https://github.com/ManageIQ/manageiq-ui-service/pull/798)
-- Changed when we run code climate [Finishes #146306965] [(#797)](https://github.com/ManageIQ/manageiq-ui-service/pull/797)
-- Changed code climate runtime to only run on builds to master [(#796)](https://github.com/ManageIQ/manageiq-ui-service/pull/796)
-- Fix for service catalog service dialog refresh function behaving differently [(#793)](https://github.com/ManageIQ/manageiq-ui-service/pull/793)
 - Make utilization graphs on VM details page [(#792)](https://github.com/ManageIQ/manageiq-ui-service/pull/792)
-- Added support for a vm to submit a custom button action [(#791)](https://github.com/ManageIQ/manageiq-ui-service/pull/791)
-- BZ#145849913 Allows for image assets to be dynamically skinned [(#790)](https://github.com/ManageIQ/manageiq-ui-service/pull/790)
 
-### Changes for Sprint 61
-- PT#145689219-Adds support for proxy_protocol env [(#779)](https://github.com/ManageIQ/manageiq-ui-service/pull/779)
-- Dupilcate of #775 for master - Ensures ansible service displays vm resources [(#776)](https://github.com/ManageIQ/manageiq-ui-service/pull/776)
+### Fixed
+- Fixed button link formatting [(#803)](https://github.com/ManageIQ/manageiq-ui-service/pull/803)
+- Removed code climate conditional execution [(#800)](https://github.com/ManageIQ/manageiq-ui-service/pull/800)
+- Fix for service catalog service dialog refresh function behaving differently [(#793)](https://github.com/ManageIQ/manageiq-ui-service/pull/793)
+- Added support for a vm to submit a custom button action [(#791)](https://github.com/ManageIQ/manageiq-ui-service/pull/791)
+- Allows for image assets to be dynamically skinned [(#790)](https://github.com/ManageIQ/manageiq-ui-service/pull/790)
+
+## Unreleased as of Sprint 61 ending 2017-05-22
+
+### Added
+- Adds support for proxy_protocol env [(#779)](https://github.com/ManageIQ/manageiq-ui-service/pull/779)
+- Added custom buttons to VM details page [(#750)](https://github.com/ManageIQ/manageiq-ui-service/pull/750)
+
+### Fixed
+- Ensures ansible service displays vm resources [(#776)](https://github.com/ManageIQ/manageiq-ui-service/pull/776)
 - Login and page refresh not working [(#774)](https://github.com/ManageIQ/manageiq-ui-service/pull/774)
 - Enabled session timeout on pages that poll [(#773)](https://github.com/ManageIQ/manageiq-ui-service/pull/773)
-- sending string true vs literal true [(#771)](https://github.com/ManageIQ/manageiq-ui-service/pull/771)
-- BZ#1451052-Adds support for custom brand [(#769)](https://github.com/ManageIQ/manageiq-ui-service/pull/769)
-- PT#145296629-remove-dorment-reports [(#763)](https://github.com/ManageIQ/manageiq-ui-service/pull/763)
-- PT#145296681-Adds basic spec for service snapsnots component [(#762)](https://github.com/ManageIQ/manageiq-ui-service/pull/762)
-- PT#145359063-Adds spec for substitute filter [(#761)](https://github.com/ManageIQ/manageiq-ui-service/pull/761)
-- PT#145296591- Adds spec for bytes-format filter [(#760)](https://github.com/ManageIQ/manageiq-ui-service/pull/760)
-- PT#145296575 - Adds spec for elapsed time filter [(#759)](https://github.com/ManageIQ/manageiq-ui-service/pull/759)
-- Created unit tests for requests-state service [(#758)](https://github.com/ManageIQ/manageiq-ui-service/pull/758)
-- Created authentication-api unit tests [(#757)](https://github.com/ManageIQ/manageiq-ui-service/pull/757)
-- Improved test coverage for catalog state service [(#756)](https://github.com/ManageIQ/manageiq-ui-service/pull/756)
-- Generate lcov.info [(#755)](https://github.com/ManageIQ/manageiq-ui-service/pull/755)
-- BZ#1446408 -filter tooltip overflow [(#753)](https://github.com/ManageIQ/manageiq-ui-service/pull/753)
-- BZ 1449362 - Refresh button in a dialog does not show in SUI [(#752)](https://github.com/ManageIQ/manageiq-ui-service/pull/752)
-- Added custom buttons to VM details page [(#750)](https://github.com/ManageIQ/manageiq-ui-service/pull/750)
-- updated badges [ci skip] [(#749)](https://github.com/ManageIQ/manageiq-ui-service/pull/749)
-- Updated badges [ci skip] [(#748)](https://github.com/ManageIQ/manageiq-ui-service/pull/748)
-- Added Utilization Graphs to Service Details [(#743)](https://github.com/ManageIQ/manageiq-ui-service/pull/743)
+- Sending string true vs literal true [(#771)](https://github.com/ManageIQ/manageiq-ui-service/pull/771)
+- Adds support for custom brand [(#769)](https://github.com/ManageIQ/manageiq-ui-service/pull/769)
+- Filter tooltip overflow [(#753)](https://github.com/ManageIQ/manageiq-ui-service/pull/753)
+- Refresh button in a dialog does not show in SUI [(#752)](https://github.com/ManageIQ/manageiq-ui-service/pull/752)
 
-### Changes for Sprint 60
+## Unreleased as of Sprint 60 ending 2017-05-08
+
+### Fixed
 - (bug) [MOCK] Fix broken images in mock API
-- (chore) Fix Bithound File errors
 - (bug) Change to "link pointy hand" when mouse over tile
 - (bug) Tooltip in self service portal shows code
 - (bug) Pagination controls get pushed off screen
@@ -100,58 +103,45 @@ All notable changes to this project will be documented in this file.
 - (bug) BZ#1441861 - console open error
 - (bug) BZ#1443346-Hover text misaligned for service list vms
 - (bug) BZ#1439632 - Display pretty credential type
-- (chore) Get rid of gulp tasks
-- (chore) Remove CodeClimate Score button
-- (chore) Add Bithound badges to README
-- (chore) Remove NSP button from README
-- (chore) Document yarn tasks
-- (chore) Automate Zanata process with CLI
-- (chore) Update Deps
-- (chore) Update Deps
 - (bug) Orders should be "My Orders"
 - (bug) Users should be able to click anywhere on the row to drill down on a service
 - (bug) Dashboard is missing information on Orders
-- (feature) Update vm details page
 - (bug) BZ#1392096 update translations
 - (bug) Approve and Deny Order not working 
-- (feature) Add performance / utilization graphs on service page
-- (feature) Optimize batch action notifications
 - (bug) Doesn't time out when session timeout is reached
 - (bug) BZ#1439309-incorrectly displaying orders tab
-- (bug) BZ 1435468 - Certain users with special attributes can't log in to services UI. 
+- (bug) BZ 1435468 - Certain users with special attributes can't log in to services UI.
 - (bug) BZ#1446408 -filter tooltip overflow
 - (bug) BZ#1446405 - manageiq icon
 - (bug) BZ 1445939 - MIQLDAP - FreeIPA - Can't switch groups in SSUI
 - (bug) BZ#1447789 - catalog results should show number of templates, not catalogs
 - (bug) List views don't scroll, have odd padding, master and fine
 - (bug) BZ#1442616 - Inaccurate representation of translations available
+
+### Added
+- (feature) Update vm details page
+- (feature) Add performance / utilization graphs on service page
+- (feature) Optimize batch action notifications
 - (feature) Add timeline to snapshots page
 - (feature) Add custom buttons on details page
 
-### Changelog for Sprint 59
+## Unreleased as of Sprint 59 ending 2017-04-24
+
+### Fixed
 - (bug)  (Cockpit and HTML5) are inconsistent between Service and OPS UI
 - (bug) Change "Catalogs" to "Service Catalog"
 - (bug) Change "Service" to "My Service"
 - (bug) Parity additions for edit tags modal
-- (feature) RBAC support for custom buttons
 - (bug) User can create a catalog
 - (bug) Ensure accurate status reporting for all collection/subcollection actions
 - (bug) Hover text is not present on Service details page
 - (bug) Only stack name should be shown in relationships table for stack VM
 - (bug) Incorrect status reporting for snapshots
 - (bug) BZ#1441425 - Last run report should be listed first
-- (chore) Remove the ability to create / edit / remove catalogs
-- (chore) Update Deps
-- (chore) Delete dialog editor code
-- (feature) Add ability to filter by Catalog Name
 - (bug) Change "Service Catalogs" in vertical navigation to "Service Catalog"
 - (bug) Wrong pending request count displayed in dashboard
-- (feature) Flatten action and custom actions for service details
-- (bug) When using dynamic drop downs, sorting of items doesn't work 
+- (bug) When using dynamic drop downs, sorting of items doesn't work
 - (bug) Fix missing data in Mock API
-- (chore) Move Mock API to NPM
-- (chore) Evaluate Bithound.io
-- (chore) Change polling to 5 seconds
 - (bug) Hide report tab
 - (bug) Remove list view for Service Catalog
 - (bug) Remove tile view from My Services
@@ -159,15 +149,17 @@ All notable changes to this project will be documented in this file.
 - (bug) Remove "filtering by number of VMs"
 - (bug) Left element alignment wrong
 - (bug) Add nl2br in the Ansible stdOut feed
-- (bug) BZ#1440931 - reject login for user without privileges 
+- (bug) BZ#1440931 - reject login for user without privileges
 - (bug) VM Details page taking too long to load on Cloud instances
 - (bug) Cockpit console does not open
-- (bug) Self Service UI does not properly select defaults for dynamic drop downs 
+- (bug) Self Service UI does not properly select defaults for dynamic drop downs
 - (bug) Arrow should align to kebab menu
-- (chore) [MOCK] Add Bithound.io badges to Mock API
-- (chore) [MOCK] Use StandardJS in the Mock API
 - (bug) [MOCK] Fix stdOut data
-- (chore) Delete My Requests tab
+
+### Added
+- (feature) RBAC support for custom buttons
+- (feature) Add ability to filter by Catalog Name
+- (feature) Flatten action and custom actions for service details
 
 ### Changelog for Sprint 58
 - (bug) Dialog field visibility is not honored on dynamic fields in Service UI
