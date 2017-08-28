@@ -1,20 +1,20 @@
 /** @ngInject */
-export function NavCountsFactory() {
-  var counts = {};
+export function NavCountsFactory () {
+  var counts = {}
 
   var service = {
     add: add,
-    counts: counts,
-  };
+    counts: counts
+  }
 
-  return service;
+  return service
 
-  function add(key, func, interval) {
+  function add (key, func, interval) {
     if (!counts[key]) {
       counts[key] = {
         func: func,
-        interval: interval,
-      };
+        interval: interval
+      }
     }
   }
 }

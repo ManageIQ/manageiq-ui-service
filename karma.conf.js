@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-const webpackConfig = require('./config/webpack.test.js');
+const webpackConfig = require('./config/webpack.test.js')
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
@@ -14,7 +14,7 @@ module.exports = function(config) {
     concurrency: Infinity,
     webpack: webpackConfig,
     webpackMiddleware: {
-      stats: 'errors-only',
+      stats: 'errors-only'
     },
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR ||
@@ -32,10 +32,10 @@ module.exports = function(config) {
       {pattern: './client/app/**/*.spec.js'},
       {pattern: './tests/**/*.js'},
       {pattern: './tests/**/*.json', included: false, served: true, nocache: false},
-      {pattern: './client/assets/images/**/*', included: false, served: true, nocache: false},
+      {pattern: './client/assets/images/**/*', included: false, served: true, nocache: false}
     ],
     proxies: {
-      '/images/': '/base/client/assets/images/',
+      '/images/': '/base/client/assets/images/'
     },
 
     // preprocess matching files before serving them to the browser
@@ -43,7 +43,7 @@ module.exports = function(config) {
     preprocessors: {
       './tests/**/*.js': ['babel'],
       './client/app/**/*.spec.js': ['babel'],
-      './client/app.js': ['webpack'],
+      './client/app.js': ['webpack']
     },
 
     // test results reporter to use
@@ -56,9 +56,9 @@ module.exports = function(config) {
       fixWebpackSourcePaths: true,
       'report-config': {
         html: {
-          subdir: 'html',
-        },
-      },
-    },
-  });
-};
+          subdir: 'html'
+        }
+      }
+    }
+  })
+}

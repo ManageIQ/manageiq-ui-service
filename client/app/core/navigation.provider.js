@@ -1,28 +1,28 @@
 /** @ngInject */
-export function NavigationProvider() {
+export function NavigationProvider () {
   var provider = {
     $get: Navigation,
-    configure: configure,
-  };
+    configure: configure
+  }
 
   var model = {
     items: {
-      primary: {},
-    },
-  };
+      primary: {}
+    }
+  }
 
-  return provider;
+  return provider
 
-  function configure(value) {
-    angular.extend(model, value);
+  function configure (value) {
+    angular.extend(model, value)
   }
 
   /** @ngInject */
-  function Navigation() {
+  function Navigation () {
     var service = {
-      items: model.items,
-    };
+      items: model.items
+    }
 
-    return service;
+    return service
   }
 }

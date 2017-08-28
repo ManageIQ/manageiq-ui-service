@@ -1,4 +1,4 @@
-import templateUrl from './process-order-modal.html';
+import templateUrl from './process-order-modal.html'
 
 export const ProcessOrderModalComponent = {
   controller: ComponentController,
@@ -6,40 +6,40 @@ export const ProcessOrderModalComponent = {
   bindings: {
     resolve: '<',
     close: '&',
-    dismiss: '&',
+    dismiss: '&'
   },
-  templateUrl,
-};
+  templateUrl
+}
 
 /** @ngInject */
-function ComponentController($state, CollectionsApi, EventNotifications) {
-  var vm = this;
+function ComponentController ($state, CollectionsApi, EventNotifications) {
+  var vm = this
 
   angular.extend(vm, {
     order: vm.resolve.order,
     confirm: confirm,
-    cancel: cancel,
-  });
+    cancel: cancel
+  })
 
-  function cancel() {
-    vm.dismiss({$value: 'cancel'});
+  function cancel () {
+    vm.dismiss({$value: 'cancel'})
   }
 
-  function confirm() {
+  function confirm () {
     var data = {
       action: 'delete',
-      resources: [vm.order],
-    };
-    CollectionsApi.post('service_orders', '', {}, data).then(saveSuccess, saveFailure);
+      resources: [vm.order]
+    }
+    CollectionsApi.post('service_orders', '', {}, data).then(saveSuccess, saveFailure)
 
-    function saveSuccess(response) {
-      vm.close();
-      EventNotifications.batch(response.results, __('Deleting order.'), __('Error deleting order.'));
-      $state.go($state.current, {}, {reload: true});
+    function saveSuccess (response) {
+      vm.close()
+      EventNotifications.batch(response.results, __('Deleting order.'), __('Error deleting order.'))
+      $state.go($state.current, {}, {reload: true})
     }
 
-    function saveFailure() {
-      EventNotifications.error(__('There was an error removing order'));
+    function saveFailure () {
+      EventNotifications.error(__('There was an error removing order'))
     }
   }
 }

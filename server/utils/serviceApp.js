@@ -1,15 +1,14 @@
 /* eslint-disable no-undef, angular/log */
 
+'use strict'
 
-'use strict';
+var express = require('express')
 
-var express = require('express');
+var router = express.Router()
 
-var router = express.Router();
+router.use(express.static('./client'))
+router.use(express.static('./images'))
+router.use(express.static('./.tmp'))
+router.use(express.static('./node_modules'))
 
-router.use(express.static('./client'));
-router.use(express.static('./images'));
-router.use(express.static('./.tmp'));
-router.use(express.static('./node_modules'));
-
-module.exports = router;
+module.exports = router

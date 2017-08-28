@@ -1,20 +1,20 @@
 /* eslint camelcase: "off" */
 
 /* @ngInject */
-export function RequestsStateFactory(ListConfiguration, RBAC, CollectionsApi) {
-  const collection = 'requests';
+export function RequestsStateFactory (ListConfiguration, RBAC, CollectionsApi) {
+  const collection = 'requests'
   const service = {
     listActions: {},
     get: get,
     getMinimal: getMinimal,
-    getPermissions: getPermissions,
-  };
+    getPermissions: getPermissions
+  }
 
-  ListConfiguration.setupListFunctions(service.listActions, {id: 'created_on', title: __('Request Date'), sortType: 'numeric'});
+  ListConfiguration.setupListFunctions(service.listActions, {id: 'created_on', title: __('Request Date'), sortType: 'numeric'})
 
-  return service;
+  return service
 
-  function get(limit, offset) {
+  function get (limit, offset) {
     const attributes = [
       'approval_state',
       'created_on',
@@ -22,8 +22,8 @@ export function RequestsStateFactory(ListConfiguration, RBAC, CollectionsApi) {
       'message',
       'picture',
       'picture.image_href',
-      'requester_name',
-    ];
+      'requester_name'
+    ]
     const options = {
       expand: 'resources',
       limit: limit,
@@ -32,35 +32,35 @@ export function RequestsStateFactory(ListConfiguration, RBAC, CollectionsApi) {
       filter: getQueryFilters(service.listActions.getFilters()),
       sort_by: service.listActions.getSort().currentField.id,
       sort_options: service.listActions.getSort().currentField.sortType === 'alpha' ? 'ignore_case' : '',
-      sort_order: service.listActions.getSort().isAscending ? 'asc' : 'desc',
-    };
+      sort_order: service.listActions.getSort().isAscending ? 'asc' : 'desc'
+    }
 
-    return CollectionsApi.query(collection, options);
+    return CollectionsApi.query(collection, options)
   }
 
-  function getMinimal() {
+  function getMinimal () {
     const options = {
       filter: getQueryFilters(service.listActions.getFilters()),
-      hide: 'resources',
-    };
+      hide: 'resources'
+    }
 
-    return CollectionsApi.query(collection, options);
+    return CollectionsApi.query(collection, options)
   }
 
-  function getPermissions() {
+  function getPermissions () {
     return {
       approval: RBAC.hasAny(['miq_request_approval']),
-      edit: RBAC.hasAny(['miq_request_edit']),
-    };
+      edit: RBAC.hasAny(['miq_request_edit'])
+    }
   }
 
-  function getQueryFilters(filters) {
-    const queryFilters = [];
+  function getQueryFilters (filters) {
+    const queryFilters = []
 
     filters.forEach((nextFilter) => {
-      queryFilters.push(nextFilter.id + '=' + nextFilter.value);
-    });
+      queryFilters.push(nextFilter.id + '=' + nextFilter.value)
+    })
 
-    return queryFilters;
+    return queryFilters
   }
 }

@@ -1,11 +1,11 @@
-import templateUrl from './about-me.html';
+import templateUrl from './about-me.html'
 
 /** @ngInject */
-export function AboutMeState(routerHelper) {
-  routerHelper.configureStates(getStates());
+export function AboutMeState (routerHelper) {
+  routerHelper.configureStates(getStates())
 }
 
-function getStates() {
+function getStates () {
   return {
     'about-me': {
       parent: 'application',
@@ -13,11 +13,11 @@ function getStates() {
       templateUrl,
       controller: StateController,
       controllerAs: 'vm',
-      title: N_('About Me'),
-    },
-  };
+      title: N_('About Me')
+    }
+  }
 }
 
 /** @ngInject */
-function StateController() {
+function StateController () {
 }

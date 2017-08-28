@@ -2,14 +2,14 @@
 /* eslint angular/angularelement: "off" */
 
 /** @ngInject */
-export function DialogFieldRefreshFactory(CollectionsApi) {
+export function DialogFieldRefreshFactory (CollectionsApi) {
   var service = {
-    refreshDialogField: refreshDialogField,
-  };
+    refreshDialogField: refreshDialogField
+  }
 
-  return service;
+  return service
 
-  function refreshDialogField(dialogData, dialogField, url, resourceId) {
+  function refreshDialogField (dialogData, dialogField, url, resourceId) {
     return new Promise((resolve, reject) => {
       CollectionsApi.post(
         url,
@@ -19,14 +19,14 @@ export function DialogFieldRefreshFactory(CollectionsApi) {
           action: 'refresh_dialog_fields',
           resource: {
             dialog_fields: dialogData,
-            fields: dialogField,
-          },
+            fields: dialogField
+          }
         })
       ).then((response) => {
-        resolve(response.result[dialogField]);
+        resolve(response.result[dialogField])
       }).catch((response) => {
-        reject(response);
-      });
-    });
+        reject(response)
+      })
+    })
   }
 }

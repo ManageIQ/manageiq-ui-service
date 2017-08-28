@@ -1,35 +1,35 @@
 /** @ngInject */
-export function UsageGraphsFactory() {
+export function UsageGraphsFactory () {
   var service = {
     convertBytestoGb: convertBytestoGb,
-    getChartConfig: getChartConfig,
-  };
+    getChartConfig: getChartConfig
+  }
 
-  function getChartConfig(config, used, total) {
-    let usedValue = 0;
-    let totalValue = 0;
+  function getChartConfig (config, used, total) {
+    let usedValue = 0
+    let totalValue = 0
 
     if (angular.isDefined(used)) {
-      usedValue = used;
-      totalValue = total;
+      usedValue = used
+      totalValue = total
     }
 
     return {
       config: {
         units: config.units,
-        chartId: config.chartId,
+        chartId: config.chartId
       },
       data: {
         'used': usedValue,
-        'total': totalValue,
+        'total': totalValue
       },
-      label: config.label,
-    };
+      label: config.label
+    }
   }
 
-  function convertBytestoGb(bytes) {
-    return (bytes / 1073741824).toFixed(2);
+  function convertBytestoGb (bytes) {
+    return (bytes / 1073741824).toFixed(2)
   }
 
-  return service;
+  return service
 }

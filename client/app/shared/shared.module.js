@@ -1,17 +1,17 @@
-import {formatBytes, megaBytes} from "./format-bytes.filter.js";
-import {ActionButtonGroupComponent} from "./action-button-group/action-button-group.component.js";
-import {AutofocusDirective} from "./autofocus.directive.js";
-import {ConfirmationDirective} from "./confirmation/confirmation.directive.js";
-import {CustomDropdownComponent} from "./custom-dropdown/custom-dropdown.component.js";
-import {ElapsedTime} from "./elapsedTime.filter.js";
-import {IconListComponent} from "./icon-list/icon-list.component.js";
-import {IconStatusComponent} from './icon-status.component.js';
-import {LoadingComponent} from "./loading.component.js";
-import {PaginationComponent} from "./pagination/pagination.component.js";
-import {SSCardComponent} from "./ss-card/ss-card.component.js";
-import {TaggingComponent} from "./tagging/tagging.component.js";
-import {TimelineComponent} from "./timeline/timeline.component.js";
-import {substitute} from "./substitute.filter.js";
+import {formatBytes, megaBytes} from './format-bytes.filter.js'
+import {ActionButtonGroupComponent} from './action-button-group/action-button-group.component.js'
+import {AutofocusDirective} from './autofocus.directive.js'
+import {ConfirmationDirective} from './confirmation/confirmation.directive.js'
+import {CustomDropdownComponent} from './custom-dropdown/custom-dropdown.component.js'
+import {ElapsedTime} from './elapsedTime.filter.js'
+import {IconListComponent} from './icon-list/icon-list.component.js'
+import {IconStatusComponent} from './icon-status.component.js'
+import {LoadingComponent} from './loading.component.js'
+import {PaginationComponent} from './pagination/pagination.component.js'
+import {SSCardComponent} from './ss-card/ss-card.component.js'
+import {TaggingComponent} from './tagging/tagging.component.js'
+import {TimelineComponent} from './timeline/timeline.component.js'
+import {substitute} from './substitute.filter.js'
 
 export const SharedModule = angular
   .module('app.shared', [
@@ -23,7 +23,7 @@ export const SharedModule = angular
     'patternfly',
     'patternfly.charts',
     'patternfly.table',
-    'ui.select',
+    'ui.select'
   ])
   .component('actionButtonGroup', ActionButtonGroupComponent)
   .component('customDropdown', CustomDropdownComponent)
@@ -40,4 +40,4 @@ export const SharedModule = angular
   .filter('megaBytes', megaBytes)
   .filter('substitute', substitute)
   .filter('elapsedTime', ElapsedTime)
-  .name;
+  .name

@@ -1,17 +1,17 @@
 /** @ngInject */
-export function ApplianceInfo() {
-  let applianceInfo = {};
+export function ApplianceInfo () {
+  let applianceInfo = {}
 
   return {
     get: get,
-    set: set,
-  };
-
-  function get() {
-    return applianceInfo;
+    set: set
   }
 
-  function set(data) {
+  function get () {
+    return applianceInfo
+  }
+
+  function set (data) {
     applianceInfo = {
       copyright: data.product_info.copyright,
       supportWebsiteText: data.product_info.support_website_text,
@@ -20,7 +20,7 @@ export function ApplianceInfo() {
       role: data.identity.role,
       version: data.server_info.version + '.' + data.server_info.build,
       server: data.server_info.appliance,
-      asyncNotify: data.settings.asynchronous_notifications,
-    };
+      asyncNotify: data.settings.asynchronous_notifications
+    }
   }
 }

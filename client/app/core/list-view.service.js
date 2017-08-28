@@ -2,62 +2,61 @@
 /* eslint no-cond-assign: "off" */
 
 /** @ngInject */
-export function ListViewFactory() {
-  var listView = {};
+export function ListViewFactory () {
+  var listView = {}
 
-  listView.applyFilters = function(filters, retList, origList, stateFactory, matchesFilter) {
-    retList = [];
+  listView.applyFilters = function (filters, retList, origList, stateFactory, matchesFilter) {
+    retList = []
     if (filters && filters.length > 0) {
-      angular.forEach(origList, filterChecker);
+      angular.forEach(origList, filterChecker)
     } else {
-      retList = origList;
+      retList = origList
     }
 
     /* Keep track of the current filtering state */
-    stateFactory.setFilters(filters);
+    stateFactory.setFilters(filters)
 
-    return retList;
+    return retList
 
-    function filterChecker(item) {
+    function filterChecker (item) {
       if (matchesFilters(item, filters)) {
-        retList.push(item);
+        retList.push(item)
       }
     }
 
-    function matchesFilters(item, filters) {
-      var matches = true;
-      angular.forEach(filters, filterMatcher);
+    function matchesFilters (item, filters) {
+      var matches = true
+      angular.forEach(filters, filterMatcher)
 
-      function filterMatcher(filter) {
+      function filterMatcher (filter) {
         if (!matchesFilter(item, filter)) {
-          matches = false;
+          matches = false
 
-          return false;
+          return false
         }
       }
 
-      return matches;
+      return matches
     }
-  };
+  }
 
-  listView.createFilterField = function(id, title, placeholder, type, values) {
+  listView.createFilterField = function (id, title, placeholder, type, values) {
     return {
       id: id,
       title: title,
       placeholder: placeholder,
       filterType: type,
-      filterValues: values,
-    };
-  };
+      filterValues: values
+    }
+  }
 
   listView.createSortField = function (id, title, sortType) {
     return {
       id: id,
       title: title,
-      sortType: sortType,
-    };
-  };
+      sortType: sortType
+    }
+  }
 
-
-  return listView;
+  return listView
 }

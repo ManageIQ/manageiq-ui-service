@@ -1,4 +1,4 @@
-import templateUrl from './process-snapshots-modal.html';
+import templateUrl from './process-snapshots-modal.html'
 
 export const ProcessSnapshotsModalComponent = {
   controller: ComponentController,
@@ -7,39 +7,39 @@ export const ProcessSnapshotsModalComponent = {
     resolve: '<',
     modalInstance: '<',
     close: '&',
-    dismiss: '&',
+    dismiss: '&'
   },
-  templateUrl,
-};
+  templateUrl
+}
 
 /** @ngInject */
-function ComponentController($controller, $state, EventNotifications, VmsService) {
-  const vm = this;
+function ComponentController ($controller, $state, EventNotifications, VmsService) {
+  const vm = this
 
-  vm.$onInit = function() {
+  vm.$onInit = function () {
     angular.extend(vm, $controller('BaseModalController', {
-      $uibModalInstance: vm.modalInstance,
-    }));
+      $uibModalInstance: vm.modalInstance
+    }))
 
     angular.extend(vm, {
       modalData: {},
       vm: vm.resolve.vm,
       modalType: vm.resolve.modalType,
-      save: save,
-    });
-  };
-
-  function save() {
-    VmsService.createSnapshots(vm.vm.id, vm.modalData).then(success, failure);
+      save: save
+    })
   }
 
-  function success(response) {
-    vm.close();
-    $state.go($state.current, {}, {reload: true});
-    EventNotifications.batch(response.results, __('Creating snapshot.'), __('Error creating snapshot.'));
+  function save () {
+    VmsService.createSnapshots(vm.vm.id, vm.modalData).then(success, failure)
   }
 
-  function failure(response) {
-    EventNotifications.error(__('There was an error creating the snapshot.') + response.message);
+  function success (response) {
+    vm.close()
+    $state.go($state.current, {}, {reload: true})
+    EventNotifications.batch(response.results, __('Creating snapshot.'), __('Error creating snapshot.'))
+  }
+
+  function failure (response) {
+    EventNotifications.error(__('There was an error creating the snapshot.') + response.message)
   }
 }

@@ -1,5 +1,5 @@
-import './_custom-dropdown.sass';
-import templateUrl from './custom-dropdown.html';
+import './_custom-dropdown.sass'
+import templateUrl from './custom-dropdown.html'
 
 export const CustomDropdownComponent = {
   controller: ComponentController,
@@ -9,36 +9,36 @@ export const CustomDropdownComponent = {
     items: '<',
     itemsCount: '<',
     onUpdate: '&',
-    menuRight: '@',
+    menuRight: '@'
   },
-  templateUrl,
-};
+  templateUrl
+}
 
 /** @ngInject */
-function ComponentController() {
-  var vm = this;
+function ComponentController () {
+  var vm = this
 
-  vm.$onInit = function() {
-    vm.menuRight = vm.menuRight && (vm.menuRight === 'true' || vm.menuRight === true);
+  vm.$onInit = function () {
+    vm.menuRight = vm.menuRight && (vm.menuRight === 'true' || vm.menuRight === true)
 
     angular.extend(vm, {
-      handleAction: handleAction,
-    });
-  };
+      handleAction: handleAction
+    })
+  }
 
-  vm.$onChanges = function() {
-    updateDisabled();
-  };
+  vm.$onChanges = function () {
+    updateDisabled()
+  }
   // Public
 
   // Private
-  function updateDisabled() {
-    vm.onUpdate({$config: vm.config, $changes: vm.items});
+  function updateDisabled () {
+    vm.onUpdate({$config: vm.config, $changes: vm.items})
   }
 
-  function handleAction(option) {
+  function handleAction (option) {
     if (!option.isDisabled) {
-      option.actionFn(option);
+      option.actionFn(option)
     }
   }
 }

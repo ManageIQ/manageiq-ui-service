@@ -2,18 +2,18 @@
   * Must configure the exception handling
   * @return {[type]}
   */
-export function exceptionHandlerProvider() {
+export function exceptionHandlerProvider () {
   this.config = {
-    appErrorPrefix: undefined,
-  };
+    appErrorPrefix: undefined
+  }
 
-  this.configure = function(appErrorPrefix) {
-    this.config.appErrorPrefix = appErrorPrefix;
-  };
+  this.configure = function (appErrorPrefix) {
+    this.config.appErrorPrefix = appErrorPrefix
+  }
 
-  this.$get = function() {
-    return {config: this.config};
-  };
+  this.$get = function () {
+    return {config: this.config}
+  }
 }
 
 /**
@@ -23,8 +23,8 @@ export function exceptionHandlerProvider() {
   * @return {[type]}
   * @ngInject
   */
-export function config($provide) {
-  $provide.decorator('$exceptionHandler', extendExceptionHandler);
+export function config ($provide) {
+  $provide.decorator('$exceptionHandler', extendExceptionHandler)
 }
 
 /**
@@ -35,16 +35,16 @@ export function config($provide) {
   * @return {Function} the decorated $exceptionHandler service
   * @ngInject
   */
-function extendExceptionHandler($delegate, exceptionHandler, $log) {
-  return function(exception, cause) {
+function extendExceptionHandler ($delegate, exceptionHandler, $log) {
+  return function (exception, cause) {
     if (angular.isString(exception)) {
-      exception = Error(exception);
+      exception = Error(exception)
     }
 
-    var appErrorPrefix = exceptionHandler.config.appErrorPrefix || '';
-    var errorData = {exception: exception, cause: cause};
-    exception.message = appErrorPrefix + exception.message;
-    $delegate(exception, cause);
+    var appErrorPrefix = exceptionHandler.config.appErrorPrefix || ''
+    var errorData = {exception: exception, cause: cause}
+    exception.message = appErrorPrefix + exception.message
+    $delegate(exception, cause)
     /**
       * Could add the error to a service's collection,
       * add errors to $rootScope, log errors to remote web server,
@@ -54,6 +54,6 @@ function extendExceptionHandler($delegate, exceptionHandler, $log) {
       * @example
       *     throw { message: 'error message we added' };
       */
-    $log.error(exception.message, errorData);
-  };
+    $log.error(exception.message, errorData)
+  }
 }

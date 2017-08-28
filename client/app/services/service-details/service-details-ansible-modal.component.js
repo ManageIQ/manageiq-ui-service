@@ -1,4 +1,4 @@
-import templateUrl from './service-details-ansible-modal.html';
+import templateUrl from './service-details-ansible-modal.html'
 
 export const ServiceDetailsAnsibleModalComponent = {
   controller: ComponentController,
@@ -6,20 +6,20 @@ export const ServiceDetailsAnsibleModalComponent = {
   bindings: {
     resolve: '<',
     close: '&',
-    dismiss: '&',
+    dismiss: '&'
   },
-  templateUrl,
-};
+  templateUrl
+}
 
 /** @ngInject */
-function ComponentController() {
-  const vm = this;
+function ComponentController () {
+  const vm = this
 
   angular.extend(vm, {
-    cancel: cancel,
-  });
+    cancel: cancel
+  })
 
-  function cancel() {
-    vm.dismiss({$value: 'cancel'});
+  function cancel () {
+    vm.dismiss({$value: 'cancel'})
   }
 }

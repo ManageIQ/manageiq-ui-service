@@ -1,9 +1,9 @@
 /** @ngInject */
-export function ServicesExplorerState(routerHelper, RBAC) {
-  routerHelper.configureStates(getStates(RBAC));
+export function ServicesExplorerState (routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC))
 }
 
-function getStates(RBAC) {
+function getStates (RBAC) {
   return {
     'services.explorer': {
       url: '',
@@ -12,8 +12,8 @@ function getStates(RBAC) {
       title: __('Services Explorer'),
       params: { filter: null },
       data: {
-        authorization: RBAC.hasAny(['service_view']),
-      },
-    },
-  };
+        authorization: RBAC.hasAny(['service_view'])
+      }
+    }
+  }
 }

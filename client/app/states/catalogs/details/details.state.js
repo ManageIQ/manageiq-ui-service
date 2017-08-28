@@ -1,11 +1,11 @@
-import templateUrl from './details.html';
+import templateUrl from './details.html'
 
 /** @ngInject */
-export function CatalogsDetailsState(routerHelper) {
-  routerHelper.configureStates(getStates());
+export function CatalogsDetailsState (routerHelper) {
+  routerHelper.configureStates(getStates())
 }
 
-function getStates() {
+function getStates () {
   return {
     'catalogs.details': {
       url: '/:serviceTemplateId',
@@ -15,10 +15,10 @@ function getStates() {
       title: __('Service Template Details'),
       resolve: {
         dialogs: resolveDialogs,
-        serviceTemplate: resolveServiceTemplate,
-      },
-    },
-  };
+        serviceTemplate: resolveServiceTemplate
+      }
+    }
+  }
 }
 
 /** @ngInject */
@@ -28,10 +28,10 @@ function getStates() {
  * @param  {object} $stateParams
  * @param  {object} CollectionsApi
  */
-function resolveServiceTemplate($stateParams, CollectionsApi) {
-  var options = {attributes: ['picture', 'picture.image_href']};
+function resolveServiceTemplate ($stateParams, CollectionsApi) {
+  var options = {attributes: ['picture', 'picture.image_href']}
 
-  return CollectionsApi.get('service_templates', $stateParams.serviceTemplateId, options);
+  return CollectionsApi.get('service_templates', $stateParams.serviceTemplateId, options)
 }
 
 /**
@@ -41,58 +41,58 @@ function resolveServiceTemplate($stateParams, CollectionsApi) {
  * @param  {object} CollectionsApi
  */
 /** @ngInject */
-function resolveDialogs($stateParams, CollectionsApi) {
-  var options = {expand: 'resources', attributes: 'content'};
+function resolveDialogs ($stateParams, CollectionsApi) {
+  var options = {expand: 'resources', attributes: 'content'}
 
-  return CollectionsApi.query('service_templates/' + $stateParams.serviceTemplateId + '/service_dialogs', options);
+  return CollectionsApi.query('service_templates/' + $stateParams.serviceTemplateId + '/service_dialogs', options)
 }
 
 /** @ngInject */
-function Controller(dialogs, serviceTemplate, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash) {
-  var vm = this;
+function Controller (dialogs, serviceTemplate, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash) {
+  var vm = this
 
-  vm.serviceTemplate = serviceTemplate;
+  vm.serviceTemplate = serviceTemplate
 
   if (dialogs.subcount > 0) {
-    vm.dialogs = dialogs.resources[0].content;
+    vm.dialogs = dialogs.resources[0].content
   }
 
-  vm.addToCart = addToCart;
-  vm.cartAllowed = ShoppingCart.allowed;
-  vm.addToCartEnabled = false;
-  vm.alreadyInCart = alreadyInCart;
-  vm.addToCartDisabled = addToCartDisabled;
-  vm.refreshField = refreshField;
-  vm.setDialogData = setDialogData;
-  vm.dialogData = {};
+  vm.addToCart = addToCart
+  vm.cartAllowed = ShoppingCart.allowed
+  vm.addToCartEnabled = false
+  vm.alreadyInCart = alreadyInCart
+  vm.addToCartDisabled = addToCartDisabled
+  vm.refreshField = refreshField
+  vm.setDialogData = setDialogData
+  vm.dialogData = {}
 
-  vm.dialogUrl = 'service_catalogs/' + serviceTemplate.service_template_catalog_id + '/service_templates';
- 
+  vm.dialogUrl = 'service_catalogs/' + serviceTemplate.service_template_catalog_id + '/service_templates'
+
   /**
  * This function triggers a refresh of a single dialog field
  * @function refreshField
  * @param  {object} field
  * @returns {Promise}
  */
-  function refreshField(field) {
-    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], vm.dialogUrl, vm.serviceTemplate.id);
+  function refreshField (field) {
+    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], vm.dialogUrl, vm.serviceTemplate.id)
   }
   /**
    * Stores resulting data output from a dialog
    * @function setDialogData
    * @param  {object} data
   */
-  function setDialogData(data) {
-    vm.addToCartEnabled = data.validations.isValid;
-    vm.dialogData = data.data;
+  function setDialogData (data) {
+    vm.addToCartEnabled = data.validations.isValid
+    vm.dialogData = data.data
   }
   /**
    * Determines whether a user can add to cart
    * @function addToCartDisabled
    * @returns {boolean}
   */
-  function addToCartDisabled() {
-    return (!vm.cartAllowed() || !vm.addToCartEnabled);
+  function addToCartDisabled () {
+    return (!vm.cartAllowed() || !vm.addToCartEnabled)
   }
 
   /**
@@ -101,55 +101,55 @@ function Controller(dialogs, serviceTemplate, EventNotifications, ShoppingCart, 
    * @param {string} href
    * @returns {object}
   */
-  function dataForSubmit(href) {
-    var dialogFieldData = {};
-    dialogFieldData[href] = '/api/service_templates/' + serviceTemplate.id;
+  function dataForSubmit (href) {
+    var dialogFieldData = {}
+    dialogFieldData[href] = '/api/service_templates/' + serviceTemplate.id
 
-    return lodash.merge(vm.dialogData, dialogFieldData);
+    return lodash.merge(vm.dialogData, dialogFieldData)
   }
   /**
    * Checks to see if a user is submitting a duplicate request
    * @function alreadyInCart
    * @returns {boolean}
   */
-  function alreadyInCart() {
-    return ShoppingCart.isDuplicate(dataForSubmit('service_template_href'));
+  function alreadyInCart () {
+    return ShoppingCart.isDuplicate(dataForSubmit('service_template_href'))
   }
 
   /**
    * Adds service to cart
    * @function addToCart
   */
-  function addToCart() {
+  function addToCart () {
     if (!ShoppingCart.allowed()) {
-      return;
+      return
     }
 
-    var dialogFieldData = dataForSubmit('service_template_href');
+    var dialogFieldData = dataForSubmit('service_template_href')
 
-    vm.addingToCart = true;
-    
+    vm.addingToCart = true
+
     return ShoppingCart.add({
       description: vm.serviceTemplate.name,
-      data: dialogFieldData,
+      data: dialogFieldData
     })
       .then(addSuccess, addFailure)
-      .then(function() {
-        vm.addingToCart = false;
-      });
+      .then(function () {
+        vm.addingToCart = false
+      })
 
-    function addSuccess(result) {
+    function addSuccess (result) {
       if (result.duplicate) {
-        EventNotifications.success(__("Item added to shopping cart, but it's a duplicate of an existing item"));
+        EventNotifications.success(__("Item added to shopping cart, but it's a duplicate of an existing item"))
       } else {
-        EventNotifications.success(__("Item added to shopping cart"));
+        EventNotifications.success(__('Item added to shopping cart'))
       }
     }
 
-    function addFailure(result) {
-      var errors = result.split(",");
+    function addFailure (result) {
+      var errors = result.split(',')
       for (var i = 0; i < errors.length; ++i) {
-        EventNotifications.error(__("There was an error adding to shopping cart: ") + errors[i]);
+        EventNotifications.error(__('There was an error adding to shopping cart: ') + errors[i])
       }
     }
   }

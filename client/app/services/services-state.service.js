@@ -1,11 +1,11 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
-  const permissions = getPermissions();
-  const services = {};
+export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
+  const permissions = getPermissions()
+  const services = {}
 
-  ListConfiguration.setupListFunctions(services, {id: 'name', title: __('Name'), sortType: 'alpha'});
+  ListConfiguration.setupListFunctions(services, {id: 'name', title: __('Name'), sortType: 'alpha'})
 
   return {
     services: services,
@@ -18,10 +18,10 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
     getPermissions: getPermissions,
     getLifeCycleCustomDropdown: getLifeCycleCustomDropdown,
     getPolicyCustomDropdown: getPolicyCustomDropdown,
-    getConfigurationCustomDropdown: getConfigurationCustomDropdown,
-  };
+    getConfigurationCustomDropdown: getConfigurationCustomDropdown
+  }
 
-  function getService(id, refresh) {
+  function getService (id, refresh) {
     const options = {
       attributes: [
         'name', 'guid', 'created_at', 'type', 'description', 'picture', 'picture.image_href', 'evm_owner.name', 'evm_owner.userid',
@@ -31,42 +31,42 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options', 'vms.ipaddresses',
         'vms.snapshots', 'vms.v_total_snapshots', 'vms.v_snapshot_newest_name', 'vms.v_snapshot_newest_timestamp', 'vms.v_snapshot_newest_total_size',
         'vms.supports_console?', 'vms.supports_launch_cockpit?', 'vms.max_mem_usage_absolute_average_avg_over_time_period', 'vms.hardware',
-        'vms.hardware.aggregate_cpu_speed', 'vms.cpu_usagemhz_rate_average_avg_over_time_period',
+        'vms.hardware.aggregate_cpu_speed', 'vms.cpu_usagemhz_rate_average_avg_over_time_period'
       ],
       expand: ['vms', 'orchestration_stacks'],
-      auto_refresh: refresh,
-    };
+      auto_refresh: refresh
+    }
 
-    return CollectionsApi.get('services', id, options);
+    return CollectionsApi.get('services', id, options)
   }
 
-  function getServiceCredential(credentialId) {
-    return CollectionsApi.get('authentications', credentialId, {});
+  function getServiceCredential (credentialId) {
+    return CollectionsApi.get('authentications', credentialId, {})
   }
 
-  function getServiceRepository(repositoryId) {
-    return CollectionsApi.get('configuration_script_sources', repositoryId, {});
+  function getServiceRepository (repositoryId) {
+    return CollectionsApi.get('configuration_script_sources', repositoryId, {})
   }
 
-  function getServiceJobsStdout(serviceId, stackId) {
+  function getServiceJobsStdout (serviceId, stackId) {
     const options = {
       attributes: ['job_plays', 'stdout'],
-      format_attributes: 'stdout=html',
-    };
+      format_attributes: 'stdout=html'
+    }
 
-    return CollectionsApi.get(`services/${serviceId}/orchestration_stacks`, stackId, options);
+    return CollectionsApi.get(`services/${serviceId}/orchestration_stacks`, stackId, options)
   }
 
   // Returns minimal data for the services matching the current filters, useful for getting a filter count
-  function getServicesMinimal(filters) {
+  function getServicesMinimal (filters) {
     const options = {
-      filter: getQueryFilters(filters),
-    };
+      filter: getQueryFilters(filters)
+    }
 
-    return CollectionsApi.query('services', options);
+    return CollectionsApi.query('services', options)
   }
 
-  function getServices(limit, offset, filters, sortField, sortAscending, refresh) {
+  function getServices (limit, offset, filters, sortField, sortAscending, refresh) {
     const options = {
       expand: 'resources',
       limit: limit,
@@ -85,22 +85,22 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'all_vms',
         'custom_actions',
         'service_resources',
-        'tags',
+        'tags'
       ],
       filter: getQueryFilters(filters),
-      auto_refresh: refresh,
-    };
-
-    if (angular.isDefined(sortField)) {
-      options.sort_by = services.getSort().currentField.id;
-      options.sort_options = services.getSort().currentField.sortType === 'alpha' ? 'ignore_case' : '';
-      options.sort_order = sortAscending ? 'asc' : 'desc';
+      auto_refresh: refresh
     }
 
-    return CollectionsApi.query('services', options);
+    if (angular.isDefined(sortField)) {
+      options.sort_by = services.getSort().currentField.id
+      options.sort_options = services.getSort().currentField.sortType === 'alpha' ? 'ignore_case' : ''
+      options.sort_order = sortAscending ? 'asc' : 'desc'
+    }
+
+    return CollectionsApi.query('services', options)
   }
 
-  function getPermissions() {
+  function getPermissions () {
     return {
       edit: RBAC.hasAny(['service_admin', 'service_edit']),
       delete: RBAC.hasAny(['service_admin', 'service_delete']),
@@ -128,13 +128,13 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
       storage_show_list: RBAC.has('storage_show_list'), // Display Lists of Datastores
       instance_show: RBAC.has('instance_show'), // Display Individual Instances related to a CI
       vm_drift: RBAC.has('vm_drift'), // Displays VMs Drift
-      vm_check_compliance: RBAC.has('vm_check_compliance'), // Check Compliance of Last Known Configuration
-    };
+      vm_check_compliance: RBAC.has('vm_check_compliance') // Check Compliance of Last Known Configuration
+    }
   }
 
-  function getLifeCycleCustomDropdown(setServiceRetirementFn, retireServiceFn) {
-    let lifeCycleActions;
-    const clockIcon = 'fa fa-clock-o';
+  function getLifeCycleCustomDropdown (setServiceRetirementFn, retireServiceFn) {
+    let lifeCycleActions
+    const clockIcon = 'fa fa-clock-o'
 
     if (permissions.retire || permissions.setRetireDate) {
       lifeCycleActions = {
@@ -143,8 +143,8 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         icon: 'fa fa-recycle',
         actions: [],
         isDisabled: false,
-        tooltipText: __('Lifecycle'),
-      };
+        tooltipText: __('Lifecycle')
+      }
       const lifecycleOptions = [
         {
           icon: clockIcon,
@@ -153,7 +153,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
           title: __('Set Retirement'),
           actionFn: setServiceRetirementFn,
           permission: permissions.setRetireDate,
-          isDisabled: false,
+          isDisabled: false
         },
         {
           title: __('Retire'),
@@ -169,28 +169,28 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
           confirmationOkStyle: 'primary',
           confirmationId: 'retireServiceConfirmId',
           permission: permissions.retire,
-          isDisabled: false,
-        },
-      ];
-      lifeCycleActions.actions = checkMenuPermissions(lifecycleOptions);
+          isDisabled: false
+        }
+      ]
+      lifeCycleActions.actions = checkMenuPermissions(lifecycleOptions)
     }
 
-    return lifeCycleActions;
+    return lifeCycleActions
   }
 
-  function checkMenuPermissions(menuOptions) {
-    const menu = [];
+  function checkMenuPermissions (menuOptions) {
+    const menu = []
     angular.forEach(menuOptions, (menuOption) => {
       if (menuOption.permission) {
-        menu.push(menuOption);
+        menu.push(menuOption)
       }
-    });
+    })
 
-    return menu;
+    return menu
   }
 
-  function getPolicyCustomDropdown(editTagsFn) {
-    let policyActions;
+  function getPolicyCustomDropdown (editTagsFn) {
+    let policyActions
 
     if (permissions.editTags) {
       policyActions = {
@@ -205,18 +205,18 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
             actionName: 'editTags',
             title: __('Edit Tags'),
             actionFn: editTagsFn,
-            isDisabled: false,
-          },
+            isDisabled: false
+          }
         ],
-        isDisabled: false,
-      };
+        isDisabled: false
+      }
     }
 
-    return policyActions;
+    return policyActions
   }
 
-  function getConfigurationCustomDropdown(editServiceFn, removeServicesFn, setOwnershipFn) {
-    let configActions;
+  function getConfigurationCustomDropdown (editServiceFn, removeServicesFn, setOwnershipFn) {
+    let configActions
 
     if (permissions.edit || permissions.delete || permissions.setOwnership) {
       configActions = {
@@ -225,8 +225,8 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         icon: 'fa fa-cog',
         actions: [],
         isDisabled: false,
-        tooltipText: __('Configuration'),
-      };
+        tooltipText: __('Configuration')
+      }
 
       const configMenuOptions = [
         {
@@ -236,7 +236,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
           title: __('Edit'),
           actionFn: editServiceFn,
           isDisabled: false,
-          permission: permissions.edit,
+          permission: permissions.edit
         },
         {
           icon: 'pficon pficon-delete',
@@ -252,7 +252,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
           confirmationOkText: __('Yes, Remove Service'),
           confirmationOkStyle: 'primary',
           confirmationShowCancel: true,
-          permission: permissions.delete,
+          permission: permissions.delete
         },
         {
           icon: 'pficon pficon-user',
@@ -261,31 +261,31 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
           title: __('Set Ownership'),
           actionFn: setOwnershipFn,
           isDisabled: false,
-          permission: permissions.setOwnership,
-        },
-      ];
-      configActions.actions = checkMenuPermissions(configMenuOptions);
+          permission: permissions.setOwnership
+        }
+      ]
+      configActions.actions = checkMenuPermissions(configMenuOptions)
     }
 
-    return configActions;
+    return configActions
   }
 
   // Private
-  function getQueryFilters(filters) {
-    const queryFilters = ['ancestry=null'];
+  function getQueryFilters (filters) {
+    const queryFilters = ['ancestry=null']
 
-    angular.forEach(filters, function(nextFilter) {
+    angular.forEach(filters, function (nextFilter) {
       if (nextFilter.id === 'name') {
-        queryFilters.push("name='%" + nextFilter.value + "%'");
+        queryFilters.push("name='%" + nextFilter.value + "%'")
       } else {
         if (angular.isDefined(nextFilter.operator)) {
-          queryFilters.push(nextFilter.id + nextFilter.operator + nextFilter.value);
+          queryFilters.push(nextFilter.id + nextFilter.operator + nextFilter.value)
         } else {
-          queryFilters.push(nextFilter.id + '=' + nextFilter.value);
+          queryFilters.push(nextFilter.id + '=' + nextFilter.value)
         }
       }
-    });
+    })
 
-    return queryFilters;
+    return queryFilters
   }
 }
