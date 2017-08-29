@@ -27,7 +27,7 @@ function ComponentController (sprintf) {
   vm.$onInit = function () {
     angular.extend(vm, {
       isDisabled: angular.isUndefined(vm.isDisabled) ? false : vm.isDisabled,
-      onSaveLabel: angular.isUndefined(vm.onSaveLabel) ? __('Save') : __(vm.onSaveLabel),
+      onSaveLabel: angular.isUndefined(vm.onSaveLabel) ? __('Save') : vm.onSaveLabel,
       isInverted: angular.isUndefined(vm.isInverted) ? false : vm.isInverted,
       customButtonTranslated: sprintf(__('%s'), vm.customButton),
       isPristine: isPristine,
