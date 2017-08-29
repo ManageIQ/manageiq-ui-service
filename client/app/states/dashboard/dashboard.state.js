@@ -136,7 +136,14 @@ function resolveServicesWithDefinedServiceIds (CollectionsApi, RBAC) {
 
 /** @ngInject */
 function StateController ($state, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback) {
-  var vm = this
+  const vm = this
+  const retiredTitle = __('Retire Status')
+  angular.extend(vm, {
+    requestsFeature: false,
+    navigateToRetiringSoonServicesList: navigateToRetiringSoonServicesList,
+    navigateToRetiredServicesList: navigateToRetiredServicesList,
+    navigateToCurrentServicesList: navigateToCurrentServicesList
+  })
 
   if (angular.isDefined(definedServiceIdsServices)) {
     vm.servicesCount = {}
@@ -163,12 +170,11 @@ function StateController ($state, definedServiceIdsServices, retiredServices, ex
     vm.servicesFeature = true
   }
 
-  vm.requestsFeature = false
   if (angular.isDefined(allRequests)) {
     vm.requestsCount = {}
     vm.requestsCount.total = 0
 
-    var allRequestTypes = ['pending', 'approved', 'denied']
+    const allRequestTypes = ['pending', 'approved', 'denied']
     allRequests.forEach(function (promise, n) {
       resolveRequestPromises(promise, allRequestTypes[n], lodash, $q)
     })
@@ -176,33 +182,45 @@ function StateController ($state, definedServiceIdsServices, retiredServices, ex
     vm.requestsFeature = true
   }
 
-  vm.navigateToServicesList = function (filterValue) {
-    $state.go('services', {'filter': [{'id': 'retirement', 'title': __('Retirement Date'), 'value': filterValue}]})
+  function navigateToRetiredServicesList () {
+    $state.go('services', {
+      'filter': [{
+        'id': 'retired',
+        'title': retiredTitle,
+        'value': {id: true, title: __('Retired')}
+      }]
+    })
   }
 
-  vm.navigateToRetiredServicesList = function () {
-    $state.go('services', {'filter': [{'id': 'retired', 'title': __('Retired'), 'value': true}]})
-  }
+  function navigateToRetiringSoonServicesList () {
+    const currentDate = new Date()
+    const filters = []
 
-  vm.navigateToRetiringSoonServicesList = function () {
-    var currentDate = new Date()
-    var filters = []
-
-    filters.push({'id': 'retires_on', 'operator': '>', 'value': currentDate.toISOString()})
-    filters.push({'id': 'retired', 'title': __('Retired'), 'value': false})
-    var days30 = currentDate.setDate(currentDate.getDate() + 30)
-    filters.push({'id': 'retires_on', 'operator': '<', 'value': new Date(days30).toISOString()})
+    filters.push({'id': 'retired', 'title': retiredTitle, 'value': {id: false, title: __('Retires between')}})
+    filters.push({'id': 'retires_on', 'operator': '>', 'value': {id: currentDate.toISOString(), title: __('Now')}})
+    const days30 = currentDate.setDate(currentDate.getDate() + 30)
+    filters.push({
+      'id': 'retires_on',
+      'operator': '<',
+      'value': {id: new Date(days30).toISOString(), title: __('30 Days')}
+    })
 
     $state.go('services', {'filter': filters})
   }
 
-  vm.navigateToCurrentServicesList = function () {
-    $state.go('services', {'filter': [{'id': 'retired', 'title': 'Retired', 'value': false}]})
+  function navigateToCurrentServicesList () {
+    $state.go('services', {
+      'filter': [{
+        'id': 'retired',
+        'title': retiredTitle,
+        'value': {id: false, title: __('Not Retired')}
+      }]
+    })
   }
 
   function resolveRequestPromises (promiseArray, type, lodash, $q) {
     $q.all(promiseArray).then(function (data) {
-      var count = lodash.sumBy(data, 'subcount')
+      const count = lodash.sumBy(data, 'subcount')
       vm.requestsCount[type] = count
       vm.requestsCount.total += count
     })
