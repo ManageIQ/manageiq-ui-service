@@ -37,6 +37,11 @@
         </custom-button>
         <custom-dropdown class="custom-dropdown pull-left"
                          config="item"
+                         ng-repeat="item in vm.snapshotListActions"
+                         menu-right="true">
+        </custom-dropdown>
+        <custom-dropdown class="custom-dropdown pull-left"
+                         config="item"
                          ng-repeat="item in vm.listActions"
                          menu-right="true">
         </custom-dropdown>

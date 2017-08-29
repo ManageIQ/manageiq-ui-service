@@ -13,6 +13,7 @@ export const ActionButtonGroupComponent = {
     onCancel: '&',
     onReset: '&',
     onSave: '&',
+    onSaveLabel: '@',
     onOk: '&',
     onCustomButton: '&'
   },
@@ -26,6 +27,7 @@ function ComponentController (sprintf) {
   vm.$onInit = function () {
     angular.extend(vm, {
       isDisabled: angular.isUndefined(vm.isDisabled) ? false : vm.isDisabled,
+      onSaveLabel: angular.isUndefined(vm.onSaveLabel) ? __('Save') : vm.onSaveLabel,
       isInverted: angular.isUndefined(vm.isInverted) ? false : vm.isInverted,
       customButtonTranslated: sprintf(__('%s'), vm.customButton),
       isPristine: isPristine,
@@ -35,7 +37,6 @@ function ComponentController (sprintf) {
       affirmConfirmation: affirmConfirmation,
       customButtonAction: customButtonAction
     })
-
     vm.original = angular.copy(vm.data)
   }
 

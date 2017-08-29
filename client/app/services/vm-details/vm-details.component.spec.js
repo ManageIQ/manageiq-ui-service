@@ -5,6 +5,7 @@ describe('Component: VM Details', function() {
   });
 
     let scope;
+    let state;
     let isoScope;
     let element;
     let mockDir = 'tests/mock/services/';
@@ -18,12 +19,13 @@ describe('Component: VM Details', function() {
         beforeEach(inject(function($stateParams, $compile, $rootScope, $componentController, $httpBackend) {
         scope = $rootScope.$new();
         $stateParams.vmId = '12345';
-        bard.inject('VmsService','ServicesState','PowerOperations','sprintf', 'lodash', 'EventNotifications', 'Polling','LONG_POLLING_INTERVAL');
+        bard.inject('VmsService','ServicesState','PowerOperations','sprintf', 'lodash', 'EventNotifications', 'Polling','LONG_POLLING_INTERVAL', '$state', 'ModalService');
         vmData = readJSON(`${mockDir}vm.json`);
         servicePermissions = readJSON(`${mockDir}servicePermissions.json`);
+        state = $state;
         instanceSpy = sinon.stub(VmsService,'getInstance').returns(Promise.resolve({'status':'success'}))
         const permissionsSpy = sinon.stub(ServicesState,'getPermissions').returns(servicePermissions);
-        controller = $componentController('vmDetails', {$scope: scope, VmsService: VmsService, ServicesState: ServicesState, sprintf: sprintf, lodash: lodash, EventNotifications: EventNotifications, Polling: Polling, PowerOperations: PowerOperations});
+        controller = $componentController('vmDetails', {$scope: scope, $state: state, VmsService: VmsService, ServicesState: ServicesState, sprintf: sprintf, lodash: lodash, EventNotifications: EventNotifications, Polling: Polling, PowerOperations: PowerOperations, $state: state, ModalService: ModalService});
 
         scope.$apply();
         scope.$digest();
@@ -66,6 +68,13 @@ describe('Component: VM Details', function() {
             const listActions = controller.getListActions()
             expect(listActions).to.have.length(1);
         });
+          it('should have snapshot list actions', () => {
+            vmSpy = sinon.stub(VmsService,'getVm').returns(Promise.resolve(vmData));
+            controller.$onInit();
+            scope.$digest();
+            const listActions = controller.getSnapshotListActions()
+            expect(listActions).to.have.length(1);
+        });
         it('should warn if the VM is retired', () => {
             const response = vmData;
             response.retired = true;
@@ -78,6 +87,22 @@ describe('Component: VM Details', function() {
             return controller.getData().then( (data) => {
                 expect(notificationSpy).to.have.been.calledTwice;
             });
+        });
+        it('should allow you to view snapshot page', () => {
+            vmSpy = sinon.stub(VmsService,'getVm').returns(Promise.resolve(vmData));
+            controller.$onInit();
+            scope.$digest();
+            const stateSpy = sinon.spy($state, 'go');
+            controller.viewSnapshots();
+            expect(stateSpy).to.have.been.calledWith('vms.snapshots');
+        });
+        it('should allow a snapshot model to be opened', () => {
+            vmSpy = sinon.stub(VmsService,'getVm').returns(Promise.resolve(vmData));
+            controller.$onInit();
+            scope.$digest();
+            const modalSpy = sinon.spy(ModalService, 'open');
+            controller.processSnapshot();
+            expect(modalSpy).to.have.been.calledOncd;
         });
         it('should stop polling when you leave the page', ()=>{
             vmSpy = sinon.stub(VmsService,'getVm').returns(Promise.resolve(vmData));
