@@ -14,12 +14,12 @@
     </div>
   </div>
 </div>
-<pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig">
+<pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
   <actions>
     <custom-dropdown class="custom-dropdown pull-left"
                      config="item"
                      items="vm.selectedItemsList"
-                     items-count="vm.headerConfig.filterConfig.selectedCount"
+                     items-count="vm.toolbarConfig.filterConfig.selectedCount"
                      ng-repeat="item in vm.listActions"
                      on-update="vm.listActionDisable($config, $changes)"
                      menu-right="true">
@@ -29,10 +29,10 @@
 <div ng-if="vm.viewType == 'listView'" class="list-view-container section-container explorer-list">
   <loading status="vm.loading"></loading>
   <pf-list-view ng-if="!vm.loading" id="serviceList" config="vm.listConfig"
-       items="vm.servicesList"
-       menu-actions="vm.menuActions"
-       update-menu-action-for-item-fn="vm.updateMenuActionForItemFn"
-       custom-scope="vm">
+                items="vm.servicesList"
+                menu-actions="vm.menuActions"
+                update-menu-action-for-item-fn="vm.updateMenuActionForItemFn"
+                custom-scope="vm">
     <div class="row service-explorer-row">
       <div class="col-lg-4 col-md-4 col-sm-5 col-xs-8 name-column">
         <span class="no-wrap">
@@ -70,7 +70,8 @@
         </span>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" ng-if="$ctrl.customScope.isAnsibleService(item)">
-        <span class="no-wrap" uib-tooltip="{{ 'Playbook: [[playbook]]'|translate|substitute:{playbook: item.playbook} }}"
+        <span class="no-wrap"
+              uib-tooltip="{{ 'Playbook: [[playbook]]'|translate|substitute:{playbook: item.playbook} }}"
               tooltip-append-to-body="true"
               tooltip-popup-delay="1000"
               tooltip-placement="bottom">
@@ -121,11 +122,11 @@
     </div>
     <list-expanded-content>
       <pf-list-view
-           class="explorer-children-list"
-           config="vm.serviceChildrenListConfig"
-           items="$parent.item.all_service_children"
-           custom-scope="vm"
-           update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
+        class="explorer-children-list"
+        config="vm.serviceChildrenListConfig"
+        items="$parent.item.all_service_children"
+        custom-scope="vm"
+        update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-5 col-xs-8 name-column">
             <span class="no-wrap">
@@ -179,19 +180,24 @@
           <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
           </div>
         </div>
-        <div uib-dropdown="" dropdown-append-to-body class="dropdown dropdown-kebab-pf" ng-if="!$ctrl.customScope.isAnsibleService(item)">
-          <button uib-dropdown-toggle="" class="btn btn-link dropdown-toggle" type="button"ng-class="{'disabled': checkDisabled(item)}">
+        <div uib-dropdown="" dropdown-append-to-body class="dropdown dropdown-kebab-pf"
+             ng-if="!$ctrl.customScope.isAnsibleService(item)">
+          <button uib-dropdown-toggle="" class="btn btn-link dropdown-toggle" type="button"
+                  ng-class="{'disabled': checkDisabled(item)}">
             <span class="fa fa-ellipsis-v"></span>
           </button>
           <ul uib-dropdown-menu="" class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body">
             <li role="menuitem" ng-class="{'disabled': !$ctrl.customScope.actionEnabled('start', item)}">
-              <a title="{{'Start this service' | translate}}" ng-click="$ctrl.customScope.startService(null, item)" translate>Start</a>
+              <a title="{{'Start this service' | translate}}" ng-click="$ctrl.customScope.startService(null, item)"
+                 translate>Start</a>
             </li>
             <li role="menuitem" ng-class="{'disabled': !$ctrl.customScope.actionEnabled('stop', item)}">
-              <a title="{{'Stop this service' | translate}}" ng-click="$ctrl.customScope.stopService(null, item)" translate>Stop</a>
+              <a title="{{'Stop this service' | translate}}" ng-click="$ctrl.customScope.stopService(null, item)"
+                 translate>Stop</a>
             </li>
             <li role="menuitem" ng-class="{'disabled': !$ctrl.customScope.actionEnabled('suspend', item)}">
-              <a title="{{'suspend this service' | translate}}" ng-click="$ctrl.customScope.suspendService(null, item)" translate>Suspend</a>
+              <a title="{{'suspend this service' | translate}}" ng-click="$ctrl.customScope.suspendService(null, item)"
+                 translate>Suspend</a>
             </li>
           </ul>
         </div>
@@ -199,5 +205,6 @@
     </list-expanded-content>
   </pf-list-view>
 </div>
-<explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions" on-update="vm.paginationUpdate($limit, $offset)">
+<explorer-pagination limit="vm.limit" count="vm.filterCount" limit-options="vm.limitOptions"
+                     on-update="vm.paginationUpdate($limit, $offset)">
 </explorer-pagination>

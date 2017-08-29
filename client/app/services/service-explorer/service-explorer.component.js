@@ -11,7 +11,7 @@ export const ServiceExplorerComponent = {
 /** @ngInject */
 function ComponentController ($state, ServicesState, Language, ListView, Chargeback, TaggingService, TagEditorModal,
                              EventNotifications, ModalService, PowerOperations, lodash, Polling, POLLING_INTERVAL) {
-  var vm = this
+  const vm = this
 
   vm.$onDestroy = function () {
     Polling.stop('serviceListPolling')
@@ -19,14 +19,13 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
 
   vm.$onInit = () => {
     vm.permissions = ServicesState.getPermissions()
-    if ($state.params.filter) {
-      ServicesState.services.setFilters($state.params.filter)
-      ServicesState.services.filterApplied = true
-    } else {
-      ServicesState.services.setFilters([])
-      ServicesState.services.filterApplied = false
-    }
+    $state.params.filter ? ServicesState.services.setFilters($state.params.filter) : ServicesState.services.setFilters([])
     ServicesState.services.setSort({id: 'created_at', title: 'Created', sortType: 'numeric'}, false)
+
+    TaggingService.queryAvailableTags().then((response) => {
+      vm.toolbarConfig.filterConfig.fields = getServiceFilterFields(response)
+    })
+
     angular.extend(vm, {
       loading: false,
       title: __('Services'),
@@ -53,17 +52,22 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       cardConfig: getCardConfig(),
       listConfig: getListConfig(),
       listActions: getListActions(),
-      headerConfig: getHeaderConfig(),
+      toolbarConfig: {
+        sortConfig: serviceSortConfig(),
+        filterConfig: serviceFilterConfig(),
+        actionsConfig: {
+          actionsInclude: true
+        }
+      },
       menuActions: getMenuActions(),
       serviceChildrenListConfig: createServiceChildrenListConfig(),
       pollingInterval: POLLING_INTERVAL
     })
     vm.offset = 0
 
-    Language.fixState(ServicesState.services, vm.headerConfig)
+    Language.fixState(ServicesState.services, vm.toolbarConfig)
 
     resolveServices(vm.limit, 0)
-    Polling.start('serviceListPolling', pollUpdateServicesList, vm.pollingInterval)
   }
 
   function getCardConfig () {
@@ -86,7 +90,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
 
   function handleSelectionChange () {
     vm.selectedItemsList = vm.servicesList.filter((service) => service.selected)
-    vm.headerConfig.filterConfig.selectedCount = vm.selectedItemsList.length
+    vm.toolbarConfig.filterConfig.selectedCount = vm.selectedItemsList.length
   }
 
   function isAnsibleService (service) {
@@ -172,29 +176,23 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
     vm.viewType = viewId
   }
 
-  function getHeaderConfig () {
-    var serviceFilterConfig = {
-      fields: getServiceFilterFields(),
+  function serviceFilterConfig () {
+    return {
+      fields: [],
       resultsCount: 0,
       totalCount: 0,
       selectedCount: 0,
-      appliedFilters: ServicesState.services.filterApplied ? ServicesState.services.getFilters() : [],
+      appliedFilters: ServicesState.services.getFilters() || [],
       onFilterChange: filterChange
     }
+  }
 
-    var serviceSortConfig = {
+  function serviceSortConfig () {
+    return {
       fields: getServiceSortFields(),
       onSortChange: sortChange,
       isAscending: ServicesState.services.getSort().isAscending,
       currentField: ServicesState.services.getSort().currentField
-    }
-
-    return {
-      sortConfig: serviceSortConfig,
-      filterConfig: serviceFilterConfig,
-      actionsConfig: {
-        actionsInclude: true
-      }
     }
   }
 
@@ -312,19 +310,60 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
 
   // Private
   function filterChange (filters) {
+    if (filters.length) {
+      const latestFilter = filters[filters.length - 1]
+
+      if (latestFilter.id === 'tags.name') {
+        lodash.remove(filters, (item) => item.value.filterCategory)
+        filters.push(latestFilter)
+      }
+    }
+
     ServicesState.services.setFilters(filters)
     resolveServices(vm.limit, 0)
   }
 
-  function getServiceFilterFields () {
+  function getServiceFilterFields (tags) {
+    const filterValues = []
+    const filterCategories = {}
+
+    tags.forEach((tag) => {
+      const displayName = tag.categorization.displayName
+
+      if (tag.name.match(/\//g).length === 2) {
+        filterValues.push({title: displayName.substr(-displayName.lastIndexOf(':')), id: tag.name})
+        filterCategories[`${tag.name}`] = {
+          id: tag.name,
+          title: displayName.substr(-displayName.lastIndexOf(':')),
+          filterValues: []
+        }
+      }
+      if (tag.name.match(/\//g).length === 3) {
+        filterCategories[tag.name.substring(-1, tag.name.lastIndexOf('/'))]
+          .filterValues
+          .push({
+            title: displayName.substr(displayName.lastIndexOf(':') + 1),
+            id: tag.name.substr(tag.name.lastIndexOf('/') + 1)
+          })
+      }
+    })
+
     return [
       ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
-      ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text')
-
-      // TODO: find a way to filter on virtual attributes
-      // ListView.createFilterField('chargeback_relative_cost', __('Relative Cost'), __('Filter by Relative Cost'), 'select', dollars),
-      // TODO:  find a good way to filter on date other than string
-      // ListView.createFilterField('owner', __('Created'), __('Filter by Created On'), 'text'),
+      ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text'),
+      ListView.createGenericField(
+        {
+          id: 'tags.name',
+          title: 'Tags',
+          placeholder: 'Filter by Tag Category',
+          filterType: 'complex-select',
+          filterMultiselect: true,
+          filterValues: filterValues,
+          filterDelimiter: '/',
+          filterCategoriesPlaceholder: 'Filter by Tag Value  ',
+          filterCategories: filterCategories
+        }
+      )
     ]
   }
 
@@ -333,9 +372,6 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       ListView.createSortField('created_at', __('Created'), 'numeric'),
       ListView.createSortField('name', __('Name'), 'alpha'),
       ListView.createSortField('retires_on', __('Retirement Date'), 'numeric')
-
-      // TODO: Find a way to sort by charback cost
-      // ListView.createSortField('chargeback_report.used_cost_sum', __('Relative Cost'), 'alpha'),
     ]
   }
 
@@ -346,7 +382,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
 
       function querySuccess (result) {
         vm.filterCount = result.subcount
-        vm.headerConfig.filterConfig.resultsCount = vm.filterCount
+        vm.toolbarConfig.filterConfig.resultsCount = vm.filterCount
         resolve()
       }
 
@@ -359,31 +395,25 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
   }
 
   function resolveServices (limit, offset, refresh) {
-    if (!refresh) {
-      vm.loading = true
-    } else {
-      vm.loading = false
-    }
+    Polling.stop('serviceListPolling')
+    vm.loading = !refresh
     vm.offset = offset
     getFilterCount().then(() => {
       ServicesState.getServices(
         limit,
         offset,
-        ServicesState.services.getFilters(),
-        ServicesState.services.getSort().currentField,
-        ServicesState.services.getSort().isAscending,
         refresh).then(querySuccess, queryFailure)
     })
 
     function querySuccess (result) {
-      vm.loading = false
+      Polling.start('serviceListPolling', pollUpdateServicesList, vm.pollingInterval)
       vm.services = []
       var existingServices = (angular.isDefined(vm.servicesList) && refresh ? angular.copy(vm.servicesList) : [])
       vm.selectedItemsList = []
-      vm.headerConfig.filterConfig.totalCount = result.subcount
-      vm.headerConfig.filterConfig.selectedCount = 0
+      vm.toolbarConfig.filterConfig.totalCount = result.subcount
+      vm.toolbarConfig.filterConfig.selectedCount = 0
 
-      angular.forEach(result.resources, function (item) {
+      result.resources.forEach((item) => {
         if (angular.isUndefined(item.service_id)) {
           item.disableRowExpansion = item.all_service_children.length < 1
           item.power_state = PowerOperations.getPowerState(item)
@@ -413,6 +443,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       vm.services.forEach(Chargeback.processReports)
       Chargeback.adjustRelativeCost(vm.services)
       vm.servicesList = angular.copy(vm.services)
+      vm.loading = false
     }
 
     function getPowerInfo (powerState) {
@@ -425,9 +456,9 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       return (powerState !== 'on' && powerState !== 'off' ? powerStates.unknown : powerStates[powerState])
     }
 
-    function queryFailure (_error) {
+    function queryFailure (response) {
       vm.loading = false
-      EventNotifications.error(__('There was an error loading the services.'))
+      EventNotifications.error(__('There was an error loading the services. ') + response.data.error.message)
     }
   }
 
@@ -516,7 +547,12 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
 
     /** @ngInject */
     function resolveGroups (CollectionsApi) {
-      var options = {expand: 'resources', attributes: ['description'], sort_by: 'description', sort_options: 'ignore_case'}
+      var options = {
+        expand: 'resources',
+        attributes: ['description'],
+        sort_by: 'description',
+        sort_options: 'ignore_case'
+      }
 
       return CollectionsApi.query('groups', options)
     }

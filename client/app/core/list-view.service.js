@@ -50,6 +50,10 @@ export function ListViewFactory () {
     }
   }
 
+  listView.createGenericField = function (options) {
+    return options
+  }
+
   listView.createSortField = function (id, title, sortType) {
     return {
       id: id,

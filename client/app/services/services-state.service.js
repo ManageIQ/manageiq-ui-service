@@ -66,7 +66,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
     return CollectionsApi.query('services', options)
   }
 
-  function getServices (limit, offset, filters, sortField, sortAscending, refresh) {
+  function getServices (limit, offset, refresh) {
     const options = {
       expand: 'resources',
       limit: limit,
@@ -87,15 +87,13 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
         'service_resources',
         'tags'
       ],
-      filter: getQueryFilters(filters),
+      filter: getQueryFilters(services.getFilters()),
       auto_refresh: refresh
     }
 
-    if (angular.isDefined(sortField)) {
-      options.sort_by = services.getSort().currentField.id
-      options.sort_options = services.getSort().currentField.sortType === 'alpha' ? 'ignore_case' : ''
-      options.sort_order = sortAscending ? 'asc' : 'desc'
-    }
+    options.sort_by = services.getSort().currentField.id || ''
+    options.sort_options = services.getSort().currentField.sortType === 'alpha' ? 'ignore_case' : ''
+    options.sort_order = services.getSort().isAscending ? 'asc' : 'desc'
 
     return CollectionsApi.query('services', options)
   }
@@ -271,18 +269,25 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
   }
 
   // Private
-  function getQueryFilters (filters) {
+  function getQueryFilters (filters = []) {
     const queryFilters = ['ancestry=null']
 
-    angular.forEach(filters, function (nextFilter) {
+    filters.forEach((nextFilter) => {
       if (nextFilter.id === 'name') {
-        queryFilters.push("name='%" + nextFilter.value + "%'")
-      } else {
-        if (angular.isDefined(nextFilter.operator)) {
-          queryFilters.push(nextFilter.id + nextFilter.operator + nextFilter.value)
+        queryFilters.push(`name='%${nextFilter.value}%'`)
+      } else if (nextFilter.id === 'tags.name') {
+        const tagValue = nextFilter.value
+        queryFilters.push(`${nextFilter.id}=${tagValue.filterCategory.id}${tagValue.filterDelimiter}${tagValue.filterValue.id}`)
+      } else if (angular.isDefined(nextFilter.operator)) {
+        if (nextFilter.value.id) {
+          queryFilters.push(`${nextFilter.id}${nextFilter.operator}${nextFilter.value.id}`)
         } else {
-          queryFilters.push(nextFilter.id + '=' + nextFilter.value)
+          queryFilters.push(`${nextFilter.id}${nextFilter.operator}${nextFilter.value}`)
         }
+      } else if (angular.isDefined(nextFilter.value.id)) {
+        queryFilters.push(`${nextFilter.id}=${nextFilter.value.id}`)
+      } else {
+        queryFilters.push(`${nextFilter.id}=${nextFilter.value}`)
       }
     })
 
