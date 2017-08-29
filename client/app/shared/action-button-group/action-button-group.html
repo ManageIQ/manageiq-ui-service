@@ -14,8 +14,8 @@
         type="button"
         class="btn btn-primary"
         ng-click="vm.saveResource()"
-        ng-disabled="vm.isDisabled || vm.isPristine()"
-        translate>Save
+        ng-disabled="vm.isDisabled || vm.isPristine()">
+        {{vm.onSaveLabel}}
 </button>
 <button ng-if="vm.actionConfirmation && !vm.data"
         type="button"
