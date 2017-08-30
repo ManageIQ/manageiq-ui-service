@@ -1,7 +1,7 @@
 describe('Component: orderExplorer', function() {
 
   beforeEach(function() {
-    module('app.states', 'app.requests');
+    module('app.states', 'app.orders');
   });
 
   describe('with $compile', function() {

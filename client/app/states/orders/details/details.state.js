@@ -39,11 +39,6 @@ function StateController (order, $state) {
 
   vm.requestListConfig = {
     showSelectBox: false,
-    selectionMatchProp: 'id',
-    onClick: handleRequestClick
-  }
-
-  function handleRequestClick (item, _e) {
-    $state.go('requests.details', { requestId: item.id })
+    selectionMatchProp: 'id'
   }
 }

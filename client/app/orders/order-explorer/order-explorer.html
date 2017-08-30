@@ -21,12 +21,12 @@
 <div class="list-view-container section-container explorer-list">
   <loading status="vm.loading"></loading>
   <pf-list-view ng-if="!vm.loading"
-       id="orderList"
-       config="vm.listConfig"
-       items="vm.ordersList"
-       custom-scope="vm"
-       menu-actions="vm.menuActions"
-       update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
+                id="orderList"
+                config="vm.listConfig"
+                items="vm.ordersList"
+                custom-scope="vm"
+                menu-actions="vm.menuActions"
+                update-menu-action-for-item-fn="vm.updateMenuActionForItemFn">
     <div class="row">
       <div class="col-lg-3 col-md-3 col-sm-5 col-xs-8">
         <span class="no-wrap">
@@ -40,7 +40,8 @@
         </span>
       </div>
       <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
-        <div class="list-view-stacked-item" uib-tooltip="Ordered: {{(item.placed_at || item.updated_at) | date : 'short'}}"
+        <div class="list-view-stacked-item"
+             uib-tooltip="Ordered: {{(item.placed_at || item.updated_at) | date : 'short'}}"
              tooltip-append-to-body="true"
              tooltip-popup-delay="1000"
              tooltip-placement="bottom-left">
@@ -60,18 +61,15 @@
     </div>
     <list-expanded-content>
       <pf-list-view
-           class="explorer-children-list"
-           config="vm.expandedListConfig"
-           items="$parent.item.service_requests"
-           custom-scope="vm">
+        class="explorer-children-list"
+        config="vm.expandedListConfig"
+        items="$parent.item.service_requests"
+        custom-scope="vm">
         <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <span class="no-wrap" uib-tooltip="{{item.description}}" tooltip-append-to-body="true"
                   tooltip-placement="bottom-left">
-              <a ui-sref="requests.details({requestId: item.id})">
                 {{ item.description }}
-              </a>
-              </a>
             </span>
           </div>
 
