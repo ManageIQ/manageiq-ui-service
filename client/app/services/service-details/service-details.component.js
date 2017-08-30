@@ -356,7 +356,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   }
 
   function gotoComputeResource (resource) {
-    $state.go('vms.details', {vmId: resource.id})
+    $state.go('services.resource-details', {vmId: resource.id})
   }
 
   function startVM (item, isDisabled) {
