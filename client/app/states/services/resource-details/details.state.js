@@ -5,11 +5,11 @@ export function VmsDetailsState (routerHelper) {
 
 function getStates () {
   return {
-    'vms.details': {
+    'services.resource-details': {
       url: '/:vmId',
       params: { viewType: null },
       template: '<vm-details>',
-      title: N_('VM Details')
+      title: N_('Resource Details')
     }
   }
 }
