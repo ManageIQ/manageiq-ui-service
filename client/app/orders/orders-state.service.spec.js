@@ -3,7 +3,7 @@ const successResponse = {
       message: "Success"
     };
   beforeEach(function() {
-    module('app.states', 'app.requests');
+    module('app.states', 'app.orders');
     bard.inject('OrdersState','ListConfiguration','ListView', 'RBAC', 'CollectionsApi');
   });
 

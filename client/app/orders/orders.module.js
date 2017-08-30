@@ -4,7 +4,7 @@ import { ProcessOrderModalComponent } from './process-order-modal/process-order-
 import { SharedModule } from '../shared/shared.module.js'
 
 export const RequestsModule = angular
-  .module('app.requests', [
+  .module('app.orders', [
     SharedModule
   ])
   .component('processOrderModal', ProcessOrderModalComponent)

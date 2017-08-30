@@ -1,6 +1,6 @@
 describe('ListView Service ', function() {
   beforeEach(function() {
-    module('app.core','app.requests');
+    module('app.core','app.orders');
     bard.inject('OrdersState', 'ListView');
   });
   it('should be able to apply filters', () => {
