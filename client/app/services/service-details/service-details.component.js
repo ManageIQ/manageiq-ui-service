@@ -11,8 +11,8 @@ export const ServiceDetailsComponent = {
 
 /** @ngInject */
 function ComponentController ($stateParams, $state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
-                             TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash,
-                             Polling, LONG_POLLING_INTERVAL, UsageGraphsService) {
+                              TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash,
+                              Polling, LONG_POLLING_INTERVAL, UsageGraphsService) {
   const vm = this
   vm.$onInit = activate
   vm.$onDestroy = onDestroy
@@ -286,14 +286,24 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
 
     /** @ngInject */
     function resolveUsers (CollectionsApi) {
-      const options = {expand: 'resources', attributes: ['userid', 'name'], sort_by: 'name', sort_options: 'ignore_case'}
+      const options = {
+        expand: 'resources',
+        attributes: ['userid', 'name'],
+        sort_by: 'name',
+        sort_options: 'ignore_case'
+      }
 
       return CollectionsApi.query('users', options)
     }
 
     /** @ngInject */
     function resolveGroups (CollectionsApi) {
-      const options = {expand: 'resources', attributes: ['description'], sort_by: 'description', sort_options: 'ignore_case'}
+      const options = {
+        expand: 'resources',
+        attributes: ['description'],
+        sort_by: 'description',
+        sort_options: 'ignore_case'
+      }
 
       return CollectionsApi.query('groups', options)
     }
@@ -356,7 +366,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   }
 
   function gotoComputeResource (resource) {
-    $state.go('services.resource-details', {vmId: resource.id})
+    $state.go('services.resource-details', {serviceId: vm.serviceId, vmId: resource.id})
   }
 
   function startVM (item, isDisabled) {
