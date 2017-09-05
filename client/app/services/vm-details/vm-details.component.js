@@ -10,7 +10,7 @@ export const VmDetailsComponent = {
 
 /** @ngInject */
 function ComponentController ($state, $stateParams, VmsService, ServicesState, sprintf, lodash,
-  EventNotifications, Polling, ModalService, PowerOperations, LONG_POLLING_INTERVAL, UsageGraphsService) {
+                              EventNotifications, Polling, ModalService, PowerOperations, LONG_POLLING_INTERVAL, UsageGraphsService) {
   const vm = this
   vm.$onInit = activate
   vm.$onDestroy = onDestroy
@@ -25,9 +25,9 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
   vm.pollVM = pollVM
   vm.retireVM = retireVM
   vm.getData = resolveData
-  vm.storageChartConfigOptions = { 'units': __('GB'), 'chartId': 'storageChart', 'label': __('used') }
-  vm.memoryChartConfigOptions = { 'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used') }
-  vm.cpuChartConfigOptions = { 'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used') }
+  vm.storageChartConfigOptions = {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')}
+  vm.memoryChartConfigOptions = {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')}
+  vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')}
   vm.processInstanceVariables = processInstanceVariables
 
   function onDestroy () {
@@ -57,7 +57,62 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
           actionsInclude: true
         }
       },
-      listActions: []
+      listActions: [],
+      test: {
+        'title': 'SAMPLE',
+        'count': 793,
+        'href': '#',
+        'iconClass': 'fa fa-shield',
+        'notifications': [
+          {
+            'iconClass': 'pficon pficon-error-circle-o',
+            'count': 'TEST',
+            'href': '#'
+          }
+        ]
+      },
+      power_state: {
+        'title': 'Power State',
+        'href': '#',
+        'notifications': [
+          {
+            'iconClass': 'pficon pficon-error-circle-o',
+            'href': '#'
+          }
+        ]
+      },
+      compliance: {
+        'title': 'Compliance',
+        'href': '#',
+        'notifications': [
+          {
+            'iconClass': 'pficon pficon-error-circle-o',
+            'href': '#'
+          }
+        ]
+      },
+      retirement: {
+        'title': 'Retirement',
+        'href': '#',
+        'notifications': [
+          {
+            'iconClass': 'fa fa-clock-o',
+            'href': '#',
+            'count': 'test'
+          }
+        ]
+      },
+      snapshots: {
+        'title': 'Snapshots',
+        'href': '#',
+        'notifications': [
+          {
+            'iconClass': 'fa fa-camera',
+            'count': 3,
+            'href': '#'
+          }
+        ]
+      }
     })
 
     EventNotifications.info(__('The contents of this page is a function of the current users\'s group.'))
@@ -101,9 +156,11 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
     }
     ModalService.open(modalOptions)
   }
+
   function viewSnapshots () {
-    $state.go('vms.snapshots', { vmId: vm.vmDetails.id })
+    $state.go('vms.snapshots', {vmId: vm.vmDetails.id})
   }
+
   function resolveData (refresh) {
     return VmsService.getVm($stateParams.vmId, refresh).then(handleSuccess, handleFailure)
 
@@ -138,7 +195,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       vm.memoryChart = UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions, usedMemory, totalMemory)
       vm.storageChart = UsageGraphsService.getChartConfig(vm.storageChartConfigOptions, usedStorage, allocatedStorage)
       if (vm.vmDetails.retired) {
-        EventNotifications.clearAll(lodash.find(EventNotifications.state().groups, { notificationType: 'warning' }))
+        EventNotifications.clearAll(lodash.find(EventNotifications.state().groups, {notificationType: 'warning'}))
         EventNotifications.warn(sprintf(__('%s is a retired resource'), vm.vmDetails.name), {
           persistent: true,
           unread: false
@@ -162,6 +219,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
 
     return lodash.compact(buttons).length > 0
   }
+
   function getSnapshotListActions () {
     const snapshotOptionsMenu = {
       title: __('Snapshots'),
@@ -192,6 +250,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
 
     return vm.snapshotListActions
   }
+
   function hasUsageGraphs () {
     if (angular.isUndefined(vm.vmDetails.allocated_disk_storage) || vm.vmDetails.allocated_disk_storage === 0) {
       vm.usageGraphs = false
