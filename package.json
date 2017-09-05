@@ -29,10 +29,10 @@
     "zanata:download": "node language/index.js download"
   },
   "dependencies": {
+    "@angular/platform-browser": "4.4.0-RC.0",
     "@angular/compiler": "4.4.0-RC.0",
     "@angular/common": "4.4.0-RC.0",
     "@angular/core": "4.4.0-RC.0",
-    "@angular/platform-browser": "4.3.6",
     "@angular/platform-browser-dynamic": "4.4.0-RC.0",
     "@angular/upgrade": "4.4.0-RC.0",
     "@manageiq/ui-components": "0.0.23",
