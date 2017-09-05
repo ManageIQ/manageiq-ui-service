@@ -6,7 +6,7 @@ export function VmsDetailsState (routerHelper) {
 function getStates () {
   return {
     'services.resource-details': {
-      url: '/:vmId',
+      url: '/:serviceId/resource=:vmId',
       params: { viewType: null },
       template: '<vm-details>',
       title: N_('Resource Details')

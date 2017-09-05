@@ -9,7 +9,7 @@
         <a ng-if="!vm.vm.service.name" ui-sref="dashboard" translate>No Service</a>
       </li>
       <li>
-        <a ui-sref="services.resource-details({vmId: vm.vm.id})"> {{vm.vm.name}} </a>
+        <a ui-sref="services.resource-details({serviceId: vm.vm.service.id, vmId: vm.vm.id})"> {{vm.vm.name}} </a>
       </li>
       <li class="active" translate>
         Snapshots
