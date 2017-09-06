@@ -5,11 +5,14 @@ describe('VMS Service', () => {
           {'id':'test', 'value':'test'}
       ];
       const sort = {'id':'name','sortType':'alpha'};
+      const permissions = readJSON('tests/mock/rbac/allPermissions.json');
 
       beforeEach(module('app.services','app.shared'));
       beforeEach( () => {
-          bard.inject('VmsService', 'CollectionsApi');
+          bard.inject('VmsService', 'CollectionsApi', 'RBAC');
           service = VmsService;
+          RBAC.set(permissions);
+          service.permissions = service.getPermissions();
       });
     it('should allow sorting to be set', () => {
         service.setSort(sort,true);
@@ -34,6 +37,16 @@ describe('VMS Service', () => {
         return service.revertSnapshot('12345', '6789').then((data) => {
             expect(snapshotSpy).to.have.been.calledWith('vms/12345/snapshots/6789', null, {}, {'action':'revert'});
         })
+    });
+    it('should be able to check permissions', () => {
+        RBAC.set(permissions);
+        const expectedPermissions = {"create":true,"delete":true,"deleteAll":true,"revert":true,"instanceRetire":true};
+        expect(service.getPermissions()).to.deep.equal(expectedPermissions);
+    });
+    it('should allow the lifecycle dropdown to be built', () => {
+        const testFN = function() {}
+        const menu = service.getLifeCycleCustomDropdown(testFN);
+        expect(menu).to.have.all.keys('title', 'actionName', 'icon', 'actions','isDisabled', 'tooltipText');
     });
     it('should be able to get snapshots', () => {
         const snapshotSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve());
