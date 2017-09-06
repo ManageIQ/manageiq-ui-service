@@ -48,6 +48,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       stopService: stopService,
       suspendService: suspendService,
       paginationUpdate: paginationUpdate,
+      defaultFilterFields: defaultFilterFields,
       // Config setup
       viewType: 'listView',
       cardConfig: getCardConfig(),
