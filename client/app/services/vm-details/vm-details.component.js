@@ -24,7 +24,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
   vm.processSnapshot = processSnapshot
   vm.pollVM = pollVM
   vm.retireVM = retireVM
-  vm.getData = resolveData
+  vm.resolveData = resolveData
   vm.storageChartConfigOptions = {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')}
   vm.memoryChartConfigOptions = {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')}
   vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')}
@@ -113,9 +113,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       }
     })
 
-    EventNotifications.info(__('The contents of this page is a function of the current users\'s group.'))
     resolveData()
-    Polling.start('vmPolling', pollVM, LONG_POLLING_INTERVAL)
   }
 
   // Private
@@ -160,9 +158,15 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
   }
 
   function resolveData (refresh) {
+    if (!refresh) {
+      Polling.stop('vmPolling')
+    }
+
     return VmsService.getVm($stateParams.vmId, refresh).then(handleSuccess, handleFailure)
 
     function handleSuccess (response) {
+      Polling.start('vmPolling', pollVM, LONG_POLLING_INTERVAL)
+
       vm.vmDetails = response
       vm.lifecycleListActions = [VmsService.getLifeCycleCustomDropdown(retireVM, vm.vmDetails.name)]
       const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.allocated_disk_storage) // convert bytes to gb
@@ -183,10 +187,9 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       vm.retirement.notifications[0].count = angular.isUndefined(response.retires_on) ? vm.neverText : response.retires_on
       vm.compliance.notifications[0].count = angular.isUndefined(response.last_compliance_status) ? vm.neverText : response.last_compliance_status
       vm.compliance.notifications[0].iconClass = angular.isUndefined(response.last_compliance_status) ? 'pficon pficon-unknown'
-        : response.last_compliance_status === 'compliant'? 'pficon pficon-error-circle-o': 'pficon pficon-ok'
+        : response.last_compliance_status === 'compliant' ? 'pficon pficon-error-circle-o' : 'pficon pficon-ok'
 
-      vm.power_state.notifications[0].iconClass = response.power_state === 'on'? 'pficon pficon-ok' : 'pficon pficon-error-circle-o'
-
+      vm.power_state.notifications[0].iconClass = response.power_state === 'on' ? 'pficon pficon-ok' : 'pficon pficon-error-circle-o'
 
       vm.vmDetails.lastSyncOn = (angular.isUndefined(vm.vmDetails.last_sync_on) ? vm.neverText : vm.vmDetails.last_sync_on)
       vm.vmDetails.resourceAvailability = (vm.vmDetails.template === false ? vm.availableText : vm.noneText)
@@ -342,7 +345,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
 
     return vm.vmDetails.instance
   }
-
 
   function elapsed (finish, start) {
     return Math.abs(new Date(finish) - new Date(start)) / 100
