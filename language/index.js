@@ -24,10 +24,10 @@ if (fs.existsSync(configFile)) {
     console.log('Please set env variables or create config file')
     process.exit(1)
   } else {
-    config.apiKey = process.env.apiKey
-    config.project = process.env.project
-    config.version = process.env.version
-    config.user = process.env.user
+    config.apiKey = process.env.zanataApiKey
+    config.project = process.env.zanataProject
+    config.version = (process.env.TRAVIS_BRANCH ? process.env.TRAVIS_BRANCH : process.env.zanataVersion)
+    config.user = process.env.zantaUser
   }
 }
 zanata.setConfig(config)
