@@ -1,0 +1,269 @@
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li>
+          <a ui-sref="services">{{ 'My Services'|translate }}</a>
+        </li>
+        <li>
+          <a ui-sref="services.details({serviceId: vm.vmDetails.service.id})">{{  vm.vmDetails.service.name  }}</a>
+        </li>
+        <li>
+          {{  vm.vmDetails.name }}
+        </li>
+      </ol>
+  </span>
+  <div class="breadcrumb-actions">
+    <div uib-dropdown class="dropdown-kebab-pf">
+      <custom-button ng-if="vm.hasCustomButtons()"
+                     class="custom-dropdown pull-left"
+                     service-id="vm.vmDetails.service.id"
+                     vm-id="vm.vmDetails.id"
+                     custom-actions="vm.vmDetails.custom_actions">
+      </custom-button>
+      <custom-dropdown class="custom-dropdown pull-left"
+                       config="item"
+                       ng-repeat="item in vm.snapshotListActions"
+                       menu-right="true">
+      </custom-dropdown>
+      <custom-dropdown class="custom-dropdown pull-left"
+                       config="item"
+                       ng-repeat="item in vm.listActions"
+                       menu-right="true">
+      </custom-dropdown>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <pf-aggregate-status-card status="vm.test"></pf-aggregate-status-card>
+    </div>
+    <div class="col-md-2">
+      <pf-aggregate-status-card status="vm.test"></pf-aggregate-status-card>
+    </div>
+    <div class="col-md-2"
+         uib-tooltip="{{'Running Time' | translate}}: {{ vm.elapsed(vm.presentDate, vm.vmDetails.state_changed_on) | elapsedTime }} "
+         tooltip-placement="bottom">
+      <pf-aggregate-status-card status="vm.power_state"></pf-aggregate-status-card>
+    </div>
+    <div class="col-md-2"
+         uib-tooltip="{{vm.vmDetails.complianceHistory}}"
+         tooltip-placement="bottom">
+      <pf-aggregate-status-card status="vm.compliance"></pf-aggregate-status-card>
+    </div>
+    <div class="col-md-2">
+      <pf-aggregate-status-card status="vm.retirement"></pf-aggregate-status-card>
+    </div>
+    <div class="col-md-2">
+      <pf-aggregate-status-card ng-if="vm.permissions.vm_snapshot_show_list" status="vm.snapshots"
+                                ui-sref="vms.snapshots({vmId: vm.vmDetails.id})"></pf-aggregate-status-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-pf">
+        <h2>Timeline</h2>
+        <timeline data="vm.tlData" options="vm.tlOptions"></timeline>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card-pf">
+        <usage-graphs cpu-chart="vm.cpuChart" memory-chart="vm.memoryChart"
+                      storage-chart="vm.storageChart"></usage-graphs>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-pf">
+            <h2><i class="pficon-storage-domain"></i>Disk Usage</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-pf">
+            <h2>Disk I/O</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card-pf">
+        <h2><i class="fa fa-tags"></i>Tags</h2>
+        <tagging-widget tags-of-item="vm.availableTags"
+                        read-only="true"></tagging-widget>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card-pf">
+        <h2># Custom Attributes</h2>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card-pf">
+        <h2>Smart State Analysis</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<loading status="vm.loading"></loading>-->
+<!--<div ng-if="vm.viewType === 'graphsView'" class="ss-details-wrapper usage-graphs-container">-->
+<!--<usage-graphs cpu-chart="vm.cpuChart" memory-chart="vm.memoryChart" storage-chart="vm.storageChart"></usage-graphs>-->
+<!--</div>-->
+<!--<div ng-if="!vm.loading" ng-show="vm.viewType === 'detailsView'" class="well ss-details-wrapper vm-details-wrapper">-->
+<!--<div class="container-fluid vm-details-container">-->
+<!--<div class="row title">-->
+<!--<div>{{ 'Properties'|translate }}</div>-->
+<!--</div>-->
+<!--<detail-reveal display-field="vm.vmDetails.retired" detail-title="Status" icon="pf pficon-warning-triangle-o"-->
+<!--detail="{{ 'Retired' | translate }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Name" detail="{{ vm.vmDetails.name }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Hostnames" detail="{{ vm.vmDetails.hostnames.join(',') }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="IP Addresses" detail="{{ vm.vmDetails.ipaddresses.join(',') }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="MAC Address" detail="{{ vm.vmDetails.mac_addresses.join(',') }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Container" detail="{{ vm.vmDetails.containerSpecsText }}"></detail-reveal>-->
+<!--<detail-reveal detail-title="Parent Host/Node Platform" detail="{{ vm.vmDetails.host.vmm_product }}"-->
+<!--display-field="vm.vmDetails.host"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Platform Tools" detail="{{ vm.vmDetails.tools_status }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Operating System"-->
+<!--detail="{{ vm.vmDetails.hardware.guest_os_full_name }}"></detail-reveal>-->
+<!--<detail-reveal detail-title="Architecture" detail="{{ vm.vmDetails.hardware.bitness }} bit"-->
+<!--display-field="vm.vmDetails.hardware.bitness"></detail-reveal>-->
+<!--<detail-reveal detail-title="Devices" icon="fa fa-hdd-o fa-lg" detail="{{ 3 + vm.vmDetails.num_disks }}"-->
+<!--display-field="vm.vmDetails.cloud===false"></detail-reveal>-->
+<!--<detail-reveal detail-title="CPU Affinity" detail="{{ vm.vmDetails.cpu_affinity }}"-->
+<!--display-field="vm.vmDetails.cloud===false"></detail-reveal>-->
+<!--<detail-reveal display-field="vm.permissions.vm_snapshot_show_list" detail-title="Snapshots"-->
+<!--icon="fa fa-camera fa-lg"-->
+<!--detail="{{ vm.vmDetails.v_total_snapshots }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Advanced Settings" icon="fa fa-wrench fa-lg"-->
+<!--detail="{{ vm.vmDetails.advanced_settings.length }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Resources" detail="{{ vm.vmDetails.resourceAvailability }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Management Engine GUID" detail="{{ vm.vmDetails.guid }}"></detail-reveal>-->
+<!--<detail-reveal detail-title="Virtualization" detail="{{ vm.vmDetails.hardware.virtualization_type }}"-->
+<!--display-field="vm.vmDetails.hardware.virtualization_type"></detail-reveal>-->
+<!--<detail-reveal detail-title="Root Device Type" detail="{{ vm.vmDetails.hardware.root_device_type }}"-->
+<!--display-field="vm.vmDetails.hardware.root_device_type"></detail-reveal>-->
+<!--<detail-reveal detail-title="ID within Provider" detail="{{ vm.vmDetails.uid_ems }}"-->
+<!--display-field="vm.vmDetails.uid_ems"></detail-reveal>-->
+<!--</div>-->
+
+<!--<div class="container-fluid vm-details-container">-->
+<!--<div class="row title">-->
+<!--<div>{{ 'Lifecycle'|translate }}</div>-->
+<!--</div>-->
+<!--<detail-reveal display-field="true"-->
+<!--detail-title="Discovered on"-->
+<!--detail="{{  vm.vmDetails.created_on | date:'medium'  }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Last Analyzed" icon="fa fa-search fa-lg"-->
+<!--detail="{{  vm.vmDetails.lastSyncOn | date:'medium'  }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Retirement Date" icon="fa fa-clock-o fa-lg"-->
+<!--detail="{{  vm.vmDetails.retiresOn | date:'medium'  }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Provisioned On"-->
+<!--detail="{{  vm.vmDetails.provisionDate | date:'medium'  }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Owner" detail="{{ vm.vmDetails.evm_owner.name }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Group" detail="{{ vm.vmDetails.miq_group.description }}"></detail-reveal>-->
+<!--</div>-->
+<!--<div class="container-fluid vm-details-container">-->
+<!--<div class="row title">-->
+<!--<div>{{ 'Relationships'|translate }}</div>-->
+<!--</div>-->
+<!--<detail-reveal detail-title="Availability Zone" detail="{{ vm.vmDetails.instance.availabilityZone }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Cloud Tenants" detail="{{ vm.vmDetails.instance.cloudTenant }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Flavor" detail="{{ vm.vmDetails.instance.flavor.name }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="VM Template" detail="{{ vm.vmDetails.instance.miq_provision_template.name }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Infrastructure provider" detail="{{ vm.vmDetails.ext_management_system.name }}"-->
+<!--display-field="vm.permissions.ems_infra_show && vm.vmDetails.ext_management_system.name"></detail-reveal>-->
+<!--<detail-reveal detail-title="{{ 'Cluster'|translate }} / {{ 'Deployment Role'|translate }}"-->
+<!--icon="fa fa-lg pficon pficon-cluster" detail="{{ vm.vmDetails.ems_cluster.name }}"-->
+<!--display-field="vm.permissions.ems_cluster_show && vm.vmDetails.ems_cluster.name"></detail-reveal>-->
+<!--<detail-reveal detail-title="Host / Node" icon="fa fa-lg pficon pficon-screen" detail="{{ vm.vmDetails.host.name }}"-->
+<!--display-field="vm.permissions.host_show && vm.vmDetails.host.name"></detail-reveal>-->
+<!--<detail-reveal detail-title="Resource Pool" icon="fa fa-lg pficon pficon-resource-pool"-->
+<!--detail="{{ vm.vmDetails.parent_resource_pool.name }}"-->
+<!--display-field="vm.permissions.resource_pool_show && vm.vmDetails.parent_resource_pool"></detail-reveal>-->
+<!--<detail-reveal detail-title="Datastores" icon="fa fa-lg fa-database" detail="{{ vm.vmDetails.storages.length }}"-->
+<!--display-field="vm.permissions.storage_show_list && vm.vmDetails.storages.length > 0"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Service" icon="fa fa-lg pficon pficon-service"-->
+<!--detail="{{ vm.vmDetails.service.name }}"></detail-reveal>-->
+<!--<detail-reveal detail-title="Virtual Private Cloud" detail="{{ vm.vmDetails.instance.cloud_networks[0].name }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance.cloud_networks.length > 0"></detail-reveal>-->
+<!--<detail-reveal detail-title="Cloud Subnet" detail="{{ vm.vmDetails.instance.cloud_subnets[0].name }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance.cloud_subnets.length > 0"></detail-reveal>-->
+<!--<detail-reveal detail-title="Stack" detail="{{ vm.vmDetails.instance.orchestrationStack.name }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Cloud Networks" detail="{{ vm.vmDetails.instance.cloud_networks.length }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Cloud Subnets" detail="{{ vm.vmDetails.instance.cloud_subnets.length }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Network Routers" detail="{{ vm.vmDetails.instance.network_routers.length }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Security Groups" detail="{{ vm.vmDetails.security_groups.length }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Floating IPs" detail="{{ vm.vmDetails.instance.floating_ip_addresses.length }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Network Ports" detail="{{ vm.vmDetails.instance.network_ports.length }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Load Balancers" detail="{{ vm.vmDetails.instance.load_balancers.length }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Cloud Volumes" detail="{{ vm.vmDetails.instance.cloud_volumes.length }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--<detail-reveal detail-title="Genealogy" detail="{{ 'Show parent and child VMs'|translate }}"-->
+<!--display-field="vm.vmDetails.cloud===false"></detail-reveal>-->
+<!--<detail-reveal display-field="vm.permissions.vm_drift" detail-title="Drift History"-->
+<!--detail="{{ vm.vmDetails.driftHistory }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Analysis History" detail="{{ vm.vmDetails.scanHistoryCount }}"></detail-reveal>-->
+<!--</div>-->
+<!--<div ng-if="vm.permissions.vm_check_compliance" class="container-fluid vm-details-container">-->
+<!--<div class="row title">-->
+<!--<div>{{ 'Compliance'|translate }}</div>-->
+<!--</div>-->
+<!--<detail-reveal display-field="true" detail-title="Status" detail="{{ vm.vmDetails.lastComplianceStatus }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="History" detail="{{ vm.vmDetails.complianceHistory }}"></detail-reveal>-->
+<!--</div>-->
+
+<!--<div class="container-fluid vm-details-container">-->
+<!--<div class="row title">-->
+<!--<div>{{ 'Power Management'|translate }}</div>-->
+<!--</div>-->
+<!--<detail-reveal display-field="true" detail-title="Power State" detail="{{ vm.vmDetails.power_state }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true"-->
+<!--detail-title="Last Boot Time"-->
+<!--detail="{{  vm.vmDetails.boot_time | date:'medium'  }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true"-->
+<!--detail-title="State Changed On"-->
+<!--detail="{{  vm.vmDetails.state_changed_on | date:'medium'  }}"></detail-reveal>-->
+<!--</div>-->
+
+<!--<div class="container-fluid vm-details-container">-->
+<!--<div class="row title">-->
+<!--<div>{{ 'Security'|translate }}</div>-->
+<!--</div>-->
+<!--<detail-reveal display-field="true" detail-title="Users" icon="fa fa-lg pficon pficon-user"-->
+<!--detail="{{  vm.vmDetails.users.length  }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Groups" icon="fa fa-lg pficon pficon-users"-->
+<!--detail="{{  vm.vmDetails.groups.length  }}"></detail-reveal>-->
+<!--<detail-reveal detail-title="Key Pairs" detail="{{  vm.vmDetails.instance.keyPairLabels.join(',')  }}"-->
+<!--display-field="vm.permissions.instance_show && vm.vmDetails.instance"></detail-reveal>-->
+<!--</div>-->
+<!--<div class="container-fluid vm-details-container">-->
+<!--<div class="row title">-->
+<!--<div>{{ 'Configuration'|translate }}</div>-->
+<!--</div>-->
+<!--<detail-reveal display-field="true" detail-title="Packages" detail="{{  vm.vmDetails.guest_applications.length  }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true"-->
+<!--detail-title="Init Processes"-->
+<!--detail="{{  vm.vmDetails.linux_initprocesses.length  }}"></detail-reveal>-->
+<!--<detail-reveal display-field="true" detail-title="Files" detail="{{  vm.vmDetails.files.length  }}"></detail-reveal>-->
+<!--</div>-->
+<!--</div>-->

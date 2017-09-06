@@ -4,6 +4,7 @@ import { DetailRevealComponent } from './detail-reveal/detail-reveal.component.j
 import { EditServiceModalComponent } from './edit-service-modal/edit-service-modal.component.js'
 import { OwnershipServiceModalComponent } from './ownership-service-modal/ownership-service-modal.component.js'
 import { PowerOperationsFactory } from './poweroperations.service.js'
+import { ResourceDetailsComponent } from './resource-details/resource-details.component'
 import { ProcessSnapshotsModalComponent } from './process-snapshots-modal/process-snapshots-modal.component'
 import { RetireRemoveServiceModalComponent } from './retire-remove-service-modal/retire-remove-service-modal.component.js'
 import { RetireServiceModalComponent } from './retire-service-modal/retire-service-modal.component.js'
@@ -30,6 +31,7 @@ export const ServicesModule = angular
   .component('processSnapshotsModal', ProcessSnapshotsModalComponent)
   .component('retireRemoveServiceModal', RetireRemoveServiceModalComponent)
   .component('retireServiceModal', RetireServiceModalComponent)
+  .component('resourceDetails', ResourceDetailsComponent)
   .component('serviceDetails', ServiceDetailsComponent)
   .component('serviceDetailsAnsible', ServiceDetailsAnsibleComponent)
   .component('serviceDetailsAnsibleModal', ServiceDetailsAnsibleModalComponent)
