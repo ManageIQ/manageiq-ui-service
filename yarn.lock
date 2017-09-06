@@ -8004,9 +8004,9 @@ tryor@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/tryor/-/tryor-0.1.2.tgz#8145e4ca7caff40acde3ccf946e8b8bb75b4172b"
 
-ts-loader@2.3.4:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-2.3.4.tgz#904f82f6812406f3f073c1c114eea2759e27f80a"
+ts-loader@2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-2.3.5.tgz#3a7ef2ca49ab17c90d2c0f29c8bfde92de0b2cb9"
   dependencies:
     chalk "^2.0.1"
     enhanced-resolve "^3.0.0"
