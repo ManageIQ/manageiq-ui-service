@@ -30,9 +30,11 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       // Functions
       resolveSnapshots: resolveSnapshots,
       deleteSnapshots: deleteSnapshots,
+      deleteSnapshot: deleteSnapshot,
+      revertSnapshot: revertSnapshot,
       cancelDelete: cancelDelete,
       updateMenuActionForItemFn: updateMenuActionForItemFn,
-
+      resolveVm: resolveVm,
       // Config
       listConfig: getListConfig(),
       menuActions: getMenuActions(),
@@ -140,7 +142,7 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
 
   function deleteSnapshots () {
     cancelDelete()
-    VmsService.deleteSnapshots(vm.vm.id, vm.snapshotsToRemove).then(success, failure)
+    return VmsService.deleteSnapshots(vm.vm.id, vm.snapshotsToRemove).then(success, failure)
 
     function success (response) {
       EventNotifications.batch(response.results, __('Deleting snapshot.'), __('Error deleting snapshot.'))
@@ -195,7 +197,7 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
   }
 
   function resolveVm () {
-    VmsService.getVm(vm.vmId).then(success, failure)
+    return VmsService.getVm(vm.vmId).then(success, failure)
 
     function success (response) {
       vm.vm = response
@@ -230,10 +232,10 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
   }
 
   function revertSnapshot (_action, item) {
-    VmsService.revertSnapshot(vm.vm.id, item.id).then(success, failure)
+    return VmsService.revertSnapshot(vm.vm.id, item.id).then(success, failure)
 
     function success (response) {
-      EventNotifications.batch({results: [response]}, __('Reverting snapshot.'), __('Error reverting snapshot.'))
+      EventNotifications.batch([response], __('Reverting snapshot.'), __('Error reverting snapshot.'))
       resolveSnapshots()
     }
 
