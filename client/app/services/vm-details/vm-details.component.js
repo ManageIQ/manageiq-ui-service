@@ -29,6 +29,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
   vm.memoryChartConfigOptions = {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')}
   vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')}
   vm.processInstanceVariables = processInstanceVariables
+  vm.elapsed = elapsed
 
   function onDestroy () {
     Polling.stop('vmPolling')
@@ -39,6 +40,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
     angular.extend(vm, {
       hasCustomButtons: hasCustomButtons,
       loading: true,
+      presentDate: new Date(),
       neverText: __('Never'),
       noneText: __('None'),
       availableText: __('Available'),
@@ -60,13 +62,11 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       listActions: [],
       test: {
         'title': 'SAMPLE',
-        'count': 793,
         'href': '#',
         'iconClass': 'fa fa-shield',
         'notifications': [
           {
             'iconClass': 'pficon pficon-error-circle-o',
-            'count': 'TEST',
             'href': '#'
           }
         ]
@@ -76,7 +76,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         'href': '#',
         'notifications': [
           {
-            'iconClass': 'pficon pficon-error-circle-o',
+            'iconClass': 'pficon pficon-unknown',
             'href': '#'
           }
         ]
@@ -86,7 +86,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         'href': '#',
         'notifications': [
           {
-            'iconClass': 'pficon pficon-error-circle-o',
+            'iconClass': 'pficon pficon-unknown',
             'href': '#'
           }
         ]
@@ -97,8 +97,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         'notifications': [
           {
             'iconClass': 'fa fa-clock-o',
-            'href': '#',
-            'count': 'test'
+            'href': '#'
           }
         ]
       },
@@ -108,7 +107,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         'notifications': [
           {
             'iconClass': 'fa fa-camera',
-            'count': 3,
             'href': '#'
           }
         ]
@@ -180,9 +178,17 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         })
       }
       hasUsageGraphs()
+
+      vm.snapshots.notifications[0].count = response.v_total_snapshots
+      vm.retirement.notifications[0].count = angular.isUndefined(response.retires_on) ? vm.neverText : response.retires_on
+      vm.compliance.notifications[0].count = angular.isUndefined(response.last_compliance_status) ? vm.neverText : response.last_compliance_status
+      vm.compliance.notifications[0].iconClass = angular.isUndefined(response.last_compliance_status) ? 'pficon pficon-unknown'
+        : response.last_compliance_status === 'compliant'? 'pficon pficon-error-circle-o': 'pficon pficon-ok'
+
+      vm.power_state.notifications[0].iconClass = response.power_state === 'on'? 'pficon pficon-ok' : 'pficon pficon-error-circle-o'
+
+
       vm.vmDetails.lastSyncOn = (angular.isUndefined(vm.vmDetails.last_sync_on) ? vm.neverText : vm.vmDetails.last_sync_on)
-      vm.vmDetails.retiresOn = (angular.isUndefined(vm.vmDetails.retires_on) ? vm.neverText : vm.vmDetails.retires_on)
-      vm.vmDetails.snapshotCount = defaultText(vm.vmDetails.snapshots)
       vm.vmDetails.resourceAvailability = (vm.vmDetails.template === false ? vm.availableText : vm.noneText)
       vm.vmDetails.driftHistory = defaultText(vm.vmDetails.drift_states)
       vm.vmDetails.scanHistoryCount = defaultText(vm.vmDetails.scan_histories)
@@ -335,5 +341,10 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
     vm.vmDetails.instance = data
 
     return vm.vmDetails.instance
+  }
+
+
+  function elapsed (finish, start) {
+    return Math.abs(new Date(finish) - new Date(start)) / 100
   }
 }
