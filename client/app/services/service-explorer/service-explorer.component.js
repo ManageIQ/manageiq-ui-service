@@ -10,7 +10,7 @@ export const ServiceExplorerComponent = {
 
 /** @ngInject */
 function ComponentController ($state, ServicesState, Language, ListView, Chargeback, TaggingService, TagEditorModal,
-                             EventNotifications, ModalService, PowerOperations, lodash, Polling, POLLING_INTERVAL) {
+                              EventNotifications, ModalService, PowerOperations, lodash, Polling, POLLING_INTERVAL) {
   const vm = this
 
   vm.$onDestroy = function () {
@@ -22,9 +22,10 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
     $state.params.filter ? ServicesState.services.setFilters($state.params.filter) : ServicesState.services.setFilters([])
     ServicesState.services.setSort({id: 'created_at', title: 'Created', sortType: 'numeric'}, false)
 
-    TaggingService.queryAvailableTags().then((response) => {
-      vm.toolbarConfig.filterConfig.fields = getServiceFilterFields(response)
-    })
+    TaggingService.queryAvailableTags().then(
+      (response) => { vm.toolbarConfig.filterConfig.fields = getServiceFilterFields(response) },
+      () => { vm.toolbarConfig.filterConfig.fields = defaultFilterFields() }
+    )
 
     angular.extend(vm, {
       loading: false,
@@ -47,6 +48,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       stopService: stopService,
       suspendService: suspendService,
       paginationUpdate: paginationUpdate,
+      defaultFilterFields: defaultFilterFields,
       // Config setup
       viewType: 'listView',
       cardConfig: getCardConfig(),
@@ -289,6 +291,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
     ]
 
     angular.forEach(menuOptions, hasPermission)
+
     function hasPermission (item) {
       if (item.permission) {
         menu.push(item)
@@ -323,6 +326,11 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
     resolveServices(vm.limit, 0)
   }
 
+  function defaultFilterFields () {
+    return [ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
+      ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text')]
+  }
+
   function getServiceFilterFields (tags) {
     const filterValues = []
     const filterCategories = {}
@@ -348,9 +356,8 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       }
     })
 
-    return [
-      ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
-      ListView.createFilterField('description', __('Description'), __('Filter by Description'), 'text'),
+    const filterFields = defaultFilterFields()
+    filterFields.push(
       ListView.createGenericField(
         {
           id: 'tags.name',
@@ -364,7 +371,8 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
           filterCategories: filterCategories
         }
       )
-    ]
+    )
+    return filterFields
   }
 
   function getServiceSortFields () {
