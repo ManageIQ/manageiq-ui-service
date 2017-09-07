@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
+
+## Unreleased as of Sprint 68 ending 2017-09-04
+
+### Added
+- Ensure unique url for service.resource-details update all instances [(#900)](https://github.com/ManageIQ/manageiq-ui-service/pull/900)
+- Adds filter alias to dashboard retirement buttons [(#884)](https://github.com/ManageIQ/manageiq-ui-service/pull/884)
+
+### Fixed
+- Removed selectedMiqGroup session variable on logout [(#881)](https://github.com/ManageIQ/manageiq-ui-service/pull/881)
+
+
 ## Unreleased as of Sprint 67 ending 2017-08-21
 
 ### Added
