@@ -111,9 +111,17 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
             'href': '#'
           }
         ]
+      },
+      title2: 'Memory',
+      units2: 'GB',
+      data2: {
+        'used': '25',
+        'total': '100'
+      },
+      layoutInline: {
+        'type': 'inline'
       }
     })
-
     resolveData()
   }
 
