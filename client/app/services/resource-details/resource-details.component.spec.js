@@ -1,31 +1,25 @@
-describe('Component: VM Details', function () {
+describe('Component: Resource Details', () => {
 
-  beforeEach(function () {
+  beforeEach(() => {
     module('app.core', 'app.states', 'app.services')
   })
 
-  let scope
-  let state
+  let scope, state, vmSpy, instanceSpy, vmData, ctrl, servicePermissions
   let mockDir = 'tests/mock/services/'
-  let vmSpy
-  let instanceSpy
-  let vmData
-  let controller
-  let servicePermissions
 
-  describe('with $compile', function () {
-    beforeEach(inject(function ($stateParams, $compile, $rootScope, $componentController) {
+  describe('with $compile', () => {
+    beforeEach(inject(($stateParams, $compile, $rootScope, $componentController) => {
       scope = $rootScope.$new()
       $stateParams.vmId = '12345'
-      bard.inject('VmsService', 'ServicesState', 'PowerOperations', 'sprintf', 'lodash', 'EventNotifications', 'Polling', 'LONG_POLLING_INTERVAL', '$state', 'ModalService')
+      bard.inject('VmsService', 'ServicesState', 'PowerOperations', 'sprintf', 'lodash', 'EventNotifications',
+        'Polling', 'LONG_POLLING_INTERVAL', '$state', 'ModalService')
       vmData = readJSON(`${mockDir}vm.json`)
       servicePermissions = readJSON(`${mockDir}servicePermissions.json`)
       state = $state
       instanceSpy = sinon.stub(VmsService, 'getInstance').returns(Promise.resolve({'status': 'success'}))
       const permissionsSpy = sinon.stub(ServicesState, 'getPermissions').returns(servicePermissions)
-      controller = $componentController('vmDetails', {
+      ctrl = $componentController('resourceDetails', {
         $scope: scope,
-        $state: state,
         VmsService: VmsService,
         ServicesState: ServicesState,
         sprintf: sprintf,
@@ -37,6 +31,7 @@ describe('Component: VM Details', function () {
         ModalService: ModalService
       })
 
+      ctrl.$onInit()
       scope.$digest()
     }))
     it('should be able perform power operations on a VM', () => {
@@ -45,42 +40,34 @@ describe('Component: VM Details', function () {
       const powerOffSpy = sinon.spy(PowerOperations, 'stopVm')
       const powerSuspendSpy = sinon.spy(PowerOperations, 'suspendVm')
       const retireVMSpy = sinon.spy(PowerOperations, 'retireVM')
-      controller.$onInit()
 
-      scope.$digest()
-
-      expect(controller.startVm).to.exist
-      controller.startVm()
+      expect(ctrl.startVm).to.exist
+      ctrl.startVm()
       expect(powerOnSpy).to.have.been.calledOnce
-      controller.stopVm()
+      ctrl.stopVm()
       expect(powerOffSpy).to.have.been.calledOnce
-      controller.suspendVM()
+      ctrl.suspendVM()
       expect(powerSuspendSpy).to.have.been.calledOnce
-      controller.retireVM()
+      ctrl.retireVM()
       expect(retireVMSpy).to.have.been.calledOnce
     })
     it('should be able to check for custom buttons', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
-      controller.$onInit()
-      controller.vmDetails.custom_actions = vmData.custom_actions
-      scope.$digest()
+      ctrl.vmDetails.custom_actions = vmData.custom_actions
+      const hasCustomButtons = ctrl.hasCustomButtons()
 
-
-      const hasCustomButtons = controller.hasCustomButtons()
       expect(hasCustomButtons).to.be.true
     })
     it('should have list actions', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
-      controller.$onInit()
-      scope.$digest()
-      const listActions = controller.getListActions()
+      const listActions = ctrl.getListActions()
+
       expect(listActions).to.have.length(1)
     })
     it('should have snapshot list actions', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
-      controller.$onInit()
-      scope.$digest()
-      const listActions = controller.getSnapshotListActions()
+      const listActions = ctrl.getSnapshotListActions()
+
       expect(listActions).to.have.length(1)
     })
     it('should warn if the VM is retired', () => {
@@ -89,56 +76,50 @@ describe('Component: VM Details', function () {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
       const notificationSpy = sinon.spy(EventNotifications, 'warn')
       // EventNotifications
-      controller.$onInit()
-      scope.$digest()
+      ctrl.$onInit()
 
-      return controller.resolveData().then((data) => {
+      return ctrl.resolveData().then((data) => {
         expect(notificationSpy).to.have.been.calledTwice
       })
     })
     it('should allow you to view snapshot page', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
-      controller.$onInit()
-      scope.$digest()
       const stateSpy = sinon.spy($state, 'go')
-      controller.viewSnapshots()
+      ctrl.viewSnapshots()
+
       expect(stateSpy).to.have.been.calledWith('vms.snapshots')
     })
     it('should allow a snapshot model to be opened', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
-      controller.$onInit()
-      scope.$digest()
       const modalSpy = sinon.spy(ModalService, 'open')
-      controller.processSnapshot()
+      ctrl.processSnapshot()
+
       expect(modalSpy).to.have.been.calledOnce
     })
     it('should stop polling when you leave the page', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
       const pollingSpy = sinon.spy(Polling, 'stop')
-      controller.$onInit()
-      scope.$digest()
-      controller.$onDestroy()
+      ctrl.$onDestroy()
+
       expect(pollingSpy).to.have.been.calledWith('vmPolling')
     })
     xit('should allow polling to register', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
       const pollingSpy = sinon.spy(Polling, 'start')
-      controller.$onInit()
-      scope.$digest()
-      controller.$onDestroy()
+      ctrl.$onInit()
+      ctrl.$onDestroy()
+
       expect(pollingSpy).to.have.been.calledWith('vmPolling')
     })
     it('when polling runs it should query for records', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
-      controller.$onInit()
-      scope.$digest()
-      controller.pollVM()
+      ctrl.$onInit()
+      ctrl.pollVM()
+
       expect(vmSpy).to.have.been.calledTwice
     })
     it('should allow instance variables to be processed', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
-      controller.$onInit()
-      scope.$digest()
       const instance = {
         'availability_zone': {'name': 'test'},
         'cloud_tenant': 'test',
@@ -158,16 +139,14 @@ describe('Component: VM Details', function () {
         'orchestrationStack': 'test',
         'keyPairLabels': ['test', 'test2']
       }
-      const instanceObject = controller.processInstanceVariables(instance)
+      const instanceObject = ctrl.processInstanceVariables(instance)
+
       expect(instanceObject).to.eql(expectedInstance)
     })
     it('should handle http request failures', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.reject(vmData))
       const notificationSpy = sinon.spy(EventNotifications, 'error')
-      controller.$onInit()
-      scope.$digest()
-
-      return controller.resolveData().then((data) => {
+      return ctrl.resolveData().then((data) => {
         expect(notificationSpy).to.have.been.calledWith('There was an error loading the vm details.')
       })
     })
