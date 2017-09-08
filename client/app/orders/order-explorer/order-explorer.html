@@ -92,7 +92,7 @@
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <span class="no-wrap text-capitalize">
               <strong translate>Request State</strong>
-              {{ item.request_state }}
+              <span uib-tooltip="Details: {{item.message}}" tooltip-enable="item.message" tooltip-append-to-body="true"> {{$ctrl.customScope.requestStatus(item) }}</span>
             </span>
           </div>
         </div>

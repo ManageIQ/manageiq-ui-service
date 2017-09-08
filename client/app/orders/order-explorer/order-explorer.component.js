@@ -31,6 +31,7 @@ function ComponentController ($filter, lodash, ListView, Language, OrdersState, 
       resolveOrders: resolveOrders,
       listActionDisable: listActionDisable,
       updatePagination: updatePagination,
+      requestStatus: requestStatus,
       updateMenuActionForItemFn: updateMenuActionForItemFn,
       // Config setup
       menuActions: getMenuActions(),
@@ -314,6 +315,14 @@ function ComponentController ($filter, lodash, ListView, Language, OrdersState, 
 
   function checkApproval () {
     return lodash.reduce(lodash.map(['miq_request_approval', 'miq_request_admin'], RBAC.has))
+  }
+  function requestStatus (item) {
+    let status = item.request_state
+    if ((item.request_state === 'finished' && item.status !== 'Ok') || (item.request_state !== 'finished')) {
+      status = item.status
+    }
+
+    return status
   }
 
   function selectItem (item) {
