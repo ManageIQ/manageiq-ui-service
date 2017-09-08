@@ -15,7 +15,20 @@ function getStates () {
       title: __('Service Template Details'),
       resolve: {
         dialogs: resolveDialogs,
-        serviceTemplate: resolveServiceTemplate
+        serviceTemplate: resolveServiceTemplate,
+        serviceOrder: resolveServiceOrder
+      }
+    },
+    'catalogs.duplicate': {
+      url: '/:serviceTemplateId/duplicate/:serviceOrderId',
+      templateUrl,
+      controller: Controller,
+      controllerAs: 'vm',
+      title: __('Service Template Details'),
+      resolve: {
+        dialogs: resolveDialogs,
+        serviceTemplate: resolveServiceTemplate,
+        serviceOrder: resolveServiceOrder
       }
     }
   }
@@ -33,7 +46,16 @@ function resolveServiceTemplate ($stateParams, CollectionsApi) {
 
   return CollectionsApi.get('service_templates', $stateParams.serviceTemplateId, options)
 }
-
+/** @ngInject */
+function resolveServiceOrder ($stateParams, CollectionsApi) {
+  if ($stateParams.serviceOrderId) {
+    return CollectionsApi.get('service_orders', $stateParams.serviceOrderId, {
+      expand: ['service_requests']
+    })
+  } else {
+    return false
+  }
+}
 /**
  * Handles querying for dialog data
  * @function resolveDialogs
@@ -48,13 +70,22 @@ function resolveDialogs ($stateParams, CollectionsApi) {
 }
 
 /** @ngInject */
-function Controller (dialogs, serviceTemplate, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash) {
-  var vm = this
+function Controller (dialogs, serviceTemplate, serviceOrder, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash) {
+  const vm = this
 
   vm.serviceTemplate = serviceTemplate
+  vm.parsedDialogs = []
 
   if (dialogs.subcount > 0) {
-    vm.dialogs = dialogs.resources[0].content
+    if (serviceOrder) {
+      const existingDialogValues = serviceOrder.service_requests[0].options.dialog
+      dialogs.resources[0].content.forEach((dialog) => {
+        console.log(existingDialogValues)
+        vm.parsedDialogs.push(DialogFieldRefresh.setFieldValueDefaults(dialog, existingDialogValues))
+      })
+    } else {
+      vm.parsedDialogs = dialogs.resources[0].content
+    }
   }
 
   vm.addToCart = addToCart

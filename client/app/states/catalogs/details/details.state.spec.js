@@ -1,34 +1,43 @@
-describe('Catalogs.details', function () {
-  beforeEach(function () {
-    module('app.states')
-  })
+describe('Catalogs.details', function() {
+  beforeEach(function() {
+    module('app.states');
+  });
 
-  describe('#resolveDialogs', function () {
-    var collectionsApiSpy
+  describe('#resolveDialogs', function() {
+    var collectionsApiSpy;
 
-    beforeEach(function () {
-      bard.inject('$state', '$stateParams', 'CollectionsApi')
+    beforeEach(function() {
+      bard.inject('$state', '$stateParams', 'CollectionsApi');
 
-      $stateParams.serviceTemplateId = 123
-      collectionsApiSpy = sinon.spy(CollectionsApi, 'query')
+      $stateParams.serviceTemplateId = 123;
+      collectionsApiSpy = sinon.spy(CollectionsApi, 'query');
+    });
+
+    it('should query the API with the correct template id and options', function() {
+      var options = {expand: 'resources', attributes: 'content'};
+      $state.get('catalogs.details').resolve.dialogs($stateParams, CollectionsApi);
+      expect(collectionsApiSpy).to.have.been.calledWith('service_templates/123/service_dialogs', options);
+    });
+
+    it('should query the API for service templates', function() {
+      const serviceTemplateSpy = sinon.spy(CollectionsApi, 'get');
+      var options = { attributes: "picture,picture.image_href" };
+      $state.get('catalogs.details').resolve.serviceTemplate($stateParams, CollectionsApi);
+      expect(serviceTemplateSpy).to.have.been.calledWith('service_templates',123, options);
+    });
+    it('should query the API for serviceOrders if one is set', () => {
+      const serviceOrderSpy = sinon.spy(CollectionsApi, 'get');
+      $stateParams.serviceOrderId = 12345;
+      const options = { expand: "service_requests" }
+      $state.get('catalogs.duplicate').resolve.serviceOrder($stateParams, CollectionsApi);
+      expect(serviceOrderSpy).to.have.been.calledWith('service_orders',12345, options);
     })
+  });
 
-    it('should query the API with the correct template id and options', function () {
-      var options = {expand: 'resources', attributes: 'content'}
-      $state.get('catalogs.details').resolve.dialogs($stateParams, CollectionsApi)
-      expect(collectionsApiSpy).to.have.been.calledWith('service_templates/123/service_dialogs', options)
-    })
-
-    it('should query the API for service templates', function () {
-      const serviceTemplateSpy = sinon.stub(CollectionsApi, 'get')
-      const options = {attributes: ['picture', 'picture.image_href']}
-      $state.get('catalogs.details').resolve.serviceTemplate($stateParams, CollectionsApi)
-      expect(serviceTemplateSpy).to.have.been.calledWith('service_templates', 123, options)
-    })
-  })
-
-  describe('controller', function () {
-    var controller
+  describe('controller', function() {
+    var collectionsApiSpy;
+    var controller;
+    var refreshSingleFieldSpy;
 
     var dialogFields = [{
       name: 'dialogField1',
@@ -55,8 +64,14 @@ describe('Catalogs.details', function () {
 
     var controllerResolves = {
       dialogs: dialogs,
+<<<<<<< HEAD
       serviceTemplate: serviceTemplate
     }
+=======
+      serviceTemplate: serviceTemplate,
+      serviceOrder: false
+    };
+>>>>>>> [Finishes #146028835] Allowed users to duplicate services
 
     beforeEach(function () {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'EventNotifications', 'DialogFieldRefresh', 'ShoppingCart')

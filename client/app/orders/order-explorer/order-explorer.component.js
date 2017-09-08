@@ -8,7 +8,7 @@ export const OrderExplorerComponent = {
 }
 
 /** @ngInject */
-function ComponentController ($filter, lodash, ListView, Language, OrdersState, ShoppingCart, EventNotifications, Session, RBAC, ModalService,
+function ComponentController ($filter, $state, lodash, ListView, Language, OrdersState, ShoppingCart, EventNotifications, Session, RBAC, ModalService,
                              CollectionsApi, sprintf, Polling, POLLING_INTERVAL) {
   const vm = this
   vm.permissions = OrdersState.getPermissions()
@@ -288,17 +288,7 @@ function ComponentController ($filter, lodash, ListView, Language, OrdersState, 
   function duplicateOrder (_action, item) {
     ShoppingCart.reset()
     ShoppingCart.delete()
-
-    CollectionsApi.post('service_orders', null, null, {action: 'copy', resources: [{id: item.id}]}).then(success, failure)
-
-    function success (response) {
-      ShoppingCart.reload()
-      EventNotifications.success(sprintf(__('%s was duplicated, id # %d.'), item.name, response.results[0].id))
-    }
-
-    function failure (_error) {
-      EventNotifications.error(sprintf(__('There was an error duplicating %s.'), item.name))
-    }
+    $state.go('catalogs.duplicate', {serviceTemplateId: item.service_requests[0].source_id, serviceOrderId: item.id})
   }
 
   function removeOrder (_action, item) {
