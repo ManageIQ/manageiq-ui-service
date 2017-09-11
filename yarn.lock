@@ -38,6 +38,10 @@
   dependencies:
     tslib "^1.7.1"
 
+"@manageiq/font-fabulous@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@manageiq/font-fabulous/-/font-fabulous-1.0.0.tgz#55a4ca4e04816a000308051821cde562f7473daa"
+
 "@manageiq/manageiq-api-mock@1.3.2":
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/@manageiq/manageiq-api-mock/-/manageiq-api-mock-1.3.2.tgz#5db049be6b99225b76df7fce926f735a94e3df9a"
@@ -3470,10 +3474,6 @@ font-awesome@4.7.0, font-awesome@^4.7.0:
 font-awesome@~4.6.3:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.6.3.tgz#86933651540ee00874c664017f50f2172f6531a2"
-
-font-fabulous@ManageIQ/font-fabulous#master:
-  version "0.0.1"
-  resolved "https://codeload.github.com/ManageIQ/font-fabulous/tar.gz/447376ce2bf290c77d1946ca316ece36b882c264"
 
 for-in@^0.1.3:
   version "0.1.8"

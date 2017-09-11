@@ -141,7 +141,7 @@ module.exports = {
                   `${nodeModules}/bootstrap-sass/assets/stylesheets`,
                   `${nodeModules}/patternfly-sass/assets/stylesheets`,
                   `${nodeModules}/font-awesome/scss`,
-                  `${nodeModules}/font-fabulous/assets/stylesheets`
+                  `${nodeModules}/@manageiq/font-fabulous/assets/stylesheets`
                 ]
               }
             }
