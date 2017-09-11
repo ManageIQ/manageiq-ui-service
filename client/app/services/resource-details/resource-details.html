@@ -79,9 +79,14 @@
                 <div class="col-md-12">
                     <div class="card-pf">
                         <h2 translate><i class="pficon-storage-domain"></i>Disk Usage</h2>
-                        <pf-utilization-bar-chart chart-data="vm.data2" chart-title="vm.title2" layout="vm.layoutInline"
-                                                  units="vm.units2" threshold-error="85"
-                                                  threshold-warning="60"></pf-utilization-bar-chart>
+                            <pf-utilization-bar-chart
+                                    available-tooltip-function="vm.availableTooltip(item)"
+                                    used-tooltip-function="vm.usedTooltip(item)"
+                                    ng-repeat="item in vm.diskUsage"
+                                    chart-data="item.data"
+                                    chart-title="item.device_name" layout="item.layout"
+                                    units="item.units" threshold-error="85"
+                                    threshold-warning="60"></pf-utilization-bar-chart>
                     </div>
                 </div>
             </div>

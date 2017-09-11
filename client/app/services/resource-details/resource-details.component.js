@@ -39,6 +39,8 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
   function activate () {
     vm.permissions = ServicesState.getPermissions()
     angular.extend(vm, {
+      availableTooltip: availableTooltip,
+      usedTooltip: usedTooltip,
       hasCustomButtons: hasCustomButtons,
       loading: true,
       presentDate: new Date(),
@@ -111,15 +113,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
             'href': '#'
           }
         ]
-      },
-      title2: 'Memory',
-      units2: 'GB',
-      data2: {
-        'used': '25',
-        'total': '100'
-      },
-      layoutInline: {
-        'type': 'inline'
       }
     })
     resolveData()
@@ -193,6 +186,22 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       const usedMemory = UsageGraphsService.convertBytestoGb(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period)
       const usedCPU = vm.vmDetails.cpu_usagemhz_rate_average_avg_over_time_period
       const totalCPU = (angular.isDefined(vm.vmDetails.hardware.aggregate_cpu_speed) ? vm.vmDetails.hardware.aggregate_cpu_speed : 0)
+      vm.diskUsage = response.disks.map((item) => {
+        const totalSize = item.allocated_space || response.allocated_disk_storage
+        const used = item.size || 0
+        return Object.assign(
+          {
+            data: {
+              'used': UsageGraphsService.convertBytestoGb(used),
+              'total': UsageGraphsService.convertBytestoGb(totalSize)
+            },
+            units: 'GB',
+            layout: {
+              'type': 'inline'
+            }
+          },
+          item)
+      })
 
       hasUsageGraphs()
 
@@ -370,5 +379,14 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
 
   function elapsed (finish, start) {
     return Math.abs(new Date(finish) - new Date(start)) / 100
+  }
+
+  function availableTooltip (item) {
+    return `<div>Title: ${item.device_name}</div><div>Available: ${item.data.total}GB</div><div>Device Type: ${item.device_type}</div>`
+  }
+
+  function usedTooltip (item) {
+    console.log(item)
+    return `<div>Title: ${item.device_name}</div><div>Usage: ${item.data.used}GB</div><div>Device Type: ${item.device_type}</div>`
   }
 }
