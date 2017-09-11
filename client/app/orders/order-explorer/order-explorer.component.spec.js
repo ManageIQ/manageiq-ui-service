@@ -35,5 +35,21 @@ describe('Component: orderExplorer', function() {
     it('is defined', function() {
       expect(ctrl).to.be.defined;
     });
+    it('is can report back a request state', () => {
+      const item = {
+        request_state: 'finished',
+        status: 'Ok'
+      };
+      const status = ctrl.requestStatus(item);
+      expect(status).to.eq('finished');
+    });
+    it('is can report back a failed order status', () => {
+      const item = {
+        request_state: 'finished',
+        status: 'Error'
+      };
+      const status = ctrl.requestStatus(item);
+      expect(status).to.eq('Error');
+    });
   });
 });
