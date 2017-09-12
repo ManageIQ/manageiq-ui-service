@@ -273,9 +273,9 @@ angular-mocks@1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.6.tgz#c93018e7838c6dc5ceaf1a6bcf9be13c830ea515"
 
-angular-patternfly@4.7.3:
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/angular-patternfly/-/angular-patternfly-4.7.3.tgz#64ee21b530084dbd35b0840913e38ae9489c4e09"
+angular-patternfly@4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/angular-patternfly/-/angular-patternfly-4.8.0.tgz#d8012be921d4e1d416e8a603fa915c72cac18228"
   dependencies:
     angular "1.5.*"
     angular-animate "1.5.*"
@@ -283,10 +283,10 @@ angular-patternfly@4.7.3:
     angular-svg-base-fix "2.0.0"
     angular-ui-bootstrap "2.3.x"
     lodash "4.x"
-    patternfly ">=3.26.0"
+    patternfly ">=3.27.2"
   optionalDependencies:
     angular-drag-and-drop-lists "2.0.0"
-    angularjs-datatables "^0.5.8"
+    angularjs-datatables "^0.5.9"
     bootstrap-select "~1.10.0"
     c3 "~0.4.11"
     components-jqueryui components/jqueryui#1.12.1
@@ -350,9 +350,9 @@ angular@1.6.6:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.5.tgz#37f788eebec5ce2e3fa02b17bbcb2a231576a0d6"
 
-angularjs-datatables@^0.5.8:
-  version "0.5.8"
-  resolved "https://registry.yarnpkg.com/angularjs-datatables/-/angularjs-datatables-0.5.8.tgz#54a1f85aaa6cf121d07be809e1afd7f73099ed0d"
+angularjs-datatables@^0.5.9:
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/angularjs-datatables/-/angularjs-datatables-0.5.9.tgz#24bdc3ba0951741f4172295b6a795c58ce63ad94"
   dependencies:
     angular ">=1.3.0"
     datatables.net "^1.10.11"
@@ -5999,9 +5999,9 @@ patternfly-timeline@patternfly/patternfly-timeline#master-dist:
     d3 "~3.5.17"
     patternfly "~3.25.0"
 
-patternfly@>=3.26.0:
-  version "3.26.6"
-  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.26.6.tgz#ea78bda1f04e40e05f92ecae9dfb19c01d152764"
+patternfly@>=3.27.2:
+  version "3.27.3"
+  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.27.3.tgz#a223e79bf297d82a454e29156ac426fc09da3001"
   dependencies:
     bootstrap "~3.3.7"
     font-awesome "^4.7.0"
