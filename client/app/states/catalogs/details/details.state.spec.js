@@ -5,32 +5,31 @@ describe('Catalogs.details', function() {
 
   describe('#resolveDialogs', function() {
     var collectionsApiSpy;
-
+    const serviceRequest = false;
     beforeEach(function() {
       bard.inject('$state', '$stateParams', 'CollectionsApi');
-
       $stateParams.serviceTemplateId = 123;
       collectionsApiSpy = sinon.spy(CollectionsApi, 'query');
     });
 
     it('should query the API with the correct template id and options', function() {
       var options = {expand: 'resources', attributes: 'content'};
-      $state.get('catalogs.details').resolve.dialogs($stateParams, CollectionsApi);
+      $state.get('catalogs.details').resolve.dialogs($stateParams, serviceRequest, CollectionsApi);
       expect(collectionsApiSpy).to.have.been.calledWith('service_templates/123/service_dialogs', options);
     });
 
     it('should query the API for service templates', function() {
       const serviceTemplateSpy = sinon.spy(CollectionsApi, 'get');
       var options = { attributes: "picture,picture.image_href" };
-      $state.get('catalogs.details').resolve.serviceTemplate($stateParams, CollectionsApi);
+      $state.get('catalogs.details').resolve.serviceTemplate($stateParams, serviceRequest, CollectionsApi);
       expect(serviceTemplateSpy).to.have.been.calledWith('service_templates',123, options);
     });
-    it('should query the API for serviceOrders if one is set', () => {
-      const serviceOrderSpy = sinon.spy(CollectionsApi, 'get');
-      $stateParams.serviceOrderId = 12345;
-      const options = { expand: "service_requests" }
-      $state.get('catalogs.duplicate').resolve.serviceOrder($stateParams, CollectionsApi);
-      expect(serviceOrderSpy).to.have.been.calledWith('service_orders',12345, options);
+    it('should query the API for serviceRequest if one is set', () => {
+      const serviceRequestSpy = sinon.spy(CollectionsApi, 'get');
+      $stateParams.serviceRequestId = 12345;
+      const options = {}
+      $state.get('catalogs.duplicate').resolve.serviceRequest($stateParams, CollectionsApi);
+      expect(serviceRequestSpy).to.have.been.calledWith('requests',12345, options);
     })
   });
 
@@ -69,7 +68,7 @@ describe('Catalogs.details', function() {
     }
 =======
       serviceTemplate: serviceTemplate,
-      serviceOrder: false
+      serviceRequest: false
     };
 >>>>>>> [Finishes #146028835] Allowed users to duplicate services
 
