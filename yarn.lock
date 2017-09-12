@@ -2412,19 +2412,39 @@ datatables.net-dt@1.10.15, datatables.net-dt@^1.10.11:
     datatables.net ">=1.10.9"
     jquery ">=1.7"
 
-datatables.net-select-dt@1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/datatables.net-select-dt/-/datatables.net-select-dt-1.2.2.tgz#44be9410f3a59821dbfec22019d9367351fea4de"
+datatables.net-dt@^1.10.15:
+  version "1.10.16"
+  resolved "https://registry.yarnpkg.com/datatables.net-dt/-/datatables.net-dt-1.10.16.tgz#6758a308fb9e5f9629fb6541cc301e48ec9ec555"
   dependencies:
-    datatables.net ">=1.10.9"
-    datatables.net-select ">=1.0.1"
+    datatables.net "1.10.16"
     jquery ">=1.7"
 
-datatables.net-select@>=1.0.1, datatables.net-select@~1.2.0:
+datatables.net-select-dt@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/datatables.net-select-dt/-/datatables.net-select-dt-1.2.3.tgz#dfff4db0afbfd338843f5f7cb83356441b9252cf"
+  dependencies:
+    datatables.net-dt "^1.10.15"
+    datatables.net-select "1.2.3"
+    jquery ">=1.7"
+
+datatables.net-select@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/datatables.net-select/-/datatables.net-select-1.2.3.tgz#7c272e81732a41214e101b656f5525d37ec37288"
+  dependencies:
+    datatables.net "^1.10.15"
+    jquery ">=1.7"
+
+datatables.net-select@~1.2.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/datatables.net-select/-/datatables.net-select-1.2.2.tgz#9651793f52899f4e5745c0720821e8b8286fbf45"
   dependencies:
     datatables.net ">=1.10.9"
+    jquery ">=1.7"
+
+datatables.net@1.10.16:
+  version "1.10.16"
+  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.16.tgz#4b052d1082824261b68eed9d22741b711d3d2469"
+  dependencies:
     jquery ">=1.7"
 
 datatables.net@>=1.10.9, datatables.net@^1.10.11, datatables.net@^1.10.12, datatables.net@^1.10.15:
