@@ -152,7 +152,7 @@
     "phantomjs-prebuilt": "2.1.15",
     "protractor": "5.1.2",
     "sass-lint": "1.11.1",
-    "serve-favicon": "2.4.3",
+    "serve-favicon": "2.4.4",
     "sinon": "3.2.1",
     "sinon-chai": "2.13.0",
     "standard": "10.0.3",
