@@ -30,6 +30,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 ## Unreleased as of Sprint 66 ending 2017-08-07
 
 ### Fixed
+- Buttons are updated on power operations [(#844)](https://github.com/ManageIQ/manageiq-ui-service/pull/844)
 - The VM status shows "retired" for all VM's [(#856)](https://github.com/ManageIQ/manageiq-ui-service/pull/856)
 
 ### Added
@@ -42,15 +43,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Adds the reusable (and rather well executed) timeline component to the sui in addition to the timeline in the snapshots components [(#848)](https://github.com/ManageIQ/manageiq-ui-service/pull/848)
 - Introduce service tag filtering [(#840)](https://github.com/ManageIQ/manageiq-ui-service/pull/840)
 
-### Fixed
-- Buttons are updated on power operations [(#844)](https://github.com/ManageIQ/manageiq-ui-service/pull/844)
-- Fixes an issue with polling causing issues with data not rendering properly [(#842)](https://github.com/ManageIQ/manageiq-ui-service/pull/842
-
 ## Unreleased as of Sprint 64 ending 2017-07-10
 
 ### Fixed
 - Service.custom_button_details state params cleaned [(#838)](https://github.com/ManageIQ/manageiq-ui-service/pull/838)
-- Ensure action target collection matches button class [(#837)](https://github.com/ManageIQ/manageiq-ui-service/pull/837)
 - Gracefully handle 403 state change error [(#833)](https://github.com/ManageIQ/manageiq-ui-service/pull/833)
 - Resolves production redirect error on logout [(#828)](https://github.com/ManageIQ/manageiq-ui-service/pull/828)
 
@@ -62,8 +58,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Utilization graphs now react to any change in data [(#825)](https://github.com/ManageIQ/manageiq-ui-service/pull/825)
-- Unify console names between ops & service UI - VM Console & Web Console [(#819)](https://github.com/ManageIQ/manageiq-ui-service/pull/819)
-- Fix for service catalog service dialog refresh function behaving differently [(#814)](https://github.com/ManageIQ/manageiq-ui-service/pull/814)
 - Error loading services without vms [(#812)](https://github.com/ManageIQ/manageiq-ui-service/pull/812)
 
 ### Added
@@ -82,27 +76,43 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Fixed button link formatting [(#803)](https://github.com/ManageIQ/manageiq-ui-service/pull/803)
 - Removed code climate conditional execution [(#800)](https://github.com/ManageIQ/manageiq-ui-service/pull/800)
 - Fix for service catalog service dialog refresh function behaving differently [(#793)](https://github.com/ManageIQ/manageiq-ui-service/pull/793)
-- Added support for a vm to submit a custom button action [(#791)](https://github.com/ManageIQ/manageiq-ui-service/pull/791)
-- Allows for image assets to be dynamically skinned [(#790)](https://github.com/ManageIQ/manageiq-ui-service/pull/790)
 
 ## Unreleased as of Sprint 61 ending 2017-05-22
 
 ### Added
 - Adds support for proxy_protocol env [(#779)](https://github.com/ManageIQ/manageiq-ui-service/pull/779)
+
+### Fixed
+- Login and page refresh not working [(#774)](https://github.com/ManageIQ/manageiq-ui-service/pull/774)
+- Adds support for custom brand [(#769)](https://github.com/ManageIQ/manageiq-ui-service/pull/769)
+- Filter tooltip overflow [(#753)](https://github.com/ManageIQ/manageiq-ui-service/pull/753)
+- Buttons are updated on power operations [(#844)](https://github.com/ManageIQ/manageiq-ui-service/pull/844)
+- The VM status shows "retired" for all VM's [(#856)](https://github.com/ManageIQ/manageiq-ui-service/pull/856)
+
+
+## Fine-3
+
+### Fixed
+- Added support for a vm to submit a custom button action [(#791)](https://github.com/ManageIQ/manageiq-ui-service/pull/791)
+- Allows for image assets to be dynamically skinned [(#790)](https://github.com/ManageIQ/manageiq-ui-service/pull/790)
+- Fix for service catalog service dialog refresh function behaving differently [(#814)](https://github.com/ManageIQ/manageiq-ui-service/pull/814)
+- Unify console names between ops & service UI - VM Console & Web Console [(#819)](https://github.com/ManageIQ/manageiq-ui-service/pull/819)
+- Ensure action target collection matches button class [(#837)](https://github.com/ManageIQ/manageiq-ui-service/pull/837)
+- Fixes an issue with polling causing issues with data not rendering properly [(#842)](https://github.com/ManageIQ/manageiq-ui-service/pull/842)
+
+## Fine-2
+
+### Added
 - Added custom buttons to VM details page [(#750)](https://github.com/ManageIQ/manageiq-ui-service/pull/750)
 
 ### Fixed
-- Ensures ansible service displays vm resources [(#776)](https://github.com/ManageIQ/manageiq-ui-service/pull/776)
-- Login and page refresh not working [(#774)](https://github.com/ManageIQ/manageiq-ui-service/pull/774)
-- Enabled session timeout on pages that poll [(#773)](https://github.com/ManageIQ/manageiq-ui-service/pull/773)
-- Sending string true vs literal true [(#771)](https://github.com/ManageIQ/manageiq-ui-service/pull/771)
-- Adds support for custom brand [(#769)](https://github.com/ManageIQ/manageiq-ui-service/pull/769)
-- Filter tooltip overflow [(#753)](https://github.com/ManageIQ/manageiq-ui-service/pull/753)
 - Refresh button in a dialog does not show in SUI [(#752)](https://github.com/ManageIQ/manageiq-ui-service/pull/752)
+- Sending string true vs literal true [(#771)](https://github.com/ManageIQ/manageiq-ui-service/pull/771)
+- Enabled session timeout on pages that poll [(#773)](https://github.com/ManageIQ/manageiq-ui-service/pull/773)
+- Ensures ansible service displays vm resources [(#776)](https://github.com/ManageIQ/manageiq-ui-service/pull/776)
 
-## Unreleased as of Sprint 60 ending 2017-05-08
+## Fine-1
 
-### Fixed
 - (bug) [MOCK] Fix broken images in mock API
 - (bug) Change to "link pointy hand" when mouse over tile
 - (bug) Tooltip in self service portal shows code
@@ -128,17 +138,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (bug) BZ#1447789 - catalog results should show number of templates, not catalogs
 - (bug) List views don't scroll, have odd padding, master and fine
 - (bug) BZ#1442616 - Inaccurate representation of translations available
-
-### Added
 - (feature) Update vm details page
 - (feature) Add performance / utilization graphs on service page
 - (feature) Optimize batch action notifications
 - (feature) Add timeline to snapshots page
 - (feature) Add custom buttons on details page
-
-## Unreleased as of Sprint 59 ending 2017-04-24
-
-### Fixed
 - (bug)  (Cockpit and HTML5) are inconsistent between Service and OPS UI
 - (bug) Change "Catalogs" to "Service Catalog"
 - (bug) Change "Service" to "My Service"
@@ -166,13 +170,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (bug) Self Service UI does not properly select defaults for dynamic drop downs
 - (bug) Arrow should align to kebab menu
 - (bug) [MOCK] Fix stdOut data
-
-### Added
 - (feature) RBAC support for custom buttons
 - (feature) Add ability to filter by Catalog Name
 - (feature) Flatten action and custom actions for service details
-
-### Changelog for Sprint 58
 - (bug) Dialog field visibility is not honored on dynamic fields in Service UI
 - (bug) RBAC: Catalog Menu should be hidden or it should show Dashboard when no permissions
 - (feature) Create Report Explorer
@@ -210,8 +210,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (bug) BZ#1439864 - remove required description indicator from create snapshot
 - (bug) BZ#1439844 - Fix navigation rbac
 - (feature) [UI] Add Power Management button to VM details page also BZ#1439555
-
-### Changelog for Sprint 57
 - (bug) Unable to delete a new tab in dialog
 - (feature) Enable RBAC on Orchestration Templates
 - (bug) Empty page during Breadcrumb navigation on Dialogs page
@@ -238,8 +236,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (bug) Disabled vm resource actions shouldn't be executed
 - (feature) BZ#1435364 Post order routing
 - (feature) [UI] Show Retired vs. Non-Retired on Service details
-
-### Changelog for Sprint 56
 - (feature) [UI] Edit Orchestration Template
 - (bug) Remove toastr modal errors.
 - (feature) [UI] Remove Orchestration Template
@@ -270,8 +266,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (bug) Dialog edit switch button errors
 - (bug) Fix image path for cockpit.png on Euwe
 - (bug) Service Dialog - Element visibility on condition is not working in Self-Service portal 
-
-### Changelog for Sprint 55
 - (bug) MyOrder- Extra column of order is shown for the first provisioning request raised
 - (bug) Error creating duplicate catalog
 - (bug) Catalog "save" button on Edit page is not enabled unless description is filled
@@ -305,8 +299,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (bug) [UI] Store MIQ Group info in session for authenticated user
 - (chore) Update Dependencies
 - (bug) MyOrder- Remove button of the last order is not visible
-
-### Changelog for Sprint 54
 - (feature) [UI] Switch to use angular-patternfly-sass so patternfly variables are available
 - (feature) Make All links working on dashboard tab
 - (feature) [API] VM / Services Bulk Tag Assign
@@ -339,8 +331,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (chore) Make SUI Heroku capable 
 - (bug) console options can be clicked  when disabled
 - (feature) Mock-api general improvements
-
-### Changelog for Sprint 53
 - (feature) [UI] myServices List View Updates
 - (feature) Mock api not returning data for certain endpoints
 - (feature) [DESIGN] myServices - List View (General Info)
@@ -380,8 +370,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (feature) [UI] Remove arbitration profiles
 - (feature) [MODEL] Class methods on ServiceTemplate to create all resources of a Catalog Item
 - (bug) [UI] Skinning is broken
-
-### Changelog for Sprint 52
 - (feature) [UI] Edit Service Tags
 - (feature) [API] Load Balancers endpoint
 - (feature) [UI] List existing catalogs (Designer views available service catalogs)
@@ -431,8 +419,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (feature) [UI] Implement Karma-Webpack
 - (feature) Create Karma / Protractor tests
 - (bug) [API] Fix the API endpoint for requests when attribute=v_allowed_tags and workflow=nil 
-
-### Changelog for Sprint 51
 - (bug) Lock version of dependencies in yarn.lock
 - (bug) Bug 1405143 - SSUI: Open a HTML5 console for vm broken in SSUI
 - (chore) [ADMIN] Remove SCSS Linting from Hound
@@ -459,7 +445,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (feature) [MODEL] Update ui_properties with Service Template IDs 
 - (feature) [MODEL] Add "in use" virtual attribute to Blueprint 
 
-### Changelog for Sprint 50
+## Euwe-1
+
 - (bug) Bug 1395981
 - (feature) Update dependencies
 - (chore) Fix Chrome/Firefox font file console warning
@@ -471,8 +458,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (feature) [DESIGN] Create Catalog item 
 - (feature) [DESIGN] Catalog Item - add/edit tags
 - (feature) [UI] Build Icon list component
-
-### Changelog for Sprint 49
 - (bug) My Services -> List, # of services is cutoff
 - (feature) [UI] Remove Service
 - (feature) [UI] Retire Service
