@@ -89,11 +89,15 @@
               {{ item.approval_state === "pending_approval"? "Pending Approval" : item.approval_state }}
             </span>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
             <span class="no-wrap text-capitalize">
               <strong translate>Request State</strong>
               <span uib-tooltip="Details: {{item.message}}" tooltip-enable="item.message" tooltip-append-to-body="true"> {{$ctrl.customScope.requestStatus(item) }}</span>
             </span>
+
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <button class="btn btn-default" ng-if = "$ctrl.customScope.permissions.copy" ng-click="$ctrl.customScope.duplicateOrder(item)" translate>Reorder</button>
           </div>
         </div>
       </pf-list-view>

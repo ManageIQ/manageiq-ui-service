@@ -29,6 +29,7 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
       // Functions
       resolveOrders: resolveOrders,
+      duplicateOrder: duplicateOrder,
       listActionDisable: listActionDisable,
       updatePagination: updatePagination,
       requestStatus: requestStatus,
@@ -114,15 +115,6 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
 
   function getMenuActions () {
     const menuActions = []
-    if (vm.permissions.copy) {
-      menuActions.push({
-        name: __('Duplicate'),
-        actionName: 'duplicate',
-        title: __('Duplicate Order'),
-        actionFn: duplicateOrder,
-        isDisabled: true
-      })
-    }
 
     if (vm.permissions.delete) {
       menuActions.push(
@@ -138,7 +130,6 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
 
     return checkApproval() ? menuActions : null
   }
-
   function expandRow (item) {
     if (!item.disableRowExpansion) {
       item.isExpanded = !item.isExpanded
@@ -285,10 +276,10 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
     })
   }
 
-  function duplicateOrder (_action, item) {
+  function duplicateOrder (item) {
     ShoppingCart.reset()
     ShoppingCart.delete()
-    $state.go('catalogs.duplicate', {serviceTemplateId: item.service_requests[0].source_id, serviceOrderId: item.id})
+    $state.go('catalogs.duplicate', {serviceRequestId: item.id})
   }
 
   function removeOrder (_action, item) {
