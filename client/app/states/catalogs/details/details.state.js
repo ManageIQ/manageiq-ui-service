@@ -24,7 +24,7 @@ function getStates () {
       templateUrl,
       controller: Controller,
       controllerAs: 'vm',
-      title: __('Service Template Details'),
+      title: __('Duplicate Service'),
       resolve: {
         dialogs: resolveDialogs,
         serviceTemplate: resolveServiceTemplate,
