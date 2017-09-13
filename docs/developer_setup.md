@@ -75,5 +75,5 @@ http://localhost:3000 order and serve up the REST API.
 if left empty defaults to `http://`, and PROXY_HOST is the IP address of the asset.
 
     ```
-    PROXY_PROTOCOL=https:// PROXY_HOST:0.0.0.0 yarn start
+    PROXY_PROTOCOL=https:// PROXY_HOST=0.0.0.0 yarn start
     ```
