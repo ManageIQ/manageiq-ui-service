@@ -676,30 +676,6 @@ babel-core@^5.4.3:
     trim-right "^1.0.0"
     try-resolve "^1.0.0"
 
-babel-core@^6.0.0, babel-core@^6.24.1:
-  version "6.25.0"
-  resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.25.0.tgz#7dd42b0463c742e9d5296deb3ec67a9322dad729"
-  dependencies:
-    babel-code-frame "^6.22.0"
-    babel-generator "^6.25.0"
-    babel-helpers "^6.24.1"
-    babel-messages "^6.23.0"
-    babel-register "^6.24.1"
-    babel-runtime "^6.22.0"
-    babel-template "^6.25.0"
-    babel-traverse "^6.25.0"
-    babel-types "^6.25.0"
-    babylon "^6.17.2"
-    convert-source-map "^1.1.0"
-    debug "^2.1.1"
-    json5 "^0.5.0"
-    lodash "^4.2.0"
-    minimatch "^3.0.2"
-    path-is-absolute "^1.0.0"
-    private "^0.1.6"
-    slash "^1.0.0"
-    source-map "^0.5.0"
-
 babel-eslint@8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-8.0.0.tgz#ce06f385bdfb5b6d7e603f06222f891abd14c240"
@@ -709,7 +685,7 @@ babel-eslint@8.0.0:
     babel-types "7.0.0-beta.0"
     babylon "7.0.0-beta.22"
 
-babel-generator@^6.18.0, babel-generator@^6.25.0:
+babel-generator@^6.18.0:
   version "6.25.0"
   resolved "https://registry.yarnpkg.com/babel-generator/-/babel-generator-6.25.0.tgz#33a1af70d5f2890aeb465a4a7793c1df6a9ea9fc"
   dependencies:
@@ -1183,18 +1159,6 @@ babel-preset-env@1.6.0:
     invariant "^2.2.2"
     semver "^5.3.0"
 
-babel-register@^6.24.1:
-  version "6.24.1"
-  resolved "https://registry.yarnpkg.com/babel-register/-/babel-register-6.24.1.tgz#7e10e13a2f71065bdfad5a1787ba45bca6ded75f"
-  dependencies:
-    babel-core "^6.24.1"
-    babel-runtime "^6.22.0"
-    core-js "^2.4.0"
-    home-or-tmp "^2.0.0"
-    lodash "^4.2.0"
-    mkdirp "^0.5.1"
-    source-map-support "^0.4.2"
-
 babel-register@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-register/-/babel-register-6.26.0.tgz#6ed021173e2fcb486d7acb45c6009a856f647071"
@@ -1230,7 +1194,7 @@ babel-template@7.0.0-beta.0:
     babylon "7.0.0-beta.22"
     lodash "^4.2.0"
 
-babel-template@^6.16.0, babel-template@^6.24.1, babel-template@^6.25.0:
+babel-template@^6.16.0, babel-template@^6.24.1:
   version "6.25.0"
   resolved "https://registry.yarnpkg.com/babel-template/-/babel-template-6.25.0.tgz#665241166b7c2aa4c619d71e192969552b10c071"
   dependencies:
@@ -4887,11 +4851,9 @@ just-extend@^1.1.22:
   version "1.1.22"
   resolved "https://registry.yarnpkg.com/just-extend/-/just-extend-1.1.22.tgz#3330af756cab6a542700c64b2e4e4aa062d52fff"
 
-karma-babel-preprocessor@6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/karma-babel-preprocessor/-/karma-babel-preprocessor-6.0.1.tgz#7ae1d3e64950dbe11f421b74040ab08fb5a66c21"
-  dependencies:
-    babel-core "^6.0.0"
+karma-babel-preprocessor@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/karma-babel-preprocessor/-/karma-babel-preprocessor-7.0.0.tgz#18756d818f97a5e88f91902674cd9130177a8dce"
 
 karma-chai-as-promised@0.1.2:
   version "0.1.2"
@@ -7548,7 +7510,7 @@ source-map-support@^0.4.15:
   dependencies:
     source-map "^0.5.6"
 
-source-map-support@^0.4.2, source-map-support@~0.4.0:
+source-map-support@~0.4.0:
   version "0.4.15"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.15.tgz#03202df65c06d2bd8c7ec2362a193056fef8d3b1"
   dependencies:
