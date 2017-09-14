@@ -132,7 +132,7 @@
     "http-proxy": "1.16.2",
     "istanbul-instrumenter-loader": "3.0.0",
     "karma": "1.7.1",
-    "karma-babel-preprocessor": "6.0.1",
+    "karma-babel-preprocessor": "7.0.0",
     "karma-chai": "0.1.0",
     "karma-chai-as-promised": "0.1.2",
     "karma-chai-sinon": "0.1.5",
