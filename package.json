@@ -65,7 +65,7 @@
     "bootstrap-combobox": "1.0.2",
     "bootstrap-switch": "3.3.4",
     "brace": "0.10.0",
-    "c3": "0.4.17",
+    "c3": "0.4.18",
     "chalk": "2.1.0",
     "clean-webpack-plugin": "0.1.16",
     "copy-webpack-plugin": "4.0.1",
