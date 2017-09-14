@@ -5,7 +5,8 @@ export const UsageGraphsComponent = {
   bindings: {
     cpuChart: '<',
     memoryChart: '<',
-    storageChart: '<'
+    storageChart: '<',
+    titleDetails: '@?'
   },
   controller: ComponentController,
   controllerAs: 'vm',

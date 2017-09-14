@@ -47,6 +47,7 @@ export function VmsService (CollectionsApi, RBAC) {
         'boot_time',
         'cloud',
         'compliances',
+        'custom_attributes',
         'cpu_affinity',
         'created_on',
         'custom_actions',

@@ -62,7 +62,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-pf">
-                <h2 translate>Timeline</h2>
+                <h2 translate>{{'Timeline'|translate}}
+                    <span class="sub-heading">{{'View All' | translate}}</span>
+                </h2>
                 <timeline data="vm.tlData" options="vm.tlOptions"></timeline>
             </div>
         </div>
@@ -70,7 +72,9 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card-pf">
-                <usage-graphs cpu-chart="vm.cpuChart" memory-chart="vm.memoryChart"
+                <usage-graphs title-details="{{'Last 30 days' | translate}}"
+                              cpu-chart="vm.cpuChart"
+                              memory-chart="vm.memoryChart"
                               storage-chart="vm.storageChart"></usage-graphs>
             </div>
         </div>
@@ -79,14 +83,14 @@
                 <div class="col-md-12">
                     <div class="card-pf">
                         <h2 translate><i class="pficon-storage-domain"></i>Disk Usage</h2>
-                            <pf-utilization-bar-chart
-                                    available-tooltip-function="vm.availableTooltip(item)"
-                                    used-tooltip-function="vm.usedTooltip(item)"
-                                    ng-repeat="item in vm.diskUsage"
-                                    chart-data="item.data"
-                                    chart-title="item.device_name" layout="item.layout"
-                                    units="item.units" threshold-error="85"
-                                    threshold-warning="60"></pf-utilization-bar-chart>
+                        <pf-utilization-bar-chart
+                                available-tooltip-function="vm.availableTooltip(item)"
+                                used-tooltip-function="vm.usedTooltip(item)"
+                                ng-repeat="item in vm.diskUsage"
+                                chart-data="item.data"
+                                chart-title="item.device_name" layout="item.layout"
+                                units="item.units" threshold-error="85"
+                                threshold-warning="60"></pf-utilization-bar-chart>
                     </div>
                 </div>
             </div>
@@ -94,6 +98,7 @@
                 <div class="col-md-12">
                     <div class="card-pf">
                         <h2 translate>Disk I/O</h2>
+                        <pf-empty-state config="vm.emptyState"></pf-empty-state>
                     </div>
                 </div>
             </div>
@@ -110,6 +115,16 @@
         <div class="col-md-4">
             <div class="card-pf">
                 <h2 trasnlate># Custom Attributes</h2>
+                <pf-empty-state ng-if="!vm.vmDetails.custom_attributes.length" config="vm.emptyState"></pf-empty-state>
+                <div ng-if="vm.vmDetails.custom_attributes.length" class="row"
+                     ng-repeat="item in vm.vmDetails.custom_attributes">
+                    <div class="col-sm-6">
+                        {{ ::item.name }}
+                    </div>
+                    <div class="col-sm-6 ">
+                        {{ ::item.value }}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-4">

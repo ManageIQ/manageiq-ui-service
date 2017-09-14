@@ -22,7 +22,7 @@ describe("Filter: format-bytes/format-megaBytes", function() {
     });
 
     it('should correctly display valid format', function () {
-        expect(formatBytesFilter(42424242424242)).to.be.eq("38.6 TB");
+        expect(formatBytesFilter(42424242424242)).to.be.eq("38.58 TB");
     });
 
     it('should correctly display invalid format', function () {

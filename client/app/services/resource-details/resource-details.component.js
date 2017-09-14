@@ -113,7 +113,8 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
             'href': '#'
           }
         ]
-      }
+      },
+      emptyState: {icon: 'pficon pficon-help', title: 'No Information Available'}
     })
     resolveData()
   }
@@ -386,7 +387,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
   }
 
   function usedTooltip (item) {
-    console.log(item)
     return `<div>Title: ${item.device_name}</div><div>Usage: ${item.data.used}GB</div><div>Device Type: ${item.device_type}</div>`
   }
 }
