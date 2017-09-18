@@ -25,7 +25,9 @@ function ComponentController () {
       storageChart: vm.storageChart || {data: {total: 0}},
       cpuDataExists: true,
       memoryDataExists: true,
-      storageDataExists: true
+      storageDataExists: true,
+      emptyState: {icon: 'pficon pficon-help', title: 'No Information Available'}
+
     })
 
     if (vm.cpuChart.data.total === 0) {
