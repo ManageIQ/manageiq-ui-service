@@ -73,9 +73,9 @@
         <div class="col-md-6">
             <div class="card-pf">
                 <usage-graphs title-details="{{'Last 30 days' | translate}}"
-                              cpu-chart="vm.cpuChart"
-                              memory-chart="vm.memoryChart"
-                              storage-chart="vm.storageChart"></usage-graphs>
+                              cpu-chart="vm.cpuUtil"
+                              memory-chart="vm.memUtil"
+                              storage-chart="vm.stoUtil"></usage-graphs>
             </div>
         </div>
         <div class="col-md-6">
@@ -119,10 +119,10 @@
                 <div ng-if="vm.vmDetails.custom_attributes.length" class="row"
                      ng-repeat="item in vm.vmDetails.custom_attributes">
                     <div class="col-sm-6">
-                        {{ ::item.name }}
+                        {{ item.name }}
                     </div>
                     <div class="col-sm-6 ">
-                        {{ ::item.value }}
+                        {{ item.value }}
                     </div>
                 </div>
             </div>

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import './_resource-details.sass'
 import templateUrl from './resource-details.html'
 
@@ -15,22 +14,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
   const vm = this
   vm.$onInit = activate
   vm.$onDestroy = onDestroy
-  vm.hasUsageGraphs = true
-  vm.startVm = startVM
-  vm.stopVm = stopVM
-  vm.suspendVM = suspendVM
-  vm.getListActions = getListActions
-  vm.getSnapshotListActions = getSnapshotListActions
-  vm.viewSnapshots = viewSnapshots
-  vm.processSnapshot = processSnapshot
-  vm.pollVM = pollVM
-  vm.retireVM = retireVM
-  vm.resolveData = resolveData
-  vm.storageChartConfigOptions = {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')}
-  vm.memoryChartConfigOptions = {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')}
-  vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')}
-  vm.processInstanceVariables = processInstanceVariables
-  vm.elapsed = elapsed
 
   function onDestroy () {
     Polling.stop('vmPolling')
@@ -39,9 +22,25 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
   function activate () {
     vm.permissions = ServicesState.getPermissions()
     angular.extend(vm, {
+      elapsed: elapsed,
       availableTooltip: availableTooltip,
       usedTooltip: usedTooltip,
       hasCustomButtons: hasCustomButtons,
+      getSnapshotListActions: getSnapshotListActions,
+      processSnapshot: processSnapshot,
+      pollVM: pollVM,
+      retireVM: retireVM,
+      processInstanceVariables: processInstanceVariables,
+      getListActions: getListActions,
+      viewSnapshots: viewSnapshots,
+      startVm: startVM,
+      stopVm: stopVM,
+      suspendVM: suspendVM,
+      resolveData: resolveData,
+      // Config
+      listActions: [],
+      instance: {},
+      snapshotListActions: {},
       loading: true,
       presentDate: new Date(),
       neverText: __('Never'),
@@ -49,20 +48,11 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       availableText: __('Available'),
       notAvailable: __('Not Available'),
       vmDetails: {},
-      viewType: $stateParams.viewType || 'detailsView',
-      viewSelected: viewSelected,
-      instance: {},
-      snapshotListActions: {},
-      cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
-      memoryChart: UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions),
-      storageChart: UsageGraphsService.getChartConfig(vm.storageChartConfigOptions),
-      // Config
       headerConfig: {
         actionsConfig: {
           actionsInclude: true
         }
       },
-      listActions: [],
       test: {
         'title': 'SAMPLE',
         'href': '#',
@@ -119,7 +109,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
     resolveData()
   }
 
-  // Private
   function startVM () {
     PowerOperations.startVm(vm.vmDetails)
   }
@@ -134,10 +123,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
 
   function retireVM () {
     PowerOperations.retireVM(vm.vmDetails)
-  }
-
-  function viewSelected (view) {
-    vm.viewType = view
   }
 
   function pollVM () {
@@ -187,9 +172,26 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       const usedMemory = UsageGraphsService.convertBytestoGb(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period)
       const usedCPU = vm.vmDetails.cpu_usagemhz_rate_average_avg_over_time_period
       const totalCPU = (angular.isDefined(vm.vmDetails.hardware.aggregate_cpu_speed) ? vm.vmDetails.hardware.aggregate_cpu_speed : 0)
+
+      vm.cpuUtil = UsageGraphsService.getChartConfig({
+        'units': __('MHz'),
+        'chartId': 'cpuChart',
+        'label': __('used')
+      }, usedCPU, totalCPU)
+      vm.memUtil = UsageGraphsService.getChartConfig({
+        'units': __('GB'),
+        'chartId': 'memoryChart',
+        'label': __('used')
+      }, usedMemory, totalMemory)
+      vm.stoUtil = UsageGraphsService.getChartConfig({
+        'units': __('GB'),
+        'chartId': 'storageChart',
+        'label': __('used')
+      }, usedStorage, allocatedStorage)
+
       vm.diskUsage = response.disks.map((item) => {
-        const totalSize = item.allocated_space || response.allocated_disk_storage
-        const used = item.size || 0
+        const totalSize = item.size || response.allocated_disk_storage || 0
+        const used = item.size_on_disk || 0
         return Object.assign(
           {
             data: {
@@ -213,7 +215,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         : response.last_compliance_status === 'compliant' ? 'pficon pficon-error-circle-o' : 'pficon pficon-ok'
 
       vm.power_state.notifications[0].iconClass = response.power_state === 'on' ? 'pficon pficon-ok' : 'pficon pficon-error-circle-o'
-
       vm.vmDetails.lastSyncOn = (angular.isUndefined(vm.vmDetails.last_sync_on) ? vm.neverText : vm.vmDetails.last_sync_on)
       vm.vmDetails.resourceAvailability = (vm.vmDetails.template === false ? vm.availableText : vm.noneText)
       vm.vmDetails.driftHistory = defaultText(vm.vmDetails.drift_states)
@@ -223,9 +224,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       vm.vmDetails.provisionDate = angular.isDefined(vm.vmDetails.service.miq_request) ? vm.vmDetails.service.miq_request.fulfilled_on : __('Unknown')
       vm.vmDetails.containerSpecsText = vm.vmDetails.vendor + ': ' + vm.vmDetails.hardware.cpu_total_cores + ' CPUs (' + vm.vmDetails.hardware.cpu_sockets +
         ' sockets x ' + vm.vmDetails.hardware.cpu_cores_per_socket + ' core), ' + vm.vmDetails.hardware.memory_mb + ' MB'
-      vm.cpuChart = UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions, usedCPU, totalCPU)
-      vm.memoryChart = UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions, usedMemory, totalMemory)
-      vm.storageChart = UsageGraphsService.getChartConfig(vm.storageChartConfigOptions, usedStorage, allocatedStorage)
+
       if (vm.vmDetails.retired) {
         EventNotifications.clearAll(lodash.find(EventNotifications.state().groups, {notificationType: 'warning'}))
         EventNotifications.warn(sprintf(__('%s is a retired resource'), vm.vmDetails.name), {
@@ -277,9 +276,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         permission: vm.permissions.vm_snapshot_add
       }
     ]
-    snapshotOptionsActions.forEach((menuOption) => {
-      menuOption.permission ? snapshotOptionsMenu.actions.push(menuOption) : false
-    })
+    snapshotOptionsActions.forEach((menuOption) => menuOption.permission ? snapshotOptionsMenu.actions.push(menuOption) : null)
     vm.snapshotListActions = [snapshotOptionsMenu]
 
     return vm.snapshotListActions
