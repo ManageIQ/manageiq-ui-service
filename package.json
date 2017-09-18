@@ -153,7 +153,7 @@
     "protractor": "5.1.2",
     "sass-lint": "1.11.1",
     "serve-favicon": "2.4.4",
-    "sinon": "3.2.1",
+    "sinon": "3.3.0",
     "sinon-chai": "2.13.0",
     "standard": "10.0.3",
     "webpack-dev-server": "2.8.2"
