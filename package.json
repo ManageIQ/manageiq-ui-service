@@ -109,7 +109,7 @@
     "standard-loader": "6.0.1",
     "style-loader": "0.18.2",
     "ts-loader": "2.3.7",
-    "typescript": "2.4.2",
+    "typescript": "2.5.2",
     "ui-select": "0.19.8",
     "url-loader": "0.5.9",
     "webpack": "3.6.0",
@@ -171,8 +171,7 @@
       "angular-datatables",
       "chai",
       "chai-as-promised",
-      "d3",
-      "typescript"
+      "d3"
     ]
   },
   "standard": {
