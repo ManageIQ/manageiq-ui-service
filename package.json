@@ -29,7 +29,7 @@
     "zanata:download": "node language/index.js download"
   },
   "dependencies": {
-    "@angular/platform-browser": "4.4.2",
+    "@angular/platform-browser": "4.4.3",
     "@angular/compiler": "4.4.2",
     "@angular/common": "4.4.0-RC.0",
     "@angular/core": "4.4.2",
