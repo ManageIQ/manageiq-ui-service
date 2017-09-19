@@ -1,0 +1,8 @@
+{
+ "ignore": [
+    "**/**.spec.js"
+    ],
+  "dependencies": {
+    "mute": ["d3", "angular-datatables", "chai", "chai-as-promised"]
+  }
+}
