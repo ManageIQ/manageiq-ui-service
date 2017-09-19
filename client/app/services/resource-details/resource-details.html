@@ -63,7 +63,7 @@
         <div class="col-md-12">
             <div class="card-pf">
                 <h2 translate>{{'Timeline'|translate}}
-                    <span class="sub-heading">{{'View All' | translate}}</span>
+                    <span class="detail">{{'View All' | translate}}</span>
                 </h2>
                 <timeline data="vm.tlData" options="vm.tlOptions"></timeline>
             </div>
@@ -72,7 +72,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card-pf">
-                <usage-graphs title-details="{{'Last 30 days' | translate}}"
+                <usage-graphs title-details="{{'created on ' | translate}}{{vm.metrics.resources[0].created_on | date:'short'}}"
                               cpu-chart="vm.cpuUtil"
                               memory-chart="vm.memUtil"
                               storage-chart="vm.stoUtil"></usage-graphs>

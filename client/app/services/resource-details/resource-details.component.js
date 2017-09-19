@@ -166,28 +166,32 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
           processInstanceVariables(vm.instance)
         })
       }
-      const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.allocated_disk_storage) // convert bytes to gb
-      const usedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.used_storage)
-      const totalMemory = vm.vmDetails.ram_size / 1024
-      const usedMemory = UsageGraphsService.convertBytestoGb(vm.vmDetails.max_mem_usage_absolute_average_avg_over_time_period)
-      const usedCPU = vm.vmDetails.cpu_usagemhz_rate_average_avg_over_time_period
-      const totalCPU = (angular.isDefined(vm.vmDetails.hardware.aggregate_cpu_speed) ? vm.vmDetails.hardware.aggregate_cpu_speed : 0)
 
-      vm.cpuUtil = UsageGraphsService.getChartConfig({
-        'units': __('MHz'),
-        'chartId': 'cpuChart',
-        'label': __('used')
-      }, usedCPU, totalCPU)
-      vm.memUtil = UsageGraphsService.getChartConfig({
-        'units': __('GB'),
-        'chartId': 'memoryChart',
-        'label': __('used')
-      }, usedMemory, totalMemory)
-      vm.stoUtil = UsageGraphsService.getChartConfig({
-        'units': __('GB'),
-        'chartId': 'storageChart',
-        'label': __('used')
-      }, usedStorage, allocatedStorage)
+      VmsService.getMetrics($stateParams.vmId, {
+        capture_interval: 'hourly'
+      }).then((response) => {
+        vm.metrics = response
+        const lastHour = response.resources[0]
+        vm.cpuUtil = UsageGraphsService.getChartConfig({
+          'units': __('%'),
+          'chartId': 'cpuChart',
+          'label': __('used')
+        }, (lastHour.cpu_usage_rate_average * 100).toPrecision(3), 100)
+
+        vm.memUtil = UsageGraphsService.getChartConfig({
+            'units': __('GB'),
+            'chartId': 'memoryChart',
+            'label': __('used')
+          }, UsageGraphsService.convertBytestoGb(lastHour.derived_memory_used * 1048576),
+          UsageGraphsService.convertBytestoGb(lastHour.derived_memory_available * 1048576))
+
+        vm.stoUtil = UsageGraphsService.getChartConfig({
+            'units': __('GB'),
+            'chartId': 'storageChart',
+            'label': __('used')
+          }, UsageGraphsService.convertBytestoGb(lastHour.derived_vm_allocated_disk_storage),
+          UsageGraphsService.convertBytestoGb(lastHour.derived_vm_allocated_disk_storage))
+      })
 
       vm.diskUsage = response.disks.map((item) => {
         const totalSize = item.size || response.allocated_disk_storage || 0
@@ -209,7 +213,9 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       hasUsageGraphs()
 
       vm.snapshots.notifications[0].count = response.v_total_snapshots
-      vm.retirement.notifications[0].count = angular.isUndefined(response.retires_on) ? vm.neverText : response.retires_on
+      const retirementDate = new Date(response.retires_on)
+      vm.retirement.notifications[0].count = angular.isUndefined(response.retires_on) ? vm.neverText
+        : `${retirementDate.getFullYear()}-${retirementDate.getMonth()}-${retirementDate.getDate()}`
       vm.compliance.notifications[0].count = angular.isUndefined(response.last_compliance_status) ? vm.neverText : response.last_compliance_status
       vm.compliance.notifications[0].iconClass = angular.isUndefined(response.last_compliance_status) ? 'pficon pficon-unknown'
         : response.last_compliance_status === 'compliant' ? 'pficon pficon-error-circle-o' : 'pficon pficon-ok'
@@ -380,7 +386,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
   }
 
   function availableTooltip (item) {
-    return `<div>Title: ${item.device_name}</div><div>Available: ${item.data.total}GB</div><div>Device Type: ${item.device_type}</div>`
+    return `<div>Title: ${item.device_name}</div><div>Available: ${item.data.total - item.data.used}GB</div><div>Device Type: ${item.device_type}</div>`
   }
 
   function usedTooltip (item) {

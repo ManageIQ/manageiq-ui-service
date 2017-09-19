@@ -172,7 +172,7 @@ export function VmsService (CollectionsApi, RBAC) {
     const defaults = {
       capture_interval: 'daily',
       expand: 'resources',
-      start_date: `${today.getFullYear()}-${today.getMonth()}-${today.getDay()}`
+      start_date: `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`
     }
 
     return CollectionsApi.get(`${collection}/${vmId}/metric_rollups`, '', Object.assign(defaults, options))
