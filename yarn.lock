@@ -70,9 +70,15 @@
   version "2.53.42"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.53.42.tgz#74cb77fb6052edaff2a8984ddafd88d419f25cac"
 
-"@uirouter/core@5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.3.tgz#e2b5b1e45190e20c67ba4e15c013de5d4e0ccab3"
+"@uirouter/angularjs@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.6.tgz#11fa769475d1e428665d38f7eb15586bc185cd69"
+  dependencies:
+    "@uirouter/core" "=5.0.6"
+
+"@uirouter/core@=5.0.6":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.6.tgz#251e1fc4d6ce8fe47e374bb86971e68a2ef1b323"
 
 abbrev@1, abbrev@1.0.x:
   version "1.0.9"
@@ -323,12 +329,6 @@ angular-ui-bootstrap@2.3.x:
 angular-ui-bootstrap@2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-2.5.0.tgz#2facefb915386655dc5f44150258032517236d01"
-
-angular-ui-router@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/angular-ui-router/-/angular-ui-router-1.0.3.tgz#bf2494caae95c37cf01af3761d89747cfed2db45"
-  dependencies:
-    "@uirouter/core" "5.0.3"
 
 angular-ui-sortable@0.17.2:
   version "0.17.2"
@@ -8084,9 +8084,9 @@ typescript-eslint-parser@^1.0.2:
     lodash.unescape "4.0.0"
     object-assign "^4.0.1"
 
-typescript@2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.4.2.tgz#f8395f85d459276067c988aa41837a8f82870844"
+typescript@2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.5.2.tgz#038a95f7d9bbb420b1bf35ba31d4c5c1dd3ffe34"
 
 typescript@~2.0.3:
   version "2.0.10"
