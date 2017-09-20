@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 69 ending 2017-09-18
+
+### Fixed
+- Added more detail when a order request fails [(#921)](https://github.com/ManageIQ/manageiq-ui-service/pull/921)
+- Reconfigures tag query to prevent explorer filter failure [(#909)](https://github.com/ManageIQ/manageiq-ui-service/pull/909)
+
 ## Unreleased as of Sprint 68 ending 2017-09-04
 
 ### Added
@@ -13,7 +19,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Removed selectedMiqGroup session variable on logout [(#881)](https://github.com/ManageIQ/manageiq-ui-service/pull/881)
-
 
 ## Unreleased as of Sprint 67 ending 2017-08-21
 
