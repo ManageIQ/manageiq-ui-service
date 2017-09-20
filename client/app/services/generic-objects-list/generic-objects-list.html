@@ -1,0 +1,20 @@
+<pf-list-view
+					config="vm.genericObjectsListConfig"
+					items="vm.genericObject.objects"
+					custom-scope="vm">
+					<div class="row">
+						<div class="col-lg-2 col-md-4 col-sm-3 col-xs-5 name-column">
+							<span class="no-wrap">
+								{{item.name}}
+							</span>
+						</div>
+					</div>
+					<list-expanded-content>
+							<div class="row" ng-repeat="row in $parent.item.properties">
+								<div class="col-lg-4 col-md-4 col-sm-4" ng-repeat="item in row">
+									<strong>{{item.key}}:</strong> {{item.value}}
+								</div>
+								<div ng-if="row.length < 3" ng-class="(row.length === 2 ? 'col-lg-4 col-md-4 col-sm-4': 'col-lg-8 col-md-8 col-sm-8')"></div>
+							</div>
+					</list-expanded-content>
+</pf-list-view>

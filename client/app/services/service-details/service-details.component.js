@@ -43,6 +43,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       disableSuspendButton: disableSuspendButton,
       disableStartButton: disableStartButton,
       toggleOpenResourceGroup: toggleOpenResourceGroup,
+      toggleOpenGenericObjects: toggleOpenGenericObjects,
       openCockpit: openCockpit,
       openConsole: openConsole,
       processSnapshot: processSnapshot,
@@ -54,6 +55,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       gotoComputeResource: gotoComputeResource,
       gotoService: gotoService,
       gotoCatalogItem: gotoCatalogItem,
+      getGenericObjects: getGenericObjects,
       createResourceGroups: createResourceGroups,
       cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
       memoryChart: UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions),
@@ -109,7 +111,8 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       getChartConfigs()
       Chargeback.processReports(vm.service)
       vm.computeGroup = vm.createResourceGroups(vm.service)
-
+      vm.genericObjects = vm.getGenericObjects(vm.service.generic_objects)
+      console.log(vm.genericObjects)
       TaggingService.queryAvailableTags('services/' + id + '/tags/').then((response) => {
         vm.availableTags = response
       })
@@ -120,7 +123,40 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       EventNotifications.error(__('There was an error fetching this service. ') + response)
     }
   }
+  function getGenericObjects (objects) {
+    let genericObjects = {}
+    objects.forEach((object) => {
+      const genericObjectType = 'Test Object Type'
+      // const genericObjectType = object.generic_object_definition.name
+      if (!genericObjects[genericObjectType]) {
+        genericObjects[genericObjectType] = {
+          name: genericObjectType,
+          open: false,
+          objects: []
+        }
+      }
+      object.properties = {
+        attributes: {
+          'testKey': 'testvalue',
+          'testkey2': 'testValue2'
+        }
+      }
+      const properties = []
+      for (var property in object.properties.attributes) {
+        properties.push({key: property, value: object.properties.attributes[property]})
+      }
+      object.properties = lodash.chunk(properties, 3)
+      genericObjects[genericObjectType].objects.push(object)
+    })
 
+    const sortedObjects = []
+    lodash(genericObjects).keys().sort().each((key) => {
+      const tmpGenericObjectType = genericObjects[key]
+      sortedObjects.push(tmpGenericObjectType)
+    })
+
+    return sortedObjects
+  }
   function hasCustomButtons (service) {
     const actions = service.custom_actions || {}
     const groups = actions.button_groups || []
@@ -351,7 +387,9 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   function toggleOpenResourceGroup (group) {
     group.open = !group.open
   }
-
+  function toggleOpenGenericObjects (object) {
+    object.open = !object.open
+  }
   function openConsole (item) {
     if (item['supports_console?'] && item.power_state === 'on') {
       Consoles.open(item.id)
