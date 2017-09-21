@@ -288,9 +288,9 @@ angular-mocks@1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.6.tgz#c93018e7838c6dc5ceaf1a6bcf9be13c830ea515"
 
-angular-patternfly@4.10.0:
-  version "4.10.0"
-  resolved "https://registry.yarnpkg.com/angular-patternfly/-/angular-patternfly-4.10.0.tgz#e89b5c7aec7db6d79b06966ad8e67ed9a03bd9c4"
+angular-patternfly@4.11.0:
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/angular-patternfly/-/angular-patternfly-4.11.0.tgz#5b72a1a621325bc1351232e9eca2355e9fe8b5a1"
   dependencies:
     angular "1.5.*"
     angular-animate "1.5.*"
