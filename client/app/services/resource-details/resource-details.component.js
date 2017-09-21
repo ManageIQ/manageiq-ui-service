@@ -53,18 +53,14 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
           actionsInclude: true
         }
       },
-      test: {
-        'title': 'SAMPLE',
-        'href': '#',
-        'iconClass': 'fa fa-shield',
-        'notifications': [
-          {
-            'iconClass': 'pficon pficon-error-circle-o',
-            'href': '#'
-          }
-        ]
+      genInfo: {
+        'iconClass': 'pficon pficon-service',
+        'info': []
       },
-      power_state: {
+      provInfo: {
+        'info': []
+      },
+      powerState: {
         'title': 'Power State',
         'href': '#',
         'notifications': [
@@ -156,6 +152,9 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       Polling.start('vmPolling', pollVM, LONG_POLLING_INTERVAL)
       vm.vmDetails = response
 
+      const retirementDate = new Date(response.retires_on)
+
+
       TaggingService.queryAvailableTags('vms/' + response.id + '/tags/').then((response) => {
         vm.availableTags = response
       })
@@ -179,23 +178,22 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         }, (lastHour.cpu_usage_rate_average * 100).toPrecision(3), 100)
 
         vm.memUtil = UsageGraphsService.getChartConfig({
-            'units': __('GB'),
-            'chartId': 'memoryChart',
-            'label': __('used')
-          }, UsageGraphsService.convertBytestoGb(lastHour.derived_memory_used * 1048576),
-          UsageGraphsService.convertBytestoGb(lastHour.derived_memory_available * 1048576))
+          'units': __('GB'),
+          'chartId': 'memoryChart',
+          'label': __('used')
+        }, UsageGraphsService.convertBytestoGb(lastHour.derived_memory_used * 1048576), UsageGraphsService.convertBytestoGb(lastHour.derived_memory_available * 1048576))
 
         vm.stoUtil = UsageGraphsService.getChartConfig({
-            'units': __('GB'),
-            'chartId': 'storageChart',
-            'label': __('used')
-          }, UsageGraphsService.convertBytestoGb(lastHour.derived_vm_allocated_disk_storage),
-          UsageGraphsService.convertBytestoGb(lastHour.derived_vm_allocated_disk_storage))
+          'units': __('GB'),
+          'chartId': 'storageChart',
+          'label': __('used')
+        }, UsageGraphsService.convertBytestoGb(lastHour.derived_vm_allocated_disk_storage), UsageGraphsService.convertBytestoGb(lastHour.derived_vm_allocated_disk_storage))
       })
 
       vm.diskUsage = response.disks.map((item) => {
         const totalSize = item.size || response.allocated_disk_storage || 0
         const used = item.size_on_disk || 0
+
         return Object.assign(
           {
             data: {
@@ -211,16 +209,24 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       })
 
       hasUsageGraphs()
-
+      vm.genInfo.info = [
+        response.name,
+        response.hostnames.join(',') || 'No hostnames',
+        response.ipaddresses.join(',') || 'No IP addresses',
+        response.hardware.guest_os_full_name
+      ]
+      vm.provInfo.info = [
+        response.vendor,
+        `${response.vendor}: ${response.hardware.cpu_total_cores} CPUs (${response.hardware.cpu_sockets} sockets x ${response.hardware.cpu_cores_per_socket} core), ${response.hardware.memory_mb} MB`
+      ]
       vm.snapshots.notifications[0].count = response.v_total_snapshots
-      const retirementDate = new Date(response.retires_on)
       vm.retirement.notifications[0].count = angular.isUndefined(response.retires_on) ? vm.neverText
         : `${retirementDate.getFullYear()}-${retirementDate.getMonth()}-${retirementDate.getDate()}`
       vm.compliance.notifications[0].count = angular.isUndefined(response.last_compliance_status) ? vm.neverText : response.last_compliance_status
       vm.compliance.notifications[0].iconClass = angular.isUndefined(response.last_compliance_status) ? 'pficon pficon-unknown'
         : response.last_compliance_status === 'compliant' ? 'pficon pficon-error-circle-o' : 'pficon pficon-ok'
-
-      vm.power_state.notifications[0].iconClass = response.power_state === 'on' ? 'pficon pficon-ok' : 'pficon pficon-error-circle-o'
+      vm.powerState.notifications[0].iconClass = response.power_state === 'on' ? 'pficon pficon-ok'
+        : response.power_state === 'off' ? 'pficon pficon-error-circle-o' : 'pficon pficon-unknown'
       vm.vmDetails.lastSyncOn = (angular.isUndefined(vm.vmDetails.last_sync_on) ? vm.neverText : vm.vmDetails.last_sync_on)
       vm.vmDetails.resourceAvailability = (vm.vmDetails.template === false ? vm.availableText : vm.noneText)
       vm.vmDetails.driftHistory = defaultText(vm.vmDetails.drift_states)

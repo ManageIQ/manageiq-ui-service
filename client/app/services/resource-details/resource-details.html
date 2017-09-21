@@ -36,15 +36,15 @@
 <div class="container-fluid breadcrumb-content">
     <div class="row">
         <div class="col-md-2">
-            <pf-aggregate-status-card status="vm.test"></pf-aggregate-status-card>
+            <pf-info-status-card status="vm.genInfo"></pf-info-status-card>
         </div>
         <div class="col-md-2">
-            <pf-aggregate-status-card status="vm.test"></pf-aggregate-status-card>
+            <pf-info-status-card status="vm.provInfo"></pf-info-status-card>
         </div>
         <div class="col-md-2"
              uib-tooltip="{{'Running Time' | translate}}: {{ vm.elapsed(vm.presentDate, vm.vmDetails.state_changed_on) | elapsedTime }} "
              tooltip-placement="bottom">
-            <pf-aggregate-status-card status="vm.power_state"></pf-aggregate-status-card>
+            <pf-aggregate-status-card status="vm.powerState"></pf-aggregate-status-card>
         </div>
         <div class="col-md-2"
              uib-tooltip="{{vm.vmDetails.complianceHistory}}"
