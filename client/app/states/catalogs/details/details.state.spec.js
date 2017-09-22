@@ -20,7 +20,7 @@ describe('Catalogs.details', function() {
 
     it('should query the API for service templates', function() {
       const serviceTemplateSpy = sinon.spy(CollectionsApi, 'get');
-      var options = { attributes: "picture,picture.image_href" };
+      var options = { attributes: ['picture','picture.image_href'] };
       $state.get('catalogs.details').resolve.serviceTemplate($stateParams, serviceRequest, CollectionsApi);
       expect(serviceTemplateSpy).to.have.been.calledWith('service_templates',123, options);
     });
