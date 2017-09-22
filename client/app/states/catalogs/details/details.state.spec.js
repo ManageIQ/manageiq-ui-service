@@ -63,14 +63,9 @@ describe('Catalogs.details', function() {
 
     var controllerResolves = {
       dialogs: dialogs,
-<<<<<<< HEAD
-      serviceTemplate: serviceTemplate
-    }
-=======
       serviceTemplate: serviceTemplate,
       serviceRequest: false
     };
->>>>>>> [Finishes #146028835] Allowed users to duplicate services
 
     beforeEach(function () {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'EventNotifications', 'DialogFieldRefresh', 'ShoppingCart')
