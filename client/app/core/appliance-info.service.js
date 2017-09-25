@@ -1,3 +1,4 @@
+import gitHash from '../../version/version.json'
 /** @ngInject */
 export function ApplianceInfo () {
   let applianceInfo = {}
@@ -18,7 +19,8 @@ export function ApplianceInfo () {
       supportWebsite: data.product_info.support_website,
       user: data.identity.name,
       role: data.identity.role,
-      version: data.server_info.version + '.' + data.server_info.build,
+      suiVersion: gitHash.gitCommit,
+      miqVersion: data.server_info.version + '.' + data.server_info.build,
       server: data.server_info.appliance,
       asyncNotify: data.settings.asynchronous_notifications
     }

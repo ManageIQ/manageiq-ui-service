@@ -38,7 +38,8 @@ describe('Appliance Info Service', () => {
             "supportWebsite": "http://www.manageiq.org",
             "user": "Administrator",
             "role": "EvmRole-super_administrator",
-            "version": "master.20170510164252_9e5df30",
+            "miqVersion": "master.20170510164252_9e5df30",
+            "suiVersion": "",
             "server": "EVM",
             "asyncNotify": true,
         };

@@ -32,3 +32,6 @@ build
 
 ### Zanata config ###
 zanata.local.json
+
+### Git Version file ###
+client/version/version.json
