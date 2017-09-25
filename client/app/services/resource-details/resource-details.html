@@ -62,7 +62,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-pf">
-                <h2 translate>{{'Timeline'|translate}}
+                <h2 translate>{{'Timeline - Power Events'|translate}}
                     <span class="detail">{{'View All' | translate}}</span>
                 </h2>
                 <timeline data="vm.tlData" options="vm.tlOptions"></timeline>
@@ -72,10 +72,11 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card-pf">
-                <usage-graphs title-details="{{'created on ' | translate}}{{vm.metrics.resources[0].created_on | date:'short'}}"
-                              cpu-chart="vm.cpuUtil"
-                              memory-chart="vm.memUtil"
-                              storage-chart="vm.stoUtil"></usage-graphs>
+                <usage-graphs
+                        title-details="{{'created on ' | translate}}{{(vm.metrics.resources[0].created_on || vm.presentDate) | date:'short'}}"
+                        cpu-chart="vm.cpuUtil"
+                        memory-chart="vm.memUtil"
+                        storage-chart="vm.stoUtil"></usage-graphs>
             </div>
         </div>
         <div class="col-md-6">
@@ -106,14 +107,14 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <div class="card-pf">
+            <div class="card-pf card-pf-regular">
                 <h2 translate><i class="fa fa-tags"></i>Tags</h2>
                 <tagging-widget tags-of-item="vm.availableTags"
                                 read-only="true"></tagging-widget>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card-pf">
+            <div class="card-pf card-pf-regular">
                 <h2 trasnlate># Custom Attributes</h2>
                 <pf-empty-state ng-if="!vm.vmDetails.custom_attributes.length" config="vm.emptyState"></pf-empty-state>
                 <div ng-if="vm.vmDetails.custom_attributes.length" class="row"
@@ -128,54 +129,14 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card-pf">
+            <div class="card-pf card-pf-regular">
                 <h2 translate>Smart State Analysis</h2>
-                <div class="row">
+                <div class="row card-pf-row"  ng-repeat="item in vm.ssAnalysis">
                     <div class="col-xs-2 col-md-3">
-                        {{ vm.vmDetails.users.length }}
+                        <span class="pull-right">{{item.value}}</span>
                     </div>
                     <div class="col-xs-10 col-md-9" translate>
-                        <i class="pficon pficon-user"></i> Users
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-2 col-md-3">
-                        {{ vm.vmDetails.groups.length }}
-                    </div>
-                    <div class="col-xs-10 col-md-9" translate>
-                        <i class="pficon pficon-users"></i> Groups
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-2 col-md-3">
-                        {{ vm.vmDetails.instance.keyPairLabels.join(',') }}
-                    </div>
-                    <div class="col-xs-10 col-md-9" translate>
-                        Key Pairs
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-2 col-md-3">
-                        {{ vm.vmDetails.guest_applications.length }}
-                    </div>
-                    <div class="col-xs-10 col-md-9" translate>
-                        <i class="ff ff-software-package"></i> Packages
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-2 col-md-3">
-                        {{ vm.vmDetails.linux_initprocesses.length }}
-                    </div>
-                    <div class="col-xs-10 col-md-9" translate>
-                        <i class="fa fa-cog"></i> Init Processes
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-2 col-md-3">
-                        {{ vm.vmDetails.files.length }}
-                    </div>
-                    <div class="col-xs-10 col-md-9" translate>
-                        <i class="fa fa-file-o"></i> Files
+                        <i class={{item.icon}}></i> {{item.title}}
                     </div>
                 </div>
             </div>

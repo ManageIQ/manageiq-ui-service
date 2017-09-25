@@ -37,6 +37,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       stopVm: stopVM,
       suspendVM: suspendVM,
       resolveData: resolveData,
+      ssAnalysis: getSsAnalysis(),
       // Config
       listActions: [],
       instance: {},
@@ -154,7 +155,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
 
       const retirementDate = new Date(response.retires_on)
 
-
       TaggingService.queryAvailableTags('vms/' + response.id + '/tags/').then((response) => {
         vm.availableTags = response
       })
@@ -219,6 +219,13 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         response.vendor,
         `${response.vendor}: ${response.hardware.cpu_total_cores} CPUs (${response.hardware.cpu_sockets} sockets x ${response.hardware.cpu_cores_per_socket} core), ${response.hardware.memory_mb} MB`
       ]
+      vm.ssAnalysis.users.value = response.users.length
+      vm.ssAnalysis.groups.value = response.groups.length
+      vm.ssAnalysis.instance.value = response.instance ? response.instance.keyPairLabels.join(',') : vm.noneText
+      vm.ssAnalysis.guest_applications.value = response.guest_applications.length
+      vm.ssAnalysis.linux_initprocesses.value = response.linux_initprocesses.length
+      vm.ssAnalysis.files.value = response.files.length
+
       vm.snapshots.notifications[0].count = response.v_total_snapshots
       vm.retirement.notifications[0].count = angular.isUndefined(response.retires_on) ? vm.neverText
         : `${retirementDate.getFullYear()}-${retirementDate.getMonth()}-${retirementDate.getDate()}`
@@ -227,23 +234,8 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         : response.last_compliance_status === 'compliant' ? 'pficon pficon-error-circle-o' : 'pficon pficon-ok'
       vm.powerState.notifications[0].iconClass = response.power_state === 'on' ? 'pficon pficon-ok'
         : response.power_state === 'off' ? 'pficon pficon-error-circle-o' : 'pficon pficon-unknown'
-      vm.vmDetails.lastSyncOn = (angular.isUndefined(vm.vmDetails.last_sync_on) ? vm.neverText : vm.vmDetails.last_sync_on)
-      vm.vmDetails.resourceAvailability = (vm.vmDetails.template === false ? vm.availableText : vm.noneText)
-      vm.vmDetails.driftHistory = defaultText(vm.vmDetails.drift_states)
-      vm.vmDetails.scanHistoryCount = defaultText(vm.vmDetails.scan_histories)
-      vm.vmDetails.lastComplianceStatus = (angular.isUndefined(vm.vmDetails.last_compliance_status) ? __('Never Verified') : vm.vmDetails.last_compliance_status)
       vm.vmDetails.complianceHistory = (vm.vmDetails.compliances.length > 0 ? vm.availableText : vm.notAvailable)
-      vm.vmDetails.provisionDate = angular.isDefined(vm.vmDetails.service.miq_request) ? vm.vmDetails.service.miq_request.fulfilled_on : __('Unknown')
-      vm.vmDetails.containerSpecsText = vm.vmDetails.vendor + ': ' + vm.vmDetails.hardware.cpu_total_cores + ' CPUs (' + vm.vmDetails.hardware.cpu_sockets +
-        ' sockets x ' + vm.vmDetails.hardware.cpu_cores_per_socket + ' core), ' + vm.vmDetails.hardware.memory_mb + ' MB'
 
-      if (vm.vmDetails.retired) {
-        EventNotifications.clearAll(lodash.find(EventNotifications.state().groups, {notificationType: 'warning'}))
-        EventNotifications.warn(sprintf(__('%s is a retired resource'), vm.vmDetails.name), {
-          persistent: true,
-          unread: false
-        })
-      }
       getListActions()
       getSnapshotListActions()
       hasCustomButtons()
@@ -310,6 +302,34 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
     return vm.usageGraphs
   }
 
+  function getSsAnalysis () {
+    return {
+      users: {
+        title: 'Users',
+        icon: 'pficon pficon-user'
+      },
+      groups: {
+        title: 'Groups',
+        icon: 'pficon pficon-users'
+      },
+      instance: {
+        title: 'Key Pairs'
+      },
+      guest_applications: {
+        title: 'Packages',
+        icon: 'ff ff-software-package'
+      },
+      linux_initprocesses: {
+        title: 'Init Processes',
+        icon: 'fa fa-cog'
+      },
+      files: {
+        title: 'Files',
+        icon: 'fa fa-file-o'
+      }
+    }
+  }
+
   function getListActions () {
     vm.listActions = []
     const powerOptionsMenu = {
@@ -361,16 +381,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
     }
 
     return vm.listActions
-  }
-
-  function defaultText (inputCount, defaultText) {
-    const inputArrSize = inputCount.length
-    defaultText = (defaultText === null ? 'None' : defaultText)
-    if (inputArrSize === 0) {
-      return __(defaultText)
-    } else {
-      return inputArrSize
-    }
   }
 
   function processInstanceVariables (data) {

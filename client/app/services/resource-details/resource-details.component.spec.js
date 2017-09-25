@@ -70,18 +70,6 @@ describe('Component: Resource Details', () => {
 
       expect(listActions).to.have.length(1)
     })
-    it('should warn if the VM is retired', () => {
-      const response = vmData
-      response.retired = true
-      vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
-      const notificationSpy = sinon.spy(EventNotifications, 'warn')
-      // EventNotifications
-      ctrl.$onInit()
-
-      return ctrl.resolveData().then((data) => {
-        expect(notificationSpy).to.have.been.calledTwice
-      })
-    })
     it('should allow you to view snapshot page', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
       const stateSpy = sinon.spy($state, 'go')
