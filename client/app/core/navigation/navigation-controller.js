@@ -102,7 +102,8 @@ export function NavigationController (Text,
       imgSrc: 'images/login-screen-logo.png',
       title: Text.app.name,
       productInfo: [
-        {name: __('Version: '), value: applianceInfo.version},
+        {name: __('Version: '), value: applianceInfo.miqVersion},
+        {name: __('SUI Version: '), value: applianceInfo.suiVersion},
         {name: __('Server Name: '), value: applianceInfo.server},
         {name: __('User Name: '), value: applianceInfo.user},
         {name: __('User Role: '), value: applianceInfo.role}
