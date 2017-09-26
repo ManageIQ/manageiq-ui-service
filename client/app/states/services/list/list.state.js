@@ -385,7 +385,8 @@
 
     function checkRetirementDate(item, filterValue) {
       var currentDate = new Date();
-
+      currentDate.setHours(0, 0, 0, 0);
+      
       if (filterValue === 'retired' && angular.isDefined(item.retires_on)) {
         return angular.isDefined(item.retired) && item.retired === true;
       } else if (filterValue === 'current') {
