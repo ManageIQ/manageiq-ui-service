@@ -4,8 +4,7 @@
     <button class="btn btn-default custom-button-action"
             ng-if="vm.hasRequiredRole(button)"
             ng-disabled="!button.enabled"
-            ng-click="vm.invokeCustomAction(button)"
-    >
+            ng-click="vm.invokeCustomAction(button)">
       <i ng-class="button.options.button_icon" ng-style="{color: button.options.button_color }"></i>
       {{ button.name }}
     </button>
