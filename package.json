@@ -68,7 +68,7 @@
     "brace": "0.10.0",
     "c3": "0.4.18",
     "chalk": "2.1.0",
-    "clean-webpack-plugin": "0.1.16",
+    "clean-webpack-plugin": "0.1.17",
     "copy-webpack-plugin": "4.0.1",
     "core-js": "2.5.1",
     "css-loader": "0.28.6",
