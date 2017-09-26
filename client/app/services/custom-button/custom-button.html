@@ -1,12 +1,14 @@
 <span class="pull-left" ng-repeat="button in vm.customActions.buttons">
-  <button class="btn btn-default custom-button-action"
-          ng-if="vm.hasRequiredRole(button)"
-          ng-click="vm.invokeCustomAction(button)"
-          uib-tooltip="{{button.description}}"
-          tooltip-placement="top">
-    <i ng-class="button.options.button_icon" ng-style="{color: button.options.button_color }"></i>
-    {{ button.name }}
-  </button>
+  <span uib-tooltip="{{(button.enabled? button.description: button.disabled_text)}}"
+         tooltip-placement="top" class="custom-button-tooltip">
+    <button class="btn btn-default custom-button-action"
+            ng-if="vm.hasRequiredRole(button)"
+            ng-disabled="!button.enabled"
+            ng-click="vm.invokeCustomAction(button)">
+      <i ng-class="button.options.button_icon" ng-style="{color: button.options.button_color }"></i>
+      {{ button.name }}
+    </button>
+  </span>
 </span>
 <span class="pull-left" ng-repeat="buttonGroup in vm.customActions.button_groups">
   <div uib-dropdown class="btn-group">
