@@ -15,6 +15,19 @@ function getStates () {
       title: __('Service Template Details'),
       resolve: {
         dialogs: resolveDialogs,
+        serviceTemplate: resolveServiceTemplate,
+        serviceRequest: resolveServiceRequest
+      }
+    },
+    'catalogs.duplicate': {
+      url: '/duplicate/:serviceRequestId',
+      templateUrl,
+      controller: Controller,
+      controllerAs: 'vm',
+      title: __('Duplicate Service'),
+      resolve: {
+        serviceRequest: resolveServiceRequest,
+        dialogs: resolveDialogs,
         serviceTemplate: resolveServiceTemplate
       }
     }
@@ -28,12 +41,22 @@ function getStates () {
  * @param  {object} $stateParams
  * @param  {object} CollectionsApi
  */
-function resolveServiceTemplate ($stateParams, CollectionsApi) {
+function resolveServiceTemplate ($stateParams, serviceRequest, CollectionsApi) {
+  let serviceTemplateId = $stateParams.serviceTemplateId
+  if (!serviceTemplateId) {
+    serviceTemplateId = serviceRequest.source_id
+  }
   var options = {attributes: ['picture', 'picture.image_href']}
-
-  return CollectionsApi.get('service_templates', $stateParams.serviceTemplateId, options)
+  return CollectionsApi.get('service_templates', serviceTemplateId, options)
 }
-
+/** @ngInject */
+function resolveServiceRequest ($stateParams, CollectionsApi) {
+  if ($stateParams.serviceRequestId) {
+    return CollectionsApi.get('requests', $stateParams.serviceRequestId, {})
+  } else {
+    return false
+  }
+}
 /**
  * Handles querying for dialog data
  * @function resolveDialogs
@@ -41,20 +64,31 @@ function resolveServiceTemplate ($stateParams, CollectionsApi) {
  * @param  {object} CollectionsApi
  */
 /** @ngInject */
-function resolveDialogs ($stateParams, CollectionsApi) {
-  var options = {expand: 'resources', attributes: 'content'}
-
-  return CollectionsApi.query('service_templates/' + $stateParams.serviceTemplateId + '/service_dialogs', options)
+function resolveDialogs ($stateParams, serviceRequest, CollectionsApi) {
+  const options = {expand: 'resources', attributes: 'content'}
+  let serviceTemplateId = $stateParams.serviceTemplateId
+  if (!serviceTemplateId) {
+    serviceTemplateId = serviceRequest.source_id
+  }
+  return CollectionsApi.query('service_templates/' + serviceTemplateId + '/service_dialogs', options)
 }
 
 /** @ngInject */
-function Controller (dialogs, serviceTemplate, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash) {
-  var vm = this
+function Controller (dialogs, serviceTemplate, serviceRequest, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash) {
+  const vm = this
 
   vm.serviceTemplate = serviceTemplate
+  vm.parsedDialogs = []
 
   if (dialogs.subcount > 0) {
-    vm.dialogs = dialogs.resources[0].content
+    if (serviceRequest) {
+      const existingDialogValues = serviceRequest.options.dialog
+      dialogs.resources[0].content.forEach((dialog) => {
+        vm.parsedDialogs.push(DialogFieldRefresh.setFieldValueDefaults(dialog, existingDialogValues))
+      })
+    } else {
+      vm.parsedDialogs = dialogs.resources[0].content
+    }
   }
 
   vm.addToCart = addToCart

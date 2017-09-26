@@ -4,7 +4,8 @@
 /** @ngInject */
 export function DialogFieldRefreshFactory (CollectionsApi) {
   var service = {
-    refreshDialogField: refreshDialogField
+    refreshDialogField: refreshDialogField,
+    setFieldValueDefaults: setFieldValueDefaults
   }
 
   return service
@@ -28,5 +29,23 @@ export function DialogFieldRefreshFactory (CollectionsApi) {
         reject(response)
       })
     })
+  }
+
+  function setFieldValueDefaults (dialog, defaultValues) {
+    const fieldValues = {}
+    for (var option in defaultValues) {
+      fieldValues[option.replace('dialog_', '')] = defaultValues[option]
+    }
+    // Just for user reference for dialog heirarchy dialog => tabs => groups => fields => field
+    dialog.dialog_tabs.forEach((tab, tab_index) => { // tabs
+      tab.dialog_groups.forEach((group, group_index) => { // groups
+        group.dialog_fields.forEach((field, field_index) => { // fields
+          const fieldValue = (angular.isDefined(fieldValues[field.name]) ? fieldValues[field.name] : field.default_value)
+          dialog.dialog_tabs[tab_index].dialog_groups[group_index].dialog_fields[field_index].default_value = fieldValue
+        })
+      })
+    })
+
+    return dialog
   }
 }

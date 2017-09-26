@@ -42,5 +42,30 @@ describe('DialogFieldRefresh', () => {
       expect(err).to.eq(failureResponse);
     });
   });
+  it('can override defaults values for a dialog', () => {
+    const testDialog = {
+      dialog_tabs: [
+        {
+          dialog_groups: [
+            {
+              dialog_fields: [
+                { "name": "test1", "default_value": "test1" },
+                { "name": "test2", "default_value": "test2" },
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+    const testValues = {
+      dialog_test1: "modifiedTest1",
+      dialog_test2: "modifiedTest2"
+    };
+
+    const expectedDialog = { "dialog_tabs": [{ "dialog_groups": [{ "dialog_fields": [{ "name": "test1", "default_value": "modifiedTest1" }, { "name": "test2", "default_value": "modifiedTest2" }] }] }] };
+    const modifiedDialog = DialogFieldRefresh.setFieldValueDefaults(testDialog, testValues);
+    expect(modifiedDialog).to.deep.eq(expectedDialog);
+  })
 });
 

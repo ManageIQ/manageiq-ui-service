@@ -8,7 +8,7 @@ export const OrderExplorerComponent = {
 }
 
 /** @ngInject */
-function ComponentController ($filter, lodash, ListView, Language, OrdersState, ShoppingCart, EventNotifications, Session, RBAC, ModalService,
+function ComponentController ($filter, $state, lodash, ListView, Language, OrdersState, ShoppingCart, EventNotifications, Session, RBAC, ModalService,
                              CollectionsApi, sprintf, Polling, POLLING_INTERVAL) {
   const vm = this
   vm.permissions = OrdersState.getPermissions()
@@ -29,6 +29,7 @@ function ComponentController ($filter, lodash, ListView, Language, OrdersState, 
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
       // Functions
       resolveOrders: resolveOrders,
+      duplicateOrder: duplicateOrder,
       listActionDisable: listActionDisable,
       updatePagination: updatePagination,
       requestStatus: requestStatus,
@@ -114,15 +115,6 @@ function ComponentController ($filter, lodash, ListView, Language, OrdersState, 
 
   function getMenuActions () {
     const menuActions = []
-    if (vm.permissions.copy) {
-      menuActions.push({
-        name: __('Duplicate'),
-        actionName: 'duplicate',
-        title: __('Duplicate Order'),
-        actionFn: duplicateOrder,
-        isDisabled: true
-      })
-    }
 
     if (vm.permissions.delete) {
       menuActions.push(
@@ -138,7 +130,6 @@ function ComponentController ($filter, lodash, ListView, Language, OrdersState, 
 
     return checkApproval() ? menuActions : null
   }
-
   function expandRow (item) {
     if (!item.disableRowExpansion) {
       item.isExpanded = !item.isExpanded
@@ -285,20 +276,10 @@ function ComponentController ($filter, lodash, ListView, Language, OrdersState, 
     })
   }
 
-  function duplicateOrder (_action, item) {
+  function duplicateOrder (item) {
     ShoppingCart.reset()
     ShoppingCart.delete()
-
-    CollectionsApi.post('service_orders', null, null, {action: 'copy', resources: [{id: item.id}]}).then(success, failure)
-
-    function success (response) {
-      ShoppingCart.reload()
-      EventNotifications.success(sprintf(__('%s was duplicated, id # %d.'), item.name, response.results[0].id))
-    }
-
-    function failure (_error) {
-      EventNotifications.error(sprintf(__('There was an error duplicating %s.'), item.name))
-    }
+    $state.go('catalogs.duplicate', {serviceRequestId: item.id})
   }
 
   function removeOrder (_action, item) {

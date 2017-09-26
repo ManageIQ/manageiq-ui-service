@@ -51,20 +51,8 @@ function StateController ($state, $stateParams, CollectionsApi, service, EventNo
   }
 
   function setFieldValueDefaults (dialog) {
-    const fieldValues = {}
     if (angular.isDefined(vm.service.options)) {
-      for (var option in vm.service.options.dialog) {
-        fieldValues[option.replace('dialog_', '')] = vm.service.options.dialog[option]
-      }
-      // Just for user reference for dialog heirarchy dialog => tabs => groups => fields => field
-      dialog.dialog_tabs.forEach((tab, tab_index) => {
-        tab.dialog_groups.forEach((group, group_index) => {
-          group.dialog_fields.forEach((field, field_index) => {
-            const fieldValue = (angular.isDefined(fieldValues[field.name]) ? fieldValues[field.name] : field.default_value)
-            dialog.dialog_tabs[tab_index].dialog_groups[group_index].dialog_fields[field_index].default_value = fieldValue
-          })
-        })
-      })
+      dialog = DialogFieldRefresh.setFieldValueDefaults(dialog, vm.service.options)
     }
 
     return dialog
