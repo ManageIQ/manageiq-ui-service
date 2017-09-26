@@ -1,14 +1,6 @@
 /** @ngInject */
-export function NavigationController (Text,
-                                     Navigation,
-                                     Session,
-                                     API_BASE,
-                                     ShoppingCart,
-                                     $scope,
-                                     $uibModal,
-                                     $state,
-                                     EventNotifications,
-                                     ApplianceInfo) {
+export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
+                                      EventNotifications, ApplianceInfo, CollectionsApi) {
   const vm = this
 
   const destroy = $scope.$on('shoppingCartUpdated', refresh)
@@ -44,7 +36,7 @@ export function NavigationController (Text,
       text: Text.app,
       user: Session.currentUser,
       API_BASE: API_BASE,
-      groupSwitch: Session.switchGroup,
+      switchGroup: switchGroup,
       items: [],
       notificationsDrawerShown: false,
       newNotifications: false,
@@ -272,5 +264,25 @@ export function NavigationController (Text,
 
   function handleDismissToast (notification) {
     EventNotifications.dismissToast(notification)
+  }
+
+  function switchGroup (group) {
+    if (vm.user().user_href && group.id) {
+      CollectionsApi.post('users', vm.user().user_href.split('/').pop(), {}, {
+        'action': 'edit',
+        'current_group': {'id': group.id}
+      }).then(success, failure)
+    }
+
+    function success () {
+      Session.setGroup(group)
+      Session.loadUser()
+      vm.user = Session.currentUser
+      $state.go($state.current, {}, {reload: true})
+    }
+
+    function failure (response) {
+      EventNotifications.error(response.data.error.message)
+    }
   }
 }

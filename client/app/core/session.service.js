@@ -1,22 +1,21 @@
 /* eslint-disable dot-notation */
 /** @ngInject */
-export function SessionFactory ($http, $q, $sessionStorage, $window, $state, $cookies, RBAC, Polling) {
-  var model = {
+export function SessionFactory ($http, $q, $sessionStorage, $cookies, RBAC, Polling) {
+  const model = {
     token: null,
     user: {}
   }
 
-  var service = {
+  const service = {
     current: model,
     setAuthToken: setAuthToken,
-    setMiqGroup: setMiqGroup,
+    setGroup: setGroup,
     destroy: destroy,
     active: active,
     currentUser: currentUser,
     loadUser: loadUser,
     requestWsToken: requestWsToken,
     destroyWsToken: destroyWsToken,
-    switchGroup: switchGroup,
     setPause: setPause
   }
 
@@ -30,11 +29,20 @@ export function SessionFactory ($http, $q, $sessionStorage, $window, $state, $co
     $sessionStorage.token = model.token
   }
 
-  function setMiqGroup (group) {
+  function setGroup (group) {
     $http.defaults.headers.common['Accept'] = 'application/json;charset=UTF-8'
-    $http.defaults.headers.common['X-Miq-Group'] = unescape(encodeURIComponent(group))
-    $sessionStorage.miqGroup = group || null
-    $sessionStorage.selectedMiqGroup = group
+    if (typeof group === 'object') {
+      $http.defaults.headers.common['X-Miq-Group'] = group.description
+      model.user.group = group.description
+      model.user.group_href = group.href
+      $sessionStorage.miqGroup = group.description
+      $sessionStorage.selectedMiqGroup = group.description
+    } else {
+      $http.defaults.headers.common['X-Miq-Group'] = group
+      $sessionStorage.miqGroup = group
+      $sessionStorage.selectedMiqGroup = group
+      model.user.group = group
+    }
   }
 
   function setPause (pauseLength) {
@@ -42,12 +50,12 @@ export function SessionFactory ($http, $q, $sessionStorage, $window, $state, $co
 
     return $sessionStorage.pause
   }
+
   function destroy () {
     model.token = null
     model.user = {}
     destroyWsToken()
     delete $http.defaults.headers.common['X-Auth-Token']
-    delete $http.defaults.headers.common['X-Miq-Group']
     delete $sessionStorage.miqGroup
     delete $sessionStorage.selectedMiqGroup
     delete $sessionStorage.token
@@ -56,16 +64,16 @@ export function SessionFactory ($http, $q, $sessionStorage, $window, $state, $co
 
   function loadUser () {
     Polling.start('UserPolling', getUserAuthorizations, 300000)
-    var deferred = $q.defer()
+    const deferred = $q.defer()
     if (angular.isUndefined($sessionStorage.user)) {
       getUserAuthorizations().then(function (response) {
         deferred.resolve(response)
       })
     } else {
-      var response = angular.fromJson($sessionStorage.user)
+      const response = angular.fromJson($sessionStorage.user)
       currentUser(response.identity)
       const miqGroup = (angular.isUndefined($sessionStorage.selectedMiqGroup) ? response.identity.group : $sessionStorage.selectedMiqGroup)
-      setMiqGroup(miqGroup)
+      setGroup(miqGroup)
       RBAC.set(response.authorization.product_features)
       deferred.resolve(response)
     }
@@ -81,27 +89,28 @@ export function SessionFactory ($http, $q, $sessionStorage, $window, $state, $co
     }
 
     return $http.get('/api?attributes=authorization', config)
-      .then(function (response) {
-        $sessionStorage.user = angular.toJson(response.data)
-        currentUser(response.data.identity)
-        setMiqGroup(response.data.identity.group)
-        RBAC.set(response.data.authorization.product_features)
+    .then(function (response) {
+      $sessionStorage.user = angular.toJson(response.data)
+      currentUser(response.data.identity)
+      setGroup(response.data.identity.group)
+      RBAC.set(response.data.authorization.product_features)
 
-        return response.data
-      })
+      return response.data
+    })
   }
+
   function requestWsToken (arg) {
     return $http.get('/api/auth?requester_type=ws')
     .then(function (response) {
       destroyWsToken()
-      $cookies.put('ws_token', response.data.auth_token, { path: '/ws/notifications' })
+      $cookies.put('ws_token', response.data.auth_token, {path: '/ws/notifications'})
 
       return arg
     })
   }
 
   function destroyWsToken () {
-    $cookies.remove('ws_token', { path: '/ws/notifications' })
+    $cookies.remove('ws_token', {path: '/ws/notifications'})
   }
 
   function currentUser (user) {
@@ -110,13 +119,6 @@ export function SessionFactory ($http, $q, $sessionStorage, $window, $state, $co
     }
 
     return model.user
-  }
-
-  function switchGroup (group) {
-    $sessionStorage.miqGroup = group
-    setMiqGroup(group)
-    // reload .. but on dashboard
-    $window.location.href = $state.href('dashboard')
   }
 
   // Helpers

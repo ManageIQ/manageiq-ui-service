@@ -86,7 +86,7 @@ export function authInit ($rootScope, $state, $log, Session, $sessionStorage, La
     return new Promise(function (resolve, reject) {
       // trying saved token..
       Session.setAuthToken($sessionStorage.token)
-      Session.setMiqGroup($sessionStorage.miqGroup)
+      Session.setGroup($sessionStorage.miqGroup)
 
       Session.loadUser()
         .then(function (response) {
