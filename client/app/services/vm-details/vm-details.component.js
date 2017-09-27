@@ -19,7 +19,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
   vm.stopVm = stopVM
   vm.suspendVM = suspendVM
   vm.getListActions = getListActions
-  vm.lifecycleListActions = [VmsService.getLifeCycleCustomDropdown(retireVM)]
   vm.getSnapshotListActions = getSnapshotListActions
   vm.viewSnapshots = viewSnapshots
   vm.processSnapshot = processSnapshot
@@ -110,6 +109,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
 
     function handleSuccess (response) {
       vm.vmDetails = response
+      vm.lifecycleListActions = [VmsService.getLifeCycleCustomDropdown(retireVM, vm.vmDetails.name)]
       const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.allocated_disk_storage) // convert bytes to gb
       const usedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.used_storage)
       const totalMemory = vm.vmDetails.ram_size / 1024

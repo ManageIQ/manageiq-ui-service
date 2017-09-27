@@ -203,7 +203,7 @@ export function VmsService (CollectionsApi, RBAC) {
 
     return queryFilters
   }
-  function getLifeCycleCustomDropdown (retireFn) {
+  function getLifeCycleCustomDropdown (retireFn, vmName) {
     let lifeCycleActions
     const clockIcon = 'fa fa-clock-o'
     const permissions = getPermissions()
@@ -216,6 +216,7 @@ export function VmsService (CollectionsApi, RBAC) {
         isDisabled: false,
         tooltipText: __('Lifecycle')
       }
+      const confirmationMessage = __('Are you sure you want to retire') + ` ${vmName} ` + __('now?')
       const lifecycleOptions = [
         {
           title: __('Retire'),
@@ -224,7 +225,7 @@ export function VmsService (CollectionsApi, RBAC) {
           actionFn: retireFn,
           icon: clockIcon,
           showConfirmation: true,
-          confirmationMessage: __('Are you sure you want to retire this VM now?'),
+          confirmationMessage: confirmationMessage,
           confirmationTitle: __('Retire'),
           confirmationShowCancel: true,
           confirmationOkText: __('Retire'),

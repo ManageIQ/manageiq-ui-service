@@ -45,7 +45,7 @@ describe('VMS Service', () => {
     });
     it('should allow the lifecycle dropdown to be built', () => {
         const testFN = function() {}
-        const menu = service.getLifeCycleCustomDropdown(testFN);
+        const menu = service.getLifeCycleCustomDropdown(testFN, 'Test VM');
         expect(menu).to.have.all.keys('title', 'actionName', 'icon', 'actions','isDisabled', 'tooltipText');
     });
     it('should be able to get snapshots', () => {
