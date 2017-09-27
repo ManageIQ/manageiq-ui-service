@@ -149,7 +149,7 @@
     "karma-webpack": "2.0.4",
     "mocha": "3.5.3",
     "mocha-clean": "1.0.0",
-    "morgan": "1.8.2",
+    "morgan": "1.9.0",
     "phantomjs-prebuilt": "2.1.15",
     "protractor": "5.1.2",
     "sass-lint": "1.11.1",
