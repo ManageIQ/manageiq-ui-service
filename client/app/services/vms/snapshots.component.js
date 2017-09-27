@@ -170,8 +170,12 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       vm.toolbarConfig.filterConfig.resultsCount = response.subcount
       vm.snapshots = response.resources
 
-      const start = lodash.minBy(vm.snapshots, 'create_time')
-      const end = lodash.maxBy(vm.snapshots, 'create_time')
+      const hour = 60 * 60 * 1000
+      const day = 24 * hour
+      const week = 7 * day
+      const month = 30 * day
+      const start = new Date(lodash.minBy(vm.snapshots, 'create_time').create_time)
+      const end = new Date(lodash.maxBy(vm.snapshots, 'create_time').create_time)
       const tlSnapshots = vm.snapshots.map((item) => ({
         'date': new Date(item.create_time),
         'details': {'event': item.name, 'object': item.name, item}
@@ -183,10 +187,13 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       }]
 
       vm.tlOptions = {
-        start: new Date(start.create_time),
-        end: new Date(end.create_time),
+        start: new Date(start.setHours(start.getHours() - 2)),
+        end: new Date(end.setHours(end.getHours() + 2)),
         eventShape: '\uf030',
-        eventHover: showTooltip
+        eventHover: showTooltip,
+        eventGrouping: 60000,
+        minScale: (week / month),
+        maxScale: (day / 60000)
       }
     }
 
@@ -266,17 +273,25 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
     const fontSize = 12 // in pixels
     const tooltipWidth = 9 // in rem
     const tooltip = d3
-      .select('body')
-      .append('div')
-      .attr('class', 'popover fade bottom in')
-      .attr('role', 'tooltip')
-      .on('mouseout', () => {
-        d3.select('body').selectAll('.popover').remove()
-      })
+    .select('body')
+    .append('div')
+    .attr('class', 'popover fade bottom in')
+    .attr('role', 'tooltip')
+    .on('mouseout', () => {
+      d3.select('body').selectAll('.popover').remove()
+    })
     const rightOrLeftLimit = fontSize * tooltipWidth
     const direction = d3.event.pageX > rightOrLeftLimit ? 'right' : 'left'
     const left = direction === 'right' ? d3.event.pageX - rightOrLeftLimit : d3.event.pageX
-    const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'}
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    }
 
     tooltip.html(
       `
@@ -289,8 +304,8 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
     )
 
     tooltip
-      .style('left', `${left}px`)
-      .style('top', `${d3.event.pageY + 8}px`)
-      .style('display', 'block')
+    .style('left', `${left}px`)
+    .style('top', `${d3.event.pageY + 8}px`)
+    .style('display', 'block')
   }
 }
