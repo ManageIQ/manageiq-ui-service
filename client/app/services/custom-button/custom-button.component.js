@@ -33,9 +33,8 @@ function CustomButtonController ($state, EventNotifications, CollectionsApi, RBA
       }
       if (vm.vmId) {
         options.vmId = vm.vmId
-      } else {
-        $state.go('services.custom_button_details', options)
       }
+      $state.go('services.custom_button_details', options)
     } else if (vm.vmId) {
       const data = {action: button.name}
       CollectionsApi.post('vms', vm.vmId, {}, data)
