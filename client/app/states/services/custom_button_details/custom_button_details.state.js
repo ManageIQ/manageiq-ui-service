@@ -12,26 +12,7 @@ function getStates () {
       templateUrl,
       controller: StateController,
       controllerAs: 'vm',
-      title: __('Service Custom Button Details'),
-      params: {
-        button: {
-          value: null
-        },
-        serviceId: {
-          value: null
-        }
-      },
-      resolve: {
-        dialog: resolveDialog,
-        service: resolveService
-      }
-    },
-    'services.vm_custom_button_details': {
-      url: '/:serviceId/vm/:vmId/custom_button_details',
-      templateUrl,
-      controller: StateController,
-      controllerAs: 'vm',
-      title: __('VM Custom Button Details'),
+      title: __('Custom Button Details'),
       params: {
         button: {
           value: null
@@ -73,7 +54,7 @@ function StateController ($state, $stateParams, dialog, service, CollectionsApi,
   vm.dialogs = dialog.content
   vm.service = service
   vm.serviceId = $stateParams.serviceId
-  vm.vmId = ($stateParams.vmId ? $stateParams.vmId : null)
+  vm.vmId = $stateParams.vmId || null
   vm.button = $stateParams.button
   vm.submitCustomButton = submitCustomButton
   vm.submitButtonEnabled = false

@@ -124,26 +124,26 @@ describe('services.custom_button_details', function() {
   });
   
   describe('Custom button actions for a VM', () => {
-    var collectionsApiSpy;
-    var controller;
-    var notificationsErrorSpy;
-    var notificationsSuccessSpy;
-    var refreshSingleFieldSpy;
-    var dialogFields = [{
+    let collectionsApiSpy;
+    let controller;
+    let notificationsErrorSpy;
+    let notificationsSuccessSpy;
+    let refreshSingleFieldSpy;
+    const dialogFields = [{
       name: 'dialogField1',
       default_value: '1'
     }, {
       name: 'dialogField2',
       default_value: '2'
     }];
-    var dialog = {
+    const dialog = {
       dialog_tabs: [{
         dialog_groups: [{
           dialog_fields: dialogFields
         }]
       }]
     };
-    var button = {
+    const button = {
       name: 'buttonName',
       applies_to_id: 456,
       applies_to_class: 'vm'
@@ -154,7 +154,7 @@ describe('services.custom_button_details', function() {
 
       refreshSingleFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshDialogField');
 
-      controller = $controller($state.get('services.vm_custom_button_details').controller, {
+      controller = $controller($state.get('services.custom_button_details').controller, {
         dialog: { content: [dialog], id: 213 },
         service: {},
         $stateParams: {
