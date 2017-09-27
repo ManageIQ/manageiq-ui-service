@@ -38,16 +38,11 @@ function TimelineController ($element, $window) {
   }
 
   function buildConfig (options = {}) {
-    const hour = 60 * 60 * 1000
-    const day = 24 * hour
-    const week = 7 * day
-    const month = 30 * day
-
     const {
       start = new Date(0),
       end = new Date(),
-      minScale = week / month,
-      maxScale = week / hour,
+      minScale = 0,
+      maxScale = Infinity,
       width = null,
       padding = {top: 30, left: 40, bottom: 40, right: 40},
       lineHeight = 40,
@@ -94,34 +89,37 @@ function TimelineController ($element, $window) {
       eventGrouping = 60000
     } = options
 
+    const dateFormat = locale ? locale.timeFormat('%a %x %I:%M %p') : d3.time.format('%a %x %I:%M %p')
+
     return d3.chart.timeline()
-      .start(start)
-      .end(end)
-      .minScale(minScale)
-      .maxScale(maxScale)
-      .width(width)
-      .padding(padding)
-      .lineHeight(lineHeight)
-      .contextHeight(contextHeight)
-      .locale(locale)
-      .axisFormat(axisFormat)
-      .tickFormat(tickFormat)
-      .eventHover(eventHover)
-      .eventZoom(eventZoom)
-      .eventClick(eventClick)
-      .eventColor(eventColor)
-      .eventLineColor(eventLineColor)
-      .eventShape(eventShape)
-      .eventPopover(eventPopover)
-      .context(context)
-      .slider(slider)
-      .eventGrouping(eventGrouping)
+    .start(start)
+    .end(end)
+    .minScale(minScale)
+    .maxScale(maxScale)
+    .width(width)
+    .padding(padding)
+    .lineHeight(lineHeight)
+    .contextHeight(contextHeight)
+    .locale(locale)
+    .axisFormat(axisFormat)
+    .tickFormat(tickFormat)
+    .eventHover(eventHover)
+    .eventZoom(eventZoom)
+    .eventClick(eventClick)
+    .eventColor(eventColor)
+    .eventLineColor(eventLineColor)
+    .eventShape(eventShape)
+    .eventPopover(eventPopover)
+    .context(context)
+    .slider(slider)
+    .eventGrouping(eventGrouping)
+    .dateFormat(dateFormat)
   }
 
   function buildTimeline (config, data) {
     d3.select($element[0])
-      .append('div').attr('class', 'timeline')
-      .datum(data)
-      .call(config)
+    .append('div').attr('class', 'timeline')
+    .datum(data)
+    .call(config)
   }
 }
