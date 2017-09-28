@@ -282,7 +282,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     }
 
     function failure (response) {
-      EventNotifications.error(response.data.error.message)
+      EventNotifications.error(__('Group switching error: ') + response.data.error.message)
     }
   }
 }
