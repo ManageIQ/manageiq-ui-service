@@ -109,6 +109,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
 
     function handleSuccess (response) {
       vm.vmDetails = response
+      vm.lifecycleListActions = [VmsService.getLifeCycleCustomDropdown(retireVM, vm.vmDetails.name)]
       const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.allocated_disk_storage) // convert bytes to gb
       const usedStorage = UsageGraphsService.convertBytestoGb(vm.vmDetails.used_storage)
       const totalMemory = vm.vmDetails.ram_size / 1024
@@ -186,9 +187,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         permission: vm.permissions.vm_snapshot_add
       }
     ]
-    snapshotOptionsActions.forEach((menuOption) => {
-      menuOption.permission ? snapshotOptionsMenu.actions.push(menuOption) : false
-    })
+    snapshotOptionsMenu.actions = VmsService.checkMenuPermissions(snapshotOptionsActions)
     vm.snapshotListActions = [snapshotOptionsMenu]
 
     return vm.snapshotListActions
@@ -244,17 +243,10 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         actionFn: suspendVM,
         permission: vm.permissions.instanceSuspend,
         isDisabled: vm.vmDetails.power_state !== 'on'
-      }, {
-        icon: 'fa fa-clock-o',
-        name: __('Retire'),
-        actionName: 'retire',
-        title: __('Retire the Service'),
-        actionFn: retireVM,
-        permission: vm.permissions.instanceRetire,
-        isDisabled: vm.vmDetails.power_state !== 'on'
       }
     ]
-    powerOptionsActions.forEach((menuOption) => menuOption.permission ? powerOptionsMenu.actions.push(menuOption) : false)
+
+    powerOptionsMenu.actions = VmsService.checkMenuPermissions(powerOptionsActions)
     if (powerOptionsMenu.actions.length) {
       vm.listActions.push(powerOptionsMenu)
     }

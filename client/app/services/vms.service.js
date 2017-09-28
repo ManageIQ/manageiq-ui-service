@@ -8,19 +8,23 @@ export function VmsService (CollectionsApi, RBAC) {
     currentField: {id: 'name', title: __('Name'), sortType: 'alpha'}
   }
   let filters = []
+  let permissions = getPermissions()
 
   return {
+    checkMenuPermissions: checkMenuPermissions,
+    createSnapshots: createSnapshots,
+    deleteSnapshots: deleteSnapshots,
     getVm: getVm,
     getSort: getSort,
     setSort: setSort,
+    permissions: permissions,
     getFilters: getFilters,
     setFilters: setFilters,
     getInstance: getInstance,
     getSnapshots: getSnapshots,
     getPermissions: getPermissions,
-    revertSnapshot: revertSnapshot,
-    createSnapshots: createSnapshots,
-    deleteSnapshots: deleteSnapshots
+    getLifeCycleCustomDropdown: getLifeCycleCustomDropdown,
+    revertSnapshot: revertSnapshot
   }
 
   function getSnapshots (vmId) {
@@ -130,7 +134,8 @@ export function VmsService (CollectionsApi, RBAC) {
       create: RBAC.hasAny(['vm_snapshot_add']),
       delete: RBAC.hasAny(['vm_snapshot_delete']),
       deleteAll: RBAC.hasAny(['vm_snapshot_delete_all']),
-      revert: RBAC.hasAny(['vm_snapshot_revert'])
+      revert: RBAC.hasAny(['vm_snapshot_revert']),
+      instanceRetire: RBAC.hasAny(['instance_control', 'instance_retire'])
     }
   }
 
@@ -197,5 +202,53 @@ export function VmsService (CollectionsApi, RBAC) {
     })
 
     return queryFilters
+  }
+  function getLifeCycleCustomDropdown (retireFn, vmName) {
+    let lifeCycleActions
+    const clockIcon = 'fa fa-clock-o'
+    const permissions = getPermissions()
+    if (permissions.instanceRetire) {
+      lifeCycleActions = {
+        title: __('Lifecycle'),
+        actionName: 'lifecycle',
+        icon: 'fa fa-recycle',
+        actions: [],
+        isDisabled: false,
+        tooltipText: __('Lifecycle')
+      }
+      const confirmationMessage = __('Are you sure you want to retire') + ` ${vmName} ` + __('now?')
+      const lifecycleOptions = [
+        {
+          title: __('Retire'),
+          name: __('Retire'),
+          actionName: 'retireVM',
+          actionFn: retireFn,
+          icon: clockIcon,
+          showConfirmation: true,
+          confirmationMessage: confirmationMessage,
+          confirmationTitle: __('Retire'),
+          confirmationShowCancel: true,
+          confirmationOkText: __('Retire'),
+          confirmationOkStyle: 'primary',
+          confirmationId: 'retireResourceConfirmId',
+          permission: permissions.instanceRetire,
+          isDisabled: false
+        }
+      ]
+      lifeCycleActions.actions = checkMenuPermissions(lifecycleOptions)
+    }
+
+    return lifeCycleActions
+  }
+
+  function checkMenuPermissions (menuOptions) {
+    const menu = []
+    angular.forEach(menuOptions, (menuOption) => {
+      if (menuOption.permission) {
+        menu.push(menuOption)
+      }
+    })
+
+    return menu
   }
 }
