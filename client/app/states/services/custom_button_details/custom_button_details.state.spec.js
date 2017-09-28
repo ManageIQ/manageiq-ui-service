@@ -122,4 +122,80 @@ describe('services.custom_button_details', function() {
       });
     });
   });
+  
+  describe('Custom button actions for a VM', () => {
+    let collectionsApiSpy;
+    let controller;
+    let notificationsErrorSpy;
+    let notificationsSuccessSpy;
+    let refreshSingleFieldSpy;
+    const dialogFields = [{
+      name: 'dialogField1',
+      default_value: '1'
+    }, {
+      name: 'dialogField2',
+      default_value: '2'
+    }];
+    const dialog = {
+      dialog_tabs: [{
+        dialog_groups: [{
+          dialog_fields: dialogFields
+        }]
+      }]
+    };
+    const button = {
+      name: 'buttonName',
+      applies_to_id: 456,
+      applies_to_class: 'vm'
+    };
+
+    beforeEach(function () {
+      bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh');
+
+      refreshSingleFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshDialogField');
+
+      controller = $controller($state.get('services.custom_button_details').controller, {
+        dialog: { content: [dialog], id: 213 },
+        service: {},
+        $stateParams: {
+          dialogId: 213,
+          button: button,
+          serviceId: 123,
+          vmId: 456,
+          serviceTemplateCatalogId: 321
+        }
+      });
+      const dialogData = {
+        "validations": {
+          "isValid": true
+        },
+        "data": {
+          "dialogField1": 1,
+          "dialogField2": 2
+        }
+      };
+      controller.setDialogData(dialogData);
+    });
+    it('POSTs to the vms API', () => {
+      const successResponse = {
+        message: 'Great Success!'
+      };
+
+      collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse));
+      notificationsSuccessSpy = sinon.spy(Notifications, 'success');
+
+      controller.submitCustomButton();
+      expect(collectionsApiSpy).to.have.been.calledWith(
+        'vms',
+        456,
+        {},
+        '{"action":"buttonName","resource":{"dialogField1":1,"dialogField2":2}}'
+      );
+    });
+    it('goes to the resource details', function(done) {
+      controller.submitCustomButton();
+      done();
+      expect($state.is('services.resource-details')).to.be.true;
+    });
+  })
 });

@@ -12,12 +12,15 @@ function getStates () {
       templateUrl,
       controller: StateController,
       controllerAs: 'vm',
-      title: __('Service Custom Button Details'),
+      title: __('Custom Button Details'),
       params: {
         button: {
           value: null
         },
         serviceId: {
+          value: null
+        },
+        vmId: {
           value: null
         }
       },
@@ -51,6 +54,7 @@ function StateController ($state, $stateParams, dialog, service, CollectionsApi,
   vm.dialogs = dialog.content
   vm.service = service
   vm.serviceId = $stateParams.serviceId
+  vm.vmId = $stateParams.vmId || null
   vm.button = $stateParams.button
   vm.submitCustomButton = submitCustomButton
   vm.submitButtonEnabled = false
@@ -69,19 +73,31 @@ function StateController ($state, $stateParams, dialog, service, CollectionsApi,
   }
 
   function submitCustomButton () {
-    const buttonClass = vm.button.applies_to_class.toLowerCase()
-    const collection = buttonClass === 'servicetemplate' ? 'services' : buttonClass === 'vm' ? 'vms' : null
+    let collection = 'services'
+    let itemId = vm.serviceId
+
+    if (vm.vmId) {
+      collection = 'vms'
+      itemId = vm.vmId
+    }
 
     CollectionsApi.post(
       collection,
-      $stateParams.serviceId,
+      itemId,
       {},
       angular.toJson({action: $stateParams.button.name, resource: vm.dialogData})
     ).then(submitSuccess, submitFailure)
 
     function submitSuccess (result) {
       EventNotifications.success(result.message)
-      $state.go('services.details', {serviceId: $stateParams.serviceId})
+      let stateName = 'services.details'
+      let parameters = {serviceId: vm.serviceId}
+
+      if (vm.vmId) {
+        stateName = 'services.resource-details'
+        parameters = {serviceId: vm.serviceId, vmId: vm.vmId}
+      }
+      $state.go(stateName, parameters)
     }
 
     function submitFailure (result) {

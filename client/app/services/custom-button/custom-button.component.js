@@ -27,10 +27,14 @@ function CustomButtonController ($state, EventNotifications, CollectionsApi, RBA
 
   function invokeCustomAction (button) {
     if (button.resource_action && button.resource_action.dialog_id) {
-      $state.go('services.custom_button_details', {
+      const options = {
         button: button,
         serviceId: vm.serviceId
-      })
+      }
+      if (vm.vmId) {
+        options.vmId = vm.vmId
+      }
+      $state.go('services.custom_button_details', options)
     } else if (vm.vmId) {
       const data = {action: button.name}
       CollectionsApi.post('vms', vm.vmId, {}, data)
