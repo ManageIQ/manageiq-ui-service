@@ -22,7 +22,7 @@ describe('State: login', () => {
       });
 
       it('sets app brand', () => {
-        expect(ctrl.text.brand).to.equal('<strong>ManageIQ</strong> Self Service');
+        expect(ctrl.text.brand).to.equal('<strong>ManageIQ</strong> Service UI');
       });
     });
   });
