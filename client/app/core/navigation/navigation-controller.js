@@ -1,6 +1,6 @@
 /** @ngInject */
 export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
-                                      EventNotifications, ApplianceInfo, CollectionsApi) {
+                                      EventNotifications, ApplianceInfo, CollectionsApi, RBAC) {
   const vm = this
 
   const destroy = $scope.$on('shoppingCartUpdated', refresh)
@@ -59,7 +59,13 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     })
     getNavigationItems(Navigation.items)
     refresh()
-
+    vm.permissions = {
+      help: {
+        about: RBAC.has('about'),
+        documentation: RBAC.has('documentation')
+      },
+      helpMenu: RBAC.hasAny(['about', 'product', 'documentation'])
+    }
     if (ShoppingCart.allowed()) {
       ShoppingCart.reload()
     }

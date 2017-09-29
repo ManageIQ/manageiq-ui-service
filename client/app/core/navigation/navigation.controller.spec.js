@@ -5,7 +5,7 @@ describe('Controller: Navigation', () => {
   beforeEach(inject(function ($controller) {
 
     bard.inject('Text', 'Navigation', 'Session', 'ShoppingCart', 'API_BASE', '$rootScope', '$uibModal', '$state',
-      '$document', 'EventNotifications', 'ApplianceInfo', 'CollectionsApi')
+      '$document', 'EventNotifications', 'ApplianceInfo', 'CollectionsApi', 'RBAC')
 
     ctrl = $controller('NavigationController', {
       Text: Text,
@@ -19,6 +19,7 @@ describe('Controller: Navigation', () => {
       $document: $document,
       EventNotifications: EventNotifications,
       ApplianceInfo: ApplianceInfo,
+      RBAC, RBAC
     })
   }))
 
