@@ -11,7 +11,7 @@
   },
   "version": "1.0.1",
   "scripts": {
-    "build": "NODE_ENV=\"production\" yarn build:git-hash && webpack --bail --progress --profile --config config/webpack.prod.js",
+    "build": "yarn build:git-hash && NODE_ENV=\"production\" webpack --bail --progress --profile --config config/webpack.prod.js",
     "build:git-hash": "node config/githash.js",
     "build:static": "webpack --bail --progress --profile --config config/webpack.static.js",
     "available-languages": "cd ./config/ && node available-languages.js",
