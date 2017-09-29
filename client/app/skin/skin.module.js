@@ -1,9 +1,9 @@
 const text = {
   app: {
-    name: 'ManageIQ Self Service'
+    name: 'ManageIQ Service UI'
   },
   login: {
-    brand: '<strong>ManageIQ</strong> Self Service'
+    brand: '<strong>ManageIQ</strong> Service UI'
   }
 }
 
