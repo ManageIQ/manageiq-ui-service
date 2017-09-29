@@ -76,16 +76,16 @@
               </span>
               </a>
               <ul uib-dropdown-menu class="scrollable-menu">
-                <li ng-repeat="group in vm.user().groups" ng-class="{ disabled: group === vm.user().group }">
-                  <a href="#" ng-if="group === vm.user().group" title="{{'Currently Selected Group' | translate}}">
-                    {{group}}
+                <li ng-repeat="group in vm.user().miq_groups" ng-class="{ disabled: group.description === vm.user().group }">
+                  <a href="#" ng-if="group.description === vm.user().group" title="{{'Currently Selected Group' | translate}}">
+                    {{group.description}}
                     <span translate>
                     (Current Group)
                   </span>
                   </a>
-                  <a href="#" ng-if="group !== vm.user().group" title="{{'Change to this Group' | translate}}"
-                     ng-click="vm.groupSwitch(group)">
-                    {{group}}
+                  <a href="#" ng-if="group.description !== vm.user().group" title="{{'Change to this Group' | translate}}"
+                     ng-click="vm.switchGroup(group)">
+                    {{group.description}}
                   </a>
                 </li>
               </ul>
