@@ -8,7 +8,8 @@ export function NavigationController (Text,
                                      $uibModal,
                                      $state,
                                      EventNotifications,
-                                     ApplianceInfo) {
+                                     ApplianceInfo,
+                                     RBAC) {
   const vm = this
 
   const destroy = $scope.$on('shoppingCartUpdated', refresh)
@@ -67,7 +68,13 @@ export function NavigationController (Text,
     })
     getNavigationItems(Navigation.items)
     refresh()
-
+    vm.permissions = {
+      help: {
+        about: RBAC.has('about'),
+        documentation: RBAC.has('documentation')
+      },
+      helpMenu: RBAC.hasAny(['about', 'product', 'documentation'])
+    }
     if (ShoppingCart.allowed()) {
       ShoppingCart.reload()
     }

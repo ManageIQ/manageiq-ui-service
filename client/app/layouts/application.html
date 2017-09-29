@@ -38,13 +38,13 @@
         <li>
           <miq-site-switcher sites="vm.sites"></miq-site-switcher>
         </li>
-        <li uib-dropdown>
+        <li uib-dropdown ng-if="vm.permissions.helpMenu">
           <a class="nav-item-iconic" uib-dropdown-toggle aria-haspopup="true" aria-expanded="true">
             <span class="fa pficon-help"></span>
             <span class="caret"></span>
           </a>
           <ul uib-dropdown-menu aria-labelledby="aboutModal">
-            <li>
+            <li ng-if="vm.permissions.help.documentation">
               <a href="/support/index?support_tab=about" target="_blank">
                 {{ 'Documentation' | translate}}
               </a>
@@ -54,7 +54,7 @@
                 {{vm.about.supportWebsiteText}}
               </a>
             </li>
-            <li>
+            <li ng-if="vm.permissions.help.about">
               <a href="#" ng-click="vm.about.isOpen = true">
                 {{'About' | translate}}
               </a>

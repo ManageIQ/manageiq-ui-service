@@ -16,7 +16,8 @@ describe('Navigation controller', function() {
           '$state',
           '$document',
           'EventNotifications',
-          'ApplianceInfo');
+          'ApplianceInfo', 
+          'RBAC');
 
       ctrl = $controller('NavigationController', {
         Text: Text,
@@ -30,6 +31,7 @@ describe('Navigation controller', function() {
         $document: $document,
         EventNotifications: EventNotifications,
         ApplianceInfo: ApplianceInfo,
+        RBAC: RBAC
       });
     }));
 
