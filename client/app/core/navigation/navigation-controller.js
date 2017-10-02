@@ -64,7 +64,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
         about: RBAC.has('about'),
         documentation: RBAC.has('documentation')
       },
-      appLauncher: RBAC.has('sui_app_launcher'),
+      suiAppLauncher: RBAC.has('sui_app_launcher'),
       helpMenu: RBAC.hasAny(['about', 'product', 'documentation'])
     }
     if (ShoppingCart.allowed()) {
