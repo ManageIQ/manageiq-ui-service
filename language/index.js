@@ -11,23 +11,22 @@ const languages = setLanguages(availableLanguages)
 /**
  * Sample Zanata config file
  * {
-    "apiKey":"",
-    "project":"",
-    "version":"",
-    "user":""
+    "ZANATA_API_KEY":"",
+    "ZANATA_PROJECT":"",
+    "ZANATA_USER":""
 }
  */
 if (fs.existsSync(configFile)) {
   config = require(configFile)
 } else {
-  if (!process.env.zanataApiKey) {
+  if (!process.env.ZANATA_API_KEY) {
     console.log('Please set env variables or create config file')
     process.exit(1)
   } else {
-    config.apiKey = process.env.zanataApiKey
-    config.project = process.env.zanataProject
+    config.apiKey = process.env.ZANATA_API_KEY
+    config.project = process.env.ZANATA_PROJECT
     config.version = (process.env.TRAVIS_BRANCH ? process.env.TRAVIS_BRANCH : process.env.zanataVersion)
-    config.user = process.env.zantaUser
+    config.user = process.env.ZANATA_USER
   }
 }
 zanata.setConfig(config)
