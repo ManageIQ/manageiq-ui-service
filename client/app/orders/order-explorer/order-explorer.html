@@ -53,9 +53,12 @@
 
       </div>
       <div class="col-lg-3 col-md-3 col-sm-2 hidden-xs">
-        <span class="no-wrap" translate-plural="{{ $count }} items" translate
+        <span>{{$count}}</span>
+        <span class="no-wrap"
+              translate-plural="items"
+              translate
               translate-n="item.service_requests.length || 0">
-          {{ $count }} item
+        item
         </span>
       </div>
     </div>
