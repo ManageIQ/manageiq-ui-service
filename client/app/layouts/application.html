@@ -36,7 +36,7 @@
           </a>
         </li>
         <li>
-          <miq-site-switcher sites="vm.sites"></miq-site-switcher>
+          <miq-site-switcher sites="vm.sites" ng-if="vm.permissions.suiAppLauncher"></miq-site-switcher>
         </li>
         <li uib-dropdown ng-if="vm.permissions.helpMenu">
           <a class="nav-item-iconic" uib-dropdown-toggle aria-haspopup="true" aria-expanded="true">
