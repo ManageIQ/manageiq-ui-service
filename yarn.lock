@@ -70,15 +70,15 @@
   version "2.53.42"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.53.42.tgz#74cb77fb6052edaff2a8984ddafd88d419f25cac"
 
-"@uirouter/angularjs@1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.6.tgz#11fa769475d1e428665d38f7eb15586bc185cd69"
+"@uirouter/angularjs@1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.7.tgz#152b13dcd23de9cfbb7b4ed9a3cbec72c1772c29"
   dependencies:
-    "@uirouter/core" "=5.0.6"
+    "@uirouter/core" "5.0.8"
 
-"@uirouter/core@=5.0.6":
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.6.tgz#251e1fc4d6ce8fe47e374bb86971e68a2ef1b323"
+"@uirouter/core@5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.8.tgz#fa9da20fb5fcb6352c9b6011d48dee2b1b70d871"
 
 abbrev@1:
   version "1.1.0"
