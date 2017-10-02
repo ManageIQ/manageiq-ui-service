@@ -55,7 +55,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         }
       },
       genInfo: {
-        'iconClass': 'pficon pficon-service',
         'info': []
       },
       provInfo: {
@@ -219,6 +218,9 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         response.vendor,
         `${response.vendor}: ${response.hardware.cpu_total_cores} CPUs (${response.hardware.cpu_sockets} sockets x ${response.hardware.cpu_cores_per_socket} core), ${response.hardware.memory_mb} MB`
       ]
+      vm.genInfo.iconImage = `images/os/os-${response.os_image_name}.svg`
+      vm.provInfo.iconImage = `images/providers/vendor-${response.vendor}.svg`
+
       vm.ssAnalysis.users.value = response.users.length
       vm.ssAnalysis.groups.value = response.groups.length
       vm.ssAnalysis.instance.value = response.instance ? response.instance.keyPairLabels.join(',') : vm.noneText

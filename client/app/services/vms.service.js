@@ -104,7 +104,8 @@ export function VmsService (CollectionsApi, RBAC) {
         'max_mem_usage_absolute_average_avg_over_time_period',
         'hardware.aggregate_cpu_speed',
         'allocated_disk_storage',
-        'ram_size'
+        'ram_size',
+        'os_image_name'
       ],
       expand: [],
       auto_refresh: refresh
