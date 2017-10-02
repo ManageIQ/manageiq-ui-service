@@ -20,7 +20,7 @@ const languages = setLanguages(availableLanguages)
 if (fs.existsSync(configFile)) {
   config = require(configFile)
 } else {
-  if (!process.env.apiKey) {
+  if (!process.env.zanataApiKey) {
     console.log('Please set env variables or create config file')
     process.exit(1)
   } else {
