@@ -1,3 +1,5 @@
+/* eslint no-undef: "off" */
+
 import './_resource-details.sass'
 import templateUrl from './resource-details.html'
 
@@ -8,9 +10,8 @@ export const ResourceDetailsComponent = {
 }
 
 /** @ngInject */
-function ComponentController ($state, $stateParams, VmsService, ServicesState, sprintf, lodash,
-                              EventNotifications, Polling, ModalService, PowerOperations, LONG_POLLING_INTERVAL,
-                              TaggingService, UsageGraphsService) {
+function ComponentController ($state, $stateParams, VmsService, ServicesState, lodash, EventNotifications, Polling,
+                              ModalService, PowerOperations, LONG_POLLING_INTERVAL, TaggingService, UsageGraphsService) {
   const vm = this
   vm.$onInit = activate
   vm.$onDestroy = onDestroy
@@ -43,7 +44,6 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       instance: {},
       snapshotListActions: {},
       loading: true,
-      presentDate: new Date(),
       neverText: __('Never'),
       noneText: __('None'),
       availableText: __('Available'),
@@ -55,10 +55,10 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         }
       },
       genInfo: {
-        'info': []
+        'info': ['No Information Avaliable']
       },
       provInfo: {
-        'info': []
+        'info': ['No Information Avaliable']
       },
       powerState: {
         'title': 'Power State',
@@ -102,6 +102,9 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       },
       emptyState: {icon: 'pficon pficon-help', title: 'No Information Available'}
     })
+    vm.today = new Date()
+    vm.presentDate = new Date()
+    vm.lastWeekDay = new Date(vm.presentDate.setDate(vm.presentDate.getDate() - 7))
     resolveData()
   }
 
@@ -151,7 +154,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
     function handleSuccess (response) {
       Polling.start('vmPolling', pollVM, LONG_POLLING_INTERVAL)
       vm.vmDetails = response
-
+      const eventOptions = {timestamp: `>${vm.lastWeekDay.getFullYear()}-${vm.lastWeekDay.getMonth() + 1}-${vm.lastWeekDay.getDate()}`}
       const retirementDate = new Date(response.retires_on)
 
       TaggingService.queryAvailableTags('vms/' + response.id + '/tags/').then((response) => {
@@ -165,16 +168,54 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         })
       }
 
+      VmsService.getEvents($stateParams.vmId, eventOptions).then((response) => {
+        const start = new Date(lodash.minBy(response.resources, 'created_on').created_on)
+        const end = new Date(lodash.maxBy(response.resources, 'created_on').created_on)
+        const tlEvents = response.resources.map((item) => {
+          switch (item.event_type) {
+            case 'request_vm_start':
+            case 'request_vm_poweroff':
+            case 'request_vm_reset':
+            case 'request_vm_suspend':
+            case 'vm_start':
+            case 'vm_poweroff':
+            case 'vm_reset':
+            case 'vm_suspend':
+            case 'vm_create':
+              return {
+                'date': new Date(item.created_on),
+                'details': {'event': item.event_type, 'object': item.event_type, item}
+              }
+          }
+        })
+
+        vm.tlData = [{
+          'data': tlEvents.filter(Boolean),
+          'display': true
+        }]
+
+        vm.tlOptions = {
+          start: new Date(start.setHours(start.getHours() - 2)),
+          end: new Date(end.setHours(end.getHours() + 2)),
+          eventShape: '\uf071',
+          eventHover: tlTooltip,
+          eventGrouping: 1000,
+          minScale: 0.234,
+          maxScale: 1440
+        }
+      })
+
       VmsService.getMetrics($stateParams.vmId, {
         capture_interval: 'hourly'
       }).then((response) => {
         vm.metrics = response
         const lastHour = response.resources[0]
+
         vm.cpuUtil = UsageGraphsService.getChartConfig({
           'units': __('%'),
           'chartId': 'cpuChart',
           'label': __('used')
-        }, (lastHour.cpu_usage_rate_average * 100).toPrecision(3), 100)
+        }, (lastHour.cpu_usage_rate_average).toPrecision(3), 100)
 
         vm.memUtil = UsageGraphsService.getChartConfig({
           'units': __('GB'),
@@ -216,7 +257,8 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       ]
       vm.provInfo.info = [
         response.vendor,
-        `${response.vendor}: ${response.hardware.cpu_total_cores} CPUs (${response.hardware.cpu_sockets} sockets x ${response.hardware.cpu_cores_per_socket} core), ${response.hardware.memory_mb} MB`
+        `${response.hardware.cpu_total_cores} CPUs (${response.hardware.cpu_sockets} sockets x ${response.hardware.cpu_cores_per_socket} core)`,
+        `${response.hardware.memory_mb} MB`
       ]
       vm.genInfo.iconImage = `images/os/os-${response.os_image_name}.svg`
       vm.provInfo.iconImage = `images/providers/vendor-${response.vendor}.svg`
@@ -235,7 +277,8 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
       vm.compliance.notifications[0].iconClass = angular.isUndefined(response.last_compliance_status) ? 'pficon pficon-unknown'
         : response.last_compliance_status === 'compliant' ? 'pficon pficon-error-circle-o' : 'pficon pficon-ok'
       vm.powerState.notifications[0].iconClass = response.power_state === 'on' ? 'pficon pficon-ok'
-        : response.power_state === 'off' ? 'pficon pficon-error-circle-o' : 'pficon pficon-unknown'
+        : response.power_state === 'off' ? 'pficon pficon-error-circle-o'
+          : response.power_state === 'suspended' ? 'pficon pficon-paused' : 'pficon pficon-unknown'
       vm.vmDetails.complianceHistory = (vm.vmDetails.compliances.length > 0 ? vm.availableText : vm.notAvailable)
 
       getListActions()
@@ -409,5 +452,46 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
 
   function usedTooltip (item) {
     return `<div>Title: ${item.device_name}</div><div>Usage: ${item.data.used}GB</div><div>Device Type: ${item.device_type}</div>`
+  }
+
+  const tlTooltip = (item) => {
+    d3.select('body').selectAll('.popover').remove()
+    const fontSize = 12 // in pixels
+    const tooltipWidth = 9 // in rem
+    const tooltip = d3
+    .select('body')
+    .append('div')
+    .attr('class', 'popover fade bottom in')
+    .attr('role', 'tooltip')
+    .on('mouseout', () => {
+      d3.select('body').selectAll('.popover').remove()
+    })
+    const rightOrLeftLimit = fontSize * tooltipWidth
+    const direction = d3.event.pageX > rightOrLeftLimit ? 'right' : 'left'
+    const left = direction === 'right' ? d3.event.pageX - rightOrLeftLimit : d3.event.pageX
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    }
+    const event = item.details.item
+    tooltip.html(
+      `
+        <div class="arrow"></div>
+        <div class="popover-content">
+          <div>Event Type: ${event.event_type}</div> 
+          <div>Message: ${event.message}</div> 
+          <div>Created On: ${item.date.toLocaleDateString('en-US', options)}</div>                    
+        </div>
+    `
+    )
+    tooltip
+    .style('left', `${left}px`)
+    .style('top', `${d3.event.pageY + 8}px`)
+    .style('display', 'block')
   }
 }

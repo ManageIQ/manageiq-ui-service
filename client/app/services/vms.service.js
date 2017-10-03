@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function VmsService (CollectionsApi, RBAC) {
+export function VmsService (CollectionsApi, RBAC, lodash) {
   const collection = 'vms'
   const sort = {
     isAscending: true,
@@ -22,6 +22,7 @@ export function VmsService (CollectionsApi, RBAC) {
     getInstance: getInstance,
     getSnapshots: getSnapshots,
     getMetrics: getMetrics,
+    getEvents: getEvents,
     getPermissions: getPermissions,
     getLifeCycleCustomDropdown: getLifeCycleCustomDropdown,
     revertSnapshot: revertSnapshot
@@ -165,7 +166,7 @@ export function VmsService (CollectionsApi, RBAC) {
    * This function handles GET request for vmID metric rollups
    * @function getMetrics
    * @param  {number} vmId - The vm id
-   * @param  {object} options - an object containing optional params: capture_interval, start_date, end_date
+   * @param  {object} options - an object containing overrides for required params, optional params: capture_interval, start_date, end_date
    * @return {promise} A promise containing metrics rollup data
    */
   function getMetrics (vmId, options = {}) {
@@ -173,10 +174,44 @@ export function VmsService (CollectionsApi, RBAC) {
     const defaults = {
       capture_interval: 'daily',
       expand: 'resources',
-      start_date: `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`
+      start_date: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
     }
 
     return CollectionsApi.get(`${collection}/${vmId}/metric_rollups`, '', Object.assign(defaults, options))
+  }
+
+  /**
+   * This function handles GET request for vmID event stream, by default fetches all events of type: VmOrTemplate
+   * for the current day
+   * @function getEvents
+   * @param  {number} vmId - The vm id
+   * @param  {object} options - an object containing overrides for required params, optional params: event_type, target_id
+   * @return {promise} A promise containing event stream data
+   */
+  function getEvents (vmId, options = {}) {
+    const today = new Date()
+    const yesterday = new Date(today.setDate(today.getDate() - 1))
+    let filters = []
+    const defaults = {
+      target_id: vmId,
+      target_type: 'VmOrTemplate',
+      timestamp: `>${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`
+    }
+    Object.assign(defaults, options)
+    lodash.forEach(defaults, (value, key) => {
+      switch (key) {
+        case 'timestamp':
+          filters.push(`${key}${value}`)
+          break
+        default:
+          filters.push(`${key}=${value}`)
+      }
+    })
+
+    return CollectionsApi.query(`event_streams`, {
+      expand: 'resources',
+      filter: filters
+    })
   }
 
   function setSort (currentField, isAscending) {
@@ -228,6 +263,7 @@ export function VmsService (CollectionsApi, RBAC) {
 
     return queryFilters
   }
+
   function getLifeCycleCustomDropdown (retireFn, vmName) {
     let lifeCycleActions
     const clockIcon = 'fa fa-clock-o'

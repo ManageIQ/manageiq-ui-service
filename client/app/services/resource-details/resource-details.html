@@ -36,33 +36,34 @@
 <div class="container-fluid breadcrumb-content">
     <div class="row">
         <div class="col-md-2">
-            <pf-info-status-card status="vm.genInfo"></pf-info-status-card>
+            <pf-info-status-card status="vm.genInfo" show-top-border="true"></pf-info-status-card>
         </div>
         <div class="col-md-2">
-            <pf-info-status-card status="vm.provInfo"></pf-info-status-card>
+            <pf-info-status-card status="vm.provInfo" show-top-border="true"></pf-info-status-card>
         </div>
         <div class="col-md-2"
-             uib-tooltip="{{'Running Time' | translate}}: {{ vm.elapsed(vm.presentDate, vm.vmDetails.state_changed_on) | elapsedTime }} "
+             uib-tooltip="{{'Running Time' | translate}}: {{ vm.elapsed(vm.today, vm.vmDetails.state_changed_on) | elapsedTime }} "
              tooltip-placement="bottom">
-            <pf-aggregate-status-card status="vm.powerState"></pf-aggregate-status-card>
+            <pf-aggregate-status-card status="vm.powerState" show-top-border="true"></pf-aggregate-status-card>
         </div>
         <div class="col-md-2"
              uib-tooltip="{{vm.vmDetails.complianceHistory}}"
              tooltip-placement="bottom">
-            <pf-aggregate-status-card status="vm.compliance"></pf-aggregate-status-card>
+            <pf-aggregate-status-card status="vm.compliance" show-top-border="true"></pf-aggregate-status-card>
         </div>
         <div class="col-md-2">
-            <pf-aggregate-status-card status="vm.retirement"></pf-aggregate-status-card>
+            <pf-aggregate-status-card status="vm.retirement" show-top-border="true"></pf-aggregate-status-card>
         </div>
         <div class="col-md-2">
             <pf-aggregate-status-card ng-if="vm.permissions.vm_snapshot_show_list" status="vm.snapshots"
-                                      ui-sref="vms.snapshots({vmId: vm.vmDetails.id})"></pf-aggregate-status-card>
+                                      ui-sref="vms.snapshots({vmId: vm.vmDetails.id})"
+                                      show-top-border="true"></pf-aggregate-status-card>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card-pf">
-                <h2 translate>{{'Timeline - Power Events'|translate}}
+                <h2>{{'Timeline - Power Events'|translate}}
                     <span class="detail">{{'View All' | translate}}</span>
                 </h2>
                 <timeline data="vm.tlData" options="vm.tlOptions"></timeline>
@@ -73,7 +74,7 @@
         <div class="col-md-6">
             <div class="card-pf">
                 <usage-graphs
-                        title-details="{{'created on ' | translate}}{{(vm.metrics.resources[0].created_on || vm.presentDate) | date:'short'}}"
+                        title-details="{{'created on ' | translate}}{{(vm.metrics.resources[0].created_on || vm.today) | date:'short'}}"
                         cpu-chart="vm.cpuUtil"
                         memory-chart="vm.memUtil"
                         storage-chart="vm.stoUtil"></usage-graphs>
@@ -83,7 +84,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card-pf">
-                        <h2 translate><i class="pficon-storage-domain"></i>Disk Usage</h2>
+                        <h2><i class="pficon-storage-domain"></i>{{'Disk Usage' | translate}}</h2>
+                        <pf-empty-state ng-if="!vm.diskUsage" config="vm.emptyState"></pf-empty-state>
                         <pf-utilization-bar-chart
                                 available-tooltip-function="vm.availableTooltip(item)"
                                 used-tooltip-function="vm.usedTooltip(item)"
@@ -108,7 +110,8 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card-pf card-pf-regular">
-                <h2 translate><i class="fa fa-tags"></i>Tags</h2>
+                <h2><i class="fa fa-tags"></i>{{'Tags' | translate}}</h2>
+                <pf-empty-state ng-if="!vm.availableTags" config="vm.emptyState"></pf-empty-state>
                 <tagging-widget tags-of-item="vm.availableTags"
                                 read-only="true"></tagging-widget>
             </div>
@@ -131,11 +134,11 @@
         <div class="col-md-4">
             <div class="card-pf card-pf-regular">
                 <h2 translate>Smart State Analysis</h2>
-                <div class="row card-pf-row"  ng-repeat="item in vm.ssAnalysis">
+                <div class="row card-pf-row" ng-repeat="item in vm.ssAnalysis">
                     <div class="col-xs-2 col-md-3">
                         <span class="pull-right">{{item.value}}</span>
                     </div>
-                    <div class="col-xs-10 col-md-9" translate>
+                    <div class="col-xs-10 col-md-9">
                         <i class={{item.icon}}></i> {{item.title}}
                     </div>
                 </div>
