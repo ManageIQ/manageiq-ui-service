@@ -31,6 +31,16 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
   activate()
 
   function activate () {
+    vm.permissions = {
+      help: {
+        about: RBAC.has('about'),
+        documentation: RBAC.has('documentation')
+      },
+      suiAppLauncher: RBAC.has('sui_app_launcher'),
+      suiNotifications: RBAC.has('sui_notifications'),
+      helpMenu: RBAC.hasAny(['about', 'product', 'documentation'])
+    }
+    EventNotifications.setToastDisplay(vm.permissions.suiNotifications)
     angular.extend(vm, {
       state: Navigation.state,
       text: Text.app,
@@ -59,14 +69,6 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     })
     getNavigationItems(Navigation.items)
     refresh()
-    vm.permissions = {
-      help: {
-        about: RBAC.has('about'),
-        documentation: RBAC.has('documentation')
-      },
-      suiAppLauncher: RBAC.has('sui_app_launcher'),
-      helpMenu: RBAC.hasAny(['about', 'product', 'documentation'])
-    }
     if (ShoppingCart.allowed()) {
       ShoppingCart.reload()
     }

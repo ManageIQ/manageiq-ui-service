@@ -2,7 +2,7 @@ describe('Event Notifications Service', () => {
     beforeEach(function () {
         module('app.core');
         bard.inject('CollectionsApi', 'EventNotifications');
-
+        EventNotifications.setToastDisplay(true)
     });
     const successResponse = {};
     it('should allow a batch of notifications to be added', () => {
@@ -133,10 +133,22 @@ describe('Event Notifications Service', () => {
            const currentNotificationsState = EventNotifications.state();
            expect(currentNotificationsState.toastNotifications.length).to.eq(0);
         });
-        it('should should allow you to set dismiss a toast', () =>{
+        it('should should allow you to set dismiss a toast', () => {
            EventNotifications.dismissToast(warningGroup.notifications[0]);
            const currentNotificationsState = EventNotifications.state();
            expect(currentNotificationsState.toastNotifications.length).to.eq(0);
         });
+        it('should allow you to turn off display of toasts', () => {
+            EventNotifications.setToastDisplay(false)
+            const currentNotificationsState = EventNotifications.state()
+            expect(currentNotificationsState.toastsEnabled).to.be.false
+        })
+        it('should hide toasts if you turn off display', () => {
+            EventNotifications.setToastDisplay(false)
+            EventNotifications.clearAll(warningGroup)
+            EventNotifications.success('success',  {persistent: true}, 1);
+            const currentNotificationsState = EventNotifications.state()
+           expect(currentNotificationsState.toastNotifications.length).to.eq(0)
+        })
     });
 });

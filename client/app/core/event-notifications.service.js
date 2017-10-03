@@ -16,7 +16,8 @@ export function EventNotificationsFactory ($timeout, lodash, CollectionsApi, Ses
     clear: clear,
     clearAll: clearAll,
     setViewingToast: setViewingToast,
-    dismissToast: dismissToast
+    dismissToast: dismissToast,
+    setToastDisplay: setToastDisplay
   }
 
   notificationsInit()
@@ -153,7 +154,9 @@ export function EventNotificationsFactory ($timeout, lodash, CollectionsApi, Ses
     removeToast(notification)
     service.markRead(notification)
   }
-
+  function setToastDisplay (enabled) {
+    state.toastsEnabled = enabled
+  }
   // Private
   function add (notificationType, type, message, notificationData, id) {
     const group = lodash.find(state.groups, {notificationType: notificationType})
@@ -256,6 +259,9 @@ export function EventNotificationsFactory ($timeout, lodash, CollectionsApi, Ses
   }
 
   function showToast (notification) {
+    if (!state.toastsEnabled) {
+      return
+    }
     notification.show = true
     notification.persistent = notification.data.persistent || notification.type === 'danger' || notification.type === 'error'
     state.toastNotifications.push(notification)
