@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 70 ending 2017-10-02
+
+### Added
+- Added RBAC to App Launcher [(#1046)](https://github.com/ManageIQ/manageiq-ui-service/pull/1046)
+- Added RBAC controls for Help menu [(#1043)](https://github.com/ManageIQ/manageiq-ui-service/pull/1043)
+- Adds OS and Provider svgs [(#1040)](https://github.com/ManageIQ/manageiq-ui-service/pull/1040)
+- Added ability to disable custom buttons and show disabled text [(#1012)](https://github.com/ManageIQ/manageiq-ui-service/pull/1012)
+- Created githash saving and display functionality [(#1003)](https://github.com/ManageIQ/manageiq-ui-service/pull/1003)
+- Allowed users to duplicate services [(#920)](https://github.com/ManageIQ/manageiq-ui-service/pull/920)
+- Created Lifecycle menu [(#912)](https://github.com/ManageIQ/manageiq-ui-service/pull/912)
+
+### Fixed
+- Reorder build commands production env now set correctly for webpacking [(#1037)](https://github.com/ManageIQ/manageiq-ui-service/pull/1037)
+- Replace 'Self Service' for 'Service UI' text [(#1030)](https://github.com/ManageIQ/manageiq-ui-service/pull/1030)
+- Fixed issue for VM custom button actions [(#1022)](https://github.com/ManageIQ/manageiq-ui-service/pull/1022)
+- Recalibrates snapshot timeline start/end for better visibility [(#1021)](https://github.com/ManageIQ/manageiq-ui-service/pull/1021)
+
 ## Unreleased as of Sprint 69 ending 2017-09-18
 
 ### Fixed
