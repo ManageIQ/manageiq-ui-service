@@ -113,7 +113,7 @@
     "ts-loader": "2.3.7",
     "typescript": "2.5.3",
     "ui-select": "0.19.8",
-    "url-loader": "0.5.9",
+    "url-loader": "0.6.1",
     "webpack": "3.6.0",
     "yargs": "9.0.1",
     "zone.js": "0.8.18"
