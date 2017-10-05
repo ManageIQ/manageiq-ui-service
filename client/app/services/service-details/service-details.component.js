@@ -56,6 +56,9 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       gotoService: gotoService,
       gotoCatalogItem: gotoCatalogItem,
       getGenericObjects: getGenericObjects,
+      genericObjectsTypeViewState: {},
+      genericObjectsViewState: {},
+      setGenericObjectViewState: setGenericObjectViewState,
       createResourceGroups: createResourceGroups,
       cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
       memoryChart: UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions),
@@ -112,7 +115,6 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       Chargeback.processReports(vm.service)
       vm.computeGroup = vm.createResourceGroups(vm.service)
       vm.genericObjects = vm.getGenericObjects(vm.service.generic_objects)
-      console.log(vm.genericObjects)
       TaggingService.queryAvailableTags('services/' + id + '/tags/').then((response) => {
         vm.availableTags = response
       })
@@ -126,25 +128,52 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   function getGenericObjects (objects) {
     let genericObjects = {}
     objects.forEach((object) => {
-      const genericObjectType = 'Test Object Type'
-      // const genericObjectType = object.generic_object_definition.name
+      const genericObjectType = object.generic_object_definition_id
+      let objectTypeViewState = false
+      let objectViewState = false
+
+      if (angular.isDefined(vm.genericObjectsTypeViewState[genericObjectType])) {
+        objectTypeViewState = vm.genericObjectsTypeViewState[genericObjectType]
+      } else {
+        vm.genericObjectsTypeViewState[genericObjectType] = objectTypeViewState
+      }
+
+      if (angular.isDefined(vm.genericObjectsViewState[object.id])) {
+        objectViewState = vm.genericObjectsViewState[object.id]
+      }
+
       if (!genericObjects[genericObjectType]) {
         genericObjects[genericObjectType] = {
-          name: genericObjectType,
-          open: false,
+          name: object.generic_object_definition.name,
+          isExpanded: objectTypeViewState,
+          id: genericObjectType,
           objects: []
         }
       }
-      object.properties = {
-        attributes: {
-          'testKey': 'testvalue',
-          'testkey2': 'testValue2'
+      object.actions = [
+        {
+          'name': 'edit',
+          'method': 'post',
+          'href': 'http://localhost:3000/api/generic_objects/10000000000001'
+        },
+        {
+          'name': 'test_method',
+          'method': 'post',
+          'href': 'http://localhost:3000/api/generic_objects/10000000000001'
+        },
+        {
+          'name': 'test_method_params',
+          'method': 'post',
+          'href': 'http://localhost:3000/api/generic_objects/10000000000001'
+        }
+      ]
+      const properties = []
+      for (var property in object.properties) {
+        if (property !== 'services') {
+          properties.push({ key: property, value: object.properties[property] })
         }
       }
-      const properties = []
-      for (var property in object.properties.attributes) {
-        properties.push({key: property, value: object.properties.attributes[property]})
-      }
+      object.isExpanded = objectViewState
       object.properties = lodash.chunk(properties, 3)
       genericObjects[genericObjectType].objects.push(object)
     })
@@ -156,6 +185,9 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
     })
 
     return sortedObjects
+  }
+  function setGenericObjectViewState (object) {
+    vm.genericObjectsViewState[object.id] = object.isExpanded
   }
   function hasCustomButtons (service) {
     const actions = service.custom_actions || {}
@@ -388,7 +420,8 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
     group.open = !group.open
   }
   function toggleOpenGenericObjects (object) {
-    object.open = !object.open
+    object.isExpanded = !object.isExpanded
+    vm.genericObjectsTypeViewState[object.id] = object.isExpanded
   }
   function openConsole (item) {
     if (item['supports_console?'] && item.power_state === 'on') {

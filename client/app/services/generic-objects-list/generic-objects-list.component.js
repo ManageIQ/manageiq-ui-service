@@ -1,27 +1,45 @@
 import templateUrl from './generic-objects-list.html'
+import './_generic_objects_list.sass'
 
 export const GenericObjectsListComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
   bindings: {
-    genericObject: '<'
+    genericObject: '<',
+    onUpdate: '&'
   },
   templateUrl
 }
 
 /** @ngInject */
-function ComponentController () {
+function ComponentController (EventNotifications, CollectionsApi) {
   var vm = this
 
-  angular.extend(vm, {
-    genericObjectsListConfig: {
-      showSelectBox: false,
-      useExpandingRows: true
-    }
-  })
   vm.$onInit = activate()
 
   function activate () {
-    console.log(vm.genericObject)
+    angular.extend(vm, {
+      genericObjectsListConfig: {
+        showSelectBox: false,
+        useExpandingRows: true,
+        compoundExpansionOnly: true
+      },
+      customActionClick: customActionClick,
+      toggleExpand: toggleExpand
+    })
+  }
+  function toggleExpand (item) {
+    item.isExpanded = !item.isExpanded
+    vm.onUpdate({object: item})
+  }
+  function customActionClick (item, action) {
+    const data = {
+      action: action
+    }
+    CollectionsApi.post('generic_objects', item.id, {}, data).then((response) => {
+      EventNotifications.success(response.message)
+    }).catch((response) => {
+      EventNotifications.error(__('An error occured'))
+    })
   }
 }

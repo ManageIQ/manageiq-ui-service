@@ -372,13 +372,13 @@
           </li>
           <li class="list-group-item service-details-resource-group-item" ng-repeat="genericObject in vm.genericObjects">
               <a class="service-details-resource-group-title"
-              ng-class="{'collapsed': !genericObject.open}"
+              ng-class="{'collapsed': !genericObject.isExpanded}"
               ng-click="vm.toggleOpenGenericObjects(genericObject)">
              {{genericObject.name}}
            </a>
            <div class="service-details-resource-list-container"
-           ng-class="{'collapse': !genericObject.open}">
-              <generic-objects-list generic-object="genericObject"></generic-objects-list>
+           ng-class="{'collapse': !genericObject.isExpanded}">
+              <generic-objects-list generic-object="genericObject" on-update="vm.setGenericObjectViewState(object)"></generic-objects-list>
            </div>
           </li>
         </ul>

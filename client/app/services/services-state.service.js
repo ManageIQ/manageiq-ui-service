@@ -31,9 +31,9 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
         'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options', 'vms.ipaddresses',
         'vms.snapshots', 'vms.v_total_snapshots', 'vms.v_snapshot_newest_name', 'vms.v_snapshot_newest_timestamp',
         'vms.supports_console?', 'vms.supports_launch_cockpit?', 'vms.max_mem_usage_absolute_average_avg_over_time_period', 'vms.hardware',
-        'vms.hardware.aggregate_cpu_speed', 'vms.cpu_usagemhz_rate_average_avg_over_time_period', 'generic_objects'
+        'vms.hardware.aggregate_cpu_speed', 'vms.cpu_usagemhz_rate_average_avg_over_time_period', 'generic_objects.generic_object_definition'
       ],
-      expand: ['vms', 'orchestration_stacks'],
+      expand: ['resources', 'vms', 'orchestration_stacks', 'generic_objects'],
       auto_refresh: refresh
     }
 
