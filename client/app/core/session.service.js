@@ -55,6 +55,7 @@ export function SessionFactory ($http, $q, $sessionStorage, $cookies, RBAC, Poll
     model.token = null
     model.user = {}
     destroyWsToken()
+    delete $http.defaults.headers.common['X-Miq-Group']
     delete $http.defaults.headers.common['X-Auth-Token']
     delete $sessionStorage.miqGroup
     delete $sessionStorage.selectedMiqGroup
