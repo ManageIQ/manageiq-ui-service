@@ -1,12 +1,11 @@
+import { TODOS } from '../constants/todos'
 const initialState = []
 
 export function TodosReducer (state = initialState, action) {
   switch (action.type) {
-    case 'test':
-      return 'test'
-    case 'test2':
-      return [
-      ]
+    case TODOS.ADD_TODO:
+      console.log('running add todo')
+      return [...state, action.payload]
     default:
       return state
   }
