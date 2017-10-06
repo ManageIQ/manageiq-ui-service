@@ -46,6 +46,7 @@ import { TagEditorFactory } from './tag-editor-modal/tag-editor-modal.service.js
 import { gettextInit } from './gettext.config.js'
 import { layoutInit } from './layouts.config.js'
 import { TaggingService } from './tagging.service.js'
+import 'ng-redux'
 
 export const CoreModule = angular
   .module('app.core', [
@@ -59,7 +60,7 @@ export const CoreModule = angular
     'ngStorage',
     'ui.router',
     'ui.router.state.events',
-
+    'ngRedux',
     ExceptionModule,
     RouterModule,
     SharedModule,

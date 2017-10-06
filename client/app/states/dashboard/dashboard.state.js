@@ -135,7 +135,7 @@ function resolveServicesWithDefinedServiceIds (CollectionsApi, RBAC) {
 }
 
 /** @ngInject */
-function StateController ($state, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback) {
+function StateController ($state, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback, $ngRedux) {
   const vm = this
   const retiredTitle = __('Retire Status')
   angular.extend(vm, {
