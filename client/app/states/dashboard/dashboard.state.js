@@ -1,4 +1,5 @@
 import templateUrl from './dashboard.html'
+import TodoActions from '../../actions/todos.actions'
 
 /** @ngInject */
 export function DashboardState (routerHelper) {
@@ -135,16 +136,32 @@ function resolveServicesWithDefinedServiceIds (CollectionsApi, RBAC) {
 }
 
 /** @ngInject */
-function StateController ($state, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback) {
+function StateController ($state, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback, $ngRedux) {
   const vm = this
   const retiredTitle = __('Retire Status')
   angular.extend(vm, {
     requestsFeature: false,
     navigateToRetiringSoonServicesList: navigateToRetiringSoonServicesList,
     navigateToRetiredServicesList: navigateToRetiredServicesList,
-    navigateToCurrentServicesList: navigateToCurrentServicesList
+    navigateToCurrentServicesList: navigateToCurrentServicesList,
+    mapStateToThis: mapStateToThis,
+    submitTodo: submitTodo
   })
 
+  vm.todo = ''
+  vm.unsubscribe = $ngRedux.connect(vm.mapStateToThis, TodoActions)(vm)
+  console.log(vm.todos)
+  function mapStateToThis (state) {
+    console.log(state)
+    return {
+      todos: state.todos
+    }
+  }
+  function submitTodo () {
+    vm.todo = 'blah2'
+    vm.addTodo(vm.todo)
+    vm.todo = ''
+  }
   if (angular.isDefined(definedServiceIdsServices)) {
     vm.servicesCount = {}
     vm.servicesFeature = false
