@@ -35,10 +35,12 @@ function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD,
 
   if ($window.location.href.includes("?timeout")) {
     Notifications.message('danger', '', __('Your session has timed out.'), true);
+    Session.destroy();
   }
 
   if (Session.privilegesError) {
     Notifications.error(__('User does not have privileges to login.'));
+    Session.destroy();
   }
 
   vm.onSubmit = onSubmit;
@@ -56,8 +58,6 @@ function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD,
           ApplianceInfo.set(response);
           RBAC.setRole(response.identity.role);
         }
-
-
         if (RBAC.navigationEnabled()) {
           if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
             $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
@@ -65,9 +65,13 @@ function StateController(exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD,
           $window.location.href = $state.href('dashboard');
         } else {
           Session.privilegesError = true;
+          Session.destroy();
           Notifications.error(__('You do not have permission to view the Service UI. Contact your administrator to update your group permissions.'));
         }
       })
-      .catch(exception.catch('Login failed, possibly invalid credentials.'));
+      .catch(function () {
+        Session.destroy();
+        exception.catch('Login failed, possibly invalid credentials.');
+      });
   }
 }
