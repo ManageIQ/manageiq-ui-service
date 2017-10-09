@@ -193,7 +193,9 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
         eventHover: showTooltip,
         eventGrouping: 60000,
         minScale: (week / month),
-        maxScale: (day / 60000)
+        maxScale: (day / 60000),
+        slider: true,
+        context: true
       }
     }
 
