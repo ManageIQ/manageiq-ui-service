@@ -1,6 +1,8 @@
 /* eslint-disable dot-notation */
+import TokenActions from '../actions/token.actions'
+import UserActions from '../actions/user.actions'
 /** @ngInject */
-export function SessionFactory ($http, $q, $sessionStorage, $cookies, RBAC, Polling) {
+export function SessionFactory (lodash, $http, $q, $sessionStorage, $cookies, $ngRedux, RBAC, Polling) {
   const model = {
     token: null,
     user: {}
@@ -18,13 +20,25 @@ export function SessionFactory ($http, $q, $sessionStorage, $cookies, RBAC, Poll
     destroyWsToken: destroyWsToken,
     setPause: setPause
   }
+  const vm = this
+  const actions = lodash.merge(TokenActions, UserActions)
+  vm.unsubscribe = $ngRedux.connect(mapStateToThis, actions)(vm)
+  // console.log(vm.token.get('token'))
+  function mapStateToThis (state) {
+    return {
+      token: state.token,
+      user: state.user
+    }
+  }
 
   destroy()
 
   return service
 
   function setAuthToken (token) {
+    console.log('token being set ' + token)
     model.token = token
+    vm.addToken(token)
     $http.defaults.headers.common['X-Auth-Token'] = model.token
     $sessionStorage.token = model.token
   }
@@ -64,11 +78,20 @@ export function SessionFactory ($http, $q, $sessionStorage, $cookies, RBAC, Poll
 
   function loadUser () {
     Polling.start('UserPolling', getUserAuthorizations, 300000)
-    const deferred = $q.defer()
-    if (angular.isUndefined($sessionStorage.user)) {
+    // USERS HAVE, a group, role, and selected Group
+    return new Promise((resolve, reject) => {
       getUserAuthorizations().then(function (response) {
-        deferred.resolve(response)
+        const user = {
+          identity: response.identity,
+          group: response.identity.group,
+          role: response.identity.role
+        }
+        vm.addUser(user)
+        // RBAC.setRole(response.identity.role)
+        resolve(response)
       })
+    })
+/*
     } else {
       const response = angular.fromJson($sessionStorage.user)
       currentUser(response.identity)
@@ -78,7 +101,7 @@ export function SessionFactory ($http, $q, $sessionStorage, $cookies, RBAC, Poll
       deferred.resolve(response)
     }
 
-    return deferred.promise
+    return deferred.promise */
   }
 
   function getUserAuthorizations () {
@@ -90,7 +113,6 @@ export function SessionFactory ($http, $q, $sessionStorage, $cookies, RBAC, Poll
 
     return $http.get('/api?attributes=authorization', config)
     .then(function (response) {
-      $sessionStorage.user = angular.toJson(response.data)
       currentUser(response.data.identity)
       setGroup(response.data.identity.group)
       RBAC.set(response.data.authorization.product_features)
@@ -125,6 +147,9 @@ export function SessionFactory ($http, $q, $sessionStorage, $cookies, RBAC, Poll
 
   function active () {
     // may not be current, but if we have one, we'll rely on API 401ing if it's not
-    return angular.isString(model.token) ? model.token : false
+    const token = vm.token
+    console.log(`Token status: ${token}`)
+    return token
+  //  return angular.isString(token) ? token : false
   }
 }

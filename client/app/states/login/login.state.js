@@ -60,7 +60,6 @@ function StateController (exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD
         if (angular.isDefined(response)) {
           Language.onLogin(response)
           ApplianceInfo.set(response)
-          RBAC.setRole(response.identity.role)
         }
 
         if (RBAC.navigationEnabled()) {

@@ -150,9 +150,7 @@ function StateController ($state, definedServiceIdsServices, retiredServices, ex
 
   vm.todo = ''
   vm.unsubscribe = $ngRedux.connect(vm.mapStateToThis, TodoActions)(vm)
-  console.log(vm.todos)
   function mapStateToThis (state) {
-    console.log(state)
     return {
       todos: state.todos
     }

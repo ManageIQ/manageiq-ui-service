@@ -1,6 +1,6 @@
 /* eslint angular/window-service: "off" */
 import { RootReducer } from '../reducers'
-import {persistStore, autoRehydrate} from 'redux-persist'
+import {createTransform, persistStore, autoRehydrate} from 'redux-persist'
 import { asyncSessionStorage } from 'redux-persist/storages'
 
 var DEVEL_DOMAINS = [
@@ -28,7 +28,6 @@ export function configure ($logProvider, $compileProvider, $qProvider, $ngReduxP
   $qProvider.errorOnUnhandledRejections(false)
 }
 /** @ngInject */
-export function init ($ngRedux) {
-  persistStore($ngRedux, {storage: asyncSessionStorage}, () => {
-  })
+export function init ($ngRedux, $rootScope) {
+$rootScope.rehydrated = false
 }

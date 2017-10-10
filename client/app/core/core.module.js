@@ -1,10 +1,11 @@
 /* global _:false, ActionCable:false, $:false, sprintf: false, moment: false */
 /* eslint-disable sort-imports */
-
 import {
-  authConfig,
-  authInit
+  authConfig
 } from './authorization.config.js'
+import {
+  authInit
+} from './authorization.run.js'
 
 import {
   configure,
@@ -17,6 +18,7 @@ import {
 } from './navigation.config.js'
 
 // Core
+import 'ng-redux'
 import { ApplianceInfo } from './appliance-info.service.js'
 import { AuthenticationApiFactory } from './authentication-api.factory.js'
 import { BaseModalController } from './modal/base-modal-controller.js'
@@ -46,7 +48,6 @@ import { TagEditorFactory } from './tag-editor-modal/tag-editor-modal.service.js
 import { gettextInit } from './gettext.config.js'
 import { layoutInit } from './layouts.config.js'
 import { TaggingService } from './tagging.service.js'
-import 'ng-redux'
 
 export const CoreModule = angular
   .module('app.core', [
@@ -101,9 +102,10 @@ export const CoreModule = angular
   .config(configure)
   .config(authConfig)
   .config(navConfig)
-  .run(authInit)
+  .run(init)
   .run(gettextInit)
   .run(layoutInit)
   .run(navInit)
-  .run(init)
+
+  .run(authInit)
   .name

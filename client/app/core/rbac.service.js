@@ -1,10 +1,12 @@
+import RBACActions from '../actions/rbac.actions'
+import NavActions from '../actions/nav.actions'
 /** @ngInject */
-export function RBACFactory (lodash) {
+export function RBACFactory (lodash, $ngRedux) {
   var navFeatures = {}
   let features = {}
   let currentRole
 
-  return {
+  const service = {
     all: all,
     set: set,
     has: has,
@@ -12,21 +14,32 @@ export function RBACFactory (lodash) {
     hasRole: hasRole,
     setRole: setRole,
     getNavFeatures: getNavFeatures,
-    setNavFeatures: setNavFeatures,
     navigationEnabled: navigationEnabled
   }
 
+  function mapStateToThis (state) {
+    return {
+      rbac: state.rbac,
+      nav: state.nav
+    }
+  }
+
+  const vm = this
+  vm.unsubscribe = $ngRedux.connect(mapStateToThis, RBACActions)(vm)
+  features = vm.rbac
+  return service
+
   function set (productFeatures) {
     features = productFeatures || {}
-
     const navPermissions = {
       services: {show: angular.isDefined(productFeatures.service_view)},
       orders: {show: angular.isDefined(productFeatures.svc_catalog_provision)},
       catalogs: {show: angular.isDefined(productFeatures.catalog_items_view)}
     }
-    setNavFeatures(navPermissions)
+    features.navPermissions = navPermissions
+    // save to redux
+    vm.addRBAC(features)
   }
-
   function has (feature) {
     return feature in features
   }
@@ -43,19 +56,16 @@ export function RBACFactory (lodash) {
     return features
   }
 
-  function setNavFeatures (features) {
-    navFeatures = features
-  }
-
   function setRole (newRole) {
     currentRole = newRole
   }
 
   function getNavFeatures () {
-    return navFeatures
+    return features.navPermissions
   }
 
   function navigationEnabled () {
-    return lodash.some(navFeatures, (item) => item.show)
+    const rbac = vm.rbac.get('rbac')
+    return lodash.some(rbac.navPermissions, (item) => item.show)
   }
 }
