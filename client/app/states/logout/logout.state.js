@@ -20,6 +20,11 @@ function StateController (Session, $window) {
 
   function activate () {
     Session.destroy()
-    $window.location.href = $window.location.href
+    const location = $window.location.href
+    if (location.includes(`/ui/service`)) {
+      $window.location.href = `/ui/service/`
+    } else {
+      $window.location.href = `/`
+    }
   }
 }
