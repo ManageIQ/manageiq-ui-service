@@ -15,7 +15,7 @@ export function LanguageSwitcherDirective () {
   }
 
   /** @ngInject */
-  function LanguageSwitcherController (Language, lodash, $state) {
+  function LanguageSwitcherController (Language, lodash, $state, Session) {
     const vm = this
 
     angular.extend(vm, {
@@ -30,21 +30,23 @@ export function LanguageSwitcherDirective () {
     }
 
     Language.ready
-      .then(function (available) {
-        if (vm.mode !== 'menu') {
-          hardcoded._user_ = __('User Default')
-          Language.chosen = {code: '_user_'}
-        }
-        lodash.forEach(lodash.extend({}, hardcoded, available), (value, key) => {
-          vm.available.push({value: key, label: value})
-        })
-        vm.chosen = lodash.find(vm.available, {'value': '_user_'})
+    .then(function (available) {
+      if (vm.mode !== 'menu') {
+        hardcoded._user_ = __('User Default')
+        Language.chosen = {code: '_user_'}
+      }
+      lodash.forEach(lodash.extend({}, hardcoded, available), (value, key) => {
+        vm.available.push({value: key, label: value})
       })
+      vm.chosen = lodash.find(vm.available, {'value': '_user_'})
+    })
 
     function switchLanguage (input) {
       Language.setLocale(input.value || input)
       if (!input.value) {
-        Language.save(input)
+        Language.save(input).then((response) => {
+          Session.updateUserSession({settings: {ui_service: {display: {locale: response.data.settings.ui_service.display.locale}}}})
+        })
         $state.reload()
       }
     }
