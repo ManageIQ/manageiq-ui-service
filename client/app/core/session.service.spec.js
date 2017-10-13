@@ -58,6 +58,13 @@ describe('Session', () => {
       expect(Session.current.user.group).to.be.eq(newGroup.description)
 
     })
+
+    it('updates user session storage', () => {
+      $sessionStorage.user = JSON.stringify(readJSON('tests/mock/session/user.json'))
+      Session.updateUserSession({settings: {ui_service: {display: {locale: 'fr'}}}})
+      let user =  JSON.parse($sessionStorage.user)
+      expect(user.settings.ui_service.display.locale).to.eq('fr')
+    })
   })
 
   describe('setRBAC', function ($httpBackend, gettextCatalog, $state, RBAC) {
