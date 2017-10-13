@@ -16,7 +16,8 @@ export function SessionFactory ($http, $q, $sessionStorage, $cookies, RBAC, Poll
     loadUser: loadUser,
     requestWsToken: requestWsToken,
     destroyWsToken: destroyWsToken,
-    setPause: setPause
+    setPause: setPause,
+    updateUserSession: updateUserSession
   }
 
   destroy()
@@ -120,6 +121,12 @@ export function SessionFactory ($http, $q, $sessionStorage, $cookies, RBAC, Poll
     }
 
     return model.user
+  }
+
+  function updateUserSession (data) {
+    const userSession = JSON.parse($sessionStorage.user)
+    Object.assign(userSession, data)
+    $sessionStorage.user = JSON.stringify(userSession)
   }
 
   // Helpers
