@@ -173,7 +173,7 @@ export function ShoppingCartFactory ($rootScope, CollectionsApi, $q, lodash, RBA
   }
 
   function allowed () {
-    return RBAC.has(RBAC.FEATURES.ORDER)
+    return RBAC.has(RBAC.FEATURES.SHOPPING_CART.ORDER)
   }
 
   function dedup () {
