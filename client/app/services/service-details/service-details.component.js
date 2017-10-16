@@ -114,7 +114,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       getChartConfigs()
       Chargeback.processReports(vm.service)
       vm.computeGroup = vm.createResourceGroups(vm.service)
-      vm.genericObjects = vm.getGenericObjects(vm.service.generic_objects)
+      vm.genericObjects = (angular.isDefined(vm.service.generic_objects) ? vm.getGenericObjects(vm.service.generic_objects) : [])
       TaggingService.queryAvailableTags('services/' + id + '/tags/').then((response) => {
         vm.availableTags = response
       })
@@ -150,23 +150,6 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
           objects: []
         }
       }
-      object.actions = [
-        {
-          'name': 'edit',
-          'method': 'post',
-          'href': 'http://localhost:3000/api/generic_objects/10000000000001'
-        },
-        {
-          'name': 'test_method',
-          'method': 'post',
-          'href': 'http://localhost:3000/api/generic_objects/10000000000001'
-        },
-        {
-          'name': 'test_method_params',
-          'method': 'post',
-          'href': 'http://localhost:3000/api/generic_objects/10000000000001'
-        }
-      ]
       const properties = []
       for (var property in object.properties) {
         if (property !== 'services') {

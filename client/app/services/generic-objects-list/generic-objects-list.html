@@ -7,12 +7,13 @@
                  ng-click="$ctrl.customScope.toggleExpand(item)">
               <i class="fa fa-angle-right"
                  ng-class="{'fa-angle-down': item.isExpanded}"></i>
+                 <img src="{{item.picture.image_href}}" class="generic-object-icon">
               <span>{{item.name}}</span>
             </div>
 						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
               <div uib-dropdown=""
                    dropdown-append-to-body
-                   class="dropdown pull-right dropdown-kebab-pf">
+                   class="dropdown pull-right dropdown-kebab-pf" ng-if="item.actions.length > 0">
                 <button type="button" class="btn btn-link dropdown-toggle" uib-dropdown-toggle="" type="button">
                   <span class="fa fa-ellipsis-v"></span>
                 </button>
