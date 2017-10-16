@@ -55,20 +55,10 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
         }
       },
       genInfo: {
-        'info': ['No Information Avaliable']
+        'info': ['No Information Available']
       },
       provInfo: {
-        'info': ['No Information Avaliable']
-      },
-      powerState: {
-        'title': 'Power State',
-        'href': '#',
-        'notifications': [
-          {
-            'iconClass': 'pficon pficon-unknown',
-            'href': '#'
-          }
-        ]
+        'info': ['No Information Available']
       },
       compliance: {
         'title': 'Compliance',
@@ -249,11 +239,15 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
       })
 
       hasUsageGraphs()
+      const POWERSTATE = response.power_state === 'on' ? 'pficon pficon-ok'
+        : response.power_state === 'off' ? 'pficon pficon-error-circle-o'
+          : response.power_state === 'suspended' ? 'pficon pficon-paused' : 'pficon pficon-unknown'
+
       vm.genInfo.info = [
-        response.name,
-        response.hostnames.join(',') || 'No hostnames',
-        response.ipaddresses.join(',') || 'No IP addresses',
-        response.hardware.guest_os_full_name
+        `<i class="${POWERSTATE}"></i> <b>${response.name}</b>`,
+        response.hostnames.join(', ') || 'No hostnames',
+        response.hardware.guest_os_full_name,
+        response.ipaddresses.join(',') || 'No IP addresses'
       ]
       vm.provInfo.info = [
         response.vendor,
@@ -262,23 +256,18 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
       ]
       vm.genInfo.iconImage = `images/os/os-${response.os_image_name}.svg`
       vm.provInfo.iconImage = `images/providers/vendor-${response.vendor}.svg`
-
       vm.ssAnalysis.users.value = response.users.length
       vm.ssAnalysis.groups.value = response.groups.length
       vm.ssAnalysis.instance.value = response.instance ? response.instance.keyPairLabels.join(',') : vm.noneText
       vm.ssAnalysis.guest_applications.value = response.guest_applications.length
       vm.ssAnalysis.linux_initprocesses.value = response.linux_initprocesses.length
       vm.ssAnalysis.files.value = response.files.length
-
       vm.snapshots.notifications[0].count = response.v_total_snapshots
       vm.retirement.notifications[0].count = angular.isUndefined(response.retires_on) ? vm.neverText
         : `${retirementDate.getFullYear()}-${retirementDate.getMonth()}-${retirementDate.getDate()}`
       vm.compliance.notifications[0].count = angular.isUndefined(response.last_compliance_status) ? vm.neverText : response.last_compliance_status
       vm.compliance.notifications[0].iconClass = angular.isUndefined(response.last_compliance_status) ? 'pficon pficon-unknown'
         : response.last_compliance_status === 'compliant' ? 'pficon pficon-error-circle-o' : 'pficon pficon-ok'
-      vm.powerState.notifications[0].iconClass = response.power_state === 'on' ? 'pficon pficon-ok'
-        : response.power_state === 'off' ? 'pficon pficon-error-circle-o'
-          : response.power_state === 'suspended' ? 'pficon pficon-paused' : 'pficon pficon-unknown'
       vm.vmDetails.complianceHistory = (vm.vmDetails.compliances.length > 0 ? vm.availableText : vm.notAvailable)
 
       getListActions()

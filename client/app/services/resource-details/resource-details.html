@@ -8,7 +8,7 @@
           <a ui-sref="services.details({serviceId: vm.vmDetails.service.id})">{{  vm.vmDetails.service.name  }}</a>
         </li>
         <li>
-          {{  vm.vmDetails.name }}
+          {{vm.vmDetails.name}}
         </li>
       </ol>
   </span>
@@ -36,26 +36,21 @@
 <div class="container-fluid breadcrumb-content">
     <div class="row">
         <div class="col-md-4">
-            <pf-info-status-card status="vm.genInfo" show-top-border="true"></pf-info-status-card>
+            <pf-info-status-card class="card-pf-top" status="vm.genInfo" show-top-border="true" html-content="true"></pf-info-status-card>
         </div>
         <div class="col-md-2">
-            <pf-info-status-card status="vm.provInfo" show-top-border="true"></pf-info-status-card>
+            <pf-info-status-card class="card-pf-top" status="vm.provInfo" show-top-border="true"></pf-info-status-card>
         </div>
-        <!--<div class="col-md-2"-->
-             <!--uib-tooltip="{{'Running Time' | translate}}: {{ vm.elapsed(vm.today, vm.vmDetails.state_changed_on) | elapsedTime }} "-->
-             <!--tooltip-placement="bottom">-->
-            <!--<pf-aggregate-status-card status="vm.powerState" show-top-border="true"></pf-aggregate-status-card>-->
-        <!--</div>-->
         <div class="col-md-2"
              uib-tooltip="{{vm.vmDetails.complianceHistory}}"
              tooltip-placement="bottom">
-            <pf-aggregate-status-card status="vm.compliance" show-top-border="true"></pf-aggregate-status-card>
+            <pf-aggregate-status-card class="card-pf-top" status="vm.compliance" show-top-border="true"></pf-aggregate-status-card>
         </div>
         <div class="col-md-2">
-            <pf-aggregate-status-card status="vm.retirement" show-top-border="true"></pf-aggregate-status-card>
+            <pf-aggregate-status-card class="card-pf-top" status="vm.retirement" show-top-border="true"></pf-aggregate-status-card>
         </div>
         <div class="col-md-2">
-            <pf-aggregate-status-card ng-if="vm.permissions.vm_snapshot_show_list" status="vm.snapshots"
+            <pf-aggregate-status-card ng-if="vm.permissions.vm_snapshot_show_list" class="card-pf-top" status="vm.snapshots"
                                       ui-sref="vms.snapshots({vmId: vm.vmDetails.id})"
                                       show-top-border="true"></pf-aggregate-status-card>
         </div>
