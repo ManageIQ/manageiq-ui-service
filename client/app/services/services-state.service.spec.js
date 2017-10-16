@@ -103,7 +103,7 @@ describe('Services-state Service', function () {
         value: 'test',
       };
       const expectedOptions = {
-        attributes: ["picture", "picture.image_href", "chargeback_report", "evm_owner.userid", "miq_group.description", "v_total_vms", "power_state", "power_states", "power_status", "all_service_children", "all_vms", "custom_actions", "service_resources", "tags"],
+        attributes: ["picture", "picture.image_href", "chargeback_report", "evm_owner.userid", "v_total_vms", "power_state", "all_service_children", "tags"],
         auto_refresh: false,
         expand: "resources",
         filter: ["ancestry=null"],
