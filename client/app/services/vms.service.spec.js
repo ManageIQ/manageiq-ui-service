@@ -40,7 +40,7 @@ describe('VMS Service', () => {
     });
     it('should be able to check permissions', () => {
         RBAC.set(permissions);
-        const expectedPermissions = {"create":true,"delete":true,"deleteAll":true,"revert":true,"instanceRetire":true};
+        const expectedPermissions = {"start":false,"stop":true,"suspend":true,"tags":true,"snapshotsView":true,"snapshotsAdd":true,"snapshotsDelete":true,"deleteAll":true,"revert":true,"retire":true}        
         expect(service.getPermissions()).to.deep.equal(expectedPermissions);
     });
     it('should allow the lifecycle dropdown to be built', () => {

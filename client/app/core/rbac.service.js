@@ -1,3 +1,4 @@
+import { productFeatures } from './product-features.constants.json'
 /** @ngInject */
 export function RBACFactory (lodash) {
   var navFeatures = {}
@@ -8,6 +9,7 @@ export function RBACFactory (lodash) {
     all: all,
     set: set,
     has: has,
+    FEATURES: productFeatures,
     hasAny: hasAny,
     hasRole: hasRole,
     setRole: setRole,
@@ -17,12 +19,12 @@ export function RBACFactory (lodash) {
   }
 
   function set (productFeatures) {
+    const vm = this
     features = productFeatures || {}
-
     const navPermissions = {
-      services: {show: angular.isDefined(productFeatures.service_view)},
-      orders: {show: angular.isDefined(productFeatures.svc_catalog_provision)},
-      catalogs: {show: angular.isDefined(productFeatures.catalog_items_view)}
+      services: {show: vm.has(vm.FEATURES.SERVICES.VIEW)},
+      orders: {show: vm.has(vm.FEATURES.ORDERS.VIEW)},
+      catalogs: {show: vm.has(vm.FEATURES.SERVICE_CATALOG.VIEW)}
     }
     setNavFeatures(navPermissions)
   }

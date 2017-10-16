@@ -59,7 +59,7 @@ describe('Session', () => {
 
     })
 
-    it('updates user session storage', () => {
+     it('updates user session storage', () => {
       $sessionStorage.user = JSON.stringify(readJSON('tests/mock/session/user.json'))
       Session.updateUserSession({settings: {ui_service: {display: {locale: 'fr'}}}})
       let user =  JSON.parse($sessionStorage.user)
@@ -79,9 +79,7 @@ describe('Session', () => {
       var response = {
         authorization: {
           product_features: {
-            dashboard_view: {},
-            service_view: {},
-            service_edit: {}
+            sui_services_view: {}
           }
         }, identity: {}
       }
@@ -97,11 +95,11 @@ describe('Session', () => {
     })
 
     it('sets visibility for "Service Catalogs" and "Requests" only on navbar and enables "Service Request" button', () => {
-      var response = {
+      const response = {
         authorization: {
           product_features: {
-            catalog_items_view: {},
-            svc_catalog_provision: {},
+            sui_orders_view: {},
+            sui_svc_catalog_view: {},
           }
         }, identity: {}
       }

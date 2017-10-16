@@ -173,7 +173,7 @@ export function ShoppingCartFactory ($rootScope, CollectionsApi, $q, lodash, RBA
   }
 
   function allowed () {
-    return RBAC.has('svc_catalog_provision')
+    return RBAC.has(RBAC.FEATURES.ORDER)
   }
 
   function dedup () {

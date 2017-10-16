@@ -270,7 +270,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
         title: __('Start this service'),
         actionFn: startService,
         isDisabled: false,
-        permission: vm.permissions.powerOn
+        permission: vm.permissions.serviceStart
       },
       {
         name: __('Stop'),
@@ -278,7 +278,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
         title: __('Stop this service'),
         actionFn: stopService,
         isDisabled: false,
-        permission: vm.permissions.powerOff
+        permission: vm.permissions.serviceStop
       },
       {
         name: __('Suspend'),
@@ -286,7 +286,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
         title: __('Suspend this service'),
         actionFn: suspendService,
         isDisabled: false,
-        permission: vm.permissions.suspend
+        permission: vm.permissions.serviceSuspend
       }
     ]
 

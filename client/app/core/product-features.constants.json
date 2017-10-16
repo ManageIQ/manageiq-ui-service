@@ -1,0 +1,57 @@
+{
+  "productFeatures": {
+    "CORE": {
+      "APP_LAUNCHER": "sui_app_launcher",
+      "LANGUAGE": "sui_language",
+      "NOTIFICATIONS": "sui_notifications"
+    },
+    "DASHBOARD": {
+      "VIEW": {
+        "MONTHLY_CHARGES": "sui_dashboard_monthly_charge_view"
+      }
+    },
+    "SERVICES": {
+      "VIEW": "sui_services_view",
+      "START": "sui_services_start",
+      "STOP": "sui_services_stop",
+      "SUSPEND": "sui_services_suspend",
+      "TAGS": "sui_services_tags",
+      "RETIRE": {
+        "SET_DATE": "sui_services_retire_date",
+        "RETIRE_NOW": "sui_services_retire"
+      },
+      "EDIT": "sui_services_edit",
+      "DELETE": "sui_services_delete",
+      "OWNERSHIP": "sui_services_ownership"
+    },
+    "VMS": {
+      "VIEW": "sui_vm_details_view",
+      "SNAPSHOTS": {
+        "VIEW": "sui_vm_snapshots_view",
+        "ADD": "sui_vm_snapshot_create",
+        "DELETE": "sui_vm_snapshot_delete"
+      },
+      "CONSOLE": "sui_vm_console",
+      "WEB_CONSOLE": "sui_vm_web_console",
+      "TAGS": "sui_vm_tags",
+      "RETIRE": "sui_vm_retire",
+      "STAR": "sui_vm_start",
+      "STOP": "sui_vm_stop",
+      "SUSPEND": "sui_vm_suspend"
+    },
+    "ORDERS": {
+      "VIEW": "sui_orders_view",
+      "DUPLICATE": "sui_orders_duplicate",
+      "DELETE": "sui_orders_delete"
+    },
+    "SERVICE_CATALOG": {
+      "VIEW": "sui_svc_catalog_view",
+      "CART": "sui_svc_catalog_cart"
+    },
+    "SHOPPING_CART": {
+      "VIEW": "sui_cart_view",
+      "DELETE": "sui_cart_delete",
+      "ORDER": "sui_cart_order"
+    }
+  }
+}

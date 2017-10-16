@@ -73,7 +73,7 @@
               </div>
             </a>
           </div>
-          <div class="card-pf card-pf-aggregate-status card-divider" ng-class="{ disabled: !vm.chargeback.used_cost_sum }">
+          <div ng-if="vm.permissions.monthlyCharges" class="card-pf card-pf-aggregate-status card-divider" ng-class="{ disabled: !vm.chargeback.used_cost_sum }">
             <div class="card-pf-body">
               <h2 class="card-pf-title" translate>
                 Monthly Charges - This Month To Date

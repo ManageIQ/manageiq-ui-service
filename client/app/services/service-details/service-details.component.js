@@ -144,28 +144,27 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
         isDisabled: false,
         tooltipText: __('Power Operations')
       }
-      // TODO: once service_control rbac operations are available, gate the following actions
       const powerOptionsActions = [
         {
           name: __('Start'),
           actionName: 'start',
           title: __('Start the Service'),
           actionFn: startService,
-          permission: true,
+          permission: vm.permissions.serviceStart,
           isDisabled: disableStartButton(vm.service)
         }, {
           name: __('Stop'),
           actionName: 'stop',
           title: __('Stop the Service'),
           actionFn: stopService,
-          permission: true,
+          permission: vm.permissions.serviceStop,
           isDisabled: disableStopButton(vm.service)
         }, {
           name: __('Suspend'),
           actionName: 'suspend',
           title: __('Suspend the Service'),
           actionFn: suspendService,
-          permission: true,
+          permission: vm.permissions.serviceSuspend,
           isDisabled: disableSuspendButton(vm.service)
         }
       ]
