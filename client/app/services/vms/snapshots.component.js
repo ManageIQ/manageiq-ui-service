@@ -189,12 +189,10 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       vm.tlOptions = {
         start: new Date(start.setHours(start.getHours() - 2)),
         end: new Date(end.setHours(end.getHours() + 2)),
-        eventShape: '\uf030',
         eventHover: showTooltip,
         eventGrouping: 60000,
         minScale: (week / month),
         maxScale: (day / 60000),
-        slider: true,
         context: true
       }
     }

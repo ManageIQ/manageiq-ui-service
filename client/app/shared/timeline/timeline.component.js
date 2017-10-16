@@ -85,7 +85,7 @@ function TimelineController ($element, $window) {
       },
       eventPopover = null,
       context = false,
-      slider = false,
+      slider = true,
       eventGrouping = 60000
     } = options
 

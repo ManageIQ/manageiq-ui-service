@@ -55,7 +55,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
         }
       },
       genInfo: {
-        'info': ['No Information Available']
+        'info': 'No Information Available'
       },
       provInfo: {
         'info': ['No Information Available']
@@ -75,7 +75,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
         'href': '#',
         'notifications': [
           {
-            'iconClass': 'fa fa-clock-o',
+            'iconClass': 'pficon pficon-unknown',
             'href': '#'
           }
         ]
@@ -187,7 +187,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
         vm.tlOptions = {
           start: new Date(start.setHours(start.getHours() - 2)),
           end: new Date(end.setHours(end.getHours() + 2)),
-          eventShape: '\uf071',
+          eventShape: '\uf140',
           eventHover: tlTooltip,
           eventGrouping: 1000,
           minScale: 0.234,
@@ -243,14 +243,16 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
         : response.power_state === 'off' ? 'pficon pficon-error-circle-o'
           : response.power_state === 'suspended' ? 'pficon pficon-paused' : 'pficon pficon-unknown'
 
-      vm.genInfo.info = [
-        `<i class="${POWERSTATE}"></i> <b>${response.name}</b>`,
-        response.hostnames.join(', ') || 'No hostnames',
-        response.hardware.guest_os_full_name,
-        response.ipaddresses.join(',') || 'No IP addresses'
-      ]
+      vm.genInfo.nameRow = `<i class="${POWERSTATE}"></i> <b>${response.name}</b>`
+      vm.genInfo.hostnameRow = response.hostnames.join(', ') || 'No hostnames'
+      vm.genInfo.osnameRow = response.hardware.guest_os_full_name || response.hardware.guest_os || 'No OS full name'
+      vm.genInfo.ipRow = response.ipaddresses.join(',\n ') || 'No IP addresses'
+      if (response.ipaddresses.length > 1) {
+        vm.genInfo.ipRow = `${response.ipaddresses.length} IP Addresses:
+          ${response.ipaddresses.map(item => `<div>${item}</div>`).join('\n')}`
+      }
       vm.provInfo.info = [
-        response.vendor,
+        `<b>${response.vendor}</b>`,
         `${response.hardware.cpu_total_cores} CPUs (${response.hardware.cpu_sockets} sockets x ${response.hardware.cpu_cores_per_socket} core)`,
         `${response.hardware.memory_mb} MB`
       ]
@@ -265,8 +267,10 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
       vm.snapshots.notifications[0].count = response.v_total_snapshots
       vm.retirement.notifications[0].count = angular.isUndefined(response.retires_on) ? vm.neverText
         : `${retirementDate.getFullYear()}-${retirementDate.getMonth()}-${retirementDate.getDate()}`
-      vm.compliance.notifications[0].count = angular.isUndefined(response.last_compliance_status) ? vm.neverText : response.last_compliance_status
-      vm.compliance.notifications[0].iconClass = angular.isUndefined(response.last_compliance_status) ? 'pficon pficon-unknown'
+      vm.retirement.notifications[0].iconClass = angular.isUndefined(response.retires_on) ? ''
+        : `fa fa-clock-o`
+      vm.compliance.notifications[0].count = angular.isUndefined(response.last_compliance_status) ? `Never Verified` : response.last_compliance_status
+      vm.compliance.notifications[0].iconClass = angular.isUndefined(response.last_compliance_status) ? ''
         : response.last_compliance_status === 'compliant' ? 'pficon pficon-error-circle-o' : 'pficon pficon-ok'
       vm.vmDetails.complianceHistory = (vm.vmDetails.compliances.length > 0 ? vm.availableText : vm.notAvailable)
 

@@ -35,22 +35,46 @@
 </div>
 <div class="container-fluid breadcrumb-content">
     <div class="row">
-        <div class="col-md-4">
-            <pf-info-status-card class="card-pf-top" status="vm.genInfo" show-top-border="true" html-content="true"></pf-info-status-card>
+        <div class="col-md-4 card-pf-top">
+            <div class=" card-pf card-pf-info-status card-pf-accented">
+                <div class="card-pf-info-image">
+                    <img ng-if="vm.genInfo.iconImage" ng-src="{{vm.genInfo.iconImage}}" alt=""
+                         class="info-img"/>
+                    <span class="info-icon {{$ctrl.status.iconClass}}"></span>
+                </div>
+                <div ng-if="!vm.genInfo.nameRow" class="card-pf-info-content">
+                    <div class="card-pf-info-item" ng-bind-html="vm.genInfo.info"></div>
+                </div>
+                <div ng-if="vm.genInfo.nameRow" class="card-pf-info-content">
+                    <div class="card-pf-info-item" ng-bind-html="vm.genInfo.nameRow"></div>
+                    <div class="card-pf-info-item" ng-bind-html="vm.genInfo.hostnameRow"></div>
+                    <div class="card-pf-info-item" ng-bind-html="vm.genInfo.osnameRow"></div>
+                    <div ng-if="vm.vmDetails.ipaddresses.length <= 2" class="card-pf-info-item"
+                         ng-bind-html="vm.genInfo.ipRow"></div>
+                    <div ng-if="vm.vmDetails.ipaddresses.length > 2" class="card-pf-info-item">
+                        {{vm.vmDetails.ipaddresses.length}} IP Addresses <i class="pficon pficon-info"
+                                                                            popover-placement="right-bottom"
+                                                                            uib-popover-html="vm.genInfo.ipRow"></i>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-2">
-            <pf-info-status-card class="card-pf-top" status="vm.provInfo" show-top-border="true"></pf-info-status-card>
+            <pf-info-status-card class="card-pf-top" status="vm.provInfo" show-top-border="true" html-content="true"></pf-info-status-card>
         </div>
         <div class="col-md-2"
              uib-tooltip="{{vm.vmDetails.complianceHistory}}"
              tooltip-placement="bottom">
-            <pf-aggregate-status-card class="card-pf-top" status="vm.compliance" show-top-border="true"></pf-aggregate-status-card>
+            <pf-aggregate-status-card class="card-pf-top" status="vm.compliance"
+                                      show-top-border="true"></pf-aggregate-status-card>
         </div>
         <div class="col-md-2">
-            <pf-aggregate-status-card class="card-pf-top" status="vm.retirement" show-top-border="true"></pf-aggregate-status-card>
+            <pf-aggregate-status-card class="card-pf-top" status="vm.retirement"
+                                      show-top-border="true"></pf-aggregate-status-card>
         </div>
         <div class="col-md-2">
-            <pf-aggregate-status-card ng-if="vm.permissions.vm_snapshot_show_list" class="card-pf-top" status="vm.snapshots"
+            <pf-aggregate-status-card ng-if="vm.permissions.vm_snapshot_show_list" class="card-pf-top"
+                                      status="vm.snapshots"
                                       ui-sref="vms.snapshots({vmId: vm.vmDetails.id})"
                                       show-top-border="true"></pf-aggregate-status-card>
         </div>
@@ -59,44 +83,30 @@
         <div class="col-md-12">
             <div class="card-pf">
                 <h2>{{'Timeline - Power Events'|translate}}
-                    <span class="detail">{{'View All' | translate}}</span>
+                    <span class="detail">{{'Last 7 days' | translate}}</span>
                 </h2>
                 <timeline data="vm.tlData" options="vm.tlOptions"></timeline>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <div class="card-pf">
+        <div class="col-md-8">
+            <div class="card-pf card-pf-large">
                 <usage-graphs
-                        title-details="{{'created on ' | translate}}{{(vm.metrics.resources[0].created_on || vm.today) | date:'short'}}"
                         cpu-chart="vm.cpuUtil"
                         memory-chart="vm.memUtil"
                         storage-chart="vm.stoUtil"></usage-graphs>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card-pf">
-                        <h2><i class="pficon-storage-domain"></i>{{'Disk Usage' | translate}}</h2>
-                        <pf-empty-state ng-if="!vm.diskUsage" config="vm.emptyState"></pf-empty-state>
-                        <pf-utilization-bar-chart
-                                available-tooltip-function="vm.availableTooltip(item)"
-                                used-tooltip-function="vm.usedTooltip(item)"
-                                ng-repeat="item in vm.diskUsage"
-                                chart-data="item.data"
-                                chart-title="item.device_name" layout="item.layout"
-                                units="item.units" threshold-error="85"
-                                threshold-warning="60"></pf-utilization-bar-chart>
+        <div class="col-md-4">
+            <div class="card-pf card-pf-large">
+                <h2 translate>Smart State Analysis</h2>
+                <div class="row card-pf-row" ng-repeat="item in vm.ssAnalysis">
+                    <div class="col-xs-2 col-md-3">
+                        <span class="pull-right">{{item.value}}</span>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card-pf">
-                        <h2 translate>Disk I/O</h2>
-                        <pf-empty-state config="vm.emptyState"></pf-empty-state>
+                    <div class="col-xs-10 col-md-9">
+                        <i class={{item.icon}}></i> {{item.title}}
                     </div>
                 </div>
             </div>
@@ -128,15 +138,16 @@
         </div>
         <div class="col-md-4">
             <div class="card-pf card-pf-regular">
-                <h2 translate>Smart State Analysis</h2>
-                <div class="row card-pf-row" ng-repeat="item in vm.ssAnalysis">
-                    <div class="col-xs-2 col-md-3">
-                        <span class="pull-right">{{item.value}}</span>
-                    </div>
-                    <div class="col-xs-10 col-md-9">
-                        <i class={{item.icon}}></i> {{item.title}}
-                    </div>
-                </div>
+                <h2><i class="pficon-storage-domain"></i>{{'Disk Usage' | translate}}</h2>
+                <pf-empty-state ng-if="!vm.diskUsage" config="vm.emptyState"></pf-empty-state>
+                <pf-utilization-bar-chart
+                        available-tooltip-function="vm.availableTooltip(item)"
+                        used-tooltip-function="vm.usedTooltip(item)"
+                        ng-repeat="item in vm.diskUsage"
+                        chart-data="item.data"
+                        chart-title="item.device_name" layout="item.layout"
+                        units="item.units" threshold-error="85"
+                        threshold-warning="60"></pf-utilization-bar-chart>
             </div>
         </div>
     </div>
