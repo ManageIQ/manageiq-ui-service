@@ -18,11 +18,11 @@ describe('Services-state Service', function () {
       const expectedOptions = {
         attributes: [
           'name', 'guid', 'created_at', 'type', 'description', 'picture', 'picture.image_href', 'evm_owner.name', 'evm_owner.userid',
-          'miq_group.description', 'all_service_children', 'aggregate_all_vm_cpus', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count',
+          'miq_group.description', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count',
           'aggregate_all_vm_disk_space_allocated', 'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'retired',
           'retirement_state', 'retirement_warn', 'retires_on', 'actions', 'custom_actions', 'provision_dialog', 'service_resources',
           'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options', 'vms.ipaddresses',
-          'vms.snapshots', 'vms.v_total_snapshots', 'vms.v_snapshot_newest_name', 'vms.v_snapshot_newest_timestamp', 'vms.v_snapshot_newest_total_size',
+          'vms.snapshots', 'vms.v_total_snapshots', 'vms.v_snapshot_newest_name', 'vms.v_snapshot_newest_timestamp',
           'vms.supports_console?', 'vms.supports_launch_cockpit?', 'vms.max_mem_usage_absolute_average_avg_over_time_period', 'vms.hardware',
           'vms.hardware.aggregate_cpu_speed', 'vms.cpu_usagemhz_rate_average_avg_over_time_period',
         ],
@@ -103,7 +103,7 @@ describe('Services-state Service', function () {
         value: 'test',
       };
       const expectedOptions = {
-        attributes: ["picture", "picture.image_href", "chargeback_report", "evm_owner.userid", "miq_group.description", "v_total_vms", "power_state", "power_states", "power_status", "all_service_children", "all_vms", "custom_actions", "service_resources", "tags"],
+        attributes: ["picture", "picture.image_href", "chargeback_report", "evm_owner.userid", "v_total_vms", "power_state", "all_service_children", "tags"],
         auto_refresh: false,
         expand: "resources",
         filter: ["ancestry=null"],
