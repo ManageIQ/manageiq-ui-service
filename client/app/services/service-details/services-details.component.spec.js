@@ -114,4 +114,14 @@ describe('Component: ServiceDetails', function() {
       expect(suspendButton.hasClass('disabled')).to.eq(true);
     });
   });
+  describe('with $componentController',() => {
+    let ctrl;
+
+    beforeEach(() => {
+      bard.inject('$componentController', '$stateParams', '$state', '$window', 'CollectionsApi', 'EventNotifications', 'Chargeback', 'Consoles',
+                                          'TagEditorModal', 'ModalService', 'PowerOperations', 'ServicesState', 'TaggingService', 'lodash',
+                                          'Polling', 'LONG_POLLING_INTERVAL', 'UsageGraphsService');
+      ctrl = $componentController('ServiceDetailsComponent');
+    });
+  });
 });
