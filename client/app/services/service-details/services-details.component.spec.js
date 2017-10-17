@@ -116,12 +116,35 @@ describe('Component: ServiceDetails', function() {
   });
   describe('with $componentController',() => {
     let ctrl;
-
+    let mockDir = 'tests/mock/services/';
     beforeEach(() => {
-      bard.inject('$componentController', '$stateParams', '$state', '$window', 'CollectionsApi', 'EventNotifications', 'Chargeback', 'Consoles',
+      bard.inject('$componentController', '$state', '$window', 'CollectionsApi', 'EventNotifications', 'Chargeback', 'Consoles',
                                           'TagEditorModal', 'ModalService', 'PowerOperations', 'ServicesState', 'TaggingService', 'lodash',
                                           'Polling', 'LONG_POLLING_INTERVAL', 'UsageGraphsService');
-      ctrl = $componentController('ServiceDetailsComponent');
+      const stateParams = {
+        serviceId: 1234
+      }
+      ctrl = $componentController('serviceDetails', {$stateParams: stateParams});
     });
+    it('should be defined', () => {
+      ctrl.$onInit();
+      expect(ctrl).to.be.defined;
+    });
+    it('should get a service successfully', () => {
+     const service = readJSON(mockDir + 'service1.json');
+     const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(service));
+     ctrl.$onInit();
+     expect(collectionsApiSpy).to.have.been.calledWith('services', 1234);
+    });
+    it('should build up generic objects', () => {
+      const service = readJSON(mockDir + 'service1.json');
+      const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(service));
+      ctrl.$onInit();
+      const genericObjects = service.generic_objects;
+      const expectedGenericObjects = readJSON(`${mockDir}genericObjects.json`);
+      const testExpectedGenericObjects = ctrl.getGenericObjects(genericObjects);
+      expect(testExpectedGenericObjects).to.eql(expectedGenericObjects);
+    })
   });
+
 });

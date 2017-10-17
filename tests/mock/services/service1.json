@@ -436,6 +436,53 @@
       "supports_cockpit?": true
     }
   ],
+  "generic_objects": [
+    {
+      "href": "http://localhost:3001/api/services/10000000000634/generic_objects/10000000000015",
+      "id": "10000000000015",
+      "name": "My First GO",
+      "generic_object_definition_id": "10000000000001",
+      "created_at": "2017-09-19T21:03:28Z",
+      "updated_at": "2017-09-19T21:03:28Z",
+      "properties": {
+        "address": "192.168.15.1",
+        "services": [
+          10000000000634
+        ],
+        "last_restart": "2017-03-09T14:45:07.000Z"
+      },
+      "picture": {
+        "href": "http://localhost:3001/api/picture/10000000000042",
+        "id": "10000000000042",
+        "resource_id": "10000000000001",
+        "resource_type": "GenericObjectDefinition",
+        "image_href": "http://localhost:3001/pictures/10r42.jpg",
+        "extension": "jpg"
+      },
+      "generic_object_definition": {
+        "href": "http://localhost:3001/api/generic_object_definition/10000000000001",
+        "id": "10000000000001",
+        "name": "LoadBalancer",
+        "description": "LoadBalancer description",
+        "properties": {
+          "attributes": {
+            "address": "string",
+            "last_restart": "datetime"
+          },
+          "associations": {
+            "vms": "Vm",
+            "services": "Service"
+          },
+          "methods": [
+            "add_vm",
+            "remove_vm"
+          ]
+        },
+        "created_at": "2017-09-19T20:20:44Z",
+        "updated_at": "2017-09-19T20:20:44Z"
+      }
+    }
+  ],
   "actions": [
     {
       "name": "edit",
