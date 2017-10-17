@@ -27,8 +27,8 @@
 					</div>
 					<list-expanded-content>
 							<div class="row" ng-repeat="row in $parent.item.properties">
-								<div class="col-lg-4 col-md-4 col-sm-4" ng-repeat="item in row">
-									<strong>{{item.key}}:</strong> {{item.value}}
+								<div class="col-lg-4 col-md-4 col-sm-4 clearfix" ng-repeat="item in row">
+									<strong class="pull-left">{{item.key}}:</strong> <span class="pull-right">{{item.value}}</span>
 								</div>
 								<div ng-if="row.length < 3" ng-class="(row.length === 2 ? 'col-lg-4 col-md-4 col-sm-4': 'col-lg-8 col-md-8 col-sm-8')"></div>
 							</div>
