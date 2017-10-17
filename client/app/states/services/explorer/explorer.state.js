@@ -12,7 +12,7 @@ function getStates (RBAC) {
       title: __('Services Explorer'),
       params: { filter: null },
       data: {
-        authorization: RBAC.hasAny(['service_view'])
+        authorization: RBAC.has(RBAC.FEATURES.SERVICES.VIEW)
       }
     }
   }

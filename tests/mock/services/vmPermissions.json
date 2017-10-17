@@ -1,0 +1,12 @@
+{
+    "start": false,
+    "stop": true,
+    "suspend": true,
+    "tags": true,
+    "snapshotsView": true,
+    "snapshotsAdd": true,
+    "snapshotsDelete": true,
+    "deleteAll": true,
+    "revert": true,
+    "retire": true
+}

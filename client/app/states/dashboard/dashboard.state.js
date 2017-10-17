@@ -13,7 +13,7 @@ function getStates () {
       templateUrl,
       controller: StateController,
       controllerAs: 'vm',
-      title: N_('Dashboard'),
+      title: __('Dashboard'),
       data: {
         requireUser: true
       },
@@ -135,7 +135,7 @@ function resolveServicesWithDefinedServiceIds (CollectionsApi, RBAC) {
 }
 
 /** @ngInject */
-function StateController ($state, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback) {
+function StateController ($state, definedServiceIdsServices, retiredServices, expiringServices, allRequests, lodash, $q, Chargeback, RBAC) {
   const vm = this
   const retiredTitle = __('Retire Status')
   angular.extend(vm, {
@@ -144,7 +144,9 @@ function StateController ($state, definedServiceIdsServices, retiredServices, ex
     navigateToRetiredServicesList: navigateToRetiredServicesList,
     navigateToCurrentServicesList: navigateToCurrentServicesList
   })
-
+  vm.permissions = {
+    'monthlyCharges': RBAC.has(RBAC.FEATURES.DASHBOARD.VIEW.MONTHLY_CHARGES)
+  }
   if (angular.isDefined(definedServiceIdsServices)) {
     vm.servicesCount = {}
     vm.servicesFeature = false

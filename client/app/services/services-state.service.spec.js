@@ -67,6 +67,9 @@ describe('Services-state Service', function () {
         'setRetireDate': false,
         'editTags': false,
         'viewAnsible': false,
+        'serviceStart': false,
+        'serviceStop': false,
+        'serviceSuspend': false,
         'instanceStart': false,
         'instanceStop': false,
         'instanceSuspend': false,
@@ -119,7 +122,7 @@ describe('Services-state Service', function () {
     beforeEach(function () {
       module('app.services');
       bard.inject('RBAC');
-      permissionsSpy = sinon.stub(RBAC, 'hasAny').returns(true);
+      permissionsSpy = sinon.stub(RBAC, 'has').returns(true);
 
       bard.inject('ServicesState', '$http', 'CollectionsApi', 'ListConfiguration');
     });

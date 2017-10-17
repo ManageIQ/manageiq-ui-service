@@ -9,7 +9,6 @@ export function VmsService (CollectionsApi, RBAC) {
   }
   let filters = []
   let permissions = getPermissions()
-
   return {
     checkMenuPermissions: checkMenuPermissions,
     createSnapshots: createSnapshots,
@@ -131,11 +130,16 @@ export function VmsService (CollectionsApi, RBAC) {
 
   function getPermissions () {
     return {
-      create: RBAC.hasAny(['vm_snapshot_add']),
-      delete: RBAC.hasAny(['vm_snapshot_delete']),
+      start: RBAC.has(RBAC.FEATURES.VMS.START),
+      stop: RBAC.has(RBAC.FEATURES.VMS.STOP),
+      suspend: RBAC.has(RBAC.FEATURES.VMS.SUSPEND),
+      tags: RBAC.has(RBAC.FEATURES.VMS.TAGS),
+      snapshotsView: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.VIEW),
+      snapshotsAdd: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.ADD),
+      snapshotsDelete: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.DELETE),
       deleteAll: RBAC.hasAny(['vm_snapshot_delete_all']),
       revert: RBAC.hasAny(['vm_snapshot_revert']),
-      instanceRetire: RBAC.hasAny(['instance_control', 'instance_retire'])
+      retire: RBAC.has(RBAC.FEATURES.VMS.RETIRE)
     }
   }
 
@@ -207,7 +211,7 @@ export function VmsService (CollectionsApi, RBAC) {
     let lifeCycleActions
     const clockIcon = 'fa fa-clock-o'
     const permissions = getPermissions()
-    if (permissions.instanceRetire) {
+    if (permissions.retire) {
       lifeCycleActions = {
         title: __('Lifecycle'),
         actionName: 'lifecycle',
@@ -231,7 +235,7 @@ export function VmsService (CollectionsApi, RBAC) {
           confirmationOkText: __('Retire'),
           confirmationOkStyle: 'primary',
           confirmationId: 'retireResourceConfirmId',
-          permission: permissions.instanceRetire,
+          permission: permissions.retire,
           isDisabled: false
         }
       ]

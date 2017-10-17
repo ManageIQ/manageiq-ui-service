@@ -60,8 +60,8 @@ export function OrdersStateFactory (ListConfiguration, CollectionsApi, RBAC) {
   function getPermissions () {
     const permissions = {
       approve: RBAC.has('miq_request_approval'),
-      delete: RBAC.has('miq_request_delete'),
-      copy: RBAC.has('miq_request_copy')
+      delete: RBAC.has(RBAC.FEATURES.ORDERS.DELETE),
+      copy: RBAC.has(RBAC.FEATURES.ORDERS.DUPLICATE)
     }
 
     return permissions

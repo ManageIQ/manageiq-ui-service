@@ -100,25 +100,27 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
 
   function getPermissions () {
     return {
-      edit: RBAC.hasAny(['service_admin', 'service_edit']),
-      delete: RBAC.hasAny(['service_admin', 'service_delete']),
+      edit: RBAC.has(RBAC.FEATURES.SERVICES.EDIT),
+      delete: RBAC.has(RBAC.FEATURES.SERVICES.DELETE),
       reconfigure: RBAC.hasAny(['service_admin', 'service_reconfigure']),
-      setOwnership: RBAC.hasAny(['service_admin', 'service_ownership']),
-      retire: RBAC.hasAny(['service_control', 'service_retire_now']),
-      setRetireDate: RBAC.hasAny(['service_control', 'service_retire']),
-      editTags: RBAC.hasAny(['service_control', 'service_tag']),
+      setOwnership: RBAC.has(RBAC.FEATURES.SERVICES.OWNERSHIP),
+      retire: RBAC.has(RBAC.FEATURES.SERVICES.RETIRE.RETIRE_NOW),
+      setRetireDate: RBAC.has(RBAC.FEATURES.SERVICES.RETIRE.SET_DATE),
+      editTags: RBAC.has(RBAC.FEATURES.SERVICES.TAGS),
       viewAnsible: RBAC.hasAny(['configuration_script_view', 'configuration_scripts_accord']),
+      serviceStart: RBAC.has(RBAC.FEATURES.SERVICES.START),
+      serviceStop: RBAC.has(RBAC.FEATURES.SERVICES.STOP),
+      serviceSuspend: RBAC.has(RBAC.FEATURES.SERVICES.SUSPEND),
+      instanceStart: RBAC.has(RBAC.FEATURES.VMS.START),
+      instanceStop: RBAC.has(RBAC.FEATURES.VMS.STOP),
+      instanceSuspend: RBAC.has(RBAC.FEATURES.VMS.SUSPEND),
+      instanceRetire: RBAC.hasAny([RBAC.FEATURES.SERVICES.RETIRE.RETIRE_NOW, RBAC.FEATURES.SERVICES.RETIRE.SET_DATE]),
+      cockpit: RBAC.has(RBAC.FEATURES.VMS.WEB_CONSOLE),
+      console: RBAC.has(RBAC.FEATURES.VMS.CONSOLE),
+      viewSnapshots: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.VIEW),
 
-      instanceStart: RBAC.hasAny(['instance_control', 'instance_start']),
-      instanceStop: RBAC.hasAny(['instance_control', 'instance_stop']),
-      instanceSuspend: RBAC.hasAny(['instance_control', 'instance_suspend']),
-      instanceRetire: RBAC.hasAny(['instance_control', 'instance_retire']),
-      cockpit: RBAC.has('cockpit_console'),
-      console: RBAC.has('vm_console'),
-      viewSnapshots: RBAC.hasAny(['vm_snapshot', 'vm_snapshot_view', 'cloud_volume_snapshot', 'cloud_volume_snapshot_view']),
-
-      vm_snapshot_show_list: RBAC.has('vm_snapshot_show_list'), // Display Lists of VM Snapshots
-      vm_snapshot_add: RBAC.hasAny(['vm_snapshot_add']), // Create Snapshot
+      vm_snapshot_show_list: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.VIEW), // Display Lists of VM Snapshots
+      vm_snapshot_add: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.ADD), // Create Snapshot
       ems_infra_show: RBAC.has('ems_infra_show'), // View Infrastructure Providers
       ems_cluster_show: RBAC.has('ems_cluster_show'), //  Display Individual Clusters / Deployment Roles
       host_show: RBAC.has('host_show'), // Display Individual Hosts / Nodes

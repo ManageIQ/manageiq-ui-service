@@ -36,8 +36,9 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
         about: RBAC.has('about'),
         documentation: RBAC.has('documentation')
       },
-      suiAppLauncher: RBAC.has('sui_app_launcher'),
-      suiNotifications: RBAC.has('sui_notifications'),
+      suiAppLauncher: RBAC.has(RBAC.FEATURES.CORE.APP_LAUNCHER),
+      suiNotifications: RBAC.has(RBAC.FEATURES.CORE.NOTIFICATIONS),
+      suiLanguage: RBAC.has(RBAC.FEATURES.CORE.LANGUAGE),
       helpMenu: RBAC.hasAny(['about', 'product', 'documentation'])
     }
     EventNotifications.setToastDisplay(vm.permissions.suiNotifications)

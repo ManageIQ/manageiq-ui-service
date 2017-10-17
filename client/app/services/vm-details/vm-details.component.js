@@ -35,7 +35,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
   }
 
   function activate () {
-    vm.permissions = ServicesState.getPermissions()
+    vm.permissions = VmsService.getPermissions()
     angular.extend(vm, {
       hasCustomButtons: hasCustomButtons,
       loading: true,
@@ -177,14 +177,14 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         actionName: 'view',
         title: __('View snapshots'),
         actionFn: viewSnapshots,
-        permission: vm.permissions.viewSnapshots
+        permission: vm.permissions.snapshotsView
       },
       {
         name: __('Create'),
         actionName: 'create',
         title: __('Create snapshots'),
         actionFn: processSnapshot,
-        permission: vm.permissions.vm_snapshot_add
+        permission: vm.permissions.snapshotsAdd
       }
     ]
     snapshotOptionsMenu.actions = VmsService.checkMenuPermissions(snapshotOptionsActions)
@@ -225,7 +225,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         actionName: 'start',
         title: __('Start the Service'),
         actionFn: startVM,
-        permission: vm.permissions.instanceStart,
+        permission: vm.permissions.start,
         isDisabled: vm.vmDetails.power_state === 'on'
       }, {
         icon: 'fa fa-stop',
@@ -233,7 +233,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         actionName: 'stop',
         title: __('Stop the Service'),
         actionFn: stopVM,
-        permission: vm.permissions.instanceStop,
+        permission: vm.permissions.stop,
         isDisabled: vm.vmDetails.power_state !== 'on'
       }, {
         icon: 'fa fa-pause',
@@ -241,7 +241,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, s
         actionName: 'suspend',
         title: __('Suspend the Service'),
         actionFn: suspendVM,
-        permission: vm.permissions.instanceSuspend,
+        permission: vm.permissions.suspend,
         isDisabled: vm.vmDetails.power_state !== 'on'
       }
     ]

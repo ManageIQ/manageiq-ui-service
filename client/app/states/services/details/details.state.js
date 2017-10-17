@@ -11,7 +11,7 @@ function getStates (RBAC) {
       controllerAs: 'vm',
       title: __('Service Details'),
       data: {
-        authorization: RBAC.hasAny(['service_view'])
+        authorization: RBAC.has(RBAC.FEATURES.SERVICES.VIEW)
       }
     }
   }

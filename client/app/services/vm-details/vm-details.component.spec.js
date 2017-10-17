@@ -13,7 +13,7 @@ describe('Component: VM Details', function() {
     let instanceSpy;
     let vmData;
     let controller;
-    let servicePermissions;
+    let vmPermissions;
 
     describe('with $compile', function() {
         beforeEach(inject(function($stateParams, $compile, $rootScope, $componentController, $httpBackend) {
@@ -21,10 +21,10 @@ describe('Component: VM Details', function() {
         $stateParams.vmId = '12345';
         bard.inject('VmsService','ServicesState','PowerOperations','sprintf', 'lodash', 'EventNotifications', 'Polling','LONG_POLLING_INTERVAL', '$state', 'ModalService');
         vmData = readJSON(`${mockDir}vm.json`);
-        servicePermissions = readJSON(`${mockDir}servicePermissions.json`);
+        vmPermissions = readJSON(`${mockDir}vmPermissions.json`);
         state = $state;
         instanceSpy = sinon.stub(VmsService,'getInstance').returns(Promise.resolve({'status':'success'}))
-        const permissionsSpy = sinon.stub(ServicesState,'getPermissions').returns(servicePermissions);
+        const permissionsSpy = sinon.stub(VmsService,'getPermissions').returns(vmPermissions);
         controller = $componentController('vmDetails', {$scope: scope, $state: state, VmsService: VmsService, ServicesState: ServicesState, sprintf: sprintf, lodash: lodash, EventNotifications: EventNotifications, Polling: Polling, PowerOperations: PowerOperations, $state: state, ModalService: ModalService});
 
         scope.$apply();
