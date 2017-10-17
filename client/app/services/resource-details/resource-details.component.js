@@ -246,9 +246,9 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
       vm.genInfo.nameRow = `<i class="${POWERSTATE}"></i> <b>${response.name}</b>`
       vm.genInfo.hostnameRow = response.hostnames.join(', ') || 'No hostnames'
       vm.genInfo.osnameRow = response.hardware.guest_os_full_name || response.hardware.guest_os || 'No OS full name'
-      vm.genInfo.ipRow = response.ipaddresses.join(',\n ') || 'No IP addresses'
-      if (response.ipaddresses.length > 1) {
-        vm.genInfo.ipRow = `${response.ipaddresses.length} IP Addresses:
+      vm.genInfo.ipRow = `${response.ipaddresses.map(item => `<div class="card-pf-info-item">${item}</div>`).join('\n') || 'No IP addresses'}`
+      if (response.ipaddresses.length > 2) {
+        vm.genInfo.ipRowPopover = `${response.ipaddresses.length} IP Addresses:
           ${response.ipaddresses.map(item => `<div>${item}</div>`).join('\n')}`
       }
       vm.provInfo.info = [
@@ -266,7 +266,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
       vm.ssAnalysis.files.value = response.files.length
       vm.snapshots.notifications[0].count = response.v_total_snapshots
       vm.retirement.notifications[0].count = angular.isUndefined(response.retires_on) ? vm.neverText
-        : `${retirementDate.getFullYear()}-${retirementDate.getMonth()}-${retirementDate.getDate()}`
+        : `${retirementDate.getFullYear()}-${retirementDate.toString().split(' ')[1]}-${retirementDate.getDate()}`
       vm.retirement.notifications[0].iconClass = angular.isUndefined(response.retires_on) ? ''
         : `fa fa-clock-o`
       vm.compliance.notifications[0].count = angular.isUndefined(response.last_compliance_status) ? `Never Verified` : response.last_compliance_status
