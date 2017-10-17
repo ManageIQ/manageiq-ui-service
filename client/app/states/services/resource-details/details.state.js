@@ -1,15 +1,18 @@
 /** @ngInject */
-export function VmsDetailsState (routerHelper) {
-  routerHelper.configureStates(getStates())
+export function VmsDetailsState (routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC))
 }
 
-function getStates () {
+function getStates (RBAC) {
   return {
     'services.resource-details': {
       url: '/:serviceId/resource=:vmId',
       params: { viewType: null },
       template: '<resource-details>',
-      title: N_('Resource Details')
+      title: __('Resource Details'),
+      data: {
+        authorization: RBAC.has(RBAC.FEATURES.VMS.VIEW)
+      }
     }
   }
 }

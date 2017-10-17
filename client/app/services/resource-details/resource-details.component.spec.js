@@ -4,7 +4,7 @@ describe('Component: Resource Details', () => {
     module('app.core', 'app.states', 'app.services')
   })
 
-  let scope, state, vmSpy, instanceSpy, vmData, ctrl, servicePermissions
+  let scope, state, vmSpy, instanceSpy, vmData, ctrl, vmPermissions
   let mockDir = 'tests/mock/services/'
 
   describe('with $compile', () => {
@@ -14,10 +14,10 @@ describe('Component: Resource Details', () => {
       bard.inject('VmsService', 'ServicesState', 'PowerOperations', 'sprintf', 'lodash', 'EventNotifications',
         'Polling', 'LONG_POLLING_INTERVAL', '$state', 'ModalService')
       vmData = readJSON(`${mockDir}vm.json`)
-      servicePermissions = readJSON(`${mockDir}servicePermissions.json`)
+      vmPermissions = readJSON(`${mockDir}vmPermissions.json`)
       state = $state
       instanceSpy = sinon.stub(VmsService, 'getInstance').returns(Promise.resolve({'status': 'success'}))
-      const permissionsSpy = sinon.stub(ServicesState, 'getPermissions').returns(servicePermissions)
+      const permissionsSpy = sinon.stub(VmsService, 'getPermissions').returns(vmPermissions)
       ctrl = $componentController('resourceDetails', {
         $scope: scope,
         VmsService: VmsService,

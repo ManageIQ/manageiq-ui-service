@@ -10,8 +10,8 @@ export const ResourceDetailsComponent = {
 }
 
 /** @ngInject */
-function ComponentController ($state, $stateParams, VmsService, ServicesState, lodash, EventNotifications, Polling,
-                              ModalService, PowerOperations, LONG_POLLING_INTERVAL, TaggingService, UsageGraphsService) {
+function ComponentController ($state, $stateParams, VmsService, lodash, EventNotifications, Polling, ModalService,
+                              PowerOperations, LONG_POLLING_INTERVAL, TaggingService, UsageGraphsService) {
   const vm = this
   vm.$onInit = activate
   vm.$onDestroy = onDestroy
@@ -21,7 +21,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
   }
 
   function activate () {
-    vm.permissions = ServicesState.getPermissions()
+    vm.permissions = VmsService.getPermissions()
     angular.extend(vm, {
       elapsed: elapsed,
       availableTooltip: availableTooltip,
@@ -308,14 +308,14 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
         actionName: 'view',
         title: __('View snapshots'),
         actionFn: viewSnapshots,
-        permission: vm.permissions.viewSnapshots
+        permission: vm.permissions.snapshotsView
       },
       {
         name: __('Create'),
         actionName: 'create',
         title: __('Create snapshots'),
         actionFn: processSnapshot,
-        permission: vm.permissions.vm_snapshot_add
+        permission: vm.permissions.snapshotsAdd
       }
     ]
     snapshotOptionsActions.forEach((menuOption) => menuOption.permission ? snapshotOptionsMenu.actions.push(menuOption) : null)
@@ -385,7 +385,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
         actionName: 'start',
         title: __('Start the Service'),
         actionFn: startVM,
-        permission: vm.permissions.instanceStart,
+        permission: vm.permissions.start,
         isDisabled: vm.vmDetails.power_state === 'on'
       }, {
         icon: 'fa fa-stop',
@@ -393,7 +393,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
         actionName: 'stop',
         title: __('Stop the Service'),
         actionFn: stopVM,
-        permission: vm.permissions.instanceStop,
+        permission: vm.permissions.stop,
         isDisabled: vm.vmDetails.power_state !== 'on'
       }, {
         icon: 'fa fa-pause',
@@ -401,7 +401,7 @@ function ComponentController ($state, $stateParams, VmsService, ServicesState, l
         actionName: 'suspend',
         title: __('Suspend the Service'),
         actionFn: suspendVM,
-        permission: vm.permissions.instanceSuspend,
+        permission: vm.permissions.suspend,
         isDisabled: vm.vmDetails.power_state !== 'on'
       }, {
         icon: 'fa fa-clock-o',
