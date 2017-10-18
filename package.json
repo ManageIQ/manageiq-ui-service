@@ -68,7 +68,7 @@
     "bootstrap-switch": "3.3.4",
     "brace": "0.10.0",
     "c3": "0.4.18",
-    "chalk": "2.1.0",
+    "chalk": "2.2.0",
     "clean-webpack-plugin": "0.1.17",
     "copy-webpack-plugin": "4.1.1",
     "core-js": "2.5.1",
