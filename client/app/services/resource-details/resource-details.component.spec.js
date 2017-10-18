@@ -11,7 +11,7 @@ describe('Component: Resource Details', () => {
     beforeEach(inject(($stateParams, $compile, $rootScope, $componentController) => {
       scope = $rootScope.$new()
       $stateParams.vmId = '12345'
-      bard.inject('VmsService', 'ServicesState', 'PowerOperations', 'sprintf', 'lodash', 'EventNotifications',
+      bard.inject('VmsService', 'PowerOperations', 'sprintf', 'lodash', 'EventNotifications',
         'Polling', 'LONG_POLLING_INTERVAL', '$state', 'ModalService')
       vmData = readJSON(`${mockDir}vm.json`)
       vmPermissions = readJSON(`${mockDir}vmPermissions.json`)
@@ -21,7 +21,6 @@ describe('Component: Resource Details', () => {
       ctrl = $componentController('resourceDetails', {
         $scope: scope,
         VmsService: VmsService,
-        ServicesState: ServicesState,
         sprintf: sprintf,
         lodash: lodash,
         EventNotifications: EventNotifications,

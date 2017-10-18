@@ -34,7 +34,7 @@ describe('Component: timeline', function() {
       return element;
     };
 
-    it('should compile timeline  when invoked', () => {
+    it('should compile timeline when invoked', () => {
       const renderedElement = compileHtml(angular.element(`<timeline data="" options=""/>`), parentScope);
       expect(renderedElement[0].querySelectorAll('.timeline').length).to.eq(1);
     });

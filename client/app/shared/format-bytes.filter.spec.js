@@ -25,6 +25,10 @@ describe("Filter: format-bytes/format-megaBytes", function() {
         expect(formatBytesFilter(42424242424242)).to.be.eq("38.58 TB");
     });
 
+    it('should display hyphen when NAN', function () {
+        expect(formatBytesFilter("foo")).to.be.eq("-");
+    });
+
     it('should correctly display invalid format', function () {
         expect(formatBytesFilter(0)).to.be.eq("0 Bytes");
     });
