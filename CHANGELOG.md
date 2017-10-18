@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 71 ending 2017-10-16
+
+### Added
+- Added ability to hide toasts based on RBAC [(#1053)](https://github.com/ManageIQ/manageiq-ui-service/pull/1053)
+
+### Fixed
+- Updates sessionstorage when language is switched [(#1082)](https://github.com/ManageIQ/manageiq-ui-service/pull/1082)
+- For logout If in production redirect to /ui/service/ if in dev route to /  [(#1073)](https://github.com/ManageIQ/manageiq-ui-service/pull/1073)
+- Sets about modal isOpen to false on close [(#1071)](https://github.com/ManageIQ/manageiq-ui-service/pull/1071)
+- DB/LDAP User is not able to log into SSUI [(#1061)](https://github.com/ManageIQ/manageiq-ui-service/pull/1061)
+
 ## Unreleased as of Sprint 70 ending 2017-10-02
 
 ### Added
