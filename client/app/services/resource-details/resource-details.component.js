@@ -239,18 +239,20 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
       })
 
       hasUsageGraphs()
+
       const POWERSTATE = response.power_state === 'on' ? 'pficon pficon-ok'
         : response.power_state === 'off' ? 'pficon pficon-error-circle-o'
           : response.power_state === 'suspended' ? 'pficon pficon-paused' : 'pficon pficon-unknown'
-
       vm.genInfo.nameRow = `<i class="${POWERSTATE}"></i> <b>${response.name}</b>`
-      vm.genInfo.hostnameRow = response.hostnames.join(', ') || 'No hostnames'
       vm.genInfo.osnameRow = response.hardware.guest_os_full_name || response.hardware.guest_os || 'No OS full name'
       vm.genInfo.ipRow = `${response.ipaddresses.map(item => `<div class="card-pf-info-item">${item}</div>`).join('\n') || 'No IP addresses'}`
       if (response.ipaddresses.length > 2) {
         vm.genInfo.ipRowPopover = `${response.ipaddresses.length} IP Addresses:
           ${response.ipaddresses.map(item => `<div>${item}</div>`).join('\n')}`
       }
+      vm.genInfo.hostnameRowPopover = `${response.hostnames.length} Hostnames:
+          ${response.hostnames.map(item => `<div>${item}</div>`).join('\n')}`
+
       vm.provInfo.info = [
         `<b>${response.vendor}</b>`,
         `${response.hardware.cpu_total_cores} CPUs (${response.hardware.cpu_sockets} sockets x ${response.hardware.cpu_cores_per_socket} core)`,

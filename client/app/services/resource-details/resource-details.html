@@ -47,20 +47,30 @@
                 </div>
                 <div ng-if="vm.genInfo.nameRow" class="card-pf-info-content">
                     <div class="card-pf-info-item" ng-bind-html="vm.genInfo.nameRow"></div>
-                    <div class="card-pf-info-item" ng-bind-html="vm.genInfo.hostnameRow"></div>
+                    <div class="card-pf-info-item">
+                        {{vm.vmDetails.hostnames[0] || 'No hostnames'}}
+                        <i ng-if="vm.vmDetails.hostnames.length > 1"
+                           class="pficon pficon-info"
+                           popover-append-to-body="true"
+                           popover-placement="right-bottom"
+                           uib-popover-html="vm.genInfo.hostnameRowPopover"></i>
+                    </div>
                     <div class="card-pf-info-item" ng-bind-html="vm.genInfo.osnameRow"></div>
                     <div ng-if="vm.vmDetails.ipaddresses.length <= 2" class="card-pf-info-item"
                          ng-bind-html="vm.genInfo.ipRow"></div>
                     <div ng-if="vm.vmDetails.ipaddresses.length > 2" class="card-pf-info-item">
-                        {{vm.vmDetails.ipaddresses.length}} IP Addresses <i class="pficon pficon-info"
-                                                                            popover-placement="right-bottom"
-                                                                            uib-popover-html="vm.genInfo.ipRowPopover"></i>
+                        {{vm.vmDetails.ipaddresses.length}} IP Addresses
+                        <i class="pficon pficon-info"
+                           popover-append-to-body="true"
+                           popover-placement="right-bottom"
+                           uib-popover-html="vm.genInfo.ipRowPopover"></i>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-2">
-            <pf-info-status-card class="card-pf-top" status="vm.provInfo" show-top-border="true" html-content="true"></pf-info-status-card>
+            <pf-info-status-card class="card-pf-top" status="vm.provInfo" show-top-border="true"
+                                 html-content="true"></pf-info-status-card>
         </div>
         <div class="col-md-2"
              uib-tooltip="{{vm.vmDetails.complianceHistory}}"
