@@ -94,8 +94,8 @@ function deniedRequestsForServiceReconfigureRequest (CollectionsApi) {
 
 /** @ngInject */
 function resolveExpiringServices (CollectionsApi, RBAC) {
-  var navFeatures = RBAC.getNavFeatures()
-  if (!navFeatures.services.show) {
+
+  if (!RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
     return undefined
   }
   var currentDate = new Date()
@@ -109,8 +109,7 @@ function resolveExpiringServices (CollectionsApi, RBAC) {
 
 /** @ngInject */
 function resolveRetiredServices (CollectionsApi, RBAC) {
-  var navFeatures = RBAC.getNavFeatures()
-  if (!navFeatures.services.show) {
+  if (!RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
     return undefined
   }
   var options = {hide: 'resources', filter: ['service_id=nil', 'retired=true']}
@@ -120,8 +119,7 @@ function resolveRetiredServices (CollectionsApi, RBAC) {
 
 /** @ngInject */
 function resolveServicesWithDefinedServiceIds (CollectionsApi, RBAC) {
-  var navFeatures = RBAC.getNavFeatures()
-  if (!navFeatures.services.show) {
+  if (!RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
     return undefined
   }
 

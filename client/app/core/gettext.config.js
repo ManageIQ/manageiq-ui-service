@@ -11,7 +11,6 @@ export function gettextInit ($window, gettextCatalog, gettext) {
       gettextCatalog.setCurrentLanguage(lang)
       if (lang !== 'en') {
         gettextCatalog.setStrings(lang, languageFile[lang])
-       // gettextCatalog.loadRemote('gettext/json/manageiq-ui-service.json')
       }
     }
   }

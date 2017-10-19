@@ -105,8 +105,6 @@ export function authInit ($rootScope, $state, $log, Session, $sessionStorage, La
   function rbacReloadOrLogin (toState, toParams) {
     return function () {
       if (RBAC.navigationEnabled()) {
-        console.log('checking if nav enabled')
-        console.log(`to state ${toState}`)
         $state.go(toState, toParams)
       } else {
         Session.privilegesError = true
