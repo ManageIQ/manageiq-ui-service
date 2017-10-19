@@ -4,7 +4,8 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, CollectionsA
   var service = {
     get: getNavigation,
     menuItems: menuItems,
-    init: initNavigation
+    init: initNavigation,
+    updateBadgeCounts: updateBadgeCounts
   }
   return service
   function getNavigation () {
