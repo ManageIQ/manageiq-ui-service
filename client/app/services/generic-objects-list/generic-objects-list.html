@@ -1,0 +1,36 @@
+<pf-list-view
+					config="vm.genericObjectsListConfig"
+					items="vm.genericObject.objects"
+					custom-scope="vm">
+					<div class="row generic-objects-container">
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 generic-objects-title"
+                 ng-click="$ctrl.customScope.toggleExpand(item)">
+              <i class="fa fa-angle-right"
+                 ng-class="{'fa-angle-down': item.isExpanded}"></i>
+                 <img ng-src="{{item.picture.image_href}}" class="generic-object-icon" ng-if="item.picture">
+              <span>{{item.name}}</span>
+            </div>
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+              <div uib-dropdown=""
+                   dropdown-append-to-body
+                   class="dropdown pull-right dropdown-kebab-pf" ng-if="item.actions.length > 0">
+                <button type="button" class="btn btn-link dropdown-toggle" uib-dropdown-toggle="" type="button">
+                  <span class="fa fa-ellipsis-v"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body" uib-dropdown-menu>
+                  <li role="menuitem" ng-repeat="action in item.actions">
+                    <a ng-click="$ctrl.customScope.customActionClick(item, action.name)">{{action.name}}</a>
+                  </li>
+                </ul>
+              </div>
+					  </div>
+					</div>
+					<list-expanded-content>
+							<div class="row" ng-repeat="row in $parent.item.properties">
+								<div class="col-lg-4 col-md-4 col-sm-4 clearfix" ng-repeat="item in row">
+									<strong class="pull-left">{{item.key}}:</strong> <span class="pull-right">{{item.value}}</span>
+								</div>
+								<div ng-if="row.length < 3" ng-class="(row.length === 2 ? 'col-lg-4 col-md-4 col-sm-4': 'col-lg-8 col-md-8 col-sm-8')"></div>
+							</div>
+					</list-expanded-content>
+</pf-list-view>

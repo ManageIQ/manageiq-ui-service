@@ -370,10 +370,22 @@
               </pf-list-view>
             </div>
           </li>
+          <li class="list-group-item service-details-resource-group-item" ng-repeat="genericObject in vm.genericObjects">
+              <a class="service-details-resource-group-title"
+              ng-class="{'collapsed': !genericObject.isExpanded}"
+              ng-click="vm.toggleOpenGenericObjects(genericObject)">
+             {{genericObject.name}}
+           </a>
+           <div class="service-details-resource-list-container"
+           ng-class="{'collapse': !genericObject.isExpanded}">
+              <generic-objects-list generic-object="genericObject" on-update="vm.setGenericObjectViewState(object)"></generic-objects-list>
+           </div>
+          </li>
         </ul>
       </section>
     </div>
   </div>
+
   <service-details-ansible ng-if="vm.service.type === 'ServiceAnsiblePlaybook' && vm.permissions.viewAnsible"
                            service="vm.service"></service-details-ansible>
   <div class="panel panel-default ss-details-panel relationships-panel">

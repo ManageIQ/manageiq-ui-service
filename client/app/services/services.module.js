@@ -2,6 +2,7 @@ import { ConsolesFactory } from './consoles.service.js'
 import { CustomButtonComponent } from './custom-button/custom-button.component.js'
 import { DetailRevealComponent } from './detail-reveal/detail-reveal.component.js'
 import { EditServiceModalComponent } from './edit-service-modal/edit-service-modal.component.js'
+import { GenericObjectsListComponent } from './generic-objects-list/generic-objects-list.component.js'
 import { OwnershipServiceModalComponent } from './ownership-service-modal/ownership-service-modal.component.js'
 import { PowerOperationsFactory } from './poweroperations.service.js'
 import { ResourceDetailsComponent } from './resource-details/resource-details.component'
@@ -26,6 +27,7 @@ export const ServicesModule = angular
   .component('customButton', CustomButtonComponent)
   .component('detailReveal', DetailRevealComponent)
   .component('editServiceModal', EditServiceModalComponent)
+  .component('genericObjectsList', GenericObjectsListComponent)
   .component('ownershipServiceModal', OwnershipServiceModalComponent)
   .component('processSnapshotsModal', ProcessSnapshotsModalComponent)
   .component('retireRemoveServiceModal', RetireRemoveServiceModalComponent)

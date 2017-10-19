@@ -43,6 +43,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       disableSuspendButton: disableSuspendButton,
       disableStartButton: disableStartButton,
       toggleOpenResourceGroup: toggleOpenResourceGroup,
+      toggleOpenGenericObjects: toggleOpenGenericObjects,
       openCockpit: openCockpit,
       openConsole: openConsole,
       processSnapshot: processSnapshot,
@@ -54,6 +55,10 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       gotoComputeResource: gotoComputeResource,
       gotoService: gotoService,
       gotoCatalogItem: gotoCatalogItem,
+      getGenericObjects: getGenericObjects,
+      genericObjectsTypeViewState: {},
+      genericObjectsViewState: {},
+      setGenericObjectViewState: setGenericObjectViewState,
       createResourceGroups: createResourceGroups,
       cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
       memoryChart: UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions),
@@ -109,7 +114,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       getChartConfigs()
       Chargeback.processReports(vm.service)
       vm.computeGroup = vm.createResourceGroups(vm.service)
-
+      vm.genericObjects = (angular.isDefined(vm.service.generic_objects) ? vm.getGenericObjects(vm.service.generic_objects) : [])
       TaggingService.queryAvailableTags('services/' + id + '/tags/').then((response) => {
         vm.availableTags = response
       })
@@ -120,7 +125,53 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       EventNotifications.error(__('There was an error fetching this service. ') + response)
     }
   }
+  function getGenericObjects (objects) {
+    let genericObjects = {}
+    objects.forEach((object) => {
+      const genericObjectType = object.generic_object_definition_id
+      let objectTypeViewState = false
+      let objectViewState = false
 
+      if (angular.isDefined(vm.genericObjectsTypeViewState[genericObjectType])) {
+        objectTypeViewState = vm.genericObjectsTypeViewState[genericObjectType]
+      } else {
+        vm.genericObjectsTypeViewState[genericObjectType] = objectTypeViewState
+      }
+
+      if (angular.isDefined(vm.genericObjectsViewState[object.id])) {
+        objectViewState = vm.genericObjectsViewState[object.id]
+      }
+
+      if (!genericObjects[genericObjectType]) {
+        genericObjects[genericObjectType] = {
+          name: object.generic_object_definition.name,
+          isExpanded: objectTypeViewState,
+          id: genericObjectType,
+          objects: []
+        }
+      }
+      const properties = []
+      for (var property in object.properties) {
+        if (property !== 'services') {
+          properties.push({ key: property, value: object.properties[property] })
+        }
+      }
+      object.isExpanded = objectViewState
+      object.properties = lodash.chunk(properties, 3)
+      genericObjects[genericObjectType].objects.push(object)
+    })
+
+    const sortedObjects = []
+    lodash(genericObjects).keys().sort().each((key) => {
+      const tmpGenericObjectType = genericObjects[key]
+      sortedObjects.push(tmpGenericObjectType)
+    })
+
+    return sortedObjects
+  }
+  function setGenericObjectViewState (object) {
+    vm.genericObjectsViewState[object.id] = object.isExpanded
+  }
   function hasCustomButtons (service) {
     const actions = service.custom_actions || {}
     const groups = actions.button_groups || []
@@ -351,7 +402,10 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   function toggleOpenResourceGroup (group) {
     group.open = !group.open
   }
-
+  function toggleOpenGenericObjects (object) {
+    object.isExpanded = !object.isExpanded
+    vm.genericObjectsTypeViewState[object.id] = object.isExpanded
+  }
   function openConsole (item) {
     if (item['supports_console?'] && item.power_state === 'on') {
       Consoles.open(item.id)
