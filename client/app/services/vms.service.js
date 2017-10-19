@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 
 /** @ngInject */
-export function VmsService (CollectionsApi, RBAC) {
+export function VmsService (CollectionsApi, RBAC, lodash) {
   const collection = 'vms'
   const sort = {
     isAscending: true,
@@ -21,6 +21,8 @@ export function VmsService (CollectionsApi, RBAC) {
     setFilters: setFilters,
     getInstance: getInstance,
     getSnapshots: getSnapshots,
+    getMetrics: getMetrics,
+    getEvents: getEvents,
     getPermissions: getPermissions,
     getLifeCycleCustomDropdown: getLifeCycleCustomDropdown,
     revertSnapshot: revertSnapshot
@@ -37,7 +39,7 @@ export function VmsService (CollectionsApi, RBAC) {
     options.sort_options = getSort().currentField.sortType === 'alpha' ? 'ignore_case' : ''
     options.sort_order = getSort().isAscending ? 'asc' : 'desc'
 
-    return CollectionsApi.query(collection + '/' + vmId + '/snapshots', options)
+    return CollectionsApi.query(`${collection}/${vmId}/snapshots`, options)
   }
 
   function getVm (vmId, refresh) {
@@ -47,6 +49,7 @@ export function VmsService (CollectionsApi, RBAC) {
         'boot_time',
         'cloud',
         'compliances',
+        'custom_attributes',
         'cpu_affinity',
         'created_on',
         'custom_actions',
@@ -102,71 +105,18 @@ export function VmsService (CollectionsApi, RBAC) {
         'max_mem_usage_absolute_average_avg_over_time_period',
         'hardware.aggregate_cpu_speed',
         'allocated_disk_storage',
-        'ram_size'
+        'ram_size',
+        'os_image_name'
       ],
       expand: [],
       auto_refresh: refresh
     }
 
-    return CollectionsApi.query(collection + '/' + vmId, options)
-  }
-
-  function setSort (currentField, isAscending) {
-    sort.isAscending = isAscending
-    sort.currentField = currentField
+    return CollectionsApi.query(`${collection}/${vmId}`, options)
   }
 
   function getSort () {
     return sort
-  }
-
-  function setFilters (filterArray) {
-    filters = filterArray
-  }
-
-  function getFilters () {
-    return filters
-  }
-
-  function getPermissions () {
-    return {
-      start: RBAC.has(RBAC.FEATURES.VMS.START),
-      stop: RBAC.has(RBAC.FEATURES.VMS.STOP),
-      suspend: RBAC.has(RBAC.FEATURES.VMS.SUSPEND),
-      tags: RBAC.has(RBAC.FEATURES.VMS.TAGS),
-      snapshotsView: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.VIEW),
-      snapshotsAdd: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.ADD),
-      snapshotsDelete: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.DELETE),
-      deleteAll: RBAC.hasAny(['vm_snapshot_delete_all']),
-      revert: RBAC.hasAny(['vm_snapshot_revert']),
-      retire: RBAC.has(RBAC.FEATURES.VMS.RETIRE)
-    }
-  }
-
-  function deleteSnapshots (vmId, data) {
-    const options = {
-      'action': 'delete',
-      'resources': data
-    }
-
-    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/', null, {}, options)
-  }
-
-  function createSnapshots (vmId, data) {
-    const options = {
-      'action': 'create',
-      'resources': [data]
-    }
-
-    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/', null, {}, options)
-  }
-
-  function revertSnapshot (vmId, snapshotId) {
-    const options = {
-      'action': 'revert'
-    }
-
-    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/' + snapshotId, null, {}, options)
   }
 
   function getInstance (vmId) {
@@ -193,13 +143,119 @@ export function VmsService (CollectionsApi, RBAC) {
     return CollectionsApi.get('instances', vmId, options)
   }
 
+  function getFilters () {
+    return filters
+  }
+
+  function getPermissions () {
+    return {
+      start: RBAC.has(RBAC.FEATURES.VMS.START),
+      stop: RBAC.has(RBAC.FEATURES.VMS.STOP),
+      suspend: RBAC.has(RBAC.FEATURES.VMS.SUSPEND),
+      tags: RBAC.has(RBAC.FEATURES.VMS.TAGS),
+      snapshotsView: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.VIEW),
+      snapshotsAdd: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.ADD),
+      snapshotsDelete: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.DELETE),
+      deleteAll: RBAC.hasAny(['vm_snapshot_delete_all']),
+      revert: RBAC.hasAny(['vm_snapshot_revert']),
+      retire: RBAC.has(RBAC.FEATURES.VMS.RETIRE)
+    }
+  }
+
+  /**
+   * This function handles GET request for vmID metric rollups
+   * @function getMetrics
+   * @param  {number} vmId - The vm id
+   * @param  {object} options - an object containing overrides for required params, optional params: capture_interval, start_date, end_date
+   * @return {promise} A promise containing metrics rollup data
+   */
+  function getMetrics (vmId, options = {}) {
+    const today = new Date()
+    const defaults = {
+      capture_interval: 'daily',
+      expand: 'resources',
+      start_date: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
+    }
+
+    return CollectionsApi.get(`${collection}/${vmId}/metric_rollups`, '', Object.assign(defaults, options))
+  }
+
+  /**
+   * This function handles GET request for vmID event stream, by default fetches all events of type: VmOrTemplate
+   * for the current day
+   * @function getEvents
+   * @param  {number} vmId - The vm id
+   * @param  {object} options - an object containing overrides for required params, optional params: event_type, target_id
+   * @return {promise} A promise containing event stream data
+   */
+  function getEvents (vmId, options = {}) {
+    const today = new Date()
+    const yesterday = new Date(today.setDate(today.getDate() - 1))
+    let filters = []
+    const defaults = {
+      target_id: vmId,
+      target_type: 'VmOrTemplate',
+      timestamp: `>${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`
+    }
+    Object.assign(defaults, options)
+    lodash.forEach(defaults, (value, key) => {
+      switch (key) {
+        case 'timestamp':
+          filters.push(`${key}${value}`)
+          break
+        default:
+          filters.push(`${key}=${value}`)
+      }
+    })
+
+    return CollectionsApi.query(`event_streams`, {
+      expand: 'resources',
+      filter: filters
+    })
+  }
+
+  function setSort (currentField, isAscending) {
+    sort.isAscending = isAscending
+    sort.currentField = currentField
+  }
+
+  function setFilters (filterArray) {
+    filters = filterArray
+  }
+
+  function deleteSnapshots (vmId, data) {
+    const options = {
+      'action': 'delete',
+      'resources': data
+    }
+
+    return CollectionsApi.post(`${collection}/${vmId}/snapshots/`, null, {}, options)
+  }
+
+  function createSnapshots (vmId, data) {
+    const options = {
+      'action': 'create',
+      'resources': [data]
+    }
+
+    return CollectionsApi.post(`${collection}/${vmId}/snapshots/`, null, {}, options)
+  }
+
+  function revertSnapshot (vmId, snapshotId) {
+    const options = {
+      'action': 'revert'
+    }
+
+    return CollectionsApi.post(collection + '/' + vmId + '/snapshots/' + snapshotId, null, {}, options)
+  }
+
   // Private
   function getQueryFilters (filters) {
     const queryFilters = []
 
     filters.forEach((nextFilter) => {
       if (nextFilter.id === 'name' || nextFilter.id === 'description') {
-        queryFilters.push(nextFilter.id + "='%" + nextFilter.value + "%'")
+        queryFilters.push(nextFilter.id + '=\'%' + nextFilter.value + '%\'')
       } else {
         queryFilters.push(nextFilter.id + '=' + nextFilter.value)
       }
@@ -207,6 +263,7 @@ export function VmsService (CollectionsApi, RBAC) {
 
     return queryFilters
   }
+
   function getLifeCycleCustomDropdown (retireFn, vmName) {
     let lifeCycleActions
     const clockIcon = 'fa fa-clock-o'

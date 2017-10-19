@@ -6,11 +6,11 @@ export function formatBytes () {
     if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) {
       return '-'
     }
-    var availableUnits = ['Bytes', 'kB', 'MB', 'GB', 'TB', 'PB']
-    var unit = Math.floor(Math.log(bytes) / Math.log(1024))
-    var val = (bytes / Math.pow(1024, Math.floor(unit))).toFixed(1)
+    const availableUnits = ['Bytes', 'kB', 'MB', 'GB', 'TB', 'PB']
+    const unit = Math.floor(Math.log(bytes) / Math.log(1024))
+    const val = (bytes / Math.pow(1024, Math.floor(unit))).toFixed(2)
 
-    return (val.match(/\.0*$/) ? val.substr(0, val.indexOf('.')) : val) + ' ' + availableUnits[unit]
+    return `${val.match(/\.0*$/) ? val.substr(0, val.indexOf('.')) : val} ${availableUnits[unit]}`
   }
 }
 

@@ -4,6 +4,7 @@ import { DetailRevealComponent } from './detail-reveal/detail-reveal.component.j
 import { EditServiceModalComponent } from './edit-service-modal/edit-service-modal.component.js'
 import { OwnershipServiceModalComponent } from './ownership-service-modal/ownership-service-modal.component.js'
 import { PowerOperationsFactory } from './poweroperations.service.js'
+import { ResourceDetailsComponent } from './resource-details/resource-details.component'
 import { ProcessSnapshotsModalComponent } from './process-snapshots-modal/process-snapshots-modal.component'
 import { RetireRemoveServiceModalComponent } from './retire-remove-service-modal/retire-remove-service-modal.component.js'
 import { RetireServiceModalComponent } from './retire-service-modal/retire-service-modal.component.js'
@@ -15,7 +16,6 @@ import { ServicesStateFactory } from './services-state.service.js'
 import { SharedModule } from '../shared/shared.module.js'
 import { UsageGraphsComponent } from './usage-graphs/usage-graphs.component.js'
 import { UsageGraphsFactory } from './usage-graphs/usage-graphs.service.js'
-import { VmDetailsComponent } from './vm-details/vm-details.component'
 import { VmSnapshotsComponent } from './vms/snapshots.component'
 import { VmsService } from './vms.service.js'
 
@@ -30,12 +30,12 @@ export const ServicesModule = angular
   .component('processSnapshotsModal', ProcessSnapshotsModalComponent)
   .component('retireRemoveServiceModal', RetireRemoveServiceModalComponent)
   .component('retireServiceModal', RetireServiceModalComponent)
+  .component('resourceDetails', ResourceDetailsComponent)
   .component('serviceDetails', ServiceDetailsComponent)
   .component('serviceDetailsAnsible', ServiceDetailsAnsibleComponent)
   .component('serviceDetailsAnsibleModal', ServiceDetailsAnsibleModalComponent)
   .component('serviceExplorer', ServiceExplorerComponent)
   .component('usageGraphs', UsageGraphsComponent)
-  .component('vmDetails', VmDetailsComponent)
   .component('vmSnapshots', VmSnapshotsComponent)
   .factory('Consoles', ConsolesFactory)
   .factory('PowerOperations', PowerOperationsFactory)

@@ -5,7 +5,8 @@ export const UsageGraphsComponent = {
   bindings: {
     cpuChart: '<',
     memoryChart: '<',
-    storageChart: '<'
+    storageChart: '<',
+    titleDetails: '@?'
   },
   controller: ComponentController,
   controllerAs: 'vm',
@@ -19,9 +20,14 @@ function ComponentController () {
 
   function activate () {
     angular.extend(vm, {
+      cpuChart: vm.cpuChart || {data: {total: 0}},
+      memoryChart: vm.memoryChart || {data: {total: 0}},
+      storageChart: vm.storageChart || {data: {total: 0}},
       cpuDataExists: true,
       memoryDataExists: true,
-      storageDataExists: true
+      storageDataExists: true,
+      emptyState: {icon: 'pficon pficon-help', title: 'No Information Available'}
+
     })
 
     if (vm.cpuChart.data.total === 0) {

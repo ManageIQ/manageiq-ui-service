@@ -1,0 +1,167 @@
+<div class="breadcrumb-bar">
+  <span>
+      <ol class="breadcrumb">
+        <li>
+          <a ui-sref="services">{{ 'My Services'|translate }}</a>
+        </li>
+        <li>
+          <a ui-sref="services.details({serviceId: vm.vmDetails.service.id})">{{  vm.vmDetails.service.name  }}</a>
+        </li>
+        <li>
+          {{vm.vmDetails.name}}
+        </li>
+      </ol>
+  </span>
+    <div class="breadcrumb-actions">
+        <div uib-dropdown class="dropdown-kebab-pf">
+            <custom-button ng-if="vm.hasCustomButtons()"
+                           class="custom-dropdown pull-left"
+                           service-id="vm.vmDetails.service.id"
+                           vm-id="vm.vmDetails.id"
+                           custom-actions="vm.vmDetails.custom_actions">
+            </custom-button>
+            <custom-dropdown class="custom-dropdown pull-left"
+                             config="item"
+                             ng-repeat="item in vm.snapshotListActions"
+                             menu-right="true">
+            </custom-dropdown>
+            <custom-dropdown class="custom-dropdown pull-left"
+                             config="item"
+                             ng-repeat="item in vm.listActions"
+                             menu-right="true">
+            </custom-dropdown>
+        </div>
+    </div>
+</div>
+<div class="container-fluid breadcrumb-content">
+    <div class="row">
+        <div class="col-md-4 card-pf-top">
+            <div class=" card-pf card-pf-info-status card-pf-accented">
+                <div class="card-pf-info-image">
+                    <img ng-if="vm.genInfo.iconImage" ng-src="{{vm.genInfo.iconImage}}" alt=""
+                         class="info-img"/>
+                    <span class="info-icon {{$ctrl.status.iconClass}}"></span>
+                </div>
+                <div ng-if="!vm.genInfo.nameRow" class="card-pf-info-content">
+                    <div class="card-pf-info-item" ng-bind-html="vm.genInfo.info"></div>
+                </div>
+                <div ng-if="vm.genInfo.nameRow" class="card-pf-info-content">
+                    <div class="card-pf-info-item" ng-bind-html="vm.genInfo.nameRow"></div>
+                    <div class="card-pf-info-item">
+                        {{vm.vmDetails.hostnames[0] || 'No hostnames'}}
+                        <span ng-if="vm.vmDetails.hostnames.length > 1">
+                            , {{vm.vmDetails.hostnames.length}} Hostnames
+                            <i class="pficon pficon-info"
+                               popover-append-to-body="true"
+                               popover-placement="right-bottom"
+                               uib-popover-html="vm.genInfo.hostnameRowPopover"></i>
+                        </span>
+                    </div>
+                    <div class="card-pf-info-item" ng-bind-html="vm.genInfo.osnameRow"></div>
+                    <div class="card-pf-info-item">
+                        {{vm.vmDetails.ipaddresses[0] || 'No IP adddresses'}}
+                        <span ng-if="vm.vmDetails.ipaddresses.length > 1">
+                            , {{vm.vmDetails.ipaddresses.length}} IP Addresses
+                            <i class="pficon pficon-info"
+                               popover-append-to-body="true"
+                               popover-placement="right-bottom"
+                               uib-popover-html="vm.genInfo.ipRowPopover"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <pf-info-status-card class="card-pf-top" status="vm.provInfo" show-top-border="true"
+                                 html-content="true"></pf-info-status-card>
+        </div>
+        <div class="col-md-2"
+             uib-tooltip="{{vm.vmDetails.complianceHistory}}"
+             tooltip-placement="bottom">
+            <pf-aggregate-status-card class="card-pf-top" status="vm.compliance"
+                                      show-top-border="true"></pf-aggregate-status-card>
+        </div>
+        <div class="col-md-2">
+            <pf-aggregate-status-card class="card-pf-top" status="vm.retirement"
+                                      show-top-border="true"></pf-aggregate-status-card>
+        </div>
+        <div class="col-md-2">
+            <pf-aggregate-status-card ng-if="vm.permissions.snapshotsView" class="card-pf-top"
+                                      status="vm.snapshots"
+                                      ui-sref="vms.snapshots({vmId: vm.vmDetails.id})"
+                                      show-top-border="true"></pf-aggregate-status-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-pf">
+                <h2>{{'Timeline - Power Events'|translate}}
+                    <span class="detail">{{'Last 7 days' | translate}}</span>
+                </h2>
+                <timeline data="vm.tlData" options="vm.tlOptions"></timeline>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card-pf card-pf-large">
+                <usage-graphs
+                        cpu-chart="vm.cpuUtil"
+                        memory-chart="vm.memUtil"
+                        storage-chart="vm.stoUtil"></usage-graphs>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-pf card-pf-large">
+                <h2 translate>Smart State Analysis</h2>
+                <div class="row card-pf-row" ng-repeat="item in vm.ssAnalysis">
+                    <div class="col-xs-2 col-md-3">
+                        <span class="pull-right">{{item.value}}</span>
+                    </div>
+                    <div class="col-xs-10 col-md-9">
+                        <i class={{item.icon}}></i> {{item.title}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card-pf card-pf-regular">
+                <h2><i class="fa fa-tags"></i>{{'Tags' | translate}}</h2>
+                <pf-empty-state ng-if="!vm.availableTags" config="vm.emptyState"></pf-empty-state>
+                <tagging-widget tags-of-item="vm.availableTags"
+                                read-only="true"></tagging-widget>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-pf card-pf-regular">
+                <h2 trasnlate># Custom Attributes</h2>
+                <pf-empty-state ng-if="!vm.vmDetails.custom_attributes.length" config="vm.emptyState"></pf-empty-state>
+                <div ng-if="vm.vmDetails.custom_attributes.length" class="row"
+                     ng-repeat="item in vm.vmDetails.custom_attributes">
+                    <div class="col-sm-6">
+                        {{ item.name }}
+                    </div>
+                    <div class="col-sm-6 ">
+                        {{ item.value }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-pf card-pf-regular">
+                <h2><i class="pficon-storage-domain"></i>{{'Disk Usage' | translate}}</h2>
+                <pf-empty-state ng-if="!vm.diskUsage" config="vm.emptyState"></pf-empty-state>
+                <pf-utilization-bar-chart
+                        available-tooltip-function="vm.availableTooltip(item)"
+                        used-tooltip-function="vm.usedTooltip(item)"
+                        ng-repeat="item in vm.diskUsage"
+                        chart-data="item.data"
+                        chart-title="item.device_name" layout="item.layout"
+                        units="item.units" threshold-error="85"
+                        threshold-warning="60"></pf-utilization-bar-chart>
+            </div>
+        </div>
+    </div>
+</div>

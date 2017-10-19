@@ -1,4 +1,6 @@
 .breadcrumb-bar
+  display: flex
+
   .view-selector-bar
     background-color: transparent
     position: absolute
@@ -18,3 +20,10 @@
       &:hover
         color: $app-color-medium-blue-2
 
+  .breadcrumb-actions
+    margin-left: auto
+    padding: 5px 15px
+
+.breadcrumb-content
+  height: calc(100vh - 94px)
+  overflow-y: auto
