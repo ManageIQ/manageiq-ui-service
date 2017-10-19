@@ -1,15 +1,7 @@
 /** @ngInject */
-export function NavigationController (Text, Navigation, Polling, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
+export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
                                       EventNotifications, ApplianceInfo, CollectionsApi, RBAC) {
   const vm = this
-/**
- * First lets get the permissions for nav
- * create an array of the nav items
- * only add the ones that you have access to
- * be sure that nav badge counts are incremented
- *
- */
-
   const destroy = $scope.$on('shoppingCartUpdated', refresh)
   const destroyCart = $scope.$on('shoppingCartUpdated', refreshCart)
   const destroyNotifications = $scope.$watch(

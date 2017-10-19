@@ -94,7 +94,6 @@ function deniedRequestsForServiceReconfigureRequest (CollectionsApi) {
 
 /** @ngInject */
 function resolveExpiringServices (CollectionsApi, RBAC) {
-
   if (!RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
     return undefined
   }

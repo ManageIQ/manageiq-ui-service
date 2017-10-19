@@ -55,7 +55,6 @@ export function authInit ($rootScope, $state, $log, Session, $sessionStorage, La
   }
 
   function changeStart (event, toState, toParams, _fromState, _fromParams) {
-    // console.log(`to state ${toState}`)
     if (angular.isDefined(toState.data)) {
       if (angular.isDefined(toState.data.authorization) && !toState.data.authorization) {
         event.preventDefault()
