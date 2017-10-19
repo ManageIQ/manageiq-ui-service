@@ -1,7 +1,14 @@
 /** @ngInject */
-export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
+export function NavigationController (Text, Navigation, Polling, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
                                       EventNotifications, ApplianceInfo, CollectionsApi, RBAC) {
   const vm = this
+/**
+ * First lets get the permissions for nav
+ * create an array of the nav items
+ * only add the ones that you have access to
+ * be sure that nav badge counts are incremented
+ *
+ */
 
   const destroy = $scope.$on('shoppingCartUpdated', refresh)
   const destroyCart = $scope.$on('shoppingCartUpdated', refreshCart)
@@ -68,14 +75,17 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       about: about(),
       sites: sites()
     })
-    getNavigationItems(Navigation.items)
+    setupNavigation()
     refresh()
     if (ShoppingCart.allowed()) {
       ShoppingCart.reload()
     }
     setActiveItems()
   }
-
+  function setupNavigation () {
+    Navigation.init()
+    vm.items = Navigation.get()
+  }
   function shoppingCart () {
     return {
       count: 0,
@@ -164,41 +174,6 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
         })
       }
     })
-  }
-
-  function getNavigationItems (items) {
-    vm.items.splice(0, vm.items.length)
-    angular.forEach(items, function (nextPrimary) {
-      if (nextPrimary.show !== false) {
-        getTextForNavigationItems(nextPrimary)
-        vm.items.push(nextPrimary)
-        if (nextPrimary.children) {
-          nextPrimary.children.splice(0, nextPrimary.children.length)
-        }
-        if (nextPrimary.secondary) {
-          if (angular.isUndefined(nextPrimary.children)) {
-            nextPrimary.children = []
-          }
-          angular.forEach(nextPrimary.secondary, function (nextSecondary) {
-            if (nextSecondary.show !== false) {
-              getTextForNavigationItems(nextSecondary)
-              nextPrimary.children.push(nextSecondary)
-            }
-          })
-        }
-      }
-    })
-  }
-
-  function getTextForNavigationItems (navItem) {
-    if (angular.isDefined(navItem.originalTitle)) {
-      navItem.title = __(navItem.originalTitle)
-    }
-    if (angular.isDefined(navItem.badges)) {
-      angular.forEach(navItem.badges, function (badge) {
-        badge.tooltip = __(badge.originalTooltip)
-      })
-    }
   }
 
   function refreshCart () {

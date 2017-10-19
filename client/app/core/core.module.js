@@ -11,11 +11,6 @@ import {
   init
 } from './config.js'
 
-import {
-  navConfig,
-  navInit
-} from './navigation.config.js'
-
 // Core
 import { ApplianceInfo } from './appliance-info.service.js'
 import { AuthenticationApiFactory } from './authentication-api.factory.js'
@@ -30,9 +25,8 @@ import { LanguageFactory } from './language.service.js'
 import { LanguageSwitcherDirective } from './language-switcher/language-switcher.directive.js'
 import { ListConfigurationFactory } from './list-configuration.service.js'
 import { ListViewFactory } from './list-view.service.js'
-import { NavCountsFactory } from './navcounts.service.js'
 import { NavigationController } from './navigation/navigation-controller.js'
-import { NavigationProvider } from './navigation.provider.js'
+import { NavigationFactory } from './navigation.service.js'
 import { PollingFactory } from './polling.service.js'
 import { RBACFactory } from './rbac.service.js'
 import { RouterModule } from './router/router.module.js'
@@ -88,7 +82,7 @@ export const CoreModule = angular
   .factory('ListConfiguration', ListConfigurationFactory)
   .factory('ListView', ListViewFactory)
   .factory('ModalService', BaseModalFactory)
-  .factory('NavCounts', NavCountsFactory)
+  .factory('Navigation', NavigationFactory)
   .factory('Polling', PollingFactory)
   .factory('RBAC', RBACFactory)
   .factory('SaveModalDialog', SaveModalDialogFactory)
@@ -96,13 +90,10 @@ export const CoreModule = angular
   .factory('ShoppingCart', ShoppingCartFactory)
   .factory('TagEditorModal', TagEditorFactory)
   .factory('TaggingService', TaggingService)
-  .provider('Navigation', NavigationProvider)
   .config(configure)
   .config(authConfig)
-  .config(navConfig)
   .run(authInit)
   .run(gettextInit)
   .run(layoutInit)
-  .run(navInit)
   .run(init)
   .name
