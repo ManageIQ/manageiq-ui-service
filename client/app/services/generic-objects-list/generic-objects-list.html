@@ -7,7 +7,7 @@
                  ng-click="$ctrl.customScope.toggleExpand(item)">
               <i class="fa fa-angle-right"
                  ng-class="{'fa-angle-down': item.isExpanded}"></i>
-                 <img src="{{item.picture.image_href}}" class="generic-object-icon">
+                 <img src="{{item.picture.image_href}}" class="generic-object-icon" ng-if="item.picture">
               <span>{{item.name}}</span>
             </div>
 						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
