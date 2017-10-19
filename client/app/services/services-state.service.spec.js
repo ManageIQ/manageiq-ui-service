@@ -34,7 +34,7 @@ describe('Services-state Service', function () {
     it('should be able to get a record count', () => {
       const collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse));
       ServicesState.getServicesMinimal();
-      expect(collectionsApiSpy).to.have.been.calledWith('services', {filter: ['ancestry=null']});
+      expect(collectionsApiSpy).to.have.been.calledWith('services', {filter: ['ancestry=null', 'display=true']});
     });
     it('should be able to get service credentials', () => {
       const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse));
@@ -106,7 +106,7 @@ describe('Services-state Service', function () {
         attributes: ["picture", "picture.image_href", "chargeback_report", "evm_owner.userid", "v_total_vms", "power_state", "all_service_children", "tags"],
         auto_refresh: false,
         expand: "resources",
-        filter: ["ancestry=null"],
+        filter: ["ancestry=null", 'display=true'],
         limit: 5,
         offset: "0",
         sort_by: "name",
