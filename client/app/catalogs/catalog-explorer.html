@@ -21,7 +21,7 @@
     </ss-card>
   </pf-card-view>
 </div>
-<explorer-pagination count="vm.filterCount"
+<explorer-pagination count="vm.toolbarConfig.filterConfig.resultsCount"
                      limit="vm.limit"
                      limit-options="vm.limitOptions"
                      on-update="vm.updatePagination($limit, $offset)">

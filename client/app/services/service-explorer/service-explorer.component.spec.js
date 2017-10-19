@@ -74,9 +74,19 @@ describe('Component: serviceExplorer', () => {
 
   it('should make a query for services', () => {
     collectionsApiMock
-      .expects('query')
-      .withArgs('services', {filter: ['ancestry=null', 'display=true']})
-      .returns(Promise.resolve())
+    .expects('query')
+    .withArgs('services', {
+      attributes: ['picture', 'picture.image_href', 'chargeback_report', 'evm_owner.userid', 'v_total_vms', 'power_state', 'all_service_children', 'tags'],
+      auto_refresh: undefined,
+      expand: 'resources',
+      filter: ['ancestry=null', 'display=true'],
+      limit: 20,
+      offset: '0',
+      sort_by: 'created_at',
+      sort_options: '',
+      sort_order: 'desc'
+    })
+    .returns(Promise.resolve())
 
     ctrl.resolveServices(20, 0)
 
