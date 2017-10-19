@@ -75,7 +75,7 @@ describe('Component: serviceExplorer', () => {
   it('should make a query for services', () => {
     collectionsApiMock
       .expects('query')
-      .withArgs('services', {filter: ['ancestry=null']})
+      .withArgs('services', {filter: ['ancestry=null', 'display=true']})
       .returns(Promise.resolve())
 
     ctrl.resolveServices(20, 0)
