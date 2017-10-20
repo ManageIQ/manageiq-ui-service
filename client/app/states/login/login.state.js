@@ -63,7 +63,7 @@ function StateController (exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD
         RBAC.setRole(response.identity.role)
       }
 
-      if (RBAC.navigationEnabled()) {
+      if (RBAC.suiAuthorized()) {
         if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
           $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length)
         }

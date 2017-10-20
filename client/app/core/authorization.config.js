@@ -103,7 +103,7 @@ export function authInit ($rootScope, $state, $log, Session, $sessionStorage, La
 
   function rbacReloadOrLogin (toState, toParams) {
     return function () {
-      if (RBAC.navigationEnabled()) {
+      if (RBAC.suiAuthorized()) {
         $state.go(toState, toParams)
       } else {
         Session.privilegesError = true

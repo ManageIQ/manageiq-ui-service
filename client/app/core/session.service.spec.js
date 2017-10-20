@@ -76,42 +76,41 @@ describe('Session', () => {
     }))
 
     it('sets RBAC for actions and navigation', () => {
-      var response = {
-        authorization: {
-          product_features: {
-            sui_services_view: {}
-          }
-        }, identity: {}
-      }
-      gettextCatalog.loadAndSet = () => {}
-      $httpBackend.whenGET('/api?attributes=authorization').respond(response)
-      Session.loadUser()
-      $httpBackend.flush()
-      var navFeatures = RBAC.getNavFeatures()
-
-      expect(navFeatures.services.show).to.eq(true)
-      expect(navFeatures.orders.show).to.eq(false)
-      expect(navFeatures.catalogs.show).to.eq(false)
-    })
-
-    it('sets visibility for "Service Catalogs" and "Requests" only on navbar and enables "Service Request" button', () => {
       const response = {
         authorization: {
           product_features: {
-            sui_orders_view: {},
-            sui_svc_catalog_view: {},
           }
         }, identity: {}
       }
+      response.authorization.product_features[RBAC.FEATURES.SERVICES.VIEW] = {}
       gettextCatalog.loadAndSet = () => {}
       $httpBackend.whenGET('/api?attributes=authorization').respond(response)
       Session.loadUser()
       $httpBackend.flush()
-      var navFeatures = RBAC.getNavFeatures()
 
-      expect(navFeatures.services.show).to.eq(false)
-      expect(navFeatures.orders.show).to.eq(true)
-      expect(navFeatures.catalogs.show).to.eq(true)
+      expect(RBAC.has(RBAC.FEATURES.SERVICES.VIEW)).to.eq(true)
+      expect(RBAC.has(RBAC.FEATURES.ORDERS.VIEW)).to.eq(false)
+      expect(RBAC.has(RBAC.FEATURES.SERVICE_CATALOG.VIEW)).to.eq(false)
+    })
+
+    it('sets visibility for "Service Catalogs" and "Orders" only on navbar and enables "Order" button', () => {
+      const response = {
+        authorization: {
+          product_features: {
+          }
+        }, identity: {}
+      }
+      response.authorization.product_features[RBAC.FEATURES.ORDERS.VIEW] = {}
+      response.authorization.product_features[RBAC.FEATURES.SERVICE_CATALOG.VIEW] = {}
+
+      gettextCatalog.loadAndSet = () => {}
+      $httpBackend.whenGET('/api?attributes=authorization').respond(response)
+      Session.loadUser()
+      $httpBackend.flush()
+
+      expect(RBAC.has(RBAC.FEATURES.SERVICES.VIEW)).to.eq(false)
+      expect(RBAC.has(RBAC.FEATURES.ORDERS.VIEW)).to.eq(true)
+      expect(RBAC.has(RBAC.FEATURES.SERVICE_CATALOG.VIEW)).to.eq(true)
     })
     it('allows a pause to be set globally', () => {
       const pauseLength = Session.setPause(20)
@@ -128,7 +127,7 @@ describe('Session', () => {
       Session.loadUser()
       $httpBackend.flush()
 
-      expect(RBAC.navigationEnabled()).to.eq(false)
+      expect(RBAC.suiAuthorized()).to.eq(false)
     })
     it('allows a user to be retrieved from session', () => {
       const user = readJSON('tests/mock/session/user.json')
