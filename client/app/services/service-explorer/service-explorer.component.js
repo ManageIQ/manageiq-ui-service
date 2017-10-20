@@ -32,7 +32,6 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       title: __('Services'),
       services: [],
       limit: 20,
-      filterCount: 0,
       servicesList: [],
       selectedItemsList: [],
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
@@ -348,11 +347,11 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       }
       if (tag.name.match(/\//g).length === 3) {
         filterCategories[tag.name.substring(-1, tag.name.lastIndexOf('/'))]
-          .filterValues
-          .push({
-            title: displayName.substr(displayName.lastIndexOf(':') + 1),
-            id: tag.name.substr(tag.name.lastIndexOf('/') + 1)
-          })
+        .filterValues
+        .push({
+          title: displayName.substr(displayName.lastIndexOf(':') + 1),
+          id: tag.name.substr(tag.name.lastIndexOf('/') + 1)
+        })
       }
     })
 
@@ -383,37 +382,18 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
     ]
   }
 
-  function getFilterCount () {
-    return new Promise((resolve, reject) => {
-      ServicesState.getServicesMinimal(ServicesState.services.getFilters())
-        .then(querySuccess, queryFailure)
-
-      function querySuccess (result) {
-        vm.filterCount = result.subcount
-        vm.toolbarConfig.filterConfig.resultsCount = vm.filterCount
-        resolve()
-      }
-
-      function queryFailure (_error) {
-        vm.loading = false
-        EventNotifications.error(__('There was an error loading the services.'))
-        reject(__('There was an error loading the services.'))
-      }
-    })
-  }
-
   function resolveServices (limit, offset, refresh) {
     Polling.stop('serviceListPolling')
     vm.loading = !refresh
     vm.offset = offset
-    getFilterCount().then(() => {
-      ServicesState.getServices(
-        limit,
-        offset,
-        refresh).then(querySuccess, queryFailure)
-    })
+
+    ServicesState.getServices(
+      limit,
+      offset,
+      refresh).then(querySuccess, queryFailure)
 
     function querySuccess (result) {
+      vm.toolbarConfig.filterConfig.resultsCount = result.subquery_count
       Polling.start('serviceListPolling', pollUpdateServicesList, vm.pollingInterval)
       vm.services = []
       var existingServices = (angular.isDefined(vm.servicesList) && refresh ? angular.copy(vm.servicesList) : [])
@@ -513,8 +493,8 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       lodash.partial(TagEditorModal.showModal, services)
 
     return TaggingService.queryAvailableTags()
-      .then(extractSharedTagsFromSelectedServices)
-      .then(launchTagEditorForSelectedServices)
+    .then(extractSharedTagsFromSelectedServices)
+    .then(launchTagEditorForSelectedServices)
   }
 
   function doRemoveServices (services) {

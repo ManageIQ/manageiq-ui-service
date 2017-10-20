@@ -95,7 +95,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, CollectionsA
     return new Promise((resolve, reject) => {
       CollectionsApi.query(field, options)
       .then((data) => {
-        resolve(data.subcount)
+        resolve(data.count)
       })
     })
   }

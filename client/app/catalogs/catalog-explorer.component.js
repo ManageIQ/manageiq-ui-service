@@ -90,23 +90,13 @@ function ComponentController ($state, CatalogsState, ListView, EventNotification
     return CatalogsState.getServiceTemplates(limit, offset).then(success, failure)
 
     function success (response) {
-      vm.serviceTemplateList = response.resources
-
       CatalogsState.getCatalogs(limit, offset).then((response) => {
         vm.catalogsList = response.resources
         vm.loading = false
-        vm.toolbarConfig.filterConfig = getFilterConfig()
-        getFilterCount()
       })
-
-      function getFilterCount () {
-        CatalogsState.getMinimal('service_templates').then(success, failure)
-
-        function success (result) {
-          vm.filterCount = result.subcount
-          vm.toolbarConfig.filterConfig.resultsCount = result.subcount
-        }
-      }
+      vm.serviceTemplateList = response.resources
+      vm.toolbarConfig.filterConfig = getFilterConfig()
+      vm.toolbarConfig.filterConfig.resultsCount = response.subquery_count
     }
 
     function failure (_error) {

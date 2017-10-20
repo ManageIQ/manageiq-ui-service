@@ -9,7 +9,7 @@ export const OrderExplorerComponent = {
 
 /** @ngInject */
 function ComponentController ($filter, $state, lodash, ListView, Language, OrdersState, ShoppingCart, EventNotifications, Session, RBAC, ModalService,
-                             CollectionsApi, sprintf, Polling, POLLING_INTERVAL) {
+                              CollectionsApi, sprintf, Polling, POLLING_INTERVAL) {
   const vm = this
   vm.permissions = OrdersState.getPermissions()
   vm.$onInit = activate()
@@ -130,6 +130,7 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
 
     return checkApproval() ? menuActions : null
   }
+
   function expandRow (item) {
     if (!item.disableRowExpansion) {
       item.isExpanded = !item.isExpanded
@@ -204,17 +205,16 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
     var existingOrders = (angular.isDefined(vm.ordersList) && refresh ? angular.copy(vm.ordersList) : [])
 
     vm.offset = offset
-    getFilterCount().then(() => {
-      OrdersState.getOrders(
-        limit,
-        offset,
-        OrdersState.getFilters(),
-        OrdersState.getSort().currentField,
-        OrdersState.getSort().isAscending,
-        refresh).then(querySuccess, queryFailure)
-    })
+    OrdersState.getOrders(
+      limit,
+      offset,
+      OrdersState.getFilters(),
+      OrdersState.getSort().currentField,
+      OrdersState.getSort().isAscending,
+      refresh).then(querySuccess, queryFailure)
 
     function querySuccess (response) {
+      vm.filterCount = response.subquery_count
       vm.loading = false
       vm.orders = []
       vm.selectedItemsList = []
@@ -260,22 +260,6 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
     }
   }
 
-  function getFilterCount () {
-    return new Promise((resolve, reject) => {
-      OrdersState.getMinimal(OrdersState.getFilters()).then(querySuccess, queryFailure)
-
-      function querySuccess (result) {
-        vm.filterCount = result.subcount
-        resolve()
-      }
-
-      function queryFailure (_error) {
-        EventNotifications.error(__('There was an error loading orders.'))
-        reject(__('There was an error loading orders.'))
-      }
-    })
-  }
-
   function duplicateOrder (item) {
     ShoppingCart.reset()
     ShoppingCart.delete()
@@ -297,6 +281,7 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
   function checkApproval () {
     return lodash.reduce(lodash.map(['miq_request_approval', 'miq_request_admin'], RBAC.has))
   }
+
   function requestStatus (item) {
     let status = item.request_state
     if ((item.request_state === 'finished' && item.status !== 'Ok') || (item.request_state !== 'finished')) {
