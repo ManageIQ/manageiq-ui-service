@@ -1,7 +1,9 @@
 describe('Dashboard', function() {
+  const permissions = readJSON('tests/mock/rbac/allPermissions.json');
   beforeEach(function() {
     module('app.core', 'app.states', 'app.orders', 'app.services');
     bard.inject('$location', '$rootScope', '$state', '$templateCache', '$httpBackend', '$q', 'RBAC');
+    RBAC.set(permissions);
   });
 
   beforeEach(function() {
@@ -52,7 +54,6 @@ describe('Dashboard', function() {
       dashboardState = $state.get('dashboard');
 
       state = $state;
-    //  state.navFeatures = {services: {show: true}};
       controller = $controller(dashboardState.controller, controllerResolves);
     });
 
@@ -65,8 +66,7 @@ describe('Dashboard', function() {
       it('makes a query request using the CollectionApi', function() {
         var clock = sinon.useFakeTimers(new Date('2016-01-01').getTime());
         let collectionsApiSpy = sinon.stub(CollectionsApi);
-        RBAC.setNavFeatures({ "dashboard": { "show": true }, "services": { "show": true }, "orders": { "show": true }, "requests": { "show": true }, "catalogs": { "show": true }, "dialogs": { "show": true } });
-
+        
         dashboardState.resolve.expiringServices(collectionsApiSpy, RBAC);
 
         expect(collectionsApiSpy.query).to.have.been.calledWith('services', {

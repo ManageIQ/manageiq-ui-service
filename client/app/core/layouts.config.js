@@ -22,27 +22,11 @@ function getLayouts () {
 }
 
 /** @ngInject */
-function enterApplication (Polling, lodash, NavCounts, Navigation, RBAC) {
-  // Application layout displays the navigation which might have items that require polling to update the counts
-  const navFeatures = RBAC.getNavFeatures()
-  angular.forEach(NavCounts.counts, updateCount)
-  angular.forEach(Navigation.items, (value, key) => {
-    navFeatures[key] = lodash.merge(value, navFeatures[key])
-  })
-  RBAC.setNavFeatures(navFeatures)
-
-  function updateCount (count, key) {
-    if (angular.isDefined(navFeatures[key]) && navFeatures[key].show) {
-      count.func()
-      if (count.interval) {
-        Polling.start(key, count.func, count.interval)
-      }
-    }
-  }
+function enterApplication (Polling, lodash, RBAC) {
 }
 
 /** @ngInject */
-function exitApplication (lodash, Polling, NavCounts) {
+function exitApplication (lodash, Polling) {
   // Remove all of the navigation polls
-  angular.forEach(lodash.keys(NavCounts.counts), Polling.stop)
+  Polling.stopAll()
 }

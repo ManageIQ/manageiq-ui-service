@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-
+import languageFile from '../../gettext/json/available_languages.json'
 /** @ngInject */
 export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodash) {
   var availableAvailable = $q.defer()
@@ -26,11 +26,8 @@ export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodas
   return service
 
   function init () {
-    $http.get('gettext/json/available_languages.json')
-    .then(function (response) {
-      lodash.extend(service.available, response.data)
-      availableAvailable.resolve(service.available)
-    })
+    lodash.extend(service.available, languageFile)
+    availableAvailable.resolve(service.available)
   }
 
   // returns a list of user's preferred languages, in order
