@@ -1,6 +1,6 @@
 describe('RBAC service', () => {
   let service;
-
+  const permissions = readJSON('tests/mock/rbac/allPermissions.json');
   beforeEach(module('app.core'));
 
   beforeEach(inject((RBAC) => {
@@ -39,6 +39,12 @@ describe('RBAC service', () => {
     it('returns all feature permissions', () => {
       const results = service.all();
       expect(results).to.be.empty;
+    });
+    
+    it('allows permissions to be set and retrieved', () => {
+      service.set(permissions)
+      const usersPermissions = service.all();
+      expect(usersPermissions).to.not.be.empty;
     });
   });
 });
