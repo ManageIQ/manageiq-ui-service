@@ -121,7 +121,7 @@
   "devDependencies": {
     "@manageiq/manageiq-api-mock": "1.3.2",
     "angular-mocks": "1.6.6",
-    "axios": "0.16.2",
+    "axios": "0.17.0",
     "bardjs": "0.1.8",
     "chai": "3.5.0",
     "chai-as-promised": "5.3.0",
