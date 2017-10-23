@@ -1,27 +1,29 @@
-describe('Dashboard', function() {
-  beforeEach(function() {
-    module('app.states', 'app.services');
-    bard.inject('$state');
-  });
+/* global $state, $componentController */
+/* eslint-disable no-unused-expressions */
+describe('State: services.details', () => {
+  beforeEach(() => {
+    module('app.states', 'app.services')
+    bard.inject('$state')
+  })
 
-  describe('route', function() {
-    it('should work with $state.go', function() {
-      $state.go('services.details');
-      expect($state.is('services.details'));
-    });
-  });
+  describe('route', () => {
+    it('should work with $state.go', () => {
+      $state.go('services.details')
+      expect($state.is('services.details'))
+    })
+  })
 
-  describe('controller', function() {
-    var controller;
+  describe('controller', () => {
+    let controller
 
-    beforeEach(function() {
-      bard.inject('$componentController');
+    beforeEach(() => {
+      bard.inject('$componentController')
 
-      controller = $componentController('serviceExplorer', {});
-    });
+      controller = $componentController('serviceExplorer', {})
+    })
 
-    it('should be created successfully', function() {
-      expect(controller).to.be.defined;
-    });
-  });
-});
+    it('should be created successfully', () => {
+      expect(controller).to.be.defined
+    })
+  })
+})

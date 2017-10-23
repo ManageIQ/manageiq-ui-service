@@ -1,3 +1,5 @@
+/* global $componentController, ServicesState, CollectionsApi */
+/* eslint-disable no-unused-expressions */
 describe('Component: serviceExplorer', () => {
   let scope, ctrl, collectionsApiMock
 
@@ -56,7 +58,6 @@ describe('Component: serviceExplorer', () => {
   })
 
   it('should set toolbar', () => {
-
     expect(ctrl.toolbarConfig.sortConfig.fields).to.have.lengthOf(3)
     expect(ctrl.toolbarConfig.sortConfig.currentField).to.eql({
       id: 'created_at',
@@ -92,7 +93,6 @@ describe('Component: serviceExplorer', () => {
 
     collectionsApiMock.verify()
     ctrl.$onDestroy()
-
   })
 
   it('should had default filter fields', () => {
@@ -103,13 +103,13 @@ describe('Component: serviceExplorer', () => {
       filterType: 'text',
       filterValues: undefined
     },
-      {
-        id: 'description',
-        title: 'Description',
-        placeholder: 'Filter by Description',
-        filterType: 'text',
-        filterValues: undefined
-      }]
+    {
+      id: 'description',
+      title: 'Description',
+      placeholder: 'Filter by Description',
+      filterType: 'text',
+      filterValues: undefined
+    }]
 
     expect(ctrl.defaultFilterFields()).to.eql(defaultFields)
   })

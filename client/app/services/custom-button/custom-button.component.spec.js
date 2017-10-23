@@ -1,158 +1,160 @@
-describe('CustomButton component', () => {
-  let parentScope, element, stateGoStub, apiPostStub;
+/* global inject, findIn */
 
-  beforeEach(module('app.services'));
+describe('CustomButton component', () => {
+  let parentScope, element, stateGoStub, apiPostStub
+
+  beforeEach(module('app.services'))
 
   beforeEach(inject(($compile, $rootScope, $state, CollectionsApi) => {
-    parentScope = $rootScope.$new();
+    parentScope = $rootScope.$new()
     parentScope.customActions = {
       buttons: [
         {
           name: 'Foo',
           visibility: {
-            roles: ['_ALL_'],
+            roles: ['_ALL_']
           },
           resource_action: {
             dialog_id: '_a dialog id_'
-          },
+          }
         },
         {
           name: 'Bar',
           visibility: {
-            roles: ['_ALL_'],
-          },
-        },
-      ],
-    };
-    parentScope.serviceId = '_a service id_';
+            roles: ['_ALL_']
+          }
+        }
+      ]
+    }
+    parentScope.serviceId = '_a service id_'
 
     element = angular.element(`
       <custom-button custom-actions="customActions" service-id="serviceId">
       </custom-button>
-    `);
-    $compile(element)(parentScope);
-    parentScope.$digest();
+    `)
+    $compile(element)(parentScope)
+    parentScope.$digest()
 
-    stateGoStub = sinon.stub($state, 'go');
-    apiPostStub = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve());
-  }));
+    stateGoStub = sinon.stub($state, 'go')
+    apiPostStub = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve())
+  }))
 
   it('displays a button for each custom action', () => {
-    const numActions = parentScope.customActions.buttons.length;
-    const actions = element[0].querySelectorAll('.custom-button-action');
+    const numActions = parentScope.customActions.buttons.length
+    const actions = element[0].querySelectorAll('.custom-button-action')
 
-    expect(actions.length).to.eq(numActions);
-  });
+    expect(actions.length).to.eq(numActions)
+  })
 
   describe('for actions visible to specified roles', () => {
-    let RBAC;
+    let RBAC
 
     beforeEach(inject((_RBAC_) => {
-      RBAC = _RBAC_;
+      RBAC = _RBAC_
       parentScope.customActions = {
         buttons: [
           {
             name: 'Secret Button',
             visibility: {
-              roles: ['Secret-Agent'],
-            },
-          },
-        ],
-      };
-    }));
+              roles: ['Secret-Agent']
+            }
+          }
+        ]
+      }
+    }))
 
     it('displays a button if the role allows', () => {
-      RBAC.setRole('Secret-Agent');
-      parentScope.$digest();
+      RBAC.setRole('Secret-Agent')
+      parentScope.$digest()
 
-      const actions = element[0].querySelectorAll('.custom-button-action');
+      const actions = element[0].querySelectorAll('.custom-button-action')
 
-      expect(actions.length).to.eq(1);
-    });
+      expect(actions.length).to.eq(1)
+    })
 
     it('does not display a button if the role disallows', () => {
-      RBAC.setRole('Innocent-Bystander');
-      parentScope.$digest();
+      RBAC.setRole('Innocent-Bystander')
+      parentScope.$digest()
 
-      const actions = element[0].querySelectorAll('.custom-button-action');
+      const actions = element[0].querySelectorAll('.custom-button-action')
 
-      expect(actions.length).to.eq(0);
-    });
-  });
+      expect(actions.length).to.eq(0)
+    })
+  })
 
   describe('#invokeCustomAction', () => {
     describe('when the action has a dialog', () => {
       it('navigates to the "services.custom_button_details" state', () => {
-        const action = findIn(element, 'button.custom-button-action');
-        const nextState = 'services.custom_button_details';
+        const action = findIn(element, 'button.custom-button-action')
+        const nextState = 'services.custom_button_details'
 
-        action.triggerHandler('click');
+        action.triggerHandler('click')
 
         expect(stateGoStub).to.have.been.calledWith(nextState, {
           button: parentScope.customActions.buttons[0],
-          serviceId: '_a service id_',
-        });
-      });
-    });
+          serviceId: '_a service id_'
+        })
+      })
+    })
 
     describe('when the action does not have a dialog', () => {
       it('makes a POST request for the selected action', () => {
-        const button = element[0].querySelectorAll('.custom-button-action')[1];
-        const action = angular.element(button);
+        const button = element[0].querySelectorAll('.custom-button-action')[1]
+        const action = angular.element(button)
 
-        action.triggerHandler('click');
+        action.triggerHandler('click')
 
         expect(apiPostStub).to.have.been.calledWith(
           'services',
           '_a service id_',
           {},
-          { action: 'Bar' },
-        );
-      });
-    });
-  });
-});
+          {action: 'Bar'}
+        )
+      })
+    })
+  })
+})
 
-  describe('Custom buttons for a VM', () => {
-  let parentScope, element, stateGoStub, apiPostStub;
+describe('Custom buttons for a VM', () => {
+  let parentScope, element, apiPostStub
 
-  beforeEach(module('app.services'));
+  beforeEach(module('app.services'))
 
   beforeEach(inject(($compile, $rootScope, $state, CollectionsApi) => {
-    parentScope = $rootScope.$new();
+    parentScope = $rootScope.$new()
     parentScope.customActions = {
       buttons: [
         {
           name: 'Bar',
           visibility: {
-            roles: ['_ALL_'],
-          },
-        },
-      ],
-    };
-    parentScope.serviceId = '_a service id_';
-    parentScope.vmId = '_a vm id_';
+            roles: ['_ALL_']
+          }
+        }
+      ]
+    }
+    parentScope.serviceId = '_a service id_'
+    parentScope.vmId = '_a vm id_'
 
     element = angular.element(`
       <custom-button custom-actions="customActions" service-id="serviceId" vm-id="vmId">
       </custom-button>
-    `);
-    $compile(element)(parentScope);
-    parentScope.$digest();
+    `)
+    $compile(element)(parentScope)
+    parentScope.$digest()
 
-    apiPostStub = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve());
-  }));
+    apiPostStub = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve())
+  }))
 
   it('should make a post to the vms endpoint', () => {
-     const button = element[0].querySelectorAll('.custom-button-action')[0];
-     const action = angular.element(button);
+    const button = element[0].querySelectorAll('.custom-button-action')[0]
+    const action = angular.element(button)
 
-      action.triggerHandler('click');
-      expect(apiPostStub).to.have.been.calledWith(
-          'vms',
-          '_a vm id_',
-          {},
-          { action: 'Bar' },
-      );
-  });
-});
+    action.triggerHandler('click')
+    expect(apiPostStub).to.have.been.calledWith(
+      'vms',
+      '_a vm id_',
+      {},
+      {action: 'Bar'}
+    )
+  })
+})

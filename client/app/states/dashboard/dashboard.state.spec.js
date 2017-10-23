@@ -1,73 +1,65 @@
-describe('Dashboard', function() {
-  const permissions = readJSON('tests/mock/rbac/allPermissions.json');
-  beforeEach(function() {
-    module('app.core', 'app.states', 'app.orders', 'app.services');
-    bard.inject('$location', '$rootScope', '$state', '$templateCache', '$httpBackend', '$q', 'RBAC');
-    RBAC.set(permissions);
-  });
+/* global $state, readJSON, RBAC, $httpBackend, $controller, CollectionsApi */
+/* eslint-disable no-unused-expressions */
+describe('State: dashboard', () => {
+  const permissions = readJSON('tests/mock/rbac/allPermissions.json')
+  beforeEach(() => {
+    module('app.core', 'app.states', 'app.orders', 'app.services')
+    bard.inject('$location', '$rootScope', '$state', '$templateCache', '$httpBackend', '$q', 'RBAC')
+    RBAC.set(permissions)
+  })
 
-  beforeEach(function() {
-    var d = new Date();
-    d.setMinutes(d.getMinutes() + 30);
-    d = d.toISOString();
-    d = d.substring(0, d.indexOf('.'));
+  beforeEach(() => {
+    let d = new Date()
+    d.setMinutes(d.getMinutes() + 30)
+    d = d.toISOString()
+    d = d.substring(0, d.indexOf('.'))
 
-    $httpBackend.whenGET('').respond(200);
-  });
+    $httpBackend.whenGET('').respond(200)
+  })
 
-  describe('route', function() {
-    var views = {
-      dashboard: 'app/states/dashboard/dashboard.html'
-    };
+  describe('route', () => {
+    beforeEach(() => {
+      bard.inject('$location', '$rootScope', '$state', '$templateCache')
+    })
 
-    beforeEach(function() {
-      bard.inject('$location', '$rootScope', '$state', '$templateCache');
-    });
+    it('should work with $state.go', () => {
+      $state.go('dashboard')
+      expect($state.is('dashboard'))
+    })
+  })
 
-    it('should work with $state.go', function() {
-      $state.go('dashboard');
-      expect($state.is('dashboard'));
-    });
-  });
+  describe('controller', () => {
+    let controller, dashboardState
+    const resolveServicesWithDefinedServiceIds = {}
+    const retiredServices = {}
+    const resolveNonRetiredServices = {}
+    const expiringServices = {}
+    const resolveAllRequests = []
 
-  describe('controller', function() {
-    var controller;
-    var state;
-    let dashboardState;
-    var resolveServicesWithDefinedServiceIds = {};
-    var retiredServices = {};
-    var resolveNonRetiredServices = {};
-    var expiringServices = {};
-    var resolveAllRequests = [];
+    beforeEach(() => {
+      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'RBAC')
 
-    beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'RBAC');
-
-      var controllerResolves = {
+      const controllerResolves = {
         definedServiceIdsServices: resolveServicesWithDefinedServiceIds,
         retiredServices: retiredServices,
         nonRetiredServices: resolveNonRetiredServices,
         expiringServices: expiringServices,
         allRequests: resolveAllRequests
-      };
+      }
+      dashboardState = $state.get('dashboard')
+      controller = $controller(dashboardState.controller, controllerResolves)
+    })
 
-      dashboardState = $state.get('dashboard');
+    it('should be created successfully', () => {
+      expect(controller).to.be.defined
+    })
 
-      state = $state;
-      controller = $controller(dashboardState.controller, controllerResolves);
-    });
+    describe('resolveExpiringServices', () => {
+      it('makes a query request using the CollectionApi', () => {
+        const clock = sinon.useFakeTimers(new Date('2016-01-01').getTime())
+        let collectionsApiSpy = sinon.stub(CollectionsApi)
 
-    it('should be created successfully', function() {
-      expect(controller).to.be.defined;
-    });
-
-    describe('resolveExpiringServices', function() {
-
-      it('makes a query request using the CollectionApi', function() {
-        var clock = sinon.useFakeTimers(new Date('2016-01-01').getTime());
-        let collectionsApiSpy = sinon.stub(CollectionsApi);
-        
-        dashboardState.resolve.expiringServices(collectionsApiSpy, RBAC);
+        dashboardState.resolve.expiringServices(collectionsApiSpy, RBAC)
 
         expect(collectionsApiSpy.query).to.have.been.calledWith('services', {
           hide: 'resources',
@@ -76,10 +68,10 @@ describe('Dashboard', function() {
             'retires_on>2016-01-01T00:00:00.000Z',
             'retires_on<2016-01-31T00:00:00.000Z'
           ]
-        });
+        })
 
-        clock.restore();
-      });
-    });
-  });
-});
+        clock.restore()
+      })
+    })
+  })
+})

@@ -1,3 +1,5 @@
+/* global $componentController, EventNotifications, VmsService, CollectionsApi */
+/* eslint-disable no-unused-expressions */
 describe('Component: snapshots with $componentController', () => {
   let ctrl, notificationsSpy, collectionsApiSpy
   const successResponse = {
@@ -12,11 +14,11 @@ describe('Component: snapshots with $componentController', () => {
   }
 
   beforeEach(() => {
-      module('app.services')
-      bard.inject('VmsService', '$componentController', 'EventNotifications', 'CollectionsApi')
-      ctrl = $componentController('vmSnapshots', null, {vmId: '1'})
-      ctrl.$onInit()
-    }
+    module('app.services')
+    bard.inject('VmsService', '$componentController', 'EventNotifications', 'CollectionsApi')
+    ctrl = $componentController('vmSnapshots', null, {vmId: '1'})
+    ctrl.$onInit()
+  }
   )
 
   it('is defined, accepts bindings', () => {
@@ -38,19 +40,22 @@ describe('Component: snapshots with $componentController', () => {
     expect(ctrl.deleteSnapshots()).to.be.defined
   })
 
-  it('can succesfully delete snapshots', () => {
+  it('can succesfully delete snapshots', (done) => {
     notificationsSpy = sinon.spy(EventNotifications, 'batch')
     collectionsApiSpy = sinon.stub(VmsService, 'deleteSnapshots').returns(Promise.resolve({results: ['test', 'test2']}))
-    return ctrl.deleteSnapshots().then((data) => {
+    ctrl.deleteSnapshots().then((data) => {
+      done()
+
       expect(notificationsSpy).to.have.been.called
     })
   })
 
-  it('can handle failing to delete snapshots', () => {
+  it('can handle failing to delete snapshots', (done) => {
     notificationsSpy = sinon.spy(EventNotifications, 'error')
 
     collectionsApiSpy = sinon.stub(VmsService, 'deleteSnapshots').returns(Promise.reject(errorObject))
-    return ctrl.deleteSnapshots().then((data) => {
+    ctrl.deleteSnapshots().then((data) => {
+      done()
       expect(notificationsSpy).to.have.been.called
     })
   })
@@ -65,18 +70,22 @@ describe('Component: snapshots with $componentController', () => {
     expect(ctrl.deleteTitle).to.eq('Delete All Snapshots on VM undefined')
   })
 
-  it('can handle reverting a snapshot successfully', () => {
+  it('can handle reverting a snapshot successfully', (done) => {
     notificationsSpy = sinon.spy(EventNotifications, 'batch')
-    const vmAPISpy = sinon.stub(VmsService, 'revertSnapshot').returns(Promise.resolve('test'))
-    return ctrl.revertSnapshot('', 1).then((data) => {
+    sinon.stub(VmsService, 'revertSnapshot').returns(Promise.resolve('test'))
+    ctrl.revertSnapshot('', 1).then((data) => {
+      done()
+
       expect(notificationsSpy).to.have.been.calledOnce
     })
   })
 
-  it('can try to revert a snapshot and fail', () => {
+  it('can try to revert a snapshot and fail', (done) => {
     notificationsSpy = sinon.spy(EventNotifications, 'error')
-    const vmAPISpy = sinon.stub(VmsService, 'revertSnapshot').returns(Promise.reject(errorObject))
-    return ctrl.revertSnapshot('', 1).then((data) => {
+    sinon.stub(VmsService, 'revertSnapshot').returns(Promise.reject(errorObject))
+    ctrl.revertSnapshot('', 1).then((data) => {
+      done()
+
       expect(notificationsSpy).to.have.been.calledWith('failure')
     })
   })
@@ -85,36 +94,46 @@ describe('Component: snapshots with $componentController', () => {
     expect(ctrl.cancelDelete()).to.be.defined
   })
 
-  it('can resolve getting a VM', () => {
+  it('can resolve getting a VM', (done) => {
     const vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve({results: ['test', 'test2']}))
-    return ctrl.resolveVm().then((data) => {
+    ctrl.resolveVm().then((data) => {
+      done()
+
       expect(vmSpy).to.have.been.calledWith('1')
     })
   })
 
-  it('can handle failing to resolve a VM', () => {
-    const vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.reject({}))
+  it('can handle failing to resolve a VM', (done) => {
+    sinon.stub(VmsService, 'getVm').returns(Promise.reject(new Error({})))
     notificationsSpy = sinon.spy(EventNotifications, 'error')
-    return ctrl.resolveVm().then((data) => {
+    ctrl.resolveVm().then((data) => {
+      done()
+
       expect(notificationsSpy).to.have.been.calledWith('There was an error loading the vm.')
     })
   })
 
-  it('should query the API to resolve snapshots', () => {
+  it('should query the API to resolve snapshots', (done) => {
     collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse))
     ctrl.resolveSnapshots()
+    done()
+
     expect(collectionsApiSpy).to.have.been.called
   })
 
-  it('should show a failure if the API cant resolve snapshots', () => {
+  it('should show a failure if the API cant resolve snapshots', (done) => {
     collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.reject(successResponse))
     ctrl.resolveSnapshots()
+    done()
+
     expect(collectionsApiSpy).to.have.been.called
   })
 
-  it('should call CollectionsApi post to delete snapshots', () => {
+  it('should call CollectionsApi post to delete snapshots', (done) => {
     collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse))
     ctrl.deleteSnapshots()
+    done()
+
     expect(collectionsApiSpy).to.have.been.called
   })
 })

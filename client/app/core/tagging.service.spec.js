@@ -1,70 +1,70 @@
-describe('TaggingService', function() {
-  var service;
-  var collectionsApiMock;
+/* global inject */
+describe('TaggingService', () => {
+  let service, collectionsApiMock
 
-  beforeEach(module('app.states'));
+  beforeEach(module('app.states'))
 
-  beforeEach(inject(function(TaggingService, CollectionsApi) {
-    service = TaggingService;
-    collectionsApiMock = sinon.mock(CollectionsApi);
-  }));
+  beforeEach(inject(function (TaggingService, CollectionsApi) {
+    service = TaggingService
+    collectionsApiMock = sinon.mock(CollectionsApi)
+  }))
 
-  describe('#assignTags', function() {
-    it('makes 2 bulk requests (assign, unassign)', function() {
+  describe('#assignTags', () => {
+    it('makes 2 bulk requests (assign, unassign)', () => {
       collectionsApiMock
-        .expects('post')
-        .withArgs('services', null, {})
-        .exactly(2);
+      .expects('post')
+      .withArgs('services', null, {})
+      .exactly(2)
 
-      service.assignTags('services', [{}, {}], [{ name: '/first/tag' }], [{ name: '/new/tag' }]);
+      service.assignTags('services', [{}, {}], [{name: '/first/tag'}], [{name: '/new/tag'}])
 
-      collectionsApiMock.verify();
-    });
-  });
+      collectionsApiMock.verify()
+    })
+  })
 
-  describe('#findSharedTags', function() {
-    it('returns an array of tags common between all selected resources', function() {
-      var availableTags = [{name: '/common/tag'}, {name: '/uncommon/tag1'}, {name: '/uncommon/tag2'}]
-      var resource1 = { tags: [{name: '/common/tag'}, {name: '/uncommon/tag1'}] };
-      var resource2 = { tags: [{name: '/common/tag'}, {name: '/uncommon/tag2'}] };
+  describe('#findSharedTags', () => {
+    it('returns an array of tags common between all selected resources', () => {
+      const availableTags = [{name: '/common/tag'}, {name: '/uncommon/tag1'}, {name: '/uncommon/tag2'}]
+      const resource1 = {tags: [{name: '/common/tag'}, {name: '/uncommon/tag1'}]}
+      const resource2 = {tags: [{name: '/common/tag'}, {name: '/uncommon/tag2'}]}
 
-      var sharedTags = service.findSharedTags([resource1, resource2], availableTags)
+      const sharedTags = service.findSharedTags([resource1, resource2], availableTags)
 
-      expect(sharedTags.length).to.eql(1);
-      expect(sharedTags[0].name).to.eql('/common/tag');
-    });
-  });
+      expect(sharedTags.length).to.eql(1)
+      expect(sharedTags[0].name).to.eql('/common/tag')
+    })
+  })
 
-  describe('#parseTag', function() {
-    it('converts a tag response into a useable tag object', function() {
-      var response = {
+  describe('#parseTag', () => {
+    it('converts a tag response into a useable tag object', () => {
+      const response = {
         id: 1,
         name: '/tag/name',
-        category: { id: 2 },
-        categorization: { display_name: 'fancy: name' },
-      };
+        category: {id: 2},
+        categorization: {display_name: 'fancy: name'}
+      }
 
-      var expected = {
+      const expected = {
         id: 1,
         name: '/tag/name',
-        category: { id: 2 },
-        categorization: { displayName: 'fancy: name' },
-      };
+        category: {id: 2},
+        categorization: {displayName: 'fancy: name'}
+      }
 
-      var actual = service.parseTag(response);
-      expect(actual).to.be.eql(expected);
-    });
-  });
+      const actual = service.parseTag(response)
+      expect(actual).to.be.eql(expected)
+    })
+  })
 
-  describe('#queryAvailableTags', function() {
-    it('makes a request for all tags and filters for valid tags', function() {
+  describe('#queryAvailableTags', () => {
+    it('makes a request for all tags and filters for valid tags', () => {
       collectionsApiMock
-        .expects('query')
-        .returns(Promise.resolve());
+      .expects('query')
+      .returns(Promise.resolve())
 
-      service.queryAvailableTags();
+      service.queryAvailableTags()
 
-      collectionsApiMock.verify();
-    });
-  });
-});
+      collectionsApiMock.verify()
+    })
+  })
+})

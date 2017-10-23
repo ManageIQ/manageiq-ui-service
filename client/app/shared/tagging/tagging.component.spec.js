@@ -1,179 +1,179 @@
-describe('Component: taggingWidget', function() {
+/* global inject, $httpBackend, readJSON, CollectionsApi */
+/* eslint-disable no-unused-expressions */
+describe('Component: taggingWidget', () => {
+  beforeEach(() => {
+    module('app.components')
+    bard.inject('$httpBackend', 'CollectionsApi')
+  })
 
-  beforeEach(function() {
-    module('app.components');
-    bard.inject('$httpBackend', 'CollectionsApi');
-  });
-
-  describe('with $compile', function() {
-    let scope;
-    let element;
-    let collectionsApiSpy;
-    let isoScope;
+  describe('with $compile', () => {
+    let scope
+    let element
+    let collectionsApiSpy
+    let isoScope
     let options = {
-      expand: 'resources',
-    };
+      expand: 'resources'
+    }
 
-    let attributes = ['categorization', 'category.id', 'category.single_value'];
+    let attributes = ['categorization', 'category.id', 'category.single_value']
     let options2 = {
       expand: 'resources',
-      attributes: attributes,
-    };
+      attributes: attributes
+    }
 
-    beforeEach(inject(function($compile, $rootScope) {
-      let mockDir = 'tests/mock/blueprint-details/';
+    beforeEach(inject(($compile, $rootScope) => {
+      let mockDir = 'tests/mock/blueprint-details/'
 
-      scope = $rootScope.$new();
+      scope = $rootScope.$new()
 
-      $httpBackend.whenGET('').respond(200);
+      $httpBackend.whenGET('').respond(200)
 
-      scope.tagsOfBlueprint = readJSON(mockDir + 'tags-of-blueprint.json');
-      scope.allTags = readJSON(mockDir + 'all-tags.json');
-      scope.tagCategories = readJSON(mockDir + 'tag-categories.json');
+      scope.tagsOfBlueprint = readJSON(mockDir + 'tags-of-blueprint.json')
+      scope.allTags = readJSON(mockDir + 'all-tags.json')
+      scope.tagCategories = readJSON(mockDir + 'tag-categories.json')
 
-      collectionsApiSpy = sinon.stub(CollectionsApi, 'query');
-      collectionsApiSpy.withArgs('categories', options).returns(Promise.resolve(scope.tagCategories));
-      collectionsApiSpy.withArgs('tags', options2).returns(Promise.resolve(scope.allTags));
+      collectionsApiSpy = sinon.stub(CollectionsApi, 'query')
+      collectionsApiSpy.withArgs('categories', options).returns(Promise.resolve(scope.tagCategories))
+      collectionsApiSpy.withArgs('tags', options2).returns(Promise.resolve(scope.allTags))
 
-      element = angular.element('<tagging-widget tags-of-item="tagsOfBlueprint"/>');
-      let el = $compile(element)(scope);
-      scope.$digest();
-      isoScope = el.isolateScope();
-      isoScope.vm.loadAllCategories();  //this chained promise isn't being called -call manually
-    }));
+      element = angular.element('<tagging-widget tags-of-item="tagsOfBlueprint"/>')
+      let el = $compile(element)(scope)
+      scope.$digest()
+      isoScope = el.isolateScope()
+      isoScope.vm.loadAllCategories()  // this chained promise isn't being called -call manually
+    }))
 
+    it('should have correct number of existing tags', () => {
+      let tagsOfItem = element.find('.pficon-close')
+      expect(tagsOfItem.length).to.be.eq(2)
+    })
 
-    it('should have correct number of existing tags', function() {
-      let tagsOfItem = element.find(".pficon-close");
-      expect(tagsOfItem.length).to.be.eq(2);
-    });
-
-    it('should have correct number of tags and tag categories', function(done) {
+    it('should have correct number of tags and tag categories', (done) => {
       // wait till promises and watchers resolve
-      setTimeout(function() {
-        isoScope.$digest();
-        expect(isoScope.vm.tags.all).to.eq(scope.allTags.resources);
-        expect(isoScope.vm.showTagDropdowns).to.eq(true);
+      setTimeout(() => {
+        isoScope.$digest()
+        expect(isoScope.vm.tags.all).to.eq(scope.allTags.resources)
+        expect(isoScope.vm.showTagDropdowns).to.eq(true)
 
-        expect(collectionsApiSpy).to.have.been.calledWith('categories', options);
-        expect(collectionsApiSpy).to.have.been.calledWith('tags', options2);
+        expect(collectionsApiSpy).to.have.been.calledWith('categories', options)
+        expect(collectionsApiSpy).to.have.been.calledWith('tags', options2)
 
-        let tagCategorySelect = element.find(".tag-category-select");
-        let tagCategories = angular.element(tagCategorySelect).find("option");
-        expect(tagCategories.length).to.be.eq(28);
+        let tagCategorySelect = element.find('.tag-category-select')
+        let tagCategories = angular.element(tagCategorySelect).find('option')
+        expect(tagCategories.length).to.be.eq(28)
 
-        done();
-      }, 500);
-    });
+        done()
+      }, 500)
+    })
 
-    it('should default to first tag category, and tags of that category', function(done) {
-      setTimeout(function() {
-        isoScope.$digest();
-        let tagCategorySelect = element.find(".tag-category-select");
-        let tagCategories = angular.element(tagCategorySelect).find("option");
-        expect(tagCategories[0].text).to.be.eq("Auto Approve - Max CPU");
-        expect(tagCategories[0].selected).to.be.eq(true);
+    it('should default to first tag category, and tags of that category', (done) => {
+      setTimeout(() => {
+        isoScope.$digest()
+        let tagCategorySelect = element.find('.tag-category-select')
+        let tagCategories = angular.element(tagCategorySelect).find('option')
+        expect(tagCategories[0].text).to.be.eq('Auto Approve - Max CPU')
+        expect(tagCategories[0].selected).to.be.eq(true)
 
-        let tagsOfCategorySelect = element.find(".tag-value-select");
-        let tagsOfCategory = angular.element(tagsOfCategorySelect).find("option");
-        expect(tagsOfCategory.length).to.be.eq(6);    // 6 Auto Approve options
-        expect(tagsOfCategory[0].selected).to.be.eq(true);
+        let tagsOfCategorySelect = element.find('.tag-value-select')
+        let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
+        expect(tagsOfCategory.length).to.be.eq(6)    // 6 Auto Approve options
+        expect(tagsOfCategory[0].selected).to.be.eq(true)
 
-        done();
-      }, 500);
-    });
+        done()
+      }, 500)
+    })
 
-    it('should add a tag', function(done) {
-      setTimeout(function() {
+    it('should add a tag', (done) => {
+      setTimeout(() => {
         // Select tag category 'Department' and tag 'Accounting'
-        isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[8];
-        isoScope.$digest();
-        isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[1];
-        isoScope.$digest();
+        isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[8]
+        isoScope.$digest()
+        isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[1]
+        isoScope.$digest()
 
-        expect(isoScope.vm.tags.selectedTag.name).to.be.eq("/managed/department/accounting");
+        expect(isoScope.vm.tags.selectedTag.name).to.be.eq('/managed/department/accounting')
 
-        let tagCategorySelect = element.find(".tag-category-select");
-        let tagCategories = angular.element(tagCategorySelect).find("option");
-        expect(tagCategories[8].text).to.be.eq("Department");
-        expect(tagCategories[8].selected).to.be.eq(true);
+        let tagCategorySelect = element.find('.tag-category-select')
+        let tagCategories = angular.element(tagCategorySelect).find('option')
+        expect(tagCategories[8].text).to.be.eq('Department')
+        expect(tagCategories[8].selected).to.be.eq(true)
 
-        let tagsOfCategorySelect = element.find(".tag-value-select");
-        let tagsOfCategory = angular.element(tagsOfCategorySelect).find("option");
-        expect(tagsOfCategory[1].text).to.be.eq("Accounting");
-        expect(tagsOfCategory[1].selected).to.be.eq(true);
+        let tagsOfCategorySelect = element.find('.tag-value-select')
+        let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
+        expect(tagsOfCategory[1].text).to.be.eq('Accounting')
+        expect(tagsOfCategory[1].selected).to.be.eq(true)
 
         // should be 2 existing tags
-        let tagsOfItem = element.find(".pficon-close");
-        expect(tagsOfItem.length).to.be.eq(2);
+        let tagsOfItem = element.find('.pficon-close')
+        expect(tagsOfItem.length).to.be.eq(2)
 
-        let addItem = element.find(".fa-plus");
-        expect(addItem.length).to.be.eq(1);
-        addItem[0].click();
-        isoScope.$digest();
+        let addItem = element.find('.fa-plus')
+        expect(addItem.length).to.be.eq(1)
+        addItem[0].click()
+        isoScope.$digest()
 
         // should now have three tags
-        tagsOfItem = element.find(".pficon-close");
-        expect(tagsOfItem.length).to.be.eq(3);
+        tagsOfItem = element.find('.pficon-close')
+        expect(tagsOfItem.length).to.be.eq(3)
 
-        done();
-      }, 500);
-    });
+        done()
+      }, 500)
+    })
 
-    it('should replace single-value tags', function(done) {
-      setTimeout(function() {
+    it('should replace single-value tags', (done) => {
+      setTimeout(() => {
         // There is an existing 'single-value' tag
-        let tagsOfItem = element.find(".pficon-close");
-        expect(tagsOfItem.length).to.be.eq(2);
-        expect(angular.element(tagsOfItem[1]).parent().parent().text().trim()).to.be.eq("Service Level: Gold");
+        let tagsOfItem = element.find('.pficon-close')
+        expect(tagsOfItem.length).to.be.eq(2)
+        expect(angular.element(tagsOfItem[1]).parent().parent().text().trim()).to.be.eq('Service Level: Gold')
 
         // Select tag category 'Service Level' and tag 'Platinum'
-        isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[24];
-        isoScope.$digest();
-        isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[3];
-        isoScope.$digest();
+        isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[24]
+        isoScope.$digest()
+        isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[3]
+        isoScope.$digest()
 
-        expect(isoScope.vm.tags.selectedTag.name).to.be.eq("/managed/service_level/platinum");
+        expect(isoScope.vm.tags.selectedTag.name).to.be.eq('/managed/service_level/platinum')
 
-        let tagCategorySelect = element.find(".tag-category-select");
-        let tagCategories = angular.element(tagCategorySelect).find("option");
-        expect(tagCategories[24].text).to.be.eq("Service Level");
-        expect(tagCategories[24].selected).to.be.eq(true);
+        let tagCategorySelect = element.find('.tag-category-select')
+        let tagCategories = angular.element(tagCategorySelect).find('option')
+        expect(tagCategories[24].text).to.be.eq('Service Level')
+        expect(tagCategories[24].selected).to.be.eq(true)
 
-        let tagsOfCategorySelect = element.find(".tag-value-select");
-        let tagsOfCategory = angular.element(tagsOfCategorySelect).find("option");
-        expect(tagsOfCategory[3].text).to.be.eq("Platinum");
-        expect(tagsOfCategory[3].selected).to.be.eq(true);
+        let tagsOfCategorySelect = element.find('.tag-value-select')
+        let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
+        expect(tagsOfCategory[3].text).to.be.eq('Platinum')
+        expect(tagsOfCategory[3].selected).to.be.eq(true)
 
         // This should replace Service Level Gold with Service Level Platinum
-        let addItem = element.find(".fa-plus");
-        expect(addItem.length).to.be.eq(1);
-        addItem[0].click();
+        let addItem = element.find('.fa-plus')
+        expect(addItem.length).to.be.eq(1)
+        addItem[0].click()
 
-        isoScope.$digest();
+        isoScope.$digest()
 
         // Second Tag should now be Service Level: Platinum
-        tagsOfItem = element.find(".pficon-close");
-        expect(tagsOfItem.length).to.be.eq(2);
-        expect(angular.element(tagsOfItem[1]).parent().parent().text().trim()).to.be.eq("Service Level: Platinum");
+        tagsOfItem = element.find('.pficon-close')
+        expect(tagsOfItem.length).to.be.eq(2)
+        expect(angular.element(tagsOfItem[1]).parent().parent().text().trim()).to.be.eq('Service Level: Platinum')
 
-        done();
-      }, 500);
-    });
+        done()
+      }, 500)
+    })
 
-    it('should remove a tag', function(done) {
-      setTimeout(function() {
-        let tagsOfItem = element.find(".pficon-close");
-        expect(tagsOfItem.length).to.be.eq(2);
+    it('should remove a tag', (done) => {
+      setTimeout(() => {
+        let tagsOfItem = element.find('.pficon-close')
+        expect(tagsOfItem.length).to.be.eq(2)
 
-        tagsOfItem[1].click();
-        isoScope.$digest();
+        tagsOfItem[1].click()
+        isoScope.$digest()
 
-        tagsOfItem = element.find(".pficon-close");
-        expect(tagsOfItem.length).to.be.eq(1);
+        tagsOfItem = element.find('.pficon-close')
+        expect(tagsOfItem.length).to.be.eq(1)
 
-        done();
-      }, 500);
-    });
-  });
-});
+        done()
+      }, 500)
+    })
+  })
+})

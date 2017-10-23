@@ -1,15 +1,15 @@
+/* global $state, EventNotifications, $controller, Session */
+/* eslint-disable no-unused-expressions */
 describe('State: login', () => {
-  let failureNotificationSpy
   beforeEach(() => {
     module('app.states')
-
   })
 
   describe('controller', () => {
     let ctrl
     beforeEach(() => {
       bard.inject('$controller', '$state', '$stateParams', 'Session', '$window', 'API_LOGIN', 'API_PASSWORD', 'EventNotifications')
-      failureNotificationSpy = sinon.spy(EventNotifications, 'error')
+      sinon.spy(EventNotifications, 'error')
       ctrl = $controller($state.get('login').controller, {})
     })
 
