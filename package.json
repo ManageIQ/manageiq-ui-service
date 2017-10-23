@@ -115,7 +115,7 @@
     "ui-select": "0.19.8",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",
-    "yargs": "9.0.1",
+    "yargs": "10.0.3",
     "zone.js": "0.8.18"
   },
   "devDependencies": {
