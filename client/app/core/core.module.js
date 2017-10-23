@@ -1,10 +1,8 @@
 /* global _:false, ActionCable:false, $:false, sprintf: false, moment: false */
 /* eslint-disable sort-imports */
-
-import {
-  authConfig,
-  authInit
-} from './authorization.config.js'
+import { authConfig } from './authorization.config.js'
+import { authInit } from './authorization.run.js'
+import 'ng-redux'
 
 import {
   configure,
@@ -29,6 +27,7 @@ import { NavigationController } from './navigation/navigation-controller.js'
 import { NavigationFactory } from './navigation.service.js'
 import { PollingFactory } from './polling.service.js'
 import { RBACFactory } from './rbac.service.js'
+import { ReduxFactory } from './redux.service.js'
 import { RouterModule } from './router/router.module.js'
 import { SaveModalDialogFactory } from './save-modal-dialog/save-modal-dialog.factory.js'
 import { SessionFactory } from './session.service.js'
@@ -50,6 +49,7 @@ export const CoreModule = angular
     'ngCookies',
     'ngMessages',
     'ngSanitize',
+    'ngRedux',
     'ngStorage',
     'ui.router',
     'ui.router.state.events',
@@ -85,6 +85,7 @@ export const CoreModule = angular
   .factory('Navigation', NavigationFactory)
   .factory('Polling', PollingFactory)
   .factory('RBAC', RBACFactory)
+  .factory('Redux', ReduxFactory)
   .factory('SaveModalDialog', SaveModalDialogFactory)
   .factory('Session', SessionFactory)
   .factory('ShoppingCart', ShoppingCartFactory)
