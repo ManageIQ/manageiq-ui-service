@@ -1,44 +1,44 @@
-describe('Catalogs.details', function() {
-  beforeEach(function() {
-    module('app.states');
-  });
+/* global $state, $stateParams, CollectionsApi, $controller, DialogFieldRefresh, context, ShoppingCart, EventNotifications */
+/* eslint-disable no-unused-expressions */
+describe('State: catalogs.details', () => {
+  beforeEach(() => {
+    module('app.states')
+  })
 
-  describe('#resolveDialogs', function() {
-    var collectionsApiSpy;
-    const serviceRequest = false;
-    beforeEach(function() {
-      bard.inject('$state', '$stateParams', 'CollectionsApi');
-      $stateParams.serviceTemplateId = 123;
-      collectionsApiSpy = sinon.spy(CollectionsApi, 'query');
-    });
-
-    it('should query the API with the correct template id and options', function() {
-      var options = {expand: 'resources', attributes: 'content'};
-      $state.get('catalogs.details').resolve.dialogs($stateParams, serviceRequest, CollectionsApi);
-      expect(collectionsApiSpy).to.have.been.calledWith('service_templates/123/service_dialogs', options);
-    });
-
-    it('should query the API for service templates', function() {
-      const serviceTemplateSpy = sinon.spy(CollectionsApi, 'get');
-      var options = { attributes: ['picture','picture.image_href'] };
-      $state.get('catalogs.details').resolve.serviceTemplate($stateParams, serviceRequest, CollectionsApi);
-      expect(serviceTemplateSpy).to.have.been.calledWith('service_templates',123, options);
-    });
-    it('should query the API for serviceRequest if one is set', () => {
-      const serviceRequestSpy = sinon.spy(CollectionsApi, 'get');
-      $stateParams.serviceRequestId = 12345;
-      const options = {}
-      $state.get('catalogs.duplicate').resolve.serviceRequest($stateParams, CollectionsApi);
-      expect(serviceRequestSpy).to.have.been.calledWith('requests',12345, options);
+  describe('#resolveDialogs', () => {
+    let collectionsApiSpy
+    const serviceRequest = false
+    beforeEach(() => {
+      bard.inject('$state', '$stateParams', 'CollectionsApi')
+      $stateParams.serviceTemplateId = 123
+      collectionsApiSpy = sinon.spy(CollectionsApi, 'query')
     })
-  });
 
-  describe('controller', function() {
-    var collectionsApiSpy;
-    var controller;
-    var refreshSingleFieldSpy;
+    it('should query the API with the correct template id and options', () => {
+      const options = {expand: 'resources', attributes: 'content'}
+      $state.get('catalogs.details').resolve.dialogs($stateParams, serviceRequest, CollectionsApi)
+      expect(collectionsApiSpy).to.have.been.calledWith('service_templates/123/service_dialogs', options)
+    })
 
-    var dialogFields = [{
+    it('should query the API for service templates', () => {
+      const serviceTemplateSpy = sinon.spy(CollectionsApi, 'get')
+      const options = {attributes: ['picture', 'picture.image_href']}
+      $state.get('catalogs.details').resolve.serviceTemplate($stateParams, serviceRequest, CollectionsApi)
+      expect(serviceTemplateSpy).to.have.been.calledWith('service_templates', 123, options)
+    })
+    it('should query the API for serviceRequest if one is set', () => {
+      const serviceRequestSpy = sinon.spy(CollectionsApi, 'get')
+      $stateParams.serviceRequestId = 12345
+      const options = {}
+      $state.get('catalogs.duplicate').resolve.serviceRequest($stateParams, CollectionsApi)
+      expect(serviceRequestSpy).to.have.been.calledWith('requests', 12345, options)
+    })
+  })
+
+  describe('controller', () => {
+    let controller
+
+    const dialogFields = [{
       name: 'dialogField1',
       default_value: '1'
     }, {
@@ -46,7 +46,7 @@ describe('Catalogs.details', function() {
       default_value: '2'
     }]
 
-    var dialogs = {
+    const dialogs = {
       subcount: 1,
       resources: [{
         content: [{
@@ -59,24 +59,24 @@ describe('Catalogs.details', function() {
       }]
     }
 
-    var serviceTemplate = {id: 123, service_template_catalog_id: 321, name: 'test template'}
+    const serviceTemplate = {id: 123, service_template_catalog_id: 321, name: 'test template'}
 
-    var controllerResolves = {
+    const controllerResolves = {
       dialogs: dialogs,
       serviceTemplate: serviceTemplate,
       serviceRequest: false
-    };
+    }
 
-    beforeEach(function () {
+    beforeEach(() => {
       bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'EventNotifications', 'DialogFieldRefresh', 'ShoppingCart')
     })
 
-    describe('controller initialization', function () {
-      it('is created successfully', function () {
+    describe('controller initialization', () => {
+      it('is created successfully', () => {
         controller = $controller($state.get('catalogs.details').controller, controllerResolves)
         expect(controller).to.be.defined
       })
-      it('it allows a field to be refreshed', () => {
+      it('it allows a field to be refreshed', (done) => {
         controller = $controller($state.get('catalogs.details').controller, controllerResolves)
         const refreshSpy = sinon.stub(DialogFieldRefresh, 'refreshDialogField').returns(Promise.resolve({'status': 'success'}))
         const dialogData = {
@@ -85,10 +85,11 @@ describe('Catalogs.details', function() {
         }
         const field = {'name': 'dialogField1'}
         controller.dialogData = dialogData
-        return controller.refreshField(field).then((data) => {
+        controller.refreshField(field).then((data) => {
+          done()
+
           expect(refreshSpy).to.have.been.calledWith(dialogData, ['dialogField1'], 'service_catalogs/321/service_templates', 123)
         })
-
       })
       it('allows dialog data to be updated', () => {
         const testData = {
@@ -102,18 +103,17 @@ describe('Catalogs.details', function() {
         expect(controller.dialogData).to.deep.equal({'dialogField1': '1', 'dialogField2': '2'})
       })
 
-      describe('#addToCartDisabled', function () {
-
-        context('when the cart is not allowed', function () {
-          beforeEach(function () {
-            sinon.stub(ShoppingCart, 'allowed').callsFake(function () {
+      describe('#addToCartDisabled', () => {
+        context('when the cart is not allowed', () => {
+          beforeEach(() => {
+            sinon.stub(ShoppingCart, 'allowed').callsFake(() => {
               return false
             })
 
             controller = $controller($state.get('catalogs.details').controller, controllerResolves)
           })
 
-          it('returns true', function () {
+          it('returns true', () => {
             expect(controller.addToCartDisabled()).to.equal(true)
           })
           it('fails to add to cart', () => {
@@ -122,15 +122,15 @@ describe('Catalogs.details', function() {
           })
         })
 
-        context('when the cart is allowed', function () {
-          beforeEach(function () {
-            sinon.stub(ShoppingCart, 'allowed').callsFake(function () {
+        context('when the cart is allowed', () => {
+          beforeEach(() => {
+            sinon.stub(ShoppingCart, 'allowed').callsFake(() => {
               return true
             })
           })
 
-          context('when addingToCart is true', function () {
-            beforeEach(function () {
+          context('when addingToCart is true', () => {
+            beforeEach(() => {
               controller = $controller($state.get('catalogs.details').controller, controllerResolves)
               controller.addingToCart = true
               controller.dialogData = {
@@ -139,11 +139,11 @@ describe('Catalogs.details', function() {
               }
             })
 
-            it('returns true', function () {
+            it('returns true', () => {
               expect(controller.addToCartDisabled()).to.equal(true)
             })
 
-            it('add to cart successfully', () => {
+            it('add to cart successfully', (done) => {
               const addSpy = sinon.stub(ShoppingCart, 'add').returns(Promise.resolve(''))
               controller.addToCart()
               const expectedObject = {
@@ -154,26 +154,33 @@ describe('Catalogs.details', function() {
                 },
                 description: 'test template'
               }
+              done()
+
               expect(addSpy).to.have.been.calledWith(expectedObject)
             })
-            it('adds successfully but is a duplicate', () => {
-              const addSpy = sinon.stub(ShoppingCart, 'add').returns(Promise.resolve({'duplicate': true}))
+            it('adds successfully but is a duplicate', (done) => {
+              sinon.stub(ShoppingCart, 'add').returns(Promise.resolve({'duplicate': true}))
               const notificationsSuccessSpy = sinon.spy(EventNotifications, 'success')
 
-              return controller.addToCart().then((data) => {
+              controller.addToCart().then((data) => {
+                done()
+
                 expect(notificationsSuccessSpy).to.have.been.calledWith(`Item added to shopping cart, but it's a duplicate of an existing item`)
               })
             })
-            it('fails to add to cart', () => {
-              const addSpy = sinon.stub(ShoppingCart, 'add').returns(Promise.reject('generic error'))
+            it('fails to add to cart', (done) => {
+              const error = 'generic error'
+              sinon.stub(ShoppingCart, 'add').returns(Promise.reject(error))
               const notificationsErrorSpy = sinon.spy(EventNotifications, 'error')
-              return controller.addToCart().then((data) => {
+              controller.addToCart().then((data) => {
+                done()
+
                 expect(notificationsErrorSpy).to.have.been.calledWith(`There was an error adding to shopping cart: generic error`)
               })
             })
           })
           context('when you check for a duplicate cart', () => {
-            beforeEach(function () {
+            beforeEach(() => {
               controller = $controller($state.get('catalogs.details').controller, controllerResolves)
               controller.addingToCart = true
             })
@@ -189,28 +196,28 @@ describe('Catalogs.details', function() {
               expect(shoppingCartSpy).to.have.been.calledWith(expectedData)
             })
           })
-          context('when addingToCart is false', function () {
-            context('when any dialogs are being refreshed', function () {
-              beforeEach(function () {
+          context('when addingToCart is false', () => {
+            context('when any dialogs are being refreshed', () => {
+              beforeEach(() => {
                 dialogs.resources[0].content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].beingRefreshed = true
 
                 controller = $controller($state.get('catalogs.details').controller, controllerResolves)
                 controller.addingToCart = false
               })
 
-              it('returns true', function () {
+              it('returns true', () => {
                 expect(controller.addToCartDisabled()).to.equal(true)
               })
             })
 
-            context('when no dialogs are being refreshed', function () {
-              beforeEach(function () {
+            context('when no dialogs are being refreshed', () => {
+              beforeEach(() => {
                 controller = $controller($state.get('catalogs.details').controller, controllerResolves)
                 controller.addingToCart = false
                 controller.addToCartEnabled = true
               })
 
-              it('returns false', function () {
+              it('returns false', () => {
                 expect(controller.addToCartDisabled()).to.equal(false)
               })
             })

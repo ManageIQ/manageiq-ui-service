@@ -1,24 +1,25 @@
-describe('error', function() {
-  beforeEach(function() {
-    module('app.states');
-  });
+/* global $state,  */
+describe('State: error', () => {
+  beforeEach(() => {
+    module('app.states')
+  })
 
-  describe('route', function() {
-    var views = {
+  describe('route', () => {
+    const views = {
       error: 'app/states/error/error.html'
-    };
+    }
 
-    beforeEach(function() {
-      bard.inject('$location', '$rootScope', '$state', '$templateCache');
-    });
+    beforeEach(() => {
+      bard.inject('$location', '$rootScope', '$state', '$templateCache')
+    })
 
-    it('should map /error route to http-error View template', function() {
-      expect($state.get('error').templateUrl).to.equal(views.error);
-    });
+    it('should map /error route to http-error View template', () => {
+      expect($state.get('error').templateUrl).to.equal(views.error)
+    })
 
-    it('should work with $state.go', function() {
-      $state.go('error');
-      expect($state.is('error'));
-    });
-  });
-});
+    it('should work with $state.go', () => {
+      $state.go('error')
+      expect($state.is('error'))
+    })
+  })
+})

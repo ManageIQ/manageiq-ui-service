@@ -1,3 +1,5 @@
+/* global inject, $componentController */
+/* eslint-disable no-unused-expressions */
 describe('Component: usageGraphs', () => {
   let parentScope, element
 
@@ -8,31 +10,31 @@ describe('Component: usageGraphs', () => {
     parentScope.charts = {
       cpuChart: {
         config: {
-          units: 'mhz',
+          units: 'mhz'
         },
         data: {
           'used': '1000',
-          'total': '2000',
+          'total': '2000'
         },
-        label: 'used',
+        label: 'used'
       },
       memoryChart: {
         config: {
-          units: 'GB',
+          units: 'GB'
         },
         data: {
           'used': '2',
-          'total': '8',
+          'total': '8'
         },
-        label: 'used',
+        label: 'used'
       },
       storageChart: {
         config: {
-          units: 'GB',
+          units: 'GB'
         },
         data: {
           'used': '2',
-          'total': '40',
+          'total': '40'
         },
         label: 'used',
         chartId: 'storageChart'
@@ -56,7 +58,6 @@ describe('Component: usageGraphs', () => {
     expect(graphs[1].innerHTML).to.eq('6')
     expect(graphs[2].innerHTML).to.eq('38')
   })
-
 })
 
 describe('Should be able to pass 0 as amount of metric', () => {

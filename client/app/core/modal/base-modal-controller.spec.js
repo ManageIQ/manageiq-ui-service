@@ -1,53 +1,49 @@
-describe('BaseModalController', function() {
-  beforeEach(module('app.components'));
+/* global inject */
+/* eslint-disable no-unused-expressions */
+describe('BaseModalController', () => {
+  beforeEach(module('app.components'))
 
-  var base;
-  var controller;
-  var CollectionsApi;
-  var EventNotifications;
-  var mockModalInstance = { close: angular.noop, dismiss: angular.noop };
+  let base, controller, CollectionsApi
+  const mockModalInstance = {close: angular.noop, dismiss: angular.noop}
 
-  beforeEach(inject(function($controller, $injector) {
-    CollectionsApi = $injector.get('CollectionsApi');
-    EventNotifications = $injector.get('EventNotifications');
+  beforeEach(inject(($controller, $injector) => {
+    CollectionsApi = $injector.get('CollectionsApi')
 
     base = $controller('BaseModalController', {
-      $uibModalInstance: mockModalInstance,
-    });
+      $uibModalInstance: mockModalInstance
+    })
 
-    controller = angular.extend(angular.copy(base), base);
+    controller = angular.extend(angular.copy(base), base)
     controller.modalData = {
       id: '1',
       name: 'bar',
-      description: 'Your Service',
+      description: 'Your Service'
     }
-  }));
+  }))
 
-  it('delegates dismiss to the local $uibModalInstance when cancel called', function() {
-    var spy = sinon.spy(mockModalInstance, 'dismiss');
+  it('delegates dismiss to the local $uibModalInstance when cancel called', () => {
+    const spy = sinon.spy(mockModalInstance, 'dismiss')
+    controller.cancel()
 
-    controller.cancel();
+    expect(spy).to.have.been.called
+  })
 
-    expect(spy).to.have.been.called;
-  });
+  it('resets the modal data to the original data emitted by the reset', () => {
+    const payload = {original: {name: 'foo', description: 'My Service'}}
+    controller.reset(payload)
 
-  it('resets the modal data to the original data emitted by the reset', function() {
-    var payload = { original: { name: 'foo', description: 'My Service' }};
+    expect(controller.modalData.name).to.equal('foo')
+    expect(controller.modalData.description).to.equal('My Service')
+  })
 
-    controller.reset(payload);
+  it('makes a POST request when save is triggered', (done) => {
+    const spy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve())
+    const payload = {action: 'edit', resource: controller.modalData}
+    controller.action = 'edit'
+    controller.collection = 'services'
+    controller.save()
+    done()
 
-    expect(controller.modalData.name).to.equal('foo');
-    expect(controller.modalData.description).to.equal('My Service');
-  });
-
-  it('makes a POST request when save is triggered', function() {
-    var spy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve());
-    var payload = { action: 'edit', resource: controller.modalData };
-
-    controller.action = 'edit';
-    controller.collection = 'services';
-    controller.save();
-
-    expect(spy).to.have.been.calledWith('services', '1', {}, payload);
-  });
-});
+    expect(spy).to.have.been.calledWith('services', '1', {}, payload)
+  })
+})

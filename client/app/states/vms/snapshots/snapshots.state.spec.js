@@ -1,29 +1,31 @@
+/* global $state, $controller */
+/* eslint-disable no-unused-expressions */
 describe('State: vms.snapshots', () => {
   beforeEach(() => {
-    module('app.states');
-  });
+    module('app.states')
+  })
 
   describe('controller', () => {
-    let ctrl;
+    let ctrl
 
     beforeEach(() => {
-      bard.inject('$controller', '$state', '$stateParams');
+      bard.inject('$controller', '$state', '$stateParams')
 
       ctrl = $controller($state.get('vms.snapshots').controller, {
         $stateParams: {
           vmId: 123
         }
-      });
-    });
+      })
+    })
 
     describe('controller initialization', () => {
       it('is created successfully', () => {
-        expect(ctrl).to.be.defined;
-      });
+        expect(ctrl).to.be.defined
+      })
 
       it('sets stateParams vmId', () => {
-        expect(ctrl.vmId).to.equal(123);
-      });
-    });
-  });
-});
+        expect(ctrl.vmId).to.equal(123)
+      })
+    })
+  })
+})

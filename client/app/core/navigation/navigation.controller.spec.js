@@ -1,9 +1,10 @@
+/* global Navigation, Session, CollectionsApi, inject, API_BASE, ShoppingCart, $rootScope, $uibModal, $state, $document, EventNotifications, ApplianceInfo, RBAC */
+/* eslint-disable no-unused-expressions */
 describe('Controller: Navigation', () => {
   beforeEach(module('app.components'))
   let ctrl
 
   beforeEach(inject(function ($controller) {
-
     bard.inject('Text', 'Navigation', 'Session', 'ShoppingCart', 'API_BASE', '$rootScope', '$uibModal', '$state',
       '$document', 'EventNotifications', 'ApplianceInfo', 'CollectionsApi', 'RBAC')
 
@@ -19,7 +20,7 @@ describe('Controller: Navigation', () => {
       $document: $document,
       EventNotifications: EventNotifications,
       ApplianceInfo: ApplianceInfo,
-      RBAC, RBAC
+      RBAC: RBAC
     })
   }))
 
@@ -37,7 +38,7 @@ describe('Controller: Navigation', () => {
     expect(Object.keys(ctrl.about).length).to.eq(9)
   })
 
-  it('it sets a users group when successfully switched', () => {
+  it('it sets a users group when successfully switched', (done) => {
     const newGroup = {
       description: 'Tenant My Company access',
       href: 'http://localhost:3001/api/groups/10000000000001',
@@ -46,8 +47,12 @@ describe('Controller: Navigation', () => {
     const spy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve())
     ctrl.user().user_href = newGroup.href
     ctrl.switchGroup(newGroup)
+    done()
 
-    expect(spy).to.have.been.calledWith('users', '10000000000001', {}, {action: 'edit', current_group: {id: '10000000000001'}})
+    expect(spy).to.have.been.calledWith('users', '10000000000001', {}, {
+      action: 'edit',
+      current_group: {id: '10000000000001'}
+    })
     expect(ctrl.user().group).to.be.defined
   })
 })

@@ -182,7 +182,9 @@
       "flowchart",
       "__",
       "N_",
-      "angular"
+      "angular",
+      "sinon",
+      "bard"
     ],
     "parser": "babel-eslint",
     "plugins": [
@@ -198,8 +200,6 @@
       "jasmine"
     ],
     "ignore": [
-      "*.e2e.js",
-      "*.spec.js",
       "/reports/"
     ]
   }

@@ -1,3 +1,5 @@
+/* global inject */
+/* eslint-disable no-unused-expressions */
 describe('Component: requests-list', () => {
   beforeEach(function () {
     module('app.core', 'app.orders')
@@ -11,12 +13,12 @@ describe('Component: requests-list', () => {
   }))
 
   it('should be defined', () => {
-    scope ['items'] = []
-    scope ['config'] = []
+    scope['items'] = []
+    scope['config'] = []
 
     let element = angular.element(`<requests-list items="items" config="config"/>`)
     element = $compile(element)(scope)
     scope.$digest()
-    expect(element).to.be.defined;
+    expect(element).to.be.defined
   })
 })
