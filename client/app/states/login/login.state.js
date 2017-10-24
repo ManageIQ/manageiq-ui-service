@@ -74,8 +74,12 @@ function StateController (exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD
         Session.destroy()
       }
     })
-    .catch(() => {
-      exception.catch('Login failed, possibly invalid credentials.')
+    .catch((response) => {
+      if (response.status === 401) {
+        vm.credentials.password = ''
+        const message = response.data.error.message
+        Notifications.message('danger', '', __('Login failed, possibly invalid credentials. ') + `(${message})`, false)
+      }
       Session.destroy()
     })
   }

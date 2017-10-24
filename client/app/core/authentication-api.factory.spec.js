@@ -38,13 +38,15 @@ describe('Authentication API', () => {
     let mockDir = 'tests/mock/authentication-api/'
     const errorResponse = readJSON(mockDir + 'failure.json')
 
-    it('should fail Login', (done) => {
+    it('should fail Login', () => {
       Session.destroy()
       sinon.stub($http, 'get').returns(Promise.reject(errorResponse))
-      AuthenticationApi.login('test', 'test').then(function (data) {
-        done()
-
+      return AuthenticationApi.login('test', 'test').then(function (data) {
         expect(Session.active()).to.eq(false)
+      }).catch((err) => {
+        if (err) {
+          expect(Session.active()).to.eq(false)
+        }
       })
     })
   })
