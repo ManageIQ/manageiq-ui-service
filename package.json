@@ -105,7 +105,7 @@
     "postcss-loader": "2.0.8",
     "q": "1.5.1",
     "redux": "3.7.2",
-    "redux-persist": "4.10.1",
+    "redux-persist": "5.0.0",
     "request": "2.83.0",
     "rxjs": "5.5.0",
     "sass-loader": "6.0.6",
