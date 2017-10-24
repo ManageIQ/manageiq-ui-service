@@ -43,8 +43,10 @@ describe('Authentication API', () => {
       sinon.stub($http, 'get').returns(Promise.reject(errorResponse))
       return AuthenticationApi.login('test', 'test').then(function (data) {
         expect(Session.active()).to.eq(false)
-      }).catch((err) => { 
-        expect(Session.active()).to.eq(false)
+      }).catch((err) => {
+        if (err) {
+          expect(Session.active()).to.eq(false)
+        }
       })
     })
   })
