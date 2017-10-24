@@ -62,6 +62,7 @@ export function SessionFactory ($http, $sessionStorage, $cookies, RBAC, Polling)
     delete $sessionStorage.selectedMiqGroup
     delete $sessionStorage.token
     delete $sessionStorage.user
+    delete $sessionStorage.applianceInfo
   }
 
   function loadUser () {

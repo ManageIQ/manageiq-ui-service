@@ -1,6 +1,6 @@
 import gitHash from '../../version/version.json'
 /** @ngInject */
-export function ApplianceInfo () {
+export function ApplianceInfo ($sessionStorage) {
   let applianceInfo = {}
 
   return {
@@ -9,7 +9,11 @@ export function ApplianceInfo () {
   }
 
   function get () {
-    return applianceInfo
+    const defaultResponse = {
+      asyncNotify: false
+    }
+
+    return (angular.isDefined($sessionStorage.applianceInfo) ? $sessionStorage.applianceInfo : defaultResponse)
   }
 
   function set (data) {
@@ -24,5 +28,6 @@ export function ApplianceInfo () {
       server: data.server_info.appliance,
       asyncNotify: data.settings.asynchronous_notifications
     }
+    $sessionStorage.applianceInfo = applianceInfo
   }
 }
