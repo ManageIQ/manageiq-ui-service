@@ -1,8 +1,6 @@
-import TokenActions from '../actions/token'
 /* eslint-disable dot-notation */
 /** @ngInject */
-
-export function SessionFactory (lodash, $http, $q, $sessionStorage, $cookies, $ngRedux, RBAC, Redux, Polling) {
+export function SessionFactory ($http, $sessionStorage, $cookies, RBAC, Polling) {
   const model = {
     token: null,
     user: {}
@@ -21,12 +19,6 @@ export function SessionFactory (lodash, $http, $q, $sessionStorage, $cookies, $n
     setPause: setPause,
     updateUserSession: updateUserSession
   }
-  const vm = this
-  const actions = TokenActions
-  vm.unsubscribe = $ngRedux.connect(mapStateToThis, actions)(vm)
-  function mapStateToThis (token) {
-    return { token: token.token }
-  }
 
   destroy()
 
@@ -34,7 +26,6 @@ export function SessionFactory (lodash, $http, $q, $sessionStorage, $cookies, $n
 
   function setAuthToken (token) {
     model.token = token
-    vm.addToken(token)
     $http.defaults.headers.common['X-Auth-Token'] = model.token
     $sessionStorage.token = model.token
   }
@@ -63,7 +54,6 @@ export function SessionFactory (lodash, $http, $q, $sessionStorage, $cookies, $n
 
   function destroy () {
     model.token = null
-    Redux.clear()
     model.user = {}
     destroyWsToken()
     delete $http.defaults.headers.common['X-Miq-Group']
@@ -139,9 +129,9 @@ export function SessionFactory (lodash, $http, $q, $sessionStorage, $cookies, $n
   }
 
   // Helpers
-  function active () {
-    const token = vm.token.token || false
 
-    return token
+  function active () {
+    // may not be current, but if we have one, we'll rely on API 401ing if it's not
+    return angular.isString(model.token) ? model.token : false
   }
 }
