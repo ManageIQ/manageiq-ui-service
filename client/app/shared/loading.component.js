@@ -2,6 +2,13 @@ export const LoadingComponent = {
   bindings: {
     status: '<'
   },
-  template: '<div ng-if="$ctrl.status" class="drawer-pf-loading text-center">' +
-    '<span class="spinner spinner-xs spinner-inline"></span> {{ "Loading More" | translate }}  </div>'
+  controllerAs: 'vm',
+  controller: function () {
+    const vm = this
+    vm.config = {icon: 'spinner spinner-lg spinner-inline', title: __('Loading')}
+  },
+  template:
+    `
+    <pf-empty-state ng-if="vm.status" config="vm.config"></pf-empty-state>
+   `
 }
