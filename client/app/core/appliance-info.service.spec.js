@@ -24,13 +24,14 @@ describe('Appliance Info Service', () => {
     bard.inject('ApplianceInfo')
   })
 
-  it('should allow you to set appliance info', () => {
+  it('should allow you to set appliance info', (done) => {
     const applianceSpy = sinon.spy(ApplianceInfo, 'set')
     ApplianceInfo.set(applianceInfoData)
+    done()
 
     expect(applianceSpy).to.have.been.calledWith(applianceInfoData)
   })
-  it('Should allow you to retrieve the appliance info', () => {
+  it('Should allow you to retrieve the appliance info', (done) => {
     const expectedApplianceInfo = {
       'copyright': 'Copyright (c) 2017 ManageIQ. Sponsored by Red Hat Inc.',
       'supportWebsiteText': 'ManageIQ.org',
@@ -44,6 +45,7 @@ describe('Appliance Info Service', () => {
     }
     ApplianceInfo.set(applianceInfoData)
     const currentApplianceInfo = ApplianceInfo.get()
+    done()
 
     expect(currentApplianceInfo).to.eql(expectedApplianceInfo)
   })
