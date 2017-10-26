@@ -266,7 +266,7 @@
                           <a href="#" translate>VM Console</a>
                         </li>
                         <li role="menuitem"
-                            ng-class="{'disabled': !item['supports_launch_cockpit?'] || item.power_state !== 'on' || !customScope.permissions.cockpit}"
+                            ng-class="{'disabled': !item['supports_cockpit?'] || item.power_state !== 'on' || !customScope.permissions.cockpit}"
                             ng-click="customScope.openCockpit(item)">
                           <a href="#" translate>Web Console</a>
                         </li>
