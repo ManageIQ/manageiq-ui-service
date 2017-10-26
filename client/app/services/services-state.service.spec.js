@@ -27,7 +27,7 @@ describe('Service: ServicesStateFactory', () => {
           'generic_objects.generic_object_definition'
         ],
         expand: ['vms', 'orchestration_stacks', 'generic_objects'],
-        decorators: ['vms.supports_console?', 'vms.supports_launch_cockpit?'],
+        decorators: ['vms.supports_console?', 'vms.supports_cockpit?'],
         auto_refresh: false
       }
       done()
