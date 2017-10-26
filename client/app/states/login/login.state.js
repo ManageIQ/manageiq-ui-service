@@ -76,6 +76,7 @@ function StateController (exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD
     })
     .catch((response) => {
       if (response.status === 401) {
+        vm.credentials.login = ''
         vm.credentials.password = ''
         const message = response.data.error.message
         Notifications.message('danger', '', __('Login failed, possibly invalid credentials. ') + `(${message})`, false)
