@@ -7,18 +7,6 @@
         <li class="active">{{vm.title}}</li>
       </ol>
   </span>
-  <div class="view-selector-bar">
-    <div class="form-group toolbar-pf-view-selector">
-      <button class="btn btn-link usage-graphs-button" ng-click="vm.viewSelected('graphsView')"
-              ng-class="{active: vm.viewType === 'graphsView'}">
-        <i class="fa fa-tachometer"></i>
-      </button>
-      <button class="btn btn-link" ng-click="vm.viewSelected('detailsView')"
-              ng-class="{active: vm.viewType === 'detailsView'}">
-        <i class="fa fa-list-alt"></i>
-      </button>
-    </div>
-  </div>
 </div>
 <pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.headerConfig"
             ng-if="!vm.loading && vm.viewType === 'detailsView'">
@@ -42,10 +30,7 @@
   </actions>
 </pf-toolbar>
 <loading status="vm.loading"></loading>
-<div ng-if="vm.viewType === 'graphsView'" class="ss-details-wrapper usage-graphs-container">
-  <usage-graphs cpu-chart="vm.cpuChart" memory-chart="vm.memoryChart" storage-chart="vm.storageChart"></usage-graphs>
-</div>
-<div ng-if="!vm.loading && vm.viewType === 'detailsView'" class="ss-details-wrapper ss-details-wrapper-with-toolbar">
+<div ng-if="!vm.loading" class="ss-details-wrapper">
   <div class="panel panel-default ss-details-panel">
     <div class="panel-body">
       <section>
@@ -355,13 +340,6 @@
                         <li role="menuitem">
                           <a ng-click="$ctrl.customScope.gotoComputeResource(item)" translate>View
                             Details</a>
-                        </li>
-                        <li role="menuitem">
-                          <a
-                            ui-sref="services.resource-details({serviceId: vm.service.id, vmId: item.id, viewType: 'graphsView'})"
-                            translate>
-                            View Graphs
-                          </a>
                         </li>
                       </ul>
                     </div>

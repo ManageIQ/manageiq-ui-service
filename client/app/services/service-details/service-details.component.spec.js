@@ -119,7 +119,7 @@ describe('Component: ServiceDetails', () => {
     beforeEach(() => {
       bard.inject('$componentController', '$state', '$window', 'CollectionsApi', 'EventNotifications', 'Chargeback', 'Consoles',
         'TagEditorModal', 'ModalService', 'PowerOperations', 'ServicesState', 'TaggingService', 'lodash',
-        'Polling', 'LONG_POLLING_INTERVAL', 'UsageGraphsService')
+        'Polling', 'LONG_POLLING_INTERVAL')
       const stateParams = {
         serviceId: 1234
       }
