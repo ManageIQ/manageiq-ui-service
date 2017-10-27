@@ -12,7 +12,7 @@ export const ServiceDetailsComponent = {
 /** @ngInject */
 function ComponentController ($stateParams, $state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
                               TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash,
-                              Polling, LONG_POLLING_INTERVAL, UsageGraphsService) {
+                              Polling, LONG_POLLING_INTERVAL) {
   const vm = this
   vm.$onInit = activate
   vm.$onDestroy = onDestroy
@@ -23,9 +23,6 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
 
   function activate () {
     vm.permissions = ServicesState.getPermissions()
-    vm.storageChartConfigOptions = {'units': __('GB'), 'chartId': 'storageChart', 'label': __('used')}
-    vm.memoryChartConfigOptions = {'units': __('GB'), 'chartId': 'memoryChart', 'label': __('used')}
-    vm.cpuChartConfigOptions = {'units': __('MHz'), 'chartId': 'cpuChart', 'label': __('used')}
 
     angular.extend(vm, {
       serviceId: $stateParams.serviceId,
@@ -38,8 +35,6 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       // Functions
       hasCustomButtons: hasCustomButtons,
       disableStopButton: disableStopButton,
-      viewType: 'detailsView',
-      viewSelected: viewSelected,
       disableSuspendButton: disableSuspendButton,
       disableStartButton: disableStartButton,
       toggleOpenResourceGroup: toggleOpenResourceGroup,
@@ -60,9 +55,6 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       genericObjectsViewState: {},
       setGenericObjectViewState: setGenericObjectViewState,
       createResourceGroups: createResourceGroups,
-      cpuChart: UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions),
-      memoryChart: UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions),
-      storageChart: UsageGraphsService.getChartConfig(vm.storageChartConfigOptions),
       // Config setup
       headerConfig: getHeaderConfig(),
       resourceListConfig: {
@@ -78,31 +70,6 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
     fetchResources(vm.serviceId, true)
   }
 
-  function viewSelected (view) {
-    vm.viewType = view
-  }
-
-  function getChartConfigs () {
-    const allocatedStorage = UsageGraphsService.convertBytestoGb(vm.service.aggregate_all_vm_disk_space_allocated)
-    const usedStorage = UsageGraphsService.convertBytestoGb(vm.service.aggregate_all_vm_disk_space_used)
-    let usedMemory = 0
-    let usedCPU = 0
-    let totalCPU = 0
-    const allocatedMemory = vm.service.aggregate_all_vm_memory / 1024 // this metric is in mb
-    if (vm.service.vms) {
-      vm.service.vms.forEach((instance) => {
-        usedCPU += instance.cpu_usagemhz_rate_average_avg_over_time_period
-        totalCPU += (angular.isDefined(instance.hardware.aggregate_cpu_speed) ? instance.hardware.aggregate_cpu_speed : 0)
-        usedMemory += instance.max_mem_usage_absolute_average_avg_over_time_period
-      })
-    }
-
-    usedMemory = UsageGraphsService.convertBytestoGb(usedMemory)
-    vm.cpuChart = UsageGraphsService.getChartConfig(vm.cpuChartConfigOptions, usedCPU, totalCPU)
-    vm.memoryChart = UsageGraphsService.getChartConfig(vm.memoryChartConfigOptions, usedMemory, allocatedMemory)
-    vm.storageChart = UsageGraphsService.getChartConfig(vm.storageChartConfigOptions, usedStorage, allocatedStorage)
-  }
-
   function fetchResources (id, refresh) {
     ServicesState.getService(id, refresh).then(handleSuccess, handleFailure)
 
@@ -111,7 +78,6 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       vm.service.credential = []
       vm.title = vm.service.name
       getListActions()
-      getChartConfigs()
       Chargeback.processReports(vm.service)
       vm.computeGroup = vm.createResourceGroups(vm.service)
       vm.genericObjects = (angular.isDefined(vm.service.generic_objects) ? vm.getGenericObjects(vm.service.generic_objects) : [])
@@ -125,6 +91,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       EventNotifications.error(__('There was an error fetching this service. ') + response)
     }
   }
+
   function getGenericObjects (objects) {
     let genericObjects = {}
     objects.forEach((object) => {
@@ -153,7 +120,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       const properties = []
       for (var property in object.properties) {
         if (property !== 'services') {
-          properties.push({ key: property, value: object.properties[property] })
+          properties.push({key: property, value: object.properties[property]})
         }
       }
       object.isExpanded = objectViewState
@@ -169,9 +136,11 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
 
     return sortedObjects
   }
+
   function setGenericObjectViewState (object) {
     vm.genericObjectsViewState[object.id] = object.isExpanded
   }
+
   function hasCustomButtons (service) {
     const actions = service.custom_actions || {}
     const groups = actions.button_groups || []
@@ -402,10 +371,12 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   function toggleOpenResourceGroup (group) {
     group.open = !group.open
   }
+
   function toggleOpenGenericObjects (object) {
     object.isExpanded = !object.isExpanded
     vm.genericObjectsTypeViewState[object.id] = object.isExpanded
   }
+
   function openConsole (item) {
     if (item['supports_console?'] && item.power_state === 'on') {
       Consoles.open(item.id)
