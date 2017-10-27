@@ -12,7 +12,7 @@ export const ServiceDetailsComponent = {
 /** @ngInject */
 function ComponentController ($stateParams, $state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
                               TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash,
-                              Polling, LONG_POLLING_INTERVAL) {
+                              Polling, LONG_POLLING_INTERVAL, $templateCache) {
   const vm = this
   vm.$onInit = activate
   vm.$onDestroy = onDestroy
@@ -23,6 +23,48 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
 
   function activate () {
     vm.permissions = ServicesState.getPermissions()
+
+ // const test = `
+    //          <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body
+    //                      ng-if="$ctrl.customScope.permissions.vm_snapshot_add || $ctrl.customScope.permissions.viewSnapshots">
+    //                   <button type="button" class="btn btn-default" uib-dropdown-toggle
+    //                           type="button">
+    //                           <i class="fa fa-camera"></i>
+    //                           <span translate>Snapshots</span>
+    //                     <span class="caret"></span>
+    //                   </button>
+    //                   <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu"
+    //                       aria-labelledby="btn-append-to-to-body">
+    //                     <li role="menuitem" ng-if="$ctrl.customScope.permissions.viewSnapshots">
+    //                       <a ui-sref="vms.snapshots({vmId: item.id})" translate>View</a>
+    //                     </li>
+    //                     <li role="menuitem" ng-if="$ctrl.customScope.permissions.vm_snapshot_add">
+    //                       <a ng-click="$ctrl.customScope.processSnapshot(item)" translate>Create</a>
+    //                     </li>
+    //                   </ul>
+    //                 </div>
+    // `
+    const test = `
+             <div  uib-dropdown dropdown-append-to-body
+                         ng-if="$ctrl.customScope.permissions.vm_snapshot_add || $ctrl.customScope.permissions.viewSnapshots">
+                      <div type="button"  uib-dropdown-toggle
+                              type="button">
+                              <i class="fa fa-camera"></i>
+                              <span translate>Snapshots</span>
+                        <span class="caret"></span>
+                      </div>
+                      <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu"
+                          aria-labelledby="btn-append-to-to-body">
+                        <li role="menuitem" ng-if="$ctrl.customScope.permissions.viewSnapshots">
+                          <a ui-sref="vms.snapshots({vmId: item.id})" translate>View</a>
+                        </li>
+                        <li role="menuitem" ng-if="$ctrl.customScope.permissions.vm_snapshot_add">
+                          <a ng-click="$ctrl.customScope.processSnapshot(item)" translate>Create</a>
+                        </li>
+                      </ul>
+                    </div>
+    `
+    $templateCache.put('snapshotsActionButton',test)
 
     angular.extend(vm, {
       serviceId: $stateParams.serviceId,
@@ -60,7 +102,31 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       resourceListConfig: {
         showSelectBox: false,
         checkDisabled: isResourceDisabled
-      }
+      },
+      resourceActionButtons: [{
+        // name: 'Snapshots',
+        // class: 'btn btn-default',
+        include: 'snapshotsActionButton'
+      }, {
+        name: 'Access',
+        class: 'btn btn-default',
+      }],
+      resourceMenuActions: [
+        {
+          name: 'Start',
+        }, {
+          name: 'Stop',
+        }, {
+          name: 'Suspend',
+        }, {
+          name: 'Retire',
+        }, {
+          name: 'seperator',
+          isSeparator: true
+        }, {
+          name: 'View Details',
+        }
+      ]
     })
     fetchResources(vm.serviceId)
     Polling.start('servicesPolling', startPollingService, LONG_POLLING_INTERVAL)
