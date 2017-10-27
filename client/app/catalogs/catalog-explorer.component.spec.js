@@ -21,7 +21,7 @@ describe('Catalog explorer component - ', () => {
     const catalogSpy = sinon.stub(CatalogsState, 'getServiceTemplates').returns(Promise.resolve({'status': 'success'}))
     ctrl.$onInit()
     done()
-    expect(catalogSpy).to.have.been.calledWith(20, 0)
+    expect(catalogSpy).to.have.been.calledWith(10, 0)
   })
   it('should allow pagination to be updated', () => {
     ctrl.$onInit()

@@ -22,7 +22,7 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
       currentUser: Session.currentUser(),
       loading: false,
       orders: [],
-      limit: 20,
+      limit: 10,
       filterCount: 0,
       ordersList: [],
       selectedItemsList: [],

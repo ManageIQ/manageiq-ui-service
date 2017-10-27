@@ -17,7 +17,7 @@ function ComponentController ($state, CatalogsState, ListView, EventNotification
     angular.extend(vm, {
       title: __('Catalogs'),
       loading: false,
-      limit: 20,
+      limit: 10,
       filterCount: 0,
       catalogsList: [],
       serviceTemplateList: [],
