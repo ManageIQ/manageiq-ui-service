@@ -35,7 +35,7 @@
 </div>
 <div class="container-fluid breadcrumb-content">
     <div class="row">
-        <div class="col-md-4 card-pf-top">
+        <div class="col-lg-4 col-md-6 col-sm-6 card-pf-top">
             <div class=" card-pf card-pf-info-status card-pf-accented">
                 <div class="card-pf-info-image">
                     <img ng-if="vm.genInfo.iconImage" ng-src="{{vm.genInfo.iconImage}}" alt=""
@@ -71,21 +71,21 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-lg-2 col-md-6 col-sm-6">
             <pf-info-status-card class="card-pf-top" status="vm.provInfo" show-top-border="true"
                                  html-content="true"></pf-info-status-card>
         </div>
-        <div class="col-md-2"
+        <div class="col-lg-2 col-md-4 col-sm-4"
              uib-tooltip="{{vm.vmDetails.complianceHistory}}"
              tooltip-placement="bottom">
             <pf-aggregate-status-card class="card-pf-top" status="vm.compliance"
                                       show-top-border="true"></pf-aggregate-status-card>
         </div>
-        <div class="col-md-2">
+        <div class="col-lg-2 col-md-4 col-sm-4">
             <pf-aggregate-status-card class="card-pf-top" status="vm.retirement"
                                       show-top-border="true"></pf-aggregate-status-card>
         </div>
-        <div class="col-md-2">
+        <div class="col-lg-2 col-md-4 col-sm-4">
             <pf-aggregate-status-card ng-if="vm.permissions.snapshotsView" class="card-pf-top"
                                       status="vm.snapshots"
                                       ui-sref="vms.snapshots({vmId: vm.vmDetails.id})"
