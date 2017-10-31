@@ -47,7 +47,7 @@ describe('Service: VmsService', () => {
   it('should be able to check permissions', () => {
     RBAC.set(permissions)
     const expectedPermissions = {
-      'start': false,
+      'start': true,
       'stop': true,
       'suspend': true,
       'tags': true,
