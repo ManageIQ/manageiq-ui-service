@@ -35,7 +35,7 @@
       "WEB_CONSOLE": "sui_vm_web_console",
       "TAGS": "sui_vm_tags",
       "RETIRE": "sui_vm_retire",
-      "STAR": "sui_vm_start",
+      "START": "sui_vm_start",
       "STOP": "sui_vm_stop",
       "SUSPEND": "sui_vm_suspend"
     },
