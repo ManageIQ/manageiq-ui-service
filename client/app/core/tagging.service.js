@@ -71,8 +71,10 @@ export function TaggingService (CollectionsApi, lodash, exception) {
   // queries all available tags for that resource. The result is filtered of
   // invalid tags (missing required properties).
   function queryAvailableTags (resourceUrl) {
-    var queryOptions = {
+    const queryOptions = {
       expand: 'resources',
+      sort_by: 'name',
+      sort_order: 'asc',
       attributes: ['categorization', 'category']
     }
 
