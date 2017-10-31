@@ -76,7 +76,7 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       actionName: 'delete',
       title: __('Delete Snapshot'),
       actionFn: deleteSnapshot,
-      permissions: vm.permissions.delete
+      permissions: vm.permissions.snapshotsDelete
     }]
 
     return menuActions.filter((item) => item.permissions)
@@ -120,7 +120,7 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       title: __('Create snapshot'),
       actionFn: processSnapshot,
       isDisabled: false,
-      permissions: vm.permissions.create
+      permissions: vm.permissions.snapshotsAdd
     }, {
       name: __('Delete All Snapshots'),
       actionName: 'delete',
@@ -189,6 +189,7 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       vm.tlOptions = {
         start: new Date(start.setHours(start.getHours() - 2)),
         end: new Date(end.setHours(end.getHours() + 2)),
+        eventShape: '\uf030',
         eventHover: showTooltip,
         eventGrouping: 60000,
         minScale: (week / month),
