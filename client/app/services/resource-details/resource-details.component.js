@@ -187,9 +187,8 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
         vm.tlOptions = {
           start: new Date(start.setHours(start.getHours() - 2)),
           end: new Date(end.setHours(end.getHours() + 2)),
-          eventShape: '\uf140',
-          eventHover: tlTooltip,
-          eventGrouping: 1000,
+          eventClick: tlTooltip,
+          eventGrouping: 60000,
           minScale: 0.234,
           maxScale: 1440
         }
@@ -454,7 +453,7 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
     .append('div')
     .attr('class', 'popover fade bottom in')
     .attr('role', 'tooltip')
-    .on('mouseout', () => {
+    .on('mouseleave', () => {
       d3.select('body').selectAll('.popover').remove()
     })
     const rightOrLeftLimit = fontSize * tooltipWidth
@@ -469,16 +468,23 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
       minute: 'numeric',
       second: 'numeric'
     }
-    const event = item.details.item
+
+    function eventDetails (event) {
+      return `
+          <div>Event Type: ${event.details.item.event_type}</div> 
+          <div>Message: ${event.details.item.message}</div> 
+          <div>Created On: ${event.date.toLocaleDateString('en-US', options)}</div>   
+          `
+    }
+
     tooltip.html(
       `
         <div class="arrow"></div>
         <div class="popover-content">
-          <div>Event Type: ${event.event_type}</div> 
-          <div>Message: ${event.message}</div> 
-          <div>Created On: ${item.date.toLocaleDateString('en-US', options)}</div>                    
+            ${item.events ? `<b>Group of ${item.events.length} events</b>  ${item.events.map(event => `${eventDetails(event)}<hr>`).join('\n')}`
+        : `${eventDetails(item)}`}    
         </div>
-    `
+      `
     )
     tooltip
     .style('left', `${left}px`)
