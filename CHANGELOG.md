@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 72 ending 2017-10-30
+
+### Added
+- Updates language files includes new languages [(#1184)](https://github.com/ManageIQ/manageiq-ui-service/pull/1184)
+- Change explorer default limit to 10 items [(#1155)](https://github.com/ManageIQ/manageiq-ui-service/pull/1155)
+- Adds loading spinner using pf-empty-state [(#1154)](https://github.com/ManageIQ/manageiq-ui-service/pull/1154)
+- Added ability for login screen to clear password on failed attempt [(#1142)](https://github.com/ManageIQ/manageiq-ui-service/pull/1142)
+- Updated RBAC and product features to support new structure [(#1090)](https://github.com/ManageIQ/manageiq-ui-service/pull/1090)
+- Implement Generic Objects on services details page [(#996)](https://github.com/ManageIQ/manageiq-ui-service/pull/996)
+
+### Fixed
+- Reconfigure custering of events to occur at 1  min interval [(#1182)](https://github.com/ManageIQ/manageiq-ui-service/pull/1182)
+- Resource and menu action buttons on the same row [(#1179)](https://github.com/ManageIQ/manageiq-ui-service/pull/1179)
+- Create resouce-detail md/sm viewport layouts [(#1175)](https://github.com/ManageIQ/manageiq-ui-service/pull/1175)
+- Restores rbac permissiosn and camera eventicon [(#1168)](https://github.com/ManageIQ/manageiq-ui-service/pull/1168)
+- Replace supports_launch_cockpit with supports_cockpit [(#1165)](https://github.com/ManageIQ/manageiq-ui-service/pull/1165)
+- Clear user name field on failed login [(#1162)](https://github.com/ManageIQ/manageiq-ui-service/pull/1162)
+- Adds done in efforts to fix travis timeout errors [(#1156)](https://github.com/ManageIQ/manageiq-ui-service/pull/1156)
+- Updated support for launching cockpit and console [(#1132)](https://github.com/ManageIQ/manageiq-ui-service/pull/1132)
+- Removed unnecessary filtercount functions from explorer views [(#1117)](https://github.com/ManageIQ/manageiq-ui-service/pull/1117)
+- Ensure we only fetch those services with display set to true [(#1112)](https://github.com/ManageIQ/manageiq-ui-service/pull/1112)
+- Uncapitalize repo name for playbooks [(#1098)](https://github.com/ManageIQ/manageiq-ui-service/pull/1098)
+
 ## Unreleased as of Sprint 71 ending 2017-10-16
 
 ### Added
