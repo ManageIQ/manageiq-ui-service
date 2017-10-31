@@ -9,7 +9,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Added
 - Updates language files includes new languages [(#1184)](https://github.com/ManageIQ/manageiq-ui-service/pull/1184)
-- Change explorer default limit to 10 items [(#1155)](https://github.com/ManageIQ/manageiq-ui-service/pull/1155)
 - Adds loading spinner using pf-empty-state [(#1154)](https://github.com/ManageIQ/manageiq-ui-service/pull/1154)
 - Added ability for login screen to clear password on failed attempt [(#1142)](https://github.com/ManageIQ/manageiq-ui-service/pull/1142)
 - Updated RBAC and product features to support new structure [(#1090)](https://github.com/ManageIQ/manageiq-ui-service/pull/1090)
