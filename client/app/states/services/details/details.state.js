@@ -52,7 +52,7 @@
     ];
     var options = {
       attributes: requestAttributes,
-      decorators: [ 'vms.supports_console?', 'vms.supports_cockpit?' ],
+      decorators: [ 'vms.supports_console?', 'vms.supports_vnc_console?', 'vms.supports_cockpit?' ],
       expand: 'vms',
     };
 
