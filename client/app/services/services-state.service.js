@@ -30,7 +30,7 @@ export function ServicesStateFactory(ListConfiguration, CollectionsApi, RBAC) {
         'retirement_state', 'retirement_warn', 'retires_on', 'actions', 'custom_actions', 'provision_dialog', 'service_resources',
         'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options', 'vms.ipaddresses',
         'vms.snapshots', 'vms.v_total_snapshots', 'vms.v_snapshot_newest_name', 'vms.v_snapshot_newest_timestamp', 'vms.v_snapshot_newest_total_size',
-        'vms.supports_console?', 'vms.supports_launch_cockpit?',
+        'vms.supports_console?', 'vms.supports_cockpit?',
       ],
       expand: ['vms', 'orchestration_stacks'],
       auto_refresh: refresh,
