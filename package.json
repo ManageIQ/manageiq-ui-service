@@ -31,7 +31,7 @@
     "zanata:download": "node language/index.js download"
   },
   "dependencies": {
-    "@angular/common": "4.4.6",
+    "@angular/common": "5.0.0",
     "@angular/compiler": "4.4.6",
     "@angular/core": "4.4.6",
     "@angular/platform-browser": "4.4.6",
