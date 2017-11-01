@@ -33,7 +33,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
         'vms.max_mem_usage_absolute_average_avg_over_time_period', 'vms.hardware',
         'vms.hardware.aggregate_cpu_speed', 'vms.cpu_usagemhz_rate_average_avg_over_time_period', 'generic_objects.picture', 'generic_objects.generic_object_definition'
       ],
-      decorators: ['vms.supports_console?', 'vms.supports_cockpit?'],
+      decorators: ['vms.supports_console?', 'vms.supports_cockpit?', 'supports_vnc_console?'],
       expand: ['vms', 'orchestration_stacks', 'generic_objects'],
       auto_refresh: refresh
     }

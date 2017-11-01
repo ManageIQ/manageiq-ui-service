@@ -378,13 +378,13 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   }
 
   function openConsole (item) {
-    if (item['supports_console?'] && item.power_state === 'on') {
+    if (item['supports_console?'] && item['supports_vnc_console?'] && item.power_state === 'on') {
       Consoles.open(item.id)
     }
   }
 
   function openCockpit (item) {
-    if (item['supports_cockpit?'] && item.power_state === 'on') {
+    if (item['supports_console?'] && item['supports_cockpit?'] && item.power_state === 'on') {
       $window.open('http://' + item.ipaddresses[0] + ':9090')
     }
   }
