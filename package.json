@@ -35,7 +35,7 @@
     "@angular/compiler": "4.4.6",
     "@angular/core": "5.0.0",
     "@angular/platform-browser": "4.4.6",
-    "@angular/platform-browser-dynamic": "4.4.6",
+    "@angular/platform-browser-dynamic": "5.0.0",
     "@angular/upgrade": "5.0.0",
     "@manageiq/font-fabulous": "1.0.0",
     "@manageiq/ui-components": "0.0.25",
