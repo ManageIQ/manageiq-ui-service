@@ -5411,9 +5411,9 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
-no-vnc@kanaka/noVNC#0.6.1:
-  version "0.6.1"
-  resolved "https://codeload.github.com/kanaka/noVNC/tar.gz/da82b3426c27bf1a79f671c5825d68ab8c0c5d9f"
+noVNC@kanaka/noVNC#0.6.2:
+  version "0.6.2"
+  resolved "https://codeload.github.com/kanaka/noVNC/tar.gz/e8986fa0692705fa890aed02e08b6844e535eb06"
 
 nocache@2.0.0:
   version "2.0.0"
@@ -5919,7 +5919,7 @@ patternfly-sass@3.23.2:
 
 patternfly-timeline@patternfly/patternfly-timeline#master-dist:
   version "1.0.7"
-  resolved "https://codeload.github.com/patternfly/patternfly-timeline/tar.gz/b9cfa72b81bf7a853f69862e57187dc27d74bb74"
+  resolved "https://codeload.github.com/patternfly/patternfly-timeline/tar.gz/241435cba052bdca6352019e0c7bf663db4a67ee"
   dependencies:
     d3 "~3.5.17"
     patternfly "~3.25.0"
