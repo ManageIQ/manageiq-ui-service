@@ -32,9 +32,9 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/upgrade@4.4.6":
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/@angular/upgrade/-/upgrade-4.4.6.tgz#c788a26b092273270a25ddb6fa4d3d5e9f3d4989"
+"@angular/upgrade@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@angular/upgrade/-/upgrade-5.0.0.tgz#d2c4bc83e7dcbe4ad3b1b7e845c6cba7379d779f"
   dependencies:
     tslib "^1.7.1"
 
