@@ -5,20 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Unreleased as of Sprint 71 ending 2017-10-16
+## Gaprindashvili Beta1
 
 ### Added
 - Added ability to hide toasts based on RBAC [(#1053)](https://github.com/ManageIQ/manageiq-ui-service/pull/1053)
-
-### Fixed
-- Updates sessionstorage when language is switched [(#1082)](https://github.com/ManageIQ/manageiq-ui-service/pull/1082)
-- For logout If in production redirect to /ui/service/ if in dev route to /  [(#1073)](https://github.com/ManageIQ/manageiq-ui-service/pull/1073)
-- Sets about modal isOpen to false on close [(#1071)](https://github.com/ManageIQ/manageiq-ui-service/pull/1071)
-- DB/LDAP User is not able to log into SSUI [(#1061)](https://github.com/ManageIQ/manageiq-ui-service/pull/1061)
-
-## Unreleased as of Sprint 70 ending 2017-10-02
-
-### Added
 - Added RBAC to App Launcher [(#1046)](https://github.com/ManageIQ/manageiq-ui-service/pull/1046)
 - Added RBAC controls for Help menu [(#1043)](https://github.com/ManageIQ/manageiq-ui-service/pull/1043)
 - Adds OS and Provider svgs [(#1040)](https://github.com/ManageIQ/manageiq-ui-service/pull/1040)
@@ -26,102 +16,62 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Created githash saving and display functionality [(#1003)](https://github.com/ManageIQ/manageiq-ui-service/pull/1003)
 - Allowed users to duplicate services [(#920)](https://github.com/ManageIQ/manageiq-ui-service/pull/920)
 - Created Lifecycle menu [(#912)](https://github.com/ManageIQ/manageiq-ui-service/pull/912)
-
-### Fixed
-- Reorder build commands production env now set correctly for webpacking [(#1037)](https://github.com/ManageIQ/manageiq-ui-service/pull/1037)
-- Replace 'Self Service' for 'Service UI' text [(#1030)](https://github.com/ManageIQ/manageiq-ui-service/pull/1030)
-- Fixed issue for VM custom button actions [(#1022)](https://github.com/ManageIQ/manageiq-ui-service/pull/1022)
-- Recalibrates snapshot timeline start/end for better visibility [(#1021)](https://github.com/ManageIQ/manageiq-ui-service/pull/1021)
-
-## Unreleased as of Sprint 69 ending 2017-09-18
-
-### Fixed
-- Added more detail when a order request fails [(#921)](https://github.com/ManageIQ/manageiq-ui-service/pull/921)
-- Reconfigures tag query to prevent explorer filter failure [(#909)](https://github.com/ManageIQ/manageiq-ui-service/pull/909)
-
-## Unreleased as of Sprint 68 ending 2017-09-04
-
-### Added
 - Ensure unique url for service.resource-details update all instances [(#900)](https://github.com/ManageIQ/manageiq-ui-service/pull/900)
 - Adds filter alias to dashboard retirement buttons [(#884)](https://github.com/ManageIQ/manageiq-ui-service/pull/884)
-
-### Fixed
-- Removed selectedMiqGroup session variable on logout [(#881)](https://github.com/ManageIQ/manageiq-ui-service/pull/881)
-
-## Unreleased as of Sprint 67 ending 2017-08-21
-
-### Added
 - Updated service reconfigure to use dialog component [(#877)](https://github.com/ManageIQ/manageiq-ui-service/pull/877)
 - Extract and upload latest text for translation to zanata [(#876)](https://github.com/ManageIQ/manageiq-ui-service/pull/876)
 - Updated custom button details to use Dialog Component [(#874)](https://github.com/ManageIQ/manageiq-ui-service/pull/874)
 - Added ui-components Dialog to SUI [(#867)](https://github.com/ManageIQ/manageiq-ui-service/pull/867)
-
-### Fixed
-- Set leftBoundary as zero if there is nothing to display [(#875)](https://github.com/ManageIQ/manageiq-ui-service/pull/875)
-- Bumped version of UI-components [(#871)](https://github.com/ManageIQ/manageiq-ui-service/pull/871)
-
-## Unreleased as of Sprint 66 ending 2017-08-07
-
-### Fixed
-- Buttons are updated on power operations [(#844)](https://github.com/ManageIQ/manageiq-ui-service/pull/844)
-- The VM status shows "retired" for all VM's [(#856)](https://github.com/ManageIQ/manageiq-ui-service/pull/856)
-
-### Added
 - Adds font fabulous dep [(#854)](https://github.com/ManageIQ/manageiq-ui-service/pull/854)
-
-## Unreleased as of Sprint 65 ending 2017-07-24
-
-### Added
 - Display colored fonticons before custom buttons [(#851)](https://github.com/ManageIQ/manageiq-ui-service/pull/851)
 - Adds the reusable (and rather well executed) timeline component to the sui in addition to the timeline in the snapshots components [(#848)](https://github.com/ManageIQ/manageiq-ui-service/pull/848)
 - Introduce service tag filtering [(#840)](https://github.com/ManageIQ/manageiq-ui-service/pull/840)
-
-## Unreleased as of Sprint 64 ending 2017-07-10
-
-### Fixed
-- Service.custom_button_details state params cleaned [(#838)](https://github.com/ManageIQ/manageiq-ui-service/pull/838)
-- Gracefully handle 403 state change error [(#833)](https://github.com/ManageIQ/manageiq-ui-service/pull/833)
-- Resolves production redirect error on logout [(#828)](https://github.com/ManageIQ/manageiq-ui-service/pull/828)
-
-### Added
 - Redesign vm details [(#831)](https://github.com/ManageIQ/manageiq-ui-service/pull/831)
 - Adds create snapshot button on service details page [(#829)](https://github.com/ManageIQ/manageiq-ui-service/pull/829)
-
-## Unreleased as of Sprint 63 ending 2017-06-19
-
-### Fixed
-- Utilization graphs now react to any change in data [(#825)](https://github.com/ManageIQ/manageiq-ui-service/pull/825)
-- Error loading services without vms [(#812)](https://github.com/ManageIQ/manageiq-ui-service/pull/812)
-
-### Added
 - Adds "View Graphs" link to service details [(#823)](https://github.com/ManageIQ/manageiq-ui-service/pull/823)
 - Adds web access icon to Access dropdown [(#822)](https://github.com/ManageIQ/manageiq-ui-service/pull/822)
 - Adds icon-status component [(#815)](https://github.com/ManageIQ/manageiq-ui-service/pull/815)
-
-## Unreleased as of Sprint 62 ending 2017-06-05
-
-### Added
 - Update angular patternfly [(#804)](https://github.com/ManageIQ/manageiq-ui-service/pull/804)
 - Coveralls integration [(#802)](https://github.com/ManageIQ/manageiq-ui-service/pull/802)
 - Make utilization graphs on VM details page [(#792)](https://github.com/ManageIQ/manageiq-ui-service/pull/792)
-
-### Fixed
-- Fixed button link formatting [(#803)](https://github.com/ManageIQ/manageiq-ui-service/pull/803)
-- Removed code climate conditional execution [(#800)](https://github.com/ManageIQ/manageiq-ui-service/pull/800)
-- Fix for service catalog service dialog refresh function behaving differently [(#793)](https://github.com/ManageIQ/manageiq-ui-service/pull/793)
-
-## Unreleased as of Sprint 61 ending 2017-05-22
-
-### Added
 - Adds support for proxy_protocol env [(#779)](https://github.com/ManageIQ/manageiq-ui-service/pull/779)
 
 ### Fixed
+- Updates sessionstorage when language is switched [(#1082)](https://github.com/ManageIQ/manageiq-ui-service/pull/1082)
+- For logout If in production redirect to /ui/service/ if in dev route to /  [(#1073)](https://github.com/ManageIQ/manageiq-ui-service/pull/1073)
+- Sets about modal isOpen to false on close [(#1071)](https://github.com/ManageIQ/manageiq-ui-service/pull/1071)
+- DB/LDAP User is not able to log into SSUI [(#1061)](https://github.com/ManageIQ/manageiq-ui-service/pull/1061)
+- Reorder build commands production env now set correctly for webpacking [(#1037)](https://github.com/ManageIQ/manageiq-ui-service/pull/1037)
+- Replace 'Self Service' for 'Service UI' text [(#1030)](https://github.com/ManageIQ/manageiq-ui-service/pull/1030)
+- Fixed issue for VM custom button actions [(#1022)](https://github.com/ManageIQ/manageiq-ui-service/pull/1022)
+- Recalibrates snapshot timeline start/end for better visibility [(#1021)](https://github.com/ManageIQ/manageiq-ui-service/pull/1021)
+- Added more detail when a order request fails [(#921)](https://github.com/ManageIQ/manageiq-ui-service/pull/921)
+- Reconfigures tag query to prevent explorer filter failure [(#909)](https://github.com/ManageIQ/manageiq-ui-service/pull/909)
+- Removed selectedMiqGroup session variable on logout [(#881)](https://github.com/ManageIQ/manageiq-ui-service/pull/881)
+- Set leftBoundary as zero if there is nothing to display [(#875)](https://github.com/ManageIQ/manageiq-ui-service/pull/875)
+- Bumped version of UI-components [(#871)](https://github.com/ManageIQ/manageiq-ui-service/pull/871)
+- Buttons are updated on power operations [(#844)](https://github.com/ManageIQ/manageiq-ui-service/pull/844)
+- The VM status shows "retired" for all VM's [(#856)](https://github.com/ManageIQ/manageiq-ui-service/pull/856)
+- Service.custom_button_details state params cleaned [(#838)](https://github.com/ManageIQ/manageiq-ui-service/pull/838)
+- Gracefully handle 403 state change error [(#833)](https://github.com/ManageIQ/manageiq-ui-service/pull/833)
+- Resolves production redirect error on logout [(#828)](https://github.com/ManageIQ/manageiq-ui-service/pull/828)
+- Utilization graphs now react to any change in data [(#825)](https://github.com/ManageIQ/manageiq-ui-service/pull/825)
+- Error loading services without vms [(#812)](https://github.com/ManageIQ/manageiq-ui-service/pull/812)
+- Fixed button link formatting [(#803)](https://github.com/ManageIQ/manageiq-ui-service/pull/803)
+- Removed code climate conditional execution [(#800)](https://github.com/ManageIQ/manageiq-ui-service/pull/800)
+- Fix for service catalog service dialog refresh function behaving differently [(#793)](https://github.com/ManageIQ/manageiq-ui-service/pull/793)
 - Login and page refresh not working [(#774)](https://github.com/ManageIQ/manageiq-ui-service/pull/774)
 - Adds support for custom brand [(#769)](https://github.com/ManageIQ/manageiq-ui-service/pull/769)
 - Filter tooltip overflow [(#753)](https://github.com/ManageIQ/manageiq-ui-service/pull/753)
 - Buttons are updated on power operations [(#844)](https://github.com/ManageIQ/manageiq-ui-service/pull/844)
 - The VM status shows "retired" for all VM's [(#856)](https://github.com/ManageIQ/manageiq-ui-service/pull/856)
 
+## Fine-4
+
+### Fixed
+- Buttons are updated on power operations, but don't disappear [(#844)](https://github.com/ManageIQ/manageiq-ui-service/pull/844)
+- The VM status shows "retired" for all VM's , retired or not [(#856)](https://github.com/ManageIQ/manageiq-ui-service/pull/856)
+- DB/LDAP User is not able to log into SSUI [(#1061)](https://github.com/ManageIQ/manageiq-ui-service/pull/1061)
 
 ## Fine-3
 
