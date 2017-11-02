@@ -151,7 +151,7 @@
     "mocha": "4.0.1",
     "mocha-clean": "1.0.0",
     "morgan": "1.9.0",
-    "phantomjs-prebuilt": "2.1.15",
+    "phantomjs-prebuilt": "2.1.16",
     "protractor": "5.2.0",
     "sass-lint": "1.12.1",
     "serve-favicon": "2.4.5",
