@@ -160,7 +160,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {from: `${root}/assets`},
       {from: `${root}/gettext`, to: 'gettext'},
-      {from: `${nodeModules}/no-vnc`, to: 'vendor/no-vnc'},
+      {from: `${nodeModules}/noVNC`, to: 'vendor/noVNC'},
       {from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower'},
 
       // Override images with skin replacements if they exist
