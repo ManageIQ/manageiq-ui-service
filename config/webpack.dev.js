@@ -14,7 +14,7 @@ const nodeModules = path.resolve(__dirname, '../node_modules')
 const protocol = process.env.PROXY_PROTOCOL || 'http://'
 const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000'
 const hasSkinImages = fs.existsSync(`${root}/skin/images`)
-const appBasePath = process.env.NODE_ENV === 'production' ? "'/ui/service/'" : "'/'"
+const appBasePath = process.env.NODE_ENV === 'production' ? '\'/ui/service/\'' : '\'/\''
 
 console.log('Backend proxied on ' + protocol + host)
 
@@ -173,10 +173,8 @@ module.exports = {
       template: '../client/index.ejs'
     }),
 
-    // Fix circular dependency error:
-    // https://github.com/angular/angular/issues/11580#issuecomment-282705332
     new webpack.ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)@angular/,
+      /(.+)?angular(\\|\/)core(.+)?/,
       root
     )
   ],
