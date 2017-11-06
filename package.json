@@ -61,7 +61,7 @@
     "angular-ui-bootstrap": "2.5.6",
     "angular-ui-sortable": "0.17.2",
     "babel-core": "6.26.0",
-    "babel-eslint": "8.0.1",
+    "babel-eslint": "8.0.2",
     "babel-loader": "7.1.2",
     "babel-preset-env": "1.6.1",
     "bootstrap-combobox": "1.0.2",
