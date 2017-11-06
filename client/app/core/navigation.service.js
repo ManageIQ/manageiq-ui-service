@@ -90,12 +90,12 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, CollectionsA
     const options = {
       hide: 'resources',
       auto_refresh: true,
-      filters: [filter]
+      filter: [filter]
     }
     return new Promise((resolve, reject) => {
       CollectionsApi.query(field, options)
       .then((data) => {
-        resolve(data.count)
+        resolve(data.subquery_count)
       })
     })
   }
