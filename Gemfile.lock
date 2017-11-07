@@ -5,9 +5,10 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-darwin-15
 
 DEPENDENCIES
   sass
 
 BUNDLED WITH
-   1.11.2
+   1.15.3
