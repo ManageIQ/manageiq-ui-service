@@ -25,19 +25,31 @@
   }
 
   /** @ngInject */
-  function resolveServices(CollectionsApi) {
+  function resolveServices(CollectionsApi, limit = 20, offset = 0) {
     var options = {
       expand: 'resources',
       attributes: ['picture', 'picture.image_href', 'evm_owner.name', 'v_total_vms', 'chargeback_report'],
       filter: ['ancestry=null'],
+      limit: limit,
+      offset: offset,
     };
 
     return CollectionsApi.query('services', options);
+
   }
 
   /** @ngInject */
-  function StateController($state, services, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, PowerOperations) {
+  function StateController($scope, $state, services, ServicesState, $filter, $rootScope, Language, ListView, Chargeback, PowerOperations,
+                           CollectionsApi, Navigation) {
     var vm = this;
+
+    $scope.$watch(function() {
+      return Navigation.items.services.badges[0].count;
+    }, function(data) {
+      vm.count = data
+    });
+    vm.offset = 0;
+    vm.limit = 20;
 
     vm.startService = PowerOperations.startService;
     vm.stopService = PowerOperations.stopService;
@@ -52,24 +64,32 @@
     vm.powerOperationStopTimeoutState = PowerOperations.powerOperationStopTimeoutState;
     vm.powerOperationSuspendTimeoutState = PowerOperations.powerOperationSuspendTimeoutState;
 
-    vm.services = [];
 
     if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
       $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length);
     }
 
-    angular.forEach(services.resources, function(item) {
-      if (angular.isUndefined(item.service_id)) {
-        item.powerState = angular.isDefined(item.options.power_state) ? item.options.power_state : "";
-        item.powerStatus = angular.isDefined(item.options.power_status) ? item.options.power_status : "";
-        vm.services.push(item);
+    processServices(services)
+
+    function processServices(services) {
+      vm.services = [];
+      vm.servicesList = [];
+
+      angular.forEach(services.resources, function(item) {
+        if (angular.isUndefined(item.service_id)) {
+          item.powerState = angular.isDefined(item.options.power_state) ? item.options.power_state : "";
+          item.powerStatus = angular.isDefined(item.options.power_status) ? item.options.power_status : "";
+          vm.services.push(item);
+        }
+      });
+      if(angular.isDefined(vm.toolbarConfig)){
+        vm.toolbarConfig.filterConfig.resultsCount = vm.services.length
       }
-    });
+      vm.services.forEach(Chargeback.processReports);
+      Chargeback.adjustRelativeCost(vm.services);
 
-    vm.services.forEach(Chargeback.processReports);
-    Chargeback.adjustRelativeCost(vm.services);
-
-    vm.servicesList = angular.copy(vm.services);
+      vm.servicesList = angular.copy(vm.services);
+    }
 
     vm.listConfig = {
       selectItems: false,
@@ -208,21 +228,21 @@
       var retires = [__('Current'), __('Soon'), __('Retired')];
 
       return [
-        ListView.createFilterField('name',       __('Name'),            __('Filter by Name'),            'text'),
+        ListView.createFilterField('name', __('Name'), __('Filter by Name'), 'text'),
         ListView.createFilterField('retirement', __('Retirement Date'), __('Filter by Retirement Date'), 'select', retires),
-        ListView.createFilterField('vms',        __('Number of VMs'),   __('Filter by VMs'),             'text'),
-        ListView.createFilterField('owner',      __('Owner'),           __('Filter by Owner'),           'text'),
-        ListView.createFilterField('owner',      __('Created'),         __('Filter by Created On'),      'text'),
+        ListView.createFilterField('vms', __('Number of VMs'), __('Filter by VMs'), 'text'),
+        ListView.createFilterField('owner', __('Owner'), __('Filter by Owner'), 'text'),
+        ListView.createFilterField('owner', __('Created'), __('Filter by Created On'), 'text'),
       ];
     }
 
     function getServiceSortFields() {
       return [
-        ListView.createSortField('name',    __('Name'),            'alpha'),
+        ListView.createSortField('name', __('Name'), 'alpha'),
         ListView.createSortField('retires', __('Retirement Date'), 'numeric'),
-        ListView.createSortField('vms',     __('Number of VMs'),   'numeric'),
-        ListView.createSortField('owner',   __('Owner'),           'alpha'),
-        ListView.createSortField('created', __('Created'),         'numeric'),
+        ListView.createSortField('vms', __('Number of VMs'), 'numeric'),
+        ListView.createSortField('owner', __('Owner'), 'alpha'),
+        ListView.createSortField('created', __('Created'), 'numeric'),
       ];
     }
 
@@ -254,7 +274,7 @@
         action.isDisabled = false;
       }
     };
-    
+
     function startService(action, item) {
       vm.startService(item);
     }
@@ -386,7 +406,7 @@
     function checkRetirementDate(item, filterValue) {
       var currentDate = new Date();
       currentDate.setHours(0, 0, 0, 0);
-      
+
       if (filterValue === 'retired' && angular.isDefined(item.retires_on)) {
         return angular.isDefined(item.retired) && item.retired === true;
       } else if (filterValue === 'current') {
@@ -398,6 +418,14 @@
 
       return false;
     }
+
+    vm.paginationUpdate = function(limit, offset) {
+      vm.limit = limit;
+      vm.offset = offset;
+      resolveServices(CollectionsApi, limit, offset).then(function(response){
+        processServices(response)
+      });
+    };
 
     Language.fixState(ServicesState, vm.toolbarConfig);
   }

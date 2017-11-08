@@ -14,8 +14,8 @@
         <span class="no-wrap">
           <span class="ss-list-view__title-img">
             <span class="ss-list-view__title-img__center"></span>
-            <img class="ss-list-view__title-img__logo" ng-src="{{ ::item.picture.image_href }}" ng-if=" ::item.picture.image_href"/>
-            <img class="ss-list-view__title-img__logo" src="images/service.png" ng-if=" ::!item.picture.image_href"/>
+            <img class="ss-list-view__title-img__logo" ng-src="{{ item.picture.image_href }}" ng-if=" item.picture.image_href"/>
+            <img class="ss-list-view__title-img__logo" src="images/service.png" ng-if=" !item.picture.image_href"/>
           </span>
           <span tooltip="{{ item.name }}" tooltip-placement="bottom">
             {{ item.name }}
@@ -85,6 +85,7 @@
     </div>
   </div>
 </div>
+<explorer-pagination limit="vm.limit" count="vm.count" on-update="vm.paginationUpdate($limit, $offset)"></explorer-pagination>
 <script>
   $(function() {
     setTimeout(function(){
