@@ -1,14 +1,12 @@
 # ManageIQ Self Service UI
 
-[![Build Status](https://travis-ci.org/ManageIQ/manageiq-ui-self_service.svg)](https://travis-ci.org/ManageIQ/manageiq-ui-self_service)
-[![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-ui-self_service/badges/gpa.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-self_service)
-[![Dependency Status](https://gemnasium.com/ManageIQ/manageiq-ui-self_service.svg)](https://gemnasium.com/ManageIQ/manageiq-ui-self_service)
-[![Security](https://hakiri.io/github/ManageIQ/manageiq-ui-self_service/master.svg)](https://hakiri.io/github/ManageIQ/manageiq-ui-self_service/master)
-[![Test Coverage](https://codeclimate.com/github/ManageIQ/manageiq-ui-self_service/badges/coverage.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-self_service/coverage)
-
-[![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-ui-self_service?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Translate](https://img.shields.io/badge/translate-zanata-blue.svg)](https://translate.zanata.org/zanata/project/view/manageiq-ui-self_service)
-[![License](http://img.shields.io/badge/license-APACHE2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Build Status](https://travis-ci.org/ManageIQ/manageiq-ui-service.svg?branch=euwe)](https://travis-ci.org/ManageIQ/manageiq-ui-service)
+[![bitHound Overall Score](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/badges/score.svg)](https://www.bithound.io/github/ManageIQ/manageiq-ui-service)
+[![bitHound Dependencies](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/badges/dependencies.svg)](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/euwe/dependencies/npm)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/badges/devDependencies.svg)](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/euwe/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/ManageIQ/manageiq-ui-service/badges/code.svg)](https://www.bithound.io/github/ManageIQ/manageiq-ui-service)
+[![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-ui-service)
+[![Translate](https://img.shields.io/badge/translate-zanata-blue.svg)](https://translate.zanata.org/iteration/view/manageiq-ui-service/euwe?dswid=-2599)
 
 The Self Service UI for the [ManageIQ](http://github.com/ManageIQ/manageiq) project
 
@@ -24,8 +22,8 @@ The Self Service UI for the [ManageIQ](http://github.com/ManageIQ/manageiq) proj
 ### Repository and dependencies
 
 - Clone this repo as a sibling to the `manageiq` directory:
-  `git clone git@github.com:ManageIQ/manageiq-ui-self_service.git`
-- `cd manageiq-ui-self_service`
+  `git clone git@github.com:ManageIQ/manageiq-ui-service.git`
+- `cd manageiq-ui-service`
 - `bundle install`
 - `npm install`
 
@@ -35,7 +33,7 @@ The Self Service UI for the [ManageIQ](http://github.com/ManageIQ/manageiq) proj
   `bundle exec rake evm:start` or `bundle exec rails server`.  This will start
   the server listening on http://localhost:3000, in order to serve up the REST
   API.
-- In the `manageiq-ui-self_service` directory, start the development version of
+- In the `manageiq-ui-service` directory, start the development version of
   the self service UI with `gulp serve-dev`, which will start the UI listening
   on http://localhost:3001, and talking to the REST API at
   http://[::1]:3000.  This command will also open a browser page to
@@ -45,7 +43,7 @@ The Self Service UI for the [ManageIQ](http://github.com/ManageIQ/manageiq) proj
 
 ## Deployment
 
-- In the `manageiq-ui-self_service` directory, build the production version of
+- In the `manageiq-ui-service` directory, build the production version of
   the self service UI with `gulp build`.  This will compile the assets and drop
   them into the `manageiq/public/self_service` directory.  The ManageIQ
   application can then be run with either `bundle exec rake evm:start` or
