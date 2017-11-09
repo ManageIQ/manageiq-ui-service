@@ -4,17 +4,18 @@
   <!-- TODO: The Power Operation buttons would be hidden
        TODO: while we wait on a robust backend solution on how to retrieve Power Status for Services in the List View-->
   <div pf-list-view id="serviceList" class="arbitration-profiles-list" config="vm.listConfig" items="vm.servicesList"
-      action-buttons_hide="vm.actionButtons"
-      enable-button-for-item-fn_hide="vm.enableButtonForItemFn"
-      menu-actions_hide="vm.menuActions"
-      update-menu-action-for-item-fn_hide="vm.updateMenuActionForItemFn"
-      hide-menu-for-item-fn_hide="vm.hideMenuForItemFn">
+       action-buttons_hide="vm.actionButtons"
+       enable-button-for-item-fn_hide="vm.enableButtonForItemFn"
+       menu-actions_hide="vm.menuActions"
+       update-menu-action-for-item-fn_hide="vm.updateMenuActionForItemFn"
+       hide-menu-for-item-fn_hide="vm.hideMenuForItemFn">
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
         <span class="no-wrap">
           <span class="ss-list-view__title-img">
             <span class="ss-list-view__title-img__center"></span>
-            <img class="ss-list-view__title-img__logo" ng-src="{{ item.picture.image_href }}" ng-if=" item.picture.image_href"/>
+            <img class="ss-list-view__title-img__logo" ng-src="{{ item.picture.image_href }}"
+                 ng-if=" item.picture.image_href"/>
             <img class="ss-list-view__title-img__logo" src="images/service.png" ng-if=" !item.picture.image_href"/>
           </span>
           <span tooltip="{{ item.name }}" tooltip-placement="bottom">
@@ -33,16 +34,18 @@
           </span>
         </span>
       </div>
-       <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+      <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
         <span class="no-wrap">
-           <i class="pficon pficon-screen" tooltip="{{'The number of instances running this service'|translate}}" tooltip-placement="bottom"></i>
-          <span tooltip="{{ '[[number]] VMs'|translate|substitute:{number: item.v_total_vms} }}" tooltip-placement="bottom">
+           <i class="pficon pficon-screen" tooltip="{{'The number of instances running this service'|translate}}"
+              tooltip-placement="bottom"></i>
+          <span tooltip="{{ '[[number]] VMs'|translate|substitute:{number: item.v_total_vms} }}"
+                tooltip-placement="bottom">
             <strong>{{ item.v_total_vms}}</strong>
             {{'VMs'|translate}}
           </span>
         </span>
       </div>
-       <div class="col-lg-1 hidden-md hidden-sm hidden-xs">
+      <div class="col-lg-1 hidden-md hidden-sm hidden-xs">
         <span class="no-wrap">
           <b tooltip="{{ 'Relative cost' }}" tooltip-placement="bottom">
             {{ item.chargeback_relative_cost }}
@@ -70,26 +73,46 @@
       <div class="col-lg-2 hidden-md hidden-sm hidden-xs pull-right" ng-hide="true">
         <span class="no-wrap">
           <strong translate>Power State</strong>&nbsp;
-          <i class="fa fa-circle green fa-3x fa-fw" ng-if="item.powerState === 'on' && item.powerStatus === 'start_complete'" tooltip="{{'Power State: On'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-circle red fa-3x fa-fw" ng-if="item.powerState === 'off' && item.powerStatus === 'stop_complete'" tooltip="{{'Power State: Off'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-circle orange fa-3x fa-fw" ng-if="item.powerState === 'off' && item.powerStatus === 'suspend_complete'" tooltip="{{'Power State: Suspended'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-spinner fa-pulse green fa-3x fa-fw" ng-if="item.powerState !== 'timeout' && item.powerStatus === 'starting'" tooltip="{{'Power State: Starting...'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-spinner fa-pulse red fa-3x fa-fw" ng-if="item.powerState !== 'timeout' && item.powerStatus === 'stopping'" tooltip="{{'Power State: Stopping...'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-spinner fa-pulse orange fa-3x fa-fw" ng-if="item.powerState !== 'timeout' && item.powerStatus === 'suspending'" tooltip="{{'Power State: Suspending...'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-question-circle blue fa-3x fa-fw" ng-if="item.powerState === '' && item.powerStatus === ''" tooltip="{{'Power State: Unknown'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-adjust green fa-3x fa-fw" ng-if="item.powerState === 'timeout' && item.powerStatus === 'starting'" tooltip="{{'Power State: Start operation timed out'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-adjust red fa-3x fa-fw" ng-if="item.powerState === 'timeout' && item.powerStatus === 'stopping'" tooltip="{{'Power State: Stop operation timed out'|translate}}" tooltip-placement="bottom"></i>
-          <i class="fa fa-adjust orange fa-3x fa-fw" ng-if="item.powerState === 'timeout' && item.powerStatus === 'suspending'" tooltip="{{'Power State: Suspend operation timed out'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-circle green fa-3x fa-fw"
+             ng-if="item.powerState === 'on' && item.powerStatus === 'start_complete'"
+             tooltip="{{'Power State: On'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-circle red fa-3x fa-fw"
+             ng-if="item.powerState === 'off' && item.powerStatus === 'stop_complete'"
+             tooltip="{{'Power State: Off'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-circle orange fa-3x fa-fw"
+             ng-if="item.powerState === 'off' && item.powerStatus === 'suspend_complete'"
+             tooltip="{{'Power State: Suspended'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-spinner fa-pulse green fa-3x fa-fw"
+             ng-if="item.powerState !== 'timeout' && item.powerStatus === 'starting'"
+             tooltip="{{'Power State: Starting...'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-spinner fa-pulse red fa-3x fa-fw"
+             ng-if="item.powerState !== 'timeout' && item.powerStatus === 'stopping'"
+             tooltip="{{'Power State: Stopping...'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-spinner fa-pulse orange fa-3x fa-fw"
+             ng-if="item.powerState !== 'timeout' && item.powerStatus === 'suspending'"
+             tooltip="{{'Power State: Suspending...'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-question-circle blue fa-3x fa-fw" ng-if="item.powerState === '' && item.powerStatus === ''"
+             tooltip="{{'Power State: Unknown'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-adjust green fa-3x fa-fw"
+             ng-if="item.powerState === 'timeout' && item.powerStatus === 'starting'"
+             tooltip="{{'Power State: Start operation timed out'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-adjust red fa-3x fa-fw"
+             ng-if="item.powerState === 'timeout' && item.powerStatus === 'stopping'"
+             tooltip="{{'Power State: Stop operation timed out'|translate}}" tooltip-placement="bottom"></i>
+          <i class="fa fa-adjust orange fa-3x fa-fw"
+             ng-if="item.powerState === 'timeout' && item.powerStatus === 'suspending'"
+             tooltip="{{'Power State: Suspend operation timed out'|translate}}" tooltip-placement="bottom"></i>
         </span>
       </div>
     </div>
   </div>
 </div>
-<explorer-pagination limit="vm.limit" count="vm.count" on-update="vm.paginationUpdate($limit, $offset)"></explorer-pagination>
+<explorer-pagination limit="vm.limit" count="vm.toolbarConfig.filterConfig.resultsCount"
+                     on-update="vm.paginationUpdate($limit, $offset)"></explorer-pagination>
 <script>
-  $(function() {
-    setTimeout(function(){
-      $("#serviceList .list-view-pf .list-group-item .list-view-pf-actions .btn-default").addClass("btn-primary");
+  $(function () {
+    setTimeout(function () {
+      $('#serviceList .list-view-pf .list-group-item .list-view-pf-actions .btn-default').addClass('btn-primary')
     }, 500);
   });
 </script>
