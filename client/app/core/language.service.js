@@ -56,7 +56,7 @@ export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodas
     if (!code || (code === '_browser_')) {
       code = service.match(service.available, service.browser())
     }
-
+    service.chosen.code = code
     gettextCatalog.loadAndSet(code)
 
     return code
