@@ -246,7 +246,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
   function switchGroup (group) {
     if (vm.user().user_href && group.id) {
       CollectionsApi.post('users', vm.user().user_href.split('/').pop(), {}, {
-        'action': 'edit',
+        'action': 'set_current_group',
         'current_group': {'id': group.id}
       }).then(success, failure)
     }
