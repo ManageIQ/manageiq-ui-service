@@ -65,6 +65,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Filter tooltip overflow [(#753)](https://github.com/ManageIQ/manageiq-ui-service/pull/753)
 - Buttons are updated on power operations [(#844)](https://github.com/ManageIQ/manageiq-ui-service/pull/844)
 - The VM status shows "retired" for all VM's [(#856)](https://github.com/ManageIQ/manageiq-ui-service/pull/856)
+- Sort tags by name alphabetically [(#1190)](https://github.com/ManageIQ/manageiq-ui-service/pull/1190)
+- Specify category-select toggle width, prevent it from hidng [(#1191)](https://github.com/ManageIQ/manageiq-ui-service/pull/1191)
+- Adds support for supports_vnc_console decorator [(#1195)](https://github.com/ManageIQ/manageiq-ui-service/pull/1195)
+- "filter", is correct option, subquery_count (to display filter results) [(#1220)](https://github.com/ManageIQ/manageiq-ui-service/pull/1220)
 
 ## Fine-4
 
@@ -459,3 +463,5 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - (feature) [DESIGN] Set the action & provision order of items within a blueprint
 - (feature) [UI] Set the action & provision order of items within a blueprint
 - (feature) [UI] List all services
+
+## Initial changelog added
