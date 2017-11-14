@@ -16,31 +16,30 @@ export const UsageGraphsComponent = {
 /** @ngInject */
 function ComponentController () {
   const vm = this
-  vm.$onChanges = activate
-
-  function activate () {
+  vm.$onChanges = () => {
     angular.extend(vm, {
       cpuChart: vm.cpuChart || {data: {total: 0}},
       memoryChart: vm.memoryChart || {data: {total: 0}},
       storageChart: vm.storageChart || {data: {total: 0}},
-      cpuDataExists: true,
-      memoryDataExists: true,
-      storageDataExists: true,
-      emptyState: {icon: 'pficon pficon-help', title: 'No Information Available'}
-
+      cpuDataExists: false,
+      memoryDataExists: false,
+      storageDataExists: false,
+      emptyState: {icon: 'pficon pficon-help', title: __('No Information Available')}
     })
 
-    if (vm.cpuChart.data.total === 0) {
-      vm.cpuDataExists = false
+    if (vm.cpuChart.data.total > 0) {
+      vm.cpuDataExists = true
+      vm.availableCPU = vm.cpuChart.data.total - vm.cpuChart.data.used
     }
-    if (vm.memoryChart.data.total === 0) {
-      vm.memoryDataExists = false
+
+    if (vm.memoryChart.data.total > 0) {
+      vm.memoryDataExists = true
+      vm.availableMemory = vm.memoryChart.data.total - vm.memoryChart.data.used
     }
-    if (vm.storageChart.data.total === 0) {
-      vm.storageDataExists = false
+
+    if (vm.storageChart.data.total > 0) {
+      vm.storageDataExists = true
+      vm.availableStorage = vm.storageChart.data.total - vm.storageChart.data.used
     }
-    vm.availableCPU = vm.cpuChart.data.total - vm.cpuChart.data.used
-    vm.availableMemory = vm.memoryChart.data.total - vm.memoryChart.data.used
-    vm.availableStorage = vm.storageChart.data.total - vm.storageChart.data.used
   }
 }
