@@ -18,6 +18,6 @@ describe('Service: UsageGraphsFactory', () => {
   })
   it('should convert bytes to gb', () => {
     const gb = service.convertBytestoGb(1073741824)
-    expect(gb).to.eq('1.00')
+    expect(gb).to.eq(1.00)
   })
 })

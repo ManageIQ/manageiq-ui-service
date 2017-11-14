@@ -28,7 +28,7 @@ export function UsageGraphsFactory () {
   }
 
   function convertBytestoGb (bytes) {
-    return (bytes / 1073741824).toFixed(2)
+    return Number((bytes / 1073741824).toFixed(2))
   }
 
   return service
