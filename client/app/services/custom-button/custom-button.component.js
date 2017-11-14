@@ -26,27 +26,28 @@ function CustomButtonController ($state, EventNotifications, CollectionsApi, RBA
   }
 
   function invokeCustomAction (button) {
-    if (button.resource_action && button.resource_action.dialog_id) {
-      const options = {
-        button: button,
-        serviceId: vm.serviceId
+    if (button.enabled) {
+      if (button.resource_action && button.resource_action.dialog_id) {
+        const options = {
+          button: button,
+          serviceId: vm.serviceId
+        }
+        if (vm.vmId) {
+          options.vmId = vm.vmId
+        }
+        $state.go('services.custom_button_details', options)
+      } else if (vm.vmId) {
+        const data = { action: button.name }
+        CollectionsApi.post('vms', vm.vmId, {}, data)
+          .then(postSuccess)
+          .catch(postFailure)
+      } else {
+        const data = { action: button.name }
+        CollectionsApi.post('services', vm.serviceId, {}, data)
+          .then(postSuccess)
+          .catch(postFailure)
       }
-      if (vm.vmId) {
-        options.vmId = vm.vmId
-      }
-      $state.go('services.custom_button_details', options)
-    } else if (vm.vmId) {
-      const data = {action: button.name}
-      CollectionsApi.post('vms', vm.vmId, {}, data)
-        .then(postSuccess)
-        .catch(postFailure)
-    } else {
-      const data = {action: button.name}
-      CollectionsApi.post('services', vm.serviceId, {}, data)
-        .then(postSuccess)
-        .catch(postFailure)
     }
-
     function postSuccess (response) {
       if (response.success === false) {
         EventNotifications.error(response.message)
