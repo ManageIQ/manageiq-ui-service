@@ -19,3 +19,17 @@
       border-color: $app-color-light-blue-4
       color: $app-color-medium-gray-2
       text-decoration: none
+
+.custom-button-action
+  &.disabled
+    color: $app-color-light-gray-7
+
+    &:hover
+      background-color: transparent
+      border-color: transparent
+      color: $app-color-light-gray-7
+
+.toolbar-pf-actions
+  .dropdown-menu
+    .disabled
+      cursor: not-allowed
