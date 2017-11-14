@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 73 ending 2017-11-13
+
+### Fixed
+- Use correct storage attribute use metrics from last hour (not present) [(#1237)](https://github.com/ManageIQ/manageiq-ui-service/pull/1237)
+- Fixed issue with language not saving [(#1233)](https://github.com/ManageIQ/manageiq-ui-service/pull/1233)
+- filter" is correct option subquery_count (to display filter results) [(#1220)](https://github.com/ManageIQ/manageiq-ui-service/pull/1220)
+- Update the changegroup action to set_current_group [(#1218)](https://github.com/ManageIQ/manageiq-ui-service/pull/1218)
+- Apply standard to .ts resolve angular critical dependency error [(#1212)](https://github.com/ManageIQ/manageiq-ui-service/pull/1212)
+- Ensure correct noVNC location is used [(#1208)](https://github.com/ManageIQ/manageiq-ui-service/pull/1208)
+- Adds support for supports_vnc_console decorator [(#1195)](https://github.com/ManageIQ/manageiq-ui-service/pull/1195)
+- Specify category-select toggle width prevent it from hidng [(#1191)](https://github.com/ManageIQ/manageiq-ui-service/pull/1191)
+- Sort tags by name alphabetically [(#1190)](https://github.com/ManageIQ/manageiq-ui-service/pull/1190)
+
 ## Unreleased as of Sprint 72 ending 2017-10-30
 
 ### Added
