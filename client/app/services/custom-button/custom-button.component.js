@@ -26,6 +26,9 @@ function CustomButtonController ($state, EventNotifications, CollectionsApi, RBA
   }
 
   function invokeCustomAction (button) {
+    if (!button.enabled) {
+      return
+    }
     if (button.resource_action && button.resource_action.dialog_id) {
       const options = {
         button: button,

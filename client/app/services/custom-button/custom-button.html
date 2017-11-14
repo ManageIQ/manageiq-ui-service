@@ -23,12 +23,13 @@
     </button>
     <ul uib-dropdown-menu role="menu" aria-labelledby="{{buttonGroup.id}}">
       <li ng-repeat="button in buttonGroup.buttons" role="presentation">
-        <a class="custom-button-action"
+        <a class="custom-button-action" 
            role="menuitem"
            tabindex="-1"
+           ng-class="{'disabled': !button.enabled}"
            ng-if="vm.hasRequiredRole(button)"
            ng-click="vm.invokeCustomAction(button)"
-           uib-tooltip="{{button.description}}"
+           uib-tooltip="{{ button.enabled ? button.description : button.disabled_text }}"
            tooltip-placement="left">
           <i ng-class="button.options.button_icon" ng-style="{color: button.options.button_color }"></i>
           {{ button.name }}
