@@ -83,10 +83,10 @@
                   <span class="pficon magic-dollar"></span>
                 </span>
                 <span class="card-pf-aggregate-status-notification" ng-if="vm.chargeback.used_cost_sum">
-                  ${{ vm.chargeback.used_cost_sum | number:3 }}
+                  {{ vm.chargeback.used_cost_sum | number:3 }}
                 </span>
                 <span class="card-pf-aggregate-status-notification" ng-if="!vm.chargeback.used_cost_sum" translate>
-                  $0
+                  0
                 </span>
               </p>
             </div>
