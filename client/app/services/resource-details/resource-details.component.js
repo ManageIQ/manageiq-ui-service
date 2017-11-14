@@ -198,7 +198,7 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
         capture_interval: 'hourly'
       }).then((response) => {
         vm.metrics = response
-        const lastHour = response.resources[0]
+        const lastHour = response.resources[1]
 
         vm.cpuUtil = UsageGraphsService.getChartConfig({
           'units': __('%'),
@@ -216,7 +216,7 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
           'units': __('GB'),
           'chartId': 'storageChart',
           'label': __('used')
-        }, UsageGraphsService.convertBytestoGb(lastHour.derived_vm_allocated_disk_storage), UsageGraphsService.convertBytestoGb(lastHour.derived_vm_allocated_disk_storage))
+        }, UsageGraphsService.convertBytestoGb(lastHour.derived_vm_used_disk_storage), UsageGraphsService.convertBytestoGb(lastHour.derived_vm_allocated_disk_storage))
       })
 
       vm.diskUsage = response.disks.map((item) => {
@@ -449,13 +449,13 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
     const fontSize = 12 // in pixels
     const tooltipWidth = 9 // in rem
     const tooltip = d3
-    .select('body')
-    .append('div')
-    .attr('class', 'popover fade bottom in')
-    .attr('role', 'tooltip')
-    .on('mouseleave', () => {
-      d3.select('body').selectAll('.popover').remove()
-    })
+      .select('body')
+      .append('div')
+      .attr('class', 'popover fade bottom in')
+      .attr('role', 'tooltip')
+      .on('mouseleave', () => {
+        d3.select('body').selectAll('.popover').remove()
+      })
     const rightOrLeftLimit = fontSize * tooltipWidth
     const direction = d3.event.pageX > rightOrLeftLimit ? 'right' : 'left'
     const left = direction === 'right' ? d3.event.pageX - rightOrLeftLimit : d3.event.pageX
@@ -487,8 +487,8 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
       `
     )
     tooltip
-    .style('left', `${left}px`)
-    .style('top', `${d3.event.pageY + 8}px`)
-    .style('display', 'block')
+      .style('left', `${left}px`)
+      .style('top', `${d3.event.pageY + 8}px`)
+      .style('display', 'block')
   }
 }
