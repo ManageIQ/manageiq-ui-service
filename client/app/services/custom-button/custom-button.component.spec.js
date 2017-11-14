@@ -14,6 +14,7 @@ describe('CustomButton component', () => {
           visibility: {
             roles: ['_ALL_']
           },
+          enabled: true,
           resource_action: {
             dialog_id: '_a dialog id_'
           }
@@ -22,7 +23,8 @@ describe('CustomButton component', () => {
           name: 'Bar',
           visibility: {
             roles: ['_ALL_']
-          }
+          },
+          enabled: true
         }
       ]
     }
@@ -128,7 +130,8 @@ describe('Custom buttons for a VM', () => {
           name: 'Bar',
           visibility: {
             roles: ['_ALL_']
-          }
+          },
+          enabled: true
         }
       ]
     }
