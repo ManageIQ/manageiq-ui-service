@@ -74,7 +74,7 @@ export function ChargebackFactory (lodash) {
   function reportUsedCost (report) {
     return lodash.reduce(report, function (total, v, k) {
       total += k.match(/_used_cost$/) ? Number(v) : 0
-
+      total += k.match(/_allocated_cost$/) ? Number(v) : 0
       return total
     }, 0)
   }
