@@ -132,7 +132,7 @@ describe('Chargeback', () => {
 
     it('sums used costs', () => {
       let sum = Chargeback.reportUsedCost(report)
-      expect(sum).to.equal(31044.20471510892)
+      expect(sum).to.equal(31788.20471510892)
     })
   })
 })
