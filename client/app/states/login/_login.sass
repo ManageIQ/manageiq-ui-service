@@ -1,23 +1,30 @@
-@import '_bem-support/index'
+@import 'app_colors'
 
-+block(login-pf)
-  +element(img)
-    +modifier(top)
-      left: 0
-      top: 0
-    +modifier(bottom)
-      bottom: 0
-      position: fixed
-      right: 0
-
-
+.login-pf
   background-color: $app-color-deep-blue
   height: calc(100vh)
   margin-bottom: -38px
   margin-top: -60px
 
   .container
-    background-color: transparent
+    padding-top: 0
+
+    .alert-danger
+      background-color: $app-color-light-red
+      border-color: $app-color-dark-red
+      color: $app-color-dark-gray-2
+
+    h1
+      margin: 0
+
+  .img-top
+    left: 0
+    top: 0
+
+  .img-bottom
+    bottom: 0
+    position: fixed
+    right: 0
 
   .logo
     max-height: 200px
