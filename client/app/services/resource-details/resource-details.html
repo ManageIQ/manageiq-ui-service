@@ -14,7 +14,7 @@
   </span>
     <div class="breadcrumb-actions">
         <div uib-dropdown class="dropdown-kebab-pf">
-            <custom-button ng-if="vm.hasCustomButtons()"
+            <custom-button ng-if="vm.customButtonCount() <= 3 && vm.customButtonCount() > 0"
                            class="custom-dropdown pull-left"
                            service-id="vm.vmDetails.service.id"
                            vm-id="vm.vmDetails.id"
@@ -30,6 +30,11 @@
                              ng-repeat="item in vm.listActions"
                              menu-right="true">
             </custom-dropdown>
+            <custom-button-menu service-id="vm.vmDetails.service.id"
+            vm-id="vm.vmDetails.id"
+            ng-if="vm.customButtonCount() > 3"
+            custom-actions="vm.vmDetails.custom_actions">
+            </custom-button-menu>
         </div>
     </div>
 </div>

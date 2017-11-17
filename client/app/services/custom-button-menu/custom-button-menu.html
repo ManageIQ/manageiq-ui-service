@@ -1,0 +1,45 @@
+<div uib-dropdown 
+     dropdown-append-to-body 
+     class="dropdown pull-right dropdown-kebab-pf custom-button-menu">
+  <button uib-dropdown-toggle="" 
+          class="btn btn-link dropdown-toggle"
+          type="button">
+    <span class="fa fa-ellipsis-v"></span>
+  </button>
+  <ul uib-dropdown-menu 
+    class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body">
+    <li role="menuitem" ng-repeat="button in vm.customActions.buttons">
+        <a class="custom-button-action" 
+            ng-class="{'disabled': !button.enabled}"
+            ng-click="vm.invokeCustomAction(button)"  
+            uib-tooltip="{{ button.enabled ? button.description : button.disabled_text }}"
+            tooltip-placement="left">
+            <i ng-class="button.options.button_icon" 
+                ng-style="{color: button.options.button_color }">
+            </i>
+            {{button.name}}
+        </a>
+    </li>
+    <li role="menuitem" ng-repeat="buttonGroup in vm.customActions.button_groups" class="dropdown-submenu pull-left">
+        <a href="#">
+          <span>
+            {{buttonGroup.name}}
+          </span>
+        </a>
+        <ul uib-dropdown-menu class="scrollable-menu">
+            <li ng-repeat="button in buttonGroup.buttons">
+                <a class="custom-button-action" 
+                ng-class="{'disabled': !button.enabled}"
+                ng-click="vm.invokeCustomAction(button)"  
+                uib-tooltip="{{ button.enabled ? button.description : button.disabled_text }}"
+                tooltip-placement="left">
+                  <i ng-class="button.options.button_icon" 
+                    ng-style="{color: button.options.button_color }">
+                  </i>
+                {{button.name}}
+                </a>
+            </li>
+        </ul>
+    </li>
+  </ul>
+</div>

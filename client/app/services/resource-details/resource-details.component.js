@@ -26,7 +26,7 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
       elapsed: elapsed,
       availableTooltip: availableTooltip,
       usedTooltip: usedTooltip,
-      hasCustomButtons: hasCustomButtons,
+      customButtonCount: customButtonCount,
       getSnapshotListActions: getSnapshotListActions,
       processSnapshot: processSnapshot,
       pollVM: pollVM,
@@ -294,14 +294,13 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
     }
   }
 
-  function hasCustomButtons () {
+  function customButtonCount () {
     const actions = vm.vmDetails.custom_actions || {}
     const groups = actions.button_groups || []
     const buttons = [].concat(actions.buttons, ...groups.map((g) => g.buttons))
-
-    return lodash.compact(buttons).length > 0
+    const allButtons = lodash.compact(buttons)
+    return allButtons.length
   }
-
   function getSnapshotListActions () {
     const snapshotOptionsMenu = {
       title: __('Snapshots'),
