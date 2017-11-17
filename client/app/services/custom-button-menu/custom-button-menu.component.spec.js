@@ -1,4 +1,4 @@
-/* global $state, $componentController, EventNotifications, RBAC, CollectionsApi */
+/* global $state, $componentController, RBAC, CollectionsApi */
 /* eslint-disable no-unused-expressions */
 describe('Component: Custom Button Menu', () => {
   beforeEach(() => {
