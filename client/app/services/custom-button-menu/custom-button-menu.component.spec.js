@@ -6,7 +6,6 @@ describe('Component: Custom Button Menu', () => {
     bard.inject('RBAC', '$componentController', 'EventNotifications', 'CollectionsApi', '$state')
   })
 
-  let ctrl
   let customActions = {
     buttons: [
       {
@@ -30,38 +29,35 @@ describe('Component: Custom Button Menu', () => {
   }
 
   describe('with $compile', () => {
+    let ctrlVM
+    let ctrlService
+    let apiPostStub
+    let vmAction
+    vmAction = Object.assign({}, customActions)
     beforeEach(() => {
-      ctrl = $componentController('customButtonMenu', null, { vmId: '1', customActions: customActions })
+      apiPostStub = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve())
+      ctrlVM = $componentController('customButtonMenu', null, { vmId: '1', customActions: customActions })
     })
     it('should allow a custom button action to be executed', () => {
       const stateSpy = sinon.spy($state, 'go')
-      ctrl.invokeCustomAction(customActions.buttons[0])
+      ctrlVM.invokeCustomAction(customActions.buttons[0])
       expect(stateSpy).to.have.been.calledWith(
         'services.custom_button_details')
     })
     it('should hide from someone who doesnt have the right role', () => {
       RBAC.setRole('_TEST2_')
-      expect(ctrl.hasRequiredRole(customActions.buttons[0])).to.be.false
+      expect(ctrlVM.hasRequiredRole(customActions.buttons[0])).to.be.false
     })
-  })
-  describe('Testing a basic button with VM', () => {
     it('should allow a action on a VM', () => {
-      ctrl = $componentController('customButtonMenu', null, { vmId: '1', customActions: customActions })
-      const apiPostStub = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve())
-      const vmAction = customActions
       delete vmAction.buttons[0]['resource_action']
-      ctrl.invokeCustomAction(vmAction.buttons[0])
-      expect(apiPostStub).to.have.been.calledWith('vms', '1', {}, {action: 'Foo'})
+      ctrlVM.invokeCustomAction(vmAction.buttons[0])
+      expect(apiPostStub).to.have.been.calledWith('vms', '1', {}, { action: 'Foo' })
     })
-  })
-  describe('Testing a basic button with a Service', () => {
-    it('should allow a action on a VM', () => {
-      ctrl = $componentController('customButtonMenu', null, { serviceId: '1', customActions: customActions })
-      const apiPostStub = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve())
-      const vmAction = customActions
+    it('should allow an action on a Service', () => {
       delete vmAction.buttons[0]['resource_action']
-      ctrl.invokeCustomAction(vmAction.buttons[0])
-      expect(apiPostStub).to.have.been.calledWith('services', '1', {}, {action: 'Foo'})
+      ctrlService = $componentController('customButtonMenu', null, { serviceId: '1', customActions: customActions })
+      ctrlService.invokeCustomAction(vmAction.buttons[1])
+      expect(apiPostStub).to.have.been.calledWith('services', '1', {}, { action: 'Bar' })
     })
   })
 })
