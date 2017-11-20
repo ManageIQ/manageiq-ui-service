@@ -297,9 +297,10 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
   function customButtonCount () {
     const actions = vm.vmDetails.custom_actions || {}
     const groups = actions.button_groups || []
-    const buttons = [].concat(actions.buttons, ...groups.map((g) => g.buttons))
-    const allButtons = lodash.compact(buttons)
-    return allButtons.length
+    const buttons = actions.buttons || []
+    const allButtons = groups.length + buttons.length
+
+    return allButtons
   }
   function getSnapshotListActions () {
     const snapshotOptionsMenu = {
