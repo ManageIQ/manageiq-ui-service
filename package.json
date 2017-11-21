@@ -66,7 +66,7 @@
     "babel-preset-env": "1.6.1",
     "bootstrap-combobox": "1.0.2",
     "bootstrap-switch": "3.3.4",
-    "brace": "0.10.0",
+    "brace": "0.11.0",
     "c3": "0.4.18",
     "chalk": "2.2.2",
     "clean-webpack-plugin": "0.1.17",
