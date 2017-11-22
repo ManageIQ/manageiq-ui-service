@@ -53,7 +53,8 @@
   <div class="panel panel-default ss-details-panel ss-marketplace-details-form">
     <div class="panel-body">
       <section>
-        <div class="col-md-12">
+        <loading status="vm.loading"></loading>
+        <div class="col-md-12" ng-show="!vm.loading">
           <div class="row">
            <div ng-repeat="dialog in ::vm.parsedDialogs">
               <dialog-user class="dialog-box" dialog="dialog" refresh-field="vm.refreshField(field)" on-update="vm.setDialogData(data)"></dialog-user>

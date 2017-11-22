@@ -1,4 +1,5 @@
 import templateUrl from './details.html'
+// import { Promise } from 'q'
 
 /** @ngInject */
 export function CatalogsDetailsState (routerHelper) {
@@ -12,95 +13,97 @@ function getStates () {
       templateUrl,
       controller: Controller,
       controllerAs: 'vm',
-      title: __('Service Template Details'),
-      resolve: {
-        dialogs: resolveDialogs,
-        serviceTemplate: resolveServiceTemplate,
-        serviceRequest: resolveServiceRequest
-      }
+      title: __('Service Template Details')
     },
     'catalogs.duplicate': {
       url: '/duplicate/:serviceRequestId',
       templateUrl,
       controller: Controller,
       controllerAs: 'vm',
-      title: __('Duplicate Service'),
-      resolve: {
-        serviceRequest: resolveServiceRequest,
-        dialogs: resolveDialogs,
-        serviceTemplate: resolveServiceTemplate
-      }
+      title: __('Duplicate Service')
     }
   }
 }
 
 /** @ngInject */
-/**
- * This function handles REST request for service templates
- * @function resolveServiceTemplate
- * @param  {object} $stateParams
- * @param  {object} CollectionsApi
- */
-function resolveServiceTemplate ($stateParams, serviceRequest, CollectionsApi) {
-  let serviceTemplateId = $stateParams.serviceTemplateId
-  if (!serviceTemplateId) {
-    serviceTemplateId = serviceRequest.source_id
-  }
-  var options = {attributes: ['picture', 'picture.image_href']}
-  return CollectionsApi.get('service_templates', serviceTemplateId, options)
-}
-/** @ngInject */
-function resolveServiceRequest ($stateParams, CollectionsApi) {
-  if ($stateParams.serviceRequestId) {
-    return CollectionsApi.get('requests', $stateParams.serviceRequestId, {})
-  } else {
-    return false
-  }
-}
-/**
- * Handles querying for dialog data
- * @function resolveDialogs
- * @param  {object} $stateParams
- * @param  {object} CollectionsApi
- */
-/** @ngInject */
-function resolveDialogs ($stateParams, serviceRequest, CollectionsApi) {
-  const options = {expand: 'resources', attributes: 'content'}
-  let serviceTemplateId = $stateParams.serviceTemplateId
-  if (!serviceTemplateId) {
-    serviceTemplateId = serviceRequest.source_id
-  }
-  return CollectionsApi.query('service_templates/' + serviceTemplateId + '/service_dialogs', options)
-}
-
-/** @ngInject */
-function Controller (dialogs, serviceTemplate, serviceRequest, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash) {
+function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash) {
   const vm = this
 
-  vm.serviceTemplate = serviceTemplate
-  vm.parsedDialogs = []
+  let dialogs = {}
+  let serviceTemplate = {}
+  let serviceRequest = {}
 
-  if (dialogs.subcount > 0) {
-    if (serviceRequest) {
-      const existingDialogValues = serviceRequest.options.dialog
-      dialogs.resources[0].content.forEach((dialog) => {
-        vm.parsedDialogs.push(DialogFieldRefresh.setFieldValueDefaults(dialog, existingDialogValues))
+  function init () {
+    vm.loading = true
+    const serviceRequestPromise = () => {
+      return new Promise((resolve, reject) => {
+        if ($stateParams.serviceRequestId) {
+          CollectionsApi.get('requests', $stateParams.serviceRequestId, {}).then((data) => { resolve(data) })
+        } else {
+          resolve(false)
+        }
       })
-    } else {
-      vm.parsedDialogs = dialogs.resources[0].content
     }
+    serviceRequestPromise().then((resolvedServiceRequest) => {
+      serviceRequest = resolvedServiceRequest
+
+      const dialogRequest = new Promise((resolve, reject) => {
+        const options = { expand: 'resources', attributes: 'content' }
+        let serviceTemplateId = $stateParams.serviceTemplateId
+        if (!serviceTemplateId) {
+          serviceTemplateId = serviceRequest.source_id
+        }
+        CollectionsApi.query('service_templates/' + serviceTemplateId + '/service_dialogs', options).then((resolvedDialogs) => {
+          dialogs = resolvedDialogs
+          resolve(resolvedDialogs)
+        })
+      })
+
+      const serviceTemplateRequest = new Promise((resolve, reject) => {
+        let serviceTemplateId = $stateParams.serviceTemplateId
+        if (!serviceTemplateId) {
+          serviceTemplateId = serviceRequest.source_id
+        }
+        var options = { attributes: ['picture', 'picture.image_href'] }
+        CollectionsApi.get('service_templates', serviceTemplateId, options).then((data) => {
+          resolve(data)
+        })
+      })
+      const allPromises = [dialogRequest, serviceTemplateRequest]
+      Promise.all(allPromises).then((data) => {
+        const SERVICE_TEMPLATE_RESPONSE = 1
+        const DIALOGS_RESPONSE = 0
+        dialogs = data[DIALOGS_RESPONSE]
+        vm.serviceTemplate = data[SERVICE_TEMPLATE_RESPONSE]
+        vm.parsedDialogs = []
+
+        if (dialogs.subcount > 0) {
+          if (serviceRequest) {
+            const existingDialogValues = serviceRequest.options.dialog
+            dialogs.resources[0].content.forEach((dialog) => {
+              vm.parsedDialogs.push(DialogFieldRefresh.setFieldValueDefaults(dialog, existingDialogValues))
+            })
+          } else {
+            vm.parsedDialogs = dialogs.resources[0].content
+          }
+        }
+
+        vm.addToCart = addToCart
+        vm.cartAllowed = ShoppingCart.allowed
+        vm.addToCartEnabled = false
+        vm.alreadyInCart = alreadyInCart
+        vm.addToCartDisabled = addToCartDisabled
+        vm.refreshField = refreshField
+        vm.setDialogData = setDialogData
+        vm.dialogData = {}
+
+        vm.dialogUrl = 'service_catalogs/' + serviceTemplate.service_template_catalog_id + '/service_templates'
+        vm.loading = false
+      })
+    })
   }
 
-  vm.addToCart = addToCart
-  vm.cartAllowed = ShoppingCart.allowed
-  vm.addToCartEnabled = false
-  vm.alreadyInCart = alreadyInCart
-  vm.addToCartDisabled = addToCartDisabled
-  vm.refreshField = refreshField
-  vm.setDialogData = setDialogData
-  vm.dialogData = {}
-
-  vm.dialogUrl = 'service_catalogs/' + serviceTemplate.service_template_catalog_id + '/service_templates'
+  init()
 
   /**
  * This function triggers a refresh of a single dialog field
