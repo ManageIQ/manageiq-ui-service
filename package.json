@@ -59,7 +59,7 @@
     "angular-smart-table": "2.1.9",
     "angular-svg-base-fix": "2.0.0",
     "angular-ui-bootstrap": "2.5.6",
-    "angular-ui-sortable": "0.17.2",
+    "angular-ui-sortable": "0.18.0",
     "babel-core": "6.26.0",
     "babel-eslint": "8.0.2",
     "babel-loader": "7.1.2",
