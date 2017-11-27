@@ -8,8 +8,8 @@ describe('Component: Resource Details', () => {
   let scope, state, vmSpy, vmData, ctrl, vmPermissions
   let mockDir = 'tests/mock/services/'
 
-  describe('with $compile', () => {
-    beforeEach(inject(($stateParams, $compile, $rootScope, $componentController) => {
+  describe('with $componentController', () => {
+    beforeEach(inject(($stateParams, $rootScope, $componentController) => {
       scope = $rootScope.$new()
       $stateParams.vmId = '12345'
       bard.inject('VmsService', 'PowerOperations', 'sprintf', 'lodash', 'EventNotifications',
@@ -32,7 +32,6 @@ describe('Component: Resource Details', () => {
       })
 
       ctrl.$onInit()
-      scope.$digest()
     }))
     it('should be able perform power operations on a VM', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))

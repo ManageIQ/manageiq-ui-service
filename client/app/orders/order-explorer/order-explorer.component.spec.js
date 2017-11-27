@@ -5,26 +5,6 @@ describe('Component: orderExplorer', () => {
     module('app.states', 'app.orders')
   })
 
-  describe('with $compile', () => {
-    let scope
-    let element
-
-    beforeEach(inject(function ($compile, $rootScope) {
-      bard.inject('$state')
-
-      scope = $rootScope.$new()
-      element = angular.element('<order-explorer />')
-      $compile(element)(scope)
-
-      scope.$apply()
-    }))
-
-    it('should work with $state.go', () => {
-      $state.go('orders')
-      expect($state.is('orders.explorer'))
-    })
-  })
-
   describe('with $componentController', () => {
     let scope
     let ctrl
@@ -36,6 +16,14 @@ describe('Component: orderExplorer', () => {
     it('is defined', () => {
       expect(ctrl).to.be.defined
     })
+
+    it('should work with $state.go', () => {
+      bard.inject('$state')
+
+      $state.go('orders')
+      expect($state.is('orders.explorer'))
+    })
+
     it('is can report back a request state', () => {
       const item = {
         request_state: 'finished',
