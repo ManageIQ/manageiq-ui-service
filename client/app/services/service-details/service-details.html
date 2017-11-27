@@ -288,12 +288,12 @@
                                         <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu"
                                             aria-labelledby="btn-append-to-to-body">
                                             <li role="menuitem"
-                                                ng-class="{'disabled': !item['supports_console?'] || !item['supports_vnc_console?'] || item.power_state !== 'on' || !$ctrl.customScope.permissions.console}"
+                                                ng-class="{'disabled': !item.supported_consoles.vnc.visible || !item.supported_consoles.vnc.enabled || !$ctrl.customScope.permissions.console}"
                                                 ng-click="$ctrl.customScope.openConsole(item)">
                                                 <a href="#" translate>VM Console</a>
                                             </li>
                                             <li role="menuitem"
-                                                ng-class="{'disabled': !item['supports_console?'] || !item['supports_cockpit?'] || item.power_state !== 'on' || !$ctrl.customScope.permissions.cockpit}"
+                                                ng-class="{'disabled': !item.supported_consoles.cockpit.visible || !item.supported_consoles.cockpit.enabled || !$ctrl.customScope.permissions.cockpit}"
                                                 ng-click="$ctrl.customScope.openCockpit(item)">
                                                 <a href="#" translate>Web Console</a>
                                             </li>
