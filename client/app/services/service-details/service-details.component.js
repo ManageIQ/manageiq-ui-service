@@ -310,13 +310,13 @@ function ComponentController($stateParams, $state, $window, CollectionsApi, Even
   }
 
   function openConsole(item) {
-    if (item['supports_console?'] && item.power_state === 'on') {
+    if (item.supported_consoles.vnc.visible && item.supported_consoles.vnc.enabled) {
       Consoles.open(item.id);
     }
   }
 
   function openCockpit(item) {
-    if (item['supports_cockpit?'] && item.power_state === 'on') {
+    if (item.supported_consoles.cockpit.visible && item.supported_consoles.cockpit.enabled) {
       $window.open('http://' + item.ipaddresses[0] + ':9090');
     }
   }
