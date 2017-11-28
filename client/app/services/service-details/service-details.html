@@ -371,7 +371,9 @@
         <div class="panel-body">
             <section>
                 <h2 translate>Relationships</h2>
-                <div class="container-fluid">
+                <pf-empty-state ng-if="!vm.service.parent_service || !vm.service.service_template" config="vm.emptyState"></pf-empty-state>
+
+                <div class="container-fluid" ng-if="vm.service.parent_service || vm.service.service_template" >
                     <div class="row" ng-if="vm.service.parent_service">
                         <div class="col-sm-4">
                             <a href="#" ng-click="vm.gotoService(vm.service.parent_service)">{{vm.service.parent_service.name}}</a>

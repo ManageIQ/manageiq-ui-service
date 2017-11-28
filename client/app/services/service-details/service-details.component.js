@@ -32,6 +32,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       availableTags: [],
       credential: {},
       listActions: [],
+      emptyState: {icon: 'pficon pficon-help', title: 'No Information Available'},
       // Functions
       hasCustomButtons: hasCustomButtons,
       disableStopButton: disableStopButton,
