@@ -95,6 +95,14 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
     vm.today = new Date()
     vm.presentDate = new Date()
     vm.lastWeekDay = new Date(vm.presentDate.setDate(vm.presentDate.getDate() - 7))
+    vm.tlOptions = {
+      start: new Date(vm.lastWeekDay),
+      end: new Date(vm.today),
+      eventClick: tlTooltip,
+      eventGrouping: 60000,
+      minScale: 0.234,
+      maxScale: 1440
+    }
     resolveData()
   }
 
@@ -198,14 +206,17 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
         capture_interval: 'hourly'
       }).then((response) => {
         vm.metrics = response
-        const lastHour = response.resources[1]
+        const lastHour = response.resources.find((item) => {
+          return new Date(item.timestamp).getUTCHours() === (vm.today.getUTCHours() - 1)
+        })
 
-        vm.cpuUtil = UsageGraphsService.getChartConfig({
-          'units': __('%'),
-          'chartId': 'cpuChart',
-          'label': __('used')
-        }, (lastHour.cpu_usage_rate_average).toPrecision(3), 100)
-
+        if (lastHour.cpu_usage_rate_average) {
+          vm.cpuUtil = UsageGraphsService.getChartConfig({
+            'units': __('%'),
+            'chartId': 'cpuChart',
+            'label': __('used')
+          }, (lastHour.cpu_usage_rate_average).toPrecision(3), 100)
+        }
         vm.memUtil = UsageGraphsService.getChartConfig({
           'units': __('GB'),
           'chartId': 'memoryChart',
@@ -266,9 +277,10 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
         : `${retirementDate.getFullYear()}-${retirementDate.toString().split(' ')[1]}-${retirementDate.getDate()}`
       vm.retirement.notifications[0].iconClass = angular.isUndefined(response.retires_on) ? ''
         : `fa fa-clock-o`
-      vm.compliance.notifications[0].count = angular.isUndefined(response.last_compliance_status) ? `Never Verified` : response.last_compliance_status
+      vm.compliance.notifications[0].count = angular.isUndefined(response.last_compliance_status) ? `Never Verified`
+        : lodash.capitalize(response.last_compliance_status)
       vm.compliance.notifications[0].iconClass = angular.isUndefined(response.last_compliance_status) ? ''
-        : response.last_compliance_status === 'compliant' ? 'pficon pficon-error-circle-o' : 'pficon pficon-ok'
+        : response.last_compliance_status ? 'pficon pficon-ok' : 'pficon pficon-error-circle-o'
       vm.vmDetails.complianceHistory = (vm.vmDetails.compliances.length > 0 ? vm.availableText : vm.notAvailable)
 
       getListActions()
@@ -449,13 +461,13 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
     const fontSize = 12 // in pixels
     const tooltipWidth = 9 // in rem
     const tooltip = d3
-      .select('body')
-      .append('div')
-      .attr('class', 'popover fade bottom in')
-      .attr('role', 'tooltip')
-      .on('mouseleave', () => {
-        d3.select('body').selectAll('.popover').remove()
-      })
+    .select('body')
+    .append('div')
+    .attr('class', 'popover fade bottom in')
+    .attr('role', 'tooltip')
+    .on('mouseleave', () => {
+      d3.select('body').selectAll('.popover').remove()
+    })
     const rightOrLeftLimit = fontSize * tooltipWidth
     const direction = d3.event.pageX > rightOrLeftLimit ? 'right' : 'left'
     const left = direction === 'right' ? d3.event.pageX - rightOrLeftLimit : d3.event.pageX
@@ -487,8 +499,8 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
       `
     )
     tooltip
-      .style('left', `${left}px`)
-      .style('top', `${d3.event.pageY + 8}px`)
-      .style('display', 'block')
+    .style('left', `${left}px`)
+    .style('top', `${d3.event.pageY + 8}px`)
+    .style('display', 'block')
   }
 }

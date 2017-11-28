@@ -7,7 +7,7 @@
         <div class="metric-title" translate>CPU</div>
         <div ng-if="vm.cpuDataExists">
             <div class="metric-details-container">
-                <span class="metric-number">{{vm.availableCPU}}</span>
+                <span class="metric-number">{{vm.availableCPU | number:3}}</span>
                 <span class="metric-details">
                 <p>{{vm.cpuChart.config.units}} {{'Available' | translate}}</p>
                 <p>{{'of' | translate }} {{vm.cpuChart.data.total}}{{vm.cpuChart.config.units}}</p>
@@ -23,7 +23,7 @@
         <div class="metric-title" translate>Memory</div>
         <div ng-if="vm.memoryDataExists">
             <div class="metric-details-container">
-                <span class="metric-number">{{vm.availableMemory}}</span>
+                <span class="metric-number">{{vm.availableMemory | number:3}}</span>
                 <span class="metric-details">
                     <p>{{vm.memoryChart.config.units}} {{'Available' | translate}}</p>
                     <p>{{'of' | translate }} {{vm.memoryChart.data.total}}{{vm.memoryChart.config.units}}</p>
@@ -39,7 +39,7 @@
         <div class="metric-title" translate>Storage</div>
         <div ng-if="vm.storageDataExists">
             <div class="metric-details-container">
-                <span class="metric-number">{{vm.availableStorage}}</span>
+                <span class="metric-number">{{vm.availableStorage | number:3}}</span>
                 <span class="metric-details">
                     <p>{{vm.storageChart.config.units}} {{'Available' | translate}}</p>
                     <p>{{'of' | translate }} {{vm.storageChart.data.total}}{{vm.storageChart.config.units}}</p>
