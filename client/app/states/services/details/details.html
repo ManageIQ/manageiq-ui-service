@@ -234,10 +234,10 @@
               </span>
             </div>
             <div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
-              <button class="btn btn-default open-console-button" ng-if="item['supports_console?'] && item['supports_vnc_console?'] && item.power_state == 'on'" tooltip="{{'HTML5 console'|translate}}" tooltip-placement="bottom">
+              <button class="btn btn-default open-console-button" ng-if="item.supported_consoles.vnc.visible && item.supported_consoles.vnc.enabled" tooltip="{{'HTML5 console'|translate}}" tooltip-placement="bottom">
                 <i class="fa fa-html5 fa-lg"></i>
               </button>
-              <button class="btn btn-default open-cockpit-button" ng-if="item['supports_console?'] && item['supports_cockpit?'] && item.power_state == 'on'" tooltip="{{'Cockpit console'|translate}}" tooltip-placement="bottom">
+              <button class="btn btn-default open-cockpit-button" ng-if="item.supported_consoles.cockpit.visible && item.supported_consoles.cockpit.enabled" tooltip="{{'Cockpit console'|translate}}" tooltip-placement="bottom">
                 <img src="images/cockpit.png">
               </button>
             </div>
