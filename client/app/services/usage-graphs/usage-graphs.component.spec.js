@@ -54,9 +54,9 @@ describe('Component: usageGraphs', () => {
   })
   it('Chart availble values match', () => {
     const graphs = element[0].querySelectorAll('.metric-number')
-    expect(graphs[0].innerHTML).to.eq('1000')
-    expect(graphs[1].innerHTML).to.eq('6')
-    expect(graphs[2].innerHTML).to.eq('38')
+    expect(graphs[0].innerHTML).to.eq('1,000.000')
+    expect(graphs[1].innerHTML).to.eq('6.000')
+    expect(graphs[2].innerHTML).to.eq('38.000')
   })
 })
 
