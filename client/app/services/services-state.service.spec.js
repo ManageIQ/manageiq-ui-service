@@ -24,10 +24,9 @@ describe('Service: ServicesStateFactory', () => {
           'vms.snapshots', 'vms.v_total_snapshots', 'vms.v_snapshot_newest_name', 'vms.v_snapshot_newest_timestamp',
           'vms.max_mem_usage_absolute_average_avg_over_time_period', 'vms.hardware', 'vms.hardware.aggregate_cpu_speed',
           'vms.cpu_usagemhz_rate_average_avg_over_time_period', 'generic_objects.picture',
-          'generic_objects.generic_object_definition'
+          'generic_objects.generic_object_definition', 'vms.supported_consoles'
         ],
         expand: ['vms', 'orchestration_stacks', 'generic_objects'],
-        decorators: ['vms.supports_console?', 'vms.supports_cockpit?', 'supports_vnc_console?'],
         auto_refresh: false
       }
       done()
