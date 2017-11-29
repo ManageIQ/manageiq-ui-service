@@ -7486,9 +7486,9 @@ spdy@^3.4.1:
     select-hose "^2.0.0"
     spdy-transport "^2.0.18"
 
-spice-html5-bower@1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/spice-html5-bower/-/spice-html5-bower-1.6.3.tgz#8b64c890e66a2a2a89da507a957cbce794a4a577"
+spice-html5-bower@1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/spice-html5-bower/-/spice-html5-bower-1.7.1.tgz#737a0cc054cc2bb9efdd1e44bdd69004403cb504"
 
 sprintf-js@1.1.1:
   version "1.1.1"
