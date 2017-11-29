@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 74 ending 2017-11-27
+
+### Fixed
+- Updated the calculation for Chargebacks [(#1244)](https://github.com/ManageIQ/manageiq-ui-service/pull/1244)
+- Fixed issue with buttons not supporting being disabled [(#1239)](https://github.com/ManageIQ/manageiq-ui-service/pull/1239)
+
 ## Unreleased as of Sprint 73 ending 2017-11-13
 
 ### Fixed
