@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Gaprindashvili Beta2
+
+### Fixed
+- Fixed issue with language not saving [(#1233)](https://github.com/ManageIQ/manageiq-ui-service/pull/1233)
+- Update the changegroup action to set_current_group [(#12180)](https://github.com/ManageIQ/manageiq-ui-service/pull/1218)
+- Use correct storage attribute, use metrics from last hour (not present) [(#1237)](https://github.com/ManageIQ/manageiq-ui-service/pull/1237)
+- Fixed issue with buttons not supporting being disabled [(#1239)](https://github.com/ManageIQ/manageiq-ui-service/pull/1239)
+- Updated the calculation for Chargebacks [(#1244)](https://github.com/ManageIQ/manageiq-ui-service/pull/1244)
+
 ## Gaprindashvili Beta1
 
 ### Added
