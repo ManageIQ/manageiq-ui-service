@@ -37,7 +37,7 @@ function ComponentController (ModalService, ServicesState, lodash) {
 
   function fetchResources () {
     vm.loading = true
-    const credentialTypes = ['credential_id', 'network_credential_id', 'machine_credential_id']
+    const credentialTypes = ['credential_id', 'network_credential_id', 'machine_credential_id', 'cloud_credential_id']
 
     if (angular.isDefined(vm.service.options.config_info)) {
       vm.orcStacks = {}
