@@ -1,5 +1,5 @@
 /** @ngInject */
-export function EventNotificationsFactory ($timeout, lodash, CollectionsApi) {
+export function EventNotificationsFactory ($timeout, lodash, CollectionsApi, RBAC) {
   const state = {}
   const toastDelay = 8 * 1000
   const service = {
@@ -19,6 +19,7 @@ export function EventNotificationsFactory ($timeout, lodash, CollectionsApi) {
     dismissToast: dismissToast,
     setToastDisplay: setToastDisplay
   }
+
   notificationsInit()
 
   return service
@@ -152,26 +153,30 @@ export function EventNotificationsFactory ($timeout, lodash, CollectionsApi) {
     removeToast(notification)
     service.markRead(notification)
   }
+
   function setToastDisplay (enabled) {
     state.toastsEnabled = enabled
   }
+
   // Private
   function add (notificationType, type, message, notificationData, id) {
-    const group = lodash.find(state.groups, {notificationType: notificationType})
-    const newNotification = {
-      id: id,
-      notificationType: notificationType,
-      unread: angular.isDefined(notificationData) ? notificationData.unread : true,
-      type: type,
-      message: message,
-      data: notificationData || {},
-      href: id ? '/api/notifications/' + id : undefined,
-      timeStamp: (new Date()).getTime()
-    }
+    if (RBAC.has(RBAC.FEATURES.CORE.NOTIFICATIONS)) {
+      const group = lodash.find(state.groups, {notificationType: notificationType})
+      const newNotification = {
+        id: id,
+        notificationType: notificationType,
+        unread: angular.isDefined(notificationData) ? notificationData.unread : true,
+        type: type,
+        message: message,
+        data: notificationData || {},
+        href: id ? '/api/notifications/' + id : undefined,
+        timeStamp: (new Date()).getTime()
+      }
 
-    group.notifications.unshift(newNotification)
-    updateUnreadCount(group)
-    showToast(newNotification)
+      group.notifications.unshift(newNotification)
+      updateUnreadCount(group)
+      showToast(newNotification)
+    }
   }
 
   function miqFormatNotification (text, bindings) {
@@ -201,13 +206,15 @@ export function EventNotificationsFactory ($timeout, lodash, CollectionsApi) {
       expand: 'resources',
       attributes: 'details'
     }
-    CollectionsApi.query('notifications', options).then((result) => {
-      result.resources.forEach((resource) => {
-        const group = lodash.find(state.groups, {notificationType: resource.details.level}) || new Group(resource.details.level)
-        importServerNotifications(group, resource)
+    if (RBAC.has(RBAC.FEATURES.CORE.NOTIFICATIONS)) {
+      CollectionsApi.query('notifications', options).then((result) => {
+        result.resources.forEach((resource) => {
+          const group = lodash.find(state.groups, {notificationType: resource.details.level}) || new Group(resource.details.level)
+          importServerNotifications(group, resource)
+        })
+        updateUnreadCount()
       })
-      updateUnreadCount()
-    })
+    }
 
     function importServerNotifications (group, resource) {
       const msg = miqFormatNotification(resource.details.text, resource.details.bindings)
