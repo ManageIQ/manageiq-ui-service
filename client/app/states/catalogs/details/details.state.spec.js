@@ -6,32 +6,10 @@ describe('State: catalogs.details', () => {
   })
 
   describe('#resolveDialogs', () => {
-    let collectionsApiSpy
     const serviceRequest = false
     beforeEach(() => {
       bard.inject('$state', '$stateParams', 'CollectionsApi')
       $stateParams.serviceTemplateId = 123
-      collectionsApiSpy = sinon.spy(CollectionsApi, 'query')
-    })
-
-    it('should query the API with the correct template id and options', () => {
-      const options = {expand: 'resources', attributes: 'content'}
-      $state.get('catalogs.details').resolve.dialogs($stateParams, serviceRequest, CollectionsApi)
-      expect(collectionsApiSpy).to.have.been.calledWith('service_templates/123/service_dialogs', options)
-    })
-
-    it('should query the API for service templates', () => {
-      const serviceTemplateSpy = sinon.spy(CollectionsApi, 'get')
-      const options = {attributes: ['picture', 'picture.image_href']}
-      $state.get('catalogs.details').resolve.serviceTemplate($stateParams, serviceRequest, CollectionsApi)
-      expect(serviceTemplateSpy).to.have.been.calledWith('service_templates', 123, options)
-    })
-    it('should query the API for serviceRequest if one is set', () => {
-      const serviceRequestSpy = sinon.spy(CollectionsApi, 'get')
-      $stateParams.serviceRequestId = 12345
-      const options = {}
-      $state.get('catalogs.duplicate').resolve.serviceRequest($stateParams, CollectionsApi)
-      expect(serviceRequestSpy).to.have.been.calledWith('requests', 12345, options)
     })
   })
 
@@ -68,16 +46,21 @@ describe('State: catalogs.details', () => {
     }
 
     beforeEach(() => {
-      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'EventNotifications', 'DialogFieldRefresh', 'ShoppingCart')
+      bard.inject('$controller', '$log', '$state','$stateParams', '$rootScope', 'CollectionsApi', 'EventNotifications', 'DialogFieldRefresh', 'ShoppingCart')
+      $stateParams.serviceTemplateId = 1234
+      const dialogSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(dialogs))
+      const serviceTemplateSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(serviceTemplate))
     })
 
     describe('controller initialization', () => {
       it('is created successfully', () => {
-        controller = $controller($state.get('catalogs.details').controller, controllerResolves)
+        controller = $controller($state.get('catalogs.details').controller)
         expect(controller).to.be.defined
       })
       it('it allows a field to be refreshed', (done) => {
-        controller = $controller($state.get('catalogs.details').controller, controllerResolves)
+      
+        controller = $controller($state.get('catalogs.details').controller)
+        controller.serviceTemplate = serviceTemplate
         const refreshSpy = sinon.stub(DialogFieldRefresh, 'refreshDialogField').returns(Promise.resolve({'status': 'success'}))
         const dialogData = {
           'dialogField1': '1',
@@ -87,7 +70,6 @@ describe('State: catalogs.details', () => {
         controller.dialogData = dialogData
         controller.refreshField(field).then((data) => {
           done()
-
           expect(refreshSpy).to.have.been.calledWith(dialogData, ['dialogField1'], 'service_catalogs/321/service_templates', 123)
         })
       })
@@ -110,7 +92,8 @@ describe('State: catalogs.details', () => {
               return false
             })
 
-            controller = $controller($state.get('catalogs.details').controller, controllerResolves)
+            controller = $controller($state.get('catalogs.details').controller)
+            controller.serviceTemplate = serviceTemplate
           })
 
           it('returns true', () => {
@@ -131,8 +114,9 @@ describe('State: catalogs.details', () => {
 
           context('when addingToCart is true', () => {
             beforeEach(() => {
-              controller = $controller($state.get('catalogs.details').controller, controllerResolves)
+              controller = $controller($state.get('catalogs.details').controller)
               controller.addingToCart = true
+              controller.serviceTemplate = serviceTemplate
               controller.dialogData = {
                 'dialogField1': '1',
                 'dialogField2': '2'
@@ -181,7 +165,7 @@ describe('State: catalogs.details', () => {
           })
           context('when you check for a duplicate cart', () => {
             beforeEach(() => {
-              controller = $controller($state.get('catalogs.details').controller, controllerResolves)
+              controller = $controller($state.get('catalogs.details').controller)
               controller.addingToCart = true
             })
             it('checks for a duplicate cart', () => {
@@ -201,7 +185,7 @@ describe('State: catalogs.details', () => {
               beforeEach(() => {
                 dialogs.resources[0].content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].beingRefreshed = true
 
-                controller = $controller($state.get('catalogs.details').controller, controllerResolves)
+                controller = $controller($state.get('catalogs.details').controller)
                 controller.addingToCart = false
               })
 
@@ -212,7 +196,7 @@ describe('State: catalogs.details', () => {
 
             context('when no dialogs are being refreshed', () => {
               beforeEach(() => {
-                controller = $controller($state.get('catalogs.details').controller, controllerResolves)
+                controller = $controller($state.get('catalogs.details').controller)
                 controller.addingToCart = false
                 controller.addToCartEnabled = true
               })

@@ -35,6 +35,15 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
 
   function init () {
     vm.loading = true
+    vm.addToCart = addToCart
+    vm.cartAllowed = ShoppingCart.allowed
+    vm.addToCartEnabled = false
+    vm.alreadyInCart = alreadyInCart
+    vm.addToCartDisabled = addToCartDisabled
+    vm.refreshField = refreshField
+    vm.setDialogData = setDialogData
+    vm.dialogData = {}
+
     const serviceRequestPromise = () => {
       return new Promise((resolve, reject) => {
         if ($stateParams.serviceRequestId) {
@@ -87,15 +96,6 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
             vm.parsedDialogs = dialogs.resources[0].content
           }
         }
-
-        vm.addToCart = addToCart
-        vm.cartAllowed = ShoppingCart.allowed
-        vm.addToCartEnabled = false
-        vm.alreadyInCart = alreadyInCart
-        vm.addToCartDisabled = addToCartDisabled
-        vm.refreshField = refreshField
-        vm.setDialogData = setDialogData
-        vm.dialogData = {}
 
         vm.dialogUrl = 'service_catalogs/' + serviceTemplate.service_template_catalog_id + '/service_templates'
         vm.loading = false
