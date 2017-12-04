@@ -125,7 +125,6 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       }
       object.isExpanded = objectViewState
       object.properties = lodash.chunk(properties, 3)
-      object.count = properties.length
       genericObjects[genericObjectType].objects.push(object)
     })
 

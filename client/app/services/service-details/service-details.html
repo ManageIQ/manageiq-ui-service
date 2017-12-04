@@ -354,7 +354,7 @@
                         <a class="service-details-resource-group-title"
                             ng-class="{'collapsed': !genericObject.isExpanded}"
                             ng-click="vm.toggleOpenGenericObjects(genericObject)">
-                            {{genericObject.name}} ({{genericObject.count}})
+                            {{genericObject.name}} ({{genericObject.objects.length}})
                         </a>
                         <div class="service-details-resource-list-container"
                                 ng-class="{'collapse': !genericObject.isExpanded}">
