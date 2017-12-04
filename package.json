@@ -114,7 +114,7 @@
     "typescript": "2.6.2",
     "ui-select": "0.19.8",
     "url-loader": "0.6.2",
-    "webpack": "3.9.1",
+    "webpack": "3.10.0",
     "yargs": "10.0.3",
     "zone.js": "0.8.18"
   },
