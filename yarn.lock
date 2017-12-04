@@ -8,9 +8,9 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/compiler@5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-5.0.4.tgz#7baf38945703a4cab9128d71eb3c8e38c13be1a4"
+"@angular/compiler@5.0.5":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-5.0.5.tgz#128329bd3a296116001480c56ecb95f0203aab07"
   dependencies:
     tslib "^1.7.1"
 
