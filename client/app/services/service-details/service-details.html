@@ -30,7 +30,7 @@
     </actions>
 </pf-toolbar>
 <loading status="vm.loading"></loading>
-<div ng-if="!vm.loading" class="ss-details-wrapper">
+<div ng-if="!vm.loading" class="ss-details-wrapper ss-details-wrapper-with-toolbar">
     <div class="panel panel-default ss-details-panel">
         <div class="panel-body">
             <section>
@@ -371,7 +371,9 @@
         <div class="panel-body">
             <section>
                 <h2 translate>Relationships</h2>
-                <div class="container-fluid">
+                <pf-empty-state ng-if="!vm.service.parent_service && !vm.service.service_template" config="vm.emptyState"></pf-empty-state>
+
+                <div class="container-fluid" ng-if="vm.service.parent_service || vm.service.service_template" >
                     <div class="row" ng-if="vm.service.parent_service">
                         <div class="col-sm-4">
                             <a href="#" ng-click="vm.gotoService(vm.service.parent_service)">{{vm.service.parent_service.name}}</a>
@@ -381,7 +383,7 @@
                             <span>{{vm.service.parent_service.description}}</span>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-if="vm.service.service_template">
                         <div class="col-sm-4">
                             <a href="#" ng-click="vm.gotoCatalogItem()">{{vm.service.service_template.name}}</a>
                         </div>
