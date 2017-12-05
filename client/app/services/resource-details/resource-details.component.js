@@ -55,10 +55,10 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
         }
       },
       genInfo: {
-        'info': 'No Information Available'
+        'info': __('No data available')
       },
       provInfo: {
-        'info': ['No Information Available']
+        'info': [__('No data available')]
       },
       compliance: {
         'title': 'Compliance',
@@ -90,7 +90,7 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
           }
         ]
       },
-      emptyState: {icon: 'pficon pficon-help', title: 'No Information Available'}
+      emptyState: {icon: 'pficon pficon-help', title: __('No data available')}
     })
     vm.today = new Date()
     vm.presentDate = new Date()
