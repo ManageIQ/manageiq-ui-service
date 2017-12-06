@@ -22,8 +22,8 @@ function getStates () {
 }
 
 /** @ngInject */
-function StateController (exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session,
-                          $rootScope, Notifications, Language, ApplianceInfo, $window) {
+function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session,
+                          $rootScope, Notifications, Language, ApplianceInfo, ActionCable) {
   const vm = this
 
   vm.text = Text.login
@@ -73,6 +73,10 @@ function StateController (exception, $state, Text, RBAC, API_LOGIN, API_PASSWORD
         Notifications.error(__('You do not have permission to view the Service UI. Contact your administrator to update your group permissions.'))
         Session.destroy()
       }
+    })
+    .then(() => {
+      const cable = ActionCable.createConsumer('/ws/notifications')
+      cable.subscriptions.create('NotificationChannel', {})
     })
     .catch((response) => {
       if (response.status === 401) {
