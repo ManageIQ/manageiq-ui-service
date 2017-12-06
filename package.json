@@ -103,7 +103,7 @@
     "postcss-loader": "2.0.9",
     "q": "1.5.1",
     "request": "2.83.0",
-    "rxjs": "5.5.4",
+    "rxjs": "5.5.5",
     "sass-loader": "6.0.6",
     "spice-html5-bower": "1.7.1",
     "sprintf-js": "1.1.1",
