@@ -130,12 +130,12 @@
             </section>
         </div>
     </div>
-    <div ng-if="vm.service.vms.length"
+    <div ng-if="vm.service.vms.length || vm.genericObjects.length"
          class="panel panel-default ss-details-panel">
         <div class="panel-body">
             <section>
                 <h2 translate>Resources</h2>
-                <ul class="list-group service-details-resources">
+                <ul class="list-group service-details-resources" ng-if="vm.service.vms.length">
                     <li class="list-group-item service-details-resource-group-item">
                         <a class="service-details-resource-group-title"
                            ng-class="{'collapsed': !vm.computeGroup.open}"
@@ -347,24 +347,25 @@
                             </pf-list-view>
                         </div>
                     </li>
+                </ul>
+                <ul class="list-group service-details-resources" ng-if="vm.genericObjects.length">
                     <li class="list-group-item service-details-resource-group-item"
-                        ng-repeat="genericObject in vm.genericObjects">
+                    ng-repeat="genericObject in vm.genericObjects">
                         <a class="service-details-resource-group-title"
-                           ng-class="{'collapsed': !genericObject.isExpanded}"
-                           ng-click="vm.toggleOpenGenericObjects(genericObject)">
-                            {{genericObject.name}}
+                            ng-class="{'collapsed': !genericObject.isExpanded}"
+                            ng-click="vm.toggleOpenGenericObjects(genericObject)">
+                            {{genericObject.name}} ({{genericObject.objects.length}})
                         </a>
                         <div class="service-details-resource-list-container"
-                             ng-class="{'collapse': !genericObject.isExpanded}">
+                                ng-class="{'collapse': !genericObject.isExpanded}">
                             <generic-objects-list generic-object="genericObject"
-                                                  on-update="vm.setGenericObjectViewState(object)"></generic-objects-list>
+                                                    on-update="vm.setGenericObjectViewState(object)"></generic-objects-list>
                         </div>
                     </li>
                 </ul>
             </section>
         </div>
     </div>
-
     <service-details-ansible ng-if="vm.service.type === 'ServiceAnsiblePlaybook' && vm.permissions.viewAnsible"
                              service="vm.service"></service-details-ansible>
     <div class="panel panel-default ss-details-panel relationships-panel">
