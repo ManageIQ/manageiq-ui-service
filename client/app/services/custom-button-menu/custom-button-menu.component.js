@@ -56,7 +56,7 @@ function CustomButtonMenuController ($state, EventNotifications, CollectionsApi,
     }
 
     function postFailure (response) {
-      EventNotifications.error(__('There was an error submitting the custom button. ') + response.message);
+      EventNotifications.error(__('There was an error submitting the custom button. ') + response.message)
     }
   }
 }
