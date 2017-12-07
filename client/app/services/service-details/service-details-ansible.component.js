@@ -104,6 +104,6 @@ function ComponentController (ModalService, ServicesState, lodash) {
   }
 
   function elapsed (finish, start) {
-    return Math.abs(new Date(finish) - new Date(start)) / 100
+    return Math.abs(new Date(finish) - new Date(start)) / 1000
   }
 }
