@@ -49,10 +49,10 @@
       'name',
       'guid',
       'vms.ipaddresses',
+      'vms.supported_consoles',
     ];
     var options = {
       attributes: requestAttributes,
-      decorators: [ 'vms.supports_console?', 'vms.supports_vnc_console?', 'vms.supports_cockpit?' ],
       expand: 'vms',
     };
 
