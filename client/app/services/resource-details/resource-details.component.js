@@ -445,7 +445,7 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
   }
 
   function elapsed (finish, start) {
-    return Math.abs(new Date(finish) - new Date(start)) / 100
+    return Math.abs(new Date(finish) - new Date(start)) / 1000
   }
 
   function availableTooltip (item) {
