@@ -13,41 +13,41 @@ function getStates () {
       templateUrl,
       controller: StateController,
       controllerAs: 'vm',
-      title: __('Service Details'),
-      resolve: {
-        service: resolveService
-      }
+      title: __('Service Details')
     }
   }
 }
 
 /** @ngInject */
-function resolveService ($stateParams, CollectionsApi) {
-  var requestAttributes = [
-    'provision_dialog'
-  ]
-  var options = {attributes: requestAttributes}
-
-  return CollectionsApi.get('services', $stateParams.serviceId, options)
-}
-
-/** @ngInject */
-function StateController ($state, $stateParams, CollectionsApi, service, EventNotifications, DialogFieldRefresh) {
+function StateController ($state, $stateParams, CollectionsApi, EventNotifications, DialogFieldRefresh) {
   var vm = this
 
   vm.title = __('Service Details')
-  vm.service = service
+  vm.service = {}
+  vm.serviceId = $stateParams.serviceId
   vm.dialogs = [setFieldValueDefaults(vm.service.provision_dialog)]
   vm.submitDialog = submitDialog
   vm.cancelDialog = cancelDialog
   vm.backToService = backToService
-  vm.dialogUrl = 'services/' + vm.service.service_template_catalog_id + '/service_templates'
+  vm.dialogUrl = `services/${vm.service.service_template_catalog_id}/service_templates`
   vm.refreshField = refreshField
   vm.setDialogData = setDialogData
   vm.dialogData = {}
+  vm.loading = true
 
+  function init () {
+    var requestAttributes = [
+      'provision_dialog'
+    ]
+    var options = { attributes: requestAttributes }
+    CollectionsApi.get('services', $stateParams.serviceId, options).then((response) => {
+      vm.loading = false
+      vm.service = response
+    })
+  }
+  init()
   function refreshField (field) {
-    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], vm.dialogUrl, vm.service.id)
+    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], vm.dialogUrl, vm.serviceId)
   }
 
   function setFieldValueDefaults (dialog) {
@@ -61,7 +61,7 @@ function StateController ($state, $stateParams, CollectionsApi, service, EventNo
     vm.dialogData = data.data
   }
   function submitDialog () {
-    vm.dialogData.href = '/api/services/' + service.id
+    vm.dialogData.href = `/api/services/${vm.serviceId}`
 
     CollectionsApi.post(
       'services',
@@ -72,7 +72,7 @@ function StateController ($state, $stateParams, CollectionsApi, service, EventNo
 
     function submitSuccess (result) {
       EventNotifications.success(result.message)
-      $state.go('services.details', {serviceId: $stateParams.serviceId})
+      $state.go('services.details', {serviceId: vm.serviceId})
     }
 
     function submitFailure (result) {
@@ -82,10 +82,10 @@ function StateController ($state, $stateParams, CollectionsApi, service, EventNo
 
   function cancelDialog () {
     EventNotifications.success(__('Reconfigure this service has been cancelled'))
-    $state.go('services.details', {serviceId: $stateParams.serviceId})
+    $state.go('services.details', {serviceId: vm.serviceId})
   }
 
   function backToService () {
-    $state.go('services.details', {serviceId: service.id})
+    $state.go('services.details', {serviceId: vm.serviceId})
   }
 }

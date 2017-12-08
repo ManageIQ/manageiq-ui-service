@@ -6,7 +6,7 @@ describe('State: services.reconfigure', () => {
   })
 
   describe('controller', () => {
-    let collectionsApiSpy, ctrl, notificationsErrorSpy, notificationsSuccessSpy
+    let collectionsApiSpy, ctrl, notificationsErrorSpy, notificationsSuccessSpy, collectionsApiPostSpy
     let dialogFields = [{
       name: 'dialogField1',
       default_value: '1'
@@ -27,12 +27,11 @@ describe('State: services.reconfigure', () => {
 
     beforeEach(() => {
       bard.inject('$controller', '$state', '$stateParams', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh')
-
+      collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(service))
       ctrl = $controller($state.get('services.reconfigure').controller, {
         $stateParams: {
           serviceId: 123
-        },
-        service: service
+        }
       })
     })
 
@@ -42,11 +41,11 @@ describe('State: services.reconfigure', () => {
       })
 
       it('resolves data', (done) => {
-        collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(service))
-
-        $state.get('services.reconfigure').resolve.service({
-          serviceId: 123
-        }, CollectionsApi)
+        ctrl = $controller($state.get('services.reconfigure').controller, {
+          $stateParams: {
+            serviceId: 123
+          }
+        })
         done()
 
         expect(collectionsApiSpy).to.have.been.calledWith('services', 123, {attributes: ['provision_dialog']})
@@ -60,7 +59,7 @@ describe('State: services.reconfigure', () => {
             message: 'Great Success!'
           }
 
-          collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse))
+          collectionsApiPostSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse))
           notificationsSuccessSpy = sinon.spy(Notifications, 'success')
         })
 
@@ -74,7 +73,7 @@ describe('State: services.reconfigure', () => {
           ctrl.setDialogData(dialogData)
           ctrl.submitDialog()
 
-          expect(collectionsApiSpy).to.have.been.calledWith(
+          expect(collectionsApiPostSpy).to.have.been.calledWith(
             'services',
             123,
             {},
@@ -85,7 +84,7 @@ describe('State: services.reconfigure', () => {
         it('and canceled, does not POST to the service templates API', () => {
           ctrl.cancelDialog()
 
-          expect(collectionsApiSpy).to.have.not.been.calledWith(
+          expect(collectionsApiPostSpy).to.have.not.been.calledWith(
             'services',
             123,
             {},
@@ -112,7 +111,7 @@ describe('State: services.reconfigure', () => {
         beforeEach(() => {
           const errorResponse = 'oopsies'
 
-          collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(errorResponse))
+          collectionsApiPostSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(errorResponse))
           notificationsErrorSpy = sinon.spy(Notifications, 'error')
         })
 
