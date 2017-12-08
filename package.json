@@ -98,7 +98,7 @@
     "noVNC": "kanaka/noVNC#0.6.2",
     "node-sass": "4.7.2",
     "optimize-css-assets-webpack-plugin": "3.2.0",
-    "patternfly": "3.31.1",
+    "patternfly": "3.31.2",
     "patternfly-timeline": "patternfly/patternfly-timeline#master-dist",
     "postcss-loader": "2.0.9",
     "q": "1.5.1",
