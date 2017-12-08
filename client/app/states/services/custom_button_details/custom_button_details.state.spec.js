@@ -24,16 +24,21 @@ describe('State: services.custom_button_details', () => {
     const button = {
       name: 'buttonName',
       applies_to_id: 456,
-      applies_to_class: 'servicetemplate'
+      applies_to_class: 'servicetemplate',
+      resource_action: {
+        dialog_id: 1
+      }
     }
 
     beforeEach(() => {
       bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh')
 
       sinon.stub(DialogFieldRefresh, 'refreshDialogField')
+
+      const apiQueries = sinon.stub(CollectionsApi, 'get')
+      apiQueries.onFirstCall().returns(Promise.resolve(dialog))
+      apiQueries.onSecondCall().returns(Promise.resolve({}))
       controller = $controller($state.get('services.custom_button_details').controller, {
-        dialog: {content: [dialog], id: 213},
-        service: {},
         $stateParams: {
           dialogId: 213,
           button: button,
@@ -140,16 +145,21 @@ describe('State: services.custom_button_details', () => {
     const button = {
       name: 'buttonName',
       applies_to_id: 456,
-      applies_to_class: 'vm'
+      applies_to_class: 'vm',
+      resource_action: {
+        dialog_id: 1
+      }
     }
 
     beforeEach(() => {
       bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh')
       sinon.stub(DialogFieldRefresh, 'refreshDialogField')
+      const dialogResponse = {content: [dialog], id: 213}
+      const apiQueries = sinon.stub(CollectionsApi, 'get')
+      apiQueries.onFirstCall().returns(Promise.resolve(dialogResponse))
+      apiQueries.onSecondCall().returns(Promise.resolve({}))
 
       controller = $controller($state.get('services.custom_button_details').controller, {
-        dialog: {content: [dialog], id: 213},
-        service: {},
         $stateParams: {
           dialogId: 213,
           button: button,

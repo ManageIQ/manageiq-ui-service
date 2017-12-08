@@ -1,4 +1,4 @@
-/* global $state, $stateParams, CollectionsApi, $controller, DialogFieldRefresh, context, ShoppingCart, EventNotifications */
+/* global $state, $stateParams, $controller, DialogFieldRefresh, context, ShoppingCart, EventNotifications */
 /* eslint-disable no-unused-expressions */
 describe('State: catalogs.details', () => {
   beforeEach(() => {
@@ -6,7 +6,6 @@ describe('State: catalogs.details', () => {
   })
 
   describe('#resolveDialogs', () => {
-    const serviceRequest = false
     beforeEach(() => {
       bard.inject('$state', '$stateParams', 'CollectionsApi')
       $stateParams.serviceTemplateId = 123
@@ -39,17 +38,11 @@ describe('State: catalogs.details', () => {
 
     const serviceTemplate = {id: 123, service_template_catalog_id: 321, name: 'test template'}
 
-    const controllerResolves = {
-      dialogs: dialogs,
-      serviceTemplate: serviceTemplate,
-      serviceRequest: false
-    }
-
     beforeEach(() => {
-      bard.inject('$controller', '$log', '$state','$stateParams', '$rootScope', 'CollectionsApi', 'EventNotifications', 'DialogFieldRefresh', 'ShoppingCart')
+      bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'EventNotifications', 'DialogFieldRefresh', 'ShoppingCart')
       $stateParams.serviceTemplateId = 1234
-      const dialogSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(dialogs))
-      const serviceTemplateSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(serviceTemplate))
+    //  const dialogSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(dialogs))
+    //  const serviceTemplateSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(serviceTemplate))
     })
 
     describe('controller initialization', () => {
@@ -58,7 +51,6 @@ describe('State: catalogs.details', () => {
         expect(controller).to.be.defined
       })
       it('it allows a field to be refreshed', (done) => {
-      
         controller = $controller($state.get('catalogs.details').controller)
         controller.serviceTemplate = serviceTemplate
         const refreshSpy = sinon.stub(DialogFieldRefresh, 'refreshDialogField').returns(Promise.resolve({'status': 'success'}))
