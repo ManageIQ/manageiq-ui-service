@@ -53,9 +53,9 @@ describe('Component: Resource Details', () => {
     it('should be able to check for custom buttons', (done) => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
       ctrl.vmDetails.custom_actions = vmData.custom_actions
-      const hasCustomButtons = ctrl.hasCustomButtons()
+      const customButtonCount = ctrl.customButtonCount()
       done()
-      expect(hasCustomButtons).to.be.true
+      expect(customButtonCount).to.eq(3)
     })
     it('should have list actions', (done) => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
