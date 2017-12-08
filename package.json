@@ -56,7 +56,7 @@
     "angular-patternfly": "4.13.2",
     "angular-resource": "1.6.7",
     "angular-sanitize": "1.6.7",
-    "angular-smart-table": "2.1.9",
+    "angular-smart-table": "2.1.10",
     "angular-ui-bootstrap": "2.5.6",
     "angular-ui-sortable": "0.17.2",
     "babel-core": "6.26.0",
