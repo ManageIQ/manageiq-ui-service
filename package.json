@@ -70,7 +70,7 @@
     "chalk": "2.3.0",
     "clean-webpack-plugin": "0.1.17",
     "copy-webpack-plugin": "4.2.3",
-    "core-js": "2.5.1",
+    "core-js": "2.5.2",
     "css-loader": "0.28.7",
     "d3": "3.5.17",
     "datatables.net-dt": "1.10.16",
