@@ -96,7 +96,7 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
             vm.parsedDialogs = dialogs.resources[0].content
           }
         }
-        
+
         vm.dialogUrl = `service_catalogs/${vm.serviceTemplate.service_template_catalog_id}/service_templates`
         vm.loading = false
       })
