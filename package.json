@@ -168,14 +168,6 @@
     "node": ">= 6.9.1",
     "npm": " >= 3.10.3"
   },
-  "greenkeeper": {
-    "ignore": [
-      "angular-datatables",
-      "chai",
-      "chai-as-promised",
-      "d3"
-    ]
-  },
   "standard": {
     "globals": [
       "flowchart",
