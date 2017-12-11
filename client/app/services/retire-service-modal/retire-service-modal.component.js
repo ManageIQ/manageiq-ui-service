@@ -12,7 +12,7 @@ export const RetireServiceModalComponent = {
 }
 
 /** @ngInject */
-function ComponentController ($scope, $state, CollectionsApi, EventNotifications, moment) {
+function ComponentController ($scope, $state, CollectionsApi, EventNotifications, moment, lodash) {
   var vm = this
 
   angular.extend(vm, {
@@ -23,7 +23,8 @@ function ComponentController ($scope, $state, CollectionsApi, EventNotifications
     services: vm.resolve.services,
     save: save,
     reset: reset,
-    cancel: cancel
+    cancel: cancel,
+    isDisabled: isDisabled
   })
 
   vm.dateOptions = {
@@ -60,7 +61,13 @@ function ComponentController ($scope, $state, CollectionsApi, EventNotifications
       })
     })
   }
-
+  function isDisabled () {
+    if (lodash.isObject(vm.modalData.date)) {
+      return false
+    } else {
+      return true
+    }
+  }
   function save () {
     var data = {
       action: 'retire',
