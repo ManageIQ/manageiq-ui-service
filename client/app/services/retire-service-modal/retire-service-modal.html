@@ -32,6 +32,6 @@
     on-reset="vm.reset($event)"
     on-cancel="vm.cancel()"
     on-save="vm.save()"
-    is-disabled="vm.isDisabled()">
+    is-disabled="!vm.modalData.date">
   </action-button-group>
 </div>

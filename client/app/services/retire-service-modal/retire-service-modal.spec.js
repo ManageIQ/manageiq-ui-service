@@ -28,18 +28,5 @@ describe('Component: RetireServiceModalComponent', () => {
 
       expect(ctrl.visibleOptions.length).to.eq(1)
     })
-
-    it('allows for the form to be disabled by default', () => {
-      expect(ctrl.isDisabled()).to.eq(true)
-    })
-
-    it('should enable form if a date object is found', () => {
-      ctrl.modalData = {
-        'id': '1234',
-        'date': { 'month': '1', 'day': '2', 'year': '2018' },
-        'warning': null
-      }
-      expect(ctrl.isDisabled()).to.eq(false)
-    })
   })
 })

@@ -23,8 +23,7 @@ function ComponentController ($scope, $state, CollectionsApi, EventNotifications
     services: vm.resolve.services,
     save: save,
     reset: reset,
-    cancel: cancel,
-    isDisabled: isDisabled
+    cancel: cancel
   })
 
   vm.dateOptions = {
@@ -60,13 +59,6 @@ function ComponentController ($scope, $state, CollectionsApi, EventNotifications
         return option.value <= daysBetween
       })
     })
-  }
-  function isDisabled () {
-    if (lodash.isObject(vm.modalData.date)) {
-      return false
-    } else {
-      return true
-    }
   }
   function save () {
     var data = {
