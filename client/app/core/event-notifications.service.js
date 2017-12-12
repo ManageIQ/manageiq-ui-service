@@ -1,5 +1,5 @@
 /** @ngInject */
-export function EventNotificationsFactory ($timeout, lodash, CollectionsApi, Session, $log, ActionCable, ApplianceInfo) {
+export function EventNotificationsFactory ($timeout, lodash, CollectionsApi) {
   const state = {}
   const toastDelay = 8 * 1000
   const service = {
@@ -19,9 +19,7 @@ export function EventNotificationsFactory ($timeout, lodash, CollectionsApi, Ses
     dismissToast: dismissToast,
     setToastDisplay: setToastDisplay
   }
-
   notificationsInit()
-  asyncInit()
 
   return service
 
@@ -174,29 +172,6 @@ export function EventNotificationsFactory ($timeout, lodash, CollectionsApi, Ses
     group.notifications.unshift(newNotification)
     updateUnreadCount(group)
     showToast(newNotification)
-  }
-
-  function asyncInit () {
-    if (ApplianceInfo.get().asyncNotify) {
-      const cable = ActionCable.createConsumer('/ws/notifications')
-
-      cable.subscriptions.create('NotificationChannel', {
-        disconnected: function () {
-          const vm = this
-          Session.requestWsToken().then(null, function () {
-            $log.warn('Unable to retrieve a valid ws_token!')
-            // Disconnect permanently if the ws_token cannot be fetched
-            vm.consumer.connection.close({allowReconnect: false})
-          })
-        },
-        received: function (data) {
-          $timeout(function () {
-            const msg = miqFormatNotification(data.text, data.bindings)
-            add('event', data.level, msg, {message: msg}, data.id)
-          })
-        }
-      })
-    }
   }
 
   function miqFormatNotification (text, bindings) {

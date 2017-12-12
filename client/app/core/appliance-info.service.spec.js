@@ -40,8 +40,7 @@ describe('Appliance Info Service', () => {
       'role': 'EvmRole-super_administrator',
       'miqVersion': 'master.20170510164252_9e5df30',
       'suiVersion': '',
-      'server': 'EVM',
-      'asyncNotify': true
+      'server': 'EVM'
     }
     ApplianceInfo.set(applianceInfoData)
     const currentApplianceInfo = ApplianceInfo.get()
