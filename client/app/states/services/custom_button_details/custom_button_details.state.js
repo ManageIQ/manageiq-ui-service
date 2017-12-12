@@ -23,36 +23,18 @@ function getStates () {
         vmId: {
           value: null
         }
-      },
-      resolve: {
-        dialog: resolveDialog,
-        service: resolveService
       }
     }
   }
 }
 
 /** @ngInject */
-function resolveService ($stateParams, CollectionsApi) {
-  var options = {attributes: ['picture', 'picture.image_href']}
-
-  return CollectionsApi.get('services', $stateParams.serviceId, options)
-}
-
-/** @ngInject */
-function resolveDialog ($stateParams, CollectionsApi) {
-  const options = {expand: 'resources', attributes: 'content'}
-  const dialogId = $stateParams.button.resource_action.dialog_id
-
-  return CollectionsApi.query('service_dialogs/' + dialogId, options)
-}
-
-/** @ngInject */
-function StateController ($state, $stateParams, dialog, service, CollectionsApi, EventNotifications, DialogFieldRefresh) {
+function StateController ($state, $stateParams, CollectionsApi, EventNotifications, DialogFieldRefresh) {
   var vm = this
   vm.title = __('Custom button action')
-  vm.dialogs = dialog.content
-  vm.service = service
+  vm.dialogId = ''
+  vm.dialogs = {}
+  vm.service = {}
   vm.serviceId = $stateParams.serviceId
   vm.vmId = $stateParams.vmId || null
   vm.button = $stateParams.button
@@ -62,9 +44,26 @@ function StateController ($state, $stateParams, dialog, service, CollectionsApi,
   vm.refreshField = refreshField
   vm.setDialogData = setDialogData
   vm.dialogData = {}
+  vm.loading = true
 
+  function init () {
+    const options = {expand: 'resources', attributes: 'content'}
+    const dialogId = vm.button.resource_action.dialog_id
+    const resolveDialogs = CollectionsApi.query('service_dialogs/' + dialogId, options)
+    const resolveService = CollectionsApi.get('services', $stateParams.serviceId, {attributes: ['picture', 'picture.image_href']})
+
+    Promise.all([resolveDialogs, resolveService]).then((data) => {
+      const SERVICE_RESPONSE = 1
+      const DIALOGS_RESPONSE = 0
+      vm.dialogId = data[DIALOGS_RESPONSE].id
+      vm.dialogs = data[DIALOGS_RESPONSE].content
+      vm.service = data[SERVICE_RESPONSE]
+      vm.loading = false
+    })
+  }
+  init()
   function refreshField (field) {
-    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], vm.dialogUrl, dialog.id)
+    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], vm.dialogUrl, vm.dialogId)
   }
 
   function setDialogData (data) {

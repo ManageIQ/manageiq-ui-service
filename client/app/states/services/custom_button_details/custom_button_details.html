@@ -28,8 +28,11 @@
   <div class="panel-body">
     <section>
     <div class="col-md-12">
-      <div class="row">
-        <div ng-repeat="dialog in ::vm.dialogs">
+      <div class="row" ng-if="vm.loading">
+          <loading status="vm.loading"></loading>
+      </div>
+      <div class="row" ng-if="!vm.loading">
+        <div ng-repeat="dialog in vm.dialogs">
           <dialog-user class="dialog-box" dialog="dialog" refresh-field="vm.refreshField(field)" on-update="vm.setDialogData(data)"></dialog-user>
         </div>
       </div>
