@@ -199,7 +199,8 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
 
   function createServiceChildrenListConfig () {
     return {
-      showSelectBox: false
+      showSelectBox: false,
+      onClick: viewService
     }
   }
 
