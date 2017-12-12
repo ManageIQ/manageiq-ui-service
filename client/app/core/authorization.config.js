@@ -44,7 +44,7 @@ export function authConfig ($httpProvider) {
 }
 
 /** @ngInject */
-export function authInit ($rootScope, $state, $log, Session, $sessionStorage, Language, $window, RBAC) {
+export function authInit ($rootScope, $state, $log, Session, $sessionStorage, Language, $window, RBAC, ActionCable) {
   $rootScope.$on('$stateChangeStart', changeStart)
   $rootScope.$on('$stateChangeError', changeError)
   $rootScope.$on('$stateChangeSuccess', changeSuccess)
@@ -79,7 +79,13 @@ export function authInit ($rootScope, $state, $log, Session, $sessionStorage, La
 
       return
     }
-    syncSession().then(rbacReloadOrLogin(toState, toParams)).catch(badUser)
+    syncSession()
+    .then(rbacReloadOrLogin(toState, toParams))
+    .then(() => {
+      const cable = ActionCable.createConsumer('/ws/notifications')
+      cable.subscriptions.create('NotificationChannel', {})
+    })
+    .catch(badUser)
   }
 
   function syncSession () {
@@ -89,14 +95,14 @@ export function authInit ($rootScope, $state, $log, Session, $sessionStorage, La
       Session.setGroup($sessionStorage.miqGroup)
 
       Session.loadUser()
-        .then(function (response) {
-          if (angular.isDefined(response)) {
-            Language.onReload(response)
-            RBAC.setRole(response.identity.role)
-          }
-          resolve()
-        })
-        .catch(badUser)
+      .then(function (response) {
+        if (angular.isDefined(response)) {
+          Language.onReload(response)
+          RBAC.setRole(response.identity.role)
+        }
+        resolve()
+      })
+      .catch(badUser)
     })
   }
 

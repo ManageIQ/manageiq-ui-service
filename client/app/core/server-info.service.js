@@ -8,8 +8,7 @@ export function ServerInfo ($q) {
         user: data.identity.name,
         role: data.identity.role,
         version: data.server_info.version + '.' + data.server_info.build,
-        server: data.server_info.appliance,
-        asyncNotify: data.settings.asynchronous_notifications
+        server: data.server_info.appliance
       }
       resolve(factory.data)
 
