@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Gaprindashvili RC
+
+### Fixed
+- Ensure cloud_credential is captured for representation [(#1291)](https://github.com/ManageIQ/manageiq-ui-service/pull/1291)
+- Move actioncable subcription creation to login promise chain [(#1314)](https://github.com/ManageIQ/manageiq-ui-service/pull/1314)
+- Added Loading indicator to Dialogs [(#1258)](https://github.com/ManageIQ/manageiq-ui-service/pull/1258)
+- Replace patternfly-sass with patternfly's sass [(#1331)](https://github.com/ManageIQ/manageiq-ui-service/pull/1331)
+- Ensure the correct ansible play elapsed time is displayed [(#1326)](https://github.com/ManageIQ/manageiq-ui-service/pull/1326)
+- Changed where Generic objects list gets rendered on Service details screen [(#1246)](https://github.com/ManageIQ/manageiq-ui-service/pull/1246)
+- Fixed issue with custom button groups [(#1334)](https://github.com/ManageIQ/manageiq-ui-service/pull/1334)
+- Added custom button menu to Resource Details page [(#1254)](https://github.com/ManageIQ/manageiq-ui-service/pull/1254)
+- Adds empty state to service details relationship section [(#1292)](https://github.com/ManageIQ/manageiq-ui-service/pull/1292)
+- A dep no longer needed, causes loading of angular too many times error [(#1295)](https://github.com/ManageIQ/manageiq-ui-service/pull/1295)
+
 ## Gaprindashvili Beta2
 
 ### Fixed
