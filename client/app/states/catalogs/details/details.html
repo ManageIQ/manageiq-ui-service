@@ -53,9 +53,10 @@
   <div class="panel panel-default ss-details-panel ss-marketplace-details-form">
     <div class="panel-body">
       <section>
-        <div class="col-md-12">
+        <loading status="vm.loading"></loading>
+        <div class="col-md-12" ng-show="!vm.loading">
           <div class="row">
-            <div ng-repeat="dialog in ::vm.dialogs">
+            <div ng-repeat="dialog in vm.dialogs">
               <dialog-content dialog="dialog" input-disabled="false"></dialog-content>
             </div>
           </div>
