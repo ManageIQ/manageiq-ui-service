@@ -47,7 +47,7 @@ describe('Component: ServiceDetailsAnsibleComponent', function () {
   it('should calculate elapsed time', () => {
     ctrl.$onInit()
     const elapsedTime = ctrl.elapsed(1497908279, 1497908159)
-    expect(elapsedTime).to.eq(1.2)
+    expect(elapsedTime).to.eq(0.12)
   })
   it('should allow onchanges to be called', (done) => {
     const getServiceCredentialSpy = sinon.stub(ServicesState, 'getServiceCredential').returns(Promise.resolve(successResponse))
