@@ -9,9 +9,7 @@ export function ApplianceInfo ($sessionStorage) {
   }
 
   function get () {
-    const defaultResponse = {
-      asyncNotify: false
-    }
+    const defaultResponse = {}
 
     return (angular.isDefined($sessionStorage.applianceInfo) ? $sessionStorage.applianceInfo : defaultResponse)
   }
@@ -25,8 +23,7 @@ export function ApplianceInfo ($sessionStorage) {
       role: data.identity.role,
       suiVersion: gitHash.gitCommit,
       miqVersion: data.server_info.version + '.' + data.server_info.build,
-      server: data.server_info.appliance,
-      asyncNotify: data.settings.asynchronous_notifications
+      server: data.server_info.appliance
     }
     $sessionStorage.applianceInfo = applianceInfo
   }
