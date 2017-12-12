@@ -139,7 +139,7 @@ module.exports = {
                 includePaths: [
                   `${root}/assets/sass`,
                   `${nodeModules}/bootstrap-sass/assets/stylesheets`,
-                  `${nodeModules}/patternfly-sass/assets/stylesheets`,
+                  `${nodeModules}/patternfly/dist/sass/patternfly`,
                   `${nodeModules}/font-awesome/scss`,
                   `${nodeModules}/@manageiq/font-fabulous/assets/stylesheets`
                 ]
