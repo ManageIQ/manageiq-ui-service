@@ -60,7 +60,6 @@ function ComponentController ($scope, $state, CollectionsApi, EventNotifications
       })
     })
   }
-
   function save () {
     var data = {
       action: 'retire',
