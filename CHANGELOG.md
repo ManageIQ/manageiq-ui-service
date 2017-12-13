@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 75 ending 2017-12-11
+
+### Fixed
+- Fixed issue with custom button groups [(#1334)](https://github.com/ManageIQ/manageiq-ui-service/pull/1334)
+- A dep no longer needed causes loading of angular too many times error [(#1295)](https://github.com/ManageIQ/manageiq-ui-service/pull/1295)
+- Adds empty state to service details relationship section [(#1292)](https://github.com/ManageIQ/manageiq-ui-service/pull/1292)
+- Ensure cloud_credential is captured for representation [(#1291)](https://github.com/ManageIQ/manageiq-ui-service/pull/1291)
+- Ensure correct compliance icon 7 day timeline last hour utilization [(#1284)](https://github.com/ManageIQ/manageiq-ui-service/pull/1284)
+- Added custom button menu to Resource Details page [(#1254)](https://github.com/ManageIQ/manageiq-ui-service/pull/1254)
+
 ## Unreleased as of Sprint 74 ending 2017-11-27
 
 ### Fixed
