@@ -38,7 +38,6 @@ describe('services.reconfigure', function() {
         $stateParams: {
           serviceId: 123
         }
-       // service: {provision_dialog: dialog, id: 123, service_template_catalog_id: 1234}
       });
     });
 
