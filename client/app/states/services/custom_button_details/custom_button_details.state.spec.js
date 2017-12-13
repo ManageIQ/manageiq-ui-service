@@ -27,7 +27,10 @@ describe('services.custom_button_details', function() {
     var button = {
       name: 'buttonName',
       applies_to_id: 456,
-      applies_to_class: 'Service'
+      applies_to_class: 'Service',
+      resource_action: {
+        dialog_id: '123'
+      }
     };
 
     beforeEach(function() {
@@ -40,7 +43,6 @@ describe('services.custom_button_details', function() {
       refreshSingleFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
 
       controller = $controller($state.get('services.custom_button_details').controller, {
-        dialog: {content: [dialog], id: 213},
         service: {},
         $stateParams: {
           dialogId: 213,
@@ -56,7 +58,9 @@ describe('services.custom_button_details', function() {
         expect(controller).to.be.defined;
       });
 
-      it('listens for auto refresh messages', function() {
+      it('listens for auto refresh messages', function(done) {
+        controller.init();
+        done();
         expect(autoRefreshSpy).to.have.been.calledWith(
           dialogFields, [], 'service_dialogs/', 213, refreshSingleFieldSpy
         );
@@ -74,7 +78,9 @@ describe('services.custom_button_details', function() {
           notificationsSuccessSpy = sinon.spy(Notifications, 'success');
         });
 
-        it('POSTs to the services API', function() {
+        it('POSTs to the services API', function(done) {
+          controller.init();
+          done();
           controller.submitCustomButton();
           expect(collectionsApiSpy).to.have.been.calledWith(
             'services',

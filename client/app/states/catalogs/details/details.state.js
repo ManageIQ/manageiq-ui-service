@@ -23,7 +23,7 @@ function Controller($stateParams, CollectionsApi, EventNotifications, DialogFiel
   var vm = this;
   var autoRefreshableDialogFields = [];
   var allDialogFields = [];
-
+  vm.init = init;
   let dialogs = {};
   const serviceTemplate = {};
   let serviceRequest = {};
@@ -101,7 +101,7 @@ function Controller($stateParams, CollectionsApi, EventNotifications, DialogFiel
     });
   }
 
-  init();
+  vm.init();
   function addToCartDisabled() {
     return (!vm.cartAllowed() || vm.addingToCart) || anyDialogsBeingRefreshed();
   }
