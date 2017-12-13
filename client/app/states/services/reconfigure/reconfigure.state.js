@@ -24,6 +24,7 @@ function StateController($state, $stateParams, CollectionsApi, EventNotification
 
   vm.title = __('Service Details');
   vm.service = {};
+  vm.loading = true;
   vm.serviceId = $stateParams.serviceId;
   vm.submitDialog = submitDialog;
   vm.cancelDialog = cancelDialog;
