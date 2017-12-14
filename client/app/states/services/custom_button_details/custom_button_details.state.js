@@ -15,42 +15,61 @@ function getStates() {
       controllerAs: 'vm',
       title: N_('Service Custom Button Details'),
       params: {dialogId: null, button: null, serviceTemplateCatalogId: null},
-      resolve: {
-        dialog: resolveDialog,
-        service: resolveService,
-      },
     },
   };
 }
 
 /** @ngInject */
-function resolveService($stateParams, CollectionsApi) {
-  var options = {attributes: ['picture', 'picture.image_href']};
-
-  return CollectionsApi.get('services', $stateParams.serviceId, options);
-}
-
-/** @ngInject */
-function resolveDialog($stateParams, CollectionsApi) {
-  const options = {expand: 'resources', attributes: 'content'};
-  const dialogId = $stateParams.button.resource_action.dialog_id;
-
-  return CollectionsApi.query('service_dialogs/' + dialogId, options);
-}
-
-/** @ngInject */
-function StateController($state, $stateParams, dialog, service, CollectionsApi, EventNotifications, DialogFieldRefresh, AutoRefresh) {
+function StateController($state, $stateParams, CollectionsApi, EventNotifications, DialogFieldRefresh, AutoRefresh) {
   var vm = this;
   vm.title = __('Custom button action');
-  vm.dialogs = dialog.content;
-  vm.service = service;
+  vm.dialogId = '';
+  vm.dialogs = {};
+  vm.service = {};
   vm.serviceId = $stateParams.serviceId;
   vm.button = $stateParams.button;
   vm.submitCustomButton = submitCustomButton;
-
+  vm.loading = true;
+  vm.init = init;
   var autoRefreshableDialogFields = [];
   var allDialogFields = [];
 
+  function init() {
+    const options = {expand: 'resources', attributes: 'content'};
+    const dialogId = vm.button.resource_action.dialog_id;
+    const resolveDialogs = CollectionsApi.query('service_dialogs/' + dialogId, options);
+    const resolveService = CollectionsApi.get('services', $stateParams.serviceId, {attributes: ['picture', 'picture.image_href']});
+
+    Promise.all([resolveDialogs, resolveService]).then((data) => {
+      const SERVICE_RESPONSE = 1;
+      const DIALOGS_RESPONSE = 0;
+      vm.dialogId = data[DIALOGS_RESPONSE].id;
+      vm.dialogs = data[DIALOGS_RESPONSE].content;
+      vm.service = data[SERVICE_RESPONSE];
+      vm.loading = false;
+     
+      DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
+
+      var dialogUrl = 'service_dialogs/';
+
+      angular.forEach(allDialogFields, function (dialogField) {
+        dialogField.refreshSingleDialogField = function () {
+          DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialogField, dialogUrl, vm.dialogId );
+        };
+      });
+
+      AutoRefresh.listenForAutoRefresh(
+        allDialogFields,
+        autoRefreshableDialogFields,
+        dialogUrl,
+        vm.dialogId,
+        DialogFieldRefresh.refreshSingleDialogField
+      ); 
+    });
+  }
+  init();
+
+/* 
   DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
 
   var dialogUrl = 'service_dialogs/';
@@ -67,7 +86,7 @@ function StateController($state, $stateParams, dialog, service, CollectionsApi, 
     dialogUrl,
     dialog.id,
     DialogFieldRefresh.refreshSingleDialogField
-  );
+  ); */
 
   function submitCustomButton() {
     const dialogFieldData = {};

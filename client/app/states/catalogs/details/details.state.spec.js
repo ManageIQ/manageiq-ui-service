@@ -12,12 +12,6 @@ describe('Catalogs.details', function() {
       $stateParams.serviceTemplateId = 123;
       collectionsApiSpy = sinon.spy(CollectionsApi, 'query');
     });
-
-    it('should query the API with the correct template id and options', function() {
-      var options = {expand: 'resources', attributes: 'content'};
-      $state.get('catalogs.details').resolve.dialogs($stateParams, CollectionsApi);
-      expect(collectionsApiSpy).to.have.been.calledWith('service_templates/123/service_dialogs', options);
-    });
   });
 
   describe('controller', function() {
@@ -27,9 +21,15 @@ describe('Catalogs.details', function() {
     var notificationsSuccessSpy;
     var refreshSingleFieldSpy;
     var autoRefreshSpy;
+    var dialogSpy;
+    var serviceTemplateSpy;
+
     var dialogFields = [{
       name: 'dialogField1',
-      default_value: '1'
+      default_value: '1',
+      auto_refresh: true,
+      refreshableFieldIndex: 0,
+      beingRefreshed: false,
     }, {
       name: 'dialogField2',
       default_value: '2'
@@ -56,25 +56,32 @@ describe('Catalogs.details', function() {
     };
 
     beforeEach(function() {
-      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'AutoRefresh', 'ShoppingCart');
+      bard.inject('$controller', '$log', '$state','$stateParams', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'AutoRefresh', 'ShoppingCart');
 
       autoRefreshSpy = sinon.stub(AutoRefresh, 'listenForAutoRefresh').callsFake(function() {
         return false;
       });
-
+      
       refreshSingleFieldSpy = sinon.stub(DialogFieldRefresh, 'refreshSingleDialogField');
+      $stateParams.serviceRequestId = 123;
+      serviceTemplateSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(serviceTemplate));
     });
 
     describe('controller initialization', function() {
       it('is created successfully', function() {
-        controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+        dialogSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(dialogs));
+        controller = $controller($state.get('catalogs.details').controller);
         expect(controller).to.be.defined;
       });
 
-      it('listens for auto refresh messages', function() {
-        $controller($state.get('catalogs.details').controller, controllerResolves);
+      it('listens for auto refresh messages', function(done) {
+        dialogSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(dialogs));
+        controller = $controller($state.get('catalogs.details').controller);
+        controller.init();
+        done();
+        var refreshableField = [{"name":"dialogField1","default_value":"1","auto_refresh":true,"refreshableFieldIndex":0, beingRefreshed: false}];
         expect(autoRefreshSpy).to.have.been.calledWith(
-          dialogFields, [], 'service_catalogs/321/service_templates', 123, refreshSingleFieldSpy
+          dialogFields, refreshableField, 'service_catalogs/321/service_templates', 123, refreshSingleFieldSpy
         );
       });
 
@@ -85,10 +92,12 @@ describe('Catalogs.details', function() {
               return false;
             });
 
-            controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+            controller = $controller($state.get('catalogs.details').controller);
           });
 
-          it('returns true', function() {
+          it('returns true', function(done) {
+            controller.init();
+            done();
             expect(controller.addToCartDisabled()).to.equal(true);
           });
         });
@@ -102,7 +111,7 @@ describe('Catalogs.details', function() {
 
           context('when addingToCart is true', function() {
             beforeEach(function() {
-              controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+              controller = $controller($state.get('catalogs.details').controller);
               controller.addingToCart = true;
             });
 
@@ -115,12 +124,14 @@ describe('Catalogs.details', function() {
             context('when any dialogs are being refreshed', function() {
               beforeEach(function() {
                 dialogs.resources[0].content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].beingRefreshed = true;
-
-                controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+                dialogSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(dialogs));
+                controller = $controller($state.get('catalogs.details').controller);
                 controller.addingToCart = false;
               });
 
-              it('returns true', function() {
+              it('returns true', function(done) {
+                controller.init();
+                done();
                 expect(controller.addToCartDisabled()).to.equal(true);
               });
             });

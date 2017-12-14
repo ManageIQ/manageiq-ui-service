@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import templateUrl from './details.html';
 
 /** @ngInject */
@@ -13,64 +14,94 @@ function getStates() {
       controller: Controller,
       controllerAs: 'vm',
       title: N_('Service Template Details'),
-      resolve: {
-        dialogs: resolveDialogs,
-        serviceTemplate: resolveServiceTemplate,
-      },
     },
   };
 }
 
 /** @ngInject */
-function resolveServiceTemplate($stateParams, CollectionsApi) {
-  var options = {attributes: ['picture', 'picture.image_href']};
-
-  return CollectionsApi.get('service_templates', $stateParams.serviceTemplateId, options);
-}
-
-/** @ngInject */
-function resolveDialogs($stateParams, CollectionsApi) {
-  var options = {expand: 'resources', attributes: 'content'};
-
-  return CollectionsApi.query('service_templates/' + $stateParams.serviceTemplateId + '/service_dialogs', options);
-}
-
-/** @ngInject */
-function Controller(dialogs, serviceTemplate, EventNotifications, DialogFieldRefresh, AutoRefresh, ShoppingCart) {
+function Controller($stateParams, CollectionsApi, EventNotifications, DialogFieldRefresh, AutoRefresh, ShoppingCart) {
   var vm = this;
-
-  vm.serviceTemplate = serviceTemplate;
-
-  if (dialogs.subcount > 0) {
-    vm.dialogs = dialogs.resources[0].content;
-  }
-
-  vm.addToCart = addToCart;
-  vm.cartAllowed = ShoppingCart.allowed;
-  vm.alreadyInCart = alreadyInCart;
-  vm.addToCartDisabled = addToCartDisabled;
-
   var autoRefreshableDialogFields = [];
   var allDialogFields = [];
+  vm.init = init;
+  let dialogs = {};
+  const serviceTemplate = {};
+  let serviceRequest = {};
 
-  DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
+  function init() {
+    vm.loading = true;
+    vm.addToCart = addToCart;
+    vm.cartAllowed = ShoppingCart.allowed;
+    vm.addToCartEnabled = false;
+    vm.alreadyInCart = alreadyInCart;
+    vm.addToCartDisabled = addToCartDisabled;
 
-  var dialogUrl = 'service_catalogs/' + serviceTemplate.service_template_catalog_id + '/service_templates';
+    vm.dialogData = {};
 
-  angular.forEach(allDialogFields, function(dialogField) {
-    dialogField.refreshSingleDialogField = function() {
-      DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialogField, dialogUrl, vm.serviceTemplate.id);
+    const serviceRequestPromise = () => {
+      return new Promise((resolve, _reject) => {
+        if ($stateParams.serviceRequestId) {
+          CollectionsApi.get('requests', $stateParams.serviceRequestId, {}).then((data) => { resolve(data); });
+        } else {
+          resolve(false);
+        }
+      });
     };
-  });
+    serviceRequestPromise().then((resolvedServiceRequest) => {
+      serviceRequest = resolvedServiceRequest;
 
-  AutoRefresh.listenForAutoRefresh(
-    allDialogFields,
-    autoRefreshableDialogFields,
-    dialogUrl,
-    vm.serviceTemplate.id,
-    DialogFieldRefresh.refreshSingleDialogField
-  );
+      const dialogRequest = new Promise((resolve, _reject) => {
+        const options = { expand: 'resources', attributes: 'content' };
+        let serviceTemplateId = $stateParams.serviceTemplateId;
+        if (!serviceTemplateId) {
+          serviceTemplateId = serviceRequest.source_id;
+        }
+        CollectionsApi.query('service_templates/' + serviceTemplateId + '/service_dialogs', options).then((resolvedDialogs) => {
+          resolve(resolvedDialogs);
+        });
+      });
 
+      const serviceTemplateRequest = new Promise((resolve, _reject) => {
+        let serviceTemplateId = $stateParams.serviceTemplateId;
+        if (!serviceTemplateId) {
+          serviceTemplateId = serviceRequest.source_id;
+        }
+        var options = { attributes: ['picture', 'picture.image_href'] };
+        CollectionsApi.get('service_templates', serviceTemplateId, options).then((data) => {
+          resolve(data);
+        });
+      });
+      const allPromises = [dialogRequest, serviceTemplateRequest];
+      Promise.all(allPromises).then((data) => {
+        const SERVICE_TEMPLATE_RESPONSE = 1;
+        const DIALOGS_RESPONSE = 0;
+        dialogs = data[DIALOGS_RESPONSE];
+        vm.dialogs = dialogs.resources[0].content;
+        vm.serviceTemplate = data[SERVICE_TEMPLATE_RESPONSE];
+        vm.dialogUrl = `service_catalogs/${vm.serviceTemplate.service_template_catalog_id}/service_templates`;
+        if (dialogs.subcount > 0) {
+          DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
+                   
+          angular.forEach(allDialogFields, function (dialogField) {
+            dialogField.refreshSingleDialogField = function () {
+              DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialogField, vm.dialogUrl, vm.serviceTemplate.id);
+            };
+          });
+          
+          AutoRefresh.listenForAutoRefresh(
+            allDialogFields,
+            autoRefreshableDialogFields,
+            vm.dialogUrl,
+            vm.serviceTemplate.id,
+            DialogFieldRefresh.refreshSingleDialogField
+          );
+        }
+        vm.loading = false;
+      });
+    });
+  }
+
+  vm.init();
   function addToCartDisabled() {
     return (!vm.cartAllowed() || vm.addingToCart) || anyDialogsBeingRefreshed();
   }

@@ -37,8 +37,7 @@ describe('services.reconfigure', function() {
       controller = $controller($state.get('services.reconfigure').controller, {
         $stateParams: {
           serviceId: 123
-        },
-        service: {provision_dialog: dialog, id: 123, service_template_catalog_id: 1234}
+        }
       });
     });
 
@@ -47,7 +46,9 @@ describe('services.reconfigure', function() {
         expect(controller).to.be.defined;
       });
 
-      it('listens for auto refresh messages', function() {
+      it('listens for auto refresh messages', function(done) {
+        controller.init();
+        done();
         expect(autoRefreshSpy).to.have.been.calledWith(
           dialogFields, [], 'services/1234/service_templates', 123, refreshSingleFieldSpy
         );
@@ -65,7 +66,9 @@ describe('services.reconfigure', function() {
           notificationsSuccessSpy = sinon.spy(Notifications, 'success');
         });
 
-        it('POSTs to the service templates API', function() {
+        it('POSTs to the service templates API', function(done) {
+          controller.init();
+          done();
           controller.submitDialog();
           expect(collectionsApiSpy).to.have.been.calledWith(
             'services',
