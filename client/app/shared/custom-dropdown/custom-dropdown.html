@@ -1,10 +1,10 @@
-<span class="primary-action pull-left" uib-dropdown>
+<span class="primary-action pull-left" uib-dropdown is-open="vm.isOpen">
   <button type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="vm.config.isDisabled"
    uib-tooltip="{{vm.config.tooltipText}}"
             tooltip-append-to-body="true"
             tooltip-popup-delay="1000"
             tooltip-placement="top"
-            tooltip-enable="vm.config.tooltipText"
+            tooltip-enable="!vm.isOpen && vm.config.tooltipText"
     >
     <i class="{{vm.config.icon}}"></i>
     <span ng-if="vm.config.title">{{vm.config.title}}</span>
