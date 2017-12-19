@@ -30,7 +30,6 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
   const vm = this
 
   let dialogs = {}
-  let serviceTemplate = {}
   let serviceRequest = {}
 
   function init () {
@@ -140,7 +139,7 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
   */
   function dataForSubmit (href) {
     var dialogFieldData = {}
-    dialogFieldData[href] = '/api/service_templates/' + serviceTemplate.id
+    dialogFieldData[href] = '/api/service_templates/' + vm.serviceTemplate.id
 
     return lodash.merge(vm.dialogData, dialogFieldData)
   }
