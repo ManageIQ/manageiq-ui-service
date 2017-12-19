@@ -50,11 +50,6 @@ describe('Catalogs.details', function() {
 
     var serviceTemplate = {id: 123, service_template_catalog_id: 321};
 
-    var controllerResolves = {
-      dialogs: dialogs,
-      serviceTemplate: serviceTemplate
-    };
-
     beforeEach(function() {
       bard.inject('$controller', '$log', '$state','$stateParams', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'AutoRefresh', 'ShoppingCart');
 
@@ -140,7 +135,7 @@ describe('Catalogs.details', function() {
               beforeEach(function() {
                 dialogs.resources[0].content[0].dialog_tabs[0].dialog_groups[0].dialog_fields[0].beingRefreshed = false;
 
-                controller = $controller($state.get('catalogs.details').controller, controllerResolves);
+                controller = $controller($state.get('catalogs.details').controller);
                 controller.addingToCart = false;
               });
 
