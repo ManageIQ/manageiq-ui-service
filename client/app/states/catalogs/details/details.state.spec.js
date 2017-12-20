@@ -41,8 +41,6 @@ describe('State: catalogs.details', () => {
     beforeEach(() => {
       bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'EventNotifications', 'DialogFieldRefresh', 'ShoppingCart')
       $stateParams.serviceTemplateId = 1234
-    //  const dialogSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(dialogs))
-    //  const serviceTemplateSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(serviceTemplate))
     })
 
     describe('controller initialization', () => {
@@ -159,6 +157,7 @@ describe('State: catalogs.details', () => {
             beforeEach(() => {
               controller = $controller($state.get('catalogs.details').controller)
               controller.addingToCart = true
+              controller.serviceTemplate = serviceTemplate
             })
             it('checks for a duplicate cart', () => {
               const shoppingCartSpy = sinon.stub(ShoppingCart, 'isDuplicate').returns(false)
