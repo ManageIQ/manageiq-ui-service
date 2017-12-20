@@ -361,13 +361,13 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       ListView.createGenericField(
         {
           id: 'tags.name',
-          title: 'Tags',
-          placeholder: 'Filter by Tag Category',
+          title: __('Tags'),
+          placeholder: __('Filter by Tag Category'),
           filterType: 'complex-select',
           filterMultiselect: true,
           filterValues: filterValues,
           filterDelimiter: '/',
-          filterCategoriesPlaceholder: 'Filter by Tag Value  ',
+          filterCategoriesPlaceholder: __('Filter by Tag Value  '),
           filterCategories: filterCategories
         }
       )
