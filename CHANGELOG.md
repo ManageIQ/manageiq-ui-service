@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 76 ending 2017-01-01
+
+### Added
+- Added Loading indicator to Dialogs [(#1258)](https://github.com/ManageIQ/manageiq-ui-service/pull/1258)
+
+### Fixed
+- Fixed issue with custom button groups [(#1334)](https://github.com/ManageIQ/manageiq-ui-service/pull/1334)
+- Replace patternfly-sass with patternfly's sass [(#1331)](https://github.com/ManageIQ/manageiq-ui-service/pull/1331)
+- Ensure the correct ansible play elapsed time is displayed [(#1326)](https://github.com/ManageIQ/manageiq-ui-service/pull/1326)
+- Move actioncable subcription creation to login promise chain [(#1314)](https://github.com/ManageIQ/manageiq-ui-service/pull/1314)
+- Adds empty state to service details relationship section [(#1292)](https://github.com/ManageIQ/manageiq-ui-service/pull/1292)
+- Ensure cloud_credential is captured for representation [(#1291)](https://github.com/ManageIQ/manageiq-ui-service/pull/1291)
+- Ensure correct compliance icon 7 day timeline last hour utilization [(#1284)](https://github.com/ManageIQ/manageiq-ui-service/pull/1284)
+- Added custom button menu to Resource Details page [(#1254)](https://github.com/ManageIQ/manageiq-ui-service/pull/1254)
+
 ## Unreleased as of Sprint 75 ending 2017-12-11
 
 ### Fixed
