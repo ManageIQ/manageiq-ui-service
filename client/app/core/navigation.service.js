@@ -1,5 +1,8 @@
+import NavActions from '../actions/nav'
+/* eslint no-unused-vars: 0 */
+
 /** @ngInject */
-export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, CollectionsApi) {
+export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, CollectionsApi) {
   let menuItems = []
   var service = {
     get: getNavigation,
@@ -7,6 +10,13 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, CollectionsA
     init: initNavigation,
     updateBadgeCounts: updateBadgeCounts
   }
+  const actions = NavActions
+  const mapStateToThis = function (state) {
+    return { navCount: state.nav }
+  }
+
+  const unsubscribe = $ngRedux.connect(mapStateToThis, actions)(service)
+
   return service
   function getNavigation () {
     return menuItems
@@ -81,7 +91,8 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, CollectionsA
     menuItems.forEach((item) => {
       if (angular.isDefined(item.badges)) {
         getBadgeCount(item.badgeQuery.field, item.badgeQuery.filter).then((count) => {
-          item.badges[0].count = count
+          service.addCount(item.state, count)
+          item.badges[0].count = service.navCount[item.state]
         })
       }
     })
