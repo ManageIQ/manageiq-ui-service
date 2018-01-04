@@ -34,6 +34,9 @@ module.exports = function (config) {
       {pattern: './tests/**/*.json', included: false, served: true, nocache: false},
       {pattern: './client/assets/images/**/*', included: false, served: true, nocache: false}
     ],
+    exclude: [
+      './client/app/**/*.jest.spec.js'
+    ],
     proxies: {
       '/images/': '/base/client/assets/images/'
     },

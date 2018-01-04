@@ -11,9 +11,9 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
     updateBadgeCounts: updateBadgeCounts
   }
   const actions = NavActions
-  const mapStateToThis = function (state) {
-    return { navCount: state.nav }
-  }
+  const mapStateToThis = (state) => ({
+    navCount: state.nav
+  })
 
   const unsubscribe = $ngRedux.connect(mapStateToThis, actions)(service)
 

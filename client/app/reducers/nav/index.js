@@ -1,4 +1,4 @@
-import { NAV } from '../constants/nav'
+import { NAV } from '../../constants/nav'
 import Immutable from 'seamless-immutable'
 const initialState = Immutable({
   services: 0,
