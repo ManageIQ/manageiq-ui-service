@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { NavReducer } from './nav'
+import * as Nav from './nav'
 
 export const RootReducer = combineReducers({
-  nav: NavReducer
+  nav: Nav.NavReducer
 })
