@@ -25,7 +25,6 @@ function Controller($stateParams, CollectionsApi, EventNotifications, DialogFiel
   var allDialogFields = [];
   vm.init = init;
   let dialogs = {};
-  const serviceTemplate = {};
   let serviceRequest = {};
 
   function init() {
@@ -116,7 +115,7 @@ function Controller($stateParams, CollectionsApi, EventNotifications, DialogFiel
 
   function dataForSubmit(href) {
     var dialogFieldData = {};
-    dialogFieldData[href] = '/api/service_templates/' + serviceTemplate.id;
+    dialogFieldData[href] = '/api/service_templates/' + vm.serviceTemplate.id;
 
     angular.forEach(allDialogFields, function(dialogField) {
       if ((dialogField.type === "DialogFieldTagControl" || dialogField.type === "DialogFieldDropDownList")
