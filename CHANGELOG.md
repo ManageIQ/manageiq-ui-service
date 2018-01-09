@@ -5,30 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Gaprindashvili RC
-
-### Fixed
-- Ensure cloud_credential is captured for representation [(#1291)](https://github.com/ManageIQ/manageiq-ui-service/pull/1291)
-- Move actioncable subcription creation to login promise chain [(#1314)](https://github.com/ManageIQ/manageiq-ui-service/pull/1314)
-- Added Loading indicator to Dialogs [(#1258)](https://github.com/ManageIQ/manageiq-ui-service/pull/1258)
-- Replace patternfly-sass with patternfly's sass [(#1331)](https://github.com/ManageIQ/manageiq-ui-service/pull/1331)
-- Ensure the correct ansible play elapsed time is displayed [(#1326)](https://github.com/ManageIQ/manageiq-ui-service/pull/1326)
-- Changed where Generic objects list gets rendered on Service details screen [(#1246)](https://github.com/ManageIQ/manageiq-ui-service/pull/1246)
-- Fixed issue with custom button groups [(#1334)](https://github.com/ManageIQ/manageiq-ui-service/pull/1334)
-- Added custom button menu to Resource Details page [(#1254)](https://github.com/ManageIQ/manageiq-ui-service/pull/1254)
-- Adds empty state to service details relationship section [(#1292)](https://github.com/ManageIQ/manageiq-ui-service/pull/1292)
-- A dep no longer needed, causes loading of angular too many times error [(#1295)](https://github.com/ManageIQ/manageiq-ui-service/pull/1295)
-
-## Gaprindashvili Beta2
-
-### Fixed
-- Fixed issue with language not saving [(#1233)](https://github.com/ManageIQ/manageiq-ui-service/pull/1233)
-- Update the changegroup action to set_current_group [(#12180)](https://github.com/ManageIQ/manageiq-ui-service/pull/1218)
-- Use correct storage attribute, use metrics from last hour (not present) [(#1237)](https://github.com/ManageIQ/manageiq-ui-service/pull/1237)
-- Fixed issue with buttons not supporting being disabled [(#1239)](https://github.com/ManageIQ/manageiq-ui-service/pull/1239)
-- Updated the calculation for Chargebacks [(#1244)](https://github.com/ManageIQ/manageiq-ui-service/pull/1244)
-
-## Gaprindashvili Beta1
+## Gaprindashvili-1
 
 ### Added
 - Added ability to hide toasts based on RBAC [(#1053)](https://github.com/ManageIQ/manageiq-ui-service/pull/1053)
@@ -57,9 +34,24 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Update angular patternfly [(#804)](https://github.com/ManageIQ/manageiq-ui-service/pull/804)
 - Coveralls integration [(#802)](https://github.com/ManageIQ/manageiq-ui-service/pull/802)
 - Make utilization graphs on VM details page [(#792)](https://github.com/ManageIQ/manageiq-ui-service/pull/792)
-- Adds support for proxy_protocol env [(#779)](https://github.com/ManageIQ/manageiq-ui-service/pull/779)
+- Added ability to click hierachical child service [(#1339)](https://github.com/ManageIQ/manageiq-ui-service/pull/1339)
 
 ### Fixed
+- Ensure cloud_credential is captured for representation [(#1291)](https://github.com/ManageIQ/manageiq-ui-service/pull/1291)
+- Move actioncable subcription creation to login promise chain [(#1314)](https://github.com/ManageIQ/manageiq-ui-service/pull/1314)
+- Added Loading indicator to Dialogs [(#1258)](https://github.com/ManageIQ/manageiq-ui-service/pull/1258)
+- Replace patternfly-sass with patternfly's sass [(#1331)](https://github.com/ManageIQ/manageiq-ui-service/pull/1331)
+- Ensure the correct ansible play elapsed time is displayed [(#1326)](https://github.com/ManageIQ/manageiq-ui-service/pull/1326)
+- Changed where Generic objects list gets rendered on Service details screen [(#1246)](https://github.com/ManageIQ/manageiq-ui-service/pull/1246)
+- Fixed issue with custom button groups [(#1334)](https://github.com/ManageIQ/manageiq-ui-service/pull/1334)
+- Added custom button menu to Resource Details page [(#1254)](https://github.com/ManageIQ/manageiq-ui-service/pull/1254)
+- Adds empty state to service details relationship section [(#1292)](https://github.com/ManageIQ/manageiq-ui-service/pull/1292)
+- A dep no longer needed, causes loading of angular too many times error [(#1295)](https://github.com/ManageIQ/manageiq-ui-service/pull/1295)
+- Fixed issue with language not saving [(#1233)](https://github.com/ManageIQ/manageiq-ui-service/pull/1233)
+- Update the changegroup action to set_current_group [(#12180)](https://github.com/ManageIQ/manageiq-ui-service/pull/1218)
+- Use correct storage attribute, use metrics from last hour (not present) [(#1237)](https://github.com/ManageIQ/manageiq-ui-service/pull/1237)
+- Fixed issue with buttons not supporting being disabled [(#1239)](https://github.com/ManageIQ/manageiq-ui-service/pull/1239)
+- Updated the calculation for Chargebacks [(#1244)](https://github.com/ManageIQ/manageiq-ui-service/pull/1244)
 - Updates sessionstorage when language is switched [(#1082)](https://github.com/ManageIQ/manageiq-ui-service/pull/1082)
 - For logout If in production redirect to /ui/service/ if in dev route to /  [(#1073)](https://github.com/ManageIQ/manageiq-ui-service/pull/1073)
 - Sets about modal isOpen to false on close [(#1071)](https://github.com/ManageIQ/manageiq-ui-service/pull/1071)
@@ -92,6 +84,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Specify category-select toggle width, prevent it from hidng [(#1191)](https://github.com/ManageIQ/manageiq-ui-service/pull/1191)
 - Adds support for supports_vnc_console decorator [(#1195)](https://github.com/ManageIQ/manageiq-ui-service/pull/1195)
 - "filter", is correct option, subquery_count (to display filter results) [(#1220)](https://github.com/ManageIQ/manageiq-ui-service/pull/1220)
+- Ensured tooltips do not show when drop downs are open [(#1345)](https://github.com/ManageIQ/manageiq-ui-service/pull/1345)
+- Fixed issue with adding to cart not working [(#1347)](https://github.com/ManageIQ/manageiq-ui-service/pull/1347)
+- Ensure service tag filters flagged for translation [(#1343)](https://github.com/ManageIQ/manageiq-ui-service/pull/1343)
 
 ## Fine-4
 
