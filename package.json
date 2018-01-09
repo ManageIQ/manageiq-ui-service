@@ -24,7 +24,7 @@
     "start:mock-webserver": "cd server && node app.js",
     "start:all": "yarn start:mock-api & yarn start:mock-webserver",
     "test": "yarn vet && yarn gettext:extract && yarn gettext:validate && karma start karma.conf.js --single-run && yarn test:jest",
-    "test:jest": "jest .*.jest.spec.js",
+    "test:jest": "jest .*test.js",
     "test:e2e": "protractor protractor.conf.js",
     "test:watch": "karma start --auto-watch --no-single-run",
     "vet": "standard && sass-lint --verbose --no-exit",
