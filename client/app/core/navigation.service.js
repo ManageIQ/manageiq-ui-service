@@ -1,5 +1,4 @@
 import NavActions from '../actions/nav'
-/* eslint no-unused-vars: 0 */
 
 /** @ngInject */
 export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, CollectionsApi) {
@@ -15,7 +14,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
     navCount: state.nav
   })
 
-  const unsubscribe = $ngRedux.connect(mapStateToThis, actions)(service)
+  $ngRedux.connect(mapStateToThis, actions)(service)
 
   return service
   function getNavigation () {
@@ -39,7 +38,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
         },
         badges: [
           {
-            count: 0,
+            count: service.navCount['services'],
             tooltip: __('Total services ordered, both active and retired')
           }
         ],
@@ -56,7 +55,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
         },
         badges: [
           {
-            count: 0,
+            count: service.navCount['orders'],
             tooltip: __('Total orders submitted')
           }
         ],
@@ -73,7 +72,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
         },
         badges: [
           {
-            count: 0,
+            count: service.navCount['catalogs'],
             tooltip: __('The total number of available catalogs')
           }
         ],
