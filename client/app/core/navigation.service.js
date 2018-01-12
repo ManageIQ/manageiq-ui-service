@@ -1,5 +1,5 @@
-import NavActions from '../actions/nav'
-
+import appCounterActions from '../actions/appCounters'
+import { APPCOUNTERS } from '../constants/appCounters'
 /** @ngInject */
 export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, CollectionsApi) {
   let menuItems = []
@@ -9,9 +9,9 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
     init: initNavigation,
     updateBadgeCounts: updateBadgeCounts
   }
-  const actions = NavActions
+  const actions = appCounterActions
   const mapStateToThis = (state) => ({
-    navCount: state.nav
+    navCount: state.appCounters
   })
 
   $ngRedux.connect(mapStateToThis, actions)(service)
@@ -38,7 +38,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
         },
         badges: [
           {
-            count: service.navCount['services'],
+            count: service.navCount[APPCOUNTERS.SERVICES_COUNT],
             tooltip: __('Total services ordered, both active and retired')
           }
         ],
@@ -55,7 +55,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
         },
         badges: [
           {
-            count: service.navCount['orders'],
+            count: service.navCount[APPCOUNTERS.ORDERS_COUNT],
             tooltip: __('Total orders submitted')
           }
         ],
@@ -72,7 +72,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
         },
         badges: [
           {
-            count: service.navCount['catalogs'],
+            count: service.navCount[APPCOUNTERS.CATALOGS_COUNT],
             tooltip: __('The total number of available catalogs')
           }
         ],
@@ -90,8 +90,22 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
     menuItems.forEach((item) => {
       if (angular.isDefined(item.badges)) {
         getBadgeCount(item.badgeQuery.field, item.badgeQuery.filter).then((count) => {
-          service.addCount(item.state, count)
-          item.badges[0].count = service.navCount[item.state]
+          let counterField = ''
+          switch (item.state) {
+            case 'services':
+              service.addServicesCount(count)
+              counterField = APPCOUNTERS.SERVICES_COUNT
+              break
+            case 'catalogs':
+              service.addCatalogsCount(count)
+              counterField = APPCOUNTERS.CATALOGS_COUNT
+              break
+            case 'orders':
+              service.addOrdersCount(count)
+              counterField = APPCOUNTERS.ORDERS_COUNT
+              break
+          }
+          item.badges[0].count = service.navCount[counterField]
         })
       }
     })
