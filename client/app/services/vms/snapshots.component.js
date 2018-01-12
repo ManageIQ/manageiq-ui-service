@@ -84,7 +84,7 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
 
   function updateMenuActionForItemFn (action, item) {
     if (action.actionName === 'revert') {
-      action.isDisabled = !item.current && angular.isUndefined(item.parent_uid)
+      action.isDisabled = !item.current
     }
   }
 
