@@ -278,8 +278,9 @@
                                         </ul>
                                     </div>
                                     <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body
-                                         ng-if="$ctrl.customScope.permissions.cockpit || $ctrl.customScope.permissions.console">
-                                        <button type="button" class="btn btn-default" uib-dropdown-toggle
+                                         ng-if="($ctrl.customScope.permissions.cockpit || $ctrl.customScope.permissions.console)
+                                            && (item.supported_consoles.vnc.visible || item.supported_consoles.vnc.message
+                                            || item.supported_consoles.cockpit.visible || item.supported_consoles.cockpit.message)">                                        <button type="button" class="btn btn-default" uib-dropdown-toggle
                                                 type="button">
                                             <i class="fa fa-window-maximize "></i>
                                             <span translate>Access</span>
@@ -287,13 +288,19 @@
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu"
                                             aria-labelledby="btn-append-to-to-body">
-                                            <li role="menuitem"
-                                                ng-class="{'disabled': !item.supported_consoles.vnc.visible || !item.supported_consoles.vnc.enabled || !$ctrl.customScope.permissions.console}"
+                                            <li ng-if="item.supported_consoles.vnc.visible || item.supported_consoles.vnc.message"
+                                                role="menuitem"
+                                                uib-tooltip="{{item.supported_consoles.vnc.message}}"
+                                                tooltip-placement="bottom"
+                                                ng-class="{'disabled': !item.supported_consoles.vnc.enabled || !$ctrl.customScope.permissions.console}"
                                                 ng-click="$ctrl.customScope.openConsole(item)">
                                                 <a href="#" translate>VM Console</a>
                                             </li>
-                                            <li role="menuitem"
-                                                ng-class="{'disabled': !item.supported_consoles.cockpit.visible || !item.supported_consoles.cockpit.enabled || !$ctrl.customScope.permissions.cockpit}"
+                                            <li ng-if="item.supported_consoles.cockpit.visible || item.supported_consoles.cockpit.message"
+                                                role="menuitem"
+                                                uib-tooltip="{{item.supported_consoles.cockpit.message}}"
+                                                tooltip-placement="bottom"
+                                                ng-class="{'disabled': !item.supported_consoles.cockpit.enabled || !$ctrl.customScope.permissions.cockpit}"
                                                 ng-click="$ctrl.customScope.openCockpit(item)">
                                                 <a href="#" translate>Web Console</a>
                                             </li>
@@ -350,16 +357,16 @@
                 </ul>
                 <ul class="list-group service-details-resources" ng-if="vm.genericObjects.length">
                     <li class="list-group-item service-details-resource-group-item"
-                    ng-repeat="genericObject in vm.genericObjects">
+                        ng-repeat="genericObject in vm.genericObjects">
                         <a class="service-details-resource-group-title"
-                            ng-class="{'collapsed': !genericObject.isExpanded}"
-                            ng-click="vm.toggleOpenGenericObjects(genericObject)">
+                           ng-class="{'collapsed': !genericObject.isExpanded}"
+                           ng-click="vm.toggleOpenGenericObjects(genericObject)">
                             {{genericObject.name}} ({{genericObject.objects.length}})
                         </a>
                         <div class="service-details-resource-list-container"
-                                ng-class="{'collapse': !genericObject.isExpanded}">
+                             ng-class="{'collapse': !genericObject.isExpanded}">
                             <generic-objects-list generic-object="genericObject"
-                                                    on-update="vm.setGenericObjectViewState(object)"></generic-objects-list>
+                                                  on-update="vm.setGenericObjectViewState(object)"></generic-objects-list>
                         </div>
                     </li>
                 </ul>
@@ -372,9 +379,10 @@
         <div class="panel-body">
             <section>
                 <h2 translate>Relationships</h2>
-                <pf-empty-state ng-if="!vm.service.parent_service && !vm.service.service_template" config="vm.emptyState"></pf-empty-state>
+                <pf-empty-state ng-if="!vm.service.parent_service && !vm.service.service_template"
+                                config="vm.emptyState"></pf-empty-state>
 
-                <div class="container-fluid" ng-if="vm.service.parent_service || vm.service.service_template" >
+                <div class="container-fluid" ng-if="vm.service.parent_service || vm.service.service_template">
                     <div class="row" ng-if="vm.service.parent_service">
                         <div class="col-sm-4">
                             <a href="#" ng-click="vm.gotoService(vm.service.parent_service)">{{vm.service.parent_service.name}}</a>
