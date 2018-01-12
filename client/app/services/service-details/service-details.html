@@ -278,7 +278,9 @@
                                         </ul>
                                     </div>
                                     <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body
-                                         ng-if="$ctrl.customScope.permissions.cockpit || $ctrl.customScope.permissions.console">
+                                         ng-if="($ctrl.customScope.permissions.cockpit || $ctrl.customScope.permissions.console)
+                                            && (item.supported_consoles.vnc.visible || item.supported_consoles.vnc.message
+                                            || item.supported_consoles.cockpit.visible || item.supported_consoles.cockpit.message)">
                                         <button type="button" class="btn btn-default" uib-dropdown-toggle
                                                 type="button">
                                             <i class="fa fa-window-maximize "></i>
