@@ -6,7 +6,7 @@ const initialState = Immutable({
   ORDERS_COUNT: 0
 })
 
-export function AppCountersReducer (state = initialState, action) {
+export function appCountersReducer (state = initialState, action) {
   switch (action.type) {
     case APPCOUNTERS.SERVICES_COUNT:
     case APPCOUNTERS.CATALOGS_COUNT:
