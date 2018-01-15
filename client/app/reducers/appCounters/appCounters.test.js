@@ -1,5 +1,5 @@
 /* global test */
-import { AppCountersReducer } from './'
+import { appCountersReducer } from './'
 import { APPCOUNTERS } from '../../constants/appCounters'
 
 test('Nav Reducer should return initial state', () => {
@@ -8,7 +8,7 @@ test('Nav Reducer should return initial state', () => {
     'ORDERS_COUNT': 0,
     'SERVICES_COUNT': 0
   }
-  expect(AppCountersReducer(undefined, {})).toEqual(expectedState)
+  expect(appCountersReducer(undefined, {})).toEqual(expectedState)
 })
 test('Nav Reducer should handle the ADD_COUNT method', () => {
   const action = {
@@ -20,5 +20,5 @@ test('Nav Reducer should handle the ADD_COUNT method', () => {
     'ORDERS_COUNT': 0,
     'SERVICES_COUNT': 2
   }
-  expect(AppCountersReducer(undefined, action)).toEqual(expectedState)
+  expect(appCountersReducer(undefined, action)).toEqual(expectedState)
 })
