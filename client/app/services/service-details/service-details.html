@@ -253,20 +253,28 @@
                   </div>
                   <div ng-if="!item.retired " class="list-view-pf-actions">
                     <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body
-                         ng-if="customScope.permissions.cockpit || customScope.permissions.console">
+                         ng-if="(customScope.permissions.cockpit || customScope.permissions.console)
+                               && (item.supported_consoles.vnc.visible || item.supported_consoles.vnc.message
+                               || item.supported_consoles.cockpit.visible || item.supported_consoles.cockpit.message)">
                       <button type="button" class="btn btn-default" uib-dropdown-toggle type="button">
                         <span translate>Access</span>
                         <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu"
                           aria-labelledby="btn-append-to-to-body">
-                        <li role="menuitem"
-                            ng-class="{'disabled': !item.supported_consoles.vnc.visible || !item.supported_consoles.vnc.enabled || !customScope.permissions.console}"
+                        <li ng-if="item.supported_consoles.vnc.visible || item.supported_consoles.vnc.message"
+                            role="menuitem"
+                            uib-tooltip="{{item.supported_consoles.vnc.message}}"
+                            tooltip-placement="bottom"
+                            ng-class="{'disabled': !item.supported_consoles.vnc.enabled || !customScope.permissions.console}"
                             ng-click="customScope.openConsole(item)">
                           <a href="#" translate>VM Console</a>
                         </li>
-                        <li role="menuitem"
-                            ng-class="{'disabled': !item.supported_consoles.cockpit.visible || !item.supported_consoles.cockpit.enabled || !customScope.permissions.cockpit}"
+                        <li ng-if="item.supported_consoles.cockpit.visible || item.supported_consoles.cockpit.message"
+                            role="menuitem"
+                            uib-tooltip="{{item.supported_consoles.cockpit.message}}"
+                            tooltip-placement="bottom"
+                            ng-class="{'disabled': !item.supported_consoles.cockpit.enabled || !customScope.permissions.cockpit}"
                             ng-click="customScope.openCockpit(item)">
                           <a href="#" translate>Web Console</a>
                         </li>
