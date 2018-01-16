@@ -41,6 +41,8 @@ import { gettextInit } from './gettext.config.js'
 import { layoutInit } from './layouts.config.js'
 import { TaggingService } from './tagging.service.js'
 
+import 'ng-redux'
+
 export const CoreModule = angular
   .module('app.core', [
     'base64',
@@ -49,6 +51,7 @@ export const CoreModule = angular
     'ngAnimate',
     'ngCookies',
     'ngMessages',
+    'ngRedux',
     'ngSanitize',
     'ngStorage',
     'ui.router',

@@ -1,6 +1,6 @@
 'use strict'
 
-const webpackConfig = require('./config/webpack.test.js')
+const webpackConfig = require('./config/webpack.testing.js')
 
 module.exports = function (config) {
   config.set({
@@ -33,6 +33,9 @@ module.exports = function (config) {
       {pattern: './tests/**/*.js'},
       {pattern: './tests/**/*.json', included: false, served: true, nocache: false},
       {pattern: './client/assets/images/**/*', included: false, served: true, nocache: false}
+    ],
+    exclude: [
+      './client/app/**/*.test.js'
     ],
     proxies: {
       '/images/': '/base/client/assets/images/'

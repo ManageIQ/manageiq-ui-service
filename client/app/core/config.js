@@ -1,5 +1,5 @@
 /* eslint angular/window-service: "off" */
-
+import { RootReducer } from '../reducers'
 var DEVEL_DOMAINS = [
   'localhost',
   '127.0.0.1',
@@ -7,9 +7,9 @@ var DEVEL_DOMAINS = [
 ]
 
 var isDevel = window._.includes(DEVEL_DOMAINS, window.location.hostname)
-
+const hasDevTools = angular.isDefined(window.__REDUX_DEVTOOLS_EXTENSION__)
 /** @ngInject */
-export function configure ($logProvider, $compileProvider, $qProvider) {
+export function configure ($logProvider, $compileProvider, $qProvider, $ngReduxProvider) {
   $logProvider.debugEnabled(isDevel)
   $compileProvider.debugInfoEnabled(isDevel)
 
@@ -17,4 +17,9 @@ export function configure ($logProvider, $compileProvider, $qProvider) {
   $compileProvider.preAssignBindingsEnabled(true)
 
   $qProvider.errorOnUnhandledRejections(false)
+  const storeEnhancers = []
+  if (hasDevTools) {
+    storeEnhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__())
+  }
+  $ngReduxProvider.createStoreWith(RootReducer, [], storeEnhancers)
 }
