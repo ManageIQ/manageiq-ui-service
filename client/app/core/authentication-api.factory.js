@@ -11,8 +11,7 @@ export function AuthenticationApiFactory ($http, $base64, API_BASE, Session, Not
       $http.get(API_BASE + '/api/auth?requester_type=ui', {
         headers: {
           'Authorization': 'Basic ' + $base64.encode([userLogin, password].join(':')),
-          'X-Auth-Token': undefined,
-          'X-Miq-Group': undefined
+          'X-Auth-Token': undefined
         }
       }).then(loginSuccess, loginFailure)
 
