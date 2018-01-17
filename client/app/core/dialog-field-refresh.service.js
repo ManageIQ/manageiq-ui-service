@@ -10,17 +10,20 @@ export function DialogFieldRefreshFactory (CollectionsApi) {
 
   return service
 
-  function refreshDialogField (dialogData, dialogField, url, resourceId) {
+  function refreshDialogField (dialogData, dialogField, url, idList) {
     return new Promise((resolve, reject) => {
       CollectionsApi.post(
         url,
-        resourceId,
+        idList.dialogId,
         {},
         angular.toJson({
           action: 'refresh_dialog_fields',
           resource: {
             dialog_fields: dialogData,
-            fields: dialogField
+            fields: dialogField,
+            resource_action_id: idList.resourceActionId,
+            target_id: idList.targetId,
+            target_type: idList.targetType
           }
         })
       ).then((response) => {
