@@ -32,12 +32,13 @@ function getStates () {
 function StateController ($state, $stateParams, CollectionsApi, EventNotifications, DialogFieldRefresh) {
   var vm = this
   vm.title = __('Custom button action')
-  vm.dialogId = ''
+  vm.dialogId = $stateParams.dialogId || ''
   vm.dialogs = {}
   vm.service = {}
   vm.serviceId = $stateParams.serviceId
   vm.vmId = $stateParams.vmId || null
   vm.button = $stateParams.button
+  vm.resourceAction = vm.button.resource_action
   vm.submitCustomButton = submitCustomButton
   vm.submitButtonEnabled = false
   vm.dialogUrl = 'service_dialogs/'
@@ -48,7 +49,7 @@ function StateController ($state, $stateParams, CollectionsApi, EventNotificatio
 
   function init () {
     const options = {expand: 'resources', attributes: 'content'}
-    const dialogId = vm.button.resource_action.dialog_id
+    const dialogId = vm.resourceAction.dialog_id
     const resolveDialogs = CollectionsApi.query('service_dialogs/' + dialogId, options)
     const resolveService = CollectionsApi.get('services', $stateParams.serviceId, {attributes: ['picture', 'picture.image_href']})
 
@@ -63,7 +64,21 @@ function StateController ($state, $stateParams, CollectionsApi, EventNotificatio
   }
   init()
   function refreshField (field) {
-    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], vm.dialogUrl, vm.dialogId)
+    let targetType = 'service'
+    let targetId = vm.serviceId
+    if (vm.vmId) {
+      targetType = 'vm'
+      targetId = vm.vmId
+    }
+
+    let idList = {
+      dialogId: vm.dialogId,
+      resourceActionId: vm.resourceAction.id,
+      targetId: targetId,
+      targetType: targetType
+    }
+
+    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], vm.dialogUrl, idList)
   }
 
   function setDialogData (data) {

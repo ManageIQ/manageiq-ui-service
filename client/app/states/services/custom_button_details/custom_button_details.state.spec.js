@@ -1,34 +1,50 @@
 /* global $state, $controller, CollectionsApi, Notifications, DialogFieldRefresh */
 /* eslint-disable no-unused-expressions */
 describe('State: services.custom_button_details', () => {
+  let dialog, dialogData, dialogFields, button
+
   beforeEach(() => {
     module('app.states')
-  })
 
-  describe('controller', () => {
-    let collectionsApiSpy, controller, notificationsErrorSpy, notificationsSuccessSpy
-    const dialogFields = [{
+    dialogFields = [{
       name: 'dialogField1',
       default_value: '1'
     }, {
       name: 'dialogField2',
       default_value: '2'
     }]
-    const dialog = {
+
+    dialog = {
       dialog_tabs: [{
         dialog_groups: [{
           dialog_fields: dialogFields
         }]
       }]
     }
-    const button = {
+
+    button = {
       name: 'buttonName',
       applies_to_id: 456,
       applies_to_class: 'servicetemplate',
       resource_action: {
-        dialog_id: 1
+        dialog_id: 1,
+        id: 789
       }
     }
+
+    dialogData = {
+      'validations': {
+        'isValid': true
+      },
+      'data': {
+        'dialogField1': 1,
+        'dialogField2': 2
+      }
+    }
+  })
+
+  describe('controller', () => {
+    let collectionsApiSpy, controller, notificationsErrorSpy, notificationsSuccessSpy
 
     beforeEach(() => {
       bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh')
@@ -46,15 +62,6 @@ describe('State: services.custom_button_details', () => {
           serviceTemplateCatalogId: 321
         }
       })
-      const dialogData = {
-        'validations': {
-          'isValid': true
-        },
-        'data': {
-          'dialogField1': 1,
-          'dialogField2': 2
-        }
-      }
       controller.setDialogData(dialogData)
     })
 
@@ -147,7 +154,8 @@ describe('State: services.custom_button_details', () => {
       applies_to_id: 456,
       applies_to_class: 'vm',
       resource_action: {
-        dialog_id: 1
+        dialog_id: 1,
+        id: 789
       }
     }
 
@@ -168,15 +176,7 @@ describe('State: services.custom_button_details', () => {
           serviceTemplateCatalogId: 321
         }
       })
-      const dialogData = {
-        'validations': {
-          'isValid': true
-        },
-        'data': {
-          'dialogField1': 1,
-          'dialogField2': 2
-        }
-      }
+
       controller.setDialogData(dialogData)
     })
     it('POSTs to the vms API', (done) => {
@@ -201,6 +201,71 @@ describe('State: services.custom_button_details', () => {
       controller.submitCustomButton()
       done()
       expect($state.is('services.resource-details')).to.be.true
+    })
+  })
+
+  describe('controller#refreshField', () => {
+    let controller
+
+    describe('when the vmId does not exist', () => {
+      beforeEach(() => {
+        bard.inject('$controller', '$state', '$stateParams', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh')
+        sinon.stub(DialogFieldRefresh, 'refreshDialogField')
+
+        controller = $controller($state.get('services.custom_button_details').controller, {
+          dialog: {content: [dialog], id: 213},
+          service: {},
+          $stateParams: {
+            dialogId: 213,
+            button: button,
+            serviceId: 123,
+            serviceTemplateCatalogId: 321
+          }
+        })
+
+        controller.setDialogData(dialogData)
+      })
+
+      it('delegates to DialogFieldRefresh with the right id list', () => {
+        controller.refreshField({name: 'fieldName'})
+        expect(DialogFieldRefresh.refreshDialogField).to.have.been.calledWith(
+          dialogData.data,
+          ['fieldName'],
+          'service_dialogs/',
+          {dialogId: 213, resourceActionId: 789, targetId: 123, targetType: 'service'}
+        )
+      })
+    })
+
+    describe('when the vmId exists', () => {
+      beforeEach(() => {
+        bard.inject('$controller', '$state', '$stateParams', 'CollectionsApi', 'Notifications', 'DialogFieldRefresh')
+        sinon.stub(DialogFieldRefresh, 'refreshDialogField')
+
+        controller = $controller($state.get('services.custom_button_details').controller, {
+          dialog: {content: [dialog], id: 213},
+          service: {},
+          $stateParams: {
+            dialogId: 213,
+            button: button,
+            serviceId: 123,
+            vmId: 456,
+            serviceTemplateCatalogId: 321
+          }
+        })
+
+        controller.setDialogData(dialogData)
+      })
+
+      it('delegates to DialogFieldRefresh with the right id list', () => {
+        controller.refreshField({name: 'fieldName'})
+        expect(DialogFieldRefresh.refreshDialogField).to.have.been.calledWith(
+          dialogData.data,
+          ['fieldName'],
+          'service_dialogs/',
+          {dialogId: 213, resourceActionId: 789, targetId: 456, targetType: 'vm'}
+        )
+      })
     })
   })
 })
