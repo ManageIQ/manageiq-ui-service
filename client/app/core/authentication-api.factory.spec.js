@@ -19,8 +19,7 @@ describe('Authentication API', () => {
         'http://localhost:9876/api/auth?requester_type=ui', {
           'headers': {
             'Authorization': 'Basic dGVzdDp0ZXN0',
-            'X-Auth-Token': undefined,
-            'X-Miq-Group': undefined
+            'X-Auth-Token': undefined
           }
         })
     })
