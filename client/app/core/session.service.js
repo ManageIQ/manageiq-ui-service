@@ -17,7 +17,8 @@ export function SessionFactory ($http, $sessionStorage, $cookies, RBAC, Polling)
     requestWsToken: requestWsToken,
     destroyWsToken: destroyWsToken,
     setPause: setPause,
-    updateUserSession: updateUserSession
+    updateUserSession: updateUserSession,
+    getUserAuthorizations: getUserAuthorizations
   }
 
   destroy()
