@@ -31,15 +31,12 @@ export function SessionFactory ($http, $sessionStorage, $cookies, RBAC, Polling)
   }
 
   function setGroup (group) {
-    $http.defaults.headers.common['Accept'] = 'application/json;charset=UTF-8'
     if (typeof group === 'object') {
-      $http.defaults.headers.common['X-Miq-Group'] = group.description
       model.user.group = group.description
       model.user.group_href = group.href
       $sessionStorage.miqGroup = group.description
       $sessionStorage.selectedMiqGroup = group.description
     } else {
-      $http.defaults.headers.common['X-Miq-Group'] = group
       $sessionStorage.miqGroup = group
       $sessionStorage.selectedMiqGroup = group
       model.user.group = group
@@ -56,7 +53,6 @@ export function SessionFactory ($http, $sessionStorage, $cookies, RBAC, Polling)
     model.token = null
     model.user = {}
     destroyWsToken()
-    delete $http.defaults.headers.common['X-Miq-Group']
     delete $http.defaults.headers.common['X-Auth-Token']
     delete $sessionStorage.miqGroup
     delete $sessionStorage.selectedMiqGroup
