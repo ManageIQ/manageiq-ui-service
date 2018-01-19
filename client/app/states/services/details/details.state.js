@@ -103,7 +103,7 @@
       vm.showEditService = $state.actionFeatures.serviceEdit.show;
       vm.showReconfigureService = $state.actionFeatures.serviceReconfigure.show;
       vm.showSetOwnership = $state.actionFeatures.serviceOwnership.show;
-
+      vm.isOpen = false;
       vm.service = service;
 
       vm.activate = activate;
