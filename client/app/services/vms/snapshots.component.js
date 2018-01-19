@@ -33,7 +33,6 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       deleteSnapshot: deleteSnapshot,
       revertSnapshot: revertSnapshot,
       cancelDelete: cancelDelete,
-      updateMenuActionForItemFn: updateMenuActionForItemFn,
       resolveVm: resolveVm,
       // Config
       listConfig: getListConfig(),
@@ -69,7 +68,6 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       actionName: 'revert',
       title: __('Revert Snapshot'),
       actionFn: revertSnapshot,
-      isDisabled: true,
       permissions: vm.permissions.revert
     }, {
       name: __('Delete'),
@@ -80,12 +78,6 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
     }]
 
     return menuActions.filter((item) => item.permissions)
-  }
-
-  function updateMenuActionForItemFn (action, item) {
-    if (action.actionName === 'revert') {
-      action.isDisabled = !item.current
-    }
   }
 
   function getFilterConfig () {
