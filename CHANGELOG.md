@@ -37,6 +37,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Added ability to click hierachical child service [(#1339)](https://github.com/ManageIQ/manageiq-ui-service/pull/1339)
 
 ### Fixed
+- Fetch new users (group) authorizations rather than loading from session storage [(#1363)](https://github.com/ManageIQ/manageiq-ui-service/pull/1363)
 - Ensure cloud_credential is captured for representation [(#1291)](https://github.com/ManageIQ/manageiq-ui-service/pull/1291)
 - Move actioncable subcription creation to login promise chain [(#1314)](https://github.com/ManageIQ/manageiq-ui-service/pull/1314)
 - Added Loading indicator to Dialogs [(#1258)](https://github.com/ManageIQ/manageiq-ui-service/pull/1258)
