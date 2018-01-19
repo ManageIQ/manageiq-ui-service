@@ -90,13 +90,14 @@ function ComponentController ($state, CatalogsState, ListView, EventNotification
     return CatalogsState.getServiceTemplates(limit, offset).then(success, failure)
 
     function success (response) {
+      const serviceTemplateResultsCount = response.subquery_count
       CatalogsState.getCatalogs(limit, offset).then((response) => {
         vm.catalogsList = response.resources
+        vm.toolbarConfig.filterConfig = getFilterConfig()
+        vm.toolbarConfig.filterConfig.resultsCount = serviceTemplateResultsCount
         vm.loading = false
       })
       vm.serviceTemplateList = response.resources
-      vm.toolbarConfig.filterConfig = getFilterConfig()
-      vm.toolbarConfig.filterConfig.resultsCount = response.subquery_count
     }
 
     function failure (_error) {
