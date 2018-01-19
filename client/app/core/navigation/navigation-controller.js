@@ -253,9 +253,9 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
 
     function success () {
       Session.setGroup(group)
-      Session.loadUser()
+      Session.getUserAuthorizations()
       vm.user = Session.currentUser
-      $state.go($state.current, {}, {reload: true})
+      $state.go('dashboard', {}, {reload: true})
     }
 
     function failure (response) {
