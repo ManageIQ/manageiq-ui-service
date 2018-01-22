@@ -25,7 +25,7 @@
 
   /** @ngInject */
   function resolveServices(
-    CollectionsApi, ServicesState, limit = 20, offset = 0) {
+    CollectionsApi, ServicesState, limit, offset) {
     var options = {
       expand: 'resources',
       attributes: [
@@ -35,8 +35,8 @@
         'v_total_vms',
         'chargeback_report'],
       filter: ['ancestry=null'],
-      limit: limit,
-      offset: offset,
+      limit: limit || 20,
+      offset: offset || 0,
     };
 
     angular.forEach(ServicesState.getFilters(), function(item) {
@@ -88,7 +88,7 @@
             title: __('Retirement Status'),
             placeholder: __('Filter by Retirement Status'),
             filterType: 'select',
-            filterValues: [__('true'), __('false'),],
+            filterValues: [__('true'), __('false')],
           },
           {
             id: 'v_total_vms',

@@ -13,7 +13,7 @@
     "bower_components"
   ],
   "devDependencies": {
-    "bardjs": "0.1.8",
+    "bardjs": "~0.1.8",
     "sinon": "1.15.4"
   },
   "dependencies": {
@@ -40,10 +40,10 @@
     "ngstorage": "0.3.10",
     "no-vnc": "0.6.1",
     "spice-html5-bower": "v0.1.6.1",
-    "sprintf": "1.0.3",
-    "toastr": "2.1.1",
+    "sprintf": "~1.0.3",
+    "toastr": "~2.1.1",
     "eonasdan-bootstrap-datetimepicker": "=4.17.37",
-    "action-cable": "5.0.0"
+    "action-cable": "^5.0.0"
   },
   "overrides": {
     "no-vnc": {
