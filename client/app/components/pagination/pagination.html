@@ -1,0 +1,44 @@
+<div class="pagination-footer">
+  <span class="dropup primary-action pull-left" ng-if="vm.limitOptions">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+       {{vm.limit}}
+       <span translate>items</span>
+       <span class="caret"></span>
+    </button>
+      <ul class="dropdown-menu dropdown-menu-left" role="menu">
+         <li role="menuitem" ng-repeat="item in vm.limitOptions" ng-click="vm.updateLimit(item)">
+            <a>
+               {{ ::item }}
+               <span translate>items</span>
+            </a>
+         </li>
+      </ul>
+  </span>
+  <span class="pagination-controls form-group">
+    <ul class="pagination">
+      <li ng-class="{'disabled': vm.disabled('left')}">
+        <span class="i fa fa-angle-double-left" tooltip="First" alt="First" type="button"
+              ng-click="vm.previous(true)"></span>
+      </li>
+      <li ng-class="{'disabled':  vm.disabled('left')}">
+        <span class="i fa fa-angle-left" tooltip="Previous" alt="Previous" type="button"
+              ng-click="vm.previous()"></span>
+      </li>
+      <li>
+        <span ng-if="vm.limit <= vm.count">
+          {{ vm.leftBoundary }} - {{ vm.rightBoundary }} {{'of' | translate}} {{ vm.count }}
+        </span>
+        <span ng-if="vm.limit > vm.count">
+          {{ vm.leftBoundary }} - {{ vm.count }} {{'of' | translate}} {{ vm.count }}
+        </span>
+      </li>
+      <li ng-class="{'disabled': vm.disabled('right')}">
+        <span class="i fa fa-angle-right" tooltip="Next" alt="Next" type="button" ng-click="vm.next()"></span>
+      </li>
+      <li ng-class="{'disabled': vm.disabled('right')}">
+        <span class="i fa fa-angle-double-right" tooltip="Last" alt="Last"
+              type="button" ng-click="vm.next(true)"></span>
+      </li>
+    </ul>
+  </span>
+</div>

@@ -5,7 +5,7 @@
     .factory('CollectionsApi', CollectionsApiFactory);
 
   /** @ngInject */
-  function CollectionsApiFactory($http, API_BASE) {
+  function CollectionsApiFactory($http, API_BASE, lodash) {
     var service = {
       query: query,
       get: get,
@@ -42,12 +42,12 @@
     }
 
     function post(collection, id, options, data) {
-      var url = API_BASE + '/api/' + collection + '/' + (id || "") + buildQuery(options);
+      var url = API_BASE + '/api/' + collection + '/' + (id || '') +
+        buildQuery(options);
 
       // console.log("post = " + url + buildQuery(options));
 
-      return $http.post(url, data, buildConfig(options))
-        .then(handleSuccess);
+      return $http.post(url, data, buildConfig(options)).then(handleSuccess);
 
       function handleSuccess(response) {
         return response.data;
@@ -56,12 +56,12 @@
 
     // delete is a reserved word in JS
     function remove(collection, id, options) {
-      var url = API_BASE + '/api/' + collection + '/' + (id || "") + buildQuery(options);
+      var url = API_BASE + '/api/' + collection + '/' + (id || '') +
+        buildQuery(options);
 
       // $log.debug("post = " + url + buildQuery(options));
 
-      return $http.delete(url, buildConfig(options))
-        .then(handleSuccess);
+      return $http.delete(url, buildConfig(options)).then(handleSuccess);
 
       function handleSuccess(response) {
         return response.data;
@@ -72,48 +72,26 @@
 
     function buildQuery(options) {
       var params = [];
-      options = options || {};
 
-      if (options.expand) {
-        if (angular.isArray(options.expand)) {
-          options.expand = options.expand.join(',');
+      lodash.forEach(options, function(value, key) {
+        switch (key) {
+          case 'filter':
+            lodash.forEach(value, function(filter) {
+              params.push('filter[]=' + encodeURIComponent(filter));
+            });
+            break;
+          case 'auto_refresh':
+            break;
+          default:
+            params.push(key + '=' + encodeURIComponent(joinArray(value)));
         }
-        params.push('expand=' + encodeURIComponent(options.expand));
+      });
+
+      function joinArray(value) {
+        return Array.isArray(value) ? value.join(',') : value;
       }
 
-      if (options.attributes) {
-        if (angular.isArray(options.attributes)) {
-          options.attributes = options.attributes.join(',');
-        }
-        params.push('attributes=' + encodeURIComponent(options.attributes));
-      }
-
-      if (options.decorators) {
-        if (angular.isArray(options.decorators)) {
-          options.decorators = options.decorators.join(',');
-        }
-        params.push('decorators=' + encodeURIComponent(options.decorators));
-      }
-
-      if (options.filter) {
-        angular.forEach(options.filter, function(filter) {
-          params.push('filter[]=' + encodeURIComponent(filter));
-        });
-      }
-
-      if (options.sort_by) {
-        params.push('sort_by=' + encodeURIComponent(options.sort_by));
-      }
-
-      if (options.sort_options) {
-        params.push('sort_options=' + encodeURIComponent(options.sort_options));
-      }
-
-      if (params.length) {
-        return '?' + params.join('&');
-      }
-
-      return '';
+      return params.length ? '?' + params.join('&') : '';
     }
 
     function buildConfig(options) {
