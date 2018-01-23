@@ -17,12 +17,9 @@ import {substitute} from './substitute.filter.js'
 export const SharedModule = angular
   .module('app.shared', [
     'app.core',
-    'miqStaticAssets',
-    'ngFileSaver',
     'ui.bootstrap',
     'patternfly',
     'patternfly.charts',
-    'patternfly.table',
     'ui.select'
   ])
   .component('actionButtonGroup', ActionButtonGroupComponent)
