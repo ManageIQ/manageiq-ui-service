@@ -286,15 +286,16 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       second: 'numeric'
     }
 
-    tooltip.html(
-      `
-        <div class="arrow"></div>
-        <div class="popover-content">
-          <div>Name: ${item.details.event}</div> 
-          <div>Date: ${item.date.toLocaleDateString('en-US', options)}</div>                    
-        </div>
-    `
-    )
+    let eventDetails = lodash.escape(item.details.event)
+
+    tooltip
+    .html(`
+      <div class="arrow"></div>
+      <div class="popover-content">
+        <div>Name: ${eventDetails}</div>
+        <div>Date: ${item.date.toLocaleDateString('en-US', options)}</div>
+      </div>
+    `)
 
     tooltip
     .style('left', `${left}px`)
