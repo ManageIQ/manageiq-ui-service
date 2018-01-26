@@ -1,77 +1,40 @@
-/* global $state, readJSON, RBAC, $httpBackend, $controller, CollectionsApi */
+/* global $componentController */
 /* eslint-disable no-unused-expressions */
-describe('State: dashboard', () => {
-  const permissions = readJSON('tests/mock/rbac/allPermissions.json')
-  beforeEach(() => {
-    module('app.core', 'app.states', 'app.orders', 'app.services')
-    bard.inject('$location', '$rootScope', '$state', '$templateCache', '$httpBackend', '$q', 'RBAC')
-    RBAC.set(permissions)
-  })
+describe('Component: dashboardComponent', () => {
+  let ctrl
 
   beforeEach(() => {
-    let d = new Date()
-    d.setMinutes(d.getMinutes() + 30)
-    d = d.toISOString()
-    d = d.substring(0, d.indexOf('.'))
-
-    $httpBackend.whenGET('').respond(200)
+    module('app.core', 'app.components')
+    bard.inject('$componentController', 'EventNotifications', '$state', 'DashboardService', 'lodash', 'Chargeback', 'RBAC', 'Polling')
+    ctrl = $componentController('dashboardComponent', {}, {})
+    ctrl.$onInit()
   })
 
-  describe('route', () => {
-    beforeEach(() => {
-      bard.inject('$location', '$rootScope', '$state', '$templateCache')
+  describe('with $componentController', () => {
+    it('is defined', () => {
+      expect(ctrl).to.be.defined
     })
 
-    it('should work with $state.go', () => {
-      $state.go('dashboard')
-      expect($state.is('dashboard'))
-    })
-  })
-
-  describe('controller', () => {
-    let controller, dashboardState
-    const resolveServicesWithDefinedServiceIds = {}
-    const retiredServices = {}
-    const resolveNonRetiredServices = {}
-    const expiringServices = {}
-    const resolveAllRequests = []
-
-    beforeEach(() => {
-      bard.inject('$controller', '$log', '$state', '$rootScope', 'CollectionsApi', 'RBAC')
-
-      const controllerResolves = {
-        definedServiceIdsServices: resolveServicesWithDefinedServiceIds,
-        retiredServices: retiredServices,
-        nonRetiredServices: resolveNonRetiredServices,
-        expiringServices: expiringServices,
-        allRequests: resolveAllRequests
+    it('initializes servicesCounts', () => {
+      let servicesCount = {
+        total: 0,
+        current: 0,
+        retired: 0,
+        soon: 0
       }
-      dashboardState = $state.get('dashboard')
-      controller = $controller(dashboardState.controller, controllerResolves)
+
+      expect(ctrl.servicesCount).to.eql(servicesCount)
     })
 
-    it('should be created successfully', () => {
-      expect(controller).to.be.defined
-    })
+    it('initializes requestsCounts', () => {
+      let requestsCount = {
+        total: 0,
+        pending: 0,
+        approved: 0,
+        denied: 0
+      }
 
-    describe('resolveExpiringServices', () => {
-      it('makes a query request using the CollectionApi', () => {
-        const clock = sinon.useFakeTimers(new Date('2016-01-01').getTime())
-        let collectionsApiSpy = sinon.stub(CollectionsApi)
-
-        dashboardState.resolve.expiringServices(collectionsApiSpy, RBAC)
-
-        expect(collectionsApiSpy.query).to.have.been.calledWith('services', {
-          hide: 'resources',
-          filter: [
-            'retired=false',
-            'retires_on>2016-01-01T00:00:00.000Z',
-            'retires_on<2016-01-31T00:00:00.000Z'
-          ]
-        })
-
-        clock.restore()
-      })
+      expect(ctrl.requestsCount).to.eql(requestsCount)
     })
   })
 })
