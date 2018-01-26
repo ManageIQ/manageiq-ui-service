@@ -7,13 +7,14 @@ export const DashboardComponent = {
 }
 
 /** @ngInject */
-function ComponentController ($state, DashboardService, EventNotifications, lodash, Chargeback, RBAC, Polling) {
+function ComponentController ($state, DashboardService, EventNotifications, lodash, Chargeback, RBAC, Polling, LONG_POLLING_INTERVAL) {
   const vm = this
 
   const retiredTitle = __('Retire Status')
 
   vm.$onDestroy = function onDestroy () {
-    Polling.stop('vmPolling')
+    Polling.stop('servicePolling')
+    Polling.stop('requestPolling')
   }
   vm.$onInit = function () {
     vm.permissions = {
@@ -82,35 +83,39 @@ function ComponentController ($state, DashboardService, EventNotifications, loda
   }
 
   function resolveServiceCounts () {
-    if (RBAC.has('service_view') && RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
-      Promise.all(DashboardService.allServices()).then((response) => {
-        let services = response[0].resources
-        vm.servicesCount.total = response[0].subcount
-        vm.servicesCount.retired = response[1].subcount
-        vm.servicesCount.soon = response[2].subcount
-        vm.servicesCount.current = vm.servicesCount.total - vm.servicesCount.retired
-        services.forEach(Chargeback.processReports)
-        vm.chargeback = {
-          'used_cost_sum': lodash(services).map('chargeback').map('used_cost_sum').values().sum()
-        }
-        vm.servicesFeature = true
-      }).catch(reason => {
+    Polling.start('servicePolling', pollServices, LONG_POLLING_INTERVAL)
 
-      })
-    }
+    Promise.all(DashboardService.allServices()).then((response) => {
+      let services = response[0].resources
+      vm.servicesCount.total = response[0].subcount
+      vm.servicesCount.retired = response[1].subcount
+      vm.servicesCount.soon = response[2].subcount
+      vm.servicesCount.current = vm.servicesCount.total - vm.servicesCount.retired
+      services.forEach(Chargeback.processReports)
+      vm.chargeback = {
+        'used_cost_sum': lodash(services).map('chargeback').map('used_cost_sum').values().sum()
+      }
+      vm.servicesFeature = true
+    })
   }
 
   function resolveRequestCounts () {
-    if (RBAC.has('miq_request_view')) {
-      Promise.all(DashboardService.allRequests()).then((response) => {
-        vm.requestsCount.pending = response[0].subcount + response[1].subcount
-        vm.requestsCount.approved = response[2].subcount + response[3].subcount
-        vm.requestsCount.denied = response[5].subcount + response[4].subcount
-        vm.requestsCount.total = vm.requestsCount.pending + vm.requestsCount.approved + vm.requestsCount.denied
-        vm.requestsFeature = true
-      }).catch(reason => {
+    Polling.start('requestPolling', pollRequests, LONG_POLLING_INTERVAL)
 
-      })
-    }
+    Promise.all(DashboardService.allRequests()).then((response) => {
+      vm.requestsCount.pending = response[0].subcount + response[1].subcount
+      vm.requestsCount.approved = response[2].subcount + response[3].subcount
+      vm.requestsCount.denied = response[5].subcount + response[4].subcount
+      vm.requestsCount.total = vm.requestsCount.pending + vm.requestsCount.approved + vm.requestsCount.denied
+      vm.requestsFeature = true
+    })
+  }
+
+  function pollServices () {
+    resolveServiceCounts()
+  }
+
+  function pollRequests () {
+    resolveRequestCounts()
   }
 }
