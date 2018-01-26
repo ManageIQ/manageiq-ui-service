@@ -31,7 +31,7 @@ function getStates () {
 
 function resolveAllRequests (CollectionsApi, RBAC) {
   if (!RBAC.has('miq_request_view')) {
-    return undefined
+    return true
   }
 
   return [
@@ -94,41 +94,42 @@ function deniedRequestsForServiceReconfigureRequest (CollectionsApi) {
 
 /** @ngInject */
 function resolveExpiringServices (CollectionsApi, RBAC) {
-  if (!RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
-    return undefined
-  }
-  var currentDate = new Date()
-  var date1 = 'retires_on>' + currentDate.toISOString()
-  var days30 = currentDate.setDate(currentDate.getDate() + 30)
-  var date2 = 'retires_on<' + new Date(days30).toISOString()
-  var options = {hide: 'resources', filter: ['retired=false', date1, date2]}
+  if (RBAC.has('service_view') && RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
+    const currentDate = new Date()
+    const date1 = 'retires_on>' + currentDate.toISOString()
+    const days30 = currentDate.setDate(currentDate.getDate() + 30)
+    const date2 = 'retires_on<' + new Date(days30).toISOString()
+    const options = {hide: 'resources', filter: ['retired=false', date1, date2]}
 
-  return CollectionsApi.query('services', options)
+    return CollectionsApi.query('services', options)
+  }
+
+  return true
 }
 
 /** @ngInject */
 function resolveRetiredServices (CollectionsApi, RBAC) {
-  if (!RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
-    return undefined
-  }
-  var options = {hide: 'resources', filter: ['service_id=nil', 'retired=true']}
+  if (RBAC.has('service_view') && RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
+    const options = {hide: 'resources', filter: ['service_id=nil', 'retired=true']}
 
-  return CollectionsApi.query('services', options)
+    return CollectionsApi.query('services', options)
+  }
+  return true
 }
 
 /** @ngInject */
 function resolveServicesWithDefinedServiceIds (CollectionsApi, RBAC) {
-  if (!RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
-    return undefined
+  if (RBAC.has('service_view') && RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
+    const options = {
+      expand: 'resources',
+      filter: ['service_id=nil'],
+      attributes: ['chargeback_report']
+    }
+
+    return CollectionsApi.query('services', options)
   }
 
-  var options = {
-    expand: 'resources',
-    filter: ['service_id=nil'],
-    attributes: ['chargeback_report']
-  }
-
-  return CollectionsApi.query('services', options)
+  return true
 }
 
 /** @ngInject */
