@@ -1,6 +1,6 @@
 /** @ngInject */
 export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
-                                      EventNotifications, ApplianceInfo, CollectionsApi, RBAC, Language, lodash) {
+                                      EventNotifications, ApplianceInfo, CollectionsApi, RBAC, Language, lodash, Polling) {
   const vm = this
   vm.language = ''
   const destroy = $scope.$on('shoppingCartUpdated', refresh)
@@ -30,10 +30,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     destroyNotifications()
     destroyToast()
     destroy()
-  })
-  $scope.$on('$stateChangeSuccess', function () {
-    clearActiveItems()
-    setActiveItems()
+    Polling.stop('lnavPolling')
   })
 
   activate()
@@ -76,17 +73,19 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       about: about(),
       sites: sites()
     })
-    setupNavigation()
+    vm.items = Navigation.init()
     refresh()
     if (ShoppingCart.allowed()) {
       ShoppingCart.reload()
     }
-    setActiveItems()
+
+    Polling.start('lnavPolling', getNavigation, 500)
   }
-  function setupNavigation () {
-    Navigation.init()
+
+  function getNavigation () {
     vm.items = Navigation.get()
   }
+
   function shoppingCart () {
     return {
       count: 0,
@@ -134,47 +133,6 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       iconClass: 'fa-cogs',
       url: API_BASE
     }]
-  }
-
-  function clearActiveItems () {
-    angular.forEach(vm.items, function (item) {
-      item.isActive = false
-      if (item.children) {
-        angular.forEach(item.children, function (secondary) {
-          secondary.isActive = false
-          if (secondary.children) {
-            secondary.children.forEach(function (tertiary) {
-              tertiary.isActive = false
-            })
-          }
-        })
-      }
-    })
-  }
-
-  function setActiveItems () {
-    angular.forEach(vm.items, function (topLevel) {
-      if ($state.includes(topLevel.state)) {
-        topLevel.isActive = true
-      }
-      if (topLevel.children) {
-        angular.forEach(topLevel.children, function (secondLevel) {
-          if ($state.includes(secondLevel.state)) {
-            secondLevel.isActive = true
-            topLevel.isActive = true
-          }
-          if (secondLevel.children) {
-            angular.forEach(secondLevel.children, function (thirdLevel) {
-              if ($state.includes(thirdLevel.state)) {
-                thirdLevel.isActive = true
-                secondLevel.isActive = true
-                topLevel.isActive = true
-              }
-            })
-          }
-        })
-      }
-    })
   }
 
   function refreshCart () {

@@ -1,9 +1,10 @@
 import appCounterActions from '../actions/appCounters'
 import { APPCOUNTERS } from '../constants/appCounters'
+
 /** @ngInject */
 export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, CollectionsApi) {
   let menuItems = []
-  var service = {
+  const service = {
     get: getNavigation,
     menuItems: menuItems,
     init: initNavigation,
@@ -16,12 +17,18 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
 
   $ngRedux.connect(mapStateToThis, actions)(service)
 
+  Polling.start('badgeCounts', updateBadgeCounts, POLLING_INTERVAL)
+
   return service
+
   function getNavigation () {
-    return menuItems
+    setPermissions()
+
+    return menuItems.filter((item) => item.permissions)
   }
+
   function initNavigation () {
-    const allMenuItems = [
+    menuItems = [
       {
         title: __('Dashboard'),
         state: 'dashboard',
@@ -42,7 +49,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
             tooltip: __('Total services ordered, both active and retired')
           }
         ],
-        permissions: RBAC.has(RBAC.FEATURES.SERVICES.VIEW)
+        permissions: false
       },
       {
         title: __('My Orders'),
@@ -59,7 +66,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
             tooltip: __('Total orders submitted')
           }
         ],
-        permissions: RBAC.has(RBAC.FEATURES.ORDERS.VIEW)
+        permissions: false
       },
       {
         title: __('Service Catalog'),
@@ -76,16 +83,15 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
             tooltip: __('The total number of available catalogs')
           }
         ],
-        permissions: RBAC.has(RBAC.FEATURES.SERVICE_CATALOG.VIEW)
+        permissions: false
       }
     ]
-
-    menuItems = allMenuItems.filter((item) => item.permissions)
+    setPermissions()
     updateBadgeCounts()
-    Polling.start('badgeCounts', updateBadgeCounts, POLLING_INTERVAL)
 
-    return menuItems
+    return menuItems.filter((item) => item.permissions)
   }
+
   function updateBadgeCounts () {
     menuItems.forEach((item) => {
       if (angular.isDefined(item.badges)) {
@@ -110,6 +116,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
       }
     })
   }
+
   function getBadgeCount (field, filter) {
     const options = {
       hide: 'resources',
@@ -122,5 +129,11 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
         resolve(data.subquery_count)
       })
     })
+  }
+
+  function setPermissions () {
+    menuItems[1].permissions = RBAC.has(RBAC.FEATURES.SERVICES.VIEW)
+    menuItems[2].permissions = RBAC.has(RBAC.FEATURES.ORDERS.VIEW)
+    menuItems[3].permissions = RBAC.has(RBAC.FEATURES.SERVICE_CATALOG.VIEW)
   }
 }
