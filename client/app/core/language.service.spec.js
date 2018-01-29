@@ -8,6 +8,7 @@ describe('Language', () => {
           'locale': 'en'
         }
       },
+      'locale': 'en',
       'asynchronous_notifications': true
     },
     'identity': {
@@ -71,7 +72,7 @@ describe('Language', () => {
     it('should allow a locale to be set', () => {
       const locale = Language.setLocale('es')
 
-      expect(locale).to.eq('es')
+      expect(locale).to.eq('es-ES')
     })
     it('should set language on login', () => {
       const selectedLanguage = Language.onLogin(user)
@@ -99,7 +100,7 @@ describe('Language', () => {
       const postData = {
         'action': 'edit',
         'resource': {
-          'settings': {'ui_service': {'display': {'locale': null}}}
+          'settings': {'display': {'locale': null}}
         }
       }
       const saveApiSpy = sinon.spy($http, 'post')

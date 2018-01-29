@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 import languageFile from '../../gettext/json/available_languages.json'
 /** @ngInject */
-export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodash) {
+export function LanguageFactory ($http, $q, $log, $sessionStorage, Session, $window, gettextCatalog, lodash) {
   var availableAvailable = $q.defer()
   var service = {
     available: {
@@ -18,6 +18,7 @@ export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodas
     match: match,
     userHref: null,
     setLocale: setLocale,
+    setLoginLanguage: setLoginLanguage,
     fixState: fixState
   }
 
@@ -55,6 +56,8 @@ export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodas
   function setLocale (code) {
     if (!code || (code === '_browser_')) {
       code = service.match(service.available, service.browser())
+    } else {
+      code = service.match(service.available, code)
     }
     service.chosen.code = code
     gettextCatalog.loadAndSet(code)
@@ -65,9 +68,7 @@ export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodas
   function getLocale (data) {
     return data &&
       data.settings &&
-      data.settings.ui_service &&
-      data.settings.ui_service.display &&
-      data.settings.ui_service.display.locale
+      data.settings.locale
   }
 
   function setUser (data) {
@@ -77,11 +78,18 @@ export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodas
   function onLogin (data) {
     setUser(data)
     var code = 'en'
-    if (!service.chosen.code || (service.chosen.code === '_user_')) {
-      code = getLocale(data)
-    } else {
-      code = service.chosen.code
+    if ($sessionStorage.loginLanguage) {
+      code = $sessionStorage.loginLanguage
+      delete $sessionStorage.loginLanguage
       save(code)
+      Session.updateUserSession({ settings: { locale: code } })
+    } else {
+      if (!service.chosen.code || (service.chosen.code === '_user_')) {
+        code = getLocale(data)
+      } else {
+        code = service.chosen.code
+        save(code)
+      }
     }
     setLocale(code)
 
@@ -90,7 +98,6 @@ export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodas
 
   function onReload (data) {
     setUser(data)
-
     var code = getLocale(data)
     setLocale(code)
 
@@ -100,7 +107,6 @@ export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodas
   function save (code) {
     if (!service.userHref) {
       $log.error('Trying to save language selection without a valid userHref')
-
       return
     }
 
@@ -112,10 +118,8 @@ export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodas
       action: 'edit',
       resource: {
         settings: {
-          ui_service: {
-            display: {
-              locale: code
-            }
+          display: {
+            locale: code
           }
         }
       }
@@ -124,21 +128,22 @@ export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodas
 
   // returns the best match from available
   function match (available, requested) {
-    var shorten = function (str) {
-      return {
-        orig: str,
-        short: str.replace(/[-_].*$/, '')
-      }
-    }
+    var shorten = str => ({
+      orig: str,
+      short: str.replace(/[-_].*$/, '')
+    })
 
-    var short = {
+    const short = {
       available: lodash.keys(available).map(shorten),
-      requested: requested.map(shorten)
+      requested: []
     }
-
+    if (lodash.isArray(requested)) {
+      short.requested = requested.map(shorten)
+    } else {
+      short.requested.push(shorten(requested))
+    }
     for (var k in short.requested) {
       var r = short.requested[k]
-
       var match = lodash.find(short.available, function (a) {
         // try exact match first
         return a.orig.toLowerCase() === r.orig.toLowerCase()
@@ -153,6 +158,12 @@ export function LanguageFactory ($http, $q, $log, $window, gettextCatalog, lodas
     }
 
     return 'en'
+  }
+
+  function setLoginLanguage (code) {
+    const languageCode = service.match(service.available, code)
+    $sessionStorage.loginLanguage = languageCode
+    service.setLocale(code)
   }
 
   function fixState (state, toolbarConfig) {
