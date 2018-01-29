@@ -89,16 +89,19 @@ li
 
 .language-switcher
   a
-    padding: 1px 10px
-    line-height: 1.6667
-    display: block
     clear: both
     color: $color-gray-4
+    display: block
+    line-height: 1.6667
+    padding: 1px 10px
+
     &:hover
       text-decoration: none
-    &:after
-      float: right
+
+    &::after
       display: inline
+      float: right
       position: inherit
+
   .dropdown-menu
     top: -22px
