@@ -22,7 +22,6 @@ import { DialogFieldRefreshFactory } from './dialog-field-refresh.service.js'
 import { EventNotificationsFactory } from './event-notifications.service.js'
 import { ExceptionModule } from './exception/exception.module.js'
 import { LanguageFactory } from './language.service.js'
-import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component.js'
 import { ListConfigurationFactory } from './list-configuration.service.js'
 import { ListViewFactory } from './list-view.service.js'
 import { NavigationController } from './navigation/navigation-controller.js'
@@ -74,7 +73,6 @@ export const CoreModule = angular
   .controller('BaseModalController', BaseModalController)
   .controller('NavigationController', NavigationController)
   .component('shoppingCart', ShoppingCartComponent)
-  .component('languageSwitcher', LanguageSwitcherComponent)
   .factory('ApplianceInfo', ApplianceInfo)
   .factory('AuthenticationApi', AuthenticationApiFactory)
   .factory('Chargeback', ChargebackFactory)
