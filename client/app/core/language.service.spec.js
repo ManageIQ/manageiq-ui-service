@@ -8,6 +8,9 @@ describe('Language', () => {
           'locale': 'en'
         }
       },
+      'display':{
+        'local': 'en'
+      },
       'locale': 'en',
       'asynchronous_notifications': true
     },

@@ -39,15 +39,17 @@ function LanguageSwitcherController (Language, lodash, $state, Session) {
       })
   }
   function switchLanguage (input) {
+    const languageCode = input.value || input
+
     if (vm.mode === 'select') {
-      Language.setLoginLanguage(input.value)
+      Language.setLoginLanguage(languageCode)
     } else {
-      Language.setLocale(input.value || input)
+      Language.setLocale(languageCode)
     }
 
-    if (!input.value) {
-      Language.save(input).then((response) => {
-        Session.updateUserSession({ settings: { ui_service: { display: { locale: response.data.settings.ui_service.display.locale } } } })
+    if (vm.mode === 'menu') {
+      Language.save(languageCode).then((response) => {
+        Session.updateUserSession({ settings: { locale: response.data.settings.display.locale } })
       })
       $state.reload()
     }
