@@ -1,10 +1,10 @@
-/* global $componentController */
+/* global $componentController, Language */
 /* eslint-disable no-unused-expressions */
 describe('Component: languageSwitcher ', function () {
   let ctrl
   let languageSpy
 
-  context('Language switch select list', () => {
+  describe('Language switch select list', () => {
     beforeEach(function () {
       module('app.core', 'app.shared')
       bard.inject('$componentController', 'Language')
@@ -32,7 +32,7 @@ describe('Component: languageSwitcher ', function () {
       expect(languageSpy).to.have.been.calledWith('fr')
     })
   })
-  context('Language switch Menu', () => {
+  describe('Language switch Menu', () => {
     beforeEach(function () {
       module('app.core', 'app.shared')
       bard.inject('$componentController', 'Language')
@@ -42,7 +42,7 @@ describe('Component: languageSwitcher ', function () {
       })
       languageSpy = sinon.stub(Language, 'ready').returns((Promise.resolve([])))
     })
-    
+
     it('allows for a language to be changed via menu', (done) => {
       languageSpy = sinon.stub(Language, 'save').returns((Promise.resolve('success')))
       ctrl.switchLanguage('fr')

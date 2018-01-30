@@ -8,7 +8,7 @@ describe('Language', () => {
           'locale': 'en'
         }
       },
-      'display':{
+      'display': {
         'local': 'en'
       },
       'locale': 'en',
