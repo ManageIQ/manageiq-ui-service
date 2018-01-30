@@ -1,7 +1,7 @@
 <div class="container-fluid container-cards-pf ss-dashboard">
   <div class="row row-cards-pf">
-    <div class="col-xs-6 col-sm-6 col-md-6">
-      <div ng-if="!vm.loadServicesFailure" class="card-pf card-pf-accented ss-dashboard__card-primary" ui-sref="services">
+    <div class="col-xs-6 col-sm-6 col-md-6"  ng-if="!vm.loadServicesFailure">
+      <div class="card-pf card-pf-accented ss-dashboard__card-primary" ui-sref="services">
         <div class="card-pf-body">
           <span class="fa fa-file-o"></span>
           <div class="ss-dashboard__card-primary__count">
@@ -19,8 +19,8 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-6 col-sm-6 col-md-6">
-      <div ng-if="!vm.loadRequestsFailure" class="card-pf card-pf-accented ss-dashboard__card-primary total-requests">
+    <div class="col-xs-6 col-sm-6 col-md-6" ng-if="!vm.loadRequestsFailure" >
+      <div class="card-pf card-pf-accented ss-dashboard__card-primary total-requests">
         <div class="card-pf-body">
           <span class="fa fa-file-text-o"></span>
           <div class="ss-dashboard__card-primary__count">
@@ -40,7 +40,7 @@
     </div>
   </div>
   <div class="row row-cards-pf">
-    <div class="col-xs-6 col-sm-6 col-md-6">
+    <div ng-if="!vm.loadServicesFailure"  class="col-xs-6 col-sm-6 col-md-6">
       <div ng-if="vm.loadServices" class="card-pf">
         <div class="row row-cards-pf">
           <div class="card-pf card-pf-aggregate-status card-divider">
@@ -116,7 +116,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-6 col-sm-6 col-md-6">
+    <div ng-if="!vm.loadRequestsFailure" class="col-xs-6 col-sm-6 col-md-6">
       <div ng-if="vm.loadRequests" class="card-pf">
         <div class="row row-cards-pf">
           <div class="card-pf card-pf-aggregate-status card-divider">
