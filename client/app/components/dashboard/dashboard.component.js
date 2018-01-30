@@ -22,8 +22,10 @@ function ComponentController ($state, DashboardService, EventNotifications, loda
     }
 
     angular.extend(vm, {
-      requestsFeature: false,
-      servicesFeature: false,
+      loadRequests: false,
+      loadServices: false,
+      loadRequestsFailure: false,
+      loadServicesFailure: false,
       servicesCount: {
         total: 0,
         current: 0,
@@ -95,7 +97,9 @@ function ComponentController ($state, DashboardService, EventNotifications, loda
       vm.chargeback = {
         'used_cost_sum': lodash(services).map('chargeback').map('used_cost_sum').values().sum()
       }
-      vm.servicesFeature = true
+      vm.loadServices = true
+    }).catch((response) => {
+      vm.loadServicesFailure = true
     })
   }
 
@@ -107,7 +111,9 @@ function ComponentController ($state, DashboardService, EventNotifications, loda
       vm.requestsCount.approved = response[2].subcount + response[3].subcount
       vm.requestsCount.denied = response[5].subcount + response[4].subcount
       vm.requestsCount.total = vm.requestsCount.pending + vm.requestsCount.approved + vm.requestsCount.denied
-      vm.requestsFeature = true
+      vm.loadRequests = true
+    }).catch((response) => {
+      vm.loadRequestsFailure = true
     })
   }
 
