@@ -83,6 +83,10 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
   }
 
   function getNavigation () {
+    if (!RBAC.suiAuthorized()) {
+      Session.privilegesError = true
+      $state.go('logout')
+    }
     vm.items = Navigation.get()
   }
 
