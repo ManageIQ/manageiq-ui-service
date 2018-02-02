@@ -1,9 +1,17 @@
 /** @ngInject */
 export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
-                                      EventNotifications, ApplianceInfo, CollectionsApi, RBAC) {
+                                      EventNotifications, ApplianceInfo, CollectionsApi, RBAC, Language, lodash) {
   const vm = this
+  vm.language = ''
   const destroy = $scope.$on('shoppingCartUpdated', refresh)
   const destroyCart = $scope.$on('shoppingCartUpdated', refreshCart)
+  vm.$doCheck = () => {
+    const currentLanguage = Language.chosen.code
+    if (!lodash.isEqual(vm.language, currentLanguage)) {
+      vm.language = lodash.cloneDeep(currentLanguage)
+      setupNavigation()
+    }
+  }
   const destroyNotifications = $scope.$watch(
     function () {
       return EventNotifications.state().groups
@@ -15,6 +23,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     },
     refreshToast, true)
   const applianceInfo = ApplianceInfo.get()
+  vm.language = Language.chosen.code
 
   $scope.$on('destroy', function () {
     destroyCart()

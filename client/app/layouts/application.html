@@ -96,9 +96,9 @@
               </a>
             </li>
             <!-- /Group switcher -->
-
-            <li ng-if="vm.permissions.suiLanguage" class="dropdown-submenu pull-left" language-switcher></li>
-
+            <li>
+              <language-switcher ng-if="vm.permissions.suiLanguage"></language-switcher>
+            </li>
             <li class="action divider"></li>
 
             <li class="action"><a ui-sref="logout" translate>Logout</a></li>

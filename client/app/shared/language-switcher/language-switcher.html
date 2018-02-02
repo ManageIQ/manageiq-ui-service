@@ -1,0 +1,16 @@
+<span ng-if="vm.mode === 'menu'" class="dropdown-submenu pull-left language-switcher">
+  <a href="#" class="switch-language-link">
+    <span translate>
+      Switch Language:
+    </span>
+  </a>
+  <ul uib-dropdown-menu class="scrollable-menu">
+    <li ng-repeat="item in vm.available">
+      <a href="#" ng-click="vm.switchLanguage(item.value)">
+        {{item.label}}
+      </a>
+    </li>
+  </ul>
+</span>
+<pf-select class="login-dropdown" ng-if="vm.mode === 'select'" on-select="vm.switchLanguage" selected="vm.chosen"
+           options="vm.available" display-field="label"></pf-select>

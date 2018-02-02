@@ -1,0 +1,27 @@
+@import 'colors'
+
+.login-dropdown
+  .dropdown-menu
+    height: 180px
+    overflow-y: scroll
+
+.language-switcher
+  a
+    clear: both
+    color: $color-gray-4
+    display: block
+    line-height: 1.6667
+    padding: 1px 10px
+
+    &:hover
+      text-decoration: none
+
+  ul
+    &.scrollable-menu
+      top: -22px
+
+  .switch-language-link
+    &::after
+      display: inline
+      float: right
+      position: inherit
