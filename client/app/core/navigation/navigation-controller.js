@@ -1,6 +1,6 @@
 /** @ngInject */
 export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
-                                      EventNotifications, ApplianceInfo, CollectionsApi, RBAC, Language, lodash, Polling) {
+                                      EventNotifications, ApplianceInfo, CollectionsApi, RBAC, Language, lodash) {
   const vm = this
   vm.language = ''
   const destroy = $scope.$on('shoppingCartUpdated', refresh)
@@ -10,6 +10,14 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     if (!lodash.isEqual(vm.language, currentLanguage)) {
       vm.language = lodash.cloneDeep(currentLanguage)
       vm.items = Navigation.init()
+    }
+
+    if (!lodash.isEqual(vm.items, Navigation.get())) {
+      if (!RBAC.suiAuthorized()) {
+        Session.privilegesError = true
+        $state.go('logout')
+      }
+      vm.items = Navigation.get()
     }
   }
   const destroyNotifications = $scope.$watch(
@@ -30,7 +38,6 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     destroyNotifications()
     destroyToast()
     destroy()
-    Polling.stop('lnavPolling')
   })
 
   activate()
@@ -78,16 +85,6 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     if (ShoppingCart.allowed()) {
       ShoppingCart.reload()
     }
-
-    Polling.start('lnavPolling', getNavigation, 500)
-  }
-
-  function getNavigation () {
-    if (!RBAC.suiAuthorized()) {
-      Session.privilegesError = true
-      $state.go('logout')
-    }
-    vm.items = Navigation.get()
   }
 
   function shoppingCart () {
