@@ -9,7 +9,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     const currentLanguage = Language.chosen.code
     if (!lodash.isEqual(vm.language, currentLanguage)) {
       vm.language = lodash.cloneDeep(currentLanguage)
-      setupNavigation()
+      vm.items = Navigation.init()
     }
   }
   const destroyNotifications = $scope.$watch(
