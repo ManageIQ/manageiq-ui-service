@@ -72,7 +72,7 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
         if (!serviceTemplateId) {
           serviceTemplateId = serviceRequest.source_id
         }
-        var options = { attributes: ['picture', 'picture.image_href'] }
+        var options = { expand: 'resources', attributes: ['picture', 'resource_actions', 'picture.image_href'] }
         CollectionsApi.get('service_templates', serviceTemplateId, options).then((data) => {
           resolve(data)
         })
@@ -111,7 +111,20 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
  * @returns {Promise}
  */
   function refreshField (field) {
-    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], vm.dialogUrl, vm.serviceTemplate.id)
+    const resourceActions = vm.serviceTemplate.resource_actions
+    let resourceActionId = ''
+    if (resourceActions.length > 0 && resourceActions[0].action === 'Provision') {
+      resourceActionId = resourceActions[0].id
+    }
+
+    let idList = {
+      dialogId: vm.parsedDialogs.id,
+      resourceActionId: resourceActionId,
+      targetId: vm.serviceTemplate.id,
+      targetType: 'service_template'
+    }
+
+    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], `${vm.dialogUrl}/${vm.serviceTemplate.id}`, idList)
   }
   /**
    * Stores resulting data output from a dialog
