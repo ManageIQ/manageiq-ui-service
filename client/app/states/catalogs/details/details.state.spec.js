@@ -72,13 +72,13 @@ describe('State: catalogs.details', () => {
           dialogId: 1234,
           resourceActionId: 1234,
           targetId: 123,
-          targetType: "service_template"
+          targetType: 'service_template'
         }
         controller.dialogData = dialogData
         controller.parsedDialogs = {
           id: 1234
         }
-        
+
         controller.refreshField(field).then((data) => {
           done()
         })

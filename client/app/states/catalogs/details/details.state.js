@@ -103,9 +103,9 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
   }
 
   init()
-  function setDialogUrl(serviceTemplateCatalogId) {
+  function setDialogUrl (serviceTemplateCatalogId) {
     vm.dialogUrl = `service_catalogs/${serviceTemplateCatalogId}/service_templates`
-    
+
     return vm.dialogUrl
   }
   /**
