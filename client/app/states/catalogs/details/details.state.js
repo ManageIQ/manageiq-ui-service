@@ -42,7 +42,8 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
     vm.refreshField = refreshField
     vm.setDialogData = setDialogData
     vm.dialogData = {}
-
+    vm.dialogUrl = ''
+    vm.setDialogUrl = setDialogUrl
     const serviceRequestPromise = () => {
       return new Promise((resolve, reject) => {
         if ($stateParams.serviceRequestId) {
@@ -95,15 +96,18 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
             vm.parsedDialogs = dialogs.resources[0].content
           }
         }
-
-        vm.dialogUrl = `service_catalogs/${vm.serviceTemplate.service_template_catalog_id}/service_templates`
+        setDialogUrl(vm.serviceTemplate.service_template_catalog_id)
         vm.loading = false
       })
     })
   }
 
   init()
-
+  function setDialogUrl(serviceTemplateCatalogId) {
+    vm.dialogUrl = `service_catalogs/${serviceTemplateCatalogId}/service_templates`
+    
+    return vm.dialogUrl
+  }
   /**
  * This function triggers a refresh of a single dialog field
  * @function refreshField
@@ -123,8 +127,8 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
       targetId: vm.serviceTemplate.id,
       targetType: 'service_template'
     }
-
-    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], `${vm.dialogUrl}/${vm.serviceTemplate.id}`, idList)
+    const url = `${vm.dialogUrl}/${vm.serviceTemplate.id}`
+    return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], url, idList)
   }
   /**
    * Stores resulting data output from a dialog

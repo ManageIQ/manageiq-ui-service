@@ -36,7 +36,17 @@ describe('State: catalogs.details', () => {
       }]
     }
 
-    const serviceTemplate = {id: 123, service_template_catalog_id: 321, name: 'test template'}
+    const serviceTemplate = {
+      id: 123,
+      service_template_catalog_id: 321,
+      name: 'test template',
+      resource_actions: [
+        {
+          action: 'Provision',
+          id: 1234
+        }
+      ]
+    }
 
     beforeEach(() => {
       bard.inject('$controller', '$log', '$state', '$stateParams', '$rootScope', 'EventNotifications', 'DialogFieldRefresh', 'ShoppingCart')
@@ -51,17 +61,29 @@ describe('State: catalogs.details', () => {
       it('it allows a field to be refreshed', (done) => {
         controller = $controller($state.get('catalogs.details').controller)
         controller.serviceTemplate = serviceTemplate
+        controller.setDialogUrl(serviceTemplate.service_template_catalog_id)
         const refreshSpy = sinon.stub(DialogFieldRefresh, 'refreshDialogField').returns(Promise.resolve({'status': 'success'}))
         const dialogData = {
           'dialogField1': '1',
           'dialogField2': '2'
         }
         const field = {'name': 'dialogField1'}
+        const idList = {
+          dialogId: 1234,
+          resourceActionId: 1234,
+          targetId: 123,
+          targetType: "service_template"
+        }
         controller.dialogData = dialogData
+        controller.parsedDialogs = {
+          id: 1234
+        }
+        
         controller.refreshField(field).then((data) => {
           done()
-          expect(refreshSpy).to.have.been.calledWith(dialogData, ['dialogField1'], 'service_catalogs/321/service_templates', 123)
         })
+        const url = `service_catalogs/${serviceTemplate.service_template_catalog_id}/service_templates/${serviceTemplate.id}`
+        expect(refreshSpy).to.have.been.calledWith(dialogData, ['dialogField1'], url, idList)
       })
       it('allows dialog data to be updated', () => {
         const testData = {
