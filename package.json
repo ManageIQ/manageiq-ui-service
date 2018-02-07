@@ -39,7 +39,7 @@
     "@angular/platform-browser-dynamic": "5.1.3",
     "@angular/upgrade": "5.1.3",
     "@manageiq/font-fabulous": "1.0.0",
-    "@manageiq/ui-components": "1.0.8",
+    "@manageiq/ui-components": "1.0.9",
     "@uirouter/angularjs": "1.0.12",
     "actioncable": "5.1.4",
     "angular": "1.6.8",
