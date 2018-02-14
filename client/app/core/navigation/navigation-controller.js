@@ -1,5 +1,5 @@
 /** @ngInject */
-export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state, $timeout,
+export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
                                       EventNotifications, ApplianceInfo, CollectionsApi, RBAC, Language, lodash) {
   const vm = this
   vm.language = ''
@@ -18,6 +18,12 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
         $state.go('logout')
       }
       vm.items = Navigation.get()
+    }
+
+    if ($state.name === undefined) { // This occurs when you refresh the browser
+      vm.items.map((item) => {
+        item.isActive = $state.includes(item.state)
+      })
     }
   }
   const destroyNotifications = $scope.$watch(
@@ -82,26 +88,11 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     })
     vm.items = Navigation.init()
     refresh()
-    setMenuItemActive()
     if (ShoppingCart.allowed()) {
       ShoppingCart.reload()
     }
-    $scope.$on('$stateChangeSuccess', () => {
-      setMenuItemActive()
-    })
   }
-  function setMenuItemActive () {
-    if ($state.name === undefined) { // This occurs when you refresh the browser
-      $timeout(setMenuItemActive, 500)
-    }
-    vm.items.map((item) => {
-      if ($state.includes(item.state)) {
-        item.isActive = true
-      } else {
-        item.isActive = false
-      }
-    })
-  }
+
   function shoppingCart () {
     return {
       count: 0,
