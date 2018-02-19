@@ -1,4 +1,5 @@
 /* eslint-disable angular/window-service */
+import * as numeral from 'numeral'
 
 // The webpack entrypoint
 function requireAll (context) {
@@ -13,6 +14,7 @@ window.sprintf = require('sprintf-js').sprintf
 window.c3 = require('c3/c3.js')
 window.d3 = require('d3/d3.js')
 window.patternflyVersion = 4
+window['numeral'] = numeral
 // Vendor libraries, order matters
 require('jquery-ui-bundle')
 require('moment-timezone')
