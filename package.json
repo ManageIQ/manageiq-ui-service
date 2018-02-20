@@ -99,6 +99,7 @@
     "ngtemplate-loader": "2.0.1",
     "noVNC": "kanaka/noVNC#0.6.2",
     "node-sass": "4.7.2",
+    "numeral": "2.0.6",
     "optimize-css-assets-webpack-plugin": "3.2.0",
     "patternfly": "3.35.1",
     "patternfly-timeline": "patternfly/patternfly-timeline#master-dist",
