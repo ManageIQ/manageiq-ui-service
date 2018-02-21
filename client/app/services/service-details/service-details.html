@@ -258,7 +258,7 @@
                                     </div>
                                 </div>
                                 <div ng-if="!item.retired " class="list-view-pf-actions">
-                                    <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body
                                          ng-if="$ctrl.customScope.permissions.vm_snapshot_add || $ctrl.customScope.permissions.viewSnapshots">
                                         <button type="button" class="btn btn-default" uib-dropdown-toggle
                                                 type="button">
@@ -277,7 +277,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="btn-group dropdown-kebab-pf" uib-dropdown dropdown-append-to-body
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body
                                          ng-if="($ctrl.customScope.permissions.cockpit || $ctrl.customScope.permissions.console)
                                             && (item.supported_consoles.vnc.visible || item.supported_consoles.vnc.message
                                             || item.supported_consoles.cockpit.visible || item.supported_consoles.cockpit.message)">                                        <button type="button" class="btn btn-default" uib-dropdown-toggle
