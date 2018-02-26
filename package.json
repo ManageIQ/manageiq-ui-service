@@ -99,7 +99,7 @@
     "numeral": "2.0.6",
     "optimize-css-assets-webpack-plugin": "3.2.0",
     "patternfly": "3.39.0",
-    "patternfly-timeline": "patternfly/patternfly-timeline#master",
+    "patternfly-timeline": "patternfly/patternfly-timeline#master-dist",
     "popper.js": "1.12.9",
     "postcss-loader": "2.1.0",
     "q": "1.5.1",
