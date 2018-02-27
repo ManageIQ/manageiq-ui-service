@@ -1,10 +1,13 @@
-/* global EventNotifications, CollectionsApi */
+/* global readJSON, RBAC, EventNotifications, CollectionsApi */
 /* eslint-disable no-unused-expressions */
 describe('Event Notifications Service', () => {
+  const permissions = readJSON('tests/mock/rbac/allPermissions.json')
+
   beforeEach(() => {
     module('app.core')
-    bard.inject('CollectionsApi', 'EventNotifications')
+    bard.inject('CollectionsApi', 'EventNotifications', 'RBAC')
     EventNotifications.setToastDisplay(true)
+    RBAC.set(permissions)
   })
   const successResponse = {}
   it('should allow a batch of notifications to be added', () => {
