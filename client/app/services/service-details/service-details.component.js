@@ -147,7 +147,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
     const groups = actions.button_groups || []
     const buttons = [].concat(actions.buttons, ...groups.map((g) => g.buttons))
 
-    return lodash.compact(buttons).length > 0
+    return lodash.compact(buttons).length
   }
 
   function getListActions () {
