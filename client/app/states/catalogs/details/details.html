@@ -2,7 +2,7 @@
   <span>
       <ol class="breadcrumb">
         <li>
-          <a ui-sref="catalogs">{{'Service Catalogs'|translate}}</a>
+          <a ui-sref="{{ vm.breadcrumb.url }}">{{ vm.breadcrumb.title }}</a>
         </li>
         <li class="active">{{ ::vm.serviceTemplate.name }}</li>
       </ol>

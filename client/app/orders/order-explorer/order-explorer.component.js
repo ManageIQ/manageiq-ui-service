@@ -263,7 +263,7 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
   function duplicateOrder (item) {
     ShoppingCart.reset()
     ShoppingCart.delete()
-    $state.go('catalogs.duplicate', {serviceRequestId: item.id})
+    $state.go('orders.duplicate', {serviceRequestId: item.id})
   }
 
   function removeOrder (_action, item) {
