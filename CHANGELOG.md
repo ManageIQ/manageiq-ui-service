@@ -5,7 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Gaprindashvili-1
+## Gaprindashvili-2
+
+### Fixed
+- Refactors dashboard state resolve to return true on failed query [(#1372)](https://github.com/ManageIQ/manageiq-ui-service/pull/1372)
+- Refactors dashboard state to a component [(#1373)](https://github.com/ManageIQ/manageiq-ui-service/pull/1373)
+- Fixed dialog field dynamic refresh [(#1380)](https://github.com/ManageIQ/manageiq-ui-service/pull/1380)
+- Create global variable for version of Patternfly [(#1379)](https://github.com/ManageIQ/manageiq-ui-service/pull/1379)
+- Updated UI components version to remedy dialog select issue [(#1383)](https://github.com/ManageIQ/manageiq-ui-service/pull/1383)
+- Pass additional information to the API when refreshing a dialog field [(#1324)](https://github.com/ManageIQ/manageiq-ui-service/pull/1324)
+
+## Gaprindashvili-1 - Released 2018-02-01
 
 ### Added
 - Added ability to hide toasts based on RBAC [(#1053)](https://github.com/ManageIQ/manageiq-ui-service/pull/1053)
