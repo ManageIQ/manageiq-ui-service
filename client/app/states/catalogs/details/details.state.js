@@ -15,7 +15,7 @@ function getStates () {
       controllerAs: 'vm',
       title: __('Service Template Details')
     },
-    'catalogs.duplicate': {
+    'orders.duplicate': {
       url: '/duplicate/:serviceRequestId',
       templateUrl,
       controller: Controller,
@@ -44,9 +44,18 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
     vm.dialogData = {}
     vm.dialogUrl = ''
     vm.setDialogUrl = setDialogUrl
+    vm.breadcrumb = {
+      'url': 'catalogs',
+      'title': __('Service Catalogs')
+    }
+
     const serviceRequestPromise = () => {
       return new Promise((resolve, reject) => {
         if ($stateParams.serviceRequestId) {
+          vm.breadcrumb = {
+            'url': 'orders',
+            'title': __('My Orders')
+          }
           CollectionsApi.get('requests', $stateParams.serviceRequestId, {}).then((data) => { resolve(data) })
         } else {
           resolve(false)

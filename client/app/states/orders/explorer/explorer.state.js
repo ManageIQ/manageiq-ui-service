@@ -8,7 +8,7 @@ function getStates (RBAC) {
     'orders.explorer': {
       url: '',
       template: '<order-explorer></order-explorer>',
-      title: __('Orders'),
+      title: __('My Orders'),
       data: {
         authorization: RBAC.hasAny(['miq_request_show', 'miq_request_show_list'])
       }
