@@ -26,8 +26,10 @@
             {{buttonGroup.name}}
           </span>
       </a>
-      <ul uib-dropdown-menu class="scrollable-menu">
-        <li ng-repeat="button in buttonGroup.buttons">
+      <ul uib-dropdown-menu class="dropdown-menu scrollable-menu">
+        <li
+          class="menuitem"
+          ng-repeat="button in buttonGroup.buttons">
           <a class="custom-button-action"
              ng-class="{'disabled': !button.enabled}"
              ng-click="vm.invokeCustomAction(button)"
