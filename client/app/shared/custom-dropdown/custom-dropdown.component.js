@@ -22,7 +22,7 @@ function ComponentController() {
     vm.menuRight = vm.menuRight && (vm.menuRight === 'true' || vm.menuRight === true);
     angular.extend(vm, {
       handleAction: handleAction,
-      isOpen: false
+      isOpen: false,
     });
   };
 
