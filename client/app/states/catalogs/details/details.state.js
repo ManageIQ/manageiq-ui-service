@@ -1,4 +1,5 @@
 /* eslint-disable arrow-body-style */
+/* eslint camelcase: "off" */
 import templateUrl from './details.html';
 
 /** @ngInject */
@@ -80,9 +81,11 @@ function Controller($stateParams, CollectionsApi, EventNotifications, DialogFiel
         vm.dialogUrl = `service_catalogs/${vm.serviceTemplate.service_template_catalog_id}/service_templates`;
         if (dialogs.subcount > 0) {
           DialogFieldRefresh.setupDialogData(vm.dialogs, allDialogFields, autoRefreshableDialogFields);
-                   
           angular.forEach(allDialogFields, function (dialogField) {
-            dialogField.refreshSingleDialogField = function () {
+            dialogField.refreshSingleDialogField = function (button) {
+              if (button && !dialogField.load_values_on_init) {
+                dialogField.load_values_on_init = true;
+              }
               DialogFieldRefresh.refreshSingleDialogField(allDialogFields, dialogField, vm.dialogUrl, vm.serviceTemplate.id);
             };
           });

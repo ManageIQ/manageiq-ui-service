@@ -26,7 +26,11 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications, Au
     function refreshFailure(result) {
       EventNotifications.error('There was an error refreshing this dialog: ' + result);
     }
+    if (!dialogField.load_values_on_init) {
+      dialogField.beingRefreshed = false;
 
+      return;
+    }
     dialogField.beingRefreshed = true;
 
     return fetchDialogFieldInfo(allDialogFields, [dialogField.name], url, resourceId, refreshSuccess, refreshFailure);
@@ -59,8 +63,8 @@ export function DialogFieldRefreshFactory(CollectionsApi, EventNotifications, Au
       angular.forEach(dialog.dialog_tabs, function(dialogTab) {
         angular.forEach(dialogTab.dialog_groups, function(dialogGroup) {
           angular.forEach(dialogGroup.dialog_fields, function(dialogField) {
+            dialogField.load_values_on_init = (angular.isDefined(dialogField.load_values_on_init) ? dialogField.load_values_on_init :  true);
             allDialogFields.push(dialogField);
-
             selectDefaultValue(dialogField, dialogField);
 
             if (dialogField.auto_refresh === true || dialogField.trigger_auto_refresh === true) {
