@@ -34,6 +34,8 @@ require('@uirouter/angularjs/release/stateEvents')
 require('ngstorage')
 
 // Libraries: ui-components
+require('bootstrap')
+require('bootstrap-select')
 require('bootstrap-datepicker')
 require('angular-bootstrap-switch')
 require('angular-ui-sortable')
