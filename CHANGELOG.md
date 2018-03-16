@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 81 ending 2018-03-12
+
+### Fixed
+- custom-button-menu component styling remains consistent [(#1395)](https://github.com/ManageIQ/manageiq-ui-service/pull/1395)
+- Ensures service details custom buttons collapse to kebab when > 3 [(#1394)](https://github.com/ManageIQ/manageiq-ui-service/pull/1394)
+- Moved action button to the bottom of the form [(#1384)](https://github.com/ManageIQ/manageiq-ui-service/pull/1384)
+
+## Gaprindashvili-2 released 2018-03-06
+
+### Fixed
+- Refactors dashboard state resolve to return true on failed query [(#1372)](https://github.com/ManageIQ/manageiq-ui-service/pull/1372)
+- Refactors dashboard state to a component [(#1373)](https://github.com/ManageIQ/manageiq-ui-service/pull/1373)
+- Fixed dialog field dynamic refresh [(#1380)](https://github.com/ManageIQ/manageiq-ui-service/pull/1380)
+- Create global variable for version of Patternfly [(#1379)](https://github.com/ManageIQ/manageiq-ui-service/pull/1379)
+- Updated UI components version to remedy dialog select issue [(#1383)](https://github.com/ManageIQ/manageiq-ui-service/pull/1383)
+- Pass additional information to the API when refreshing a dialog field [(#1324)](https://github.com/ManageIQ/manageiq-ui-service/pull/1324)
+
 ## Unreleased as of Sprint 80 ending 2018-02-26
 
 ### Fixed
