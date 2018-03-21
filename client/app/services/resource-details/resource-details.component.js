@@ -231,7 +231,7 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
       })
 
       vm.diskUsage = response.disks.map((item) => {
-        const totalSize = item.size || response.allocated_disk_storage || 0
+        const totalSize = item.size || 0
         const used = item.size_on_disk || 0
 
         return Object.assign(
