@@ -19,7 +19,7 @@ export function AuthenticationApiFactory ($http, API_BASE, Session, Notification
     return new Promise((resolve, reject) => {
       $http.get(API_BASE + '/api/auth?requester_type=ui', {
         headers: {
-          'Authorization': 'Basic ' + $base64.encode([userLogin, password].join(':')),
+          'Authorization': 'Basic ' + base64encode([userLogin, password].join(':')),
           'X-Auth-Token': undefined
         }
       }).then(loginSuccess, loginFailure)
