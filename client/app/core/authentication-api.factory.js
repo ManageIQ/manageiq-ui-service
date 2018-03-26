@@ -1,3 +1,12 @@
+import base64js from 'base64-js'
+import TextEncoderLite from 'text-encoder-lite'
+
+// utf8-capable window.btoa
+function base64encode (str, encoding = 'utf-8') {
+  let bytes = new (TextEncoder || TextEncoderLite)(encoding).encode(str)
+  return base64js.fromByteArray(bytes)
+}
+
 /** @ngInject */
 export function AuthenticationApiFactory ($http, API_BASE, Session, Notifications) {
   var service = {
