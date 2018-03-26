@@ -44,7 +44,6 @@
     "actioncable": "5.1.5",
     "angular": "1.6.9",
     "angular-animate": "1.6.9",
-    "angular-base64": "2.0.5",
     "angular-bootstrap-switch": "0.5.2",
     "angular-cookies": "1.6.9",
     "angular-drag-and-drop-lists": "2.1.0",

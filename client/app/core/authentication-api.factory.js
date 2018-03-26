@@ -1,5 +1,5 @@
 /** @ngInject */
-export function AuthenticationApiFactory ($http, $base64, API_BASE, Session, Notifications) {
+export function AuthenticationApiFactory ($http, API_BASE, Session, Notifications) {
   var service = {
     login: login
   }
