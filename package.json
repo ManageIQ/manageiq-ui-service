@@ -112,7 +112,7 @@
     "sprintf-js": "1.1.1",
     "standard-loader": "6.0.1",
     "style-loader": "0.20.2",
-    "text-encoder-lite": "1.0.1",
+    "text-encoder-lite": "git://github.com/coolaj86/TextEncoderLite.git#e1e031b",
     "ts-loader": "3.5.0",
     "typescript": "2.7.2",
     "ui-select": "0.19.8",
