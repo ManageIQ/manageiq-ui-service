@@ -9304,9 +9304,9 @@ test-exclude@^4.1.1:
     read-pkg-up "^1.0.1"
     require-main-filename "^1.0.1"
 
-"text-encoder-lite@git://github.com/coolaj86/TextEncoderLite.git#e1e031b":
+text-encoder-lite@coolaj86/TextEncoderLite#e1e031b:
   version "1.0.2"
-  resolved "git://github.com/coolaj86/TextEncoderLite.git#e1e031b4a7fb89c35629340a61a06ec4f50ce7cb"
+  resolved "https://codeload.github.com/coolaj86/TextEncoderLite/tar.gz/e1e031b4a7fb89c35629340a61a06ec4f50ce7cb"
 
 text-encoding@^0.6.4:
   version "0.6.4"
