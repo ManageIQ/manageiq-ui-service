@@ -52,7 +52,6 @@ import { TaggingService } from './tagging.service.js';
 
 export const CoreModule = angular
   .module('app.core', [
-    'base64',
     'gettext',
     'miqStaticAssets',
     'ngAnimate',
