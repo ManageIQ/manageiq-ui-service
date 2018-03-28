@@ -44,7 +44,6 @@ import 'ng-redux'
 
 export const CoreModule = angular
   .module('app.core', [
-    'base64',
     'gettext',
     'miqStaticAssets',
     'ngAnimate',
