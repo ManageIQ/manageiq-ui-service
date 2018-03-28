@@ -211,12 +211,6 @@ angular-animate@1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.6.tgz#6925647b141a040d241bf125040f1a150fcd8a70"
 
-angular-base64@2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/angular-base64/-/angular-base64-2.0.5.tgz#13255562ad1c8e8ca09b9c4b1f4ef966ac4cd093"
-  dependencies:
-    angular ">= 1.0.8"
-
 angular-bootstrap-switch@0.5.2, angular-bootstrap-switch@^0.5.1:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/angular-bootstrap-switch/-/angular-bootstrap-switch-0.5.2.tgz#9469b7fc23bcb958d280edbf81692dfd1c6a9397"
@@ -354,7 +348,7 @@ angular@1.5.*:
   version "1.5.11"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.5.11.tgz#8c5ba7386f15965c9acf3429f6881553aada30d6"
 
-angular@1.6.6, "angular@>= 1.0.8", angular@>=1.3.0, angular@>=1.4.0, angular@>=1.6.0:
+angular@1.6.6, angular@>=1.3.0, angular@>=1.4.0, angular@>=1.6.0:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.6.tgz#fd5a3cfb437ce382d854ee01120797978527cb64"
 
@@ -1149,9 +1143,9 @@ base64-arraybuffer@0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/base64-arraybuffer/-/base64-arraybuffer-0.1.5.tgz#73926771923b5a19747ad666aa5cd4bf9c6e9ce8"
 
-base64-js@^1.0.2:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.2.1.tgz#a91947da1f4a516ea38e5b4ec0ec3773675e0886"
+base64-js@1.2.3, base64-js@^1.0.2:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.2.3.tgz#fb13668233d9614cf5fb4bce95a9ba4096cdf801"
 
 base64id@1.0.0:
   version "1.0.0"
@@ -7772,6 +7766,10 @@ tar@^2.0.0, tar@^2.2.1:
     block-stream "*"
     fstream "^1.0.2"
     inherits "2"
+
+text-encoder-lite@coolaj86/TextEncoderLite#e1e031b:
+  version "1.0.2"
+  resolved "https://codeload.github.com/coolaj86/TextEncoderLite/tar.gz/e1e031b4a7fb89c35629340a61a06ec4f50ce7cb"
 
 text-encoding@0.6.4, text-encoding@^0.6.4:
   version "0.6.4"
