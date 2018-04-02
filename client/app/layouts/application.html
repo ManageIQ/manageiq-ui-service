@@ -5,12 +5,17 @@
     <pf-toast-notification-list notifications="vm.toastNotifications" show-close="true"
          close-callback="vm.handleDismissToast" update-viewing="vm.updateViewingToast"></pf-toast-notification-list>
 
-    <pf-notification-drawer drawer-hidden="!vm.notificationsDrawerShown" notification-groups="vm.notificationGroups"
-         allow-expand="true"
-         drawer-title="{{'Notifications' | translate}}" heading-include="{{vm.headingHTML}}"
-         subheading-include="{{vm.subHeadingHTML}}"
-         notification-body-include="{{vm.notificationHTML}}" notification-footer-include="{{vm.notificationFooterHTML}}"
-         custom-scope="vm" />
+    <pf-notification-drawer
+            drawer-hidden="!vm.notificationsDrawerShown"
+            notification-groups="vm.notificationGroups"
+            allow-expand="true"
+            on-close="vm.toggleNotificationsList"
+            drawer-title="{{'Notifications' | translate}}"
+            heading-include="{{vm.headingHTML}}"
+            subheading-include="{{vm.subHeadingHTML}}"
+            notification-body-include="{{vm.notificationHTML}}"
+            notification-footer-include="{{vm.notificationFooterHTML}}"
+            custom-scope="vm" >
     </pf-notification-drawer>
 
     <pf-about-modal additional-info="vm.about.additionalInfo" is-open="vm.about.isOpen"
