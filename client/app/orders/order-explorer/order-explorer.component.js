@@ -53,7 +53,6 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
       showSelectBox: checkApproval(),
       useExpandingRows: true,
       selectionMatchProp: 'id',
-      onClick: expandRow,
       onCheckBoxChange: selectionChange
     }
   }
@@ -129,12 +128,6 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
     }
 
     return checkApproval() ? menuActions : null
-  }
-
-  function expandRow (item) {
-    if (!item.disableRowExpansion) {
-      item.isExpanded = !item.isExpanded
-    }
   }
 
   function sortChange (sortId, direction) {
