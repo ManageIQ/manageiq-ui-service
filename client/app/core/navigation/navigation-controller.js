@@ -74,7 +74,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       notificationHTML: 'app/components/notifications/notification-body.html',
       notificationFooterHTML: 'app/components/notifications/notification-footer.html',
       handleItemClick: handleItemClick,
-      toggleNotificationsList: toggleNotificationsList,
+      toggleNotificationsList: () => { vm.notificationsDrawerShown = !vm.notificationsDrawerShown },
       updateViewingToast: updateViewingToast,
       handleDismissToast: handleDismissToast,
       getNotficationStatusIconClass: getNotficationStatusIconClass,
@@ -168,10 +168,6 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
 
   function handleItemClick (item) {
     $state.transitionTo(item.state)
-  }
-
-  function toggleNotificationsList () {
-    vm.notificationsDrawerShown = !vm.notificationsDrawerShown
   }
 
   function getNotficationStatusIconClass (notification) {
