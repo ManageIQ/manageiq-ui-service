@@ -97,7 +97,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
   function isAnsibleService (service) {
     var compareValue = angular.isDefined(service.type) ? service.type : service.name
 
-    return compareValue.toLowerCase().indexOf('ansible') !== -1
+    return compareValue ? compareValue.toLowerCase().includes('ansible') : false
   }
 
   function getListActions () {
