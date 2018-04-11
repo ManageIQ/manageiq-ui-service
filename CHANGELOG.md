@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 83 ending 2018-04-09
+
+### Fixed
+- Restores listview deafult row click behavior expanding row content [(#1416)](https://github.com/ManageIQ/manageiq-ui-service/pull/1416)
+- Adds on-close to pf-notification-drawer component [(#1415)](https://github.com/ManageIQ/manageiq-ui-service/pull/1415)
+- tolowercase of a null does not end well - breaks service explorer [(#1413)](https://github.com/ManageIQ/manageiq-ui-service/pull/1413)
+- Fixes disk size misreporting for some disks [(#1410)](https://github.com/ManageIQ/manageiq-ui-service/pull/1410)
+
 ## Unreleased as of Sprint 81 ending 2018-03-12
 
 ### Fixed
