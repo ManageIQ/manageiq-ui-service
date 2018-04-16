@@ -62,6 +62,18 @@
     es7-shim "^6.0.0"
     eslint "~3.9.1"
 
+"@manageiq/ui-components@~1.0.22":
+  version "1.0.22"
+  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.0.22.tgz#b0da52b30fd42404155fee524504ab7b24dc63bc"
+  dependencies:
+    angular-bootstrap-switch "^0.5.1"
+    angular-dragdrop "^1.0.13"
+    angular-ui-sortable "^0.16.1"
+    babel-eslint "^7.2.3"
+    es6-shim "^0.35.3"
+    es7-shim "^6.0.0"
+    eslint "~3.9.1"
+
 "@types/node@^6.0.46":
   version "6.0.88"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.88.tgz#f618f11a944f6a18d92b5c472028728a3e3d4b66"
