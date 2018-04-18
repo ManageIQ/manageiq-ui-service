@@ -41,7 +41,7 @@ function StateController ($state, $stateParams, CollectionsApi, EventNotificatio
   vm.resourceAction = vm.button.resource_action
   vm.submitCustomButton = submitCustomButton
   vm.submitButtonEnabled = false
-  vm.dialogUrl = 'service_dialogs/'
+  vm.dialogUrl = 'service_dialogs'
   vm.refreshField = refreshField
   vm.setDialogData = setDialogData
   vm.dialogData = {}
