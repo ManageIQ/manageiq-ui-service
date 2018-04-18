@@ -231,7 +231,7 @@ describe('State: services.custom_button_details', () => {
         expect(DialogFieldRefresh.refreshDialogField).to.have.been.calledWith(
           dialogData.data,
           ['fieldName'],
-          'service_dialogs/',
+          'service_dialogs',
           {dialogId: 213, resourceActionId: 789, targetId: 123, targetType: 'service'}
         )
       })
@@ -262,7 +262,7 @@ describe('State: services.custom_button_details', () => {
         expect(DialogFieldRefresh.refreshDialogField).to.have.been.calledWith(
           dialogData.data,
           ['fieldName'],
-          'service_dialogs/',
+          'service_dialogs',
           {dialogId: 213, resourceActionId: 789, targetId: 456, targetType: 'vm'}
         )
       })
