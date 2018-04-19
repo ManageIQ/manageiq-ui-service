@@ -50,21 +50,9 @@
     glob "^7.1.1"
     json-server "^0.9.6"
 
-"@manageiq/ui-components@1.0.21":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.0.21.tgz#af63cba4b839455649f6737e679549d5809feb96"
-  dependencies:
-    angular-bootstrap-switch "^0.5.1"
-    angular-dragdrop "^1.0.13"
-    angular-ui-sortable "^0.16.1"
-    babel-eslint "^7.2.3"
-    es6-shim "^0.35.3"
-    es7-shim "^6.0.0"
-    eslint "~3.9.1"
-
-"@manageiq/ui-components@~1.0.22":
-  version "1.0.22"
-  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.0.22.tgz#b0da52b30fd42404155fee524504ab7b24dc63bc"
+"@manageiq/ui-components@~1.0.23":
+  version "1.0.23"
+  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.0.23.tgz#9b65c33b4a9afbc22ab1c3b386884db325ba84f5"
   dependencies:
     angular-bootstrap-switch "^0.5.1"
     angular-dragdrop "^1.0.13"
