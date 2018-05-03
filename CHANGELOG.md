@@ -5,7 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Gaprindashvili-2
+## Gaprindashvili-3 
+
+### Fixed
+- Add missing translation tags to order details view [(#1344)](https://github.com/ManageIQ/manageiq-ui-service/pull/1344)
+- Navigation menu highlighting [(#1385)](https://github.com/ManageIQ/manageiq-ui-service/pull/1385)
+- Notifications should gated on sui_notification product feature [(#1293)](https://github.com/ManageIQ/manageiq-ui-service/pull/1293)
+- Ensures service details custom buttons collapse to kebab when > 3 [(#1394)](https://github.com/ManageIQ/manageiq-ui-service/pull/1394)
+- custom-button-menu component styling remains consistent [(#1395)](https://github.com/ManageIQ/manageiq-ui-service/pull/1395)
+- Changed how breadcrumb shows up on catalog order page [(#1392)](https://github.com/ManageIQ/manageiq-ui-service/pull/1392)
+- AuthenticationAPI - use base64encode which can deal with UTF8 passwords [(#1411)](https://github.com/ManageIQ/manageiq-ui-service/pull/1411)
+- Refactors ansible credentials to be more generic, override with dialog input [(#1417)](https://github.com/ManageIQ/manageiq-ui-service/pull/1417)
+- Fixed issue with custom button details dynamic field refresh [(#1423)](https://github.com/ManageIQ/manageiq-ui-service/pull/1423)
+
+## Gaprindashvili-2 - Released 2018-03-07
 
 ### Fixed
 - Refactors dashboard state resolve to return true on failed query [(#1372)](https://github.com/ManageIQ/manageiq-ui-service/pull/1372)
