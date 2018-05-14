@@ -19,9 +19,7 @@ export const DetailRevealComponent = {
 /** @ngInject */
 function ComponentController ($transclude) {
   var vm = this
-  vm.$onInit = activate()
-
-  function activate () {
+  vm.$onInit = () => {
     if (angular.isUndefined(vm.displayField)) {
       vm.displayField = false
     }

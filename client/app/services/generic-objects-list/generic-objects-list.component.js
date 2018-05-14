@@ -15,9 +15,7 @@ export const GenericObjectsListComponent = {
 function ComponentController (EventNotifications, CollectionsApi) {
   var vm = this
 
-  vm.$onInit = activate()
-
-  function activate () {
+  vm.$onInit =  () => {
     angular.extend(vm, {
       genericObjectsListConfig: {
         showSelectBox: false,

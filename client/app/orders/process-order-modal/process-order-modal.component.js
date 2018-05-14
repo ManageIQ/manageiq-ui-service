@@ -13,13 +13,15 @@ export const ProcessOrderModalComponent = {
 
 /** @ngInject */
 function ComponentController ($state, CollectionsApi, EventNotifications) {
-  var vm = this
+  const vm = this
 
-  angular.extend(vm, {
-    order: vm.resolve.order,
-    confirm: confirm,
-    cancel: cancel
-  })
+  vm.$onInit = function() {
+    angular.extend(vm, {
+      order: vm.resolve.order,
+      confirm: confirm,
+      cancel: cancel
+    })
+  }
 
   function cancel () {
     vm.dismiss({$value: 'cancel'})

@@ -12,7 +12,7 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
                               CollectionsApi, sprintf, Polling, POLLING_INTERVAL) {
   const vm = this
   vm.permissions = OrdersState.getPermissions()
-  vm.$onInit = activate()
+  vm.$onInit = activate
   vm.$onDestroy = function () {
     Polling.stop('orderListPolling')
   }

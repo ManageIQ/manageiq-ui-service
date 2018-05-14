@@ -14,28 +14,28 @@ export const OwnershipServiceModalComponent = {
 
 /** @ngInject */
 function ComponentController ($state, lodash, CollectionsApi, EventNotifications) {
-  var vm = this
-
-  angular.extend(vm, {
-    modalData: {
-      'owner': {
-        'userid': ''
-      },
-      'group': {
-        'description': ''
-      }
-    },
-    isService: vm.resolve.services.length === 1,
-    resetModal: false,
-    services: vm.resolve.services,
-    users: vm.resolve.users,
-    groups: vm.resolve.groups,
-    save: save,
-    cancel: cancel,
-    reset: reset
-  })
+  const vm = this
 
   vm.$onInit = function () {
+    angular.extend(vm, {
+      modalData: {
+        'owner': {
+          'userid': ''
+        },
+        'group': {
+          'description': ''
+        }
+      },
+      isService: vm.resolve.services.length === 1,
+      resetModal: false,
+      services: vm.resolve.services,
+      users: vm.resolve.users,
+      groups: vm.resolve.groups,
+      save: save,
+      cancel: cancel,
+      reset: reset
+    })
+
     if (vm.isService) {
       vm.resetModal = true
       vm.modalData.id = vm.services[0].id
