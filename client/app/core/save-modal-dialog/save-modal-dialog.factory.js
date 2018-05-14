@@ -40,7 +40,7 @@ export function SaveModalDialogFactory ($uibModal) {
 
 /** @ngInject */
 function SaveModalDialogController (saveCallback, cancelCallback, okToSave, $uibModalInstance) {
-  var vm = this
+  const vm = this
   vm.save = save
   vm.cancel = cancel
   vm.okToSave = okToSave

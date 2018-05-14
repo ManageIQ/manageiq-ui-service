@@ -15,7 +15,7 @@ export const ProcessOrderModalComponent = {
 function ComponentController ($state, CollectionsApi, EventNotifications) {
   const vm = this
 
-  vm.$onInit = function() {
+  vm.$onInit = () => {
     angular.extend(vm, {
       order: vm.resolve.order,
       confirm: confirm,

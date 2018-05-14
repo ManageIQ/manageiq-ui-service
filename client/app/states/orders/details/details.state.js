@@ -32,7 +32,7 @@ function resolveOrder ($stateParams, CollectionsApi) {
 
 /** @ngInject */
 function StateController (order, $state) {
-  var vm = this
+  const vm = this
 
   vm.title = order.name
   vm.order = order

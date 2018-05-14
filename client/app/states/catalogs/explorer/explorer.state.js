@@ -22,6 +22,6 @@ function getStates (RBAC) {
 
 /** @ngInject */
 function CatalogsController () {
-  var vm = this
+  const vm = this
   vm.title = __('Catalogs')
 }

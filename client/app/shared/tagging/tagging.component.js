@@ -13,7 +13,7 @@ export const TaggingComponent = {
 
 /** @ngInject */
 function TaggingController ($scope, $filter, $q, $log, CollectionsApi, TaggingService, lodash) {
-  var vm = this
+  const vm = this
   const placeholderCategorization = {
     placeholder: true,
     categorization: {

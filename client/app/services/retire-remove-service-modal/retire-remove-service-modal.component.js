@@ -13,7 +13,7 @@ export const RetireRemoveServiceModalComponent = {
 
 /** @ngInject */
 function ComponentController ($state, CollectionsApi, EventNotifications) {
-  var vm = this
+  const vm = this
 
   vm.$onInit = function () {
     angular.extend(vm, {
