@@ -1,10 +1,12 @@
-import base64js from 'base64-js'
-const TextEncoderLite = require('text-encoder-lite').TextEncoderLite
+import base64js from 'base64-js';
+const TextEncoderLite = require('text-encoder-lite').TextEncoderLite;
 
 // utf8-capable window.btoa
-function base64encode (str, encoding = 'utf-8') {
-  let bytes = new (window.TextEncoder || TextEncoderLite)(encoding).encode(str)
-  return base64js.fromByteArray(bytes)
+function base64encode(str, encoding = 'utf-8') {
+  // eslint-disable-next-line angular/window-service
+  const bytes = new (window.TextEncoder || TextEncoderLite)(encoding).encode(str);
+
+  return base64js.fromByteArray(bytes);
 }
 
 /** @ngInject */
