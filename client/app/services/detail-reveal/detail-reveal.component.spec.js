@@ -58,6 +58,7 @@ describe('detail-reveal component', () => {
           return returnObj
         }
         ctrl = $componentController('detailReveal', {$transclude: transclude}, bindings)
+        ctrl.$onInit()
       })
     )
 

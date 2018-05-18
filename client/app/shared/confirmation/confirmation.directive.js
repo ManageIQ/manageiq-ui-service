@@ -87,7 +87,7 @@ export function ConfirmationDirective ($uibPosition, $window) {
 
   /** @ngInject */
   function ConfirmationController ($scope, $uibModal, lodash) {
-    var vm = this
+    const vm = this
 
     var modalOptions = {
       templateUrl,

@@ -36,7 +36,7 @@ export function TagEditorFactory ($uibModal) {
 /** @ngInject */
 function TagEditorModalController (services, tags, $controller, $uibModalInstance,
                                   $state, TaggingService, EventNotifications) {
-  var vm = this
+  const vm = this
   var base = $controller('BaseModalController', {
     $uibModalInstance: $uibModalInstance
   })

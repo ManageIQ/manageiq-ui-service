@@ -12,7 +12,7 @@ export const ShoppingCartComponent = {
 
 /** @ngInject */
 function ComponentController ($state, ShoppingCart, EventNotifications) {
-  var vm = this
+  const vm = this
 
   vm.$doCheck = refresh
 

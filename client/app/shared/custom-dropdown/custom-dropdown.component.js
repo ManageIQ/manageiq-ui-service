@@ -16,7 +16,7 @@ export const CustomDropdownComponent = {
 
 /** @ngInject */
 function ComponentController () {
-  var vm = this
+  const vm = this
 
   vm.$onInit = function () {
     vm.menuRight = vm.menuRight && (vm.menuRight === 'true' || vm.menuRight === true)

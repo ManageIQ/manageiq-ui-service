@@ -1,6 +1,6 @@
 /** @ngInject */
 export function BaseModalController ($uibModalInstance, $state, CollectionsApi, EventNotifications) {
-  var vm = this
+  const vm = this
   vm.cancel = cancel
   vm.reset = reset
   vm.save = save
@@ -14,7 +14,7 @@ export function BaseModalController ($uibModalInstance, $state, CollectionsApi, 
   }
 
   function save () {
-    var vm = this
+    const vm = this
     var data = {
       action: vm.action,
       resource: vm.modalData

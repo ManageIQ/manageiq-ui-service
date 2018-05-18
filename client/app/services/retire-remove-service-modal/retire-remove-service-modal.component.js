@@ -13,15 +13,17 @@ export const RetireRemoveServiceModalComponent = {
 
 /** @ngInject */
 function ComponentController ($state, CollectionsApi, EventNotifications) {
-  var vm = this
+  const vm = this
 
-  angular.extend(vm, {
-    services: vm.resolve.services,
-    isRemove: vm.resolve.modalType === 'remove',
-    isRetireNow: vm.resolve.modalType === 'retire',
-    confirm: confirm,
-    cancel: cancel
-  })
+  vm.$onInit = function () {
+    angular.extend(vm, {
+      services: vm.resolve.services,
+      isRemove: vm.resolve.modalType === 'remove',
+      isRetireNow: vm.resolve.modalType === 'retire',
+      confirm: confirm,
+      cancel: cancel
+    })
+  }
 
   function cancel () {
     vm.dismiss({$value: 'cancel'})

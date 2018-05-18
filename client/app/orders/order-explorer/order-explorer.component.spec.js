@@ -11,6 +11,7 @@ describe('Component: orderExplorer', () => {
 
     beforeEach(inject(function ($componentController) {
       ctrl = $componentController('orderExplorer', {$scope: scope}, {})
+      ctrl.$onInit()
     }))
 
     it('is defined', () => {

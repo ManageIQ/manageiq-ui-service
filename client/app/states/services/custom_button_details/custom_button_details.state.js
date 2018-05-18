@@ -30,7 +30,7 @@ function getStates () {
 
 /** @ngInject */
 function StateController ($state, $stateParams, CollectionsApi, EventNotifications, DialogFieldRefresh) {
-  var vm = this
+  const vm = this
   vm.title = __('Custom button action')
   vm.dialogId = $stateParams.dialogId || ''
   vm.dialogs = {}

@@ -27,7 +27,7 @@ function getStates () {
 
 /** @ngInject */
 function StateController ($stateParams) {
-  var vm = this
+  const vm = this
 
   vm.error = $stateParams.error
 }

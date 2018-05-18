@@ -21,6 +21,7 @@ describe('Component: RetireServiceModalComponent', () => {
     }))
 
     it('changes visible options when date is changed', () => {
+      ctrl.$onInit()
       expect(ctrl.visibleOptions.length).to.eq(0)
 
       // Initial digest populates visibleOptions with 'No warning' option

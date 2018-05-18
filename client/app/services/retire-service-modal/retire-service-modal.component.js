@@ -13,36 +13,34 @@ export const RetireServiceModalComponent = {
 
 /** @ngInject */
 function ComponentController ($scope, $state, CollectionsApi, EventNotifications, moment) {
-  var vm = this
+  const vm = this
 
-  angular.extend(vm, {
-    visibleOptions: [],
-    modalData: {},
-    isService: vm.resolve.services.length === 1,
-    resetModal: false,
-    services: vm.resolve.services,
-    save: save,
-    reset: reset,
-    cancel: cancel
-  })
+  vm.$onInit = function () {
+    angular.extend(vm, {
+      visibleOptions: [],
+      modalData: {},
+      isService: vm.resolve.services.length === 1,
+      resetModal: false,
+      services: vm.resolve.services,
+      save: save,
+      reset: reset,
+      cancel: cancel
+    })
 
-  vm.dateOptions = {
-    initDate: new Date(),
-    minDate: new Date(),
-    showWeeks: false
-  }
+    vm.dateOptions = {
+      initDate: new Date(),
+      minDate: new Date(),
+      showWeeks: false
+    }
 
-  vm.warningOptions = [
-    {value: 0, label: __('No Warning')},
-    {value: 7, label: __('1 Week')},
-    {value: 14, label: __('2 Weeks')},
-    {value: 21, label: __('3 Weeks')},
-    {value: 28, label: __('4 Weeks')}
-  ]
+    vm.warningOptions = [
+      {value: 0, label: __('No Warning')},
+      {value: 7, label: __('1 Week')},
+      {value: 14, label: __('2 Weeks')},
+      {value: 21, label: __('3 Weeks')},
+      {value: 28, label: __('4 Weeks')}
+    ]
 
-  activate()
-
-  function activate () {
     if (vm.isService) {
       vm.modalData.id = vm.services[0].id
       vm.resetModal = true
@@ -60,6 +58,7 @@ function ComponentController ($scope, $state, CollectionsApi, EventNotifications
       })
     })
   }
+
   function save () {
     var data = {
       action: 'retire',

@@ -15,7 +15,7 @@ export const PaginationComponent = {
 
 /** @ngInject */
 function ComponentController () {
-  var vm = this
+  const vm = this
 
   vm.$onInit = function () {
     angular.extend(vm, {

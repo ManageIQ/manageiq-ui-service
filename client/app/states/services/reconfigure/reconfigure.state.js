@@ -20,7 +20,7 @@ function getStates () {
 
 /** @ngInject */
 function StateController ($state, $stateParams, CollectionsApi, EventNotifications, DialogFieldRefresh) {
-  var vm = this
+  const vm = this
 
   vm.title = __('Service Details')
   vm.service = {}

@@ -12,10 +12,6 @@ const hasDevTools = angular.isDefined(window.__REDUX_DEVTOOLS_EXTENSION__)
 export function configure ($logProvider, $compileProvider, $qProvider, $ngReduxProvider) {
   $logProvider.debugEnabled(isDevel)
   $compileProvider.debugInfoEnabled(isDevel)
-
-  // TODO: Remove following line as per: https://docs.angularjs.org/guide/migration#migrate1.5to1.6-ng-services-$compile
-  $compileProvider.preAssignBindingsEnabled(true)
-
   $qProvider.errorOnUnhandledRejections(false)
   const storeEnhancers = []
   if (hasDevTools) {
