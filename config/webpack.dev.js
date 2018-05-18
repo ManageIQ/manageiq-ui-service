@@ -21,7 +21,7 @@ console.log('Backend proxied on ' + protocol + host)
 module.exports = {
   context: root,
   entry: {
-    app: './app/main.ts'
+    app: './app.js'
   },
 
   output: {
