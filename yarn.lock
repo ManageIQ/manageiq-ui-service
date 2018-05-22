@@ -50,9 +50,9 @@
     glob "^7.1.1"
     json-server "^0.9.6"
 
-"@manageiq/ui-components@1.0.26":
-  version "1.0.26"
-  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.0.26.tgz#90015eed83fc8998786cd71b254e0773d13dbe0e"
+"@manageiq/ui-components@1.0.28":
+  version "1.0.28"
+  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.0.28.tgz#9b8fb084eef8b2a8e3f57edb05e51f3ee8f50fad"
   dependencies:
     angular-bootstrap-switch "^0.5.1"
     angular-dragdrop "^1.0.13"
