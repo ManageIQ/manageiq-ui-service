@@ -367,7 +367,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
           filterMultiselect: true,
           filterValues: filterValues,
           filterDelimiter: '/',
-          filterCategoriesPlaceholder: __('Filter by Tag Value  '),
+          filterCategoriesPlaceholder: __('Filter by Tag Value'),
           filterCategories: filterCategories
         }
       )
