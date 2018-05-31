@@ -105,15 +105,15 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
             vm.parsedDialogs = dialogs.resources[0].content
           }
         }
-        setDialogUrl(vm.serviceTemplate.service_template_catalog_id)
+        setDialogUrl()
         vm.loading = false
       })
     })
   }
 
   init()
-  function setDialogUrl (serviceTemplateCatalogId) {
-    vm.dialogUrl = `service_catalogs/${serviceTemplateCatalogId}/service_templates`
+  function setDialogUrl () {
+    vm.dialogUrl = `service_dialogs`
 
     return vm.dialogUrl
   }
@@ -131,12 +131,12 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
     }
 
     let idList = {
-      dialogId: vm.parsedDialogs.id,
+      dialogId: vm.parsedDialogs[0].id,
       resourceActionId: resourceActionId,
       targetId: vm.serviceTemplate.id,
       targetType: 'service_template'
     }
-    const url = `${vm.dialogUrl}/${vm.serviceTemplate.id}`
+    const url = `${vm.dialogUrl}`
     return DialogFieldRefresh.refreshDialogField(vm.dialogData, [field.name], url, idList)
   }
   /**

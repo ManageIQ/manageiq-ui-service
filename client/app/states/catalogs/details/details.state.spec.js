@@ -61,12 +61,17 @@ describe('State: catalogs.details', () => {
       it('it allows a field to be refreshed', (done) => {
         controller = $controller($state.get('catalogs.details').controller)
         controller.serviceTemplate = serviceTemplate
-        controller.setDialogUrl(serviceTemplate.service_template_catalog_id)
+        controller.setDialogUrl()
         const refreshSpy = sinon.stub(DialogFieldRefresh, 'refreshDialogField').returns(Promise.resolve({'status': 'success'}))
         const dialogData = {
           'dialogField1': '1',
           'dialogField2': '2'
         }
+        const parsedDialogs = [
+          {
+            id: 1234
+          }
+        ]
         const field = {'name': 'dialogField1'}
         const idList = {
           dialogId: 1234,
@@ -75,14 +80,12 @@ describe('State: catalogs.details', () => {
           targetType: 'service_template'
         }
         controller.dialogData = dialogData
-        controller.parsedDialogs = {
-          id: 1234
-        }
+        controller.parsedDialogs = parsedDialogs
 
         controller.refreshField(field).then((data) => {
           done()
         })
-        const url = `service_catalogs/${serviceTemplate.service_template_catalog_id}/service_templates/${serviceTemplate.id}`
+        const url = `service_dialogs`
         expect(refreshSpy).to.have.been.calledWith(dialogData, ['dialogField1'], url, idList)
       })
       it('allows dialog data to be updated', () => {
