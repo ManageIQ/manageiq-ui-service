@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Gaprindashvili-3 - Released 2018-05-15
+
+### Fixed
+- Add missing translation tags to order details view [(#1344)](https://github.com/ManageIQ/manageiq-ui-service/pull/1344)
+- Navigation menu highlighting [(#1385)](https://github.com/ManageIQ/manageiq-ui-service/pull/1385)
+- Notifications should gated on sui_notification product feature [(#1293)](https://github.com/ManageIQ/manageiq-ui-service/pull/1293)
+- Ensures service details custom buttons collapse to kebab when > 3 [(#1394)](https://github.com/ManageIQ/manageiq-ui-service/pull/1394)
+- custom-button-menu component styling remains consistent [(#1395)](https://github.com/ManageIQ/manageiq-ui-service/pull/1395)
+- Changed how breadcrumb shows up on catalog order page [(#1392)](https://github.com/ManageIQ/manageiq-ui-service/pull/1392)
+- AuthenticationAPI - use base64encode which can deal with UTF8 passwords [(#1411)](https://github.com/ManageIQ/manageiq-ui-service/pull/1411)
+- Refactors ansible credentials to be more generic, override with dialog input [(#1417)](https://github.com/ManageIQ/manageiq-ui-service/pull/1417)
+- Fixed issue with custom button details dynamic field refresh [(#1423)](https://github.com/ManageIQ/manageiq-ui-service/pull/1423)
+
 ## Unreleased as of Sprint 83 ending 2018-04-09
 
 ### Fixed
@@ -16,8 +29,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 ## Unreleased as of Sprint 81 ending 2018-03-12
 
 ### Fixed
-- custom-button-menu component styling remains consistent [(#1395)](https://github.com/ManageIQ/manageiq-ui-service/pull/1395)
-- Ensures service details custom buttons collapse to kebab when > 3 [(#1394)](https://github.com/ManageIQ/manageiq-ui-service/pull/1394)
 - Moved action button to the bottom of the form [(#1384)](https://github.com/ManageIQ/manageiq-ui-service/pull/1384)
 
 ## Gaprindashvili-2 released 2018-03-06
@@ -29,11 +40,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Create global variable for version of Patternfly [(#1379)](https://github.com/ManageIQ/manageiq-ui-service/pull/1379)
 - Updated UI components version to remedy dialog select issue [(#1383)](https://github.com/ManageIQ/manageiq-ui-service/pull/1383)
 - Pass additional information to the API when refreshing a dialog field [(#1324)](https://github.com/ManageIQ/manageiq-ui-service/pull/1324)
-
-## Unreleased as of Sprint 80 ending 2018-02-26
-
-### Fixed
-- Navigation menu highlighting [(#1385)](https://github.com/ManageIQ/manageiq-ui-service/pull/1385)
 
 ## Unreleased as of Sprint 79 ending 2018-02-12
 
