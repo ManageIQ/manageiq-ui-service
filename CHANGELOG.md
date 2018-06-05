@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 87 ending 2018-06-04
+
+### Fixed
+- Removes whitespace that breaks translation [(#1439)](https://github.com/ManageIQ/manageiq-ui-service/pull/1439)
+- Change service dialog api call to match CUI [(#1438)](https://github.com/ManageIQ/manageiq-ui-service/pull/1438)
+
 ## Gaprindashvili-3 - Released 2018-05-15
 
 ### Fixed
