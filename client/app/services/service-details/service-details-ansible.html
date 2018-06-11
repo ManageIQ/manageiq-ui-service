@@ -1,6 +1,6 @@
 <div class="panel panel-default ss-details-panel">
   <loading status="vm.loading"></loading>
-  <div ng-if="!vm.loading" class="panel-body" ng-repeat="item in vm.orcStacks">
+  <div ng-if="!vm.loading" class="panel-body">
     <uib-tabset>
       <uib-tab ng-repeat="item in vm.orcStacks" heading="{{ item.resource.name }}">
         <div class="panel-body">
