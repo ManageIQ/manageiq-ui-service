@@ -58,7 +58,11 @@ export function authInit ($rootScope, $state, $log, Session, $sessionStorage, La
     if (angular.isDefined(toState.data)) {
       if (angular.isDefined(toState.data.authorization) && !toState.data.authorization) {
         event.preventDefault()
-        $state.transitionTo('dashboard')
+        if (toState.name === 'dashboard' && RBAC.has(RBAC.FEATURES.SERVICES.VIEW)) {
+          $state.transitionTo('services')
+        } else {
+          $state.transitionTo('login')
+        }
 
         return
       }
