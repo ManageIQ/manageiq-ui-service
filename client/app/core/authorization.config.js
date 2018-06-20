@@ -58,7 +58,17 @@ export function authInit ($rootScope, $state, $log, Session, $sessionStorage, La
     if (angular.isDefined(toState.data)) {
       if (angular.isDefined(toState.data.authorization) && !toState.data.authorization) {
         event.preventDefault()
-        $state.transitionTo('dashboard')
+        const menuOptions = [
+          {state: 'services', permission: RBAC.FEATURES.SERVICES.VIEW},
+          {state: 'orders', permission: RBAC.FEATURES.ORDERS.VIEW},
+          {state: 'catalogs', permission: RBAC.FEATURES.SERVICE_CATALOG.VIEW}
+        ]
+        const availableState = menuOptions.find((option) => {
+          return RBAC.has(option.permission)
+        })
+        const nextState = (availableState ? availableState.state : 'login')
+
+        $state.transitionTo(nextState)
 
         return
       }

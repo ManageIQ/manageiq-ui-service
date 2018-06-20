@@ -109,6 +109,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, CollectionsA
   }
 
   function setPermissions () {
+    menuItems[0].permissions = RBAC.has(RBAC.FEATURES.DASHBOARD.VIEW)
     menuItems[1].permissions = RBAC.has(RBAC.FEATURES.SERVICES.VIEW)
     menuItems[2].permissions = RBAC.has(RBAC.FEATURES.ORDERS.VIEW)
     menuItems[3].permissions = RBAC.has(RBAC.FEATURES.SERVICE_CATALOG.VIEW)

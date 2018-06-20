@@ -1,9 +1,9 @@
 /** @ngInject */
-export function DashboardState (routerHelper) {
-  routerHelper.configureStates(getStates())
+export function DashboardState (routerHelper, RBAC) {
+  routerHelper.configureStates(getStates(RBAC))
 }
 
-function getStates () {
+function getStates (RBAC) {
   return {
     'dashboard': {
       parent: 'application',
@@ -11,7 +11,7 @@ function getStates () {
       template: `<dashboard-component>`,
       title: __('Dashboard'),
       data: {
-        requireUser: true
+        authorization: RBAC.has(RBAC.FEATURES.DASHBOARD.VIEW)
       }
     }
   }

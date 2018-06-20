@@ -18,7 +18,7 @@ function ComponentController ($state, DashboardService, EventNotifications, loda
   }
   vm.$onInit = function () {
     vm.permissions = {
-      'monthlyCharges': RBAC.has(RBAC.FEATURES.DASHBOARD.VIEW.MONTHLY_CHARGES)
+      'monthlyCharges': RBAC.has(RBAC.FEATURES.DASHBOARD.MONTHLY_CHARGES)
     }
 
     angular.extend(vm, {
