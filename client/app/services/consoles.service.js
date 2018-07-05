@@ -38,7 +38,7 @@ export function ConsolesFactory ($window, CollectionsApi, $timeout, $location, E
     if ((task.state === 'Finished') && (task.status === 'Ok')) {
       // success
       consoleOpen(task.task_results)
-    } else if ((task.state === 'Queued') && (task.status === 'Ok')) {
+    } else if ((['Queued', 'Active'].indexOf(task.state) > -1) && (task.status === 'Ok')) {
       // waiting
       consoleWatch(task.id)
     } else {
