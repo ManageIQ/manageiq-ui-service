@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 ## Gaprindashvili-4
 
 ### Fixed
-- updated custom button dialog url [(#1433)](https://github.com/ManageIQ/manageiq-ui-service/pull/1433)
+- Updated custom button dialog url [(#1433)](https://github.com/ManageIQ/manageiq-ui-service/pull/1433)
 - Change service dialog api call to match CUI [(#1438)](https://github.com/ManageIQ/manageiq-ui-service/pull/1438)
 - Retirement & provisioning playbook does not duplicate details [(#1443)](https://github.com/ManageIQ/manageiq-ui-service/pull/1443)
 
