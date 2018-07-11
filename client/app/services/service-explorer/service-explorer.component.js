@@ -567,7 +567,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
           return services
         },
         modalType: function () {
-          return 'retire'
+          return 'request_retire'
         }
       }
     }
