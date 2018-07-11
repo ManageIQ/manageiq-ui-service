@@ -346,7 +346,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   }
 
   function retireService () {
-    const data = {action: 'retire'}
+    const data = {action: 'request_retire'}
     CollectionsApi.post('services', vm.service.id, {}, data).then(retireSuccess, retireFailure)
 
     function retireSuccess () {

@@ -577,6 +577,11 @@
             "href": "http://localhost:3001/api/services/10000000000619"
         },
         {
+            "name": "request_retire",
+            "method": "post",
+            "href": "http://localhost:3001/api/services/10000000000619"
+        },
+        {
             "name": "set_ownership",
             "method": "post",
             "href": "http://localhost:3001/api/services/10000000000619"
