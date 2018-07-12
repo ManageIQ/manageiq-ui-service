@@ -125,10 +125,7 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
  */
   function refreshField (field) {
     const resourceActions = vm.serviceTemplate.resource_actions
-    let resourceActionId = ''
-    if (resourceActions.length > 0 && resourceActions[0].action === 'Provision') {
-      resourceActionId = resourceActions[0].id
-    }
+    let resourceActionId = lodash.find(resourceActions, ['action', 'Provision']).id
 
     let idList = {
       dialogId: vm.parsedDialogs[0].id,
