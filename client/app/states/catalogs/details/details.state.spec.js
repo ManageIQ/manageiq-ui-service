@@ -58,20 +58,14 @@ describe('State: catalogs.details', () => {
         controller = $controller($state.get('catalogs.details').controller)
         expect(controller).to.be.defined
       })
-      it('it allows a field to be refreshed', (done) => {
-        controller = $controller($state.get('catalogs.details').controller)
-        controller.serviceTemplate = serviceTemplate
-        controller.setDialogUrl()
-        const refreshSpy = sinon.stub(DialogFieldRefresh, 'refreshDialogField').returns(Promise.resolve({'status': 'success'}))
+
+      describe('#refreshField', () => {
+        let refreshSpy
         const dialogData = {
           'dialogField1': '1',
           'dialogField2': '2'
         }
-        const parsedDialogs = [
-          {
-            id: 1234
-          }
-        ]
+        const parsedDialogs = [{id: 1234}]
         const field = {'name': 'dialogField1'}
         const idList = {
           dialogId: 1234,
@@ -79,15 +73,47 @@ describe('State: catalogs.details', () => {
           targetId: 123,
           targetType: 'service_template'
         }
-        controller.dialogData = dialogData
-        controller.parsedDialogs = parsedDialogs
-
-        controller.refreshField(field).then((data) => {
-          done()
-        })
         const url = `service_dialogs`
-        expect(refreshSpy).to.have.been.calledWith(dialogData, ['dialogField1'], url, idList)
+
+        beforeEach(() => {
+          controller = $controller($state.get('catalogs.details').controller)
+          refreshSpy = sinon.stub(DialogFieldRefresh, 'refreshDialogField').returns(Promise.resolve({'status': 'success'}))
+
+          controller.setDialogUrl()
+          controller.dialogData = dialogData
+          controller.parsedDialogs = parsedDialogs
+        })
+
+        context('when the provision resource action is the only resource action', () => {
+          it('it allows a field to be refreshed', (done) => {
+            controller.serviceTemplate = serviceTemplate
+
+            controller.refreshField(field).then((data) => {
+              done()
+            })
+            expect(refreshSpy).to.have.been.calledWith(dialogData, ['dialogField1'], url, idList)
+          })
+        })
+
+        context('when the provision resource action is not the only resource action', () => {
+          const serviceTemplateWithMultipleResourceActions = {
+            id: 123,
+            service_template_catalog_id: 321,
+            name: 'test template',
+            resource_actions: [{action: 'Retirement', id: 4321}, {action: 'Provision', id: 1234}]
+          }
+
+          it('it allows a field to be refreshed', (done) => {
+            controller.serviceTemplate = serviceTemplateWithMultipleResourceActions
+
+            controller.refreshField(field).then((data) => {
+              done()
+            })
+            expect(refreshSpy).to.have.been.calledWith(dialogData, ['dialogField1'], url, idList)
+          })
+        })
       })
+
       it('allows dialog data to be updated', () => {
         const testData = {
           validations: {isValid: true},
