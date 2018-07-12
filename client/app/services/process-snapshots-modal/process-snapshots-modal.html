@@ -9,7 +9,7 @@
     <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Name *'|translate}}" required>
       <input id="name" name="name" ng-model="vm.modalData.name" type="text" required/>
     </pf-form-group>
-    <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Memory'|translate}}">
+    <pf-form-group pf-input-class="col-sm-8"  ng-show="vm.vm.power_state ==='on'" pf-label-class="col-sm-3" pf-label="{{'Memory'|translate}}">
       <input id="memory" name="memory" ng-model="vm.modalData.memory" type="checkbox"/>
     </pf-form-group>
     <pf-form-group pf-input-class="col-sm-8" pf-label-class="col-sm-3" pf-label="{{'Description'|translate}}">
