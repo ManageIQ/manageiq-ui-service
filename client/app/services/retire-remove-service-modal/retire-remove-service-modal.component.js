@@ -31,7 +31,7 @@ function ComponentController ($state, CollectionsApi, EventNotifications) {
 
   function confirm () {
     var data = {
-      action: vm.isRemove ? 'delete' : 'retire',
+      action: vm.isRemove ? 'delete' : 'request_retire',
       resources: vm.services
     }
     CollectionsApi.post('services', '', {}, data).then(saveSuccess, saveFailure)
