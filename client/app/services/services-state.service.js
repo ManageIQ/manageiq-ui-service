@@ -156,13 +156,6 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
           actionName: 'retireService',
           actionFn: retireServiceFn,
           icon: clockIcon,
-          showConfirmation: true,
-          confirmationMessage: __('Confirm, would you like to retire this service?'),
-          confirmationTitle: __('Retire Service Now'),
-          confirmationShowCancel: true,
-          confirmationOkText: __('Yes, Retire Service Now'),
-          confirmationOkStyle: 'primary',
-          confirmationId: 'retireServiceConfirmId',
           permission: permissions.retire,
           isDisabled: false
         }
