@@ -23,7 +23,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
     ServicesState.services.setSort({id: 'created_at', title: 'Created', sortType: 'numeric'}, false)
 
     TaggingService.queryAvailableTags().then(
-      (response) => { vm.toolbarConfig.filterConfig.fields = getServiceFilterFields(response) },
+      (response) => { vm.toolbarConfig.filterConfig.fields = getServiceFilterFields(response) }).catch(
       () => { vm.toolbarConfig.filterConfig.fields = defaultFilterFields() }
     )
 
