@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 91 ending 2018-07-30
+
+### Added
+- Changed Retire services to a modal instead of confirmation [(#1462)](https://github.com/ManageIQ/manageiq-ui-service/pull/1462)
+
+### Fixed
+- Fixed issue with retire modal coming up blank [(#1461)](https://github.com/ManageIQ/manageiq-ui-service/pull/1461)
+- Update last retire call to make request [(#1459)](https://github.com/ManageIQ/manageiq-ui-service/pull/1459)
+
 ## Unreleased as of Sprint 90 ending 2018-07-16
 
 ### Fixed
