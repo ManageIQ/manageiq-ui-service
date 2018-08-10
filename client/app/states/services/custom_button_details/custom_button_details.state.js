@@ -48,9 +48,16 @@ function StateController ($state, $stateParams, CollectionsApi, EventNotificatio
   vm.loading = true
 
   function init () {
-    const options = {expand: 'resources', attributes: 'content'}
+    const options = {
+      expand: 'resources',
+      attributes: 'content',
+      resource_action_id: vm.resourceAction.id,
+      target_id: vm.serviceId,
+      target_type: 'service'
+    }
+
     const dialogId = vm.resourceAction.dialog_id
-    const resolveDialogs = CollectionsApi.query(`services/${vm.serviceId}/service_dialogs/${dialogId}`, options)
+    const resolveDialogs = CollectionsApi.query(`service_dialogs/${dialogId}`, options)
     const resolveService = CollectionsApi.get('services', $stateParams.serviceId, {attributes: ['picture', 'picture.image_href']})
 
     Promise.all([resolveDialogs, resolveService]).then((data) => {
