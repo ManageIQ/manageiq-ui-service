@@ -5,14 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Gaprindashvili-4
+## Gaprindashvili-5
+
+### Fixed
+- Support for disabling Dashboard [(#1446)](https://github.com/ManageIQ/manageiq-ui-service/pull/1446)
+- Fix for refresh of dialog fields not being called in some circumstances [(#1454)](https://github.com/ManageIQ/manageiq-ui-service/pull/1454)
+- Fixed issue with dialogs that causes duplicate values [(#1458)](https://github.com/ManageIQ/manageiq-ui-service/pull/1458)
+
+## Gaprindashvili-4 - Released 2018-07-16
 
 ### Fixed
 - Updated custom button dialog url [(#1433)](https://github.com/ManageIQ/manageiq-ui-service/pull/1433)
 - Change service dialog api call to match CUI [(#1438)](https://github.com/ManageIQ/manageiq-ui-service/pull/1438)
 - Retirement & provisioning playbook does not duplicate details [(#1443)](https://github.com/ManageIQ/manageiq-ui-service/pull/1443)
 
-## Gaprindashvili-3 
+## Gaprindashvili-3 - Released 2018-05-15
 
 ### Fixed
 - Add missing translation tags to order details view [(#1344)](https://github.com/ManageIQ/manageiq-ui-service/pull/1344)
