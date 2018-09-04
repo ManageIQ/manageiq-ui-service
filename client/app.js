@@ -13,7 +13,6 @@ window.moment = require('moment')
 window.sprintf = require('sprintf-js').sprintf
 window.c3 = require('c3/c3')
 window.d3 = require('d3/d3')
-window.patternflyVersion = 4
 window.numeral = numeral
 
 // Libraries: core
