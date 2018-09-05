@@ -532,9 +532,9 @@ angular-mocks@1.7.3:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.7.3.tgz#6568d50e64e81180273f9ec6a062ea255159f6ac"
 
-angular-patternfly@4.18.4:
-  version "4.18.4"
-  resolved "https://registry.yarnpkg.com/angular-patternfly/-/angular-patternfly-4.18.4.tgz#91c33ac364bafb09923d307eaf23adecacc0bf8f"
+angular-patternfly@4.18.5:
+  version "4.18.5"
+  resolved "https://registry.yarnpkg.com/angular-patternfly/-/angular-patternfly-4.18.5.tgz#9a1fe340b222a3befd2f4f5b814b8ee6a321c5e4"
   dependencies:
     angular "1.5.*"
     angular-animate "1.5.*"
@@ -4502,6 +4502,17 @@ glob@7.1.2, glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.0.6, glob@^7.1, glob@
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
+glob@7.1.3:
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.3.tgz#3960832d3f1574108342dafd3a67b332c0969df1"
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.4"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
+
 glob@^6.0.4:
   version "6.0.4"
   resolved "https://registry.yarnpkg.com/glob/-/glob-6.0.4.tgz#0f08860f6a155127b2fadd4f9ce24b1aab6e4d22"
@@ -7481,9 +7492,9 @@ patternfly-timeline@patternfly/patternfly-timeline#master-dist:
     d3 "~3.5.17"
     patternfly "~3.25.0"
 
-patternfly@3.54.1:
-  version "3.54.1"
-  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.54.1.tgz#a0f8b52076aa405486e77ecb504460b1ff35fe92"
+patternfly@3.54.2:
+  version "3.54.2"
+  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.54.2.tgz#58b4b424462c4b01aaebf41db2da3bcd63bedfbf"
   dependencies:
     bootstrap "~3.3.7"
     font-awesome "^4.7.0"
@@ -8779,9 +8790,9 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
-seamless-immutable@7.1.3:
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/seamless-immutable/-/seamless-immutable-7.1.3.tgz#d32a8a202a331dffa69e4069a367a2159252490e"
+seamless-immutable@7.1.4:
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/seamless-immutable/-/seamless-immutable-7.1.4.tgz#6e9536def083ddc4dea0207d722e0e80d0f372f8"
 
 select-hose@^2.0.0:
   version "2.0.0"
