@@ -47,8 +47,15 @@ export function ConsolesFactory ($window, CollectionsApi, $timeout, $location, E
     }
   }
 
-  function consoleError (error) {
-    EventNotifications.error(__('There was an error opening the console. ' + error.message))
+  function consoleError (response) {
+    let message = __('undefined')
+    if (response.data) {
+      message = response.data.error.message
+    } else if (response.message) {
+      message = response.message
+    }
+
+    EventNotifications.error(__(`There was an error opening the console. ${message}`))
   }
 
   function consoleOpen (results) {
