@@ -36,12 +36,14 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       resolveVm: resolveVm,
       // Config
       listConfig: getListConfig(),
-      menuActions: getMenuActions(),
+      menuActions: [],
       listActions: getListActions(),
       toolbarConfig: getToolbarConfig()
     })
     resolveSnapshots()
-    resolveVm()
+    resolveVm().then(() => {
+      vm.menuActions = getMenuActions()
+    })
   }
 
   function getToolbarConfig () {
@@ -63,12 +65,13 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
   }
 
   function getMenuActions () {
+    const revertUnsupported = (['openstack'].includes(vm.vm.vendor))
     const menuActions = [{
       name: __('Revert'),
       actionName: 'revert',
       title: __('Revert Snapshot'),
       actionFn: revertSnapshot,
-      permissions: vm.permissions.revert
+      permissions: vm.permissions.revert && !revertUnsupported
     }, {
       name: __('Delete'),
       actionName: 'delete',
