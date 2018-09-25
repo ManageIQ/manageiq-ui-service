@@ -50,9 +50,9 @@
     glob "^7.1.1"
     json-server "^0.9.6"
 
-"@manageiq/ui-components@1.0.33":
-  version "1.0.33"
-  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.0.33.tgz#7ee216f80ba8e04dc6bd71418c9f554106a471c2"
+"@manageiq/ui-components@1.0.35":
+  version "1.0.35"
+  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.0.35.tgz#a3685efdbf4bc1560e435cdf148cc864b4f67034"
   dependencies:
     angular-bootstrap-switch "^0.5.1"
     angular-dragdrop "^1.0.13"
@@ -61,6 +61,7 @@
     es6-shim "^0.35.3"
     es7-shim "^6.0.0"
     eslint "~3.9.1"
+    sprintf-js "^1.1.1"
 
 "@types/node@^6.0.46":
   version "6.0.88"
@@ -7477,7 +7478,7 @@ spice-html5-bower@1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/spice-html5-bower/-/spice-html5-bower-1.6.3.tgz#8b64c890e66a2a2a89da507a957cbce794a4a577"
 
-sprintf-js@1.1.1:
+sprintf-js@1.1.1, sprintf-js@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.1.1.tgz#36be78320afe5801f6cea3ee78b6e5aab940ea0c"
 
