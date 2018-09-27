@@ -5,26 +5,56 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Unreleased as of Sprint 92 ending 2018-08-13
+## Hammer Beta-1
+
+### Added
+- Updates language files includes new languages [(#1184)](https://github.com/ManageIQ/manageiq-ui-service/pull/1184)
+- Adds loading spinner using pf-empty-state [(#1154)](https://github.com/ManageIQ/manageiq-ui-service/pull/1154)
+- Added ability for login screen to clear password on failed attempt [(#1142)](https://github.com/ManageIQ/manageiq-ui-service/pull/1142)
+- Updated RBAC and product features to support new structure [(#1090)](https://github.com/ManageIQ/manageiq-ui-service/pull/1090)
+- Implement Generic Objects on services details page [(#996)](https://github.com/ManageIQ/manageiq-ui-service/pull/996)
 
 ### Fixed
 - Updated URL for custom buttons dialogs [(#1467)](https://github.com/ManageIQ/manageiq-ui-service/pull/1467)
-
-## Unreleased as of Sprint 91 ending 2018-07-30
-
-### Added
+- Hide revert snapshot button for openstack vm's [(#1475)](https://github.com/ManageIQ/manageiq-ui-service/pull/1475)
 - Changed Retire services to a modal instead of confirmation [(#1462)](https://github.com/ManageIQ/manageiq-ui-service/pull/1462)
-
-### Fixed
 - Fixed issue with retire modal coming up blank [(#1461)](https://github.com/ManageIQ/manageiq-ui-service/pull/1461)
 - Update last retire call to make request [(#1459)](https://github.com/ManageIQ/manageiq-ui-service/pull/1459)
-
-## Unreleased as of Sprint 90 ending 2018-07-16
-
-### Fixed
 - Snapshot modal. Add support to hide memory checkbox [(#1455)](https://github.com/ManageIQ/manageiq-ui-service/pull/1455)
-- Fix for refresh of dialog fields not being called in some circumstances [(#1454)](https://github.com/ManageIQ/manageiq-ui-service/pull/1454)
 - Service retirement should use make retire as a request [(#1453)](https://github.com/ManageIQ/manageiq-ui-service/pull/1453)
+- Removes whitespace that breaks translation [(#1439)](https://github.com/ManageIQ/manageiq-ui-service/pull/1439)
+- Restores listview deafult row click behavior expanding row content [(#1416)](https://github.com/ManageIQ/manageiq-ui-service/pull/1416)
+- Adds on-close to pf-notification-drawer component [(#1415)](https://github.com/ManageIQ/manageiq-ui-service/pull/1415)
+- tolowercase of a null does not end well - breaks service explorer [(#1413)](https://github.com/ManageIQ/manageiq-ui-service/pull/1413)
+- Fixes disk size misreporting for some disks [(#1410)](https://github.com/ManageIQ/manageiq-ui-service/pull/1410)
+- Moved action button to the bottom of the form [(#1384)](https://github.com/ManageIQ/manageiq-ui-service/pull/1384)
+- Create global variable for version of Patternfly [(#1379)](https://github.com/ManageIQ/manageiq-ui-service/pull/1379)
+- Timelines: need to escape strings for the popover. [(#1370)](https://github.com/ManageIQ/manageiq-ui-service/pull/1370)
+- Keep ui-components in sync with classic [(#1369)](https://github.com/ManageIQ/manageiq-ui-service/pull/1369)
+- We were still disabling snapsot revert for all but the current snapshot [(#1367)](https://github.com/ManageIQ/manageiq-ui-service/pull/1367)
+- Removes unnecessary header x-miq-group [(#1360)](https://github.com/ManageIQ/manageiq-ui-service/pull/1360)
+- Enables user to revert snapshots that are parents [(#1358)](https://github.com/ManageIQ/manageiq-ui-service/pull/1358)
+- Hides console buttons when indicated by server sans message [(#1354)](https://github.com/ManageIQ/manageiq-ui-service/pull/1354)
+- Ensure service tag filters flagged for translation [(#1343)](https://github.com/ManageIQ/manageiq-ui-service/pull/1343)
+- Fixed issue with custom button groups [(#1334)](https://github.com/ManageIQ/manageiq-ui-service/pull/1334)
+- A dep no longer needed causes loading of angular too many times error [(#1295)](https://github.com/ManageIQ/manageiq-ui-service/pull/1295)
+- Adds empty state to service details relationship section [(#1292)](https://github.com/ManageIQ/manageiq-ui-service/pull/1292)
+- Ensure cloud_credential is captured for representation [(#1291)](https://github.com/ManageIQ/manageiq-ui-service/pull/1291)
+- Ensure correct compliance icon 7 day timeline last hour utilization [(#1284)](https://github.com/ManageIQ/manageiq-ui-service/pull/1284)
+- Added custom button menu to Resource Details page [(#1254)](https://github.com/ManageIQ/manageiq-ui-service/pull/1254)
+- Apply standard to .ts resolve angular critical dependency error [(#1212)](https://github.com/ManageIQ/manageiq-ui-service/pull/1212)
+- Ensure correct noVNC location is used [(#1208)](https://github.com/ManageIQ/manageiq-ui-service/pull/1208)
+- Reconfigure custering of events to occur at 1  min interval [(#1182)](https://github.com/ManageIQ/manageiq-ui-service/pull/1182)
+- Resource and menu action buttons on the same row [(#1179)](https://github.com/ManageIQ/manageiq-ui-service/pull/1179)
+- Create resouce-detail md/sm viewport layouts [(#1175)](https://github.com/ManageIQ/manageiq-ui-service/pull/1175)
+- Restores rbac permissiosn and camera eventicon [(#1168)](https://github.com/ManageIQ/manageiq-ui-service/pull/1168)
+- Replace supports_launch_cockpit with supports_cockpit [(#1165)](https://github.com/ManageIQ/manageiq-ui-service/pull/1165)
+- Clear user name field on failed login [(#1162)](https://github.com/ManageIQ/manageiq-ui-service/pull/1162)
+- Adds done in efforts to fix travis timeout errors [(#1156)](https://github.com/ManageIQ/manageiq-ui-service/pull/1156)
+- Updated support for launching cockpit and console [(#1132)](https://github.com/ManageIQ/manageiq-ui-service/pull/1132)
+- Removed unnecessary filtercount functions from explorer views [(#1117)](https://github.com/ManageIQ/manageiq-ui-service/pull/1117)
+- Ensure we only fetch those services with display set to true [(#1112)](https://github.com/ManageIQ/manageiq-ui-service/pull/1112)
+- Uncapitalize repo name for playbooks [(#1098)](https://github.com/ManageIQ/manageiq-ui-service/pull/1098)
 
 ## Gaprindashvili-4 - Released 2018-07-16
 
@@ -32,11 +62,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Updated custom button dialog url [(#1433)](https://github.com/ManageIQ/manageiq-ui-service/pull/1433)
 - Change service dialog api call to match CUI [(#1438)](https://github.com/ManageIQ/manageiq-ui-service/pull/1438)
 - Retirement & provisioning playbook does not duplicate details [(#1443)](https://github.com/ManageIQ/manageiq-ui-service/pull/1443)
-
-## Unreleased as of Sprint 87 ending 2018-06-04
-
-### Fixed
-- Removes whitespace that breaks translation [(#1439)](https://github.com/ManageIQ/manageiq-ui-service/pull/1439)
 
 ## Gaprindashvili-3 - Released 2018-05-15
 
@@ -51,19 +76,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Refactors ansible credentials to be more generic, override with dialog input [(#1417)](https://github.com/ManageIQ/manageiq-ui-service/pull/1417)
 - Fixed issue with custom button details dynamic field refresh [(#1423)](https://github.com/ManageIQ/manageiq-ui-service/pull/1423)
 
-## Unreleased as of Sprint 83 ending 2018-04-09
-
-### Fixed
-- Restores listview deafult row click behavior expanding row content [(#1416)](https://github.com/ManageIQ/manageiq-ui-service/pull/1416)
-- Adds on-close to pf-notification-drawer component [(#1415)](https://github.com/ManageIQ/manageiq-ui-service/pull/1415)
-- tolowercase of a null does not end well - breaks service explorer [(#1413)](https://github.com/ManageIQ/manageiq-ui-service/pull/1413)
-- Fixes disk size misreporting for some disks [(#1410)](https://github.com/ManageIQ/manageiq-ui-service/pull/1410)
-
-## Unreleased as of Sprint 81 ending 2018-03-12
-
-### Fixed
-- Moved action button to the bottom of the form [(#1384)](https://github.com/ManageIQ/manageiq-ui-service/pull/1384)
-
 ## Gaprindashvili-2 released 2018-03-06
 
 ### Fixed
@@ -73,11 +85,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Create global variable for version of Patternfly [(#1379)](https://github.com/ManageIQ/manageiq-ui-service/pull/1379)
 - Updated UI components version to remedy dialog select issue [(#1383)](https://github.com/ManageIQ/manageiq-ui-service/pull/1383)
 - Pass additional information to the API when refreshing a dialog field [(#1324)](https://github.com/ManageIQ/manageiq-ui-service/pull/1324)
-
-## Unreleased as of Sprint 79 ending 2018-02-12
-
-### Fixed
-- Create global variable for version of Patternfly [(#1379)](https://github.com/ManageIQ/manageiq-ui-service/pull/1379)
 
 ## Gaprindashvili-1 - Released 2018-01-31
 
@@ -163,64 +170,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Ensured tooltips do not show when drop downs are open [(#1345)](https://github.com/ManageIQ/manageiq-ui-service/pull/1345)
 - Fixed issue with adding to cart not working [(#1347)](https://github.com/ManageIQ/manageiq-ui-service/pull/1347)
 - Ensure service tag filters flagged for translation [(#1343)](https://github.com/ManageIQ/manageiq-ui-service/pull/1343)
-
-## Unreleased as of Sprint 78 ending 2018-01-29
-
-### Fixed
-- Timelines: need to escape strings for the popover. [(#1370)](https://github.com/ManageIQ/manageiq-ui-service/pull/1370)
-- Keep ui-components in sync with classic [(#1369)](https://github.com/ManageIQ/manageiq-ui-service/pull/1369)
-- We were still disabling snapsot revert for all but the current snapshot [(#1367)](https://github.com/ManageIQ/manageiq-ui-service/pull/1367)
-- Removes unnecessary header x-miq-group [(#1360)](https://github.com/ManageIQ/manageiq-ui-service/pull/1360)
-
-## Unreleased as of Sprint 77 ending 2018-01-15
-
-### Fixed
-- Enables user to revert snapshots that are parents [(#1358)](https://github.com/ManageIQ/manageiq-ui-service/pull/1358)
-- Hides console buttons when indicated by server sans message [(#1354)](https://github.com/ManageIQ/manageiq-ui-service/pull/1354)
-
-## Unreleased as of Sprint 76 ending 2018-01-01
-
-### Fixed
-- Ensure service tag filters flagged for translation [(#1343)](https://github.com/ManageIQ/manageiq-ui-service/pull/1343)
-
-## Unreleased as of Sprint 75 ending 2017-12-11
-
-### Fixed
-- Fixed issue with custom button groups [(#1334)](https://github.com/ManageIQ/manageiq-ui-service/pull/1334)
-- A dep no longer needed causes loading of angular too many times error [(#1295)](https://github.com/ManageIQ/manageiq-ui-service/pull/1295)
-- Adds empty state to service details relationship section [(#1292)](https://github.com/ManageIQ/manageiq-ui-service/pull/1292)
-- Ensure cloud_credential is captured for representation [(#1291)](https://github.com/ManageIQ/manageiq-ui-service/pull/1291)
-- Ensure correct compliance icon 7 day timeline last hour utilization [(#1284)](https://github.com/ManageIQ/manageiq-ui-service/pull/1284)
-- Added custom button menu to Resource Details page [(#1254)](https://github.com/ManageIQ/manageiq-ui-service/pull/1254)
-
-
-## Unreleased as of Sprint 73 ending 2017-11-13
-
-### Fixed
-- Apply standard to .ts resolve angular critical dependency error [(#1212)](https://github.com/ManageIQ/manageiq-ui-service/pull/1212)
-- Ensure correct noVNC location is used [(#1208)](https://github.com/ManageIQ/manageiq-ui-service/pull/1208)
-
-## Unreleased as of Sprint 72 ending 2017-10-30
-
-### Added
-- Updates language files includes new languages [(#1184)](https://github.com/ManageIQ/manageiq-ui-service/pull/1184)
-- Adds loading spinner using pf-empty-state [(#1154)](https://github.com/ManageIQ/manageiq-ui-service/pull/1154)
-- Added ability for login screen to clear password on failed attempt [(#1142)](https://github.com/ManageIQ/manageiq-ui-service/pull/1142)
-- Updated RBAC and product features to support new structure [(#1090)](https://github.com/ManageIQ/manageiq-ui-service/pull/1090)
-- Implement Generic Objects on services details page [(#996)](https://github.com/ManageIQ/manageiq-ui-service/pull/996)
-
-### Fixed
-- Reconfigure custering of events to occur at 1  min interval [(#1182)](https://github.com/ManageIQ/manageiq-ui-service/pull/1182)
-- Resource and menu action buttons on the same row [(#1179)](https://github.com/ManageIQ/manageiq-ui-service/pull/1179)
-- Create resouce-detail md/sm viewport layouts [(#1175)](https://github.com/ManageIQ/manageiq-ui-service/pull/1175)
-- Restores rbac permissiosn and camera eventicon [(#1168)](https://github.com/ManageIQ/manageiq-ui-service/pull/1168)
-- Replace supports_launch_cockpit with supports_cockpit [(#1165)](https://github.com/ManageIQ/manageiq-ui-service/pull/1165)
-- Clear user name field on failed login [(#1162)](https://github.com/ManageIQ/manageiq-ui-service/pull/1162)
-- Adds done in efforts to fix travis timeout errors [(#1156)](https://github.com/ManageIQ/manageiq-ui-service/pull/1156)
-- Updated support for launching cockpit and console [(#1132)](https://github.com/ManageIQ/manageiq-ui-service/pull/1132)
-- Removed unnecessary filtercount functions from explorer views [(#1117)](https://github.com/ManageIQ/manageiq-ui-service/pull/1117)
-- Ensure we only fetch those services with display set to true [(#1112)](https://github.com/ManageIQ/manageiq-ui-service/pull/1112)
-- Uncapitalize repo name for playbooks [(#1098)](https://github.com/ManageIQ/manageiq-ui-service/pull/1098)
 
 ## Fine-4
 
