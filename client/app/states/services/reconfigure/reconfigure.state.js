@@ -25,11 +25,9 @@ function StateController ($state, $stateParams, CollectionsApi, EventNotificatio
   vm.title = __('Service Details')
   vm.service = {}
   vm.serviceId = $stateParams.serviceId
-  vm.dialogs = [setFieldValueDefaults(vm.service.provision_dialog)]
   vm.submitDialog = submitDialog
   vm.cancelDialog = cancelDialog
   vm.backToService = backToService
-  vm.dialogUrl = `services/${vm.service.service_template_catalog_id}/service_templates`
   vm.refreshField = refreshField
   vm.setDialogData = setDialogData
   vm.dialogData = {}
@@ -43,6 +41,8 @@ function StateController ($state, $stateParams, CollectionsApi, EventNotificatio
     CollectionsApi.get('services', $stateParams.serviceId, options).then((response) => {
       vm.loading = false
       vm.service = response
+      vm.dialogUrl = `services/${vm.service.service_template_catalog_id}/service_templates`
+      vm.dialogs = [setFieldValueDefaults(vm.service.provision_dialog)]
     })
   }
   init()
