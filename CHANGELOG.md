@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 95 ending 2018-08-24
+
+### Fixed
+- Hide revert snapshot button for openstack vm's [(#1475)](https://github.com/ManageIQ/manageiq-ui-service/pull/1475)
+
+## Gaprindashvili-5 - Released 2018-09-07
+
+### Fixed
+- Support for disabling Dashboard [(#1446)](https://github.com/ManageIQ/manageiq-ui-service/pull/1446)
+- Fix for refresh of dialog fields not being called in some circumstances [(#1454)](https://github.com/ManageIQ/manageiq-ui-service/pull/1454)
+- Fixed issue with dialogs that causes duplicate values [(#1458)](https://github.com/ManageIQ/manageiq-ui-service/pull/1458)
+
 ## Unreleased as of Sprint 92 ending 2018-08-13
 
 ### Fixed
@@ -23,7 +35,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Snapshot modal. Add support to hide memory checkbox [(#1455)](https://github.com/ManageIQ/manageiq-ui-service/pull/1455)
-- Fix for refresh of dialog fields not being called in some circumstances [(#1454)](https://github.com/ManageIQ/manageiq-ui-service/pull/1454)
 - Service retirement should use make retire as a request [(#1453)](https://github.com/ManageIQ/manageiq-ui-service/pull/1453)
 
 ## Gaprindashvili-4 - Released 2018-07-16
