@@ -91,10 +91,6 @@ export function authInit ($rootScope, $state, $log, Session, $sessionStorage, La
     }
     syncSession()
     .then(rbacReloadOrLogin(toState, toParams))
-    .then(() => {
-      const cable = ActionCable.createConsumer('/ws/notifications')
-      cable.subscriptions.create('NotificationChannel', {})
-    })
     .catch(badUser)
   }
 
