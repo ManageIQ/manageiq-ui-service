@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Hammer Beta-1
+## Hammer Beta-1 - Released 2018-10-12
 
 ### Added
 - Updates language files includes new languages [(#1184)](https://github.com/ManageIQ/manageiq-ui-service/pull/1184)
@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Added ability for login screen to clear password on failed attempt [(#1142)](https://github.com/ManageIQ/manageiq-ui-service/pull/1142)
 - Updated RBAC and product features to support new structure [(#1090)](https://github.com/ManageIQ/manageiq-ui-service/pull/1090)
 - Implement Generic Objects on services details page [(#996)](https://github.com/ManageIQ/manageiq-ui-service/pull/996)
+- Update i18n catalog for hammer [(#1480)](https://github.com/ManageIQ/manageiq-ui-service/pull/1480)
 
 ### Fixed
 - Updated URL for custom buttons dialogs [(#1467)](https://github.com/ManageIQ/manageiq-ui-service/pull/1467)
@@ -55,6 +56,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Removed unnecessary filtercount functions from explorer views [(#1117)](https://github.com/ManageIQ/manageiq-ui-service/pull/1117)
 - Ensure we only fetch those services with display set to true [(#1112)](https://github.com/ManageIQ/manageiq-ui-service/pull/1112)
 - Uncapitalize repo name for playbooks [(#1098)](https://github.com/ManageIQ/manageiq-ui-service/pull/1098)
+- Fixed issue with dialogs not loading on reconfigure [(#1478)](https://github.com/ManageIQ/manageiq-ui-service/pull/1478)
 
 ## Gaprindashvili-4 - Released 2018-07-16
 
