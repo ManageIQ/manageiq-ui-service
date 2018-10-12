@@ -1,5 +1,6 @@
 /** @ngInject */
-export function EventNotificationsFactory ($timeout, lodash, CollectionsApi, RBAC) {
+export function EventNotificationsFactory ($log, $timeout, lodash, CollectionsApi, RBAC, ApplianceInfo, ActionCable,
+                                           Session) {
   const state = {}
   const toastDelay = 8 * 1000
   const service = {
@@ -21,6 +22,7 @@ export function EventNotificationsFactory ($timeout, lodash, CollectionsApi, RBA
   }
 
   notificationsInit()
+  actionCableInit()
 
   return service
 
@@ -229,6 +231,26 @@ export function EventNotificationsFactory ($timeout, lodash, CollectionsApi, RBA
         },
         href: resource.href,
         timeStamp: resource.details.created_at
+      })
+    }
+  }
+
+  function actionCableInit () {
+    if (ApplianceInfo.get().asyncNotify) {
+      const cable = ActionCable.createConsumer('/ws/notifications')
+      cable.subscriptions.create('NotificationChannel', {
+        disconnected: () => {
+          const vm = this
+          Session.requestWsToken().then(null, () => {
+            $log.warn('Unable to retrieve a valid ws_token!')
+            // Disconnect permanently if the ws_token cannot be fetched
+            vm.consumer.connection.close({allowReconnect: false})
+          })
+        },
+        received: (data) => {
+          const msg = miqFormatNotification(data.text, data.bindings)
+          add(data.level, data.level === 'error' ? 'danger' : data.level, msg, {message: msg}, data.id)
+        }
       })
     }
   }
