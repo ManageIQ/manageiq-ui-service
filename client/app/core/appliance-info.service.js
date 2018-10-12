@@ -23,7 +23,8 @@ export function ApplianceInfo ($sessionStorage) {
       role: data.identity.role,
       suiVersion: gitHash.gitCommit,
       miqVersion: data.server_info.version + '.' + data.server_info.build,
-      server: data.server_info.appliance
+      server: data.server_info.appliance,
+      asyncNotify: data.settings.asynchronous_notifications || true
     }
     $sessionStorage.applianceInfo = applianceInfo
   }
