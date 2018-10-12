@@ -74,10 +74,6 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
         Session.destroy()
       }
     })
-    .then(() => {
-      const cable = ActionCable.createConsumer('/ws/notifications')
-      cable.subscriptions.create('NotificationChannel', {})
-    })
     .catch((response) => {
       if (response.status === 401) {
         vm.credentials.login = ''
