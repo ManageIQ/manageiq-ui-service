@@ -328,7 +328,9 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
       }
     ]
     snapshotOptionsActions.forEach((menuOption) => menuOption.permission ? snapshotOptionsMenu.actions.push(menuOption) : null)
-    vm.snapshotListActions = [snapshotOptionsMenu]
+    if (snapshotOptionsMenu.actions.length) {
+      vm.snapshotListActions = [snapshotOptionsMenu]
+    }
 
     return vm.snapshotListActions
   }
