@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Gaprindashvili-6
+
+### Fixed
+- Snapshot modal. Add support to hide memory checkbox [(#1455)](https://github.com/ManageIQ/manageiq-ui-service/pull/1455)
+
 ## Gaprindashvili-5
 
 ### Fixed
