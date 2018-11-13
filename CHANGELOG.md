@@ -5,10 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Unreleased as of Sprint 97 ending 2018-10-22
+## Unreleased as of Sprint 98 ending 2018-11-05
 
 ### Fixed
-- Restore action cable subscription ensure enablement flag is available [(#1482)](https://github.com/ManageIQ/manageiq-ui-service/pull/1482)
+- Fix permission related display issues [(#1484)](https://github.com/ManageIQ/manageiq-ui-service/pull/1484)
+
+## Gaprindashvili-6 - Released 2018-11-02
+
+### Fixed
+- Snapshot modal. Add support to hide memory checkbox [(#1455)](https://github.com/ManageIQ/manageiq-ui-service/pull/1455)
+
+## Hammer Beta-2 - Released 2018-10-29
+
+### Fixed
+- Restore action cable subscription, ensure enablement flag is available [(#1482)](https://github.com/ManageIQ/manageiq-ui-service/pull/1482)
 
 ## Hammer Beta-1 - Released 2018-10-12
 
