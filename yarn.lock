@@ -104,9 +104,10 @@
     glob "^7.1.1"
     json-server "^0.9.6"
 
-"@manageiq/ui-components@1.1.14":
-  version "1.1.14"
-  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.1.14.tgz#b03bbb0c7760ba970f275d0a818513fbade063da"
+"@manageiq/ui-components@1.1.18":
+  version "1.1.18"
+  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.1.18.tgz#e8ee8325fb0f7aa8d5d173fbd4fabd7d2b35c2db"
+  integrity sha512-7xtGx091jlsQMKKUZ3eBXhFFqbNPNjI4X2xfKRJdZxv15Lvnu08GS6t5gtXrqTpYpfEdhBHvvy74es8jXzN4IQ==
   dependencies:
     angular-bootstrap-switch "^0.5.1"
     angular-dragdrop "^1.0.13"
@@ -115,6 +116,7 @@
     es6-shim "^0.35.3"
     es7-shim "^6.0.0"
     eslint "~3.9.1"
+    sprintf-js "^1.1.1"
 
 "@sinonjs/formatio@^2.0.0":
   version "2.0.0"
@@ -9257,7 +9259,7 @@ split-string@^3.0.1, split-string@^3.0.2:
   dependencies:
     extend-shallow "^3.0.0"
 
-sprintf-js@1.1.1:
+sprintf-js@1.1.1, sprintf-js@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.1.1.tgz#36be78320afe5801f6cea3ee78b6e5aab940ea0c"
 
