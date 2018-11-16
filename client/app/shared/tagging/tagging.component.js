@@ -101,7 +101,7 @@ function TaggingController ($scope, $filter, $q, $log, CollectionsApi, TaggingSe
     if (vm.tags.filtered) {
       vm.tags.filtered[0] = placeholderCategorization
       vm.tags.selectedTag = vm.tags.filtered[0]
-      vm.showTagDropdowns = true
+      vm.showTagDropdowns = !vm.readOnly
     }
   }, true)
 
