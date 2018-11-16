@@ -62,21 +62,17 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
       },
       compliance: {
         'title': 'Compliance',
-        'href': '#',
         'notifications': [
           {
-            'iconClass': 'pficon pficon-unknown',
-            'href': '#'
+            'iconClass': 'pficon pficon-unknown'
           }
         ]
       },
       retirement: {
         'title': 'Retirement',
-        'href': '#',
         'notifications': [
           {
-            'iconClass': 'pficon pficon-unknown',
-            'href': '#'
+            'iconClass': 'pficon pficon-unknown'
           }
         ]
       },
