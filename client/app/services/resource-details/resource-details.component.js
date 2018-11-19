@@ -62,21 +62,17 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
       },
       compliance: {
         'title': 'Compliance',
-        'href': '#',
         'notifications': [
           {
-            'iconClass': 'pficon pficon-unknown',
-            'href': '#'
+            'iconClass': 'pficon pficon-unknown'
           }
         ]
       },
       retirement: {
         'title': 'Retirement',
-        'href': '#',
         'notifications': [
           {
-            'iconClass': 'pficon pficon-unknown',
-            'href': '#'
+            'iconClass': 'pficon pficon-unknown'
           }
         ]
       },
@@ -273,9 +269,9 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
       vm.ssAnalysis.linux_initprocesses.value = response.linux_initprocesses.length
       vm.ssAnalysis.files.value = response.files.length
       vm.snapshots.notifications[0].count = response.v_total_snapshots
-      vm.retirement.notifications[0].count = angular.isUndefined(response.retires_on) ? vm.neverText
+      vm.retirement.notifications[0].count = response.retires_on === null ? vm.neverText
         : `${retirementDate.getFullYear()}-${retirementDate.toString().split(' ')[1]}-${retirementDate.getDate()}`
-      vm.retirement.notifications[0].iconClass = angular.isUndefined(response.retires_on) ? ''
+      vm.retirement.notifications[0].iconClass = response.retires_on === null ? ''
         : `fa fa-clock-o`
       vm.compliance.notifications[0].count = angular.isUndefined(response.last_compliance_status) ? `Never Verified`
         : lodash.capitalize(response.last_compliance_status)
@@ -302,6 +298,7 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
 
     return allButtons
   }
+
   function getSnapshotListActions () {
     const snapshotOptionsMenu = {
       title: __('Snapshots'),
