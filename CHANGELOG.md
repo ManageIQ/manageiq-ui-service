@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 99 ending 2018-11-19
+
+### Fixed
+- If tagging is readonly we should not show the edit dropdown [(#1497)](https://github.com/ManageIQ/manageiq-ui-service/pull/1497)
+- Fix retirement card on vm details page [(#1496)](https://github.com/ManageIQ/manageiq-ui-service/pull/1496)
+
 ## Unreleased as of Sprint 98 ending 2018-11-05
 
 ### Fixed
