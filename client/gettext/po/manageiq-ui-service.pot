@@ -4,11 +4,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: ./client/app/states/dashboard/dashboard.html:88
+#: ./client/app/components/dashboard/dashboard.html:110
 msgid "$0"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:215
+#: ./client/app/services/resource-details/resource-details.component.js:211
 msgid "%"
 msgstr ""
 
@@ -21,7 +21,7 @@ msgstr ""
 msgid "%s"
 msgstr ""
 
-#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:31
+#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:32
 msgid "%s was edited."
 msgstr ""
 
@@ -41,31 +41,31 @@ msgstr ""
 msgid "%s was suspended."
 msgstr ""
 
-#: ./client/app/layouts/application.html:82
+#: ./client/app/layouts/application.html:87
 msgid "(Current Group)"
 msgstr ""
 
-#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:37
+#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:38
 msgid "1 Week"
 msgstr ""
 
-#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:38
+#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:39
 msgid "2 Weeks"
 msgstr ""
 
-#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:39
+#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:40
 msgid "3 Weeks"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.state.js:204
+#: ./client/app/components/dashboard/dashboard.component.js:71
 msgid "30 Days"
 msgstr ""
 
-#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:40
+#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:41
 msgid "4 Weeks"
 msgstr ""
 
-#: ./client/app/layouts/application.html:59
+#: ./client/app/layouts/application.html:64
 msgid "About"
 msgstr ""
 
@@ -74,7 +74,7 @@ msgstr ""
 msgid "About Me"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:285
+#: ./client/app/services/service-details/service-details.html:294
 msgid "Access"
 msgstr ""
 
@@ -82,16 +82,16 @@ msgstr ""
 msgid "Action not able to submit."
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.html:82
+#: ./client/app/services/vms/snapshots.html:81
 msgid "Active"
 msgstr ""
 
-#: ./client/app/states/catalogs/details/details.html:39
-#: ./client/app/states/catalogs/details/details.html:44
+#: ./client/app/states/catalogs/details/details.html:52
+#: ./client/app/states/catalogs/details/details.html:57
 msgid "Add to Shopping Cart"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:123
+#: ./client/app/core/navigation/navigation-controller.js:138
 msgid "Administration UI"
 msgstr ""
 
@@ -106,11 +106,11 @@ msgstr ""
 msgid "Affected Services"
 msgstr ""
 
-#: ./client/app/services/generic-objects-list/generic-objects-list.component.js:42
+#: ./client/app/services/generic-objects-list/generic-objects-list.component.js:40
 msgid "An error occured"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:115
+#: ./client/app/components/dashboard/dashboard.html:137
 msgid "Approved Requests"
 msgstr ""
 
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Are you sure you would like to clear all [[heading]]?"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:329
+#: ./client/app/services/service-details/service-details.html:344
 msgid "Are you sure you would like to retire this resource?"
 msgstr ""
 
@@ -145,11 +145,11 @@ msgstr ""
 msgid "Available"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:252
+#: ./client/app/services/service-details/service-details.html:260
 msgid "Boot Time: Unknown"
 msgstr ""
 
-#: ./client/app/core/language-switcher/language-switcher.directive.js:29
+#: ./client/app/shared/language-switcher/language-switcher.component.js:26
 msgid "Browser Default"
 msgstr ""
 
@@ -175,11 +175,11 @@ msgstr ""
 msgid "Catalogs"
 msgstr ""
 
-#: ./client/app/layouts/application.html:74
+#: ./client/app/layouts/application.html:79
 msgid "Change Group:"
 msgstr ""
 
-#: ./client/app/layouts/application.html:86
+#: ./client/app/layouts/application.html:91
 msgid "Change to this Group"
 msgstr ""
 
@@ -213,19 +213,15 @@ msgstr ""
 msgid "Compute"
 msgstr ""
 
-#: ./client/app/services/services-state.service.js:218
-#: ./client/app/services/services-state.service.js:223
-#: ./client/app/services/vms/snapshots.component.js:134
-#: ./client/app/services/vms/snapshots.component.js:135
+#: ./client/app/services/services-state.service.js:211
+#: ./client/app/services/services-state.service.js:216
+#: ./client/app/services/vms/snapshots.component.js:129
+#: ./client/app/services/vms/snapshots.component.js:130
 msgid "Configuration"
 msgstr ""
 
-#: ./client/app/services/services-state.service.js:246
+#: ./client/app/services/services-state.service.js:239
 msgid "Confirm, would you like to remove this service?"
-msgstr ""
-
-#: ./client/app/services/services-state.service.js:160
-msgid "Confirm, would you like to retire this service?"
 msgstr ""
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:15
@@ -236,36 +232,36 @@ msgstr ""
 msgid "Cost not available"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:323
-#: ./client/app/services/service-details/service-details.html:275
+#: ./client/app/services/resource-details/resource-details.component.js:320
+#: ./client/app/services/service-details/service-details.html:283
 msgid "Create"
 msgstr ""
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:5
-#: ./client/app/services/vms/snapshots.component.js:118
+#: ./client/app/services/vms/snapshots.component.js:113
 msgid "Create Snapshot"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:120
+#: ./client/app/services/vms/snapshots.component.js:115
 msgid "Create snapshot"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:325
+#: ./client/app/services/resource-details/resource-details.component.js:322
 msgid "Create snapshots"
 msgstr ""
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:380
 #: ./client/app/services/service-explorer/service-explorer.html:162
 #: ./client/app/services/service-explorer/service-explorer.html:86
-#: ./client/app/services/vms/snapshots.component.js:107
+#: ./client/app/services/vms/snapshots.component.js:102
 msgid "Created"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:91
+#: ./client/app/services/service-details/service-details.html:99
 msgid "Created On"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.html:90
+#: ./client/app/services/vms/snapshots.html:89
 msgid "Created:"
 msgstr ""
 
@@ -277,15 +273,15 @@ msgstr ""
 msgid "Credentials"
 msgstr ""
 
-#: ./client/app/layouts/application.html:94
+#: ./client/app/layouts/application.html:99
 msgid "Current Group"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:48
+#: ./client/app/components/dashboard/dashboard.html:66
 msgid "Current Services"
 msgstr ""
 
-#: ./client/app/layouts/application.html:80
+#: ./client/app/layouts/application.html:85
 msgid "Currently Selected Group"
 msgstr ""
 
@@ -301,51 +297,51 @@ msgstr ""
 msgid "Custom button action"
 msgstr ""
 
-#: ./client/app/core/navigation.service.js:17
-#: ./client/app/states/dashboard/dashboard.state.js:16
+#: ./client/app/core/navigation.service.js:33
+#: ./client/app/states/dashboard/dashboard.state.js:12
 msgid "Dashboard"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:75
+#: ./client/app/services/vms/snapshots.component.js:76
 #: ./client/app/services/vms/snapshots.html:37
 msgid "Delete"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:125
+#: ./client/app/services/vms/snapshots.component.js:120
 msgid "Delete All Snapshots"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:236
+#: ./client/app/services/vms/snapshots.component.js:231
 msgid "Delete All Snapshots on VM %s"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:232
-#: ./client/app/services/vms/snapshots.component.js:77
+#: ./client/app/services/vms/snapshots.component.js:227
+#: ./client/app/services/vms/snapshots.component.js:78
 msgid "Delete Snapshot"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:127
+#: ./client/app/services/vms/snapshots.component.js:122
 msgid "Delete all snapshots"
 msgstr ""
 
-#: ./client/app/orders/process-order-modal/process-order-modal.component.js:37
+#: ./client/app/orders/process-order-modal/process-order-modal.component.js:39
 msgid "Deleting order."
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:148
+#: ./client/app/services/vms/snapshots.component.js:143
 msgid "Deleting snapshot."
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:128
+#: ./client/app/components/dashboard/dashboard.html:150
 msgid "Denied Requests"
 msgstr ""
 
 #: ./client/app/catalogs/catalog-explorer.component.js:57
 #: ./client/app/services/edit-service-modal/edit-service-modal.html:12
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:15
-#: ./client/app/services/service-details/service-details.html:51
+#: ./client/app/services/service-details/service-details.html:59
 #: ./client/app/services/service-explorer/service-explorer.component.js:331
-#: ./client/app/services/vms/snapshots.component.js:95
+#: ./client/app/services/vms/snapshots.component.js:90
 #: ./client/app/shared/ss-card/ss-card.html:8
 msgid "Description"
 msgstr ""
@@ -362,7 +358,7 @@ msgstr ""
 msgid "Disk Usage"
 msgstr ""
 
-#: ./client/app/layouts/application.html:49
+#: ./client/app/layouts/application.html:54
 msgid "Documentation"
 msgstr ""
 
@@ -379,13 +375,13 @@ msgstr ""
 msgid "Duplicate Service"
 msgstr ""
 
-#: ./client/app/states/catalogs/details/details.html:37
+#: ./client/app/states/catalogs/details/details.html:50
 msgid "Duplicate Shopping Cart Item"
 msgstr ""
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:215
-#: ./client/app/services/services-state.service.js:229
-#: ./client/app/services/services-state.service.js:231
+#: ./client/app/services/services-state.service.js:222
+#: ./client/app/services/services-state.service.js:224
 msgid "Edit"
 msgstr ""
 
@@ -397,8 +393,8 @@ msgstr ""
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:5
 #: ./client/app/services/service-explorer/service-explorer.component.js:223
 #: ./client/app/services/service-explorer/service-explorer.component.js:225
-#: ./client/app/services/services-state.service.js:199
-#: ./client/app/services/services-state.service.js:201
+#: ./client/app/services/services-state.service.js:192
+#: ./client/app/services/services-state.service.js:194
 msgid "Edit Tags"
 msgstr ""
 
@@ -415,23 +411,23 @@ msgstr ""
 msgid "Error creating snapshot."
 msgstr ""
 
-#: ./client/app/orders/process-order-modal/process-order-modal.component.js:37
+#: ./client/app/orders/process-order-modal/process-order-modal.component.js:39
 msgid "Error deleting order."
 msgstr ""
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:46
 msgid "Error deleting service."
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:148
+#: ./client/app/services/vms/snapshots.component.js:143
 msgid "Error deleting snapshot."
 msgstr ""
 
-#: ./client/app/core/authorization.config.js:121
+#: ./client/app/core/authorization.config.js:127
 msgid "Error retrieving user info"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:246
+#: ./client/app/services/vms/snapshots.component.js:241
 msgid "Error reverting snapshot."
 msgstr ""
 
@@ -445,22 +441,22 @@ msgstr ""
 
 #: ./client/app/catalogs/catalog-explorer.component.js:57
 #: ./client/app/services/service-explorer/service-explorer.component.js:331
-#: ./client/app/services/vms/snapshots.component.js:95
+#: ./client/app/services/vms/snapshots.component.js:90
 msgid "Filter by Description"
 msgstr ""
 
-#: ./client/app/orders/order-explorer/order-explorer.component.js:103
+#: ./client/app/orders/order-explorer/order-explorer.component.js:102
 msgid "Filter by ID"
 msgstr ""
 
 #: ./client/app/catalogs/catalog-explorer.component.js:56
-#: ./client/app/orders/order-explorer/order-explorer.component.js:102
+#: ./client/app/orders/order-explorer/order-explorer.component.js:101
 #: ./client/app/services/service-explorer/service-explorer.component.js:330
-#: ./client/app/services/vms/snapshots.component.js:94
+#: ./client/app/services/vms/snapshots.component.js:89
 msgid "Filter by Name"
 msgstr ""
 
-#: ./client/app/orders/order-explorer/order-explorer.component.js:104
+#: ./client/app/orders/order-explorer/order-explorer.component.js:103
 msgid "Filter by Order Date"
 msgstr ""
 
@@ -482,16 +478,16 @@ msgstr ""
 msgid "For Sizing"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:221
-#: ./client/app/services/resource-details/resource-details.component.js:227
+#: ./client/app/services/resource-details/resource-details.component.js:217
+#: ./client/app/services/resource-details/resource-details.component.js:223
 msgid "GB"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:57
+#: ./client/app/services/service-details/service-details.html:65
 msgid "GUID"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:262
+#: ./client/app/core/navigation/navigation-controller.js:232
 msgid "Group switching error:"
 msgstr ""
 
@@ -516,11 +512,11 @@ msgstr ""
 msgid "If you do not save, any changes will be lost."
 msgstr ""
 
-#: ./client/app/states/catalogs/details/details.state.js:181
+#: ./client/app/states/catalogs/details/details.state.js:204
 msgid "Item added to shopping cart"
 msgstr ""
 
-#: ./client/app/states/catalogs/details/details.state.js:179
+#: ./client/app/states/catalogs/details/details.state.js:202
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
 msgstr ""
 
@@ -532,27 +528,27 @@ msgstr ""
 msgid "Last 7 days"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:242
+#: ./client/app/services/service-details/service-details.html:250
 msgid "Last Boot"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:212
+#: ./client/app/services/service-details/service-details.html:220
 msgid "Latest"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:244
+#: ./client/app/services/service-details/service-details.html:252
 msgid "Latest Boot Time"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:215
+#: ./client/app/services/service-details/service-details.html:223
 msgid "Latest Snapshot Name"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:223
+#: ./client/app/services/service-details/service-details.html:231
 msgid "Latest Snapshot Timestamp"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:232
+#: ./client/app/services/service-details/service-details.html:240
 msgid "Latest Snapshot: Unknown"
 msgstr ""
 
@@ -571,6 +567,8 @@ msgstr ""
 msgid "Live Ansible Play"
 msgstr ""
 
+#: ./client/app/components/dashboard/dashboard.html:11
+#: ./client/app/components/dashboard/dashboard.html:30
 #: ./client/app/shared/loading.component.js:8
 msgid "Loading"
 msgstr ""
@@ -579,7 +577,7 @@ msgstr ""
 msgid "Log In"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:124
+#: ./client/app/core/navigation/navigation-controller.js:139
 msgid "Log into the full administrative UI"
 msgstr ""
 
@@ -587,11 +585,11 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: ./client/app/states/login/login.state.js:86
+#: ./client/app/states/login/login.state.js:82
 msgid "Login failed, possibly invalid credentials."
 msgstr ""
 
-#: ./client/app/layouts/application.html:104
+#: ./client/app/layouts/application.html:109
 #: ./client/app/states/logout/logout.state.js:12
 msgid "Logout"
 msgstr ""
@@ -613,19 +611,22 @@ msgstr ""
 msgid "Memory"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:78
+#: ./client/app/components/dashboard/dashboard.html:100
 msgid "Monthly Charges - This Month To Date"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:80
+#: ./client/app/services/service-details/service-details.html:88
 msgid "Monthly Cost"
 msgstr ""
 
-#: ./client/app/core/navigation.service.js:39
+#: ./client/app/core/navigation.service.js:55
+#: ./client/app/states/catalogs/details/details.state.js:57
+#: ./client/app/states/orders/details/details.html:5
+#: ./client/app/states/orders/explorer/explorer.state.js:11
 msgid "My Orders"
 msgstr ""
 
-#: ./client/app/core/navigation.service.js:23
+#: ./client/app/core/navigation.service.js:39
 #: ./client/app/services/resource-details/resource-details.html:5
 #: ./client/app/services/service-details/service-details.html:5
 #: ./client/app/services/service-explorer/service-explorer.html:4
@@ -637,19 +638,19 @@ msgstr ""
 #: ./client/app/catalogs/catalog-explorer.component.js:56
 #: ./client/app/catalogs/catalog-explorer.component.js:75
 #: ./client/app/catalogs/catalogs-state.service.js:7
-#: ./client/app/orders/order-explorer/order-explorer.component.js:102
-#: ./client/app/orders/order-explorer/order-explorer.component.js:110
+#: ./client/app/orders/order-explorer/order-explorer.component.js:101
+#: ./client/app/orders/order-explorer/order-explorer.component.js:109
 #: ./client/app/orders/orders-state.service.spec.js:29
 #: ./client/app/services/edit-service-modal/edit-service-modal.html:9
 #: ./client/app/services/service-details/service-details-ansible.html:101
 #: ./client/app/services/service-details/service-details-ansible.html:151
-#: ./client/app/services/service-details/service-details.html:45
+#: ./client/app/services/service-details/service-details.html:53
 #: ./client/app/services/service-explorer/service-explorer.component.js:330
 #: ./client/app/services/service-explorer/service-explorer.component.js:381
 #: ./client/app/services/services-state.service.js:8
 #: ./client/app/services/vms.service.js:8
-#: ./client/app/services/vms/snapshots.component.js:106
-#: ./client/app/services/vms/snapshots.component.js:94
+#: ./client/app/services/vms/snapshots.component.js:101
+#: ./client/app/services/vms/snapshots.component.js:89
 msgid "Name"
 msgstr ""
 
@@ -670,7 +671,7 @@ msgstr ""
 msgid "No Service"
 msgstr ""
 
-#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:36
+#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:37
 msgid "No Warning"
 msgstr ""
 
@@ -680,7 +681,7 @@ msgstr ""
 
 #: ./client/app/services/resource-details/resource-details.component.js:58
 #: ./client/app/services/resource-details/resource-details.component.js:61
-#: ./client/app/services/resource-details/resource-details.component.js:93
+#: ./client/app/services/resource-details/resource-details.component.js:89
 #: ./client/app/services/service-details/service-details.component.js:35
 #: ./client/app/services/usage-graphs/usage-graphs.component.js:27
 msgid "No data available"
@@ -702,7 +703,7 @@ msgstr ""
 msgid "Not Available"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.state.js:215
+#: ./client/app/components/dashboard/dashboard.component.js:82
 msgid "Not Retired"
 msgstr ""
 
@@ -710,11 +711,11 @@ msgstr ""
 msgid "Nothing Selected"
 msgstr ""
 
-#: ./client/app/layouts/application.html:10
+#: ./client/app/layouts/application.html:13
 msgid "Notifications"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.state.js:199
+#: ./client/app/components/dashboard/dashboard.component.js:66
 msgid "Now"
 msgstr ""
 
@@ -728,11 +729,13 @@ msgid "Order"
 msgstr ""
 
 #: ./client/app/orders/order-explorer/order-explorer.html:33
+#: ./client/app/states/orders/details/details.html:24
+#: ./client/app/states/orders/details/details.html:7
 msgid "Order #"
 msgstr ""
 
-#: ./client/app/orders/order-explorer/order-explorer.component.js:104
-#: ./client/app/orders/order-explorer/order-explorer.component.js:112
+#: ./client/app/orders/order-explorer/order-explorer.component.js:103
+#: ./client/app/orders/order-explorer/order-explorer.component.js:111
 #: ./client/app/orders/orders-state.service.js:12
 msgid "Order Date"
 msgstr ""
@@ -741,8 +744,8 @@ msgstr ""
 msgid "Order Details"
 msgstr ""
 
-#: ./client/app/orders/order-explorer/order-explorer.component.js:103
-#: ./client/app/orders/order-explorer/order-explorer.component.js:111
+#: ./client/app/orders/order-explorer/order-explorer.component.js:102
+#: ./client/app/orders/order-explorer/order-explorer.component.js:110
 msgid "Order ID"
 msgstr ""
 
@@ -751,20 +754,18 @@ msgid "Ordered"
 msgstr ""
 
 #: ./client/app/orders/order-explorer/order-explorer.html:4
-#: ./client/app/states/orders/details/details.html:5
-#: ./client/app/states/orders/explorer/explorer.state.js:11
 msgid "Orders"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:74
+#: ./client/app/services/service-details/service-details.html:82
 msgid "Owner"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:391
+#: ./client/app/services/service-details/service-details.html:407
 msgid "Parent Catalog Item"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:382
+#: ./client/app/services/service-details/service-details.html:398
 msgid "Parent Service"
 msgstr ""
 
@@ -772,7 +773,7 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:102
+#: ./client/app/components/dashboard/dashboard.html:124
 msgid "Pending Requests"
 msgstr ""
 
@@ -792,49 +793,49 @@ msgstr ""
 msgid "Plays"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:237
+#: ./client/app/services/vms/snapshots.component.js:232
 msgid "Please confirm, this action will delete all snapshots of vm %s"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:233
+#: ./client/app/services/vms/snapshots.component.js:228
 msgid "Please confirm, this action will delete snapshot %s"
 msgstr ""
 
-#: ./client/app/services/services-state.service.js:192
-#: ./client/app/services/services-state.service.js:195
+#: ./client/app/services/services-state.service.js:185
+#: ./client/app/services/services-state.service.js:188
 msgid "Policy"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:384
+#: ./client/app/services/resource-details/resource-details.component.js:383
 msgid "Power"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:383
+#: ./client/app/services/resource-details/resource-details.component.js:382
 #: ./client/app/services/service-details/service-details.component.js:161
 #: ./client/app/services/service-details/service-details.component.js:166
 msgid "Power Operations"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:169
+#: ./client/app/services/service-details/service-details.html:177
 #: ./client/app/services/service-explorer/service-explorer.component.js:441
 msgid "Power State: Off"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:174
+#: ./client/app/services/service-details/service-details.html:182
 #: ./client/app/services/service-explorer/service-explorer.component.js:440
 msgid "Power State: On"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:180
+#: ./client/app/services/service-details/service-details.html:188
 #: ./client/app/services/service-explorer/service-explorer.component.js:442
 msgid "Power State: Unknown"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:105
+#: ./client/app/core/navigation/navigation-controller.js:120
 msgid "Product logo"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:37
+#: ./client/app/services/service-details/service-details.html:45
 msgid "Properties"
 msgstr ""
 
@@ -851,7 +852,7 @@ msgstr ""
 msgid "Reconfigure this service has been cancelled"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:374
+#: ./client/app/services/service-details/service-details.html:389
 msgid "Relationships"
 msgstr ""
 
@@ -861,10 +862,10 @@ msgstr ""
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:16
 #: ./client/app/core/shopping-cart/shopping-cart.html:21
-#: ./client/app/orders/order-explorer/order-explorer.component.js:122
+#: ./client/app/orders/order-explorer/order-explorer.component.js:121
 #: ./client/app/services/service-explorer/service-explorer.component.js:255
-#: ./client/app/services/services-state.service.js:238
-#: ./client/app/services/services-state.service.js:240
+#: ./client/app/services/services-state.service.js:231
+#: ./client/app/services/services-state.service.js:233
 msgid "Remove"
 msgstr ""
 
@@ -872,13 +873,13 @@ msgstr ""
 msgid "Remove Item"
 msgstr ""
 
-#: ./client/app/orders/order-explorer/order-explorer.component.js:124
+#: ./client/app/orders/order-explorer/order-explorer.component.js:123
 #: ./client/app/orders/process-order-modal/process-order-modal.html:5
 msgid "Remove Order"
 msgstr ""
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:257
-#: ./client/app/services/services-state.service.js:245
+#: ./client/app/services/services-state.service.js:238
 msgid "Remove Service"
 msgstr ""
 
@@ -920,7 +921,7 @@ msgstr ""
 msgid "Resource Details"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:137
+#: ./client/app/services/service-details/service-details.html:145
 msgid "Resources"
 msgstr ""
 
@@ -928,9 +929,9 @@ msgstr ""
 msgid "Results"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:417
-#: ./client/app/services/service-details/service-details.html:330
-#: ./client/app/services/service-details/service-details.html:337
+#: ./client/app/services/resource-details/resource-details.component.js:416
+#: ./client/app/services/service-details/service-details.html:345
+#: ./client/app/services/service-details/service-details.html:352
 #: ./client/app/services/service-explorer/service-explorer.component.js:239
 #: ./client/app/services/services-state.service.js:154
 #: ./client/app/services/services-state.service.js:155
@@ -941,7 +942,7 @@ msgstr ""
 msgid "Retire"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:328
+#: ./client/app/services/service-details/service-details.html:343
 msgid "Retire Resource"
 msgstr ""
 
@@ -949,31 +950,27 @@ msgstr ""
 msgid "Retire Service"
 msgstr ""
 
-#: ./client/app/services/services-state.service.js:161
-msgid "Retire Service Now"
-msgstr ""
-
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:6
 msgid "Retire Services"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.state.js:137
+#: ./client/app/components/dashboard/dashboard.component.js:13
 msgid "Retire Status"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:419
+#: ./client/app/services/resource-details/resource-details.component.js:418
 msgid "Retire the Service"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.state.js:189
+#: ./client/app/components/dashboard/dashboard.component.js:56
 msgid "Retired"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:63
+#: ./client/app/components/dashboard/dashboard.html:82
 msgid "Retired Services"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:163
+#: ./client/app/services/service-details/service-details.html:171
 msgid "Retired resource"
 msgstr ""
 
@@ -982,7 +979,7 @@ msgstr ""
 msgid "Retirement Date"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:98
+#: ./client/app/services/service-details/service-details.html:106
 msgid "Retirement State"
 msgstr ""
 
@@ -995,35 +992,35 @@ msgstr ""
 msgid "Retires"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:105
+#: ./client/app/services/service-details/service-details.html:113
 msgid "Retires On"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.state.js:198
+#: ./client/app/components/dashboard/dashboard.component.js:65
 msgid "Retires between"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:33
+#: ./client/app/components/dashboard/dashboard.html:49
 msgid "Retiring Soon"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:68
+#: ./client/app/services/vms/snapshots.component.js:70
 msgid "Revert"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:70
+#: ./client/app/services/vms/snapshots.component.js:72
 msgid "Revert Snapshot"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:246
+#: ./client/app/services/vms/snapshots.component.js:241
 msgid "Reverting snapshot."
 msgstr ""
 
-#: ./client/app/core/event-notifications.service.js:41
+#: ./client/app/core/event-notifications.service.js:44
 msgid "Review the notification tray for results of this batch operation"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:110
+#: ./client/app/core/navigation/navigation-controller.js:125
 msgid "SUI Version:"
 msgstr ""
 
@@ -1040,7 +1037,7 @@ msgstr ""
 msgid "Schedule Service Retirement"
 msgstr ""
 
-#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:73
+#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:72
 msgid "Scheduling retirement."
 msgstr ""
 
@@ -1056,7 +1053,7 @@ msgstr ""
 msgid "Select an Owner"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:111
+#: ./client/app/core/navigation/navigation-controller.js:126
 msgid "Server Name:"
 msgstr ""
 
@@ -1065,11 +1062,11 @@ msgid "Service"
 msgstr ""
 
 #: ./client/app/catalogs/catalog-explorer.html:4
-#: ./client/app/core/navigation.service.js:56
+#: ./client/app/core/navigation.service.js:72
 msgid "Service Catalog"
 msgstr ""
 
-#: ./client/app/states/catalogs/details/details.html:5
+#: ./client/app/states/catalogs/details/details.state.js:49
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Service Catalogs"
 msgstr ""
@@ -1081,7 +1078,7 @@ msgstr ""
 msgid "Service Details"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:67
+#: ./client/app/services/service-details/service-details.html:75
 msgid "Service Id"
 msgstr ""
 
@@ -1089,7 +1086,7 @@ msgstr ""
 msgid "Service Template Details"
 msgstr ""
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:46
 msgid "Service deleting."
 msgstr ""
 
@@ -1101,14 +1098,14 @@ msgstr ""
 msgid "Services Explorer"
 msgstr ""
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:41
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:43
 msgid "Services Retired"
 msgstr ""
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:231
 #: ./client/app/services/service-explorer/service-explorer.component.js:233
-#: ./client/app/services/services-state.service.js:254
-#: ./client/app/services/services-state.service.js:256
+#: ./client/app/services/services-state.service.js:247
+#: ./client/app/services/services-state.service.js:249
 msgid "Set Ownership"
 msgstr ""
 
@@ -1134,7 +1131,7 @@ msgstr ""
 msgid "Shopping Cart"
 msgstr ""
 
-#: ./client/app/layouts/application.html:25
+#: ./client/app/layouts/application.html:30
 msgid "Shopping cart"
 msgstr ""
 
@@ -1150,9 +1147,9 @@ msgstr ""
 msgid "Smart State Analysis"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:307
-#: ./client/app/services/resource-details/resource-details.component.js:308
-#: ./client/app/services/service-details/service-details.html:266
+#: ./client/app/services/resource-details/resource-details.component.js:304
+#: ./client/app/services/resource-details/resource-details.component.js:305
+#: ./client/app/services/service-details/service-details.html:274
 #: ./client/app/services/vms/snapshots.component.js:23
 #: ./client/app/services/vms/snapshots.html:14
 #: ./client/app/services/vms/snapshots.html:42
@@ -1163,15 +1160,15 @@ msgstr ""
 msgid "Standard Out"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:393
+#: ./client/app/services/resource-details/resource-details.component.js:392
 #: ./client/app/services/service-details/service-details.component.js:170
-#: ./client/app/services/service-details/service-details.html:312
+#: ./client/app/services/service-details/service-details.html:327
 #: ./client/app/services/service-explorer/service-explorer.component.js:268
 #: ./client/app/services/service-explorer/service-explorer.html:191
 msgid "Start"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:395
+#: ./client/app/services/resource-details/resource-details.component.js:394
 #: ./client/app/services/service-details/service-details.component.js:172
 msgid "Start the Service"
 msgstr ""
@@ -1195,15 +1192,15 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:401
+#: ./client/app/services/resource-details/resource-details.component.js:400
 #: ./client/app/services/service-details/service-details.component.js:177
-#: ./client/app/services/service-details/service-details.html:317
+#: ./client/app/services/service-details/service-details.html:332
 #: ./client/app/services/service-explorer/service-explorer.component.js:276
 #: ./client/app/services/service-explorer/service-explorer.html:196
 msgid "Stop"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:403
+#: ./client/app/services/resource-details/resource-details.component.js:402
 #: ./client/app/services/service-details/service-details.component.js:179
 msgid "Stop the Service"
 msgstr ""
@@ -1222,15 +1219,15 @@ msgstr ""
 msgid "Submit Request"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:409
+#: ./client/app/services/resource-details/resource-details.component.js:408
 #: ./client/app/services/service-details/service-details.component.js:184
-#: ./client/app/services/service-details/service-details.html:322
+#: ./client/app/services/service-details/service-details.html:337
 #: ./client/app/services/service-explorer/service-explorer.component.js:284
 #: ./client/app/services/service-explorer/service-explorer.html:201
 msgid "Suspend"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:411
+#: ./client/app/services/resource-details/resource-details.component.js:410
 #: ./client/app/services/service-details/service-details.component.js:186
 msgid "Suspend the Service"
 msgstr ""
@@ -1239,7 +1236,7 @@ msgstr ""
 msgid "Suspend this service"
 msgstr ""
 
-#: ./client/app/core/language-switcher/language-switcher.html:2
+#: ./client/app/shared/language-switcher/language-switcher.html:3
 msgid "Switch Language:"
 msgstr ""
 
@@ -1249,7 +1246,7 @@ msgstr ""
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:11
 #: ./client/app/services/resource-details/resource-details.html:136
-#: ./client/app/services/service-details/service-details.html:118
+#: ./client/app/services/service-details/service-details.html:126
 #: ./client/app/services/service-explorer/service-explorer.component.js:364
 msgid "Tags"
 msgstr ""
@@ -1264,15 +1261,15 @@ msgstr ""
 msgid "The current approval status of the request"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:53
+#: ./client/app/components/dashboard/dashboard.html:71
 msgid "The number of active services"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:38
+#: ./client/app/components/dashboard/dashboard.html:55
 msgid "The number of services retiring within the next 30 days"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:68
+#: ./client/app/components/dashboard/dashboard.html:88
 msgid "The number of services which have hit their retirement period or been retired"
 msgstr ""
 
@@ -1284,11 +1281,11 @@ msgstr ""
 msgid "The page you requested cannot be found."
 msgstr ""
 
-#: ./client/app/core/navigation.service.js:67
+#: ./client/app/core/navigation.service.js:83
 msgid "The total number of available catalogs"
 msgstr ""
 
-#: ./client/app/states/catalogs/details/details.html:38
+#: ./client/app/states/catalogs/details/details.html:51
 msgid "There already is an identical item in the cart. Do you want to add it anyway?"
 msgstr ""
 
@@ -1304,7 +1301,7 @@ msgstr ""
 msgid "There was a problem loading the page."
 msgstr ""
 
-#: ./client/app/states/catalogs/details/details.state.js:188
+#: ./client/app/states/catalogs/details/details.state.js:211
 msgid "There was an error adding to shopping cart:"
 msgstr ""
 
@@ -1312,7 +1309,7 @@ msgstr ""
 msgid "There was an error creating the snapshot."
 msgstr ""
 
-#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:32
+#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:33
 msgid "There was an error editing this service."
 msgstr ""
 
@@ -1320,15 +1317,15 @@ msgstr ""
 msgid "There was an error fetching this service."
 msgstr ""
 
-#: ./client/app/catalogs/catalog-explorer.component.js:104
+#: ./client/app/catalogs/catalog-explorer.component.js:105
 msgid "There was an error loading catalogs."
 msgstr ""
 
-#: ./client/app/orders/order-explorer/order-explorer.component.js:259
+#: ./client/app/orders/order-explorer/order-explorer.component.js:252
 msgid "There was an error loading orders."
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:203
+#: ./client/app/services/vms/snapshots.component.js:198
 msgid "There was an error loading snapshots."
 msgstr ""
 
@@ -1336,23 +1333,23 @@ msgstr ""
 msgid "There was an error loading the services."
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:293
+#: ./client/app/services/resource-details/resource-details.component.js:289
 msgid "There was an error loading the vm details."
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:215
+#: ./client/app/services/vms/snapshots.component.js:210
 msgid "There was an error loading the vm."
 msgstr ""
 
-#: ./client/app/services/consoles.service.js:51
+#: ./client/app/services/consoles.service.js:58
 msgid "There was an error opening the console."
 msgstr ""
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:51
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:53
 msgid "There was an error removing one or more services."
 msgstr ""
 
-#: ./client/app/orders/process-order-modal/process-order-modal.component.js:42
+#: ./client/app/orders/process-order-modal/process-order-modal.component.js:44
 msgid "There was an error removing order"
 msgstr ""
 
@@ -1364,7 +1361,7 @@ msgstr ""
 msgid "There was an error retiring this %s."
 msgstr ""
 
-#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:78
+#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:77
 #: ./client/app/services/service-details/service-details.component.js:358
 msgid "There was an error retiring this service."
 msgstr ""
@@ -1386,7 +1383,7 @@ msgid "There was an error submitting the custom button."
 msgstr ""
 
 #: ./client/app/core/shopping-cart/shopping-cart.component.js:46
-#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:103
+#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:125
 #: ./client/app/states/services/reconfigure/reconfigure.state.js:79
 msgid "There was an error submitting this request:"
 msgstr ""
@@ -1403,23 +1400,23 @@ msgstr ""
 msgid "Timeline - Power Events"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:20
+#: ./client/app/components/dashboard/dashboard.html:35
 msgid "Total Requests"
 msgstr ""
 
-#: ./client/app/states/dashboard/dashboard.html:9
+#: ./client/app/components/dashboard/dashboard.html:16
 msgid "Total Services"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:201
+#: ./client/app/services/service-details/service-details.html:209
 msgid "Total Snapshots"
 msgstr ""
 
-#: ./client/app/core/navigation.service.js:50
+#: ./client/app/core/navigation.service.js:66
 msgid "Total orders submitted"
 msgstr ""
 
-#: ./client/app/core/navigation.service.js:33
+#: ./client/app/core/navigation.service.js:49
 msgid "Total services ordered, both active and retired"
 msgstr ""
 
@@ -1427,27 +1424,27 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ./client/app/services/consoles.service.js:66
+#: ./client/app/services/consoles.service.js:73
 msgid "Unsupported console protocol returned."
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.component.js:108
+#: ./client/app/services/vms/snapshots.component.js:103
 msgid "Updated"
 msgstr ""
 
-#: ./client/app/services/vms/snapshots.html:99
+#: ./client/app/services/vms/snapshots.html:98
 msgid "Updated:"
 msgstr ""
 
-#: ./client/app/core/language-switcher/language-switcher.directive.js:35
+#: ./client/app/shared/language-switcher/language-switcher.component.js:32
 msgid "User Default"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:112
+#: ./client/app/core/navigation/navigation-controller.js:127
 msgid "User Name:"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:113
+#: ./client/app/core/navigation/navigation-controller.js:128
 msgid "User Role:"
 msgstr ""
 
@@ -1463,7 +1460,7 @@ msgstr ""
 msgid "Utilization"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:293
+#: ./client/app/services/service-details/service-details.html:305
 msgid "VM Console"
 msgstr ""
 
@@ -1475,22 +1472,22 @@ msgstr ""
 msgid "Verbosity"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:109
+#: ./client/app/core/navigation/navigation-controller.js:124
 msgid "Version:"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:316
-#: ./client/app/services/service-details/service-details.html:272
+#: ./client/app/services/resource-details/resource-details.component.js:313
+#: ./client/app/services/service-details/service-details.html:280
 msgid "View"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:341
+#: ./client/app/services/service-details/service-details.html:356
 msgid ""
 "View\n"
 "                                                    Details"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:318
+#: ./client/app/services/resource-details/resource-details.component.js:315
 msgid "View snapshots"
 msgstr ""
 
@@ -1515,16 +1512,12 @@ msgstr ""
 msgid "We apologize for the inconvenience."
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:298
+#: ./client/app/services/service-details/service-details.html:313
 msgid "Web Console"
 msgstr ""
 
-#: ./client/app/services/services-state.service.js:247
+#: ./client/app/services/services-state.service.js:240
 msgid "Yes, Remove Service"
-msgstr ""
-
-#: ./client/app/services/services-state.service.js:163
-msgid "Yes, Retire Service Now"
 msgstr ""
 
 #: ./client/app/states/login/login.state.js:73
@@ -1574,17 +1567,25 @@ msgstr ""
 msgid "of"
 msgstr ""
 
+#: ./client/app/states/orders/details/details.html:25
+msgid "ordered on"
+msgstr ""
+
 #: ./client/app/services/service-explorer/service-explorer.html:201
 msgid "suspend this service"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:182
+#: ./client/app/services/consoles.service.js:51
+msgid "undefined"
+msgstr ""
+
+#: ./client/app/core/navigation/navigation-controller.js:156
 msgid "unread notifications"
 msgstr ""
 
-#: ./client/app/services/resource-details/resource-details.component.js:217
-#: ./client/app/services/resource-details/resource-details.component.js:223
-#: ./client/app/services/resource-details/resource-details.component.js:229
+#: ./client/app/services/resource-details/resource-details.component.js:213
+#: ./client/app/services/resource-details/resource-details.component.js:219
+#: ./client/app/services/resource-details/resource-details.component.js:225
 #: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:10
 msgid "used"
 msgstr ""
