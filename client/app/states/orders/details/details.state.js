@@ -33,10 +33,7 @@ function resolveOrder ($stateParams, CollectionsApi) {
 /** @ngInject */
 function StateController (order, $state) {
   const vm = this
-
-  vm.title = order.name
   vm.order = order
-
   vm.requestListConfig = {
     showSelectBox: false,
     selectionMatchProp: 'id'

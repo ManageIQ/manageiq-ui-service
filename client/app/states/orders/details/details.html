@@ -4,7 +4,7 @@
         <li>
           <a href="#" ui-sref="orders"> {{'My Orders'|translate}}</a>
         </li>
-        <li class="active">{{vm.title}}</li>
+        <li class="active">{{'Order #' |translate}}{{vm.order.id}}</li>
       </ol>
   </span>
 </div>
@@ -21,7 +21,7 @@
                 <img class="ss-details-header__title-img__logo" src="images/brand_transparent.png"/>
               </div>
               <div class="ss-details-header__title">
-                <h2>{{ ::vm.order.name }}</h2>
+                <h2>{{'Order #' |translate}}{{vm.order.id}}</h2>
                 <h4> {{'ordered on' | translate}} {{ ::(vm.order.placed_at || vm.order.updated_at) | date }}</h4>
               </div>
             </div>

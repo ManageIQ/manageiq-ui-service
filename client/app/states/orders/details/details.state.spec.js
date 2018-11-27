@@ -24,7 +24,7 @@ describe('State: orders.details', () => {
     })
 
     it('has an order title', () => {
-      expect(ctrl.title).to.be.eq('test order')
+      expect(ctrl.order.name).to.be.eq('test order')
     })
   })
 })
