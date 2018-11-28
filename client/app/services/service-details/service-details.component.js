@@ -349,13 +349,13 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
     const data = {action: 'request_retire'}
     CollectionsApi.post('services', vm.service.id, {}, data).then(retireSuccess, retireFailure)
 
-    function retireSuccess () {
-      EventNotifications.success(vm.service.name + __(' was retired.'))
+    function retireSuccess (response) {
+      EventNotifications.success(response.message)
       $state.go('services')
     }
 
-    function retireFailure () {
-      EventNotifications.error(__('There was an error retiring this service.'))
+    function retireFailure (response) {
+      EventNotifications.error(response.data.error.message)
     }
   }
 
