@@ -5,7 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Hammer RC-1
+## Hammer RC-2
+
+### Fixed
+- Fix retirement card on vm details page [(#1496)](https://github.com/ManageIQ/manageiq-ui-service/pull/1496)
+- If tagging is readonly we should not show the edit dropdown [(#1497)](https://github.com/ManageIQ/manageiq-ui-service/pull/1497)
+
+## Hammer RC-1 - Released 2018-11-16
 
 ### Fixed
 - Fix permission related display issues [(#1484)](https://github.com/ManageIQ/manageiq-ui-service/pull/1484)
