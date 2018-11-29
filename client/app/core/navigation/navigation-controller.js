@@ -59,6 +59,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       user: Session.currentUser,
       API_BASE: API_BASE,
       switchGroup: switchGroup,
+      documentation: '/support/index?support_tab=about',
       items: [],
       notificationsDrawerShown: false,
       newNotifications: false,
@@ -78,6 +79,14 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       shoppingCart: shoppingCart(),
       about: about(),
       sites: sites()
+    })
+
+    CollectionsApi.query('settings/help_menu/documentation').then((data) => {
+      const documentation = data.help_menu.documentation
+      const matches = documentation.href.match(/http.*(http.*)/)
+      if (matches[1]) {
+        vm.documentation = matches[1]
+      }
     })
     vm.items = Navigation.init()
     refresh()

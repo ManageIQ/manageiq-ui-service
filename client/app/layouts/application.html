@@ -45,7 +45,7 @@
           </a>
           <ul uib-dropdown-menu aria-labelledby="aboutModal">
             <li ng-if="vm.permissions.help.documentation">
-              <a href="/support/index?support_tab=about" target="_blank">
+              <a href="{{vm.documentation}}" target="_blank">
                 {{ 'Documentation' | translate}}
               </a>
             </li>
