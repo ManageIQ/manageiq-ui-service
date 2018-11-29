@@ -6,7 +6,9 @@
             ng-disabled="!button.enabled"
             ng-click="vm.invokeCustomAction(button)">
       <i ng-class="button.options.button_icon" ng-style="{color: button.options.button_color }"></i>
-      {{ button.name }}
+      <span ng-if="button.options.display">
+        {{ button.name }}
+      </span>
     </button>
   </span>
 </span>
@@ -32,7 +34,9 @@
            uib-tooltip="{{ button.enabled ? button.description : button.disabled_text }}"
            tooltip-placement="left">
           <i ng-class="button.options.button_icon" ng-style="{color: button.options.button_color }"></i>
-          {{ button.name }}
+          <span ng-if="button.options.display">
+            {{ button.name }}
+          </span>
         </a>
       </li>
     </ul>
