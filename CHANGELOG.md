@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 100 ending 2018-12-03
+
+### Fixed
+- Custom buttons - only show button name when the "Display on Button" option is set [(#1506)](https://github.com/ManageIQ/manageiq-ui-service/pull/1506)
+- Added ability for documentation to be dynamically configured [(#1505)](https://github.com/ManageIQ/manageiq-ui-service/pull/1505)
+- Fix gettext versus template strings [(#1503)](https://github.com/ManageIQ/manageiq-ui-service/pull/1503)
+- Service is getting retired without any confirmation in self service ui [(#1502)](https://github.com/ManageIQ/manageiq-ui-service/pull/1502)
+- SSUI My Orders - Oder page has untranslated entries [(#1500)](https://github.com/ManageIQ/manageiq-ui-service/pull/1500)
+
 ## Unreleased as of Sprint 99 ending 2018-11-19
 
 ### Fixed
