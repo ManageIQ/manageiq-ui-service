@@ -1,5 +1,6 @@
 # Gisela Leal <giselaleal21@gmail.com>, 2017. #zanata
 # Victor Estival <victor.estival@gmail.com>, 2017. #zanata
+# Milan Zázrivec <mzazrivec@redhat.com>, 2018. #zanata
 # Translator <tr.rh02@oceantranslations.com>, 2018. #zanata
 msgid ""
 msgstr ""
@@ -7,8 +8,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2018-10-19 03:23+0000\n"
-"Last-Translator: Translator <tr.rh02@oceantranslations.com>\n"
+"PO-Revision-Date: 2018-12-05 03:10+0000\n"
+"Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
 "X-Generator: Zanata 4.6.2\n"
@@ -1595,7 +1596,7 @@ msgstr "Artículos"
 
 #: ./client/app/core/gettext.config.js:24
 msgid "locale_name"
-msgstr "locale_name"
+msgstr "Español"
 
 #: ./client/app/services/vms.service.js:280
 msgid "now?"
