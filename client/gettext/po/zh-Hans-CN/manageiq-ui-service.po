@@ -11,7 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2018-12-05 02:59+0000\n"
 "Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>\n"
 "Language-Team: Chinese (Simplified, China)\n"
-"Language: zh_Hans_CN\n"
+"Language: zh-Hans-CN\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
