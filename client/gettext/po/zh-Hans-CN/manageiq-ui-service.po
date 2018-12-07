@@ -1,4 +1,5 @@
 # Tony Fu <tfu@redhat.com>, 2017. #zanata
+# Milan Zázrivec <mzazrivec@redhat.com>, 2018. #zanata
 # Tony Fu <tfu@redhat.com>, 2018. #zanata
 # puger dog <ella.cheng.sh@linguitronics.com>, 2018. #zanata
 msgid ""
@@ -7,10 +8,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2018-10-23 08:37+0000\n"
-"Last-Translator: puger dog <ella.cheng.sh@linguitronics.com>\n"
+"PO-Revision-Date: 2018-12-05 02:59+0000\n"
+"Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>\n"
 "Language-Team: Chinese (Simplified, China)\n"
-"Language: zh_Hans_CN\n"
+"Language: zh-Hans-CN\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
@@ -1574,7 +1575,7 @@ msgstr "项目"
 
 #: ./client/app/core/gettext.config.js:24
 msgid "locale_name"
-msgstr "locale_name"
+msgstr "简体中文"
 
 #: ./client/app/services/vms.service.js:280
 msgid "now?"

@@ -1,4 +1,5 @@
 # asasaki <asasaki@redhat.com>, 2017. #zanata
+# Milan Zázrivec <mzazrivec@redhat.com>, 2018. #zanata
 # asasaki <asasaki@redhat.com>, 2018. #zanata
 # kmoriguc <kmoriguc@redhat.com>, 2018. #zanata
 msgid ""
@@ -7,8 +8,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2018-10-25 10:09+0000\n"
-"Last-Translator: kmoriguc <kmoriguc@redhat.com>\n"
+"PO-Revision-Date: 2018-12-05 03:05+0000\n"
+"Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "X-Generator: Zanata 4.6.2\n"
@@ -1575,7 +1576,7 @@ msgstr "項目"
 
 #: ./client/app/core/gettext.config.js:24
 msgid "locale_name"
-msgstr "locale_name"
+msgstr "日本語"
 
 #: ./client/app/services/vms.service.js:280
 msgid "now?"

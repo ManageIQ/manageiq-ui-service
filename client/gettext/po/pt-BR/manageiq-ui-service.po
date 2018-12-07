@@ -10,7 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2018-10-21 09:32+0000\n"
 "Last-Translator: renata <translator01_redhat@roundtableinc.net>\n"
 "Language-Team: Portuguese (Brazil)\n"
-"Language: pt_BR\n"
+"Language: pt-BR\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
