@@ -76,7 +76,7 @@ describe('Component: taggingWidget', () => {
 
         let tagsOfCategorySelect = element.find('.tag-value-select')
         let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
-        expect(tagsOfCategory.length).to.be.eq(6)    // 6 Auto Approve options
+        expect(tagsOfCategory.length).to.be.eq(7)    // 6 Auto Approve options
         expect(tagsOfCategory[0].selected).to.be.eq(true)
 
         done()
@@ -88,7 +88,7 @@ describe('Component: taggingWidget', () => {
         // Select tag category 'Department' and tag 'Accounting'
         isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[8]
         isoScope.$digest()
-        isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[1]
+        isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[2]
         isoScope.$digest()
 
         expect(isoScope.vm.tags.selectedTag.name).to.be.eq('/managed/department/accounting')
@@ -100,8 +100,8 @@ describe('Component: taggingWidget', () => {
 
         let tagsOfCategorySelect = element.find('.tag-value-select')
         let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
-        expect(tagsOfCategory[1].text).to.be.eq('Accounting')
-        expect(tagsOfCategory[1].selected).to.be.eq(true)
+        expect(tagsOfCategory[2].text).to.be.eq('Accounting')
+        expect(tagsOfCategory[2].selected).to.be.eq(true)
 
         // should be 2 existing tags
         let tagsOfItem = element.find('.pficon-close')
@@ -130,7 +130,7 @@ describe('Component: taggingWidget', () => {
         // Select tag category 'Service Level' and tag 'Platinum'
         isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[24]
         isoScope.$digest()
-        isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[3]
+        isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[4]
         isoScope.$digest()
 
         expect(isoScope.vm.tags.selectedTag.name).to.be.eq('/managed/service_level/platinum')
@@ -142,8 +142,8 @@ describe('Component: taggingWidget', () => {
 
         let tagsOfCategorySelect = element.find('.tag-value-select')
         let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
-        expect(tagsOfCategory[3].text).to.be.eq('Platinum')
-        expect(tagsOfCategory[3].selected).to.be.eq(true)
+        expect(tagsOfCategory[4].text).to.be.eq('Platinum')
+        expect(tagsOfCategory[4].selected).to.be.eq(true)
 
         // This should replace Service Level Gold with Service Level Platinum
         let addItem = element.find('.fa-plus')
