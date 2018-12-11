@@ -99,7 +99,7 @@ function TaggingController ($scope, $filter, $q, $log, CollectionsApi, TaggingSe
   $scope.$watch('vm.tags.selectedCategory', function () {
     vm.tags.filtered = $filter('filter')(vm.tags.all, matchCategory)
     if (vm.tags.filtered) {
-      vm.tags.filtered[0] = placeholderCategorization
+      vm.tags.filtered.unshift(placeholderCategorization)
       vm.tags.selectedTag = vm.tags.filtered[0]
       vm.showTagDropdowns = !vm.readOnly
     }
