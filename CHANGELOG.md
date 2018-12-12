@@ -5,12 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Gaprindashvili-6
+## Gaprindashvili-7
+
+### Fixed
+- Restore action cable subscription, ensure enablement flag is available [(#1482)](https://github.com/ManageIQ/manageiq-ui-service/pull/1482)
+- Updated URL for custom buttons dialogs [(#1467)](https://github.com/ManageIQ/manageiq-ui-service/pull/1467)
+- Hide revert snapshot button for openstack vm's [(#1475)](https://github.com/ManageIQ/manageiq-ui-service/pull/1475)
+- Fix permission related display issues [(#1484)](https://github.com/ManageIQ/manageiq-ui-service/pull/1484)
+- Fixed issue with dialogs not loading on reconfigure [(#1478)](https://github.com/ManageIQ/manageiq-ui-service/pull/1478)
+
+## Gaprindashvili-6 - Released 2018-11-06
 
 ### Fixed
 - Snapshot modal. Add support to hide memory checkbox [(#1455)](https://github.com/ManageIQ/manageiq-ui-service/pull/1455)
 
-## Gaprindashvili-5
+## Gaprindashvili-5 - Released 2018-09-07
 
 ### Fixed
 - Support for disabling Dashboard [(#1446)](https://github.com/ManageIQ/manageiq-ui-service/pull/1446)
