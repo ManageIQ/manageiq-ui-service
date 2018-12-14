@@ -40,7 +40,7 @@ function ComponentController ($state, CollectionsApi, EventNotifications) {
       vm.close()
       switch (vm.resolve.modalType) {
         case 'retire':
-          EventNotifications.success(__('Services Retired'))
+          EventNotifications.success(__('Service Retire - Request Created'))
           break
         case 'remove':
           EventNotifications.batch(response.results, __('Service deleting.'), __('Error deleting service.'))

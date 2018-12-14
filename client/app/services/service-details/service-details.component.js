@@ -346,17 +346,18 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   }
 
   function retireService () {
-    const data = {action: 'request_retire'}
-    CollectionsApi.post('services', vm.service.id, {}, data).then(retireSuccess, retireFailure)
-
-    function retireSuccess (response) {
-      EventNotifications.success(response.message)
-      $state.go('services')
+    var modalOptions = {
+      component: 'retireRemoveServiceModal',
+      resolve: {
+        services: function () {
+          return [vm.service]
+        },
+        modalType: function () {
+          return 'retire'
+        }
+      }
     }
-
-    function retireFailure (response) {
-      EventNotifications.error(response.data.error.message)
-    }
+    ModalService.open(modalOptions)
   }
 
   function createResourceGroups (service) {
