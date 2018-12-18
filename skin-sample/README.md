@@ -38,10 +38,7 @@ For up-to-date info, please see the `client/assets/images` directory.
    * `bg-login.png`, `bg-login-2.png` - login screen backgrounds
    * `bg-modal-about-pf.png` - background for the About dialog
    * `bg-navbar.png` - background for the top navbar
-   * `brand.svg` - the application logo used in the navbar
    * `brand_transparent.png` - default logo in a number of places (ie: 404, orders details, etc...)
-   * `login-screen-logo.png` - login screen logo, also used in the About dialog
-
 
 ## How to override a style
 
@@ -58,4 +55,3 @@ Provide a JS file that introduces an angular `constant` named `Text`. It should 
 For up-to-date info, please see the `client/app/skin/skin.module.js` file.
 
    * `Text.app.name` - the name of the application
-   * `Text.login.brand` - HTML for the brand name on the login page

@@ -4,7 +4,11 @@ describe('Appliance Info Service', () => {
     'product_info': {
       'copyright': 'Copyright (c) 2017 ManageIQ. Sponsored by Red Hat Inc.',
       'support_website': 'http://www.manageiq.org',
-      'support_website_text': 'ManageIQ.org'
+      'support_website_text': 'ManageIQ.org',
+      'branding_info': {
+        'brand': 'ManageIQ',
+        'logo': 'ManageIQ'
+      }
     },
     'identity': {
       'name': 'Administrator',
@@ -41,7 +45,9 @@ describe('Appliance Info Service', () => {
       'miqVersion': 'master.20170510164252_9e5df30',
       'suiVersion': '',
       'server': 'EVM',
-      'asyncNotify': 'true'
+      'asyncNotify': 'true',
+      'brand': 'ManageIQ',
+      'logo': 'ManageIQ'
     }
     ApplianceInfo.set(applianceInfoData)
     const currentApplianceInfo = ApplianceInfo.get()
