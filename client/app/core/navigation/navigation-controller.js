@@ -85,7 +85,8 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       markAllRead: markAllRead,
       shoppingCart: shoppingCart(),
       about: about(),
-      sites: sites()
+      sites: sites(),
+      applianceInfo: applianceInfo
     })
 
     CollectionsApi.query('settings/help_menu/documentation').then((data) => {
@@ -127,7 +128,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       isOpen: false,
       additionalInfo: '',
       imgAlt: __('Product logo'),
-      imgSrc: 'images/login-screen-logo.png',
+      imgSrc: applianceInfo.logo,
       title: Text.app.name,
       productInfo: [
         {name: __('Version: '), value: applianceInfo.miqVersion},

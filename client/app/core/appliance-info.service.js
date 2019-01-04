@@ -1,4 +1,5 @@
 import gitHash from '../../version/version.json'
+
 /** @ngInject */
 export function ApplianceInfo ($sessionStorage) {
   let applianceInfo = {}
@@ -24,8 +25,12 @@ export function ApplianceInfo ($sessionStorage) {
       suiVersion: gitHash.gitCommit,
       miqVersion: data.server_info.version + '.' + data.server_info.build,
       server: data.server_info.appliance,
-      asyncNotify: data.settings.asynchronous_notifications || true
+      asyncNotify: data.settings.asynchronous_notifications || true,
+      nameFull: data.product_info.name_full,
+      brand: data.product_info.branding_info.brand,
+      logo: data.product_info.branding_info.logo
     }
+
     $sessionStorage.applianceInfo = applianceInfo
   }
 }
