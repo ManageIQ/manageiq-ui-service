@@ -23,8 +23,10 @@ function getStates () {
 
 /** @ngInject */
 function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session,
-                          $rootScope, Notifications, Language, ApplianceInfo, ActionCable) {
+                          $rootScope, Notifications, Language, ApplianceInfo, CollectionsApi) {
   const vm = this
+
+  getBrand()
 
   vm.text = Text.login
   vm.credentials = {
@@ -82,6 +84,12 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
         Notifications.message('danger', '', __('Login failed, possibly invalid credentials. ') + `(${message})`, false)
       }
       Session.destroy()
+    })
+  }
+
+  function getBrand () {
+    CollectionsApi.query('product_info').then((response) => {
+      vm.brandInfo = response.branding_info
     })
   }
 }
