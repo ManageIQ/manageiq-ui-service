@@ -20,9 +20,6 @@
     "gettext:extract": "angular-gettext-cli --files './client/**/*.+(js|html)' --exclude '**/*.+(spec.js|e2e.js)' --dest './client/gettext/po/manageiq-ui-service.pot' --marker-names '__,N_'",
     "gettext:validate": "node language/validate.js",
     "start": "webpack-dev-server --open --progress --config config/webpack.dev.js",
-    "start:mock-api": "cd node_modules/@manageiq/manageiq-api-mock/ && node index.js",
-    "start:mock-webserver": "cd server && node app.js",
-    "start:all": "yarn start:mock-api & yarn start:mock-webserver",
     "test": "yarn vet && yarn gettext:extract && yarn gettext:validate && karma start karma.conf.js --single-run && yarn test:jest",
     "test:jest": "jest /client/.*test.js",
     "test:e2e": "protractor protractor.conf.js",
@@ -112,7 +109,6 @@
     "webpack": "3.11.0"
   },
   "devDependencies": {
-    "@manageiq/manageiq-api-mock": "1.3.2",
     "angular-mocks": "1.7.5",
     "axios": "0.18.0",
     "bardjs": "0.1.8",

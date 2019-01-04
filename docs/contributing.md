@@ -16,7 +16,8 @@ If you would like to run unit tests for the project, you can run
 If you would like to run the integration tests locally for the project please be sure to first have a running copy of the frontend and a running backend server.  You can either use a ManageIQ backend or test with our Mock API running locally.  These are the commands to launch the frontend and our mock api
   
 ``` yarn start ```  (Starts a frontend web server - Port 3001)
-``` yarn start:mock-api``` (Starts our Mock REST API - Port 3000) 
+```yarn add @manageiq/manageiq-api-mock```
+```cd node_modules/@manageiq/manageiq-api-mock/ && node index.js``` (Starts our Mock REST API - Port 3000)
 
 After those are running please ensure you have selenium server installed and running  
 
