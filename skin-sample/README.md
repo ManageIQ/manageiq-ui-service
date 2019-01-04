@@ -17,7 +17,7 @@ To override certain hardcoded strings (currently only the product name, and the 
 
 ## How to apply a skin
 
-Simple! Just run `./link.sh` in the skin directory, optionally supplying the path to the Service UI directory (ie. something that includes the `client/` and `server/` subdirectories).
+Simple! Just run `./link.sh` in the skin directory, optionally supplying the path to the Service UI directory (ie. something that includes the `client/` subdirectory).
 
 To undo this, run `./unlink.sh`.
 

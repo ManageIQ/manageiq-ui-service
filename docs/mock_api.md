@@ -2,7 +2,8 @@
 This product ships with a mock REST API that simulates a server.  If you would like to launch this server, which runs 
 on port 3004, run:
 
-- ```yarn start:mock-api```
+- ```yarn add @manageiq/manageiq-api-mock```
+- ```cd node_modules/@manageiq/manageiq-api-mock/ && node index.js```
 
 ####Configuration
 If you would like to get this to run on a different port , please set the following environmental variable;

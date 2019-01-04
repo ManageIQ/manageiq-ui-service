@@ -19,8 +19,8 @@ else
   cd -
 fi
 
-if ! [ -d "$TARGET"/client -a -d "$TARGET"/server ]; then
-  echo "Target ($TARGET) is not the Service UI directory (missing client/ or server/)" 1>&2
+if ! [ -d "$TARGET"/client ]; then
+  echo "Target ($TARGET) is not the Service UI directory (missing client/)" 1>&2
   exit 1
 fi
 
