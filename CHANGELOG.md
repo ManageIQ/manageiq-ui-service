@@ -5,23 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Hammer RC-2
-
-### Fixed
-- Fix retirement card on vm details page [(#1496)](https://github.com/ManageIQ/manageiq-ui-service/pull/1496)
-- If tagging is readonly we should not show the edit dropdown [(#1497)](https://github.com/ManageIQ/manageiq-ui-service/pull/1497)
-
-## Hammer RC-1 - Released 2018-11-16
-
-### Fixed
-- Fix permission related display issues [(#1484)](https://github.com/ManageIQ/manageiq-ui-service/pull/1484)
-
-## Hammer Beta-2 - Released 2018-10-29
-
-### Fixed
-- Restore action cable subscription, ensure enablement flag is available [(#1482)](https://github.com/ManageIQ/manageiq-ui-service/pull/1482)
-
-## Hammer Beta-1 - Released 2018-10-12
+## Hammer-1
 
 ### Added
 - Updates language files includes new languages [(#1184)](https://github.com/ManageIQ/manageiq-ui-service/pull/1184)
@@ -32,6 +16,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Update i18n catalog for hammer [(#1480)](https://github.com/ManageIQ/manageiq-ui-service/pull/1480)
 
 ### Fixed
+- Duplicates retire modal from service explorer in service details view [(#1512)](https://github.com/ManageIQ/manageiq-ui-service/pull/1512)
+- Unshift the placeholder message rather onto filtered tags [(#1510)](https://github.com/ManageIQ/manageiq-ui-service/pull/1510)
+- Added ability for documentation to be dynamically configured [(#1505)](https://github.com/ManageIQ/manageiq-ui-service/pull/1505)
+- Custom buttons - only show button name when the "Display on Button" option is set [(#1506)](https://github.com/ManageIQ/manageiq-ui-service/pull/1506)
+- Service is getting retired without any confirmation in self service ui [(#1502)](https://github.com/ManageIQ/manageiq-ui-service/pull/1502)
+- SSUI My Orders - Oder page has untranslated entries [(#1500)](https://github.com/ManageIQ/manageiq-ui-service/pull/1500)
+- Fix retirement card on vm details page [(#1496)](https://github.com/ManageIQ/manageiq-ui-service/pull/1496)
+- If tagging is readonly we should not show the edit dropdown [(#1497)](https://github.com/ManageIQ/manageiq-ui-service/pull/1497)
+- Fix permission related display issues [(#1484)](https://github.com/ManageIQ/manageiq-ui-service/pull/1484)
+- Restore action cable subscription, ensure enablement flag is available [(#1482)](https://github.com/ManageIQ/manageiq-ui-service/pull/1482)
 - Updated URL for custom buttons dialogs [(#1467)](https://github.com/ManageIQ/manageiq-ui-service/pull/1467)
 - Hide revert snapshot button for openstack vm's [(#1475)](https://github.com/ManageIQ/manageiq-ui-service/pull/1475)
 - Changed Retire services to a modal instead of confirmation [(#1462)](https://github.com/ManageIQ/manageiq-ui-service/pull/1462)
@@ -73,6 +67,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Ensure we only fetch those services with display set to true [(#1112)](https://github.com/ManageIQ/manageiq-ui-service/pull/1112)
 - Uncapitalize repo name for playbooks [(#1098)](https://github.com/ManageIQ/manageiq-ui-service/pull/1098)
 - Fixed issue with dialogs not loading on reconfigure [(#1478)](https://github.com/ManageIQ/manageiq-ui-service/pull/1478)
+
+## Gaprindashvili-5 - Released 2018-09-07
+
+### Fixed
+- Support for disabling Dashboard [(#1446)](https://github.com/ManageIQ/manageiq-ui-service/pull/1446)
+- Fix for refresh of dialog fields not being called in some circumstances [(#1454)](https://github.com/ManageIQ/manageiq-ui-service/pull/1454)
+- Fixed issue with dialogs that causes duplicate values [(#1458)](https://github.com/ManageIQ/manageiq-ui-service/pull/1458)
 
 ## Gaprindashvili-4 - Released 2018-07-16
 
