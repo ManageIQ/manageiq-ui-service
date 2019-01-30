@@ -14,9 +14,15 @@ function TimelineController ($element, $window) {
   const vm = this
   const d3 = $window.d3
 
-  angular.element($window).on('resize', function () {
+  const resizeHandler = function () {
     renderTimeline()
-  })
+  }
+
+  angular.element($window).on('resize', resizeHandler)
+
+  vm.$onDestroy = function () {
+    angular.element($window).off('resize', resizeHandler)
+  }
 
   vm.$onChanges = (changes) => {
     vm.options = changes.options.currentValue || vm.options
