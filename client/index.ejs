@@ -8,8 +8,8 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; font-src 'self' data:; connect-src *;">
-  <link rel="shortcut icon" href="images/favicon.ico"/>
-  <link rel="icon" href="images/favicon.ico"/>
+  <link rel="shortcut icon" ng-href="{{favicon}}" />
+  <link rel="icon" ng-href="{{favicon}}" />
   <base href="<%= htmlWebpackPlugin.options.base %>">
   <style>
     [ng-cloak] {

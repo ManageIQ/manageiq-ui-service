@@ -1,6 +1,5 @@
 /** @ngInject */
-export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
-                                      EventNotifications, ApplianceInfo, CollectionsApi, RBAC, Language, lodash) {
+export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state, EventNotifications, ApplianceInfo, CollectionsApi, RBAC, Language, lodash, $rootScope) {
   const vm = this
   vm.language = ''
   const destroy = $scope.$on('shoppingCartUpdated', refresh)
@@ -36,7 +35,10 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       return EventNotifications.state().toastNotifications
     },
     refreshToast, true)
+
   const applianceInfo = ApplianceInfo.get()
+  $rootScope.favicon = applianceInfo.favicon
+
   vm.language = Language.chosen.code
 
   $scope.$on('destroy', function () {
