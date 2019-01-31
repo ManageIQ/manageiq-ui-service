@@ -1,3 +1,4 @@
+/* eslint comma-dangle: 0 */
 import gitHash from '../../version/version.json'
 
 /** @ngInject */
@@ -28,7 +29,8 @@ export function ApplianceInfo ($sessionStorage) {
       asyncNotify: data.settings.asynchronous_notifications || true,
       nameFull: data.product_info.name_full,
       brand: data.product_info.branding_info.brand,
-      logo: data.product_info.branding_info.logo
+      favicon: data.product_info.branding_info.favicon,
+      logo: data.product_info.branding_info.logo,
     }
 
     $sessionStorage.applianceInfo = applianceInfo

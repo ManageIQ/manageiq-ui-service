@@ -22,8 +22,7 @@ function getStates () {
 }
 
 /** @ngInject */
-function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session,
-                          $rootScope, Notifications, Language, ApplianceInfo, CollectionsApi) {
+function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ApplianceInfo, CollectionsApi) {
   const vm = this
 
   getBrand()
@@ -90,6 +89,7 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
   function getBrand () {
     CollectionsApi.query('product_info').then((response) => {
       vm.brandInfo = response.branding_info
+      $rootScope.favicon = vm.brandInfo.favicon
     })
   }
 }

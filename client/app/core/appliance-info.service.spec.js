@@ -1,3 +1,4 @@
+/* eslint comma-dangle: 0 */
 /* global ApplianceInfo */
 describe('Appliance Info Service', () => {
   const applianceInfoData = {
@@ -7,7 +8,8 @@ describe('Appliance Info Service', () => {
       'support_website_text': 'ManageIQ.org',
       'branding_info': {
         'brand': 'ManageIQ',
-        'logo': 'ManageIQ'
+        'favicon': 'ManageIQ',
+        'logo': 'ManageIQ',
       }
     },
     'identity': {
@@ -47,7 +49,8 @@ describe('Appliance Info Service', () => {
       'server': 'EVM',
       'asyncNotify': 'true',
       'brand': 'ManageIQ',
-      'logo': 'ManageIQ'
+      'favicon': 'ManageIQ',
+      'logo': 'ManageIQ',
     }
     ApplianceInfo.set(applianceInfoData)
     const currentApplianceInfo = ApplianceInfo.get()
