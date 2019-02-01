@@ -92,7 +92,7 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications, spri
   }
 
   function powerOperationSuspendState (item) {
-    return getPowerState(item) === 'off'
+    return getPowerState(item) === 'suspended'
   }
 
   function powerOperationTimeoutState (item) {
