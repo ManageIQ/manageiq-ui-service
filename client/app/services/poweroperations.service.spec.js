@@ -151,7 +151,7 @@ describe('Service: PowerOperationsFactory', () => {
   })
   it('Should retrieve the power suspend state', () => {
     const testVm = {
-      'power_state': 'off'
+      'power_state': 'suspended'
     }
     const testPowerState = PowerOperations.powerOperationSuspendState(testVm)
     expect(testPowerState).to.eq(true)
