@@ -5,9 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+## Unreleased as of Sprint 104 ending 2019-02-04
+
+### Added
+- Support custom favicons [(#1521)](https://github.com/ManageIQ/manageiq-ui-service/pull/1521)
+
+### Fixed
+- Suspended power_state is "suspended" [(#1524)](https://github.com/ManageIQ/manageiq-ui-service/pull/1524)
+- Timeline - remove onResize handler when destroying timeline [(#1523)](https://github.com/ManageIQ/manageiq-ui-service/pull/1523)
+
 ## Unreleased as of Sprint 102 ending 2019-01-07
 
-## Added
+### Added
 - Login/nav brand and logo are set by api [(#1513)](https://github.com/ManageIQ/manageiq-ui-service/pull/1513)
 
 ## Hammer-1
