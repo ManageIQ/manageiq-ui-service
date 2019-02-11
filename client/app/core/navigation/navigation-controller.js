@@ -1,11 +1,18 @@
 /** @ngInject */
 export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state,
-                                      EventNotifications, ApplianceInfo, CollectionsApi, RBAC, lodash) {
+                                      EventNotifications, ApplianceInfo, CollectionsApi, RBAC, lodash, Language) {
   const vm = this
   const destroy = $scope.$on('shoppingCartUpdated', refresh)
   const destroyCart = $scope.$on('shoppingCartUpdated', refreshCart)
+  let language = null
 
   vm.$doCheck = () => {
+    if (language !== Language.chosen.code) {
+      Navigation.init()
+      vm.items = Navigation.get()
+      language = Language.chosen.code
+    }
+
     if (!lodash.isEqual(vm.items, Navigation.get())) {
       if (!RBAC.suiAuthorized()) {
         Session.privilegesError = true
