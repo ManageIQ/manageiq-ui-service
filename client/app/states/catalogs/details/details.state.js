@@ -75,7 +75,6 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
       const DIALOGS_RESPONSE = 0
       dialogs = data[DIALOGS_RESPONSE]
       vm.serviceTemplate = data[SERVICE_TEMPLATE_RESPONSE]
-      vm.serviceTemplate.long_description = parseDescription(vm.serviceTemplate)
       setDialogUrl()
 
       if (dialogs.subcount > 0) {
