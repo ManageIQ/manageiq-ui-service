@@ -1,3 +1,4 @@
+/* eslint comma-dangle: 0 */
 import './_pagination.sass'
 import templateUrl from './pagination.html'
 
@@ -8,7 +9,8 @@ export const PaginationComponent = {
     limit: '<',
     limitOptions: '<?',
     count: '<',
-    onUpdate: '&'
+    onUpdate: '&',
+    checkAll: '<',  // { checked: false, trigger: function(newvalue) }
   },
   templateUrl
 }
@@ -29,6 +31,10 @@ function ComponentController () {
       next: next
     })
 
+    if (vm.checkAll) {
+      initCheckAll()
+    }
+
     establishBoundaries()
   }
 
@@ -37,8 +43,26 @@ function ComponentController () {
       vm.offset = 0
     }
 
+    if (changes.checkAll) {
+      initCheckAll()
+    }
+
     vm.lastOffset = lastOffset()
     establishBoundaries()
+  }
+
+  vm.onCheckAll = function () {
+    if (vm.checkAllState === vm.lastCheckAllState) {
+      return
+    }
+
+    vm.checkAll.trigger(vm.checkAllState)
+    vm.lastCheckAllState = vm.checkAllState
+  }
+
+  function initCheckAll () {
+    vm.checkAllState = vm.checkAll.checked || false
+    vm.lastCheckAllState = vm.checkAllState
   }
 
   // Public
