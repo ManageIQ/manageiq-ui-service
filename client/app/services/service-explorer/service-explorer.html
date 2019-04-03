@@ -208,6 +208,9 @@
         </list-expanded-content>
     </pf-list-view>
 </div>
-<explorer-pagination limit="vm.limit" count="vm.toolbarConfig.filterConfig.resultsCount" limit-options="vm.limitOptions"
+<explorer-pagination check-all="vm.checkAll"
+                     count="vm.toolbarConfig.filterConfig.resultsCount"
+                     limit-options="vm.limitOptions"
+                     limit="vm.limit"
                      on-update="vm.paginationUpdate($limit, $offset)">
 </explorer-pagination>
