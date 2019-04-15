@@ -5,8 +5,8 @@ on port 3004, run:
 - ```yarn add @manageiq/manageiq-api-mock```
 - ```cd node_modules/@manageiq/manageiq-api-mock/ && node index.js```
 
-####Configuration
-If you would like to get this to run on a different port , please set the following environmental variable;
+#### Configuration
+If you would like to get this to run on a different port, please set the following environmental variable:
 
 - ```export MOCK_API_HOST=localhost:3005``` 
 
