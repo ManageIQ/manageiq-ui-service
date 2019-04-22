@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Hammer-1
+## Hammer-5
+
+### Added
+- Login/nav brand and logo are set by api [(#1513)](https://github.com/ManageIQ/manageiq-ui-service/pull/1513)
+
+## Hammer-1 - Released 2019-01-15
 
 ### Added
 - Updates language files includes new languages [(#1184)](https://github.com/ManageIQ/manageiq-ui-service/pull/1184)
