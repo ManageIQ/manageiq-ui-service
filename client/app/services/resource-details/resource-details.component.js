@@ -257,6 +257,7 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
           ${response.hostnames.map(item => `<div>${item}</div>`).join('\n')}`
       vm.provInfo.info = [
         `<b>${response.vendor}</b>`,
+        response.ext_management_system ? response.ext_management_system.name : __('(no provider)'),
         `${response.hardware.cpu_total_cores} CPUs (${response.hardware.cpu_sockets} sockets x ${response.hardware.cpu_cores_per_socket} core)`,
         `${response.hardware.memory_mb} MB`
       ]
