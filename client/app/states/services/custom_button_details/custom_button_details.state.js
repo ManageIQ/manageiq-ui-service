@@ -55,6 +55,10 @@ function StateController ($state, $stateParams, CollectionsApi, EventNotificatio
       target_id: vm.serviceId,
       target_type: 'service'
     }
+    if (vm.vmId) {
+      options.target_type = 'vm'
+      options.target_id = vm.vmId
+    }
 
     const dialogId = vm.resourceAction.dialog_id
     const resolveDialogs = CollectionsApi.query(`service_dialogs/${dialogId}`, options)
