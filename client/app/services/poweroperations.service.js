@@ -64,6 +64,8 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications, spri
         powerState = 'on'
       } else if (powerStatesMatch(item.power_states, 'off')) {
         powerState = 'off'
+      } else if (powerStatesMatch(item.power_states, 'suspended')) {
+        powerState = 'suspended'
       } else if (powerStatesMatch(item.power_states, 'timeout')) {
         powerState = 'timeout'
       }

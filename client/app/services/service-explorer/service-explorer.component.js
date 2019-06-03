@@ -450,12 +450,13 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
 
     function getPowerInfo (powerState) {
       const powerStates = {
-        'on': {icon: 'pficon-ok', tooltip: __('Power State: On')},
-        'off': {icon: 'fa-power-off', tooltip: __('Power State: Off')},
-        'unknown': {icon: 'fa-question-circle', tooltip: __('Power State: Unknown')}
+        'on': {icon: 'pficon-on', tooltip: __('Power State: On')},
+        'off': {icon: 'pficon-off', tooltip: __('Power State: Off')},
+        'suspended': {icon: 'pficon-asleep', tooltip: __('Power State: Suspended')},
+        'unknown': {icon: 'pficon-unknown', tooltip: __('Power State: Unknown') + ` (${powerState})`},
       }
 
-      return (powerState !== 'on' && powerState !== 'off' ? powerStates.unknown : powerStates[powerState])
+      return powerStates[powerState] || powerStates.unknown
     }
 
     function queryFailure (response) {

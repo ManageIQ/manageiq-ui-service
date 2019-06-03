@@ -175,19 +175,24 @@
                                              tooltip-popup-delay="1000"
                                              tooltip-placement="bottom"></i>
                                           <span ng-if="!item.retired">
-                                          <i class="pficon fa fa-power-off" ng-if="item.power_state === 'off'"
+                                          <i class="pficon pficon-off" ng-if="item.power_state === 'off'"
                                              uib-tooltip="{{'Power State: Off'|translate}}"
                                              tooltip-append-to-body="true"
                                              tooltip-popup-delay="1000"
                                              tooltip-placement="bottom"></i>
-                                          <i class="pficon pficon-ok" ng-if="item.power_state === 'on'"
+                                          <i class="pficon pficon-on" ng-if="item.power_state === 'on'"
                                              uib-tooltip="{{'Power State: On'|translate}}"
                                              tooltip-append-to-body="true"
                                              tooltip-popup-delay="1000"
                                              tooltip-placement="bottom"></i>
-                                          <i class="pficon fa fa-question-circle"
-                                             ng-if="item.power_state !== 'on' && item.power_state !== 'off'"
-                                             uib-tooltip="{{'Power State: Unknown'|translate}}"
+                                          <i class="pficon pficon-asleep" ng-if="item.power_state === 'suspended'"
+                                             uib-tooltip="{{'Power State: Suspended'|translate}}"
+                                             tooltip-append-to-body="true"
+                                             tooltip-popup-delay="1000"
+                                             tooltip-placement="bottom"></i>
+                                          <i class="pficon pficon-unknown"
+                                             ng-if="! ['on', 'off', 'suspended'].includes(item.power_state)"
+                                             uib-tooltip="{{'Power State: Unknown'|translate}} ({{item.power_state}})"
                                              tooltip-append-to-body="true"
                                              tooltip-popup-delay="1000"
                                              tooltip-placement="bottom"></i>
