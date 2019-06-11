@@ -1,4 +1,4 @@
-/* eslint camelcase: "off" */
+/* eslint camelcase: "off", comma-dangle: 0 */
 import '../../../assets/sass/_explorer.sass'
 import templateUrl from './service-explorer.html'
 
@@ -69,6 +69,11 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
     Language.fixState(ServicesState.services, vm.toolbarConfig)
 
     resolveServices(vm.limit, 0)
+
+    vm.checkAll = {
+      checked: false,
+      trigger: selectAllToggle,
+    }
   }
 
   function getCardConfig () {
@@ -92,6 +97,18 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
   function handleSelectionChange () {
     vm.selectedItemsList = vm.servicesList.filter((service) => service.selected)
     vm.toolbarConfig.filterConfig.selectedCount = vm.selectedItemsList.length
+
+    vm.checkAll = Object.assign({}, vm.checkAll, {
+      checked: vm.selectedItemsList.length === vm.servicesList.length,
+    })
+  }
+
+  function selectAllToggle (value) {
+    vm.servicesList.forEach((service) => {
+      service.selected = value
+    })
+
+    handleSelectionChange()
   }
 
   function isAnsibleService (service) {

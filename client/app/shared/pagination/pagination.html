@@ -1,4 +1,12 @@
 <div class="pagination-footer">
+  <span class="pull-left checkbox span-right-border checkall-margin-override" ng-if="vm.checkAll">
+    <label class="checkbox-inline">
+      <input type="checkbox" ng-model="vm.checkAllState" ng-change="vm.onCheckAll()">
+      <span translate>
+        Select All
+      </span>
+    </label>
+  </span>
   <span class="dropup primary-action pull-left" uib-dropdown ng-if="vm.limitOptions">
     <button type="button" class="btn btn-default" uib-dropdown-toggle type="button">
        {{vm.limit}}
