@@ -21,7 +21,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
     getConfigurationCustomDropdown: getConfigurationCustomDropdown
   }
 
-  function getService (id, { isAutoRefresh = false } = {}) {
+  function getService (id, { isAutoRefresh = false, runAutomate = true } = {}) {
     const options = {
       attributes: [
         'actions',
@@ -47,7 +47,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
         'picture.image_href',
         'power_state',
         'power_status',
-        'provision_dialog',
+        runAutomate ? 'provision_dialog' : null,
         'retired',
         'retirement_state',
         'retirement_warn',
@@ -65,7 +65,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
         'vms.v_snapshot_newest_name',
         'vms.v_snapshot_newest_timestamp',
         'vms.v_total_snapshots',
-      ],
+      ].filter((truthy) => truthy),
       expand: [
         'generic_objects',
         'orchestration_stacks',
