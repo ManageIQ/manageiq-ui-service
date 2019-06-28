@@ -65,6 +65,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
     })
     fetchResources(vm.serviceId, {
       isAutoRefresh: false,
+      runAutomate: false,
     })
     Polling.start('servicesPolling', startPollingService, LONG_POLLING_INTERVAL)
   }
@@ -72,6 +73,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   function startPollingService () {
     fetchResources(vm.serviceId, {
       isAutoRefresh: true,
+      runAutomate: false,
     })
   }
 
