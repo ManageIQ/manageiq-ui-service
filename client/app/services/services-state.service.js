@@ -21,7 +21,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
     getConfigurationCustomDropdown: getConfigurationCustomDropdown
   }
 
-  function getService (id, refresh) {
+  function getService (id, { isAutoRefresh = false } = {}) {
     const options = {
       attributes: [
         'actions',
@@ -71,7 +71,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
         'orchestration_stacks',
         'vms',
       ],
-      auto_refresh: refresh,
+      auto_refresh: isAutoRefresh,
     }
 
     return CollectionsApi.get('services', id, options)
