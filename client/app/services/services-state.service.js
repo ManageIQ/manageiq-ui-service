@@ -147,7 +147,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
       instanceSuspend: RBAC.has(RBAC.FEATURES.VMS.SUSPEND),
       instanceRetire: RBAC.hasAny([RBAC.FEATURES.SERVICES.RETIRE.RETIRE_NOW, RBAC.FEATURES.SERVICES.RETIRE.SET_DATE]),
       cockpit: RBAC.has(RBAC.FEATURES.VMS.WEB_CONSOLE),
-      console: RBAC.has(RBAC.FEATURES.VMS.CONSOLE),
+      html5_console: RBAC.has(RBAC.FEATURES.VMS.HTML5_CONSOLE),
       viewSnapshots: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.VIEW),
 
       vm_snapshot_show_list: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.VIEW), // Display Lists of VM Snapshots
