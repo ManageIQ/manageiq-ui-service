@@ -380,7 +380,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   }
 
   function openConsole (item) {
-    if (item.supported_consoles.vnc.visible && item.supported_consoles.vnc.enabled) {
+    if (item.supported_consoles.html5.visible && item.supported_consoles.html5.enabled) {
       Consoles.open(item.id)
     }
   }

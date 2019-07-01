@@ -30,7 +30,7 @@
         "ADD": "sui_vm_snapshot_create",
         "DELETE": "sui_vm_snapshot_delete"
       },
-      "CONSOLE": "sui_vm_console",
+      "HTML5_CONSOLE": "sui_vm_html5_console",
       "WEB_CONSOLE": "sui_vm_web_console",
       "TAGS": "sui_vm_tags",
       "RETIRE": "sui_vm_retire",

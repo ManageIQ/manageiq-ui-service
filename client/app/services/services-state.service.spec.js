@@ -84,7 +84,7 @@ describe('Service: ServicesStateFactory', () => {
         'instanceSuspend': false,
         'instanceRetire': false,
         'cockpit': false,
-        'console': false,
+        'html5_console': false,
         'viewSnapshots': false,
         'vm_snapshot_add': false,
         'vm_snapshot_show_list': false,
