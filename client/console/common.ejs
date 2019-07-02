@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebMKS Remote Console</title>
+    <style type="text/css">
+      #remote-console {
+        position: fixed;
+        width: 100%;
+        height: calc(100% - 30px) !important;
+        overflow: auto;
+      }
+
+      footer.remote-console {
+        position: fixed;
+        line-height: 30px;
+        vertical-align: middle;
+        height: 30px;
+        width: 100%;
+        top: calc(100% - 32px);
+        padding-left: 0.2em;
+        padding-right: 0.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="remote-console"></div>
+    <footer class="remote-console">
+      <div class="pull-left">
+        <span id="console-type" class="label label-info">WebMKS</span>
+        <span id="connection-status" class="label label-warning">Connecting</span>
+      </div>
+      <div class="pull-right">
+        <select name="keymap" id="keymap" style="display: none;">
+          <option value="en-US">English</option>
+          <option value="ja-JP_106/109">Japanese</option>
+          <option value="de-DE">German</option>
+          <option value="it-IT">Italian</option>
+          <option value="es-ES">Spanish</option>
+          <option value="pt-PT">Portuguese</option>
+          <option value="fr-FR">French</option>
+          <option value="fr-CH">Swiss‐French</option>
+          <option value="de-CH">Swiss‐German</option>
+        </select>
+        <button id="ctrlaltdel" class="btn btn-default">
+          <i class="fa fa-keyboard-o"></i>
+        </button>
+      </div>
+    </footer>
+  </body>
+</html>
