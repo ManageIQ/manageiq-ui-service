@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Hammer-5
+## Hammer-8
+
+### Fixed
+- VM custom button dialog - use the VM instead of the parent service [(#1542)](https://github.com/ManageIQ/manageiq-ui-service/pull/1542)
+
+## Hammer-5 - Released 2019-04-23
 
 ### Added
 - Login/nav brand and logo are set by api [(#1513)](https://github.com/ManageIQ/manageiq-ui-service/pull/1513)
