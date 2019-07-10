@@ -97,18 +97,16 @@
   resolved "https://registry.yarnpkg.com/@manageiq/font-fabulous/-/font-fabulous-1.0.3.tgz#3e1fa8391866c82529f19cf2580f6092b6ef1a04"
   integrity sha512-K0YFaADF+3JrKfuHA322YE/mjKRrgOpx82QCCw4b4BrBN6HX6hOuUfpmWpV4FPWObmqSOQp1kD7Mcx1Z8vhhtg==
 
-"@manageiq/ui-components@1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.2.6.tgz#93da081355c1f56628e12fd91280adddfaabebba"
-  integrity sha512-VUZWoO0PzdL69Bt0ZK2/yxWKNAQBcLp5224wcGi0W50qR0Bv4CWyktwjFGqnPsXvcCZnYez0RV1UJkXEVgTHwg==
+"@manageiq/ui-components@1.2.8":
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.2.8.tgz#eb0eacd08fa13d6701879b1daec14f53992b8e5c"
+  integrity sha512-mgfzsokZyKRymLesyhpG1qfOeX0Dwr/o6rH2q9VIGZwizDZlBZMpuUedN4NaC+h3sxGqW52F43XD4KKkpMZzMw==
   dependencies:
     angular-bootstrap-switch "^0.5.1"
     angular-dragdrop "^1.0.13"
     angular-ui-sortable "^0.16.1"
-    babel-eslint "^7.2.3"
     es6-shim "^0.35.3"
     es7-shim "^6.0.0"
-    eslint "~3.9.1"
     sprintf-js "^1.1.1"
 
 "@sinonjs/formatio@^2.0.0":
@@ -898,15 +896,6 @@ babel-eslint@8.2.6:
     eslint-scope "3.7.1"
     eslint-visitor-keys "^1.0.0"
 
-babel-eslint@^7.2.3:
-  version "7.2.3"
-  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-7.2.3.tgz#b2fe2d80126470f5c19442dc757253a897710827"
-  dependencies:
-    babel-code-frame "^6.22.0"
-    babel-traverse "^6.23.1"
-    babel-types "^6.23.0"
-    babylon "^6.17.0"
-
 babel-generator@^6.18.0, babel-generator@^6.26.0:
   version "6.26.1"
   resolved "https://registry.yarnpkg.com/babel-generator/-/babel-generator-6.26.1.tgz#1844408d3b8f0d35a404ea7ac180f087a601bd90"
@@ -1345,7 +1334,7 @@ babel-template@^6.16.0, babel-template@^6.24.1, babel-template@^6.26.0:
     babylon "^6.18.0"
     lodash "^4.17.4"
 
-babel-traverse@^6.18.0, babel-traverse@^6.23.1, babel-traverse@^6.24.1, babel-traverse@^6.26.0:
+babel-traverse@^6.18.0, babel-traverse@^6.24.1, babel-traverse@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-traverse/-/babel-traverse-6.26.0.tgz#46a9cbd7edcc62c8e5c064e2d2d8d0f4035766ee"
   dependencies:
@@ -1359,7 +1348,7 @@ babel-traverse@^6.18.0, babel-traverse@^6.23.1, babel-traverse@^6.24.1, babel-tr
     invariant "^2.2.2"
     lodash "^4.17.4"
 
-babel-types@^6.18.0, babel-types@^6.19.0, babel-types@^6.23.0, babel-types@^6.24.1, babel-types@^6.26.0:
+babel-types@^6.18.0, babel-types@^6.19.0, babel-types@^6.24.1, babel-types@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-types/-/babel-types-6.26.0.tgz#a3b073f94ab49eb6fa55cd65227a334380632497"
   dependencies:
@@ -1372,7 +1361,7 @@ babylon@7.0.0-beta.44:
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-7.0.0-beta.44.tgz#89159e15e6e30c5096e22d738d8c0af8a0e8ca1d"
 
-babylon@^6.11.4, babylon@^6.17.0, babylon@^6.18.0:
+babylon@^6.11.4, babylon@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
 
@@ -3621,45 +3610,6 @@ eslint@~3.19.0:
     text-table "~0.2.0"
     user-home "^2.0.0"
 
-eslint@~3.9.1:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.9.1.tgz#5a8597706fc6048bc6061ac754d4a211d28f4f5b"
-  dependencies:
-    babel-code-frame "^6.16.0"
-    chalk "^1.1.3"
-    concat-stream "^1.4.6"
-    debug "^2.1.1"
-    doctrine "^1.2.2"
-    escope "^3.6.0"
-    espree "^3.3.1"
-    estraverse "^4.2.0"
-    esutils "^2.0.2"
-    file-entry-cache "^2.0.0"
-    glob "^7.0.3"
-    globals "^9.2.0"
-    ignore "^3.1.5"
-    imurmurhash "^0.1.4"
-    inquirer "^0.12.0"
-    is-my-json-valid "^2.10.0"
-    is-resolvable "^1.0.0"
-    js-yaml "^3.5.1"
-    json-stable-stringify "^1.0.0"
-    levn "^0.3.0"
-    lodash "^4.0.0"
-    mkdirp "^0.5.0"
-    natural-compare "^1.4.0"
-    optionator "^0.8.2"
-    path-is-inside "^1.0.1"
-    pluralize "^1.2.1"
-    progress "^1.1.8"
-    require-uncached "^1.0.2"
-    shelljs "^0.7.5"
-    strip-bom "^3.0.0"
-    strip-json-comments "~1.0.1"
-    table "^3.7.8"
-    text-table "~0.2.0"
-    user-home "^2.0.0"
-
 eslint@~4.18.0:
   version "4.18.2"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.18.2.tgz#0f81267ad1012e7d2051e186a9004cc2267b8d45"
@@ -3702,7 +3652,7 @@ eslint@~4.18.0:
     table "4.0.2"
     text-table "~0.2.0"
 
-espree@^3.1.6, espree@^3.3.1, espree@^3.4.0, espree@^3.5.2:
+espree@^3.1.6, espree@^3.4.0, espree@^3.5.2:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/espree/-/espree-3.5.4.tgz#b0f447187c8a8bed944b815a660bddf5deb5d1a7"
   dependencies:
@@ -4781,7 +4731,7 @@ ignore-walk@^3.0.1:
   dependencies:
     minimatch "^3.0.4"
 
-ignore@^3.0.11, ignore@^3.0.9, ignore@^3.1.2, ignore@^3.1.5, ignore@^3.2.0, ignore@^3.3.3, ignore@^3.3.5, ignore@^3.3.6:
+ignore@^3.0.11, ignore@^3.0.9, ignore@^3.1.2, ignore@^3.2.0, ignore@^3.3.3, ignore@^3.3.5, ignore@^3.3.6:
   version "3.3.10"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.10.tgz#0a97fb876986e8081c631160f8f9f389157f0043"
 
