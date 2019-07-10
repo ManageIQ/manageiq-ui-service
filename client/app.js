@@ -38,7 +38,6 @@ require('bootstrap-datepicker')
 require('angular-bootstrap-switch')
 require('angular-ui-sortable')
 require('bootstrap-combobox')
-require('ui-select')
 require('@manageiq/ui-components/dist/js/ui-components')
 
 // Libraries: angular-patternfly
@@ -61,7 +60,6 @@ require('./app/app.module.js')
 require('angular-patternfly/dist/styles/angular-patternfly.css')
 require('@manageiq/ui-components/dist/css/ui-components.css')
 require('ngprogress/ngProgress.css')
-require('ui-select/dist/select.css')
 require('patternfly-timeline/dist/timeline.css')
 
 // Application styles

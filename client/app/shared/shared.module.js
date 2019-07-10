@@ -19,8 +19,7 @@ export const SharedModule = angular
     'app.core',
     'ui.bootstrap',
     'patternfly',
-    'patternfly.charts',
-    'ui.select'
+    'patternfly.charts'
   ])
   .component('actionButtonGroup', ActionButtonGroupComponent)
   .component('customDropdown', CustomDropdownComponent)
