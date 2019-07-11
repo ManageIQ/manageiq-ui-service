@@ -1,4 +1,4 @@
-/* eslint camelcase: "off" */
+/* eslint camelcase: "off", comma-dangle: 0 */
 
 /** @ngInject */
 export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
@@ -21,21 +21,57 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
     getConfigurationCustomDropdown: getConfigurationCustomDropdown
   }
 
-  function getService (id, refresh) {
+  function getService (id, { isAutoRefresh = false, runAutomate = true } = {}) {
     const options = {
       attributes: [
-        'name', 'guid', 'created_at', 'type', 'description', 'picture', 'picture.image_href', 'evm_owner.name', 'evm_owner.userid',
-        'miq_group.description', 'aggregate_all_vm_memory', 'aggregate_all_vm_disk_count',
-        'aggregate_all_vm_disk_space_allocated', 'aggregate_all_vm_disk_space_used', 'aggregate_all_vm_memory_on_disk', 'retired',
-        'retirement_state', 'retirement_warn', 'retires_on', 'actions', 'custom_actions', 'provision_dialog', 'service_resources',
-        'chargeback_report', 'service_template', 'parent_service', 'power_state', 'power_status', 'options', 'vms.ipaddresses',
-        'vms.snapshots', 'vms.v_total_snapshots', 'vms.v_snapshot_newest_name', 'vms.v_snapshot_newest_timestamp',
-        'vms.max_mem_usage_absolute_average_avg_over_time_period', 'vms.hardware',
-        'vms.hardware.aggregate_cpu_speed', 'vms.cpu_usagemhz_rate_average_avg_over_time_period', 'generic_objects.picture',
-        'generic_objects.generic_object_definition', 'vms.supported_consoles'
+        'actions',
+        'aggregate_all_vm_disk_count',
+        'aggregate_all_vm_disk_space_allocated',
+        'aggregate_all_vm_disk_space_used',
+        'aggregate_all_vm_memory',
+        'aggregate_all_vm_memory_on_disk',
+        'chargeback_report',
+        'created_at',
+        'custom_actions',
+        'description',
+        'evm_owner.name',
+        'evm_owner.userid',
+        'generic_objects.generic_object_definition',
+        'generic_objects.picture',
+        'guid',
+        'miq_group.description',
+        'name',
+        'options',
+        'parent_service',
+        'picture',
+        'picture.image_href',
+        'power_state',
+        'power_status',
+        runAutomate ? 'provision_dialog' : null,
+        'retired',
+        'retirement_state',
+        'retirement_warn',
+        'retires_on',
+        'service_resources',
+        'service_template',
+        'type',
+        'vms.cpu_usagemhz_rate_average_avg_over_time_period',
+        'vms.hardware',
+        'vms.hardware.aggregate_cpu_speed',
+        'vms.ipaddresses',
+        'vms.max_mem_usage_absolute_average_avg_over_time_period',
+        'vms.snapshots',
+        'vms.supported_consoles',
+        'vms.v_snapshot_newest_name',
+        'vms.v_snapshot_newest_timestamp',
+        'vms.v_total_snapshots',
+      ].filter((truthy) => truthy),
+      expand: [
+        'generic_objects',
+        'orchestration_stacks',
+        'vms',
       ],
-      expand: ['vms', 'orchestration_stacks', 'generic_objects'],
-      auto_refresh: refresh
+      auto_refresh: isAutoRefresh,
     }
 
     return CollectionsApi.get('services', id, options)
