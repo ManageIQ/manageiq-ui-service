@@ -175,7 +175,7 @@ Component services make available all resources needed by components, crud opera
       getConfigurationCustomDropdown: getConfigurationCustomDropdown,
     };
 
-    function getService(id, refresh) {
+    function getService(id, { isAutoRefresh, runAutomate }) {
         ...
     }
   }

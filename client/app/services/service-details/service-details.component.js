@@ -1,4 +1,4 @@
-/* eslint camelcase: "off" */
+/* eslint camelcase: "off", comma-dangle: 0 */
 import './_service-details.sass'
 import templateUrl from './service-details.html'
 
@@ -63,16 +63,22 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
         checkDisabled: isResourceDisabled
       }
     })
-    fetchResources(vm.serviceId)
+    fetchResources(vm.serviceId, {
+      isAutoRefresh: false,
+      runAutomate: false,
+    })
     Polling.start('servicesPolling', startPollingService, LONG_POLLING_INTERVAL)
   }
 
   function startPollingService () {
-    fetchResources(vm.serviceId, true)
+    fetchResources(vm.serviceId, {
+      isAutoRefresh: true,
+      runAutomate: false,
+    })
   }
 
-  function fetchResources (id, refresh) {
-    ServicesState.getService(id, refresh).then(handleSuccess, handleFailure)
+  function fetchResources (id, options) {
+    ServicesState.getService(id, options).then(handleSuccess, handleFailure)
 
     function handleSuccess (response) {
       vm.service = response

@@ -13,7 +13,7 @@ describe('Service: ServicesStateFactory', () => {
     it('should allow a service to be retrieved', (done) => {
       const serviceId = '12345'
       const collectionsApiSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(successResponse))
-      ServicesState.getService(serviceId, false)
+      ServicesState.getService(serviceId, { isAutoRefresh: false, runAutomate: true })
       const expectedOptions = {
         attributes: [
           'name', 'guid', 'created_at', 'type', 'description', 'picture', 'picture.image_href', 'evm_owner.name', 'evm_owner.userid',
