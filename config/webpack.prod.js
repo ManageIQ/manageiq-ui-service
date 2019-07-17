@@ -21,7 +21,8 @@ config.plugins.push(
   // Replace index.html with correct base href for production use
   new HtmlWebpackPlugin({
     base: '/ui/service/',
-    template: '../client/index.ejs'
+    template: '../client/index.ejs',
+    chunks: ['app']
   }),
 
   new OptimizeCssAssetsWebpackPlugin()

@@ -21,7 +21,8 @@ console.log('Backend proxied on ' + protocol + host)
 module.exports = {
   context: root,
   entry: {
-    app: './app.js'
+    app: './app.js',
+    console_webmks: './console/webmks.js'
   },
 
   output: {
@@ -46,6 +47,10 @@ module.exports = {
       '/ws': {
         target: `ws://${host}`,
         ws: true
+      },
+      '/webmks': {
+        target: `${protocol}${host}`,
+        secure: false
       }
     }
   },
@@ -170,7 +175,15 @@ module.exports = {
     // Generate index.html from template with script/link tags for bundles
     new HtmlWebpackPlugin({
       base: '/',
-      template: '../client/index.ejs'
+      template: '../client/index.ejs',
+      chunks: ['app']
+    }),
+
+    new HtmlWebpackPlugin({
+      base: '/',
+      filename: 'console/webmks.html',
+      template: '../client/console/common.ejs',
+      chunks: ['console_webmks']
     }),
 
     new webpack.ContextReplacementPlugin(

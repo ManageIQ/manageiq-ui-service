@@ -63,6 +63,9 @@ export function ConsolesFactory ($window, CollectionsApi, $timeout, $location, E
       case 'spice':
         openSpice(results)
         break
+      case 'webmks':
+        openWebmks(results)
+        break
       case 'vnc':
         openVnc(results)
         break
@@ -82,6 +85,16 @@ export function ConsolesFactory ($window, CollectionsApi, $timeout, $location, E
       '&password=' + results.secret
 
     // encrypt is divined automagically in spice_auto
+
+    $window.open(url)
+  }
+
+  function openWebmks (results) {
+    var url = '/ui/service/console/webmks.html' +
+      '?path=' + results.url +
+      '&lang=' + results.lang +
+      '&is_vcloud=' + results.is_vcloud +
+      '&vmx=' + results.vmx
 
     $window.open(url)
   }
