@@ -1,11 +1,10 @@
 @import 'app_colors'
 
 .login-pf
-  background-color: $app-color-deep-blue
+  background-color: #101010
   background-image: none
   height: calc(100vh)
-  margin-bottom: -38px
-  margin-top: -60px
+  margin-top: -60px !important //hack to deal with missing login-pf class in html tag
 
   .container
     padding-top: 0
@@ -15,17 +14,6 @@
       border-color: $app-color-dark-red
       color: $app-color-dark-gray-2
 
-    h1
-      margin: 0
-
-  .img-top
-    left: 0
-    top: 0
-
-  .img-bottom
-    bottom: 0
-    position: fixed
-    right: 0
 
   .logo
     max-height: 200px
