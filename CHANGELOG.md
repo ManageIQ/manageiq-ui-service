@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Hammer-8
+## Unreleased as of Sprint 116 ending 2019-07-22
+
+### Fixed
+- Dialog user - fix validation for date & date&time when field is required; clearing the fields [(#401)](https://github.com/ManageIQ/ui-components/pull/401)
+
+## Hammer-8 - Released 2019-07-02
 
 ### Fixed
 - VM custom button dialog - use the VM instead of the parent service [(#1542)](https://github.com/ManageIQ/manageiq-ui-service/pull/1542)
