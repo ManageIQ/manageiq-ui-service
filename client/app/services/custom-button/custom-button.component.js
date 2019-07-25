@@ -10,6 +10,7 @@ const base = {
     customActions: '<',
     serviceId: '<',
     vmId: '<',
+    displayFor: '<?',
   },
   controller: CustomButtonController,
   controllerAs: 'vm',
@@ -29,6 +30,21 @@ function CustomButtonController ($state, EventNotifications, CollectionsApi, RBA
 
   vm.hasRequiredRole = hasRequiredRole
   vm.invokeCustomAction = invokeCustomAction
+
+  vm.$onChanges = (changes) => {
+    if (changes.customActions || changes.displayFor) {
+      vm.filteredButtons = filterButtons(vm.customActions.buttons, vm.displayFor)
+      vm.filteredGroups = vm.customActions.button_groups.map((group) => {
+        return Object.assign({}, group, {
+          buttons: filterButtons(group.buttons, vm.displayFor),
+        })
+      })
+    }
+  }
+
+  function filterButtons (buttons, displayFor = ['single', 'list', 'both']) {
+    return buttons.filter((button) => button && button.options && displayFor.includes(button.options.display_for))
+  }
 
   function hasRequiredRole (button) {
     const acceptableRoles = button.visibility.roles
