@@ -43,7 +43,7 @@ function CustomButtonController ($state, EventNotifications, CollectionsApi, RBA
   }
 
   function filterButtons (buttons, displayFor = ['single', 'list', 'both']) {
-    return buttons.filter((button) => button && button.options && displayFor.includes(button.options.display_for))
+    return buttons.filter((button) => button && button.options && (!button.options.display_for || displayFor.includes(button.options.display_for)))
   }
 
   function hasRequiredRole (button) {
