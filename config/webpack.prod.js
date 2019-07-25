@@ -25,6 +25,14 @@ config.plugins.push(
     chunks: ['app']
   }),
 
+  // Build the HTML required for the WebMKS console
+  new HtmlWebpackPlugin({
+    base: '/',
+    filename: 'console/webmks.html',
+    template: '../client/console/common.ejs',
+    chunks: ['console_webmks']
+  }),
+
   new OptimizeCssAssetsWebpackPlugin()
 )
 
