@@ -17,12 +17,14 @@
           ng-if="vm.hasCustomButtons(vm.service) <= 3 && vm.hasCustomButtons(vm.service) > 0"
           class="custom-dropdown pull-left"
           service-id="vm.service.id"
-          custom-actions="vm.service.custom_actions">
+          custom-actions="vm.service.custom_actions"
+          display-for="['both', 'single']">
         </custom-button>
         <custom-button-menu
           service-id="vm.service.id"
           ng-if="vm.hasCustomButtons(vm.service) > 3"
-          custom-actions="vm.service.custom_actions">
+          custom-actions="vm.service.custom_actions"
+          display-for="['both', 'single']">
         </custom-button-menu>
         <custom-dropdown
           class="custom-dropdown pull-left"
