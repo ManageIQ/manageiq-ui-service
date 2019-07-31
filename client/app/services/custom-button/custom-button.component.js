@@ -33,8 +33,8 @@ function CustomButtonController ($state, EventNotifications, CollectionsApi, RBA
 
   vm.$onChanges = (changes) => {
     if (changes.customActions || changes.displayFor) {
-      vm.filteredButtons = filterButtons(vm.customActions.buttons, vm.displayFor)
-      vm.filteredGroups = vm.customActions.button_groups.map((group) => {
+      vm.filteredButtons = filterButtons(vm.customActions.buttons || [], vm.displayFor)
+      vm.filteredGroups = (vm.customActions.button_groups || []).map((group) => {
         return Object.assign({}, group, {
           buttons: filterButtons(group.buttons, vm.displayFor),
         })
