@@ -11,7 +11,3 @@ function eventFire (el, etype) {
     el.dispatchEvent(evObj)
   }
 }
-
-function findIn (element, selector) {
-  return angular.element(element[0].querySelector(selector))
-}
