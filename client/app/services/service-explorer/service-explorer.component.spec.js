@@ -32,6 +32,7 @@ describe('Component: serviceExplorer', () => {
       serviceSuspend: false,
       cockpit: false,
       html5_console: false,
+      vmrc_console: false,
       viewSnapshots: false,
       vm_snapshot_show_list: false,
       vm_snapshot_add: false,

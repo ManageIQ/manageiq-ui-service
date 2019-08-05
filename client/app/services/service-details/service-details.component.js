@@ -386,7 +386,7 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   }
 
   function openConsole (item, protocol) {
-    if (item.supported_consoles.html5.visible && item.supported_consoles.html5.enabled || item.supported_consoles.vmrc.visible && item.supported_consoles.vmrc.enabled) {
+    if ((item.supported_consoles.html5.visible && item.supported_consoles.html5.enabled) || (item.supported_consoles.vmrc.visible && item.supported_consoles.vmrc.enabled)) {
       Consoles.open(item.id, protocol)
     }
   }
