@@ -6,10 +6,10 @@ export function ConsolesFactory ($window, CollectionsApi, $timeout, $location, E
 
   return service
 
-  function openConsole (vmId) {
+  function openConsole (vmId, protocol) {
     return CollectionsApi.post('vms', vmId, {}, {
       action: 'request_console',
-      resource: {protocol: 'html5'}
+      resource: {protocol: protocol}
     })
       .then(consoleResponse)
       .catch(consoleError)
