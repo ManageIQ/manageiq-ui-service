@@ -1,16 +1,28 @@
-import './_custom-button.sass'
-import templateUrl from './custom-button.html'
+/* eslint comma-dangle: 0 */
 
-export const CustomButtonComponent = {
+import './_custom-button.sass'
+import './_custom-button-menu.sass'
+import templateInline from './custom-button.html'
+import templateMenu from './custom-button-menu.html'
+
+const base = {
   bindings: {
     customActions: '<',
     serviceId: '<',
-    vmId: '<'
+    vmId: '<',
+    displayFor: '<?',
   },
   controller: CustomButtonController,
   controllerAs: 'vm',
-  templateUrl
 }
+
+export const CustomButtonComponent = Object.assign({}, base, {
+  templateUrl: templateInline,
+})
+
+export const CustomButtonMenuComponent = Object.assign({}, base, {
+  templateUrl: templateMenu,
+})
 
 /** @ngInject */
 function CustomButtonController ($state, EventNotifications, CollectionsApi, RBAC) {
@@ -18,6 +30,21 @@ function CustomButtonController ($state, EventNotifications, CollectionsApi, RBA
 
   vm.hasRequiredRole = hasRequiredRole
   vm.invokeCustomAction = invokeCustomAction
+
+  vm.$onChanges = (changes) => {
+    if (changes.customActions || changes.displayFor) {
+      vm.filteredButtons = filterButtons(vm.customActions.buttons || [], vm.displayFor)
+      vm.filteredGroups = (vm.customActions.button_groups || []).map((group) => {
+        return Object.assign({}, group, {
+          buttons: filterButtons(group.buttons, vm.displayFor),
+        })
+      })
+    }
+  }
+
+  function filterButtons (buttons, displayFor = ['single', 'list', 'both']) {
+    return buttons.filter((button) => button && button.options && (!button.options.display_for || displayFor.includes(button.options.display_for)))
+  }
 
   function hasRequiredRole (button) {
     const acceptableRoles = button.visibility.roles
@@ -48,6 +75,7 @@ function CustomButtonController ($state, EventNotifications, CollectionsApi, RBA
           .catch(postFailure)
       }
     }
+
     function postSuccess (response) {
       if (response.success === false) {
         EventNotifications.error(response.message)
@@ -56,8 +84,8 @@ function CustomButtonController ($state, EventNotifications, CollectionsApi, RBA
       }
     }
 
-    function postFailure () {
-      EventNotifications.error(__('Action not able to submit.'))
+    function postFailure (response) {
+      EventNotifications.error(__('There was an error submitting the custom button. ') + response.message)
     }
   }
 }

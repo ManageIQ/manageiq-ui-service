@@ -1,4 +1,4 @@
-<span class="pull-left" ng-repeat="button in vm.customActions.buttons">
+<span class="pull-left" ng-repeat="button in vm.filteredButtons">
   <span uib-tooltip="{{(button.enabled? button.description: button.disabled_text)}}"
          tooltip-placement="top" class="custom-button-tooltip">
     <button class="btn btn-default custom-button-action"
@@ -12,7 +12,7 @@
     </button>
   </span>
 </span>
-<span class="pull-left" ng-repeat="buttonGroup in vm.customActions.button_groups">
+<span class="pull-left" ng-repeat="buttonGroup in vm.filteredGroups">
   <div uib-dropdown class="btn-group">
     <button class="btn btn-default"
             id="{{buttonGroup.id}}"

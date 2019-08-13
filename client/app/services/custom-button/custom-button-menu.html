@@ -8,7 +8,7 @@
   </button>
   <ul uib-dropdown-menu
       class="dropdown-menu dropdown-menu-right dropdown-menu-appended-to-body">
-    <li role="menuitem" ng-repeat="button in vm.customActions.buttons">
+    <li role="menuitem" ng-repeat="button in vm.filteredButtons">
       <a class="custom-button-action"
          ng-class="{'disabled': !button.enabled}"
          ng-click="vm.invokeCustomAction(button)"
@@ -20,7 +20,7 @@
         {{button.name}}
       </a>
     </li>
-    <li role="menuitem" ng-repeat="buttonGroup in vm.customActions.button_groups" class="dropdown-submenu pull-left">
+    <li role="menuitem" ng-repeat="buttonGroup in vm.filteredGroups" class="dropdown-submenu pull-left">
       <a href="#">
           <span>
             {{buttonGroup.name}}

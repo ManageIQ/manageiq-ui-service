@@ -1,6 +1,5 @@
 import { ConsolesFactory } from './consoles.service.js'
-import { CustomButtonComponent } from './custom-button/custom-button.component.js'
-import { CustomButtonMenuComponent } from './custom-button-menu/custom-button-menu.component.js'
+import { CustomButtonComponent, CustomButtonMenuComponent } from './custom-button/custom-button.component.js'
 import { DetailRevealComponent } from './detail-reveal/detail-reveal.component.js'
 import { EditServiceModalComponent } from './edit-service-modal/edit-service-modal.component.js'
 import { GenericObjectsListComponent } from './generic-objects-list/generic-objects-list.component.js'

@@ -1,4 +1,16 @@
-/* global inject, findIn */
+/* global inject */
+/* eslint comma-dangle: 0 */
+
+const CustomButton = (name, rest = {}) => Object.assign({
+  name,
+  enabled: true,
+  options: {
+    display_for: 'both',
+  },
+  visibility: {
+    roles: ['_ALL_'],
+  },
+}, rest)
 
 describe('CustomButton component', () => {
   let parentScope, element, stateGoStub, apiPostStub
@@ -9,23 +21,12 @@ describe('CustomButton component', () => {
     parentScope = $rootScope.$new()
     parentScope.customActions = {
       buttons: [
-        {
-          name: 'Foo',
-          visibility: {
-            roles: ['_ALL_']
-          },
-          enabled: true,
+        CustomButton('Foo', {
           resource_action: {
-            dialog_id: '_a dialog id_'
+            dialog_id: '_a dialog id_',
           }
-        },
-        {
-          name: 'Bar',
-          visibility: {
-            roles: ['_ALL_']
-          },
-          enabled: true
-        }
+        }),
+        CustomButton('Bar'),
       ]
     }
     parentScope.serviceId = '_a service id_'
@@ -55,12 +56,12 @@ describe('CustomButton component', () => {
       RBAC = _RBAC_
       parentScope.customActions = {
         buttons: [
-          {
-            name: 'Secret Button',
+          CustomButton('Secret Button', {
+            enabled: undefined,
             visibility: {
               roles: ['Secret-Agent']
             }
-          }
+          }),
         ]
       }
     }))
@@ -87,12 +88,10 @@ describe('CustomButton component', () => {
   describe('#invokeCustomAction', () => {
     describe('when the action has a dialog', () => {
       it('navigates to the "services.custom_button_details" state', () => {
-        const action = findIn(element, 'button.custom-button-action')
-        const nextState = 'services.custom_button_details'
-
+        const action = element.find('button.custom-button-action')
         action.triggerHandler('click')
 
-        expect(stateGoStub).to.have.been.calledWith(nextState, {
+        expect(stateGoStub).to.have.been.calledWith('services.custom_button_details', {
           button: parentScope.customActions.buttons[0],
           serviceId: '_a service id_'
         })
@@ -101,9 +100,7 @@ describe('CustomButton component', () => {
 
     describe('when the action does not have a dialog', () => {
       it('makes a POST request for the selected action', () => {
-        const button = element[0].querySelectorAll('.custom-button-action')[1]
-        const action = angular.element(button)
-
+        const action = element.find('button.custom-button-action').eq(1)
         action.triggerHandler('click')
 
         expect(apiPostStub).to.have.been.calledWith(
@@ -126,13 +123,7 @@ describe('Custom buttons for a VM', () => {
     parentScope = $rootScope.$new()
     parentScope.customActions = {
       buttons: [
-        {
-          name: 'Bar',
-          visibility: {
-            roles: ['_ALL_']
-          },
-          enabled: true
-        }
+        CustomButton('Bar'),
       ]
     }
     parentScope.serviceId = '_a service id_'
@@ -149,10 +140,9 @@ describe('Custom buttons for a VM', () => {
   }))
 
   it('should make a post to the vms endpoint', () => {
-    const button = element[0].querySelectorAll('.custom-button-action')[0]
-    const action = angular.element(button)
-
+    const action = element.find('button.custom-button-action')
     action.triggerHandler('click')
+
     expect(apiPostStub).to.have.been.calledWith(
       'vms',
       '_a vm id_',
