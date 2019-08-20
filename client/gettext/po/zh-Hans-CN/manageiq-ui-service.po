@@ -1553,7 +1553,7 @@ msgstr "项目"
 
 #: ./client/app/core/gettext.config.js:25
 msgid "locale_name"
-msgstr ""
+msgstr "简体中文"
 
 #: ./client/app/services/usage-graphs/usage-graphs.html:12
 #: ./client/app/services/usage-graphs/usage-graphs.html:36
