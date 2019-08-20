@@ -1579,7 +1579,7 @@ msgstr "articles"
 
 #: ./client/app/core/gettext.config.js:25
 msgid "locale_name"
-msgstr ""
+msgstr "Français"
 
 #: ./client/app/services/usage-graphs/usage-graphs.html:12
 #: ./client/app/services/usage-graphs/usage-graphs.html:36
