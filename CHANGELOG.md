@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
+Unreleased as of Sprint 118 - 2019-08-19
+
+### Added
+- Add support for the VMRC remote consoles for VMware VMs [(#1570)](https://github.com/ManageIQ/manageiq-ui-service/pull/1570) 
+
 ## Ivanchuk Beta1 - Released 2019-07-29
 
 ### Added
