@@ -7,7 +7,6 @@ function getStates (RBAC) {
   return {
     'services.resource-details': {
       url: '/:serviceId/resource=:vmId',
-      params: { viewType: null },
       template: '<resource-details>',
       title: __('Resource Details'),
       data: {

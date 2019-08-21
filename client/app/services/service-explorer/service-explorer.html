@@ -1,38 +1,31 @@
 <div class="breadcrumb-bar">
   <span>
-      <ol class="breadcrumb">
-        <li class="active">{{ 'My Services' | translate }}</li>
-      </ol>
+    <ol class="breadcrumb">
+      <li class="active">{{ 'My Services' | translate }}</li>
+    </ol>
   </span>
-    <div class="view-selector-bar">
-        <div class="form-group toolbar-pf-view-selector">
-            <button class="btn btn-link"
-                    ng-click="vm.viewSelected('listView')"
-                    ng-class="{active: vm.viewType === 'listView'}">
-                <i class="fa fa-th-list"></i>
-            </button>
-        </div>
-    </div>
 </div>
+
 <pf-toolbar class="section-toolbar section-toolbar-right-actions" config="vm.toolbarConfig">
-    <actions>
-        <custom-dropdown class="custom-dropdown pull-left"
-                         config="item"
-                         items="vm.selectedItemsList"
-                         items-count="vm.toolbarConfig.filterConfig.selectedCount"
-                         ng-repeat="item in vm.listActions"
-                         on-update="vm.listActionDisable($config, $changes)"
-                         menu-right="true">
-        </custom-dropdown>
-    </actions>
+  <actions>
+    <custom-dropdown class="custom-dropdown pull-left"
+                     config="item"
+                     items="vm.selectedItemsList"
+                     items-count="vm.toolbarConfig.filterConfig.selectedCount"
+                     ng-repeat="item in vm.listActions"
+                     on-update="vm.listActionDisable($config, $changes)"
+                     menu-right="true">
+    </custom-dropdown>
+  </actions>
 </pf-toolbar>
-<div ng-if="vm.viewType == 'listView'" class="list-view-container section-container explorer-list">
-    <loading status="vm.loading"></loading>
-    <pf-list-view ng-if="!vm.loading" id="serviceList" config="vm.listConfig"
-                  items="vm.servicesList"
-                  menu-actions="vm.menuActions"
-                  update-menu-action-for-item-fn="vm.updateMenuActionForItemFn"
-                  custom-scope="vm">
+
+<div class="list-view-container section-container explorer-list">
+  <loading status="vm.loading"></loading>
+  <pf-list-view ng-if="!vm.loading" id="serviceList" config="vm.listConfig"
+                items="vm.servicesList"
+                menu-actions="vm.menuActions"
+                update-menu-action-for-item-fn="vm.updateMenuActionForItemFn"
+                custom-scope="vm">
         <div class="row service-explorer-row">
             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-8 name-column">
         <span class="no-wrap">
@@ -206,8 +199,9 @@
                 </div>
             </pf-list-view>
         </list-expanded-content>
-    </pf-list-view>
+  </pf-list-view>
 </div>
+
 <explorer-pagination check-all="vm.checkAll"
                      count="vm.toolbarConfig.filterConfig.resultsCount"
                      limit-options="vm.limitOptions"
