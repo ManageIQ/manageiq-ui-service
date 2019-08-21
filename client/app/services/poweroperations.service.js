@@ -1,54 +1,41 @@
 /* eslint-disable camelcase */
 
 /** @ngInject */
-export function PowerOperationsFactory (CollectionsApi, EventNotifications, sprintf) {
+export function PowerOperationsFactory (CollectionsApi, EventNotifications, sprintf, lodash) {
   var service = {
     startService: startService,
     stopService: stopService,
     suspendService: suspendService,
+
     allowStartService: allowStart,
     allowStopService: allowStop,
     allowSuspendService: allowSuspend,
+
     allowStartVm: allowStart,
     allowStopVm: allowStop,
     allowSuspendVm: allowSuspend,
+
     getPowerState: getPowerState,
-    powerOperationUnknownState: powerOperationUnknownState,
-    powerOperationInProgressState: powerOperationInProgressState,
-    powerOperationOnState: powerOperationOnState,
-    powerOperationOffState: powerOperationOffState,
-    powerOperationSuspendState: powerOperationSuspendState,
-    powerOperationTimeoutState: powerOperationTimeoutState,
-    powerOperationStartTimeoutState: powerOperationStartTimeoutState,
-    powerOperationStopTimeoutState: powerOperationStopTimeoutState,
-    powerOperationSuspendTimeoutState: powerOperationSuspendTimeoutState
   }
 
   function powerStatesMatch (powerStates, match) {
-    var matches = angular.isArray(powerStates) && powerStates.length > 0
+    if (!powerStates || !powerStates.length) {
+      return false
+    }
 
-    angular.forEach(powerStates, function (powerState) {
-      matches = matches && (powerState === match)
-    })
-
-    return matches
+    return lodash.every(powerStates, (powerState) => powerState === match)
   }
 
   function allowStart (item) {
-    return powerOperationUnknownState(item) ||
-      powerOperationOffState(item) ||
-      powerOperationSuspendState(item) ||
-      powerOperationTimeoutState(item)
+    return ['', 'off', 'suspended', 'timeout'].includes(getPowerState(item))
   }
 
   function allowStop (item) {
-    return !powerOperationUnknownState(item) &&
-      !powerOperationOffState(item)
+    return !['', 'off'].includes(getPowerState(item))
   }
 
   function allowSuspend (item) {
-    return !powerOperationUnknownState(item) &&
-      !powerOperationSuspendState(item)
+    return !['', 'suspend'].includes(getPowerState(item))
   }
 
   function getPowerState (item) {
@@ -66,45 +53,6 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications, spri
     }
 
     return powerState
-  }
-
-  function powerOperationUnknownState (item) {
-    return getPowerState(item) === ''
-  }
-
-  function powerOperationInProgressState (item) {
-    return !powerOperationTimeoutState(item) &&
-      ((item.power_status === 'starting') ||
-      (item.power_status === 'stopping') ||
-      (item.power_status === 'suspending'))
-  }
-
-  function powerOperationOnState (item) {
-    return getPowerState(item) === 'on'
-  }
-
-  function powerOperationOffState (item) {
-    return getPowerState(item) === 'off'
-  }
-
-  function powerOperationSuspendState (item) {
-    return getPowerState(item) === 'suspended'
-  }
-
-  function powerOperationTimeoutState (item) {
-    return getPowerState(item) === 'timeout'
-  }
-
-  function powerOperationStartTimeoutState (item) {
-    return powerOperationTimeoutState(item) && item.power_status === 'starting'
-  }
-
-  function powerOperationStopTimeoutState (item) {
-    return powerOperationTimeoutState(item) && item.power_status === 'stopping'
-  }
-
-  function powerOperationSuspendTimeoutState (item) {
-    return powerOperationTimeoutState(item) && item.power_status === 'suspending'
   }
 
   function startService (item) {
@@ -128,12 +76,12 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications, spri
     return servicePowerOperation('suspend', item);
   }
 
-  function powerOperation (apiType, powerAction, item, itemType) {
-    return CollectionsApi.post(apiType, item.id, {}, {action: powerAction})
+  function servicePowerOperation (action, item) {
+    return CollectionsApi.post('services', item.id, {}, { action })
       .then(actionSuccess, actionFailure);
 
     function actionSuccess (response) {
-      switch (powerAction) {
+      switch (action) {
         case 'start':
           EventNotifications.success(sprintf(__('%s was started. %s'), item.name, response.message))
           break
@@ -150,25 +98,21 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications, spri
     }
 
     function actionFailure () {
-      switch (powerAction) {
+      switch (action) {
         case 'start':
-          EventNotifications.error(sprintf(__('There was an error starting this %s.'), itemType))
+          EventNotifications.error(__('There was an error starting this service.'))
           break
         case 'stop':
-          EventNotifications.error(sprintf(__('There was an error stopping this %s.'), itemType))
+          EventNotifications.error(__('There was an error stopping this service.'))
           break
         case 'suspend':
-          EventNotifications.error(sprintf(__('There was an error suspending this %s.'), itemType))
+          EventNotifications.error(__('There was an error suspending this service.'))
           break
         case 'retire':
-          EventNotifications.error(sprintf(__('There was an error retiring this %s.'), itemType))
+          EventNotifications.error(__('There was an error retiring this service.'))
           break
       }
     }
-  }
-
-  function servicePowerOperation (powerAction, item) {
-    return powerOperation('services', powerAction, item, 'service');
   }
 
   return service

@@ -1,4 +1,4 @@
-/* eslint-disable semi, space-before-function-paren, comma-dangle */
+/* eslint-disable semi, space-before-function-paren */
 
 /** @ngInject */
 export function VmPowerFactory(CollectionsApi, EventNotifications, sprintf) {

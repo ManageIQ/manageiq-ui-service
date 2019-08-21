@@ -131,59 +131,28 @@ describe('Service: PowerOperationsFactory', () => {
       'power_state': 'on',
       'power_status': 'starting'
     }
-    const progressState = PowerOperations.powerOperationInProgressState(testVm)
-    expect(progressState).to.eql(true)
+    const progressState = PowerOperations.getPowerState(testVm)
+    expect(progressState).to.eql('starting')
   })
   it('Should retrieve the power on state', () => {
     const testVm = {
       'power_state': 'on'
     }
-    const testPowerState = PowerOperations.powerOperationOnState(testVm)
-    expect(testPowerState).to.eq(true)
+    const testPowerState = PowerOperations.getPowerState(testVm)
+    expect(testPowerState).to.eq('on')
   })
   it('Should retrieve the power off state', () => {
     const testVm = {
       'power_state': 'off'
     }
-    const testPowerState = PowerOperations.powerOperationOffState(testVm)
-    expect(testPowerState).to.eq(true)
+    const testPowerState = PowerOperations.getPowerState(testVm)
+    expect(testPowerState).to.eq('off')
   })
   it('Should retrieve the power suspend state', () => {
     const testVm = {
       'power_state': 'suspended'
     }
-    const testPowerState = PowerOperations.powerOperationSuspendState(testVm)
-    expect(testPowerState).to.eq(true)
-  })
-  it('Should retrieve the power timeout state', () => {
-    const testVm = {
-      'power_state': 'timeout'
-    }
-    const testPowerState = PowerOperations.powerOperationTimeoutState(testVm)
-    expect(testPowerState).to.eq(true)
-  })
-  it('Should retrieve the power on in progress timeout state', () => {
-    const testVm = {
-      'power_state': 'timeout',
-      'power_status': 'starting'
-    }
-    const testPowerState = PowerOperations.powerOperationStartTimeoutState(testVm)
-    expect(testPowerState).to.eq(true)
-  })
-  it('Should retrieve the power off in progress timeout state', () => {
-    const testVm = {
-      'power_state': 'timeout',
-      'power_status': 'stopping'
-    }
-    const testPowerState = PowerOperations.powerOperationStopTimeoutState(testVm)
-    expect(testPowerState).to.eq(true)
-  })
-  it('Should retrieve the power suspend in progress timeout state', () => {
-    const testVm = {
-      'power_state': 'timeout',
-      'power_status': 'suspending'
-    }
-    const testPowerState = PowerOperations.powerOperationSuspendTimeoutState(testVm)
-    expect(testPowerState).to.eq(true)
+    const testPowerState = PowerOperations.getPowerState(testVm)
+    expect(testPowerState).to.eq('suspended')
   })
 })

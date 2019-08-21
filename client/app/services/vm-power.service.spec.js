@@ -1,5 +1,5 @@
 /* global readJSON, EventNotifications, CollectionsApi, VmPower */
-/* eslint-disable no-unused-expressions, semi, space-before-function-paren, comma-dangle */
+/* eslint-disable no-unused-expressions, semi, space-before-function-paren */
 
 function fixture(name) {
   return readJSON('tests/mock/vm-power/' + name + '.json');
