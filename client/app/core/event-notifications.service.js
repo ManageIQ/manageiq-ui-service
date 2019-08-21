@@ -1,6 +1,6 @@
 /** @ngInject */
 export function EventNotificationsFactory ($log, $timeout, lodash, CollectionsApi, RBAC, ApplianceInfo, ActionCable,
-                                           Session) {
+                                           Session, sprintf) {
   const state = {}
   const toastDelay = 8 * 1000
   const service = {
@@ -191,11 +191,11 @@ export function EventNotificationsFactory ($log, $timeout, lodash, CollectionsAp
   }
 
   function notificationsInit () {
-    const eventTypes = ['info', 'success', 'error', 'warning']
+    const eventTypes = [['info', __('Info')], ['success', __('Success')], ['error', __('Error')], ['warning', __('Warning')]]
 
     function Group (type) {
-      this.notificationType = type
-      this.heading = lodash.capitalize(type)
+      this.notificationType = type[0]
+      this.heading = type[1]
       this.unreadCount = 0
       this.notifications = []
     }
@@ -293,6 +293,7 @@ export function EventNotificationsFactory ($log, $timeout, lodash, CollectionsAp
 
     function update (group) {
       group.unreadCount = group.notifications.filter((notification) => notification.unread).length
+      group.subHeading = sprintf(__('%d new notifications'), group.unreadCount)
       state.unreadNotifications = angular.isDefined(lodash.find(state.groups, function (group) {
         return group.unreadCount > 0
       }))
