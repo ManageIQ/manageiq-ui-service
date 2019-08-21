@@ -167,16 +167,16 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications, spri
     function actionSuccess (response) {
       switch (powerAction) {
         case 'start':
-          EventNotifications.success(sprintf(__('%s was started. ' + response.message), item.name))
+          EventNotifications.success(sprintf(__('%s was started. %s'), item.name, response.message))
           break
         case 'stop':
-          EventNotifications.success(sprintf(__('%s was stopped. ' + response.message), item.name))
+          EventNotifications.success(sprintf(__('%s was stopped. %s'), item.name, response.message))
           break
         case 'suspend':
-          EventNotifications.success(sprintf(__('%s was suspended. ' + response.message), item.name))
+          EventNotifications.success(sprintf(__('%s was suspended. %s'), item.name, response.message))
           break
         case 'retire':
-          EventNotifications.success(sprintf(__('%s was retired. ' + response.message), item.name))
+          EventNotifications.success(sprintf(__('%s was retired. %s'), item.name, response.message))
           break
       }
     }
