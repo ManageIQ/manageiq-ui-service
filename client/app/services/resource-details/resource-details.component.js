@@ -10,8 +10,7 @@ export const ResourceDetailsComponent = {
 }
 
 /** @ngInject */
-function ComponentController ($state, $stateParams, VmsService, lodash, EventNotifications, Polling, ModalService,
-                              PowerOperations, LONG_POLLING_INTERVAL, TaggingService, UsageGraphsService) {
+function ComponentController ($state, $stateParams, VmsService, lodash, EventNotifications, Polling, ModalService, PowerOperations, LONG_POLLING_INTERVAL, TaggingService, UsageGraphsService, VmPower) {
   const vm = this
   vm.$onInit = activate
   vm.$onDestroy = onDestroy
@@ -103,19 +102,19 @@ function ComponentController ($state, $stateParams, VmsService, lodash, EventNot
   }
 
   function startVM () {
-    PowerOperations.startVm(vm.vmDetails)
+    VmPower.do.start(vm.vmDetails)
   }
 
   function stopVM () {
-    PowerOperations.stopVm(vm.vmDetails)
+    VmPower.do.stop(vm.vmDetails)
   }
 
   function suspendVM () {
-    PowerOperations.suspendVm(vm.vmDetails)
+    VmPower.do.suspend(vm.vmDetails)
   }
 
   function retireVM () {
-    PowerOperations.retireVM(vm.vmDetails)
+    VmPower.do.retire(vm.vmDetails)
   }
 
   function pollVM () {

@@ -1,4 +1,4 @@
-/* global readJSON, EventNotifications, inject, VmsService, PowerOperations, $state, lodash, sprintf, Polling, ModalService */
+/* global readJSON, EventNotifications, inject, VmsService, PowerOperations, $state, lodash, sprintf, Polling, ModalService, VmPower */
 /* eslint-disable no-unused-expressions */
 describe('Component: Resource Details', () => {
   beforeEach(() => {
@@ -12,8 +12,7 @@ describe('Component: Resource Details', () => {
     beforeEach(inject(($stateParams, $rootScope, $componentController) => {
       scope = $rootScope.$new()
       $stateParams.vmId = '12345'
-      bard.inject('VmsService', 'PowerOperations', 'sprintf', 'lodash', 'EventNotifications',
-        'Polling', 'LONG_POLLING_INTERVAL', '$state', 'ModalService')
+      bard.inject('VmsService', 'PowerOperations', 'sprintf', 'lodash', 'EventNotifications', 'Polling', 'LONG_POLLING_INTERVAL', '$state', 'ModalService', 'VmPower')
       vmData = readJSON(`${mockDir}vm.json`)
       vmPermissions = readJSON(`${mockDir}vmPermissions.json`)
       state = $state
@@ -35,10 +34,10 @@ describe('Component: Resource Details', () => {
     }))
     it('should be able perform power operations on a VM', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
-      const powerOnSpy = sinon.spy(PowerOperations, 'startVm')
-      const powerOffSpy = sinon.spy(PowerOperations, 'stopVm')
-      const powerSuspendSpy = sinon.spy(PowerOperations, 'suspendVm')
-      const retireVMSpy = sinon.spy(PowerOperations, 'retireVM')
+      const powerOnSpy = sinon.spy(VmPower, 'start')
+      const powerOffSpy = sinon.spy(VmPower, 'stop')
+      const powerSuspendSpy = sinon.spy(VmPower, 'suspend')
+      const retireVMSpy = sinon.spy(VmPower, 'retire')
 
       expect(ctrl.startVm).to.exist
       ctrl.startVm()

@@ -9,10 +9,6 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications, spri
     allowStartService: allowStart,
     allowStopService: allowStop,
     allowSuspendService: allowSuspend,
-    startVm: startVm,
-    stopVm: stopVm,
-    suspendVm: suspendVm,
-    retireVM: retireVm,
     allowStartVm: allowStart,
     allowStopVm: allowStop,
     allowSuspendVm: allowSuspend,
@@ -132,34 +128,6 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications, spri
     return servicePowerOperation('suspend', item);
   }
 
-  function startVm (item) {
-    item.power_state = ''
-    item.power_status = 'starting'
-
-    return vmPowerOperation('start', item);
-  }
-
-  function stopVm (item) {
-    item.power_state = ''
-    item.power_status = 'stopping'
-
-    return vmPowerOperation('stop', item);
-  }
-
-  function suspendVm (item) {
-    item.power_state = ''
-    item.power_status = 'suspending'
-
-    return vmPowerOperation('suspend', item);
-  }
-
-  function retireVm (item) {
-    item.power_state = ''
-    item.power_status = 'retiring'
-
-    return vmPowerOperation('retire', item);
-  }
-
   function powerOperation (apiType, powerAction, item, itemType) {
     return CollectionsApi.post(apiType, item.id, {}, {action: powerAction})
       .then(actionSuccess, actionFailure);
@@ -201,10 +169,6 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications, spri
 
   function servicePowerOperation (powerAction, item) {
     return powerOperation('services', powerAction, item, 'service');
-  }
-
-  function vmPowerOperation (powerAction, item) {
-    return powerOperation('vms', powerAction, item, 'virtual machine');
   }
 
   return service
