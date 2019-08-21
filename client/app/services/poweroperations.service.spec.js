@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-expressions */
 describe('Service: PowerOperationsFactory', () => {
   let mockDir = 'tests/mock/poweroperations/'
-  const vm = readJSON(mockDir + 'vm.json')
   const service = readJSON(mockDir + 'service.json')
   const successResponse = {
     message: 'Success'
@@ -186,101 +185,5 @@ describe('Service: PowerOperationsFactory', () => {
     }
     const testPowerState = PowerOperations.powerOperationSuspendTimeoutState(testVm)
     expect(testPowerState).to.eq(true)
-  })
-  it('Should start power for a VM', (done) => {
-    collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse))
-    PowerOperations.startVm(vm)
-    done()
-
-    expect(collectionsApiSpy).to.have.been.calledWith(
-      'vms', 10000000002056, {}, {'action': 'start'}
-    )
-  })
-  it('Should notify of VM power start success', (done) => {
-    const vmStartResponse = readJSON(mockDir + 'vm_start.json')
-    collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(vmStartResponse))
-
-    PowerOperations.startVm(vm).then(function (data) {
-      done()
-      expect(eventNotificationsSpy).to.have.been.calledWith('niickapp was started. VM id:10000000002056 name:\'niickapp\' starting')
-    })
-  })
-  it('Should notify of VM power start failure', (done) => {
-    const eventNotificationsFailureSpy = sinon.spy(EventNotifications, 'error')
-    const vmStartResponse = readJSON(mockDir + 'vm_start_failure.json')
-    collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(vmStartResponse))
-
-    PowerOperations.startVm(vm).then(function (data) {
-      done()
-      expect(eventNotificationsFailureSpy).to.have.been.calledWith('There was an error starting this virtual machine.')
-    })
-  })
-  it('Should notify of VM power stop success', (done) => {
-    const vmStopResponse = readJSON(mockDir + 'vm_stop.json')
-    collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(vmStopResponse))
-
-    PowerOperations.stopVm(vm).then(function (data) {
-      done()
-
-      expect(eventNotificationsSpy).to.have.been.calledWith('niickapp was stopped. VM id:10000000002056 name:\'niickapp\' stopping')
-    })
-  })
-  it('Should notify of VM power stop failure', (done) => {
-    const eventNotificationsFailureSpy = sinon.spy(EventNotifications, 'error')
-    const vmStopResponse = readJSON(mockDir + 'vm_stop.json')
-    collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(vmStopResponse))
-
-    PowerOperations.stopVm(vm).then(function (data) {
-      done()
-      expect(eventNotificationsFailureSpy).to.have.been.calledWith('There was an error stopping this virtual machine.')
-    })
-  })
-  it('Should notify of VM suspend success', (done) => {
-    const vmSuspendResponse = readJSON(mockDir + 'vm_suspend.json')
-    collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(vmSuspendResponse))
-
-    PowerOperations.suspendVm(vm).then(function (data) {
-      done()
-
-      expect(eventNotificationsSpy).to.have.been.calledWith('niickapp was suspended. VM id:10000000002056 name:\'niickapp\' suspending')
-    })
-  })
-  it('Should notify of VM retire success', (done) => {
-    const vmRetireResponse = readJSON(mockDir + 'vm_retire.json')
-    collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(vmRetireResponse))
-
-    PowerOperations.retireVM(vm).then(function (data) {
-      done()
-
-      expect(eventNotificationsSpy).to.have.been.calledWith('niickapp was retired. Successfully retired VM')
-    })
-  })
-  it('Should notify of VM retire failure', (done) => {
-    const eventNotificationsFailureSpy = sinon.spy(EventNotifications, 'error')
-    const vmRetireResponse = readJSON(mockDir + 'vm_retire_failure.json')
-    collectionsApiSpy = sinon.stub(CollectionsApi, 'post').returns(Promise.reject(vmRetireResponse))
-
-    PowerOperations.retireVM(vm).then(function (data) {
-      done()
-
-      expect(eventNotificationsFailureSpy).to.have.been.calledWith('There was an error retiring this virtual machine.')
-    })
-  })
-  it('Should allow a VM to start', () => {
-    const allowStart = PowerOperations.allowStartVm(vm)
-    expect(allowStart).to.eql(true)
-  })
-  it('Should allow a VM to stop', () => {
-    const allowStart = PowerOperations.allowStopVm(vm)
-    expect(allowStart).to.eql(false)
-  })
-  it('Should allow a VM to suspend', () => {
-    const allowStart = PowerOperations.allowSuspendVm(vm)
-    expect(allowStart).to.eql(false)
-  })
-  it('Should allow power state to be retrieved', () => {
-    const vm = readJSON(mockDir + 'vm.json')
-    const powerState = PowerOperations.getPowerState(vm)
-    expect(powerState).to.eq('on')
   })
 })
