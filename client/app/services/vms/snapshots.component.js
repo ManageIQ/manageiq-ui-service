@@ -91,7 +91,9 @@ function ComponentController (VmsService, sprintf, EventNotifications, ListView,
       ],
       resultsCount: 0,
       appliedFilters: VmsService.getFilters(),
-      onFilterChange: filterChange
+      onFilterChange: filterChange,
+      itemsLabel: __('Result'),
+      itemsLabelPlural: __('Results')
     }
   }
 

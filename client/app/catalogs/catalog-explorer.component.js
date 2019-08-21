@@ -60,7 +60,9 @@ function ComponentController ($state, CatalogsState, ListView, EventNotification
       resultsCount: 0,
       totalCount: 0,
       appliedFilters: CatalogsState.getFilters(),
-      onFilterChange: filterChange
+      onFilterChange: filterChange,
+      itemsLabel: __('Result'),
+      itemsLabelPlural: __('Results')
     }
   }
 

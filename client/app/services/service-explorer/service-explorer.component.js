@@ -201,7 +201,9 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       totalCount: 0,
       selectedCount: 0,
       appliedFilters: ServicesState.services.getFilters() || [],
-      onFilterChange: filterChange
+      onFilterChange: filterChange,
+      itemsLabel: __('Result'),
+      itemsLabelPlural: __('Results'),
     }
   }
 
