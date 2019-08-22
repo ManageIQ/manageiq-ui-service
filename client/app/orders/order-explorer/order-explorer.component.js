@@ -84,7 +84,9 @@ function ComponentController ($filter, $state, lodash, ListView, Language, Order
       totalCount: 0,
       selectedCount: 0,
       appliedFilters: OrdersState.filterApplied ? OrdersState.getFilters() : [],
-      onFilterChange: orderFilterChange
+      onFilterChange: orderFilterChange,
+      itemsLabel: __('Result'),
+      itemsLabelPlural: __('Results')
     }
 
     return {
