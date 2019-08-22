@@ -121,10 +121,4 @@ describe('Component: serviceExplorer', () => {
     const isNotAnsible = ctrl.isAnsibleService({type: 'vm'})
     expect(isNotAnsible).to.be.false
   })
-
-  it('should change view type', () => {
-    expect(ctrl.viewType).to.equal('listView')
-    ctrl.viewSelected('tableView')
-    expect(ctrl.viewType).to.equal('tableView')
-  })
 })
