@@ -94,6 +94,13 @@ module.exports = {
           'standard-loader'
         ]
       },
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader?presets[]=env&presets[]=react'
+        ]
+      },
 
       // font/images loaders: if smaller than limit embed as data uri
       {
