@@ -1,5 +1,5 @@
 /** @ngInject */
-export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state, EventNotifications, ApplianceInfo, CollectionsApi, RBAC, Language, lodash, $rootScope) {
+export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state, EventNotifications, ApplianceInfo, CollectionsApi, RBAC, Language, lodash, $rootScope, sprintf) {
   const vm = this
   vm.language = ''
   const destroy = $scope.$on('shoppingCartUpdated', refresh)
@@ -165,7 +165,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     angular.forEach(vm.notificationGroups, function (group) {
       vm.unreadNotificationCount += group.unreadCount
     })
-    vm.notificationsIndicatorTooltip = __(vm.unreadNotificationCount + ' unread notifications')
+    vm.notificationsIndicatorTooltip = sprintf(__('%d unread notifications'), vm.unreadNotificationCount)
   }
 
   function refreshToast () {
