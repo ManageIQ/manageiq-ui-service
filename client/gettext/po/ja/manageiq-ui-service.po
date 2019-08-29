@@ -1,10 +1,11 @@
 # Translators:
 # Milan Zázrivec <mzazrivec@redhat.com>, 2019
+# Keiko Moriguchi <kemorigu@redhat.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>, 2019\n"
+"Last-Translator: Keiko Moriguchi <kemorigu@redhat.com>, 2019\n"
 "Language-Team: Japanese (https://www.transifex.com/manageiq/teams/35937/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -54,7 +55,7 @@ msgstr "(現在のグループ)"
 
 #: ./client/app/services/resource-details/resource-details.component.js:260
 msgid "(no provider)"
-msgstr ""
+msgstr "(プロバイダーなし)"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:38
 msgid "1 Week"
@@ -237,11 +238,11 @@ msgstr "(確認) このサービスを削除しますか？"
 
 #: ./client/console/webmks.js:62
 msgid "Connected"
-msgstr ""
+msgstr "接続済み"
 
 #: ./client/console/common.js:13
 msgid "Connecting"
-msgstr ""
+msgstr "接続中"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:15
 msgid "Continue"
@@ -1062,7 +1063,7 @@ msgstr "リタイアのスケジュール"
 
 #: ./client/app/shared/pagination/pagination.html:5
 msgid "Select All"
-msgstr ""
+msgstr "すべて選択"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:20
 msgid "Select a Group"
@@ -1078,7 +1079,7 @@ msgstr "所有者の選択"
 
 #: ./client/console/common.js:14
 msgid "Send CTRL+ALT+DEL"
-msgstr ""
+msgstr "CTRL+ALT+DEL を送信"
 
 #: ./client/app/core/navigation/navigation-controller.js:138
 msgid "Server Name:"
@@ -1111,7 +1112,7 @@ msgstr "サービス ID"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:43
 msgid "Service Retire - Request Created"
-msgstr ""
+msgstr "サービスのリタイア - リクエストの作成"
 
 #: ./client/app/states/catalogs/details/details.state.js:16
 msgid "Service Template Details"
@@ -1286,7 +1287,7 @@ msgstr "テナント"
 msgid ""
 "The appliance has no access to the assets required to run the WebMKS "
 "console. For more info please see the documentation."
-msgstr ""
+msgstr "アプライアンスは、WebMKS コンソールの実行に必要なアセットにアクセスできません。詳細はドキュメントを参照してください。"
 
 #: ./client/app/orders/request-list/requests-list.html:32
 #: ./client/app/orders/request-list/requests-list.html:35
@@ -1500,7 +1501,7 @@ msgstr "使用状況"
 
 #: ./client/app/services/service-details/service-details.html:305
 msgid "VM HTML5 Console"
-msgstr ""
+msgstr "VM HTML5 コンソール"
 
 #: ./client/app/states/vms/snapshots/snapshots.state.js:13
 msgid "VM Snapshots"
@@ -1605,7 +1606,7 @@ msgstr "日本語"
 
 #: ./client/app/services/vms.service.js:280
 msgid "now?"
-msgstr ""
+msgstr "現在?"
 
 #: ./client/app/services/usage-graphs/usage-graphs.html:13
 #: ./client/app/services/usage-graphs/usage-graphs.html:29

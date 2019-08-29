@@ -1,10 +1,11 @@
 # Translators:
 # Milan Zázrivec <mzazrivec@redhat.com>, 2019
+# ​Renata TR1 <translator01_redhat@roundtableinc.net>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>, 2019\n"
+"Last-Translator: ​Renata TR1 <translator01_redhat@roundtableinc.net>, 2019\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/manageiq/teams/35937/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -54,7 +55,7 @@ msgstr "(Grupo atual)"
 
 #: ./client/app/services/resource-details/resource-details.component.js:260
 msgid "(no provider)"
-msgstr ""
+msgstr "(sem provedor)"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:38
 msgid "1 Week"
@@ -239,11 +240,11 @@ msgstr "Confirme: deseja remover este serviço?"
 
 #: ./client/console/webmks.js:62
 msgid "Connected"
-msgstr ""
+msgstr "Conectado"
 
 #: ./client/console/common.js:13
 msgid "Connecting"
-msgstr ""
+msgstr "Conectando"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:15
 msgid "Continue"
@@ -1067,7 +1068,7 @@ msgstr "Agendando retirada."
 
 #: ./client/app/shared/pagination/pagination.html:5
 msgid "Select All"
-msgstr ""
+msgstr "Selecionar todos"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:20
 msgid "Select a Group"
@@ -1083,7 +1084,7 @@ msgstr "Selecione um proprietário"
 
 #: ./client/console/common.js:14
 msgid "Send CTRL+ALT+DEL"
-msgstr ""
+msgstr "Enviar CTRL+ALT+DEL"
 
 #: ./client/app/core/navigation/navigation-controller.js:138
 msgid "Server Name:"
@@ -1116,7 +1117,7 @@ msgstr "ID do serviço"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:43
 msgid "Service Retire - Request Created"
-msgstr ""
+msgstr "Retirada do serviço - Solicitação criada"
 
 #: ./client/app/states/catalogs/details/details.state.js:16
 msgid "Service Template Details"
@@ -1292,6 +1293,8 @@ msgid ""
 "The appliance has no access to the assets required to run the WebMKS "
 "console. For more info please see the documentation."
 msgstr ""
+"O appliance não tem acesso aos ativos necessários para executar o console "
+"WebMKS. Para obter mais informações, consulte a documentação."
 
 #: ./client/app/orders/request-list/requests-list.html:32
 #: ./client/app/orders/request-list/requests-list.html:35
@@ -1509,7 +1512,7 @@ msgstr "Utilização"
 
 #: ./client/app/services/service-details/service-details.html:305
 msgid "VM HTML5 Console"
-msgstr ""
+msgstr "Console da MV HTML5"
 
 #: ./client/app/states/vms/snapshots/snapshots.state.js:13
 msgid "VM Snapshots"
