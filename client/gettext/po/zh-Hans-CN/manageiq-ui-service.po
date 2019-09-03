@@ -1,10 +1,11 @@
 # Translators:
 # Milan Zázrivec <mzazrivec@redhat.com>, 2019
+# Joy Sh <joy.sh@linguitronics.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>, 2019\n"
+"Last-Translator: Joy Sh <joy.sh@linguitronics.com>, 2019\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/manageiq/teams/35937/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -54,7 +55,7 @@ msgstr "（当前组）"
 
 #: ./client/app/services/resource-details/resource-details.component.js:260
 msgid "(no provider)"
-msgstr ""
+msgstr "（无提供商）"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:38
 msgid "1 Week"
@@ -237,11 +238,11 @@ msgstr "确认是否要删除此服务？"
 
 #: ./client/console/webmks.js:62
 msgid "Connected"
-msgstr ""
+msgstr "已连接"
 
 #: ./client/console/common.js:13
 msgid "Connecting"
-msgstr ""
+msgstr "正在连接"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:15
 msgid "Continue"
@@ -1062,7 +1063,7 @@ msgstr "正在调度退订。"
 
 #: ./client/app/shared/pagination/pagination.html:5
 msgid "Select All"
-msgstr ""
+msgstr "全选"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:20
 msgid "Select a Group"
@@ -1078,7 +1079,7 @@ msgstr "选择所有者"
 
 #: ./client/console/common.js:14
 msgid "Send CTRL+ALT+DEL"
-msgstr ""
+msgstr "发送 CTRL+ALT+DEL"
 
 #: ./client/app/core/navigation/navigation-controller.js:138
 msgid "Server Name:"
@@ -1111,7 +1112,7 @@ msgstr "服务 ID"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:43
 msgid "Service Retire - Request Created"
-msgstr ""
+msgstr "服务退役 - 请求已创建"
 
 #: ./client/app/states/catalogs/details/details.state.js:16
 msgid "Service Template Details"
@@ -1286,7 +1287,7 @@ msgstr "租户"
 msgid ""
 "The appliance has no access to the assets required to run the WebMKS "
 "console. For more info please see the documentation."
-msgstr ""
+msgstr "设备无法访问运行 WebMKS 控制台所需的资源。有关更多信息，请参阅相关文档。"
 
 #: ./client/app/orders/request-list/requests-list.html:32
 #: ./client/app/orders/request-list/requests-list.html:35
@@ -1500,7 +1501,7 @@ msgstr "利用率"
 
 #: ./client/app/services/service-details/service-details.html:305
 msgid "VM HTML5 Console"
-msgstr ""
+msgstr "VM HTML5 控制台"
 
 #: ./client/app/states/vms/snapshots/snapshots.state.js:13
 msgid "VM Snapshots"
