@@ -5,14 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 
-## Ivanchuk RC1
+## Ivanchuk-1
 
 ### Added
 - Add support for the VMRC remote consoles for VMware VMs [(#1570)](https://github.com/ManageIQ/manageiq-ui-service/pull/1570) 
-
-## Ivanchuk Beta1 - Released 2019-07-29
-
-### Added
 - Update the VM remote console button to the new unified HTML5 console [(#1553)](https://github.com/ManageIQ/manageiq-ui-service/pull/1553)
 - Support custom favicons [(#1521)](https://github.com/ManageIQ/manageiq-ui-service/pull/1521)
 
