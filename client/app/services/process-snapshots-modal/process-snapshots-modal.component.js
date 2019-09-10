@@ -27,6 +27,27 @@ function ComponentController ($controller, $state, EventNotifications, VmsServic
       modalType: vm.resolve.modalType,
       save: save
     })
+
+    vm.nameLabel = __("Name")
+    vm.descriptionLabel = __("Description")
+
+    vm.nameLabelClass = 'col-sm-3'
+    vm.descriptionLabelClass = 'col-sm-3'
+
+    vm.nameShown = true
+    vm.nameRequired = true
+
+    vm.descriptionShown = true
+    vm.descriptionRequired = false
+
+    if (vm.nameRequired) {
+      vm.nameLabel += ' *'
+      vm.nameLabelClass += ' required'
+    }
+    if (vm.descriptionRequired) {
+      vm.descriptionLabel += ' *'
+      vm.descriptionLabelClass += ' required'
+    }
   }
 
   function save () {
