@@ -28,8 +28,8 @@ function ComponentController ($controller, $state, EventNotifications, VmsServic
       save: save
     })
 
-    vm.nameLabel = __("Name")
-    vm.descriptionLabel = __("Description")
+    vm.nameLabel = __('Name')
+    vm.descriptionLabel = __('Description')
 
     vm.nameLabelClass = 'col-sm-3'
     vm.descriptionLabelClass = 'col-sm-3'
@@ -45,15 +45,15 @@ function ComponentController ($controller, $state, EventNotifications, VmsServic
       vm.nameShown = false
       vm.descriptionRequired = true
     }
-    if (vm.vm.vendor == 'openstack') {
+    if (vm.vm.vendor === 'openstack') {
       vm.nameShown = true
       vm.descriptionRequired = true
     }
 
-    if (! vm.nameShown) {
+    if (!vm.nameShown) {
       vm.nameRequired = false
     }
-    if (! vm.descriptionShown) {
+    if (!vm.descriptionShown) {
       vm.descriptionRequired = false
     }
 
