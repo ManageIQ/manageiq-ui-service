@@ -1,4 +1,3 @@
-/* eslint comma-dangle: 0 */
 import gitHash from '../../version/version.json'
 
 /** @ngInject */

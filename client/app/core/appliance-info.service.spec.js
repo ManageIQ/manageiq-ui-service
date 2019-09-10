@@ -1,4 +1,3 @@
-/* eslint comma-dangle: 0 */
 /* global ApplianceInfo */
 describe('Appliance Info Service', () => {
   const applianceInfoData = {

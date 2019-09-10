@@ -5,7 +5,7 @@ require('patternfly/dist/css/patternfly.css')
 require('patternfly/dist/css/patternfly-additions.css')
 let initRemoteConsole = require('./common')
 
-/* global WMKS __ */
+/* global WMKS */
 
 $(function () {
   const settings = initRemoteConsole()

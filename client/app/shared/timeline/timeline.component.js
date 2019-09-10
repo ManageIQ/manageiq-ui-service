@@ -83,6 +83,7 @@ function TimelineController ($element, $window) {
       },
       eventColor = null,
       eventShape = (d) => {
+        // eslint-disable-next-line no-prototype-builtins
         if (d.hasOwnProperty('events')) {
           return '\uf140'
         } else {

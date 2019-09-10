@@ -1,4 +1,3 @@
-/* eslint angular/window-service: "off" */
 import { RootReducer } from '../reducers'
 var DEVEL_DOMAINS = [
   'localhost',
