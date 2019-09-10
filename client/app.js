@@ -1,4 +1,3 @@
-/* eslint-disable angular/window-service */
 import * as numeral from 'numeral'
 
 // The webpack entrypoint
