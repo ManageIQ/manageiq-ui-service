@@ -27,6 +27,44 @@ function ComponentController ($controller, $state, EventNotifications, VmsServic
       modalType: vm.resolve.modalType,
       save: save
     })
+
+    vm.nameLabel = __('Name')
+    vm.descriptionLabel = __('Description')
+
+    vm.nameLabelClass = 'col-sm-3'
+    vm.descriptionLabelClass = 'col-sm-3'
+
+    vm.nameShown = true
+    vm.nameRequired = true
+
+    vm.descriptionShown = true
+    vm.descriptionRequired = false
+
+    // FIXME: @record.snapshot_name_optional?
+    if (['ovirt', 'redhat'].includes(vm.vm.vendor)) {
+      vm.nameShown = false
+      vm.descriptionRequired = true
+    }
+    if (vm.vm.vendor === 'openstack') {
+      vm.nameShown = true
+      vm.descriptionRequired = true
+    }
+
+    if (!vm.nameShown) {
+      vm.nameRequired = false
+    }
+    if (!vm.descriptionShown) {
+      vm.descriptionRequired = false
+    }
+
+    if (vm.nameRequired) {
+      vm.nameLabel += ' *'
+      vm.nameLabelClass += ' required'
+    }
+    if (vm.descriptionRequired) {
+      vm.descriptionLabel += ' *'
+      vm.descriptionLabelClass += ' required'
+    }
   }
 
   function save () {
