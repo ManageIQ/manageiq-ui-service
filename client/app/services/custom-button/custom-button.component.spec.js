@@ -1,5 +1,4 @@
 /* global inject */
-/* eslint comma-dangle: 0 */
 
 const CustomButton = (name, rest = {}) => Object.assign({
   name,

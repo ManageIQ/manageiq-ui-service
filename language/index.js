@@ -1,4 +1,4 @@
-/* eslint-disable no-console, angular/log, no-process-exit, global-require */
+/* eslint-disable no-console, no-process-exit, global-require */
 const fs = require('fs')
 const path = require('path')
 const args = process.argv

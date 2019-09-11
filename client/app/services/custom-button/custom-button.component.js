@@ -1,5 +1,3 @@
-/* eslint comma-dangle: 0 */
-
 import './_custom-button.sass'
 import './_custom-button-menu.sass'
 import templateInline from './custom-button.html'

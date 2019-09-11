@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 function eventFire (el, etype) {
   if (angular.isFunction(el.trigger)) {
     el.trigger(etype)

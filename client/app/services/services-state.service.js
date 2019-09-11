@@ -1,4 +1,4 @@
-/* eslint camelcase: "off", comma-dangle: 0 */
+// eslint camelcase: "off"
 
 /** @ngInject */
 export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {

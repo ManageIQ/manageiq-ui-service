@@ -1,4 +1,4 @@
-/* eslint-disable no-undef, no-console, angular/log, angular/json-functions, no-return-assign */
+/* eslint-disable no-undef, no-console, no-return-assign */
 const axios = require('axios')
 const fs = require('fs')
 const Gettext = require('./gettext.js').Gettext
