@@ -11,7 +11,7 @@ export const ServiceDetailsAnsibleComponent = {
 }
 
 /** @ngInject */
-function ComponentController (ModalService, ServicesState, lodash) {
+function ComponentController (ModalService, ServicesState, lodash, $sce) {
   const vm = this
   vm.$onInit = activate
   vm.$onChanges = changes
@@ -71,7 +71,7 @@ function ComponentController (ModalService, ServicesState, lodash) {
           vm.orcStacks[resourceName].jobs = []
           vm.orcStacks[resourceName].output = {}
           ServicesState.getServiceJobsStdout(vm.service.id, vm.orcStacks[resourceName].stack.id).then((response) => {
-            vm.orcStacks[resourceName].stdout = response.stdout || 'No standard out avaliable.'
+            vm.orcStacks[resourceName].stdout = $sce.trustAsHtml(response.stdout) || 'No standard out avaliable.'
             vm.orcStacks[resourceName].jobs = response.job_plays
             vm.orcStacks[resourceName].jobs.forEach((item) => {
               item.elapsed = vm.elapsed(item.finish_time, item.start_time)
