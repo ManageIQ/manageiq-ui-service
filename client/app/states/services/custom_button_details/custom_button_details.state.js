@@ -29,7 +29,7 @@ function getStates () {
 }
 
 /** @ngInject */
-function StateController ($state, $stateParams, CollectionsApi, EventNotifications, DialogFieldRefresh) {
+function StateController ($state, $stateParams, CollectionsApi, EventNotifications, DialogFieldRefresh, DialogData) {
   const vm = this
   vm.title = __('Custom button action')
   vm.dialogId = $stateParams.dialogId || ''
@@ -106,12 +106,13 @@ function StateController ($state, $stateParams, CollectionsApi, EventNotificatio
       itemId = vm.vmId
     }
 
-    CollectionsApi.post(
-      collection,
-      itemId,
-      {},
-      angular.toJson({action: $stateParams.button.name, resource: vm.dialogData})
-    ).then(submitSuccess, submitFailure)
+    let apiData = {
+      action: $stateParams.button.name,
+      resource: DialogData.outputConversion(vm.dialogData),
+    };
+
+    CollectionsApi.post(collection, itemId, {}, angular.toJson(apiData))
+      .then(submitSuccess, submitFailure);
 
     function submitSuccess (result) {
       EventNotifications.success(result.message)
