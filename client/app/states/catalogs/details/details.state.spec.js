@@ -1,8 +1,18 @@
-/* global $state, $stateParams, $controller, DialogFieldRefresh, context, ShoppingCart, EventNotifications */
+/* global $state, $stateParams, $controller, DialogFieldRefresh, context, ShoppingCart, EventNotifications, DialogData */
 /* eslint-disable no-unused-expressions */
 describe('State: catalogs.details', () => {
   beforeEach(() => {
-    module('app.states')
+    module('app.states');
+    module('miqStaticAssets.dialogUser');
+
+    bard.inject('DialogData');
+
+    DialogData.data = {
+      fields: {
+        dialog1: { name: 'dialogField1' },
+        dialog2: { name: 'dialogField2' },
+      },
+    };
   })
 
   describe('#resolveDialogs', () => {

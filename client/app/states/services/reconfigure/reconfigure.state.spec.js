@@ -1,8 +1,18 @@
-/* global $state, $controller, CollectionsApi, Notifications */
+/* global $state, $controller, CollectionsApi, Notifications, DialogData */
 /* eslint-disable no-unused-expressions */
 describe('State: services.reconfigure', () => {
   beforeEach(() => {
-    module('app.states')
+    module('app.states');
+    module('miqStaticAssets.dialogUser');
+
+    bard.inject('DialogData');
+
+    DialogData.data = {
+      fields: {
+        dialog1: { name: 'dialogField1' },
+        dialog2: { name: 'dialogField2' },
+      },
+    };
   })
 
   describe('controller', () => {
