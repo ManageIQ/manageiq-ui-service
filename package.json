@@ -86,7 +86,7 @@
   },
   "devDependencies": {
     "angular-mocks": "1.7.5",
-    "axios": "0.18.0",
+    "axios": "0.18.1",
     "babel-core": "~6.26.3",
     "babel-eslint": "~8.2.6",
     "babel-loader": "7.1.5",
