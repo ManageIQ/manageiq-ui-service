@@ -108,8 +108,6 @@
     "standard-loader": "6.0.1",
     "style-loader": "0.21.0",
     "text-encoder-lite": "coolaj86/TextEncoderLite#e1e031b",
-    "ts-loader": "3.5.0",
-    "typescript": "2.9.2",
     "ui-select": "0.19.8",
     "url-loader": "0.6.2",
     "webpack": "3.11.0"

@@ -70,15 +70,6 @@ module.exports = {
         ]
       },
 
-      // ts loaders: standard typescript loader
-      {
-        test: /\.ts$/,
-        use: [
-          'babel-loader?presets[]=env',
-          'ts-loader'
-        ]
-      },
-
       // js loaders: transpile based on browserslist from package.json
       {
         test: /\.js$/,
