@@ -68,6 +68,7 @@
     "ngstorage": "0.3.11",
     "noVNC": "kanaka/noVNC#0.6.2",
     "numeral": "2.0.6",
+    "object.values": "1.1.0",
     "patternfly": "3.58.0",
     "patternfly-timeline": "patternfly/patternfly-timeline#master-dist",
     "popper.js": "1.14.5",

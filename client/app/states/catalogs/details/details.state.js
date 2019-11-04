@@ -26,7 +26,7 @@ function getStates () {
 }
 
 /** @ngInject */
-function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash) {
+function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash, DialogData) {
   const vm = this
 
   let dialogs = {}
@@ -161,11 +161,11 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
    * @returns {object}
   */
   function dataForSubmit (href) {
-    var dialogFieldData = {}
-    dialogFieldData[href] = '/api/service_templates/' + vm.serviceTemplate.id
-
-    return lodash.merge(vm.dialogData, dialogFieldData)
+    var dialogData = DialogData.outputConversion(vm.dialogData);
+    dialogData[href] = '/api/service_templates/' + vm.serviceTemplate.id;
+    return dialogData;
   }
+
   /**
    * Checks to see if a user is submitting a duplicate request
    * @function alreadyInCart
