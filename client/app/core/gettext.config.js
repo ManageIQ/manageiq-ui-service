@@ -1,4 +1,3 @@
-/* eslint no-unused-vars: 0 */
 /* eslint no-constant-condition: "off" */
 import languageFile from '../../gettext/json/manageiq-ui-service.json'
 /** @ngInject */

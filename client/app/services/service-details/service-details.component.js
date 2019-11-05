@@ -1,4 +1,4 @@
-/* eslint camelcase: "off", comma-dangle: 0 */
+// eslint camelcase: "off"
 import './_service-details.sass'
 import templateUrl from './service-details.html'
 

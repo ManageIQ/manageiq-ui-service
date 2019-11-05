@@ -1,4 +1,4 @@
-/* eslint-disable angular/definedundefined, angular/json-functions, global-require */
+/* eslint-disable global-require */
 
 'use strict'
 
