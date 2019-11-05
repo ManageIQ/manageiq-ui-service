@@ -2,7 +2,7 @@
 /* eslint angular/angularelement: "off" */
 
 /** @ngInject */
-export function DialogFieldRefreshFactory (CollectionsApi) {
+export function DialogFieldRefreshFactory (CollectionsApi, DialogData) {
   var service = {
     refreshDialogField: refreshDialogField,
     setFieldValueDefaults: setFieldValueDefaults
@@ -11,27 +11,19 @@ export function DialogFieldRefreshFactory (CollectionsApi) {
   return service
 
   function refreshDialogField (dialogData, dialogField, url, idList) {
-    return new Promise((resolve, reject) => {
-      CollectionsApi.post(
-        url,
-        idList.dialogId,
-        {},
-        angular.toJson({
-          action: 'refresh_dialog_fields',
-          resource: {
-            dialog_fields: dialogData,
-            fields: dialogField,
-            resource_action_id: idList.resourceActionId,
-            target_id: idList.targetId,
-            target_type: idList.targetType
-          }
-        })
-      ).then((response) => {
-        resolve(response.result[dialogField])
-      }).catch((response) => {
-        reject(response)
-      })
-    })
+    let data = {
+      action: 'refresh_dialog_fields',
+      resource: {
+        dialog_fields: DialogData.outputConversion(dialogData),
+        fields: dialogField,
+        resource_action_id: idList.resourceActionId,
+        target_id: idList.targetId,
+        target_type: idList.targetType,
+      },
+    };
+
+    return CollectionsApi.post(url, idList.dialogId, {}, angular.toJson(data))
+      .then((response) => response.result[dialogField]);
   }
 
   function setFieldValueDefaults (dialog, defaultValues) {

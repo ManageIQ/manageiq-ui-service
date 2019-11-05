@@ -1,4 +1,4 @@
-/* global $state, $controller, CollectionsApi, Notifications, DialogFieldRefresh */
+/* global $state, $controller, CollectionsApi, Notifications, DialogFieldRefresh, DialogData */
 /* eslint-disable no-unused-expressions */
 describe('State: services.custom_button_details', () => {
   const dialogId = 213
@@ -49,6 +49,12 @@ describe('State: services.custom_button_details', () => {
       content: [dialog],
       id: dialogId
     }
+
+    module('miqStaticAssets.dialogUser');
+    bard.inject('DialogData');
+    DialogData.data = {
+      fields: dialogFields,
+    };
   })
 
   describe('for a service', () => {

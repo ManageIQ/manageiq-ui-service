@@ -1,8 +1,17 @@
-/* global CollectionsApi, DialogFieldRefresh */
+/* global CollectionsApi, DialogFieldRefresh, DialogData */
 describe('DialogFieldRefresh', () => {
   beforeEach(() => {
-    module('app.states')
-    bard.inject('CollectionsApi', 'Notifications', 'DialogFieldRefresh')
+    module('app.states');
+    module('miqStaticAssets.dialogUser');
+
+    bard.inject('CollectionsApi', 'Notifications', 'DialogFieldRefresh', 'DialogData');
+
+    DialogData.data = {
+      fields: {
+        dialog1: { name: 'dialog1' },
+        dialog2: { name: 'dialog2' },
+      },
+    };
   })
 
   describe('#refreshDialogField', () => {

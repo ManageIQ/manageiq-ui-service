@@ -19,7 +19,7 @@ function getStates () {
 }
 
 /** @ngInject */
-function StateController ($state, $stateParams, CollectionsApi, EventNotifications, DialogFieldRefresh) {
+function StateController ($state, $stateParams, CollectionsApi, EventNotifications, DialogFieldRefresh, DialogData) {
   const vm = this
 
   vm.title = __('Service Details')
@@ -63,12 +63,13 @@ function StateController ($state, $stateParams, CollectionsApi, EventNotificatio
   function submitDialog () {
     vm.dialogData.href = `/api/services/${vm.serviceId}`
 
-    CollectionsApi.post(
-      'services',
-      $stateParams.serviceId,
-      {},
-      angular.toJson({action: 'reconfigure', resource: vm.dialogData})
-    ).then(submitSuccess, submitFailure)
+    let apiData = {
+      action: 'reconfigure',
+      resource: DialogData.outputConversion(vm.dialogData),
+    };
+
+    CollectionsApi.post('services', $stateParams.serviceId, {}, angular.toJson(apiData))
+      .then(submitSuccess, submitFailure);
 
     function submitSuccess (result) {
       EventNotifications.success(result.message)
