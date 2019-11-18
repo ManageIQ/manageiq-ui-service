@@ -19,6 +19,8 @@ window.numeral = numeral
 require('jquery-ui-bundle')
 require('moment-timezone')
 require('es6-shim')
+require('array-includes').shim()
+require('object.values').shim()
 require('angular')
 require('angular-animate')
 require('angular-cookies')
