@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@manageiq/font-fabulous": "1.0.2",
-    "@manageiq/ui-components": "1.1.35",
+    "@manageiq/ui-components": "1.1.36",
     "@uirouter/angularjs": "1.0.20",
     "actioncable": "5.2.1",
     "angular": "1.7.3",
