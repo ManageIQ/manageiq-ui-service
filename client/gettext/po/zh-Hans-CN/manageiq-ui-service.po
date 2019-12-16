@@ -9,7 +9,7 @@ msgstr ""
 "Language-Team: Chinese (China) (https://www.transifex.com/manageiq/teams/35937/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
+"Language: zh-Hans-CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ./client/app/components/dashboard/dashboard.html:110
