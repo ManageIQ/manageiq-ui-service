@@ -6905,12 +6905,17 @@
         "name": "Dashboard",
         "description": "Dashboard features",
         "children": [
-            "sui_dashboard_monthly_charge_view"
+            "sui_dashboard_monthly_charge_view",
+            "sui_dashboard_show"
         ]
     },
     "sui_dashboard_monthly_charge_view": {
         "name": "Monthly Charge view",
         "description": "Display monthly charges"
+    },
+    "sui_dashboard_show": {
+        "name": "View Dashboard",
+        "description": "Display any dashboards"
     },
     "sui_orders": {
         "name": "My Orders",
