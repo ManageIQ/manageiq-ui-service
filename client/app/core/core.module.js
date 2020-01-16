@@ -39,13 +39,14 @@ import { TagEditorFactory } from './tag-editor-modal/tag-editor-modal.service.js
 import { gettextInit } from './gettext.config.js'
 import { layoutInit } from './layouts.config.js'
 import { TaggingService } from './tagging.service.js'
+import { SiteSwitcher } from './site-switcher/site-switcher.component.js'
 
 import 'ng-redux'
 
 export const CoreModule = angular
   .module('app.core', [
     'gettext',
-    'miqStaticAssets',
+    'miqStaticAssets.dialogUser', // also implies miqStaticAssets.miqSelect
     'ngAnimate',
     'ngCookies',
     'ngMessages',
@@ -72,6 +73,7 @@ export const CoreModule = angular
   .controller('BaseModalController', BaseModalController)
   .controller('NavigationController', NavigationController)
   .component('shoppingCart', ShoppingCartComponent)
+  .component('miqSiteSwitcher', SiteSwitcher)
   .factory('ApplianceInfo', ApplianceInfo)
   .factory('AuthenticationApi', AuthenticationApiFactory)
   .factory('Chargeback', ChargebackFactory)
