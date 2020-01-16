@@ -1,5 +1,7 @@
 /* global $rootScope, $compile */
 describe('SiteSwitcher test', () => {
+  let scope, compile, compiledElement;
+
   const sites = [{
     title: 'Launch Operations UI',
     tooltip: 'Launch Operations UI',
@@ -17,27 +19,24 @@ describe('SiteSwitcher test', () => {
     url: 'http://www.redhat.com'
   }];
 
-  describe('component', () => {
-    let scope, compile, compiledElement;
-    beforeEach(() => {
-      module('app.core', []);
-      bard.inject('$rootScope', '$compile');
-      scope = $rootScope.$new();
-      compile = $compile;
+  beforeEach(() => {
+    module('app.core');
+    bard.inject('$rootScope', '$compile');
 
-      scope.sites = sites;
-      compiledElement = compile(
-        angular.element(
-          `<miq-site-switcher site="sites">
-              </miq-site-switcher>`
-        ))(scope);
-      scope.$digest();
-    });
+    scope = $rootScope.$new();
+    compile = $compile;
 
-    it('creates site switcher with embedded hrefs', () => {
-      let header = compiledElement[0].querySelector('.miq-siteswitcher');
-      expect(header).toBeDefined();
-      expect(header.querySelectorAll('.miq-siteswitcher-icon').length).toBe(1);
-    });
+    scope.sites = sites;
+
+    const element = angular.element('<miq-site-switcher site="sites"></miq-site-switcher>');
+    compiledElement = compile(element)(scope);
+
+    scope.$digest();
+  });
+
+  it('creates site switcher with embedded hrefs', () => {
+    let header = compiledElement[0].querySelector('.miq-siteswitcher');
+    expect(header).to.not.be.empty
+    expect(header.querySelectorAll('.miq-siteswitcher-icon').length).to.be.eq(1);
   });
 });
