@@ -1,0 +1,13 @@
+<div uib-dropdown class="miq-siteswitcher">
+  <button uib-dropdown-toggle class="btn btn-link" type="button" id="domain-switcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="fa fa-lg fa-th miq-siteswitcher-icon"></span>
+  </button>
+  <div uib-dropdown-menu class="uib-dropdown-menu uib-dropdown-menu-right" aria-labelledby="domain-switcher">
+    <div ng-repeat="site in ctrl.sites" class="miq-siteswitcher-entry">
+      <a class="miq-siteswitcher-link" ng-href="{{site.url}}" target="_blank">
+        <span title="{{site.tooltip}}" class="fa fa-3x" ng-class="site.iconClass"></span>
+        <div>{{site.title}}</div>
+      </a>
+    </div>
+  </div>
+</div>
