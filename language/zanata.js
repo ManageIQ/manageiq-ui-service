@@ -48,26 +48,18 @@ const zanata = {
     })
   },
   getFile (locale) {
-    return new Promise((resolve, reject) => {
-      const reqConfig = {
-        headers: {'Accept': 'application/json'}
-      }
-      const url = `rest/projects/p/${config.project}/iterations/i/${config.version}/r/manageiq-ui-service/translations/${locale}?ext=gettext&ext=comment&skeletons=true`
-      axios.get(url, reqConfig).then((data) => {
-        resolve(data.data)
-      })
-    })
+    const reqConfig = {
+      headers: {'Accept': 'application/json'}
+    }
+    const url = `rest/projects/p/${config.project}/iterations/i/${config.version}/r/manageiq-ui-service/translations/${locale}?ext=gettext&ext=comment&skeletons=true`
+    return axios.get(url, reqConfig).then((data) => data.data)
   },
   getSourceFile () {
-    return new Promise((resolve, reject) => {
-      const reqConfig = {
-        headers: {'Accept': 'application/json'}
-      }
-      const url = `rest/projects/p/${config.project}/iterations/i/${config.version}/r/manageiq-ui-service?ext=gettext&ext=comment`
-      axios.get(url, reqConfig).then((data) => {
-        resolve(data.data)
-      })
-    })
+    const reqConfig = {
+      headers: {'Accept': 'application/json'}
+    }
+    const url = `rest/projects/p/${config.project}/iterations/i/${config.version}/r/manageiq-ui-service?ext=gettext&ext=comment`
+    return axios.get(url, reqConfig).then((data) => data.data)
   }
 }
 module.exports = zanata
