@@ -33,6 +33,7 @@ describe('Authentication API', () => {
       })
     })
   })
+
   describe('failure case', () => {
     let mockDir = 'tests/mock/authentication-api/'
     const errorResponse = readJSON(mockDir + 'failure.json')
@@ -40,13 +41,10 @@ describe('Authentication API', () => {
     it('should fail Login', () => {
       Session.destroy()
       sinon.stub($http, 'get').returns(Promise.reject(errorResponse))
-      return AuthenticationApi.login('test', 'test').then(function (data) {
-        expect(Session.active()).to.eq(false)
-      }).catch((err) => {
-        if (err) {
-          expect(Session.active()).to.eq(false)
-        }
-      })
+
+      return AuthenticationApi.login('test', 'test')
+        .then(() => expect(false).to.eq(true)) // login didn't fail if the promise succeeds
+        .catch(() => expect(Session.active()).to.eq(false));
     })
   })
 })
