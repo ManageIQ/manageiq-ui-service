@@ -1,18 +1,20 @@
 /* global $componentController, ShoppingCart, EventNotifications */
 /* eslint-disable no-unused-expressions */
 describe('Component: shoppingCart', () => {
-  let ctrl, dismissFn, successNotificationSpy, failureNotificationSpy
+  let ctrl, closeFn, successNotificationSpy, failureNotificationSpy
   beforeEach(() => {
     module('app.core')
     bard.inject('$componentController', 'EventNotifications', 'ShoppingCart', '$state')
 
     const modalInstance = {
-      dismiss: () => {}
+      close: () => {}
     }
-    dismissFn = sinon.stub(modalInstance, 'dismiss').returns(true)
+    closeFn = sinon.stub(modalInstance, 'close').returns(true)
     successNotificationSpy = sinon.spy(EventNotifications, 'success')
     failureNotificationSpy = sinon.spy(EventNotifications, 'error')
-    ctrl = $componentController('shoppingCart', {}, {modalInstance: modalInstance})
+    ctrl = $componentController('shoppingCart', {}, {
+      modalInstance: modalInstance,
+    })
   })
 
   it('is defined', () => {
@@ -32,7 +34,7 @@ describe('Component: shoppingCart', () => {
       done()
 
       expect(submitSpy).to.have.been.called.once
-      expect(dismissFn).to.have.been.called.once
+      expect(closeFn).to.have.been.called.once
       expect(successNotificationSpy).to.have.been.calledWith('Shopping cart successfully ordered')
     })
   })
@@ -48,6 +50,6 @@ describe('Component: shoppingCart', () => {
 
   it('should allow a shopping cart modal to be closed', () => {
     ctrl.close()
-    expect(dismissFn).to.have.been.called.once
+    expect(closeFn).to.have.been.called.once
   })
 })
