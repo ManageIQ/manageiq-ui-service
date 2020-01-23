@@ -8,10 +8,9 @@ var DEVEL_DOMAINS = [
 var isDevel = window._.includes(DEVEL_DOMAINS, window.location.hostname)
 const hasDevTools = angular.isDefined(window.__REDUX_DEVTOOLS_EXTENSION__)
 /** @ngInject */
-export function configure ($logProvider, $compileProvider, $qProvider, $ngReduxProvider) {
+export function configure ($logProvider, $compileProvider, $ngReduxProvider) {
   $logProvider.debugEnabled(isDevel)
   $compileProvider.debugInfoEnabled(isDevel)
-  $qProvider.errorOnUnhandledRejections(false)
   const storeEnhancers = []
   if (hasDevTools) {
     storeEnhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__())
