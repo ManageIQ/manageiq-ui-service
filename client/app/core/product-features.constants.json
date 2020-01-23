@@ -6,7 +6,7 @@
       "NOTIFICATIONS": "sui_notifications"
     },
     "DASHBOARD": {
-      "VIEW": "sui_dashboard",
+      "VIEW": "sui_dashboard_show",
       "MONTHLY_CHARGES": "sui_dashboard_monthly_charge_view"
     },
     "SERVICES": {
