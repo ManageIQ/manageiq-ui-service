@@ -75,7 +75,7 @@ export function SessionFactory ($http, $sessionStorage, $cookies, RBAC, Polling,
     setGroup(miqGroup)
 
     RBAC.set(response.authorization.product_features)
-    return $q.resolve(response);
+    return $q.resolve(response);  // starts a promise chain, $q
   }
 
   function getUserAuthorizations () {
