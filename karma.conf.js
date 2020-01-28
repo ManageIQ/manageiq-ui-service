@@ -9,7 +9,7 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai', 'chai-as-promised', 'sinon', 'chai-sinon'],
     colors: true,
     autoWatch: true,
-    browsers: ['PhantomJS'],
+    browsers: ['ChromeHeadless'],
     singleRun: false,
     concurrency: Infinity,
     webpack: webpackConfig,
