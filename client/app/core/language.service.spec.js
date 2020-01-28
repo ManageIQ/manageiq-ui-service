@@ -1,18 +1,17 @@
-/* global Language, $http */
-/* eslint-disable no-unused-expressions */
+/* global Language, $http, $window */
 describe('Language', () => {
   const user = {
     'settings': {
       'ui_service': {
         'display': {
-          'locale': 'en'
-        }
+          'locale': 'en',
+        },
       },
       'display': {
-        'local': 'en'
+        'local': 'en',
       },
       'locale': 'en',
-      'asynchronous_notifications': true
+      'asynchronous_notifications': true,
     },
     'identity': {
       'userid': 'admin',
@@ -24,110 +23,136 @@ describe('Language', () => {
       'role_href': 'http://localhost:3001/api/roles/1',
       'tenant': 'My Company',
       'groups': [
-        'EvmGroup-super_administrator'
-      ]
-    }
-  }
+        'EvmGroup-super_administrator',
+      ],
+    },
+  };
+
   beforeEach(() => {
-    module('app.states')
-    bard.inject('Language', 'gettextCatalog', '$http')
-  })
+    module('app.states');
+    bard.inject('Language', '$http', '$window');
+  });
 
   describe('#match', () => {
     it('matches short available with long accepted', () => {
-      const available = {'ja': '', 'en': '', 'fr': ''}
-      const accepted = ['fr-FR', 'en']
+      const available = {'ja': '', 'en': '', 'fr': ''};
+      const accepted = ['fr-FR', 'en'];
 
-      expect(Language.match(available, accepted)).to.eq('fr')
-    })
+      expect(Language.match(available, accepted)).to.eq('fr');
+    });
 
     it('matches long available with short accepted', () => {
-      const available = {'ja-JP': '', 'en': '', 'fr-FR': ''}
-      const accepted = ['fr', 'en']
+      const available = {'ja-JP': '', 'en': '', 'fr-FR': ''};
+      const accepted = ['fr', 'en'];
 
-      expect(Language.match(available, accepted)).to.eq('fr-FR')
-    })
+      expect(Language.match(available, accepted)).to.eq('fr-FR');
+    });
+
+    it('should default to english if an invalid language is passed in', () => {
+      const available = {'ja': '', 'en': '', 'fr': ''};
+      const accepted = ['blerg'];
+      const selectedLanguage = Language.match(available, accepted);
+
+      expect(selectedLanguage).to.eq('en');
+    });
+  });
+
+  describe('#browser', () => {
     it('browser accepts array of supported languages', () => {
-      window.navigator = {'languages': ['en', 'es']}
-      const languages = Language.browser()
+      const languages = Language.browser({
+        languages: ['en', 'es'],
+      });
 
-      expect(languages).to.eql(['en', 'es'])
-    })
+      expect(languages).to.eql(['en', 'es']);
+    });
+
     it('browser IE 11 support getting language', () => {
-      window.navigator = {}
-      window.navigator.language = 'en'
-      const languages = Language.browser()
+      const languages = Language.browser({
+        language: 'en',
+      });
 
-      expect(languages).to.eql(['en'])
-    })
+      expect(languages).to.eql(['en']);
+    });
+
     it('browser < IE 11 support getting language', () => {
-      window.navigator = {}
-      window.navigator.userLanguage = 'en'
-      const languages = Language.browser()
+      const languages = Language.browser({
+        userLanguage: 'en',
+      });
 
-      expect(languages).to.eql(['en'])
-    })
+      expect(languages).to.eql(['en']);
+    });
+  });
+
+  describe('#setLocale', () => {
     it('should allow a empty locale to be set', () => {
-      const locale = Language.setLocale()
+      const locale = Language.setLocale();
 
-      expect(locale).to.eq('en')
-    })
+      expect(locale).to.eq('en');
+    });
+
     it('should allow a locale to be set', () => {
-      const locale = Language.setLocale('es')
+      const locale = Language.setLocale('es');
 
-      expect(locale).to.eq('es-ES')
-    })
+      expect(locale).to.eq('es-ES');
+    });
+  });
+
+  describe('#onLogin', () => {
     it('should set language on login', () => {
-      const selectedLanguage = Language.onLogin(user)
+      const selectedLanguage = Language.onLogin(user);
 
-      expect(selectedLanguage).to.eq('en')
-    })
+      expect(selectedLanguage).to.eq('en');
+    });
+
     it('should set language to saved language if one is set', () => {
-      Language.chosen.code = 'es'
-      const selectedLanguage = Language.onLogin(user)
-      expect(selectedLanguage).to.eq('es')
-    })
+      Language.chosen.code = 'es';
+      const selectedLanguage = Language.onLogin(user);
+
+      expect(selectedLanguage).to.eq('es');
+    });
+  });
+
+  describe('#onReload', () => {
     it('should set language on reload', () => {
-      const selectedLanguage = Language.onReload(user)
+      const selectedLanguage = Language.onReload(user);
 
-      expect(selectedLanguage).to.eq('en')
-    })
-    // save
+      expect(selectedLanguage).to.eq('en');
+    });
+  });
+
+  describe('#save', () => {
     it('should return nothing and not save if userhref is not set', () => {
-      const returnValue = Language.save('en')
+      const returnValue = Language.save('en');
 
-      expect(returnValue).to.be.undefined
-    })
+      expect(returnValue).to.be.undefined;
+    });
+
     it('should set language code to null on save if code is _browser_', () => {
-      Language.userHref = 'http://localhost:3001/api/users/1'
+      Language.userHref = 'http://localhost:3001/api/users/1';
       const postData = {
         'action': 'edit',
         'resource': {
-          'settings': {'display': {'locale': null}}
-        }
-      }
-      const saveApiSpy = sinon.spy($http, 'post')
-      Language.save('_browser_')
+          'settings': {'display': {'locale': null}},
+        },
+      };
+      const saveApiSpy = sinon.spy($http, 'post');
+      Language.save('_browser_');
 
-      expect(saveApiSpy).to.have.been.calledWith('http://localhost:3001/api/users/1', postData)
-    })
-    it('should default to english if an invalid language is passed in', () => {
-      const available = {'ja': '', 'en': '', 'fr': ''}
-      const accepted = ['blerg']
-      const selectedLanguage = Language.match(available, accepted)
+      expect(saveApiSpy).to.have.been.calledWith('http://localhost:3001/api/users/1', postData);
+    });
+  });
 
-      expect(selectedLanguage).to.eq('en')
-    })
+  describe('#fixState', () => {
     it('should return empty if no sort field is set', () => {
-      const state = {'sort': {}}
+      const state = {'sort': {}};
       const fields = {
         'sortConfig': {
-          'fields': []
-        }
-      }
-      const fixedState = Language.fixState(state, fields)
+          'fields': [],
+        },
+      };
+      const fixedState = Language.fixState(state, fields);
 
-      expect(fixedState).to.be.undefined
-    })
-  })
-})
+      expect(fixedState).to.be.undefined;
+    });
+  });
+});
