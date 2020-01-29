@@ -199,5 +199,9 @@ module.exports = {
   // is not feasible to satisfy the recommendations until we start code splitting
   performance: {
     hints: false
-  }
+  },
+
+  watchOptions: {
+    ignored: ['**/.*.sw[po]'],
+  },
 }
