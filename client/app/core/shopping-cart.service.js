@@ -1,5 +1,5 @@
 /** @ngInject */
-export function ShoppingCartFactory ($rootScope, CollectionsApi, $q, lodash, RBAC) {
+export function ShoppingCartFactory ($rootScope, CollectionsApi, lodash, RBAC) {
   var state = null
 
   var service = {
@@ -17,6 +17,14 @@ export function ShoppingCartFactory ($rootScope, CollectionsApi, $q, lodash, RBA
     isDuplicate: isDuplicate
   }
 
+  const handleFailure = (response) => {
+    if (response.results[0].success === false) {
+      return Promise.reject(response.results[0].message);
+    }
+
+    return response.results[0];
+  };
+
   var persistence = {
     // an array of items already in the basket
     getItems: function () {
@@ -26,7 +34,7 @@ export function ShoppingCartFactory ($rootScope, CollectionsApi, $q, lodash, RBA
       .catch(function (err) {
         // 404 means cart doesn't exist yet, we can simply create it
         if (err.status !== 404) {
-          return $q.reject(err)
+          return Promise.reject(err)
         }
 
         return CollectionsApi.post('service_orders', null, {}, { state: 'cart' })
@@ -60,31 +68,16 @@ export function ShoppingCartFactory ($rootScope, CollectionsApi, $q, lodash, RBA
         action: 'add',
         resources: [ request ]
       })
-      .then(function (response) {
-        // handle failure
-        if (response.results[0].success === false) {
-          return $q.reject(response.results[0].message)
-        }
-
-        return response.results[0]
-      })
+      .then(handleFailure);
     },
 
     // remove a thingy from the cart
     removeItem: function (requestId) {
-      return new Promise((resolve, reject) => {
-        CollectionsApi.post('service_orders/cart/service_requests', null, null, {
-          action: 'remove',
-          resources: [ { id: requestId } ]
-        })
-      .then(function (response) {
-        // handle failure
-        if (response.results[0].success === false) {
-          reject(response.results[0].message)
-        }
-        resolve(response.results[0])
+      return CollectionsApi.post('service_orders/cart/service_requests', null, null, {
+        action: 'remove',
+        resources: [ { id: requestId } ]
       })
-      })
+      .then(handleFailure);
     }
   }
 

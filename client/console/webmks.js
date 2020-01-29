@@ -17,7 +17,7 @@ $(function () {
     method: 'HEAD',
     cache: 'no-cache'
   }).then(function (response) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve, reject) { // valid, outside angular
       if (!response.ok) {
         // Reject the promise if there's any error with the request, i.e. the file doesn't exist
         reject(response)

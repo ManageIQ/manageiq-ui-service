@@ -121,14 +121,10 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
     const options = {
       hide: 'resources',
       auto_refresh: true,
-      filter: [filter]
-    }
-    return new Promise((resolve, reject) => {
-      CollectionsApi.query(field, options)
-      .then((data) => {
-        resolve(data.subquery_count)
-      })
-    })
+      filter: [filter],
+    };
+
+    return CollectionsApi.query(field, options).then((data) => data.subquery_count);
   }
 
   function setPermissions () {

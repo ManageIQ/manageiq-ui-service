@@ -1,6 +1,5 @@
-/* eslint-disable dot-notation */
 /** @ngInject */
-export function SessionFactory ($http, $sessionStorage, $cookies, RBAC, Polling) {
+export function SessionFactory ($http, $sessionStorage, $cookies, RBAC, Polling, $q) {
   const model = {
     token: null,
     user: {}
@@ -63,21 +62,20 @@ export function SessionFactory ($http, $sessionStorage, $cookies, RBAC, Polling)
   }
 
   function loadUser () {
-    Polling.start('UserPolling', getUserAuthorizations, 300000)
-    return new Promise((resolve, reject) => {
-      if (angular.isUndefined($sessionStorage.user)) {
-        getUserAuthorizations().then(function (response) {
-          resolve(response)
-        })
-      } else {
-        const response = angular.fromJson($sessionStorage.user)
-        currentUser(response.identity)
-        const miqGroup = (angular.isUndefined($sessionStorage.selectedMiqGroup) ? response.identity.group : $sessionStorage.selectedMiqGroup)
-        setGroup(miqGroup)
-        RBAC.set(response.authorization.product_features)
-        resolve(response)
-      }
-    })
+    Polling.start('UserPolling', getUserAuthorizations, 300000) // every 5 minutes
+
+    if (angular.isUndefined($sessionStorage.user)) {
+      return getUserAuthorizations();
+    }
+
+    const response = angular.fromJson($sessionStorage.user)
+    currentUser(response.identity)
+
+    const miqGroup = angular.isUndefined($sessionStorage.selectedMiqGroup) ? response.identity.group : $sessionStorage.selectedMiqGroup;
+    setGroup(miqGroup)
+
+    RBAC.set(response.authorization.product_features)
+    return $q.resolve(response);  // starts a promise chain, $q
   }
 
   function getUserAuthorizations () {

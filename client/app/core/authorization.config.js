@@ -86,30 +86,27 @@ export function authInit ($rootScope, $state, $log, Session, $sessionStorage, La
     if (!$sessionStorage.token) {
       // no saved token, go directly to login
       $state.transitionTo('login')
-
       return
     }
+
     syncSession()
     .then(rbacReloadOrLogin(toState, toParams))
     .catch(badUser)
   }
 
   function syncSession () {
-    return new Promise(function (resolve, reject) {
-      // trying saved token..
-      Session.setAuthToken($sessionStorage.token)
-      Session.setGroup($sessionStorage.miqGroup)
+    // trying saved token..
+    Session.setAuthToken($sessionStorage.token)
+    Session.setGroup($sessionStorage.miqGroup)
 
-      Session.loadUser()
-      .then(function (response) {
-        if (angular.isDefined(response)) {
-          Language.onReload(response)
-          RBAC.setRole(response.identity.role)
-        }
-        resolve()
-      })
-      .catch(badUser)
+    return Session.loadUser()
+    .then(function (response) {
+      if (angular.isDefined(response)) {
+        Language.onReload(response)
+        RBAC.setRole(response.identity.role)
+      }
     })
+    .catch(badUser)
   }
 
   function rbacReloadOrLogin (toState, toParams) {

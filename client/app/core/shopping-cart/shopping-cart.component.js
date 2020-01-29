@@ -39,7 +39,7 @@ function ComponentController ($state, ShoppingCart, EventNotifications) {
     return ShoppingCart.submit()
       .then(function () {
         EventNotifications.success(__('Shopping cart successfully ordered'))
-        vm.modalInstance.dismiss()
+        vm.modalInstance.close()
         $state.go('orders')
       })
       .then(null, function (err) {
@@ -52,6 +52,6 @@ function ComponentController ($state, ShoppingCart, EventNotifications) {
   * @function close
   */
   function close () {
-    vm.modalInstance.dismiss()
+    vm.modalInstance.close()
   }
 }

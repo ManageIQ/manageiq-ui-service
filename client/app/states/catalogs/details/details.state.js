@@ -26,7 +26,7 @@ function getStates () {
 }
 
 /** @ngInject */
-function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash, DialogData) {
+function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingCart, DialogFieldRefresh, lodash, DialogData, $q) {
   const vm = this
 
   let dialogs = {}
@@ -50,45 +50,49 @@ function Controller ($stateParams, CollectionsApi, EventNotifications, ShoppingC
     }
 
     const serviceRequestPromise = () => {
-      return new Promise((resolve, reject) => {
-        if ($stateParams.serviceRequestId) {
-          vm.breadcrumb = {
-            'url': 'orders',
-            'title': __('My Orders')
-          }
-          CollectionsApi.get('requests', $stateParams.serviceRequestId, {}).then((data) => { resolve(data) })
-        } else {
-          resolve(false)
-        }
-      })
-    }
+      if (! $stateParams.serviceRequestId) {
+        return $q.resolve(false); // starts a promise chain, $q
+      }
+
+      vm.breadcrumb = {
+        'url': 'orders',
+        'title': __('My Orders'),
+      };
+
+      return CollectionsApi.get('requests', $stateParams.serviceRequestId, {});
+    };
+
+    const dialogRequestPromise = (serviceTemplateId) => {
+      let url = 'service_templates/' + serviceTemplateId + '/service_dialogs';
+      let options = {
+        expand: 'resources',
+        attributes: 'content',
+      };
+
+      return CollectionsApi.query(url, options)
+        .then((resolvedDialogs) => {
+          dialogs = resolvedDialogs;
+          return resolvedDialogs;
+        });
+    };
+
+    const serviceTemplateRequestPromise = (serviceTemplateId) => {
+      let options = {
+        expand: 'resources',
+        attributes: ['picture', 'resource_actions', 'picture.image_href'],
+      };
+
+      return CollectionsApi.get('service_templates', serviceTemplateId, options);
+    };
+
     serviceRequestPromise().then((resolvedServiceRequest) => {
       serviceRequest = resolvedServiceRequest
+      let serviceTemplateId = $stateParams.serviceTemplateId || serviceRequest.source_id
 
-      const dialogRequest = new Promise((resolve, reject) => {
-        const options = { expand: 'resources', attributes: 'content' }
-        let serviceTemplateId = $stateParams.serviceTemplateId
-        if (!serviceTemplateId) {
-          serviceTemplateId = serviceRequest.source_id
-        }
-        CollectionsApi.query('service_templates/' + serviceTemplateId + '/service_dialogs', options).then((resolvedDialogs) => {
-          dialogs = resolvedDialogs
-          resolve(resolvedDialogs)
-        })
-      })
+      const dialogRequest = dialogRequestPromise(serviceTemplateId);
+      const serviceTemplateRequest = serviceTemplateRequestPromise(serviceTemplateId);
 
-      const serviceTemplateRequest = new Promise((resolve, reject) => {
-        let serviceTemplateId = $stateParams.serviceTemplateId
-        if (!serviceTemplateId) {
-          serviceTemplateId = serviceRequest.source_id
-        }
-        var options = { expand: 'resources', attributes: ['picture', 'resource_actions', 'picture.image_href'] }
-        CollectionsApi.get('service_templates', serviceTemplateId, options).then((data) => {
-          resolve(data)
-        })
-      })
-      const allPromises = [dialogRequest, serviceTemplateRequest]
-      Promise.all(allPromises).then((data) => {
+      Promise.all([dialogRequest, serviceTemplateRequest]).then((data) => {
         const SERVICE_TEMPLATE_RESPONSE = 1
         const DIALOGS_RESPONSE = 0
         dialogs = data[DIALOGS_RESPONSE]

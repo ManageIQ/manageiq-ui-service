@@ -12,7 +12,7 @@ export const TaggingComponent = {
 }
 
 /** @ngInject */
-function TaggingController ($scope, $filter, $q, $log, CollectionsApi, TaggingService, lodash) {
+function TaggingController ($scope, $filter, $log, CollectionsApi, TaggingService, lodash) {
   const vm = this
   const placeholderCategorization = {
     placeholder: true,
@@ -24,70 +24,46 @@ function TaggingController ($scope, $filter, $q, $log, CollectionsApi, TaggingSe
   vm.tags = {}
 
   function loadAllTagInfo () {
-    var deferred = $q.defer()
-
-    vm.loadAllTags().then(function () {
-      vm.loadAllCategories().then(function () {
-        deferred.resolve()
-      }, loadAllTagsfailure)
-    }, loadAllCategoriesfailure)
-
-    function loadAllTagsfailure () {
-      deferred.reject()
-    }
-
-    function loadAllCategoriesfailure () {
-      deferred.reject()
-    }
-
-    return deferred.promise
+    return vm.loadAllTags()
+      .then(() => vm.loadAllCategories());
   }
 
   vm.loadAllTags = function () {
-    var deferred = $q.defer()
-
-    var attributes = ['categorization', 'category.id', 'category.single_value']
     var options = {
       expand: 'resources',
-      attributes: attributes
+      attributes: ['categorization', 'category.id', 'category.single_value'],
+    };
+
+    return CollectionsApi.query('tags', options)
+      .then(loadSuccess, loadFailure);
+
+    function loadSuccess(response) {
+      vm.tags.all = response.resources;
     }
 
-    CollectionsApi.query('tags', options).then(loadSuccess, loadFailure)
-
-    function loadSuccess (response) {
-      vm.tags.all = response.resources
-      deferred.resolve()
+    function loadFailure(err) {
+      $log.error('There was an error loading all tags.');
+      return Promise.reject(err);
     }
-
-    function loadFailure () {
-      $log.error('There was an error loading all tags.')
-      deferred.reject()
-    }
-
-    return deferred.promise
   }
 
   vm.loadAllCategories = function () {
-    var deferred = $q.defer()
-
     var options = {
-      expand: 'resources'
+      expand: 'resources',
     }
 
-    CollectionsApi.query('categories', options).then(loadSuccess, loadFailure)
+    return CollectionsApi.query('categories', options)
+      .then(loadSuccess, loadFailure);
 
-    function loadSuccess (response) {
+    function loadSuccess(response) {
       vm.tags.categories = lodash.sortBy(response.resources, 'description')
       vm.tags.selectedCategory = vm.tags.categories[0]
-      deferred.resolve()
     }
 
-    function loadFailure () {
+    function loadFailure(err) {
       $log.error('There was an error loading categories.')
-      deferred.reject()
+      return Promise.reject(err);
     }
-
-    return deferred.promise
   }
 
   if (!vm.readOnly) {

@@ -115,83 +115,55 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications, spri
     item.power_state = ''
     item.power_status = 'starting'
 
-    return new Promise((resolve, reject) => {
-      servicePowerOperation('start', item).then((results) => {
-        resolve(results)
-      })
-    })
+    return servicePowerOperation('start', item);
   }
 
   function stopService (item) {
     item.power_state = ''
     item.power_status = 'stopping'
 
-    return new Promise((resolve, reject) => {
-      servicePowerOperation('stop', item).then((results) => {
-        resolve(results)
-      })
-    })
+    return servicePowerOperation('stop', item);
   }
 
   function suspendService (item) {
     item.power_state = ''
     item.power_status = 'suspending'
 
-    return new Promise((resolve, reject) => {
-      servicePowerOperation('suspend', item).then((results) => {
-        resolve(results)
-      })
-    })
+    return servicePowerOperation('suspend', item);
   }
 
   function startVm (item) {
     item.power_state = ''
     item.power_status = 'starting'
 
-    return new Promise((resolve, reject) => {
-      vmPowerOperation('start', item).then((results) => {
-        resolve(results)
-      })
-    })
+    return vmPowerOperation('start', item);
   }
 
   function stopVm (item) {
     item.power_state = ''
     item.power_status = 'stopping'
 
-    return new Promise((resolve, reject) => {
-      vmPowerOperation('stop', item).then((results) => {
-        resolve(results)
-      })
-    })
+    return vmPowerOperation('stop', item);
   }
 
   function suspendVm (item) {
     item.power_state = ''
     item.power_status = 'suspending'
 
-    return new Promise((resolve, reject) => {
-      vmPowerOperation('suspend', item).then((results) => {
-        resolve(results)
-      })
-    })
+    return vmPowerOperation('suspend', item);
   }
 
   function retireVm (item) {
     item.power_state = ''
     item.power_status = 'retiring'
 
-    return new Promise((resolve, reject) => {
-      vmPowerOperation('retire', item).then((results) => {
-        resolve(results)
-      })
-    })
+    return vmPowerOperation('retire', item);
   }
 
   function powerOperation (apiType, powerAction, item, itemType) {
-    return new Promise((resolve, reject) => {
-      resolve(CollectionsApi.post(apiType, item.id, {}, {action: powerAction}).then(actionSuccess, actionFailure))
-    })
+    return CollectionsApi.post(apiType, item.id, {}, {action: powerAction})
+      .then(actionSuccess, actionFailure);
+
     function actionSuccess (response) {
       switch (powerAction) {
         case 'start':
@@ -228,19 +200,11 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications, spri
   }
 
   function servicePowerOperation (powerAction, item) {
-    return new Promise((resolve, reject) => {
-      powerOperation('services', powerAction, item, 'service').then((result) => {
-        resolve(result)
-      })
-    })
+    return powerOperation('services', powerAction, item, 'service');
   }
 
   function vmPowerOperation (powerAction, item) {
-    return new Promise((resolve, reject) => {
-      powerOperation('vms', powerAction, item, 'virtual machine').then((result) => {
-        resolve(result)
-      })
-    })
+    return powerOperation('vms', powerAction, item, 'virtual machine');
   }
 
   return service
