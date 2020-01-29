@@ -30,7 +30,12 @@
               <language-switcher mode="select"></language-switcher>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 pull-right submit">
-              <button type="submit" class="btn btn-primary btn-lg" tabindex="4" translate>Log In</button>
+              <button type="submit" class="btn btn-primary btn-lg" tabindex="4">
+                <span translate>Log In</span>
+                <span ng-if="vm.spinner" class="spinner-wrap">
+                  <span class="spinner spinner-inline spinner-sm" aria-hidden="true"></span>
+                </span>
+              </button>
             </div>
           </div>
         </form>
