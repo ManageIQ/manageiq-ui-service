@@ -1,9 +1,9 @@
 /** @ngInject */
-export function SessionFactory ($http, $sessionStorage, $cookies, RBAC, Polling, $q) {
+export function SessionFactory ($http, $localStorage, $cookies, RBAC, Polling, $q) {
   const model = {
     token: null,
-    user: {}
-  }
+    user: {},
+  };
 
   const service = {
     current: model,
@@ -17,117 +17,120 @@ export function SessionFactory ($http, $sessionStorage, $cookies, RBAC, Polling,
     destroyWsToken: destroyWsToken,
     setPause: setPause,
     updateUserSession: updateUserSession,
-    getUserAuthorizations: getUserAuthorizations
-  }
+    getUserAuthorizations: getUserAuthorizations,
+  };
 
-  destroy()
+  destroy();
 
-  return service
+  return service;
 
   function setAuthToken (token) {
-    model.token = token
-    $http.defaults.headers.common['X-Auth-Token'] = model.token
-    $sessionStorage.token = model.token
+    model.token = token;
+    $http.defaults.headers.common['X-Auth-Token'] = model.token;
+    $localStorage.token = model.token;
   }
 
   function setGroup (group) {
     if (typeof group === 'object') {
-      model.user.group = group.description
-      model.user.group_href = group.href
-      $sessionStorage.miqGroup = group.description
-      $sessionStorage.selectedMiqGroup = group.description
+      model.user.group = group.description;
+      model.user.group_href = group.href;
+      $localStorage.miqGroup = group.description;
+      $localStorage.selectedMiqGroup = group.description;
     } else {
-      $sessionStorage.miqGroup = group
-      $sessionStorage.selectedMiqGroup = group
-      model.user.group = group
+      $localStorage.miqGroup = group;
+      $localStorage.selectedMiqGroup = group;
+      model.user.group = group;
     }
   }
 
   function setPause (pauseLength) {
-    $sessionStorage.pause = pauseLength * 1000
+    $localStorage.pause = pauseLength * 1000;
 
-    return $sessionStorage.pause
+    return $localStorage.pause;
   }
 
   function destroy () {
-    model.token = null
-    model.user = {}
-    destroyWsToken()
-    delete $http.defaults.headers.common['X-Auth-Token']
-    delete $sessionStorage.miqGroup
-    delete $sessionStorage.selectedMiqGroup
-    delete $sessionStorage.token
-    delete $sessionStorage.user
-    delete $sessionStorage.applianceInfo
+    model.token = null;
+    model.user = {};
+
+    destroyWsToken();
+    delete $http.defaults.headers.common['X-Auth-Token'];
+
+    delete $localStorage.miqGroup;
+    delete $localStorage.selectedMiqGroup;
+    delete $localStorage.token;
+    delete $localStorage.user;
+    delete $localStorage.applianceInfo;
+    delete $localStorage.pause;
   }
 
   function loadUser () {
-    Polling.start('UserPolling', getUserAuthorizations, 300000) // every 5 minutes
+    Polling.start('UserPolling', getUserAuthorizations, 300000); // every 5 minutes
 
-    if (angular.isUndefined($sessionStorage.user)) {
+    if (angular.isUndefined($localStorage.user)) {
       return getUserAuthorizations();
     }
 
-    const response = angular.fromJson($sessionStorage.user)
-    currentUser(response.identity)
+    const response = angular.fromJson($localStorage.user);
+    currentUser(response.identity);
 
-    const miqGroup = angular.isUndefined($sessionStorage.selectedMiqGroup) ? response.identity.group : $sessionStorage.selectedMiqGroup;
-    setGroup(miqGroup)
+    const miqGroup = angular.isUndefined($localStorage.selectedMiqGroup) ? response.identity.group : $localStorage.selectedMiqGroup;
+    setGroup(miqGroup);
 
-    RBAC.set(response.authorization.product_features)
+    RBAC.set(response.authorization.product_features);
     return $q.resolve(response);  // starts a promise chain, $q
   }
 
   function getUserAuthorizations () {
     const config = {
       headers: {
-        'X-Auth-Skip-Token-Renewal': 'true'
-      }
-    }
+        'X-Auth-Skip-Token-Renewal': 'true',
+      },
+    };
 
     return $http.get('/api?attributes=authorization', config)
-    .then(function (response) {
-      $sessionStorage.user = angular.toJson(response.data)
-      currentUser(response.data.identity)
-      setGroup(response.data.identity.group)
-      RBAC.set(response.data.authorization.product_features)
+      .then(function (response) {
+        $localStorage.user = angular.toJson(response.data);
+        currentUser(response.data.identity);
+        setGroup(response.data.identity.group);
+        RBAC.set(response.data.authorization.product_features);
 
-      return response.data
-    })
+        return response.data;
+      });
   }
 
   function requestWsToken (arg) {
     return $http.get('/api/auth?requester_type=ws')
-    .then(function (response) {
-      destroyWsToken()
-      $cookies.put('ws_token', response.data.auth_token, {path: '/ws/notifications'})
+      .then(function (response) {
+        destroyWsToken();
+        $cookies.put('ws_token', response.data.auth_token, {path: '/ws/notifications'});
 
-      return arg
-    })
+        return arg;
+      });
   }
 
   function destroyWsToken () {
-    $cookies.remove('ws_token', {path: '/ws/notifications'})
+    $cookies.remove('ws_token', {path: '/ws/notifications'});
   }
 
   function currentUser (user) {
     if (angular.isDefined(user)) {
-      model.user = user
+      model.user = user;
     }
 
-    return model.user
+    return model.user;
   }
 
   function updateUserSession (data) {
-    const userSession = JSON.parse($sessionStorage.user)
-    Object.assign(userSession, data)
-    $sessionStorage.user = JSON.stringify(userSession)
+    const userSession = JSON.parse($localStorage.user);
+    Object.assign(userSession, data);
+    $localStorage.user = JSON.stringify(userSession);
   }
 
   // Helpers
 
   function active () {
     // may not be current, but if we have one, we'll rely on API 401ing if it's not
-    return angular.isString(model.token) ? model.token : false
+    return angular.isString(model.token) ? model.token : false;
   }
 }
