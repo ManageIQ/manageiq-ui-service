@@ -1,5 +1,5 @@
 /** @ngInject */
-export function PollingFactory ($interval, $sessionStorage, lodash) {
+export function PollingFactory ($interval, $localStorage, lodash) {
   var service = {
     start: start,
     stop: stop,
@@ -17,8 +17,8 @@ export function PollingFactory ($interval, $sessionStorage, lodash) {
 
   function start (key, func, interval, limit) {
     var poll
-    if (angular.isDefined($sessionStorage.pause)) {
-      interval = $sessionStorage.pause
+    if (angular.isDefined($localStorage.pause)) {
+      interval = $localStorage.pause
     }
     if (!polls[key]) {
       poll = $interval(func, interval, limit)

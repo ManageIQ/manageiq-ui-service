@@ -1,4 +1,4 @@
-/* global $sessionStorage, Session, readJSON, inject, $http, $cookies */
+/* global $localStorage, Session, readJSON, inject, $http, $cookies */
 /* eslint-disable no-unused-expressions */
 describe('Session', () => {
   let reloadOk
@@ -36,16 +36,16 @@ describe('Session', () => {
       })
     })
 
-    bard.inject('Session', 'RBAC', '$window', '$sessionStorage', '$httpBackend', 'gettextCatalog', '$state')
+    bard.inject('Session', 'RBAC', '$window', '$localStorage', '$httpBackend', 'gettextCatalog', '$state')
   })
 
   describe('switchGroup', () => {
     it('should persist and not reload the window', () => {
-      $sessionStorage.miqGroup = 'bad'
+      $localStorage.miqGroup = 'bad'
 
       Session.setGroup('good')
 
-      expect($sessionStorage.miqGroup).to.eq('good')
+      expect($localStorage.miqGroup).to.eq('good')
       expect(reloadOk).to.eq(false)
     })
 
@@ -61,9 +61,9 @@ describe('Session', () => {
     })
 
     it('updates user session storage', () => {
-      $sessionStorage.user = JSON.stringify(readJSON('tests/mock/session/user.json'))
+      $localStorage.user = JSON.stringify(readJSON('tests/mock/session/user.json'))
       Session.updateUserSession({settings: {ui_service: {display: {locale: 'fr'}}}})
-      let user = JSON.parse($sessionStorage.user)
+      let user = JSON.parse($localStorage.user)
       expect(user.settings.ui_service.display.locale).to.eq('fr')
     })
   })
@@ -134,18 +134,18 @@ describe('Session', () => {
     it('allows a user to be retrieved from session', () => {
       const user = readJSON('tests/mock/session/user.json')
       const expectedUserProps = ['userid', 'name', 'user_href', 'group', 'group_href', 'role', 'role_href', 'tenant', 'groups']
-      $sessionStorage.user = user
+      $localStorage.user = user
       Session.loadUser()
       const userInfo = Session.currentUser()
       expect(userInfo).to.have.all.keys(expectedUserProps)
     })
     it('allows miq user group to be set from session', () => {
       const user = readJSON('tests/mock/session/user.json')
-      $sessionStorage.selectedMiqGroup = 'EvmGroup-super_administrator'
-      $sessionStorage.user = user
+      $localStorage.selectedMiqGroup = 'EvmGroup-super_administrator'
+      $localStorage.user = user
       Session.loadUser()
 
-      expect($sessionStorage.miqGroup).to.eq('EvmGroup-super_administrator')
+      expect($localStorage.miqGroup).to.eq('EvmGroup-super_administrator')
     })
     it('allow a ws token to be set', (done) => {
       bard.inject('$http', '$cookies')

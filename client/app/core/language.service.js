@@ -1,7 +1,7 @@
 /* eslint camelcase: "off" */
 import languageFile from '../../gettext/json/available_languages.json'
 /** @ngInject */
-export function LanguageFactory ($http, $q, $log, $sessionStorage, Session, $window, gettextCatalog, lodash) {
+export function LanguageFactory ($http, $q, $log, $localStorage, Session, $window, gettextCatalog, lodash) {
   var availableAvailable = $q.defer()
   var service = {
     available: {
@@ -78,9 +78,9 @@ export function LanguageFactory ($http, $q, $log, $sessionStorage, Session, $win
   function onLogin (data) {
     setUser(data)
     var code = 'en'
-    if ($sessionStorage.loginLanguage) {
-      code = $sessionStorage.loginLanguage
-      delete $sessionStorage.loginLanguage
+    if ($localStorage.loginLanguage) {
+      code = $localStorage.loginLanguage
+      delete $localStorage.loginLanguage
       save(code)
       Session.updateUserSession({ settings: { locale: code } })
     } else {
@@ -162,7 +162,7 @@ export function LanguageFactory ($http, $q, $log, $sessionStorage, Session, $win
 
   function setLoginLanguage (code) {
     const languageCode = service.match(service.available, code)
-    $sessionStorage.loginLanguage = languageCode
+    $localStorage.loginLanguage = languageCode
     service.setLocale(code)
   }
 
