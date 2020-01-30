@@ -34,10 +34,6 @@ variables such as `PROXY_HOST=localhost:3000`.
 #### `yarn test`
 - Bundles the SUI and uses karma to run all `.spec.js` files.  Pass fail results are printed out during task execution and coverage at task completion.
 
-#### `yarn test:e2e`
-- Uses protractor to run all`.e2e.js` files. Requires `webdriver-manager start` and `yarn start:all` to be running prior.
-For additional information checkout [Contributing](./contributing.md)
-
 #### `yarn test:watch`
 - Runs `yarn test` and watch project files for changes, upon a change, automatically reruns `yarn test`. 
 SUI is only bundled at the beginning of this task, subsequent runs only bundles changed files.
