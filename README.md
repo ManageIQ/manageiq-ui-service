@@ -11,7 +11,6 @@ The Service UI (SUI), previously Self Service UI (SSUI), for the [ManageIQ](http
 ## Documentation
 * [Developer Setup](docs/developer_setup.md) - *_For getting started_*
 * [Code Tour](docs/code_tour.md) - *_For codebase awareness_*
-* [Mock API](docs/mock_api.md) - *_For mock api_*
 * [Contributing](docs/contributing.md) - *_For contributing guidelines_*
 * [Troubleshooting](docs/troubleshooting.md) - *_For tough times_*
 * [Complete ManageIQ Documentation](https://github.com/ManageIQ/guides/blob/master/README.md) - *_For context_*
