@@ -12,9 +12,6 @@ Keep in mind this application undergoes constant development so be sure to check
 #### `yarn available-languages`
 - Compiles a list of languages for which the SUI is currently translated. 
 
-#### `heroku-postbuild`
-- Runs `yarn build:static` used to depoy SUI to Heroku.
-
 #### `yarn gettext-extract`
 - Extracts all text in SUI flagged for translation, creates `./client/gettext/po/manageiq-ui-service.pot` used by Zanata.
 

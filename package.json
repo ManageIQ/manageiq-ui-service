@@ -15,7 +15,6 @@
     "build:git-hash": "node config/githash.js",
     "build:static": "webpack --bail --progress --profile --config config/webpack.static.js",
     "available-languages": "cd ./config/ && node available-languages.js",
-    "heroku-postbuild": "yarn build:static",
     "gettext:compile": "angular-gettext-cli --compile --files './client/gettext/po/**/*.po' --dest 'client/gettext/json/manageiq-ui-service.json' --format json && yarn available-languages && yarn gettext:validate-language-codes",
     "gettext:extract": "angular-gettext-cli --files './client/**/*.+(js|html)' --exclude '**/*.+spec.js' --dest './client/gettext/po/manageiq-ui-service.pot' --marker-names '__,N_'",
     "gettext:validate": "node language/validate.js",
