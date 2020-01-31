@@ -33,6 +33,7 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
     password: API_PASSWORD
   }
   vm.onSubmit = onSubmit
+  vm.spinner = false
 
   if ($window.location.href.includes('?timeout')) {
     Notifications.message('danger', '', __('Your session has timed out.'), true)
@@ -53,6 +54,7 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
   function onSubmit () {
     Session.timeoutNotified = false
     Session.privilegesError = false
+    vm.spinner = true
 
     return AuthenticationApi.login(vm.credentials.login, vm.credentials.password)
     .then(Session.loadUser)
@@ -68,6 +70,7 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
         if (angular.isDefined($rootScope.notifications) && $rootScope.notifications.data.length > 0) {
           $rootScope.notifications.data.splice(0, $rootScope.notifications.data.length)
         }
+        // the starting screen logic lives in autohorization.config in changeStart
         $window.location.href = $state.href('dashboard')
       } else {
         Session.privilegesError = true
@@ -83,6 +86,9 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
         Notifications.message('danger', '', __('Login failed, possibly invalid credentials. ') + `(${message})`, false)
       }
       Session.destroy()
+    })
+    .then(() => {
+      vm.spinner = false
     })
   }
 
