@@ -12,9 +12,6 @@ Keep in mind this application undergoes constant development so be sure to check
 #### `yarn available-languages`
 - Compiles a list of languages for which the SUI is currently translated. 
 
-#### `heroku-postbuild`
-- Runs `yarn build:static` used to depoy SUI to Heroku.
-
 #### `yarn gettext-extract`
 - Extracts all text in SUI flagged for translation, creates `./client/gettext/po/manageiq-ui-service.pot` used by Zanata.
 
@@ -22,21 +19,8 @@ Keep in mind this application undergoes constant development so be sure to check
 - Starts the dev server, auto-reloads on asset change, runs on port 3000 by default.  Can be prepended with enviromental
 variables such as `PROXY_HOST=localhost:3000`.
 
-#### `yarn start:mock-api`
-- Starts the mock api, useful when a manageiq instace is not available.
-
-#### `yarn start:mock-webserver`
-- Serves the instance of the SUI created by `yarn build:static`.
-
-#### `yarn start:all`
-- Runs `yarn start:mock-api` and `yarn start:mock-webserver`, useful when running `yarn test:e2e`.
-
 #### `yarn test`
 - Bundles the SUI and uses karma to run all `.spec.js` files.  Pass fail results are printed out during task execution and coverage at task completion.
-
-#### `yarn test:e2e`
-- Uses protractor to run all`.e2e.js` files. Requires `webdriver-manager start` and `yarn start:all` to be running prior.
-For additional information checkout [Contributing](./contributing.md)
 
 #### `yarn test:watch`
 - Runs `yarn test` and watch project files for changes, upon a change, automatically reruns `yarn test`. 

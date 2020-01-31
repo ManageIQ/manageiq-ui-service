@@ -12,7 +12,7 @@ const outputPath = process.env.BUILD_OUTPUT || '../../manageiq/public/ui/service
 const dist = path.resolve(__dirname, outputPath)
 const nodeModules = path.resolve(__dirname, '../node_modules')
 const protocol = process.env.PROXY_PROTOCOL || 'http://'
-const host = process.env.PROXY_HOST || process.env.MOCK_API_HOST || '[::1]:3000'
+const host = process.env.PROXY_HOST || '[::1]:3000'
 const hasSkinImages = fs.existsSync(`${root}/skin/images`)
 const appBasePath = process.env.NODE_ENV === 'production' ? '\'/ui/service/\'' : '\'/\''
 
@@ -191,7 +191,7 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.js'],
     symlinks: false
   },
 
