@@ -92,12 +92,16 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     })
 
     CollectionsApi.query('settings/help_menu/documentation').then((data) => {
-      const documentation = data.help_menu.documentation
-      const matches = documentation.href.match(/http.*(http.*)/)
-      if (matches[1]) {
-        vm.documentation = matches[1]
+      const href = data.help_menu && data.help_menu.documentation && data.help_menu.documentation.href;
+      if (! href) {
+        return;
       }
-    })
+
+      // fixes "http://localhost:3000/api/http://www.google.com"
+      const matches = href.match(/http.*(http.*)/);
+      vm.documentation = matches[1] || href;
+    });
+
     vm.items = Navigation.init()
     refresh()
     if (ShoppingCart.allowed()) {
