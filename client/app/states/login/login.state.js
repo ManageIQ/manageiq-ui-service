@@ -52,7 +52,6 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
   }
 
   function onSubmit () {
-    Session.timeoutNotified = false
     Session.privilegesError = false
     vm.spinner = true
 
