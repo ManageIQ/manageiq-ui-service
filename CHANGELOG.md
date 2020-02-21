@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
+## Unreleased as of Sprint 130 - 2020-02-17
+
+### Fixed
+* Fixed missing href "Cannot read property 'match' of undefined" while building help menu documentation link [(#1628)](https://github.com/ManageIQ/manageiq-ui-service/pull/1628)
+
+## Unreleased as of Sprint 129 - 2020-02-03
+
+### Fixed
+* RBAC - use sui_dashboard_show instead of the sui_dashboard folder for VIEW dashboard permission [(#1611)](https://github.com/ManageIQ/manageiq-ui-service/pull/1611)
+* login - add spinner to Log In button [(#1624)](https://github.com/ManageIQ/manageiq-ui-service/pull/1624)
 
 ## Ivanchuk-1
 
