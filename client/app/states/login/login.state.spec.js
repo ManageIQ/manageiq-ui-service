@@ -22,9 +22,8 @@ describe('State: login', () => {
         expect(ctrl.text.brand).to.equal('<strong>ManageIQ</strong> Service UI')
       })
 
-      it('sets session timeoutNotified and privilegesError', () => {
+      it('sets session privilegesError', () => {
         ctrl.onSubmit()
-        expect(Session.timeoutNotified).to.be.false
         expect(Session.privilegesError).to.be.false
       })
     })
