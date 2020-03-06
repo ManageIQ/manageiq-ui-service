@@ -52,7 +52,6 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
   }
 
   function onSubmit () {
-    Session.timeoutNotified = false
     Session.privilegesError = false
     vm.spinner = true
 
@@ -79,13 +78,23 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
       }
     })
     .catch((response) => {
+      let message = __('Login failed.');
+      let error = response.data && response.data.error && response.data.error.message;
+
       if (response.status === 401) {
-        vm.credentials.login = ''
-        vm.credentials.password = ''
-        const message = response.data.error.message
-        Notifications.message('danger', '', __('Login failed, possibly invalid credentials. ') + `(${message})`, false)
+        vm.credentials.login = '';
+        vm.credentials.password = '';
+
+        message = __('Login failed, possibly invalid credentials.');
       }
-      Session.destroy()
+
+      if (!error && response.status >= 300) {
+        error = `${response.status} ${response.statusText}`;
+      }
+
+      Notifications.message('danger', '', error ? `${message} (${error})` : message, false);
+
+      Session.destroy();
     })
     .then(() => {
       vm.spinner = false
