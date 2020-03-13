@@ -154,8 +154,8 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
       vm_snapshot_show_list: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.VIEW), // Display Lists of VM Snapshots
       vm_snapshot_add: RBAC.has(RBAC.FEATURES.VMS.SNAPSHOTS.ADD), // Create Snapshot
       ems_infra_show: RBAC.has('ems_infra_show'), // View Infrastructure Providers
-      ems_cluster_show: RBAC.has('ems_cluster_show'), //  Display Individual Clusters / Deployment Roles
-      host_show: RBAC.has('host_show'), // Display Individual Hosts / Nodes
+      ems_cluster_show: RBAC.has('ems_cluster_show'), //  Display Individual Clusters
+      host_show: RBAC.has('host_show'), // Display Individual Hosts
       resource_pool_show: RBAC.has('resource_pool_show'), // Display Individual Resource Pools
       storage_show_list: RBAC.has('storage_show_list'), // Display Lists of Datastores
       instance_show: RBAC.has('instance_show'), // Display Individual Instances related to a CI

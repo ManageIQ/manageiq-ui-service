@@ -2388,8 +2388,8 @@
                 "description": "Restore from a Volume Backup"
             },
             "ems_cluster": {
-                "name": "Clusters / Deployment Roles",
-                "description": "Everything under Clusters / Deployment Roles",
+                "name": "Clusters",
+                "description": "Everything under Clusters",
                 "href": "http://localhost:3001/api/clusters",
                 "children": [
                     "ems_cluster_view",
@@ -2399,7 +2399,7 @@
             },
             "ems_cluster_view": {
                 "name": "View",
-                "description": "View Clusters / Deployment Roles",
+                "description": "View Clusters",
                 "children": [
                     "ems_cluster_compare",
                     "ems_cluster_drift",
@@ -2411,15 +2411,15 @@
             },
             "ems_cluster_compare": {
                 "name": "Compare",
-                "description": "Compare List of Clusters / Deployment Roles"
+                "description": "Compare List of Clusters"
             },
             "ems_cluster_drift": {
                 "name": "Drift",
-                "description": "Display Clusters / Deployment Roles Drift"
+                "description": "Display Clusters Drift"
             },
             "ems_cluster_show_list": {
                 "name": "List",
-                "description": "Display Lists of Clusters / Deployment Roles",
+                "description": "Display Lists of Clusters",
                 "action": {
                     "name": "read",
                     "method": "get",
@@ -2428,19 +2428,19 @@
             },
             "ems_cluster_show": {
                 "name": "Show",
-                "description": "Display Individual Clusters / Deployment Roles"
+                "description": "Display Individual Clusters"
             },
             "ems_cluster_timeline": {
                 "name": "Timelines",
-                "description": "Display Timelines for Clusters / Deployment Roles"
+                "description": "Display Timelines for Clusters"
             },
             "ems_cluster_perf": {
                 "name": "Utilization",
-                "description": "Show Capacity & Utilization data of Clusters / Deployment Roles"
+                "description": "Show Capacity & Utilization data of Clusters"
             },
             "ems_cluster_control": {
                 "name": "Operate",
-                "description": "Perform Operations on Clusters / Deployment Roles",
+                "description": "Perform Operations on Clusters",
                 "children": [
                     "ems_cluster_scan",
                     "ems_cluster_protect",
@@ -2449,26 +2449,26 @@
             },
             "ems_cluster_scan": {
                 "name": "Analysis",
-                "description": "Perform SmartState Analysis on Clusters / Deployment Roles"
+                "description": "Perform SmartState Analysis on Clusters"
             },
             "ems_cluster_protect": {
                 "name": "Manage Policies",
-                "description": "Manage Policies on Clusters / Deployment Roles"
+                "description": "Manage Policies on Clusters"
             },
             "ems_cluster_tag": {
                 "name": "Tag",
-                "description": "Edit Tags for Clusters / Deployment Roles"
+                "description": "Edit Tags for Clusters"
             },
             "ems_cluster_admin": {
                 "name": "Modify",
-                "description": "Modify Clusters / Deployment Roles",
+                "description": "Modify Clusters",
                 "children": [
                     "ems_cluster_delete"
                 ]
             },
             "ems_cluster_delete": {
                 "name": "Remove",
-                "description": "Remove Clusters / Deployment Roles"
+                "description": "Remove Clusters"
             },
             "ops_explorer": {
                 "name": "Configuration",
@@ -3865,8 +3865,8 @@
                 "description": "Remove Host from Host Aggregate"
             },
             "host": {
-                "name": "Hosts / Nodes",
-                "description": "Everything under Hosts / Nodes",
+                "name": "Hosts",
+                "description": "Everything under Hosts",
                 "href": "http://localhost:3001/api/hosts",
                 "children": [
                     "host_view",
@@ -3876,7 +3876,7 @@
             },
             "host_view": {
                 "name": "View",
-                "description": "View Hosts / Nodes",
+                "description": "View Hosts",
                 "children": [
                     "host_compare",
                     "host_drift",
@@ -3888,15 +3888,15 @@
             },
             "host_compare": {
                 "name": "Compare",
-                "description": "Compare List of Hosts / Nodes"
+                "description": "Compare List of Hosts"
             },
             "host_drift": {
                 "name": "Drift",
-                "description": "Display Hosts / Nodes Drift"
+                "description": "Display Hosts Drift"
             },
             "host_show_list": {
                 "name": "List",
-                "description": "Display Lists of Hosts / Nodes",
+                "description": "Display Lists of Hosts",
                 "action": {
                     "name": "read",
                     "method": "get",
@@ -3905,19 +3905,19 @@
             },
             "host_show": {
                 "name": "Show",
-                "description": "Display Individual Hosts / Nodes"
+                "description": "Display Individual Hosts"
             },
             "host_timeline": {
                 "name": "Timelines",
-                "description": "Display Timelines for Hosts / Nodes"
+                "description": "Display Timelines for Hosts"
             },
             "host_perf": {
                 "name": "Utilization",
-                "description": "Show Capacity & Utilization data of Hosts / Nodes"
+                "description": "Show Capacity & Utilization data of Hosts"
             },
             "host_control": {
                 "name": "Operate",
-                "description": "Perform Operations on Hosts / Nodes",
+                "description": "Perform Operations on Hosts",
                 "children": [
                     "host_scan",
                     "host_analyze_check_compliance",
@@ -3940,15 +3940,15 @@
             },
             "host_scan": {
                 "name": "Analysis",
-                "description": "Perform SmartState Analysis for Hosts / Nodes"
+                "description": "Perform SmartState Analysis for Hosts"
             },
             "host_analyze_check_compliance": {
                 "name": "Analyze then Check Compliance",
-                "description": "Analyze then Check Compliance for Hosts / Nodes"
+                "description": "Analyze then Check Compliance for Hosts"
             },
             "host_check_compliance": {
                 "name": "Check Compliance",
-                "description": "Check Compliance of Last Known Configuration for Hosts / Nodes"
+                "description": "Check Compliance of Last Known Configuration for Hosts"
             },
             "host_cloud_service_scheduling_toggle": {
                 "name": "Cloud Service Scheduling toggle",
@@ -3959,55 +3959,55 @@
             },
             "host_tag": {
                 "name": "Edit Tags",
-                "description": "Edit Host / Node Tags"
+                "description": "Edit Host Tags"
             },
             "host_enter_maint_mode": {
                 "name": "Enter Maintenance Mode",
-                "description": "Put a Host / Node into Maintenance Mode"
+                "description": "Put a Host into Maintenance Mode"
             },
             "host_exit_maint_mode": {
                 "name": "Exit Maintenance Mode",
-                "description": "Take a Host / Node out of Maintenance Mode"
+                "description": "Take a Host out of Maintenance Mode"
             },
             "host_protect": {
                 "name": "Manage Policies",
-                "description": "Manage Policies for Hosts / Nodes"
+                "description": "Manage Policies for Hosts"
             },
             "host_stop": {
                 "name": "Power Off",
-                "description": "Power Off a Host / Node"
+                "description": "Power Off a Host"
             },
             "host_start": {
                 "name": "Power On",
-                "description": "Power On a Host / Node"
+                "description": "Power On a Host"
             },
             "host_refresh": {
                 "name": "Refresh",
-                "description": "Refresh relationships and power states for all items related to Hosts / Nodes"
+                "description": "Refresh relationships and power states for all items related to Hosts"
             },
             "host_reset": {
                 "name": "Reset",
-                "description": "Reset a Host / Node"
+                "description": "Reset a Host"
             },
             "host_reboot": {
                 "name": "Restart Host",
-                "description": "Restart a Host / Node"
+                "description": "Restart a Host"
             },
             "host_shutdown": {
                 "name": "Shutdown Host",
-                "description": "Shutdown a Host / Node"
+                "description": "Shutdown a Host"
             },
             "host_standby": {
                 "name": "Shutdown Host to Standby",
-                "description": "Shutdown a Host / Node to Standby Mode"
+                "description": "Shutdown a Host to Standby Mode"
             },
             "host_toggle_maintenance": {
                 "name": "Toggle Maintenance Mode",
-                "description": "Toggle a Host / Node into Maintenance Mode"
+                "description": "Toggle a Host into Maintenance Mode"
             },
             "host_admin": {
                 "name": "Modify",
-                "description": "Modify Hosts / Nodes",
+                "description": "Modify Hosts",
                 "children": [
                     "host_new",
                     "host_edit",
@@ -4021,11 +4021,11 @@
             },
             "host_new": {
                 "name": "Add",
-                "description": "Add a Host / Node"
+                "description": "Add a Host"
             },
             "host_edit": {
                 "name": "Edit",
-                "description": "Edit a Host / Node",
+                "description": "Edit a Host",
                 "action": {
                     "name": "edit",
                     "method": "post",
@@ -4033,28 +4033,28 @@
                 }
             },
             "host_introspect": {
-                "name": "Introspect Hosts / Nodes",
-                "description": "Introspect Hosts / Nodes"
+                "name": "Introspect Hosts",
+                "description": "Introspect Hosts"
             },
             "host_provide": {
-                "name": "Provide Hosts / Nodes",
-                "description": "Provide Hosts / Nodes"
+                "name": "Provide Hosts",
+                "description": "Provide Hosts"
             },
             "host_miq_request_new": {
-                "name": "Provision Hosts / Nodes",
-                "description": "Request to Provision Hosts / Nodes"
+                "name": "Provision Hosts",
+                "description": "Request to Provision Hosts"
             },
             "host_register_nodes": {
-                "name": "Register Hosts / Nodes",
-                "description": "Register new Hosts / Nodes"
+                "name": "Register Hosts",
+                "description": "Register new Hosts"
             },
             "host_delete": {
                 "name": "Remove",
-                "description": "Remove Hosts / Nodes"
+                "description": "Remove Hosts"
             },
             "host_manageable": {
-                "name": "Set Hosts / Nodes to Manageable State",
-                "description": "Set Hosts / Nodes to Manageable State"
+                "name": "Set Hosts to Manageable State",
+                "description": "Set Hosts to Manageable State"
             },
             "container_image": {
                 "name": "Images",
@@ -5742,7 +5742,7 @@
             },
             "physical_server_refresh": {
                 "name": "Refresh",
-                "description": "Refresh relationships and power states for all items related to Physical Servers / Nodes"
+                "description": "Refresh relationships and power states for all items related to Physical Servers"
             },
             "physical_server_restart": {
                 "name": "Restart Server",
