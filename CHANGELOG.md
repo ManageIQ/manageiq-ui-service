@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
+## Ivanchuk-4
+
+- RBAC - use sui_dashboard_show instead of the sui_dashboard folder for VIEW dashboard permission [(#1611)](https://github.com/ManageIQ/manageiq-ui-service/pull/1611)
+
+## Ivanchuk-3
+
+### Fixed
+- Fix chinese and brazilian locales [(#1588)](https://github.com/ManageIQ/manageiq-ui-service/pull/1588)
+- Append the X-Requested-With (XHR) header to authentication requests [(#1612)](https://github.com/ManageIQ/manageiq-ui-service/pull/1612)
+- Update ui-components to 1.2.16 for ivanchuk [(#1614)](https://github.com/ManageIQ/manageiq-ui-service/pull/1614)
+
+## Ivanchuk-2
+
+### Added
+- Drop GTL switcher from Service Explorer breadcrumbs bar [(#1581)](https://github.com/ManageIQ/manageiq-ui-service/pull/1581)
+
+### Fixed
+- Fix stdout sanitization [(#1594)](https://github.com/ManageIQ/manageiq-ui-service/pull/1594)
+- Update ui-components to 1.2.15 for ivanchuk [(#1605)](https://github.com/ManageIQ/manageiq-ui-service/pull/1605)
+- DialogUser - use DialogData.outputConversion before submit and refresh [(#1606)](https://github.com/ManageIQ/manageiq-ui-service/pull/1606)
 
 ## Ivanchuk-1
 
