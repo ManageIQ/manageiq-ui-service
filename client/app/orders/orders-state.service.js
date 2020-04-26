@@ -45,7 +45,7 @@ export function OrdersStateFactory (ListConfiguration, CollectionsApi, RBAC) {
   // Private
 
   function getQueryFilters (filters) {
-    const queryFilters = ['state=ordered']
+    const queryFilters = ['state=ordered', 'type=ServiceOrderCart'];
 
     angular.forEach(filters, function (nextFilter) {
       if (nextFilter.id === 'name') {
