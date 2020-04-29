@@ -58,7 +58,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
         iconClass: 'fa fa-file-o',
         badgeQuery: {
           'field': 'service_orders',
-          'filter': 'state=ordered'
+          'filter': ['state=ordered', 'type=ServiceOrderCart'],
         },
         badges: [
           {
@@ -121,7 +121,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
     const options = {
       hide: 'resources',
       auto_refresh: true,
-      filter: [filter],
+      filter: Array.isArray(filter) ? filter : [filter],
     };
 
     return CollectionsApi.query(field, options).then((data) => data.subquery_count);
