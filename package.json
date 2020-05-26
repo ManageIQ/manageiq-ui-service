@@ -33,7 +33,6 @@
     "@manageiq/ui-components": "1.2.18",
     "@uirouter/angularjs": "1.0.20",
     "actioncable": "5.2.1",
-    "add": "^2.0.6",
     "angular": "1.7.5",
     "angular-animate": "1.7.5",
     "angular-bootstrap-switch": "0.5.2",
@@ -87,8 +86,7 @@
     "spice-html5-bower": "1.7.3",
     "sprintf-js": "1.1.1",
     "text-encoder-lite": "coolaj86/TextEncoderLite#e1e031b",
-    "webpack": "3.11.0",
-    "yarn": "^1.22.4"
+    "webpack": "3.11.0"
   },
   "devDependencies": {
     "angular-mocks": "1.7.5",
