@@ -113,10 +113,10 @@
   resolved "https://registry.yarnpkg.com/@manageiq/font-fabulous/-/font-fabulous-1.0.3.tgz#3e1fa8391866c82529f19cf2580f6092b6ef1a04"
   integrity sha512-K0YFaADF+3JrKfuHA322YE/mjKRrgOpx82QCCw4b4BrBN6HX6hOuUfpmWpV4FPWObmqSOQp1kD7Mcx1Z8vhhtg==
 
-"@manageiq/ui-components@1.2.17":
-  version "1.2.17"
-  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.2.17.tgz#9cc0ef09b2145cd736e00518ac3142cc26b0e343"
-  integrity sha512-+8i0QOUfYqLazJLEEcdp360+hMJX10AA4M7CbeXrj8UluE0L/Zwh973j16TLLDIvTkM+HzZmy/opRHaynh1UHQ==
+"@manageiq/ui-components@1.2.18":
+  version "1.2.18"
+  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.2.18.tgz#f7460c7d0eb0093cebded74363ef185f62688ffc"
+  integrity sha512-2vi0pw0MAS/4PIn6qgguNehGI8zMLe1cRh91Rh6SEoDPkKHE2ILC7zyCEOP7gNUf9HfSXLQISheoI4k7GRkuYA==
   dependencies:
     angular-bootstrap-switch "^0.5.1"
     angular-dragdrop "^1.0.13"
@@ -412,6 +412,11 @@ acorn@~2.6.4:
 actioncable@5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/actioncable/-/actioncable-5.2.1.tgz#615428a8a302cec55117d9049f0fd7952011c962"
+
+add@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/add/-/add-2.0.6.tgz#248f0a9f6e5a528ef2295dbeec30532130ae2235"
+  integrity sha1-JI8Kn25aUo7yKV2+7DBTITCuIjU=
 
 adm-zip@^0.4.9:
   version "0.4.11"
@@ -10218,6 +10223,11 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+yarn@^1.22.4:
+  version "1.22.4"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.4.tgz#01c1197ca5b27f21edc8bc472cd4c8ce0e5a470e"
+  integrity sha512-oYM7hi/lIWm9bCoDMEWgffW8aiNZXCWeZ1/tGy0DWrN6vmzjCXIKu2Y21o8DYVBUtiktwKcNoxyGl/2iKLUNGA==
 
 yauzl@2.4.1:
   version "2.4.1"
