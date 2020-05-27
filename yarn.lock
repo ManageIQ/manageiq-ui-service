@@ -113,10 +113,10 @@
   resolved "https://registry.yarnpkg.com/@manageiq/font-fabulous/-/font-fabulous-1.0.3.tgz#3e1fa8391866c82529f19cf2580f6092b6ef1a04"
   integrity sha512-K0YFaADF+3JrKfuHA322YE/mjKRrgOpx82QCCw4b4BrBN6HX6hOuUfpmWpV4FPWObmqSOQp1kD7Mcx1Z8vhhtg==
 
-"@manageiq/ui-components@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.4.0.tgz#049fd6616c4c74c929924b37b6c158a14783fc1b"
-  integrity sha512-/l2I3tT7BIGNDRew9nbWKcQQ05rqz7NMm5bJukzZLW/+Uk2aqxW47TGFfM588n8LjA0Bw5Q/xbuN9KlqH2cl0w==
+"@manageiq/ui-components@1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@manageiq/ui-components/-/ui-components-1.4.1.tgz#a47e0b77b832b7de65dc92da110c7b9408b33b5c"
+  integrity sha512-MQnND9kt+ylFd9c22gPmA+SODFXmcyoHkxVoQs1b3N+O+3xoxJ/a1p0kOGtmjZ2q6NJdSAHa2ZZxu/47G3h7Xw==
   dependencies:
     angular-bootstrap-switch "^0.5.1"
     angular-dragdrop "^1.0.13"
