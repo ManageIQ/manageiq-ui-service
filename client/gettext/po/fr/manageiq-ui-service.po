@@ -1,15 +1,9 @@
-# Translators:
-# Milan Zázrivec <mzazrivec@redhat.com>, 2020
-# 
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"Last-Translator: Milan Zázrivec <mzazrivec@redhat.com>, 2020\n"
-"Language-Team: French (https://www.transifex.com/manageiq/teams/35937/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
 
 #: ./client/app/components/dashboard/dashboard.html:110
 msgid "$0"
@@ -26,11 +20,11 @@ msgstr "% terminé"
 
 #: ./client/app/core/event-notifications.service.js:296
 msgid "%d new notifications"
-msgstr ""
+msgstr "%d nouvelles notifications"
 
 #: ./client/app/core/navigation/navigation-controller.js:172
 msgid "%d unread notifications"
-msgstr ""
+msgstr "%d notifications non lues"
 
 #: ./client/app/shared/action-button-group/action-button-group.component.js:32
 msgid "%s"
@@ -38,11 +32,11 @@ msgstr "%s"
 
 #: ./client/app/services/edit-service-modal/edit-service-modal.component.js:32
 msgid "%s was edited."
-msgstr "%s a été modifié."
+msgstr "%s a été édité."
 
 #: ./client/app/services/poweroperations.service.js:179
 msgid "%s was retired."
-msgstr "% a été désactivé."
+msgstr "%s a été déclassé."
 
 #: ./client/app/services/poweroperations.service.js:170
 msgid "%s was started."
@@ -50,15 +44,15 @@ msgstr "%s a été démarré."
 
 #: ./client/app/services/poweroperations.service.js:173
 msgid "%s was stopped."
-msgstr "% a été arrêté."
+msgstr "%s a été arrêté."
 
 #: ./client/app/services/poweroperations.service.js:176
 msgid "%s was suspended."
-msgstr "% a été mis en attente."
+msgstr "%s a été interrompu."
 
 #: ./client/app/layouts/application.html:88
 msgid "(Current Group)"
-msgstr "(Groupe actuel)"
+msgstr "(Groupe en cours)"
 
 #: ./client/app/services/resource-details/resource-details.component.js:260
 msgid "(no provider)"
@@ -86,12 +80,12 @@ msgstr "4 semaines"
 
 #: ./client/app/layouts/application.html:65
 msgid "About"
-msgstr "À propos de"
+msgstr "A propos de"
 
 #: ./client/app/states/about-me/about-me.html:1
 #: ./client/app/states/about-me/about-me.state.js:16
 msgid "About Me"
-msgstr "À propos de\n"
+msgstr "A propos de moi"
 
 #: ./client/app/services/service-details/service-details.html:296
 msgid "Access"
@@ -104,11 +98,11 @@ msgstr "Actif"
 #: ./client/app/states/catalogs/details/details.html:52
 #: ./client/app/states/catalogs/details/details.html:57
 msgid "Add to Shopping Cart"
-msgstr "Ajoutez au Panier"
+msgstr "Ajouter au panier"
 
 #: ./client/app/core/navigation/navigation-controller.js:154
 msgid "Administration UI"
-msgstr "IU administration"
+msgstr "Interface utilisateur d'administration"
 
 #: ./client/app/orders/process-order-modal/process-order-modal.html:11
 msgid "Affected Order"
@@ -131,27 +125,27 @@ msgstr "Demandes approuvées"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:60
 msgid "Are you sure you want to clear all items from your shopping cart?"
-msgstr "Êtes-vous sûr de vouloir vider le panier ?"
+msgstr "Voulez-vous vraiment vider complètement le panier ?"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:20
 msgid "Are you sure you want to remove this item from your shopping cart?"
-msgstr "Êtes-vous sûr de vouloir enlever cet article de votre panier ?"
+msgstr "Voulez-vous vraiment retirer cet article de votre panier ?"
 
 #: ./client/app/services/vms.service.js:280
 msgid "Are you sure you want to retire"
-msgstr "Êtes-vous sûr de vouloir quitter ?"
+msgstr "Voulez-vous vraiment déclasser ?"
 
 #: ./client/app/shared/confirmation/confirmation.directive.js:112
 msgid "Are you sure you wish to proceed?"
-msgstr "Êtes-vous sûr de vouloir continuer ?"
+msgstr "Voulez-vous vraiment continuer ?"
 
 #: ./client/app/components/notifications/notification-footer.html:14
 msgid "Are you sure you would like to clear all [[heading]]?"
-msgstr "Êtes-vous sûr de vouloir effacer tous les [[heading]] ?"
+msgstr "Voulez-vous vraiment effacer tous les [[heading]] ?"
 
 #: ./client/app/services/service-details/service-details.html:355
 msgid "Are you sure you would like to retire this resource?"
-msgstr "Êtes-vous sûr de vouloir vous désactiver cette ressource ?"
+msgstr "Voulez-vous vraiment désactiver cette ressource ?"
 
 #: ./client/app/services/resource-details/resource-details.component.js:49
 #: ./client/app/services/usage-graphs/usage-graphs.html:12
@@ -162,7 +156,7 @@ msgstr "Disponible"
 
 #: ./client/app/services/service-details/service-details.html:262
 msgid "Boot Time: Unknown"
-msgstr "Heure de démarrage : inconnue"
+msgstr "Heure d'amorçage : Inconnue"
 
 #: ./client/app/shared/language-switcher/language-switcher.component.js:26
 msgid "Browser Default"
@@ -170,7 +164,7 @@ msgstr "Paramètres par défaut du navigateur"
 
 #: ./client/app/services/usage-graphs/usage-graphs.html:7
 msgid "CPU"
-msgstr "CPU"
+msgstr "UC"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:14
 #: ./client/app/shared/action-button-group/action-button-group.html:1
@@ -183,7 +177,7 @@ msgstr "Annuler"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:58
 msgid "Catalog Name"
-msgstr "Nom du catalogue"
+msgstr "Nom de catalogue"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:18
 #: ./client/app/states/catalogs/explorer/explorer.state.js:15
@@ -193,11 +187,11 @@ msgstr "Catalogues"
 
 #: ./client/app/layouts/application.html:80
 msgid "Change Group:"
-msgstr "Changement Groupe :"
+msgstr "Changer de groupe :"
 
 #: ./client/app/layouts/application.html:92
 msgid "Change to this Group"
-msgstr "Changement vers ce groupe"
+msgstr "Changer pour ce groupe"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:53
 #: ./client/app/core/shopping-cart/shopping-cart.html:61
@@ -207,15 +201,15 @@ msgstr "Effacer"
 #: ./client/app/components/notifications/notification-footer.html:15
 #: ./client/app/components/notifications/notification-footer.html:19
 msgid "Clear All"
-msgstr "Tout effacer"
+msgstr "Effacer tout"
 
 #: ./client/app/components/notifications/notification-footer.html:13
 msgid "Clear All [[heading]]"
-msgstr "Tout effacer [[heading]]"
+msgstr "Effacer tout [[heading]]"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:59
 msgid "Clear Shopping Cart"
-msgstr "Vider le Panier"
+msgstr "Vider le panier"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:45
 msgid "Close"
@@ -227,7 +221,7 @@ msgstr "Terminé :"
 
 #: ./client/app/services/service-details/service-details.component.js:371
 msgid "Compute"
-msgstr "Calcul"
+msgstr "Calculer"
 
 #: ./client/app/services/services-state.service.js:248
 #: ./client/app/services/services-state.service.js:253
@@ -238,7 +232,7 @@ msgstr "Configuration"
 
 #: ./client/app/services/services-state.service.js:276
 msgid "Confirm, would you like to remove this service?"
-msgstr "Confirmez-vous la suppression de ce service ?"
+msgstr "Confirmez-vous le retrait de ce service ?"
 
 #: ./client/console/webmks.js:62
 msgid "Connected"
@@ -246,7 +240,7 @@ msgstr "Connecté"
 
 #: ./client/console/common.js:13
 msgid "Connecting"
-msgstr "Connexion"
+msgstr "Connexion en cours"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:15
 msgid "Continue"
@@ -283,11 +277,11 @@ msgstr "Créé"
 
 #: ./client/app/services/service-details/service-details.html:101
 msgid "Created On"
-msgstr "Créé le"
+msgstr "Date de création"
 
 #: ./client/app/services/vms/snapshots.html:89
 msgid "Created:"
-msgstr "Créé :"
+msgstr "Créé :"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:77
 msgid "Creating snapshot."
@@ -295,15 +289,15 @@ msgstr "Création d'un cliché."
 
 #: ./client/app/services/service-details/service-details-ansible.html:88
 msgid "Credentials"
-msgstr "Informations d'identification"
+msgstr "Identifiants"
 
 #: ./client/app/layouts/application.html:100
 msgid "Current Group"
-msgstr "Groupe actuel"
+msgstr "Groupe en cours"
 
 #: ./client/app/components/dashboard/dashboard.html:66
 msgid "Current Services"
-msgstr "Services actuels"
+msgstr "Services en cours"
 
 #: ./client/app/layouts/application.html:86
 msgid "Currently Selected Group"
@@ -311,7 +305,7 @@ msgstr "Groupe actuellement sélectionné"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.state.js:15
 msgid "Custom Button Details"
-msgstr "Information sur le bouton personnalisé"
+msgstr "Détails du bouton personnalisé"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:10
 msgid "Custom Button:"
@@ -337,7 +331,7 @@ msgstr "Supprimer tous les clichés"
 
 #: ./client/app/services/vms/snapshots.component.js:233
 msgid "Delete All Snapshots on VM %s"
-msgstr "Supprimer tous les clichés sur la VM %s"
+msgstr "Supprimer tous les clichés sur la machine virtuelle %s"
 
 #: ./client/app/services/vms/snapshots.component.js:229
 #: ./client/app/services/vms/snapshots.component.js:78
@@ -350,7 +344,7 @@ msgstr "Supprimer tous les clichés"
 
 #: ./client/app/orders/process-order-modal/process-order-modal.component.js:39
 msgid "Deleting order."
-msgstr "Ordre de suppression."
+msgstr "Suppression de la commande."
 
 #: ./client/app/services/vms/snapshots.component.js:145
 msgid "Deleting snapshot."
@@ -376,7 +370,7 @@ msgstr "Détails"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:7
 msgid "Discard Changes"
-msgstr "Abandonner les modifications"
+msgstr "Effacer les changements"
 
 #: ./client/app/services/resource-details/resource-details.html:159
 msgid "Disk Usage"
@@ -389,7 +383,7 @@ msgstr "Documentation"
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:11
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:23
 msgid "Don't Change"
-msgstr "Ne pas modifier"
+msgstr "Ne pas changer"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:29
 msgid "Duplicate"
@@ -407,12 +401,12 @@ msgstr "Dupliquer un article du panier"
 #: ./client/app/services/services-state.service.js:259
 #: ./client/app/services/services-state.service.js:261
 msgid "Edit"
-msgstr "Modifier"
+msgstr "Editer"
 
 #: ./client/app/services/edit-service-modal/edit-service-modal.html:5
 #: ./client/app/services/service-explorer/service-explorer.component.js:230
 msgid "Edit Service"
-msgstr "Modifier le service"
+msgstr "Editer le service"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:5
 #: ./client/app/services/service-explorer/service-explorer.component.js:236
@@ -420,12 +414,12 @@ msgstr "Modifier le service"
 #: ./client/app/services/services-state.service.js:229
 #: ./client/app/services/services-state.service.js:231
 msgid "Edit Tags"
-msgstr "Modifier les balises"
+msgstr "Editer les balises"
 
 #: ./client/app/services/service-details/service-details-ansible.html:183
 #: ./client/app/services/service-details/service-details-ansible.html:34
 msgid "Elapsed"
-msgstr "Écoulé"
+msgstr "Ecoulé"
 
 #: ./client/app/core/event-notifications.service.js:194
 #: ./client/app/states/error/error.state.js:17
@@ -434,31 +428,31 @@ msgstr "Erreur"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:77
 msgid "Error creating snapshot."
-msgstr "Erreur lors de la création du cliché"
+msgstr "Erreur lors de la création du cliché."
 
 #: ./client/app/orders/process-order-modal/process-order-modal.component.js:39
 msgid "Error deleting order."
-msgstr "Erreur de suppression de la commande."
+msgstr "Erreur lors de la suppression de la commande."
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:46
 msgid "Error deleting service."
-msgstr "Erreur de suppression du service."
+msgstr "Erreur lors de la suppression du service."
 
 #: ./client/app/services/vms/snapshots.component.js:145
 msgid "Error deleting snapshot."
-msgstr "Erreur lors de la suppression du cliché"
+msgstr "Erreur lors de la suppression du cliché."
 
 #: ./client/app/core/authorization.config.js:129
 msgid "Error retrieving user info"
-msgstr "Erreur de récupération des informations utilisateur"
+msgstr "Erreur lors de l'extraction des informations utilisateur."
 
 #: ./client/app/services/vms/snapshots.component.js:243
 msgid "Error reverting snapshot."
-msgstr "Erreur rétablissement cliché"
+msgstr "Erreur lors du retour au cliché."
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:73
 msgid "Error setting ownership."
-msgstr "Erreur définition propriété."
+msgstr "Erreur lors de la définition de la propriété."
 
 #: ./client/app/catalogs/catalog-explorer.component.js:58
 msgid "Filter by Catalog Name"
@@ -501,7 +495,7 @@ msgstr "Terminé"
 #: ./client/app/shared/confirmation/confirmation.directive.js:66
 #: ./client/app/shared/confirmation/confirmation.directive.js:71
 msgid "For Sizing"
-msgstr "Dimensionnement"
+msgstr "Pour dimensionnement"
 
 #: ./client/app/services/resource-details/resource-details.component.js:217
 #: ./client/app/services/resource-details/resource-details.component.js:223
@@ -535,11 +529,11 @@ msgstr "Id"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:10
 msgid "If you do not save, any changes will be lost."
-msgstr "Si vous n'enregistrez pas, toutes les modifications seront perdues."
+msgstr "Si vous n'effectuez pas de sauvegarde, tous les changements seront perdus."
 
 #: ./client/app/core/event-notifications.service.js:194
 msgid "Info"
-msgstr ""
+msgstr "Infos"
 
 #: ./client/app/states/catalogs/details/details.state.js:208
 msgid "Item added to shopping cart"
@@ -547,9 +541,7 @@ msgstr "Article ajouté au panier"
 
 #: ./client/app/states/catalogs/details/details.state.js:206
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
-msgstr ""
-"L'article a été ajouté au panier, mais c'est un doublon d'un article "
-"existant"
+msgstr "L'article a été ajouté au panier, mais c'est un doublon d'un article existant"
 
 #: ./client/app/states/login/login.html:28
 msgid "Language"
@@ -557,27 +549,27 @@ msgstr "Langue"
 
 #: ./client/app/services/resource-details/resource-details.html:104
 msgid "Last 7 days"
-msgstr "Les 7 derniers jours"
+msgstr "7 derniers jours"
 
 #: ./client/app/services/service-details/service-details.html:252
 msgid "Last Boot"
-msgstr "Dernier démarrage"
+msgstr "Dernier amorçage"
 
 #: ./client/app/services/service-details/service-details.html:222
 msgid "Latest"
-msgstr "Les plus récentes"
+msgstr "Le plus récent"
 
 #: ./client/app/services/service-details/service-details.html:254
 msgid "Latest Boot Time"
-msgstr "Dernière heure de démarrage"
+msgstr "Heure d'amorçage la plus récente"
 
 #: ./client/app/services/service-details/service-details.html:225
 msgid "Latest Snapshot Name"
-msgstr "Nom du cliché le plus récent"
+msgstr "Nom de cliché le plus récent"
 
 #: ./client/app/services/service-details/service-details.html:233
 msgid "Latest Snapshot Timestamp"
-msgstr "Horodatage du cliché le plus récent"
+msgstr "Horodatage de cliché le plus récent"
 
 #: ./client/app/services/service-details/service-details.html:242
 msgid "Latest Snapshot: Unknown"
@@ -596,36 +588,34 @@ msgstr "Cycle de vie"
 
 #: ./client/app/services/service-details/service-details-ansible-modal.html:5
 msgid "Live Ansible Play"
-msgstr "Live Ansible Play"
+msgstr "Etape de playbook Ansible opérationnelle"
 
 #: ./client/app/components/dashboard/dashboard.html:11
 #: ./client/app/components/dashboard/dashboard.html:30
 #: ./client/app/shared/loading.component.js:8
 msgid "Loading"
-msgstr "Chargement"
+msgstr "Chargement en cours"
 
 #: ./client/app/states/login/login.html:34
 msgid "Log In"
-msgstr "Connexion"
+msgstr "Se connecter"
 
 #: ./client/app/core/navigation/navigation-controller.js:155
 msgid "Log into the full administrative UI"
-msgstr "Connexion à l'interface d'administration"
+msgstr "Se connecter à l'interface d'administration complète"
 
 #: ./client/app/states/login/login.state.js:16
 msgid "Login"
-msgstr "Se connecter"
+msgstr "Connexion"
 
 #: ./client/app/states/login/login.state.js:86
 msgid "Login failed, possibly invalid credentials."
-msgstr ""
-"Échec de la connexion. Les informations d'identification ne sont peut-être "
-"pas valides."
+msgstr "Echec de la connexion. Les identifiants ne sont peut-être pas valides."
 
 #: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
 msgid "Logout"
-msgstr "Se déconnecter"
+msgstr "Déconnexion"
 
 #: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:10
 msgid "MHz"
@@ -633,11 +623,11 @@ msgstr "MHz"
 
 #: ./client/app/states/error/error.html:3
 msgid "ManageIQ Self Service"
-msgstr "ManageIQ Self Service"
+msgstr "Interface libre-service ManageIQ"
 
 #: ./client/app/components/notifications/notification-footer.html:6
 msgid "Mark All Read"
-msgstr "Tout marquer comme lu"
+msgstr "Marquer tout comme lu"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:12
 #: ./client/app/services/usage-graphs/usage-graphs.html:23
@@ -646,7 +636,7 @@ msgstr "Mémoire"
 
 #: ./client/app/components/dashboard/dashboard.html:100
 msgid "Monthly Charges - This Month To Date"
-msgstr "Frais mensuels : ce mois-ci jusqu'à la date d'aujourd'hui "
+msgstr "Frais en cumul mensuel à ce jour"
 
 #: ./client/app/services/service-details/service-details.html:90
 msgid "Monthly Cost"
@@ -706,7 +696,7 @@ msgstr "Aucun avertissement"
 
 #: ./client/app/services/service-details/service-details-ansible.html:92
 msgid "No credentials available."
-msgstr "Aucune information d'identification disponible."
+msgstr "Aucun identifiant disponible."
 
 #: ./client/app/services/resource-details/resource-details.component.js:58
 #: ./client/app/services/resource-details/resource-details.component.js:61
@@ -734,7 +724,7 @@ msgstr "Non disponible"
 
 #: ./client/app/components/dashboard/dashboard.component.js:82
 msgid "Not Retired"
-msgstr "Non désactivé"
+msgstr "Non déclassé"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:10
 msgid "Nothing Selected"
@@ -767,7 +757,7 @@ msgstr "N° de commande"
 #: ./client/app/orders/order-explorer/order-explorer.component.js:113
 #: ./client/app/orders/orders-state.service.js:12
 msgid "Order Date"
-msgstr "Date de la commande"
+msgstr "Date de commande"
 
 #: ./client/app/states/orders/details/details.state.js:15
 msgid "Order Details"
@@ -776,7 +766,7 @@ msgstr "Détails de la commande"
 #: ./client/app/orders/order-explorer/order-explorer.component.js:104
 #: ./client/app/orders/order-explorer/order-explorer.component.js:112
 msgid "Order ID"
-msgstr "ID de la commande"
+msgstr "ID de commande"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:48
 msgid "Ordered"
@@ -792,7 +782,7 @@ msgstr "Propriétaire"
 
 #: ./client/app/services/service-details/service-details.html:418
 msgid "Parent Catalog Item"
-msgstr "Article de catalogue parent"
+msgstr "Elément de catalogue parent"
 
 #: ./client/app/services/service-details/service-details.html:409
 msgid "Parent Service"
@@ -804,11 +794,11 @@ msgstr "Mot de passe"
 
 #: ./client/app/components/dashboard/dashboard.html:124
 msgid "Pending Requests"
-msgstr "Demandes en attentes"
+msgstr "Demandes en instance"
 
 #: ./client/app/services/service-details/service-details-ansible.html:203
 msgid "Play In Progress"
-msgstr "Lecture en cours"
+msgstr "Etape de playbook en cours"
 
 #: ./client/app/services/service-details/service-details-ansible.html:53
 msgid "Playbook"
@@ -820,16 +810,15 @@ msgstr "Playbook : [[playbook]]"
 
 #: ./client/app/services/service-details/service-details-ansible.html:138
 msgid "Plays"
-msgstr "Lectures"
+msgstr "Etapes de playbook"
 
 #: ./client/app/services/vms/snapshots.component.js:234
 msgid "Please confirm, this action will delete all snapshots of vm %s"
-msgstr ""
-"Veuillez confirmer. Cette action va supprimer tous les clichés de la VM %s"
+msgstr "Veuillez confirmer votre choix. Cette action va supprimer tous les clichés de machine virtuelle %s"
 
 #: ./client/app/services/vms/snapshots.component.js:230
 msgid "Please confirm, this action will delete snapshot %s"
-msgstr "Veuillez confirmer. Cette action va supprimer tous les clichés de %s"
+msgstr "Veuillez confirmer votre choix. Cette action va supprimer le cliché %s"
 
 #: ./client/app/services/services-state.service.js:222
 #: ./client/app/services/services-state.service.js:225
@@ -849,17 +838,17 @@ msgstr "Opérations d'alimentation"
 #: ./client/app/services/service-details/service-details.html:179
 #: ./client/app/services/service-explorer/service-explorer.component.js:454
 msgid "Power State: Off"
-msgstr "Alimentation : éteinte"
+msgstr "Etat d'alimentation : Hors fonction"
 
 #: ./client/app/services/service-details/service-details.html:184
 #: ./client/app/services/service-explorer/service-explorer.component.js:453
 msgid "Power State: On"
-msgstr "Alimentation : allumée"
+msgstr "Etat d'alimentation : En fonction"
 
 #: ./client/app/services/service-details/service-details.html:190
 #: ./client/app/services/service-explorer/service-explorer.component.js:455
 msgid "Power State: Unknown"
-msgstr "État de l'alimentation : inconnu"
+msgstr "Etat d'alimentation : Inconnu"
 
 #: ./client/app/core/navigation/navigation-controller.js:136
 msgid "Product logo"
@@ -880,7 +869,7 @@ msgstr "Reconfigurer le service"
 
 #: ./client/app/states/services/reconfigure/reconfigure.state.js:85
 msgid "Reconfigure this service has been cancelled"
-msgstr "La reconfiguration du service a été annulée"
+msgstr "La reconfiguration de ce service a été annulée"
 
 #: ./client/app/services/service-details/service-details.html:400
 msgid "Relationships"
@@ -888,7 +877,7 @@ msgstr "Relations"
 
 #: ./client/app/services/service-explorer/service-explorer.html:100
 msgid "Relative current cost"
-msgstr "Coût relatif actuel"
+msgstr "Coût en cours relatif"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:16
 #: ./client/app/core/shopping-cart/shopping-cart.html:21
@@ -897,25 +886,25 @@ msgstr "Coût relatif actuel"
 #: ./client/app/services/services-state.service.js:268
 #: ./client/app/services/services-state.service.js:270
 msgid "Remove"
-msgstr "Enlever"
+msgstr "Retirer"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:19
 msgid "Remove Item"
-msgstr "Enlever l'article"
+msgstr "Retirer un article"
 
 #: ./client/app/orders/order-explorer/order-explorer.component.js:125
 #: ./client/app/orders/process-order-modal/process-order-modal.html:5
 msgid "Remove Order"
-msgstr "Supprimer la commande"
+msgstr "Retirer une commande"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:270
 #: ./client/app/services/services-state.service.js:275
 msgid "Remove Service"
-msgstr "Supprimer le service"
+msgstr "Retirer un service"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:5
 msgid "Remove Services"
-msgstr "Supprimer les services"
+msgstr "Retirer des services"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:103
 msgid "Reorder"
@@ -927,11 +916,11 @@ msgstr "Nom de référentiel"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:82
 msgid "Request ID"
-msgstr "ID de la demande"
+msgstr "ID de demande"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:97
 msgid "Request State"
-msgstr "État de la demande"
+msgstr "Etat de demande"
 
 #: ./client/app/orders/request-list/requests-list.html:26
 msgid "Requested"
@@ -949,7 +938,7 @@ msgstr "Réinitialiser"
 
 #: ./client/app/states/services/resource-details/details.state.js:11
 msgid "Resource Details"
-msgstr "Informations sur les ressources"
+msgstr "Détails de la ressource"
 
 #: ./client/app/services/service-details/service-details.html:147
 msgid "Resources"
@@ -960,7 +949,7 @@ msgstr "Ressources"
 #: ./client/app/services/service-explorer/service-explorer.component.js:199
 #: ./client/app/services/vms/snapshots.component.js:95
 msgid "Result"
-msgstr ""
+msgstr "Résultat"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:65
 #: ./client/app/orders/order-explorer/order-explorer.component.js:89
@@ -981,69 +970,69 @@ msgstr "Résultats"
 #: ./client/app/services/vms.service.js:290
 #: ./client/app/services/vms.service.js:292
 msgid "Retire"
-msgstr "Désactiver"
+msgstr "Déclasser"
 
 #: ./client/app/services/service-details/service-details.html:354
 msgid "Retire Resource"
-msgstr "Désactiver Ressource"
+msgstr "Déclasser une ressource"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:254
 msgid "Retire Service"
-msgstr "Désactiver un service"
+msgstr "Déclasser un service"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:6
 msgid "Retire Services"
-msgstr "Désactiver des services"
+msgstr "Déclasser des services"
 
 #: ./client/app/components/dashboard/dashboard.component.js:13
 msgid "Retire Status"
-msgstr "Désactiver un état"
+msgstr "Statut Déclasser"
 
 #: ./client/app/services/resource-details/resource-details.component.js:419
 msgid "Retire the Service"
-msgstr "Désactiver le service"
+msgstr "Déclasser le service"
 
 #: ./client/app/components/dashboard/dashboard.component.js:56
 msgid "Retired"
-msgstr "Désactivé"
+msgstr "Déclassé"
 
 #: ./client/app/components/dashboard/dashboard.html:82
 msgid "Retired Services"
-msgstr "Services désactivés"
+msgstr "Services déclassés"
 
 #: ./client/app/services/service-details/service-details.html:173
 msgid "Retired resource"
-msgstr "Ressource désactivée"
+msgstr "Ressource déclassée"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:13
 #: ./client/app/services/service-explorer/service-explorer.component.js:395
 msgid "Retirement Date"
-msgstr "Date de désactivation"
+msgstr "Date de déclassement"
 
 #: ./client/app/services/service-details/service-details.html:108
 msgid "Retirement State"
-msgstr "État de désactivation"
+msgstr "Etat de déclassement"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:9
 msgid "Retirement Warning"
-msgstr "Avertissement de désactivation"
+msgstr "Avertissement avant déclassement"
 
 #: ./client/app/services/service-explorer/service-explorer.html:167
 #: ./client/app/services/service-explorer/service-explorer.html:91
 msgid "Retires"
-msgstr "Désactive"
+msgstr "Déclassement"
 
 #: ./client/app/services/service-details/service-details.html:115
 msgid "Retires On"
-msgstr "Désactivation le"
+msgstr "Date de déclassement"
 
 #: ./client/app/components/dashboard/dashboard.component.js:65
 msgid "Retires between"
-msgstr "Désactivation entre le"
+msgstr "Déclassement entre"
 
 #: ./client/app/components/dashboard/dashboard.html:49
 msgid "Retiring Soon"
-msgstr "Désactivation imminente"
+msgstr "Déclassement imminent"
 
 #: ./client/app/services/vms/snapshots.component.js:70
 msgid "Revert"
@@ -1051,42 +1040,40 @@ msgstr "Revenir"
 
 #: ./client/app/services/vms/snapshots.component.js:72
 msgid "Revert Snapshot"
-msgstr "Revenir au Cliché"
+msgstr "Revenir au cliché"
 
 #: ./client/app/services/vms/snapshots.component.js:243
 msgid "Reverting snapshot."
-msgstr "Rétablissement cliché"
+msgstr "Retour au cliché."
 
 #: ./client/app/core/event-notifications.service.js:44
 msgid "Review the notification tray for results of this batch operation"
-msgstr ""
-"Vérifier la barre des notifications pour connaître les résultats de cette "
-"opération par lot"
+msgstr "Vérifier la barre des notifications pour connaître les résultats de cette opération de traitement par lots"
 
 #: ./client/app/core/navigation/navigation-controller.js:141
 msgid "SUI Version:"
-msgstr "Version de la SUI :"
+msgstr "Version SUI :"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:16
 #: ./client/app/shared/action-button-group/action-button-group.component.js:30
 msgid "Save"
-msgstr "Enregistrer"
+msgstr "Sauvegarder"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:6
 msgid "Save Changes"
-msgstr "Enregistrer les modifications"
+msgstr "Sauvegarder les changements"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:5
 msgid "Schedule Service Retirement"
-msgstr "Planifier la désactivation de ce service"
+msgstr "Planifier un déclassement de service"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:72
 msgid "Scheduling retirement."
-msgstr "Planifier la désactivation pour"
+msgstr "Planification de déclassement."
 
 #: ./client/app/shared/pagination/pagination.html:5
 msgid "Select All"
-msgstr "Tout sélectionner"
+msgstr "Sélectionner tout"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:20
 msgid "Select a Group"
@@ -1094,7 +1081,7 @@ msgstr "Sélectionner un groupe"
 
 #: ./client/app/shared/tagging/tagging.component.js:20
 msgid "Select a value to assign"
-msgstr "Sélectionner une valeur à assigner"
+msgstr "Sélectionner une valeur à affecter"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
@@ -1106,7 +1093,7 @@ msgstr "Envoyer CTRL+ALT+SUPPR"
 
 #: ./client/app/core/navigation/navigation-controller.js:142
 msgid "Server Name:"
-msgstr "Nom du serveur :"
+msgstr "Nom de serveur :"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:7
 msgid "Service"
@@ -1115,31 +1102,31 @@ msgstr "Service"
 #: ./client/app/catalogs/catalog-explorer.html:4
 #: ./client/app/core/navigation.service.js:72
 msgid "Service Catalog"
-msgstr "Catalogue de services"
+msgstr "Catalogue de service"
 
 #: ./client/app/states/catalogs/details/details.state.js:49
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Service Catalogs"
-msgstr "Catalogues de services"
+msgstr "Catalogues de service"
 
 #: ./client/app/services/service-details/service-details.component.js:30
 #: ./client/app/states/services/details/details.state.js:12
 #: ./client/app/states/services/reconfigure/reconfigure.state.js:16
 #: ./client/app/states/services/reconfigure/reconfigure.state.js:25
 msgid "Service Details"
-msgstr "Informations sur le service"
+msgstr "Détails du service"
 
 #: ./client/app/services/service-details/service-details.html:77
 msgid "Service Id"
-msgstr "ID du service"
+msgstr "ID de service"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:43
 msgid "Service Retire - Request Created"
-msgstr "Désactivation du service - Demande créée"
+msgstr "Déclassement du service - Demande créée"
 
 #: ./client/app/states/catalogs/details/details.state.js:16
 msgid "Service Template Details"
-msgstr "Informations sur le modèle du service"
+msgstr "Détails du modèle de service"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:46
 msgid "Service deleting."
@@ -1163,12 +1150,12 @@ msgstr "Définir la propriété"
 #: ./client/app/services/service-explorer/service-explorer.component.js:260
 #: ./client/app/services/services-state.service.js:185
 msgid "Set Retirement"
-msgstr "Définir la désactivation"
+msgstr "Définir le déclassement"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:262
 #: ./client/app/services/services-state.service.js:183
 msgid "Set Retirement Dates"
-msgstr "Définir les dates de désactivation"
+msgstr "Définir les dates de déclassement"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:5
 msgid "Set Service Ownership"
@@ -1188,7 +1175,7 @@ msgstr "Panier"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:37
 msgid "Shopping cart is empty."
-msgstr "Le panier est vide"
+msgstr "Le panier est vide."
 
 #: ./client/app/core/shopping-cart/shopping-cart.component.js:41
 msgid "Shopping cart successfully ordered"
@@ -1196,7 +1183,7 @@ msgstr "La commande du panier a abouti"
 
 #: ./client/app/services/resource-details/resource-details.html:121
 msgid "Smart State Analysis"
-msgstr "Analyse intelligente de l'état"
+msgstr "Analyse SmartState"
 
 #: ./client/app/services/resource-details/resource-details.component.js:305
 #: ./client/app/services/resource-details/resource-details.component.js:306
@@ -1209,7 +1196,7 @@ msgstr "Clichés"
 
 #: ./client/app/services/service-details/service-details-ansible.html:196
 msgid "Standard Out"
-msgstr "Standard Out"
+msgstr "Sortie standard"
 
 #: ./client/app/services/resource-details/resource-details.component.js:393
 #: ./client/app/services/service-details/service-details.component.js:176
@@ -1272,7 +1259,7 @@ msgstr "Soumettre une demande"
 
 #: ./client/app/core/event-notifications.service.js:194
 msgid "Success"
-msgstr ""
+msgstr "Réussite"
 
 #: ./client/app/services/resource-details/resource-details.component.js:409
 #: ./client/app/services/service-details/service-details.component.js:190
@@ -1311,18 +1298,14 @@ msgid "Tenant"
 msgstr "Locataire"
 
 #: ./client/console/webmks.js:76
-msgid ""
-"The appliance has no access to the assets required to run the WebMKS "
-"console. For more info please see the documentation."
-msgstr ""
-"L'appareil ne dispose pas du matériel nécessaire pour exécuter la console "
-"WebMKS. Pour plus d'informations, consultez la documentation."
+msgid "The appliance has no access to the assets required to run the WebMKS console. For more info please see the documentation."
+msgstr "L'appareil n'a pas accès aux actifs nécessaires à l'exécution de la console WebMKS. Pour plus d'informations, consultez la documentation."
 
 #: ./client/app/orders/request-list/requests-list.html:32
 #: ./client/app/orders/request-list/requests-list.html:35
 #: ./client/app/orders/request-list/requests-list.html:38
 msgid "The current approval status of the request"
-msgstr "État actuel de l'approbation de la demande"
+msgstr "Statut d'approbation en cours de la demande"
 
 #: ./client/app/components/dashboard/dashboard.html:71
 msgid "The number of active services"
@@ -1330,23 +1313,15 @@ msgstr "Nombre de services actifs"
 
 #: ./client/app/components/dashboard/dashboard.html:55
 msgid "The number of services retiring within the next 30 days"
-msgstr ""
-"Le nombre de services qui seront désactivés dans les 30 prochains jours"
+msgstr "Nombre de services qui seront déclassés au cours des 30 prochains jours"
 
 #: ./client/app/components/dashboard/dashboard.html:88
-msgid ""
-"The number of services which have hit their retirement period or been "
-"retired"
-msgstr ""
-"Le nombre de services qui sont désactivés ou ayant atteint leur date limite"
+msgid "The number of services which have hit their retirement period or been retired"
+msgstr "Nombre de services ayant été déclassés ou ayant atteint leur date de déclassement"
 
 #: ./client/app/states/404/404.html:6
-msgid ""
-"The page you are looking for might have been removed, had its name changed, "
-"or is temporarily unavailable."
-msgstr ""
-"La page que vous recherchez a peut-être été supprimée ou renommée, ou elle "
-"est temporairement indisponible."
+msgid "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+msgstr "La page que vous recherchez a peut-être été retirée ou renommée, ou elle est temporairement indisponible."
 
 #: ./client/app/states/404/404.html:5
 msgid "The page you requested cannot be found."
@@ -1354,15 +1329,11 @@ msgstr "La page que vous avez demandée est introuvable."
 
 #: ./client/app/core/navigation.service.js:83
 msgid "The total number of available catalogs"
-msgstr "Le nombre tolal de catalogues disponibles"
+msgstr "Nombre total de catalogues disponibles"
 
 #: ./client/app/states/catalogs/details/details.html:51
-msgid ""
-"There already is an identical item in the cart. Do you want to add it "
-"anyway?"
-msgstr ""
-"Il existe déjà un article identique dans le panier. Voulez-vous l'ajouter "
-"malgré tout ?"
+msgid "There already is an identical item in the cart. Do you want to add it anyway?"
+msgstr "Il existe déjà un article identique dans le panier. Voulez-vous l'ajouter malgré tout ?"
 
 #: ./client/app/services/service-details/service-details.component.js:374
 msgid "There are no Compute Resources for this service."
@@ -1370,11 +1341,11 @@ msgstr "Il n'existe aucune ressource de calcul pour ce service."
 
 #: ./client/app/layouts/application.html:14
 msgid "There are no notifications to display."
-msgstr ""
+msgstr "Aucune notification à afficher."
 
 #: ./client/app/shared/tagging/tagging.html:15
 msgid "There are no tags for this item."
-msgstr "Il n'existe aucune balise pour cet article."
+msgstr "Il n'existe aucune balise pour cet élément."
 
 #: ./client/app/states/error/error.html:10
 msgid "There was a problem loading the page."
@@ -1382,7 +1353,7 @@ msgstr "Un problème est survenu lors du chargement de la page."
 
 #: ./client/app/states/catalogs/details/details.state.js:215
 msgid "There was an error adding to shopping cart:"
-msgstr "Une erreur s'est produite lors de l'ajout d'un article au panier :"
+msgstr "Une erreur s'est produite lors d'un ajout au panier :"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:81
 msgid "There was an error creating the snapshot."
@@ -1390,7 +1361,7 @@ msgstr "Une erreur s'est produite lors de la création du cliché."
 
 #: ./client/app/services/edit-service-modal/edit-service-modal.component.js:33
 msgid "There was an error editing this service."
-msgstr "Une erreur s'est produite lors de la modification de ce service."
+msgstr "Une erreur s'est produite lors de l'édition de ce service."
 
 #: ./client/app/services/service-details/service-details.component.js:98
 msgid "There was an error fetching this service."
@@ -1414,42 +1385,39 @@ msgstr "Une erreur s'est produite lors du chargement des services."
 
 #: ./client/app/services/resource-details/resource-details.component.js:290
 msgid "There was an error loading the vm details."
-msgstr ""
-"Une erreur s'est produite lors de l'enregistrement des détails de la VM."
+msgstr "Une erreur s'est produite lors du chargement des détails de la machine virtuelle."
 
 #: ./client/app/services/vms/snapshots.component.js:212
 msgid "There was an error loading the vm."
-msgstr "Une erreur s'est produite lors du chargement de la VM."
+msgstr "Une erreur s'est produite lors du chargement de la machine virtuelle."
 
 #: ./client/app/services/consoles.service.js:58
 msgid "There was an error opening the console."
-msgstr "Un problème est survenu en ouvrant la console."
+msgstr "Une erreur s'est produite lors de l'ouverture de la console."
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:53
 msgid "There was an error removing one or more services."
-msgstr ""
-"Une erreur s'est produite lors de la suppression d'un ou de plusieurs "
-"services."
+msgstr "Une erreur s'est produite lors du retrait d'un ou de plusieurs services."
 
 #: ./client/app/orders/process-order-modal/process-order-modal.component.js:44
 msgid "There was an error removing order"
-msgstr "Une erreur s'est produite lors de la suppression de la commande"
+msgstr "Une erreur s'est produite lors du retrait d'une commande"
 
 #: ./client/app/services/service-details/service-details.component.js:295
 msgid "There was an error removing this service."
-msgstr "Une erreur s'est produite lors de la suppression de ce service."
+msgstr "Une erreur s'est produite lors du retrait de ce service."
 
 #: ./client/app/services/poweroperations.service.js:196
 msgid "There was an error retiring this %s."
-msgstr "Une erreur s'est produite lors de la désactivation de %s."
+msgstr "Une erreur s'est produite lors du déclassement de ce %s."
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:77
 msgid "There was an error retiring this service."
-msgstr "Une erreur s'est produite lors de la désactivation de ce service."
+msgstr "Une erreur s'est produite lors du déclassement de ce service."
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:78
 msgid "There was an error saving ownership."
-msgstr "Une erreur s'est produite lors de l'enregistrement de la propriété."
+msgstr "Une erreur s'est produite lors de la sauvegarde de la propriété."
 
 #: ./client/app/services/poweroperations.service.js:187
 msgid "There was an error starting this %s."
@@ -1461,13 +1429,13 @@ msgstr "Une erreur s'est produite lors de l'arrêt de ce %s."
 
 #: ./client/app/services/custom-button/custom-button.component.js:86
 msgid "There was an error submitting the custom button."
-msgstr "Une erreur s'est produite lors de l'envoi du bouton personnalisé."
+msgstr "Une erreur s'est produite lors de la soumission du bouton personnalisé."
 
 #: ./client/app/core/shopping-cart/shopping-cart.component.js:46
 #: ./client/app/states/services/custom_button_details/custom_button_details.state.js:130
 #: ./client/app/states/services/reconfigure/reconfigure.state.js:80
 msgid "There was an error submitting this request:"
-msgstr "Une erreur s'est produite lors de l'envoi de cette demande :"
+msgstr "Une erreur s'est produite lors de la soumission de cette demande :"
 
 #: ./client/app/services/poweroperations.service.js:193
 msgid "There was an error suspending this %s."
@@ -1479,7 +1447,7 @@ msgstr "Une erreur s'est produite lors du balisage de ce service."
 
 #: ./client/app/services/resource-details/resource-details.html:103
 msgid "Timeline - Power Events"
-msgstr "Chronologie - Événements d'alimentation"
+msgstr "Chronologie - Evénements d'alimentation"
 
 #: ./client/app/components/dashboard/dashboard.html:35
 msgid "Total Requests"
@@ -1495,11 +1463,11 @@ msgstr "Nombre total de clichés"
 
 #: ./client/app/core/navigation.service.js:66
 msgid "Total orders submitted"
-msgstr "Nombre total de commandes envoyées"
+msgstr "Nombre total de commandes soumises"
 
 #: ./client/app/core/navigation.service.js:49
 msgid "Total services ordered, both active and retired"
-msgstr "Nombre total de services commandés, actifs et désactivés"
+msgstr "Nombre total de services commandés, actifs et déclassés"
 
 #: ./client/app/services/service-details/service-details-ansible.html:121
 msgid "Type"
@@ -1507,7 +1475,7 @@ msgstr "Type"
 
 #: ./client/app/services/consoles.service.js:76
 msgid "Unsupported console protocol returned."
-msgstr "Protocole de console non pris en charge."
+msgstr "Protocole de console non pris en charge renvoyé."
 
 #: ./client/app/services/vms/snapshots.component.js:105
 msgid "Updated"
@@ -1523,11 +1491,11 @@ msgstr "Utilisateur par défaut"
 
 #: ./client/app/core/navigation/navigation-controller.js:143
 msgid "User Name:"
-msgstr "Nom d'utilisateur"
+msgstr "Nom d'utilisateur :"
 
 #: ./client/app/core/navigation/navigation-controller.js:144
 msgid "User Role:"
-msgstr "Rôle de l'utilisateur :"
+msgstr "Rôle utilisateur :"
 
 #: ./client/app/states/login/login.state.js:50
 msgid "User does not have privileges to login."
@@ -1543,19 +1511,19 @@ msgstr "Utilisation"
 
 #: ./client/app/services/service-details/service-details.html:307
 msgid "VM HTML5 Console"
-msgstr "Console VM HTML5"
+msgstr "Console HTML5 de machine virtuelle"
 
 #: ./client/app/states/vms/snapshots/snapshots.state.js:13
 msgid "VM Snapshots"
-msgstr "Clichés de la VM"
+msgstr "Clichés de machine virtuelle"
 
 #: ./client/app/services/service-details/service-details.html:315
 msgid "VM VMRC Console"
-msgstr ""
+msgstr "Console VMRC de machine virtuelle"
 
 #: ./client/app/services/service-details/service-details-ansible.html:67
 msgid "Verbosity"
-msgstr "Verbosité"
+msgstr "Prolixité"
 
 #: ./client/app/core/navigation/navigation-controller.js:140
 msgid "Version:"
@@ -1564,15 +1532,11 @@ msgstr "Version :"
 #: ./client/app/services/resource-details/resource-details.component.js:314
 #: ./client/app/services/service-details/service-details.html:282
 msgid "View"
-msgstr "Visualiser"
+msgstr "Afficher"
 
 #: ./client/app/services/service-details/service-details.html:367
-msgid ""
-"View\n"
-"                                                    Details"
-msgstr ""
-"Visualiser\n"
-"                                                    Détails"
+msgid "View\n                                                    Details"
+msgstr "Afficher les détails"
 
 #: ./client/app/services/resource-details/resource-details.component.js:316
 msgid "View snapshots"
@@ -1580,33 +1544,26 @@ msgstr "Afficher les clichés"
 
 #: ./client/app/services/consoles.service.js:24
 msgid "Waiting for the console to become ready."
-msgstr "En attente de la console."
+msgstr "En attente de la disponibilité de la console."
 
 #: ./client/app/core/event-notifications.service.js:194
 msgid "Warning"
-msgstr ""
+msgstr "Avertissement"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:11
-msgid ""
-"Warning: The selected Services and ALL of their components will be "
-"immediately retired!"
-msgstr ""
-"Avertissement : les services sélectionnés et TOUS leurs composants seront "
-"immédiatement désactivés."
+msgid "Warning: The selected Services and ALL of their components will be immediately retired!"
+msgstr "Avertissement : les services sélectionnés et TOUS leurs composants seront immédiatement déclassés !"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:10
-msgid ""
-"Warning: The selected Services and ALL of their components will be "
-"permanently removed!"
-msgstr ""
-"Avertissement : les services sélectionnés et TOUS leurs composants seront "
-"définitivement supprimés."
+msgid "Warning: The selected Services and ALL of their components will be permanently removed!"
+msgstr "Avertissement : les services sélectionnés et TOUS leurs composants seront définitivement retirés !"
 
 #: ./client/app/services/service-details/service-details-ansible.html:198
 msgid "Watch Live"
-msgstr "Watch Live"
+msgstr "Regarder en direct"
 
-#: ./client/app/states/404/404.html:7 ./client/app/states/error/error.html:13
+#: ./client/app/states/404/404.html:7
+#: ./client/app/states/error/error.html:13
 msgid "We apologize for the inconvenience."
 msgstr "Veuillez nous excuser pour la gêne occasionnée."
 
@@ -1616,23 +1573,15 @@ msgstr "Console Web"
 
 #: ./client/app/services/services-state.service.js:277
 msgid "Yes, Remove Service"
-msgstr "Oui, supprimer le service"
+msgstr "Oui, retirer le service"
 
 #: ./client/app/states/login/login.state.js:77
-msgid ""
-"You do not have permission to view the Service UI. Contact your "
-"administrator to update your group permissions."
-msgstr ""
-"Vous ne possédez pas les permissions pour afficher l'IU Service. Veuillez "
-"contacter votre administrateur pour mettre à jour vos permissions de groupe."
+msgid "You do not have permission to view the Service UI. Contact your administrator to update your group permissions."
+msgstr "Vous ne disposez pas du droit requis pour afficher l'interface utilisateur Service. Contactez votre administrateur pour mettre à jour vos droits de groupe."
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:11
-msgid ""
-"Your current edits are invalid and cannot be saved. Continuing will discard "
-"your changes."
-msgstr ""
-"Les modifications apportées ne sont pas valides et ne peuvent pas être "
-"enregistrées.  Si vous poursuivez, vos modifications seront perdues."
+msgid "Your current edits are invalid and cannot be saved. Continuing will discard your changes."
+msgstr "Vos éditions en cours ne sont pas valides et ne peuvent pas être sauvegardées. Si vous poursuivez, vos modifications seront annulées."
 
 #: ./client/app/states/login/login.state.js:39
 msgid "Your session has timed out."
@@ -1640,22 +1589,22 @@ msgstr "Votre session a expiré."
 
 #: ./client/app/services/service-explorer/service-explorer.html:55
 msgid "[[number]] VMs"
-msgstr "[[number]] VM"
+msgstr "[[number]] machines virtuelles"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:57
 msgid "item"
 msgid_plural "items"
-msgstr[0] "élément"
+msgstr[0] "éléments"
 msgstr[1] "éléments"
 
 #: ./client/app/shared/pagination/pagination.html:13
 #: ./client/app/shared/pagination/pagination.html:20
 msgid "items"
-msgstr "articles"
+msgstr "éléments"
 
 #: ./client/app/core/gettext.config.js:23
 msgid "locale_name"
-msgstr "Français"
+msgstr "Nom de paramètre régional"
 
 #: ./client/app/services/vms.service.js:280
 msgid "now?"
@@ -1686,10 +1635,8 @@ msgstr "utilisé"
 
 #: ./client/app/services/service-details/service-details.component.js:290
 msgid "was removed."
-msgstr "a été supprimé."
+msgstr "a été retiré."
 
 #: ./client/app/orders/process-order-modal/process-order-modal.html:9
-msgid ""
-"{{ vm.order.name }} and all of its service requests will be permanently "
-"removed!"
-msgstr ""
+msgid "{{ vm.order.name }} and all of its service requests will be permanently removed!"
+msgstr "{{ vm.order.name }} et toutes ses demandes de service seront définitivement retirées."

@@ -1,160 +1,168 @@
-# Sungjin Kang <ujuc@ujuc.kr>, 2017. #zanata
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: \n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2017-09-15 06:56-0400\n"
-"Last-Translator: Sungjin Kang <ujuc@ujuc.kr>\n"
-"Language-Team: Korean\n"
 "Language: ko\n"
-"X-Generator: Zanata 3.9.6\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ./client/app/states/dashboard/dashboard.html:88
+#: ./client/app/components/dashboard/dashboard.html:110
 msgid "$0"
 msgstr "$0"
+
+#: ./client/app/services/resource-details/resource-details.component.js:211
+msgid "%"
+msgstr "%"
 
 #: ./client/app/components/notifications/notification-body.html:22
 #: ./client/app/components/notifications/notification-body.html:47
 msgid "% Complete"
 msgstr "% 완료"
 
-#: ./client/app/shared/action-button-group/action-button-group.component.js:31
+#: ./client/app/core/event-notifications.service.js:296
+msgid "%d new notifications"
+msgstr "%d 새 알림"
+
+#: ./client/app/core/navigation/navigation-controller.js:172
+msgid "%d unread notifications"
+msgstr "%d 읽지 않은 알림"
+
+#: ./client/app/shared/action-button-group/action-button-group.component.js:32
 msgid "%s"
 msgstr "%s"
 
-#: ./client/app/services/vm-details/vm-details.component.js:123
-msgid "%s is a retired resource"
-msgstr ""
-
-#: ./client/app/requests/order-explorer/order-explorer.component.js:296
-msgid "%s was duplicated, id # %d."
-msgstr ""
-
-#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:31
+#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:32
 msgid "%s was edited."
-msgstr ""
+msgstr "%s이(가) 편집되었습니다."
 
-#: ./client/app/services/poweroperations.service.js:207
+#: ./client/app/services/poweroperations.service.js:179
 msgid "%s was retired."
-msgstr ""
+msgstr "%s이(가) 폐기되었습니다."
 
-#: ./client/app/services/poweroperations.service.js:198
+#: ./client/app/services/poweroperations.service.js:170
 msgid "%s was started."
-msgstr ""
+msgstr "%s이(가) 시작되었습니다."
 
-#: ./client/app/services/poweroperations.service.js:201
+#: ./client/app/services/poweroperations.service.js:173
 msgid "%s was stopped."
-msgstr ""
+msgstr "%s이(가) 중지되었습니다."
 
-#: ./client/app/services/poweroperations.service.js:204
+#: ./client/app/services/poweroperations.service.js:176
 msgid "%s was suspended."
-msgstr ""
+msgstr "%s이(가) 일시중단되었습니다."
 
-#: ./client/app/layouts/application.html:82
+#: ./client/app/layouts/application.html:88
 msgid "(Current Group)"
 msgstr "(현재 그룹)"
 
+#: ./client/app/services/resource-details/resource-details.component.js:260
+msgid "(no provider)"
+msgstr "(제공자 없음)"
+
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:38
 msgid "1 Week"
-msgstr "1 주"
+msgstr "1주"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:39
 msgid "2 Weeks"
-msgstr "2 주"
+msgstr "2주"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:40
 msgid "3 Weeks"
-msgstr "3 주"
+msgstr "3주"
+
+#: ./client/app/components/dashboard/dashboard.component.js:71
+msgid "30 Days"
+msgstr "30일"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:41
 msgid "4 Weeks"
-msgstr "4 주"
+msgstr "4주"
 
-#: ./client/app/services/service-details/service-details.html:281
-msgid "<i class=\"fa fa-camera\"></i>Snapshots"
-msgstr "<i class=\"fa fa-camera\"></i>스냅샷"
-
-#: ./client/app/services/service-details/service-details.html:298
-msgid "<i class=\"fa fa-window-maximize \"></i>Access"
-msgstr "<i class=\"fa fa-window-maximize \"></i>접근"
-
-#: ./client/app/layouts/application.html:59
+#: ./client/app/layouts/application.html:65
 msgid "About"
-msgstr "대하여"
+msgstr "정보"
 
 #: ./client/app/states/about-me/about-me.html:1
 #: ./client/app/states/about-me/about-me.state.js:16
 msgid "About Me"
-msgstr "나에대하여"
+msgstr "내 정보"
 
-#: ./client/app/services/custom-button/custom-button.component.js:55
-msgid "Action not able to submit."
-msgstr ""
+#: ./client/app/services/service-details/service-details.html:296
+msgid "Access"
+msgstr "액세스"
 
-#: ./client/app/services/vms/snapshots.html:82
+#: ./client/app/services/vms/snapshots.html:81
 msgid "Active"
-msgstr "작동중"
+msgstr "활성"
 
-#: ./client/app/states/catalogs/details/details.html:39
-#: ./client/app/states/catalogs/details/details.html:44
+#: ./client/app/states/catalogs/details/details.html:52
+#: ./client/app/states/catalogs/details/details.html:57
 msgid "Add to Shopping Cart"
-msgstr "쇼핑카드에 추가"
+msgstr "장바구니에 추가"
 
-#: ./client/app/core/navigation/navigation-controller.js:118
+#: ./client/app/core/navigation/navigation-controller.js:154
 msgid "Administration UI"
-msgstr "관리자  UI"
+msgstr "관리 UI"
 
-#: ./client/app/requests/process-order-modal/process-order-modal.html:11
+#: ./client/app/orders/process-order-modal/process-order-modal.html:11
 msgid "Affected Order"
-msgstr ""
+msgstr "영향 받은 순서"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:18
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:33
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:13
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:25
 msgid "Affected Services"
-msgstr ""
+msgstr "영향 받은 서비스"
 
-#: ./client/app/states/dashboard/dashboard.html:115
+#: ./client/app/services/generic-objects-list/generic-objects-list.component.js:40
+msgid "An error occured"
+msgstr "오류가 발생함"
+
+#: ./client/app/components/dashboard/dashboard.html:137
 msgid "Approved Requests"
-msgstr "인가된 요청"
+msgstr "승인된 요청"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:60
 msgid "Are you sure you want to clear all items from your shopping cart?"
-msgstr ""
+msgstr "장바구니에서 모든 항목을 지우시겠습니까?"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:20
 msgid "Are you sure you want to remove this item from your shopping cart?"
-msgstr ""
+msgstr "장바구니에서 이 항목을 제거하시겠습니까?"
+
+#: ./client/app/services/vms.service.js:280
+msgid "Are you sure you want to retire"
+msgstr "폐기하시겠습니까?"
 
 #: ./client/app/shared/confirmation/confirmation.directive.js:112
 msgid "Are you sure you wish to proceed?"
-msgstr ""
+msgstr "계속하시겠습니까?"
 
 #: ./client/app/components/notifications/notification-footer.html:14
 msgid "Are you sure you would like to clear all [[heading]]?"
-msgstr ""
+msgstr "[[heading]]을 모두 지우시겠습니까?"
 
-#: ./client/app/services/service-details/service-details.html:342
+#: ./client/app/services/service-details/service-details.html:355
 msgid "Are you sure you would like to retire this resource?"
-msgstr ""
+msgstr "이 리소스를 폐기하시겠습니까?"
 
-#: ./client/app/services/vm-details/vm-details.component.js:41
+#: ./client/app/services/resource-details/resource-details.component.js:49
+#: ./client/app/services/usage-graphs/usage-graphs.html:12
+#: ./client/app/services/usage-graphs/usage-graphs.html:28
+#: ./client/app/services/usage-graphs/usage-graphs.html:44
 msgid "Available"
-msgstr ""
+msgstr "사용 가능"
 
-#: ./client/app/services/service-details/service-details.html:269
+#: ./client/app/services/service-details/service-details.html:262
 msgid "Boot Time: Unknown"
 msgstr "부팅 시간: 알 수 없음"
 
-#: ./client/app/core/language-switcher/language-switcher.directive.js:29
+#: ./client/app/shared/language-switcher/language-switcher.component.js:26
 msgid "Browser Default"
-msgstr "기본 브라우저"
+msgstr "브라우저 기본값"
 
-#: ./client/app/services/usage-graphs/usage-graphs.html:6
+#: ./client/app/services/usage-graphs/usage-graphs.html:7
 msgid "CPU"
 msgstr "CPU"
 
@@ -162,6 +170,7 @@ msgstr "CPU"
 #: ./client/app/shared/action-button-group/action-button-group.html:1
 #: ./client/app/shared/action-button-group/action-button-group.html:45
 #: ./client/app/shared/confirmation/confirmation.directive.js:114
+#: ./client/app/states/catalogs/details/details.html:62
 #: ./client/app/states/services/reconfigure/reconfigure.html:24
 msgid "Cancel"
 msgstr "취소"
@@ -176,295 +185,307 @@ msgstr "카탈로그 이름"
 msgid "Catalogs"
 msgstr "카탈로그"
 
-#: ./client/app/layouts/application.html:74
+#: ./client/app/layouts/application.html:80
 msgid "Change Group:"
-msgstr "변경할 그룹:"
+msgstr "그룹 변경:"
 
-#: ./client/app/layouts/application.html:86
+#: ./client/app/layouts/application.html:92
 msgid "Change to this Group"
-msgstr "이 그룹으로 변경"
+msgstr "이 그룹의 변경"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:53
 #: ./client/app/core/shopping-cart/shopping-cart.html:61
 msgid "Clear"
-msgstr "제거"
+msgstr "지우기"
 
 #: ./client/app/components/notifications/notification-footer.html:15
 #: ./client/app/components/notifications/notification-footer.html:19
 msgid "Clear All"
-msgstr "모두 제거"
+msgstr "모두 지우기"
 
 #: ./client/app/components/notifications/notification-footer.html:13
 msgid "Clear All [[heading]]"
-msgstr "모두 [[heading]] 제거"
+msgstr "[[heading]] 모두 지우기"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:59
 msgid "Clear Shopping Cart"
-msgstr "쇼핑 카드 제거"
+msgstr "장바구니 지우기"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:45
 msgid "Close"
 msgstr "닫기"
 
-#: ./client/app/services/vm-details/vm-details.html:120
-msgid "Cluster"
-msgstr "클러스터"
-
 #: ./client/app/components/notifications/notification-body.html:53
 msgid "Completed:"
 msgstr "완료됨:"
 
-#: ./client/app/services/vm-details/vm-details.html:162
-msgid "Compliance"
-msgstr "컴플라이언스"
-
-#: ./client/app/services/service-details/service-details.component.js:334
+#: ./client/app/services/service-details/service-details.component.js:371
 msgid "Compute"
-msgstr "컴퓨트"
+msgstr "컴퓨팅"
 
-#: ./client/app/services/services-state.service.js:223
-#: ./client/app/services/services-state.service.js:228
-#: ./client/app/services/vm-details/vm-details.html:194
+#: ./client/app/services/services-state.service.js:248
+#: ./client/app/services/services-state.service.js:253
+#: ./client/app/services/vms/snapshots.component.js:131
 #: ./client/app/services/vms/snapshots.component.js:132
-#: ./client/app/services/vms/snapshots.component.js:133
 msgid "Configuration"
 msgstr "구성"
 
-#: ./client/app/services/services-state.service.js:251
+#: ./client/app/services/services-state.service.js:276
 msgid "Confirm, would you like to remove this service?"
-msgstr ""
+msgstr "확인, 이 서비스를 제거하시겠습니까?"
 
-#: ./client/app/services/services-state.service.js:165
-msgid "Confirm, would you like to retire this service?"
-msgstr ""
+#: ./client/console/webmks.js:62
+msgid "Connected"
+msgstr "연결됨"
+
+#: ./client/console/common.js:13
+msgid "Connecting"
+msgstr "연결 중"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:15
 msgid "Continue"
 msgstr "계속"
 
-#: ./client/app/services/service-explorer/service-explorer.html:114
+#: ./client/app/services/service-explorer/service-explorer.html:108
 msgid "Cost not available"
-msgstr ""
+msgstr "비용을 사용할 수 없음"
 
-#: ./client/app/services/service-details/service-details.html:290
+#: ./client/app/services/resource-details/resource-details.component.js:321
+#: ./client/app/services/service-details/service-details.html:285
 msgid "Create"
-msgstr "생성"
+msgstr "작성"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:5
-#: ./client/app/services/vms/snapshots.component.js:116
+#: ./client/app/services/vms/snapshots.component.js:115
 msgid "Create Snapshot"
-msgstr "스냅샷 생성"
+msgstr "스냅샷 작성"
 
-#: ./client/app/services/vms/snapshots.component.js:118
+#: ./client/app/services/vms/snapshots.component.js:117
 msgid "Create snapshot"
-msgstr "스냅샷 생성"
+msgstr "스냅샷 작성"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:334
-#: ./client/app/services/service-explorer/service-explorer.html:161
-#: ./client/app/services/service-explorer/service-explorer.html:85
-#: ./client/app/services/vms/snapshots.component.js:105
+#: ./client/app/services/resource-details/resource-details.component.js:323
+msgid "Create snapshots"
+msgstr "스냅샷 작성"
+
+#: ./client/app/services/service-explorer/service-explorer.component.js:393
+#: ./client/app/services/service-explorer/service-explorer.html:155
+#: ./client/app/services/service-explorer/service-explorer.html:79
+#: ./client/app/services/vms/snapshots.component.js:104
 msgid "Created"
-msgstr "생성됨"
+msgstr "작성됨"
 
-#: ./client/app/services/service-details/service-details.html:106
+#: ./client/app/services/service-details/service-details.html:101
 msgid "Created On"
-msgstr ""
+msgstr "작성일"
 
-#: ./client/app/services/vms/snapshots.html:90
+#: ./client/app/services/vms/snapshots.html:89
 msgid "Created:"
-msgstr "생성됨:"
+msgstr "작성 날짜:"
 
-#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:39
+#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:77
 msgid "Creating snapshot."
-msgstr "스냅샷 생성중."
+msgstr "스냅샷을 작성하는 중입니다."
 
 #: ./client/app/services/service-details/service-details-ansible.html:88
 msgid "Credentials"
-msgstr ""
+msgstr "인증 정보"
 
-#: ./client/app/layouts/application.html:94
+#: ./client/app/layouts/application.html:100
 msgid "Current Group"
 msgstr "현재 그룹"
 
-#: ./client/app/states/dashboard/dashboard.html:48
+#: ./client/app/components/dashboard/dashboard.html:66
 msgid "Current Services"
 msgstr "현재 서비스"
 
-#: ./client/app/layouts/application.html:80
+#: ./client/app/layouts/application.html:86
 msgid "Currently Selected Group"
 msgstr "현재 선택된 그룹"
 
+#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:15
+msgid "Custom Button Details"
+msgstr "사용자 정의 단추 세부사항"
+
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:10
 msgid "Custom Button:"
-msgstr "커스텀 버튼:"
+msgstr "사용자 정의 단추:"
 
-#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:51
+#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:34
 msgid "Custom button action"
-msgstr "커스텀 버튼 동작"
+msgstr "사용자 정의 단추 조치"
 
-#: ./client/app/core/navigation.config.js:6
-#: ./client/app/states/dashboard/dashboard.state.js:16
+#: ./client/app/core/navigation.service.js:33
+#: ./client/app/states/dashboard/dashboard.state.js:12
 msgid "Dashboard"
 msgstr "대시보드"
 
-#: ./client/app/services/vms/snapshots.component.js:73
+#: ./client/app/services/vms/snapshots.component.js:76
 #: ./client/app/services/vms/snapshots.html:37
 msgid "Delete"
 msgstr "삭제"
 
-#: ./client/app/services/vms/snapshots.component.js:123
+#: ./client/app/services/vms/snapshots.component.js:122
 msgid "Delete All Snapshots"
-msgstr "모든 스냅샷 삭제"
+msgstr "스냅샷 모두 삭제"
 
-#: ./client/app/services/vms/snapshots.component.js:226
+#: ./client/app/services/vms/snapshots.component.js:233
 msgid "Delete All Snapshots on VM %s"
-msgstr "VM %s 에있는 모든 스냅샷 삭제"
+msgstr "VM %s의 스냅샷 모두 삭제"
 
-#: ./client/app/services/vms/snapshots.component.js:222
-#: ./client/app/services/vms/snapshots.component.js:75
+#: ./client/app/services/vms/snapshots.component.js:229
+#: ./client/app/services/vms/snapshots.component.js:78
 msgid "Delete Snapshot"
 msgstr "스냅샷 삭제"
 
-#: ./client/app/services/vms/snapshots.component.js:125
+#: ./client/app/services/vms/snapshots.component.js:124
 msgid "Delete all snapshots"
-msgstr "모든 스냅샷 삭제"
+msgstr "스냅샷 모두 삭제"
 
-#: ./client/app/requests/process-order-modal/process-order-modal.component.js:37
+#: ./client/app/orders/process-order-modal/process-order-modal.component.js:39
 msgid "Deleting order."
-msgstr ""
+msgstr "순서 삭제 중입니다."
 
-#: ./client/app/services/vms/snapshots.component.js:146
+#: ./client/app/services/vms/snapshots.component.js:145
 msgid "Deleting snapshot."
-msgstr ""
+msgstr "스냅샷을 삭제하는 중입니다."
 
-#: ./client/app/states/dashboard/dashboard.html:128
+#: ./client/app/components/dashboard/dashboard.html:150
 msgid "Denied Requests"
-msgstr ""
-
-#: ./client/app/services/vm-details/vm-details.html:120
-msgid "Deployment Role"
-msgstr ""
+msgstr "거부된 요청"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:57
 #: ./client/app/services/edit-service-modal/edit-service-modal.html:12
-#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:15
-#: ./client/app/services/service-details/service-details.html:66
-#: ./client/app/services/service-explorer/service-explorer.component.js:323
-#: ./client/app/services/vms/snapshots.component.js:93
+#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:32
+#: ./client/app/services/service-details/service-details.html:61
+#: ./client/app/services/service-explorer/service-explorer.component.js:344
+#: ./client/app/services/vms/snapshots.component.js:90
 #: ./client/app/shared/ss-card/ss-card.html:8
 msgid "Description"
 msgstr "설명"
 
 #: ./client/app/services/service-details/service-details-ansible.html:51
 msgid "Details"
-msgstr "세부정보"
+msgstr "세부사항"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:7
 msgid "Discard Changes"
-msgstr "변경 취소"
+msgstr "변경사항 버리기"
 
-#: ./client/app/layouts/application.html:49
+#: ./client/app/services/resource-details/resource-details.html:159
+msgid "Disk Usage"
+msgstr "디스크 사용"
+
+#: ./client/app/layouts/application.html:55
 msgid "Documentation"
 msgstr "문서"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:11
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:23
 msgid "Don't Change"
-msgstr "변경하지 못합니다."
+msgstr "변경하지 않음"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:29
-#: ./client/app/requests/order-explorer/order-explorer.component.js:118
 msgid "Duplicate"
-msgstr "복제"
+msgstr "중복"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:120
-msgid "Duplicate Order"
-msgstr ""
+#: ./client/app/states/catalogs/details/details.state.js:23
+msgid "Duplicate Service"
+msgstr "서비스 복제"
 
-#: ./client/app/states/catalogs/details/details.html:37
+#: ./client/app/states/catalogs/details/details.html:50
 msgid "Duplicate Shopping Cart Item"
-msgstr "쇼핑 카드 아이템 복제"
+msgstr "중복된 장바구니 항목"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:216
-#: ./client/app/services/services-state.service.js:234
-#: ./client/app/services/services-state.service.js:236
+#: ./client/app/services/service-explorer/service-explorer.component.js:228
+#: ./client/app/services/services-state.service.js:259
+#: ./client/app/services/services-state.service.js:261
 msgid "Edit"
 msgstr "편집"
 
 #: ./client/app/services/edit-service-modal/edit-service-modal.html:5
-#: ./client/app/services/service-explorer/service-explorer.component.js:218
+#: ./client/app/services/service-explorer/service-explorer.component.js:230
 msgid "Edit Service"
 msgstr "서비스 편집"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:5
-#: ./client/app/services/service-explorer/service-explorer.component.js:224
-#: ./client/app/services/service-explorer/service-explorer.component.js:226
-#: ./client/app/services/services-state.service.js:204
-#: ./client/app/services/services-state.service.js:206
+#: ./client/app/services/service-explorer/service-explorer.component.js:236
+#: ./client/app/services/service-explorer/service-explorer.component.js:238
+#: ./client/app/services/services-state.service.js:229
+#: ./client/app/services/services-state.service.js:231
 msgid "Edit Tags"
 msgstr "태그 편집"
 
 #: ./client/app/services/service-details/service-details-ansible.html:183
 #: ./client/app/services/service-details/service-details-ansible.html:34
 msgid "Elapsed"
-msgstr ""
+msgstr "경과 시간"
 
+#: ./client/app/core/event-notifications.service.js:194
 #: ./client/app/states/error/error.state.js:17
 msgid "Error"
-msgstr "에러"
+msgstr "오류"
 
-#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:39
+#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:77
 msgid "Error creating snapshot."
-msgstr "스냅샷 생성중 에러 발생"
+msgstr "스냅샷 작성 중에 오류가 발생했습니다."
 
-#: ./client/app/requests/process-order-modal/process-order-modal.component.js:37
+#: ./client/app/orders/process-order-modal/process-order-modal.component.js:39
 msgid "Error deleting order."
-msgstr ""
+msgstr "순서 삭제 중에 오류가 발생했습니다."
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:46
 msgid "Error deleting service."
-msgstr "서비스 삭제중 에러 발생"
+msgstr "서비스 삭제 중에 오류가 발생했습니다."
 
-#: ./client/app/services/vms/snapshots.component.js:146
+#: ./client/app/services/vms/snapshots.component.js:145
 msgid "Error deleting snapshot."
-msgstr "스탭샷 삭제중 에러 발생"
+msgstr "스냅샷 삭제 중에 오류가 발생했습니다."
 
-#: ./client/app/core/authorization.config.js:113
+#: ./client/app/core/authorization.config.js:129
 msgid "Error retrieving user info"
-msgstr "사용자 정보 검색 중 에러 발생"
+msgstr "사용자 정보 검색 중에 오류가 발생했습니다."
 
-#: ./client/app/services/vms/snapshots.component.js:236
+#: ./client/app/services/vms/snapshots.component.js:243
 msgid "Error reverting snapshot."
-msgstr "스냅샷 검색 중 에러 발생"
+msgstr "스냅샷을 되돌리는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:67
+#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:73
 msgid "Error setting ownership."
-msgstr ""
+msgstr "소유권 설정 중에 오류가 발생했습니다."
 
 #: ./client/app/catalogs/catalog-explorer.component.js:58
 msgid "Filter by Catalog Name"
-msgstr "카탈로그 이름으로 필터"
+msgstr "카탈로그 이름별 필터"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:57
-#: ./client/app/services/service-explorer/service-explorer.component.js:323
-#: ./client/app/services/vms/snapshots.component.js:93
+#: ./client/app/services/service-explorer/service-explorer.component.js:344
+#: ./client/app/services/vms/snapshots.component.js:90
 msgid "Filter by Description"
-msgstr "설명으로 필터"
+msgstr "설명별 필터"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:101
+#: ./client/app/orders/order-explorer/order-explorer.component.js:104
 msgid "Filter by ID"
-msgstr "ID로 필터"
+msgstr "ID별 필터"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:56
-#: ./client/app/requests/order-explorer/order-explorer.component.js:100
-#: ./client/app/services/service-explorer/service-explorer.component.js:322
-#: ./client/app/services/vms/snapshots.component.js:92
+#: ./client/app/orders/order-explorer/order-explorer.component.js:103
+#: ./client/app/services/service-explorer/service-explorer.component.js:343
+#: ./client/app/services/vms/snapshots.component.js:89
 msgid "Filter by Name"
-msgstr "이름으로 필터"
+msgstr "이름별 필터"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:102
+#: ./client/app/orders/order-explorer/order-explorer.component.js:105
 msgid "Filter by Order Date"
-msgstr "주문 날짜로 필터"
+msgstr "주문 날짜별 필터"
+
+#: ./client/app/services/service-explorer/service-explorer.component.js:378
+msgid "Filter by Tag Category"
+msgstr "태그 카테고리별 필터"
+
+#: ./client/app/services/service-explorer/service-explorer.component.js:383
+msgid "Filter by Tag Value"
+msgstr "태그 값별 필터"
 
 #: ./client/app/services/service-details/service-details-ansible.html:175
 #: ./client/app/services/service-details/service-details-ansible.html:27
@@ -474,1123 +495,1147 @@ msgstr "완료됨"
 #: ./client/app/shared/confirmation/confirmation.directive.js:66
 #: ./client/app/shared/confirmation/confirmation.directive.js:71
 msgid "For Sizing"
-msgstr ""
+msgstr "크기 조정을 위해"
 
-#: ./client/app/services/service-details/service-details.component.js:26
-#: ./client/app/services/service-details/service-details.component.js:27
-#: ./client/app/services/usage-graphs/usage-graphs.html:36
-#: ./client/app/services/usage-graphs/usage-graphs.html:60
-#: ./client/app/services/vm-details/vm-details.component.js:25
-#: ./client/app/services/vm-details/vm-details.component.js:26
+#: ./client/app/services/resource-details/resource-details.component.js:217
+#: ./client/app/services/resource-details/resource-details.component.js:223
 msgid "GB"
 msgstr "GB"
 
-#: ./client/app/services/usage-graphs/usage-graphs.html:35
-#: ./client/app/services/usage-graphs/usage-graphs.html:59
-msgid "GB Available"
-msgstr "GB 사용 가능함"
-
-#: ./client/app/services/service-details/service-details.html:72
+#: ./client/app/services/service-details/service-details.html:67
 msgid "GUID"
 msgstr "GUID"
+
+#: ./client/app/core/navigation/navigation-controller.js:248
+msgid "Group switching error:"
+msgstr "그룹 전환 오류:"
 
 #: ./client/app/states/help/help.html:1
 #: ./client/app/states/help/help.state.js:16
 msgid "Help"
-msgstr "도움"
+msgstr "도움말"
 
 #: ./client/app/services/service-details/service-details-ansible.html:73
 msgid "Hosts"
-msgstr "Hosts"
+msgstr "호스트"
+
+#: ./client/app/orders/request-list/requests-list.html:16
+msgid "ID"
+msgstr "ID"
 
 #: ./client/app/services/service-details/service-details-ansible.html:109
 msgid "Id"
-msgstr "Id"
+msgstr "ID"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:10
 msgid "If you do not save, any changes will be lost."
-msgstr ""
+msgstr "저장하지 않으면 변경사항이 유실됩니다."
 
-#: ./client/app/core/authentication-api.factory.js:24
-msgid "Incorrect username or password."
-msgstr ""
+#: ./client/app/core/event-notifications.service.js:194
+msgid "Info"
+msgstr "정보"
 
-#: ./client/app/states/catalogs/details/details.state.js:145
+#: ./client/app/states/catalogs/details/details.state.js:208
 msgid "Item added to shopping cart"
-msgstr ""
+msgstr "장바구니에 추가된 항목"
 
-#: ./client/app/states/catalogs/details/details.state.js:143
+#: ./client/app/states/catalogs/details/details.state.js:206
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
-msgstr ""
+msgstr "항목이 장바구니에 추가되었지만 기존 항목과 중복됩니다."
 
-#: ./client/app/states/login/login.html:33
+#: ./client/app/states/login/login.html:28
 msgid "Language"
 msgstr "언어"
 
-#: ./client/app/services/service-details/service-details.html:259
+#: ./client/app/services/resource-details/resource-details.html:104
+msgid "Last 7 days"
+msgstr "최근 7일"
+
+#: ./client/app/services/service-details/service-details.html:252
 msgid "Last Boot"
 msgstr "마지막 부팅"
 
-#: ./client/app/services/service-details/service-details.html:229
+#: ./client/app/services/service-details/service-details.html:222
 msgid "Latest"
 msgstr "최근"
 
-#: ./client/app/services/service-details/service-details.html:261
+#: ./client/app/services/service-details/service-details.html:254
 msgid "Latest Boot Time"
-msgstr "최근 부팅 시간"
+msgstr "마지막 부팅 시간"
 
-#: ./client/app/services/service-details/service-details.html:232
+#: ./client/app/services/service-details/service-details.html:225
 msgid "Latest Snapshot Name"
-msgstr "최근 스냅샷 이름"
+msgstr "최신 스냅샷 이름"
 
-#: ./client/app/services/service-details/service-details.html:240
+#: ./client/app/services/service-details/service-details.html:233
 msgid "Latest Snapshot Timestamp"
-msgstr "최근 스냅샷 타임 스탬프"
+msgstr "최신 스냅샷 시간소인"
 
-#: ./client/app/services/service-details/service-details.html:249
+#: ./client/app/services/service-details/service-details.html:242
 msgid "Latest Snapshot: Unknown"
-msgstr "최근 스냡샷: 알 수 없음"
+msgstr "최신 스냅샷: 알 수 없음"
 
 #: ./client/app/services/service-details/service-details-ansible.html:41
 msgid "Launched By"
-msgstr ""
+msgstr "실행자"
 
-#: ./client/app/services/services-state.service.js:141
-#: ./client/app/services/services-state.service.js:146
-#: ./client/app/services/vm-details/vm-details.html:92
+#: ./client/app/services/services-state.service.js:173
+#: ./client/app/services/services-state.service.js:178
+#: ./client/app/services/vms.service.js:273
+#: ./client/app/services/vms.service.js:278
 msgid "Lifecycle"
-msgstr ""
+msgstr "라이프사이클"
 
 #: ./client/app/services/service-details/service-details-ansible-modal.html:5
 msgid "Live Ansible Play"
-msgstr ""
+msgstr "라이브 Ansible 플레이"
 
-#: ./client/app/states/login/login.html:39
+#: ./client/app/components/dashboard/dashboard.html:11
+#: ./client/app/components/dashboard/dashboard.html:30
+#: ./client/app/shared/loading.component.js:8
+msgid "Loading"
+msgstr "로드 중"
+
+#: ./client/app/states/login/login.html:34
 msgid "Log In"
 msgstr "로그인"
 
-#: ./client/app/core/navigation/navigation-controller.js:119
+#: ./client/app/core/navigation/navigation-controller.js:155
 msgid "Log into the full administrative UI"
-msgstr ""
+msgstr "전체 관리 UI 로그인"
 
 #: ./client/app/states/login/login.state.js:16
 msgid "Login"
 msgstr "로그인"
 
-#: ./client/app/layouts/application.html:104
+#: ./client/app/states/login/login.state.js:86
+msgid "Login failed, possibly invalid credentials."
+msgstr "로그인 실패, 인증 정보가 올바르지 않은 것 같습니다."
+
+#: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
 msgid "Logout"
 msgstr "로그아웃"
 
-#: ./client/app/services/service-details/service-details.component.js:28
-#: ./client/app/services/usage-graphs/usage-graphs.html:12
-#: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:9
-#: ./client/app/services/vm-details/vm-details.component.js:27
+#: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:10
 msgid "MHz"
 msgstr "MHz"
 
-#: ./client/app/services/usage-graphs/usage-graphs.html:11
-msgid "MHz Available"
-msgstr "MHz 사용 가능함"
-
 #: ./client/app/states/error/error.html:3
 msgid "ManageIQ Self Service"
-msgstr ""
+msgstr "ManageIQ 자체 서비스"
 
 #: ./client/app/components/notifications/notification-footer.html:6
 msgid "Mark All Read"
-msgstr ""
+msgstr "모든 문서를 읽은 것으로 표시"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:12
-#: ./client/app/services/usage-graphs/usage-graphs.html:30
+#: ./client/app/services/usage-graphs/usage-graphs.html:23
 msgid "Memory"
 msgstr "메모리"
 
-#: ./client/app/states/dashboard/dashboard.html:78
+#: ./client/app/components/dashboard/dashboard.html:100
 msgid "Monthly Charges - This Month To Date"
-msgstr ""
+msgstr "월별 비용 - 이번 달 합계"
 
-#: ./client/app/services/service-details/service-details.html:95
+#: ./client/app/services/service-details/service-details.html:90
 msgid "Monthly Cost"
-msgstr ""
+msgstr "월별 비용"
 
-#: ./client/app/core/navigation.config.js:22
+#: ./client/app/core/navigation.service.js:55
+#: ./client/app/states/catalogs/details/details.state.js:59
+#: ./client/app/states/orders/details/details.html:5
+#: ./client/app/states/orders/explorer/explorer.state.js:11
 msgid "My Orders"
-msgstr ""
+msgstr "내 주문"
 
-#: ./client/app/core/navigation.config.js:13
+#: ./client/app/core/navigation.service.js:39
+#: ./client/app/services/resource-details/resource-details.html:5
 #: ./client/app/services/service-details/service-details.html:5
 #: ./client/app/services/service-explorer/service-explorer.html:4
-#: ./client/app/services/vm-details/vm-details.html:5
 #: ./client/app/services/vms/snapshots.html:5
 #: ./client/app/states/services/reconfigure/reconfigure.html:3
 msgid "My Services"
-msgstr ""
+msgstr "내 서비스"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:56
-#: ./client/app/catalogs/catalog-explorer.component.js:75
+#: ./client/app/catalogs/catalog-explorer.component.js:77
 #: ./client/app/catalogs/catalogs-state.service.js:7
-#: ./client/app/requests/order-explorer/order-explorer.component.js:100
-#: ./client/app/requests/order-explorer/order-explorer.component.js:108
-#: ./client/app/requests/orders-state.service.spec.js:27
+#: ./client/app/orders/order-explorer/order-explorer.component.js:103
+#: ./client/app/orders/order-explorer/order-explorer.component.js:111
+#: ./client/app/orders/orders-state.service.spec.js:29
 #: ./client/app/services/edit-service-modal/edit-service-modal.html:9
+#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:31
 #: ./client/app/services/service-details/service-details-ansible.html:101
 #: ./client/app/services/service-details/service-details-ansible.html:151
-#: ./client/app/services/service-details/service-details.html:60
-#: ./client/app/services/service-explorer/service-explorer.component.js:322
-#: ./client/app/services/service-explorer/service-explorer.component.js:335
+#: ./client/app/services/service-details/service-details.html:55
+#: ./client/app/services/service-explorer/service-explorer.component.js:343
+#: ./client/app/services/service-explorer/service-explorer.component.js:394
 #: ./client/app/services/services-state.service.js:8
 #: ./client/app/services/vms.service.js:8
-#: ./client/app/services/vms/snapshots.component.js:104
-#: ./client/app/services/vms/snapshots.component.js:92
+#: ./client/app/services/vms/snapshots.component.js:103
+#: ./client/app/services/vms/snapshots.component.js:89
 msgid "Name"
 msgstr "이름"
 
-#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:9
-msgid "Name *"
-msgstr "이름 *"
-
-#: ./client/app/services/vm-details/vm-details.component.js:39
+#: ./client/app/services/resource-details/resource-details.component.js:47
 msgid "Never"
-msgstr ""
+msgstr "수행 안함"
 
-#: ./client/app/services/vm-details/vm-details.component.js:113
-msgid "Never Verified"
-msgstr ""
-
-#: ./client/app/components/notifications/heading.html:2
 #: ./client/app/components/notifications/subheading.html:1
 msgid "New"
-msgstr ""
-
-#: ./client/app/shared/dialog-content/dialog-content.html:3
-msgid "No Provisioning Dialog Available."
-msgstr ""
+msgstr "새로 작성"
 
 #: ./client/app/services/vms/snapshots.html:9
 msgid "No Service"
-msgstr ""
+msgstr "서비스 없음"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:37
 msgid "No Warning"
-msgstr ""
+msgstr "경고 없음"
 
 #: ./client/app/services/service-details/service-details-ansible.html:92
 msgid "No credentials available."
-msgstr ""
+msgstr "사용 가능한 인증 정보가 없습니다."
 
-#: ./client/app/services/usage-graphs/usage-graphs.html:21
-#: ./client/app/services/usage-graphs/usage-graphs.html:45
-#: ./client/app/services/usage-graphs/usage-graphs.html:69
+#: ./client/app/services/resource-details/resource-details.component.js:58
+#: ./client/app/services/resource-details/resource-details.component.js:61
+#: ./client/app/services/resource-details/resource-details.component.js:89
+#: ./client/app/services/service-details/service-details.component.js:35
+#: ./client/app/services/usage-graphs/usage-graphs.component.js:27
 msgid "No data available"
-msgstr ""
+msgstr "사용 가능한 데이터 없음"
 
 #: ./client/app/services/service-details/service-details-ansible.html:212
 msgid "No logs available."
-msgstr ""
+msgstr "로그를 사용할 수 없습니다."
 
 #: ./client/app/services/service-details/service-details-ansible.html:142
 msgid "No plays available."
-msgstr ""
+msgstr "플레이를 사용할 수 없습니다."
 
-#: ./client/app/services/vm-details/vm-details.component.js:40
+#: ./client/app/services/resource-details/resource-details.component.js:48
 msgid "None"
-msgstr ""
+msgstr "없음"
 
-#: ./client/app/services/vm-details/vm-details.component.js:42
+#: ./client/app/services/resource-details/resource-details.component.js:50
 msgid "Not Available"
-msgstr ""
+msgstr "사용할 수 없음"
+
+#: ./client/app/components/dashboard/dashboard.component.js:82
+msgid "Not Retired"
+msgstr "폐기되지 않음"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:10
 msgid "Nothing Selected"
-msgstr ""
+msgstr "아무것도 선택되지 않음"
 
-#: ./client/app/layouts/application.html:10
+#: ./client/app/layouts/application.html:13
 msgid "Notifications"
-msgstr ""
+msgstr "알림"
+
+#: ./client/app/components/dashboard/dashboard.component.js:66
+msgid "Now"
+msgstr "지금"
 
 #: ./client/app/shared/action-button-group/action-button-group.html:20
 #: ./client/app/shared/action-button-group/action-button-group.html:26
 msgid "OK"
-msgstr ""
+msgstr "확인"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:68
 msgid "Order"
-msgstr ""
+msgstr "주문"
 
-#: ./client/app/requests/order-explorer/order-explorer.html:33
+#: ./client/app/orders/order-explorer/order-explorer.html:33
+#: ./client/app/states/orders/details/details.html:24
+#: ./client/app/states/orders/details/details.html:7
 msgid "Order #"
-msgstr ""
+msgstr "주문 번호"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:102
-#: ./client/app/requests/order-explorer/order-explorer.component.js:110
-#: ./client/app/requests/orders-state.service.js:12
+#: ./client/app/orders/order-explorer/order-explorer.component.js:105
+#: ./client/app/orders/order-explorer/order-explorer.component.js:113
+#: ./client/app/orders/orders-state.service.js:12
 msgid "Order Date"
-msgstr ""
+msgstr "주문 날짜"
 
 #: ./client/app/states/orders/details/details.state.js:15
 msgid "Order Details"
-msgstr ""
+msgstr "주문 세부사항"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:101
-#: ./client/app/requests/order-explorer/order-explorer.component.js:109
+#: ./client/app/orders/order-explorer/order-explorer.component.js:104
+#: ./client/app/orders/order-explorer/order-explorer.component.js:112
 msgid "Order ID"
-msgstr ""
+msgstr "주문 ID"
 
-#: ./client/app/requests/order-explorer/order-explorer.html:47
+#: ./client/app/orders/order-explorer/order-explorer.html:48
 msgid "Ordered"
-msgstr ""
+msgstr "주문됨"
 
-#: ./client/app/requests/order-explorer/order-explorer.html:4
-#: ./client/app/states/orders/details/details.html:5
-#: ./client/app/states/orders/explorer/explorer.state.js:11
+#: ./client/app/orders/order-explorer/order-explorer.html:4
 msgid "Orders"
-msgstr ""
+msgstr "주문 수"
 
-#: ./client/app/services/service-details/service-details.html:89
+#: ./client/app/services/service-details/service-details.html:84
 msgid "Owner"
-msgstr ""
+msgstr "소유자"
 
-#: ./client/app/services/service-details/service-details.html:392
+#: ./client/app/services/service-details/service-details.html:418
 msgid "Parent Catalog Item"
-msgstr ""
+msgstr "상위 카탈로그 항목"
 
-#: ./client/app/services/service-details/service-details.html:383
+#: ./client/app/services/service-details/service-details.html:409
 msgid "Parent Service"
-msgstr ""
+msgstr "상위 서비스"
 
-#: ./client/app/states/login/login.html:25
+#: ./client/app/states/login/login.html:22
 msgid "Password"
-msgstr ""
+msgstr "비밀번호"
 
-#: ./client/app/states/dashboard/dashboard.html:102
+#: ./client/app/components/dashboard/dashboard.html:124
 msgid "Pending Requests"
-msgstr ""
+msgstr "보류 중인 요청"
 
 #: ./client/app/services/service-details/service-details-ansible.html:203
 msgid "Play In Progress"
-msgstr ""
+msgstr "플레이 진행 중"
 
 #: ./client/app/services/service-details/service-details-ansible.html:53
 msgid "Playbook"
-msgstr ""
+msgstr "플레이북"
 
-#: ./client/app/services/service-explorer/service-explorer.html:73
+#: ./client/app/services/service-explorer/service-explorer.html:67
 msgid "Playbook: [[playbook]]"
-msgstr ""
+msgstr "플레이북: [[playbook]]"
 
 #: ./client/app/services/service-details/service-details-ansible.html:138
 msgid "Plays"
-msgstr ""
+msgstr "플레이"
 
-#: ./client/app/services/vms/snapshots.component.js:227
+#: ./client/app/services/vms/snapshots.component.js:234
 msgid "Please confirm, this action will delete all snapshots of vm %s"
-msgstr ""
+msgstr "확인하십시오. 이 조치는 vm %s의 모든 스냅샷을 삭제합니다."
 
-#: ./client/app/services/vms/snapshots.component.js:223
+#: ./client/app/services/vms/snapshots.component.js:230
 msgid "Please confirm, this action will delete snapshot %s"
-msgstr ""
+msgstr "확인하십시오. 이 조치는 %s 스냅샷을 삭제합니다."
 
-#: ./client/app/services/services-state.service.js:197
-#: ./client/app/services/services-state.service.js:200
+#: ./client/app/services/services-state.service.js:222
+#: ./client/app/services/services-state.service.js:225
 msgid "Policy"
-msgstr ""
+msgstr "정책"
 
-#: ./client/app/services/vm-details/vm-details.component.js:163
+#: ./client/app/services/resource-details/resource-details.component.js:384
 msgid "Power"
-msgstr ""
+msgstr "전원"
 
-#: ./client/app/services/vm-details/vm-details.html:170
-msgid "Power Management"
-msgstr ""
-
-#: ./client/app/services/service-details/service-details.component.js:140
-#: ./client/app/services/service-details/service-details.component.js:145
-#: ./client/app/services/vm-details/vm-details.component.js:162
+#: ./client/app/services/resource-details/resource-details.component.js:383
+#: ./client/app/services/service-details/service-details.component.js:167
+#: ./client/app/services/service-details/service-details.component.js:172
 msgid "Power Operations"
-msgstr ""
+msgstr "전원 오퍼레이션"
+
+#: ./client/app/services/service-details/service-details.html:179
+#: ./client/app/services/service-explorer/service-explorer.component.js:454
+msgid "Power State: Off"
+msgstr "전원 상태: 꺼짐"
 
 #: ./client/app/services/service-details/service-details.html:184
-#: ./client/app/services/service-explorer/service-explorer.component.js:422
-msgid "Power State: Off"
-msgstr ""
-
-#: ./client/app/services/service-details/service-details.html:189
-#: ./client/app/services/service-explorer/service-explorer.component.js:421
+#: ./client/app/services/service-explorer/service-explorer.component.js:453
 msgid "Power State: On"
-msgstr ""
+msgstr "전원 상태: 켜짐"
 
-#: ./client/app/services/service-details/service-details.html:195
-#: ./client/app/services/service-explorer/service-explorer.component.js:423
+#: ./client/app/services/service-details/service-details.html:190
+#: ./client/app/services/service-explorer/service-explorer.component.js:455
 msgid "Power State: Unknown"
-msgstr ""
+msgstr "전원 상태: 알 수 없음"
 
-#: ./client/app/core/navigation/navigation-controller.js:101
+#: ./client/app/core/navigation/navigation-controller.js:136
 msgid "Product logo"
-msgstr ""
+msgstr "제품 로고"
 
-#: ./client/app/services/service-details/service-details.html:52
-#: ./client/app/services/vm-details/vm-details.html:54
+#: ./client/app/services/service-details/service-details.html:47
 msgid "Properties"
-msgstr ""
+msgstr "특성"
 
-#: ./client/app/services/service-details/service-details.component.js:195
+#: ./client/app/services/service-details/service-details.component.js:221
 #: ./client/app/states/services/reconfigure/reconfigure.html:8
 msgid "Reconfigure"
-msgstr ""
+msgstr "재구성"
 
-#: ./client/app/services/service-details/service-details.component.js:197
+#: ./client/app/services/service-details/service-details.component.js:223
 msgid "Reconfigure the Service"
-msgstr ""
+msgstr "서비스 재구성"
 
-#: ./client/app/states/services/reconfigure/reconfigure.state.js:125
+#: ./client/app/states/services/reconfigure/reconfigure.state.js:85
 msgid "Reconfigure this service has been cancelled"
-msgstr ""
+msgstr "이 서비스 재구성이 취소되었습니다."
 
-#: ./client/app/shared/dialog-content/dialog-content.html:151
-msgid "Refresh"
-msgstr ""
-
-#: ./client/app/services/service-details/service-details.html:377
-#: ./client/app/services/vm-details/vm-details.html:108
+#: ./client/app/services/service-details/service-details.html:400
 msgid "Relationships"
-msgstr ""
+msgstr "관계"
 
-#: ./client/app/services/service-explorer/service-explorer.html:106
+#: ./client/app/services/service-explorer/service-explorer.html:100
 msgid "Relative current cost"
-msgstr ""
+msgstr "상대적 현재 비용"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:16
 #: ./client/app/core/shopping-cart/shopping-cart.html:21
-#: ./client/app/requests/order-explorer/order-explorer.component.js:129
-#: ./client/app/services/service-explorer/service-explorer.component.js:256
-#: ./client/app/services/services-state.service.js:243
-#: ./client/app/services/services-state.service.js:245
+#: ./client/app/orders/order-explorer/order-explorer.component.js:123
+#: ./client/app/services/service-explorer/service-explorer.component.js:268
+#: ./client/app/services/services-state.service.js:268
+#: ./client/app/services/services-state.service.js:270
 msgid "Remove"
-msgstr ""
+msgstr "제거"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:19
 msgid "Remove Item"
-msgstr ""
+msgstr "항목 제거"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:131
-#: ./client/app/requests/process-order-modal/process-order-modal.html:5
+#: ./client/app/orders/order-explorer/order-explorer.component.js:125
+#: ./client/app/orders/process-order-modal/process-order-modal.html:5
 msgid "Remove Order"
-msgstr ""
+msgstr "주문 제거"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:258
-#: ./client/app/services/services-state.service.js:250
+#: ./client/app/services/service-explorer/service-explorer.component.js:270
+#: ./client/app/services/services-state.service.js:275
 msgid "Remove Service"
-msgstr ""
+msgstr "서비스 제거"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:5
 msgid "Remove Services"
-msgstr ""
+msgstr "서비스 제거"
+
+#: ./client/app/orders/order-explorer/order-explorer.html:103
+msgid "Reorder"
+msgstr "다시 주문"
 
 #: ./client/app/services/service-details/service-details-ansible.html:60
 msgid "Repo Name"
-msgstr ""
+msgstr "저장소 이름"
 
-#: ./client/app/requests/requests-state.service.js:13
-msgid "Request Date"
-msgstr ""
-
-#: ./client/app/requests/order-explorer/order-explorer.html:81
+#: ./client/app/orders/order-explorer/order-explorer.html:82
 msgid "Request ID"
-msgstr ""
+msgstr "요청 ID"
 
-#: ./client/app/requests/order-explorer/order-explorer.html:96
+#: ./client/app/orders/order-explorer/order-explorer.html:97
 msgid "Request State"
-msgstr ""
+msgstr "요청 상태"
 
-#: ./client/app/requests/order-explorer/order-explorer.html:39
+#: ./client/app/orders/request-list/requests-list.html:26
+msgid "Requested"
+msgstr "요청됨"
+
+#: ./client/app/orders/order-explorer/order-explorer.html:39
+#: ./client/app/orders/request-list/requests-list.html:21
 msgid "Requester"
-msgstr ""
+msgstr "요청자"
 
 #: ./client/app/shared/action-button-group/action-button-group.html:38
 #: ./client/app/shared/action-button-group/action-button-group.html:6
 msgid "Reset"
-msgstr ""
+msgstr "재설정"
 
-#: ./client/app/services/service-details/service-details.html:152
+#: ./client/app/states/services/resource-details/details.state.js:11
+msgid "Resource Details"
+msgstr "리소스 세부사항"
+
+#: ./client/app/services/service-details/service-details.html:147
 msgid "Resources"
-msgstr ""
+msgstr "리소스"
 
+#: ./client/app/catalogs/catalog-explorer.component.js:64
+#: ./client/app/orders/order-explorer/order-explorer.component.js:88
+#: ./client/app/services/service-explorer/service-explorer.component.js:199
+#: ./client/app/services/vms/snapshots.component.js:95
+msgid "Result"
+msgstr "결과"
+
+#: ./client/app/catalogs/catalog-explorer.component.js:65
+#: ./client/app/orders/order-explorer/order-explorer.component.js:89
 #: ./client/app/services/service-details/service-details-ansible.html:11
+#: ./client/app/services/service-explorer/service-explorer.component.js:200
+#: ./client/app/services/vms/snapshots.component.js:96
 msgid "Results"
-msgstr ""
+msgstr "결과"
 
-#: ./client/app/services/service-details/service-details.html:343
-#: ./client/app/services/service-details/service-details.html:350
-#: ./client/app/services/service-explorer/service-explorer.component.js:240
-#: ./client/app/services/services-state.service.js:159
-#: ./client/app/services/services-state.service.js:160
-#: ./client/app/services/vm-details/vm-details.component.js:196
+#: ./client/app/services/resource-details/resource-details.component.js:417
+#: ./client/app/services/service-details/service-details.html:356
+#: ./client/app/services/service-details/service-details.html:363
+#: ./client/app/services/service-explorer/service-explorer.component.js:252
+#: ./client/app/services/services-state.service.js:191
+#: ./client/app/services/services-state.service.js:192
+#: ./client/app/services/vms.service.js:283
+#: ./client/app/services/vms.service.js:284
+#: ./client/app/services/vms.service.js:290
+#: ./client/app/services/vms.service.js:292
 msgid "Retire"
-msgstr ""
+msgstr "폐기"
 
-#: ./client/app/services/service-details/service-details.html:341
+#: ./client/app/services/service-details/service-details.html:354
 msgid "Retire Resource"
-msgstr ""
+msgstr "리소스 폐기"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:242
+#: ./client/app/services/service-explorer/service-explorer.component.js:254
 msgid "Retire Service"
-msgstr ""
-
-#: ./client/app/services/services-state.service.js:166
-msgid "Retire Service Now"
-msgstr ""
+msgstr "서비스 폐기"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:6
 msgid "Retire Services"
-msgstr ""
+msgstr "서비스 폐기"
 
-#: ./client/app/services/vm-details/vm-details.component.js:198
+#: ./client/app/components/dashboard/dashboard.component.js:13
+msgid "Retire Status"
+msgstr "폐기 상태"
+
+#: ./client/app/services/resource-details/resource-details.component.js:419
 msgid "Retire the Service"
-msgstr ""
+msgstr "서비스 폐기"
 
-#: ./client/app/services/vm-details/vm-details.html:57
-#: ./client/app/states/dashboard/dashboard.state.js:184
-#: ./client/app/states/dashboard/dashboard.state.js:192
+#: ./client/app/components/dashboard/dashboard.component.js:56
 msgid "Retired"
-msgstr ""
+msgstr "폐기됨"
 
-#: ./client/app/states/dashboard/dashboard.html:63
+#: ./client/app/components/dashboard/dashboard.html:82
 msgid "Retired Services"
-msgstr ""
+msgstr "폐기된 서비스"
 
-#: ./client/app/services/service-details/service-details.html:178
+#: ./client/app/services/service-details/service-details.html:173
 msgid "Retired resource"
-msgstr ""
+msgstr "폐기된 리소스"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:13
-#: ./client/app/services/service-explorer/service-explorer.component.js:336
-#: ./client/app/states/dashboard/dashboard.state.js:180
+#: ./client/app/services/service-explorer/service-explorer.component.js:395
 msgid "Retirement Date"
-msgstr ""
+msgstr "폐기 날짜"
 
-#: ./client/app/services/service-details/service-details.html:113
+#: ./client/app/services/service-details/service-details.html:108
 msgid "Retirement State"
-msgstr ""
+msgstr "폐기 상태"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:9
 msgid "Retirement Warning"
-msgstr ""
+msgstr "폐기 경고"
 
-#: ./client/app/services/service-explorer/service-explorer.html:173
-#: ./client/app/services/service-explorer/service-explorer.html:97
+#: ./client/app/services/service-explorer/service-explorer.html:167
+#: ./client/app/services/service-explorer/service-explorer.html:91
 msgid "Retires"
-msgstr ""
+msgstr "폐기함"
 
-#: ./client/app/services/service-details/service-details.html:120
+#: ./client/app/services/service-details/service-details.html:115
 msgid "Retires On"
-msgstr ""
+msgstr "폐기일"
 
-#: ./client/app/states/dashboard/dashboard.html:33
+#: ./client/app/components/dashboard/dashboard.component.js:65
+msgid "Retires between"
+msgstr "사이에 폐기함"
+
+#: ./client/app/components/dashboard/dashboard.html:49
 msgid "Retiring Soon"
-msgstr ""
+msgstr "곧 폐기"
 
-#: ./client/app/services/vms/snapshots.component.js:66
+#: ./client/app/services/vms/snapshots.component.js:70
 msgid "Revert"
-msgstr ""
+msgstr "되돌리기"
 
-#: ./client/app/services/vms/snapshots.component.js:68
+#: ./client/app/services/vms/snapshots.component.js:72
 msgid "Revert Snapshot"
-msgstr ""
+msgstr "스냅샷 되돌리기"
 
-#: ./client/app/services/vms/snapshots.component.js:236
+#: ./client/app/services/vms/snapshots.component.js:243
 msgid "Reverting snapshot."
-msgstr ""
+msgstr "스냅샷을 되돌리는 중입니다."
 
-#: ./client/app/core/event-notifications.service.js:42
+#: ./client/app/core/event-notifications.service.js:44
 msgid "Review the notification tray for results of this batch operation"
-msgstr ""
+msgstr "이 일괄처리 오퍼레이션의 결과에 대해 알림 트레이 검토"
+
+#: ./client/app/core/navigation/navigation-controller.js:141
+msgid "SUI Version:"
+msgstr "SUI 버전:"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:16
-#: ./client/app/shared/action-button-group/action-button-group.html:13
+#: ./client/app/shared/action-button-group/action-button-group.component.js:30
 msgid "Save"
-msgstr ""
+msgstr "저장"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:6
 msgid "Save Changes"
-msgstr ""
+msgstr "변경사항 저장"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:5
 msgid "Schedule Service Retirement"
-msgstr ""
+msgstr "서비스 폐기 스케줄 지정"
 
-#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:75
+#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:72
 msgid "Scheduling retirement."
-msgstr ""
+msgstr "폐기 스케줄을 지정하는 중입니다."
 
-#: ./client/app/services/vm-details/vm-details.html:183
-msgid "Security"
-msgstr ""
+#: ./client/app/shared/pagination/pagination.html:5
+msgid "Select All"
+msgstr "모두 선택"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:20
 msgid "Select a Group"
-msgstr ""
+msgstr "그룹 선택"
 
 #: ./client/app/shared/tagging/tagging.component.js:20
 msgid "Select a value to assign"
-msgstr ""
+msgstr "지정할 값 선택"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
-msgstr ""
+msgstr "소유자 선택"
 
-#: ./client/app/core/navigation/navigation-controller.js:106
+#: ./client/console/common.js:14
+msgid "Send CTRL+ALT+DEL"
+msgstr "CTRL+ALT+DEL 전송"
+
+#: ./client/app/core/navigation/navigation-controller.js:142
 msgid "Server Name:"
-msgstr ""
+msgstr "서버 이름:"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:7
 msgid "Service"
-msgstr ""
+msgstr "서비스"
 
 #: ./client/app/catalogs/catalog-explorer.html:4
-#: ./client/app/core/navigation.config.js:31
+#: ./client/app/core/navigation.service.js:72
 msgid "Service Catalog"
-msgstr ""
+msgstr "서비스 카탈로그"
 
-#: ./client/app/states/catalogs/details/details.html:5
+#: ./client/app/states/catalogs/details/details.state.js:49
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Service Catalogs"
-msgstr ""
+msgstr "서비스 카탈로그"
 
-#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:16
-msgid "Service Custom Button Details"
-msgstr ""
-
-#: ./client/app/services/service-details/service-details.component.js:33
+#: ./client/app/services/service-details/service-details.component.js:30
 #: ./client/app/states/services/details/details.state.js:12
-#: ./client/app/states/services/reconfigure/reconfigure.state.js:17
-#: ./client/app/states/services/reconfigure/reconfigure.state.js:39
+#: ./client/app/states/services/reconfigure/reconfigure.state.js:16
+#: ./client/app/states/services/reconfigure/reconfigure.state.js:25
 msgid "Service Details"
-msgstr ""
+msgstr "서비스 세부사항"
 
-#: ./client/app/services/service-details/service-details.html:82
+#: ./client/app/services/service-details/service-details.html:77
 msgid "Service Id"
-msgstr ""
+msgstr "서비스 ID"
 
-#: ./client/app/states/catalogs/details/details.state.js:15
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:43
+msgid "Service Retire - Request Created"
+msgstr "서비스 폐기 - 요청이 작성됨"
+
+#: ./client/app/states/catalogs/details/details.state.js:16
 msgid "Service Template Details"
-msgstr ""
+msgstr "서비스 템플리트 세부사항"
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:46
 msgid "Service deleting."
-msgstr ""
+msgstr "서비스를 삭제하는 중입니다."
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:32
 msgid "Services"
-msgstr ""
+msgstr "서비스"
 
 #: ./client/app/states/services/explorer/explorer.state.js:12
 msgid "Services Explorer"
-msgstr ""
+msgstr "서비스 탐색기"
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:41
-msgid "Services Retired"
-msgstr ""
-
-#: ./client/app/services/service-explorer/service-explorer.component.js:232
-#: ./client/app/services/service-explorer/service-explorer.component.js:234
-#: ./client/app/services/services-state.service.js:259
-#: ./client/app/services/services-state.service.js:261
+#: ./client/app/services/service-explorer/service-explorer.component.js:244
+#: ./client/app/services/service-explorer/service-explorer.component.js:246
+#: ./client/app/services/services-state.service.js:284
+#: ./client/app/services/services-state.service.js:286
 msgid "Set Ownership"
-msgstr ""
+msgstr "소유권 설정"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:248
-#: ./client/app/services/services-state.service.js:153
+#: ./client/app/services/service-explorer/service-explorer.component.js:260
+#: ./client/app/services/services-state.service.js:185
 msgid "Set Retirement"
-msgstr ""
+msgstr "폐기 설정"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:250
-#: ./client/app/services/services-state.service.js:151
+#: ./client/app/services/service-explorer/service-explorer.component.js:262
+#: ./client/app/services/services-state.service.js:183
 msgid "Set Retirement Dates"
-msgstr ""
+msgstr "폐기 날짜 설정"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:5
 msgid "Set Service Ownership"
-msgstr ""
+msgstr "서비스 소유권 설정"
 
-#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:67
+#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:73
 msgid "Setting ownership."
-msgstr ""
+msgstr "소유권을 설정하는 중입니다."
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:5
 msgid "Shopping Cart"
-msgstr ""
+msgstr "장바구니"
 
-#: ./client/app/layouts/application.html:25
+#: ./client/app/layouts/application.html:31
 msgid "Shopping cart"
-msgstr ""
+msgstr "장바구니"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:37
 msgid "Shopping cart is empty."
-msgstr ""
+msgstr "장바구니가 비어 있습니다."
 
 #: ./client/app/core/shopping-cart/shopping-cart.component.js:41
 msgid "Shopping cart successfully ordered"
-msgstr ""
+msgstr "장바구니가 정상적으로 주문되었습니다."
 
-#: ./client/app/services/vm-details/vm-details.html:154
-msgid "Show parent and child VMs"
-msgstr ""
+#: ./client/app/services/resource-details/resource-details.html:121
+msgid "Smart State Analysis"
+msgstr "스마트 상태 분석"
 
+#: ./client/app/services/resource-details/resource-details.component.js:305
+#: ./client/app/services/resource-details/resource-details.component.js:306
+#: ./client/app/services/service-details/service-details.html:276
 #: ./client/app/services/vms/snapshots.component.js:23
 #: ./client/app/services/vms/snapshots.html:14
 #: ./client/app/services/vms/snapshots.html:42
 msgid "Snapshots"
-msgstr ""
+msgstr "스냅샷"
 
 #: ./client/app/services/service-details/service-details-ansible.html:196
 msgid "Standard Out"
-msgstr ""
+msgstr "표준 출력"
 
-#: ./client/app/services/service-details/service-details.component.js:150
-#: ./client/app/services/service-details/service-details.html:325
-#: ./client/app/services/service-explorer/service-explorer.component.js:269
-#: ./client/app/services/service-explorer/service-explorer.html:188
-#: ./client/app/services/vm-details/vm-details.component.js:172
+#: ./client/app/services/resource-details/resource-details.component.js:393
+#: ./client/app/services/service-details/service-details.component.js:176
+#: ./client/app/services/service-details/service-details.html:338
+#: ./client/app/services/service-explorer/service-explorer.component.js:281
+#: ./client/app/services/service-explorer/service-explorer.html:184
 msgid "Start"
-msgstr ""
+msgstr "시작"
 
-#: ./client/app/services/service-details/service-details.component.js:152
-#: ./client/app/services/vm-details/vm-details.component.js:174
+#: ./client/app/services/resource-details/resource-details.component.js:395
+#: ./client/app/services/service-details/service-details.component.js:178
 msgid "Start the Service"
-msgstr ""
+msgstr "서비스 시작"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:271
-#: ./client/app/services/service-explorer/service-explorer.html:188
+#: ./client/app/services/service-explorer/service-explorer.component.js:283
+#: ./client/app/services/service-explorer/service-explorer.html:184
 msgid "Start this service"
-msgstr ""
+msgstr "이 서비스 시작"
 
 #: ./client/app/services/service-details/service-details-ansible.html:167
 #: ./client/app/services/service-details/service-details-ansible.html:20
 msgid "Started"
-msgstr ""
+msgstr "시작됨"
 
 #: ./client/app/components/notifications/notification-body.html:41
 msgid "Started:"
-msgstr ""
+msgstr "시작됨:"
 
 #: ./client/app/services/service-details/service-details-ansible.html:13
 #: ./client/app/services/service-details/service-details-ansible.html:159
 msgid "Status"
-msgstr ""
+msgstr "상태"
 
-#: ./client/app/services/service-details/service-details.component.js:157
-#: ./client/app/services/service-details/service-details.html:330
-#: ./client/app/services/service-explorer/service-explorer.component.js:277
-#: ./client/app/services/service-explorer/service-explorer.html:191
-#: ./client/app/services/vm-details/vm-details.component.js:180
+#: ./client/app/services/resource-details/resource-details.component.js:401
+#: ./client/app/services/service-details/service-details.component.js:183
+#: ./client/app/services/service-details/service-details.html:343
+#: ./client/app/services/service-explorer/service-explorer.component.js:289
+#: ./client/app/services/service-explorer/service-explorer.html:189
 msgid "Stop"
-msgstr ""
+msgstr "중지"
 
-#: ./client/app/services/service-details/service-details.component.js:159
-#: ./client/app/services/vm-details/vm-details.component.js:182
+#: ./client/app/services/resource-details/resource-details.component.js:403
+#: ./client/app/services/service-details/service-details.component.js:185
 msgid "Stop the Service"
-msgstr ""
+msgstr "서비스 중지"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:279
-#: ./client/app/services/service-explorer/service-explorer.html:191
+#: ./client/app/services/service-explorer/service-explorer.component.js:291
+#: ./client/app/services/service-explorer/service-explorer.html:189
 msgid "Stop this service"
-msgstr ""
+msgstr "이 서비스 중지"
 
-#: ./client/app/services/usage-graphs/usage-graphs.html:54
+#: ./client/app/services/usage-graphs/usage-graphs.html:39
 msgid "Storage"
-msgstr ""
+msgstr "스토리지"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:19
 #: ./client/app/states/services/reconfigure/reconfigure.html:23
 msgid "Submit Request"
-msgstr ""
+msgstr "요청 제출"
 
-#: ./client/app/services/service-details/service-details.component.js:164
-#: ./client/app/services/service-details/service-details.html:335
-#: ./client/app/services/service-explorer/service-explorer.component.js:285
+#: ./client/app/core/event-notifications.service.js:194
+msgid "Success"
+msgstr "성공"
+
+#: ./client/app/services/resource-details/resource-details.component.js:409
+#: ./client/app/services/service-details/service-details.component.js:190
+#: ./client/app/services/service-details/service-details.html:348
+#: ./client/app/services/service-explorer/service-explorer.component.js:297
 #: ./client/app/services/service-explorer/service-explorer.html:194
-#: ./client/app/services/vm-details/vm-details.component.js:188
 msgid "Suspend"
-msgstr ""
+msgstr "일시중단"
 
-#: ./client/app/services/service-details/service-details.component.js:166
-#: ./client/app/services/vm-details/vm-details.component.js:190
+#: ./client/app/services/resource-details/resource-details.component.js:411
+#: ./client/app/services/service-details/service-details.component.js:192
 msgid "Suspend the Service"
-msgstr ""
+msgstr "서비스 일시중단"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:287
+#: ./client/app/services/service-explorer/service-explorer.component.js:299
 msgid "Suspend this service"
-msgstr ""
+msgstr "이 서비스 일시중단"
 
-#: ./client/app/core/language-switcher/language-switcher.html:2
+#: ./client/app/shared/language-switcher/language-switcher.html:3
 msgid "Switch Language:"
-msgstr ""
+msgstr "언어 전환:"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.service.js:57
 msgid "Tagging successful."
-msgstr ""
+msgstr "태그 지정 성공"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:11
-#: ./client/app/services/service-details/service-details.html:133
+#: ./client/app/services/resource-details/resource-details.html:136
+#: ./client/app/services/service-details/service-details.html:128
+#: ./client/app/services/service-explorer/service-explorer.component.js:377
 msgid "Tags"
-msgstr ""
+msgstr "태그"
 
-#: ./client/app/catalogs/catalog-explorer.component.js:76
+#: ./client/app/catalogs/catalog-explorer.component.js:78
 msgid "Tenant"
-msgstr ""
+msgstr "테넌트"
 
-#: ./client/app/services/vm-details/vm-details.component.js:59
-msgid "The contents of this page is a function of the current users's group."
-msgstr ""
+#: ./client/console/webmks.js:76
+msgid "The appliance has no access to the assets required to run the WebMKS console. For more info please see the documentation."
+msgstr "WebMKS 콘솔을 실행하는 데 필요한 자산에 대한 액세스 권한이 어플라이언스에 없습니다. 자세한 정보는 문서를 참조하십시오."
 
-#: ./client/app/states/dashboard/dashboard.html:53
+#: ./client/app/orders/request-list/requests-list.html:32
+#: ./client/app/orders/request-list/requests-list.html:35
+#: ./client/app/orders/request-list/requests-list.html:38
+msgid "The current approval status of the request"
+msgstr "요청의 현재 승인 상태"
+
+#: ./client/app/components/dashboard/dashboard.html:71
 msgid "The number of active services"
-msgstr ""
+msgstr "활성 서비스 수"
 
-#: ./client/app/states/dashboard/dashboard.html:38
+#: ./client/app/components/dashboard/dashboard.html:55
 msgid "The number of services retiring within the next 30 days"
-msgstr ""
+msgstr "이후 30일 이내에 폐기되는 서비스의 수"
 
-#: ./client/app/states/dashboard/dashboard.html:68
-msgid ""
-"The number of services which have hit their retirement period or been "
-"retired"
-msgstr ""
+#: ./client/app/components/dashboard/dashboard.html:88
+msgid "The number of services which have hit their retirement period or been retired"
+msgstr "폐기 기간이거나 폐기된 서비스의 수"
 
 #: ./client/app/states/404/404.html:6
-msgid ""
-"The page you are looking for might have been removed, had its name changed, "
-"or is temporarily unavailable."
-msgstr ""
+msgid "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+msgstr "찾고 있는 페이지가 제거되었거나, 이름이 변경되었거나, 일시적으로 사용할 수 없습니다."
 
 #: ./client/app/states/404/404.html:5
 msgid "The page you requested cannot be found."
-msgstr ""
+msgstr "요청한 페이지를 찾을 수 없습니다."
 
-#: ./client/app/core/navigation.config.js:35
+#: ./client/app/core/navigation.service.js:83
 msgid "The total number of available catalogs"
-msgstr ""
+msgstr "사용 가능한 카탈로그의 총 수"
 
-#: ./client/app/states/catalogs/details/details.html:38
-msgid ""
-"There already is an identical item in the cart. Do you want to add it "
-"anyway?"
-msgstr ""
+#: ./client/app/states/catalogs/details/details.html:51
+msgid "There already is an identical item in the cart. Do you want to add it anyway?"
+msgstr "장바구니에 동일한 항목이 이미 있습니다. 그래도 추가하시겠습니까?"
 
-#: ./client/app/services/service-details/service-details.component.js:337
+#: ./client/app/services/service-details/service-details.component.js:374
 msgid "There are no Compute Resources for this service."
-msgstr ""
+msgstr "이 서비스에 대한 컴퓨팅 리소스가 없습니다."
+
+#: ./client/app/layouts/application.html:14
+msgid "There are no notifications to display."
+msgstr "표시할 알림이 존재하지 않습니다."
 
 #: ./client/app/shared/tagging/tagging.html:15
 msgid "There are no tags for this item."
-msgstr ""
+msgstr "이 항목에 대한 태그가 없습니다."
 
 #: ./client/app/states/error/error.html:10
 msgid "There was a problem loading the page."
-msgstr ""
+msgstr "페이지를 로드하는 중에 문제가 발생했습니다."
 
-#: ./client/app/states/catalogs/details/details.state.js:152
+#: ./client/app/states/catalogs/details/details.state.js:215
 msgid "There was an error adding to shopping cart:"
-msgstr ""
+msgstr "장바구니에 추가하는 중에 오류가 발생함:"
 
-#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:43
+#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:81
 msgid "There was an error creating the snapshot."
-msgstr ""
+msgstr "스냅샷을 작성하는 중에 오류가 발생했습니다."
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:300
-msgid "There was an error duplicating %s."
-msgstr ""
-
-#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:32
+#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:33
 msgid "There was an error editing this service."
-msgstr ""
+msgstr "이 서비스를 편집하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/service-details/service-details.component.js:120
+#: ./client/app/services/service-details/service-details.component.js:98
 msgid "There was an error fetching this service."
-msgstr ""
+msgstr "이 서비스를 페치하는 중에 오류가 발생했습니다."
 
-#: ./client/app/catalogs/catalog-explorer.component.js:114
+#: ./client/app/catalogs/catalog-explorer.component.js:107
 msgid "There was an error loading catalogs."
-msgstr ""
+msgstr "카탈로그를 로드하는 중에 오류가 발생했습니다."
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:268
-#: ./client/app/requests/order-explorer/order-explorer.component.js:282
+#: ./client/app/orders/order-explorer/order-explorer.component.js:254
 msgid "There was an error loading orders."
-msgstr ""
+msgstr "주문을 로드하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/vms/snapshots.component.js:193
+#: ./client/app/services/vms/snapshots.component.js:200
 msgid "There was an error loading snapshots."
-msgstr ""
+msgstr "스냅샷을 로드하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:356
-#: ./client/app/services/service-explorer/service-explorer.component.js:431
+#: ./client/app/services/service-explorer/service-explorer.component.js:463
 msgid "There was an error loading the services."
-msgstr ""
+msgstr "서비스를 로드하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/vm-details/vm-details.component.js:131
+#: ./client/app/services/resource-details/resource-details.component.js:290
 msgid "There was an error loading the vm details."
-msgstr ""
+msgstr "vm 세부사항을 로드하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/vms/snapshots.component.js:205
+#: ./client/app/services/vms/snapshots.component.js:212
 msgid "There was an error loading the vm."
-msgstr ""
+msgstr "vm을 로드하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/consoles.service.js:51
+#: ./client/app/services/consoles.service.js:58
 msgid "There was an error opening the console."
-msgstr ""
+msgstr "콘솔을 여는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:51
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:53
 msgid "There was an error removing one or more services."
-msgstr ""
+msgstr "하나 이상의 서비스를 제거하는 중에 오류가 발생했습니다."
 
-#: ./client/app/requests/process-order-modal/process-order-modal.component.js:42
+#: ./client/app/orders/process-order-modal/process-order-modal.component.js:44
 msgid "There was an error removing order"
-msgstr ""
+msgstr "주문을 제거하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/service-details/service-details.component.js:269
+#: ./client/app/services/service-details/service-details.component.js:295
 msgid "There was an error removing this service."
-msgstr ""
+msgstr "이 서비스를 제거하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/poweroperations.service.js:224
+#: ./client/app/services/poweroperations.service.js:196
 msgid "There was an error retiring this %s."
-msgstr ""
+msgstr "이 %s을(를) 폐기하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:80
-#: ./client/app/services/service-details/service-details.component.js:328
+#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:77
 msgid "There was an error retiring this service."
-msgstr ""
+msgstr "이 서비스를 폐기하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:72
+#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:78
 msgid "There was an error saving ownership."
-msgstr ""
+msgstr "소유권을 저장하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/poweroperations.service.js:215
+#: ./client/app/services/poweroperations.service.js:187
 msgid "There was an error starting this %s."
-msgstr ""
+msgstr "이 %s을(를) 시작하는 중에 오류가 발생했습니다."
 
-#: ./client/app/services/poweroperations.service.js:218
+#: ./client/app/services/poweroperations.service.js:190
 msgid "There was an error stopping this %s."
-msgstr ""
+msgstr "이 %s을(를) 중지하는 중에 오류가 발생했습니다."
+
+#: ./client/app/services/custom-button/custom-button.component.js:86
+msgid "There was an error submitting the custom button."
+msgstr "사용자 정의 단추를 제출하는 중에 오류가 발생했습니다."
 
 #: ./client/app/core/shopping-cart/shopping-cart.component.js:46
-#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:89
-#: ./client/app/states/services/reconfigure/reconfigure.state.js:120
+#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:130
+#: ./client/app/states/services/reconfigure/reconfigure.state.js:80
 msgid "There was an error submitting this request:"
-msgstr ""
+msgstr "이 요청을 제출하는 중에 오류가 발생함:"
 
-#: ./client/app/services/poweroperations.service.js:221
+#: ./client/app/services/poweroperations.service.js:193
 msgid "There was an error suspending this %s."
-msgstr ""
+msgstr "이 %s을(를) 일시중단하는 중에 오류가 발생했습니다."
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.service.js:62
 msgid "There was an error tagging this service."
-msgstr ""
+msgstr "이 서비스를 태그 지정하는 중에 오류가 발생했습니다."
 
-#: ./client/app/states/dashboard/dashboard.html:20
+#: ./client/app/services/resource-details/resource-details.html:103
+msgid "Timeline - Power Events"
+msgstr "타임라인 - 전원 이벤트"
+
+#: ./client/app/components/dashboard/dashboard.html:35
 msgid "Total Requests"
-msgstr ""
+msgstr "요청 총계"
 
-#: ./client/app/states/dashboard/dashboard.html:9
+#: ./client/app/components/dashboard/dashboard.html:16
 msgid "Total Services"
-msgstr ""
+msgstr "서비스 총계"
 
-#: ./client/app/services/service-details/service-details.html:217
+#: ./client/app/services/service-details/service-details.html:211
 msgid "Total Snapshots"
-msgstr ""
+msgstr "스냅샷 총계"
 
-#: ./client/app/core/navigation.config.js:26
+#: ./client/app/core/navigation.service.js:66
 msgid "Total orders submitted"
-msgstr ""
+msgstr "제출된 주문 총계"
 
-#: ./client/app/core/navigation.config.js:17
+#: ./client/app/core/navigation.service.js:49
 msgid "Total services ordered, both active and retired"
-msgstr ""
+msgstr "총 서비스가 주문됨(활성 및 폐기된 서비스 모두)"
 
 #: ./client/app/services/service-details/service-details-ansible.html:121
 msgid "Type"
-msgstr ""
+msgstr "유형"
 
-#: ./client/app/services/vm-details/vm-details.component.js:115
-msgid "Unknown"
-msgstr ""
-
-#: ./client/app/services/consoles.service.js:66
+#: ./client/app/services/consoles.service.js:76
 msgid "Unsupported console protocol returned."
-msgstr ""
+msgstr "지원되지 않는 콘솔 프로토콜이 리턴되었습니다."
 
-#: ./client/app/services/vms/snapshots.component.js:106
+#: ./client/app/services/vms/snapshots.component.js:105
 msgid "Updated"
-msgstr ""
+msgstr "업데이트됨"
 
-#: ./client/app/services/vms/snapshots.html:99
+#: ./client/app/services/vms/snapshots.html:98
 msgid "Updated:"
-msgstr ""
+msgstr "업데이트됨:"
 
-#: ./client/app/core/language-switcher/language-switcher.directive.js:35
+#: ./client/app/shared/language-switcher/language-switcher.component.js:32
 msgid "User Default"
-msgstr ""
+msgstr "사용자 기본값"
 
-#: ./client/app/core/navigation/navigation-controller.js:107
+#: ./client/app/core/navigation/navigation-controller.js:143
 msgid "User Name:"
-msgstr ""
+msgstr "사용자 이름:"
 
-#: ./client/app/core/navigation/navigation-controller.js:108
+#: ./client/app/core/navigation/navigation-controller.js:144
 msgid "User Role:"
-msgstr ""
+msgstr "사용자 역할:"
 
-#: ./client/app/states/login/login.state.js:47
+#: ./client/app/states/login/login.state.js:50
 msgid "User does not have privileges to login."
-msgstr ""
+msgstr "사용자에게 로그인할 권한이 없습니다."
 
-#: ./client/app/states/login/login.html:17
+#: ./client/app/states/login/login.html:16
 msgid "Username"
-msgstr ""
+msgstr "사용자 이름"
 
 #: ./client/app/services/usage-graphs/usage-graphs.html:1
 msgid "Utilization"
-msgstr ""
+msgstr "사용률"
 
-#: ./client/app/services/service-details/service-details.html:306
-msgid "VM Console"
-msgstr ""
-
-#: ./client/app/states/vms/details/details.state.js:12
-msgid "VM Details"
-msgstr ""
+#: ./client/app/services/service-details/service-details.html:307
+msgid "VM HTML5 Console"
+msgstr "VM HTML5 콘솔"
 
 #: ./client/app/states/vms/snapshots/snapshots.state.js:13
 msgid "VM Snapshots"
-msgstr ""
+msgstr "VM 스냅샷"
+
+#: ./client/app/services/service-details/service-details.html:315
+msgid "VM VMRC Console"
+msgstr "VM VMRC 콘솔"
 
 #: ./client/app/services/service-details/service-details-ansible.html:67
 msgid "Verbosity"
-msgstr ""
+msgstr "상세"
 
-#: ./client/app/core/navigation/navigation-controller.js:105
+#: ./client/app/core/navigation/navigation-controller.js:140
 msgid "Version:"
-msgstr ""
+msgstr "버전:"
 
-#: ./client/app/services/service-details/service-details.html:287
+#: ./client/app/services/resource-details/resource-details.component.js:314
+#: ./client/app/services/service-details/service-details.html:282
 msgid "View"
-msgstr ""
+msgstr "보기"
 
-#: ./client/app/services/service-details/service-details.html:354
-msgid "View\n"
-"                            Details"
-msgstr ""
+#: ./client/app/services/service-details/service-details.html:367
+msgid "View\n                                                    Details"
+msgstr "세부사항 보기"
 
-#: ./client/app/services/service-details/service-details.html:358
-msgid "View\n"
-"                            Graphs"
-msgstr ""
+#: ./client/app/services/resource-details/resource-details.component.js:316
+msgid "View snapshots"
+msgstr "스냅샷 보기"
 
 #: ./client/app/services/consoles.service.js:24
 msgid "Waiting for the console to become ready."
-msgstr ""
+msgstr "콘솔이 준비되기를 대기하는 중입니다."
+
+#: ./client/app/core/event-notifications.service.js:194
+msgid "Warning"
+msgstr "경고"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:11
-msgid ""
-"Warning: The selected Services and ALL of their components will be "
-"immediately retired!"
-msgstr ""
+msgid "Warning: The selected Services and ALL of their components will be immediately retired!"
+msgstr "경고: 선택한 서비스와 모든 컴포넌트가 즉시 폐기됩니다!"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:10
-msgid ""
-"Warning: The selected Services and ALL of their components will be "
-"permanently removed!"
-msgstr ""
+msgid "Warning: The selected Services and ALL of their components will be permanently removed!"
+msgstr "경고: 선택한 서비스와 모든 컴포넌트가 영구적으로 제거됩니다!"
 
 #: ./client/app/services/service-details/service-details-ansible.html:198
 msgid "Watch Live"
-msgstr ""
+msgstr "라이브 보기"
 
 #: ./client/app/states/404/404.html:7
 #: ./client/app/states/error/error.html:13
 msgid "We apologize for the inconvenience."
-msgstr ""
+msgstr "불편을 드려서 죄송합니다."
 
-#: ./client/app/services/service-details/service-details.html:311
+#: ./client/app/services/service-details/service-details.html:324
 msgid "Web Console"
-msgstr ""
+msgstr "웹 콘솔"
 
-#: ./client/app/services/services-state.service.js:252
+#: ./client/app/services/services-state.service.js:277
 msgid "Yes, Remove Service"
-msgstr ""
+msgstr "예, 서비스를 제거합니다."
 
-#: ./client/app/services/services-state.service.js:168
-msgid "Yes, Retire Service Now"
-msgstr ""
-
-#: ./client/app/states/login/login.state.js:74
-msgid ""
-"You do not have permission to view the Service UI. Contact your "
-"administrator to update your group permissions."
-msgstr ""
+#: ./client/app/states/login/login.state.js:77
+msgid "You do not have permission to view the Service UI. Contact your administrator to update your group permissions."
+msgstr "서비스 UI를 볼 수 있는 권한이 없습니다. 그룹 권한을 업데이트하려면 관리자에게 문의하십시오."
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:11
-msgid ""
-"Your current edits are invalid and cannot be saved. Continuing will discard "
-"your changes."
-msgstr ""
+msgid "Your current edits are invalid and cannot be saved. Continuing will discard your changes."
+msgstr "현재 편집이 올바르지 않으며 이를 저장할 수 없습니다. 계속하면 변경사항을 버립니다."
 
-#: ./client/app/states/login/login.state.js:37
+#: ./client/app/states/login/login.state.js:39
 msgid "Your session has timed out."
-msgstr ""
+msgstr "세션 제한시간이 초과되었습니다."
 
-#: ./client/app/services/service-explorer/service-explorer.html:62
+#: ./client/app/services/service-explorer/service-explorer.html:55
 msgid "[[number]] VMs"
-msgstr ""
+msgstr "[[number]] VM"
 
-#: ./client/app/requests/process-order-modal/process-order-modal.html:9
-msgid "and all of its service requests will be permanently removed!"
-msgstr ""
+#: ./client/app/orders/order-explorer/order-explorer.html:57
+msgid "item"
+msgid_plural "items"
+msgstr[0] "항목"
 
-#: ./client/app/shared/pagination/pagination.html:12
-#: ./client/app/shared/pagination/pagination.html:5
+#: ./client/app/shared/pagination/pagination.html:13
+#: ./client/app/shared/pagination/pagination.html:20
 msgid "items"
-msgstr ""
+msgstr "항목"
 
-#: ./client/app/core/gettext.config.js:25
+#: ./client/app/core/gettext.config.js:23
 msgid "locale_name"
-msgstr "한국어"
+msgstr "locale_name"
 
-#: ./client/app/services/usage-graphs/usage-graphs.html:12
-#: ./client/app/services/usage-graphs/usage-graphs.html:36
-#: ./client/app/services/usage-graphs/usage-graphs.html:60
-#: ./client/app/shared/pagination/pagination.html:29
-#: ./client/app/shared/pagination/pagination.html:32
+#: ./client/app/services/vms.service.js:280
+msgid "now?"
+msgstr "지금?"
+
+#: ./client/app/services/usage-graphs/usage-graphs.html:13
+#: ./client/app/services/usage-graphs/usage-graphs.html:29
+#: ./client/app/services/usage-graphs/usage-graphs.html:45
+#: ./client/app/shared/pagination/pagination.html:37
+#: ./client/app/shared/pagination/pagination.html:40
 msgid "of"
-msgstr ""
+msgstr "/"
+
+#: ./client/app/states/orders/details/details.html:25
+msgid "ordered on"
+msgstr "주문일"
 
 #: ./client/app/services/service-explorer/service-explorer.html:194
 msgid "suspend this service"
-msgstr ""
+msgstr "이 서비스 일시중단"
 
-#: ./client/app/core/navigation/navigation-controller.js:212
-msgid "unread notifications"
-msgstr ""
-
-#: ./client/app/services/service-details/service-details.component.js:26
-#: ./client/app/services/service-details/service-details.component.js:27
-#: ./client/app/services/service-details/service-details.component.js:28
-#: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:9
-#: ./client/app/services/vm-details/vm-details.component.js:25
-#: ./client/app/services/vm-details/vm-details.component.js:26
-#: ./client/app/services/vm-details/vm-details.component.js:27
+#: ./client/app/services/resource-details/resource-details.component.js:213
+#: ./client/app/services/resource-details/resource-details.component.js:219
+#: ./client/app/services/resource-details/resource-details.component.js:225
+#: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:10
 msgid "used"
-msgstr ""
+msgstr "사용함"
 
-#: ./client/app/services/service-details/service-details.component.js:264
+#: ./client/app/services/service-details/service-details.component.js:290
 msgid "was removed."
-msgstr ""
+msgstr "제거되었습니다."
 
-#: ./client/app/services/service-details/service-details.component.js:323
-msgid "was retired."
-msgstr ""
-
-#: ./client/app/requests/order-explorer/order-explorer.html:55
-msgid "{{ $count }} item"
-msgid_plural "{{ $count }} items"
-msgstr[0] ""
-
+#: ./client/app/orders/process-order-modal/process-order-modal.html:9
+msgid "{{ vm.order.name }} and all of its service requests will be permanently removed!"
+msgstr "{{ vm.order.name }} 및 모든 해당 서비스 요청이 영구적으로 제거됩니다!"
