@@ -1604,7 +1604,7 @@ msgstr "itens"
 
 #: ./client/app/core/gettext.config.js:23
 msgid "locale_name"
-msgstr "locale_name"
+msgstr "Português (Brasil)"
 
 #: ./client/app/services/vms.service.js:280
 msgid "now?"

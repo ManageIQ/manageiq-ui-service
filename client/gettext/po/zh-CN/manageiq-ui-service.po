@@ -1603,7 +1603,7 @@ msgstr "项目"
 
 #: ./client/app/core/gettext.config.js:23
 msgid "locale_name"
-msgstr "locale_name"
+msgstr "简体中文"
 
 #: ./client/app/services/vms.service.js:280
 msgid "now?"

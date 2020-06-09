@@ -1604,7 +1604,7 @@ msgstr "elementi"
 
 #: ./client/app/core/gettext.config.js:23
 msgid "locale_name"
-msgstr "locale_name"
+msgstr "Italiano"
 
 #: ./client/app/services/vms.service.js:280
 msgid "now?"
