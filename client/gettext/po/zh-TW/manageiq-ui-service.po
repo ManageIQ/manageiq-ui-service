@@ -1,61 +1,62 @@
-# vk <vickie.c@inwinstack.com>, 2017. #zanata
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: \n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2017-05-25 10:18-0400\n"
-"Last-Translator: vk <vickie.c@inwinstack.com>\n"
-"Language-Team: Chinese (Taiwan)\n"
 "Language: zh-TW\n"
-"X-Generator: Zanata 3.9.6\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ./client/app/states/dashboard/dashboard.html:88
+#: ./client/app/components/dashboard/dashboard.html:110
 msgid "$0"
 msgstr "$0"
+
+#: ./client/app/services/resource-details/resource-details.component.js:211
+msgid "%"
+msgstr "%"
 
 #: ./client/app/components/notifications/notification-body.html:22
 #: ./client/app/components/notifications/notification-body.html:47
 msgid "% Complete"
-msgstr "% 完成"
+msgstr "完成百分比"
 
-#: ./client/app/shared/action-button-group/action-button-group.component.js:31
+#: ./client/app/core/event-notifications.service.js:296
+msgid "%d new notifications"
+msgstr "%d 個新通知"
+
+#: ./client/app/core/navigation/navigation-controller.js:172
+msgid "%d unread notifications"
+msgstr "%d 個未讀取的通知"
+
+#: ./client/app/shared/action-button-group/action-button-group.component.js:32
 msgid "%s"
 msgstr "%s"
 
-#: ./client/app/services/vm-details/vm-details.component.js:123
-msgid "%s is a retired resource"
-msgstr ""
-
-#: ./client/app/requests/order-explorer/order-explorer.component.js:296
-msgid "%s was duplicated, id # %d."
-msgstr "%s 已複製, id # %d."
-
-#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:31
+#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:32
 msgid "%s was edited."
-msgstr "%s 已編輯"
+msgstr "已編輯 %s。"
 
-#: ./client/app/services/poweroperations.service.js:207
+#: ./client/app/services/poweroperations.service.js:179
 msgid "%s was retired."
-msgstr ""
+msgstr "已撤銷 %s。"
 
-#: ./client/app/services/poweroperations.service.js:198
+#: ./client/app/services/poweroperations.service.js:170
 msgid "%s was started."
-msgstr ""
+msgstr "已啟動 %s。"
 
-#: ./client/app/services/poweroperations.service.js:201
+#: ./client/app/services/poweroperations.service.js:173
 msgid "%s was stopped."
-msgstr ""
+msgstr "已停止 %s。"
 
-#: ./client/app/services/poweroperations.service.js:204
+#: ./client/app/services/poweroperations.service.js:176
 msgid "%s was suspended."
-msgstr ""
+msgstr "已暫停 %s。"
 
-#: ./client/app/layouts/application.html:82
+#: ./client/app/layouts/application.html:88
 msgid "(Current Group)"
-msgstr "(目前群組)"
+msgstr "（現行群組）"
+
+#: ./client/app/services/resource-details/resource-details.component.js:260
+msgid "(no provider)"
+msgstr "（無提供者）"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:38
 msgid "1 Week"
@@ -69,19 +70,15 @@ msgstr "2 週"
 msgid "3 Weeks"
 msgstr "3 週"
 
+#: ./client/app/components/dashboard/dashboard.component.js:71
+msgid "30 Days"
+msgstr "30 天"
+
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:41
 msgid "4 Weeks"
 msgstr "4 週"
 
-#: ./client/app/services/service-details/service-details.html:281
-msgid "<i class=\"fa fa-camera\"></i>Snapshots"
-msgstr ""
-
-#: ./client/app/services/service-details/service-details.html:298
-msgid "<i class=\"fa fa-window-maximize \"></i>Access"
-msgstr ""
-
-#: ./client/app/layouts/application.html:59
+#: ./client/app/layouts/application.html:65
 msgid "About"
 msgstr "關於"
 
@@ -90,99 +87,111 @@ msgstr "關於"
 msgid "About Me"
 msgstr "關於我"
 
-#: ./client/app/services/custom-button/custom-button.component.js:55
-msgid "Action not able to submit."
-msgstr "動作無法送出"
+#: ./client/app/services/service-details/service-details.html:296
+msgid "Access"
+msgstr "存取"
 
-#: ./client/app/services/vms/snapshots.html:82
+#: ./client/app/services/vms/snapshots.html:81
 msgid "Active"
-msgstr "啟用"
+msgstr "使用中"
 
-#: ./client/app/states/catalogs/details/details.html:39
-#: ./client/app/states/catalogs/details/details.html:44
+#: ./client/app/states/catalogs/details/details.html:52
+#: ./client/app/states/catalogs/details/details.html:57
 msgid "Add to Shopping Cart"
-msgstr "加到購物車"
+msgstr "新增至購物車"
 
-#: ./client/app/core/navigation/navigation-controller.js:118
+#: ./client/app/core/navigation/navigation-controller.js:154
 msgid "Administration UI"
-msgstr "管理介面"
+msgstr "管理使用者介面"
 
-#: ./client/app/requests/process-order-modal/process-order-modal.html:11
+#: ./client/app/orders/process-order-modal/process-order-modal.html:11
 msgid "Affected Order"
-msgstr "受影響的訂單"
+msgstr "受影響訂單"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:18
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:33
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:13
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:25
 msgid "Affected Services"
-msgstr "受影響的服務"
+msgstr "受影響服務"
 
-#: ./client/app/states/dashboard/dashboard.html:115
+#: ./client/app/services/generic-objects-list/generic-objects-list.component.js:40
+msgid "An error occured"
+msgstr "發生錯誤"
+
+#: ./client/app/components/dashboard/dashboard.html:137
 msgid "Approved Requests"
-msgstr "已核准的請求"
+msgstr "已核准要求"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:60
 msgid "Are you sure you want to clear all items from your shopping cart?"
-msgstr "確定要清除所有購物車裡的項目嗎？"
+msgstr "您確定要清除購物車中的所有項目嗎?"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:20
 msgid "Are you sure you want to remove this item from your shopping cart?"
-msgstr "確定要從購物車裡刪除這個項目嗎？"
+msgstr "您確定要從購物車移除這個項目嗎?"
+
+#: ./client/app/services/vms.service.js:280
+msgid "Are you sure you want to retire"
+msgstr "您確定要撤銷"
 
 #: ./client/app/shared/confirmation/confirmation.directive.js:112
 msgid "Are you sure you wish to proceed?"
-msgstr "確定要繼續嗎？"
+msgstr "您確定要繼續嗎?"
 
 #: ./client/app/components/notifications/notification-footer.html:14
 msgid "Are you sure you would like to clear all [[heading]]?"
-msgstr "確定想清除所有的標題 [[heading]]？"
+msgstr "您確定要清除所有 [[標題]] 嗎?"
 
-#: ./client/app/services/service-details/service-details.html:342
+#: ./client/app/services/service-details/service-details.html:355
 msgid "Are you sure you would like to retire this resource?"
-msgstr ""
+msgstr "您確定要撤銷此資源嗎？"
 
-#: ./client/app/services/vm-details/vm-details.component.js:41
+#: ./client/app/services/resource-details/resource-details.component.js:49
+#: ./client/app/services/usage-graphs/usage-graphs.html:12
+#: ./client/app/services/usage-graphs/usage-graphs.html:28
+#: ./client/app/services/usage-graphs/usage-graphs.html:44
 msgid "Available"
 msgstr "可用的"
 
-#: ./client/app/services/service-details/service-details.html:269
+#: ./client/app/services/service-details/service-details.html:262
 msgid "Boot Time: Unknown"
-msgstr "開機時間：未知"
+msgstr "開機時間：不明"
 
-#: ./client/app/core/language-switcher/language-switcher.directive.js:29
+#: ./client/app/shared/language-switcher/language-switcher.component.js:26
 msgid "Browser Default"
-msgstr "瀏覽器預設"
+msgstr "瀏覽器預設值"
 
-#: ./client/app/services/usage-graphs/usage-graphs.html:6
+#: ./client/app/services/usage-graphs/usage-graphs.html:7
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:14
 #: ./client/app/shared/action-button-group/action-button-group.html:1
 #: ./client/app/shared/action-button-group/action-button-group.html:45
 #: ./client/app/shared/confirmation/confirmation.directive.js:114
+#: ./client/app/states/catalogs/details/details.html:62
 #: ./client/app/states/services/reconfigure/reconfigure.html:24
 msgid "Cancel"
 msgstr "取消"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:58
 msgid "Catalog Name"
-msgstr ""
+msgstr "型錄名稱"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:18
 #: ./client/app/states/catalogs/explorer/explorer.state.js:15
 #: ./client/app/states/catalogs/explorer/explorer.state.js:26
 msgid "Catalogs"
-msgstr "類別"
+msgstr "型錄"
 
-#: ./client/app/layouts/application.html:74
+#: ./client/app/layouts/application.html:80
 msgid "Change Group:"
 msgstr "變更群組："
 
-#: ./client/app/layouts/application.html:86
+#: ./client/app/layouts/application.html:92
 msgid "Change to this Group"
-msgstr "變更到這個群組"
+msgstr "變更此群組"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:53
 #: ./client/app/core/shopping-cart/shopping-cart.html:61
@@ -196,7 +205,7 @@ msgstr "全部清除"
 
 #: ./client/app/components/notifications/notification-footer.html:13
 msgid "Clear All [[heading]]"
-msgstr "清除所有標題[[heading]]"
+msgstr "清除所有 [[標題]]"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:59
 msgid "Clear Shopping Cart"
@@ -206,265 +215,277 @@ msgstr "清除購物車"
 msgid "Close"
 msgstr "關閉"
 
-#: ./client/app/services/vm-details/vm-details.html:120
-msgid "Cluster"
-msgstr "叢集"
-
 #: ./client/app/components/notifications/notification-body.html:53
 msgid "Completed:"
-msgstr "已完成："
+msgstr "完成時間："
 
-#: ./client/app/services/vm-details/vm-details.html:162
-msgid "Compliance"
-msgstr "合規性"
-
-#: ./client/app/services/service-details/service-details.component.js:334
+#: ./client/app/services/service-details/service-details.component.js:371
 msgid "Compute"
 msgstr "計算"
 
-#: ./client/app/services/services-state.service.js:223
-#: ./client/app/services/services-state.service.js:228
-#: ./client/app/services/vm-details/vm-details.html:194
+#: ./client/app/services/services-state.service.js:248
+#: ./client/app/services/services-state.service.js:253
+#: ./client/app/services/vms/snapshots.component.js:131
 #: ./client/app/services/vms/snapshots.component.js:132
-#: ./client/app/services/vms/snapshots.component.js:133
 msgid "Configuration"
-msgstr "設定"
+msgstr "配置"
 
-#: ./client/app/services/services-state.service.js:251
+#: ./client/app/services/services-state.service.js:276
 msgid "Confirm, would you like to remove this service?"
-msgstr "確認, 是否要移除這個服務"
+msgstr "確認，您要移除此服務嗎？"
 
-#: ./client/app/services/services-state.service.js:165
-msgid "Confirm, would you like to retire this service?"
-msgstr "確認, 是否要撤回這個服務"
+#: ./client/console/webmks.js:62
+msgid "Connected"
+msgstr "已連線"
+
+#: ./client/console/common.js:13
+msgid "Connecting"
+msgstr "正在連線"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:15
 msgid "Continue"
 msgstr "繼續"
 
-#: ./client/app/services/service-explorer/service-explorer.html:114
+#: ./client/app/services/service-explorer/service-explorer.html:108
 msgid "Cost not available"
-msgstr "成本不可用"
+msgstr "成本無法使用"
 
-#: ./client/app/services/service-details/service-details.html:290
+#: ./client/app/services/resource-details/resource-details.component.js:321
+#: ./client/app/services/service-details/service-details.html:285
 msgid "Create"
 msgstr "建立"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:5
-#: ./client/app/services/vms/snapshots.component.js:116
+#: ./client/app/services/vms/snapshots.component.js:115
 msgid "Create Snapshot"
-msgstr "建立快照"
+msgstr "建立 Snapshot"
 
-#: ./client/app/services/vms/snapshots.component.js:118
+#: ./client/app/services/vms/snapshots.component.js:117
 msgid "Create snapshot"
-msgstr "建立快照"
+msgstr "建立 Snapshot"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:334
-#: ./client/app/services/service-explorer/service-explorer.html:161
-#: ./client/app/services/service-explorer/service-explorer.html:85
-#: ./client/app/services/vms/snapshots.component.js:105
+#: ./client/app/services/resource-details/resource-details.component.js:323
+msgid "Create snapshots"
+msgstr "建立 Snapshot"
+
+#: ./client/app/services/service-explorer/service-explorer.component.js:393
+#: ./client/app/services/service-explorer/service-explorer.html:155
+#: ./client/app/services/service-explorer/service-explorer.html:79
+#: ./client/app/services/vms/snapshots.component.js:104
 msgid "Created"
-msgstr "已建立"
-
-#: ./client/app/services/service-details/service-details.html:106
-msgid "Created On"
 msgstr "建立日期"
 
-#: ./client/app/services/vms/snapshots.html:90
+#: ./client/app/services/service-details/service-details.html:101
+msgid "Created On"
+msgstr "建立於"
+
+#: ./client/app/services/vms/snapshots.html:89
 msgid "Created:"
 msgstr "已建立："
 
-#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:39
+#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:77
 msgid "Creating snapshot."
-msgstr ""
+msgstr "正在建立 Snapshot。"
 
 #: ./client/app/services/service-details/service-details-ansible.html:88
 msgid "Credentials"
 msgstr "認證"
 
-#: ./client/app/layouts/application.html:94
+#: ./client/app/layouts/application.html:100
 msgid "Current Group"
-msgstr "目前群組"
+msgstr "現行群組"
 
-#: ./client/app/states/dashboard/dashboard.html:48
+#: ./client/app/components/dashboard/dashboard.html:66
 msgid "Current Services"
-msgstr "目前服務"
+msgstr "現行服務"
 
-#: ./client/app/layouts/application.html:80
+#: ./client/app/layouts/application.html:86
 msgid "Currently Selected Group"
-msgstr "目前已選擇的群組"
+msgstr "目前選取的群組"
+
+#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:15
+msgid "Custom Button Details"
+msgstr "自訂按鈕詳細資料"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:10
 msgid "Custom Button:"
 msgstr "自訂按鈕："
 
-#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:51
+#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:34
 msgid "Custom button action"
-msgstr "自定按鈕動作"
+msgstr "自訂按鈕動作"
 
-#: ./client/app/core/navigation.config.js:6
-#: ./client/app/states/dashboard/dashboard.state.js:16
+#: ./client/app/core/navigation.service.js:33
+#: ./client/app/states/dashboard/dashboard.state.js:12
 msgid "Dashboard"
 msgstr "儀表板"
 
-#: ./client/app/services/vms/snapshots.component.js:73
+#: ./client/app/services/vms/snapshots.component.js:76
 #: ./client/app/services/vms/snapshots.html:37
 msgid "Delete"
 msgstr "刪除"
 
-#: ./client/app/services/vms/snapshots.component.js:123
+#: ./client/app/services/vms/snapshots.component.js:122
 msgid "Delete All Snapshots"
-msgstr "刪除所有快照"
+msgstr "刪除所有 Snapshot"
 
-#: ./client/app/services/vms/snapshots.component.js:226
+#: ./client/app/services/vms/snapshots.component.js:233
 msgid "Delete All Snapshots on VM %s"
-msgstr "刪除所有VM %s上的快照"
+msgstr "刪除虛擬機器 %s 上的所有 Snapshot"
 
-#: ./client/app/services/vms/snapshots.component.js:222
-#: ./client/app/services/vms/snapshots.component.js:75
+#: ./client/app/services/vms/snapshots.component.js:229
+#: ./client/app/services/vms/snapshots.component.js:78
 msgid "Delete Snapshot"
-msgstr "刪除快照"
+msgstr "刪除 Snapshot"
 
-#: ./client/app/services/vms/snapshots.component.js:125
+#: ./client/app/services/vms/snapshots.component.js:124
 msgid "Delete all snapshots"
-msgstr "刪除所有快照"
+msgstr "刪除所有 Snapshot"
 
-#: ./client/app/requests/process-order-modal/process-order-modal.component.js:37
+#: ./client/app/orders/process-order-modal/process-order-modal.component.js:39
 msgid "Deleting order."
-msgstr ""
+msgstr "正在順序訂單。"
 
-#: ./client/app/services/vms/snapshots.component.js:146
+#: ./client/app/services/vms/snapshots.component.js:145
 msgid "Deleting snapshot."
-msgstr ""
+msgstr "正在刪除 Snapshot。"
 
-#: ./client/app/states/dashboard/dashboard.html:128
+#: ./client/app/components/dashboard/dashboard.html:150
 msgid "Denied Requests"
-msgstr "已否決的請求"
-
-#: ./client/app/services/vm-details/vm-details.html:120
-msgid "Deployment Role"
-msgstr "部署角色"
+msgstr "拒絕要求"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:57
 #: ./client/app/services/edit-service-modal/edit-service-modal.html:12
-#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:15
-#: ./client/app/services/service-details/service-details.html:66
-#: ./client/app/services/service-explorer/service-explorer.component.js:323
-#: ./client/app/services/vms/snapshots.component.js:93
+#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:32
+#: ./client/app/services/service-details/service-details.html:61
+#: ./client/app/services/service-explorer/service-explorer.component.js:344
+#: ./client/app/services/vms/snapshots.component.js:90
 #: ./client/app/shared/ss-card/ss-card.html:8
 msgid "Description"
 msgstr "說明"
 
 #: ./client/app/services/service-details/service-details-ansible.html:51
 msgid "Details"
-msgstr ""
+msgstr "明細"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:7
 msgid "Discard Changes"
-msgstr "取消變更"
+msgstr "捨棄變更"
 
-#: ./client/app/layouts/application.html:49
+#: ./client/app/services/resource-details/resource-details.html:159
+msgid "Disk Usage"
+msgstr "磁碟使用情形"
+
+#: ./client/app/layouts/application.html:55
 msgid "Documentation"
-msgstr "使用說明"
+msgstr "文件"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:11
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:23
 msgid "Don't Change"
-msgstr "不要變更"
+msgstr "不變更"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:29
-#: ./client/app/requests/order-explorer/order-explorer.component.js:118
 msgid "Duplicate"
 msgstr "複製"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:120
-msgid "Duplicate Order"
-msgstr "複製訂單"
+#: ./client/app/states/catalogs/details/details.state.js:23
+msgid "Duplicate Service"
+msgstr "複製服務"
 
-#: ./client/app/states/catalogs/details/details.html:37
+#: ./client/app/states/catalogs/details/details.html:50
 msgid "Duplicate Shopping Cart Item"
 msgstr "複製購物車項目"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:216
-#: ./client/app/services/services-state.service.js:234
-#: ./client/app/services/services-state.service.js:236
+#: ./client/app/services/service-explorer/service-explorer.component.js:228
+#: ./client/app/services/services-state.service.js:259
+#: ./client/app/services/services-state.service.js:261
 msgid "Edit"
 msgstr "編輯"
 
 #: ./client/app/services/edit-service-modal/edit-service-modal.html:5
-#: ./client/app/services/service-explorer/service-explorer.component.js:218
+#: ./client/app/services/service-explorer/service-explorer.component.js:230
 msgid "Edit Service"
 msgstr "編輯服務"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:5
-#: ./client/app/services/service-explorer/service-explorer.component.js:224
-#: ./client/app/services/service-explorer/service-explorer.component.js:226
-#: ./client/app/services/services-state.service.js:204
-#: ./client/app/services/services-state.service.js:206
+#: ./client/app/services/service-explorer/service-explorer.component.js:236
+#: ./client/app/services/service-explorer/service-explorer.component.js:238
+#: ./client/app/services/services-state.service.js:229
+#: ./client/app/services/services-state.service.js:231
 msgid "Edit Tags"
-msgstr "編輯標籤"
+msgstr "編輯 TAG"
 
 #: ./client/app/services/service-details/service-details-ansible.html:183
 #: ./client/app/services/service-details/service-details-ansible.html:34
 msgid "Elapsed"
-msgstr "耗時"
+msgstr "歷時"
 
+#: ./client/app/core/event-notifications.service.js:194
 #: ./client/app/states/error/error.state.js:17
 msgid "Error"
 msgstr "錯誤"
 
-#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:39
+#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:77
 msgid "Error creating snapshot."
-msgstr ""
+msgstr "建立 Snapshot 時，發生錯誤。"
 
-#: ./client/app/requests/process-order-modal/process-order-modal.component.js:37
+#: ./client/app/orders/process-order-modal/process-order-modal.component.js:39
 msgid "Error deleting order."
-msgstr ""
+msgstr "刪除訂單時發生錯誤。"
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:46
 msgid "Error deleting service."
-msgstr ""
+msgstr "刪除服務時發生錯誤。"
 
-#: ./client/app/services/vms/snapshots.component.js:146
+#: ./client/app/services/vms/snapshots.component.js:145
 msgid "Error deleting snapshot."
-msgstr "刪除快照時發生錯誤"
+msgstr "刪除 Snapshot 時發生錯誤。"
 
-#: ./client/app/core/authorization.config.js:113
+#: ./client/app/core/authorization.config.js:129
 msgid "Error retrieving user info"
-msgstr "檢索使用者資訊時發生錯誤"
+msgstr "擷取使用者資訊時發生錯誤"
 
-#: ./client/app/services/vms/snapshots.component.js:236
+#: ./client/app/services/vms/snapshots.component.js:243
 msgid "Error reverting snapshot."
-msgstr ""
+msgstr "回復 Snapshot 時發生錯誤。"
 
-#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:67
+#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:73
 msgid "Error setting ownership."
-msgstr ""
+msgstr "設定所有權時發生錯誤。"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:58
 msgid "Filter by Catalog Name"
-msgstr ""
+msgstr "依型錄名稱過濾"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:57
-#: ./client/app/services/service-explorer/service-explorer.component.js:323
-#: ./client/app/services/vms/snapshots.component.js:93
+#: ./client/app/services/service-explorer/service-explorer.component.js:344
+#: ./client/app/services/vms/snapshots.component.js:90
 msgid "Filter by Description"
-msgstr "按說明過濾"
+msgstr "依說明過濾"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:101
+#: ./client/app/orders/order-explorer/order-explorer.component.js:104
 msgid "Filter by ID"
-msgstr "按ID過濾"
+msgstr "依 ID 過濾"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:56
-#: ./client/app/requests/order-explorer/order-explorer.component.js:100
-#: ./client/app/services/service-explorer/service-explorer.component.js:322
-#: ./client/app/services/vms/snapshots.component.js:92
+#: ./client/app/orders/order-explorer/order-explorer.component.js:103
+#: ./client/app/services/service-explorer/service-explorer.component.js:343
+#: ./client/app/services/vms/snapshots.component.js:89
 msgid "Filter by Name"
-msgstr "按名稱過濾"
+msgstr "依名稱過濾"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:102
+#: ./client/app/orders/order-explorer/order-explorer.component.js:105
 msgid "Filter by Order Date"
-msgstr "按訂單日期過濾"
+msgstr "依訂單日期過濾"
+
+#: ./client/app/services/service-explorer/service-explorer.component.js:378
+msgid "Filter by Tag Category"
+msgstr "依標籤種類過濾"
+
+#: ./client/app/services/service-explorer/service-explorer.component.js:383
+msgid "Filter by Tag Value"
+msgstr "依標籤值過濾"
 
 #: ./client/app/services/service-details/service-details-ansible.html:175
 #: ./client/app/services/service-details/service-details-ansible.html:27
@@ -474,124 +495,131 @@ msgstr "已完成"
 #: ./client/app/shared/confirmation/confirmation.directive.js:66
 #: ./client/app/shared/confirmation/confirmation.directive.js:71
 msgid "For Sizing"
-msgstr "對於估算"
+msgstr "適用於調整大小"
 
-#: ./client/app/services/service-details/service-details.component.js:26
-#: ./client/app/services/service-details/service-details.component.js:27
-#: ./client/app/services/usage-graphs/usage-graphs.html:36
-#: ./client/app/services/usage-graphs/usage-graphs.html:60
-#: ./client/app/services/vm-details/vm-details.component.js:25
-#: ./client/app/services/vm-details/vm-details.component.js:26
+#: ./client/app/services/resource-details/resource-details.component.js:217
+#: ./client/app/services/resource-details/resource-details.component.js:223
 msgid "GB"
-msgstr ""
+msgstr "英國"
 
-#: ./client/app/services/usage-graphs/usage-graphs.html:35
-#: ./client/app/services/usage-graphs/usage-graphs.html:59
-msgid "GB Available"
-msgstr ""
-
-#: ./client/app/services/service-details/service-details.html:72
+#: ./client/app/services/service-details/service-details.html:67
 msgid "GUID"
 msgstr "GUID"
+
+#: ./client/app/core/navigation/navigation-controller.js:248
+msgid "Group switching error:"
+msgstr "群組切換錯誤："
 
 #: ./client/app/states/help/help.html:1
 #: ./client/app/states/help/help.state.js:16
 msgid "Help"
-msgstr "幫助"
+msgstr "說明"
 
 #: ./client/app/services/service-details/service-details-ansible.html:73
 msgid "Hosts"
-msgstr ""
+msgstr "主機"
+
+#: ./client/app/orders/request-list/requests-list.html:16
+msgid "ID"
+msgstr "ID"
 
 #: ./client/app/services/service-details/service-details-ansible.html:109
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:10
 msgid "If you do not save, any changes will be lost."
-msgstr "如果不儲存，所有的修改將會遺失"
+msgstr "如果您沒有儲存，任何變更都會遺失。"
 
-#: ./client/app/core/authentication-api.factory.js:24
-msgid "Incorrect username or password."
-msgstr "錯誤的使用者名稱或密碼"
+#: ./client/app/core/event-notifications.service.js:194
+msgid "Info"
+msgstr "資訊"
 
-#: ./client/app/states/catalogs/details/details.state.js:145
+#: ./client/app/states/catalogs/details/details.state.js:208
 msgid "Item added to shopping cart"
-msgstr "項目已加到購物車"
+msgstr "新增至購物車的項目"
 
-#: ./client/app/states/catalogs/details/details.state.js:143
+#: ./client/app/states/catalogs/details/details.state.js:206
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
-msgstr "已加到購物車，但是與目前有的項目重複"
+msgstr "項目已新增至購物車，但它與現有項目重複"
 
-#: ./client/app/states/login/login.html:33
+#: ./client/app/states/login/login.html:28
 msgid "Language"
-msgstr "語系"
+msgstr "語言"
 
-#: ./client/app/services/service-details/service-details.html:259
+#: ./client/app/services/resource-details/resource-details.html:104
+msgid "Last 7 days"
+msgstr "最後 7 日"
+
+#: ./client/app/services/service-details/service-details.html:252
 msgid "Last Boot"
-msgstr "最後開機"
+msgstr "前次啟動"
 
-#: ./client/app/services/service-details/service-details.html:229
+#: ./client/app/services/service-details/service-details.html:222
 msgid "Latest"
 msgstr "最新"
 
-#: ./client/app/services/service-details/service-details.html:261
+#: ./client/app/services/service-details/service-details.html:254
 msgid "Latest Boot Time"
-msgstr "最近開機時間"
+msgstr "最新開機時間"
 
-#: ./client/app/services/service-details/service-details.html:232
+#: ./client/app/services/service-details/service-details.html:225
 msgid "Latest Snapshot Name"
-msgstr "最近快照時間"
+msgstr "最新 Snapshot 名稱"
 
-#: ./client/app/services/service-details/service-details.html:240
+#: ./client/app/services/service-details/service-details.html:233
 msgid "Latest Snapshot Timestamp"
-msgstr "最近快照時間標記"
+msgstr "最新 Snapshot 時間戳記"
 
-#: ./client/app/services/service-details/service-details.html:249
+#: ./client/app/services/service-details/service-details.html:242
 msgid "Latest Snapshot: Unknown"
-msgstr "最近快照：未知"
+msgstr "最新 Snapshot：不明"
 
 #: ./client/app/services/service-details/service-details-ansible.html:41
 msgid "Launched By"
-msgstr "執行者"
+msgstr "啟動者"
 
-#: ./client/app/services/services-state.service.js:141
-#: ./client/app/services/services-state.service.js:146
-#: ./client/app/services/vm-details/vm-details.html:92
+#: ./client/app/services/services-state.service.js:173
+#: ./client/app/services/services-state.service.js:178
+#: ./client/app/services/vms.service.js:273
+#: ./client/app/services/vms.service.js:278
 msgid "Lifecycle"
 msgstr "生命週期"
 
 #: ./client/app/services/service-details/service-details-ansible-modal.html:5
 msgid "Live Ansible Play"
-msgstr "Live Ansible Play"
+msgstr "即時 Ansible Play"
 
-#: ./client/app/states/login/login.html:39
+#: ./client/app/components/dashboard/dashboard.html:11
+#: ./client/app/components/dashboard/dashboard.html:30
+#: ./client/app/shared/loading.component.js:8
+msgid "Loading"
+msgstr "正在載入"
+
+#: ./client/app/states/login/login.html:34
 msgid "Log In"
 msgstr "登入"
 
-#: ./client/app/core/navigation/navigation-controller.js:119
+#: ./client/app/core/navigation/navigation-controller.js:155
 msgid "Log into the full administrative UI"
-msgstr "登入管理介面"
+msgstr "登入完整管理使用者介面"
 
 #: ./client/app/states/login/login.state.js:16
 msgid "Login"
 msgstr "登入"
 
-#: ./client/app/layouts/application.html:104
+#: ./client/app/states/login/login.state.js:86
+msgid "Login failed, possibly invalid credentials."
+msgstr "登入失敗，可能是認證無效。"
+
+#: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
 msgid "Logout"
 msgstr "登出"
 
-#: ./client/app/services/service-details/service-details.component.js:28
-#: ./client/app/services/usage-graphs/usage-graphs.html:12
-#: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:9
-#: ./client/app/services/vm-details/vm-details.component.js:27
+#: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:10
 msgid "MHz"
-msgstr ""
-
-#: ./client/app/services/usage-graphs/usage-graphs.html:11
-msgid "MHz Available"
-msgstr ""
+msgstr "MHz"
 
 #: ./client/app/states/error/error.html:3
 msgid "ManageIQ Self Service"
@@ -599,73 +627,64 @@ msgstr "ManageIQ 自助服務"
 
 #: ./client/app/components/notifications/notification-footer.html:6
 msgid "Mark All Read"
-msgstr "標記為已讀"
+msgstr "標示所有已讀"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:12
-#: ./client/app/services/usage-graphs/usage-graphs.html:30
+#: ./client/app/services/usage-graphs/usage-graphs.html:23
 msgid "Memory"
 msgstr "記憶體"
 
-#: ./client/app/states/dashboard/dashboard.html:78
+#: ./client/app/components/dashboard/dashboard.html:100
 msgid "Monthly Charges - This Month To Date"
-msgstr "月費 - 本月至現在"
+msgstr "每月費用 - 這個月至今"
 
-#: ./client/app/services/service-details/service-details.html:95
+#: ./client/app/services/service-details/service-details.html:90
 msgid "Monthly Cost"
-msgstr "月成本"
+msgstr "每月成本"
 
-#: ./client/app/core/navigation.config.js:22
+#: ./client/app/core/navigation.service.js:55
+#: ./client/app/states/catalogs/details/details.state.js:59
+#: ./client/app/states/orders/details/details.html:5
+#: ./client/app/states/orders/explorer/explorer.state.js:11
 msgid "My Orders"
-msgstr ""
+msgstr "我的訂單"
 
-#: ./client/app/core/navigation.config.js:13
+#: ./client/app/core/navigation.service.js:39
+#: ./client/app/services/resource-details/resource-details.html:5
 #: ./client/app/services/service-details/service-details.html:5
 #: ./client/app/services/service-explorer/service-explorer.html:4
-#: ./client/app/services/vm-details/vm-details.html:5
 #: ./client/app/services/vms/snapshots.html:5
 #: ./client/app/states/services/reconfigure/reconfigure.html:3
 msgid "My Services"
-msgstr ""
+msgstr "我的服務"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:56
-#: ./client/app/catalogs/catalog-explorer.component.js:75
+#: ./client/app/catalogs/catalog-explorer.component.js:77
 #: ./client/app/catalogs/catalogs-state.service.js:7
-#: ./client/app/requests/order-explorer/order-explorer.component.js:100
-#: ./client/app/requests/order-explorer/order-explorer.component.js:108
-#: ./client/app/requests/orders-state.service.spec.js:27
+#: ./client/app/orders/order-explorer/order-explorer.component.js:103
+#: ./client/app/orders/order-explorer/order-explorer.component.js:111
+#: ./client/app/orders/orders-state.service.spec.js:29
 #: ./client/app/services/edit-service-modal/edit-service-modal.html:9
+#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:31
 #: ./client/app/services/service-details/service-details-ansible.html:101
 #: ./client/app/services/service-details/service-details-ansible.html:151
-#: ./client/app/services/service-details/service-details.html:60
-#: ./client/app/services/service-explorer/service-explorer.component.js:322
-#: ./client/app/services/service-explorer/service-explorer.component.js:335
+#: ./client/app/services/service-details/service-details.html:55
+#: ./client/app/services/service-explorer/service-explorer.component.js:343
+#: ./client/app/services/service-explorer/service-explorer.component.js:394
 #: ./client/app/services/services-state.service.js:8
 #: ./client/app/services/vms.service.js:8
-#: ./client/app/services/vms/snapshots.component.js:104
-#: ./client/app/services/vms/snapshots.component.js:92
+#: ./client/app/services/vms/snapshots.component.js:103
+#: ./client/app/services/vms/snapshots.component.js:89
 msgid "Name"
 msgstr "名稱"
 
-#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:9
-msgid "Name *"
-msgstr "名稱 *"
-
-#: ./client/app/services/vm-details/vm-details.component.js:39
+#: ./client/app/services/resource-details/resource-details.component.js:47
 msgid "Never"
-msgstr "永不"
+msgstr "從未"
 
-#: ./client/app/services/vm-details/vm-details.component.js:113
-msgid "Never Verified"
-msgstr "永不驗證"
-
-#: ./client/app/components/notifications/heading.html:2
 #: ./client/app/components/notifications/subheading.html:1
 msgid "New"
-msgstr "新的"
-
-#: ./client/app/shared/dialog-content/dialog-content.html:3
-msgid "No Provisioning Dialog Available."
-msgstr "沒有可用的供應對話框"
+msgstr "建立"
 
 #: ./client/app/services/vms/snapshots.html:9
 msgid "No Service"
@@ -677,195 +696,195 @@ msgstr "無警告"
 
 #: ./client/app/services/service-details/service-details-ansible.html:92
 msgid "No credentials available."
-msgstr "沒有可用的認證"
+msgstr "沒有可用的認證。"
 
-#: ./client/app/services/usage-graphs/usage-graphs.html:21
-#: ./client/app/services/usage-graphs/usage-graphs.html:45
-#: ./client/app/services/usage-graphs/usage-graphs.html:69
+#: ./client/app/services/resource-details/resource-details.component.js:58
+#: ./client/app/services/resource-details/resource-details.component.js:61
+#: ./client/app/services/resource-details/resource-details.component.js:89
+#: ./client/app/services/service-details/service-details.component.js:35
+#: ./client/app/services/usage-graphs/usage-graphs.component.js:27
 msgid "No data available"
-msgstr ""
+msgstr "無可用的資料"
 
 #: ./client/app/services/service-details/service-details-ansible.html:212
 msgid "No logs available."
-msgstr "沒有可用log"
+msgstr "沒有可用的日誌。"
 
 #: ./client/app/services/service-details/service-details-ansible.html:142
 msgid "No plays available."
-msgstr "沒有可用的ansible plays"
+msgstr "沒有可用的播放。"
 
-#: ./client/app/services/vm-details/vm-details.component.js:40
+#: ./client/app/services/resource-details/resource-details.component.js:48
 msgid "None"
 msgstr "無"
 
-#: ./client/app/services/vm-details/vm-details.component.js:42
+#: ./client/app/services/resource-details/resource-details.component.js:50
 msgid "Not Available"
-msgstr "不可用"
+msgstr "Not_Available"
+
+#: ./client/app/components/dashboard/dashboard.component.js:82
+msgid "Not Retired"
+msgstr "未退休"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:10
 msgid "Nothing Selected"
-msgstr ""
+msgstr "沒有選取項目"
 
-#: ./client/app/layouts/application.html:10
+#: ./client/app/layouts/application.html:13
 msgid "Notifications"
 msgstr "通知"
+
+#: ./client/app/components/dashboard/dashboard.component.js:66
+msgid "Now"
+msgstr "立即"
 
 #: ./client/app/shared/action-button-group/action-button-group.html:20
 #: ./client/app/shared/action-button-group/action-button-group.html:26
 msgid "OK"
-msgstr "OK"
+msgstr "確定"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:68
 msgid "Order"
-msgstr "訂單"
+msgstr "排序"
 
-#: ./client/app/requests/order-explorer/order-explorer.html:33
+#: ./client/app/orders/order-explorer/order-explorer.html:33
+#: ./client/app/states/orders/details/details.html:24
+#: ./client/app/states/orders/details/details.html:7
 msgid "Order #"
-msgstr "訂單 #"
+msgstr "訂單號"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:102
-#: ./client/app/requests/order-explorer/order-explorer.component.js:110
-#: ./client/app/requests/orders-state.service.js:12
+#: ./client/app/orders/order-explorer/order-explorer.component.js:105
+#: ./client/app/orders/order-explorer/order-explorer.component.js:113
+#: ./client/app/orders/orders-state.service.js:12
 msgid "Order Date"
 msgstr "訂單日期"
 
 #: ./client/app/states/orders/details/details.state.js:15
 msgid "Order Details"
-msgstr "訂單細節"
+msgstr "訂單明細"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:101
-#: ./client/app/requests/order-explorer/order-explorer.component.js:109
+#: ./client/app/orders/order-explorer/order-explorer.component.js:104
+#: ./client/app/orders/order-explorer/order-explorer.component.js:112
 msgid "Order ID"
-msgstr "訂單ID"
+msgstr "順序 ID"
 
-#: ./client/app/requests/order-explorer/order-explorer.html:47
+#: ./client/app/orders/order-explorer/order-explorer.html:48
 msgid "Ordered"
 msgstr "已訂購"
 
-#: ./client/app/requests/order-explorer/order-explorer.html:4
-#: ./client/app/states/orders/details/details.html:5
-#: ./client/app/states/orders/explorer/explorer.state.js:11
+#: ./client/app/orders/order-explorer/order-explorer.html:4
 msgid "Orders"
 msgstr "訂單"
 
-#: ./client/app/services/service-details/service-details.html:89
+#: ./client/app/services/service-details/service-details.html:84
 msgid "Owner"
 msgstr "擁有者"
 
-#: ./client/app/services/service-details/service-details.html:392
+#: ./client/app/services/service-details/service-details.html:418
 msgid "Parent Catalog Item"
-msgstr "上層類別項目"
+msgstr "母項型錄項目"
 
-#: ./client/app/services/service-details/service-details.html:383
+#: ./client/app/services/service-details/service-details.html:409
 msgid "Parent Service"
-msgstr "上層服務"
+msgstr "母項服務"
 
-#: ./client/app/states/login/login.html:25
+#: ./client/app/states/login/login.html:22
 msgid "Password"
 msgstr "密碼"
 
-#: ./client/app/states/dashboard/dashboard.html:102
+#: ./client/app/components/dashboard/dashboard.html:124
 msgid "Pending Requests"
-msgstr "擱置中的請求"
+msgstr "擱置要求"
 
 #: ./client/app/services/service-details/service-details-ansible.html:203
 msgid "Play In Progress"
-msgstr "ansible play已處理中"
+msgstr "播放進行中"
 
 #: ./client/app/services/service-details/service-details-ansible.html:53
 msgid "Playbook"
-msgstr "Playbook"
+msgstr "教戰手冊"
 
-#: ./client/app/services/service-explorer/service-explorer.html:73
+#: ./client/app/services/service-explorer/service-explorer.html:67
 msgid "Playbook: [[playbook]]"
-msgstr "Playbook: [[playbook]]"
+msgstr "教戰手冊：[[playbook]]"
 
 #: ./client/app/services/service-details/service-details-ansible.html:138
 msgid "Plays"
-msgstr "Plays"
+msgstr "播放次數"
 
-#: ./client/app/services/vms/snapshots.component.js:227
+#: ./client/app/services/vms/snapshots.component.js:234
 msgid "Please confirm, this action will delete all snapshots of vm %s"
-msgstr "請確認，這個動作會刪除虛擬機 %s 所有的快照"
+msgstr "請確認，此動作將刪除虛擬機器 %s 的所有 Snapshot"
 
-#: ./client/app/services/vms/snapshots.component.js:223
+#: ./client/app/services/vms/snapshots.component.js:230
 msgid "Please confirm, this action will delete snapshot %s"
-msgstr "請確認，這個動作會刪除快照 %s"
+msgstr "請確認，此動作將刪除 Snapshot %s"
 
-#: ./client/app/services/services-state.service.js:197
-#: ./client/app/services/services-state.service.js:200
+#: ./client/app/services/services-state.service.js:222
+#: ./client/app/services/services-state.service.js:225
 msgid "Policy"
-msgstr "策略"
+msgstr "原則 "
 
-#: ./client/app/services/vm-details/vm-details.component.js:163
+#: ./client/app/services/resource-details/resource-details.component.js:384
 msgid "Power"
-msgstr ""
+msgstr "電源"
 
-#: ./client/app/services/vm-details/vm-details.html:170
-msgid "Power Management"
-msgstr "電源管理"
-
-#: ./client/app/services/service-details/service-details.component.js:140
-#: ./client/app/services/service-details/service-details.component.js:145
-#: ./client/app/services/vm-details/vm-details.component.js:162
+#: ./client/app/services/resource-details/resource-details.component.js:383
+#: ./client/app/services/service-details/service-details.component.js:167
+#: ./client/app/services/service-details/service-details.component.js:172
 msgid "Power Operations"
-msgstr "電源操作"
+msgstr "電源作業"
+
+#: ./client/app/services/service-details/service-details.html:179
+#: ./client/app/services/service-explorer/service-explorer.component.js:454
+msgid "Power State: Off"
+msgstr "電源狀態：關閉"
 
 #: ./client/app/services/service-details/service-details.html:184
-#: ./client/app/services/service-explorer/service-explorer.component.js:422
-msgid "Power State: Off"
-msgstr "電源狀態：關機"
-
-#: ./client/app/services/service-details/service-details.html:189
-#: ./client/app/services/service-explorer/service-explorer.component.js:421
+#: ./client/app/services/service-explorer/service-explorer.component.js:453
 msgid "Power State: On"
-msgstr "電源狀態：開機"
+msgstr "電源狀態：開啟"
 
-#: ./client/app/services/service-details/service-details.html:195
-#: ./client/app/services/service-explorer/service-explorer.component.js:423
+#: ./client/app/services/service-details/service-details.html:190
+#: ./client/app/services/service-explorer/service-explorer.component.js:455
 msgid "Power State: Unknown"
-msgstr "電源狀態：未知"
+msgstr "電源狀態：不明"
 
-#: ./client/app/core/navigation/navigation-controller.js:101
+#: ./client/app/core/navigation/navigation-controller.js:136
 msgid "Product logo"
-msgstr "產品logo"
+msgstr "產品標誌"
 
-#: ./client/app/services/service-details/service-details.html:52
-#: ./client/app/services/vm-details/vm-details.html:54
+#: ./client/app/services/service-details/service-details.html:47
 msgid "Properties"
-msgstr "屬性"
+msgstr "內容"
 
-#: ./client/app/services/service-details/service-details.component.js:195
+#: ./client/app/services/service-details/service-details.component.js:221
 #: ./client/app/states/services/reconfigure/reconfigure.html:8
 msgid "Reconfigure"
-msgstr "重新設置"
+msgstr "重新配置"
 
-#: ./client/app/services/service-details/service-details.component.js:197
+#: ./client/app/services/service-details/service-details.component.js:223
 msgid "Reconfigure the Service"
-msgstr "重新設置服務"
+msgstr "重新配置服務"
 
-#: ./client/app/states/services/reconfigure/reconfigure.state.js:125
+#: ./client/app/states/services/reconfigure/reconfigure.state.js:85
 msgid "Reconfigure this service has been cancelled"
-msgstr "重新設置這個服務已被取消"
+msgstr "已取消重新配置此服務"
 
-#: ./client/app/shared/dialog-content/dialog-content.html:151
-msgid "Refresh"
-msgstr "重新整理"
-
-#: ./client/app/services/service-details/service-details.html:377
-#: ./client/app/services/vm-details/vm-details.html:108
+#: ./client/app/services/service-details/service-details.html:400
 msgid "Relationships"
-msgstr "關聯"
+msgstr "關係"
 
-#: ./client/app/services/service-explorer/service-explorer.html:106
+#: ./client/app/services/service-explorer/service-explorer.html:100
 msgid "Relative current cost"
-msgstr "目前的相對成本"
+msgstr "相對現行成本"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:16
 #: ./client/app/core/shopping-cart/shopping-cart.html:21
-#: ./client/app/requests/order-explorer/order-explorer.component.js:129
-#: ./client/app/services/service-explorer/service-explorer.component.js:256
-#: ./client/app/services/services-state.service.js:243
-#: ./client/app/services/services-state.service.js:245
+#: ./client/app/orders/order-explorer/order-explorer.component.js:123
+#: ./client/app/services/service-explorer/service-explorer.component.js:268
+#: ./client/app/services/services-state.service.js:268
+#: ./client/app/services/services-state.service.js:270
 msgid "Remove"
 msgstr "移除"
 
@@ -873,13 +892,13 @@ msgstr "移除"
 msgid "Remove Item"
 msgstr "移除項目"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:131
-#: ./client/app/requests/process-order-modal/process-order-modal.html:5
+#: ./client/app/orders/order-explorer/order-explorer.component.js:125
+#: ./client/app/orders/process-order-modal/process-order-modal.html:5
 msgid "Remove Order"
 msgstr "移除訂單"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:258
-#: ./client/app/services/services-state.service.js:250
+#: ./client/app/services/service-explorer/service-explorer.component.js:270
+#: ./client/app/services/services-state.service.js:275
 msgid "Remove Service"
 msgstr "移除服務"
 
@@ -887,129 +906,158 @@ msgstr "移除服務"
 msgid "Remove Services"
 msgstr "移除服務"
 
+#: ./client/app/orders/order-explorer/order-explorer.html:103
+msgid "Reorder"
+msgstr "重新排序"
+
 #: ./client/app/services/service-details/service-details-ansible.html:60
 msgid "Repo Name"
-msgstr "Repository名稱"
+msgstr "重新發佈名稱"
 
-#: ./client/app/requests/requests-state.service.js:13
-msgid "Request Date"
-msgstr "請求日期"
-
-#: ./client/app/requests/order-explorer/order-explorer.html:81
+#: ./client/app/orders/order-explorer/order-explorer.html:82
 msgid "Request ID"
-msgstr "請求ID"
+msgstr "要求 ID"
 
-#: ./client/app/requests/order-explorer/order-explorer.html:96
+#: ./client/app/orders/order-explorer/order-explorer.html:97
 msgid "Request State"
-msgstr "請求狀態"
+msgstr "要求狀態"
 
-#: ./client/app/requests/order-explorer/order-explorer.html:39
+#: ./client/app/orders/request-list/requests-list.html:26
+msgid "Requested"
+msgstr "已申請"
+
+#: ./client/app/orders/order-explorer/order-explorer.html:39
+#: ./client/app/orders/request-list/requests-list.html:21
 msgid "Requester"
-msgstr "請求者"
+msgstr "要求器"
 
 #: ./client/app/shared/action-button-group/action-button-group.html:38
 #: ./client/app/shared/action-button-group/action-button-group.html:6
 msgid "Reset"
-msgstr "重置"
+msgstr "重設"
 
-#: ./client/app/services/service-details/service-details.html:152
+#: ./client/app/states/services/resource-details/details.state.js:11
+msgid "Resource Details"
+msgstr "資源詳細資料"
+
+#: ./client/app/services/service-details/service-details.html:147
 msgid "Resources"
 msgstr "資源"
 
-#: ./client/app/services/service-details/service-details-ansible.html:11
-msgid "Results"
+#: ./client/app/catalogs/catalog-explorer.component.js:64
+#: ./client/app/orders/order-explorer/order-explorer.component.js:88
+#: ./client/app/services/service-explorer/service-explorer.component.js:199
+#: ./client/app/services/vms/snapshots.component.js:95
+msgid "Result"
 msgstr "結果"
 
-#: ./client/app/services/service-details/service-details.html:343
-#: ./client/app/services/service-details/service-details.html:350
-#: ./client/app/services/service-explorer/service-explorer.component.js:240
-#: ./client/app/services/services-state.service.js:159
-#: ./client/app/services/services-state.service.js:160
-#: ./client/app/services/vm-details/vm-details.component.js:196
+#: ./client/app/catalogs/catalog-explorer.component.js:65
+#: ./client/app/orders/order-explorer/order-explorer.component.js:89
+#: ./client/app/services/service-details/service-details-ansible.html:11
+#: ./client/app/services/service-explorer/service-explorer.component.js:200
+#: ./client/app/services/vms/snapshots.component.js:96
+msgid "Results"
+msgstr "結果數"
+
+#: ./client/app/services/resource-details/resource-details.component.js:417
+#: ./client/app/services/service-details/service-details.html:356
+#: ./client/app/services/service-details/service-details.html:363
+#: ./client/app/services/service-explorer/service-explorer.component.js:252
+#: ./client/app/services/services-state.service.js:191
+#: ./client/app/services/services-state.service.js:192
+#: ./client/app/services/vms.service.js:283
+#: ./client/app/services/vms.service.js:284
+#: ./client/app/services/vms.service.js:290
+#: ./client/app/services/vms.service.js:292
 msgid "Retire"
-msgstr "撤回"
+msgstr "淘汰"
 
-#: ./client/app/services/service-details/service-details.html:341
+#: ./client/app/services/service-details/service-details.html:354
 msgid "Retire Resource"
-msgstr ""
+msgstr "淘汰資源"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:242
+#: ./client/app/services/service-explorer/service-explorer.component.js:254
 msgid "Retire Service"
-msgstr "撤回服務"
-
-#: ./client/app/services/services-state.service.js:166
-msgid "Retire Service Now"
-msgstr "現在撤回服務"
+msgstr "淘汰服務"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:6
 msgid "Retire Services"
-msgstr "撤回服務"
+msgstr "淘汰服務"
 
-#: ./client/app/services/vm-details/vm-details.component.js:198
+#: ./client/app/components/dashboard/dashboard.component.js:13
+msgid "Retire Status"
+msgstr "淘汰狀態"
+
+#: ./client/app/services/resource-details/resource-details.component.js:419
 msgid "Retire the Service"
-msgstr ""
+msgstr "淘汰服務"
 
-#: ./client/app/services/vm-details/vm-details.html:57
-#: ./client/app/states/dashboard/dashboard.state.js:184
-#: ./client/app/states/dashboard/dashboard.state.js:192
+#: ./client/app/components/dashboard/dashboard.component.js:56
 msgid "Retired"
-msgstr "已撤回"
+msgstr "已停用"
 
-#: ./client/app/states/dashboard/dashboard.html:63
+#: ./client/app/components/dashboard/dashboard.html:82
 msgid "Retired Services"
-msgstr "已撤回的服務"
+msgstr "已淘汰服務"
 
-#: ./client/app/services/service-details/service-details.html:178
+#: ./client/app/services/service-details/service-details.html:173
 msgid "Retired resource"
-msgstr ""
+msgstr "已淘汰資源"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:13
-#: ./client/app/services/service-explorer/service-explorer.component.js:336
-#: ./client/app/states/dashboard/dashboard.state.js:180
+#: ./client/app/services/service-explorer/service-explorer.component.js:395
 msgid "Retirement Date"
-msgstr "撤回日期"
+msgstr "退休日期"
 
-#: ./client/app/services/service-details/service-details.html:113
+#: ./client/app/services/service-details/service-details.html:108
 msgid "Retirement State"
-msgstr "撤回狀態"
+msgstr "淘汰狀態"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:9
 msgid "Retirement Warning"
-msgstr "撤回警告"
+msgstr "淘汰警告"
 
-#: ./client/app/services/service-explorer/service-explorer.html:173
-#: ./client/app/services/service-explorer/service-explorer.html:97
+#: ./client/app/services/service-explorer/service-explorer.html:167
+#: ./client/app/services/service-explorer/service-explorer.html:91
 msgid "Retires"
-msgstr "撤回"
+msgstr "淘汰次數"
 
-#: ./client/app/services/service-details/service-details.html:120
+#: ./client/app/services/service-details/service-details.html:115
 msgid "Retires On"
-msgstr "撤回日期"
+msgstr "淘汰時間"
 
-#: ./client/app/states/dashboard/dashboard.html:33
+#: ./client/app/components/dashboard/dashboard.component.js:65
+msgid "Retires between"
+msgstr "淘汰時間"
+
+#: ./client/app/components/dashboard/dashboard.html:49
 msgid "Retiring Soon"
-msgstr "即將撤回"
+msgstr "即將淘汰"
 
-#: ./client/app/services/vms/snapshots.component.js:66
+#: ./client/app/services/vms/snapshots.component.js:70
 msgid "Revert"
-msgstr ""
+msgstr "回復"
 
-#: ./client/app/services/vms/snapshots.component.js:68
+#: ./client/app/services/vms/snapshots.component.js:72
 msgid "Revert Snapshot"
-msgstr ""
+msgstr "回復 Snapshot"
 
-#: ./client/app/services/vms/snapshots.component.js:236
+#: ./client/app/services/vms/snapshots.component.js:243
 msgid "Reverting snapshot."
-msgstr ""
+msgstr "正在回復 Snapshot。"
 
-#: ./client/app/core/event-notifications.service.js:42
+#: ./client/app/core/event-notifications.service.js:44
 msgid "Review the notification tray for results of this batch operation"
-msgstr ""
+msgstr "檢閱此批次作業結果的通知匣"
+
+#: ./client/app/core/navigation/navigation-controller.js:141
+msgid "SUI Version:"
+msgstr "SUI 版本："
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:16
-#: ./client/app/shared/action-button-group/action-button-group.html:13
+#: ./client/app/shared/action-button-group/action-button-group.component.js:30
 msgid "Save"
-msgstr "存檔"
+msgstr "儲存"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:6
 msgid "Save Changes"
@@ -1017,68 +1065,72 @@ msgstr "儲存變更"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:5
 msgid "Schedule Service Retirement"
-msgstr "排程服務撤回"
+msgstr "排程服務退休"
 
-#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:75
+#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:72
 msgid "Scheduling retirement."
-msgstr "撤回排程"
+msgstr "排程退休。"
 
-#: ./client/app/services/vm-details/vm-details.html:183
-msgid "Security"
-msgstr "安全"
+#: ./client/app/shared/pagination/pagination.html:5
+msgid "Select All"
+msgstr "全選"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:20
 msgid "Select a Group"
-msgstr "選擇一個群組"
+msgstr "選取群組"
 
 #: ./client/app/shared/tagging/tagging.component.js:20
 msgid "Select a value to assign"
-msgstr ""
+msgstr "選取要指派的值"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
-msgstr "選擇一個擁有者"
+msgstr "選取擁有者"
 
-#: ./client/app/core/navigation/navigation-controller.js:106
+#: ./client/console/common.js:14
+msgid "Send CTRL+ALT+DEL"
+msgstr "傳送 CTRL+ALT+DEL"
+
+#: ./client/app/core/navigation/navigation-controller.js:142
 msgid "Server Name:"
-msgstr "伺服器名稱"
+msgstr "伺服器名稱："
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:7
 msgid "Service"
 msgstr "服務"
 
 #: ./client/app/catalogs/catalog-explorer.html:4
-#: ./client/app/core/navigation.config.js:31
+#: ./client/app/core/navigation.service.js:72
 msgid "Service Catalog"
-msgstr "服務類別"
+msgstr "服務型錄"
 
-#: ./client/app/states/catalogs/details/details.html:5
+#: ./client/app/states/catalogs/details/details.state.js:49
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Service Catalogs"
-msgstr ""
+msgstr "服務型錄"
 
-#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:16
-msgid "Service Custom Button Details"
-msgstr "服務自訂按鈕細節"
-
-#: ./client/app/services/service-details/service-details.component.js:33
+#: ./client/app/services/service-details/service-details.component.js:30
 #: ./client/app/states/services/details/details.state.js:12
-#: ./client/app/states/services/reconfigure/reconfigure.state.js:17
-#: ./client/app/states/services/reconfigure/reconfigure.state.js:39
+#: ./client/app/states/services/reconfigure/reconfigure.state.js:16
+#: ./client/app/states/services/reconfigure/reconfigure.state.js:25
 msgid "Service Details"
-msgstr "服務細節"
+msgstr "服務明細"
 
-#: ./client/app/services/service-details/service-details.html:82
+#: ./client/app/services/service-details/service-details.html:77
 msgid "Service Id"
-msgstr "服務ID"
+msgstr "服務 ID"
 
-#: ./client/app/states/catalogs/details/details.state.js:15
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:43
+msgid "Service Retire - Request Created"
+msgstr "服務退休 - 已建立要求"
+
+#: ./client/app/states/catalogs/details/details.state.js:16
 msgid "Service Template Details"
-msgstr "服務樣板細節"
+msgstr "服務範本詳細資料"
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:44
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:46
 msgid "Service deleting."
-msgstr ""
+msgstr "服務刪除。"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:32
 msgid "Services"
@@ -1088,82 +1140,81 @@ msgstr "服務"
 msgid "Services Explorer"
 msgstr "服務瀏覽器"
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:41
-msgid "Services Retired"
-msgstr "服務已撤回"
-
-#: ./client/app/services/service-explorer/service-explorer.component.js:232
-#: ./client/app/services/service-explorer/service-explorer.component.js:234
-#: ./client/app/services/services-state.service.js:259
-#: ./client/app/services/services-state.service.js:261
+#: ./client/app/services/service-explorer/service-explorer.component.js:244
+#: ./client/app/services/service-explorer/service-explorer.component.js:246
+#: ./client/app/services/services-state.service.js:284
+#: ./client/app/services/services-state.service.js:286
 msgid "Set Ownership"
 msgstr "設定所有權"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:248
-#: ./client/app/services/services-state.service.js:153
+#: ./client/app/services/service-explorer/service-explorer.component.js:260
+#: ./client/app/services/services-state.service.js:185
 msgid "Set Retirement"
-msgstr "撤回設定"
+msgstr "設定退休"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:250
-#: ./client/app/services/services-state.service.js:151
+#: ./client/app/services/service-explorer/service-explorer.component.js:262
+#: ./client/app/services/services-state.service.js:183
 msgid "Set Retirement Dates"
-msgstr "設定撤回日期"
+msgstr "設定退休日期"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:5
 msgid "Set Service Ownership"
 msgstr "設定服務所有權"
 
-#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:67
+#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:73
 msgid "Setting ownership."
-msgstr ""
+msgstr "設定所有權。"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:5
 msgid "Shopping Cart"
-msgstr "購物車"
+msgstr "購物車  "
 
-#: ./client/app/layouts/application.html:25
+#: ./client/app/layouts/application.html:31
 msgid "Shopping cart"
 msgstr "購物車"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:37
 msgid "Shopping cart is empty."
-msgstr "購物車是空的"
+msgstr "購物車是空的。"
 
 #: ./client/app/core/shopping-cart/shopping-cart.component.js:41
 msgid "Shopping cart successfully ordered"
-msgstr "購物車內的項目已成功訂購"
+msgstr "已順利訂購購物車"
 
-#: ./client/app/services/vm-details/vm-details.html:154
-msgid "Show parent and child VMs"
-msgstr "顯示上層及子虛擬機"
+#: ./client/app/services/resource-details/resource-details.html:121
+msgid "Smart State Analysis"
+msgstr "智慧型狀態分析"
 
+#: ./client/app/services/resource-details/resource-details.component.js:305
+#: ./client/app/services/resource-details/resource-details.component.js:306
+#: ./client/app/services/service-details/service-details.html:276
 #: ./client/app/services/vms/snapshots.component.js:23
 #: ./client/app/services/vms/snapshots.html:14
 #: ./client/app/services/vms/snapshots.html:42
 msgid "Snapshots"
-msgstr "快照"
+msgstr "Snapshots"
 
 #: ./client/app/services/service-details/service-details-ansible.html:196
 msgid "Standard Out"
-msgstr ""
+msgstr "標準輸出"
 
-#: ./client/app/services/service-details/service-details.component.js:150
-#: ./client/app/services/service-details/service-details.html:325
-#: ./client/app/services/service-explorer/service-explorer.component.js:269
-#: ./client/app/services/service-explorer/service-explorer.html:188
-#: ./client/app/services/vm-details/vm-details.component.js:172
+#: ./client/app/services/resource-details/resource-details.component.js:393
+#: ./client/app/services/service-details/service-details.component.js:176
+#: ./client/app/services/service-details/service-details.html:338
+#: ./client/app/services/service-explorer/service-explorer.component.js:281
+#: ./client/app/services/service-explorer/service-explorer.html:184
 msgid "Start"
 msgstr "開始"
 
-#: ./client/app/services/service-details/service-details.component.js:152
-#: ./client/app/services/vm-details/vm-details.component.js:174
+#: ./client/app/services/resource-details/resource-details.component.js:395
+#: ./client/app/services/service-details/service-details.component.js:178
 msgid "Start the Service"
 msgstr "啟動服務"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:271
-#: ./client/app/services/service-explorer/service-explorer.html:188
+#: ./client/app/services/service-explorer/service-explorer.component.js:283
+#: ./client/app/services/service-explorer/service-explorer.html:184
 msgid "Start this service"
-msgstr "啟動服務"
+msgstr "啟動這項服務"
 
 #: ./client/app/services/service-details/service-details-ansible.html:167
 #: ./client/app/services/service-details/service-details-ansible.html:20
@@ -1172,425 +1223,419 @@ msgstr "已啟動"
 
 #: ./client/app/components/notifications/notification-body.html:41
 msgid "Started:"
-msgstr "已啟動："
+msgstr "啟動時間："
 
 #: ./client/app/services/service-details/service-details-ansible.html:13
 #: ./client/app/services/service-details/service-details-ansible.html:159
 msgid "Status"
 msgstr "狀態"
 
-#: ./client/app/services/service-details/service-details.component.js:157
-#: ./client/app/services/service-details/service-details.html:330
-#: ./client/app/services/service-explorer/service-explorer.component.js:277
-#: ./client/app/services/service-explorer/service-explorer.html:191
-#: ./client/app/services/vm-details/vm-details.component.js:180
+#: ./client/app/services/resource-details/resource-details.component.js:401
+#: ./client/app/services/service-details/service-details.component.js:183
+#: ./client/app/services/service-details/service-details.html:343
+#: ./client/app/services/service-explorer/service-explorer.component.js:289
+#: ./client/app/services/service-explorer/service-explorer.html:189
 msgid "Stop"
 msgstr "停止"
 
-#: ./client/app/services/service-details/service-details.component.js:159
-#: ./client/app/services/vm-details/vm-details.component.js:182
+#: ./client/app/services/resource-details/resource-details.component.js:403
+#: ./client/app/services/service-details/service-details.component.js:185
 msgid "Stop the Service"
-msgstr "停止服務"
+msgstr "啟動服務"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:279
-#: ./client/app/services/service-explorer/service-explorer.html:191
+#: ./client/app/services/service-explorer/service-explorer.component.js:291
+#: ./client/app/services/service-explorer/service-explorer.html:189
 msgid "Stop this service"
-msgstr "停止服務"
+msgstr "停止這項服務"
 
-#: ./client/app/services/usage-graphs/usage-graphs.html:54
+#: ./client/app/services/usage-graphs/usage-graphs.html:39
 msgid "Storage"
-msgstr ""
+msgstr "儲存體 (Storage)"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:19
 #: ./client/app/states/services/reconfigure/reconfigure.html:23
 msgid "Submit Request"
-msgstr "送出請求"
+msgstr "提交申請"
 
-#: ./client/app/services/service-details/service-details.component.js:164
-#: ./client/app/services/service-details/service-details.html:335
-#: ./client/app/services/service-explorer/service-explorer.component.js:285
+#: ./client/app/core/event-notifications.service.js:194
+msgid "Success"
+msgstr "成功"
+
+#: ./client/app/services/resource-details/resource-details.component.js:409
+#: ./client/app/services/service-details/service-details.component.js:190
+#: ./client/app/services/service-details/service-details.html:348
+#: ./client/app/services/service-explorer/service-explorer.component.js:297
 #: ./client/app/services/service-explorer/service-explorer.html:194
-#: ./client/app/services/vm-details/vm-details.component.js:188
 msgid "Suspend"
 msgstr "暫停"
 
-#: ./client/app/services/service-details/service-details.component.js:166
-#: ./client/app/services/vm-details/vm-details.component.js:190
+#: ./client/app/services/resource-details/resource-details.component.js:411
+#: ./client/app/services/service-details/service-details.component.js:192
 msgid "Suspend the Service"
 msgstr "暫停服務"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:287
+#: ./client/app/services/service-explorer/service-explorer.component.js:299
 msgid "Suspend this service"
-msgstr "暫停這個服務"
+msgstr "暫停這項服務"
 
-#: ./client/app/core/language-switcher/language-switcher.html:2
+#: ./client/app/shared/language-switcher/language-switcher.html:3
 msgid "Switch Language:"
-msgstr "切換語系："
+msgstr "切換語言："
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.service.js:57
 msgid "Tagging successful."
-msgstr "標記成功"
+msgstr "標記成功。"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:11
-#: ./client/app/services/service-details/service-details.html:133
+#: ./client/app/services/resource-details/resource-details.html:136
+#: ./client/app/services/service-details/service-details.html:128
+#: ./client/app/services/service-explorer/service-explorer.component.js:377
 msgid "Tags"
 msgstr "標籤"
 
-#: ./client/app/catalogs/catalog-explorer.component.js:76
+#: ./client/app/catalogs/catalog-explorer.component.js:78
 msgid "Tenant"
-msgstr "租戶"
+msgstr "承租戶"
 
-#: ./client/app/services/vm-details/vm-details.component.js:59
-msgid "The contents of this page is a function of the current users's group."
-msgstr ""
+#: ./client/console/webmks.js:76
+msgid "The appliance has no access to the assets required to run the WebMKS console. For more info please see the documentation."
+msgstr "應用裝置對執行 WebMKS 主控台所需的資產沒有存取權。 如需相關資訊，請參閱說明文件。"
 
-#: ./client/app/states/dashboard/dashboard.html:53
+#: ./client/app/orders/request-list/requests-list.html:32
+#: ./client/app/orders/request-list/requests-list.html:35
+#: ./client/app/orders/request-list/requests-list.html:38
+msgid "The current approval status of the request"
+msgstr "要求的現行核准狀態"
+
+#: ./client/app/components/dashboard/dashboard.html:71
 msgid "The number of active services"
-msgstr "啟用服務的數量"
+msgstr "作用中服務的數目"
 
-#: ./client/app/states/dashboard/dashboard.html:38
+#: ./client/app/components/dashboard/dashboard.html:55
 msgid "The number of services retiring within the next 30 days"
-msgstr "未來30天內的服務撤回數目"
+msgstr "在未來 30 天內退休的服務數目"
 
-#: ./client/app/states/dashboard/dashboard.html:68
-msgid ""
-"The number of services which have hit their retirement period or been "
-"retired"
-msgstr "服務已達到撤回的時間間隔或已被撤回"
+#: ./client/app/components/dashboard/dashboard.html:88
+msgid "The number of services which have hit their retirement period or been retired"
+msgstr "已達到退休期間或已退休的服務數目"
 
 #: ./client/app/states/404/404.html:6
-msgid ""
-"The page you are looking for might have been removed, had its name changed, "
-"or is temporarily unavailable."
-msgstr "要尋找的頁面可能已移除、更名或暫時無法使用"
+msgid "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+msgstr "您正在尋找的頁面可能已移除、其名稱已變更，或暫時無法使用。"
 
 #: ./client/app/states/404/404.html:5
 msgid "The page you requested cannot be found."
-msgstr "找不到請求的頁面"
+msgstr "找不到您要求的頁面。"
 
-#: ./client/app/core/navigation.config.js:35
+#: ./client/app/core/navigation.service.js:83
 msgid "The total number of available catalogs"
-msgstr "可用的類別總數"
+msgstr "可用的型錄總數"
 
-#: ./client/app/states/catalogs/details/details.html:38
-msgid ""
-"There already is an identical item in the cart. Do you want to add it "
-"anyway?"
-msgstr "已有相同的項目存在購物車中，確定仍要增加？"
+#: ./client/app/states/catalogs/details/details.html:51
+msgid "There already is an identical item in the cart. Do you want to add it anyway?"
+msgstr "購物車中已有相同的項目。 您還要新增它嗎???"
 
-#: ./client/app/services/service-details/service-details.component.js:337
+#: ./client/app/services/service-details/service-details.component.js:374
 msgid "There are no Compute Resources for this service."
-msgstr "沒有運算資源可以給這個服務"
+msgstr "此服務沒有「計算資源」。"
+
+#: ./client/app/layouts/application.html:14
+msgid "There are no notifications to display."
+msgstr "沒有可顯示的通知。"
 
 #: ./client/app/shared/tagging/tagging.html:15
 msgid "There are no tags for this item."
-msgstr "沒有標籤給這個項目"
+msgstr "此項目沒有標記。"
 
 #: ./client/app/states/error/error.html:10
 msgid "There was a problem loading the page."
-msgstr "當載入此網頁時發生問題"
+msgstr "載入頁面時發生問題。"
 
-#: ./client/app/states/catalogs/details/details.state.js:152
+#: ./client/app/states/catalogs/details/details.state.js:215
 msgid "There was an error adding to shopping cart:"
-msgstr "加到購物車時發生錯誤"
+msgstr "新增至購物車時發生錯誤："
 
-#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:43
+#: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:81
 msgid "There was an error creating the snapshot."
-msgstr "建立快照時發生錯誤"
+msgstr "建立 Snapshot 時發生錯誤。"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:300
-msgid "There was an error duplicating %s."
-msgstr "複製時發生錯誤 %s"
-
-#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:32
+#: ./client/app/services/edit-service-modal/edit-service-modal.component.js:33
 msgid "There was an error editing this service."
-msgstr "編輯時發生錯誤"
+msgstr "編輯這項服務時發生錯誤。"
 
-#: ./client/app/services/service-details/service-details.component.js:120
+#: ./client/app/services/service-details/service-details.component.js:98
 msgid "There was an error fetching this service."
-msgstr "提取服務時發生錯誤"
+msgstr "提取這項服務時發生錯誤。"
 
-#: ./client/app/catalogs/catalog-explorer.component.js:114
+#: ./client/app/catalogs/catalog-explorer.component.js:107
 msgid "There was an error loading catalogs."
-msgstr "載入類別時發生錯誤"
+msgstr "載入型錄時發生錯誤。"
 
-#: ./client/app/requests/order-explorer/order-explorer.component.js:268
-#: ./client/app/requests/order-explorer/order-explorer.component.js:282
+#: ./client/app/orders/order-explorer/order-explorer.component.js:254
 msgid "There was an error loading orders."
-msgstr "載入訂單時發生錯誤"
+msgstr "載入訂單時發生錯誤。"
 
-#: ./client/app/services/vms/snapshots.component.js:193
+#: ./client/app/services/vms/snapshots.component.js:200
 msgid "There was an error loading snapshots."
-msgstr "載入快照時發生錯誤"
+msgstr "載入 Snapshot 時發生錯誤。"
 
-#: ./client/app/services/service-explorer/service-explorer.component.js:356
-#: ./client/app/services/service-explorer/service-explorer.component.js:431
+#: ./client/app/services/service-explorer/service-explorer.component.js:463
 msgid "There was an error loading the services."
-msgstr "載入服務時發生錯誤"
+msgstr "載入服務時發生錯誤。"
 
-#: ./client/app/services/vm-details/vm-details.component.js:131
+#: ./client/app/services/resource-details/resource-details.component.js:290
 msgid "There was an error loading the vm details."
-msgstr ""
+msgstr "載入虛擬機器的詳細資料時發生錯誤。"
 
-#: ./client/app/services/vms/snapshots.component.js:205
+#: ./client/app/services/vms/snapshots.component.js:212
 msgid "There was an error loading the vm."
-msgstr "載入vm時發生錯誤"
+msgstr "載入虛擬機器時發生錯誤。"
 
-#: ./client/app/services/consoles.service.js:51
+#: ./client/app/services/consoles.service.js:58
 msgid "There was an error opening the console."
-msgstr ""
+msgstr "開啟主控台時發生錯誤。"
 
-#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:51
+#: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:53
 msgid "There was an error removing one or more services."
-msgstr "移除一個或多個服務時發生錯誤"
+msgstr "移除一或多項服務時發生錯誤。"
 
-#: ./client/app/requests/process-order-modal/process-order-modal.component.js:42
+#: ./client/app/orders/process-order-modal/process-order-modal.component.js:44
 msgid "There was an error removing order"
-msgstr ""
+msgstr "移除訂單時發生錯誤"
 
-#: ./client/app/services/service-details/service-details.component.js:269
+#: ./client/app/services/service-details/service-details.component.js:295
 msgid "There was an error removing this service."
-msgstr "移除此服務時發生錯誤"
+msgstr "移除這項服務時發生錯誤。"
 
-#: ./client/app/services/poweroperations.service.js:224
+#: ./client/app/services/poweroperations.service.js:196
 msgid "There was an error retiring this %s."
-msgstr ""
+msgstr "淘汰此 %s 時發生錯誤。"
 
-#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:80
-#: ./client/app/services/service-details/service-details.component.js:328
+#: ./client/app/services/retire-service-modal/retire-service-modal.component.js:77
 msgid "There was an error retiring this service."
-msgstr "撤回此服務時發生錯誤"
+msgstr "淘汰這項服務時發生錯誤。"
 
-#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:72
+#: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:78
 msgid "There was an error saving ownership."
-msgstr ""
+msgstr "儲存所有權時發生錯誤。"
 
-#: ./client/app/services/poweroperations.service.js:215
+#: ./client/app/services/poweroperations.service.js:187
 msgid "There was an error starting this %s."
-msgstr "啟動 %s 時發生錯誤"
+msgstr "啟動此 %s 時發生錯誤。"
 
-#: ./client/app/services/poweroperations.service.js:218
+#: ./client/app/services/poweroperations.service.js:190
 msgid "There was an error stopping this %s."
-msgstr "停止 %s 時發生錯誤"
+msgstr "停止此 %s 時發生錯誤。"
+
+#: ./client/app/services/custom-button/custom-button.component.js:86
+msgid "There was an error submitting the custom button."
+msgstr "提交自訂按鈕時發生錯誤。"
 
 #: ./client/app/core/shopping-cart/shopping-cart.component.js:46
-#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:89
-#: ./client/app/states/services/reconfigure/reconfigure.state.js:120
+#: ./client/app/states/services/custom_button_details/custom_button_details.state.js:130
+#: ./client/app/states/services/reconfigure/reconfigure.state.js:80
 msgid "There was an error submitting this request:"
-msgstr "送出這個請求時發生錯誤"
+msgstr "提交此要求時發生錯誤："
 
-#: ./client/app/services/poweroperations.service.js:221
+#: ./client/app/services/poweroperations.service.js:193
 msgid "There was an error suspending this %s."
-msgstr "發生錯誤而暫停 %s"
+msgstr "暫停此 %s 時發生錯誤。"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.service.js:62
 msgid "There was an error tagging this service."
-msgstr "標記這個服務時發生錯誤"
+msgstr "標記這項服務時發生錯誤。"
 
-#: ./client/app/states/dashboard/dashboard.html:20
+#: ./client/app/services/resource-details/resource-details.html:103
+msgid "Timeline - Power Events"
+msgstr "時間表 - 電源事件"
+
+#: ./client/app/components/dashboard/dashboard.html:35
 msgid "Total Requests"
-msgstr "所有請求"
+msgstr "要求總計"
 
-#: ./client/app/states/dashboard/dashboard.html:9
+#: ./client/app/components/dashboard/dashboard.html:16
 msgid "Total Services"
-msgstr "所有服務"
+msgstr "服務總計"
 
-#: ./client/app/services/service-details/service-details.html:217
+#: ./client/app/services/service-details/service-details.html:211
 msgid "Total Snapshots"
-msgstr "所有快照"
+msgstr "Snapshot 總計"
 
-#: ./client/app/core/navigation.config.js:26
+#: ./client/app/core/navigation.service.js:66
 msgid "Total orders submitted"
-msgstr "所有已送出的訂單"
+msgstr "已提交訂單總計"
 
-#: ./client/app/core/navigation.config.js:17
+#: ./client/app/core/navigation.service.js:49
 msgid "Total services ordered, both active and retired"
-msgstr "所有的服務訂購，都已啟用並撤回"
+msgstr "訂購的服務總計，包括作用中的和已退休的服務"
 
 #: ./client/app/services/service-details/service-details-ansible.html:121
 msgid "Type"
 msgstr "類型"
 
-#: ./client/app/services/vm-details/vm-details.component.js:115
-msgid "Unknown"
-msgstr "未知"
-
-#: ./client/app/services/consoles.service.js:66
+#: ./client/app/services/consoles.service.js:76
 msgid "Unsupported console protocol returned."
-msgstr "不支援的控制台協定傳回"
+msgstr "傳回不受支援的主控台通訊協定。"
 
-#: ./client/app/services/vms/snapshots.component.js:106
+#: ./client/app/services/vms/snapshots.component.js:105
 msgid "Updated"
-msgstr "已更新"
+msgstr "更新日期"
 
-#: ./client/app/services/vms/snapshots.html:99
+#: ./client/app/services/vms/snapshots.html:98
 msgid "Updated:"
-msgstr "已更新："
+msgstr "更新時間："
 
-#: ./client/app/core/language-switcher/language-switcher.directive.js:35
+#: ./client/app/shared/language-switcher/language-switcher.component.js:32
 msgid "User Default"
 msgstr "使用者預設值"
 
-#: ./client/app/core/navigation/navigation-controller.js:107
+#: ./client/app/core/navigation/navigation-controller.js:143
 msgid "User Name:"
-msgstr "使用者名稱"
+msgstr "使用者名稱："
 
-#: ./client/app/core/navigation/navigation-controller.js:108
+#: ./client/app/core/navigation/navigation-controller.js:144
 msgid "User Role:"
-msgstr "使用者角色"
+msgstr "使用者角色："
 
-#: ./client/app/states/login/login.state.js:47
+#: ./client/app/states/login/login.state.js:50
 msgid "User does not have privileges to login."
-msgstr "使用者無登入權限"
+msgstr "使用者沒有登入專用權。"
 
-#: ./client/app/states/login/login.html:17
+#: ./client/app/states/login/login.html:16
 msgid "Username"
 msgstr "使用者名稱"
 
 #: ./client/app/services/usage-graphs/usage-graphs.html:1
 msgid "Utilization"
-msgstr ""
+msgstr "使用率"
 
-#: ./client/app/services/service-details/service-details.html:306
-msgid "VM Console"
-msgstr ""
-
-#: ./client/app/states/vms/details/details.state.js:12
-msgid "VM Details"
-msgstr "虛擬機細節"
+#: ./client/app/services/service-details/service-details.html:307
+msgid "VM HTML5 Console"
+msgstr "VM HTML5 主控台"
 
 #: ./client/app/states/vms/snapshots/snapshots.state.js:13
 msgid "VM Snapshots"
-msgstr "虛擬機快照"
+msgstr "VM Snapshot"
+
+#: ./client/app/services/service-details/service-details.html:315
+msgid "VM VMRC Console"
+msgstr "VM VMRC 主控台"
 
 #: ./client/app/services/service-details/service-details-ansible.html:67
 msgid "Verbosity"
-msgstr "詳細資訊級別"
+msgstr "贅詞"
 
-#: ./client/app/core/navigation/navigation-controller.js:105
+#: ./client/app/core/navigation/navigation-controller.js:140
 msgid "Version:"
 msgstr "版本："
 
-#: ./client/app/services/service-details/service-details.html:287
+#: ./client/app/services/resource-details/resource-details.component.js:314
+#: ./client/app/services/service-details/service-details.html:282
 msgid "View"
-msgstr ""
+msgstr "視圖"
 
-#: ./client/app/services/service-details/service-details.html:354
-msgid "View\n"
-"                            Details"
-msgstr ""
+#: ./client/app/services/service-details/service-details.html:367
+msgid "View\n                                                    Details"
+msgstr "檢視詳細資料"
 
-#: ./client/app/services/service-details/service-details.html:358
-msgid "View\n"
-"                            Graphs"
-msgstr ""
+#: ./client/app/services/resource-details/resource-details.component.js:316
+msgid "View snapshots"
+msgstr "檢視 Snapshot"
 
 #: ./client/app/services/consoles.service.js:24
 msgid "Waiting for the console to become ready."
-msgstr "等待控制台就緒"
+msgstr "正在等待主控台備妥。"
+
+#: ./client/app/core/event-notifications.service.js:194
+msgid "Warning"
+msgstr "警告"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:11
-msgid ""
-"Warning: The selected Services and ALL of their components will be "
-"immediately retired!"
-msgstr "警告：選擇的服務及相關的所有元件將馬上被撤回"
+msgid "Warning: The selected Services and ALL of their components will be immediately retired!"
+msgstr "警告：將立即淘汰選取的「服務」及其「所有元件」！"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:10
-msgid ""
-"Warning: The selected Services and ALL of their components will be "
-"permanently removed!"
-msgstr "警告：選擇的服務及相關的所有元件將永久被移除"
+msgid "Warning: The selected Services and ALL of their components will be permanently removed!"
+msgstr "警告：將永久移除選取的「服務」及其「所有元件」！"
 
 #: ./client/app/services/service-details/service-details-ansible.html:198
 msgid "Watch Live"
-msgstr ""
+msgstr "線上監看"
 
 #: ./client/app/states/404/404.html:7
 #: ./client/app/states/error/error.html:13
 msgid "We apologize for the inconvenience."
-msgstr "造成您的不便，我們深感抱歉"
+msgstr "不便之處，尚請見諒。"
 
-#: ./client/app/services/service-details/service-details.html:311
+#: ./client/app/services/service-details/service-details.html:324
 msgid "Web Console"
-msgstr ""
+msgstr "Web 主控台"
 
-#: ./client/app/services/services-state.service.js:252
+#: ./client/app/services/services-state.service.js:277
 msgid "Yes, Remove Service"
 msgstr "是，移除服務"
 
-#: ./client/app/services/services-state.service.js:168
-msgid "Yes, Retire Service Now"
-msgstr "是，現在撤回服務"
-
-#: ./client/app/states/login/login.state.js:74
-msgid ""
-"You do not have permission to view the Service UI. Contact your "
-"administrator to update your group permissions."
-msgstr ""
+#: ./client/app/states/login/login.state.js:77
+msgid "You do not have permission to view the Service UI. Contact your administrator to update your group permissions."
+msgstr "您沒有檢視服務使用者介面的許可權。請聯絡管理者以更新群組權限。"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:11
-msgid ""
-"Your current edits are invalid and cannot be saved. Continuing will discard "
-"your changes."
-msgstr "目前編輯為無效的且無法被儲存，繼續將會取消所有變更"
+msgid "Your current edits are invalid and cannot be saved. Continuing will discard your changes."
+msgstr "您的現行編輯無效，無法儲存。 繼續執行會捨棄您的變更。"
 
-#: ./client/app/states/login/login.state.js:37
+#: ./client/app/states/login/login.state.js:39
 msgid "Your session has timed out."
-msgstr "session已逾時"
+msgstr "您的階段作業已逾時。"
 
-#: ./client/app/services/service-explorer/service-explorer.html:62
+#: ./client/app/services/service-explorer/service-explorer.html:55
 msgid "[[number]] VMs"
-msgstr "[[number]] VMs"
+msgstr "[[number]] 個虛擬機器"
 
-#: ./client/app/requests/process-order-modal/process-order-modal.html:9
-msgid "and all of its service requests will be permanently removed!"
-msgstr "而且所有服務請求將永久被移除"
+#: ./client/app/orders/order-explorer/order-explorer.html:57
+msgid "item"
+msgid_plural "items"
+msgstr[0] "項目"
 
-#: ./client/app/shared/pagination/pagination.html:12
-#: ./client/app/shared/pagination/pagination.html:5
+#: ./client/app/shared/pagination/pagination.html:13
+#: ./client/app/shared/pagination/pagination.html:20
 msgid "items"
-msgstr "項目"
+msgstr "項"
 
-#: ./client/app/core/gettext.config.js:25
+#: ./client/app/core/gettext.config.js:23
 msgid "locale_name"
 msgstr "國語"
 
-#: ./client/app/services/usage-graphs/usage-graphs.html:12
-#: ./client/app/services/usage-graphs/usage-graphs.html:36
-#: ./client/app/services/usage-graphs/usage-graphs.html:60
-#: ./client/app/shared/pagination/pagination.html:29
-#: ./client/app/shared/pagination/pagination.html:32
+#: ./client/app/services/vms.service.js:280
+msgid "now?"
+msgstr "立即？"
+
+#: ./client/app/services/usage-graphs/usage-graphs.html:13
+#: ./client/app/services/usage-graphs/usage-graphs.html:29
+#: ./client/app/services/usage-graphs/usage-graphs.html:45
+#: ./client/app/shared/pagination/pagination.html:37
+#: ./client/app/shared/pagination/pagination.html:40
 msgid "of"
-msgstr "的"
+msgstr "/"
+
+#: ./client/app/states/orders/details/details.html:25
+msgid "ordered on"
+msgstr "訂購時間"
 
 #: ./client/app/services/service-explorer/service-explorer.html:194
 msgid "suspend this service"
-msgstr "暫停這個服務"
+msgstr "暫停此服務"
 
-#: ./client/app/core/navigation/navigation-controller.js:212
-msgid "unread notifications"
-msgstr "未讀通知"
-
-#: ./client/app/services/service-details/service-details.component.js:26
-#: ./client/app/services/service-details/service-details.component.js:27
-#: ./client/app/services/service-details/service-details.component.js:28
-#: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:9
-#: ./client/app/services/vm-details/vm-details.component.js:25
-#: ./client/app/services/vm-details/vm-details.component.js:26
-#: ./client/app/services/vm-details/vm-details.component.js:27
+#: ./client/app/services/resource-details/resource-details.component.js:213
+#: ./client/app/services/resource-details/resource-details.component.js:219
+#: ./client/app/services/resource-details/resource-details.component.js:225
+#: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:10
 msgid "used"
-msgstr ""
+msgstr "used"
 
-#: ./client/app/services/service-details/service-details.component.js:264
+#: ./client/app/services/service-details/service-details.component.js:290
 msgid "was removed."
-msgstr "已被移除"
+msgstr "已移除。"
 
-#: ./client/app/services/service-details/service-details.component.js:323
-msgid "was retired."
-msgstr "已撤回"
-
-#: ./client/app/requests/order-explorer/order-explorer.html:55
-msgid "{{ $count }} item"
-msgid_plural "{{ $count }} items"
-msgstr[0] "{{ $count }} 項目"
-
+#: ./client/app/orders/process-order-modal/process-order-modal.html:9
+msgid "{{ vm.order.name }} and all of its service requests will be permanently removed!"
+msgstr "{{ vm.order.name }} 及其所有服務要求將被永久移除！"
