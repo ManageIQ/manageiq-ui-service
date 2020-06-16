@@ -1,4 +1,16 @@
-<div class="login-pf">
+<div class="login-pf" ng-if="vm.authenticationInfo && vm.authenticationInfo.oidc_enabled">
+  <img class="img-top" src="./images/bg-login.png" alt="top-corner"/>
+  <img class="img-bottom" src="./images/bg-login-2.png" alt=" bottom-corner"/>
+  <span id="badge">
+    <img class="logo" ng-src="{{ vm.brandInfo.logo }}" alt="Logo"/>
+  </span>
+  <div class="container">
+    <div id="brand">
+      <img ng-src="{{ vm.brandInfo.brand }}" alt="Brand" />
+    </div>
+  </div>
+</div>
+<div class="login-pf" ng-if="vm.authenticationInfo && !vm.authenticationInfo.oidc_enabled">
   <img class="img-top" src="./images/bg-login.png" alt="top-corner"/>
   <img class="img-bottom" src="./images/bg-login-2.png" alt=" bottom-corner"/>
   <span id="badge">

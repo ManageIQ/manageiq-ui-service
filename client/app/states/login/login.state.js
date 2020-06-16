@@ -22,10 +22,13 @@ function getStates () {
 }
 
 /** @ngInject */
-function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ApplianceInfo, CollectionsApi) {
+function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ApplianceInfo, CollectionsApi) {
   const vm = this
+  const oidc_access_token = {
+    name: "miq_oidc_access_token"
+  }
 
-  getBrand()
+  getProductInfo()
 
   vm.text = Text.login
   vm.credentials = {
@@ -33,12 +36,17 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
     password: API_PASSWORD
   }
   vm.onSubmit = onSubmit
+  vm.initiateOidcLogin = initiateOidcLogin
   vm.spinner = false
 
   if ($window.location.href.includes('?timeout')) {
     Notifications.message('danger', '', __('Your session has timed out.'), true)
     Session.destroy()
   }
+
+  if ($window.location.href.includes('?needToFinalizeAuthServerSide')) {
+    vm.needToFinalizeAuthServerSide = true
+  } 
 
   if ($window.location.href.includes('?pause')) {
     const params = (new URL($window.document.location)).searchParams
@@ -51,11 +59,40 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
     Session.destroy()
   }
 
+  function initiateOidcLogin () {
+    $window.location.href = '/ui/service/oidc_login?needToFinalizeAuthServerSide'
+  }
+
+  function getExtAuthMode () {
+    let extAuthMode = null
+    if (vm.authenticationInfo.oidc_enabled) {
+      extAuthMode = 'oidc'
+    }
+    return extAuthMode
+  }
+
+  function checkIfServerSideAuthRequired () {
+    vm.extAuthMode = getExtAuthMode() 
+    return (vm.extAuthMode !== null)
+  }
+
+  function finalizeAuthServerSide () {
+    if (checkIfServerSideAuthRequired()) {
+      return AuthenticateUser() 
+    }
+  }
+
   function onSubmit () {
+    return AuthenticateUser()
+  }
+
+  function AuthenticateUser() {
     Session.privilegesError = false
     vm.spinner = true
 
-    return AuthenticationApi.login(vm.credentials.login, vm.credentials.password)
+    let access_token = $cookies.get(oidc_access_token.name)
+
+    return AuthenticationApi.globalLogin(vm.extAuthMode, vm.credentials.login, vm.credentials.password, access_token)
     .then(Session.loadUser)
     .then(Session.requestWsToken)
     .then((response) => {
@@ -76,14 +113,19 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
         Notifications.error(__('You do not have permission to view the Service UI. Contact your administrator to update your group permissions.'))
         Session.destroy()
       }
+      if (vm.extAuthMode !== null) {
+        vm.needToFinalizeAuthServerSide = false
+      }
     })
     .catch((response) => {
       let message = __('Login failed.');
       let error = response.data && response.data.error && response.data.error.message;
 
       if (response.status === 401) {
-        vm.credentials.login = '';
-        vm.credentials.password = '';
+        if (vm.extAuthMode === null) {
+          vm.credentials.login = '';
+          vm.credentials.password = '';
+        }
 
         message = __('Login failed, possibly invalid credentials.');
       }
@@ -101,10 +143,18 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
     })
   }
 
-  function getBrand () {
+  function getProductInfo () {
     CollectionsApi.query('product_info').then((response) => {
       vm.brandInfo = response.branding_info
       $rootScope.favicon = vm.brandInfo.favicon
+      vm.authenticationInfo = response.authentication
+      if (vm.needToFinalizeAuthServerSide) {
+        finalizeAuthServerSide()
+      } else {
+        if (getExtAuthMode() == 'oidc') {
+          return new Promise( () => { initiateOidcLogin(); } )
+        }
+      }
     })
   }
 }
