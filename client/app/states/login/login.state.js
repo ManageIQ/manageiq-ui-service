@@ -36,7 +36,6 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
     password: API_PASSWORD
   }
   vm.onSubmit = onSubmit
-  vm.initiateOidcLogin = initiateOidcLogin
   vm.spinner = false
 
   if ($window.location.href.includes('?timeout')) {
@@ -44,9 +43,9 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
     Session.destroy()
   }
 
-  if ($window.location.href.includes('?needToFinalizeAuthServerSide')) {
-    vm.needToFinalizeAuthServerSide = true
-  } 
+  if ($window.location.href.includes('?oidcInitiatedLogin')) {
+    vm.oidcInitiatedLogin = true
+  }
 
   if ($window.location.href.includes('?pause')) {
     const params = (new URL($window.document.location)).searchParams
@@ -59,27 +58,12 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
     Session.destroy()
   }
 
-  function initiateOidcLogin () {
-    $window.location.href = '/ui/service/oidc_login?needToFinalizeAuthServerSide'
-  }
-
   function getExtAuthMode () {
-    let extAuthMode = null
-    if (vm.authenticationInfo.oidc_enabled) {
-      extAuthMode = 'oidc'
-    }
-    return extAuthMode
+    return ( (vm.authenticationInfo && vm.authenticationInfo.oidc_enabled) ? 'oidc' : null)
   }
 
-  function checkIfServerSideAuthRequired () {
-    vm.extAuthMode = getExtAuthMode() 
-    return (vm.extAuthMode !== null)
-  }
-
-  function finalizeAuthServerSide () {
-    if (checkIfServerSideAuthRequired()) {
-      return AuthenticateUser() 
-    }
+  function initiateOidcLogin () {
+    $window.location.href = '/ui/service/oidc_login?oidcInitiatedLogin'
   }
 
   function onSubmit () {
@@ -90,9 +74,9 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
     Session.privilegesError = false
     vm.spinner = true
 
-    let access_token = $cookies.get(oidc_access_token.name)
+    let access_token = getExtAuthMode() == 'oidc' ? $cookies.get(oidc_access_token.name) : null
 
-    return AuthenticationApi.globalLogin(vm.extAuthMode, vm.credentials.login, vm.credentials.password, access_token)
+    return AuthenticationApi.globalLogin(getExtAuthMode(), vm.credentials.login, vm.credentials.password, access_token)
     .then(Session.loadUser)
     .then(Session.requestWsToken)
     .then((response) => {
@@ -113,8 +97,8 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
         Notifications.error(__('You do not have permission to view the Service UI. Contact your administrator to update your group permissions.'))
         Session.destroy()
       }
-      if (vm.extAuthMode !== null) {
-        vm.needToFinalizeAuthServerSide = false
+      if (getExtAuthMode() == 'oidc') {
+        vm.oidcInitiatedLogin = false
       }
     })
     .catch((response) => {
@@ -122,7 +106,7 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
       let error = response.data && response.data.error && response.data.error.message;
 
       if (response.status === 401) {
-        if (vm.extAuthMode === null) {
+        if (getExtAuthMode() === null) {
           vm.credentials.login = '';
           vm.credentials.password = '';
         }
@@ -148,10 +132,10 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
       vm.brandInfo = response.branding_info
       $rootScope.favicon = vm.brandInfo.favicon
       vm.authenticationInfo = response.authentication
-      if (vm.needToFinalizeAuthServerSide) {
-        finalizeAuthServerSide()
-      } else {
-        if (getExtAuthMode() == 'oidc') {
+      if (vm.authenticationInfo.oidc_enabled) {
+        if (vm.oidcInitiatedLogin) {
+          return AuthenticateUser()
+        } else {
           return new Promise( () => { initiateOidcLogin(); } )
         }
       }

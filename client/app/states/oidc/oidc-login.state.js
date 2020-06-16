@@ -12,4 +12,4 @@ function getStates () {
       template: '<ui-view></ui-view>'
     }
   }
-} 
+}
