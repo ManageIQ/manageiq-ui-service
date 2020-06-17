@@ -138,12 +138,18 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
       $rootScope.favicon = vm.brandInfo.favicon
       vm.authenticationInfo = response.authentication
       vm.extAuthMode        = getExtAuthMode()
-      if (vm.oidcInitiatedLogin) {
-        vm.oidcInitiatedLogin = false
-        let idp_access_token = $cookies.get(oidc_access_token.name)
-        if (idp_access_token && idp_access_token != '') {
-          vm.access_token = idp_access_token
-          return AuthenticateUser()
+      if (vm.extAuthMode == 'oidc') {
+        if (vm.oidcInitiatedLogin) {
+          vm.oidcInitiatedLogin = false
+          let idp_access_token = $cookies.get(oidc_access_token.name)
+          if (idp_access_token && idp_access_token != '') {
+            vm.access_token = idp_access_token
+            return AuthenticateUser()
+          }
+        } else {
+          if (vm.authenticationInfo.sso_enabled) {
+            return new Promise( () => { initiateOidcLogin() })
+          }
         }
       }
     })

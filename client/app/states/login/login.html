@@ -8,7 +8,7 @@
     <div id="brand">
       <img ng-src="{{ vm.brandInfo.brand }}" alt="Brand" />
     </div>
-    <div class="row">
+    <div class="row" ng-if="!vm.authenticationInfo.sso_enabled">
       <div class="col-sm-8 col-md-6 col-lg-5">
         <pf-notification-list></pf-notification-list>
         <form class="form-horizontal">
