@@ -25,7 +25,8 @@ function getStates () {
 function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ApplianceInfo, CollectionsApi) {
   const vm = this
   const oidc_access_token = {
-    name: "miq_oidc_access_token"
+    name: "miq_oidc_access_token",
+    path: "/ui/service"
   }
 
   getProductInfo()
@@ -35,6 +36,7 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
     login: API_LOGIN,
     password: API_PASSWORD
   }
+  vm.initiateOidcLogin = initiateOidcLogin
   vm.onSubmit = onSubmit
   vm.spinner = false
 
@@ -58,12 +60,16 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
     Session.destroy()
   }
 
+  function genRandomInt(len) {
+    return Math.floor(Math.random() * Math.pow(10, len))
+  }
+
   function getExtAuthMode () {
     return ( (vm.authenticationInfo && vm.authenticationInfo.oidc_enabled) ? 'oidc' : null)
   }
 
   function initiateOidcLogin () {
-    $window.location.href = '/ui/service/oidc_login?oidcInitiatedLogin'
+    $window.location.href = '/ui/service/oidc_login?oidcInitiatedLogin&miq_oidc_request=' + genRandomInt(8)
   }
 
   function onSubmit () {
@@ -74,9 +80,7 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
     Session.privilegesError = false
     vm.spinner = true
 
-    let access_token = getExtAuthMode() == 'oidc' ? $cookies.get(oidc_access_token.name) : null
-
-    return AuthenticationApi.globalLogin(getExtAuthMode(), vm.credentials.login, vm.credentials.password, access_token)
+    return AuthenticationApi.globalLogin(vm.extAuthMode, vm.credentials.login, vm.credentials.password, vm.access_token)
     .then(Session.loadUser)
     .then(Session.requestWsToken)
     .then((response) => {
@@ -97,7 +101,7 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
         Notifications.error(__('You do not have permission to view the Service UI. Contact your administrator to update your group permissions.'))
         Session.destroy()
       }
-      if (getExtAuthMode() == 'oidc') {
+      if (vm.extAuthMode == 'oidc') {
         vm.oidcInitiatedLogin = false
       }
     })
@@ -106,12 +110,13 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
       let error = response.data && response.data.error && response.data.error.message;
 
       if (response.status === 401) {
-        if (getExtAuthMode() === null) {
+        if (vm.extAuthMode === null) {
           vm.credentials.login = '';
           vm.credentials.password = '';
+          message = __('Login failed, possibly invalid credentials.');
+        } else {
+          message = __('Login failed, invalid access token.');
         }
-
-        message = __('Login failed, possibly invalid credentials.');
       }
 
       if (!error && response.status >= 300) {
@@ -132,11 +137,13 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
       vm.brandInfo = response.branding_info
       $rootScope.favicon = vm.brandInfo.favicon
       vm.authenticationInfo = response.authentication
-      if (vm.authenticationInfo.oidc_enabled) {
-        if (vm.oidcInitiatedLogin) {
+      vm.extAuthMode        = getExtAuthMode()
+      if (vm.oidcInitiatedLogin) {
+        vm.oidcInitiatedLogin = false
+        let idp_access_token = $cookies.get(oidc_access_token.name)
+        if (idp_access_token && idp_access_token != '') {
+          vm.access_token = idp_access_token
           return AuthenticateUser()
-        } else {
-          return new Promise( () => { initiateOidcLogin(); } )
         }
       }
     })

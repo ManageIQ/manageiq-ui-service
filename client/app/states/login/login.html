@@ -8,6 +8,23 @@
     <div id="brand">
       <img ng-src="{{ vm.brandInfo.brand }}" alt="Brand" />
     </div>
+    <div class="row">
+      <div class="col-sm-8 col-md-6 col-lg-5">
+        <pf-notification-list></pf-notification-list>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-xs-2 col-sm-2 col-md-2 control-label" translate>Language</label>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+              <language-switcher mode="select"></language-switcher>
+            </div>
+            <button type="button" class="btn btn-primary" ng-click="vm.initiateOidcLogin()" translate>Log In to Corporate System</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-4 col-md-6 col-lg-7">
+        <p ng-bind-html="vm.text.message"></p>
+      </div>
+    </div>
   </div>
 </div>
 <div class="login-pf" ng-if="vm.authenticationInfo && !vm.authenticationInfo.oidc_enabled">
