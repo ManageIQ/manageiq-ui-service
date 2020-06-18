@@ -36,14 +36,14 @@ export function SessionFactory ($http, $localStorage, $cookies, RBAC, Polling, $
   }
 
   function setAuthMode (authMode) {
-    if (validAuthModes.indexOf(authMode) !== -1) {
+    if (validAuthModes.includes(authMode)) {
       model.authMode = authMode
       $localStorage.authMode = model.authMode
     }
   }
 
   function getAuthMode () {
-    if (validAuthModes.indexOf($localStorage.authMode) !== -1) {
+    if (validAuthModes.includes($localStorage.authMode)) {
       model.authMode = $localStorage.authMode
     }
     return model.authMode

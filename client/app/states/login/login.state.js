@@ -22,7 +22,7 @@ function getStates () {
 }
 
 /** @ngInject */
-function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ApplianceInfo, CollectionsApi) {
+function StateController ($window, $state, $cookies, $timeout, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ApplianceInfo, CollectionsApi) {
   const vm = this
   const oidc_access_token = {
     name: "miq_oidc_access_token",
@@ -148,7 +148,7 @@ function StateController ($window, $state, $cookies, Text, RBAC, API_LOGIN, API_
           }
         } else {
           if (vm.authenticationInfo.sso_enabled) {
-            return new Promise( () => { initiateOidcLogin() })
+            $timeout(initiateOidcLogin())
           }
         }
       }

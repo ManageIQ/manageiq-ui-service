@@ -27,31 +27,6 @@ export function AuthenticationApiFactory ($http, API_BASE, Session, Notification
     }
   }
 
-  function oidcLogin (access_token) {
-    return new Promise((resolve, reject) => {
-
-      return $http.get(API_BASE + '/api/auth?requester_type=ui', {
-        headers: {
-          'Authorization': 'Bearer ' + access_token,
-          'X-Auth-Token': undefined,
-          'X-Requested-With': 'XMLHttpRequest',
-        },
-      }).then(loginSuccess, loginFailure);
-
-      function loginSuccess (response) {
-        Session.setAuthToken(response.data.auth_token)
-        Session.setAuthMode(self.currentAuthMode)
-        resolve(response)
-      }
-
-      function loginFailure (response) {
-        Session.destroy()
-        reject(response)
-      }
-
-    })
-  }
-
   function loginSuccess(response) {
     Session.setAuthToken(response.data.auth_token);
     Session.setAuthMode(self.currentAuthMode)
@@ -67,6 +42,16 @@ export function AuthenticationApiFactory ($http, API_BASE, Session, Notification
     return $http.get(API_BASE + '/api/auth?requester_type=ui', {
       headers: {
         'Authorization': 'Basic ' + base64encode([userLogin, password].join(':')),
+        'X-Auth-Token': undefined,
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    }).then(loginSuccess, loginFailure);
+  }
+
+  function oidcLogin (access_token) {
+    return $http.get(API_BASE + '/api/auth?requester_type=ui', {
+      headers: {
+        'Authorization': 'Bearer ' + access_token,
         'X-Auth-Token': undefined,
         'X-Requested-With': 'XMLHttpRequest',
       },
