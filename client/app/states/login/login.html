@@ -11,7 +11,16 @@
     <div class="row">
       <div class="col-sm-8 col-md-6 col-lg-5">
         <pf-notification-list></pf-notification-list>
-        <form class="form-horizontal" role="form" ng-submit="vm.onSubmit()">
+        <form class="form-horizontal" ng-if="vm.authenticationInfo && vm.authenticationInfo.oidc_enabled && !vm.authenticationInfo.sso_enabled">
+          <div class="form-group">
+            <label class="col-xs-2 col-sm-2 col-md-2 control-label" translate>Language</label>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+              <language-switcher mode="select"></language-switcher>
+            </div>
+            <button type="button" class="btn btn-primary" ng-click="vm.initiateOidcLogin()" translate>Log In to Corporate System</button>
+          </div>
+        </form>
+        <form class="form-horizontal" role="form" ng-submit="vm.onSubmit()" ng-if="vm.authenticationInfo && !vm.authenticationInfo.oidc_enabled">
           <div class="form-group">
             <label for="inputUsername" class="col-sm-2 col-md-2 control-label" translate>Username</label>
             <div class="col-sm-10 col-md-10">

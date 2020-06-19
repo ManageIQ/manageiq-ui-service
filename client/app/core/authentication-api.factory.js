@@ -10,13 +10,26 @@ function base64encode (str, encoding = 'utf-8') {
 /** @ngInject */
 export function AuthenticationApiFactory ($http, API_BASE, Session, Notifications) {
   var service = {
+    globalLogin: globalLogin,
     login: login,
+    oidcLogin: oidcLogin
   };
 
   return service;
 
+  function globalLogin (authMode, userLogin, password, access_token) {
+    if (authMode == 'oidc') {
+      self.currentAuthMode = authMode
+      return oidcLogin(access_token)
+    } else {
+      self.currentAuthMode = 'database'
+      return login(userLogin, password)
+    }
+  }
+
   function loginSuccess(response) {
     Session.setAuthToken(response.data.auth_token);
+    Session.setAuthMode(self.currentAuthMode)
     return response;
   }
 
@@ -29,6 +42,16 @@ export function AuthenticationApiFactory ($http, API_BASE, Session, Notification
     return $http.get(API_BASE + '/api/auth?requester_type=ui', {
       headers: {
         'Authorization': 'Basic ' + base64encode([userLogin, password].join(':')),
+        'X-Auth-Token': undefined,
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    }).then(loginSuccess, loginFailure);
+  }
+
+  function oidcLogin (access_token) {
+    return $http.get(API_BASE + '/api/auth?requester_type=ui', {
+      headers: {
+        'Authorization': 'Bearer ' + access_token,
         'X-Auth-Token': undefined,
         'X-Requested-With': 'XMLHttpRequest',
       },

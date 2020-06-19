@@ -22,22 +22,31 @@ function getStates () {
 }
 
 /** @ngInject */
-function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ApplianceInfo, CollectionsApi) {
+function StateController ($window, $state, $cookies, $timeout, Text, RBAC, API_LOGIN, API_PASSWORD, AuthenticationApi, Session, $rootScope, Notifications, Language, ApplianceInfo, CollectionsApi) {
   const vm = this
+  const oidc_access_token = {
+    name: "miq_oidc_access_token",
+    path: "/ui/service"
+  }
 
-  getBrand()
+  getProductInfo()
 
   vm.text = Text.login
   vm.credentials = {
     login: API_LOGIN,
     password: API_PASSWORD
   }
+  vm.initiateOidcLogin = initiateOidcLogin
   vm.onSubmit = onSubmit
   vm.spinner = false
 
   if ($window.location.href.includes('?timeout')) {
     Notifications.message('danger', '', __('Your session has timed out.'), true)
     Session.destroy()
+  }
+
+  if ($window.location.href.includes('?oidcInitiatedLogin')) {
+    vm.oidcInitiatedLogin = true
   }
 
   if ($window.location.href.includes('?pause')) {
@@ -51,11 +60,27 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
     Session.destroy()
   }
 
+  function genRandomInt(len) {
+    return Math.floor(Math.random() * Math.pow(10, len))
+  }
+
+  function getExtAuthMode () {
+    return ( (vm.authenticationInfo && vm.authenticationInfo.oidc_enabled) ? 'oidc' : null)
+  }
+
+  function initiateOidcLogin () {
+    $window.location.href = '/ui/service/oidc_login?oidcInitiatedLogin&miq_oidc_request=' + genRandomInt(8)
+  }
+
   function onSubmit () {
+    return AuthenticateUser()
+  }
+
+  function AuthenticateUser() {
     Session.privilegesError = false
     vm.spinner = true
 
-    return AuthenticationApi.login(vm.credentials.login, vm.credentials.password)
+    return AuthenticationApi.globalLogin(vm.extAuthMode, vm.credentials.login, vm.credentials.password, vm.access_token)
     .then(Session.loadUser)
     .then(Session.requestWsToken)
     .then((response) => {
@@ -76,16 +101,22 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
         Notifications.error(__('You do not have permission to view the Service UI. Contact your administrator to update your group permissions.'))
         Session.destroy()
       }
+      if (vm.extAuthMode == 'oidc') {
+        vm.oidcInitiatedLogin = false
+      }
     })
     .catch((response) => {
       let message = __('Login failed.');
       let error = response.data && response.data.error && response.data.error.message;
 
       if (response.status === 401) {
-        vm.credentials.login = '';
-        vm.credentials.password = '';
-
-        message = __('Login failed, possibly invalid credentials.');
+        if (vm.extAuthMode === null) {
+          vm.credentials.login = '';
+          vm.credentials.password = '';
+          message = __('Login failed, possibly invalid credentials.');
+        } else {
+          message = __('Login failed, invalid access token.');
+        }
       }
 
       if (!error && response.status >= 300) {
@@ -101,10 +132,26 @@ function StateController ($window, $state, Text, RBAC, API_LOGIN, API_PASSWORD, 
     })
   }
 
-  function getBrand () {
+  function getProductInfo () {
     CollectionsApi.query('product_info').then((response) => {
       vm.brandInfo = response.branding_info
       $rootScope.favicon = vm.brandInfo.favicon
+      vm.authenticationInfo = response.authentication
+      vm.extAuthMode        = getExtAuthMode()
+      if (vm.extAuthMode == 'oidc') {
+        if (vm.oidcInitiatedLogin) {
+          vm.oidcInitiatedLogin = false
+          let idp_access_token = $cookies.get(oidc_access_token.name)
+          if (idp_access_token && idp_access_token != '') {
+            vm.access_token = idp_access_token
+            return AuthenticateUser()
+          }
+        } else {
+          if (vm.authenticationInfo.sso_enabled) {
+            $timeout(initiateOidcLogin())
+          }
+        }
+      }
     })
   }
 }
