@@ -9,6 +9,12 @@ describe('Appliance Info Service', () => {
         'brand': 'ManageIQ',
         'favicon': 'ManageIQ',
         'logo': 'ManageIQ',
+      },
+      'authentication': {
+        'mode': 'database',
+        'oidc_enabled': false,
+        'saml_enabled': false,
+        'sso_enabled': false
       }
     },
     'identity': {

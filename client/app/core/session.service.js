@@ -1,13 +1,18 @@
 /** @ngInject */
 export function SessionFactory ($http, $localStorage, $cookies, RBAC, Polling, $q) {
+  const defaultAuthMode = 'database'
   const model = {
     token: null,
     user: {},
+    authMode: defaultAuthMode
   };
+  const validAuthModes = [defaultAuthMode, 'oidc']
 
   const service = {
     current: model,
     setAuthToken: setAuthToken,
+    setAuthMode: setAuthMode,
+    getAuthMode: getAuthMode,
     setGroup: setGroup,
     destroy: destroy,
     active: active,
@@ -28,6 +33,20 @@ export function SessionFactory ($http, $localStorage, $cookies, RBAC, Polling, $
     model.token = token;
     $http.defaults.headers.common['X-Auth-Token'] = model.token;
     $localStorage.token = model.token;
+  }
+
+  function setAuthMode (authMode) {
+    if (validAuthModes.includes(authMode)) {
+      model.authMode = authMode
+      $localStorage.authMode = model.authMode
+    }
+  }
+
+  function getAuthMode () {
+    if (validAuthModes.includes($localStorage.authMode)) {
+      model.authMode = $localStorage.authMode
+    }
+    return model.authMode
   }
 
   function setGroup (group) {
@@ -52,6 +71,7 @@ export function SessionFactory ($http, $localStorage, $cookies, RBAC, Polling, $
   function destroy () {
     model.token = null;
     model.user = {};
+    model.authMode = defaultAuthMode;
 
     destroyWsToken();
     delete $http.defaults.headers.common['X-Auth-Token'];
@@ -62,6 +82,7 @@ export function SessionFactory ($http, $localStorage, $cookies, RBAC, Polling, $
     delete $localStorage.user;
     delete $localStorage.applianceInfo;
     delete $localStorage.pause;
+    delete $localStorage.authMode;
   }
 
   function loadUser () {
