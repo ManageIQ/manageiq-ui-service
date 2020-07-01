@@ -1552,11 +1552,11 @@ msgstr "Avertissement"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:11
 msgid "Warning: The selected Services and ALL of their components will be immediately retired!"
-msgstr "Avertissement : les services sélectionnés et TOUS leurs composants seront immédiatement déclassés !"
+msgstr "Avertissement : Les services sélectionnés et TOUS leurs composants seront immédiatement déclassés !"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:10
 msgid "Warning: The selected Services and ALL of their components will be permanently removed!"
-msgstr "Avertissement : les services sélectionnés et TOUS leurs composants seront définitivement retirés !"
+msgstr "Avertissement : Les services sélectionnés et TOUS leurs composants seront définitivement retirés !"
 
 #: ./client/app/services/service-details/service-details-ansible.html:198
 msgid "Watch Live"

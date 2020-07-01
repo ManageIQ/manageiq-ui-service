@@ -48,7 +48,7 @@ msgstr "已停止 %s。"
 
 #: ./client/app/services/poweroperations.service.js:176
 msgid "%s was suspended."
-msgstr "已暫停 %s。"
+msgstr "已暫止 %s。"
 
 #: ./client/app/layouts/application.html:88
 msgid "(Current Group)"
@@ -236,7 +236,7 @@ msgstr "確認，您要移除此服務嗎？"
 
 #: ./client/console/webmks.js:62
 msgid "Connected"
-msgstr "已連線"
+msgstr "已連接"
 
 #: ./client/console/common.js:13
 msgid "Connecting"
@@ -414,7 +414,7 @@ msgstr "編輯服務"
 #: ./client/app/services/services-state.service.js:229
 #: ./client/app/services/services-state.service.js:231
 msgid "Edit Tags"
-msgstr "編輯 TAG"
+msgstr "編輯標籤"
 
 #: ./client/app/services/service-details/service-details-ansible.html:183
 #: ./client/app/services/service-details/service-details-ansible.html:34
@@ -500,7 +500,7 @@ msgstr "適用於調整大小"
 #: ./client/app/services/resource-details/resource-details.component.js:217
 #: ./client/app/services/resource-details/resource-details.component.js:223
 msgid "GB"
-msgstr "英國"
+msgstr "GB"
 
 #: ./client/app/services/service-details/service-details.html:67
 msgid "GUID"
@@ -745,7 +745,7 @@ msgstr "確定"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:68
 msgid "Order"
-msgstr "排序"
+msgstr "訂購"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:33
 #: ./client/app/states/orders/details/details.html:24
@@ -1007,7 +1007,7 @@ msgstr "已淘汰資源"
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:13
 #: ./client/app/services/service-explorer/service-explorer.component.js:395
 msgid "Retirement Date"
-msgstr "退休日期"
+msgstr "淘汰日期"
 
 #: ./client/app/services/service-details/service-details.html:108
 msgid "Retirement State"
@@ -1155,7 +1155,7 @@ msgstr "設定退休"
 #: ./client/app/services/service-explorer/service-explorer.component.js:262
 #: ./client/app/services/services-state.service.js:183
 msgid "Set Retirement Dates"
-msgstr "設定退休日期"
+msgstr "設定淘汰日期"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:5
 msgid "Set Service Ownership"
@@ -1192,7 +1192,7 @@ msgstr "智慧型狀態分析"
 #: ./client/app/services/vms/snapshots.html:14
 #: ./client/app/services/vms/snapshots.html:42
 msgid "Snapshots"
-msgstr "Snapshots"
+msgstr "Snapshot"
 
 #: ./client/app/services/service-details/service-details-ansible.html:196
 msgid "Standard Out"
@@ -1250,7 +1250,7 @@ msgstr "停止這項服務"
 
 #: ./client/app/services/usage-graphs/usage-graphs.html:39
 msgid "Storage"
-msgstr "儲存體 (Storage)"
+msgstr "儲存體"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:19
 #: ./client/app/states/services/reconfigure/reconfigure.html:23
@@ -1267,16 +1267,16 @@ msgstr "成功"
 #: ./client/app/services/service-explorer/service-explorer.component.js:297
 #: ./client/app/services/service-explorer/service-explorer.html:194
 msgid "Suspend"
-msgstr "暫停"
+msgstr "暫止"
 
 #: ./client/app/services/resource-details/resource-details.component.js:411
 #: ./client/app/services/service-details/service-details.component.js:192
 msgid "Suspend the Service"
-msgstr "暫停服務"
+msgstr "暫止服務"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:299
 msgid "Suspend this service"
-msgstr "暫停這項服務"
+msgstr "暫止這項服務"
 
 #: ./client/app/shared/language-switcher/language-switcher.html:3
 msgid "Switch Language:"
@@ -1284,7 +1284,7 @@ msgstr "切換語言："
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.service.js:57
 msgid "Tagging successful."
-msgstr "標記成功。"
+msgstr "標籤成功。"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:11
 #: ./client/app/services/resource-details/resource-details.html:136
@@ -1345,7 +1345,7 @@ msgstr "沒有可顯示的通知。"
 
 #: ./client/app/shared/tagging/tagging.html:15
 msgid "There are no tags for this item."
-msgstr "此項目沒有標記。"
+msgstr "此項目沒有標籤。"
 
 #: ./client/app/states/error/error.html:10
 msgid "There was a problem loading the page."
@@ -1439,11 +1439,11 @@ msgstr "提交此要求時發生錯誤："
 
 #: ./client/app/services/poweroperations.service.js:193
 msgid "There was an error suspending this %s."
-msgstr "暫停此 %s 時發生錯誤。"
+msgstr "暫止此 %s 時發生錯誤。"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.service.js:62
 msgid "There was an error tagging this service."
-msgstr "標記這項服務時發生錯誤。"
+msgstr "標籤這項服務時發生錯誤。"
 
 #: ./client/app/services/resource-details/resource-details.html:103
 msgid "Timeline - Power Events"
@@ -1623,14 +1623,14 @@ msgstr "訂購時間"
 
 #: ./client/app/services/service-explorer/service-explorer.html:194
 msgid "suspend this service"
-msgstr "暫停此服務"
+msgstr "暫止此服務"
 
 #: ./client/app/services/resource-details/resource-details.component.js:213
 #: ./client/app/services/resource-details/resource-details.component.js:219
 #: ./client/app/services/resource-details/resource-details.component.js:225
 #: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:10
 msgid "used"
-msgstr "used"
+msgstr "已用的"
 
 #: ./client/app/services/service-details/service-details.component.js:290
 msgid "was removed."
