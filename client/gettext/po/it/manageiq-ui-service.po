@@ -129,7 +129,7 @@ msgstr "Si è sicuri di voler cancellare tutti gli elementi dal tuo carrello?"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:20
 msgid "Are you sure you want to remove this item from your shopping cart?"
-msgstr "Si è sicuri di voler rimuovere questo articolo dal tuo carrello?"
+msgstr "Si è sicuri di voler rimuovere questo elemento dal carrello?"
 
 #: ./client/app/services/vms.service.js:280
 msgid "Are you sure you want to retire"
@@ -395,7 +395,7 @@ msgstr "Duplica servizio"
 
 #: ./client/app/states/catalogs/details/details.html:50
 msgid "Duplicate Shopping Cart Item"
-msgstr "Duplica acquisti articolo del carrello"
+msgstr "Duplica elemento del carrello"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:228
 #: ./client/app/services/services-state.service.js:259
@@ -444,7 +444,7 @@ msgstr "Errore durante l'eliminazione istantanea."
 
 #: ./client/app/core/authorization.config.js:129
 msgid "Error retrieving user info"
-msgstr "Errore durante il richiamo delle info utente"
+msgstr "Errore durante il richiamo delle informazioni dell'utente"
 
 #: ./client/app/services/vms/snapshots.component.js:243
 msgid "Error reverting snapshot."
@@ -541,7 +541,7 @@ msgstr "Elemento aggiunto al carrello"
 
 #: ./client/app/states/catalogs/details/details.state.js:206
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
-msgstr "Articolo aggiunto al carrello acquisti, ma è un duplicato di un elemento esistente"
+msgstr "Elemento aggiunto al carrello acquisti, ma è un duplicato di un elemento esistente"
 
 #: ./client/app/states/login/login.html:28
 msgid "Language"
@@ -584,7 +584,7 @@ msgstr "Avviato da"
 #: ./client/app/services/vms.service.js:273
 #: ./client/app/services/vms.service.js:278
 msgid "Lifecycle"
-msgstr "Lifecycle"
+msgstr "Ciclo di vita"
 
 #: ./client/app/services/service-details/service-details-ansible-modal.html:5
 msgid "Live Ansible Play"
@@ -636,7 +636,7 @@ msgstr "Memoria"
 
 #: ./client/app/components/dashboard/dashboard.html:100
 msgid "Monthly Charges - This Month To Date"
-msgstr "Tariffe Mensili - Questo Mese Ad Oggi"
+msgstr "Addebiti mensili - questo mese ad oggi"
 
 #: ./client/app/services/service-details/service-details.html:90
 msgid "Monthly Cost"
@@ -890,7 +890,7 @@ msgstr "Rimuovi"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:19
 msgid "Remove Item"
-msgstr "Rimuovi voce"
+msgstr "Rimuovi elemento"
 
 #: ./client/app/orders/order-explorer/order-explorer.component.js:125
 #: ./client/app/orders/process-order-modal/process-order-modal.html:5
@@ -1015,7 +1015,7 @@ msgstr "Stato ritiro"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:9
 msgid "Retirement Warning"
-msgstr "Avviso di ritiro"
+msgstr "Avvertenza di ritiro"
 
 #: ./client/app/services/service-explorer/service-explorer.html:167
 #: ./client/app/services/service-explorer/service-explorer.html:91
@@ -1345,7 +1345,7 @@ msgstr "Non ci sono notifiche da visualizzare."
 
 #: ./client/app/shared/tagging/tagging.html:15
 msgid "There are no tags for this item."
-msgstr "Non ci sono tag per questo articolo."
+msgstr "Non ci sono tag per questo elemento."
 
 #: ./client/app/states/error/error.html:10
 msgid "There was a problem loading the page."

@@ -173,7 +173,7 @@ msgstr "CPU"
 #: ./client/app/states/catalogs/details/details.html:62
 #: ./client/app/states/services/reconfigure/reconfigure.html:24
 msgid "Cancel"
-msgstr "Incluir um novo Script ao projeto atual ou criar um novo Projeto\\nIncluir novo Script ou Criar novo Projeto"
+msgstr "Cancelar"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:58
 msgid "Catalog Name"
@@ -934,7 +934,7 @@ msgstr "Solicitante"
 #: ./client/app/shared/action-button-group/action-button-group.html:38
 #: ./client/app/shared/action-button-group/action-button-group.html:6
 msgid "Reset"
-msgstr "Redefinir"
+msgstr "Reconfigurar"
 
 #: ./client/app/states/services/resource-details/details.state.js:11
 msgid "Resource Details"

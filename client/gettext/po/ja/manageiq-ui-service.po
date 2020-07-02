@@ -173,7 +173,7 @@ msgstr "CPU"
 #: ./client/app/states/catalogs/details/details.html:62
 #: ./client/app/states/services/reconfigure/reconfigure.html:24
 msgid "Cancel"
-msgstr "取り消し"
+msgstr "キャンセル"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:58
 msgid "Catalog Name"
@@ -277,7 +277,7 @@ msgstr "作成"
 
 #: ./client/app/services/service-details/service-details.html:101
 msgid "Created On"
-msgstr "作成日"
+msgstr "作成"
 
 #: ./client/app/services/vms/snapshots.html:89
 msgid "Created:"
@@ -553,7 +553,7 @@ msgstr "最後の 7 日"
 
 #: ./client/app/services/service-details/service-details.html:252
 msgid "Last Boot"
-msgstr "最後の起動時間"
+msgstr "前回の起動時間"
 
 #: ./client/app/services/service-details/service-details.html:222
 msgid "Latest"
@@ -561,7 +561,7 @@ msgstr "最新"
 
 #: ./client/app/services/service-details/service-details.html:254
 msgid "Latest Boot Time"
-msgstr "最後の起動時間"
+msgstr "最新の起動時間"
 
 #: ./client/app/services/service-details/service-details.html:225
 msgid "Latest Snapshot Name"

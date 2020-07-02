@@ -277,7 +277,7 @@ msgstr "已创建"
 
 #: ./client/app/services/service-details/service-details.html:101
 msgid "Created On"
-msgstr "创建日期"
+msgstr "创建时间"
 
 #: ./client/app/services/vms/snapshots.html:89
 msgid "Created:"

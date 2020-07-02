@@ -684,7 +684,7 @@ msgstr "Nunca"
 
 #: ./client/app/components/notifications/subheading.html:1
 msgid "New"
-msgstr "Nuevo "
+msgstr "Nuevo"
 
 #: ./client/app/services/vms/snapshots.html:9
 msgid "No Service"
@@ -1565,7 +1565,7 @@ msgstr "Ver en directo"
 #: ./client/app/states/404/404.html:7
 #: ./client/app/states/error/error.html:13
 msgid "We apologize for the inconvenience."
-msgstr "Disculpen las molestias. "
+msgstr "Disculpen las molestias."
 
 #: ./client/app/services/service-details/service-details.html:324
 msgid "Web Console"
