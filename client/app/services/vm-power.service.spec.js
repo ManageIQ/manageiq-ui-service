@@ -1,5 +1,4 @@
-/* global readJSON, EventNotifications, CollectionsApi, VmPower */
-/* eslint-disable no-unused-expressions, semi, space-before-function-paren */
+/* global CollectionsApi, EventNotifications, VmPower, readJSON */
 
 function fixture(name) {
   return readJSON('tests/mock/vm-power/' + name + '.json');
@@ -20,23 +19,28 @@ describe('VmPowerFactory', () => {
 
   beforeEach(() => {
     module('app.states', 'app.services');
-    bard.inject('VmPower', 'CollectionsApi', 'EventNotifications', 'sprintf');
+    bard.inject('CollectionsApi', 'EventNotifications', 'VmPower');
   });
 
   describe('can', () => {
-    it('Should allow a VM to start', () => {
-      const allowStart = VmPower.can.start(vm);
-      expect(allowStart).to.eq(true);
+    it('Should allow stopped VM to start', () => {
+      const allow = VmPower.can.start(vm);
+      expect(allow).to.eq(true);
     });
 
-    it('Should allow a VM to stop', () => {
-      const allowStart = VmPower.can.stop(vm);
-      expect(allowStart).to.eq(false);
+    it('Should not allow stopped VM to stop', () => {
+      const allow = VmPower.can.stop(vm);
+      expect(allow).to.eq(false);
     });
 
-    it('Should allow a VM to suspend', () => {
-      const allowStart = VmPower.can.suspend(vm);
-      expect(allowStart).to.eq(false);
+    it('Should not allow stopped VM to suspend', () => {
+      const allow = VmPower.can.suspend(vm);
+      expect(allow).to.eq(false);
+    });
+
+    it('Should allow stopped VM to retire', () => {
+      const allow = ServicePower.can.retire(service);
+      expect(allow).to.eq(false);
     });
 
     it('Should allow power state to be retrieved', () => {
@@ -47,7 +51,7 @@ describe('VmPowerFactory', () => {
   });
 
   describe('do.start', () => {
-    it('Should start power for a VM', () => {
+    it('Should start a VM', () => {
       const collectionsApiSpy = stubResponse({ message: 'Success' });
 
       VmPower.do.start(vm);

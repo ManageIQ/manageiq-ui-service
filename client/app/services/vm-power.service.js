@@ -1,9 +1,10 @@
-/* eslint-disable semi, space-before-function-paren */
-
 /** @ngInject */
 export function VmPowerFactory(CollectionsApi, EventNotifications, sprintf) {
   return {
-    can: {
+    // vm has power_state, raw_power_state; attribute normalized_state
+    // + ems_id, archived, orphaned, retired, retires_on
+
+    can: { // what ui-classic does via availability/supports in toolbars
       start(vm) {
         return vm.power_state !== 'on';
       },
@@ -16,15 +17,26 @@ export function VmPowerFactory(CollectionsApi, EventNotifications, sprintf) {
         return vm.power_state === 'on';
       },
 
+      // FIXME: unused
       retire(vm) {
-        // TODO
+        return !(vm.retired || vm.orphaned || vm.archived);
+      },
+    },
+
+    state: { // TODO use, etc.
+      text(vm) {
+        return vm.normalized_state;
+      },
+
+      icon(vm) {
+        //TODO return one of on,off,suspend*?,unknown..
+        // ! normalized_state real for vms
       },
     },
 
     do: {
       start(vm) {
-        vm.power_state = '';
-        vm.power_status = 'starting';
+        vm.power_state = 'starting';
         vm.normalized_state = 'unknown';
 
         return CollectionsApi.post('vms', vm.id, {}, { action: 'start' })
@@ -33,8 +45,7 @@ export function VmPowerFactory(CollectionsApi, EventNotifications, sprintf) {
       },
 
       stop(vm) {
-        vm.power_state = '';
-        vm.power_status = 'stopping';
+        vm.power_state = 'stopping';
         vm.normalized_state = 'unknown';
 
         return CollectionsApi.post('vms', vm.id, {}, { action: 'stop' })
@@ -43,8 +54,7 @@ export function VmPowerFactory(CollectionsApi, EventNotifications, sprintf) {
       },
 
       suspend(vm) {
-        vm.power_state = '';
-        vm.power_status = 'suspending';
+        vm.power_state = 'suspending';
         vm.normalized_state = 'unknown';
 
         return CollectionsApi.post('vms', vm.id, {}, { action: 'suspend' })
@@ -53,8 +63,7 @@ export function VmPowerFactory(CollectionsApi, EventNotifications, sprintf) {
       },
 
       retire(vm) {
-        vm.power_state = '';
-        vm.power_status = 'retiring';
+        vm.power_state = 'retiring';
         vm.normalized_state = 'unknown';
 
         return CollectionsApi.post('vms', vm.id, {}, { action: 'retire' })

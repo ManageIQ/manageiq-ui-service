@@ -34,10 +34,10 @@ describe('Component: Resource Details', () => {
     }))
     it('should be able perform power operations on a VM', () => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
-      const powerOnSpy = sinon.spy(VmPower, 'start')
-      const powerOffSpy = sinon.spy(VmPower, 'stop')
-      const powerSuspendSpy = sinon.spy(VmPower, 'suspend')
-      const retireVMSpy = sinon.spy(VmPower, 'retire')
+      const powerOnSpy = sinon.spy(VmPower.do, 'start')
+      const powerOffSpy = sinon.spy(VmPower.do, 'stop')
+      const powerSuspendSpy = sinon.spy(VmPower.do, 'suspend')
+      const retireVMSpy = sinon.spy(VmPower.do, 'retire')
 
       expect(ctrl.startVm).to.exist
       ctrl.startVm()
