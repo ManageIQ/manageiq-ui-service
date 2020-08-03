@@ -54,19 +54,12 @@ yarn
 ### Development
 
 - From the `manageiq` directory, start the ManageIQ application to initiate the server listening on
-http://localhost:3000 order and serve up the REST API.
-  Either one of the following commands can be used.
-  ```
-  bin/rails s
-  ```
-  ```
-  MIQ_SPARTAN=minimal rake evm:start
-  ```
-  :point_up: (websockets may not work correctly)
+  http://localhost:3000 .
 
 - From the `manageiq-ui-service` directory, start the development version of
   the service UI, which will initiate the UI listening on _http://localhost:3001_, and talking to the REST API at
   _http://[::1]:3000_.  This command will also open a browser page to  _http://localhost:3001/login_.
+
   ```
   yarn start
   ```
