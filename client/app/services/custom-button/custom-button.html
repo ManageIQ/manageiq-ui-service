@@ -20,7 +20,9 @@
             uib-tooltip="{{buttonGroup.description}}"
             tooltip-placement="top">
       <i ng-class="buttonGroup.set_data.button_icon" ng-style="{color: buttonGroup.set_data.button_color }"></i>
-      {{ buttonGroup.name.split('|')[0] }}
+        <span ng-if="buttonGroup.set_data.display">
+          {{ buttonGroup.name.split('|')[0] }}
+        </span>
       <span class="caret"></span>
     </button>
     <ul uib-dropdown-menu role="menu" aria-labelledby="{{buttonGroup.id}}">
