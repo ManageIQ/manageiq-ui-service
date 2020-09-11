@@ -47,7 +47,7 @@ config.plugins.push(
       // find the package.json file for each module
       modules = modules.filter(m => m.includes("node_modules"));
       var packagePaths = modules.map(m => {
-        var match = m.match(/(.*node_modules\/)([^\/]+)(\/[^\/]+)?/);
+        var match = m.match(/(.*node_modules\/)([^/]+)(\/[^/]+)?/);
         var path = [
           `${match[1]}${match[2]}/package.json`,
           `${match[1]}${match[2]}${match[3]}/package.json`,
@@ -65,11 +65,11 @@ config.plugins.push(
       // extract relevant package data from the package.json
       var packages = packagePaths.map(p => {
         var content = fs.readFileSync(p);
-        var package = JSON.parse(content);
+        var pkg = JSON.parse(content);
         return {
-          name: package.name,
-          license: package.license,
-          version: package.version,
+          name: pkg.name,
+          license: pkg.license,
+          version: pkg.version,
           location: p
         }
       });
