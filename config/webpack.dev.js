@@ -213,7 +213,10 @@ module.exports = {
 
   resolve: {
     extensions: ['.js'],
-    symlinks: false
+    symlinks: false,
+    alias: {
+      'bootstrap-select': '@pf3/select',
+    },
   },
 
   // Disables noisy performance warnings. While the warnings are important, it
