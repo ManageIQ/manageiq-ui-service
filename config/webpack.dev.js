@@ -82,7 +82,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
-          'ng-annotate-loader',
+          'ng-annotate-loader?ngAnnotate=ng-annotate-patched',
           'babel-loader',
           'eslint-loader',
         ]
