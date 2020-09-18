@@ -19,6 +19,8 @@ const appBasePath = process.env.NODE_ENV === 'production' ? '\'/ui/service/\'' :
 console.log('Backend proxied on ' + protocol + host)
 
 module.exports = {
+  mode: 'development',
+
   context: root,
   entry: {
     app: './app.js',
@@ -71,8 +73,8 @@ module.exports = {
         test: /\.html$/,
         use: [
           `ngtemplate-loader?relativeTo=${root}/`,
-          `html-loader?attrs=false&minimize=true`
-        ]
+          `html-loader?attrs=false`,
+        ],
       },
 
       // js loaders: transpile based on browserslist from package.json
@@ -202,5 +204,9 @@ module.exports = {
 
   watchOptions: {
     ignored: ['**/.*.sw[po]'],
+  },
+
+  optimization: {
+    minimize: false,
   },
 }
