@@ -10,13 +10,16 @@ if (process.env.BUILD_OUTPUT) {
   config.output.path = path.resolve(__dirname, process.env.BUILD_OUTPUT)
   urlBase = '/'
 }
+
 // Source maps suitable for production use
 config.devtool = 'cheap-module-source-map'
 
+// minify
+config.mode = 'production';
+config.optimization.minimize = true;
+
 config.plugins.push(
   new webpack.NoEmitOnErrorsPlugin(),
-
-  new webpack.optimize.UglifyJsPlugin(),
 
   // Cleans previous build
   new CleanWebpackPlugin([config.output.path], {
