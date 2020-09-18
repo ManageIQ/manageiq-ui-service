@@ -14,7 +14,7 @@ const nodeModules = path.resolve(__dirname, '../node_modules')
 const protocol = process.env.PROXY_PROTOCOL || 'http://'
 const host = process.env.PROXY_HOST || '[::1]:3000'
 const hasSkinImages = fs.existsSync(`${root}/skin/images`)
-const appBasePath = process.env.NODE_ENV === 'production' ? '\'/ui/service/\'' : '\'/\''
+const appBasePath = process.env.NODE_ENV === 'production' ? '/ui/service/' : '/'
 
 console.log('Backend proxied on ' + protocol + host)
 
@@ -128,29 +128,47 @@ module.exports = {
       },
       {
         test: /\.(sass|scss)$/,
-        use: ExtractTextWebpackPlugin.extract({
-          fallback: 'style-loader',
-          allChunks: true,
-          use: [
-            'css-loader?importLoaders=1&sourceMap=true',
-            {
-              loader: 'sass-loader',
-              options: {
-                data: `$img-base-path: ${appBasePath}`,
-                sourceMap: true,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              url: (url) => {
+                // manageiq/public/upload/
+                if (url.match(/^\/upload\//)) {
+                  return false;
+                }
+
+                // manageiq/public/ui/service/images/ from client/assets/images
+                if (url.startsWith(`${appBasePath}images/`)) {
+                  return false;
+                }
+
+                // try to resolve/error everything else
+                return true;
+              },
+            },
+          },
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              additionalData: `$img-base-path: '${appBasePath}'`,
+              sassOptions: {
                 includePaths: [
                   `${root}/assets/sass`,
                   `${nodeModules}/bootstrap-sass/assets/stylesheets`,
                   `${nodeModules}/patternfly/dist/sass/patternfly`,
                   `${nodeModules}/font-awesome/scss`,
-                  `${nodeModules}/@manageiq/font-fabulous/assets/stylesheets`
-                ]
-              }
-            }
-          ]
-        })
-      }
-    ]
+                  `${nodeModules}/@manageiq/font-fabulous/assets/stylesheets`,
+                ],
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
 
   plugins: [
