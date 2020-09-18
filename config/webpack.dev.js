@@ -81,7 +81,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           'ng-annotate-loader',
-          'babel-loader?presets[]=env',
+          'babel-loader',
           'eslint-loader',
         ]
       },
