@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const root = path.resolve(__dirname, '../client')
@@ -118,14 +118,11 @@ module.exports = {
       // css loaders: extract styles to a separate bundle
       {
         test: /\.(css)$/,
-        use: ExtractTextWebpackPlugin.extract({
-          fallback: 'style-loader',
-          allChunks: true,
-          use: [
-            'css-loader?importLoaders=1&sourceMap=true',
-            'postcss-loader'
-          ]
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader?importLoaders=1',
+          'postcss-loader',
+        ],
       },
       {
         test: /\.(sass|scss)$/,
@@ -157,7 +154,9 @@ module.exports = {
   plugins: [
 
     // Extract 'styles.css' after being processed by loaders into a single bundle
-    new ExtractTextWebpackPlugin('styles/[name]-[hash].css'),
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name]-[hash].css',
+    }),
 
     // Copy all public assets to webpack's processing context
     new CopyWebpackPlugin([
