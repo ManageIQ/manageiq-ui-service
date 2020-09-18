@@ -161,15 +161,17 @@ module.exports = {
     }),
 
     // Copy all public assets to webpack's processing context
-    new CopyWebpackPlugin([
-      {from: `${root}/assets`},
-      {from: `${root}/gettext`, to: 'gettext'},
-      {from: `${nodeModules}/noVNC`, to: 'vendor/noVNC'},
-      {from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower'},
+    new CopyWebpackPlugin({
+      patterns: [
+        {from: `${root}/assets`},
+        {from: `${root}/gettext`, to: 'gettext'},
+        {from: `${nodeModules}/noVNC`, to: 'vendor/noVNC'},
+        {from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower'},
 
-      // Override images with skin replacements if they exist
-      {from: hasSkinImages ? `${root}/skin/images` : '', to: 'images', force: true}
-    ]),
+        // Override images with skin replacements if they exist
+        hasSkinImages && {from: `${root}/skin/images`, to: 'images', force: true},
+      ].filter((x) => !!x),
+    }),
 
     // Generate index.html from template with script/link tags for bundles
     new HtmlWebpackPlugin({
