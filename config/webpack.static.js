@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const config = require('./webpack.dev.js')
@@ -22,8 +22,10 @@ config.plugins.push(
   new webpack.NoEmitOnErrorsPlugin(),
 
   // Cleans previous build
-  new CleanWebpackPlugin([config.output.path], {
-    allowExternal: true
+  new CleanWebpackPlugin({
+    cleanOnceBeforeBuildPatterns: [config.output.path],
+    dangerouslyAllowCleanPatternsOutsideProject: true,
+    dry: false,
   }),
 
   // Replace index.html with correct base href for production use
