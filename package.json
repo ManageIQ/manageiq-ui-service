@@ -27,7 +27,9 @@
     "test:watch": "karma start --auto-watch --no-single-run",
     "vet": "eslint . && sass-lint --verbose --no-exit",
     "zanata:upload": "yarn gettext:extract && yarn gettext:compile && node language/index.js upload",
-    "zanata:download": "node language/index.js download"
+    "zanata:download": "node language/index.js download",
+    "update": "jq -r '.dependencies|keys|join(\"\n\")'  package.json | grep -v noVNC | grep -v patternfly-timeline | xargs yarn add",
+    "update-dev": "jq -r '.devDependencies|keys|join(\"\n\")'  package.json | xargs yarn add -D"
   },
   "dependencies": {
     "@manageiq/font-fabulous": "~1.0.3",
