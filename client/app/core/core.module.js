@@ -8,7 +8,6 @@ import {
 
 import {
   configure,
-  init
 } from './config.js'
 
 // Core
@@ -97,5 +96,4 @@ export const CoreModule = angular
   .run(authInit)
   .run(gettextInit)
   .run(layoutInit)
-  .run(init)
   .name
