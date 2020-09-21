@@ -14,8 +14,8 @@ describe('Filter: format-bytes/format-megaBytes', () => {
   }))
 
   it('should exist when invoked', () => {
-    expect(formatBytesFilter).to.be.define
-    expect(formatmegaBytesFilter).to.be.define
+    expect(formatBytesFilter).to.exist
+    expect(formatmegaBytesFilter).to.exist
   })
 
   it('should correctly display valid format', () => {
