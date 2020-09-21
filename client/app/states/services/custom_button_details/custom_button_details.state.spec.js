@@ -107,7 +107,7 @@ describe('State: services.custom_button_details', () => {
 
       describe('controller initialization', () => {
         it('is created successfully', () => {
-          expect(controller).to.be.defined
+          expect(controller).to.exist
         })
       })
 

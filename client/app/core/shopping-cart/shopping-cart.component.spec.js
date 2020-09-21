@@ -18,14 +18,14 @@ describe('Component: shoppingCart', () => {
   })
 
   it('is defined', () => {
-    expect(ctrl).to.be.defined
+    expect(ctrl).to.exist
   })
 
   it('should handle refreshing state', () => {
     const stateSpy = sinon.stub(ShoppingCart, 'state').returns(true)
     ctrl.$doCheck()
 
-    expect(stateSpy).to.have.been.called.once
+    expect(stateSpy).to.have.been.called
   })
 
   it('should able to be submitted successfully', (done) => {
@@ -33,8 +33,8 @@ describe('Component: shoppingCart', () => {
     ctrl.submit().then(() => {
       done()
 
-      expect(submitSpy).to.have.been.called.once
-      expect(closeFn).to.have.been.called.once
+      expect(submitSpy).to.have.been.called
+      expect(closeFn).to.have.been.called
       expect(successNotificationSpy).to.have.been.calledWith('Shopping cart successfully ordered')
     })
   })
@@ -50,6 +50,6 @@ describe('Component: shoppingCart', () => {
 
   it('should allow a shopping cart modal to be closed', () => {
     ctrl.close()
-    expect(closeFn).to.have.been.called.once
+    expect(closeFn).to.have.been.called
   })
 })

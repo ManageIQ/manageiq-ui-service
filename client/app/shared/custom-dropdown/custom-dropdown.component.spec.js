@@ -19,7 +19,7 @@ describe('Component: customDropdown ', function () {
   })
 
   it('is defined', function () {
-    expect(ctrl).to.be.defined
+    expect(ctrl).to.exist
   })
 
   it('should handle changes', () => {
@@ -36,6 +36,6 @@ describe('Component: customDropdown ', function () {
     const actionFnSpy = sinon.stub(options, 'actionFn').returns(true)
     ctrl.$onInit()
     ctrl.handleAction(options)
-    expect(actionFnSpy).to.have.been.called.once
+    expect(actionFnSpy).to.have.been.called
   })
 })

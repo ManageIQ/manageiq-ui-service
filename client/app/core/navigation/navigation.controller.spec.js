@@ -25,11 +25,11 @@ describe('Controller: Navigation', () => {
   }))
 
   it('is defined', () => {
-    expect(ctrl).to.be.defined
+    expect(ctrl).to.exist
   })
 
   it('controller sites are defined and injected URL to be correct', () => {
-    expect(ctrl.sites).to.be.defined
+    expect(ctrl.sites).to.exist
     expect(ctrl.sites.length).to.equal(1)
     expect(ctrl.sites[0].url).to.equal('http://localhost:9876')
   })
@@ -53,6 +53,6 @@ describe('Controller: Navigation', () => {
       action: 'edit',
       current_group: {id: '10000000000001'}
     })
-    expect(ctrl.user().group).to.be.defined
+    expect(ctrl.user().group).to.exist
   })
 })
