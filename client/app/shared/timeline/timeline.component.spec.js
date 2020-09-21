@@ -15,10 +15,10 @@ describe('Component: timeline', function () {
     }))
 
     it('is defined, accepts bindings data/options', function () {
-      expect(ctrl).to.be.defined
-      expect(ctrl.data.details).be.defined
-      expect(ctrl.options.width).be.defined
-      expect(ctrl.$onChanges({options: '', data: ''})).be.defined
+      expect(ctrl).to.exist
+      expect(ctrl.data.details).to.exist
+      expect(ctrl.options.width).to.exist
+      expect(ctrl.$onChanges({options: '', data: ''})).to.exist
     })
   })
 

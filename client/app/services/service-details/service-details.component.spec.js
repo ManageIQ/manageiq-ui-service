@@ -127,7 +127,7 @@ describe('Component: ServiceDetails', () => {
     })
     it('should be defined', () => {
       ctrl.$onInit()
-      expect(ctrl).to.be.defined
+      expect(ctrl).to.exist
     })
     it('should get a service successfully', (done) => {
       const service = readJSON(mockDir + 'service1.json')

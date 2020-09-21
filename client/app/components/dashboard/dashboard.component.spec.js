@@ -12,7 +12,7 @@ describe('Component: dashboardComponent', () => {
 
   describe('with $componentController', () => {
     it('is defined', () => {
-      expect(ctrl).to.be.defined
+      expect(ctrl).to.exist
     })
 
     it('initializes servicesCounts', () => {

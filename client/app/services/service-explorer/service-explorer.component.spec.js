@@ -11,7 +11,7 @@ describe('Component: serviceExplorer', () => {
     collectionsApiMock = sinon.mock(CollectionsApi)
   })
 
-  it('is defined', () => expect(ctrl).to.be.defined)
+  it('is defined', () => expect(ctrl).to.exist)
 
   it('should set permissions', () => {
     const expectedPermissions = {
@@ -71,7 +71,7 @@ describe('Component: serviceExplorer', () => {
     const catalogSpy = sinon.spy(ServicesState.services, 'setSort')
     ctrl.toolbarConfig.sortConfig.onSortChange('name', true)
 
-    expect(catalogSpy).to.have.been.called.once
+    expect(catalogSpy).to.have.been.called
   })
 
   it('should make a query for services', () => {
