@@ -28,15 +28,12 @@ module.exports = function (config) {
       {pattern: './node_modules/bardjs/bard.js'},
       {pattern: './node_modules/sinon/pkg/sinon.js'},
       {pattern: './node_modules/karma-read-json/karma-read-json.js'},
-      {pattern: './node_modules/bardjs/bard.js'},
       {pattern: './client/app/**/*.spec.js'},
       {pattern: './tests/**/*.js'},
       {pattern: './tests/**/*.json', included: false, served: true, nocache: false},
-      {pattern: './client/assets/images/**/*', included: false, served: true, nocache: false}
+      {pattern: './client/assets/images/**/*', included: false, served: true, nocache: false},
     ],
-    exclude: [
-      './client/app/**/*.test.js'
-    ],
+
     proxies: {
       '/images/': '/base/client/assets/images/'
     },
