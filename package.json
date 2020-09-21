@@ -24,11 +24,11 @@
     "test": "yarn run vet && yarn run gettext:extract && yarn run gettext:validate && yarn run t",
     "test:karma": "karma start karma.conf.js --single-run",
     "test:watch": "karma start --auto-watch --no-single-run",
-    "vet": "eslint . && sass-lint --verbose --no-exit",
-    "zanata:upload": "yarn gettext:extract && yarn gettext:compile && node language/index.js upload",
-    "zanata:download": "node language/index.js download",
     "update": "jq -r '.dependencies|keys|join(\"\n\")'  package.json | grep -v noVNC | grep -v patternfly-timeline | xargs yarn add",
-    "update-dev": "jq -r '.devDependencies|keys|join(\"\n\")'  package.json | xargs yarn add -D"
+    "update-dev": "jq -r '.devDependencies|keys|join(\"\n\")'  package.json | xargs yarn add -D",
+    "vet": "eslint . && sass-lint --verbose --no-exit",
+    "zanata:download": "node language/index.js download",
+    "zanata:upload": "yarn gettext:extract && yarn gettext:compile && node language/index.js upload"
   },
   "dependencies": {
     "@manageiq/font-fabulous": "~1.0.5",
@@ -72,14 +72,7 @@
     "object.values": "~1.1.1",
     "patternfly": "~3.59.5",
     "patternfly-timeline": "patternfly/patternfly-timeline#master-dist",
-    "popper.js": "~1.16.1",
     "prop-types": "~15.7.2",
-    "q": "~1.5.1",
-    "react": "~16.13.1",
-    "react-dom": "~16.13.1",
-    "react2angular": "~4.0.6",
-    "request": "~2.88.2",
-    "rxjs": "~6.6.3",
     "spice-html5-bower": "~1.7.3",
     "sprintf-js": "~1.1.2",
     "text-encoder-lite": "~2.0.0"
