@@ -16,9 +16,8 @@ describe('Component: timeline', function () {
 
     it('is defined, accepts bindings data/options', function () {
       expect(ctrl).to.exist
-      expect(ctrl.data.details).to.exist
+      expect(ctrl.data).to.exist
       expect(ctrl.options.width).to.exist
-      expect(ctrl.$onChanges({options: '', data: ''})).to.exist
     })
   })
 
@@ -38,7 +37,7 @@ describe('Component: timeline', function () {
     }
 
     it('should compile timeline when invoked', () => {
-      const renderedElement = compileHtml(angular.element(`<timeline data="" options=""/>`), parentScope)
+      const renderedElement = compileHtml(`<timeline data="" options="" />`, parentScope)
       expect(renderedElement[0].querySelectorAll('.timeline').length).to.eq(1)
     })
   })
