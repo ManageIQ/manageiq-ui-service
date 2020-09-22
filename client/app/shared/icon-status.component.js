@@ -9,28 +9,43 @@ export const IconStatusComponent = {
     inprogress: '<?'
   },
   template: `
-   <i class="pficon pficon-ok" ng-if="vm.isSuccess"
-     uib-tooltip="{{vm.status}}"
+   <i
+     class="pficon pficon-ok"
+     ng-if="vm.isSuccess"
      tooltip-append-to-body="true"
+     tooltip-placement="bottom"
      tooltip-popup-delay="1000"
-     tooltip-placement="bottom" />
-   <i class="pficon pficon-error-circle-o" ng-if="vm.isError"
      uib-tooltip="{{vm.status}}"
+   ></i>
+   <i
+     class="pficon pficon-error-circle-o"
+     ng-if="vm.isError"
      tooltip-append-to-body="true"
+     tooltip-placement="bottom"
      tooltip-popup-delay="1000"
-     tooltip-placement="bottom" />
-   <span ng-if="vm.isInprogress" class="spinner spinner-xs spinner-inline"/>  
-   <i class="fa fa-hourglass-half" ng-if="vm.isQueued"
      uib-tooltip="{{vm.status}}"
+   ></i>
+   <span
+     class="spinner spinner-xs spinner-inline"
+     ng-if="vm.isInprogress"
+   ></span>
+   <i
+     class="fa fa-hourglass-half"
+     ng-if="vm.isQueued"
      tooltip-append-to-body="true"
+     tooltip-placement="bottom"
      tooltip-popup-delay="1000"
-     tooltip-placement="bottom" />   
-   <i class="pficon pficon-help" ng-if="vm.isUnknown"
      uib-tooltip="{{vm.status}}"
+   ></i>
+   <i
+     class="pficon pficon-help"
+     ng-if="vm.isUnknown"
      tooltip-append-to-body="true"
+     tooltip-placement="bottom"
      tooltip-popup-delay="1000"
-     tooltip-placement="bottom" />
-  `
+     uib-tooltip="{{vm.status}}"
+   ></i>
+  `,
 }
 
 /** @ngInject */
@@ -39,12 +54,14 @@ function ComponentController (lodash) {
   vm.$onChanges = function () {
     vm.status = lodash.capitalize(vm.status)
 
+    const lower = vm.status.toLowerCase();
     angular.extend(vm, {
-      isSuccess: vm.success ? vm.success.some((status) => status.toLowerCase() === vm.status.toLowerCase()) : false,
-      isError: vm.error ? vm.error.some((status) => status.toLowerCase() === vm.status.toLowerCase()) : false,
-      isQueued: vm.queued ? vm.queued.some((status) => status.toLowerCase() === vm.status.toLowerCase()) : false,
-      isInprogress: vm.inprogress ? vm.inprogress.some((status) => status.toLowerCase() === vm.status.toLowerCase()) : false
+      isSuccess: vm.success ? vm.success.some((status) => status.toLowerCase() === lower) : false,
+      isError: vm.error ? vm.error.some((status) => status.toLowerCase() === lower) : false,
+      isQueued: vm.queued ? vm.queued.some((status) => status.toLowerCase() === lower) : false,
+      isInprogress: vm.inprogress ? vm.inprogress.some((status) => status.toLowerCase() === lower) : false
     })
+
     vm.isUnknown = !vm.isSuccess && !vm.isError && !vm.isQueued && !vm.isInprogress
   }
 }
