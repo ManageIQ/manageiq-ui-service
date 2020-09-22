@@ -17,31 +17,31 @@ describe('Component: Icon-status', () => {
   }
 
   it('should display success when status matches success', () => {
-    const renderedElement = compileHtml(angular.element(`<icon-status status="'success'" success="['success']"/>`), parentScope)
+    const renderedElement = compileHtml(`<icon-status status="'success'" success="['success']" />`, parentScope)
 
     expect(renderedElement[0].querySelectorAll('.pficon-ok').length).to.eq(1)
   })
 
   it('should display error when status matches error', () => {
-    const renderedElement = compileHtml(angular.element(`<icon-status status="'error'" error="['error']"/>`), parentScope)
+    const renderedElement = compileHtml(`<icon-status status="'error'" error="['error']" />`, parentScope)
 
     expect(renderedElement[0].querySelectorAll('.pficon-error-circle-o').length).to.eq(1)
   })
 
   it('should display pending when status matches pending', () => {
-    const renderedElement = compileHtml(angular.element(`<icon-status status="'pending'" queued="['pending']"/>`), parentScope)
+    const renderedElement = compileHtml(`<icon-status status="'pending'" queued="['pending']" />`, parentScope)
 
     expect(renderedElement[0].querySelectorAll('.fa-hourglass-half').length).to.eq(1)
   })
 
   it('should display spinner when status is matches inprogress', () => {
-    const renderedElement = compileHtml(angular.element(`<icon-status status="'inprogress'" inprogress="['inprogress']"/>`), parentScope)
+    const renderedElement = compileHtml(`<icon-status status="'inprogress'" inprogress="['inprogress']" />`, parentScope)
 
     expect(renderedElement[0].querySelectorAll('.spinner').length).to.eq(1)
   })
 
   it('should display unknown when status unknown', () => {
-    const renderedElement = compileHtml(angular.element(`<icon-status status="'foo'"/>`), parentScope)
+    const renderedElement = compileHtml(`<icon-status status="'foo'" />`, parentScope)
 
     expect(renderedElement[0].querySelectorAll('.pficon-help').length).to.eq(1)
   })
