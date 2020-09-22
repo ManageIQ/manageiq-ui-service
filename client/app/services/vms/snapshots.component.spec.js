@@ -91,7 +91,7 @@ describe('Component: snapshots with $componentController', () => {
   })
 
   it('has a cancelDelete()', () => {
-    expect(ctrl.cancelDelete()).to.exist
+    expect(ctrl.cancelDelete).to.exist
   })
 
   it('can resolve getting a VM', (done) => {
