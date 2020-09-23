@@ -1,5 +1,4 @@
 import templateUrl from './details.html'
-// import { Promise } from 'q'
 
 /** @ngInject */
 export function CatalogsDetailsState (routerHelper) {
