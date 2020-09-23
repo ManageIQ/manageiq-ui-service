@@ -23,7 +23,7 @@ describe('State: services.details', () => {
     })
 
     it('should be created successfully', () => {
-      expect(controller).to.be.defined
+      expect(controller).to.exist
     })
   })
 })

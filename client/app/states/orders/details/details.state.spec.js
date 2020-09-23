@@ -20,7 +20,7 @@ describe('State: orders.details', () => {
 
   describe('controller', () => {
     it('is created successfully', () => {
-      expect(ctrl).to.be.defined
+      expect(ctrl).to.exist
     })
 
     it('has an order title', () => {

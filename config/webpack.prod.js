@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 
@@ -58,14 +58,18 @@ const packagesFromModules = (modules) => {
 // Source maps suitable for production use
 config.devtool = 'cheap-module-source-map'
 
+// minify
+config.mode = 'production';
+config.optimization.minimize = true;
+
 config.plugins.push(
   new webpack.NoEmitOnErrorsPlugin(),
 
-  new webpack.optimize.UglifyJsPlugin(),
-
   // Cleans previous build
-  new CleanWebpackPlugin([config.output.path], {
-    allowExternal: true
+  new CleanWebpackPlugin({
+    cleanOnceBeforeBuildPatterns: [config.output.path],
+    dangerouslyAllowCleanPatternsOutsideProject: true,
+    dry: false,
   }),
 
   // Replace index.html with correct base href for production use

@@ -8,7 +8,6 @@ import {
 
 import {
   configure,
-  init
 } from './config.js'
 
 // Core
@@ -41,8 +40,6 @@ import { layoutInit } from './layouts.config.js'
 import { TaggingService } from './tagging.service.js'
 import { SiteSwitcher } from './site-switcher/site-switcher.component.js'
 
-import 'ng-redux'
-
 export const CoreModule = angular
   .module('app.core', [
     'gettext',
@@ -50,7 +47,6 @@ export const CoreModule = angular
     'ngAnimate',
     'ngCookies',
     'ngMessages',
-    'ngRedux',
     'ngSanitize',
     'ngStorage',
     'ui.router',
@@ -97,5 +93,4 @@ export const CoreModule = angular
   .run(authInit)
   .run(gettextInit)
   .run(layoutInit)
-  .run(init)
   .name

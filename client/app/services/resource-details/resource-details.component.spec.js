@@ -42,13 +42,13 @@ describe('Component: Resource Details', () => {
 
       expect(ctrl.startVm).to.exist
       ctrl.startVm()
-      expect(powerOnSpy).to.have.been.calledOnce
+      expect(powerOnSpy).to.have.been.called
       ctrl.stopVm()
-      expect(powerOffSpy).to.have.been.calledOnce
+      expect(powerOffSpy).to.have.been.called
       ctrl.suspendVM()
-      expect(powerSuspendSpy).to.have.been.calledOnce
+      expect(powerSuspendSpy).to.have.been.called
       ctrl.retireVM()
-      expect(retireVMSpy).to.have.been.calledOnce
+      expect(retireVMSpy).to.have.been.called
     })
     it('should be able to check for custom buttons', (done) => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))
@@ -85,7 +85,7 @@ describe('Component: Resource Details', () => {
       ctrl.processSnapshot()
       done()
 
-      expect(modalSpy).to.have.been.calledOnce
+      expect(modalSpy).to.have.been.called
     })
     it('should stop polling when you leave the page', (done) => {
       vmSpy = sinon.stub(VmsService, 'getVm').returns(Promise.resolve(vmData))

@@ -66,7 +66,7 @@ describe('State: catalogs.details', () => {
     describe('controller initialization', () => {
       it('is created successfully', () => {
         controller = $controller($state.get('catalogs.details').controller)
-        expect(controller).to.be.defined
+        expect(controller).to.exist
       })
 
       describe('#refreshField', () => {

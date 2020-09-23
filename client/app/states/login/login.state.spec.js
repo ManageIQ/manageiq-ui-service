@@ -15,7 +15,7 @@ describe('State: login', () => {
 
     describe('controller initialization', () => {
       it('is created successfully', () => {
-        expect(ctrl).to.be.defined
+        expect(ctrl).to.exist
       })
 
       it('sets app brand', () => {
