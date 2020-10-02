@@ -13,7 +13,7 @@ describe('Component: ServiceDetailsAnsibleComponent', function () {
   })
 
   it('is defined', function () {
-    expect(ctrl).to.be.defined
+    expect(ctrl).to.exist
   })
   it('should allow credList to be retrieved', () => {
     const expectedConfig = {showSelectBox: false, selectionMatchProp: 'id'}
@@ -54,6 +54,6 @@ describe('Component: ServiceDetailsAnsibleComponent', function () {
     ctrl.$onChanges()
     done()
 
-    expect(getServiceCredentialSpy).to.have.been.calledOnce
+    expect(getServiceCredentialSpy).to.have.been.called
   })
 })

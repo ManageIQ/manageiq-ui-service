@@ -122,9 +122,14 @@ describe('Shopping cart service', () => {
         ]
       }
       sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse))
-      done()
 
-      ShoppingCart.removeItem({'id': '1'}).should.be.rejectedWith('failed')
+      ShoppingCart.removeItem({'id': '1'}).then(() => {
+        expect(true).to.be.false // should be rejected
+        done()
+      }, (err) => {
+        expect(err).to.eq('failed')
+        done()
+      })
     })
     it('should allow a shopping cart to be submitted', () => {
       const postSpy = sinon.spy(CollectionsApi, 'post')

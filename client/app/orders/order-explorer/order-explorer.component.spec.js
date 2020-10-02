@@ -15,7 +15,7 @@ describe('Component: orderExplorer', () => {
     }))
 
     it('is defined', () => {
-      expect(ctrl).to.be.defined
+      expect(ctrl).to.exist
     })
 
     it('should work with $state.go', () => {

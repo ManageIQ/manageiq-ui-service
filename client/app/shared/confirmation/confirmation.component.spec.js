@@ -20,7 +20,7 @@ describe('Directive: confirmation', () => {
     it('should compile confirmation when invoked', () => {
       const element = compileHtml(angular.element(`<confirmation on-ok="console.log()" />`), parentScope)
 
-      expect(element[0]).to.be.defined
+      expect(element[0]).to.exist
     })
   })
 })

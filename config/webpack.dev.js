@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const root = path.resolve(__dirname, '../client')
@@ -14,11 +14,13 @@ const nodeModules = path.resolve(__dirname, '../node_modules')
 const protocol = process.env.PROXY_PROTOCOL || 'http://'
 const host = process.env.PROXY_HOST || '[::1]:3000'
 const hasSkinImages = fs.existsSync(`${root}/skin/images`)
-const appBasePath = process.env.NODE_ENV === 'production' ? '\'/ui/service/\'' : '\'/\''
+const appBasePath = process.env.NODE_ENV === 'production' ? '/ui/service/' : '/'
 
 console.log('Backend proxied on ' + protocol + host)
 
 module.exports = {
+  mode: 'development',
+
   context: root,
   entry: {
     app: './app.js',
@@ -71,8 +73,8 @@ module.exports = {
         test: /\.html$/,
         use: [
           `ngtemplate-loader?relativeTo=${root}/`,
-          `html-loader?attrs=false&minimize=true`
-        ]
+          `html-loader?attrs=false`,
+        ],
       },
 
       // js loaders: transpile based on browserslist from package.json
@@ -80,16 +82,9 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
-          'ng-annotate-loader',
-          'babel-loader?presets[]=env',
+          'ng-annotate-loader?ngAnnotate=ng-annotate-patched',
+          'babel-loader',
           'eslint-loader',
-        ]
-      },
-      {
-        test: /\.jsx$/,
-        exclude: /node_modules/,
-        use: [
-          'babel-loader?presets[]=env&presets[]=react'
         ]
       },
 
@@ -118,57 +113,76 @@ module.exports = {
       // css loaders: extract styles to a separate bundle
       {
         test: /\.(css)$/,
-        use: ExtractTextWebpackPlugin.extract({
-          fallback: 'style-loader',
-          allChunks: true,
-          use: [
-            'css-loader?importLoaders=1&sourceMap=true',
-            'postcss-loader'
-          ]
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader?importLoaders=1',
+          'postcss-loader',
+        ],
       },
       {
         test: /\.(sass|scss)$/,
-        use: ExtractTextWebpackPlugin.extract({
-          fallback: 'style-loader',
-          allChunks: true,
-          use: [
-            'css-loader?importLoaders=1&sourceMap=true',
-            {
-              loader: 'sass-loader',
-              options: {
-                data: `$img-base-path: ${appBasePath}`,
-                sourceMap: true,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              url: (url) => {
+                // manageiq/public/upload/
+                if (url.match(/^\/upload\//)) {
+                  return false;
+                }
+
+                // manageiq/public/ui/service/images/ from client/assets/images
+                if (url.startsWith(`${appBasePath}images/`)) {
+                  return false;
+                }
+
+                // try to resolve/error everything else
+                return true;
+              },
+            },
+          },
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              additionalData: `$img-base-path: '${appBasePath}'`,
+              sassOptions: {
                 includePaths: [
                   `${root}/assets/sass`,
                   `${nodeModules}/bootstrap-sass/assets/stylesheets`,
                   `${nodeModules}/patternfly/dist/sass/patternfly`,
                   `${nodeModules}/font-awesome/scss`,
-                  `${nodeModules}/@manageiq/font-fabulous/assets/stylesheets`
-                ]
-              }
-            }
-          ]
-        })
-      }
-    ]
+                  `${nodeModules}/@manageiq/font-fabulous/assets/stylesheets`,
+                ],
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
 
   plugins: [
 
     // Extract 'styles.css' after being processed by loaders into a single bundle
-    new ExtractTextWebpackPlugin('styles/[name]-[hash].css'),
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name]-[hash].css',
+    }),
 
     // Copy all public assets to webpack's processing context
-    new CopyWebpackPlugin([
-      {from: `${root}/assets`},
-      {from: `${root}/gettext`, to: 'gettext'},
-      {from: `${nodeModules}/noVNC`, to: 'vendor/noVNC'},
-      {from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower'},
+    new CopyWebpackPlugin({
+      patterns: [
+        {from: `${root}/assets`},
+        {from: `${root}/gettext`, to: 'gettext'},
+        {from: `${nodeModules}/noVNC`, to: 'vendor/noVNC'},
+        {from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower'},
 
-      // Override images with skin replacements if they exist
-      {from: hasSkinImages ? `${root}/skin/images` : '', to: 'images', force: true}
-    ]),
+        // Override images with skin replacements if they exist
+        hasSkinImages && {from: `${root}/skin/images`, to: 'images', force: true},
+      ].filter((x) => !!x),
+    }),
 
     // Generate index.html from template with script/link tags for bundles
     new HtmlWebpackPlugin({
@@ -192,7 +206,10 @@ module.exports = {
 
   resolve: {
     extensions: ['.js'],
-    symlinks: false
+    symlinks: false,
+    alias: {
+      'bootstrap-select': '@pf3/select',
+    },
   },
 
   // Disables noisy performance warnings. While the warnings are important, it
@@ -203,5 +220,9 @@ module.exports = {
 
   watchOptions: {
     ignored: ['**/.*.sw[po]'],
+  },
+
+  optimization: {
+    minimize: false,
   },
 }

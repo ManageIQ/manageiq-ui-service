@@ -1,21 +1,17 @@
-import appCounterActions from '../actions/appCounters'
-import { APPCOUNTERS } from '../constants/appCounters'
-
 /** @ngInject */
-export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, CollectionsApi) {
+export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, CollectionsApi) {
   let menuItems = []
   const service = {
     get: getNavigation,
     menuItems: menuItems,
     init: initNavigation,
-    updateBadgeCounts: updateBadgeCounts
-  }
-  const actions = appCounterActions
-  const mapStateToThis = (state) => ({
-    navCount: state.appCounters
-  })
-
-  $ngRedux.connect(mapStateToThis, actions)(service)
+    updateBadgeCounts: updateBadgeCounts,
+    navCount: {
+      services: 0,
+      orders: 0,
+      catalogs: 0,
+    },
+  };
 
   Polling.start('badgeCounts', updateBadgeCounts, POLLING_INTERVAL)
 
@@ -45,7 +41,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
         },
         badges: [
           {
-            count: service.navCount[APPCOUNTERS.SERVICES_COUNT],
+            count: service.navCount.services,
             tooltip: __('Total services ordered, both active and retired')
           }
         ],
@@ -62,7 +58,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
         },
         badges: [
           {
-            count: service.navCount[APPCOUNTERS.ORDERS_COUNT],
+            count: service.navCount.orders,
             tooltip: __('Total orders submitted')
           }
         ],
@@ -79,7 +75,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
         },
         badges: [
           {
-            count: service.navCount[APPCOUNTERS.CATALOGS_COUNT],
+            count: service.navCount.catalogs,
             tooltip: __('The total number of available catalogs')
           }
         ],
@@ -96,25 +92,11 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, $ngRedux, Co
     menuItems.forEach((item) => {
       if (angular.isDefined(item.badges)) {
         getBadgeCount(item.badgeQuery.field, item.badgeQuery.filter).then((count) => {
-          let counterField = ''
-          switch (item.state) {
-            case 'services':
-              service.addServicesCount(count)
-              counterField = APPCOUNTERS.SERVICES_COUNT
-              break
-            case 'catalogs':
-              service.addCatalogsCount(count)
-              counterField = APPCOUNTERS.CATALOGS_COUNT
-              break
-            case 'orders':
-              service.addOrdersCount(count)
-              counterField = APPCOUNTERS.ORDERS_COUNT
-              break
-          }
-          item.badges[0].count = service.navCount[counterField]
-        })
+          item.badges[0].count = count;
+          service.navCount[item.state] = count;
+        });
       }
-    })
+    });
   }
 
   function getBadgeCount (field, filter) {
