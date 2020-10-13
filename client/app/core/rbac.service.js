@@ -1,4 +1,6 @@
-import { productFeatures } from './product-features.constants.json'
+import constants from './product-features.constants.json'
+const { productFeatures } = constants;
+
 /** @ngInject */
 export function RBACFactory (lodash) {
   let features = {}
