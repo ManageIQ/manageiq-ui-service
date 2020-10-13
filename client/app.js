@@ -13,6 +13,7 @@ window.sprintf = require('sprintf-js').sprintf
 window.c3 = require('c3')
 window.d3 = require('d3')
 window.numeral = numeral
+window.ActionCable = require('actioncable');
 
 // Libraries: core
 require('jquery-ui-bundle')
@@ -50,9 +51,6 @@ require('angular-patternfly/dist/angular-patternfly')
 // Libraries: misc
 require('ngprogress/build/ngprogress')
 require('patternfly-timeline/dist/timeline')
-
-// eslint-disable-next-line import/no-webpack-loader-syntax
-require('imports-loader?this=>window!actioncable')
 
 // Application scripts, order matters
 require('./app/app.module.js')
