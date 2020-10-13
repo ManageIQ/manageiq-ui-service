@@ -1,20 +1,16 @@
-/* global $state,  */
+/* global $state */
 describe('State: error', () => {
   beforeEach(() => {
     module('app.states')
   })
 
   describe('route', () => {
-    const views = {
-      error: 'app/states/error/error.html'
-    }
-
     beforeEach(() => {
-      bard.inject('$location', '$rootScope', '$state', '$templateCache')
+      bard.inject('$state')
     })
 
     it('should map /error route to http-error View template', () => {
-      expect($state.get('error').templateUrl).to.equal(views.error)
+      expect($state.get('error').template).to.match(/four0four/) // error.html topmost classname
     })
 
     it('should work with $state.go', () => {
