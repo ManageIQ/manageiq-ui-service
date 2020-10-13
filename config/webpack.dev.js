@@ -28,8 +28,8 @@ module.exports = {
   },
 
   output: {
-    chunkFilename: 'js/[name]-[hash].chunk.js',
-    filename: 'js/[name]-[hash].js',
+    chunkFilename: 'js/[name]-[contenthash].chunk.js',
+    filename: 'js/[name]-[contenthash].js',
     path: dist
   },
 
@@ -96,7 +96,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 20480,
-              name: 'styles/[hash].[ext]',
+              name: 'styles/[contenthash].[ext]',
 
               // Determine publicPath dynamically because in production, assets
               // must be relative to `/ui/service/`
@@ -168,7 +168,7 @@ module.exports = {
 
     // Extract 'styles.css' after being processed by loaders into a single bundle
     new MiniCssExtractPlugin({
-      filename: 'styles/[name]-[hash].css',
+      filename: 'styles/[name]-[contenthash].css',
     }),
 
     // Copy all public assets to webpack's processing context
