@@ -64,8 +64,5 @@ require('patternfly-timeline/dist/timeline.css')
 // Application styles
 require('./assets/sass/styles.sass')
 
-// Angular templates
-requireAll(require.context('./app', true, /\.html$/))
-
 // Skin overrides, require all js and css files within `client/skin`
 requireAll(require.context('./', true, /skin\/.*\.(js|css)$/))

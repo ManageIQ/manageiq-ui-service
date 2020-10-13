@@ -68,12 +68,11 @@ module.exports = {
     // each loaders README for information on their options.
     rules: [
 
-      // html loaders: populate angular's templateCache
+      // html templates
       {
         test: /\.html$/,
         use: [
-          `ngtemplate-loader?relativeTo=${root}/`,
-          `html-loader?attrs=false`,
+          `raw-loader`,
         ],
       },
 
