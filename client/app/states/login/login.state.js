@@ -1,4 +1,4 @@
-import templateUrl from './login.html'
+import template from './login.html';
 
 /** @ngInject */
 export function LoginState (routerHelper) {
@@ -10,7 +10,7 @@ function getStates () {
     'login': {
       parent: 'blank',
       url: '/login',
-      templateUrl,
+      template,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Login'),

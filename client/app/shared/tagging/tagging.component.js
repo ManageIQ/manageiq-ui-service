@@ -1,5 +1,5 @@
 import './_tagging.sass'
-import templateUrl from './tagging.html'
+import template from './tagging.html';
 
 export const TaggingComponent = {
   bindings: {
@@ -8,7 +8,7 @@ export const TaggingComponent = {
   },
   controller: TaggingController,
   controllerAs: 'vm',
-  templateUrl
+  template,
 }
 
 /** @ngInject */

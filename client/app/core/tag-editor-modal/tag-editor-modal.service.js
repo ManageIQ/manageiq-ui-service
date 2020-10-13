@@ -1,4 +1,4 @@
-import templateUrl from './tag-editor-modal.html'
+import template from './tag-editor-modal.html';
 
 /** @ngInject */
 export function TagEditorFactory ($uibModal) {
@@ -10,7 +10,7 @@ export function TagEditorFactory ($uibModal) {
 
   function showModal (services, tags) {
     var modalOptions = {
-      templateUrl,
+      template,
       controller: TagEditorModalController,
       controllerAs: 'vm',
       size: 'md',

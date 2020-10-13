@@ -1,4 +1,4 @@
-import templateUrl from './service-details-ansible-modal.html'
+import template from './service-details-ansible-modal.html';
 
 export const ServiceDetailsAnsibleModalComponent = {
   controller: ComponentController,
@@ -8,7 +8,7 @@ export const ServiceDetailsAnsibleModalComponent = {
     close: '&',
     dismiss: '&'
   },
-  templateUrl
+  template,
 }
 
 /** @ngInject */

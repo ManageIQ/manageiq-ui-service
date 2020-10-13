@@ -1,5 +1,5 @@
 import './_usage-graphs.sass'
-import templateUrl from './usage-graphs.html'
+import template from './usage-graphs.html';
 
 export const UsageGraphsComponent = {
   bindings: {
@@ -10,7 +10,7 @@ export const UsageGraphsComponent = {
   },
   controller: ComponentController,
   controllerAs: 'vm',
-  templateUrl
+  template,
 }
 
 /** @ngInject */

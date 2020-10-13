@@ -1,5 +1,5 @@
 import './_pagination.sass'
-import templateUrl from './pagination.html'
+import template from './pagination.html';
 
 export const PaginationComponent = {
   controller: ComponentController,
@@ -11,7 +11,7 @@ export const PaginationComponent = {
     onUpdate: '&',
     checkAll: '<',  // { checked: false, trigger: function(newvalue) }
   },
-  templateUrl
+  template,
 }
 
 /** @ngInject */

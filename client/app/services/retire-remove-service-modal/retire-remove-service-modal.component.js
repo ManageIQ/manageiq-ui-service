@@ -1,4 +1,4 @@
-import templateUrl from './retire-remove-service-modal.html'
+import template from './retire-remove-service-modal.html';
 
 export const RetireRemoveServiceModalComponent = {
   controller: ComponentController,
@@ -8,7 +8,7 @@ export const RetireRemoveServiceModalComponent = {
     close: '&',
     dismiss: '&'
   },
-  templateUrl
+  template,
 }
 
 /** @ngInject */

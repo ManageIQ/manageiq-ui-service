@@ -1,11 +1,11 @@
 // eslint camelcase: "off"
 import './_service-details.sass'
-import templateUrl from './service-details.html'
+import template from './service-details.html';
 
 export const ServiceDetailsComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
-  templateUrl,
+  template,
   bindings: {}
 }
 

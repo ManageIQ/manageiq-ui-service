@@ -1,4 +1,4 @@
-import templateUrl from './catalogs.html'
+import template from './catalogs.html';
 
 /** @ngInject */
 export function CatalogsExplorerState (routerHelper, RBAC) {
@@ -9,7 +9,7 @@ function getStates (RBAC) {
   return {
     'catalogs.explorer': {
       url: '',
-      templateUrl,
+      template,
       controller: CatalogsController,
       controllerAs: 'vm',
       title: __('Catalogs'),

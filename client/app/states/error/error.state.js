@@ -1,4 +1,4 @@
-import templateUrl from './error.html'
+import template from './error.html';
 
 /** @ngInject */
 export function ErrorState (routerHelper) {
@@ -11,7 +11,7 @@ function getStates () {
     'error': {
       parent: 'blank',
       url: '/error',
-      templateUrl,
+      template,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Error'),

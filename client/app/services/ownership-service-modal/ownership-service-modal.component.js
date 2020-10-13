@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-import templateUrl from './ownership-service-modal.html'
+import template from './ownership-service-modal.html';
 
 export const OwnershipServiceModalComponent = {
   controller: ComponentController,
@@ -9,7 +9,7 @@ export const OwnershipServiceModalComponent = {
     close: '&',
     dismiss: '&'
   },
-  templateUrl
+  template,
 }
 
 /** @ngInject */

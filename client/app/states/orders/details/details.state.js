@@ -1,4 +1,4 @@
-import templateUrl from './details.html'
+import template from './details.html';
 
 /** @ngInject */
 export function OrdersDetailsState (routerHelper, RBAC) {
@@ -9,7 +9,7 @@ function getStates (RBAC) {
   return {
     'orders.details': {
       url: '/:serviceOrderId',
-      templateUrl,
+      template,
       controller: StateController,
       controllerAs: 'vm',
       title: __('Order Details'),

@@ -1,9 +1,9 @@
 /* eslint camelcase: "off" */
 import '../../assets/sass/_explorer.sass'
-import templateUrl from './catalog-explorer.html'
+import template from './catalog-explorer.html';
 
 export const CatalogExplorerComponent = {
-  templateUrl,
+  template,
   controller: ComponentController,
   controllerAs: 'vm'
 }

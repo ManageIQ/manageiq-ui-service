@@ -1,5 +1,5 @@
 import './_custom-dropdown.sass'
-import templateUrl from './custom-dropdown.html'
+import template from './custom-dropdown.html';
 
 export const CustomDropdownComponent = {
   controller: ComponentController,
@@ -11,7 +11,7 @@ export const CustomDropdownComponent = {
     onUpdate: '&',
     menuRight: '@'
   },
-  templateUrl
+  template,
 }
 
 /** @ngInject */
