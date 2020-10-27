@@ -175,7 +175,7 @@ module.exports = {
       patterns: [
         {from: `${root}/assets`},
         {from: `${root}/gettext`, to: 'gettext'},
-        {from: `${nodeModules}/noVNC`, to: 'vendor/noVNC'},
+        {from: `${nodeModules}/@novnc/novnc`, to: 'vendor/noVNC'},
         {from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower'},
 
         // Override images with skin replacements if they exist
