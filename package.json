@@ -19,7 +19,7 @@
     "gettext:extract": "angular-gettext-cli --files './client/**/*.+(js|html)' --exclude '**/*.+spec.js' --dest './client/gettext/po/manageiq-ui-service.pot' --marker-names '__,N_'",
     "gettext:validate": "node language/validate.js",
     "gettext:validate-language-codes": "node language/validate-language-codes.js",
-    "start": "webpack-dev-server --open --progress --config config/webpack.dev.js",
+    "start": "webpack serve --progress --config config/webpack.dev.js",
     "t": "yarn run test:karma",
     "test": "yarn run vet && yarn run gettext:extract && yarn run gettext:validate && yarn run t",
     "test:karma": "karma start karma.conf.js --single-run",
@@ -127,7 +127,6 @@
     "url-loader": "~4.1.1",
     "webpack": "~5.3.0",
     "webpack-cli": "~4.1.0",
-    "webpack-dev-server": "~3.11.0",
     "webpack-stats-plugin": "~1.0.1"
   },
   "browserslist": [
