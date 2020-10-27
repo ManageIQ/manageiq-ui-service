@@ -11,4 +11,6 @@ config.module.rules.push({
   ],
 });
 
+config.output.filename = '[name].js';
+
 module.exports = config;
