@@ -207,6 +207,7 @@ module.exports = {
     symlinks: false,
     alias: {
       'bootstrap-select': '@pf3/select',
+      '/version.json': fs.existsSync(`${root}/version/version.json`) ? `${root}/version/version.json` : false,
     },
   },
 
