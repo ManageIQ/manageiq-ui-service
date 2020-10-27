@@ -1,6 +1,4 @@
-'use strict'
-
-const webpackConfig = require('./config/webpack.testing.js')
+const webpackConfig = require('./config/webpack.testing.js');
 
 module.exports = function (config) {
   config.set({
@@ -34,8 +32,20 @@ module.exports = function (config) {
       {pattern: './client/assets/images/**/*', included: false, served: true, nocache: false},
     ],
 
+    plugins: [
+      'karma-babel-preprocessor',
+      'karma-chai',
+      'karma-chai-sinon',
+      'karma-chrome-launcher',
+      'karma-coverage-istanbul-reporter',
+      'karma-mocha',
+      'karma-read-json',
+      'karma-sinon',
+      'karma-webpack',
+    ],
+
     proxies: {
-      '/images/': '/base/client/assets/images/'
+      '/images/': '/base/client/assets/images/',
     },
 
     // preprocess matching files before serving them to the browser
