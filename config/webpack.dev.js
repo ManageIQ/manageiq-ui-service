@@ -58,7 +58,7 @@ module.exports = {
   },
 
   // Output source maps suitable for development
-  devtool: 'cheap-module-inline-source-map',
+  devtool: 'inline-cheap-module-source-map',
 
   module: {
 
