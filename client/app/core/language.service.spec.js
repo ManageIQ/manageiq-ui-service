@@ -93,7 +93,7 @@ describe('Language', () => {
     it('should allow a locale to be set', () => {
       const locale = Language.setLocale('es');
 
-      expect(locale).to.eq('es-ES');
+      expect(locale).to.eq('es');
     });
   });
 

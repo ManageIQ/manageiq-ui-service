@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ja\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ./client/app/components/dashboard/dashboard.html:110
 msgid "$0"
@@ -16,15 +16,15 @@ msgstr "%"
 #: ./client/app/components/notifications/notification-body.html:22
 #: ./client/app/components/notifications/notification-body.html:47
 msgid "% Complete"
-msgstr "% 完了"
+msgstr "% completado"
 
 #: ./client/app/core/event-notifications.service.js:296
 msgid "%d new notifications"
-msgstr "%d 新規通知"
+msgstr "%d notificaciones nuevas"
 
 #: ./client/app/core/navigation/navigation-controller.js:172
 msgid "%d unread notifications"
-msgstr "%d 件の未読通知"
+msgstr "%d notificaciones no leídas"
 
 #: ./client/app/shared/action-button-group/action-button-group.component.js:32
 msgid "%s"
@@ -32,135 +32,135 @@ msgstr "%s"
 
 #: ./client/app/services/edit-service-modal/edit-service-modal.component.js:32
 msgid "%s was edited."
-msgstr "%s が編集されました。"
+msgstr "%s se ha editado."
 
 #: ./client/app/services/poweroperations.service.js:179
 msgid "%s was retired."
-msgstr "%s はリタイヤ済みです。"
+msgstr "%s se ha retirado."
 
 #: ./client/app/services/poweroperations.service.js:170
 msgid "%s was started."
-msgstr "%s を開始しました。"
+msgstr "%s se ha iniciado."
 
 #: ./client/app/services/poweroperations.service.js:173
 msgid "%s was stopped."
-msgstr "%s を停止しました。"
+msgstr "%s se ha detenido."
 
 #: ./client/app/services/poweroperations.service.js:176
 msgid "%s was suspended."
-msgstr "%s を一時停止しました。"
+msgstr "%s se ha suspendido."
 
 #: ./client/app/layouts/application.html:88
 msgid "(Current Group)"
-msgstr "(現在のグループ)"
+msgstr "(Grupo actual)"
 
 #: ./client/app/services/resource-details/resource-details.component.js:260
 msgid "(no provider)"
-msgstr "(プロバイダーなし)"
+msgstr "(sin proveedor)"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:38
 msgid "1 Week"
-msgstr "1 週間"
+msgstr "Una semana"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:39
 msgid "2 Weeks"
-msgstr "2 週間"
+msgstr "2 semanas"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:40
 msgid "3 Weeks"
-msgstr "3 週間"
+msgstr "3 semanas"
 
 #: ./client/app/components/dashboard/dashboard.component.js:71
 msgid "30 Days"
-msgstr "30 日"
+msgstr "30 días"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:41
 msgid "4 Weeks"
-msgstr "4 週間"
+msgstr "4 semanas"
 
 #: ./client/app/layouts/application.html:65
 msgid "About"
-msgstr "情報"
+msgstr "Acerca de"
 
 #: ./client/app/states/about-me/about-me.html:1
 #: ./client/app/states/about-me/about-me.state.js:16
 msgid "About Me"
-msgstr "ユーザー情報"
+msgstr "Sobre mí"
 
 #: ./client/app/services/service-details/service-details.html:296
 msgid "Access"
-msgstr "アクセス"
+msgstr "Acceso"
 
 #: ./client/app/services/vms/snapshots.html:81
 msgid "Active"
-msgstr "アクティブ"
+msgstr "Activo"
 
 #: ./client/app/states/catalogs/details/details.html:52
 #: ./client/app/states/catalogs/details/details.html:57
 msgid "Add to Shopping Cart"
-msgstr "ショッピング・カートに追加"
+msgstr "Añadir al carro de la compra"
 
 #: ./client/app/core/navigation/navigation-controller.js:154
 msgid "Administration UI"
-msgstr "管理 UI"
+msgstr "Interfaz de usuario de administración"
 
 #: ./client/app/orders/process-order-modal/process-order-modal.html:11
 msgid "Affected Order"
-msgstr "影響を受けるオーダー"
+msgstr "Pedido afectado"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:18
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:33
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:13
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:25
 msgid "Affected Services"
-msgstr "要求を受けるサービス"
+msgstr "Servicios afectados"
 
 #: ./client/app/services/generic-objects-list/generic-objects-list.component.js:40
 msgid "An error occured"
-msgstr "エラーが発生しました"
+msgstr "Se ha producido un error"
 
 #: ./client/app/components/dashboard/dashboard.html:137
 msgid "Approved Requests"
-msgstr "承認済みの要求"
+msgstr "Solicitudes aprobadas"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:60
 msgid "Are you sure you want to clear all items from your shopping cart?"
-msgstr "ショッピング・カートからすべての項目を消去しますか?"
+msgstr "¿Está seguro de que desea borrar todos los elementos del carro de la compra?"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:20
 msgid "Are you sure you want to remove this item from your shopping cart?"
-msgstr "ショッピング・カートからこの項目を削除しますか?"
+msgstr "¿Está seguro de que desea eliminar este elemento del carro de la compra?"
 
 #: ./client/app/services/vms.service.js:280
 msgid "Are you sure you want to retire"
-msgstr "リタイヤしますか?"
+msgstr "Está seguro de que desea retirar"
 
 #: ./client/app/shared/confirmation/confirmation.directive.js:112
 msgid "Are you sure you wish to proceed?"
-msgstr "続行しますか?"
+msgstr "¿Está seguro de que desea continuar?"
 
 #: ./client/app/components/notifications/notification-footer.html:14
 msgid "Are you sure you would like to clear all [[heading]]?"
-msgstr "すべての [[heading]] を消去しますか?"
+msgstr "¿Está seguro de que desea eliminar todo el [[heading]]?"
 
 #: ./client/app/services/service-details/service-details.html:355
 msgid "Are you sure you would like to retire this resource?"
-msgstr "このリソースをリタイヤしますか?"
+msgstr "¿Está seguro de que desea retirar este recurso?"
 
 #: ./client/app/services/resource-details/resource-details.component.js:49
 #: ./client/app/services/usage-graphs/usage-graphs.html:12
 #: ./client/app/services/usage-graphs/usage-graphs.html:28
 #: ./client/app/services/usage-graphs/usage-graphs.html:44
 msgid "Available"
-msgstr "利用可能"
+msgstr "Disponible"
 
 #: ./client/app/services/service-details/service-details.html:262
 msgid "Boot Time: Unknown"
-msgstr "起動時間: 不明"
+msgstr "Hora de arranque: desconocida"
 
 #: ./client/app/shared/language-switcher/language-switcher.component.js:26
 msgid "Browser Default"
-msgstr "ブラウザーのデフォルト"
+msgstr "Valor predeterminado del navegador"
 
 #: ./client/app/services/usage-graphs/usage-graphs.html:7
 msgid "CPU"
@@ -173,186 +173,186 @@ msgstr "CPU"
 #: ./client/app/states/catalogs/details/details.html:62
 #: ./client/app/states/services/reconfigure/reconfigure.html:24
 msgid "Cancel"
-msgstr "キャンセル"
+msgstr "Cancelar"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:58
 msgid "Catalog Name"
-msgstr "カタログ名"
+msgstr "Nombre del catálogo"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:18
 #: ./client/app/states/catalogs/explorer/explorer.state.js:15
 #: ./client/app/states/catalogs/explorer/explorer.state.js:26
 msgid "Catalogs"
-msgstr "カタログ"
+msgstr "Catálogos"
 
 #: ./client/app/layouts/application.html:80
 msgid "Change Group:"
-msgstr "グループの変更:"
+msgstr "Cambiar grupo:"
 
 #: ./client/app/layouts/application.html:92
 msgid "Change to this Group"
-msgstr "このグループに変更する"
+msgstr "Cambiar a este grupo"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:53
 #: ./client/app/core/shopping-cart/shopping-cart.html:61
 msgid "Clear"
-msgstr "消去"
+msgstr "Limpiar"
 
 #: ./client/app/components/notifications/notification-footer.html:15
 #: ./client/app/components/notifications/notification-footer.html:19
 msgid "Clear All"
-msgstr "すべて消去"
+msgstr "Borrar todo"
 
 #: ./client/app/components/notifications/notification-footer.html:13
 msgid "Clear All [[heading]]"
-msgstr "すべての [[heading]] を消去"
+msgstr "Borrar todo [[heading]]"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:59
 msgid "Clear Shopping Cart"
-msgstr "ショッピング・カートから消去"
+msgstr "Borrar carro de la compra"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:45
 msgid "Close"
-msgstr "閉じる"
+msgstr "Cerrar"
 
 #: ./client/app/components/notifications/notification-body.html:53
 msgid "Completed:"
-msgstr "完了:"
+msgstr "Completo:"
 
 #: ./client/app/services/service-details/service-details.component.js:371
 msgid "Compute"
-msgstr "コンピュート"
+msgstr "Cómputo"
 
 #: ./client/app/services/services-state.service.js:248
 #: ./client/app/services/services-state.service.js:253
 #: ./client/app/services/vms/snapshots.component.js:131
 #: ./client/app/services/vms/snapshots.component.js:132
 msgid "Configuration"
-msgstr "構成"
+msgstr "Configuración"
 
 #: ./client/app/services/services-state.service.js:276
 msgid "Confirm, would you like to remove this service?"
-msgstr "(確認) このサービスを削除しますか？"
+msgstr "Confirme, ¿desea eliminar este servicio?"
 
 #: ./client/console/webmks.js:62
 msgid "Connected"
-msgstr "接続済み"
+msgstr "Conectado"
 
 #: ./client/console/common.js:13
 msgid "Connecting"
-msgstr "接続中"
+msgstr "Conectando"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:15
 msgid "Continue"
-msgstr "続行"
+msgstr "Continuar"
 
 #: ./client/app/services/service-explorer/service-explorer.html:108
 msgid "Cost not available"
-msgstr "コストは利用できません。"
+msgstr "Coste no disponible"
 
 #: ./client/app/services/resource-details/resource-details.component.js:321
 #: ./client/app/services/service-details/service-details.html:285
 msgid "Create"
-msgstr "作成"
+msgstr "Crear"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:5
 #: ./client/app/services/vms/snapshots.component.js:115
 msgid "Create Snapshot"
-msgstr "スナップショットの作成"
+msgstr "Crear instantánea"
 
 #: ./client/app/services/vms/snapshots.component.js:117
 msgid "Create snapshot"
-msgstr "スナップショットの作成"
+msgstr "Crear instantánea"
 
 #: ./client/app/services/resource-details/resource-details.component.js:323
 msgid "Create snapshots"
-msgstr "スナップショットの作成"
+msgstr "Crear instantáneas"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:393
 #: ./client/app/services/service-explorer/service-explorer.html:155
 #: ./client/app/services/service-explorer/service-explorer.html:79
 #: ./client/app/services/vms/snapshots.component.js:104
 msgid "Created"
-msgstr "作成"
+msgstr "Creado"
 
 #: ./client/app/services/service-details/service-details.html:101
 msgid "Created On"
-msgstr "作成"
+msgstr "Creado el"
 
 #: ./client/app/services/vms/snapshots.html:89
 msgid "Created:"
-msgstr "作成:"
+msgstr "Creado:"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:77
 msgid "Creating snapshot."
-msgstr "スナップショットの作成中。"
+msgstr "Creando instantánea."
 
 #: ./client/app/services/service-details/service-details-ansible.html:88
 msgid "Credentials"
-msgstr "資格情報"
+msgstr "Credenciales"
 
 #: ./client/app/layouts/application.html:100
 msgid "Current Group"
-msgstr "現在のグループ"
+msgstr "Grupo actual"
 
 #: ./client/app/components/dashboard/dashboard.html:66
 msgid "Current Services"
-msgstr "現在のサービス"
+msgstr "Servicios actuales"
 
 #: ./client/app/layouts/application.html:86
 msgid "Currently Selected Group"
-msgstr "現在選択されているグループ"
+msgstr "Grupo seleccionado actualmente"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.state.js:15
 msgid "Custom Button Details"
-msgstr "カスタム・ボタンの詳細"
+msgstr "Detalles de botón personalizado"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:10
 msgid "Custom Button:"
-msgstr "カスタム・ボタン:"
+msgstr "Botón personalizado:"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.state.js:34
 msgid "Custom button action"
-msgstr "カスタム・ボタン・アクション"
+msgstr "Acción de botón personalizado"
 
 #: ./client/app/core/navigation.service.js:33
 #: ./client/app/states/dashboard/dashboard.state.js:12
 msgid "Dashboard"
-msgstr "ダッシュボード"
+msgstr "Panel de control"
 
 #: ./client/app/services/vms/snapshots.component.js:76
 #: ./client/app/services/vms/snapshots.html:37
 msgid "Delete"
-msgstr "削除"
+msgstr "Eliminar"
 
 #: ./client/app/services/vms/snapshots.component.js:122
 msgid "Delete All Snapshots"
-msgstr "すべてのスナップショットの削除"
+msgstr "Eliminar todas las instantáneas"
 
 #: ./client/app/services/vms/snapshots.component.js:233
 msgid "Delete All Snapshots on VM %s"
-msgstr "VM %s のすべてのスナップショットの削除"
+msgstr "Suprimir todas las instantáneas de la máquina virtual %s"
 
 #: ./client/app/services/vms/snapshots.component.js:229
 #: ./client/app/services/vms/snapshots.component.js:78
 msgid "Delete Snapshot"
-msgstr "スナップショットの削除"
+msgstr "Eliminar instantánea"
 
 #: ./client/app/services/vms/snapshots.component.js:124
 msgid "Delete all snapshots"
-msgstr "すべてのスナップショットの削除"
+msgstr "Eliminar todas las instantáneas"
 
 #: ./client/app/orders/process-order-modal/process-order-modal.component.js:39
 msgid "Deleting order."
-msgstr "オーダーの削除中。"
+msgstr "Suprimiendo orden."
 
 #: ./client/app/services/vms/snapshots.component.js:145
 msgid "Deleting snapshot."
-msgstr "スナップショットの削除中。"
+msgstr "Suprimiendo instantánea."
 
 #: ./client/app/components/dashboard/dashboard.html:150
 msgid "Denied Requests"
-msgstr "拒否された要求"
+msgstr "Solicitudes denegadas"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:57
 #: ./client/app/services/edit-service-modal/edit-service-modal.html:12
@@ -362,51 +362,51 @@ msgstr "拒否された要求"
 #: ./client/app/services/vms/snapshots.component.js:90
 #: ./client/app/shared/ss-card/ss-card.html:8
 msgid "Description"
-msgstr "説明"
+msgstr "Descripción"
 
 #: ./client/app/services/service-details/service-details-ansible.html:51
 msgid "Details"
-msgstr "詳細"
+msgstr "Detalles"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:7
 msgid "Discard Changes"
-msgstr "変更の破棄"
+msgstr "Descartar cambios"
 
 #: ./client/app/services/resource-details/resource-details.html:159
 msgid "Disk Usage"
-msgstr "ディスクの使用状況"
+msgstr "Uso del disco"
 
 #: ./client/app/layouts/application.html:55
 msgid "Documentation"
-msgstr "ドキュメント"
+msgstr "Documentación"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:11
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:23
 msgid "Don't Change"
-msgstr "変更なし"
+msgstr "No modificar"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:29
 msgid "Duplicate"
-msgstr "複製"
+msgstr "Duplicado"
 
 #: ./client/app/states/catalogs/details/details.state.js:23
 msgid "Duplicate Service"
-msgstr "重複したサービス"
+msgstr "Duplicar servicio"
 
 #: ./client/app/states/catalogs/details/details.html:50
 msgid "Duplicate Shopping Cart Item"
-msgstr "重複したショッピング・カート項目"
+msgstr "Duplicar elemento de carro de la compra"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:228
 #: ./client/app/services/services-state.service.js:259
 #: ./client/app/services/services-state.service.js:261
 msgid "Edit"
-msgstr "編集"
+msgstr "Modificar"
 
 #: ./client/app/services/edit-service-modal/edit-service-modal.html:5
 #: ./client/app/services/service-explorer/service-explorer.component.js:230
 msgid "Edit Service"
-msgstr "サービスの編集"
+msgstr "Editar servicio"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:5
 #: ./client/app/services/service-explorer/service-explorer.component.js:236
@@ -414,88 +414,88 @@ msgstr "サービスの編集"
 #: ./client/app/services/services-state.service.js:229
 #: ./client/app/services/services-state.service.js:231
 msgid "Edit Tags"
-msgstr "タグの編集"
+msgstr "Modificar etiquetas"
 
 #: ./client/app/services/service-details/service-details-ansible.html:183
 #: ./client/app/services/service-details/service-details-ansible.html:34
 msgid "Elapsed"
-msgstr "経過時間"
+msgstr "Transcurrido"
 
 #: ./client/app/core/event-notifications.service.js:194
 #: ./client/app/states/error/error.state.js:17
 msgid "Error"
-msgstr "エラー"
+msgstr "Error"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:77
 msgid "Error creating snapshot."
-msgstr "スナップショットの作成時のエラー。"
+msgstr "Error al crear instantánea."
 
 #: ./client/app/orders/process-order-modal/process-order-modal.component.js:39
 msgid "Error deleting order."
-msgstr "オーダーの削除時のエラー。"
+msgstr "Error al suprimir orden."
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:46
 msgid "Error deleting service."
-msgstr "サービスの削除時のエラー。"
+msgstr "Error al suprimir servicio."
 
 #: ./client/app/services/vms/snapshots.component.js:145
 msgid "Error deleting snapshot."
-msgstr "スナップショットの削除時のエラー。"
+msgstr "Error al suprimir instantánea."
 
 #: ./client/app/core/authorization.config.js:129
 msgid "Error retrieving user info"
-msgstr "ユーザー情報の取得時にエラー"
+msgstr "Error al recuperar información de usuario"
 
 #: ./client/app/services/vms/snapshots.component.js:243
 msgid "Error reverting snapshot."
-msgstr "スナップショットを元に戻す際のエラー。"
+msgstr "Error al revertir instantánea."
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:73
 msgid "Error setting ownership."
-msgstr "所有権の設定時のエラー。"
+msgstr "Error al establecer propiedad."
 
 #: ./client/app/catalogs/catalog-explorer.component.js:58
 msgid "Filter by Catalog Name"
-msgstr "カタログ名でフィルター"
+msgstr "Filtrar por nombre de catálogo"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:57
 #: ./client/app/services/service-explorer/service-explorer.component.js:344
 #: ./client/app/services/vms/snapshots.component.js:90
 msgid "Filter by Description"
-msgstr "説明でフィルター"
+msgstr "Filtrar por descripción"
 
 #: ./client/app/orders/order-explorer/order-explorer.component.js:104
 msgid "Filter by ID"
-msgstr "ID でフィルター"
+msgstr "Filtrar por ID"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:56
 #: ./client/app/orders/order-explorer/order-explorer.component.js:103
 #: ./client/app/services/service-explorer/service-explorer.component.js:343
 #: ./client/app/services/vms/snapshots.component.js:89
 msgid "Filter by Name"
-msgstr "名前でフィルター"
+msgstr "Filtrar por Nombre"
 
 #: ./client/app/orders/order-explorer/order-explorer.component.js:105
 msgid "Filter by Order Date"
-msgstr "オーダー日でフィルター"
+msgstr "Filtrar por fecha de orden"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:378
 msgid "Filter by Tag Category"
-msgstr "タグ・カテゴリーでフィルター"
+msgstr "Filtrar por categoría de etiqueta"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:383
 msgid "Filter by Tag Value"
-msgstr "タグ値でフィルター"
+msgstr "Filtrar por valor de etiqueta"
 
 #: ./client/app/services/service-details/service-details-ansible.html:175
 #: ./client/app/services/service-details/service-details-ansible.html:27
 msgid "Finished"
-msgstr "終了"
+msgstr "Finalizado"
 
 #: ./client/app/shared/confirmation/confirmation.directive.js:66
 #: ./client/app/shared/confirmation/confirmation.directive.js:71
 msgid "For Sizing"
-msgstr "サイズの拡大/縮小"
+msgstr "Para dimensionar"
 
 #: ./client/app/services/resource-details/resource-details.component.js:217
 #: ./client/app/services/resource-details/resource-details.component.js:223
@@ -508,16 +508,16 @@ msgstr "GUID"
 
 #: ./client/app/core/navigation/navigation-controller.js:248
 msgid "Group switching error:"
-msgstr "グループ・スイッチ・エラー:"
+msgstr "Error de conmutación de grupo:"
 
 #: ./client/app/states/help/help.html:1
 #: ./client/app/states/help/help.state.js:16
 msgid "Help"
-msgstr "ヘルプ"
+msgstr "Ayuda"
 
 #: ./client/app/services/service-details/service-details-ansible.html:73
 msgid "Hosts"
-msgstr "ホスト"
+msgstr "Hosts"
 
 #: ./client/app/orders/request-list/requests-list.html:16
 msgid "ID"
@@ -525,97 +525,97 @@ msgstr "ID"
 
 #: ./client/app/services/service-details/service-details-ansible.html:109
 msgid "Id"
-msgstr "ID"
+msgstr "Id"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:10
 msgid "If you do not save, any changes will be lost."
-msgstr "保存しないと、変更は失われます。"
+msgstr "Si no guarda, se perderán los cambios."
 
 #: ./client/app/core/event-notifications.service.js:194
 msgid "Info"
-msgstr "情報"
+msgstr "Información"
 
 #: ./client/app/states/catalogs/details/details.state.js:208
 msgid "Item added to shopping cart"
-msgstr "項目がショッピング・カートに追加されました。"
+msgstr "Se ha añadido el elemento al carro de la compra"
 
 #: ./client/app/states/catalogs/details/details.state.js:206
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
-msgstr "項目がショッピング・カートに追加されましたが、これは既存項目の複製です。"
+msgstr "Se ha añadido elemento al carro de la compra, pero es un duplicado de un elemento existente"
 
 #: ./client/app/states/login/login.html:28
 msgid "Language"
-msgstr "言語"
+msgstr "Idioma"
 
 #: ./client/app/services/resource-details/resource-details.html:104
 msgid "Last 7 days"
-msgstr "最後の 7 日"
+msgstr "Últimos 7 días"
 
 #: ./client/app/services/service-details/service-details.html:252
 msgid "Last Boot"
-msgstr "前回の起動時間"
+msgstr "Último arranque"
 
 #: ./client/app/services/service-details/service-details.html:222
 msgid "Latest"
-msgstr "最新"
+msgstr "Último"
 
 #: ./client/app/services/service-details/service-details.html:254
 msgid "Latest Boot Time"
-msgstr "最新の起動時間"
+msgstr "Hora del último arranque"
 
 #: ./client/app/services/service-details/service-details.html:225
 msgid "Latest Snapshot Name"
-msgstr "最新スナップショットの名前"
+msgstr "Nombre de última instantánea"
 
 #: ./client/app/services/service-details/service-details.html:233
 msgid "Latest Snapshot Timestamp"
-msgstr "最新スナップショットのタイム・スタンプ"
+msgstr "Indicación de fecha y hora de última instantánea"
 
 #: ./client/app/services/service-details/service-details.html:242
 msgid "Latest Snapshot: Unknown"
-msgstr "最新スナップショット: 不明"
+msgstr "Última instantánea: desconocida"
 
 #: ./client/app/services/service-details/service-details-ansible.html:41
 msgid "Launched By"
-msgstr "起動:"
+msgstr "Iniciado por"
 
 #: ./client/app/services/services-state.service.js:173
 #: ./client/app/services/services-state.service.js:178
 #: ./client/app/services/vms.service.js:273
 #: ./client/app/services/vms.service.js:278
 msgid "Lifecycle"
-msgstr "ライフサイクル"
+msgstr "Ciclo de vida"
 
 #: ./client/app/services/service-details/service-details-ansible-modal.html:5
 msgid "Live Ansible Play"
-msgstr "ライブ Ansible Play"
+msgstr "Reproducción de Ansible en directo"
 
 #: ./client/app/components/dashboard/dashboard.html:11
 #: ./client/app/components/dashboard/dashboard.html:30
 #: ./client/app/shared/loading.component.js:8
 msgid "Loading"
-msgstr "ロード中"
+msgstr "Cargando"
 
 #: ./client/app/states/login/login.html:34
 msgid "Log In"
-msgstr "ログイン"
+msgstr "Iniciar sesión"
 
 #: ./client/app/core/navigation/navigation-controller.js:155
 msgid "Log into the full administrative UI"
-msgstr "管理詳細 UI にログイン"
+msgstr "Iniciar sesión en la interfaz de usuario administrativa completa"
 
 #: ./client/app/states/login/login.state.js:16
 msgid "Login"
-msgstr "ログイン"
+msgstr "Inicio de sesión"
 
 #: ./client/app/states/login/login.state.js:86
 msgid "Login failed, possibly invalid credentials."
-msgstr "ログインに失敗しました。資格情報が無効である可能性があります。"
+msgstr "Error al iniciar sesión, posiblemente credenciales no válidas."
 
 #: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
 msgid "Logout"
-msgstr "ログアウト"
+msgstr "Cerrar sesión"
 
 #: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:10
 msgid "MHz"
@@ -623,31 +623,31 @@ msgstr "MHz"
 
 #: ./client/app/states/error/error.html:3
 msgid "ManageIQ Self Service"
-msgstr "ManageIQ セルフサービス"
+msgstr "Autoservicio de ManageIQ"
 
 #: ./client/app/components/notifications/notification-footer.html:6
 msgid "Mark All Read"
-msgstr "すべてを既読にする"
+msgstr "Marcar todos como leídos"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.html:12
 #: ./client/app/services/usage-graphs/usage-graphs.html:23
 msgid "Memory"
-msgstr "メモリー"
+msgstr "Memoria"
 
 #: ./client/app/components/dashboard/dashboard.html:100
 msgid "Monthly Charges - This Month To Date"
-msgstr "月額 - 今月"
+msgstr "Cargos mensuales - Este mes hasta la fecha"
 
 #: ./client/app/services/service-details/service-details.html:90
 msgid "Monthly Cost"
-msgstr "月額コスト"
+msgstr "Coste mensual"
 
 #: ./client/app/core/navigation.service.js:55
 #: ./client/app/states/catalogs/details/details.state.js:59
 #: ./client/app/states/orders/details/details.html:5
 #: ./client/app/states/orders/explorer/explorer.state.js:11
 msgid "My Orders"
-msgstr "マイ・オーダー"
+msgstr "Mis órdenes"
 
 #: ./client/app/core/navigation.service.js:39
 #: ./client/app/services/resource-details/resource-details.html:5
@@ -656,7 +656,7 @@ msgstr "マイ・オーダー"
 #: ./client/app/services/vms/snapshots.html:5
 #: ./client/app/states/services/reconfigure/reconfigure.html:3
 msgid "My Services"
-msgstr "マイ・サービス"
+msgstr "Mis servicios"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:56
 #: ./client/app/catalogs/catalog-explorer.component.js:77
@@ -676,27 +676,27 @@ msgstr "マイ・サービス"
 #: ./client/app/services/vms/snapshots.component.js:103
 #: ./client/app/services/vms/snapshots.component.js:89
 msgid "Name"
-msgstr "名前"
+msgstr "Nombre"
 
 #: ./client/app/services/resource-details/resource-details.component.js:47
 msgid "Never"
-msgstr "なし"
+msgstr "Nunca"
 
 #: ./client/app/components/notifications/subheading.html:1
 msgid "New"
-msgstr "新規"
+msgstr "Nuevo"
 
 #: ./client/app/services/vms/snapshots.html:9
 msgid "No Service"
-msgstr "サービスがありません"
+msgstr "Sin servicio"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:37
 msgid "No Warning"
-msgstr "警告なし"
+msgstr "Ningún aviso"
 
 #: ./client/app/services/service-details/service-details-ansible.html:92
 msgid "No credentials available."
-msgstr "利用可能な資格情報がありません。"
+msgstr "No hay credenciales disponibles."
 
 #: ./client/app/services/resource-details/resource-details.component.js:58
 #: ./client/app/services/resource-details/resource-details.component.js:61
@@ -704,105 +704,105 @@ msgstr "利用可能な資格情報がありません。"
 #: ./client/app/services/service-details/service-details.component.js:35
 #: ./client/app/services/usage-graphs/usage-graphs.component.js:27
 msgid "No data available"
-msgstr "利用可能なデータがありません"
+msgstr "Sin datos disponibles"
 
 #: ./client/app/services/service-details/service-details-ansible.html:212
 msgid "No logs available."
-msgstr "利用可能なログがありません。"
+msgstr "No hay registros disponibles."
 
 #: ./client/app/services/service-details/service-details-ansible.html:142
 msgid "No plays available."
-msgstr "利用可能な Play がありません。"
+msgstr "No hay reproducciones disponibles."
 
 #: ./client/app/services/resource-details/resource-details.component.js:48
 msgid "None"
-msgstr "なし"
+msgstr "Nada"
 
 #: ./client/app/services/resource-details/resource-details.component.js:50
 msgid "Not Available"
-msgstr "利用不可"
+msgstr "No disponible"
 
 #: ./client/app/components/dashboard/dashboard.component.js:82
 msgid "Not Retired"
-msgstr "リタイヤしていません"
+msgstr "No retirado"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:10
 msgid "Nothing Selected"
-msgstr "何も選択されていません"
+msgstr "No se seleccionó ningún elemento."
 
 #: ./client/app/layouts/application.html:13
 msgid "Notifications"
-msgstr "通知"
+msgstr "Notificaciones"
 
 #: ./client/app/components/dashboard/dashboard.component.js:66
 msgid "Now"
-msgstr "現在"
+msgstr "Ahora"
 
 #: ./client/app/shared/action-button-group/action-button-group.html:20
 #: ./client/app/shared/action-button-group/action-button-group.html:26
 msgid "OK"
-msgstr "OK"
+msgstr "Aceptar"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:68
 msgid "Order"
-msgstr "オーダー"
+msgstr "Orden"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:33
 #: ./client/app/states/orders/details/details.html:24
 #: ./client/app/states/orders/details/details.html:7
 msgid "Order #"
-msgstr "オーダー #"
+msgstr "Número de orden:"
 
 #: ./client/app/orders/order-explorer/order-explorer.component.js:105
 #: ./client/app/orders/order-explorer/order-explorer.component.js:113
 #: ./client/app/orders/orders-state.service.js:12
 msgid "Order Date"
-msgstr "オーダー日"
+msgstr "Fecha de orden"
 
 #: ./client/app/states/orders/details/details.state.js:15
 msgid "Order Details"
-msgstr "オーダー詳細"
+msgstr "Detalles de orden"
 
 #: ./client/app/orders/order-explorer/order-explorer.component.js:104
 #: ./client/app/orders/order-explorer/order-explorer.component.js:112
 msgid "Order ID"
-msgstr "オーダー ID"
+msgstr "ID de orden"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:48
 msgid "Ordered"
-msgstr "オーダー"
+msgstr "Ordenado"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:4
 msgid "Orders"
-msgstr "オーダー"
+msgstr "Órdenes"
 
 #: ./client/app/services/service-details/service-details.html:84
 msgid "Owner"
-msgstr "所有者"
+msgstr "Propietario"
 
 #: ./client/app/services/service-details/service-details.html:418
 msgid "Parent Catalog Item"
-msgstr "親カタログ項目"
+msgstr "Elemento del catálogo principal"
 
 #: ./client/app/services/service-details/service-details.html:409
 msgid "Parent Service"
-msgstr "親サービス"
+msgstr "Servicio principal"
 
 #: ./client/app/states/login/login.html:22
 msgid "Password"
-msgstr "パスワード"
+msgstr "Contraseña"
 
 #: ./client/app/components/dashboard/dashboard.html:124
 msgid "Pending Requests"
-msgstr "保留中の要求"
+msgstr "Solicitudes pendientes"
 
 #: ./client/app/services/service-details/service-details-ansible.html:203
 msgid "Play In Progress"
-msgstr "進行中の Play"
+msgstr "Reproducción en curso"
 
 #: ./client/app/services/service-details/service-details-ansible.html:53
 msgid "Playbook"
-msgstr "Playbook"
+msgstr "Manual"
 
 #: ./client/app/services/service-explorer/service-explorer.html:67
 msgid "Playbook: [[playbook]]"
@@ -810,74 +810,74 @@ msgstr "Playbook: [[playbook]]"
 
 #: ./client/app/services/service-details/service-details-ansible.html:138
 msgid "Plays"
-msgstr "プレイ"
+msgstr "Reproducciones"
 
 #: ./client/app/services/vms/snapshots.component.js:234
 msgid "Please confirm, this action will delete all snapshots of vm %s"
-msgstr "(確認) このアクションにより、VM %s のすべてのスナップショットが削除されます。"
+msgstr "Confirme; esta acción suprimirá todas las instantáneas de la máquina virtual %s"
 
 #: ./client/app/services/vms/snapshots.component.js:230
 msgid "Please confirm, this action will delete snapshot %s"
-msgstr "(確認) このアクションにより、スナップショット %s が削除されます。"
+msgstr "Confirme; esta acción suprimirá la instantánea %s"
 
 #: ./client/app/services/services-state.service.js:222
 #: ./client/app/services/services-state.service.js:225
 msgid "Policy"
-msgstr "ポリシー"
+msgstr "Política"
 
 #: ./client/app/services/resource-details/resource-details.component.js:384
 msgid "Power"
-msgstr "電源"
+msgstr "Energía"
 
 #: ./client/app/services/resource-details/resource-details.component.js:383
 #: ./client/app/services/service-details/service-details.component.js:167
 #: ./client/app/services/service-details/service-details.component.js:172
 msgid "Power Operations"
-msgstr "電源操作"
+msgstr "Operaciones de encendido/apagado"
 
 #: ./client/app/services/service-details/service-details.html:179
 #: ./client/app/services/service-explorer/service-explorer.component.js:454
 msgid "Power State: Off"
-msgstr "電源状態: オフ"
+msgstr "Estado de alimentación: Encendida"
 
 #: ./client/app/services/service-details/service-details.html:184
 #: ./client/app/services/service-explorer/service-explorer.component.js:453
 msgid "Power State: On"
-msgstr "電源状態: オン"
+msgstr "Estado de alimentación: Apagada"
 
 #: ./client/app/services/service-details/service-details.html:190
 #: ./client/app/services/service-explorer/service-explorer.component.js:455
 msgid "Power State: Unknown"
-msgstr "電源状態: 不明"
+msgstr "Estado de alimentación: Desconocido"
 
 #: ./client/app/core/navigation/navigation-controller.js:136
 msgid "Product logo"
-msgstr "製品ロゴ"
+msgstr "Logotipo del producto"
 
 #: ./client/app/services/service-details/service-details.html:47
 msgid "Properties"
-msgstr "プロパティー"
+msgstr "Propiedades"
 
 #: ./client/app/services/service-details/service-details.component.js:221
 #: ./client/app/states/services/reconfigure/reconfigure.html:8
 msgid "Reconfigure"
-msgstr "再構成"
+msgstr "Reconfigurar"
 
 #: ./client/app/services/service-details/service-details.component.js:223
 msgid "Reconfigure the Service"
-msgstr "サービスの再構成"
+msgstr "Reconfigurar el servicio"
 
 #: ./client/app/states/services/reconfigure/reconfigure.state.js:85
 msgid "Reconfigure this service has been cancelled"
-msgstr "このサービスの再構成が取り消されました"
+msgstr "Se ha cancelado la reconfiguración de este servicio"
 
 #: ./client/app/services/service-details/service-details.html:400
 msgid "Relationships"
-msgstr "リレーションシップ"
+msgstr "Relaciones"
 
 #: ./client/app/services/service-explorer/service-explorer.html:100
 msgid "Relative current cost"
-msgstr "現在の相対コスト"
+msgstr "Costo actual relativo"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:16
 #: ./client/app/core/shopping-cart/shopping-cart.html:21
@@ -886,70 +886,70 @@ msgstr "現在の相対コスト"
 #: ./client/app/services/services-state.service.js:268
 #: ./client/app/services/services-state.service.js:270
 msgid "Remove"
-msgstr "削除"
+msgstr "Eliminar"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:19
 msgid "Remove Item"
-msgstr "項目の削除"
+msgstr "Eliminar elemento"
 
 #: ./client/app/orders/order-explorer/order-explorer.component.js:125
 #: ./client/app/orders/process-order-modal/process-order-modal.html:5
 msgid "Remove Order"
-msgstr "オーダーの削除"
+msgstr "Eliminar orden"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:270
 #: ./client/app/services/services-state.service.js:275
 msgid "Remove Service"
-msgstr "サービスの削除"
+msgstr "Eliminar servicio"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:5
 msgid "Remove Services"
-msgstr "サービスの削除"
+msgstr "Eliminar servicios"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:103
 msgid "Reorder"
-msgstr "並べ替え"
+msgstr "Reordenar"
 
 #: ./client/app/services/service-details/service-details-ansible.html:60
 msgid "Repo Name"
-msgstr "リポジトリー名"
+msgstr "Nombre de repositorio"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:82
 msgid "Request ID"
-msgstr "要求 ID"
+msgstr "ID de la solicitud"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:97
 msgid "Request State"
-msgstr "要求状態"
+msgstr "Estado de la solicitud"
 
 #: ./client/app/orders/request-list/requests-list.html:26
 msgid "Requested"
-msgstr "要求済み"
+msgstr "Solicitado"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:39
 #: ./client/app/orders/request-list/requests-list.html:21
 msgid "Requester"
-msgstr "要求者"
+msgstr "Solicitante"
 
 #: ./client/app/shared/action-button-group/action-button-group.html:38
 #: ./client/app/shared/action-button-group/action-button-group.html:6
 msgid "Reset"
-msgstr "リセット"
+msgstr "Restablecer"
 
 #: ./client/app/states/services/resource-details/details.state.js:11
 msgid "Resource Details"
-msgstr "リソースの詳細"
+msgstr "Detalles de recurso"
 
 #: ./client/app/services/service-details/service-details.html:147
 msgid "Resources"
-msgstr "リソース"
+msgstr "Recursos"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:64
 #: ./client/app/orders/order-explorer/order-explorer.component.js:88
 #: ./client/app/services/service-explorer/service-explorer.component.js:199
 #: ./client/app/services/vms/snapshots.component.js:95
 msgid "Result"
-msgstr "結果"
+msgstr "Resultado"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:65
 #: ./client/app/orders/order-explorer/order-explorer.component.js:89
@@ -957,7 +957,7 @@ msgstr "結果"
 #: ./client/app/services/service-explorer/service-explorer.component.js:200
 #: ./client/app/services/vms/snapshots.component.js:96
 msgid "Results"
-msgstr "結果"
+msgstr "Resultados"
 
 #: ./client/app/services/resource-details/resource-details.component.js:417
 #: ./client/app/services/service-details/service-details.html:356
@@ -970,220 +970,220 @@ msgstr "結果"
 #: ./client/app/services/vms.service.js:290
 #: ./client/app/services/vms.service.js:292
 msgid "Retire"
-msgstr "リタイヤ"
+msgstr "Retirar"
 
 #: ./client/app/services/service-details/service-details.html:354
 msgid "Retire Resource"
-msgstr "リソースのリタイヤ"
+msgstr "Retirar recurso"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:254
 msgid "Retire Service"
-msgstr "サービスのリタイヤ"
+msgstr "Retirar servicio"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:6
 msgid "Retire Services"
-msgstr "サービスのリタイヤ"
+msgstr "Retirar servicios"
 
 #: ./client/app/components/dashboard/dashboard.component.js:13
 msgid "Retire Status"
-msgstr "リタイヤのステータス"
+msgstr "Estado de retiro"
 
 #: ./client/app/services/resource-details/resource-details.component.js:419
 msgid "Retire the Service"
-msgstr "サービスのリタイヤ"
+msgstr "Retirar el servicio"
 
 #: ./client/app/components/dashboard/dashboard.component.js:56
 msgid "Retired"
-msgstr "リタイヤ済み"
+msgstr "Retirado"
 
 #: ./client/app/components/dashboard/dashboard.html:82
 msgid "Retired Services"
-msgstr "リタイヤ済みのサービス"
+msgstr "Servicios retirados"
 
 #: ./client/app/services/service-details/service-details.html:173
 msgid "Retired resource"
-msgstr "リタイヤ済みのリソース"
+msgstr "Recurso retirado"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:13
 #: ./client/app/services/service-explorer/service-explorer.component.js:395
 msgid "Retirement Date"
-msgstr "リタイヤ日"
+msgstr "Fecha de retiro"
 
 #: ./client/app/services/service-details/service-details.html:108
 msgid "Retirement State"
-msgstr "リタイヤ状態"
+msgstr "Estado de retiro"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:9
 msgid "Retirement Warning"
-msgstr "リタイヤ警告"
+msgstr "Advertencia de retiro"
 
 #: ./client/app/services/service-explorer/service-explorer.html:167
 #: ./client/app/services/service-explorer/service-explorer.html:91
 msgid "Retires"
-msgstr "リタイヤ"
+msgstr "Retiros"
 
 #: ./client/app/services/service-details/service-details.html:115
 msgid "Retires On"
-msgstr "リタイヤ日"
+msgstr "Fecha de retiro"
 
 #: ./client/app/components/dashboard/dashboard.component.js:65
 msgid "Retires between"
-msgstr "リタイヤ: "
+msgstr "Retira entre"
 
 #: ./client/app/components/dashboard/dashboard.html:49
 msgid "Retiring Soon"
-msgstr "まもなくリタイヤ"
+msgstr "Se retirará próximamente"
 
 #: ./client/app/services/vms/snapshots.component.js:70
 msgid "Revert"
-msgstr "戻す"
+msgstr "Revertir"
 
 #: ./client/app/services/vms/snapshots.component.js:72
 msgid "Revert Snapshot"
-msgstr "スナップショットを元に戻す"
+msgstr "Revertir instantánea"
 
 #: ./client/app/services/vms/snapshots.component.js:243
 msgid "Reverting snapshot."
-msgstr "スナップショットを元に戻します。"
+msgstr "Revirtiendo instantánea."
 
 #: ./client/app/core/event-notifications.service.js:44
 msgid "Review the notification tray for results of this batch operation"
-msgstr "通知トレイでこのバッチ操作の結果を確認する"
+msgstr "Consulte la bandeja de notificaciones para ver los resultados de esta operación por lotes"
 
 #: ./client/app/core/navigation/navigation-controller.js:141
 msgid "SUI Version:"
-msgstr "SUI バージョン:"
+msgstr "Versión de SUI:"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:16
 #: ./client/app/shared/action-button-group/action-button-group.component.js:30
 msgid "Save"
-msgstr "保存"
+msgstr "Guardar"
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:6
 msgid "Save Changes"
-msgstr "変更の保存"
+msgstr "Guardar cambios"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.html:5
 msgid "Schedule Service Retirement"
-msgstr "サービスのリタイヤのスケジュール"
+msgstr "Programar retiro del servicio"
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:72
 msgid "Scheduling retirement."
-msgstr "リタイヤのスケジュール"
+msgstr "Programando retiro."
 
 #: ./client/app/shared/pagination/pagination.html:5
 msgid "Select All"
-msgstr "すべて選択"
+msgstr "Seleccionar todo"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:20
 msgid "Select a Group"
-msgstr "グループの選択"
+msgstr "Seleccionar un grupo"
 
 #: ./client/app/shared/tagging/tagging.component.js:20
 msgid "Select a value to assign"
-msgstr "割り当てる値の選択"
+msgstr "Seleccionar un valor que asignar"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:9
 msgid "Select an Owner"
-msgstr "所有者の選択"
+msgstr "Seleccionar un propietario"
 
 #: ./client/console/common.js:14
 msgid "Send CTRL+ALT+DEL"
-msgstr "CTRL+ALT+DEL の送信"
+msgstr "Enviar CTRL+ALT+DEL"
 
 #: ./client/app/core/navigation/navigation-controller.js:142
 msgid "Server Name:"
-msgstr "サーバー名:"
+msgstr "Nombre de servidor:"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:7
 msgid "Service"
-msgstr "サービス"
+msgstr "Servicio"
 
 #: ./client/app/catalogs/catalog-explorer.html:4
 #: ./client/app/core/navigation.service.js:72
 msgid "Service Catalog"
-msgstr "サービス・カタログ"
+msgstr "Catálogo de servicios"
 
 #: ./client/app/states/catalogs/details/details.state.js:49
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Service Catalogs"
-msgstr "サービス・カタログ"
+msgstr "Catálogos de servicio"
 
 #: ./client/app/services/service-details/service-details.component.js:30
 #: ./client/app/states/services/details/details.state.js:12
 #: ./client/app/states/services/reconfigure/reconfigure.state.js:16
 #: ./client/app/states/services/reconfigure/reconfigure.state.js:25
 msgid "Service Details"
-msgstr "サービスの詳細"
+msgstr "Detalles de servicio"
 
 #: ./client/app/services/service-details/service-details.html:77
 msgid "Service Id"
-msgstr "サービス ID"
+msgstr "ID de servicio"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:43
 msgid "Service Retire - Request Created"
-msgstr "サービスのリタイヤ - リクエストの作成"
+msgstr "Retiro de servicio - Se ha creado la solicitud"
 
 #: ./client/app/states/catalogs/details/details.state.js:16
 msgid "Service Template Details"
-msgstr "サービス・テンプレートの詳細"
+msgstr "Detalles de plantilla de servicio"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:46
 msgid "Service deleting."
-msgstr "サービスの削除中。"
+msgstr "Supresión de servicio."
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:32
 msgid "Services"
-msgstr "サービス"
+msgstr "Servicios"
 
 #: ./client/app/states/services/explorer/explorer.state.js:12
 msgid "Services Explorer"
-msgstr "サービス・エクスプローラー"
+msgstr "Explorador de servicios"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:244
 #: ./client/app/services/service-explorer/service-explorer.component.js:246
 #: ./client/app/services/services-state.service.js:284
 #: ./client/app/services/services-state.service.js:286
 msgid "Set Ownership"
-msgstr "所有権の設定"
+msgstr "Establecer propiedad"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:260
 #: ./client/app/services/services-state.service.js:185
 msgid "Set Retirement"
-msgstr "リタイヤの設定"
+msgstr "Establecer retiro"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:262
 #: ./client/app/services/services-state.service.js:183
 msgid "Set Retirement Dates"
-msgstr "リタイヤ日の設定"
+msgstr "Establecer fechas de retiro"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:5
 msgid "Set Service Ownership"
-msgstr "サービス所有権の設定"
+msgstr "Establecer propiedad de servicio"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:73
 msgid "Setting ownership."
-msgstr "所有権の設定中。"
+msgstr "Estableciendo propiedad."
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:5
 msgid "Shopping Cart"
-msgstr "ショッピング・カート"
+msgstr "Carro de la compra"
 
 #: ./client/app/layouts/application.html:31
 msgid "Shopping cart"
-msgstr "ショッピング・カート"
+msgstr "Carro de la compra"
 
 #: ./client/app/core/shopping-cart/shopping-cart.html:37
 msgid "Shopping cart is empty."
-msgstr "ショッピング・カートが空です。"
+msgstr "El carro de la compra está vacío."
 
 #: ./client/app/core/shopping-cart/shopping-cart.component.js:41
 msgid "Shopping cart successfully ordered"
-msgstr "ショッピング・カートのオーダーが正常に実行されました"
+msgstr "El carro de la compra se ha ordenado correctamente"
 
 #: ./client/app/services/resource-details/resource-details.html:121
 msgid "Smart State Analysis"
-msgstr "Smart State 分析"
+msgstr "Análisis de SmartState"
 
 #: ./client/app/services/resource-details/resource-details.component.js:305
 #: ./client/app/services/resource-details/resource-details.component.js:306
@@ -1192,11 +1192,11 @@ msgstr "Smart State 分析"
 #: ./client/app/services/vms/snapshots.html:14
 #: ./client/app/services/vms/snapshots.html:42
 msgid "Snapshots"
-msgstr "スナップショット"
+msgstr "Instantáneas"
 
 #: ./client/app/services/service-details/service-details-ansible.html:196
 msgid "Standard Out"
-msgstr "標準出力"
+msgstr "Salida estándar"
 
 #: ./client/app/services/resource-details/resource-details.component.js:393
 #: ./client/app/services/service-details/service-details.component.js:176
@@ -1204,31 +1204,31 @@ msgstr "標準出力"
 #: ./client/app/services/service-explorer/service-explorer.component.js:281
 #: ./client/app/services/service-explorer/service-explorer.html:184
 msgid "Start"
-msgstr "開始"
+msgstr "Empezar"
 
 #: ./client/app/services/resource-details/resource-details.component.js:395
 #: ./client/app/services/service-details/service-details.component.js:178
 msgid "Start the Service"
-msgstr "サービスの開始"
+msgstr "Iniciar el servicio"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:283
 #: ./client/app/services/service-explorer/service-explorer.html:184
 msgid "Start this service"
-msgstr "このサービスの開始"
+msgstr "Iniciar este servicio"
 
 #: ./client/app/services/service-details/service-details-ansible.html:167
 #: ./client/app/services/service-details/service-details-ansible.html:20
 msgid "Started"
-msgstr "開始"
+msgstr "Iniciado"
 
 #: ./client/app/components/notifications/notification-body.html:41
 msgid "Started:"
-msgstr "開始:"
+msgstr "Iniciado:"
 
 #: ./client/app/services/service-details/service-details-ansible.html:13
 #: ./client/app/services/service-details/service-details-ansible.html:159
 msgid "Status"
-msgstr "ステータス"
+msgstr "Estado"
 
 #: ./client/app/services/resource-details/resource-details.component.js:401
 #: ./client/app/services/service-details/service-details.component.js:183
@@ -1236,30 +1236,30 @@ msgstr "ステータス"
 #: ./client/app/services/service-explorer/service-explorer.component.js:289
 #: ./client/app/services/service-explorer/service-explorer.html:189
 msgid "Stop"
-msgstr "停止"
+msgstr "Detener"
 
 #: ./client/app/services/resource-details/resource-details.component.js:403
 #: ./client/app/services/service-details/service-details.component.js:185
 msgid "Stop the Service"
-msgstr "サービスの停止"
+msgstr "Detener el servicio"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:291
 #: ./client/app/services/service-explorer/service-explorer.html:189
 msgid "Stop this service"
-msgstr "このサービスの停止"
+msgstr "Detener este servicio"
 
 #: ./client/app/services/usage-graphs/usage-graphs.html:39
 msgid "Storage"
-msgstr "ストレージ"
+msgstr "Almacenamiento"
 
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:19
 #: ./client/app/states/services/reconfigure/reconfigure.html:23
 msgid "Submit Request"
-msgstr "要求の送信"
+msgstr "Enviar solicitud"
 
 #: ./client/app/core/event-notifications.service.js:194
 msgid "Success"
-msgstr "成功"
+msgstr "Éxito"
 
 #: ./client/app/services/resource-details/resource-details.component.js:409
 #: ./client/app/services/service-details/service-details.component.js:190
@@ -1267,347 +1267,348 @@ msgstr "成功"
 #: ./client/app/services/service-explorer/service-explorer.component.js:297
 #: ./client/app/services/service-explorer/service-explorer.html:194
 msgid "Suspend"
-msgstr "中断"
+msgstr "Suspender"
 
 #: ./client/app/services/resource-details/resource-details.component.js:411
 #: ./client/app/services/service-details/service-details.component.js:192
 msgid "Suspend the Service"
-msgstr "サービスの一時停止"
+msgstr "Suspender el servicio"
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:299
 msgid "Suspend this service"
-msgstr "このサービスの一時停止"
+msgstr "Suspender este servicio"
 
 #: ./client/app/shared/language-switcher/language-switcher.html:3
 msgid "Switch Language:"
-msgstr "言語の切り替え:"
+msgstr "Cambiar idioma:"
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.service.js:57
 msgid "Tagging successful."
-msgstr "タグ付けに成功しました。"
+msgstr "Etiquetado correcto."
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.html:11
 #: ./client/app/services/resource-details/resource-details.html:136
 #: ./client/app/services/service-details/service-details.html:128
 #: ./client/app/services/service-explorer/service-explorer.component.js:377
 msgid "Tags"
-msgstr "タグ"
+msgstr "Etiquetas"
 
 #: ./client/app/catalogs/catalog-explorer.component.js:78
 msgid "Tenant"
-msgstr "テナント"
+msgstr "Inquilino"
 
 #: ./client/console/webmks.js:76
 msgid "The appliance has no access to the assets required to run the WebMKS console. For more info please see the documentation."
-msgstr "アプライアンスには、 WebMKS コンソールを実行するために必要なアセットへのアクセス権限がありません。詳しくは、資料を参照してください。"
+msgstr "El dispositivo no tiene acceso a los recursos requeridos para ejecutar la consola WebMKS. Para obtener más información, consulte la documentación."
 
 #: ./client/app/orders/request-list/requests-list.html:32
 #: ./client/app/orders/request-list/requests-list.html:35
 #: ./client/app/orders/request-list/requests-list.html:38
 msgid "The current approval status of the request"
-msgstr "現在の要求の承認ステータス"
+msgstr "El estado de aprobación actual de la solicitud"
 
 #: ./client/app/components/dashboard/dashboard.html:71
 msgid "The number of active services"
-msgstr "アクティブなサービスの数"
+msgstr "El número de servicios activos"
 
 #: ./client/app/components/dashboard/dashboard.html:55
 msgid "The number of services retiring within the next 30 days"
-msgstr "今後 30 日以内にリタイヤするサービス数"
+msgstr "El número de servicios que se retirarán en los próximos 30 días"
 
 #: ./client/app/components/dashboard/dashboard.html:88
 msgid "The number of services which have hit their retirement period or been retired"
-msgstr "リタイヤ期間終了またはリタイヤ済みのサービス数"
+msgstr "El número de servicios que han alcanzado su periodo de retiro o que se han retirado"
 
 #: ./client/app/states/404/404.html:6
 msgid "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
-msgstr "お探しのページは削除されたか、名前が変更されたか、一時的に利用できません。"
+msgstr "Es posible que la página que busca se haya eliminado, que se haya cambiado su nombre o que no esté disponible temporalmente."
 
 #: ./client/app/states/404/404.html:5
 msgid "The page you requested cannot be found."
-msgstr "要求したページが見つかりません。"
+msgstr "No se ha encontrado la página que ha solicitado."
 
 #: ./client/app/core/navigation.service.js:83
 msgid "The total number of available catalogs"
-msgstr "利用できるカタログの合計数"
+msgstr "El número total de catálogos disponibles"
 
 #: ./client/app/states/catalogs/details/details.html:51
 msgid "There already is an identical item in the cart. Do you want to add it anyway?"
-msgstr "同一の項目がカートにすでに存在します。これを追加しますか?"
+msgstr "Ya hay un elemento idéntico en el carro. ¿Desea añadirlo de todas formas?"
 
 #: ./client/app/services/service-details/service-details.component.js:374
 msgid "There are no Compute Resources for this service."
-msgstr "このサービスにコンピュート・リソースはありません。"
+msgstr "No hay ningún recurso de cálculo para este servicio."
 
 #: ./client/app/layouts/application.html:14
 msgid "There are no notifications to display."
-msgstr "表示する通知はありません。"
+msgstr "No hay ninguna notificación que mostrar."
 
 #: ./client/app/shared/tagging/tagging.html:15
 msgid "There are no tags for this item."
-msgstr "この項目のタグはありません。"
+msgstr "No hay ninguna etiqueta para este elemento."
 
 #: ./client/app/states/error/error.html:10
 msgid "There was a problem loading the page."
-msgstr "ページの読み込み中に問題が発生しました。"
+msgstr "Se ha producido un problema al cargar la página."
 
 #: ./client/app/states/catalogs/details/details.state.js:215
 msgid "There was an error adding to shopping cart:"
-msgstr "ショッピング・カートに追加する際にエラーが発生しました。"
+msgstr "Se ha producido un error al añadir al carro de la compra:"
 
 #: ./client/app/services/process-snapshots-modal/process-snapshots-modal.component.js:81
 msgid "There was an error creating the snapshot."
-msgstr "スナップショットの作成時にエラーが発生しました。"
+msgstr "Se ha producido un error al crear la instantánea."
 
 #: ./client/app/services/edit-service-modal/edit-service-modal.component.js:33
 msgid "There was an error editing this service."
-msgstr "このサービスの編集時にエラーが発生しました。"
+msgstr "Se ha producido un error al editar este servicio."
 
 #: ./client/app/services/service-details/service-details.component.js:98
 msgid "There was an error fetching this service."
-msgstr "このサービスの取り出し時にエラーが発生しました。"
+msgstr "Se ha producido un error al recuperar este servicio."
 
 #: ./client/app/catalogs/catalog-explorer.component.js:107
 msgid "There was an error loading catalogs."
-msgstr "カタログのロード時にエラーが発生しました。"
+msgstr "Se ha producido un error al cargar los catálogos."
 
 #: ./client/app/orders/order-explorer/order-explorer.component.js:254
 msgid "There was an error loading orders."
-msgstr "オーダーのロード時にエラーが発生しました。"
+msgstr "Se ha producido un error al cargar las órdenes."
 
 #: ./client/app/services/vms/snapshots.component.js:200
 msgid "There was an error loading snapshots."
-msgstr "スナップショットのロード時にエラーが発生しました。"
+msgstr "Se ha producido un error al cargar las instantáneas."
 
 #: ./client/app/services/service-explorer/service-explorer.component.js:463
 msgid "There was an error loading the services."
-msgstr "サービスのロード時にエラーが発生しました。"
+msgstr "Se ha producido un error al cargar los servicios."
 
 #: ./client/app/services/resource-details/resource-details.component.js:290
 msgid "There was an error loading the vm details."
-msgstr "VM の詳細のロード時にエラーが発生しました。"
+msgstr "Se ha producido un error al cargar los detalles de la máquina virtual."
 
 #: ./client/app/services/vms/snapshots.component.js:212
 msgid "There was an error loading the vm."
-msgstr "VM のロード時にエラーが発生しました。"
+msgstr "Se ha producido un error al cargar la máquina virtual."
 
 #: ./client/app/services/consoles.service.js:58
 msgid "There was an error opening the console."
-msgstr "コンソールを開く際にエラーが発生しました。"
+msgstr "Se ha producido un error al abrir la consola."
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.component.js:53
 msgid "There was an error removing one or more services."
-msgstr "1 つ以上のサービスの削除時にエラーが発生しました。"
+msgstr "Se ha producido un error al eliminar uno o varios servicios."
 
 #: ./client/app/orders/process-order-modal/process-order-modal.component.js:44
 msgid "There was an error removing order"
-msgstr "オーダーの削除中にエラーが発生しました"
+msgstr "Se ha producido un error al eliminar la orden"
 
 #: ./client/app/services/service-details/service-details.component.js:295
 msgid "There was an error removing this service."
-msgstr "このサービスの削除中にエラーが発生しました。"
+msgstr "Se ha producido un error al eliminar este servicio."
 
 #: ./client/app/services/poweroperations.service.js:196
 msgid "There was an error retiring this %s."
-msgstr "この %s のリタイヤ時にエラーが発生しました。"
+msgstr "Se ha producido un error al retirar este %s."
 
 #: ./client/app/services/retire-service-modal/retire-service-modal.component.js:77
 msgid "There was an error retiring this service."
-msgstr "このサービスのリタイヤ中にエラーが発生しました。"
+msgstr "Se ha producido un error al retirar este servicio."
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.component.js:78
 msgid "There was an error saving ownership."
-msgstr "所有権の保存時にエラーが発生しました。"
+msgstr "Se ha producido un error al guardar la propiedad."
 
 #: ./client/app/services/poweroperations.service.js:187
 msgid "There was an error starting this %s."
-msgstr "この %s の開始時にエラーが発生しました。"
+msgstr "Se ha producido un error al iniciar este %s."
 
 #: ./client/app/services/poweroperations.service.js:190
 msgid "There was an error stopping this %s."
-msgstr "この  %s の停止時にエラーが発生しました。"
+msgstr "Se ha producido un error al detener este %s."
 
 #: ./client/app/services/custom-button/custom-button.component.js:86
 msgid "There was an error submitting the custom button."
-msgstr "カスタム・ボタンの送信時にエラーが発生しました。"
+msgstr "Se ha producido un error al enviar el botón personalizado."
 
 #: ./client/app/core/shopping-cart/shopping-cart.component.js:46
 #: ./client/app/states/services/custom_button_details/custom_button_details.state.js:130
 #: ./client/app/states/services/reconfigure/reconfigure.state.js:80
 msgid "There was an error submitting this request:"
-msgstr "この要求の送信時にエラーが発生しました。"
+msgstr "Se ha producido un error al enviar esta solicitud:"
 
 #: ./client/app/services/poweroperations.service.js:193
 msgid "There was an error suspending this %s."
-msgstr "この %s の一時停止中にエラーが発生しました。"
+msgstr "Se ha producido un error al suspender este %s."
 
 #: ./client/app/core/tag-editor-modal/tag-editor-modal.service.js:62
 msgid "There was an error tagging this service."
-msgstr "このサービスのタグ付け時にエラーが発生しました。"
+msgstr "Se ha producido un error al etiquetar este servicio."
 
 #: ./client/app/services/resource-details/resource-details.html:103
 msgid "Timeline - Power Events"
-msgstr "タイムライン - 電源イベント"
+msgstr "Línea de tiempo - Eventos de alimentación"
 
 #: ./client/app/components/dashboard/dashboard.html:35
 msgid "Total Requests"
-msgstr "要求の合計数"
+msgstr "Número total de solicitudes"
 
 #: ./client/app/components/dashboard/dashboard.html:16
 msgid "Total Services"
-msgstr "サービスの合計数"
+msgstr "Número total de servicios"
 
 #: ./client/app/services/service-details/service-details.html:211
 msgid "Total Snapshots"
-msgstr "スナップショット合計"
+msgstr "Número total de instantáneas"
 
 #: ./client/app/core/navigation.service.js:66
 msgid "Total orders submitted"
-msgstr "送信済みオーダーの合計数"
+msgstr "Número total de órdenes enviadas"
 
 #: ./client/app/core/navigation.service.js:49
 msgid "Total services ordered, both active and retired"
-msgstr "有効なオーダーおよびリタイヤ済みのオーダーを含むオーダー済みサービスの合計数"
+msgstr "Número total de servicios ordenados, tanto activos como retirados"
 
 #: ./client/app/services/service-details/service-details-ansible.html:121
 msgid "Type"
-msgstr "タイプ"
+msgstr "Tipo"
 
 #: ./client/app/services/consoles.service.js:76
 msgid "Unsupported console protocol returned."
-msgstr "非対応のコンソール・プロトコルが返されました。"
+msgstr "Se ha devuelto protocolo de consola no admitido."
 
 #: ./client/app/services/vms/snapshots.component.js:105
 msgid "Updated"
-msgstr "更新"
+msgstr "Actualizado"
 
 #: ./client/app/services/vms/snapshots.html:98
 msgid "Updated:"
-msgstr "更新:"
+msgstr "Actualizado:"
 
 #: ./client/app/shared/language-switcher/language-switcher.component.js:32
 msgid "User Default"
-msgstr "ユーザー・デフォルト"
+msgstr "Valor predeterminado de usuario"
 
 #: ./client/app/core/navigation/navigation-controller.js:143
 msgid "User Name:"
-msgstr "ユーザー名:"
+msgstr "Nombre de usuario"
 
 #: ./client/app/core/navigation/navigation-controller.js:144
 msgid "User Role:"
-msgstr "ユーザー・ロール:"
+msgstr "Rol de usuario:"
 
 #: ./client/app/states/login/login.state.js:50
 msgid "User does not have privileges to login."
-msgstr "ユーザーにはログインの特権がありません"
+msgstr "El usuario no tiene privilegios para iniciar la sesión."
 
 #: ./client/app/states/login/login.html:16
 msgid "Username"
-msgstr "ユーザー名"
+msgstr "Nombre de usuario"
 
 #: ./client/app/services/usage-graphs/usage-graphs.html:1
 msgid "Utilization"
-msgstr "使用状況"
+msgstr "Utilización"
 
 #: ./client/app/services/service-details/service-details.html:307
 msgid "VM HTML5 Console"
-msgstr "VM HTML5 コンソール"
+msgstr "Consola de VM HTML5"
 
 #: ./client/app/states/vms/snapshots/snapshots.state.js:13
 msgid "VM Snapshots"
-msgstr "VM スナップショット"
+msgstr "Instantáneas de máquina virtual"
 
 #: ./client/app/services/service-details/service-details.html:315
 msgid "VM VMRC Console"
-msgstr "VM VMRC コンソール"
+msgstr "Consola de VM VMRC"
 
 #: ./client/app/services/service-details/service-details-ansible.html:67
 msgid "Verbosity"
-msgstr "詳細"
+msgstr "Nivel de detalle"
 
 #: ./client/app/core/navigation/navigation-controller.js:140
 msgid "Version:"
-msgstr "バージョン:"
+msgstr "Versión:"
 
 #: ./client/app/services/resource-details/resource-details.component.js:314
 #: ./client/app/services/service-details/service-details.html:282
 msgid "View"
-msgstr "表示"
+msgstr "Ver"
 
 #: ./client/app/services/service-details/service-details.html:367
 msgid "View\n                                                    Details"
-msgstr "詳細の表示"
+msgstr "Ver detalles"
 
 #: ./client/app/services/resource-details/resource-details.component.js:316
 msgid "View snapshots"
-msgstr "スナップショットの表示"
+msgstr "Ver instantáneas"
 
 #: ./client/app/services/consoles.service.js:24
 msgid "Waiting for the console to become ready."
-msgstr "コンソールの準備を待機中。"
+msgstr "A la espera de que la consola esté preparada."
 
 #: ./client/app/core/event-notifications.service.js:194
 msgid "Warning"
-msgstr "警告"
+msgstr "Advertencia"
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:11
 msgid "Warning: The selected Services and ALL of their components will be immediately retired!"
-msgstr "警告: 選択したサービスとそれらのコンポーネントすべてはすぐにリタイヤになります。"
+msgstr "Advertencia: Los servicios seleccionados y TODOS sus componentes se retirarán de inmediato."
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:10
 msgid "Warning: The selected Services and ALL of their components will be permanently removed!"
-msgstr "警告: 選択したサービスとそれらのすべてのコンポーネントは完全に削除されます。"
+msgstr "Advertencia: Los servicios seleccionados y TODOS sus componentes se eliminarán de manera permanente."
 
 #: ./client/app/services/service-details/service-details-ansible.html:198
 msgid "Watch Live"
-msgstr "ライブで視聴\\n           "
+msgstr "Ver en directo"
 
 #: ./client/app/states/404/404.html:7
 #: ./client/app/states/error/error.html:13
 msgid "We apologize for the inconvenience."
-msgstr "ご不便をおかけして申し訳ありません。"
+msgstr "Disculpen las molestias."
 
 #: ./client/app/services/service-details/service-details.html:324
 msgid "Web Console"
-msgstr "Web コンソール"
+msgstr "Consola web"
 
 #: ./client/app/services/services-state.service.js:277
 msgid "Yes, Remove Service"
-msgstr "はい。サービスを削除します。"
+msgstr "Sí, eliminar servicio"
 
 #: ./client/app/states/login/login.state.js:77
 msgid "You do not have permission to view the Service UI. Contact your administrator to update your group permissions."
-msgstr "サービス UI を表示する権限を持っていません。管理者に連絡してグループ権限を更新してください。"
+msgstr "No tiene permiso para ver la interfaz de usuario de servicio. Póngase en contacto con el administrador para actualizar los permisos del grupo."
 
 #: ./client/app/core/save-modal-dialog/save-modal-dialog.html:11
 msgid "Your current edits are invalid and cannot be saved. Continuing will discard your changes."
-msgstr "現在の編集内容は無効なため、保存できません。継続すると、変更が破棄されます。"
+msgstr "Las ediciones actuales no son válidas y no se pueden guardar. Si continúa, se descartarán los cambios."
 
 #: ./client/app/states/login/login.state.js:39
 msgid "Your session has timed out."
-msgstr "セッションがタイムアウトしました。"
+msgstr "La sesión ha superado el tiempo de espera."
 
 #: ./client/app/services/service-explorer/service-explorer.html:55
 msgid "[[number]] VMs"
-msgstr "VM 数: [[number]] "
+msgstr "[[número]] máquinas virtuales"
 
 #: ./client/app/orders/order-explorer/order-explorer.html:57
 msgid "item"
 msgid_plural "items"
-msgstr[0] "項目"
+msgstr[0] "elemento"
+msgstr[1] "elementos"
 
 #: ./client/app/shared/pagination/pagination.html:13
 #: ./client/app/shared/pagination/pagination.html:20
 msgid "items"
-msgstr "項目"
+msgstr "elementos"
 
 #: ./client/app/core/gettext.config.js:23
 msgid "locale_name"
-msgstr "日本語"
+msgstr "Español"
 
 #: ./client/app/services/vms.service.js:280
 msgid "now?"
-msgstr "現在?"
+msgstr "¿ahora?"
 
 #: ./client/app/services/usage-graphs/usage-graphs.html:13
 #: ./client/app/services/usage-graphs/usage-graphs.html:29
@@ -1615,27 +1616,27 @@ msgstr "現在?"
 #: ./client/app/shared/pagination/pagination.html:37
 #: ./client/app/shared/pagination/pagination.html:40
 msgid "of"
-msgstr "/"
+msgstr "de"
 
 #: ./client/app/states/orders/details/details.html:25
 msgid "ordered on"
-msgstr "オーダー日付"
+msgstr "ordenado el"
 
 #: ./client/app/services/service-explorer/service-explorer.html:194
 msgid "suspend this service"
-msgstr "このサービスの一時停止"
+msgstr "suspender este servicio"
 
 #: ./client/app/services/resource-details/resource-details.component.js:213
 #: ./client/app/services/resource-details/resource-details.component.js:219
 #: ./client/app/services/resource-details/resource-details.component.js:225
 #: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:10
 msgid "used"
-msgstr "使用中"
+msgstr "utilizado"
 
 #: ./client/app/services/service-details/service-details.component.js:290
 msgid "was removed."
-msgstr ": 削除しました。"
+msgstr "se ha eliminado."
 
 #: ./client/app/orders/process-order-modal/process-order-modal.html:9
 msgid "{{ vm.order.name }} and all of its service requests will be permanently removed!"
-msgstr "{{ vm.order.name }} およびそのサービス要求はすべて完全に削除されます。"
+msgstr "{{ vm.order.name }} y todas sus solicitudes de servicio se eliminarán de forma permanente"
