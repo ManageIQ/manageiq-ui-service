@@ -315,7 +315,7 @@ msgstr "Bouton personnalisé :"
 msgid "Custom button action"
 msgstr "Action du bouton personnalisé"
 
-#: ./client/app/core/navigation.service.js:33
+#: ./client/app/core/navigation.service.js:29
 #: ./client/app/states/dashboard/dashboard.state.js:12
 msgid "Dashboard"
 msgstr "Tableau de bord"
@@ -389,7 +389,7 @@ msgstr "Ne pas changer"
 msgid "Duplicate"
 msgstr "Dupliquer"
 
-#: ./client/app/states/catalogs/details/details.state.js:23
+#: ./client/app/states/catalogs/details/details.state.js:22
 msgid "Duplicate Service"
 msgstr "Dupliquer un service"
 
@@ -535,15 +535,16 @@ msgstr "Si vous n'effectuez pas de sauvegarde, tous les changements seront perdu
 msgid "Info"
 msgstr "Infos"
 
-#: ./client/app/states/catalogs/details/details.state.js:208
+#: ./client/app/states/catalogs/details/details.state.js:207
 msgid "Item added to shopping cart"
 msgstr "Article ajouté au panier"
 
-#: ./client/app/states/catalogs/details/details.state.js:206
+#: ./client/app/states/catalogs/details/details.state.js:205
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
 msgstr "L'article a été ajouté au panier, mais c'est un doublon d'un article existant"
 
-#: ./client/app/states/login/login.html:28
+#: ./client/app/states/login/login.html:16
+#: ./client/app/states/login/login.html:37
 msgid "Language"
 msgstr "Langue"
 
@@ -596,9 +597,13 @@ msgstr "Etape de playbook Ansible opérationnelle"
 msgid "Loading"
 msgstr "Chargement en cours"
 
-#: ./client/app/states/login/login.html:34
+#: ./client/app/states/login/login.html:43
 msgid "Log In"
 msgstr "Se connecter"
+
+#: ./client/app/states/login/login.html:20
+msgid "Log In to Corporate System"
+msgstr "Se connecter au système d'entreprise"
 
 #: ./client/app/core/navigation/navigation-controller.js:155
 msgid "Log into the full administrative UI"
@@ -608,9 +613,17 @@ msgstr "Se connecter à l'interface d'administration complète"
 msgid "Login"
 msgstr "Connexion"
 
-#: ./client/app/states/login/login.state.js:86
+#: ./client/app/states/login/login.state.js:118
+msgid "Login failed, invalid access token."
+msgstr "Echec de la connexion. Le jeton d'accès n'est pas valide. "
+
+#: ./client/app/states/login/login.state.js:116
 msgid "Login failed, possibly invalid credentials."
 msgstr "Echec de la connexion. Les identifiants ne sont peut-être pas valides."
+
+#: ./client/app/states/login/login.state.js:109
+msgid "Login failed."
+msgstr "Echec de la connexion."
 
 #: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
@@ -642,14 +655,14 @@ msgstr "Frais en cumul mensuel à ce jour"
 msgid "Monthly Cost"
 msgstr "Coût mensuel"
 
-#: ./client/app/core/navigation.service.js:55
-#: ./client/app/states/catalogs/details/details.state.js:59
+#: ./client/app/core/navigation.service.js:51
+#: ./client/app/states/catalogs/details/details.state.js:58
 #: ./client/app/states/orders/details/details.html:5
 #: ./client/app/states/orders/explorer/explorer.state.js:11
 msgid "My Orders"
 msgstr "Mes commandes"
 
-#: ./client/app/core/navigation.service.js:39
+#: ./client/app/core/navigation.service.js:35
 #: ./client/app/services/resource-details/resource-details.html:5
 #: ./client/app/services/service-details/service-details.html:5
 #: ./client/app/services/service-explorer/service-explorer.html:4
@@ -788,7 +801,7 @@ msgstr "Elément de catalogue parent"
 msgid "Parent Service"
 msgstr "Service parent"
 
-#: ./client/app/states/login/login.html:22
+#: ./client/app/states/login/login.html:31
 msgid "Password"
 msgstr "Mot de passe"
 
@@ -1100,11 +1113,11 @@ msgid "Service"
 msgstr "Service"
 
 #: ./client/app/catalogs/catalog-explorer.html:4
-#: ./client/app/core/navigation.service.js:72
+#: ./client/app/core/navigation.service.js:68
 msgid "Service Catalog"
 msgstr "Catalogue de service"
 
-#: ./client/app/states/catalogs/details/details.state.js:49
+#: ./client/app/states/catalogs/details/details.state.js:48
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Service Catalogs"
 msgstr "Catalogues de service"
@@ -1124,7 +1137,7 @@ msgstr "ID de service"
 msgid "Service Retire - Request Created"
 msgstr "Déclassement du service - Demande créée"
 
-#: ./client/app/states/catalogs/details/details.state.js:16
+#: ./client/app/states/catalogs/details/details.state.js:15
 msgid "Service Template Details"
 msgstr "Détails du modèle de service"
 
@@ -1327,7 +1340,7 @@ msgstr "La page que vous recherchez a peut-être été retirée ou renommée, ou
 msgid "The page you requested cannot be found."
 msgstr "La page que vous avez demandée est introuvable."
 
-#: ./client/app/core/navigation.service.js:83
+#: ./client/app/core/navigation.service.js:79
 msgid "The total number of available catalogs"
 msgstr "Nombre total de catalogues disponibles"
 
@@ -1351,7 +1364,7 @@ msgstr "Il n'existe aucune balise pour cet élément."
 msgid "There was a problem loading the page."
 msgstr "Un problème est survenu lors du chargement de la page."
 
-#: ./client/app/states/catalogs/details/details.state.js:215
+#: ./client/app/states/catalogs/details/details.state.js:214
 msgid "There was an error adding to shopping cart:"
 msgstr "Une erreur s'est produite lors d'un ajout au panier :"
 
@@ -1461,11 +1474,11 @@ msgstr "Nombre total de services"
 msgid "Total Snapshots"
 msgstr "Nombre total de clichés"
 
-#: ./client/app/core/navigation.service.js:66
+#: ./client/app/core/navigation.service.js:62
 msgid "Total orders submitted"
 msgstr "Nombre total de commandes soumises"
 
-#: ./client/app/core/navigation.service.js:49
+#: ./client/app/core/navigation.service.js:45
 msgid "Total services ordered, both active and retired"
 msgstr "Nombre total de services commandés, actifs et déclassés"
 
@@ -1497,11 +1510,11 @@ msgstr "Nom d'utilisateur :"
 msgid "User Role:"
 msgstr "Rôle utilisateur :"
 
-#: ./client/app/states/login/login.state.js:50
+#: ./client/app/states/login/login.state.js:59
 msgid "User does not have privileges to login."
 msgstr "L'utilisateur n'est pas autorisé a se connecter."
 
-#: ./client/app/states/login/login.html:16
+#: ./client/app/states/login/login.html:25
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
@@ -1575,7 +1588,7 @@ msgstr "Console Web"
 msgid "Yes, Remove Service"
 msgstr "Oui, retirer le service"
 
-#: ./client/app/states/login/login.state.js:77
+#: ./client/app/states/login/login.state.js:101
 msgid "You do not have permission to view the Service UI. Contact your administrator to update your group permissions."
 msgstr "Vous ne disposez pas du droit requis pour afficher l'interface utilisateur Service. Contactez votre administrateur pour mettre à jour vos droits de groupe."
 
@@ -1583,7 +1596,7 @@ msgstr "Vous ne disposez pas du droit requis pour afficher l'interface utilisate
 msgid "Your current edits are invalid and cannot be saved. Continuing will discard your changes."
 msgstr "Vos éditions en cours ne sont pas valides et ne peuvent pas être sauvegardées. Si vous poursuivez, vos modifications seront annulées."
 
-#: ./client/app/states/login/login.state.js:39
+#: ./client/app/states/login/login.state.js:44
 msgid "Your session has timed out."
 msgstr "Votre session a expiré."
 
