@@ -315,7 +315,7 @@ msgstr "사용자 정의 단추:"
 msgid "Custom button action"
 msgstr "사용자 정의 단추 조치"
 
-#: ./client/app/core/navigation.service.js:33
+#: ./client/app/core/navigation.service.js:29
 #: ./client/app/states/dashboard/dashboard.state.js:12
 msgid "Dashboard"
 msgstr "대시보드"
@@ -389,7 +389,7 @@ msgstr "변경하지 않음"
 msgid "Duplicate"
 msgstr "중복"
 
-#: ./client/app/states/catalogs/details/details.state.js:23
+#: ./client/app/states/catalogs/details/details.state.js:22
 msgid "Duplicate Service"
 msgstr "서비스 복제"
 
@@ -535,15 +535,16 @@ msgstr "저장하지 않으면 변경사항이 유실됩니다."
 msgid "Info"
 msgstr "정보"
 
-#: ./client/app/states/catalogs/details/details.state.js:208
+#: ./client/app/states/catalogs/details/details.state.js:207
 msgid "Item added to shopping cart"
 msgstr "장바구니에 추가된 항목"
 
-#: ./client/app/states/catalogs/details/details.state.js:206
+#: ./client/app/states/catalogs/details/details.state.js:205
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
 msgstr "항목이 장바구니에 추가되었지만 기존 항목과 중복됩니다."
 
-#: ./client/app/states/login/login.html:28
+#: ./client/app/states/login/login.html:16
+#: ./client/app/states/login/login.html:37
 msgid "Language"
 msgstr "언어"
 
@@ -596,9 +597,13 @@ msgstr "라이브 Ansible 플레이"
 msgid "Loading"
 msgstr "로드 중"
 
-#: ./client/app/states/login/login.html:34
+#: ./client/app/states/login/login.html:43
 msgid "Log In"
 msgstr "로그인"
+
+#: ./client/app/states/login/login.html:20
+msgid "Log In to Corporate System"
+msgstr "Corporate System 로그인"
 
 #: ./client/app/core/navigation/navigation-controller.js:155
 msgid "Log into the full administrative UI"
@@ -608,9 +613,17 @@ msgstr "전체 관리 UI 로그인"
 msgid "Login"
 msgstr "로그인"
 
-#: ./client/app/states/login/login.state.js:86
+#: ./client/app/states/login/login.state.js:118
+msgid "Login failed, invalid access token."
+msgstr "로그인 실패, 올바르지 않은 액세스 토큰."
+
+#: ./client/app/states/login/login.state.js:116
 msgid "Login failed, possibly invalid credentials."
 msgstr "로그인 실패, 인증 정보가 올바르지 않은 것 같습니다."
+
+#: ./client/app/states/login/login.state.js:109
+msgid "Login failed."
+msgstr "로그인에 실패했습니다. "
 
 #: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
@@ -642,14 +655,14 @@ msgstr "월별 비용 - 이번 달 합계"
 msgid "Monthly Cost"
 msgstr "월별 비용"
 
-#: ./client/app/core/navigation.service.js:55
-#: ./client/app/states/catalogs/details/details.state.js:59
+#: ./client/app/core/navigation.service.js:51
+#: ./client/app/states/catalogs/details/details.state.js:58
 #: ./client/app/states/orders/details/details.html:5
 #: ./client/app/states/orders/explorer/explorer.state.js:11
 msgid "My Orders"
 msgstr "내 주문"
 
-#: ./client/app/core/navigation.service.js:39
+#: ./client/app/core/navigation.service.js:35
 #: ./client/app/services/resource-details/resource-details.html:5
 #: ./client/app/services/service-details/service-details.html:5
 #: ./client/app/services/service-explorer/service-explorer.html:4
@@ -788,7 +801,7 @@ msgstr "상위 카탈로그 항목"
 msgid "Parent Service"
 msgstr "상위 서비스"
 
-#: ./client/app/states/login/login.html:22
+#: ./client/app/states/login/login.html:31
 msgid "Password"
 msgstr "비밀번호"
 
@@ -1100,11 +1113,11 @@ msgid "Service"
 msgstr "서비스"
 
 #: ./client/app/catalogs/catalog-explorer.html:4
-#: ./client/app/core/navigation.service.js:72
+#: ./client/app/core/navigation.service.js:68
 msgid "Service Catalog"
 msgstr "서비스 카탈로그"
 
-#: ./client/app/states/catalogs/details/details.state.js:49
+#: ./client/app/states/catalogs/details/details.state.js:48
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Service Catalogs"
 msgstr "서비스 카탈로그"
@@ -1124,7 +1137,7 @@ msgstr "서비스 ID"
 msgid "Service Retire - Request Created"
 msgstr "서비스 폐기 - 요청이 작성됨"
 
-#: ./client/app/states/catalogs/details/details.state.js:16
+#: ./client/app/states/catalogs/details/details.state.js:15
 msgid "Service Template Details"
 msgstr "서비스 템플리트 세부사항"
 
@@ -1327,7 +1340,7 @@ msgstr "찾고 있는 페이지가 제거되었거나, 이름이 변경되었거
 msgid "The page you requested cannot be found."
 msgstr "요청한 페이지를 찾을 수 없습니다."
 
-#: ./client/app/core/navigation.service.js:83
+#: ./client/app/core/navigation.service.js:79
 msgid "The total number of available catalogs"
 msgstr "사용 가능한 카탈로그의 총 수"
 
@@ -1351,7 +1364,7 @@ msgstr "이 항목에 대한 태그가 없습니다."
 msgid "There was a problem loading the page."
 msgstr "페이지를 로드하는 중에 문제가 발생했습니다."
 
-#: ./client/app/states/catalogs/details/details.state.js:215
+#: ./client/app/states/catalogs/details/details.state.js:214
 msgid "There was an error adding to shopping cart:"
 msgstr "장바구니에 추가하는 중에 오류가 발생함:"
 
@@ -1461,11 +1474,11 @@ msgstr "서비스 총계"
 msgid "Total Snapshots"
 msgstr "스냅샷 총계"
 
-#: ./client/app/core/navigation.service.js:66
+#: ./client/app/core/navigation.service.js:62
 msgid "Total orders submitted"
 msgstr "제출된 주문 총계"
 
-#: ./client/app/core/navigation.service.js:49
+#: ./client/app/core/navigation.service.js:45
 msgid "Total services ordered, both active and retired"
 msgstr "총 서비스가 주문됨(활성 및 폐기된 서비스 모두)"
 
@@ -1497,11 +1510,11 @@ msgstr "사용자 이름:"
 msgid "User Role:"
 msgstr "사용자 역할:"
 
-#: ./client/app/states/login/login.state.js:50
+#: ./client/app/states/login/login.state.js:59
 msgid "User does not have privileges to login."
 msgstr "사용자에게 로그인할 권한이 없습니다."
 
-#: ./client/app/states/login/login.html:16
+#: ./client/app/states/login/login.html:25
 msgid "Username"
 msgstr "사용자 이름"
 
@@ -1575,7 +1588,7 @@ msgstr "웹 콘솔"
 msgid "Yes, Remove Service"
 msgstr "예, 서비스를 제거합니다."
 
-#: ./client/app/states/login/login.state.js:77
+#: ./client/app/states/login/login.state.js:101
 msgid "You do not have permission to view the Service UI. Contact your administrator to update your group permissions."
 msgstr "서비스 UI를 볼 수 있는 권한이 없습니다. 그룹 권한을 업데이트하려면 관리자에게 문의하십시오."
 
@@ -1583,7 +1596,7 @@ msgstr "서비스 UI를 볼 수 있는 권한이 없습니다. 그룹 권한을 
 msgid "Your current edits are invalid and cannot be saved. Continuing will discard your changes."
 msgstr "현재 편집이 올바르지 않으며 이를 저장할 수 없습니다. 계속하면 변경사항을 버립니다."
 
-#: ./client/app/states/login/login.state.js:39
+#: ./client/app/states/login/login.state.js:44
 msgid "Your session has timed out."
 msgstr "세션 제한시간이 초과되었습니다."
 

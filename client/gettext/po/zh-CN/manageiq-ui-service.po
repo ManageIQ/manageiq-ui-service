@@ -315,7 +315,7 @@ msgstr "定制按钮："
 msgid "Custom button action"
 msgstr "定制按钮操作"
 
-#: ./client/app/core/navigation.service.js:33
+#: ./client/app/core/navigation.service.js:29
 #: ./client/app/states/dashboard/dashboard.state.js:12
 msgid "Dashboard"
 msgstr "仪表板"
@@ -389,7 +389,7 @@ msgstr "不要更改"
 msgid "Duplicate"
 msgstr "复制"
 
-#: ./client/app/states/catalogs/details/details.state.js:23
+#: ./client/app/states/catalogs/details/details.state.js:22
 msgid "Duplicate Service"
 msgstr "复制服务"
 
@@ -535,15 +535,16 @@ msgstr "如果不保存，所有更改都会丢失。"
 msgid "Info"
 msgstr "信息"
 
-#: ./client/app/states/catalogs/details/details.state.js:208
+#: ./client/app/states/catalogs/details/details.state.js:207
 msgid "Item added to shopping cart"
 msgstr "项目已添加至购物车"
 
-#: ./client/app/states/catalogs/details/details.state.js:206
+#: ./client/app/states/catalogs/details/details.state.js:205
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
 msgstr "项目已添加至购物车，但与现有项目重复"
 
-#: ./client/app/states/login/login.html:28
+#: ./client/app/states/login/login.html:16
+#: ./client/app/states/login/login.html:37
 msgid "Language"
 msgstr "语言"
 
@@ -596,9 +597,13 @@ msgstr "实时 Ansible Play"
 msgid "Loading"
 msgstr "加载中"
 
-#: ./client/app/states/login/login.html:34
+#: ./client/app/states/login/login.html:43
 msgid "Log In"
 msgstr "登录"
+
+#: ./client/app/states/login/login.html:20
+msgid "Log In to Corporate System"
+msgstr "登录到公司系统"
 
 #: ./client/app/core/navigation/navigation-controller.js:155
 msgid "Log into the full administrative UI"
@@ -608,9 +613,17 @@ msgstr "登录到完整管理 UI"
 msgid "Login"
 msgstr "登录"
 
-#: ./client/app/states/login/login.state.js:86
+#: ./client/app/states/login/login.state.js:118
+msgid "Login failed, invalid access token."
+msgstr "登录失败，访问令牌无效。"
+
+#: ./client/app/states/login/login.state.js:116
 msgid "Login failed, possibly invalid credentials."
 msgstr "登录失败，凭证可能无效。"
+
+#: ./client/app/states/login/login.state.js:109
+msgid "Login failed."
+msgstr "登录失败。"
 
 #: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
@@ -642,14 +655,14 @@ msgstr "每月费用 - 本月至今"
 msgid "Monthly Cost"
 msgstr "每月成本"
 
-#: ./client/app/core/navigation.service.js:55
-#: ./client/app/states/catalogs/details/details.state.js:59
+#: ./client/app/core/navigation.service.js:51
+#: ./client/app/states/catalogs/details/details.state.js:58
 #: ./client/app/states/orders/details/details.html:5
 #: ./client/app/states/orders/explorer/explorer.state.js:11
 msgid "My Orders"
 msgstr "我的订单"
 
-#: ./client/app/core/navigation.service.js:39
+#: ./client/app/core/navigation.service.js:35
 #: ./client/app/services/resource-details/resource-details.html:5
 #: ./client/app/services/service-details/service-details.html:5
 #: ./client/app/services/service-explorer/service-explorer.html:4
@@ -788,7 +801,7 @@ msgstr "父目录项"
 msgid "Parent Service"
 msgstr "父服务"
 
-#: ./client/app/states/login/login.html:22
+#: ./client/app/states/login/login.html:31
 msgid "Password"
 msgstr "密码"
 
@@ -1100,11 +1113,11 @@ msgid "Service"
 msgstr "服务"
 
 #: ./client/app/catalogs/catalog-explorer.html:4
-#: ./client/app/core/navigation.service.js:72
+#: ./client/app/core/navigation.service.js:68
 msgid "Service Catalog"
 msgstr "服务目录"
 
-#: ./client/app/states/catalogs/details/details.state.js:49
+#: ./client/app/states/catalogs/details/details.state.js:48
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Service Catalogs"
 msgstr "服务目录"
@@ -1124,7 +1137,7 @@ msgstr "服务 ID"
 msgid "Service Retire - Request Created"
 msgstr "服务退役 - 请求已创建"
 
-#: ./client/app/states/catalogs/details/details.state.js:16
+#: ./client/app/states/catalogs/details/details.state.js:15
 msgid "Service Template Details"
 msgstr "服务模板详情"
 
@@ -1327,7 +1340,7 @@ msgstr "您查找的页面可能已被移除、已改名或暂时不可用。"
 msgid "The page you requested cannot be found."
 msgstr "找不到您请求的页面。"
 
-#: ./client/app/core/navigation.service.js:83
+#: ./client/app/core/navigation.service.js:79
 msgid "The total number of available catalogs"
 msgstr "可用目录的总数"
 
@@ -1351,7 +1364,7 @@ msgstr "此项目没有标签。"
 msgid "There was a problem loading the page."
 msgstr "加载页面时出现问题。"
 
-#: ./client/app/states/catalogs/details/details.state.js:215
+#: ./client/app/states/catalogs/details/details.state.js:214
 msgid "There was an error adding to shopping cart:"
 msgstr "添加至购物车时出错："
 
@@ -1461,11 +1474,11 @@ msgstr "服务总数"
 msgid "Total Snapshots"
 msgstr "快照总数"
 
-#: ./client/app/core/navigation.service.js:66
+#: ./client/app/core/navigation.service.js:62
 msgid "Total orders submitted"
 msgstr "已提交订单总数"
 
-#: ./client/app/core/navigation.service.js:49
+#: ./client/app/core/navigation.service.js:45
 msgid "Total services ordered, both active and retired"
 msgstr "已订购服务总数（含活动及已退订）"
 
@@ -1497,11 +1510,11 @@ msgstr "用户名称："
 msgid "User Role:"
 msgstr "用户角色："
 
-#: ./client/app/states/login/login.state.js:50
+#: ./client/app/states/login/login.state.js:59
 msgid "User does not have privileges to login."
 msgstr "用户没有登录特权。"
 
-#: ./client/app/states/login/login.html:16
+#: ./client/app/states/login/login.html:25
 msgid "Username"
 msgstr "用户名"
 
@@ -1575,7 +1588,7 @@ msgstr "Web 控制台"
 msgid "Yes, Remove Service"
 msgstr "是，移除服务"
 
-#: ./client/app/states/login/login.state.js:77
+#: ./client/app/states/login/login.state.js:101
 msgid "You do not have permission to view the Service UI. Contact your administrator to update your group permissions."
 msgstr "您没有权限查看服务 UI。请联系系统管理员来升级您的组权限。"
 
@@ -1583,7 +1596,7 @@ msgstr "您没有权限查看服务 UI。请联系系统管理员来升级您的
 msgid "Your current edits are invalid and cannot be saved. Continuing will discard your changes."
 msgstr "您当前的编辑无效，无法保存。继续操作将丢弃您的更改。"
 
-#: ./client/app/states/login/login.state.js:39
+#: ./client/app/states/login/login.state.js:44
 msgid "Your session has timed out."
 msgstr "您的会话已超时。"
 
