@@ -315,7 +315,7 @@ msgstr "カスタム・ボタン:"
 msgid "Custom button action"
 msgstr "カスタム・ボタン・アクション"
 
-#: ./client/app/core/navigation.service.js:33
+#: ./client/app/core/navigation.service.js:29
 #: ./client/app/states/dashboard/dashboard.state.js:12
 msgid "Dashboard"
 msgstr "ダッシュボード"
@@ -389,7 +389,7 @@ msgstr "変更なし"
 msgid "Duplicate"
 msgstr "複製"
 
-#: ./client/app/states/catalogs/details/details.state.js:23
+#: ./client/app/states/catalogs/details/details.state.js:22
 msgid "Duplicate Service"
 msgstr "重複したサービス"
 
@@ -535,15 +535,16 @@ msgstr "保存しないと、変更は失われます。"
 msgid "Info"
 msgstr "情報"
 
-#: ./client/app/states/catalogs/details/details.state.js:208
+#: ./client/app/states/catalogs/details/details.state.js:207
 msgid "Item added to shopping cart"
 msgstr "項目がショッピング・カートに追加されました。"
 
-#: ./client/app/states/catalogs/details/details.state.js:206
+#: ./client/app/states/catalogs/details/details.state.js:205
 msgid "Item added to shopping cart, but it's a duplicate of an existing item"
 msgstr "項目がショッピング・カートに追加されましたが、これは既存項目の複製です。"
 
-#: ./client/app/states/login/login.html:28
+#: ./client/app/states/login/login.html:16
+#: ./client/app/states/login/login.html:37
 msgid "Language"
 msgstr "言語"
 
@@ -596,9 +597,13 @@ msgstr "ライブ Ansible Play"
 msgid "Loading"
 msgstr "ロード中"
 
-#: ./client/app/states/login/login.html:34
+#: ./client/app/states/login/login.html:43
 msgid "Log In"
 msgstr "ログイン"
+
+#: ./client/app/states/login/login.html:20
+msgid "Log In to Corporate System"
+msgstr "企業システムへのログイン"
 
 #: ./client/app/core/navigation/navigation-controller.js:155
 msgid "Log into the full administrative UI"
@@ -608,9 +613,17 @@ msgstr "管理詳細 UI にログイン"
 msgid "Login"
 msgstr "ログイン"
 
-#: ./client/app/states/login/login.state.js:86
+#: ./client/app/states/login/login.state.js:118
+msgid "Login failed, invalid access token."
+msgstr "ログインが失敗しました。無効なアクセス・トークン"
+
+#: ./client/app/states/login/login.state.js:116
 msgid "Login failed, possibly invalid credentials."
 msgstr "ログインに失敗しました。資格情報が無効である可能性があります。"
+
+#: ./client/app/states/login/login.state.js:109
+msgid "Login failed."
+msgstr "ログインに失敗し"
 
 #: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
@@ -642,14 +655,14 @@ msgstr "月額 - 今月"
 msgid "Monthly Cost"
 msgstr "月額コスト"
 
-#: ./client/app/core/navigation.service.js:55
-#: ./client/app/states/catalogs/details/details.state.js:59
+#: ./client/app/core/navigation.service.js:51
+#: ./client/app/states/catalogs/details/details.state.js:58
 #: ./client/app/states/orders/details/details.html:5
 #: ./client/app/states/orders/explorer/explorer.state.js:11
 msgid "My Orders"
 msgstr "マイ・オーダー"
 
-#: ./client/app/core/navigation.service.js:39
+#: ./client/app/core/navigation.service.js:35
 #: ./client/app/services/resource-details/resource-details.html:5
 #: ./client/app/services/service-details/service-details.html:5
 #: ./client/app/services/service-explorer/service-explorer.html:4
@@ -788,7 +801,7 @@ msgstr "親カタログ項目"
 msgid "Parent Service"
 msgstr "親サービス"
 
-#: ./client/app/states/login/login.html:22
+#: ./client/app/states/login/login.html:31
 msgid "Password"
 msgstr "パスワード"
 
@@ -1100,11 +1113,11 @@ msgid "Service"
 msgstr "サービス"
 
 #: ./client/app/catalogs/catalog-explorer.html:4
-#: ./client/app/core/navigation.service.js:72
+#: ./client/app/core/navigation.service.js:68
 msgid "Service Catalog"
 msgstr "サービス・カタログ"
 
-#: ./client/app/states/catalogs/details/details.state.js:49
+#: ./client/app/states/catalogs/details/details.state.js:48
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Service Catalogs"
 msgstr "サービス・カタログ"
@@ -1124,7 +1137,7 @@ msgstr "サービス ID"
 msgid "Service Retire - Request Created"
 msgstr "サービスのリタイヤ - リクエストの作成"
 
-#: ./client/app/states/catalogs/details/details.state.js:16
+#: ./client/app/states/catalogs/details/details.state.js:15
 msgid "Service Template Details"
 msgstr "サービス・テンプレートの詳細"
 
@@ -1327,7 +1340,7 @@ msgstr "お探しのページは削除されたか、名前が変更されたか
 msgid "The page you requested cannot be found."
 msgstr "要求したページが見つかりません。"
 
-#: ./client/app/core/navigation.service.js:83
+#: ./client/app/core/navigation.service.js:79
 msgid "The total number of available catalogs"
 msgstr "利用できるカタログの合計数"
 
@@ -1351,7 +1364,7 @@ msgstr "この項目のタグはありません。"
 msgid "There was a problem loading the page."
 msgstr "ページの読み込み中に問題が発生しました。"
 
-#: ./client/app/states/catalogs/details/details.state.js:215
+#: ./client/app/states/catalogs/details/details.state.js:214
 msgid "There was an error adding to shopping cart:"
 msgstr "ショッピング・カートに追加する際にエラーが発生しました。"
 
@@ -1461,11 +1474,11 @@ msgstr "サービスの合計数"
 msgid "Total Snapshots"
 msgstr "スナップショット合計"
 
-#: ./client/app/core/navigation.service.js:66
+#: ./client/app/core/navigation.service.js:62
 msgid "Total orders submitted"
 msgstr "送信済みオーダーの合計数"
 
-#: ./client/app/core/navigation.service.js:49
+#: ./client/app/core/navigation.service.js:45
 msgid "Total services ordered, both active and retired"
 msgstr "有効なオーダーおよびリタイヤ済みのオーダーを含むオーダー済みサービスの合計数"
 
@@ -1497,11 +1510,11 @@ msgstr "ユーザー名:"
 msgid "User Role:"
 msgstr "ユーザー・ロール:"
 
-#: ./client/app/states/login/login.state.js:50
+#: ./client/app/states/login/login.state.js:59
 msgid "User does not have privileges to login."
 msgstr "ユーザーにはログインの特権がありません"
 
-#: ./client/app/states/login/login.html:16
+#: ./client/app/states/login/login.html:25
 msgid "Username"
 msgstr "ユーザー名"
 
@@ -1575,7 +1588,7 @@ msgstr "Web コンソール"
 msgid "Yes, Remove Service"
 msgstr "はい。サービスを削除します。"
 
-#: ./client/app/states/login/login.state.js:77
+#: ./client/app/states/login/login.state.js:101
 msgid "You do not have permission to view the Service UI. Contact your administrator to update your group permissions."
 msgstr "サービス UI を表示する権限を持っていません。管理者に連絡してグループ権限を更新してください。"
 
@@ -1583,7 +1596,7 @@ msgstr "サービス UI を表示する権限を持っていません。管理�
 msgid "Your current edits are invalid and cannot be saved. Continuing will discard your changes."
 msgstr "現在の編集内容は無効なため、保存できません。継続すると、変更が破棄されます。"
 
-#: ./client/app/states/login/login.state.js:39
+#: ./client/app/states/login/login.state.js:44
 msgid "Your session has timed out."
 msgstr "セッションがタイムアウトしました。"
 
