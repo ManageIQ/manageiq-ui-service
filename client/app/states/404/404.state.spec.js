@@ -15,10 +15,5 @@ describe('State: 404', () => {
       $state.go('404')
       expect($state.is('404'))
     })
-
-    it('should route /invalid to the otherwise (404) route', () => {
-      $location.path('/invalid')
-      expect($state.current.template).to.match(/blank-slate-pf/) // 404.html topmost classname
-    })
   })
 })
