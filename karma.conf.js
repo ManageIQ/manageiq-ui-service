@@ -1,5 +1,3 @@
-const webpackConfig = require('./config/webpack.testing.js');
-
 module.exports = function (config) {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -10,10 +8,6 @@ module.exports = function (config) {
     browsers: ['ChromeHeadless'],
     singleRun: false,
     concurrency: Infinity,
-    webpack: webpackConfig,
-    webpackMiddleware: {
-      stats: 'errors-only'
-    },
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR ||
     // config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
@@ -21,7 +15,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: './client/app.js'},
+      {pattern: './dist/app.js'},
       {pattern: './node_modules/angular-mocks/angular-mocks.js'},
       {pattern: './node_modules/bardjs/bard.js'},
       {pattern: './node_modules/sinon/pkg/sinon.js'},
@@ -41,7 +35,6 @@ module.exports = function (config) {
       'karma-mocha',
       'karma-read-json',
       'karma-sinon',
-      'karma-webpack',
     ],
 
     proxies: {
@@ -53,7 +46,6 @@ module.exports = function (config) {
     preprocessors: {
       './tests/**/*.js': ['babel'],
       './client/app/**/*.spec.js': ['babel'],
-      './client/app.js': ['webpack']
     },
 
     // test results reporter to use

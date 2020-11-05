@@ -11,8 +11,8 @@ reports/
 ### Project Files ###
 .idea*
 
-### Builds ###
-build
+# test build
+dist/
 
 ### Zanata config ###
 zanata.local.json
