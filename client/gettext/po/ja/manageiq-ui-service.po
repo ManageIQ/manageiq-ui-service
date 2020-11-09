@@ -615,7 +615,7 @@ msgstr "ログイン"
 
 #: ./client/app/states/login/login.state.js:118
 msgid "Login failed, invalid access token."
-msgstr "ログインが失敗しました。無効なアクセス・トークン"
+msgstr "ログインに失敗しました。アクセス・トークンが無効です。"
 
 #: ./client/app/states/login/login.state.js:116
 msgid "Login failed, possibly invalid credentials."
@@ -623,7 +623,7 @@ msgstr "ログインに失敗しました。資格情報が無効である可能
 
 #: ./client/app/states/login/login.state.js:109
 msgid "Login failed."
-msgstr "ログインに失敗し"
+msgstr "ログインに失敗しました。"
 
 #: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
