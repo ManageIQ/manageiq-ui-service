@@ -615,7 +615,7 @@ msgstr "Accesso"
 
 #: ./client/app/states/login/login.state.js:118
 msgid "Login failed, invalid access token."
-msgstr "Accesso non riuscito, token di accesso non valido. "
+msgstr "Accesso non riuscito, token di accesso non valido."
 
 #: ./client/app/states/login/login.state.js:116
 msgid "Login failed, possibly invalid credentials."
@@ -623,7 +623,7 @@ msgstr "Accesso non riuscito, possibili credenziali non valide."
 
 #: ./client/app/states/login/login.state.js:109
 msgid "Login failed."
-msgstr "Accesso non riuscito. "
+msgstr "Accesso non riuscito."
 
 #: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
@@ -1120,7 +1120,7 @@ msgstr "Catalogo servizi"
 #: ./client/app/states/catalogs/details/details.state.js:48
 #: ./client/app/states/services/custom_button_details/custom_button_details.html:3
 msgid "Service Catalogs"
-msgstr "Cataloghi di Servizi"
+msgstr "Cataloghi di servizi"
 
 #: ./client/app/services/service-details/service-details.component.js:30
 #: ./client/app/states/services/details/details.state.js:12
@@ -1460,7 +1460,7 @@ msgstr "Si è verificato un errore durante l'assegnazione di questo servizio."
 
 #: ./client/app/services/resource-details/resource-details.html:103
 msgid "Timeline - Power Events"
-msgstr "Cronologia - Eventi di alimentazione"
+msgstr "Sequenza temporale - Eventi di alimentazione"
 
 #: ./client/app/components/dashboard/dashboard.html:35
 msgid "Total Requests"

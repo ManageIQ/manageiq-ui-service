@@ -615,7 +615,7 @@ msgstr "Inicio de sesión"
 
 #: ./client/app/states/login/login.state.js:118
 msgid "Login failed, invalid access token."
-msgstr "Ha fallado el inicio de sesión, señal de acceso no válida. "
+msgstr "Ha fallado el inicio de sesión, señal de acceso no válida."
 
 #: ./client/app/states/login/login.state.js:116
 msgid "Login failed, possibly invalid credentials."
