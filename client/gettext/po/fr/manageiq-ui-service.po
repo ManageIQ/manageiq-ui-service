@@ -615,7 +615,7 @@ msgstr "Connexion"
 
 #: ./client/app/states/login/login.state.js:118
 msgid "Login failed, invalid access token."
-msgstr "Echec de la connexion. Le jeton d'accès n'est pas valide. "
+msgstr "Echec de la connexion. Le jeton d'accès n'est pas valide."
 
 #: ./client/app/states/login/login.state.js:116
 msgid "Login failed, possibly invalid credentials."

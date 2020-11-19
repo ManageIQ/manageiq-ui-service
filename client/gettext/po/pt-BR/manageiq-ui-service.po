@@ -98,7 +98,7 @@ msgstr "Ativo"
 #: ./client/app/states/catalogs/details/details.html:52
 #: ./client/app/states/catalogs/details/details.html:57
 msgid "Add to Shopping Cart"
-msgstr "Incluir ao carrinho de compras"
+msgstr "Incluir no carrinho de compras"
 
 #: ./client/app/core/navigation/navigation-controller.js:154
 msgid "Administration UI"
@@ -628,7 +628,7 @@ msgstr "Falha de login."
 #: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
 msgid "Logout"
-msgstr "Logoff"
+msgstr "Logout"
 
 #: ./client/app/services/usage-graphs/usage-graphs.service.spec.js:10
 msgid "MHz"
@@ -823,7 +823,7 @@ msgstr "Playbook: [[playbook]]"
 
 #: ./client/app/services/service-details/service-details-ansible.html:138
 msgid "Plays"
-msgstr "Ações"
+msgstr "Reproduzir"
 
 #: ./client/app/services/vms/snapshots.component.js:234
 msgid "Please confirm, this action will delete all snapshots of vm %s"
@@ -1168,7 +1168,7 @@ msgstr "Definir desativação"
 #: ./client/app/services/service-explorer/service-explorer.component.js:262
 #: ./client/app/services/services-state.service.js:183
 msgid "Set Retirement Dates"
-msgstr "Definir datas de desativação"
+msgstr "Configurar datas de desativação"
 
 #: ./client/app/services/ownership-service-modal/ownership-service-modal.html:5
 msgid "Set Service Ownership"
