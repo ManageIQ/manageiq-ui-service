@@ -24,8 +24,8 @@ describe('Event Notifications Service', () => {
       }
     ]
     EventNotifications.batch(events)
-    expect(successSpy).to.have.been.calledOnce
-    expect(failureSpy).to.have.been.calledOnce
+    expect(successSpy).to.have.been.called
+    expect(failureSpy).to.have.been.called
   })
   it('should allow for a message to be displayed for more than 6 notifications', () => {
     const infoSpy = sinon.spy(EventNotifications, 'info')
@@ -40,7 +40,7 @@ describe('Event Notifications Service', () => {
       {success: false, message: 'it fails'}
     ]
     EventNotifications.batch(events)
-    expect(infoSpy).to.have.been.calledOnce
+    expect(infoSpy).to.have.been.called
   })
   it('should allow for warning messages to be created', () => {
     EventNotifications.warn('warning message', {persistent: true})

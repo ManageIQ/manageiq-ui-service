@@ -32,22 +32,22 @@ export function LanguageFactory ($http, $q, $log, $sessionStorage, Session, $win
   }
 
   // returns a list of user's preferred languages, in order
-  function browser () {
+  function browser (navigator = $window.navigator) {
     var ary = []
 
     // the standard
-    if (lodash.isArray($window.navigator.languages)) {
-      ary = lodash.slice($window.navigator.languages)
+    if (lodash.isArray(navigator.languages)) {
+      ary = lodash.slice(navigator.languages)
     }
 
     // IE 11 and older browers
-    if ($window.navigator.language) {
-      ary.push($window.navigator.language)
+    if (navigator.language) {
+      ary.push(navigator.language)
     }
 
     // IE<11
-    if ($window.navigator.userLanguage) {
-      ary.push($window.navigator.userLanguage)
+    if (navigator.userLanguage) {
+      ary.push(navigator.userLanguage)
     }
 
     return lodash.uniq(ary)

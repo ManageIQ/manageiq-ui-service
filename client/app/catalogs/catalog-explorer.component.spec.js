@@ -10,7 +10,7 @@ describe('Catalog explorer component - ', () => {
   })
 
   it('is defined', () => {
-    expect(ctrl).to.be.defined
+    expect(ctrl).to.exist
   })
   it('should set permissions', () => {
     const permissions = ctrl.permissions
@@ -49,6 +49,6 @@ describe('Catalog explorer component - ', () => {
     const catalogSpy = sinon.spy(CatalogsState, 'setSort')
     ctrl.$onInit()
     ctrl.toolbarConfig.sortConfig.onSortChange('name', true)
-    expect(catalogSpy).to.have.been.called.once
+    expect(catalogSpy).to.have.been.called
   })
 })

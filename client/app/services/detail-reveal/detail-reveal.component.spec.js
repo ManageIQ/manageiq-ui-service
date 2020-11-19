@@ -30,7 +30,7 @@ describe('detail-reveal component', () => {
     )
 
     it('is defined, accepts bindings', () => {
-      expect(ctrl).to.be.defined
+      expect(ctrl).to.exist
       expect(ctrl.title).to.equal('Test')
       expect(ctrl.detail).to.equal('test detail')
       expect(ctrl.icon).to.equal('testIconClass')
@@ -63,7 +63,7 @@ describe('detail-reveal component', () => {
     )
 
     it('Component sees transcluded content', () => {
-      expect(ctrl).to.be.defined
+      expect(ctrl).to.exist
       expect(ctrl.hasMoreDetails).to.equal(true)
     })
   })

@@ -16,7 +16,7 @@ describe('Component: languageSwitcher ', function () {
     })
 
     it('is defined', function () {
-      expect(ctrl).to.be.defined
+      expect(ctrl).to.exist;
     })
 
     it('allows for the component to initialize', (done) => {

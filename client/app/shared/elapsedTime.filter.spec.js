@@ -12,7 +12,7 @@ describe('Filter: elapsedTimeFilter', () => {
   }))
 
   it('should exist when invoked', () => {
-    expect(elapsedTimeFilter).to.be.define
+    expect(elapsedTimeFilter).to.exist
   })
 
   it('should correctly display valid time format', () => {

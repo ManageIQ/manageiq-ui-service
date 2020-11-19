@@ -19,6 +19,6 @@ describe('Component: requests-list', () => {
     let element = angular.element(`<requests-list items="items" config="config"/>`)
     element = $compile(element)(scope)
     scope.$digest()
-    expect(element).to.be.defined
+    expect(element).to.exist
   })
 })

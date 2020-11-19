@@ -13,7 +13,7 @@ describe('Component: pagination', () => {
     }))
 
     it('is defined, accepts bindings limit/count/offset', () => {
-      expect(ctrl).to.be.defined
+      expect(ctrl).to.exist
       expect(ctrl.limit).to.equal(5)
       expect(ctrl.count).to.equal(11)
       expect(ctrl.offset).to.equal(0)

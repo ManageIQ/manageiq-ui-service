@@ -15,7 +15,7 @@ describe('Component: processOrderModal', () => {
     }))
 
     it('should be defined', () => {
-      expect(ctrl).to.be.defined
+      expect(ctrl).to.exist
     })
   })
 })

@@ -47,7 +47,7 @@ describe('State: services.reconfigure', () => {
 
     describe('controller initialization', () => {
       it('is created successfully', () => {
-        expect(ctrl).to.be.defined
+        expect(ctrl).to.exist
       })
 
       it('resolves data', (done) => {

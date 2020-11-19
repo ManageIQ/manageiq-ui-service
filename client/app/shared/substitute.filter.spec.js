@@ -12,7 +12,7 @@ describe('Filter: substitute', () => {
   }))
 
   it('should exist when invoked', () => {
-    expect(substituteFilter).to.be.define
+    expect(substituteFilter).to.exist
   })
 
   it('should correctly display valid format', () => {

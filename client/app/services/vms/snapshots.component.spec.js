@@ -22,7 +22,7 @@ describe('Component: snapshots with $componentController', () => {
   )
 
   it('is defined, accepts bindings', () => {
-    expect(ctrl).to.be.defined
+    expect(ctrl).to.exist
     expect(ctrl.vmId).to.equal('1')
   })
 
@@ -31,13 +31,13 @@ describe('Component: snapshots with $componentController', () => {
   })
 
   it('has an onInit()', () => {
-    expect(ctrl.$onInit).to.be.defined
+    expect(ctrl.$onInit).to.exist
   })
 
   it('has a deleteSnapshots()', () => {
     ctrl.deleteSnapshots()
     ctrl.deleteSnapshots('action', {item: 'item'})
-    expect(ctrl.deleteSnapshots()).to.be.defined
+    expect(ctrl.deleteSnapshots()).to.exist
   })
 
   it('can succesfully delete snapshots', (done) => {
@@ -76,7 +76,7 @@ describe('Component: snapshots with $componentController', () => {
     ctrl.revertSnapshot('', 1).then((data) => {
       done()
 
-      expect(notificationsSpy).to.have.been.calledOnce
+      expect(notificationsSpy).to.have.been.called
     })
   })
 
@@ -91,7 +91,7 @@ describe('Component: snapshots with $componentController', () => {
   })
 
   it('has a cancelDelete()', () => {
-    expect(ctrl.cancelDelete()).to.be.defined
+    expect(ctrl.cancelDelete).to.exist
   })
 
   it('can resolve getting a VM', (done) => {

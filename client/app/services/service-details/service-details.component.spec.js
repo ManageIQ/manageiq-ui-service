@@ -56,7 +56,7 @@ describe('Component: ServiceDetails', () => {
 
       const resourceTitles = element.find('.service-details-resource-group-title')
       expect(resourceTitles.length).to.eq(1)
-      expect(resourceTitles[0].innerHTML).to.eq(' Compute (1) ')
+      expect(resourceTitles[0].innerHTML).to.contain('Compute (1)')
 
       const resourceItems = element.find('.service-details-resource-list-container .list-group-item')
       expect(resourceItems.length).to.eq(1)
@@ -69,7 +69,7 @@ describe('Component: ServiceDetails', () => {
 
       const name = angular.element(resourceItems[0]).find('.name-column > span > a > span')
       expect(name.length).to.eq(1)
-      expect(name[0].innerHTML).to.eq(' demo-iot-2 ')
+      expect(name[0].innerHTML).to.contain('demo-iot-2')
     })
 
     it('should have show the correct relationships', () => {
@@ -127,7 +127,7 @@ describe('Component: ServiceDetails', () => {
     })
     it('should be defined', () => {
       ctrl.$onInit()
-      expect(ctrl).to.be.defined
+      expect(ctrl).to.exist
     })
     it('should get a service successfully', (done) => {
       const service = readJSON(mockDir + 'service1.json')
