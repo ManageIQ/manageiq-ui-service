@@ -1569,7 +1569,7 @@ msgstr "Warnung: Die ausgewählten Services und ALLE zugehörigen Komponenten we
 
 #: ./client/app/services/retire-remove-service-modal/retire-remove-service-modal.html:10
 msgid "Warning: The selected Services and ALL of their components will be permanently removed!"
-msgstr "Warnung: Die ausgewählten Services und ALLE zugehörigen Komponenten werden dauerhaft entfernt!"
+msgstr "Warnung: Die ausgewählten Services und ALLE zugehörigen Komponenten werden dauerhaft entfernt."
 
 #: ./client/app/services/service-details/service-details-ansible.html:198
 msgid "Watch Live"
@@ -1652,4 +1652,4 @@ msgstr "wurde entfernt."
 
 #: ./client/app/orders/process-order-modal/process-order-modal.html:9
 msgid "{{ vm.order.name }} and all of its service requests will be permanently removed!"
-msgstr "{{ vm.order.name }} und alle zugehörigen Serviceanforderungen werden dauerhaft entfernt!"
+msgstr "{{ vm.order.name }} und alle zugehörigen Serviceanforderungen werden dauerhaft entfernt."

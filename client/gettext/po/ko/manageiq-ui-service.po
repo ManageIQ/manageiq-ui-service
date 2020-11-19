@@ -623,7 +623,7 @@ msgstr "로그인 실패, 인증 정보가 올바르지 않은 것 같습니다.
 
 #: ./client/app/states/login/login.state.js:109
 msgid "Login failed."
-msgstr "로그인에 실패했습니다. "
+msgstr "로그인에 실패했습니다."
 
 #: ./client/app/layouts/application.html:110
 #: ./client/app/states/logout/logout.state.js:12
@@ -1616,7 +1616,7 @@ msgstr "항목"
 
 #: ./client/app/core/gettext.config.js:23
 msgid "locale_name"
-msgstr "로컬_이름"
+msgstr "한국어"
 
 #: ./client/app/services/vms.service.js:280
 msgid "now?"
