@@ -192,7 +192,6 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      base: '/',
       filename: 'console/webmks.html',
       template: '../client/console/common.ejs',
       chunks: ['console_webmks']
