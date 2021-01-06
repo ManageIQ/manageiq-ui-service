@@ -60,7 +60,7 @@ function ComponentController () {
   }
 
   function initCheckAll () {
-    vm.checkAllState = vm.checkAll.checked || false
+    vm.checkAllState = vm.checkAll && vm.checkAll.checked || false
     vm.lastCheckAllState = vm.checkAllState
   }
 
