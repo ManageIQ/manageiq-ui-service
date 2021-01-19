@@ -16,6 +16,4 @@ notifications:
     on_start: never
 addons:
   chrome: beta
-script:
-- yarn run test
-- node language/travis.js
+script: rake test
