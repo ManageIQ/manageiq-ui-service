@@ -16,4 +16,5 @@ notifications:
     on_start: never
 addons:
   chrome: beta
+install: yarn
 script: rake test
