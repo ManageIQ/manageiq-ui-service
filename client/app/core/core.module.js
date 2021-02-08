@@ -43,7 +43,7 @@ import { SiteSwitcher } from './site-switcher/site-switcher.component.js'
 export const CoreModule = angular
   .module('app.core', [
     'gettext',
-    'miqStaticAssets.dialogUser', // also implies miqStaticAssets.miqSelect
+    'miqStaticAssets.dialogUser', // also implies miqStaticAssets.treeView, miqStaticAssets.treeSelector, miqStaticAssets.miqSelect
     'ngAnimate',
     'ngCookies',
     'ngMessages',
