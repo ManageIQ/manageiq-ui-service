@@ -1,6 +1,6 @@
 import languageFile from '../gettext/json/manageiq-ui-service.json'
 
-module.exports = () => {
+export default function() {
   const urlParams = new URLSearchParams(window.location.search)
 
   const params = ['path', 'is_vcloud', 'vmx', 'lang'].reduce((map, obj) => {
