@@ -1,35 +1,18 @@
-### Bower ###
-bower_components
-.bower-cache
-.bower-registry
-.bower-tmp
-
-### Node Modules ###
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
-node_modules
-
-### NPM Logs ###
+# yarn/npm
+node_modules/
 npm-debug.log
+package-lock.json
 yarn-error.log
+yarn.lock
 
-### Plato Reports ###
-reports/*
-### Temp build directory ###
-.tmp
-
-### Sass cache ###
-.sass-cache
-
-### Bundler ###
-/.bundle/
+# coverage
+reports/
 
 ### Project Files ###
 .idea*
-client/javascripts.html
-client/styles.html
 
-### Builds ###
-build
+# test build
+dist/
 
 ### Zanata config ###
 zanata.local.json

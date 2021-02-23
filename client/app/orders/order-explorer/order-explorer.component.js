@@ -1,10 +1,10 @@
 import '../../../assets/sass/_explorer.sass'
-import templateUrl from './order-explorer.html'
+import template from './order-explorer.html';
 
 export const OrderExplorerComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
-  templateUrl
+  template,
 }
 
 /** @ngInject */

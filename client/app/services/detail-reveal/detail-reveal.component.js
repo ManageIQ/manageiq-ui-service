@@ -1,5 +1,5 @@
 import './_detail-reveal.sass'
-import templateUrl from './detail-reveal.html'
+import template from './detail-reveal.html';
 
 export const DetailRevealComponent = {
   controller: ComponentController,
@@ -13,7 +13,7 @@ export const DetailRevealComponent = {
     displayField: '<?'
   },
   transclude: true,
-  templateUrl
+  template,
 }
 
 /** @ngInject */

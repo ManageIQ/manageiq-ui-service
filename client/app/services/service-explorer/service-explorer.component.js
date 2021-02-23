@@ -1,11 +1,11 @@
 // eslint camelcase: "off"
 import '../../../assets/sass/_explorer.sass'
-import templateUrl from './service-explorer.html'
+import template from './service-explorer.html';
 
 export const ServiceExplorerComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
-  templateUrl
+  template,
 }
 
 /** @ngInject */

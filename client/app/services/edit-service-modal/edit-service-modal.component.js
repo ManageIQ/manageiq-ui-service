@@ -1,4 +1,4 @@
-import templateUrl from './edit-service-modal.html'
+import template from './edit-service-modal.html';
 
 export const EditServiceModalComponent = {
   controller: ComponentController,
@@ -9,7 +9,7 @@ export const EditServiceModalComponent = {
     close: '&',
     dismiss: '&'
   },
-  templateUrl
+  template,
 }
 
 /** @ngInject */

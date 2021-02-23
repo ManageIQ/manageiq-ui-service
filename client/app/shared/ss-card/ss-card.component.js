@@ -1,5 +1,5 @@
 import './_ss-card.sass'
-import templateUrl from './ss-card.html'
+import template from './ss-card.html';
 
 export const SSCardComponent = {
   bindings: {
@@ -9,5 +9,5 @@ export const SSCardComponent = {
     image: '<'
   },
   controllerAs: 'vm',
-  templateUrl
+  template,
 }

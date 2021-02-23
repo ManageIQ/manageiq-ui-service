@@ -28,8 +28,8 @@ module.exports = {
   },
 
   output: {
-    chunkFilename: 'js/[name]-[hash].chunk.js',
-    filename: 'js/[name]-[hash].js',
+    chunkFilename: 'js/[name]-[contenthash].chunk.js',
+    filename: 'js/[name]-[contenthash].js',
     path: dist
   },
 
@@ -58,7 +58,7 @@ module.exports = {
   },
 
   // Output source maps suitable for development
-  devtool: 'cheap-module-inline-source-map',
+  devtool: 'inline-cheap-module-source-map',
 
   module: {
 
@@ -68,12 +68,11 @@ module.exports = {
     // each loaders README for information on their options.
     rules: [
 
-      // html loaders: populate angular's templateCache
+      // html templates
       {
         test: /\.html$/,
         use: [
-          `ngtemplate-loader?relativeTo=${root}/`,
-          `html-loader?attrs=false`,
+          `raw-loader`,
         ],
       },
 
@@ -96,7 +95,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 20480,
-              name: 'styles/[hash].[ext]',
+              name: 'styles/[contenthash].[ext]',
 
               // Determine publicPath dynamically because in production, assets
               // must be relative to `/ui/service/`
@@ -168,7 +167,7 @@ module.exports = {
 
     // Extract 'styles.css' after being processed by loaders into a single bundle
     new MiniCssExtractPlugin({
-      filename: 'styles/[name]-[hash].css',
+      filename: 'styles/[name]-[contenthash].css',
     }),
 
     // Copy all public assets to webpack's processing context
@@ -176,7 +175,7 @@ module.exports = {
       patterns: [
         {from: `${root}/assets`},
         {from: `${root}/gettext`, to: 'gettext'},
-        {from: `${nodeModules}/noVNC`, to: 'vendor/noVNC'},
+        {from: `${nodeModules}/@novnc/novnc`, to: 'vendor/noVNC'},
         {from: `${nodeModules}/spice-html5-bower`, to: 'vendor/spice-html5-bower'},
 
         // Override images with skin replacements if they exist
@@ -208,6 +207,7 @@ module.exports = {
     symlinks: false,
     alias: {
       'bootstrap-select': '@pf3/select',
+      '/version.json': fs.existsSync(`${root}/version/version.json`) ? `${root}/version/version.json` : false,
     },
   },
 

@@ -1,28 +1,24 @@
-import gitHash from '../../version/version.json'
+import gitHash from '/version.json';
 
 /** @ngInject */
-export function ApplianceInfo ($sessionStorage) {
-  let applianceInfo = {}
-
+export function ApplianceInfo($sessionStorage) {
   return {
-    get: get,
-    set: set
+    get,
+    set,
+  };
+
+  function get() {
+    return $sessionStorage.applianceInfo || {};
   }
 
-  function get () {
-    const defaultResponse = {}
-
-    return (angular.isDefined($sessionStorage.applianceInfo) ? $sessionStorage.applianceInfo : defaultResponse)
-  }
-
-  function set (data) {
-    applianceInfo = {
+  function set(data) {
+    $sessionStorage.applianceInfo = {
       copyright: data.product_info.copyright,
       supportWebsiteText: data.product_info.support_website_text,
       supportWebsite: data.product_info.support_website,
       user: data.identity.name,
       role: data.identity.role,
-      suiVersion: gitHash.gitCommit,
+      suiVersion: gitHash && gitHash.gitCommit || '',
       miqVersion: data.server_info.version + '.' + data.server_info.build,
       server: data.server_info.appliance,
       asyncNotify: data.settings.asynchronous_notifications || true,
@@ -30,8 +26,6 @@ export function ApplianceInfo ($sessionStorage) {
       brand: data.product_info.branding_info.brand,
       favicon: data.product_info.branding_info.favicon,
       logo: data.product_info.branding_info.logo,
-    }
-
-    $sessionStorage.applianceInfo = applianceInfo
+    };
   }
 }

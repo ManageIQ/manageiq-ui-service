@@ -1,8 +1,6 @@
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
-
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 
 const config = require('./webpack.dev.js');
@@ -31,8 +29,6 @@ config.plugins.push(
     template: '../client/index.ejs',
     chunks: ['app']
   }),
-
-  new OptimizeCssAssetsWebpackPlugin(),
 
   // Write out dependent modules list for audit purposes
   new StatsWriterPlugin({

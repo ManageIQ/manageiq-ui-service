@@ -17,4 +17,6 @@ notifications:
 addons:
   chrome: beta
 install: yarn
-script: rake test
+script:
+- bin/setup
+- rake test

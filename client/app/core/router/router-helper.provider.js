@@ -79,7 +79,7 @@ export function routerHelperProvider ($locationProvider, $stateProvider, $urlRou
       }
       stateCounts.errors++
       handlingStateChangeError = true
-      destination = (toState && (toState.title ? __(toState.title) : (toState.name || toState.loadedTemplateUrl))) || 'unknown target'
+      destination = (toState && (toState.title ? __(toState.title) : toState.name)) || 'unknown target'
       msg = 'Error routing to ' + destination + '. ' +
         (error.data || '') + '. <br/>' + (error.statusText || '') +
         ': ' + (error.status || '')

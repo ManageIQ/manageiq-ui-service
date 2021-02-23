@@ -1,4 +1,4 @@
-import templateUrl from './details.html'
+import template from './details.html';
 
 /** @ngInject */
 export function CatalogsDetailsState (routerHelper) {
@@ -9,14 +9,14 @@ function getStates () {
   return {
     'catalogs.details': {
       url: '/:serviceTemplateId',
-      templateUrl,
+      template,
       controller: Controller,
       controllerAs: 'vm',
       title: __('Service Template Details')
     },
     'orders.duplicate': {
       url: '/duplicate/:serviceRequestId',
-      templateUrl,
+      template,
       controller: Controller,
       controllerAs: 'vm',
       title: __('Duplicate Service')

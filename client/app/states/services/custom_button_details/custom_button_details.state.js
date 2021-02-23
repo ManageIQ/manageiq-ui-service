@@ -1,4 +1,4 @@
-import templateUrl from './custom_button_details.html'
+import template from './custom_button_details.html';
 
 /** @ngInject */
 export function CustomButtonDetailsState (routerHelper) {
@@ -9,7 +9,7 @@ function getStates () {
   return {
     'services.custom_button_details': {
       url: '/:serviceId/custom_button_details',
-      templateUrl,
+      template,
       controller: StateController,
       controllerAs: 'vm',
       title: __('Custom Button Details'),

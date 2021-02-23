@@ -12,10 +12,9 @@
             on-close="vm.toggleNotificationsList"
             drawer-title="{{'Notifications' | translate}}"
             no-notifications-text="{{'There are no notifications to display.' | translate}}"
-            heading-include="{{vm.headingHTML}}"
-            subheading-include="{{vm.subHeadingHTML}}"
-            notification-body-include="{{vm.notificationHTML}}"
-            notification-footer-include="{{vm.notificationFooterHTML}}"
+            heading-include="{{vm.html.heading}}"
+            notification-body-include="{{vm.html.notificationBody}}"
+            notification-footer-include="{{vm.html.notificationFooter}}"
             custom-scope="vm" >
     </pf-notification-drawer>
 

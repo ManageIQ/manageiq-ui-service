@@ -1,5 +1,5 @@
 import './_shopping-cart.sass'
-import templateUrl from './shopping-cart.html'
+import template from './shopping-cart.html';
 
 export const ShoppingCartComponent = {
   controller: ComponentController,
@@ -7,7 +7,7 @@ export const ShoppingCartComponent = {
   bindings: {
     modalInstance: '<?'
   },
-  templateUrl
+  template,
 }
 
 /** @ngInject */

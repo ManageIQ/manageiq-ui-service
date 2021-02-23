@@ -1,3 +1,5 @@
+const path = require('path')
+
 const config = require('./webpack.dev.js');
 
 config.module.rules.push({
@@ -10,5 +12,8 @@ config.module.rules.push({
     /node_modules/,
   ],
 });
+
+config.output.filename = '[name].js';
+config.output.path = path.resolve(__dirname, '../dist');
 
 module.exports = config;

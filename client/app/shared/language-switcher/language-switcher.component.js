@@ -1,5 +1,5 @@
 import './_language-switcher.sass'
-import templateUrl from './language-switcher.html'
+import template from './language-switcher.html';
 
 /** @ngInject */
 export const LanguageSwitcherComponent = {
@@ -9,7 +9,7 @@ export const LanguageSwitcherComponent = {
     modalInstance: '@?',
     mode: '@?'
   },
-  templateUrl
+  template,
 }
 
   /** @ngInject */

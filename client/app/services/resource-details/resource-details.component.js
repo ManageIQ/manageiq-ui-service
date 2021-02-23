@@ -1,12 +1,12 @@
 /* eslint no-undef: "off" */
 
 import './_resource-details.sass'
-import templateUrl from './resource-details.html'
+import template from './resource-details.html';
 
 export const ResourceDetailsComponent = {
   controller: ComponentController,
   controllerAs: 'vm',
-  templateUrl
+  template,
 }
 
 /** @ngInject */

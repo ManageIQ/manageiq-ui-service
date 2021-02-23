@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-import templateUrl from './service-details-ansible.html'
+import template from './service-details-ansible.html';
 
 export const ServiceDetailsAnsibleComponent = {
   controller: ComponentController,
@@ -7,7 +7,7 @@ export const ServiceDetailsAnsibleComponent = {
   bindings: {
     service: '<'
   },
-  templateUrl
+  template,
 }
 
 /** @ngInject */

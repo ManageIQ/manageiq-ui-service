@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-import templateUrl from './reconfigure.html'
+import template from './reconfigure.html';
 
 /** @ngInject */
 export function ServicesReconfigureState (routerHelper) {
@@ -10,7 +10,7 @@ function getStates () {
   return {
     'services.reconfigure': {
       url: '/:serviceId',
-      templateUrl,
+      template,
       controller: StateController,
       controllerAs: 'vm',
       title: __('Service Details')
