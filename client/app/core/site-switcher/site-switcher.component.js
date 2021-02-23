@@ -1,4 +1,5 @@
 import './_site-switcher.sass';
+import template from './site-switcher.html';
 
 /**
  * @description
@@ -35,7 +36,7 @@ import './_site-switcher.sass';
  * </miq-site-switcher>
  */
 export const SiteSwitcher = {
-  templateUrl: require('./site-switcher.html'),
+  template,
   controllerAs: 'ctrl',
   bindings: {
     sites: '<',

@@ -1,5 +1,5 @@
 import './_confirmation.sass'
-import templateUrl from './confirmation.html'
+import template from './confirmation.html';
 
 /** @ngInject */
 export function ConfirmationDirective ($uibPosition, $window) {
@@ -90,7 +90,7 @@ export function ConfirmationDirective ($uibPosition, $window) {
     const vm = this
 
     var modalOptions = {
-      templateUrl,
+      template,
       scope: $scope
     }
 

@@ -1,7 +1,7 @@
-import templateUrl from './dashboard.html'
+import template from './dashboard.html';
 
 export const DashboardComponent = {
-  templateUrl,
+  template,
   controller: ComponentController,
   controllerAs: 'vm'
 }

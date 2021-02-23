@@ -1,4 +1,4 @@
-import templateUrl from './404.html'
+import template from './404.html';
 
 /** @ngInject */
 export function NotFoundState (routerHelper) {
@@ -11,7 +11,7 @@ function getStates () {
     '404': {
       parent: 'blank',
       url: '/404',
-      templateUrl,
+      template,
       title: '404',
       data: {
         layout: 'blank'

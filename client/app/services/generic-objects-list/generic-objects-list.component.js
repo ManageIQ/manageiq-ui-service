@@ -1,4 +1,4 @@
-import templateUrl from './generic-objects-list.html'
+import template from './generic-objects-list.html';
 import './_generic_objects_list.sass'
 
 export const GenericObjectsListComponent = {
@@ -8,7 +8,7 @@ export const GenericObjectsListComponent = {
     genericObject: '<',
     onUpdate: '&'
   },
-  templateUrl
+  template,
 }
 
 /** @ngInject */

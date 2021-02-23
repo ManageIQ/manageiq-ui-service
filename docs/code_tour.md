@@ -6,9 +6,6 @@ Keep in mind this application undergoes constant development so be sure to check
 #### `yarn build`
 - Bundles SUI assets and places then in `../manageiq/public/ui/service/`.
 
-#### `yarn build:static`
-- Bundles SUI in `/` or the location specifed by the `BUILD_OUTPUT` env var.
-
 #### `yarn available-languages`
 - Compiles a list of languages for which the SUI is currently translated. 
 

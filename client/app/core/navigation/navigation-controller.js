@@ -25,16 +25,14 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       })
     }
   }
-  const destroyNotifications = $scope.$watch(
-    function () {
-      return EventNotifications.state().groups
-    },
-    refreshNotifications, true)
-  const destroyToast = $scope.$watch(
-    function () {
-      return EventNotifications.state().toastNotifications
-    },
-    refreshToast, true)
+
+  const destroyNotifications = $scope.$watch(function() {
+    return EventNotifications.state().groups;
+  }, refreshNotifications, true);
+
+  const destroyToast = $scope.$watch(function() {
+    return EventNotifications.state().toastNotifications;
+  }, refreshToast, true);
 
   const applianceInfo = ApplianceInfo.get()
   $rootScope.favicon = applianceInfo.favicon
@@ -72,10 +70,12 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       items: [],
       notificationsDrawerShown: false,
       newNotifications: false,
-      titleHtml: 'app/components/notifications/drawer-title.html',
-      headingHTML: 'app/components/notifications/heading.html',
-      notificationHTML: 'app/components/notifications/notification-body.html',
-      notificationFooterHTML: 'app/components/notifications/notification-footer.html',
+      html: {
+        // injected into templateCache by navigationInit
+        heading: 'notifications/heading.html',
+        notificationBody: 'notifications/notification-body.html',
+        notificationFooter: 'notifications/notification-footer.html',
+      },
       handleItemClick: handleItemClick,
       toggleNotificationsList: () => { vm.notificationsDrawerShown = !vm.notificationsDrawerShown },
       updateViewingToast: updateViewingToast,
@@ -249,3 +249,10 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     }
   }
 }
+
+/** @ngInject */
+export const navigationInit = function($templateCache) {
+  $templateCache.put('notifications/heading.html', require('../../components/notifications/heading.html'));
+  $templateCache.put('notifications/notification-body.html', require('../../components/notifications/notification-body.html'));
+  $templateCache.put('notifications/notification-footer.html', require('../../components/notifications/notification-footer.html'));
+};

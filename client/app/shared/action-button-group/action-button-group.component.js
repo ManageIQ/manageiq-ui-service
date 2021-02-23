@@ -1,4 +1,4 @@
-import templateUrl from './action-button-group.html'
+import template from './action-button-group.html';
 
 export const ActionButtonGroupComponent = {
   controller: ComponentController,
@@ -17,7 +17,7 @@ export const ActionButtonGroupComponent = {
     onOk: '&',
     onCustomButton: '&'
   },
-  templateUrl
+  template,
 }
 
 /** @ngInject */

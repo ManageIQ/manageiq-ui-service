@@ -132,7 +132,7 @@ export function authInit ($rootScope, $state, $log, Session, $localStorage, Lang
 
   function changeError (event, toState, _toParams, _fromState, _fromParams, error) {
     // If a 401 is encountered during a state change, then kick the user back to the login
-    if (401 || error.status === 403) {
+    if ([401, 403].includes(error.status)) {
       event.preventDefault()
       if (Session.active()) {
         $state.transitionTo('logout')

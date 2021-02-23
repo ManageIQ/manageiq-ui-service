@@ -1,10 +1,10 @@
-import templateUrl from './requests-list.html'
+import template from './requests-list.html';
 
 export const RequestsListComponent = {
   bindings: {
     'items': '<',
     'config': '<?'
   },
-  templateUrl,
+  template,
   controllerAs: 'vm'
 }

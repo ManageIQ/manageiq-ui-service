@@ -1,4 +1,4 @@
-import templateUrl from './help.html'
+import template from './help.html';
 
 /** @ngInject */
 export function HelpState (routerHelper) {
@@ -10,7 +10,7 @@ function getStates () {
     'help': {
       parent: 'application',
       url: '/',
-      templateUrl,
+      template,
       controller: StateController,
       controllerAs: 'vm',
       title: N_('Help')

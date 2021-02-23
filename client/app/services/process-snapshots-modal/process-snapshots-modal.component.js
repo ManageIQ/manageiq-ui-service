@@ -1,4 +1,4 @@
-import templateUrl from './process-snapshots-modal.html'
+import template from './process-snapshots-modal.html';
 
 export const ProcessSnapshotsModalComponent = {
   controller: ComponentController,
@@ -9,7 +9,7 @@ export const ProcessSnapshotsModalComponent = {
     close: '&',
     dismiss: '&'
   },
-  templateUrl
+  template,
 }
 
 /** @ngInject */

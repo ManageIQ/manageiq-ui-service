@@ -1,7 +1,7 @@
 import './_custom-button.sass'
 import './_custom-button-menu.sass'
-import templateInline from './custom-button.html'
-import templateMenu from './custom-button-menu.html'
+import templateInline from './custom-button.html';
+import templateMenu from './custom-button-menu.html';
 
 const base = {
   bindings: {
@@ -15,11 +15,11 @@ const base = {
 }
 
 export const CustomButtonComponent = Object.assign({}, base, {
-  templateUrl: templateInline,
+  template: templateInline,
 })
 
 export const CustomButtonMenuComponent = Object.assign({}, base, {
-  templateUrl: templateMenu,
+  template: templateMenu,
 })
 
 /** @ngInject */

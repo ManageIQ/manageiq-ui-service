@@ -1,4 +1,4 @@
-import templateUrl from './save-modal-dialog.html'
+import template from './save-modal-dialog.html';
 
 /** @ngInject */
 export function SaveModalDialogFactory ($uibModal) {
@@ -10,7 +10,7 @@ export function SaveModalDialogFactory ($uibModal) {
 
   function showModal (saveCallback, cancelCallback, okToSave) {
     var modalOptions = {
-      templateUrl,
+      template,
       controller: SaveModalDialogController,
       controllerAs: 'vm',
       resolve: {
