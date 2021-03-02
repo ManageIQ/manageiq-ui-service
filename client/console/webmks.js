@@ -3,7 +3,7 @@ require('jquery-ui-bundle')
 require('es6-shim')
 require('patternfly/dist/css/patternfly.css')
 require('patternfly/dist/css/patternfly-additions.css')
-let initRemoteConsole = require('./common')
+let initRemoteConsole = require('./common').default;
 
 /* global WMKS */
 
