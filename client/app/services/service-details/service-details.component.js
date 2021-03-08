@@ -10,9 +10,7 @@ export const ServiceDetailsComponent = {
 }
 
 /** @ngInject */
-function ComponentController ($stateParams, $state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles,
-                              TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash,
-                              Polling, LONG_POLLING_INTERVAL) {
+function ComponentController ($stateParams, $state, $window, CollectionsApi, EventNotifications, Chargeback, Consoles, TagEditorModal, ModalService, PowerOperations, ServicesState, TaggingService, lodash, Polling, LONG_POLLING_INTERVAL, VmPower) {
   const vm = this
   vm.$onInit = activate
   vm.$onDestroy = onDestroy
@@ -401,27 +399,27 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
     $state.go('services.resource-details', {serviceId: vm.serviceId, vmId: resource.id})
   }
 
-  function startVM (item, isDisabled) {
+  function startVM (vm, isDisabled) {
     if (!isDisabled) {
-      PowerOperations.startVm(item)
+      VmPower.do.start(vm)
     }
   }
 
-  function stopVM (item, isDisabled) {
+  function stopVM (vm, isDisabled) {
     if (!isDisabled) {
-      PowerOperations.stopVm(item)
+      VmPower.do.stop(vm)
     }
   }
 
-  function suspendVM (item, isDisabled) {
+  function suspendVM (vm, isDisabled) {
     if (!isDisabled) {
-      PowerOperations.suspendVm(item)
+      VmPower.do.suspend(vm)
     }
   }
 
-  function retireVM (item, isDisabled) {
+  function retireVM (vm, isDisabled) {
     if (!isDisabled) {
-      PowerOperations.retireVM(item)
+      VmPower.do.retire(vm)
     }
   }
 

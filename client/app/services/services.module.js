@@ -5,8 +5,8 @@ import { EditServiceModalComponent } from './edit-service-modal/edit-service-mod
 import { GenericObjectsListComponent } from './generic-objects-list/generic-objects-list.component.js'
 import { OwnershipServiceModalComponent } from './ownership-service-modal/ownership-service-modal.component.js'
 import { PowerOperationsFactory } from './poweroperations.service.js'
-import { ResourceDetailsComponent } from './resource-details/resource-details.component'
 import { ProcessSnapshotsModalComponent } from './process-snapshots-modal/process-snapshots-modal.component'
+import { ResourceDetailsComponent } from './resource-details/resource-details.component'
 import { RetireRemoveServiceModalComponent } from './retire-remove-service-modal/retire-remove-service-modal.component.js'
 import { RetireServiceModalComponent } from './retire-service-modal/retire-service-modal.component.js'
 import { ServiceDetailsAnsibleComponent } from './service-details/service-details-ansible.component'
@@ -17,6 +17,7 @@ import { ServicesStateFactory } from './services-state.service.js'
 import { SharedModule } from '../shared/shared.module.js'
 import { UsageGraphsComponent } from './usage-graphs/usage-graphs.component.js'
 import { UsageGraphsFactory } from './usage-graphs/usage-graphs.service.js'
+import { VmPowerFactory } from './vm-power.service.js'
 import { VmSnapshotsComponent } from './vms/snapshots.component'
 import { VmsService } from './vms.service.js'
 
@@ -44,5 +45,6 @@ export const ServicesModule = angular
   .factory('PowerOperations', PowerOperationsFactory)
   .factory('ServicesState', ServicesStateFactory)
   .factory('UsageGraphsService', UsageGraphsFactory)
+  .factory('VmPower', VmPowerFactory)
   .factory('VmsService', VmsService)
   .name
