@@ -40,7 +40,7 @@ msgstr "%s foi desativado."
 
 #: ./client/app/services/poweroperations.service.js:170
 msgid "%s was started."
-msgstr "O %s foi\niniciado."
+msgstr "O %s foi iniciado."
 
 #: ./client/app/services/poweroperations.service.js:173
 msgid "%s was stopped."
