@@ -100,7 +100,7 @@ export function ConsolesFactory ($window, CollectionsApi, $timeout, $location, E
   }
 
   function openVnc (results) {
-    var url = '/ui/service/vendor/noVNC/vnc_auto.html' +
+    var url = '/ui/service/vendor/noVNC/vnc_lite.html' +
       '?host=' + $location.host() +
       '&port=' + $location.port() +
       '&path=' + results.url +
