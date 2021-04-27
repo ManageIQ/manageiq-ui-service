@@ -7,6 +7,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+// To download the noVNC viewer
+const SaveRemoteFilePlugin = require('save-remote-file-webpack-plugin')
+const execSync = require('child_process').execSync
+
 const root = path.resolve(__dirname, '../client')
 const outputPath = process.env.BUILD_OUTPUT || '../../manageiq/public/ui/service'
 const dist = path.resolve(__dirname, outputPath)
@@ -181,6 +185,14 @@ module.exports = {
         // Override images with skin replacements if they exist
         hasSkinImages && {from: `${root}/skin/images`, to: 'images', force: true},
       ].filter((x) => !!x),
+    }),
+
+    // noVNC doesn't package the vnc_lite viewer that we need, so we have to
+    // fetch it separately.
+    new SaveRemoteFilePlugin({
+      url: `https://raw.githubusercontent.com/novnc/noVNC/v${execSync(`yarn list --silent --pattern @novnc/novnc | cut -d '@' -f 3 | tr -d '\n'`, {encoding: 'utf-8'})}/vnc_lite.html`,
+      filepath: 'vendor/noVNC/vnc_lite.html',
+      hash: false
     }),
 
     // Generate index.html from template with script/link tags for bundles
