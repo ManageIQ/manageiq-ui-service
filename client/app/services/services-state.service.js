@@ -138,7 +138,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
       retire: RBAC.has(RBAC.FEATURES.SERVICES.RETIRE.RETIRE_NOW),
       setRetireDate: RBAC.has(RBAC.FEATURES.SERVICES.RETIRE.SET_DATE),
       editTags: RBAC.has(RBAC.FEATURES.SERVICES.TAGS),
-      viewAnsible: RBAC.hasAny(['configuration_script_view', 'configuration_scripts_accord']),
+      viewAnsible: RBAC.hasAny(['service_view']),
       serviceStart: RBAC.has(RBAC.FEATURES.SERVICES.START),
       serviceStop: RBAC.has(RBAC.FEATURES.SERVICES.STOP),
       serviceSuspend: RBAC.has(RBAC.FEATURES.SERVICES.SUSPEND),
