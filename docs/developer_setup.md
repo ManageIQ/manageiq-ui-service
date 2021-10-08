@@ -38,19 +38,6 @@ yarn
 - If you already have `manageiq` core running on port `:3000` you can verify that the build worked correctly by visiting:
 	[http://localhost:3000/ui/service/login](http://localhost:3000/ui/service/)
 
-### Zanata setup
-
-- To upload our download files to Zanata you need create a file in the root of the project named zanata.local.json
-    ```
-    {
-        "apiKey":"",
-        "project":"",
-        "version":"",
-        "user":""
-    }
-    ```
-- Optionally you can set up these same variables as bash environment variables instead.
-
 ### Development
 
 - From the `manageiq` directory, start the ManageIQ application to initiate the server listening on

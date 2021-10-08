@@ -49,7 +49,7 @@ msgstr ""
 msgid "%s was suspended."
 msgstr ""
 
-#: ./client/app/layouts/application.html:88
+#: ./client/app/layouts/application.html:87
 msgid "(Current Group)"
 msgstr ""
 
@@ -77,7 +77,7 @@ msgstr ""
 msgid "4 Weeks"
 msgstr ""
 
-#: ./client/app/layouts/application.html:65
+#: ./client/app/layouts/application.html:64
 msgid "About"
 msgstr ""
 
@@ -184,11 +184,11 @@ msgstr ""
 msgid "Catalogs"
 msgstr ""
 
-#: ./client/app/layouts/application.html:80
+#: ./client/app/layouts/application.html:79
 msgid "Change Group:"
 msgstr ""
 
-#: ./client/app/layouts/application.html:92
+#: ./client/app/layouts/application.html:91
 msgid "Change to this Group"
 msgstr ""
 
@@ -290,7 +290,7 @@ msgstr ""
 msgid "Credentials"
 msgstr ""
 
-#: ./client/app/layouts/application.html:100
+#: ./client/app/layouts/application.html:99
 msgid "Current Group"
 msgstr ""
 
@@ -298,7 +298,7 @@ msgstr ""
 msgid "Current Services"
 msgstr ""
 
-#: ./client/app/layouts/application.html:86
+#: ./client/app/layouts/application.html:85
 msgid "Currently Selected Group"
 msgstr ""
 
@@ -375,7 +375,7 @@ msgstr ""
 msgid "Disk Usage"
 msgstr ""
 
-#: ./client/app/layouts/application.html:55
+#: ./client/app/layouts/application.html:54
 msgid "Documentation"
 msgstr ""
 
@@ -624,7 +624,7 @@ msgstr ""
 msgid "Login failed."
 msgstr ""
 
-#: ./client/app/layouts/application.html:110
+#: ./client/app/layouts/application.html:109
 #: ./client/app/states/logout/logout.state.js:12
 msgid "Logout"
 msgstr ""
@@ -1181,7 +1181,7 @@ msgstr ""
 msgid "Shopping Cart"
 msgstr ""
 
-#: ./client/app/layouts/application.html:31
+#: ./client/app/layouts/application.html:30
 msgid "Shopping cart"
 msgstr ""
 

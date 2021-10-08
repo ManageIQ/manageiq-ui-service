@@ -20,5 +20,5 @@ addons:
 install: yarn
 script:
 - bin/setup
-- rake test
+- yarn run test
 dist: bionic
