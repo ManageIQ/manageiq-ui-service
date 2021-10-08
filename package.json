@@ -26,7 +26,7 @@
     "test:watch": "karma start --auto-watch --no-single-run",
     "update": "jq -r '.dependencies|keys|join(\"\n\")'  package.json | grep -v patternfly-timeline | xargs yarn add",
     "update-dev": "jq -r '.devDependencies|keys|join(\"\n\")'  package.json | xargs yarn add -D",
-    "vet": "eslint . && sass-lint --verbose --no-exit"
+    "vet": "NODE_OPTIONS=--max-old-space-size=8192 yarn run eslint . && yarn run sass-lint --verbose --no-exit"
   },
   "dependencies": {
     "@manageiq/font-fabulous": "~1.0.5",
