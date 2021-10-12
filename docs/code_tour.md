@@ -26,12 +26,6 @@ SUI is only bundled at the beginning of this task, subsequent runs only bundles 
 #### `yarn vet`
 - **ESLint** and **Sass Lint** are both run with this script, this is automatically run by travis upon the creation of a pr.
 
-#### `yarn zanata:upload`
-- This uploads our extracted .POT file to the zanata platform so it can be translated.
-
-#### `yarn zanata:download`
-- This downloads the translated .po files from the zanata platform so they can be integrated.
-
 ## Style and Convention
 For additional information regarding coding style and convention employed in this project checkout:
 

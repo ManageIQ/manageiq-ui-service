@@ -17,18 +17,16 @@
     "build:test": "webpack --bail --progress --config config/webpack.testing.js",
     "gettext:compile": "angular-gettext-cli --compile --files './client/gettext/po/**/*.po' --dest 'client/gettext/json/manageiq-ui-service.json' --format json && yarn available-languages && yarn gettext:validate-language-codes",
     "gettext:extract": "angular-gettext-cli --files './client/**/*.+(js|html)' --exclude '**/*.+spec.js' --dest './client/gettext/po/manageiq-ui-service.pot' --marker-names '__,N_'",
-    "gettext:validate": "node language/validate.js",
-    "gettext:validate-language-codes": "node language/validate-language-codes.js",
+    "gettext:validate": "yarn node language/validate.js",
+    "gettext:validate-language-codes": "yarn node language/validate-language-codes.js",
     "start": "webpack serve --progress --config config/webpack.dev.js",
     "t": "yarn run build:test && yarn run test:karma",
-    "test": "yarn run vet && yarn run gettext:extract && yarn run gettext:validate && yarn run t",
+    "test": "yarn run vet && yarn run gettext:extract && yarn run gettext:validate && yarn run gettext:validate-language-codes && yarn run t",
     "test:karma": "karma start karma.conf.js --single-run",
     "test:watch": "karma start --auto-watch --no-single-run",
     "update": "jq -r '.dependencies|keys|join(\"\n\")'  package.json | grep -v patternfly-timeline | xargs yarn add",
     "update-dev": "jq -r '.devDependencies|keys|join(\"\n\")'  package.json | xargs yarn add -D",
-    "vet": "eslint . && sass-lint --verbose --no-exit",
-    "zanata:download": "node language/index.js download",
-    "zanata:upload": "yarn gettext:extract && yarn gettext:compile && node language/index.js upload"
+    "vet": "NODE_OPTIONS=--max-old-space-size=8192 yarn run eslint . && yarn run sass-lint --verbose --no-exit"
   },
   "dependencies": {
     "@manageiq/font-fabulous": "~1.0.5",
