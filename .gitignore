@@ -1,9 +1,16 @@
 # yarn/npm
-node_modules/
 npm-debug.log
 package-lock.json
 yarn-error.log
-yarn.lock
+
+/node_modules/
+/.pnp.*
+/.yarn/*
+!/.yarn/patches
+!/.yarn/plugins
+!/.yarn/releases
+!/.yarn/sdks
+!/.yarn/versions
 
 # coverage
 reports/

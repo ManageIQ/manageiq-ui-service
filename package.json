@@ -21,7 +21,7 @@
     "gettext:validate-language-codes": "yarn node language/validate-language-codes.js",
     "start": "webpack serve --progress --config config/webpack.dev.js",
     "t": "yarn run build:test && yarn run test:karma",
-    "test": "yarn run vet && yarn run gettext:extract && yarn run gettext:validate && yarn run gettext:validate-language-codes && yarn run t",
+    "test": "yarn run gettext:extract && yarn run gettext:validate && yarn run gettext:validate-language-codes && yarn run t",
     "test:karma": "karma start karma.conf.js --single-run",
     "test:watch": "karma start --auto-watch --no-single-run",
     "update": "jq -r '.dependencies|keys|join(\"\n\")'  package.json | grep -v patternfly-timeline | xargs yarn add",
@@ -134,7 +134,7 @@
   ],
   "engines": {
     "node": ">= 12.0.0",
-    "npm": ">= 6.0.0",
-    "yarn": ">= 1.0.0"
-  }
+    "npm": ">= 6.0.0"
+  },
+  "packageManager": "yarn@3.0.2"
 }
