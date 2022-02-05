@@ -1,0 +1,23 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 12
+        cache: yarn
+        registry-url: https://npm.manageiq.org/
+    - name: Prepare tests
+      run: bin/setup
+    - name: Run tests
+      run: yarn run test
+    - name: Report code coverage
+      if: ${{ github.ref == 'refs/heads/master' }}
+      continue-on-error: true
+      run: cat reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
