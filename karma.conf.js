@@ -5,13 +5,21 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
     colors: true,
     autoWatch: true,
-    browsers: ['ChromeHeadless'],
     singleRun: false,
     concurrency: Infinity,
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR ||
     // config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
+
+    // Run chrome with --no-sandbox because in ACT we don't have sudo access
+    browsers: ['CustomChromeHeadless'],
+    customLaunchers: {
+      CustomChromeHeadless: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
 
     // list of files / patterns to load in the browser
     files: [
