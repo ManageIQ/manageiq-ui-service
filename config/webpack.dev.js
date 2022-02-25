@@ -190,7 +190,13 @@ module.exports = {
     // noVNC doesn't package the vnc_lite viewer that we need, so we have to
     // fetch it separately.
     new SaveRemoteFilePlugin({
-      url: `https://raw.githubusercontent.com/novnc/noVNC/v${execSync(`yarn info --name-only @novnc/novnc | cut -d ':' -f 2 | tr -d '\n'`, {encoding: 'utf-8'})}/vnc_lite.html`,
+      // HACK: Temporarily hardcoded the version number for @novnc/novnc, because
+      //       the following, which works locally, does not work for some reason
+      //       in CI.  Any changes to package.json for this package will also
+      //       need to be changed here.
+      // url: `https://raw.githubusercontent.com/novnc/noVNC/v${execSync(`yarn info --name-only @novnc/novnc | cut -d ':' -f 2 | tr -d '\n'`, {encoding: 'utf-8'})}/vnc_lite.html`,
+      url: `https://raw.githubusercontent.com/novnc/noVNC/v1.2.0/vnc_lite.html`,
+
       filepath: 'vendor/noVNC/vnc_lite.html',
       hash: false
     }),
