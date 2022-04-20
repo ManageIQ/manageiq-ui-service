@@ -1,5 +1,5 @@
 <div class="layout-application" ng-controller="NavigationController as vm">
-  <pf-vertical-navigation items="vm.items" brand-src="{{vm.applianceInfo.brand}}" brand-alt="{{ vm.applianceInfo.nameFull }}"
+  <pf-vertical-navigation items="vm.items" brand-alt="{{ vm.applianceInfo.nameFull }}"
        update-active-items-on-click="true"
        pinnable-menus="true" item-click-callback="vm.handleItemClick" show-badges="true">
     <pf-toast-notification-list notifications="vm.toastNotifications" show-close="true"
