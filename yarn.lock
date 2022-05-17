@@ -9529,7 +9529,7 @@ fsevents@~2.3.2:
     postcss-loader: ~4.0.4
     raw-loader: ~4.0.2
     resolve-url-loader: ~3.1.2
-    sass: ~1.29.0
+    sass: ~1.34.0
     sass-lint: ~1.13.1
     sass-loader: ^11.1.1
     save-remote-file-webpack-plugin: ^1.1.0
@@ -12306,14 +12306,14 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"sass@npm:~1.29.0":
-  version: 1.29.0
-  resolution: "sass@npm:1.29.0"
+"sass@npm:~1.34.0":
+  version: 1.34.1
+  resolution: "sass@npm:1.34.1"
   dependencies:
-    chokidar: ">=2.0.0 <4.0.0"
+    chokidar: ">=3.0.0 <4.0.0"
   bin:
     sass: sass.js
-  checksum: 9068b66e3143eb60bfb34b30391686c34796036f3856f6c6998d5f5eedd464c6db2a70ead71327d28485f8834301c93943528d2a8099b4c5636f03977c80034e
+  checksum: 97b3816ab1bf8f59421b61ce84e4c45ad9c59890f960bdd7a23bc5058283070252dcc23f19559c12121c18d6da0b4cd2fddedb6ffe8f2509aad20662fd9ca087
   languageName: node
   linkType: hard
 
