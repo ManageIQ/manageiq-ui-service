@@ -3619,9 +3619,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:>=2.0.0 <4.0.0":
-  version: 3.5.2
-  resolution: "chokidar@npm:3.5.2"
+"chokidar@npm:>=3.0.0 <4.0.0, chokidar@npm:^3.5.1":
+  version: 3.5.3
+  resolution: "chokidar@npm:3.5.3"
   dependencies:
     anymatch: ~3.1.2
     braces: ~3.0.2
@@ -3634,7 +3634,7 @@ __metadata:
   dependenciesMeta:
     fsevents:
       optional: true
-  checksum: d1fda32fcd67d9f6170a8468ad2630a3c6194949c9db3f6a91b16478c328b2800f433fb5d2592511b6cb145a47c013ea1cce60b432b1a001ae3ee978a8bffc2d
+  checksum: b49fcde40176ba007ff361b198a2d35df60d9bb2a5aab228279eb810feae9294a6b4649ab15981304447afe1e6ffbf4788ad5db77235dc770ab777c6e771980c
   languageName: node
   linkType: hard
 
@@ -3658,25 +3658,6 @@ __metadata:
     fsevents:
       optional: true
   checksum: 0c43e89cbf0268ef1e1f41ce8ec5233c7ba022c6f3282c2ef6530e351d42396d389a1148c5a040f291cf1f4083a4c6b2f51dad3f31c726442ea9a337de316bcf
-  languageName: node
-  linkType: hard
-
-"chokidar@npm:^3.5.1":
-  version: 3.5.3
-  resolution: "chokidar@npm:3.5.3"
-  dependencies:
-    anymatch: ~3.1.2
-    braces: ~3.0.2
-    fsevents: ~2.3.2
-    glob-parent: ~5.1.2
-    is-binary-path: ~2.1.0
-    is-glob: ~4.0.1
-    normalize-path: ~3.0.0
-    readdirp: ~3.6.0
-  dependenciesMeta:
-    fsevents:
-      optional: true
-  checksum: b49fcde40176ba007ff361b198a2d35df60d9bb2a5aab228279eb810feae9294a6b4649ab15981304447afe1e6ffbf4788ad5db77235dc770ab777c6e771980c
   languageName: node
   linkType: hard
 
@@ -9529,7 +9510,7 @@ fsevents@~2.3.2:
     postcss-loader: ~4.0.4
     raw-loader: ~4.0.2
     resolve-url-loader: ~3.1.2
-    sass: ~1.29.0
+    sass: ~1.34.0
     sass-lint: ~1.13.1
     sass-loader: ^11.1.1
     save-remote-file-webpack-plugin: ^1.1.0
@@ -12306,14 +12287,14 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"sass@npm:~1.29.0":
-  version: 1.29.0
-  resolution: "sass@npm:1.29.0"
+"sass@npm:~1.34.0":
+  version: 1.34.1
+  resolution: "sass@npm:1.34.1"
   dependencies:
-    chokidar: ">=2.0.0 <4.0.0"
+    chokidar: ">=3.0.0 <4.0.0"
   bin:
     sass: sass.js
-  checksum: 9068b66e3143eb60bfb34b30391686c34796036f3856f6c6998d5f5eedd464c6db2a70ead71327d28485f8834301c93943528d2a8099b4c5636f03977c80034e
+  checksum: 97b3816ab1bf8f59421b61ce84e4c45ad9c59890f960bdd7a23bc5058283070252dcc23f19559c12121c18d6da0b4cd2fddedb6ffe8f2509aad20662fd9ca087
   languageName: node
   linkType: hard
 
