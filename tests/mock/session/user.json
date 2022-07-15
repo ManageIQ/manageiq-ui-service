@@ -3010,16 +3010,11 @@
                 "name": "View",
                 "description": "View Containers Providers",
                 "children": [
-                    "ems_container_ad_hoc_metrics",
                     "ems_container_show_list",
                     "ems_container_show",
                     "ems_container_timeline",
                     "ems_container_perf"
                 ]
-            },
-            "ems_container_ad_hoc_metrics": {
-                "name": "Ad hoc Metrics",
-                "description": "Show Ad hoc Metrics of Providers"
             },
             "ems_container_show_list": {
                 "name": "List",
