@@ -126,7 +126,7 @@
     "url-loader": "~4.1.1",
     "webpack": "~5.4.0",
     "webpack-cli": "~4.9.0",
-    "webpack-dev-server": "~3.11.0",
+    "webpack-dev-server": "~3.11.3",
     "webpack-stats-plugin": "~1.0.2"
   },
   "browserslist": [
@@ -141,6 +141,7 @@
   "resolutions": {
     "terser": "~4.8.1",
     "socket.io-parser": "~4.0.5",
-    "decode-uri-component": "^0.2.2"
+    "decode-uri-component": "^0.2.2",
+    "express": "^4.18.2"
   }
 }
