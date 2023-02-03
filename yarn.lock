@@ -8993,9 +8993,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"karma@npm:~6.3.20":
-  version: 6.3.20
-  resolution: "karma@npm:6.3.20"
+"karma@npm:~6.4.1":
+  version: 6.4.1
+  resolution: "karma@npm:6.4.1"
   dependencies:
     "@colors/colors": 1.5.0
     body-parser: ^1.19.0
@@ -9023,7 +9023,7 @@ fsevents@~2.3.2:
     yargs: ^16.1.1
   bin:
     karma: bin/karma
-  checksum: 7060afc367c49b2ce2e145f6555c428eadfd72bd68a5d4ae392ec51c8d1c0484706fdd52cfd06d69a811c25517fd5129689a69173be850814dc68c3b7eafa6c8
+  checksum: e2dc2d9d4d28e0a27a5cf095ad42ddd8088f26d7c949bb6b24a35bf6ae1591d5d57c238ac5e16166056bcacb8e266bcdab8d71bd80a9ce8e7a2092559b348d4b
   languageName: node
   linkType: hard
 
@@ -9550,7 +9550,7 @@ fsevents@~2.3.2:
     html-webpack-plugin: ~4.5.0
     jquery: ~3.5.1
     jquery-ui-bundle: ~1.12.1-migrate
-    karma: ~6.3.20
+    karma: ~6.4.1
     karma-babel-preprocessor: ~8.0.1
     karma-chai: ~0.1.0
     karma-chai-sinon: ~0.1.5
