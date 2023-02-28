@@ -125,7 +125,7 @@
     "style-loader": "~2.0.0",
     "url-loader": "~4.1.1",
     "webpack": "~5.4.0",
-    "webpack-cli": "~4.9.0",
+    "webpack-cli": "~4.10.0",
     "webpack-dev-server": "~3.11.3",
     "webpack-stats-plugin": "~1.0.2"
   },
