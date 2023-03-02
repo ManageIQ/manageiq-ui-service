@@ -139,10 +139,6 @@
   },
   "packageManager": "yarn@3.0.2",
   "resolutions": {
-    "decode-uri-component": "^0.2.2",
-    "express": "^4.18.2",
-    "socket.io-parser": "~4.0.5",
-    "terser": "~4.8.1",
     "moment": "~2.29.4",
     "moment-timezone": "^0.5.41"
   }
