@@ -10200,24 +10200,10 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"moment@npm:^2.10, moment@npm:^2.19.1, moment@npm:^2.29.4, moment@npm:~2.29.4":
+"moment@npm:~2.29.4":
   version: 2.29.4
   resolution: "moment@npm:2.29.4"
   checksum: 0ec3f9c2bcba38dc2451b1daed5daded747f17610b92427bebe1d08d48d8b7bdd8d9197500b072d14e326dd0ccf3e326b9e3d07c5895d3d49e39b6803b76e80e
-  languageName: node
-  linkType: hard
-
-"moment@npm:~2.14.1":
-  version: 2.14.1
-  resolution: "moment@npm:2.14.1"
-  checksum: fc92184f389c326399395e190895a69e448f2b3f36bd4c29e1886d46bcd7d639e5a7ff799f0d3946c991920797eeeccfcb06243924ceeb6deb88fad315e443f7
-  languageName: node
-  linkType: hard
-
-"moment@npm:~2.24.0":
-  version: 2.24.0
-  resolution: "moment@npm:2.24.0"
-  checksum: 9cd93a251a2b33cb1b532eade0e496a2a7547faa6cfe37a283ee7bf69e202cd7c8ab0673d66883b5b29aed051353176dc0e6684f04073a75b0a155c500be1580
   languageName: node
   linkType: hard
 
