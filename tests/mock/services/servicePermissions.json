@@ -12,7 +12,6 @@
 "instanceStop": true,
 "instanceSuspend": true,
 "instanceRetire": true,
-"cockpit": true,
 "console": true,
 "viewSnapshots": true,
 "vm_snapshot_show_list": true,

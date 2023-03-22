@@ -86,7 +86,7 @@ msgstr ""
 msgid "About Me"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:296
+#: ./client/app/services/service-details/service-details.html:300
 msgid "Access"
 msgstr ""
 
@@ -142,7 +142,7 @@ msgstr ""
 msgid "Are you sure you would like to clear all [[heading]]?"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:355
+#: ./client/app/services/service-details/service-details.html:358
 msgid "Are you sure you would like to retire this resource?"
 msgstr ""
 
@@ -218,7 +218,7 @@ msgstr ""
 msgid "Completed:"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.component.js:371
+#: ./client/app/services/service-details/service-details.component.js:370
 msgid "Compute"
 msgstr ""
 
@@ -690,6 +690,10 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
+#: ./client/app/services/service-details/service-details.html:327
+msgid "Native Console"
+msgstr ""
+
 #: ./client/app/services/resource-details/resource-details.component.js:47
 msgid "Never"
 msgstr ""
@@ -792,11 +796,11 @@ msgstr ""
 msgid "Owner"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:418
+#: ./client/app/services/service-details/service-details.html:421
 msgid "Parent Catalog Item"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:409
+#: ./client/app/services/service-details/service-details.html:412
 msgid "Parent Service"
 msgstr ""
 
@@ -842,8 +846,8 @@ msgid "Power"
 msgstr ""
 
 #: ./client/app/services/resource-details/resource-details.component.js:383
-#: ./client/app/services/service-details/service-details.component.js:167
-#: ./client/app/services/service-details/service-details.component.js:172
+#: ./client/app/services/service-details/service-details.component.js:166
+#: ./client/app/services/service-details/service-details.component.js:171
 msgid "Power Operations"
 msgstr ""
 
@@ -870,12 +874,12 @@ msgstr ""
 msgid "Properties"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.component.js:221
+#: ./client/app/services/service-details/service-details.component.js:220
 #: ./client/app/states/services/reconfigure/reconfigure.html:8
 msgid "Reconfigure"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.component.js:223
+#: ./client/app/services/service-details/service-details.component.js:222
 msgid "Reconfigure the Service"
 msgstr ""
 
@@ -883,7 +887,7 @@ msgstr ""
 msgid "Reconfigure this service has been cancelled"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:400
+#: ./client/app/services/service-details/service-details.html:403
 msgid "Relationships"
 msgstr ""
 
@@ -972,8 +976,8 @@ msgid "Results"
 msgstr ""
 
 #: ./client/app/services/resource-details/resource-details.component.js:417
-#: ./client/app/services/service-details/service-details.html:356
-#: ./client/app/services/service-details/service-details.html:363
+#: ./client/app/services/service-details/service-details.html:359
+#: ./client/app/services/service-details/service-details.html:366
 #: ./client/app/services/service-explorer/service-explorer.component.js:252
 #: ./client/app/services/services-state.service.js:191
 #: ./client/app/services/services-state.service.js:192
@@ -984,7 +988,7 @@ msgstr ""
 msgid "Retire"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:354
+#: ./client/app/services/service-details/service-details.html:357
 msgid "Retire Resource"
 msgstr ""
 
@@ -1211,15 +1215,15 @@ msgid "Standard Out"
 msgstr ""
 
 #: ./client/app/services/resource-details/resource-details.component.js:393
-#: ./client/app/services/service-details/service-details.component.js:176
-#: ./client/app/services/service-details/service-details.html:338
+#: ./client/app/services/service-details/service-details.component.js:175
+#: ./client/app/services/service-details/service-details.html:341
 #: ./client/app/services/service-explorer/service-explorer.component.js:281
 #: ./client/app/services/service-explorer/service-explorer.html:184
 msgid "Start"
 msgstr ""
 
 #: ./client/app/services/resource-details/resource-details.component.js:395
-#: ./client/app/services/service-details/service-details.component.js:178
+#: ./client/app/services/service-details/service-details.component.js:177
 msgid "Start the Service"
 msgstr ""
 
@@ -1243,15 +1247,15 @@ msgid "Status"
 msgstr ""
 
 #: ./client/app/services/resource-details/resource-details.component.js:401
-#: ./client/app/services/service-details/service-details.component.js:183
-#: ./client/app/services/service-details/service-details.html:343
+#: ./client/app/services/service-details/service-details.component.js:182
+#: ./client/app/services/service-details/service-details.html:346
 #: ./client/app/services/service-explorer/service-explorer.component.js:289
 #: ./client/app/services/service-explorer/service-explorer.html:189
 msgid "Stop"
 msgstr ""
 
 #: ./client/app/services/resource-details/resource-details.component.js:403
-#: ./client/app/services/service-details/service-details.component.js:185
+#: ./client/app/services/service-details/service-details.component.js:184
 msgid "Stop the Service"
 msgstr ""
 
@@ -1274,15 +1278,15 @@ msgid "Success"
 msgstr ""
 
 #: ./client/app/services/resource-details/resource-details.component.js:409
-#: ./client/app/services/service-details/service-details.component.js:190
-#: ./client/app/services/service-details/service-details.html:348
+#: ./client/app/services/service-details/service-details.component.js:189
+#: ./client/app/services/service-details/service-details.html:351
 #: ./client/app/services/service-explorer/service-explorer.component.js:297
 #: ./client/app/services/service-explorer/service-explorer.html:194
 msgid "Suspend"
 msgstr ""
 
 #: ./client/app/services/resource-details/resource-details.component.js:411
-#: ./client/app/services/service-details/service-details.component.js:192
+#: ./client/app/services/service-details/service-details.component.js:191
 msgid "Suspend the Service"
 msgstr ""
 
@@ -1347,7 +1351,7 @@ msgstr ""
 msgid "There already is an identical item in the cart. Do you want to add it anyway?"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.component.js:374
+#: ./client/app/services/service-details/service-details.component.js:373
 msgid "There are no Compute Resources for this service."
 msgstr ""
 
@@ -1375,7 +1379,7 @@ msgstr ""
 msgid "There was an error editing this service."
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.component.js:98
+#: ./client/app/services/service-details/service-details.component.js:97
 msgid "There was an error fetching this service."
 msgstr ""
 
@@ -1415,7 +1419,7 @@ msgstr ""
 msgid "There was an error removing order"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.component.js:295
+#: ./client/app/services/service-details/service-details.component.js:294
 msgid "There was an error removing this service."
 msgstr ""
 
@@ -1485,7 +1489,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ./client/app/services/consoles.service.js:76
+#: ./client/app/services/consoles.service.js:79
 msgid "Unsupported console protocol returned."
 msgstr ""
 
@@ -1521,7 +1525,7 @@ msgstr ""
 msgid "Utilization"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:307
+#: ./client/app/services/service-details/service-details.html:311
 msgid "VM HTML5 Console"
 msgstr ""
 
@@ -1529,7 +1533,7 @@ msgstr ""
 msgid "VM Snapshots"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:315
+#: ./client/app/services/service-details/service-details.html:319
 msgid "VM VMRC Console"
 msgstr ""
 
@@ -1546,7 +1550,7 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.html:367
+#: ./client/app/services/service-details/service-details.html:370
 msgid ""
 "View\n"
 "                                                    Details"
@@ -1579,10 +1583,6 @@ msgstr ""
 #: ./client/app/states/404/404.html:7
 #: ./client/app/states/error/error.html:13
 msgid "We apologize for the inconvenience."
-msgstr ""
-
-#: ./client/app/services/service-details/service-details.html:324
-msgid "Web Console"
 msgstr ""
 
 #: ./client/app/services/services-state.service.js:277
@@ -1647,7 +1647,7 @@ msgstr ""
 msgid "used"
 msgstr ""
 
-#: ./client/app/services/service-details/service-details.component.js:290
+#: ./client/app/services/service-details/service-details.component.js:289
 msgid "was removed."
 msgstr ""
 

@@ -40,7 +40,6 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
       disableStartButton: disableStartButton,
       toggleOpenResourceGroup: toggleOpenResourceGroup,
       toggleOpenGenericObjects: toggleOpenGenericObjects,
-      openCockpit: openCockpit,
       openConsole: openConsole,
       processSnapshot: processSnapshot,
       startVM: startVM,
@@ -386,14 +385,10 @@ function ComponentController ($stateParams, $state, $window, CollectionsApi, Eve
   }
 
   function openConsole (item, protocol) {
-    if ((item.supported_consoles.html5.visible && item.supported_consoles.html5.enabled) || (item.supported_consoles.vmrc.visible && item.supported_consoles.vmrc.enabled)) {
-      Consoles.open(item.id, protocol)
-    }
-  }
+    let permissionValue = protocol.concat('_console');
 
-  function openCockpit (item) {
-    if (item.supported_consoles.cockpit.visible && item.supported_consoles.cockpit.enabled) {
-      $window.open('http://' + item.ipaddresses[0] + ':9090')
+    if (vm.permissions[permissionValue] && item.supported_consoles[protocol].visible && item.supported_consoles[protocol].enabled) {
+      Consoles.open(item.id, protocol);
     }
   }
 

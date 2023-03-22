@@ -477,7 +477,6 @@
             "snapshots": [],
             "v_total_snapshots": 0,
             "supports_console?": true,
-            "supports_launch_cockpit?": true,
             "max_mem_usage_absolute_average_avg_over_time_period": 0,
             "hardware": {
                 "id": 10000000001309,
@@ -545,7 +544,6 @@
             "snapshots": [],
             "v_total_snapshots": 0,
             "supports_console?": true,
-            "supports_launch_cockpit?": true,
             "max_mem_usage_absolute_average_avg_over_time_period": 0,
             "hardware": {
                 "id": 10000000001307,
