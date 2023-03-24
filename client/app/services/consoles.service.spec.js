@@ -79,6 +79,26 @@ describe('Service: ConsolesFactory', function () {
       expect(collectionsApiGetSpy).to.have.been.calledWith('tasks', '1', {attributes: 'task_results'})
     })
   })
+  it('should successfully start a native session', function(done) {
+    const taskResponse = {
+      'state': 'Finished',
+      'status': 'Ok',
+      'task_results': {
+        'proto': 'native',
+        'connection': 'blah',
+        'name': 'blah',
+        'type': 'blah'
+      }
+    }
+    sinon.stub(CollectionsApi, 'post').returns(Promise.resolve(successResponse))
+    const collectionsApiGetSpy = sinon.stub(CollectionsApi, 'get').returns(Promise.resolve(taskResponse))
+    Consoles.open('12345').then((data) => {
+      $timeout.flush()
+      done()
+
+      expect(collectionsApiGetSpy).to.have.been.calledWith('tasks', '1', {attributes: 'task_results'})
+    })
+  }) 
   it('should successfully start a remote session', function (done) {
     const taskResponse = {
       'state': 'Finished',

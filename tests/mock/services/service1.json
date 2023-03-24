@@ -432,8 +432,7 @@
       "cloud": false,
       "raw_power_state": "poweredOn",
       "tenant_id": 10000000000001,
-      "supports_console?": true,
-      "supports_cockpit?": true
+      "supports_console?": true
     }
   ],
   "generic_objects": [

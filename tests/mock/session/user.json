@@ -799,8 +799,8 @@
                 "children": [
                     "vm_scan",
                     "vm_check_compliance",
-                    "cockpit_console",
                     "vm_console",
+                    "vm_native_console",
                     "vm_vmrc_console",
                     "vm_vnc_console",
                     "vm_webmks_console",
@@ -834,10 +834,6 @@
                 "name": "Check Compliance",
                 "description": "Check Compliance of Last Known Configuration"
             },
-            "cockpit_console": {
-                "name": "Cockpit Console",
-                "description": "Open the Cockpit console for VMs"
-            },
             "vm_console": {
                 "name": "Console using MKS",
                 "description": "Open a web-based console for VMs",
@@ -846,6 +842,10 @@
                     "method": "post",
                     "href": "http://localhost:3001/api/vms"
                 }
+            },
+            "vm_native_console": {
+                "name": "Native Console",
+                "description": "Open the Native console for VMs"
             },
             "vm_vmrc_console": {
                 "name": "Console using VMRC",

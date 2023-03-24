@@ -31,6 +31,7 @@
         "DELETE": "sui_vm_snapshot_delete"
       },
       "HTML5_CONSOLE": "sui_vm_html5_console",
+      "NATIVE_CONSOLE": "sui_vm_native_console",
       "VMRC_CONSOLE": "sui_vm_vmrc_console",
       "WEB_CONSOLE": "sui_vm_web_console",
       "TAGS": "sui_vm_tags",

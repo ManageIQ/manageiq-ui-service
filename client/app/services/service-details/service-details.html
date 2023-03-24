@@ -288,9 +288,13 @@
                                         </ul>
                                     </div>
                                     <div class="btn-group" uib-dropdown dropdown-append-to-body
-                                         ng-if="($ctrl.customScope.permissions.cockpit || $ctrl.customScope.permissions.html5_console)
+                                         ng-if="($ctrl.customScope.permissions.vmrc_console
+                                            || $ctrl.customScope.permissions.html5_console
+                                            || $ctrl.customScope.permissions.native_console)
                                             && (item.supported_consoles.html5.visible || item.supported_consoles.html5.message
-                                            || item.supported_consoles.cockpit.visible || item.supported_consoles.cockpit.message)">                                        <button type="button" class="btn btn-default" uib-dropdown-toggle
+                                            || item.supported_consoles.vmrc.visible || item.supported_consoles.vmrc.message
+                                            || item.supported_consoles.native.visible || item.supported_consoles.native.message)">
+                                        <button type="button" class="btn btn-default" uib-dropdown-toggle
                                                 type="button">
                                             <i class="fa fa-window-maximize "></i>
                                             <span translate>Access</span>
@@ -314,14 +318,13 @@
                                                 ng-click="$ctrl.customScope.openConsole(item, 'vmrc')">
                                                 <a href="#" translate>VM VMRC Console</a>
                                             </li>
-
-                                            <li ng-if="item.supported_consoles.cockpit.visible || item.supported_consoles.cockpit.message"
+                                            <li ng-if="item.supported_consoles.native.visible || item.supported_consoles.native.message"
                                                 role="menuitem"
-                                                uib-tooltip="{{item.supported_consoles.cockpit.message}}"
+                                                uib-tooltip="{{item.supported_consoles.native.message}}"
                                                 tooltip-placement="bottom"
-                                                ng-class="{'disabled': !item.supported_consoles.cockpit.enabled || !$ctrl.customScope.permissions.cockpit}"
-                                                ng-click="$ctrl.customScope.openCockpit(item)">
-                                                <a href="#" translate>Web Console</a>
+                                                ng-class="{'disabled': !item.supported_consoles.native.enabled || !$ctrl.customScope.permissions.native_console}"
+                                                ng-click="$ctrl.customScope.openConsole(item, 'native')">
+                                                <a href="#" translate>Native Console</a>
                                             </li>
                                         </ul>
                                     </div>

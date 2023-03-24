@@ -72,6 +72,9 @@ export function ConsolesFactory ($window, CollectionsApi, $timeout, $location, E
       case 'remote':
         openRemote(results)
         break
+      case 'native':
+        openNative(results)
+        break
       default:
         EventNotifications.error(__('Unsupported console protocol returned. ') + results.proto)
     }
@@ -117,5 +120,18 @@ export function ConsolesFactory ($window, CollectionsApi, $timeout, $location, E
   function openRemote (results) {
     // openstack
     $window.open(results.remote_url)
+  }
+
+  function openNative (results) {
+    const base64DecodedFile = atob(results.connection);
+    const href = window.URL.createObjectURL(new Blob([base64DecodedFile], {type: results.type}));
+    const a = document.createElement('a');
+
+    a.style.display = 'none';
+    a.href = href;
+    a.download = results.name;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(href);
   }
 }
