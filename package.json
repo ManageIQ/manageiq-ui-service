@@ -12,14 +12,14 @@
   "version": "1.0.1",
   "scripts": {
     "available-languages": "cd ./config/ && node available-languages.js",
-    "build": "yarn build:git-hash && NODE_ENV=\"production\" webpack --bail --progress --profile --config config/webpack.prod.js",
+    "build": "yarn build:git-hash && NODE_ENV=\"production\" NODE_OPTIONS=\"--openssl-legacy-provider\" webpack --bail --progress --profile --config config/webpack.prod.js",
     "build:git-hash": "node config/githash.js",
-    "build:test": "webpack --bail --progress --config config/webpack.testing.js",
+    "build:test": "NODE_OPTIONS=\"--openssl-legacy-provider\" webpack --bail --progress --config config/webpack.testing.js",
     "gettext:compile": "angular-gettext-cli --compile --files './client/gettext/po/**/*.po' --dest 'client/gettext/json/manageiq-ui-service.json' --format json && yarn available-languages && yarn gettext:validate-language-codes",
     "gettext:extract": "angular-gettext-cli --files './client/**/*.+(js|html)' --exclude '**/*.+spec.js' --dest './client/gettext/po/manageiq-ui-service.pot' --marker-names '__,N_'",
     "gettext:validate": "yarn node language/validate.js",
     "gettext:validate-language-codes": "yarn node language/validate-language-codes.js",
-    "start": "webpack serve --progress --config config/webpack.dev.js",
+    "start": "NODE_OPTIONS=\"--openssl-legacy-provider\" webpack serve --progress --config config/webpack.dev.js",
     "t": "yarn run build:test && yarn run test:karma",
     "test": "yarn run gettext:extract && yarn run gettext:validate && yarn run gettext:validate-language-codes && yarn run t",
     "test:karma": "karma start karma.conf.js --single-run",
@@ -137,7 +137,7 @@
     "node": ">= 18.0.0",
     "npm": ">= 8.6.0"
   },
-  "packageManager": "yarn@3.0.2",
+  "packageManager": "yarn@3.5.0",
   "resolutions": {
     "nth-check": "^2.1.1",
     "node-sass": "^8.0.0",
