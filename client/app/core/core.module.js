@@ -23,7 +23,7 @@ import { ExceptionModule } from './exception/exception.module.js'
 import { LanguageFactory } from './language.service.js'
 import { ListConfigurationFactory } from './list-configuration.service.js'
 import { ListViewFactory } from './list-view.service.js'
-import { NavigationController, navigationInit } from './navigation/navigation-controller.js'
+import { NavigationController } from './navigation/navigation-controller.js'
 import { NavigationFactory } from './navigation.service.js'
 import { PollingFactory } from './polling.service.js'
 import { RBACFactory } from './rbac.service.js'
@@ -93,5 +93,4 @@ export const CoreModule = angular
   .run(authInit)
   .run(gettextInit)
   .run(layoutInit)
-  .run(navigationInit)
   .name
