@@ -5,18 +5,119 @@
     <pf-toast-notification-list notifications="vm.toastNotifications" show-close="true"
          close-callback="vm.handleDismissToast" update-viewing="vm.updateViewingToast"></pf-toast-notification-list>
 
-    <pf-notification-drawer
-            drawer-hidden="!vm.notificationsDrawerShown"
-            notification-groups="vm.notificationGroups"
-            allow-expand="true"
-            on-close="vm.toggleNotificationsList"
-            drawer-title="{{'Notifications' | translate}}"
-            no-notifications-text="{{'There are no notifications to display.' | translate}}"
-            heading-include="{{vm.html.heading}}"
-            notification-body-include="{{vm.html.notificationBody}}"
-            notification-footer-include="{{vm.html.notificationFooter}}"
-            custom-scope="vm" >
-    </pf-notification-drawer>
+    <div>
+      
+      
+      <div class="notifications-drawer-wrapper {{vm.expandNotification ? 'expanded' : 'collapsed'}}" ng-if="vm.notificationsDrawerShown">
+        <div class="notifications-drawer-header">
+          <div class="notification-header-arrows" ng-click="vm.toggleExpandNotification()">
+            <span class="fa fa-angle-double-right" ng-if="vm.expandNotification"></span>
+            <span class="fa fa-angle-double-left" ng-if="!vm.expandNotification"></span>
+          </div>
+          <div class="notification-header-title" ng-click="vm.toggleExpandNotification()">{{'Notifications' | translate}}</div>
+          <div class="notification-close">
+            <button uib-dropdown-toggle class="btn btn-link" type="button" ng-click="vm.toggleNotificationsList()">
+              <span class="pficon pficon-close"></span>
+            </button>
+          </div>
+        </div>
+        <ul class="nav nav-list notifications-list" ng-repeat="group in vm.notificationGroups">
+          <li class="notifications-list-item" ng-if="group.unreadCount !== 0">
+              <div class="notifications-list-item-title-wrapper {{group.heading}}" ng-click="vm.setActiveNotification(group.heading)">
+                <div class="notifications-list-item-arrows">
+                  <span class="fa fa-angle-right" ng-if="group.heading != vm.activeNotification"></span>
+                  <span class="fa fa-angle-down" ng-if="group.heading == vm.activeNotification"></span>
+                </div>
+                <div class="notifications-list-item-count">{{group.unreadCount}}</div>
+                <div class="notifications-list-item-title">{{group.heading}}</div>
+              </div>
+              
+              <ul class="nav nav-list notifications-list-item-details"
+                  ng-repeat="notification in group.notifications"
+                  ng-if="vm.activeNotification == group.heading"
+                >
+                <li class="notifications-list-item-wrapper">
+                  
+                  <div class="notifications-list-item-row collapsed" ng-if="!vm.expandNotification">
+                    <span ng-if="notification.type" class="pull-left {{$ctrl.customScope.getNotficationStatusIconClass(notification)}}" ng-click="$ctrl.customScope.markRead(notification, notificationGroup)"></span>
+                    <span class="drawer-pf-notification-message notification-message"
+                          ng-click="$ctrl.customScope.markRead(notification, notificationGroup)"
+                          tooltip-popup-delay="500" tooltip-placement="bottom" uib-tooltip="{{notification.message | translate}}">
+                      {{notification.message | translate}}
+                    </span>
+                    <div ng-if="!notification.data.inProgress" class="drawer-pf-notification-info" ng-click="$ctrl.customScope.markRead(notification, notificationGroup)">
+                      <span class="date">{{notification.timeStamp | date:'MM/dd/yyyy'}}</span>
+                      <span class="time">{{notification.timeStamp | date:'h:mm:ss a'}}</span>
+                    </div>
+                    <div ng-if="notification.data.inProgress" class="mini-progress clearfix">
+                      <span class="time">{{notification.timeStamp | date:'h:mm:ss a'}}</span>
+                      <div class="mini-progress-area">
+                        <div class="progress">
+                          <span class="progress-bar progress-bar-info"
+                                ng-style="{width: notification.data.percentComplete + '%'}" uib-tooltip="{{notification.data.percentComplete}} + {{'% Complete' | translate}}">
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="notifications-list-item-row expanded" ng-if="vm.expandNotification">
+                    <div class="row">
+                      <div ng-class="{'col-md-4': vm.notificationGroup.notificationType == 'task'}" class="col-sm-6">
+                        <span ng-if="notification.type" class="pull-left {{$ctrl.customScope.getNotficationStatusIconClass(notification)}}" ng-click="$ctrl.customScope.markRead(notification, notificationGroup)"></span>
+                        <span class="drawer-pf-notification-message notification-message"
+                              ng-click="$ctrl.customScope.markRead(notification, notificationGroup)"
+                              tooltip-append-to-body="true" tooltip-popup-delay="500"
+                              tooltip-placement="bottom" uib-tooltip="{{notification.message | translate}}">
+                              {{notification.message | translate}}
+                        </span>
+                      </div>
+                      <div class="col-md-4 col-sm-3" ng-if="notification.notificationType == 'task'">
+                        <div class="drawer-pf-notification-info expanded-info" ng-click="$ctrl.customScope.markRead(notification, notificationGroup)">
+                          <span class="info-title" translate>Started: </span>
+                          <span class="date">{{notification.data.startTime | date:'MM/dd/yyyy'}}</span>
+                          <span class="time">{{notification.data.startTime | date:'h:mm:ss a'}}</span>
+                        </div>
+                        <div ng-if="notification.inProgress" class="progress">
+                          <div class="progress-bar progress-bar-info"
+                               ng-style="{width: notification.data.percentComplete + '%'}" uib-tooltip="{{notification.data.percentComplete}} + {{'% Complete' | translate}}">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-3" ng-if="notification.notificationType == 'task'">
+                        <div class="drawer-pf-notification-info" ng-click="$ctrl.customScope.markRead(notification, notificationGroup)">
+                          <span class="info-title" translate>Completed: </span>
+                          <span class="date">{{notification.data.endTime | date:'MM/dd/yyyy'}}</span>
+                          <span class="time">{{notification.data.endTime | date:'h:mm:ss a'}}</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-6" ng-if="notification.notificationType == 'event'">
+                        <div class="drawer-pf-notification-info" ng-click="$ctrl.customScope.markRead(notification, notificationGroup)">
+                          <span class="date">{{notification.timeStamp | date:'MM/dd/yyyy'}}</span>
+                          <span class="time">{{notification.timeStamp | date:'h:mm:ss a'}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </li>
+              </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- <pf-notification-drawer
+      drawer-hidden="!vm.notificationsDrawerShown"
+      notification-groups="vm.notificationGroups"
+      allow-expand="true"
+      on-close="vm.toggleNotificationsList"
+      drawer-title="{{'Notifications1234' | translate}}"
+      no-notifications-text="{{'There are no notifications to display.' | translate}}"
+      heading-include="{{vm.html.heading}}"
+      notification-body-include="{{vm.html.notificationBody}}"
+      notification-footer-include="{{vm.html.notificationFooter}}"
+      custom-scope="vm" >
+    </pf-notification-drawer> -->
 
     <pf-about-modal additional-info="vm.about.additionalInfo" is-open="vm.about.isOpen"
          product-info="vm.about.productInfo" title="vm.about.title" copyright="vm.about.copyright"

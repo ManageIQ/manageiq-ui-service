@@ -45,3 +45,63 @@
     float: right
     margin-right: 30px
     text-align: right
+
+.notifications-drawer-wrapper
+  background: #FFF
+  position: fixed
+  right: 0
+  margin-top: 58px
+  border: 1px solid lightgray
+  overflow-y: auto
+  max-height: calc(100% - 64px)
+  box-shadow: 3px 3px 3px lightgray
+
+  &.expanded
+    width: 85%
+  &.collapsed 
+    width: 300px
+
+  .notifications-drawer-header
+    padding: 10px
+    font-weight: bold
+    border-bottom: 1px solid lightgray
+    display: flex
+
+    .notification-header-arrows
+      width: 15px
+      height: 15px
+      cursor: pointer
+    
+    .notification-header-title
+      flex-grow: 1
+      cursor: pointer
+    
+    .notification-close
+      width: 15px
+      height: 15px
+      cursor: pointer
+    
+
+  .notifications-list-item
+    border-bottom: 1px solid lightgray
+
+    .notifications-list-item-title-wrapper
+      display: flex
+      padding: 10px
+      flex-direction: row
+      color: #000
+      cursor: pointer
+
+      .notifications-list-item-arrows
+        font-weight: bold
+        width: 15px
+
+      .notifications-list-item-count
+        font-weight: bold
+        color: #000
+        min-height: 15px
+        margin-right: 5px
+
+    .notifications-list-item-wrapper
+      border-top: 1px solid lightgray
+      padding: 10px 0 10px 0

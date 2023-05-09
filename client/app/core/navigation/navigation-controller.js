@@ -69,7 +69,9 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       documentation: '/support/index?support_tab=about',
       items: [],
       notificationsDrawerShown: false,
+      activeNotification: null,
       newNotifications: false,
+      expandNotification: false,
       html: {
         // injected into templateCache by navigationInit
         heading: 'notifications/heading.html',
@@ -78,6 +80,10 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       },
       handleItemClick: handleItemClick,
       toggleNotificationsList: () => { vm.notificationsDrawerShown = !vm.notificationsDrawerShown },
+      toggleExpandNotification: () => { vm.expandNotification = !vm.expandNotification },
+      setActiveNotification: (type) => { 
+        vm.activeNotification = (vm.activeNotification === type) ? null : type
+       },
       updateViewingToast: updateViewingToast,
       handleDismissToast: handleDismissToast,
       getNotficationStatusIconClass: getNotficationStatusIconClass,
@@ -166,6 +172,18 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
     vm.notificationGroups = EventNotifications.state().groups
     vm.newNotifications = EventNotifications.state().unreadNotifications
     vm.unreadNotificationCount = 0
+    // const dummy = {
+    //   data: {message: 'test message', startTime:'03/29/2023 10:08:56 AM', endTime:'03/29/2023 10:08:56 AM'},
+    //   href: 'asdas',
+    //   id: '4',
+    //   message: 'helloo message',
+    //   notificationType: 'event',
+    //   timeStamp: "2023-03-29T04:38:56Z",
+    //   type: "info",
+    //   unread: true,
+    // }
+    // vm.notificationGroups[0].notifications.push(dummy);
+    console.log('vm.notificationGroups=', vm.notificationGroups)
     angular.forEach(vm.notificationGroups, function (group) {
       vm.unreadNotificationCount += group.unreadCount
     })
