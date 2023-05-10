@@ -60,6 +60,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       helpMenu: RBAC.hasAny(['about', 'product', 'documentation'])
     }
     EventNotifications.setToastDisplay(vm.permissions.suiNotifications)
+    const appBasePath = process.env.NODE_ENV === 'production' ? '' : 'assets/'
     angular.extend(vm, {
       state: Navigation.state,
       text: Text.app,
@@ -71,10 +72,9 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
       notificationsDrawerShown: false,
       newNotifications: false,
       html: {
-        // injected into templateCache by navigationInit
-        heading: 'notifications/heading.html',
-        notificationBody: 'notifications/notification-body.html',
-        notificationFooter: 'notifications/notification-footer.html',
+        heading: `${appBasePath}html/heading.html`,
+        notificationBody: `${appBasePath}html/notification-body.html`,
+        notificationFooter: `${appBasePath}html/notification-footer.html`,
       },
       handleItemClick: handleItemClick,
       toggleNotificationsList: () => { vm.notificationsDrawerShown = !vm.notificationsDrawerShown },
@@ -250,9 +250,3 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
   }
 }
 
-/** @ngInject */
-export const navigationInit = function($templateCache) {
-  $templateCache.put('notifications/heading.html', require('../../components/notifications/heading.html'));
-  $templateCache.put('notifications/notification-body.html', require('../../components/notifications/notification-body.html'));
-  $templateCache.put('notifications/notification-footer.html', require('../../components/notifications/notification-footer.html'));
-};
