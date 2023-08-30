@@ -2879,7 +2879,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"array.prototype.reduce@npm:^1.0.5":
+"array.prototype.reduce@npm:1.0.5":
   version: 1.0.5
   resolution: "array.prototype.reduce@npm:1.0.5"
   dependencies:
@@ -7163,7 +7163,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"function.prototype.name@npm:^1.1.5":
+"function.prototype.name@npm:1.1.5":
   version: 1.1.5
   resolution: "function.prototype.name@npm:1.1.5"
   dependencies:
@@ -9749,7 +9749,6 @@ fsevents@~2.3.2:
     ngprogress: ~1.1.3
     ngstorage: ~0.3.11
     numeral: ~2.0.6
-    object.values: ~1.1.1
     patternfly: ~3.59.5
     patternfly-timeline: "patternfly/patternfly-timeline#master-dist"
     postcss-loader: ~4.0.4
@@ -10753,7 +10752,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"object.entries@npm:^1.0.3":
+"object.entries@npm:1.1.6":
   version: 1.1.6
   resolution: "object.entries@npm:1.1.6"
   dependencies:
@@ -10785,7 +10784,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"object.values@npm:^1.0.3, object.values@npm:^1.1.1, object.values@npm:~1.1.1":
+"object.values@npm:1.1.6":
   version: 1.1.6
   resolution: "object.values@npm:1.1.6"
   dependencies:
@@ -13389,7 +13388,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"string.prototype.padstart@npm:^3.0.0":
+"string.prototype.padstart@npm:3.1.4":
   version: 3.1.4
   resolution: "string.prototype.padstart@npm:3.1.4"
   dependencies:
