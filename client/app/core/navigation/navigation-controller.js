@@ -1,3 +1,7 @@
+import heading from '../../components/notifications/heading.html';
+import notificationBody from '../../components/notifications/notification-body.html';
+import notificationFooter from '../../components/notifications/notification-footer.html';
+
 /** @ngInject */
 export function NavigationController (Text, Navigation, Session, API_BASE, ShoppingCart, $scope, $uibModal, $state, EventNotifications, ApplianceInfo, CollectionsApi, RBAC, Language, lodash, $rootScope, sprintf) {
   const vm = this
@@ -252,7 +256,7 @@ export function NavigationController (Text, Navigation, Session, API_BASE, Shopp
 
 /** @ngInject */
 export const navigationInit = function($templateCache) {
-  $templateCache.put('notifications/heading.html', require('../../components/notifications/heading.html'));
-  $templateCache.put('notifications/notification-body.html', require('../../components/notifications/notification-body.html'));
-  $templateCache.put('notifications/notification-footer.html', require('../../components/notifications/notification-footer.html'));
+  $templateCache.put('notifications/heading.html', heading);
+  $templateCache.put('notifications/notification-body.html', notificationBody);
+  $templateCache.put('notifications/notification-footer.html', notificationFooter);
 };
