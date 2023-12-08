@@ -77,7 +77,7 @@
     "@babel/preset-env": "~7.12.1",
     "@webpack-cli/serve": "~1.6.0",
     "angular-mocks": "~1.8.2",
-    "axios": "~0.21.0",
+    "axios": "~1.6.0",
     "babel-eslint": "~10.1.0",
     "babel-loader": "~8.1.0",
     "bardjs": "~0.1.8",
