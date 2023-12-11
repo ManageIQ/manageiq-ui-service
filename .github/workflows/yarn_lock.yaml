@@ -38,7 +38,7 @@ jobs:
         labels: dependencies
         assignees: jeffibm
         team-reviewers: ManageIQ/committers-ui
-        push-to-fork: miq-bot/manageiq-ui-classic
+        push-to-fork: miq-bot/manageiq-ui-service
         title: Update yarn.lock with latest dependencies
         body: Update yarn.lock with latest dependencies
         token: ${{ secrets.PR_TOKEN }}
