@@ -20,7 +20,7 @@
             <button type="button" class="btn btn-primary" ng-click="vm.initiateOidcLogin()" translate>Log In to Corporate System</button>
           </div>
         </form>
-        <form class="form-horizontal" role="form" ng-submit="vm.onSubmit()" ng-if="vm.authenticationInfo && !vm.authenticationInfo.oidc_enabled">
+        <form class="form-horizontal" role="form" method="post" ng-submit="vm.onSubmit()" ng-if="vm.authenticationInfo && !vm.authenticationInfo.oidc_enabled">
           <div class="form-group">
             <label for="inputUsername" class="col-sm-2 col-md-2 control-label" translate>Username</label>
             <div class="col-sm-10 col-md-10">
