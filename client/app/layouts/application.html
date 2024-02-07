@@ -50,12 +50,12 @@
           </a>
           <ul uib-dropdown-menu aria-labelledby="aboutModal">
             <li ng-if="vm.permissions.help.documentation">
-              <a href="{{vm.documentation}}" target="_blank">
+              <a href="{{vm.documentation}}" target="_blank" rel="noopener noreferrer">
                 {{ 'Documentation' | translate}}
               </a>
             </li>
             <li>
-              <a href="{{vm.about.supportWebsite}}" target="_new">
+              <a href="{{vm.about.supportWebsite}}" target="_blank" rel="noopener noreferrer">
                 {{vm.about.supportWebsiteText}}
               </a>
             </li>
@@ -117,4 +117,3 @@
     <div class="main-content" ui-view></div>
   </div>
 </div>
-
