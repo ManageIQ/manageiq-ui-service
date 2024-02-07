@@ -4,7 +4,7 @@
   </button>
   <div uib-dropdown-menu class="uib-dropdown-menu uib-dropdown-menu-right" aria-labelledby="domain-switcher">
     <div ng-repeat="site in ctrl.sites" class="miq-siteswitcher-entry">
-      <a class="miq-siteswitcher-link" ng-href="{{site.url}}" target="_blank">
+      <a class="miq-siteswitcher-link" ng-href="{{site.url}}" target="_blank" rel="noopener noreferrer">
         <span title="{{site.tooltip}}" class="fa fa-3x" ng-class="site.iconClass"></span>
         <div>{{site.title}}</div>
       </a>
