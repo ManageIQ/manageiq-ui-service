@@ -137,7 +137,7 @@
     "node": ">= 18.0.0",
     "npm": ">= 8.6.0"
   },
-  "packageManager": "yarn@4.2.1",
+  "packageManager": "yarn@4.2.2",
   "resolutions": {
     "moment-timezone": "^0.5.41",
     "moment": "~2.29.4",
