@@ -9183,13 +9183,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jquery@npm:~3.6.0":
-  version: 3.6.4
-  resolution: "jquery@npm:3.6.4"
-  checksum: 10/6526ec120bb64cb710804d4f1046c099e8e0c329369888e76d17cdbaae57caa9bde445e7088067638c923fff57bf22170693052cdc93db1db390317fbcf45602
-  languageName: node
-  linkType: hard
-
 "js-base64@npm:^2.4.9":
   version: 2.6.4
   resolution: "js-base64@npm:2.6.4"
@@ -10067,7 +10060,6 @@ __metadata:
     gettext-parser: "npm:~4.0.4"
     glob: "npm:~7.1.6"
     html-webpack-plugin: "npm:~4.5.0"
-    jquery: "npm:~3.6.0"
     jquery-ui-bundle: "npm:~1.12.1-migrate"
     karma: "npm:~6.4.1"
     karma-babel-preprocessor: "npm:~8.0.1"
