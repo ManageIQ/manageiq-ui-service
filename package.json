@@ -59,7 +59,7 @@
     "d3": "~7.6.1",
     "es6-shim": "~0.35.5",
     "font-awesome": "~4.7.0",
-    "jquery": "~3.5.1",
+    "jquery": "~3.6.0",
     "jquery-ui-bundle": "~1.12.1-migrate",
     "lodash": "~4.17.20",
     "moment": "~2.29.4",
@@ -79,7 +79,7 @@
     "@babel/preset-env": "~7.12.1",
     "@webpack-cli/serve": "~1.6.0",
     "angular-mocks": "~1.8.2",
-    "axios": "~0.21.0",
+    "axios": "~1.6.0",
     "babel-eslint": "~10.1.0",
     "babel-loader": "~8.1.0",
     "bardjs": "~0.1.8",
@@ -137,7 +137,7 @@
     "node": ">= 18.0.0",
     "npm": ">= 8.6.0"
   },
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.2.2",
   "resolutions": {
     "moment-timezone": "^0.5.41",
     "moment": "~2.29.4",

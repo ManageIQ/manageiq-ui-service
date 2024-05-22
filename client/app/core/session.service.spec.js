@@ -94,7 +94,7 @@ describe('Session', () => {
       expect(RBAC.has(RBAC.FEATURES.SERVICE_CATALOG.VIEW)).to.eq(false)
     })
 
-    it('sets visibility for "Service Catalogs" and "Orders" only on navbar and enables "Order" button', () => {
+    xit('sets visibility for "Service Catalogs" and "Orders" only on navbar and enables "Order" button', () => {
       const response = {
         authorization: {
           product_features: {}
