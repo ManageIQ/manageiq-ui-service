@@ -9162,7 +9162,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jquery@npm:1.8 - 4, jquery@npm:>=1.10, jquery@npm:>=1.11.0, jquery@npm:>=1.7, jquery@npm:>=1.7.0, jquery@npm:>=1.7.1, jquery@npm:>=1.7.1 <4.0.0, jquery@npm:>=1.8, jquery@npm:>=1.8.0 <4.0.0, jquery@npm:>=1.9.0, jquery@npm:>=3.1.x, jquery@npm:>=3.4.0 <4.0.0, jquery@npm:^3.4.1, jquery@npm:^3.5.1":
+"jquery@npm:1.8 - 4, jquery@npm:>=1.10, jquery@npm:>=1.11.0, jquery@npm:>=1.7, jquery@npm:>=1.7.0, jquery@npm:>=1.7.1, jquery@npm:>=1.7.1 <4.0.0, jquery@npm:>=1.8, jquery@npm:>=1.8.0 <4.0.0, jquery@npm:>=1.9.0, jquery@npm:>=3.1.x, jquery@npm:>=3.4.0 <4.0.0, jquery@npm:^3.4.1, jquery@npm:^3.5.1, jquery@npm:~3.7.0":
   version: 3.7.1
   resolution: "jquery@npm:3.7.1"
   checksum: 10/17be9929f5fa37697d9848284f0d108c543318ef79ec794e130cd0c49f6c050d60c803a69e8cfa16fa19f5ff7cdb814a6905cceab0831186560c65ed113cd579
@@ -9180,13 +9180,6 @@ __metadata:
   version: 3.2.1
   resolution: "jquery@npm:3.2.1"
   checksum: 10/88aa997c1a0770e28ca4c0309dd1b44df0e141f389d651b5b5e5a83e1dc059235a8f96b9cf845599fbb75c137f28391fc224c14ab254fea339627290a3bf9835
-  languageName: node
-  linkType: hard
-
-"jquery@npm:~3.6.4":
-  version: 3.6.4
-  resolution: "jquery@npm:3.6.4"
-  checksum: 10/6526ec120bb64cb710804d4f1046c099e8e0c329369888e76d17cdbaae57caa9bde445e7088067638c923fff57bf22170693052cdc93db1db390317fbcf45602
   languageName: node
   linkType: hard
 
@@ -10067,7 +10060,7 @@ __metadata:
     gettext-parser: "npm:~4.0.4"
     glob: "npm:~7.1.6"
     html-webpack-plugin: "npm:~4.5.0"
-    jquery: "npm:~3.6.4"
+    jquery: "npm:~3.7.0"
     jquery-ui-bundle: "npm:~1.12.1-migrate"
     karma: "npm:~6.4.1"
     karma-babel-preprocessor: "npm:~8.0.1"
