@@ -18,7 +18,10 @@
             <div class="col-md-12">
               <div class="ss-details-header__title-img">
                 <span class="ss-details-header__title-img__center"></span>
-                <img class="ss-details-header__title-img__logo" src="images/brand_transparent.png"/>
+                <img class="ss-details-header__title-img__logo" ng-if="!vm.serviceTemplate.picture.image_href"
+                alt="{{ ::vm.order.name }}" src="images/service.png"/>
+                <img class="ss-details-header__title-img__logo" ng-if="vm.serviceTemplate.picture.image_href "
+                alt="{{ ::vm.order.name }}" ng-src="{{ ::vm.serviceTemplate.picture.image_href }}"/>
               </div>
               <div class="ss-details-header__title">
                 <h2>{{'Order #' |translate}}{{vm.order.id}}</h2>

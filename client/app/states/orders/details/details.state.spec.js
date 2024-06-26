@@ -14,7 +14,8 @@ describe('State: orders.details', () => {
       $stateParams: {
         serviceOrderId: 213
       },
-      order: {name: 'test order'}
+      order: {name: 'test order'},
+      serviceTemplate: {name: 'test template'}
     })
   })
 
