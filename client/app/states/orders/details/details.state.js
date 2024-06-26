@@ -14,7 +14,8 @@ function getStates (RBAC) {
       controllerAs: 'vm',
       title: __('Order Details'),
       resolve: {
-        order: resolveOrder
+        order: resolveOrder,
+        serviceTemplate: resolveServiceTemplate
       },
       data: {
         authorization: RBAC.has('miq_request_show')
@@ -31,9 +32,24 @@ function resolveOrder ($stateParams, CollectionsApi) {
 }
 
 /** @ngInject */
-function StateController (order, $state) {
+function resolveServiceTemplate ($stateParams, CollectionsApi) {
+  return CollectionsApi.get('service_orders', $stateParams.serviceOrderId, {
+    expand: ['resources', 'service_requests']
+  }).then((ServiceOrder) => {
+    const serviceTemplateId = ServiceOrder.service_requests[0].source_id;
+    return CollectionsApi.get('service_templates', serviceTemplateId, {
+      expand: ['resources'],
+      attributes: ['picture', 'resource_actions', 'picture.image_href'],
+    })
+  })
+}
+
+/** @ngInject */
+function StateController (order, serviceTemplate, $state) {
   const vm = this
   vm.order = order
+  vm.serviceTemplate = serviceTemplate
+
   vm.requestListConfig = {
     showSelectBox: false,
     selectionMatchProp: 'id'
