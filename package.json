@@ -23,6 +23,7 @@
     "t": "yarn run build:test && yarn run test:karma",
     "test": "yarn run gettext:extract && yarn run gettext:validate && yarn run gettext:validate-language-codes && yarn run t",
     "test:karma": "karma start karma.conf.js --single-run",
+    "test:security": "yarn npm audit --recursive --no-deprecations --environment production",
     "test:watch": "karma start --auto-watch --no-single-run",
     "update": "jq -r '.dependencies|keys|join(\"\n\")'  package.json | grep -v patternfly-timeline | xargs yarn add",
     "update-dev": "jq -r '.devDependencies|keys|join(\"\n\")'  package.json | xargs yarn add -D",
