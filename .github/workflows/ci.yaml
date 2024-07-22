@@ -14,6 +14,9 @@ jobs:
       matrix:
         node-version:
         - 18
+        test-suite:
+        - test
+        - test:security
     steps:
     - uses: actions/checkout@v4
     - name: Set up system
@@ -27,8 +30,8 @@ jobs:
     - name: Prepare tests
       run: bin/setup
     - name: Run tests
-      run: yarn run test
+      run: yarn run ${{ matrix.test-suite }}
     - name: Report code coverage
-      if: ${{ github.ref == 'refs/heads/master' }}
+      if: ${{ github.ref == 'refs/heads/master' && matrix.test-suite != 'test:security' }}
       continue-on-error: true
       run: cat reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
