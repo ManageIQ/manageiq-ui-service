@@ -32,6 +32,23 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, CollectionsA
         permissions: true
       },
       {
+        title: __('Service Catalog'),
+        originalTitle: 'Service Catalog',
+        state: 'catalogs',
+        iconClass: 'fa fa-folder-open-o',
+        badgeQuery: {
+          'field': 'service_templates',
+          'filter': 'display=true'
+        },
+        badges: [
+          {
+            count: service.navCount.catalogs,
+            tooltip: __('The total number of available catalogs')
+          }
+        ],
+        permissions: false
+      },
+      {
         title: __('My Services'),
         state: 'services',
         iconClass: 'pficon pficon-service',
@@ -60,23 +77,6 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, CollectionsA
           {
             count: service.navCount.orders,
             tooltip: __('Total orders submitted')
-          }
-        ],
-        permissions: false
-      },
-      {
-        title: __('Service Catalog'),
-        originalTitle: 'Service Catalog',
-        state: 'catalogs',
-        iconClass: 'fa fa-folder-open-o',
-        badgeQuery: {
-          'field': 'service_templates',
-          'filter': 'display=true'
-        },
-        badges: [
-          {
-            count: service.navCount.catalogs,
-            tooltip: __('The total number of available catalogs')
           }
         ],
         permissions: false
