@@ -121,7 +121,7 @@
     "sass-loader": "^11.1.1",
     "save-remote-file-webpack-plugin": "^1.1.0",
     "shelljs": "~0.8.4",
-    "sinon": "~9.2.1",
+    "sinon": "~19.0.2",
     "sinon-chai": "~3.5.0",
     "style-loader": "~2.0.0",
     "url-loader": "~4.1.1",
@@ -141,9 +141,11 @@
   "packageManager": "yarn@4.3.1",
   "resolutions": {
     "d3-color": "~3.1.0",
+    "express/path-to-regexp": "~0.1.10",
     "moment-timezone": "^0.5.41",
     "moment": "~2.29.4",
     "node-sass": "^8.0.0",
-    "nth-check": "^2.1.1"
+    "nth-check": "^2.1.1",
+    "sinon": "~19.0.2"
   }
 }
