@@ -140,6 +140,7 @@
   },
   "packageManager": "yarn@4.3.1",
   "resolutions": {
+    "cross-spawn": "~7.0.6",
     "d3-color": "~3.1.0",
     "express/path-to-regexp": "~0.1.10",
     "moment-timezone": "^0.5.41",
