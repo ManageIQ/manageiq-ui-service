@@ -148,6 +148,7 @@
     "moment": "~2.29.4",
     "node-sass": "^9.0.0",
     "nth-check": "^2.1.1",
+    "patternfly": "~3.59.5",
     "sinon": "~19.0.2"
   }
 }
