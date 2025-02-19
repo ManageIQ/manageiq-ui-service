@@ -134,6 +134,7 @@
     "> 5%"
   ],
   "resolutions": {
+    "cross-spawn": "~7.0.6",
     "json-schema": "~0.4.0",
     "minimist": "~1.2.6",
     "moment-timezone": "^0.5.41",
