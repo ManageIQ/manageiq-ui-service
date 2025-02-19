@@ -137,6 +137,7 @@
     "cross-spawn": "~7.0.6",
     "json-schema": "~0.4.0",
     "minimist": "~1.2.6",
+    "moment": "~2.29.4",
     "moment-timezone": "^0.5.41",
     "tar": "~6.2.1",
     "tough-cookie": "~4.1.3",
