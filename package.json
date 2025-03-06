@@ -139,7 +139,7 @@
     "node": ">= 18.0.0",
     "npm": ">= 8.6.0"
   },
-  "packageManager": "yarn@4.6.0",
+  "packageManager": "yarn@4.7.0",
   "resolutions": {
     "bootstrap-select": "~1.13.6",
     "cross-spawn": "~7.0.6",
