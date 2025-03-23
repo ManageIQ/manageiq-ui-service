@@ -1379,7 +1379,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sinonjs/fake-timers@npm:^13.0.1, @sinonjs/fake-timers@npm:^13.0.2":
+"@sinonjs/fake-timers@npm:^13.0.1, @sinonjs/fake-timers@npm:^13.0.5":
   version: 13.0.5
   resolution: "@sinonjs/fake-timers@npm:13.0.5"
   dependencies:
@@ -1783,11 +1783,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:>=10.0.0":
-  version: 22.13.10
-  resolution: "@types/node@npm:22.13.10"
+  version: 22.13.11
+  resolution: "@types/node@npm:22.13.11"
   dependencies:
     undici-types: "npm:~6.20.0"
-  checksum: 10/57dc6a5e0110ca9edea8d7047082e649fa7fa813f79e4a901653b9174141c622f4336435648baced5b38d9f39843f404fa2d8d7a10981610da26066bc8caab48
+  checksum: 10/5e556eda347f3395669bd6fa7a10c77722f06befe0a6b51b97ed7a4bd0f92b24aa867ee611b547614f17dfc5a0bb7946a75263bd1f302bcac3039729d22acab5
   languageName: node
   linkType: hard
 
@@ -3637,9 +3637,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001688, caniuse-lite@npm:^1.0.30001702":
-  version: 1.0.30001705
-  resolution: "caniuse-lite@npm:1.0.30001705"
-  checksum: 10/2bc019c29af827c099df8d4510a2ec23be9fbd9dc9ce988a97d9f6cf30d1eb71479d9d22663bd7ed2255124998ceaf85edf4382219175a22f68ff3b6471a41cc
+  version: 1.0.30001706
+  resolution: "caniuse-lite@npm:1.0.30001706"
+  checksum: 10/fba85aa9c2e1cd38f4836ddba06fea9984b81541be737290db84f0eda0cdd33f0d68c5371219c723ec4098802b4d33e31c29690641452c7b8abee34143a1d237
   languageName: node
   linkType: hard
 
@@ -5726,9 +5726,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.73":
-  version: 1.5.119
-  resolution: "electron-to-chromium@npm:1.5.119"
-  checksum: 10/f1208f2ff0c2fffe092b86da1d43e45203c1f5ef1044af5d254938beb10d5a95822d5bd3f428105f6acc5cffd08225882753ed9bd781565645a02a3ccf134a23
+  version: 1.5.123
+  resolution: "electron-to-chromium@npm:1.5.123"
+  checksum: 10/d15c7dd4cceed3f52a981592276a0fff6a9814b8dde70ebf10452f74852d50f775e70ef3e8951e79e8978fcbc50a70faf109fab5c1b3fdd942540a341e92e49a
   languageName: node
   linkType: hard
 
@@ -10141,9 +10141,9 @@ __metadata:
   linkType: hard
 
 "mime-db@npm:>= 1.43.0 < 2, mime-db@npm:^1.28.0":
-  version: 1.53.0
-  resolution: "mime-db@npm:1.53.0"
-  checksum: 10/82409c568a20254cc67a763a25e581d2213e1ef5d070a0af805239634f8a655f5d8a15138200f5f81c5b06fc6623d27f6168c612d447642d59e37eb7f20f7412
+  version: 1.54.0
+  resolution: "mime-db@npm:1.54.0"
+  checksum: 10/9e7834be3d66ae7f10eaa69215732c6d389692b194f876198dca79b2b90cbf96688d9d5d05ef7987b20f749b769b11c01766564264ea5f919c88b32a29011311
   languageName: node
   linkType: hard
 
@@ -10545,11 +10545,11 @@ __metadata:
   linkType: hard
 
 "nanoid@npm:^3.3.8":
-  version: 3.3.10
-  resolution: "nanoid@npm:3.3.10"
+  version: 3.3.11
+  resolution: "nanoid@npm:3.3.11"
   bin:
     nanoid: bin/nanoid.cjs
-  checksum: 10/c3d706bbece94e913ecb3a1b17db988decce290984fbacab9b6f279eb87b0882322a00db3409e5fb6e8eb181303eba856b1ae8296cef90d5ccc05128c846e6bb
+  checksum: 10/73b5afe5975a307aaa3c95dfe3334c52cdf9ae71518176895229b8d65ab0d1c0417dd081426134eb7571c055720428ea5d57c645138161e7d10df80815527c48
   languageName: node
   linkType: hard
 
@@ -13167,16 +13167,16 @@ __metadata:
   linkType: hard
 
 "sinon@npm:~19.0.2":
-  version: 19.0.2
-  resolution: "sinon@npm:19.0.2"
+  version: 19.0.4
+  resolution: "sinon@npm:19.0.4"
   dependencies:
     "@sinonjs/commons": "npm:^3.0.1"
-    "@sinonjs/fake-timers": "npm:^13.0.2"
+    "@sinonjs/fake-timers": "npm:^13.0.5"
     "@sinonjs/samsam": "npm:^8.0.1"
     diff: "npm:^7.0.0"
     nise: "npm:^6.1.1"
     supports-color: "npm:^7.2.0"
-  checksum: 10/0be47968e9352269d0bdd26cdae7ae4e67d94fa007e8417d1e66ac95ba8537214edc770aff01b0f5a6f07588a1f7d3c947fff9366d799db85d3a4c405b875460
+  checksum: 10/c38e4de00b1829f629f331abb4fc77c4f4fdc905126e7500a49a3c46bc85ba7b93a365aa8d7e7f7b8dc8e0f78554a31c6c3c6258130184c9ff88d5a3062e1cee
   languageName: node
   linkType: hard
 
