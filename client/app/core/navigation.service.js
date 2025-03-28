@@ -54,7 +54,7 @@ export function NavigationFactory (RBAC, Polling, POLLING_INTERVAL, CollectionsA
         iconClass: 'pficon pficon-service',
         badgeQuery: {
           'field': 'services',
-          'filter': 'ancestry=null'
+          'filter': ['ancestry=null', 'visible=true']
         },
         badges: [
           {

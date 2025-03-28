@@ -71,13 +71,13 @@ export function DashboardComponentFactory (CollectionsApi) {
     const date1 = 'retires_on>' + currentDate.toISOString()
     const days30 = currentDate.setDate(currentDate.getDate() + 30)
     const date2 = 'retires_on<' + new Date(days30).toISOString()
-    const options = {hide: 'resources', filter: ['retired=false', date1, date2]}
+    const options = {hide: 'resources', filter: ['retired=false', date1, date2, 'visible=true']}
 
     return CollectionsApi.query('services', options)
   }
 
   function resolveRetiredServices () {
-    const options = {hide: 'resources', filter: ['service_id=nil', 'retired=true']}
+    const options = {hide: 'resources', filter: ['service_id=nil', 'retired=true', 'visible=true']}
 
     return CollectionsApi.query('services', options)
   }
@@ -85,7 +85,7 @@ export function DashboardComponentFactory (CollectionsApi) {
   function resolveServicesWithDefinedServiceIds () {
     const options = {
       expand: 'resources',
-      filter: ['service_id=nil'],
+      filter: ['service_id=nil', 'visible=true'],
       attributes: ['chargeback_report']
     }
 

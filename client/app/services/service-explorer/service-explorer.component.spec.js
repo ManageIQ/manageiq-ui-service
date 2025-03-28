@@ -81,7 +81,7 @@ describe('Component: serviceExplorer', () => {
       attributes: ['picture', 'picture.image_href', 'chargeback_report', 'evm_owner.userid', 'v_total_vms', 'power_state', 'all_service_children', 'tags'],
       auto_refresh: undefined,
       expand: 'resources',
-      filter: ['ancestry=null', 'display=true'],
+      filter: ['ancestry=null', 'visible=true'],
       limit: 20,
       offset: '0',
       sort_by: 'created_at',
