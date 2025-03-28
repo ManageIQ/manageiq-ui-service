@@ -297,7 +297,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
 
   // Private
   function getQueryFilters (filters = []) {
-    const queryFilters = ['ancestry=null', 'display=true']
+    const queryFilters = ['ancestry=null', 'visible=true']
 
     filters.forEach((nextFilter) => {
       if (nextFilter.id === 'name') {

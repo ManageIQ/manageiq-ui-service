@@ -21,7 +21,7 @@ msgstr ""
 msgid "%d new notifications"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:172
+#: ./client/app/core/navigation/navigation-controller.js:176
 msgid "%d unread notifications"
 msgstr ""
 
@@ -99,7 +99,7 @@ msgstr ""
 msgid "Add to Shopping Cart"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:154
+#: ./client/app/core/navigation/navigation-controller.js:158
 msgid "Administration UI"
 msgstr ""
 
@@ -505,7 +505,7 @@ msgstr ""
 msgid "GUID"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:248
+#: ./client/app/core/navigation/navigation-controller.js:252
 msgid "Group switching error:"
 msgstr ""
 
@@ -604,7 +604,7 @@ msgstr ""
 msgid "Log In to Corporate System"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:155
+#: ./client/app/core/navigation/navigation-controller.js:159
 msgid "Log into the full administrative UI"
 msgstr ""
 
@@ -654,14 +654,14 @@ msgstr ""
 msgid "Monthly Cost"
 msgstr ""
 
-#: ./client/app/core/navigation.service.js:51
+#: ./client/app/core/navigation.service.js:68
 #: ./client/app/states/catalogs/details/details.state.js:58
 #: ./client/app/states/orders/details/details.html:5
 #: ./client/app/states/orders/explorer/explorer.state.js:11
 msgid "My Orders"
 msgstr ""
 
-#: ./client/app/core/navigation.service.js:35
+#: ./client/app/core/navigation.service.js:52
 #: ./client/app/services/resource-details/resource-details.html:5
 #: ./client/app/services/service-details/service-details.html:5
 #: ./client/app/services/service-explorer/service-explorer.html:4
@@ -764,7 +764,7 @@ msgid "Order"
 msgstr ""
 
 #: ./client/app/orders/order-explorer/order-explorer.html:33
-#: ./client/app/states/orders/details/details.html:24
+#: ./client/app/states/orders/details/details.html:27
 #: ./client/app/states/orders/details/details.html:7
 msgid "Order #"
 msgstr ""
@@ -866,7 +866,7 @@ msgstr ""
 msgid "Power State: Unknown"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:136
+#: ./client/app/core/navigation/navigation-controller.js:140
 msgid "Product logo"
 msgstr ""
 
@@ -1066,7 +1066,7 @@ msgstr ""
 msgid "Review the notification tray for results of this batch operation"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:141
+#: ./client/app/core/navigation/navigation-controller.js:145
 msgid "SUI Version:"
 msgstr ""
 
@@ -1107,7 +1107,7 @@ msgstr ""
 msgid "Send CTRL+ALT+DEL"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:142
+#: ./client/app/core/navigation/navigation-controller.js:146
 msgid "Server Name:"
 msgstr ""
 
@@ -1116,7 +1116,7 @@ msgid "Service"
 msgstr ""
 
 #: ./client/app/catalogs/catalog-explorer.html:4
-#: ./client/app/core/navigation.service.js:68
+#: ./client/app/core/navigation.service.js:35
 msgid "Service Catalog"
 msgstr ""
 
@@ -1343,7 +1343,7 @@ msgstr ""
 msgid "The page you requested cannot be found."
 msgstr ""
 
-#: ./client/app/core/navigation.service.js:79
+#: ./client/app/core/navigation.service.js:46
 msgid "The total number of available catalogs"
 msgstr ""
 
@@ -1477,11 +1477,11 @@ msgstr ""
 msgid "Total Snapshots"
 msgstr ""
 
-#: ./client/app/core/navigation.service.js:62
+#: ./client/app/core/navigation.service.js:79
 msgid "Total orders submitted"
 msgstr ""
 
-#: ./client/app/core/navigation.service.js:45
+#: ./client/app/core/navigation.service.js:62
 msgid "Total services ordered, both active and retired"
 msgstr ""
 
@@ -1505,11 +1505,11 @@ msgstr ""
 msgid "User Default"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:143
+#: ./client/app/core/navigation/navigation-controller.js:147
 msgid "User Name:"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:144
+#: ./client/app/core/navigation/navigation-controller.js:148
 msgid "User Role:"
 msgstr ""
 
@@ -1541,7 +1541,7 @@ msgstr ""
 msgid "Verbosity"
 msgstr ""
 
-#: ./client/app/core/navigation/navigation-controller.js:140
+#: ./client/app/core/navigation/navigation-controller.js:144
 msgid "Version:"
 msgstr ""
 
@@ -1632,7 +1632,7 @@ msgstr ""
 msgid "of"
 msgstr ""
 
-#: ./client/app/states/orders/details/details.html:25
+#: ./client/app/states/orders/details/details.html:28
 msgid "ordered on"
 msgstr ""
 
