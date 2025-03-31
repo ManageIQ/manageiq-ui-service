@@ -140,6 +140,7 @@
   },
   "packageManager": "yarn@4.7.0",
   "resolutions": {
+    "bootstrap": "~4.6.2",
     "bootstrap-select": "~1.13.6",
     "cross-spawn": "~7.0.6",
     "d3-color": "~3.1.0",
