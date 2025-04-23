@@ -1,0 +1,14 @@
+name: Update yarn.lock
+
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: '0 0 * * 0'
+
+jobs:
+  update-yarn-lock:
+    uses: manageiq/.github/.github/workflows/update_yarn_lock.yaml@master
+    with:
+      pr_repository: miq-bot/manageiq-ui-service
+    secrets:
+      pr_token: ${{ secrets.PR_TOKEN }}
