@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-        - 18
+        - 20
         test-suite:
         - test
         - test:security

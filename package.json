@@ -80,7 +80,6 @@
     "@babel/preset-env": "~7.12.1",
     "@webpack-cli/serve": "~1.6.0",
     "angular-mocks": "~1.8.2",
-    "axios": "~1.7.4",
     "babel-eslint": "~10.1.0",
     "babel-loader": "~8.1.0",
     "bardjs": "~0.1.8",
@@ -136,10 +135,10 @@
     "> 5%"
   ],
   "engines": {
-    "node": ">= 18.0.0",
-    "npm": ">= 8.6.0"
+    "node": ">= 20.19.1",
+    "npm": ">= 10.8.2"
   },
-  "packageManager": "yarn@4.6.0",
+  "packageManager": "yarn@4.9.1",
   "resolutions": {
     "bootstrap-select": "~1.13.6",
     "cross-spawn": "~7.0.6",
