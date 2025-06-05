@@ -138,7 +138,7 @@
     "node": ">= 20.19.1",
     "npm": ">= 10.8.2"
   },
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.9.2",
   "resolutions": {
     "bootstrap-select": "~1.13.6",
     "cross-spawn": "~7.0.6",
