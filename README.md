@@ -6,8 +6,6 @@
 
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-ui-service?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![Build history for spassky branch](https://buildstats.info/github/chart/ManageIQ/manageiq-ui-service?branch=spassky&buildCount=50&includeBuildsFromPullRequest=false&showstats=false)](https://github.com/ManageIQ/manageiq-ui-service/actions?query=branch%3Amaster)
-
 The Service UI (SUI), previously Self Service UI (SSUI), for the [ManageIQ](http://github.com/ManageIQ/manageiq) project.
 
 ## Documentation
