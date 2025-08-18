@@ -1,6 +1,6 @@
 # ManageIQ Service UI
 
-[![CI](https://github.com/ManageIQ/manageiq-ui-service/actions/workflows/ci.yaml/badge.svg)](https://github.com/ManageIQ/manageiq-ui-service/actions/workflows/ci.yaml)
+[![CI](https://github.com/ManageIQ/manageiq-ui-service/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/ManageIQ/manageiq-ui-service/actions/workflows/ci.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/ManageIQ/manageiq-ui-service/badge.svg?branch=master)](https://coveralls.io/github/ManageIQ/manageiq-ui-service?branch=master)
 [![Code Climate](https://codeclimate.com/github/ManageIQ/manageiq-ui-service/badges/gpa.svg)](https://codeclimate.com/github/ManageIQ/manageiq-ui-service) 
 
