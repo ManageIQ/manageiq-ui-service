@@ -137,6 +137,7 @@
     "ansi-regex": "~4.1.1",
     "cross-spawn": "~7.0.6",
     "d3-color": "~3.1.0",
+    "form-data": "~3.0.4",
     "json-schema": "~0.4.0",
     "minimist": "~1.2.6",
     "moment": "~2.29.4",
