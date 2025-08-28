@@ -135,6 +135,7 @@
   ],
   "resolutions": {
     "ansi-regex": "~4.1.1",
+    "bootstrap": "~3.4.1",
     "bootstrap-select": "~1.13.18",
     "cross-spawn": "~7.0.6",
     "d3-color": "~3.1.0",
