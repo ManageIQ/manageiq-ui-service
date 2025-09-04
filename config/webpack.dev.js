@@ -38,27 +38,21 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: root,
+    static: './',
     historyApiFallback: true,
     port: 3001,
-    proxy: {
-      '/api': {
+    proxy: [
+      {
+        context: ['/api', '/pictures', '/webmks'],
         target: `${protocol}${host}`,
-        secure: false
+        secure: false,
       },
-      '/pictures': {
-        target: `${protocol}${host}`,
-        secure: false
-      },
-      '/ws': {
+      {
+        context: ['/ws'],
         target: `ws://${host}`,
-        ws: true
-      },
-      '/webmks': {
-        target: `${protocol}${host}`,
-        secure: false
+        ws: true,
       }
-    }
+    ]
   },
 
   // Output source maps suitable for development
