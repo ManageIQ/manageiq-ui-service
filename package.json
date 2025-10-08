@@ -151,6 +151,7 @@
     "node-sass": "^9.0.0",
     "nth-check": "^2.1.1",
     "patternfly": "~3.59.5",
+    "request": "npm:@cypress/request@^3.0.9",
     "sinon": "~19.0.2"
   }
 }
