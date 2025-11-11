@@ -1,37 +1,35 @@
+---
 name: CI
-
 on:
   push:
   pull_request:
   workflow_dispatch:
   schedule:
-  - cron: '0 0 * * *'
-
+  - cron: 0 0 * * *
 jobs:
   ci:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version:
-        - 20
         test-suite:
         - test
         - test:security
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Set up system
       run: bin/before_install
     - name: Set up Node
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v5
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: ${{ !env.ACT && 'yarn' || '' }}
+        node-version-file: package.json
+        cache: "${{ !env.ACT && 'yarn' || '' }}"
         registry-url: https://npm.manageiq.org/
     - name: Prepare tests
       run: bin/setup
     - name: Run tests
       run: yarn run ${{ matrix.test-suite }}
     - name: Report code coverage
-      if: ${{ github.ref == 'refs/heads/master' && matrix.test-suite != 'test:security' }}
+      if: "${{ github.ref == 'refs/heads/master' && matrix.test-suite != 'test:security'
+        }}"
       continue-on-error: true
       run: cat reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
