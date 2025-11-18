@@ -97,7 +97,7 @@
     "eslint-plugin-import": "~2.22.1",
     "file-loader": "~6.2.0",
     "gettext-parser": "~4.0.4",
-    "glob": "~7.1.6",
+    "glob": "~11.1.0",
     "html-webpack-plugin": "~4.5.0",
     "karma": "~6.4.1",
     "karma-babel-preprocessor": "~8.0.1",
