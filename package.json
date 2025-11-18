@@ -78,7 +78,7 @@
   "devDependencies": {
     "@babel/core": "~7.12.3",
     "@babel/preset-env": "~7.12.1",
-    "@webpack-cli/serve": "~1.6.0",
+    "@webpack-cli/serve": "~1.7.0",
     "angular-mocks": "~1.8.2",
     "babel-eslint": "~10.1.0",
     "babel-loader": "~8.1.0",
