@@ -142,6 +142,7 @@
   "resolutions": {
     "bootstrap-select": "~1.13.6",
     "brace-expansion": "~2.0.0",
+    "cheerio": "1.0.0-rc.12",
     "cross-spawn": "~7.0.6",
     "d3-color": "~3.1.0",
     "express/path-to-regexp": "~0.1.10",
