@@ -1812,21 +1812,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uirouter/angularjs@npm:~1.0.28":
-  version: 1.0.30
-  resolution: "@uirouter/angularjs@npm:1.0.30"
-  dependencies:
-    "@uirouter/core": "npm:6.0.8"
+"@uirouter/angularjs@npm:~1.1.0":
+  version: 1.1.1
+  resolution: "@uirouter/angularjs@npm:1.1.1"
   peerDependencies:
+    "@uirouter/core": ^6.1.1
     angular: ">=1.2.0"
-  checksum: 10/5b4cc1b84aa42b3aca18562a9d565dc19bf11fab948bd561e05df211bcb6b7d2ad8e51c372a8d0c4be6100b6899a9575ae14a8a01517798dce71f05501300803
-  languageName: node
-  linkType: hard
-
-"@uirouter/core@npm:6.0.8":
-  version: 6.0.8
-  resolution: "@uirouter/core@npm:6.0.8"
-  checksum: 10/ebcb1d9ae7127c63e151b82b1318f2e69fb5af5285acc7b66ffe6aaed0798ef4f1d1800eee0aa5012cee309b2c77d921f9120119a9d03cffa3460b723686694e
+  checksum: 10/ee75839987f9ddeacb0a09e35a53eeb5bef671ee082aa34b37a96545eab8033fef9eb56c23746048ad3c99d0076ff77ded7edf430db188c5b394d07826037d90
   languageName: node
   linkType: hard
 
@@ -9390,7 +9382,7 @@ __metadata:
     "@manageiq/ui-components": "npm:~1.6.1"
     "@novnc/novnc": "npm:~1.2.0"
     "@pf3/select": "npm:~1.12.6"
-    "@uirouter/angularjs": "npm:~1.0.28"
+    "@uirouter/angularjs": "npm:~1.1.0"
     "@webpack-cli/serve": "npm:~1.6.0"
     actioncable: "npm:~5.2.4-4"
     angular: "npm:~1.8.0"
