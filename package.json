@@ -62,7 +62,7 @@
     "font-awesome": "~4.7.0",
     "jquery": "~3.7.0",
     "jquery-ui-bundle": "~1.12.1-migrate",
-    "lodash": "~4.17.20",
+    "lodash": "~4.17.23",
     "moment": "~2.29.4",
     "moment-timezone": "^0.5.41",
     "ngprogress": "~1.1.3",
