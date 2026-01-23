@@ -1988,7 +1988,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@webpack-cli/serve@npm:^1.7.0":
+"@webpack-cli/serve@npm:^1.7.0, @webpack-cli/serve@npm:~1.7.0":
   version: 1.7.0
   resolution: "@webpack-cli/serve@npm:1.7.0"
   peerDependencies:
@@ -1997,18 +1997,6 @@ __metadata:
     webpack-dev-server:
       optional: true
   checksum: 10/0b90c963a6b8424a914a85532e3a7dfe2f7eea1c98acea1c6c1a368bf349733f0d6cb2e83ce9ced7c8208f58d518cced767d1e1d0ab26126d8a9bad3b3f5352e
-  languageName: node
-  linkType: hard
-
-"@webpack-cli/serve@npm:~1.6.0":
-  version: 1.6.1
-  resolution: "@webpack-cli/serve@npm:1.6.1"
-  peerDependencies:
-    webpack-cli: 4.x.x
-  peerDependenciesMeta:
-    webpack-dev-server:
-      optional: true
-  checksum: 10/d53761efb2458806421903a5c3945100953a6a939b48fb90bac5ace74c00c15c7586a243b8f5b4ac2d9b5e73e01dd96735f9febdf1c01529cf42978b70a3c418
   languageName: node
   linkType: hard
 
@@ -9306,7 +9294,7 @@ __metadata:
     "@novnc/novnc": "npm:~1.2.0"
     "@pf3/select": "npm:~1.12.6"
     "@uirouter/angularjs": "npm:~1.0.28"
-    "@webpack-cli/serve": "npm:~1.6.0"
+    "@webpack-cli/serve": "npm:~1.7.0"
     actioncable: "npm:~5.2.4-4"
     angular: "npm:~1.8.0"
     angular-animate: "npm:~1.8.0"
