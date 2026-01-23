@@ -32,7 +32,7 @@
   "dependencies": {
     "@manageiq/font-fabulous": "~1.0.5",
     "@manageiq/ui-components": "~1.6.1",
-    "@novnc/novnc": "~1.2.0",
+    "@novnc/novnc": "~1.6.0",
     "@pf3/select": "~1.12.6",
     "@uirouter/angularjs": "~1.0.28",
     "actioncable": "~5.2.4-4",
