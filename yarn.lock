@@ -3953,9 +3953,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"copy-webpack-plugin@npm:~6.3.0":
-  version: 6.3.2
-  resolution: "copy-webpack-plugin@npm:6.3.2"
+"copy-webpack-plugin@npm:~6.4.0":
+  version: 6.4.1
+  resolution: "copy-webpack-plugin@npm:6.4.1"
   dependencies:
     cacache: "npm:^15.0.5"
     fast-glob: "npm:^3.2.4"
@@ -3970,7 +3970,7 @@ __metadata:
     webpack-sources: "npm:^1.4.3"
   peerDependencies:
     webpack: ^4.37.0 || ^5.0.0
-  checksum: 10/706d6bc52bea09c448fa2cb3b5008dbe56f57019941c13b857379d5894c653a636bb104a8235a7355dff3ac7a6b74cbb6c00238c73cdebc6cbc797136746a473
+  checksum: 10/516f83779997ef349ab2ae3fe8f5002e4c2ace82f54ac2120dba18053431bc8a7829b7cc13492424881f5eb63a574327e40c582730270f52534ea09920d07423
   languageName: node
   linkType: hard
 
@@ -9314,7 +9314,7 @@ __metadata:
     c3: "npm:~0.7.20"
     chai: "npm:~4.2.0"
     clean-webpack-plugin: "npm:~3.0.0"
-    copy-webpack-plugin: "npm:~6.3.0"
+    copy-webpack-plugin: "npm:~6.4.0"
     coverage-istanbul-loader: "npm:~3.0.5"
     coveralls: "npm:~3.1.1"
     css-loader: "npm:~5.0.1"
