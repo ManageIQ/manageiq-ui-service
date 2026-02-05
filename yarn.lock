@@ -4879,9 +4879,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3@npm:~7.6.1":
-  version: 7.6.1
-  resolution: "d3@npm:7.6.1"
+"d3@npm:~7.9.0":
+  version: 7.9.0
+  resolution: "d3@npm:7.9.0"
   dependencies:
     d3-array: "npm:3"
     d3-axis: "npm:3"
@@ -4913,7 +4913,7 @@ __metadata:
     d3-timer: "npm:3"
     d3-transition: "npm:3"
     d3-zoom: "npm:3"
-  checksum: 10/b6a4f11f83a4c5a45561ab9ce06bad21f086133b7305d0434e985af2c612d61a05403d27c78f8faf1644253b6eb8944313330a70991d47f488047fb6f7ce4bee
+  checksum: 10/b0b418996bdf279b01f5c7a0117927f9ad3e833c9ce4657550ce6f6ace70b70cf829c4144b01df0be5a0f716d4e5f15ab0cadc5ff1ce1561d7be29ac86493d83
   languageName: node
   linkType: hard
 
@@ -9485,7 +9485,7 @@ __metadata:
     coverage-istanbul-loader: "npm:~3.0.5"
     coveralls: "npm:~3.1.1"
     css-loader: "npm:~5.2.0"
-    d3: "npm:~7.6.1"
+    d3: "npm:~7.9.0"
     ejs: "npm:~3.1.7"
     es6-shim: "npm:~0.35.5"
     eslint: "npm:~7.12.1"
