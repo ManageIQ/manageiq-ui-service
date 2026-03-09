@@ -1,7 +1,7 @@
 # ManageIQ Service UI
 
-[![CI](https://github.com/ManageIQ/manageiq-ui-service/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/ManageIQ/manageiq-ui-service/actions/workflows/ci.yaml)
-[![Coverage Status](https://coveralls.io/repos/github/ManageIQ/manageiq-ui-service/badge.svg?branch=master)](https://coveralls.io/github/ManageIQ/manageiq-ui-service?branch=master)
+[![CI](https://github.com/ManageIQ/manageiq-ui-service/actions/workflows/ci.yaml/badge.svg?branch=tal)](https://github.com/ManageIQ/manageiq-ui-service/actions/workflows/ci.yaml)
+[![Coverage Status](https://coveralls.io/repos/github/ManageIQ/manageiq-ui-service/badge.svg?branch=tal)](https://coveralls.io/github/ManageIQ/manageiq-ui-service?branch=tal)
 
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-ui-service?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
