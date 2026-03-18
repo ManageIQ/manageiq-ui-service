@@ -121,7 +121,7 @@
     "sass-loader": "^11.1.1",
     "save-remote-file-webpack-plugin": "^1.1.0",
     "shelljs": "~0.8.4",
-    "sinon": "~19.0.2",
+    "sinon": "~21.0.0",
     "sinon-chai": "~3.5.0",
     "style-loader": "~2.0.0",
     "url-loader": "~4.1.1",
@@ -152,7 +152,6 @@
     "node-sass": "npm:sass@~1.34.1",
     "nth-check": "^2.1.1",
     "patternfly": "~3.59.5",
-    "request": "npm:@cypress/request@^3.0.9",
-    "sinon": "~19.0.2"
+    "request": "npm:@cypress/request@^3.0.9"
   }
 }
