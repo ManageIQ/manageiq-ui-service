@@ -141,7 +141,7 @@
   "packageManager": "yarn@4.14.1",
   "resolutions": {
     "bootstrap-select": "~1.13.6",
-    "cheerio": "1.0.0-rc.12",
+    "cheerio": "1.2.0",
     "d3-color": "~3.1.0",
     "jquery": "~3.7.1",
     "moment-timezone": "^0.5.41",
