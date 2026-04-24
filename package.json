@@ -16,7 +16,7 @@
     "build:git-hash": "node config/githash.js",
     "build:test": "webpack --bail --progress --config config/webpack.testing.js",
     "gettext:compile": "angular-gettext-cli --compile --files './client/gettext/po/**/*.po' --dest 'client/gettext/json/manageiq-ui-service.json' --format json && yarn available-languages && yarn gettext:validate-language-codes",
-    "gettext:extract": "angular-gettext-cli --files './client/**/*.+(js|html)' --exclude '**/*.+spec.js' --dest './client/gettext/po/manageiq-ui-service.pot' --marker-names '__,N_'",
+    "gettext:extract": "angular-gettext-cli --files './client/**/*.+(js|html)' --exclude '**/*.+spec.js' --dest './client/gettext/po/manageiq-ui-service.pot' --marker-names '__,N_' --no-line-numbers",
     "gettext:validate": "yarn node language/validate.js",
     "gettext:validate-language-codes": "yarn node language/validate-language-codes.js",
     "start": "webpack serve --progress --config config/webpack.dev.js",
