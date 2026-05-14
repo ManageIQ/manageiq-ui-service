@@ -159,6 +159,7 @@ module.exports = {
                   `${nodeModules}/font-awesome/scss`,
                   `${nodeModules}/@manageiq/font-fabulous/assets/stylesheets`,
                 ],
+                quietDeps: true,
               },
             },
           },
