@@ -1246,17 +1246,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@manageiq/ui-components@npm:~1.6.1":
-  version: 1.6.1
-  resolution: "@manageiq/ui-components@npm:1.6.1"
+"@manageiq/ui-components@npm:^1.7.1":
+  version: 1.7.1
+  resolution: "@manageiq/ui-components@npm:1.7.1"
   dependencies:
     angular-bootstrap-switch: "npm:^0.5.1"
     angular-dragdrop: "npm:^1.0.13"
-    angular-ui-sortable: "npm:^0.16.1"
+    angular-ui-sortable: "npm:^0.19.0"
     es6-shim: "npm:^0.35.3"
     es7-shim: "npm:^6.0.0"
     sprintf-js: "npm:^1.1.1"
-  checksum: 10/dc7fb7847d218f6425ceba753bee78a59d3c3fd99996256ed0cd01e2f73ce8e02eda78c5400ee4be14effb7865480c6c105f4a293fdca521c6c8767d23513fae
+  checksum: 10/2e3b7b2f6208e21c90cca8dda274ba44d33d6b6b36f3dfe35bf0faa452bc6f3849405ecad10c81dbc2edf2369f083689cf0039d8ccc1b4689f6dd7eead314246
   languageName: node
   linkType: hard
 
@@ -2446,14 +2446,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-ui-sortable@npm:^0.16.1":
-  version: 0.16.1
-  resolution: "angular-ui-sortable@npm:0.16.1"
-  checksum: 10/73eaa449fd8bfcacc80a8a6efaeef67262ec5336da711dbdf84dd9aa669aed3ff087e98bbe4be8d83bb5a361520b3784e6d4a630abee083175beb6ac3403f562
-  languageName: node
-  linkType: hard
-
-"angular-ui-sortable@npm:~0.19.0":
+"angular-ui-sortable@npm:^0.19.0, angular-ui-sortable@npm:~0.19.0":
   version: 0.19.0
   resolution: "angular-ui-sortable@npm:0.19.0"
   dependencies:
@@ -3448,7 +3441,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"call-bind-apply-helpers@npm:^1.0.0, call-bind-apply-helpers@npm:^1.0.1, call-bind-apply-helpers@npm:^1.0.2":
+"call-bind-apply-helpers@npm:^1.0.1, call-bind-apply-helpers@npm:^1.0.2":
   version: 1.0.2
   resolution: "call-bind-apply-helpers@npm:1.0.2"
   dependencies:
@@ -3459,14 +3452,14 @@ __metadata:
   linkType: hard
 
 "call-bind@npm:^1.0.0, call-bind@npm:^1.0.2, call-bind@npm:^1.0.7, call-bind@npm:^1.0.8":
-  version: 1.0.8
-  resolution: "call-bind@npm:1.0.8"
+  version: 1.0.9
+  resolution: "call-bind@npm:1.0.9"
   dependencies:
-    call-bind-apply-helpers: "npm:^1.0.0"
-    es-define-property: "npm:^1.0.0"
-    get-intrinsic: "npm:^1.2.4"
+    call-bind-apply-helpers: "npm:^1.0.2"
+    es-define-property: "npm:^1.0.1"
+    get-intrinsic: "npm:^1.3.0"
     set-function-length: "npm:^1.2.2"
-  checksum: 10/659b03c79bbfccf0cde3a79e7d52570724d7290209823e1ca5088f94b52192dc1836b82a324d0144612f816abb2f1734447438e38d9dafe0b3f82c2a1b9e3bce
+  checksum: 10/25b1a98d6158f0adf9fface594ca82be4e3ed481d8ff7f36ad1fccb0c8377e38c6a04ff3248693723222d378677e93077c739defc8a6741c82b7e00bcee1245d
   languageName: node
   linkType: hard
 
@@ -5730,8 +5723,8 @@ __metadata:
   linkType: hard
 
 "es-abstract@npm:^1.17.0-next.1, es-abstract@npm:^1.22.1, es-abstract@npm:^1.23.2, es-abstract@npm:^1.23.5, es-abstract@npm:^1.23.9, es-abstract@npm:^1.24.0":
-  version: 1.24.1
-  resolution: "es-abstract@npm:1.24.1"
+  version: 1.24.2
+  resolution: "es-abstract@npm:1.24.2"
   dependencies:
     array-buffer-byte-length: "npm:^1.0.2"
     arraybuffer.prototype.slice: "npm:^1.0.4"
@@ -5787,7 +5780,7 @@ __metadata:
     typed-array-length: "npm:^1.0.7"
     unbox-primitive: "npm:^1.1.0"
     which-typed-array: "npm:^1.1.19"
-  checksum: 10/c84cb69ebae36781309a3ed70ff40b4767a921d3b3518060fac4e08f14ede04491b68e9f318aedf186e349d4af4a40f5d0e4111e46513800e8368551fd09de8c
+  checksum: 10/e2c97263d87b7faf65102d887074af421db7e48cd92b8b3cd308216cdd2547b647e8f61bf51429bdb13adc463bb7f421989544cbfd2e7f7469ef7a69ae8a4205
   languageName: node
   linkType: hard
 
@@ -9399,7 +9392,7 @@ __metadata:
     "@babel/core": "npm:~7.29.0"
     "@babel/preset-env": "npm:~7.29.0"
     "@manageiq/font-fabulous": "npm:~1.0.5"
-    "@manageiq/ui-components": "npm:~1.6.1"
+    "@manageiq/ui-components": "npm:^1.7.1"
     "@novnc/novnc": "npm:~1.2.0"
     "@pf3/select": "npm:~1.12.6"
     "@uirouter/angularjs": "npm:~1.0.28"
