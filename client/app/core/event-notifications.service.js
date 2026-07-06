@@ -238,6 +238,18 @@ export function EventNotificationsFactory ($log, $timeout, lodash, CollectionsAp
   function actionCableInit () {
     if (ApplianceInfo.get().asyncNotify) {
       const cable = ActionCable.createConsumer('/ws/notifications')
+
+      // actioncable 5.2.x does not guard against messages where `identifier`
+      // is absent (undefined). Patching notify so those frames are ignored
+      // instead of throwing "Cannot read properties of undefined".
+      const _origNotify = cable.subscriptions.notify.bind(cable.subscriptions)
+      cable.subscriptions.notify = function (subscription, callbackName, ...args) {
+        if (subscription === undefined || subscription === null) {
+          return []
+        }
+        return _origNotify(subscription, callbackName, ...args)
+      }
+
       cable.subscriptions.create('NotificationChannel', {
         disconnected: () => {
           const vm = this

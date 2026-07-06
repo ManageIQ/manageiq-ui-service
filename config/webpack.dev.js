@@ -36,27 +36,36 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: root,
+    static: { directory: root },
     historyApiFallback: true,
     port: 3001,
-    proxy: {
-      '/api': {
+    webSocketServer: {
+      options: {
+        path: '/webpack-dev-server/ws',
+      },
+    },
+    proxy: [
+      {
+        context: ['/api'],
         target: `${protocol}${host}`,
         secure: false
       },
-      '/pictures': {
+      {
+        context: ['/pictures'],
         target: `${protocol}${host}`,
         secure: false
       },
-      '/ws': {
+      {
+        context: ['/ws'],
         target: `ws://${host}`,
         ws: true
       },
-      '/webmks': {
+      {
+        context: ['/webmks'],
         target: `${protocol}${host}`,
         secure: false
       }
-    }
+    ]
   },
 
   // Output source maps suitable for development
