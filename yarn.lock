@@ -9600,24 +9600,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimist@npm:1.1.x":
-  version: 1.1.3
-  resolution: "minimist@npm:1.1.3"
-  checksum: 10/f8bf79235aaf81585aaf94dbf4adb9b77bc88b56d85a826e39c6be537c11ce5e95fa7c43ad1a721c6c869cb686256a774d23893f018dc8b611a6a7fcceb274e4
-  languageName: node
-  linkType: hard
-
-"minimist@npm:^1.2, minimist@npm:^1.2.0, minimist@npm:^1.2.3, minimist@npm:^1.2.5, minimist@npm:^1.2.6":
+"minimist@npm:~1.2.8":
   version: 1.2.8
   resolution: "minimist@npm:1.2.8"
   checksum: 10/908491b6cc15a6c440ba5b22780a0ba89b9810e1aea684e253e43c4e3b8d56ec1dcdd7ea96dde119c29df59c936cde16062159eae4225c691e19c70b432b6e6f
-  languageName: node
-  linkType: hard
-
-"minimist@npm:~0.0.1":
-  version: 0.0.10
-  resolution: "minimist@npm:0.0.10"
-  checksum: 10/eb87d49c637be2a17c39f29331d6fb0d1a394077b320a994b7c42e9459a55720e66474e0a375ab8ddcbfb2b154e57dfb5133b8baac66e8b0f31fd9bdef91f5c7
   languageName: node
   linkType: hard
 
