@@ -6,6 +6,7 @@ const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 // To download the noVNC viewer
 const DownloadNoVNCPlugin = require('./download-novnc-plugin')
@@ -86,7 +87,6 @@ module.exports = {
         use: [
           'ng-annotate-loader?ngAnnotate=ng-annotate-patched',
           'babel-loader',
-          'eslint-loader',
         ]
       },
 
@@ -204,6 +204,11 @@ module.exports = {
       filename: 'console/webmks.html',
       template: '../client/console/common.ejs',
       chunks: ['console_webmks']
+    }),
+
+    new ESLintPlugin({
+      extensions: ['js'],
+      exclude: 'node_modules',
     }),
 
     new webpack.ContextReplacementPlugin(

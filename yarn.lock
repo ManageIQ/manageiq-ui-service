@@ -1802,7 +1802,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/estree@npm:^1.0.5, @types/estree@npm:^1.0.6":
+"@types/eslint@npm:^9.6.1":
+  version: 9.6.1
+  resolution: "@types/eslint@npm:9.6.1"
+  dependencies:
+    "@types/estree": "npm:*"
+    "@types/json-schema": "npm:*"
+  checksum: 10/719fcd255760168a43d0e306ef87548e1e15bffe361d5f4022b0f266575637acc0ecb85604ac97879ee8ae83c6a6d0613b0ed31d0209ddf22a0fe6d608fc56fe
+  languageName: node
+  linkType: hard
+
+"@types/estree@npm:*, @types/estree@npm:^1.0.5, @types/estree@npm:^1.0.6":
   version: 1.0.9
   resolution: "@types/estree@npm:1.0.9"
   checksum: 10/16aabfa703b5bdac83f719b07ce92a11b2d3c9b8628eacc92889d8af46cab2d78fc45c7b5378de383d0500585cea5c2f79125eeddfe5fbc6bd6a27eb0c8ccee5
@@ -1833,7 +1843,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.15, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.8, @types/json-schema@npm:^7.0.9":
+"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.15, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.8, @types/json-schema@npm:^7.0.9":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
   checksum: 10/1a3c3e06236e4c4aab89499c428d585527ce50c24fe8259e8b3926d3df4cfbbbcf306cfc73ddfb66cbafc973116efd15967020b0f738f63e09e64c7d260519e7
@@ -5867,22 +5877,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-loader@npm:~4.0.2":
-  version: 4.0.2
-  resolution: "eslint-loader@npm:4.0.2"
-  dependencies:
-    find-cache-dir: "npm:^3.3.1"
-    fs-extra: "npm:^8.1.0"
-    loader-utils: "npm:^2.0.0"
-    object-hash: "npm:^2.0.3"
-    schema-utils: "npm:^2.6.5"
-  peerDependencies:
-    eslint: ^6.0.0 || ^7.0.0
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: 10/e493983629c92d97aa40fee32ddd67d3fd1c481abfd4c2c0a1c65f375302f2c43709e4f6747ec098649caddebe886bdf4226128c997e4205d5a0802de8c3b8ae
-  languageName: node
-  linkType: hard
-
 "eslint-module-utils@npm:^2.12.1":
   version: 2.14.0
   resolution: "eslint-module-utils@npm:2.14.0"
@@ -5971,6 +5965,21 @@ __metadata:
   version: 4.2.1
   resolution: "eslint-visitor-keys@npm:4.2.1"
   checksum: 10/3ee00fc6a7002d4b0ffd9dc99e13a6a7882c557329e6c25ab254220d71e5c9c4f89dca4695352949ea678eb1f3ba912a18ef8aac0a7fe094196fd92f441bfce2
+  languageName: node
+  linkType: hard
+
+"eslint-webpack-plugin@npm:~6.0.0":
+  version: 6.0.0
+  resolution: "eslint-webpack-plugin@npm:6.0.0"
+  dependencies:
+    "@types/eslint": "npm:^9.6.1"
+    micromatch: "npm:^4.0.8"
+    normalize-path: "npm:^3.0.0"
+    schema-utils: "npm:^4.3.3"
+  peerDependencies:
+    eslint: ^9.0.0 || ^10.0.0
+    webpack: ^5.0.0
+  checksum: 10/3c3586c4ac65a9f78092495f7353336296c5113ac60db3123b96696d9e4051f7e6d5479a609744a12fba64619c7916fc9dc42e9f625e24c3a34a73145298342f
   languageName: node
   linkType: hard
 
@@ -8925,9 +8934,9 @@ __metadata:
     es6-shim: "npm:~0.35.5"
     eslint: "npm:~9.39.4"
     eslint-config-angular: "npm:~0.5.0"
-    eslint-loader: "npm:~4.0.2"
     eslint-plugin-angular: "npm:~5.0.0"
     eslint-plugin-import: "npm:~2.32.0"
+    eslint-webpack-plugin: "npm:~6.0.0"
     file-loader: "npm:~6.2.0"
     font-awesome: "npm:~4.7.0"
     gettext-parser: "npm:~4.0.4"
@@ -9666,13 +9675,6 @@ __metadata:
     define-property: "npm:^0.2.5"
     kind-of: "npm:^3.0.3"
   checksum: 10/a9e35f07e3a2c882a7e979090360d1a20ab51d1fa19dfdac3aa8873b328a7c4c7683946ee97c824ae40079d848d6740a3788fa14f2185155dab7ed970a72c783
-  languageName: node
-  linkType: hard
-
-"object-hash@npm:^2.0.3":
-  version: 2.2.0
-  resolution: "object-hash@npm:2.2.0"
-  checksum: 10/dee06b6271bf5769ae5f1a7386fdd52c1f18aae9fcb0b8d4bb1232f2d743d06cb5b662be42378b60a1c11829f96f3f86834a16bbaa57a085763295fff8b93e27
   languageName: node
   linkType: hard
 
@@ -11310,7 +11312,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"schema-utils@npm:^4.3.0":
+"schema-utils@npm:^4.3.0, schema-utils@npm:^4.3.3":
   version: 4.3.3
   resolution: "schema-utils@npm:4.3.3"
   dependencies:
