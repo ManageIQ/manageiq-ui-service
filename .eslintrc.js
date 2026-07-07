@@ -21,10 +21,11 @@ module.exports = {
     bard: 'readonly',
     sinon: 'readonly',
   },
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
+    requireConfigFile: false,
   },
   plugins: [
     'eslint-plugin-angular',
