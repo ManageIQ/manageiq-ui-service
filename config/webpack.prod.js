@@ -13,6 +13,13 @@ config.devtool = 'cheap-module-source-map'
 config.mode = 'production';
 config.optimization.minimize = true;
 
+config.plugins = config.plugins.filter(plugin => {  
+  if (plugin instanceof HtmlWebpackPlugin) {
+    return plugin.userOptions?.filename === 'console/webmks.html';
+  }
+  return true;
+});
+
 config.plugins.push(
   new webpack.NoEmitOnErrorsPlugin(),
 
