@@ -3408,7 +3408,7 @@
         "description": "Open the Documentation Page"
     },
     "embedded_automation_manager": {
-        "name": "Embedded Automation Manager",
+        "name": "Embedded Automation Provider",
         "description": "Everything under Ansible",
         "children": [
             "embedded_automation_manager_credentials",
