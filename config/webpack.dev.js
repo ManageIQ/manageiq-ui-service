@@ -8,8 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // To download the noVNC viewer
-const SaveRemoteFilePlugin = require('save-remote-file-webpack-plugin')
-const execSync = require('child_process').execSync
+const DownloadNoVNCPlugin = require('./download-novnc-plugin')
 
 const root = path.resolve(__dirname, '../client')
 const outputPath = process.env.BUILD_OUTPUT || '../../manageiq/public/ui/service'
@@ -189,17 +188,9 @@ module.exports = {
     }),
 
     // noVNC doesn't package the vnc_lite viewer that we need, so we have to
-    // fetch it separately.
-    new SaveRemoteFilePlugin({
-      // HACK: Temporarily hardcoded the version number for @novnc/novnc, because
-      //       the following, which works locally, does not work for some reason
-      //       in CI.  Any changes to package.json for this package will also
-      //       need to be changed here.
-      // url: `https://raw.githubusercontent.com/novnc/noVNC/v${execSync(`yarn info --name-only @novnc/novnc | cut -d ':' -f 2 | tr -d '\n'`, {encoding: 'utf-8'})}/vnc_lite.html`,
-      url: `https://raw.githubusercontent.com/novnc/noVNC/v1.2.0/vnc_lite.html`,
-
-      filepath: 'vendor/noVNC/vnc_lite.html',
-      hash: false
+    // fetch it separately. Version is automatically read from package.json.
+    new DownloadNoVNCPlugin({
+      outputPath: 'vendor/noVNC/vnc_lite.html'
     }),
 
     // Generate index.html from template with script/link tags for bundles
