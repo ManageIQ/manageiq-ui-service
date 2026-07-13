@@ -237,32 +237,23 @@ export function EventNotificationsFactory ($log, $timeout, lodash, CollectionsAp
 
   function actionCableInit () {
     if (ApplianceInfo.get().asyncNotify) {
-      const cable = ActionCable.createConsumer('/ws/notifications')
+      Session.requestWsToken().then(() => {
+        const cable = ActionCable.createConsumer('/ws/notifications')
 
-      // actioncable 5.2.x does not guard against messages where `identifier`
-      // is absent (undefined). Patching notify so those frames are ignored
-      // instead of throwing "Cannot read properties of undefined".
-      const _origNotify = cable.subscriptions.notify.bind(cable.subscriptions)
-      cable.subscriptions.notify = function (subscription, callbackName, ...args) {
-        if (subscription === undefined || subscription === null) {
-          return []
-        }
-        return _origNotify(subscription, callbackName, ...args)
-      }
-
-      cable.subscriptions.create('NotificationChannel', {
-        disconnected: () => {
-          const vm = this
-          Session.requestWsToken().then(null, () => {
-            $log.warn('Unable to retrieve a valid ws_token!')
-            // Disconnect permanently if the ws_token cannot be fetched
-            vm.consumer.connection.close({allowReconnect: false})
-          })
-        },
-        received: (data) => {
-          const msg = miqFormatNotification(data.text, data.bindings)
-          add(data.level, data.level === 'error' ? 'danger' : data.level, msg, {message: msg}, data.id)
-        }
+        cable.subscriptions.create('NotificationChannel', {
+          disconnected: () => {
+            Session.requestWsToken().then(null, () => {
+              $log.warn('Unable to retrieve a valid ws_token!')
+              cable.connection.close({allowReconnect: false})
+            })
+          },
+          received: (data) => {
+            const msg = miqFormatNotification(data.text, data.bindings)
+            add(data.level, data.level === 'error' ? 'danger' : data.level, msg, {message: msg}, data.id)
+          }
+        })
+      }, () => {
+        $log.warn('Unable to retrieve a valid ws_token!')
       })
     }
   }

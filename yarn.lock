@@ -1811,6 +1811,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rails/actioncable@npm:^8.0.0":
+  version: 8.1.300
+  resolution: "@rails/actioncable@npm:8.1.300"
+  checksum: 10/9a8682b9d311ded0cf3a6fcb581fdcde8e21e16dba375a854cb6adb38167dbe06ccac6ca5a4edcdf55accc9396fcbd5dc0aa8b4605427c9f0ee9c5b4e687bfed
+  languageName: node
+  linkType: hard
+
 "@rtsao/scc@npm:^1.1.0":
   version: 1.1.0
   resolution: "@rtsao/scc@npm:1.1.0"
@@ -2700,13 +2707,6 @@ __metadata:
   bin:
     acorn: ./bin/acorn
   checksum: 10/e721cc4399fb5d8d4919349255e7eb1f33948d9d3c8e4b0881344153095d66f4282c8b958b60d1df05757f3a7dcc3c9844aa2961f3f15ee79d24ca906536ac97
-  languageName: node
-  linkType: hard
-
-"actioncable@npm:~5.2.4-4":
-  version: 5.2.8
-  resolution: "actioncable@npm:5.2.8"
-  checksum: 10/5cdc4d60689d0244d532d37a64e0c0b186f958cc94674f1b416308afcde2bd65c84b9c34e82723004fc5c235cb5759acd6ed12456153551a6ce7cd8afff653f4
   languageName: node
   linkType: hard
 
@@ -8536,8 +8536,8 @@ __metadata:
     "@manageiq/ui-components": "npm:^1.7.1"
     "@novnc/novnc": "npm:~1.2.0"
     "@pf3/select": "npm:~1.12.6"
+    "@rails/actioncable": "npm:^8.0.0"
     "@uirouter/angularjs": "npm:~1.0.28"
-    actioncable: "npm:~5.2.4-4"
     angular: "npm:~1.8.0"
     angular-animate: "npm:~1.8.0"
     angular-bootstrap-switch: "npm:~0.5.2"
