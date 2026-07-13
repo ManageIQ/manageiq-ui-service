@@ -1,5 +1,5 @@
 /* global $componentController, ServicesState, CollectionsApi */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: serviceExplorer', () => {
   let scope, ctrl, collectionsApiMock
 

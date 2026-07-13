@@ -1,5 +1,5 @@
 /* global inject, $httpBackend, readJSON, CollectionsApi */
-/* eslint-disable no-unused-expressions, angular/timeout-service */
+/* eslint-disable angular/timeout-service */
 
 describe('Component: taggingWidget', () => {
   beforeEach(() => {

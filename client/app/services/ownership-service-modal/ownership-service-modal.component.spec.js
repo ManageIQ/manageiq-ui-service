@@ -1,5 +1,5 @@
 /* global inject, CollectionsApi, EventNotifications */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: ownershipServiceModal', () => {
   beforeEach(module('app'))
 

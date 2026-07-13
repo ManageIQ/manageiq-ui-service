@@ -1,5 +1,4 @@
 /* global $localStorage, Session, readJSON, inject, $http, $cookies */
-/* eslint-disable no-unused-expressions */
 describe('Session', () => {
   let reloadOk
 

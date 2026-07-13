@@ -1,5 +1,5 @@
 /* global $state, EventNotifications, $controller, Session */
-/* eslint-disable no-unused-expressions */
+ 
 describe('State: login', () => {
   beforeEach(() => {
     module('app.states')

@@ -1,5 +1,4 @@
 /* global Polling */
-/* eslint-disable no-unused-expressions */
 describe('Polling Service', () => {
   beforeEach(function () {
     module('app.shared')

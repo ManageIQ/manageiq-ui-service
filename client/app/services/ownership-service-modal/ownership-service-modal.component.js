@@ -1,4 +1,3 @@
-/* eslint camelcase: "off" */
 import template from './ownership-service-modal.html';
 
 export const OwnershipServiceModalComponent = {
@@ -48,7 +47,7 @@ function ComponentController ($state, lodash, CollectionsApi, EventNotifications
   }
 
   function reset (event) {
-    angular.copy(event.original, this.modalData) // eslint-disable-line angular/controller-as-vm
+    angular.copy(event.original, this.modalData)
   }
 
   function save () {

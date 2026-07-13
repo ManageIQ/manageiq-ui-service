@@ -1,5 +1,4 @@
 /* global readJSON, RBAC, Navigation, CollectionsApi */
-/* eslint-disable no-unused-expressions */
 describe('Navigation Service', () => {
   const permissions = readJSON('tests/mock/rbac/allPermissions.json')
   beforeEach(function () {

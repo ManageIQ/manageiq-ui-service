@@ -1,5 +1,5 @@
 /* global $state, $controller */
-/* eslint-disable no-unused-expressions */
+ 
 describe('State: orders.details', () => {
   beforeEach(function () {
     module('app.states', 'app.orders', 'app.core')

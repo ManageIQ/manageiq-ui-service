@@ -91,6 +91,6 @@ function ComponentController ($scope, $state, CollectionsApi, EventNotifications
   }
 
   function reset (event) {
-    angular.copy(event.original, this.modalData) // eslint-disable-line angular/controller-as-vm
+    angular.copy(event.original, this.modalData)
   }
 }

@@ -1,5 +1,5 @@
 /* global $componentController, Language */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: languageSwitcher ', function () {
   let ctrl
   let languageSpy

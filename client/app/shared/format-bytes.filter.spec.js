@@ -1,5 +1,5 @@
 /* global inject */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Filter: format-bytes/format-megaBytes', () => {
   let formatBytesFilter
   let formatmegaBytesFilter

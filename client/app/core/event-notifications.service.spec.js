@@ -1,5 +1,4 @@
 /* global readJSON, RBAC, EventNotifications, CollectionsApi */
-/* eslint-disable no-unused-expressions */
 describe('Event Notifications Service', () => {
   const permissions = readJSON('tests/mock/rbac/allPermissions.json')
 

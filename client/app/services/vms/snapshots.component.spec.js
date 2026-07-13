@@ -1,5 +1,5 @@
 /* global $componentController, EventNotifications, VmsService, CollectionsApi */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: snapshots with $componentController', () => {
   let ctrl, notificationsSpy, collectionsApiSpy
   const successResponse = {

@@ -1,5 +1,5 @@
 /* global $state, $stateParams, $controller, DialogFieldRefresh, context, ShoppingCart, EventNotifications, DialogData */
-/* eslint-disable no-unused-expressions */
+ 
 describe('State: catalogs.details', () => {
   beforeEach(() => {
     module('app.states');
