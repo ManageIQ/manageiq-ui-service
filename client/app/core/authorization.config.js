@@ -44,7 +44,7 @@ export function authConfig ($httpProvider) {
 }
 
 /** @ngInject */
-export function authInit ($rootScope, $state, $log, Session, $localStorage, Language, $window, RBAC, ActionCable) {
+export function authInit ($rootScope, $state, $log, Session, $localStorage, Language, $window, RBAC, ApplianceInfo) {
   $rootScope.$on('$stateChangeStart', changeStart)
   $rootScope.$on('$stateChangeError', changeError)
   $rootScope.$on('$stateChangeSuccess', changeSuccess)
@@ -108,7 +108,9 @@ export function authInit ($rootScope, $state, $log, Session, $localStorage, Lang
     .then(function (response) {
       if (angular.isDefined(response)) {
         Language.onReload(response)
+        ApplianceInfo.set(response)
         RBAC.setRole(response.identity.role)
+        $rootScope.$broadcast('applianceInfoUpdated')
       }
     })
     .catch(badUser)

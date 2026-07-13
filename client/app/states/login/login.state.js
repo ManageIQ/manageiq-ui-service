@@ -88,6 +88,7 @@ function StateController ($window, $state, $cookies, $timeout, Text, RBAC, API_L
         Language.onLogin(response)
         ApplianceInfo.set(response)
         RBAC.setRole(response.identity.role)
+        $rootScope.$broadcast('applianceInfoUpdated')
       }
 
       if (RBAC.suiAuthorized()) {

@@ -1,6 +1,6 @@
 /** @ngInject */
-export function EventNotificationsFactory ($log, $timeout, lodash, CollectionsApi, RBAC, ApplianceInfo, ActionCable,
-                                           Session, sprintf) {
+export function EventNotificationsFactory ($log, $timeout, $rootScope, lodash, CollectionsApi, RBAC, ApplianceInfo,
+                                           ActionCable, Session, sprintf) {
   const state = {}
   const toastDelay = 8 * 1000
   const service = {
@@ -22,7 +22,18 @@ export function EventNotificationsFactory ($log, $timeout, lodash, CollectionsAp
   }
 
   notificationsInit()
-  actionCableInit()
+
+  // actionCableInit requires ApplianceInfo to be populated first.
+  // If it's already set (e.g. on a page refresh), init immediately.
+  // Otherwise wait for authInit to broadcast once syncSession completes.
+  if (ApplianceInfo.get().asyncNotify) {
+    actionCableInit()
+  } else {
+    const unsubscribe = $rootScope.$on('applianceInfoUpdated', () => {
+      unsubscribe()
+      actionCableInit()
+    })
+  }
 
   return service
 
