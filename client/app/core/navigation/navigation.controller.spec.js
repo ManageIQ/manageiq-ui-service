@@ -1,5 +1,5 @@
 /* global Navigation, Session, CollectionsApi, inject, API_BASE, ShoppingCart, $rootScope, $uibModal, $state, $document, EventNotifications, ApplianceInfo, RBAC */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Controller: Navigation', () => {
   beforeEach(module('app.components'))
   let ctrl

@@ -1,5 +1,5 @@
 /* global $state, $componentController */
-/* eslint-disable no-unused-expressions */
+ 
 describe('State: services.details', () => {
   beforeEach(() => {
     module('app.states', 'app.services')

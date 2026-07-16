@@ -1,5 +1,5 @@
 /* global readJSON, $componentController, CollectionsApi, inject */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: ServiceDetails', () => {
   beforeEach(() => {
     module('app.core', 'app.states', 'app.services')

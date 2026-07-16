@@ -1,5 +1,5 @@
 /* global inject */
-/* eslint-disable no-unused-expressions */
+ 
 describe('detail-reveal component', () => {
   let ctrl
 

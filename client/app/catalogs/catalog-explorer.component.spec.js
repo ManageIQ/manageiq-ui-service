@@ -1,5 +1,4 @@
 /* global CatalogsState, $componentController, EventNotifications */
-/* eslint-disable no-unused-expressions */
 describe('Catalog explorer component - ', () => {
   let scope, ctrl
 

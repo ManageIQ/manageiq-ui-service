@@ -1,5 +1,5 @@
 /* global inject */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: processOrderModal', () => {
   beforeEach(() => {
     module('app.core', 'app.orders')

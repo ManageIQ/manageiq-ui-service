@@ -1,5 +1,5 @@
 /* global $componentController, ShoppingCart, EventNotifications */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: shoppingCart', () => {
   let ctrl, closeFn, successNotificationSpy, failureNotificationSpy
   beforeEach(() => {

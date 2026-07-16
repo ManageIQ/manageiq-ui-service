@@ -1,5 +1,5 @@
 /* global inject */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: timeline', function () {
   beforeEach(module('app.services'))
   describe('controller', function () {

@@ -1,5 +1,5 @@
 /* global $componentController */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: customDropdown ', function () {
   let ctrl
   let updateSpy
