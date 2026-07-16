@@ -1,10 +1,10 @@
 /* global inject, $httpBackend, readJSON, CollectionsApi */
-/* eslint-disable no-unused-expressions, angular/timeout-service */
+/* eslint-disable no-unused-expressions */
 
 describe('Component: taggingWidget', () => {
   beforeEach(() => {
     module('app.components')
-    bard.inject('$httpBackend', 'CollectionsApi')
+    bard.inject('$httpBackend', '$rootScope', '$q', 'CollectionsApi')
   })
 
   describe('with $compile', () => {
@@ -22,7 +22,7 @@ describe('Component: taggingWidget', () => {
       attributes: attributes
     }
 
-    beforeEach(inject(($compile, $rootScope) => {
+    beforeEach(inject(($compile, $rootScope, $q) => {
       let mockDir = 'tests/mock/blueprint-details/'
 
       scope = $rootScope.$new()
@@ -34,8 +34,8 @@ describe('Component: taggingWidget', () => {
       scope.tagCategories = readJSON(mockDir + 'tag-categories.json')
 
       collectionsApiSpy = sinon.stub(CollectionsApi, 'query')
-      collectionsApiSpy.withArgs('categories', options).returns(Promise.resolve(scope.tagCategories))
-      collectionsApiSpy.withArgs('tags', options2).returns(Promise.resolve(scope.allTags))
+      collectionsApiSpy.withArgs('categories', options).returns($q.resolve(scope.tagCategories))
+      collectionsApiSpy.withArgs('tags', options2).returns($q.resolve(scope.allTags))
 
       element = angular.element('<tagging-widget tags-of-item="tagsOfBlueprint"/>')
       let el = $compile(element)(scope)
@@ -49,132 +49,114 @@ describe('Component: taggingWidget', () => {
       expect(tagsOfItem.length).to.be.eq(2)
     })
 
-    it('should have correct number of tags and tag categories', (done) => {
-      // wait till promises and watchers resolve
-      setTimeout(() => {
-        isoScope.$digest()
-        expect(isoScope.vm.tags.all).to.eq(scope.allTags.resources)
-        expect(isoScope.vm.showTagDropdowns).to.eq(true)
+    it('should have correct number of tags and tag categories', () => {
+      $rootScope.$apply()
+      expect(isoScope.vm.tags.all).to.eq(scope.allTags.resources)
+      expect(isoScope.vm.showTagDropdowns).to.eq(true)
 
-        expect(collectionsApiSpy).to.have.been.calledWith('categories', options)
-        expect(collectionsApiSpy).to.have.been.calledWith('tags', options2)
+      expect(collectionsApiSpy).to.have.been.calledWith('categories', options)
+      expect(collectionsApiSpy).to.have.been.calledWith('tags', options2)
 
-        let tagCategorySelect = element.find('.tag-category-select')
-        let tagCategories = angular.element(tagCategorySelect).find('option')
-        expect(tagCategories.length).to.be.eq(28)
-
-        done()
-      }, 500)
+      let tagCategorySelect = element.find('.tag-category-select')
+      let tagCategories = angular.element(tagCategorySelect).find('option')
+      expect(tagCategories.length).to.be.eq(28)
     })
 
-    it('should default to first tag category, and tags of that category', (done) => {
-      setTimeout(() => {
-        isoScope.$digest()
-        let tagCategorySelect = element.find('.tag-category-select')
-        let tagCategories = angular.element(tagCategorySelect).find('option')
-        expect(tagCategories[0].text).to.be.eq('Auto Approve - Max CPU')
-        expect(tagCategories[0].selected).to.be.eq(true)
+    it('should default to first tag category, and tags of that category', () => {
+      $rootScope.$apply()
+      let tagCategorySelect = element.find('.tag-category-select')
+      let tagCategories = angular.element(tagCategorySelect).find('option')
+      expect(tagCategories[0].text).to.be.eq('Auto Approve - Max CPU')
+      expect(tagCategories[0].selected).to.be.eq(true)
 
-        let tagsOfCategorySelect = element.find('.tag-value-select')
-        let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
-        expect(tagsOfCategory.length).to.be.eq(7)    // 6 Auto Approve options
-        expect(tagsOfCategory[0].selected).to.be.eq(true)
-
-        done()
-      }, 500)
+      let tagsOfCategorySelect = element.find('.tag-value-select')
+      let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
+      expect(tagsOfCategory.length).to.be.eq(7)    // 6 Auto Approve options
+      expect(tagsOfCategory[0].selected).to.be.eq(true)
     })
 
-    it('should add a tag', (done) => {
-      setTimeout(() => {
-        // Select tag category 'Department' and tag 'Accounting'
-        isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[8]
-        isoScope.$digest()
-        isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[2]
-        isoScope.$digest()
+    it('should add a tag', () => {
+      $rootScope.$apply()
+      // Select tag category 'Department' and tag 'Accounting'
+      isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[8]
+      isoScope.$digest()
+      isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[2]
+      isoScope.$digest()
 
-        expect(isoScope.vm.tags.selectedTag.name).to.be.eq('/managed/department/accounting')
+      expect(isoScope.vm.tags.selectedTag.name).to.be.eq('/managed/department/accounting')
 
-        let tagCategorySelect = element.find('.tag-category-select')
-        let tagCategories = angular.element(tagCategorySelect).find('option')
-        expect(tagCategories[8].text).to.be.eq('Department')
-        expect(tagCategories[8].selected).to.be.eq(true)
+      let tagCategorySelect = element.find('.tag-category-select')
+      let tagCategories = angular.element(tagCategorySelect).find('option')
+      expect(tagCategories[8].text).to.be.eq('Department')
+      expect(tagCategories[8].selected).to.be.eq(true)
 
-        let tagsOfCategorySelect = element.find('.tag-value-select')
-        let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
-        expect(tagsOfCategory[2].text).to.be.eq('Accounting')
-        expect(tagsOfCategory[2].selected).to.be.eq(true)
+      let tagsOfCategorySelect = element.find('.tag-value-select')
+      let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
+      expect(tagsOfCategory[2].text).to.be.eq('Accounting')
+      expect(tagsOfCategory[2].selected).to.be.eq(true)
 
-        // should be 2 existing tags
-        let tagsOfItem = element.find('.pficon-close')
-        expect(tagsOfItem.length).to.be.eq(2)
+      // should be 2 existing tags
+      let tagsOfItem = element.find('.pficon-close')
+      expect(tagsOfItem.length).to.be.eq(2)
 
-        let addItem = element.find('.fa-plus')
-        expect(addItem.length).to.be.eq(1)
-        addItem[0].click()
-        isoScope.$digest()
+      let addItem = element.find('.fa-plus')
+      expect(addItem.length).to.be.eq(1)
+      addItem[0].click()
+      isoScope.$digest()
 
-        // should now have three tags
-        tagsOfItem = element.find('.pficon-close')
-        expect(tagsOfItem.length).to.be.eq(3)
-
-        done()
-      }, 500)
+      // should now have three tags
+      tagsOfItem = element.find('.pficon-close')
+      expect(tagsOfItem.length).to.be.eq(3)
     })
 
-    it('should replace single-value tags', (done) => {
-      setTimeout(() => {
-        // There is an existing 'single-value' tag
-        let tagsOfItem = element.find('.pficon-close')
-        expect(tagsOfItem.length).to.be.eq(2)
-        expect(angular.element(tagsOfItem[1]).parent().parent().text().trim()).to.be.eq('Service Level: Gold')
+    it('should replace single-value tags', () => {
+      $rootScope.$apply()
+      // There is an existing 'single-value' tag
+      let tagsOfItem = element.find('.pficon-close')
+      expect(tagsOfItem.length).to.be.eq(2)
+      expect(angular.element(tagsOfItem[1]).parent().parent().text().trim()).to.be.eq('Service Level: Gold')
 
-        // Select tag category 'Service Level' and tag 'Platinum'
-        isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[24]
-        isoScope.$digest()
-        isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[4]
-        isoScope.$digest()
+      // Select tag category 'Service Level' and tag 'Platinum'
+      isoScope.vm.tags.selectedCategory = isoScope.vm.tags.categories[24]
+      isoScope.$digest()
+      isoScope.vm.tags.selectedTag = isoScope.vm.tags.filtered[4]
+      isoScope.$digest()
 
-        expect(isoScope.vm.tags.selectedTag.name).to.be.eq('/managed/service_level/platinum')
+      expect(isoScope.vm.tags.selectedTag.name).to.be.eq('/managed/service_level/platinum')
 
-        let tagCategorySelect = element.find('.tag-category-select')
-        let tagCategories = angular.element(tagCategorySelect).find('option')
-        expect(tagCategories[24].text).to.be.eq('Service Level')
-        expect(tagCategories[24].selected).to.be.eq(true)
+      let tagCategorySelect = element.find('.tag-category-select')
+      let tagCategories = angular.element(tagCategorySelect).find('option')
+      expect(tagCategories[24].text).to.be.eq('Service Level')
+      expect(tagCategories[24].selected).to.be.eq(true)
 
-        let tagsOfCategorySelect = element.find('.tag-value-select')
-        let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
-        expect(tagsOfCategory[4].text).to.be.eq('Platinum')
-        expect(tagsOfCategory[4].selected).to.be.eq(true)
+      let tagsOfCategorySelect = element.find('.tag-value-select')
+      let tagsOfCategory = angular.element(tagsOfCategorySelect).find('option')
+      expect(tagsOfCategory[4].text).to.be.eq('Platinum')
+      expect(tagsOfCategory[4].selected).to.be.eq(true)
 
-        // This should replace Service Level Gold with Service Level Platinum
-        let addItem = element.find('.fa-plus')
-        expect(addItem.length).to.be.eq(1)
-        addItem[0].click()
+      // This should replace Service Level Gold with Service Level Platinum
+      let addItem = element.find('.fa-plus')
+      expect(addItem.length).to.be.eq(1)
+      addItem[0].click()
 
-        isoScope.$digest()
+      isoScope.$digest()
 
-        // Second Tag should now be Service Level: Platinum
-        tagsOfItem = element.find('.pficon-close')
-        expect(tagsOfItem.length).to.be.eq(2)
-        expect(angular.element(tagsOfItem[1]).parent().parent().text().trim()).to.be.eq('Service Level: Platinum')
-
-        done()
-      }, 500)
+      // Second Tag should now be Service Level: Platinum
+      tagsOfItem = element.find('.pficon-close')
+      expect(tagsOfItem.length).to.be.eq(2)
+      expect(angular.element(tagsOfItem[1]).parent().parent().text().trim()).to.be.eq('Service Level: Platinum')
     })
 
-    it('should remove a tag', (done) => {
-      setTimeout(() => {
-        let tagsOfItem = element.find('.pficon-close')
-        expect(tagsOfItem.length).to.be.eq(2)
+    it('should remove a tag', () => {
+      $rootScope.$apply()
+      let tagsOfItem = element.find('.pficon-close')
+      expect(tagsOfItem.length).to.be.eq(2)
 
-        tagsOfItem[1].click()
-        isoScope.$digest()
+      tagsOfItem[1].click()
+      isoScope.$digest()
 
-        tagsOfItem = element.find('.pficon-close')
-        expect(tagsOfItem.length).to.be.eq(1)
-
-        done()
-      }, 500)
+      tagsOfItem = element.find('.pficon-close')
+      expect(tagsOfItem.length).to.be.eq(1)
     })
   })
 })
