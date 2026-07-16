@@ -1,5 +1,5 @@
 /* global $state, $controller, CollectionsApi, Notifications, DialogData */
-/* eslint-disable no-unused-expressions */
+ 
 describe('State: services.reconfigure', () => {
   beforeEach(() => {
     module('app.states');

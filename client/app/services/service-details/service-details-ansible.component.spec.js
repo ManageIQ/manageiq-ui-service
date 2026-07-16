@@ -1,5 +1,5 @@
 /* global readJSON, $componentController, ModalService, ServicesState */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: ServiceDetailsAnsibleComponent', function () {
   let scope, ctrl
   let mockDir = 'tests/mock/services/'

@@ -1,5 +1,5 @@
 /* global readJSON, VmsService, RBAC, CollectionsApi */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Service: VmsService', () => {
   let service
   const filters = [

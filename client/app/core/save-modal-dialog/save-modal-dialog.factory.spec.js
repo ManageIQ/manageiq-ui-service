@@ -1,5 +1,5 @@
 /* global $document, eventFire, SaveModalDialog */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: SaveModalDialog', () => {
   beforeEach(module('app.components'))
 

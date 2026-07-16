@@ -1,5 +1,4 @@
 /* global inject, $state */
-/* eslint-disable no-unused-expressions */
 describe('Component: orderExplorer', () => {
   beforeEach(() => {
     module('app.states', 'app.orders')

@@ -1,5 +1,5 @@
 /* global readJSON, EventNotifications, inject, VmsService, PowerOperations, $state, lodash, sprintf, Polling, ModalService */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: Resource Details', () => {
   beforeEach(() => {
     module('app.core', 'app.states', 'app.services')

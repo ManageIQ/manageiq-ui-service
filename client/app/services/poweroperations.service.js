@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 /** @ngInject */
 export function PowerOperationsFactory (CollectionsApi, EventNotifications, sprintf) {
   var service = {

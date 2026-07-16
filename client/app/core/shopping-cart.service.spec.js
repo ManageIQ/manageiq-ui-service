@@ -1,5 +1,4 @@
 /* global CollectionsApi, ShoppingCart, RBAC */
-/* eslint-disable no-unused-expressions */
 describe('Shopping cart service', () => {
   beforeEach(() => {
     module('app.core')

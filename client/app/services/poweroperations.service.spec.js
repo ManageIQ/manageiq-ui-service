@@ -1,5 +1,5 @@
 /* global readJSON, EventNotifications, CollectionsApi, PowerOperations */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Service: PowerOperationsFactory', () => {
   let mockDir = 'tests/mock/poweroperations/'
   const vm = readJSON(mockDir + 'vm.json')

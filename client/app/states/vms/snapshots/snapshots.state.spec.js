@@ -1,5 +1,5 @@
 /* global $state, $controller */
-/* eslint-disable no-unused-expressions */
+ 
 describe('State: vms.snapshots', () => {
   beforeEach(() => {
     module('app.states')

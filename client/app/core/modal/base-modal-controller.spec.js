@@ -1,5 +1,4 @@
 /* global inject */
-/* eslint-disable no-unused-expressions */
 describe('BaseModalController', () => {
   beforeEach(module('app.components'))
 

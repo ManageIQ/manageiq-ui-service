@@ -1,5 +1,5 @@
 /* global inject */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: actionButtonGroup', () => {
   beforeEach(module('app.components'))
 

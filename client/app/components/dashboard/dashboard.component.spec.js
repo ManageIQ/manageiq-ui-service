@@ -1,5 +1,4 @@
 /* global $componentController */
-/* eslint-disable no-unused-expressions */
 describe('Component: dashboardComponent', () => {
   let ctrl
 

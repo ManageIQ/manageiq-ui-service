@@ -1,5 +1,5 @@
 /* global inject */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Directive: confirmation', () => {
   beforeEach(module('app.shared'))
   describe('template', () => {

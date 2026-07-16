@@ -1,5 +1,4 @@
 /* global _:false, ActionCable:false, sprintf: false, moment: false */
-/* eslint-disable sort-imports */
 
 import {
   authConfig,

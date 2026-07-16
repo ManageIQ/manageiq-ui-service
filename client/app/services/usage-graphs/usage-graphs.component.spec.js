@@ -1,5 +1,5 @@
 /* global inject, $componentController */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: usageGraphs', () => {
   let parentScope, element
 

@@ -1,4 +1,3 @@
-/* eslint-disable */
 'use strict';
 
 const gettextParser = require('gettext-parser');

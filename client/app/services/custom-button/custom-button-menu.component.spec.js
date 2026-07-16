@@ -1,5 +1,5 @@
 /* global $state, $componentController, RBAC, CollectionsApi */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: Custom Button Menu', () => {
   beforeEach(() => {
     module('app.core', 'app.services')

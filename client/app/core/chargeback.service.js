@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 /** @ngInject */
 export function ChargebackFactory (lodash) {
   const service = {

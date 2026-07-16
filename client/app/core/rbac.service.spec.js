@@ -1,5 +1,4 @@
 /* global readJSON, inject */
-/* eslint-disable no-unused-expressions */
 describe('RBAC service', () => {
   let service
   const permissions = readJSON('tests/mock/rbac/allPermissions.json')

@@ -1,5 +1,5 @@
 /* global $state, $controller, CollectionsApi, Notifications, DialogFieldRefresh, DialogData */
-/* eslint-disable no-unused-expressions */
+ 
 describe('State: services.custom_button_details', () => {
   const dialogId = 213
   const serviceId = 123

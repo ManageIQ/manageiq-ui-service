@@ -1,5 +1,5 @@
 /* global inject */
-/* eslint-disable no-unused-expressions */
+ 
 describe('Component: requests-list', () => {
   beforeEach(function () {
     module('app.core', 'app.orders')
