@@ -3515,9 +3515,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001774, caniuse-lite@npm:^1.0.30001803":
-  version: 1.0.30001805
-  resolution: "caniuse-lite@npm:1.0.30001805"
-  checksum: 10/2ce6f5d200846218e136a89a40a071d1b976fe5cfc3fbc01acb73db02839d9bf7370b88efb23295823bb6c2355772b52469121ef987f85062165a4ec5859fdca
+  version: 1.0.30001806
+  resolution: "caniuse-lite@npm:1.0.30001806"
+  checksum: 10/25d4ed6a2f03f51519bf302739cbe53e5522205607e47455cfcf19fdde975f2fdb890b78ead7b18961d5635ee676f03c73dea1ef30e9ef1d3fe11b9f02485f86
   languageName: node
   linkType: hard
 
@@ -5393,9 +5393,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.389":
-  version: 1.5.389
-  resolution: "electron-to-chromium@npm:1.5.389"
-  checksum: 10/fc47fc3b810e028088bea45f994de4cf7243bd8b0fa3abe17bfb6825d0cf95d185d1c98976b87af3f98c8e8ba7994776d2ad52148894baa802a9fa9a60ad8c0b
+  version: 1.5.393
+  resolution: "electron-to-chromium@npm:1.5.393"
+  checksum: 10/b0d99b46be934319a0feb96ec6d2f42d3812f3d93eebc1e8d5433b447774cf0fc08e13d20741a6001275852eede4de55f4988505503139c356aad8c22717f950
   languageName: node
   linkType: hard
 
@@ -11754,12 +11754,12 @@ __metadata:
   linkType: hard
 
 "socket.io-parser@npm:~4.2.4":
-  version: 4.2.6
-  resolution: "socket.io-parser@npm:4.2.6"
+  version: 4.2.7
+  resolution: "socket.io-parser@npm:4.2.7"
   dependencies:
     "@socket.io/component-emitter": "npm:~3.1.0"
     debug: "npm:~4.4.1"
-  checksum: 10/cf8f3e9feee42b2405065bccef732894a0b07b7cb734c4954eb8876d7a0038e7df6e6d06fab3a25f816f5d996917391833d5f06136e8c8c6fbecf5da962c1c9e
+  checksum: 10/da1920b9dae989e2c491aa9c248ced7d03d8b1056acf3144c0992878fdc8b91fb50638df38c0e387317f8bc748718ea2ae648d83ff837a5a0ede20ce277b2af9
   languageName: node
   linkType: hard
 
@@ -13391,17 +13391,17 @@ __metadata:
   linkType: hard
 
 "ws@npm:^6.2.1":
-  version: 6.2.4
-  resolution: "ws@npm:6.2.4"
+  version: 6.2.6
+  resolution: "ws@npm:6.2.6"
   dependencies:
     async-limiter: "npm:~1.0.0"
-  checksum: 10/5ec88106f4f97fb175837a476e186b889ec8c57a5ee7c511c852fc1d129ad55cd1c1f45092af2df7419c1394f2000f9b1b6f68f2fcfe52d04d8882aafa1b3838
+  checksum: 10/2a3cb5d0a96c5792f0dc230f6f5c696c996e2a83caef4593190128f92bcc1eeaa11f6acc80c7f6196bad044c94348caea705b36cbefc420fbff43858226958f9
   languageName: node
   linkType: hard
 
 "ws@npm:~8.21.0":
-  version: 8.21.0
-  resolution: "ws@npm:8.21.0"
+  version: 8.21.1
+  resolution: "ws@npm:8.21.1"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ">=5.0.2"
@@ -13410,7 +13410,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 10/088411956432c8f876158409d5a285cb9ad1382f593391f51d3a599bd0a5b277f876609ebd00fc3596321c4a4c9064d6fffe1ebad960e8ea7fd9ae25324f35c2
+  checksum: 10/8493bc543072763d7bacffb2282c9d7954dc5c599c9df4c2d15f91c217f63e293a33ffc70756e3f2bf8c5d85bc6069ad7d9983c382d4713c807b083ffb1b1719
   languageName: node
   linkType: hard
 
