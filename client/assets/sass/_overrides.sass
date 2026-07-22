@@ -51,6 +51,7 @@
     // pf-toolbar-dropdown goes crazy when given sufficient cause to, this keeps it inline
     .toolbar-apf-filter
       .category-select
+        // stylelint-disable-next-line max-nesting-depth
         .dropdown-toggle
           width: 147px
 
@@ -59,15 +60,16 @@
         max-width: 202px
         overflow-y: scroll
 
+        // stylelint-disable-next-line max-nesting-depth
         li
           overflow-x: scroll
 
 // Override patternfly-timeline default icon size
 .timeline-pf-drop
-  font-size: 20px !important
+  font-size: 20px !important // stylelint-disable-line declaration-no-important
 
   &:hover
-    font-size: 30px !important
+    font-size: 30px !important // stylelint-disable-line declaration-no-important
 
 .blank-slate-pf
-  padding: 30px !important
+  padding: 30px !important // stylelint-disable-line declaration-no-important
