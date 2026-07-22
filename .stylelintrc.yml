@@ -1,0 +1,98 @@
+extends:
+  - stylelint-config-standard-scss
+
+plugins:
+  - stylelint-scss
+
+ignoreFiles:
+  - "client/**/_patternfly.sass"
+  - "client/**/_patternfly.scss"
+  - "client/assets/sass/_bem-support/**"
+
+rules:
+  # --- Disallows ---
+  color-named: never
+  color-no-invalid-hex: true
+  declaration-no-important: true
+  no-duplicate-selectors: true
+  block-no-empty: true
+  no-empty-source: null
+
+  # no-transition-all
+  declaration-property-value-disallowed-list:
+    - transition:
+        - "/^all/"
+      transition-property:
+        - all
+
+  # no-vendor-prefixes
+  property-no-vendor-prefix: true
+  value-no-vendor-prefix: true
+  selector-no-vendor-prefix: true
+  at-rule-no-vendor-prefix: true
+  media-feature-name-no-vendor-prefix: true
+
+  # --- Nesting ---
+  max-nesting-depth:
+    - 3
+    - ignoreAtRules:
+        - if
+        - else
+        - each
+        - include
+        - mixin
+
+  # --- Name Formats ---
+  scss/dollar-variable-pattern:
+    - "^[a-z][a-z0-9-]*$"
+    - {}
+  scss/at-mixin-pattern:
+    - "^[a-z][a-z0-9-]*$"
+    - {}
+  scss/percent-placeholder-pattern:
+    - "^[a-z][a-z0-9-]*$"
+    - {}
+  scss/at-function-pattern:
+    - "^[a-z][a-z0-9-]*$"
+    - {}
+
+  # BEM + modifier-first class names (e.g. -in-a-tab, splash__message, dndDragging)
+  # Pattern: optional leading -, block name, optional BEM element (__element) or modifier (--modifier)
+  selector-class-pattern:
+    - "^-?[a-zA-Z][a-zA-Z0-9]*(-[a-z0-9]+)*(__[a-z][a-z0-9]*(-[a-z0-9]+)*(--[a-z][a-z0-9]*(-[a-z0-9]+)*)?|--[a-z][a-z0-9]*(-[a-z0-9]+)*)?$"
+    - message: "Class names must be kebab-case (BEM allowed)"
+
+  # --- Style Guide ---
+  color-hex-length: short
+  shorthand-property-no-redundant-values: true
+  function-url-quotes: always
+  length-zero-no-unit:
+    - true
+    - ignore:
+        - custom-properties
+      ignorePreludeOfAtRules:
+        - function
+        - mixin
+
+  # Precision: match existing code (e.g. 1.66666667)
+  number-max-precision: null
+
+  # Font-family: legacy FontAwesome doesn't include generic family
+  font-family-no-missing-generic-family-keyword: null
+
+  # Disable opinionated rules from config-standard-scss that differ from existing code style
+  alpha-value-notation: number
+  color-function-notation: legacy
+  color-function-alias-notation: null
+  scss/dollar-variable-empty-line-before: null
+  scss/double-slash-comment-empty-line-before: null
+  scss/comment-no-empty: null
+  declaration-block-no-redundant-longhand-properties: null
+  rule-empty-line-before: null
+  declaration-empty-line-before: null
+
+# Override for indented-syntax .sass files
+overrides:
+  - files:
+      - "**/*.sass"
+    customSyntax: postcss-sass

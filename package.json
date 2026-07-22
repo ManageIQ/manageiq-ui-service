@@ -27,7 +27,7 @@
     "test:watch": "karma start --auto-watch --no-single-run",
     "update": "jq -r '.dependencies|keys|join(\"\n\")'  package.json | grep -v patternfly-timeline | xargs yarn add",
     "update-dev": "jq -r '.devDependencies|keys|join(\"\n\")'  package.json | xargs yarn add -D",
-    "vet": "NODE_OPTIONS=--max-old-space-size=8192 yarn run eslint . && yarn run sass-lint --verbose --no-exit"
+    "vet": "NODE_OPTIONS=--max-old-space-size=8192 yarn run eslint . && yarn run stylelint 'client/**/*.s+(a|c)ss'"
   },
   "dependencies": {
     "@manageiq/font-fabulous": "~1.0.5",
@@ -115,15 +115,18 @@
     "ng-annotate-patched": "~1.12.0",
     "postcss": "~8.5.1",
     "postcss-loader": "~4.0.4",
+    "postcss-sass": "^0.5.0",
     "raw-loader": "~4.0.2",
     "resolve-url-loader": "~5.0.0",
     "sass": "~1.35.1",
-    "sass-lint": "~1.13.1",
     "sass-loader": "^11.1.1",
     "shelljs": "~0.8.4",
     "sinon": "~21.0.0",
     "sinon-chai": "~3.5.0",
     "style-loader": "~2.0.0",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-scss": "^7.2.0",
     "url-loader": "~4.1.1",
     "webpack": "^5.108.4",
     "webpack-cli": "^7.2.1",
