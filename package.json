@@ -149,6 +149,6 @@
     "moment": "~2.29.4",
     "node-sass": "npm:sass@~1.35.1",
     "patternfly": "~3.59.5",
-    "request": "npm:@cypress/request@^3.0.9"
+    "request": "npm:@cypress/request@^4.0.1"
   }
 }
