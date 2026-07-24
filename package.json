@@ -82,7 +82,7 @@
     "@eslint/eslintrc": "~3.3.5",
     "@eslint/js": "~9.39.4",
     "angular-mocks": "~1.8.2",
-    "babel-loader": "~8.1.0",
+    "babel-loader": "~8.4.0",
     "bardjs": "~0.1.8",
     "chai": "~4.5.0",
     "clean-webpack-plugin": "^4.0.0",
