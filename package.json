@@ -104,7 +104,7 @@
     "karma-babel-preprocessor": "~8.0.1",
     "karma-chai": "~0.1.0",
     "karma-chai-sinon": "~0.1.5",
-    "karma-chrome-launcher": "~3.1.0",
+    "karma-chrome-launcher": "~3.2.0",
     "karma-coverage-istanbul-reporter": "~3.0.3",
     "karma-mocha": "~2.0.1",
     "karma-read-json": "~1.1.0",
