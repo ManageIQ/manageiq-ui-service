@@ -8281,12 +8281,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"karma-chrome-launcher@npm:~3.1.0":
-  version: 3.1.1
-  resolution: "karma-chrome-launcher@npm:3.1.1"
+"karma-chrome-launcher@npm:~3.2.0":
+  version: 3.2.0
+  resolution: "karma-chrome-launcher@npm:3.2.0"
   dependencies:
     which: "npm:^1.2.1"
-  checksum: 10/527c33a27d251355693d2a27f7ab7a5c0fc0ef156d5e82261f7d9a02d09cfa7f6d09979e73d3ecbbce43fe5a8e1ee69ca634783e0d40255bc7e1e53af376a12c
+  checksum: 10/2124684172ef04f6fa3a957d72214adcd780e440adf61d191f1e6faa648b6b509056952910d6d0517d118250d347d8b30f77ccac195ea53dcdf3d7ed71651506
   languageName: node
   linkType: hard
 
@@ -8689,7 +8689,7 @@ __metadata:
     karma-babel-preprocessor: "npm:~8.0.1"
     karma-chai: "npm:~0.1.0"
     karma-chai-sinon: "npm:~0.1.5"
-    karma-chrome-launcher: "npm:~3.1.0"
+    karma-chrome-launcher: "npm:~3.2.0"
     karma-coverage-istanbul-reporter: "npm:~3.0.3"
     karma-mocha: "npm:~2.0.1"
     karma-read-json: "npm:~1.1.0"
