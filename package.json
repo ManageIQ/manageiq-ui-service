@@ -81,6 +81,7 @@
     "@babel/preset-env": "~7.29.0",
     "@eslint/eslintrc": "~3.3.5",
     "@eslint/js": "~9.39.4",
+    "@ljharb/tsconfig": "^0.3.2",
     "angular-mocks": "~1.8.2",
     "babel-loader": "~8.1.0",
     "bardjs": "~0.1.8",

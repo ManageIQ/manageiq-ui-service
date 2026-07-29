@@ -1725,6 +1725,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ljharb/tsconfig@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "@ljharb/tsconfig@npm:0.3.2"
+  checksum: 10/104b23a87f314fe1a99ff61c6f870abf16fe34a3c499f2177f97ecf51343fe6305416475f90506fb3e9df770b7984a0a2419108b67f00905a2d16efc3dbff132
+  languageName: node
+  linkType: hard
+
 "@manageiq/font-fabulous@npm:~1.0.5":
   version: 1.0.5
   resolution: "@manageiq/font-fabulous@npm:1.0.5"
@@ -8401,6 +8408,7 @@ __metadata:
     "@babel/preset-env": "npm:~7.29.0"
     "@eslint/eslintrc": "npm:~3.3.5"
     "@eslint/js": "npm:~9.39.4"
+    "@ljharb/tsconfig": "npm:^0.3.2"
     "@manageiq/font-fabulous": "npm:~1.0.5"
     "@manageiq/ui-components": "npm:^1.7.1"
     "@novnc/novnc": "npm:~1.2.0"
