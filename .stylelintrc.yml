@@ -1,13 +1,13 @@
 extends:
-  - stylelint-config-standard-scss
+- stylelint-config-standard-scss
 
 plugins:
-  - stylelint-scss
+- stylelint-scss
 
 ignoreFiles:
-  - "client/**/_patternfly.sass"
-  - "client/**/_patternfly.scss"
-  - "client/assets/sass/_bem-support/**"
+- "client/**/_patternfly.sass"
+- "client/**/_patternfly.scss"
+- "client/assets/sass/_bem-support/**"
 
 rules:
   # --- Disallows ---
@@ -20,10 +20,10 @@ rules:
 
   # no-transition-all
   declaration-property-value-disallowed-list:
-    - transition:
-        - "/^all/"
-      transition-property:
-        - all
+  - transition:
+    - "/^all/"
+    transition-property:
+    - all
 
   # no-vendor-prefixes
   property-no-vendor-prefix: true
@@ -34,45 +34,45 @@ rules:
 
   # --- Nesting ---
   max-nesting-depth:
-    - 3
-    - ignoreAtRules:
-        - if
-        - else
-        - each
-        - include
-        - mixin
+  - 3
+  - ignoreAtRules:
+    - if
+    - else
+    - each
+    - include
+    - mixin
 
   # --- Name Formats ---
   scss/dollar-variable-pattern:
-    - "^[a-z][a-z0-9-]*$"
-    - {}
+  - "^[a-z][a-z0-9-]*$"
+  - {}
   scss/at-mixin-pattern:
-    - "^[a-z][a-z0-9-]*$"
-    - {}
+  - "^[a-z][a-z0-9-]*$"
+  - {}
   scss/percent-placeholder-pattern:
-    - "^[a-z][a-z0-9-]*$"
-    - {}
+  - "^[a-z][a-z0-9-]*$"
+  - {}
   scss/at-function-pattern:
-    - "^[a-z][a-z0-9-]*$"
-    - {}
+  - "^[a-z][a-z0-9-]*$"
+  - {}
 
   # BEM + modifier-first class names (e.g. -in-a-tab, splash__message, dndDragging)
   # Pattern: optional leading -, block name, optional BEM element (__element) or modifier (--modifier)
   selector-class-pattern:
-    - "^-?[a-zA-Z][a-zA-Z0-9]*(-[a-z0-9]+)*(__[a-z][a-z0-9]*(-[a-z0-9]+)*(--[a-z][a-z0-9]*(-[a-z0-9]+)*)?|--[a-z][a-z0-9]*(-[a-z0-9]+)*)?$"
-    - message: "Class names must be kebab-case (BEM allowed)"
+  - "^-?[a-zA-Z][a-zA-Z0-9]*(-[a-z0-9]+)*(__[a-z][a-z0-9]*(-[a-z0-9]+)*(--[a-z][a-z0-9]*(-[a-z0-9]+)*)?|--[a-z][a-z0-9]*(-[a-z0-9]+)*)?$"
+  - message: "Class names must be kebab-case (BEM allowed)"
 
   # --- Style Guide ---
   color-hex-length: short
   shorthand-property-no-redundant-values: true
   function-url-quotes: always
   length-zero-no-unit:
-    - true
-    - ignore:
-        - custom-properties
-      ignorePreludeOfAtRules:
-        - function
-        - mixin
+  - true
+  - ignore:
+    - custom-properties
+    ignorePreludeOfAtRules:
+    - function
+    - mixin
 
   # Precision: match existing code (e.g. 1.66666667)
   number-max-precision: null
@@ -93,6 +93,6 @@ rules:
 
 # Override for indented-syntax .sass files
 overrides:
-  - files:
-      - "**/*.sass"
-    customSyntax: postcss-sass
+- files:
+  - "**/*.sass"
+  customSyntax: postcss-sass
