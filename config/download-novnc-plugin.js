@@ -4,8 +4,7 @@ const path = require('path');
 
 class DownloadNoVNCPlugin {
   constructor(options = {}) {
-    const packageJson = require('../package.json');
-    const novncVersion = packageJson.dependencies['@novnc/novnc'].replace(/[~^]/, '');
+    const novncVersion = require('@novnc/novnc/package.json')?.version;
     
     this.targetFile = 'vnc_lite.html';
     this.url = options.url || `https://raw.githubusercontent.com/novnc/noVNC/v${novncVersion}/${this.targetFile}`;
