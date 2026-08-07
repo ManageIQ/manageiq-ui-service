@@ -1,7 +1,6 @@
 import './_language-switcher.sass'
 import template from './language-switcher.html';
 
-/** @ngInject */
 export const LanguageSwitcherComponent = {
   controller: LanguageSwitcherController,
   controllerAs: 'vm',
