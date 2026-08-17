@@ -26,7 +26,7 @@ jobs:
     - name: Set up system
       run: bin/before_install
     - name: Set up Node
-      uses: actions/setup-node@v6
+      uses: actions/setup-node@v7
       with:
         node-version-file: package.json
         cache: "${{ !env.ACT && 'yarn' || '' }}"
