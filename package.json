@@ -151,7 +151,7 @@
     "moment-timezone": "^0.6.0",
     "moment": "~2.30.0",
     "mocha/serialize-javascript": "^7.0.7",
-    "node-sass": "npm:sass@~1.35.1",
+    "node-sass": "npm:sass@~1.103.0",
     "patternfly": "~3.59.5",
     "request": "npm:@cypress/request@^4.0.1",
     "js-yaml": "~4.3.1"
