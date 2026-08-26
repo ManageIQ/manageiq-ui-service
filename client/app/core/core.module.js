@@ -1,4 +1,6 @@
-/* global _:false, ActionCable:false, sprintf: false, moment: false */
+/* global _:false, sprintf: false, moment: false */
+
+import * as ActionCable from '@rails/actioncable'
 
 import {
   authConfig,

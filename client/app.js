@@ -13,7 +13,6 @@ window.sprintf = require('sprintf-js').sprintf
 window.c3 = require('c3')
 window.d3 = require('d3')
 window.numeral = numeral
-window.ActionCable = require('actioncable');
 
 // Libraries: core
 require('jquery-ui-bundle')
