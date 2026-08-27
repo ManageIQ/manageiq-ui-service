@@ -8398,7 +8398,7 @@ __metadata:
     sass-loader: "npm:^11.1.1"
     shelljs: "npm:~0.10.0"
     sinon: "npm:~21.1.0"
-    sinon-chai: "npm:~3.5.0"
+    sinon-chai: "npm:~3.7.0"
     spice-html5-bower: "npm:~1.7.3"
     sprintf-js: "npm:~1.1.2"
     style-loader: "npm:~2.0.0"
@@ -10531,13 +10531,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sinon-chai@npm:~3.5.0":
-  version: 3.5.0
-  resolution: "sinon-chai@npm:3.5.0"
+"sinon-chai@npm:~3.7.0":
+  version: 3.7.0
+  resolution: "sinon-chai@npm:3.7.0"
   peerDependencies:
     chai: ^4.0.0
-    sinon: ">=4.0.0 <10.0.0"
-  checksum: 10/e160c5f535dc504d22a161198930b9138727bb7058b1a703a35ee65cc2a0e18580e5f983bd89960ded55d3737d9b6cb02c3803280b2b2eaa9e11acc39933ff58
+    sinon: ">=4.0.0"
+  checksum: 10/028853eb8a545ca613c6863014a40f07d1e6b81467e20939fefcd13f170206d24165b91099fb297aeb4d137745e321da25daa8e2d665cc0a78f90d5b877e8bbe
   languageName: node
   linkType: hard
 
