@@ -96,26 +96,19 @@ module.exports = {
         ]
       },
 
-      // font/images loaders: if smaller than limit embed as data uri
+      // font/image assets: inline as data URI below 20kb, otherwise emit as file
       {
-        test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 20480,
-              name: 'styles/[contenthash].[ext]',
-
-              // Determine publicPath dynamically because in production, assets
-              // must be relative to `/ui/service/`
-              publicPath: (url) => {
-                const path = process.env.NODE_ENV === 'production' ? '/ui/service/' : '/'
-
-                return path + url
-              }
-            }
-          }
-        ]
+        test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot)/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 20480,
+          },
+        },
+        generator: {
+          filename: '[contenthash][ext]',
+          publicPath: `${appBasePath}styles/`,
+        },
       },
 
       // css loaders: extract styles to a separate bundle
@@ -135,19 +128,21 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              url: (url) => {
-                // manageiq/public/upload/
-                if (url.match(/^\/upload\//)) {
-                  return false;
-                }
+              url: {
+                filter: (url) => {
+                  // manageiq/public/upload/
+                  if (url.match(/^\/upload\//)) {
+                    return false;
+                  }
 
-                // manageiq/public/ui/service/images/ from client/assets/images
-                if (url.startsWith(`${appBasePath}images/`)) {
-                  return false;
-                }
+                  // manageiq/public/ui/service/images/ from client/assets/images
+                  if (url.startsWith(`${appBasePath}images/`)) {
+                    return false;
+                  }
 
-                // try to resolve/error everything else
-                return true;
+                  // try to resolve/error everything else
+                  return true;
+                },
               },
             },
           },
