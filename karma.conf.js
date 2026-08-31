@@ -35,7 +35,6 @@ module.exports = function (config) {
     ],
 
     plugins: [
-      'karma-babel-preprocessor',
       'karma-chai',
       'karma-chai-sinon',
       'karma-chrome-launcher',
@@ -47,13 +46,6 @@ module.exports = function (config) {
 
     proxies: {
       '/images/': '/base/client/assets/images/',
-    },
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      './tests/**/*.js': ['babel'],
-      './client/app/**/*.spec.js': ['babel'],
     },
 
     // test results reporter to use
