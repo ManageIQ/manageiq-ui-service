@@ -106,8 +106,7 @@ module.exports = {
           },
         },
         generator: {
-          filename: '[contenthash][ext]',
-          publicPath: `${appBasePath}styles/`,
+          filename: 'styles/[contenthash][ext]',
         },
       },
 
