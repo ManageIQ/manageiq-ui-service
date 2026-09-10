@@ -35,7 +35,7 @@
     "@novnc/novnc": "~1.2.0",
     "@pf3/select": "~1.12.6",
     "@rails/actioncable": "^8.0.0",
-    "@uirouter/angularjs": "~1.0.28",
+    "@uirouter/angularjs": "~1.1.0",
     "angular": "~1.8.0",
     "angular-animate": "~1.8.0",
     "angular-bootstrap-switch": "~0.5.2",
