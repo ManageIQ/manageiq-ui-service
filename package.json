@@ -86,7 +86,7 @@
     "babel-loader": "~10.1.0",
     "babel-plugin-angularjs-annotate": "^0.10.0",
     "bardjs": "~0.1.8",
-    "chai": "~4.5.0",
+    "chai": "~6.2.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^14.0.0",
     "coverage-istanbul-loader": "~3.0.5",
