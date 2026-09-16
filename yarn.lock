@@ -8999,9 +8999,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-sass@npm:sass@~1.103.0":
-  version: 1.103.1
-  resolution: "sass@npm:1.103.1"
+"node-sass@npm:sass@~1.104.0, sass@npm:~1.104.0":
+  version: 1.104.1
+  resolution: "sass@npm:1.104.1"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
     chokidar: "npm:^5.0.0"
@@ -9012,7 +9012,7 @@ __metadata:
       optional: true
   bin:
     sass: sass.js
-  checksum: 10/b66acf027bbd0e6bfd9eb2a171779ae7c59115d10b2b55d52f547a7835bf63c108879ba699b47bcf5328042067a9e1b7f38141da3b8cd6af8d6805a9b5666609
+  checksum: 10/e237f0ab079bf3dce05c25b3445cf3e940d0efa1ef4b7f143b728eb86f0256d9c1315f0b29b64a073f443a98c4c6e2f67fc9b4d92eb5079ddd55a324eebd901e
   languageName: node
   linkType: hard
 
@@ -10380,23 +10380,6 @@ __metadata:
     sass:
       optional: true
   checksum: 10/3a9d09d1ea88cc29220952ff883e685e20d3e68203b5cf28fe5b7c8ee99d8685aa7d005f8b8df50f4d4ba0b33e6c91650e12b54714b3262f9a9b8ec314ffce3c
-  languageName: node
-  linkType: hard
-
-"sass@npm:~1.104.0":
-  version: 1.104.1
-  resolution: "sass@npm:1.104.1"
-  dependencies:
-    "@parcel/watcher": "npm:^2.4.1"
-    chokidar: "npm:^5.0.0"
-    immutable: "npm:^5.1.5"
-    source-map-js: "npm:>=0.6.2 <2.0.0"
-  dependenciesMeta:
-    "@parcel/watcher":
-      optional: true
-  bin:
-    sass: sass.js
-  checksum: 10/e237f0ab079bf3dce05c25b3445cf3e940d0efa1ef4b7f143b728eb86f0256d9c1315f0b29b64a073f443a98c4c6e2f67fc9b4d92eb5079ddd55a324eebd901e
   languageName: node
   linkType: hard
 
