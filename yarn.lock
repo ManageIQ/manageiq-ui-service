@@ -3528,9 +3528,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:~10.5.0":
-  version: 10.5.6
-  resolution: "autoprefixer@npm:10.5.6"
+"autoprefixer@npm:~10.6.0":
+  version: 10.6.1
+  resolution: "autoprefixer@npm:10.6.1"
   dependencies:
     browserslist: "npm:^4.28.9"
     caniuse-lite: "npm:^1.0.30001810"
@@ -3541,7 +3541,7 @@ __metadata:
     postcss: ^8.1.0
   bin:
     autoprefixer: bin/autoprefixer
-  checksum: 10/94488a13c7586aafd32542b20cb3480c114d48bf09f9fe56d9ebb8221ef02f77303aae11b7db4e487fa7bc00664969aef3971f3e31c22f14b2ba3c0f500e9d58
+  checksum: 10/186b2e62c6fd6a5b25787f944e24951a914b4fbc96374b89a51243b7d2241365ce33e4c5698b40973749432f39ad18aa3f4ffa446ac3745166ca9149b0b5e957
   languageName: node
   linkType: hard
 
@@ -8462,7 +8462,7 @@ __metadata:
     angular-ui-bootstrap: "npm:~2.5.6"
     angular-ui-sortable: "npm:~0.19.0"
     array-includes: "npm:~3.2.0"
-    autoprefixer: "npm:~10.5.0"
+    autoprefixer: "npm:~10.6.0"
     babel-loader: "npm:~10.1.0"
     babel-plugin-angularjs-annotate: "npm:^0.10.0"
     bardjs: "npm:~0.1.8"
