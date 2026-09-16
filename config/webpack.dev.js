@@ -151,14 +151,14 @@ module.exports = {
             options: {
               additionalData: `$img-base-path: '${appBasePath}'`,
               sassOptions: {
-                includePaths: [
+                loadPaths: [
                   `${root}/assets/sass`,
                   `${nodeModules}/bootstrap-sass/assets/stylesheets`,
-                  `${nodeModules}/patternfly/dist/sass/patternfly`,
                   `${nodeModules}/font-awesome/scss`,
                   `${nodeModules}/@manageiq/font-fabulous/assets/stylesheets`,
                 ],
                 quietDeps: true,
+                silenceDeprecations: ['import', 'global-builtin', 'color-functions'],
               },
             },
           },
@@ -218,10 +218,15 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['.js'],
+    modules: [
+      path.resolve(root, 'assets/sass'),
+      'node_modules',
+    ],
+    extensions: ['.js', '.sass', '.scss', '.css'],
     symlinks: false,
     alias: {
       'bootstrap-select': '@pf3/select',
+      'font-awesome$': path.resolve(nodeModules, 'font-awesome/scss/font-awesome.scss'),
       '/version.json': fs.existsSync(`${root}/version/version.json`) ? `${root}/version/version.json` : false,
     },
   },
