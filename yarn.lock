@@ -8374,7 +8374,7 @@ __metadata:
     raw-loader: "npm:~4.0.2"
     resolve-url-loader: "npm:~5.0.0"
     sass: "npm:~1.104.0"
-    sass-loader: "npm:^11.1.1"
+    sass-loader: "npm:^17.0.0"
     shelljs: "npm:~0.10.0"
     sinon: "npm:~21.1.0"
     sinon-chai: "npm:~3.7.0"
@@ -8759,13 +8759,6 @@ __metadata:
   version: 0.6.4
   resolution: "negotiator@npm:0.6.4"
   checksum: 10/d98c04a136583afd055746168f1067d58ce4bfe6e4c73ca1d339567f81ea1f7e665b5bd1e81f4771c67b6c2ea89b21cb2adaea2b16058c7dc31317778f931dab
-  languageName: node
-  linkType: hard
-
-"neo-async@npm:^2.6.2":
-  version: 2.6.2
-  resolution: "neo-async@npm:2.6.2"
-  checksum: 10/1a7948fea86f2b33ec766bc899c88796a51ba76a4afc9026764aedc6e7cde692a09067031e4a1bf6db4f978ccd99e7f5b6c03fe47ad9865c3d4f99050d67e002
   languageName: node
   linkType: hard
 
@@ -10197,25 +10190,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass-loader@npm:^11.1.1":
-  version: 11.1.1
-  resolution: "sass-loader@npm:11.1.1"
-  dependencies:
-    klona: "npm:^2.0.4"
-    neo-async: "npm:^2.6.2"
+"sass-loader@npm:^17.0.0":
+  version: 17.0.1
+  resolution: "sass-loader@npm:17.0.1"
   peerDependencies:
-    fibers: ">= 3.1.0"
-    node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0
+    "@rspack/core": 0.x || ^1.0.0 || ^2.0.0-0
     sass: ^1.3.0
+    sass-embedded: "*"
     webpack: ^5.0.0
   peerDependenciesMeta:
-    fibers:
-      optional: true
-    node-sass:
+    "@rspack/core":
       optional: true
     sass:
       optional: true
-  checksum: 10/3a9d09d1ea88cc29220952ff883e685e20d3e68203b5cf28fe5b7c8ee99d8685aa7d005f8b8df50f4d4ba0b33e6c91650e12b54714b3262f9a9b8ec314ffce3c
+    sass-embedded:
+      optional: true
+    webpack:
+      optional: true
+  checksum: 10/c5e97f75f6dfab2b8fc9a9ea1f75005b1333475bf7142422ff39b2b610963c2cee9049f915c1e63d5a57b9da0ea7135ec364f3e764a48aaa47f787b07220089f
   languageName: node
   linkType: hard
 
