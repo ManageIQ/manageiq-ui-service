@@ -5738,15 +5738,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"encoding@npm:^0.1.13":
-  version: 0.1.13
-  resolution: "encoding@npm:0.1.13"
-  dependencies:
-    iconv-lite: "npm:^0.6.2"
-  checksum: 10/bb98632f8ffa823996e508ce6a58ffcf5856330fde839ae42c9e1f436cc3b5cc651d4aeae72222916545428e54fd0f6aa8862fd8d25bdbcc4589f1e3f3715e7f
-  languageName: node
-  linkType: hard
-
 "engine.io-parser@npm:~5.2.1":
   version: 5.2.3
   resolution: "engine.io-parser@npm:5.2.3"
@@ -6801,16 +6792,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gettext-parser@npm:~9.1.0":
-  version: 9.1.1
-  resolution: "gettext-parser@npm:9.1.1"
-  dependencies:
-    content-type: "npm:^1.0.5"
-    encoding: "npm:^0.1.13"
-  checksum: 10/eec7b077ad3cc528ab1865c2ef0c6700e6679f306ad2c939eebbfef3b74f1b4f71ab4048d2de741e12166c12002bd26d8594b502d3766ff374c131ff36e222a5
-  languageName: node
-  linkType: hard
-
 "glob-parent@npm:^5.1.2, glob-parent@npm:~5.1.2":
   version: 5.1.2
   resolution: "glob-parent@npm:5.1.2"
@@ -7246,7 +7227,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"iconv-lite@npm:0.6, iconv-lite@npm:0.6.3, iconv-lite@npm:^0.6.2, iconv-lite@npm:^0.6.3":
+"iconv-lite@npm:0.6, iconv-lite@npm:0.6.3, iconv-lite@npm:^0.6.3":
   version: 0.6.3
   resolution: "iconv-lite@npm:0.6.3"
   dependencies:
@@ -8486,7 +8467,6 @@ __metadata:
     eslint-plugin-import: "npm:~2.32.0"
     eslint-webpack-plugin: "npm:~6.0.0"
     font-awesome: "npm:~4.7.0"
-    gettext-parser: "npm:~9.1.0"
     glob: "npm:~13.0.0"
     html-webpack-plugin: "npm:^5.6.7"
     jquery: "npm:~3.7.0"
