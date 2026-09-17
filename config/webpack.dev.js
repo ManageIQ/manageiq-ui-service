@@ -218,11 +218,7 @@ module.exports = {
   ],
 
   resolve: {
-    modules: [
-      path.resolve(root, 'assets/sass'),
-      'node_modules',
-    ],
-    extensions: ['.js', '.sass', '.scss', '.css'],
+    extensions: ['.js'],
     symlinks: false,
     alias: {
       'bootstrap-select': '@pf3/select',
