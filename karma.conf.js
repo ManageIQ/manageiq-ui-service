@@ -2,7 +2,8 @@ module.exports = function (config) {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
-    frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
+    exclude: ['./tests/helpers/chai-bundle-entry.js'],
+    frameworks: ['mocha', 'sinon'],
     colors: true,
     autoWatch: true,
     singleRun: false,
@@ -24,9 +25,9 @@ module.exports = function (config) {
     // list of files / patterns to load in the browser
     files: [
       {pattern: './dist/app.js'},
+      {pattern: './dist/chai-bundle.js'},
       {pattern: './node_modules/angular-mocks/angular-mocks.js'},
       {pattern: './node_modules/bardjs/bard.js'},
-      {pattern: './node_modules/sinon/pkg/sinon.js'},
       {pattern: './node_modules/karma-read-json/karma-read-json.js'},
       {pattern: './client/app/**/*.spec.js'},
       {pattern: './tests/**/*.js'},
@@ -35,8 +36,6 @@ module.exports = function (config) {
     ],
 
     plugins: [
-      'karma-chai',
-      'karma-chai-sinon',
       'karma-chrome-launcher',
       'karma-coverage-istanbul-reporter',
       'karma-mocha',
