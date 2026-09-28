@@ -73,7 +73,6 @@
     "patternfly": "~3.59.5",
     "patternfly-timeline": "patternfly/patternfly-timeline#master-dist",
     "spice-html5-bower": "~1.7.3",
-    "sprintf-js": "~1.1.2",
     "text-encoder-lite": "~2.0.0"
   },
   "devDependencies": {

@@ -17,6 +17,7 @@ msgid "% Complete"
 msgstr ""
 
 #: ./client/app/core/event-notifications.service.js
+#: ./client/app/core/gettext.config.spec.js
 msgid "%d new notifications"
 msgstr ""
 
@@ -28,6 +29,11 @@ msgstr ""
 msgid "%s"
 msgstr ""
 
+#: ./client/app/core/gettext.config.spec.js
+msgid "%s has %d items"
+msgstr ""
+
+#: ./client/app/core/gettext.config.spec.js
 #: ./client/app/services/edit-service-modal/edit-service-modal.component.js
 msgid "%s was edited."
 msgstr ""
@@ -303,6 +309,7 @@ msgstr ""
 msgid "Custom button action"
 msgstr ""
 
+#: ./client/app/core/gettext.config.spec.js
 #: ./client/app/core/navigation.service.js
 #: ./client/app/states/dashboard/dashboard.state.js
 msgid "Dashboard"

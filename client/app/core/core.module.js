@@ -1,4 +1,4 @@
-/* global _:false, sprintf: false, moment: false */
+/* global _:false, moment: false */
 
 import * as ActionCable from '@rails/actioncable'
 
@@ -60,7 +60,6 @@ export const CoreModule = angular
   ])
   .constant('lodash', _)
   .constant('ActionCable', ActionCable)
-  .constant('sprintf', sprintf)
   .constant('moment', moment)
   .constant('API_BASE', location.protocol + '//' + location.host)
   .constant('API_LOGIN', '')
