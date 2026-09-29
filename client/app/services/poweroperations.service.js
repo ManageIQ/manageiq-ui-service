@@ -1,5 +1,5 @@
 /** @ngInject */
-export function PowerOperationsFactory (CollectionsApi, EventNotifications) {
+export function PowerOperationsFactory (CollectionsApi, EventNotifications, sprintf) {
   var service = {
     startService: startService,
     stopService: stopService,
@@ -165,16 +165,16 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications) {
     function actionSuccess (response) {
       switch (powerAction) {
         case 'start':
-          EventNotifications.success(__('%s was started. ' + response.message, item.name))
+          EventNotifications.success(sprintf(__('%s was started. ' + response.message), item.name))
           break
         case 'stop':
-          EventNotifications.success(__('%s was stopped. ' + response.message, item.name))
+          EventNotifications.success(sprintf(__('%s was stopped. ' + response.message), item.name))
           break
         case 'suspend':
-          EventNotifications.success(__('%s was suspended. ' + response.message, item.name))
+          EventNotifications.success(sprintf(__('%s was suspended. ' + response.message), item.name))
           break
         case 'retire':
-          EventNotifications.success(__('%s was retired. ' + response.message, item.name))
+          EventNotifications.success(sprintf(__('%s was retired. ' + response.message), item.name))
           break
       }
     }
@@ -182,16 +182,16 @@ export function PowerOperationsFactory (CollectionsApi, EventNotifications) {
     function actionFailure () {
       switch (powerAction) {
         case 'start':
-          EventNotifications.error(__('There was an error starting this %s.', itemType))
+          EventNotifications.error(sprintf(__('There was an error starting this %s.'), itemType))
           break
         case 'stop':
-          EventNotifications.error(__('There was an error stopping this %s.', itemType))
+          EventNotifications.error(sprintf(__('There was an error stopping this %s.'), itemType))
           break
         case 'suspend':
-          EventNotifications.error(__('There was an error suspending this %s.', itemType))
+          EventNotifications.error(sprintf(__('There was an error suspending this %s.'), itemType))
           break
         case 'retire':
-          EventNotifications.error(__('There was an error retiring this %s.', itemType))
+          EventNotifications.error(sprintf(__('There was an error retiring this %s.'), itemType))
           break
       }
     }

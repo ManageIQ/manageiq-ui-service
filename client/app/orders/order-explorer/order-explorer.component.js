@@ -9,7 +9,7 @@ export const OrderExplorerComponent = {
 
 /** @ngInject */
 function ComponentController ($filter, $state, lodash, ListView, Language, OrdersState, ShoppingCart, EventNotifications, Session, RBAC, ModalService,
-                              CollectionsApi, Polling, POLLING_INTERVAL) {
+                              CollectionsApi, sprintf, Polling, POLLING_INTERVAL) {
   const vm = this
   vm.permissions = OrdersState.getPermissions()
   vm.$onInit = activate

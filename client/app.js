@@ -9,6 +9,7 @@ function requireAll (context) {
 window.$ = window.jQuery = require('jquery')
 window._ = require('lodash')
 window.moment = require('moment')
+window.sprintf = require('sprintf-js').sprintf
 window.c3 = require('c3')
 window.d3 = require('d3')
 window.numeral = numeral

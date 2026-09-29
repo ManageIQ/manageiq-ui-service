@@ -13,7 +13,7 @@ export const VmSnapshotsComponent = {
 }
 
 /** @ngInject */
-function ComponentController (VmsService, EventNotifications, ListView, ModalService, lodash) {
+function ComponentController (VmsService, sprintf, EventNotifications, ListView, ModalService, lodash) {
   const vm = this
 
   vm.$onInit = function () {
@@ -227,11 +227,11 @@ function ComponentController (VmsService, EventNotifications, ListView, ModalSer
     if (angular.isDefined(item)) {
       vm.snapshotsToRemove = [{'href': item.href}]
       vm.deleteTitle = __('Delete Snapshot')
-      vm.deleteMessage = __('Please confirm, this action will delete snapshot %s', item.name)
+      vm.deleteMessage = sprintf(__('Please confirm, this action will delete snapshot %s'), item.name)
     } else {
       vm.snapshotsToRemove = vm.snapshots
-      vm.deleteTitle = __('Delete All Snapshots on VM %s', vm.vm.name)
-      vm.deleteMessage = __('Please confirm, this action will delete all snapshots of vm %s', vm.vm.name)
+      vm.deleteTitle = sprintf(__('Delete All Snapshots on VM %s'), vm.vm.name)
+      vm.deleteMessage = sprintf(__('Please confirm, this action will delete all snapshots of vm %s'), vm.vm.name)
     }
     vm.deleteModal = true
   }
