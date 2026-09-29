@@ -11,7 +11,7 @@ describe('Service: PowerOperationsFactory', () => {
 
   beforeEach(() => {
     module('app.states', 'app.services')
-    bard.inject('PowerOperations', 'CollectionsApi', 'EventNotifications')
+    bard.inject('PowerOperations', 'CollectionsApi', 'EventNotifications', 'sprintf')
     eventNotificationsSpy = sinon.spy(EventNotifications, 'success')
   })
 

@@ -13,7 +13,7 @@ export const EditServiceModalComponent = {
 }
 
 /** @ngInject */
-function ComponentController ($controller) {
+function ComponentController ($controller, sprintf) {
   const vm = this
   vm.$onInit = function () {
     const base = $controller('BaseModalController', {
@@ -29,7 +29,7 @@ function ComponentController ($controller) {
 
     vm.action = 'edit'
     vm.collection = 'services'
-    vm.onSuccessMessage = __('%s was edited.', vm.resolve.service.name)
+    vm.onSuccessMessage = sprintf(__('%s was edited.'), vm.resolve.service.name)
     vm.onFailureMessage = __('There was an error editing this service.')
   }
 }
