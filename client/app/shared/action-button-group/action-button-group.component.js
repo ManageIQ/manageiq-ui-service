@@ -21,7 +21,7 @@ export const ActionButtonGroupComponent = {
 }
 
 /** @ngInject */
-function ComponentController (sprintf) {
+function ComponentController () {
   const vm = this
 
   vm.$onInit = function () {
@@ -29,7 +29,7 @@ function ComponentController (sprintf) {
       isDisabled: angular.isUndefined(vm.isDisabled) ? false : vm.isDisabled,
       onSaveLabel: angular.isUndefined(vm.onSaveLabel) ? __('Save') : vm.onSaveLabel,
       isInverted: angular.isUndefined(vm.isInverted) ? false : vm.isInverted,
-      customButtonTranslated: sprintf(__('%s'), vm.customButton),
+      customButtonTranslated: __('%s', vm.customButton),
       isPristine: isPristine,
       cancelAction: cancelAction,
       emitOriginal: emitOriginal,

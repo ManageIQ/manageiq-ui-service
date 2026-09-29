@@ -1,4 +1,4 @@
-/* global readJSON, EventNotifications, inject, VmsService, PowerOperations, $state, lodash, sprintf, Polling, ModalService */
+/* global readJSON, EventNotifications, inject, VmsService, PowerOperations, $state, lodash, Polling, ModalService */
  
 describe('Component: Resource Details', () => {
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe('Component: Resource Details', () => {
     beforeEach(inject(($stateParams, $rootScope, $componentController) => {
       scope = $rootScope.$new()
       $stateParams.vmId = '12345'
-      bard.inject('VmsService', 'PowerOperations', 'sprintf', 'lodash', 'EventNotifications',
+      bard.inject('VmsService', 'PowerOperations', 'lodash', 'EventNotifications',
         'Polling', 'LONG_POLLING_INTERVAL', '$state', 'ModalService')
       vmData = readJSON(`${mockDir}vm.json`)
       vmPermissions = readJSON(`${mockDir}vmPermissions.json`)
@@ -22,7 +22,6 @@ describe('Component: Resource Details', () => {
       ctrl = $componentController('resourceDetails', {
         $scope: scope,
         VmsService: VmsService,
-        sprintf: sprintf,
         lodash: lodash,
         EventNotifications: EventNotifications,
         Polling: Polling,

@@ -1,6 +1,6 @@
 /** @ngInject */
 export function EventNotificationsFactory ($log, $timeout, $rootScope, lodash, CollectionsApi, RBAC, ApplianceInfo,
-                                           ActionCable, Session, sprintf) {
+                                           ActionCable, Session) {
   const state = {}
   const toastDelay = 8 * 1000
   const service = {
@@ -307,7 +307,7 @@ export function EventNotificationsFactory ($log, $timeout, $rootScope, lodash, C
 
     function update (group) {
       group.unreadCount = group.notifications.filter((notification) => notification.unread).length
-      group.subHeading = sprintf(__('%d new notifications'), group.unreadCount)
+      group.subHeading = __('%d new notifications', group.unreadCount)
       state.unreadNotifications = angular.isDefined(lodash.find(state.groups, function (group) {
         return group.unreadCount > 0
       }))
