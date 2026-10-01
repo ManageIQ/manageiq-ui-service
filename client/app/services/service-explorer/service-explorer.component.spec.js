@@ -78,7 +78,7 @@ describe('Component: serviceExplorer', () => {
     collectionsApiMock
     .expects('query')
     .withArgs('services', {
-      attributes: ['picture', 'picture.image_href', 'chargeback_report', 'evm_owner.userid', 'v_total_vms', 'power_state', 'all_service_children', 'tags'],
+      attributes: ['picture', 'picture.image_href', 'chargeback_report', 'evm_owner.userid', 'v_total_vms', 'power_state', 'v_total_direct_service_children', 'tags'],
       auto_refresh: undefined,
       expand: 'resources',
       filter: ['ancestry=null', 'visible=true'],
