@@ -106,7 +106,7 @@ describe('Service: ServicesStateFactory', () => {
       const collectionsApiSpy = sinon.stub(CollectionsApi, 'query').returns(Promise.resolve(successResponse))
       ServicesState.services.setSort({'id': 'name', 'title': 'Name', 'sortType': 'alpha'}, 'asc')
       const expectedOptions = {
-        attributes: ['picture', 'picture.image_href', 'chargeback_report', 'evm_owner.userid', 'v_total_vms', 'power_state', 'all_service_children', 'tags'],
+        attributes: ['picture', 'picture.image_href', 'chargeback_report', 'evm_owner.userid', 'v_total_vms', 'power_state', 'v_total_direct_service_children', 'tags'],
         auto_refresh: false,
         expand: 'resources',
         filter: ['ancestry=null', 'display=true'],
