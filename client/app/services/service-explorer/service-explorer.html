@@ -113,7 +113,7 @@
         </span>
             </div>
         </div>
-        <list-expanded-content>
+        <list-expanded-content ng-init="vm.loadServiceChildren($parent.item)">
             <pf-list-view
                     class="explorer-children-list"
                     config="vm.serviceChildrenListConfig"
