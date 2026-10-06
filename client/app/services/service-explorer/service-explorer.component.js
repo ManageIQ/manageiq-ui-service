@@ -428,6 +428,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
               if (currentService.id === item.id) {
                 item.selected = (angular.isDefined(currentService.selected) ? currentService.selected : false)
                 item.isExpanded = (angular.isDefined(currentService.isExpanded) ? currentService.isExpanded : false)
+                item.all_service_children = currentService.all_service_children
                 if (item.selected) {
                   vm.selectedItemsList.push(item)
                 }
@@ -457,6 +458,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       return
     }
 
+    item.all_service_children = []
     item.loadingChildren = true
     ServicesState.getServiceChildren(item.id).then(function (result) {
       item.all_service_children = result.resources || []
