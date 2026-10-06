@@ -15,6 +15,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
     getServiceJobsStdout: getServiceJobsStdout,
     getServices: getServices,
     getServicesMinimal: getServicesMinimal,
+    getServiceChildren: getServiceChildren,
     getPermissions: getPermissions,
     getLifeCycleCustomDropdown: getLifeCycleCustomDropdown,
     getPolicyCustomDropdown: getPolicyCustomDropdown,
@@ -94,6 +95,17 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
     return CollectionsApi.get(`services/${serviceId}/orchestration_stacks`, stackId, options)
   }
 
+  // Returns the direct children of a service for lazy-loading row expansion in the service list
+  function getServiceChildren (serviceId) {
+    const options = {
+      expand: 'resources',
+      attributes: ['picture', 'picture.image_href', 'power_state'],
+      filter: [`service_id=${serviceId}`]
+    }
+
+    return CollectionsApi.query('services', options)
+  }
+
   // Returns minimal data for the services matching the current filters, useful for getting a filter count
   function getServicesMinimal (filters) {
     const options = {
@@ -115,7 +127,7 @@ export function ServicesStateFactory (ListConfiguration, CollectionsApi, RBAC) {
         'evm_owner.userid',
         'v_total_vms',
         'power_state',
-        'all_service_children',
+        'v_total_direct_service_children',
         'tags'
       ],
       filter: getQueryFilters(services.getFilters()),

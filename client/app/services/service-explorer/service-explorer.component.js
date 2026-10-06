@@ -37,6 +37,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       limitOptions: [5, 10, 20, 50, 100, 200, 500, 1000],
       // Functions
       resolveServices: resolveServices,
+      loadServiceChildren: loadServiceChildren,
       actionEnabled: actionEnabled,
       updateMenuActionForItemFn: updateMenuActionForItemFn,
       listActionDisable: listActionDisable,
@@ -417,13 +418,9 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
 
       result.resources.forEach((item) => {
         if (angular.isUndefined(item.service_id)) {
-          item.disableRowExpansion = item.all_service_children.length < 1
+          item.disableRowExpansion = !item.v_total_direct_service_children
           item.power_state = PowerOperations.getPowerState(item)
           item.power = getPowerInfo(item.power_state)
-          angular.forEach(item.all_service_children, function (childService) {
-            childService.power_state = PowerOperations.getPowerState(item)
-            childService.power = getPowerInfo(childService.power_state)
-          })
 
           if (refresh) {
             for (var i = 0; i < existingServices.length; i++) {
@@ -431,6 +428,7 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
               if (currentService.id === item.id) {
                 item.selected = (angular.isDefined(currentService.selected) ? currentService.selected : false)
                 item.isExpanded = (angular.isDefined(currentService.isExpanded) ? currentService.isExpanded : false)
+                item.all_service_children = currentService.all_service_children
                 if (item.selected) {
                   vm.selectedItemsList.push(item)
                 }
@@ -448,20 +446,39 @@ function ComponentController ($state, ServicesState, Language, ListView, Chargeb
       vm.loading = false
     }
 
-    function getPowerInfo (powerState) {
-      const powerStates = {
-        'on': {icon: 'pficon-ok', tooltip: __('Power State: On')},
-        'off': {icon: 'fa-power-off', tooltip: __('Power State: Off')},
-        'unknown': {icon: 'fa-question-circle', tooltip: __('Power State: Unknown')}
-      }
-
-      return (powerState !== 'on' && powerState !== 'off' ? powerStates.unknown : powerStates[powerState])
-    }
-
     function queryFailure (response) {
       vm.loading = false
       EventNotifications.error(__('There was an error loading the services. ') + response.data.error.message)
     }
+  }
+
+  // Lazily fetches child services for a row when it is first expanded
+  function loadServiceChildren (item) {
+    if (item.all_service_children || item.loadingChildren) {
+      return
+    }
+
+    item.all_service_children = []
+    item.loadingChildren = true
+    ServicesState.getServiceChildren(item.id).then(function (result) {
+      item.all_service_children = result.resources || []
+      angular.forEach(item.all_service_children, function (childService) {
+        childService.power_state = PowerOperations.getPowerState(childService)
+        childService.power = getPowerInfo(childService.power_state)
+      })
+    }).finally(function () {
+      item.loadingChildren = false
+    })
+  }
+
+  function getPowerInfo (powerState) {
+    const powerStates = {
+      'on': {icon: 'pficon-ok', tooltip: __('Power State: On')},
+      'off': {icon: 'fa-power-off', tooltip: __('Power State: Off')},
+      'unknown': {icon: 'fa-question-circle', tooltip: __('Power State: Unknown')}
+    }
+
+    return (powerState !== 'on' && powerState !== 'off' ? powerStates.unknown : powerStates[powerState])
   }
 
   function listActionDisable (config, items) {
