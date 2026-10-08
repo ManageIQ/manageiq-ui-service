@@ -149,7 +149,7 @@
     "jquery": "~3.7.1",
     "minimist": "~1.2.8",
     "moment-timezone": "^0.6.0",
-    "moment": "~2.30.0",
+    "moment": "~2.31.0",
     "mocha/serialize-javascript": "^7.0.7",
     "node-sass": "npm:sass@~1.35.1",
     "patternfly": "~3.59.5",
