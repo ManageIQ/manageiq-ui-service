@@ -3,7 +3,7 @@
 [![CI](https://github.com/ManageIQ/manageiq-ui-service/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/ManageIQ/manageiq-ui-service/actions/workflows/ci.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/ManageIQ/manageiq-ui-service/badge.svg?branch=master)](https://coveralls.io/github/ManageIQ/manageiq-ui-service?branch=master)
 
-[![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq-ui-service?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Chat](https://matrix.to/img/matrix-badge.svg)](https://app.element.io/#/room/#ManageIQ_manageiq/ui:gitter.im)
 
 The Service UI (SUI), previously Self Service UI (SSUI), for the [ManageIQ](http://github.com/ManageIQ/manageiq) project.
 
