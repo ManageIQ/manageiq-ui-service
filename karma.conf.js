@@ -26,7 +26,7 @@ module.exports = function (config) {
     files: [
       {pattern: './dist/app.js'},
       {pattern: './dist/chai-bundle.js'},
-      {pattern: './node_modules/angular-mocks/angular-mocks.js'},
+      {pattern: './node_modules/angular/angular-mocks.js'},
       {pattern: './node_modules/bardjs/bard.js'},
       {pattern: './node_modules/karma-read-json/karma-read-json.js'},
       {pattern: './client/app/**/*.spec.js'},

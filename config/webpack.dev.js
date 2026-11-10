@@ -221,6 +221,12 @@ module.exports = {
     extensions: ['.js'],
     symlinks: false,
     alias: {
+      // @brickhouse-tech/angular-lts (aliased as "angular") bundles these AngularJS modules
+      'angular-animate$': path.resolve(nodeModules, 'angular/angular-animate.js'),
+      'angular-cookies$': path.resolve(nodeModules, 'angular/angular-cookies.js'),
+      'angular-messages$': path.resolve(nodeModules, 'angular/angular-messages.js'),
+      'angular-resource$': path.resolve(nodeModules, 'angular/angular-resource.js'),
+      'angular-sanitize$': path.resolve(nodeModules, 'angular/angular-sanitize.js'),
       'bootstrap-select': '@pf3/select',
       'font-awesome$': path.resolve(nodeModules, 'font-awesome/scss/font-awesome.scss'),
       '/version.json': fs.existsSync(`${root}/version/version.json`) ? `${root}/version/version.json` : false,
