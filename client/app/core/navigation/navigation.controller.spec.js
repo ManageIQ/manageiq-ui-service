@@ -31,7 +31,7 @@ describe('Controller: Navigation', () => {
   it('controller sites are defined and injected URL to be correct', () => {
     expect(ctrl.sites).to.exist
     expect(ctrl.sites.length).to.equal(1)
-    expect(ctrl.sites[0].url).to.equal('http://localhost:9876')
+    expect(ctrl.sites[0].url).to.equal(window.location.origin)
   })
 
   it('it contains about information ', () => {
