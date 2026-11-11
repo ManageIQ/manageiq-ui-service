@@ -3241,10 +3241,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-animate@npm:^1.7.7, angular-animate@npm:~1.8.0":
-  version: 1.8.3
-  resolution: "angular-animate@npm:1.8.3"
-  checksum: 10/2c307aa6a69492a23cec5b50d0f2dda6f5f058fdf32fea2019ff6f82eb33c4d79ca15ce9806a984f26e6f17b4251f34834d36dbbf6ef49d7b1db4039535309b0
+"angular-animate@npm:@brickhouse-tech/angular-lts@^1.10.4, angular-cookies@npm:@brickhouse-tech/angular-lts@^1.10.4, angular-messages@npm:@brickhouse-tech/angular-lts@^1.10.4, angular-resource@npm:@brickhouse-tech/angular-lts@^1.10.4, angular-sanitize@npm:@brickhouse-tech/angular-lts@^1.10.4, angular@npm:@brickhouse-tech/angular-lts@^1.10.4":
+  version: 1.10.4
+  resolution: "@brickhouse-tech/angular-lts@npm:1.10.4"
+  checksum: 10/0f4501fda2d0b169c5f1075d91b633327c4276d77c77d9c411e419c735d6625ac09f520aa02950e05c2184f34f8950292a220ad6c6bff6fca7e2cf798b4f8341
   languageName: node
   linkType: hard
 
@@ -3257,13 +3257,6 @@ __metadata:
     bootstrap-switch: "npm:3.3.2"
     jquery: "npm:>=1.9.0"
   checksum: 10/4920190dca57907e2d51bb56efd6ff07f699a81977eb77cfa2415a40770ceee5d5c2ba8c0a205cbe8a81b4f8c911e56d94b4275d9960844c98559738a66579b1
-  languageName: node
-  linkType: hard
-
-"angular-cookies@npm:~1.8.0":
-  version: 1.8.3
-  resolution: "angular-cookies@npm:1.8.3"
-  checksum: 10/424d18d1d5f445de645126ccb0117922b44176dfed1542cc51750ee78124eab5ac95ddf3205994cf2f7b176d9363939afe02a6bd886fdec9e50d3225fca311b4
   languageName: node
   linkType: hard
 
@@ -3321,20 +3314,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-messages@npm:~1.8.0":
-  version: 1.8.3
-  resolution: "angular-messages@npm:1.8.3"
-  checksum: 10/0a8b5eef73cb282cb6031d2bebe407a414a54ab7155a44e1f614492ae4a41ef5c03af4b7fed882638cbc58ec5e888157f7f91285c91c4bdd9567a199680fb73b
-  languageName: node
-  linkType: hard
-
-"angular-mocks@npm:~1.8.2":
-  version: 1.8.3
-  resolution: "angular-mocks@npm:1.8.3"
-  checksum: 10/eab00bccdb709c804c9e901f9c19e0e6570349e6db6b1c6a932106c02e3669a801b324346d6895460df086ade2b2ee6c381b11ef3aae313d3040b5dafe945759
-  languageName: node
-  linkType: hard
-
 "angular-patternfly@npm:~5.0.3":
   version: 5.0.3
   resolution: "angular-patternfly@npm:5.0.3"
@@ -3385,20 +3364,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-resource@npm:~1.8.0":
-  version: 1.8.3
-  resolution: "angular-resource@npm:1.8.3"
-  checksum: 10/3f348cd315ba271b8c621c0b955d553c885769f8674f3984e291c45e2295e0055f3970805f50c9c29978a2186f925713995688395b42a8665846d91800e08784
-  languageName: node
-  linkType: hard
-
-"angular-sanitize@npm:^1.7.7, angular-sanitize@npm:~1.8.0":
-  version: 1.8.3
-  resolution: "angular-sanitize@npm:1.8.3"
-  checksum: 10/50227cd12259bc12b91d53f23bab9a026831d56f0b4cb74ddb3571c6da602720041e9238857837d014ef2beccf4a9565a19aa01cb2ec8ba2d3111b6c05af93e8
-  languageName: node
-  linkType: hard
-
 "angular-svg-base-fix@npm:2.0.0":
   version: 2.0.0
   resolution: "angular-svg-base-fix@npm:2.0.0"
@@ -3430,13 +3395,6 @@ __metadata:
     jquery: "npm:>=3.1.x"
     jquery-ui-dist: "npm:>=1.12.x"
   checksum: 10/da78c7200074b1e3789a499f7db8c53bc88fca4f60569cf9aa8e2d9f67900f0edadc57899313d55c41a890e2eebd56f2a50a641ccc9358432b6ded419ebca0af
-  languageName: node
-  linkType: hard
-
-"angular@npm:>=1.2.x, angular@npm:>=1.3.0, angular@npm:>=1.4.0, angular@npm:^1.7.7, angular@npm:~1.8.0":
-  version: 1.8.3
-  resolution: "angular@npm:1.8.3"
-  checksum: 10/4a21f1f74790dc2cdceb582386abdc7b55a0463f86aaa59573c940295cb51ed61b8fa610011134280ae0da7f97fbbc660f3a4e4491b24c92b2c32a547073a1c2
   languageName: node
   linkType: hard
 
@@ -8402,19 +8360,18 @@ __metadata:
     "@pf3/select": "npm:~1.12.6"
     "@rails/actioncable": "npm:^8.0.0"
     "@uirouter/angularjs": "npm:~1.0.28"
-    angular: "npm:~1.8.0"
-    angular-animate: "npm:~1.8.0"
+    angular: "npm:@brickhouse-tech/angular-lts@^1.10.4"
+    angular-animate: "npm:@brickhouse-tech/angular-lts@^1.10.4"
     angular-bootstrap-switch: "npm:~0.5.2"
-    angular-cookies: "npm:~1.8.0"
+    angular-cookies: "npm:@brickhouse-tech/angular-lts@^1.10.4"
     angular-drag-and-drop-lists: "npm:~2.1.0"
     angular-dragdrop: "npm:~1.0.13"
     angular-gettext: "npm:~2.4.1"
     angular-gettext-cli: "npm:~1.2.0"
-    angular-messages: "npm:~1.8.0"
-    angular-mocks: "npm:~1.8.2"
+    angular-messages: "npm:@brickhouse-tech/angular-lts@^1.10.4"
     angular-patternfly: "npm:~5.0.3"
-    angular-resource: "npm:~1.8.0"
-    angular-sanitize: "npm:~1.8.0"
+    angular-resource: "npm:@brickhouse-tech/angular-lts@^1.10.4"
+    angular-sanitize: "npm:@brickhouse-tech/angular-lts@^1.10.4"
     angular-ui-bootstrap: "npm:~2.5.6"
     angular-ui-sortable: "npm:~0.19.0"
     array-includes: "npm:~3.2.0"
