@@ -14,7 +14,7 @@ class DownloadNoVNCPlugin {
 
   apply(compiler) {
     // Use 'afterEmit' hook to download AFTER webpack has written all files
-    // This ensures CleanWebpackPlugin doesn't delete our file
+    // This ensures output.clean doesn't delete our file
     compiler.hooks.afterEmit.tapAsync('DownloadNoVNCPlugin', (compilation, callback) => {
       // Only download once per build (prevents duplicate downloads if hook fires multiple times during HMR)
       if (this.downloaded) {

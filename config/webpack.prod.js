@@ -1,5 +1,4 @@
 const webpack = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 
@@ -8,6 +7,9 @@ const manifest = require('./manifest.js');
 
 // Source maps suitable for production use
 config.devtool = 'cheap-module-source-map'
+
+// Cleans previous build
+config.output.clean = true
 
 // minify
 config.mode = 'production';
@@ -22,13 +24,6 @@ config.plugins = config.plugins.filter(plugin => {
 
 config.plugins.push(
   new webpack.NoEmitOnErrorsPlugin(),
-
-  // Cleans previous build
-  new CleanWebpackPlugin({
-    cleanOnceBeforeBuildPatterns: [config.output.path],
-    dangerouslyAllowCleanPatternsOutsideProject: true,
-    dry: false,
-  }),
 
   // Replace index.html with correct base href for production use
   new HtmlWebpackPlugin({
