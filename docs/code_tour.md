@@ -17,7 +17,7 @@ Keep in mind this application undergoes constant development so be sure to check
 variables such as `PROXY_HOST=localhost:3000`.
 
 #### `yarn test`
-- Bundles the SUI and uses karma to run all `.spec.js` files.  Pass fail results are printed out during task execution and coverage at task completion.
+- Bundles the SUI and uses @web/test-runner to run all `.spec.js` files.  Pass fail results are printed out during task execution and coverage at task completion.
 
 #### `yarn test:watch`
 - Runs `yarn test` and watch project files for changes, upon a change, automatically reruns `yarn test`. 
